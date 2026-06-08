@@ -3,7 +3,6 @@ import {
   generatePuzzle,
   findConflicts,
   isSolved,
-  solveOne,
   SIZE_4,
   SIZE_6,
   SIZE_9,
@@ -33,6 +32,8 @@ import {
 import { copyShareText, downloadShareImage, type ShareData } from "./share";
 
 const stats = loadStats();
+
+type Screen = "home" | "game";
 
 interface Move {
   idx: number;
@@ -67,11 +68,11 @@ interface State {
 const STORAGE_KEY = "shudu-state-v2";
 const THEME_KEY = "shudu-theme";
 
-function makeState(
-  size: PuzzleSize,
-  difficulty: Difficulty,
-  isDaily = false
-): State {
+function sizeFromN(n: number): PuzzleSize {
+  return n === 4 ? SIZE_4 : n === 6 ? SIZE_6 : SIZE_9;
+}
+
+function makeState(size: PuzzleSize, difficulty: Difficulty, isDaily = false): State {
   const n = size.size;
   const rng = isDaily
     ? mulberry32(seedForDate(todayISO(), n, difficulty))
@@ -104,8 +105,7 @@ function loadState(): State | null {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
     const obj = JSON.parse(raw);
-    const s: PuzzleSize =
-      obj.size?.size === 4 ? SIZE_4 : obj.size?.size === 6 ? SIZE_6 : SIZE_9;
+    const s = sizeFromN(obj.size?.size ?? 9);
     return {
       ...obj,
       size: s,
@@ -131,12 +131,17 @@ function saveState(s: State) {
   } catch {}
 }
 
+function clearSavedState() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch {}
+}
+
 function elapsedMs(s: State): number {
   if (s.finished) return s.elapsedAtPause;
   return s.elapsedAtPause + (Date.now() - s.resumeAt);
 }
 
-let state: State = loadState() ?? makeState(SIZE_9, "standard");
+let state: State | null = loadState();
+let screen: Screen = state && !state.finished ? "game" : "home";
 
 // ---------- Theme ----------
 function applyTheme() {
@@ -151,176 +156,195 @@ function toggleTheme() {
   const next = cur === "dark" ? "light" : "dark";
   localStorage.setItem(THEME_KEY, next);
   document.documentElement.dataset.theme = next;
-  rebuildUI();
+  rebuild();
 }
 applyTheme();
 
-// ---------- UI construction ----------
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
-function buildShell() {
+function rebuild() {
+  if (screen === "home") buildHome();
+  else buildGame();
+}
+
+// ---------- Home ----------
+function buildHome() {
+  const dailyDoneToday = !!stats.dailyCompleted[todayISO()];
+  const sizes = [
+    { n: 4, key: "size4" },
+    { n: 6, key: "size6" },
+    { n: 9, key: "size9" },
+  ];
+  const diffs: Difficulty[] = ["easy", "standard", "hard"];
+
+  const hasResume = state && !state.finished;
+  const resumeBanner = hasResume
+    ? `<button class="resume-banner" id="resume-btn">
+        <span class="left">
+          <span class="lbl">${getLang() === "zh" ? "继续游戏" : "Resume"}</span>
+          <span class="meta">${state!.size.size}×${state!.size.size} · ${t(state!.difficulty)} · ${formatTime(elapsedMs(state!))}</span>
+        </span>
+        <span class="arrow">→</span>
+      </button>`
+    : "";
+
+  const sizeBlocks = sizes
+    .map(({ n, key }) => {
+      const cards = diffs
+        .map((d) => {
+          const rec = stats.records[recordKey(n, d)];
+          const best = rec ? `<span class="best">🏆 ${formatTime(rec.timeMs)}</span>` : `<span class="best dim">—</span>`;
+          return `<button class="diff-card" data-size="${n}" data-diff="${d}">
+            <span class="dname">${t(d)}</span>
+            ${best}
+          </button>`;
+        })
+        .join("");
+      return `
+        <div class="size-block">
+          <div class="size-label">${t(key)}</div>
+          <div class="diff-row">${cards}</div>
+        </div>
+      `;
+    })
+    .join("");
+
   app.innerHTML = `
-    <header>
-      <h1>${t("title")}</h1>
-      <div class="head-right">
-        <span class="sub" id="timer">00:00</span>
+    <div class="home">
+      <h1 class="big-title">${t("title")}</h1>
+      <p class="subtitle">${getLang() === "zh" ? "选择模式开始挑战" : "Pick a mode to play"}</p>
+
+      ${resumeBanner}
+
+      <button class="daily-card ${dailyDoneToday ? "done" : ""}" id="daily-card">
+        <div class="dc-left">
+          <div class="dc-title">🌟 ${t("daily")}</div>
+          <div class="dc-date">${todayISO()}</div>
+        </div>
+        <div class="dc-right">
+          ${dailyDoneToday
+            ? `<span class="dc-done">✓ ${formatTime(stats.dailyCompleted[todayISO()].timeMs)}</span>`
+            : `<span class="dc-go">→</span>`}
+        </div>
+      </button>
+
+      <div class="size-list">${sizeBlocks}</div>
+
+      <div class="home-footer">
+        <button class="home-action" id="home-stats">📊 ${t("stats")}</button>
+        <div class="spacer"></div>
         <button class="icon-btn" id="theme-btn" title="theme">${
           document.documentElement.dataset.theme === "dark" ? t("themeLight") : t("themeDark")
         }</button>
         <button class="icon-btn" id="lang-btn" title="language">${t("langSwitch")}</button>
-        <button class="icon-btn" id="menu-btn" title="menu">≡</button>
-      </div>
-    </header>
-
-    <div class="setup">
-      <div class="group" id="size-group">
-        <button data-size="4">${t("size4")}</button>
-        <button data-size="6">${t("size6")}</button>
-        <button data-size="9">${t("size9")}</button>
-      </div>
-      <div class="group" id="diff-group">
-        <button data-diff="easy">${t("easy")}</button>
-        <button data-diff="standard">${t("standard")}</button>
-        <button data-diff="hard">${t("hard")}</button>
-      </div>
-      <button class="action primary" id="new-btn">+ ${t("new")}</button>
-    </div>
-
-    <div class="status">
-      <span id="status-msg">${t("selectCell")}</span>
-      <span id="meta"></span>
-    </div>
-
-    <div class="board-wrap">
-      <div class="board" id="board"></div>
-    </div>
-
-    <div class="tools">
-      <button class="tool" id="undo-btn" title="${t("undo")}">↶</button>
-      <button class="tool" id="redo-btn" title="${t("redo")}">↷</button>
-      <button class="tool" id="notes-btn" title="${t("notes")}">✏️</button>
-      <button class="tool" id="hint-btn" title="${t("hint")}">💡</button>
-    </div>
-
-    <div class="pad" id="pad"></div>
-    <footer>© weavejam · 数独 Sudoku</footer>
-
-    <div class="menu" id="menu" hidden>
-      <button data-cmd="daily">${t("daily")}</button>
-      <button data-cmd="check">${t("check")}</button>
-      <button data-cmd="stats">${t("stats")}</button>
-      <button data-cmd="share">${t("share")}</button>
-      <button data-cmd="solve">${t("solve")}</button>
-    </div>
-
-    <div class="modal" id="stats-modal" hidden>
-      <div class="modal-backdrop"></div>
-      <div class="modal-card">
-        <div class="modal-head">
-          <h2>${t("statRecords")}</h2>
-          <button class="modal-close" id="stats-close">✕</button>
-        </div>
-        <div class="modal-body" id="stats-body"></div>
       </div>
     </div>
+
+    ${statsModalHtml()}
   `;
-  wireEvents();
+  wireHome();
 }
 
-function wireEvents() {
-  document.querySelectorAll<HTMLButtonElement>("#size-group button").forEach((b) => {
+function wireHome() {
+  document.querySelector("#resume-btn")?.addEventListener("click", () => {
+    if (!state || state.finished) return;
+    screen = "game";
+    rebuild();
+  });
+  document.querySelector("#daily-card")!.addEventListener("click", () => {
+    const today = todayISO();
+    if (stats.dailyCompleted[today]) {
+      showToast(t("dailyDone"));
+      return;
+    }
+    state = makeState(SIZE_9, "standard", true);
+    saveState(state);
+    screen = "game";
+    rebuild();
+  });
+  document.querySelectorAll<HTMLButtonElement>(".diff-card").forEach((b) => {
     b.addEventListener("click", () => {
       const n = Number(b.dataset.size);
-      const sz = n === 4 ? SIZE_4 : n === 6 ? SIZE_6 : SIZE_9;
-      if (sz.size === state.size.size) return;
-      state = makeState(sz, state.difficulty);
-      saveState(state);
-      render();
-    });
-  });
-  document.querySelectorAll<HTMLButtonElement>("#diff-group button").forEach((b) => {
-    b.addEventListener("click", () => {
       const d = b.dataset.diff as Difficulty;
-      if (d === state.difficulty && !state.isDaily) return;
-      state = makeState(state.size, d);
+      state = makeState(sizeFromN(n), d);
       saveState(state);
-      render();
+      screen = "game";
+      rebuild();
     });
   });
-
-  document.querySelector("#new-btn")!.addEventListener("click", () => {
-    state = makeState(state.size, state.difficulty);
-    saveState(state);
-    render();
-  });
-  document.querySelector("#check-btn")?.addEventListener("click", onCheck);
-  document.querySelector("#hint-btn")!.addEventListener("click", onHint);
-  document.querySelector("#undo-btn")!.addEventListener("click", undo);
-  document.querySelector("#redo-btn")!.addEventListener("click", redo);
-  document.querySelector("#notes-btn")!.addEventListener("click", () => {
-    state.noteMode = !state.noteMode;
-    render();
-  });
-
-  // Overflow menu
-  const menu = document.querySelector<HTMLDivElement>("#menu")!;
-  document.querySelector("#menu-btn")!.addEventListener("click", (e) => {
-    e.stopPropagation();
-    menu.hidden = !menu.hidden;
-  });
-  document.addEventListener("click", (e) => {
-    if (!menu.hidden && !menu.contains(e.target as Node)) menu.hidden = true;
-  });
-  menu.querySelectorAll<HTMLButtonElement>("button").forEach((b) => {
-    b.addEventListener("click", () => {
-      menu.hidden = true;
-      switch (b.dataset.cmd) {
-        case "daily":
-          state = makeState(SIZE_9, "standard", true);
-          saveState(state);
-          render();
-          break;
-        case "check": onCheck(); break;
-        case "stats": openStats(); break;
-        case "share": onShare(); break;
-        case "solve": onSolve(); break;
-      }
-    });
-  });
-
+  document.querySelector("#home-stats")!.addEventListener("click", openStats);
   document.querySelector("#theme-btn")!.addEventListener("click", toggleTheme);
   document.querySelector("#lang-btn")!.addEventListener("click", () => {
     setLang(getLang() === "zh" ? "en" : "zh");
-    rebuildUI();
+    rebuild();
   });
-
-  const modal = document.querySelector<HTMLDivElement>("#stats-modal")!;
-  document.querySelector("#stats-close")!.addEventListener("click", () => (modal.hidden = true));
-  modal.querySelector(".modal-backdrop")!.addEventListener("click", () => (modal.hidden = true));
+  wireStatsModal();
 }
 
-function rebuildUI() {
-  buildShell();
+// ---------- Game ----------
+function buildGame() {
+  if (!state) { screen = "home"; rebuild(); return; }
+  const s = state;
+  app.innerHTML = `
+    <div class="game">
+      <div class="game-head">
+        <button class="back" id="back-btn" title="back">←</button>
+        <div class="mode-badge">
+          ${s.size.size}×${s.size.size} · ${t(s.difficulty)}
+          ${s.isDaily ? '<span class="daily-tag">🌟</span>' : ''}
+        </div>
+        <span class="timer" id="timer">00:00</span>
+      </div>
+
+      <div class="status">
+        <span id="status-msg">${t("selectCell")}</span>
+        <span id="meta"></span>
+      </div>
+
+      <div class="board-wrap">
+        <div class="board" id="board"></div>
+      </div>
+
+      <div class="pad" id="pad"></div>
+
+      <div class="tools">
+        <button class="tool" id="undo-btn" title="${t("undo")}">↶<span class="lbl">${t("undo")}</span></button>
+        <button class="tool" id="redo-btn" title="${t("redo")}">↷<span class="lbl">${t("redo")}</span></button>
+        <button class="tool" id="notes-btn" title="${t("notes")}">✏️<span class="lbl">${t("notes")}</span></button>
+        <button class="tool" id="hint-btn" title="${t("hint")}">💡<span class="lbl">${t("hint")}</span></button>
+        <button class="tool" id="check-btn" title="${t("check")}">✓<span class="lbl">${t("check")}</span></button>
+      </div>
+
+      <div class="win-overlay" id="win-overlay" hidden></div>
+    </div>
+
+    ${statsModalHtml()}
+  `;
+  wireGame();
   render();
 }
 
-// ---------- Render ----------
-function render() {
-  const n = state.size.size;
-  // toggles
-  document.querySelectorAll<HTMLElement>("#size-group button").forEach((b) => {
-    b.classList.toggle("active", Number(b.dataset.size) === n);
+function wireGame() {
+  document.querySelector("#back-btn")!.addEventListener("click", () => {
+    screen = "home";
+    rebuild();
   });
-  document.querySelectorAll<HTMLElement>("#diff-group button").forEach((b) => {
-    b.classList.toggle("active", b.dataset.diff === state.difficulty);
+  document.querySelector("#undo-btn")!.addEventListener("click", undo);
+  document.querySelector("#redo-btn")!.addEventListener("click", redo);
+  document.querySelector("#notes-btn")!.addEventListener("click", () => {
+    if (!state) return;
+    state.noteMode = !state.noteMode;
+    render();
   });
-  document.querySelector("#notes-btn")!.classList.toggle("toggle-on", state.noteMode);
-  if (state.isDaily) {
-    document.querySelector("#hint-btn")!.classList.add("disabled");
-  } else {
-    document.querySelector("#hint-btn")!.classList.remove("disabled");
-  }
+  document.querySelector("#hint-btn")!.addEventListener("click", onHint);
+  document.querySelector("#check-btn")!.addEventListener("click", onCheck);
+  wireStatsModal();
+}
 
+// ---------- Render game ----------
+function render() {
+  if (!state) return;
+  const n = state.size.size;
   const boardEl = document.querySelector<HTMLDivElement>("#board")!;
   boardEl.className = `board size-${n}`;
   boardEl.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
@@ -358,19 +382,19 @@ function render() {
     if (v !== 0) {
       cell.textContent = String(v);
     } else if (state.notes[i] && state.notes[i].length > 0) {
-      const notes = state.notes[i];
+      const notesArr = state.notes[i];
       const notesEl = document.createElement("div");
       notesEl.className = "notes";
       notesEl.style.gridTemplateColumns = `repeat(${state.size.boxCols}, 1fr)`;
       for (let nv = 1; nv <= n; nv++) {
-        const s = document.createElement("span");
-        s.textContent = notes.includes(nv) ? String(nv) : "";
-        notesEl.appendChild(s);
+        const span = document.createElement("span");
+        span.textContent = notesArr.includes(nv) ? String(nv) : "";
+        notesEl.appendChild(span);
       }
       cell.appendChild(notesEl);
     }
-
     cell.addEventListener("click", () => {
+      if (!state) return;
       state.selected = i;
       render();
     });
@@ -405,7 +429,6 @@ function render() {
   if (best) parts.push(`🏆 ${formatTime(best.timeMs)}`);
   if (state.mistakes > 0) parts.push(`✗ ${state.mistakes}`);
   if (state.hintsUsed > 0) parts.push(`💡 ${state.hintsUsed}`);
-  if (state.isDaily) parts.push("🌟");
   metaEl.textContent = parts.join(" · ");
 
   if (state.finished) {
@@ -417,10 +440,18 @@ function render() {
   } else {
     statusEl.textContent = t("selectCell");
   }
+
+  document.querySelector("#notes-btn")?.classList.toggle("toggle-on", state.noteMode);
+  const hintBtn = document.querySelector("#hint-btn");
+  if (hintBtn) {
+    if (state.isDaily) hintBtn.classList.add("disabled");
+    else hintBtn.classList.remove("disabled");
+  }
 }
 
 // ---------- Actions ----------
 function inputNumber(v: number) {
+  if (!state) return;
   if (state.selected === null || state.finished) return;
   if (state.givens[state.selected]) return;
   const idx = state.selected;
@@ -434,12 +465,8 @@ function inputNumber(v: number) {
     else set.add(v);
     const newNotes = [...set].sort((a, b) => a - b);
     pushMove({
-      idx,
-      prevVal: state.current[idx],
-      newVal: state.current[idx],
-      prevNotes,
-      newNotes,
-      countedMistake: false,
+      idx, prevVal: state.current[idx], newVal: state.current[idx],
+      prevNotes, newNotes, countedMistake: false,
     });
     state.notes[idx] = newNotes;
     saveState(state);
@@ -459,27 +486,22 @@ function inputNumber(v: number) {
   state.current[idx] = v;
   if (v !== 0) state.notes[idx] = [];
   pushMove({
-    idx,
-    prevVal,
-    newVal: v,
-    prevNotes,
-    newNotes: [...state.notes[idx]],
-    countedMistake: counted,
+    idx, prevVal, newVal: v, prevNotes, newNotes: [...state.notes[idx]], countedMistake: counted,
   });
-
   if (isSolved(state.current, state.size)) finishGame();
   saveState(state);
   render();
 }
 
 function pushMove(m: Move) {
+  if (!state) return;
   state.history.push(m);
   if (state.history.length > 500) state.history.shift();
   state.future = [];
 }
 
 function undo() {
-  if (state.history.length === 0 || state.finished) return;
+  if (!state || state.history.length === 0 || state.finished) return;
   const m = state.history.pop()!;
   state.current[m.idx] = m.prevVal;
   state.notes[m.idx] = [...m.prevNotes];
@@ -489,7 +511,7 @@ function undo() {
   render();
 }
 function redo() {
-  if (state.future.length === 0 || state.finished) return;
+  if (!state || state.future.length === 0 || state.finished) return;
   const m = state.future.pop()!;
   state.current[m.idx] = m.newVal;
   state.notes[m.idx] = [...m.newNotes];
@@ -501,7 +523,7 @@ function redo() {
 }
 
 function onCheck() {
-  if (state.finished) return;
+  if (!state || state.finished) return;
   const n = state.size.size;
   const sol = state.puzzle.solution;
   let wrong = 0;
@@ -521,7 +543,7 @@ function onCheck() {
 }
 
 function onHint() {
-  if (state.finished) return;
+  if (!state || state.finished) return;
   if (state.isDaily) {
     showToast(getLang() === "zh" ? "🌟 今日挑战禁用提示" : "🌟 Daily challenge: hints disabled");
     return;
@@ -541,31 +563,17 @@ function onHint() {
   state.notes[idx] = [];
   state.givens[idx] = true;
   state.hintsUsed += 1;
-  state.elapsedAtPause += 30_000; // +30s penalty
-  pushMove({
-    idx, prevVal, newVal: sol[idx], prevNotes, newNotes: [], countedMistake: false,
-  });
+  state.elapsedAtPause += 30_000;
+  pushMove({ idx, prevVal, newVal: sol[idx], prevNotes, newNotes: [], countedMistake: false });
   state.selected = idx;
-  showToast(getLang() === "zh" ? `💡 提示 · 罚时 +30s` : `💡 Hint · +30s penalty`, 2000);
+  showToast(getLang() === "zh" ? "💡 提示 · 罚时 +30s" : "💡 Hint · +30s penalty", 2000);
   if (isSolved(state.current, state.size)) finishGame();
   saveState(state);
   render();
 }
 
-function onSolve() {
-  if (!confirm(t("confirmSolve"))) return;
-  const elapsed = elapsedMs(state);
-  const sol = solveOne(state.puzzle.puzzle, state.size) ?? state.puzzle.solution;
-  state.current = [...sol];
-  state.finished = true;
-  state.revealed = true;
-  state.elapsedAtPause = elapsed;
-  saveState(state);
-  render();
-}
-
 function finishGame() {
-  if (state.finished) return;
+  if (!state || state.finished) return;
   const elapsed = elapsedMs(state);
   state.finished = true;
   state.elapsedAtPause = elapsed;
@@ -574,13 +582,7 @@ function finishGame() {
     return;
   }
   const outcome = recordWin(
-    stats,
-    state.size.size,
-    state.difficulty,
-    elapsed,
-    state.mistakes,
-    state.isDaily,
-    state.hintsUsed
+    stats, state.size.size, state.difficulty, elapsed, state.mistakes, state.isDaily, state.hintsUsed
   );
   const newAch = evaluateAchievements(stats, {
     size: state.size.size,
@@ -590,45 +592,98 @@ function finishGame() {
     isDaily: state.isDaily,
     hintsUsed: state.hintsUsed,
   });
-  // persist achievements update
   saveStats(stats);
   saveState(state);
 
-  const lines: string[] = [t("win", formatTime(elapsed))];
-  if (state.isDaily) lines.push(t("dailyChallengeWin"));
-  if (outcome.newRecord) {
-    lines.push(
-      outcome.previousRecord ? t("newRecord", formatTime(outcome.previousRecord.timeMs)) : t("firstRecord")
-    );
+  showWinOverlay({
+    elapsed,
+    newRecord: outcome.newRecord,
+    prevRecord: outcome.previousRecord?.timeMs,
+    firstOfDay: outcome.firstOfDay,
+    streakAfter: outcome.streakAfter,
+    perfect: outcome.perfect,
+    newAchievements: newAch,
+  });
+}
+
+interface WinInfo {
+  elapsed: number;
+  newRecord: boolean;
+  prevRecord?: number;
+  firstOfDay: boolean;
+  streakAfter: number;
+  perfect: boolean;
+  newAchievements: string[];
+}
+
+function showWinOverlay(info: WinInfo) {
+  if (!state) return;
+  const s = state;
+  const overlay = document.querySelector<HTMLDivElement>("#win-overlay")!;
+  const badges: string[] = [];
+  if (info.newRecord) {
+    badges.push(`<div class="badge new-record">🏆 ${
+      info.prevRecord ? t("newRecord", formatTime(info.prevRecord)) : t("firstRecord")
+    }</div>`);
   }
-  if (outcome.firstOfDay) lines.push(t("dailyCheckIn", outcome.streakAfter));
-  if (outcome.perfect) lines.push(t("perfect"));
-  else if (state.hintsUsed > 0) {
-    lines.push(getLang() === "zh"
-      ? `💡 提示 ${state.hintsUsed} 次（含 ${state.hintsUsed * 30}s 罚时）`
-      : `💡 ${state.hintsUsed} hint(s) (+${state.hintsUsed * 30}s)`);
-  }
-  if (state.mistakes > 0) lines.push(t("mistakes", state.mistakes));
-  showToast(lines.join("<br>"), 6000);
-  if (outcome.newRecord || outcome.firstOfDay || outcome.perfect || state.isDaily) {
-    confetti(outcome.newRecord || state.isDaily ? 3000 : 2000);
-  }
-  if (newAch.length > 0) {
-    setTimeout(() => {
-      const html = newAch
-        .map((id) => {
-          const a = ACHIEVEMENTS.find((x) => x.id === id)!;
-          return `<div class="ach-toast"><span class="big">${a.icon}</span> ${localizedName(a)}</div>`;
-        })
-        .join("");
-      showToast(html, 6000);
-      confetti(1500);
-    }, 1200);
-  }
+  if (info.perfect) badges.push(`<div class="badge perfect">${t("perfect")}</div>`);
+  if (s.isDaily) badges.push(`<div class="badge daily">🌟 ${t("dailyChallengeWin")}</div>`);
+  if (info.firstOfDay) badges.push(`<div class="badge daily">${t("dailyCheckIn", info.streakAfter)}</div>`);
+
+  // achievements row
+  const achHtml = info.newAchievements.length
+    ? `<div class="ach-row">${info.newAchievements.map((id) => {
+        const a = ACHIEVEMENTS.find((x) => x.id === id);
+        if (!a) return "";
+        return `<div class="ach-pop" title="${localizedDesc(a)}"><span class="ic">${a.icon}</span><span class="nm">${localizedName(a)}</span></div>`;
+      }).join("")}</div>`
+    : "";
+
+  // mini best-times table for this size
+  const best = stats.records[recordKey(s.size.size, s.difficulty)];
+  const yourTime = formatTime(info.elapsed);
+
+  overlay.hidden = false;
+  overlay.innerHTML = `
+    <div class="win-card">
+      <div class="win-emoji">🎉</div>
+      <div class="win-title">${t("finished")}</div>
+      <div class="win-time">${yourTime}</div>
+      <div class="win-mode">${s.size.size}×${s.size.size} · ${t(s.difficulty)}${s.isDaily ? " · 🌟" : ""}</div>
+      <div class="win-meta">
+        ${s.mistakes > 0 ? `<span>✗ ${s.mistakes}</span>` : ""}
+        ${s.hintsUsed > 0 ? `<span>💡 ${s.hintsUsed} (+${s.hintsUsed * 30}s)</span>` : ""}
+      </div>
+      ${badges.join("")}
+      ${achHtml}
+      ${best ? `<div class="win-best">${t("bestTimes")}: 🏆 ${formatTime(best.timeMs)}</div>` : ""}
+      <div class="win-actions">
+        <button class="win-btn primary" id="win-share">📤 ${t("share")}</button>
+        <button class="win-btn" id="win-again">🔄 ${t("new")}</button>
+        <button class="win-btn" id="win-home">🏠</button>
+      </div>
+      <button class="win-stats-link" id="win-stats">${t("stats")} →</button>
+    </div>
+  `;
+  document.querySelector("#win-share")!.addEventListener("click", () => onShare());
+  document.querySelector("#win-again")!.addEventListener("click", () => {
+    state = makeState(s.size, s.difficulty, s.isDaily && !stats.dailyCompleted[todayISO()]);
+    saveState(state);
+    rebuild();
+  });
+  document.querySelector("#win-home")!.addEventListener("click", () => {
+    clearSavedState();
+    screen = "home";
+    rebuild();
+  });
+  document.querySelector("#win-stats")!.addEventListener("click", openStats);
+
+  confetti(info.newRecord || s.isDaily ? 3000 : 2000);
+  if (info.newAchievements.length > 0) setTimeout(() => confetti(1500), 1200);
 }
 
 function onShare() {
-  if (!state.finished || state.revealed) {
+  if (!state || !state.finished || state.revealed) {
     showToast(t("shareNoWin"));
     return;
   }
@@ -641,14 +696,34 @@ function onShare() {
     isDaily: state.isDaily,
     date: todayISO(),
   };
-  // popup-ish: copy text + offer image download
   copyShareText(data);
   setTimeout(() => downloadShareImage(data), 200);
 }
 
 // ---------- Stats modal ----------
+function statsModalHtml(): string {
+  return `
+    <div class="modal" id="stats-modal" hidden>
+      <div class="modal-backdrop"></div>
+      <div class="modal-card">
+        <div class="modal-head">
+          <h2>${t("statRecords")}</h2>
+          <button class="modal-close" id="stats-close">✕</button>
+        </div>
+        <div class="modal-body" id="stats-body"></div>
+      </div>
+    </div>
+  `;
+}
+
+function wireStatsModal() {
+  const modal = document.querySelector<HTMLDivElement>("#stats-modal")!;
+  document.querySelector("#stats-close")!.addEventListener("click", () => (modal.hidden = true));
+  modal.querySelector(".modal-backdrop")!.addEventListener("click", () => (modal.hidden = true));
+}
+
 function openStats() {
-  const sizes: { label: string; size: number }[] = [
+  const sizes = [
     { label: "4×4", size: 4 },
     { label: "6×6", size: 6 },
     { label: "9×9", size: 9 },
@@ -661,17 +736,15 @@ function openStats() {
   const { current, longest } = getStreak(stats.completed);
   const today = todayISO();
   const days = lastNDays(28);
-  const heatmap = days
-    .map((d) => {
-      const done = stats.completed.includes(d);
-      const isDaily = !!stats.dailyCompleted[d];
-      const cls = ["dot"];
-      if (done) cls.push("done");
-      if (isDaily) cls.push("daily");
-      if (d === today) cls.push("today");
-      return `<span class="${cls.join(" ")}" title="${d}${done ? " ✓" : ""}${isDaily ? " 🌟" : ""}"></span>`;
-    })
-    .join("");
+  const heatmap = days.map((d) => {
+    const done = stats.completed.includes(d);
+    const isDaily = !!stats.dailyCompleted[d];
+    const cls = ["dot"];
+    if (done) cls.push("done");
+    if (isDaily) cls.push("daily");
+    if (d === today) cls.push("today");
+    return `<span class="${cls.join(" ")}" title="${d}${done ? " ✓" : ""}${isDaily ? " 🌟" : ""}"></span>`;
+  }).join("");
 
   let table = `<table class="rec-table"><thead><tr><th></th>`;
   for (const d of diffs) table += `<th>${d.label}</th>`;
@@ -687,16 +760,14 @@ function openStats() {
   table += `</tbody></table>`;
 
   const unlocked = new Set(stats.achievements);
-  const achHtml = ACHIEVEMENTS
-    .map((a) => {
-      const got = unlocked.has(a.id);
-      return `<div class="ach ${got ? "got" : "locked"}" title="${localizedDesc(a)}">
-        <div class="icon">${a.icon}</div>
-        <div class="name">${localizedName(a)}</div>
-        <div class="desc">${localizedDesc(a)}</div>
-      </div>`;
-    })
-    .join("");
+  const achHtml = ACHIEVEMENTS.map((a) => {
+    const got = unlocked.has(a.id);
+    return `<div class="ach ${got ? "got" : "locked"}" title="${localizedDesc(a)}">
+      <div class="icon">${a.icon}</div>
+      <div class="name">${localizedName(a)}</div>
+      <div class="desc">${localizedDesc(a)}</div>
+    </div>`;
+  }).join("");
 
   const body = document.querySelector<HTMLDivElement>("#stats-body")!;
   body.innerHTML = `
@@ -719,12 +790,13 @@ function openStats() {
 
 // ---------- Keyboard ----------
 document.addEventListener("keydown", (e) => {
-  const modal = document.querySelector<HTMLDivElement>("#stats-modal")!;
-  if (!modal.hidden) {
+  const modal = document.querySelector<HTMLDivElement>("#stats-modal");
+  if (modal && !modal.hidden) {
     if (e.key === "Escape") modal.hidden = true;
     return;
   }
-  if (e.key === " ") { return; }
+  if (screen !== "game" || !state) return;
+
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
     e.preventDefault();
     if (e.shiftKey) redo(); else undo();
@@ -734,6 +806,7 @@ document.addEventListener("keydown", (e) => {
     e.preventDefault(); redo(); return;
   }
   if (e.key === "n" || e.key === "N") { state.noteMode = !state.noteMode; render(); return; }
+  if (e.key === "Escape") { screen = "home"; rebuild(); return; }
   if (state.selected === null) return;
   const n = state.size.size;
   const r = Math.floor(state.selected / n);
@@ -744,8 +817,7 @@ document.addEventListener("keydown", (e) => {
     return;
   }
   if (e.key === "0" || e.key === "Backspace" || e.key === "Delete") {
-    inputNumber(0);
-    return;
+    inputNumber(0); return;
   }
   let nr = r, nc = c;
   if (e.key === "ArrowUp") nr = Math.max(0, r - 1);
@@ -758,10 +830,10 @@ document.addEventListener("keydown", (e) => {
   render();
 });
 
-// ---------- Timer tick ----------
-const timerEl = () => document.querySelector<HTMLSpanElement>("#timer")!;
+// ---------- Timer ----------
 setInterval(() => {
-  const el = timerEl();
+  if (screen !== "game" || !state) return;
+  const el = document.querySelector<HTMLSpanElement>("#timer");
   if (!el) return;
   el.textContent = formatTime(elapsedMs(state));
 }, 500);
@@ -773,6 +845,4 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-// boot
-buildShell();
-render();
+rebuild();
