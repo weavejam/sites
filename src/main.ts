@@ -312,7 +312,6 @@ function buildGame() {
         <button class="tool" id="redo-btn" title="${t("redo")}">↷<span class="lbl">${t("redo")}</span></button>
         <button class="tool" id="notes-btn" title="${t("notes")}">✏️<span class="lbl">${t("notes")}</span></button>
         <button class="tool" id="hint-btn" title="${t("hint")}">💡<span class="lbl">${t("hint")}</span></button>
-        <button class="tool" id="check-btn" title="${t("check")}">✓<span class="lbl">${t("check")}</span></button>
       </div>
 
       <div class="win-overlay" id="win-overlay" hidden></div>
@@ -337,7 +336,6 @@ function wireGame() {
     render();
   });
   document.querySelector("#hint-btn")!.addEventListener("click", onHint);
-  document.querySelector("#check-btn")!.addEventListener("click", onCheck);
   wireStatsModal();
 }
 
@@ -520,26 +518,6 @@ function redo() {
   if (isSolved(state.current, state.size)) finishGame();
   saveState(state);
   render();
-}
-
-function onCheck() {
-  if (!state || state.finished) return;
-  const n = state.size.size;
-  const sol = state.puzzle.solution;
-  let wrong = 0;
-  for (let i = 0; i < n * n; i++) {
-    if (state.current[i] !== 0 && !state.givens[i] && state.current[i] !== sol[i]) wrong++;
-  }
-  const filled = state.current.filter((v) => v !== 0).length;
-  const statusEl = document.querySelector<HTMLSpanElement>("#status-msg")!;
-  if (wrong === 0 && filled === n * n) {
-    finishGame();
-    render();
-  } else if (wrong === 0) {
-    statusEl.textContent = t("correctSoFar", n * n - filled);
-  } else {
-    statusEl.innerHTML = `<span class="err">${t("wrongCount", wrong)}</span>`;
-  }
 }
 
 function onHint() {
