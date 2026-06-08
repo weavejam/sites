@@ -168,9 +168,11 @@ function buildShell() {
           document.documentElement.dataset.theme === "dark" ? t("themeLight") : t("themeDark")
         }</button>
         <button class="icon-btn" id="lang-btn" title="language">${t("langSwitch")}</button>
+        <button class="icon-btn" id="menu-btn" title="menu">≡</button>
       </div>
     </header>
-    <div class="controls">
+
+    <div class="setup">
       <div class="group" id="size-group">
         <button data-size="4">${t("size4")}</button>
         <button data-size="6">${t("size6")}</button>
@@ -181,26 +183,35 @@ function buildShell() {
         <button data-diff="standard">${t("standard")}</button>
         <button data-diff="hard">${t("hard")}</button>
       </div>
-      <button class="action primary" id="new-btn">${t("new")}</button>
-      <button class="action" id="daily-btn">${t("daily")}</button>
-      <button class="action" id="check-btn">${t("check")}</button>
-      <button class="action" id="hint-btn">${t("hint")}</button>
-      <button class="action" id="undo-btn">${t("undo")}</button>
-      <button class="action" id="redo-btn">${t("redo")}</button>
-      <button class="action" id="notes-btn">${t("notes")}</button>
-      <button class="action" id="solve-btn">${t("solve")}</button>
-      <button class="action" id="share-btn">${t("share")}</button>
-      <button class="action" id="stats-btn">${t("stats")}</button>
+      <button class="action primary" id="new-btn">+ ${t("new")}</button>
     </div>
+
     <div class="status">
       <span id="status-msg">${t("selectCell")}</span>
       <span id="meta"></span>
     </div>
+
     <div class="board-wrap">
       <div class="board" id="board"></div>
     </div>
+
+    <div class="tools">
+      <button class="tool" id="undo-btn" title="${t("undo")}">↶</button>
+      <button class="tool" id="redo-btn" title="${t("redo")}">↷</button>
+      <button class="tool" id="notes-btn" title="${t("notes")}">✏️</button>
+      <button class="tool" id="hint-btn" title="${t("hint")}">💡</button>
+    </div>
+
     <div class="pad" id="pad"></div>
     <footer>© weavejam · 数独 Sudoku</footer>
+
+    <div class="menu" id="menu" hidden>
+      <button data-cmd="daily">${t("daily")}</button>
+      <button data-cmd="check">${t("check")}</button>
+      <button data-cmd="stats">${t("stats")}</button>
+      <button data-cmd="share">${t("share")}</button>
+      <button data-cmd="solve">${t("solve")}</button>
+    </div>
 
     <div class="modal" id="stats-modal" hidden>
       <div class="modal-backdrop"></div>
@@ -242,12 +253,7 @@ function wireEvents() {
     saveState(state);
     render();
   });
-  document.querySelector("#daily-btn")!.addEventListener("click", () => {
-    state = makeState(SIZE_9, "standard", true);
-    saveState(state);
-    render();
-  });
-  document.querySelector("#check-btn")!.addEventListener("click", onCheck);
+  document.querySelector("#check-btn")?.addEventListener("click", onCheck);
   document.querySelector("#hint-btn")!.addEventListener("click", onHint);
   document.querySelector("#undo-btn")!.addEventListener("click", undo);
   document.querySelector("#redo-btn")!.addEventListener("click", redo);
@@ -255,9 +261,33 @@ function wireEvents() {
     state.noteMode = !state.noteMode;
     render();
   });
-  document.querySelector("#solve-btn")!.addEventListener("click", onSolve);
-  document.querySelector("#share-btn")!.addEventListener("click", onShare);
-  document.querySelector("#stats-btn")!.addEventListener("click", openStats);
+
+  // Overflow menu
+  const menu = document.querySelector<HTMLDivElement>("#menu")!;
+  document.querySelector("#menu-btn")!.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.hidden = !menu.hidden;
+  });
+  document.addEventListener("click", (e) => {
+    if (!menu.hidden && !menu.contains(e.target as Node)) menu.hidden = true;
+  });
+  menu.querySelectorAll<HTMLButtonElement>("button").forEach((b) => {
+    b.addEventListener("click", () => {
+      menu.hidden = true;
+      switch (b.dataset.cmd) {
+        case "daily":
+          state = makeState(SIZE_9, "standard", true);
+          saveState(state);
+          render();
+          break;
+        case "check": onCheck(); break;
+        case "stats": openStats(); break;
+        case "share": onShare(); break;
+        case "solve": onSolve(); break;
+      }
+    });
+  });
+
   document.querySelector("#theme-btn")!.addEventListener("click", toggleTheme);
   document.querySelector("#lang-btn")!.addEventListener("click", () => {
     setLang(getLang() === "zh" ? "en" : "zh");
@@ -285,7 +315,11 @@ function render() {
     b.classList.toggle("active", b.dataset.diff === state.difficulty);
   });
   document.querySelector("#notes-btn")!.classList.toggle("toggle-on", state.noteMode);
-  document.querySelector("#daily-btn")!.classList.toggle("toggle-on", state.isDaily);
+  if (state.isDaily) {
+    document.querySelector("#hint-btn")!.classList.add("disabled");
+  } else {
+    document.querySelector("#hint-btn")!.classList.remove("disabled");
+  }
 
   const boardEl = document.querySelector<HTMLDivElement>("#board")!;
   boardEl.className = `board size-${n}`;
