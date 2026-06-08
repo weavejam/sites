@@ -115,7 +115,8 @@ export function recordWin(
   difficulty: Difficulty,
   timeMs: number,
   mistakes: number,
-  isDaily: boolean
+  isDaily: boolean,
+  hintsUsed: number = 0
 ): WinOutcome {
   const key = recordKey(size, difficulty);
   const today = todayISO();
@@ -126,7 +127,8 @@ export function recordWin(
   if (firstOfDay) stats.completed.push(today);
   stats.completed.sort();
   stats.totalWins += 1;
-  if (mistakes === 0) stats.perfectWins += 1;
+  const perfect = mistakes === 0 && hintsUsed === 0;
+  if (perfect) stats.perfectWins += 1;
   stats.sizesWon[String(size)] = true;
   if (isDaily && !stats.dailyCompleted[today]) {
     stats.dailyCompleted[today] = { size, diff: difficulty, timeMs, mistakes };
@@ -139,7 +141,7 @@ export function recordWin(
     firstOfDay,
     streakAfter: stats.currentStreak,
     totalWins: stats.totalWins,
-    perfect: mistakes === 0,
+    perfect,
   };
 }
 

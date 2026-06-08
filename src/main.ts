@@ -59,6 +59,7 @@ interface State {
   future: Move[];
   isDaily: boolean;
   dailyDate?: string;
+  hintsUsed: number;
   elapsedAtPause: number;
   resumeAt: number;
 }
@@ -92,6 +93,7 @@ function makeState(
     future: [],
     isDaily,
     dailyDate: isDaily ? todayISO() : undefined,
+    hintsUsed: 0,
     elapsedAtPause: 0,
     resumeAt: Date.now(),
   };
@@ -112,6 +114,7 @@ function loadState(): State | null {
       future: obj.future ?? [],
       mistakes: obj.mistakes ?? 0,
       isDaily: !!obj.isDaily,
+      hintsUsed: obj.hintsUsed ?? 0,
       resumeAt: Date.now(),
       elapsedAtPause: obj.elapsedAtPause ?? 0,
       selected: null,
@@ -367,6 +370,7 @@ function render() {
   const parts: string[] = [`${filled}/${n * n}`];
   if (best) parts.push(`🏆 ${formatTime(best.timeMs)}`);
   if (state.mistakes > 0) parts.push(`✗ ${state.mistakes}`);
+  if (state.hintsUsed > 0) parts.push(`💡 ${state.hintsUsed}`);
   if (state.isDaily) parts.push("🌟");
   metaEl.textContent = parts.join(" · ");
 
@@ -484,6 +488,10 @@ function onCheck() {
 
 function onHint() {
   if (state.finished) return;
+  if (state.isDaily) {
+    showToast(getLang() === "zh" ? "🌟 今日挑战禁用提示" : "🌟 Daily challenge: hints disabled");
+    return;
+  }
   const sol = state.puzzle.solution;
   const empties: number[] = [];
   if (state.selected !== null && state.current[state.selected] === 0) {
@@ -497,11 +505,14 @@ function onHint() {
   const prevNotes = [...state.notes[idx]];
   state.current[idx] = sol[idx];
   state.notes[idx] = [];
-  state.givens[idx] = true; // lock hints so they can't trip mistake counter later
+  state.givens[idx] = true;
+  state.hintsUsed += 1;
+  state.elapsedAtPause += 30_000; // +30s penalty
   pushMove({
     idx, prevVal, newVal: sol[idx], prevNotes, newNotes: [], countedMistake: false,
   });
   state.selected = idx;
+  showToast(getLang() === "zh" ? `💡 提示 · 罚时 +30s` : `💡 Hint · +30s penalty`, 2000);
   if (isSolved(state.current, state.size)) finishGame();
   saveState(state);
   render();
@@ -534,7 +545,8 @@ function finishGame() {
     state.difficulty,
     elapsed,
     state.mistakes,
-    state.isDaily
+    state.isDaily,
+    state.hintsUsed
   );
   const newAch = evaluateAchievements(stats, {
     size: state.size.size,
@@ -542,6 +554,7 @@ function finishGame() {
     timeMs: elapsed,
     mistakes: state.mistakes,
     isDaily: state.isDaily,
+    hintsUsed: state.hintsUsed,
   });
   // persist achievements update
   saveStats(stats);
@@ -556,7 +569,12 @@ function finishGame() {
   }
   if (outcome.firstOfDay) lines.push(t("dailyCheckIn", outcome.streakAfter));
   if (outcome.perfect) lines.push(t("perfect"));
-  else lines.push(t("mistakes", state.mistakes));
+  else if (state.hintsUsed > 0) {
+    lines.push(getLang() === "zh"
+      ? `💡 提示 ${state.hintsUsed} 次（含 ${state.hintsUsed * 30}s 罚时）`
+      : `💡 ${state.hintsUsed} hint(s) (+${state.hintsUsed * 30}s)`);
+  }
+  if (state.mistakes > 0) lines.push(t("mistakes", state.mistakes));
   showToast(lines.join("<br>"), 6000);
   if (outcome.newRecord || outcome.firstOfDay || outcome.perfect || state.isDaily) {
     confetti(outcome.newRecord || state.isDaily ? 3000 : 2000);
@@ -585,6 +603,7 @@ function onShare() {
     difficulty: state.difficulty,
     timeMs: elapsedMs(state),
     mistakes: state.mistakes,
+    hintsUsed: state.hintsUsed,
     isDaily: state.isDaily,
     date: todayISO(),
   };

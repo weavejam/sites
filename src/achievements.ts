@@ -42,6 +42,7 @@ export interface WinContext {
   timeMs: number;
   mistakes: number;
   isDaily: boolean;
+  hintsUsed: number;
 }
 
 // Returns IDs that were newly unlocked
@@ -53,8 +54,9 @@ export function evaluateAchievements(stats: Stats, ctx: WinContext): string[] {
   };
 
   unlock("first_win");
-  if (ctx.mistakes === 0) unlock("perfect_any");
-  if (ctx.mistakes === 0 && ctx.size === 9 && ctx.difficulty === "hard") unlock("perfect_9_hard");
+  const clean = ctx.mistakes === 0 && ctx.hintsUsed === 0;
+  if (clean) unlock("perfect_any");
+  if (clean && ctx.size === 9 && ctx.difficulty === "hard") unlock("perfect_9_hard");
   if (ctx.size === 9 && ctx.difficulty === "easy" && ctx.timeMs <= 180_000) unlock("speed_9_easy");
   if (ctx.size === 9 && ctx.difficulty === "standard" && ctx.timeMs <= 300_000) unlock("speed_9_std");
   if (ctx.size === 9 && ctx.difficulty === "hard" && ctx.timeMs <= 480_000) unlock("speed_9_hard");

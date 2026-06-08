@@ -7,18 +7,20 @@ export interface ShareData {
   difficulty: string;
   timeMs: number;
   mistakes: number;
+  hintsUsed: number;
   isDaily: boolean;
   date: string;
 }
 
 export function shareText(d: ShareData): string {
   const mode = `${d.size}×${d.size} ${t(d.difficulty)}`;
-  const perfect = d.mistakes === 0 ? ` ${t("sharePerfect")}` : "";
+  const perfect = d.mistakes === 0 && d.hintsUsed === 0 ? ` ${t("sharePerfect")}` : "";
   const daily = d.isDaily ? " 🌟" : "";
+  const hints = d.hintsUsed > 0 ? `\n💡: ${d.hintsUsed}` : "";
   return `${t("shareTitleWin")}${daily}
 ${t("shareMode")}: ${mode}
 ${t("shareTime")}: ${formatTime(d.timeMs)}
-${t("shareMistakes")}: ${d.mistakes}${perfect}
+${t("shareMistakes")}: ${d.mistakes}${hints}${perfect}
 ${d.date}
 https://shudu.weavejam.com`;
 }
@@ -75,7 +77,10 @@ export function downloadShareImage(d: ShareData) {
   // mistakes row
   ctx.font = "500 30px system-ui,sans-serif";
   ctx.fillStyle = "#1f2233";
-  const mLine = d.mistakes === 0 ? t("sharePerfect") : `${t("shareMistakes")}: ${d.mistakes}`;
+  const mLine =
+    d.mistakes === 0 && d.hintsUsed === 0
+      ? t("sharePerfect")
+      : `${t("shareMistakes")}: ${d.mistakes}${d.hintsUsed > 0 ? `  💡 ${d.hintsUsed}` : ""}`;
   ctx.fillText(mLine, w / 2, 620);
 
   // mini board preview pattern
