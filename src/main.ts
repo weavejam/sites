@@ -11,6 +11,18 @@ import {
   type Puzzle,
   type PuzzleSize,
 } from "./sudoku";
+import {
+  loadStats,
+  recordWin,
+  recordKey,
+  formatTime,
+  getStreak,
+  lastNDays,
+  todayISO,
+} from "./stats";
+import { confetti, showToast } from "./celebrate";
+
+const stats = loadStats();
 
 interface State {
   size: PuzzleSize;
@@ -101,6 +113,7 @@ app.innerHTML = `
     <button class="action" id="check-btn">检查</button>
     <button class="action" id="hint-btn">提示</button>
     <button class="action" id="solve-btn">显示答案</button>
+    <button class="action" id="stats-btn">📊 记录</button>
   </div>
   <div class="status">
     <span id="status-msg">选择一格，输入数字开始游戏。</span>
@@ -109,6 +122,16 @@ app.innerHTML = `
   <div class="board-wrap"><div class="board" id="board"></div></div>
   <div class="pad" id="pad"></div>
   <footer>© weavejam · 键盘可输入数字 / 退格清除 / 方向键移动</footer>
+  <div class="modal" id="stats-modal" hidden>
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>📊 战绩</h2>
+        <button class="modal-close" id="stats-close">✕</button>
+      </div>
+      <div class="modal-body" id="stats-body"></div>
+    </div>
+  </div>
 `;
 
 const boardEl = document.querySelector<HTMLDivElement>("#board")!;
@@ -198,9 +221,10 @@ function render() {
   row.appendChild(erase);
   padEl.appendChild(row);
 
-  // meta
+  // meta: filled count + best
   const filled = state.current.filter((v) => v !== 0).length;
-  metaEl.textContent = `${filled}/${n * n}`;
+  const best = stats.records[recordKey(state.size.size, state.difficulty)];
+  metaEl.innerHTML = `${filled}/${n * n}${best ? ` · 🏆 ${formatTime(best.timeMs)}` : ""}`;
 
   if (state.finished) {
     statusEl.innerHTML = `<span class="win">🎉 完成！</span>`;
@@ -218,10 +242,30 @@ function inputNumber(v: number) {
   if (v < 0 || v > n) return;
   state.current[state.selected] = v;
   if (isSolved(state.current, state.size)) {
-    state.finished = true;
+    finishGame();
   }
   saveState(state);
   render();
+}
+
+function finishGame() {
+  state.finished = true;
+  const elapsed = Date.now() - state.startedAt;
+  const outcome = recordWin(stats, state.size.size, state.difficulty, elapsed);
+  saveState(state);
+  const parts: string[] = [`🎉 完成 · ${formatTime(elapsed)}`];
+  if (outcome.newRecord) {
+    parts.push(
+      outcome.previousRecord
+        ? `🏆 打破纪录！原 ${formatTime(outcome.previousRecord.timeMs)}`
+        : `🏆 首条纪录！`
+    );
+  }
+  if (outcome.firstOfDay) {
+    parts.push(`✅ 今日打卡 · 连续 ${outcome.streakAfter} 天`);
+  }
+  showToast(parts.join("<br>"), 5000);
+  if (outcome.newRecord || outcome.firstOfDay) confetti(outcome.newRecord ? 2800 : 1800);
 }
 
 document.addEventListener("keydown", (e) => {
@@ -287,7 +331,7 @@ document.querySelector("#check-btn")!.addEventListener("click", () => {
   }
   const filled = state.current.filter((v) => v !== 0).length;
   if (wrong === 0 && filled === n * n) {
-    state.finished = true;
+    finishGame();
     render();
   } else if (wrong === 0) {
     statusEl.textContent = `目前都正确，还有 ${n * n - filled} 格未填。`;
@@ -311,18 +355,85 @@ document.querySelector("#hint-btn")!.addEventListener("click", () => {
   const idx = empties[Math.floor(Math.random() * empties.length)];
   state.current[idx] = sol[idx];
   state.selected = idx;
-  if (isSolved(state.current, state.size)) state.finished = true;
+  if (isSolved(state.current, state.size)) finishGame();
   saveState(state);
   render();
 });
 
 document.querySelector("#solve-btn")!.addEventListener("click", () => {
-  if (!confirm("显示完整答案？")) return;
+  if (!confirm("显示完整答案？这次不会计入记录。")) return;
   const sol = solveOne(state.puzzle.puzzle, state.size) ?? state.puzzle.solution;
   state.current = [...sol];
   state.finished = true;
   saveState(state);
   render();
+});
+
+// Stats modal
+const modal = document.querySelector<HTMLDivElement>("#stats-modal")!;
+const statsBody = document.querySelector<HTMLDivElement>("#stats-body")!;
+function openStats() {
+  renderStats();
+  modal.hidden = false;
+}
+function closeStats() { modal.hidden = true; }
+document.querySelector("#stats-btn")!.addEventListener("click", openStats);
+document.querySelector("#stats-close")!.addEventListener("click", closeStats);
+modal.querySelector(".modal-backdrop")!.addEventListener("click", closeStats);
+
+function renderStats() {
+  const sizes: { label: string; size: number }[] = [
+    { label: "4×4", size: 4 },
+    { label: "6×6", size: 6 },
+    { label: "9×9", size: 9 },
+  ];
+  const diffs: { key: Difficulty; label: string }[] = [
+    { key: "easy", label: "简单" },
+    { key: "standard", label: "标准" },
+    { key: "hard", label: "困难" },
+  ];
+  const { current, longest } = getStreak(stats.completed);
+  const today = todayISO();
+  const days = lastNDays(28);
+  const heatmap = days
+    .map((d) => {
+      const done = stats.completed.includes(d);
+      const cls = ["dot"];
+      if (done) cls.push("done");
+      if (d === today) cls.push("today");
+      return `<span class="${cls.join(" ")}" title="${d}${done ? " · 已完成" : ""}"></span>`;
+    })
+    .join("");
+
+  let table = `<table class="rec-table"><thead><tr><th></th>`;
+  for (const d of diffs) table += `<th>${d.label}</th>`;
+  table += `</tr></thead><tbody>`;
+  for (const s of sizes) {
+    table += `<tr><th>${s.label}</th>`;
+    for (const d of diffs) {
+      const r = stats.records[recordKey(s.size, d.key)];
+      table += `<td>${r ? formatTime(r.timeMs) : "—"}</td>`;
+    }
+    table += `</tr>`;
+  }
+  table += `</tbody></table>`;
+
+  statsBody.innerHTML = `
+    <div class="stat-row">
+      <div class="stat-card"><div class="lbl">连续打卡</div><div class="val">${current} 天</div></div>
+      <div class="stat-card"><div class="lbl">最长连击</div><div class="val">${longest} 天</div></div>
+      <div class="stat-card"><div class="lbl">累计胜场</div><div class="val">${stats.totalWins}</div></div>
+    </div>
+    <h3>近 28 天打卡</h3>
+    <div class="heatmap">${heatmap}</div>
+    <h3>最佳成绩</h3>
+    ${table}
+    <p class="hint">使用「显示答案」完成的局不计入记录。</p>
+  `;
+}
+
+document.addEventListener("keydown", (e) => {
+  if (!modal.hidden && e.key === "Escape") closeStats();
 });
 
 function fmt(ms: number) {
