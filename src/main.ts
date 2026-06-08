@@ -59,10 +59,8 @@ interface State {
   future: Move[];
   isDaily: boolean;
   dailyDate?: string;
-  // timer
   elapsedAtPause: number;
   resumeAt: number;
-  paused: boolean;
 }
 
 const STORAGE_KEY = "shudu-state-v2";
@@ -96,7 +94,6 @@ function makeState(
     dailyDate: isDaily ? todayISO() : undefined,
     elapsedAtPause: 0,
     resumeAt: Date.now(),
-    paused: false,
   };
 }
 
@@ -115,7 +112,6 @@ function loadState(): State | null {
       future: obj.future ?? [],
       mistakes: obj.mistakes ?? 0,
       isDaily: !!obj.isDaily,
-      paused: false,
       resumeAt: Date.now(),
       elapsedAtPause: obj.elapsedAtPause ?? 0,
       selected: null,
@@ -127,25 +123,14 @@ function loadState(): State | null {
 
 function saveState(s: State) {
   try {
-    const snapshot: State = { ...s, elapsedAtPause: elapsedMs(s), paused: false };
+    const snapshot: State = { ...s, elapsedAtPause: elapsedMs(s) };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
   } catch {}
 }
 
 function elapsedMs(s: State): number {
-  if (s.paused || s.finished) return s.elapsedAtPause;
+  if (s.finished) return s.elapsedAtPause;
   return s.elapsedAtPause + (Date.now() - s.resumeAt);
-}
-
-function pauseTimer(s: State) {
-  if (s.paused || s.finished) return;
-  s.elapsedAtPause = elapsedMs(s);
-  s.paused = true;
-}
-function resumeTimer(s: State) {
-  if (!s.paused || s.finished) return;
-  s.resumeAt = Date.now();
-  s.paused = false;
 }
 
 let state: State = loadState() ?? makeState(SIZE_9, "standard");
@@ -200,7 +185,6 @@ function buildShell() {
       <button class="action" id="undo-btn">${t("undo")}</button>
       <button class="action" id="redo-btn">${t("redo")}</button>
       <button class="action" id="notes-btn">${t("notes")}</button>
-      <button class="action" id="pause-btn">${t("pause")}</button>
       <button class="action" id="solve-btn">${t("solve")}</button>
       <button class="action" id="share-btn">${t("share")}</button>
       <button class="action" id="stats-btn">${t("stats")}</button>
@@ -211,12 +195,6 @@ function buildShell() {
     </div>
     <div class="board-wrap">
       <div class="board" id="board"></div>
-      <div class="pause-overlay" id="pause-overlay" hidden>
-        <div>
-          <div class="big">${t("paused")}</div>
-          <div class="small">${t("clickResume")}</div>
-        </div>
-      </div>
     </div>
     <div class="pad" id="pad"></div>
     <footer>© weavejam · 数独 Sudoku</footer>
@@ -274,7 +252,6 @@ function wireEvents() {
     state.noteMode = !state.noteMode;
     render();
   });
-  document.querySelector("#pause-btn")!.addEventListener("click", togglePause);
   document.querySelector("#solve-btn")!.addEventListener("click", onSolve);
   document.querySelector("#share-btn")!.addEventListener("click", onShare);
   document.querySelector("#stats-btn")!.addEventListener("click", openStats);
@@ -282,11 +259,6 @@ function wireEvents() {
   document.querySelector("#lang-btn")!.addEventListener("click", () => {
     setLang(getLang() === "zh" ? "en" : "zh");
     rebuildUI();
-  });
-
-  document.querySelector("#pause-overlay")!.addEventListener("click", () => {
-    resumeTimer(state);
-    render();
   });
 
   const modal = document.querySelector<HTMLDivElement>("#stats-modal")!;
@@ -310,7 +282,6 @@ function render() {
     b.classList.toggle("active", b.dataset.diff === state.difficulty);
   });
   document.querySelector("#notes-btn")!.classList.toggle("toggle-on", state.noteMode);
-  document.querySelector("#pause-btn")!.textContent = state.paused ? t("resume") : t("pause");
   document.querySelector("#daily-btn")!.classList.toggle("toggle-on", state.isDaily);
 
   const boardEl = document.querySelector<HTMLDivElement>("#board")!;
@@ -363,7 +334,6 @@ function render() {
     }
 
     cell.addEventListener("click", () => {
-      if (state.paused) return;
       state.selected = i;
       render();
     });
@@ -409,16 +379,11 @@ function render() {
   } else {
     statusEl.textContent = t("selectCell");
   }
-
-  // pause overlay
-  const overlay = document.querySelector<HTMLDivElement>("#pause-overlay")!;
-  overlay.hidden = !state.paused;
-  boardEl.classList.toggle("blurred", state.paused);
 }
 
 // ---------- Actions ----------
 function inputNumber(v: number) {
-  if (state.selected === null || state.finished || state.paused) return;
+  if (state.selected === null || state.finished) return;
   if (state.givens[state.selected]) return;
   const idx = state.selected;
   const n = state.size.size;
@@ -497,13 +462,6 @@ function redo() {
   render();
 }
 
-function togglePause() {
-  if (state.finished) return;
-  if (state.paused) resumeTimer(state);
-  else pauseTimer(state);
-  render();
-}
-
 function onCheck() {
   if (state.finished) return;
   const n = state.size.size;
@@ -525,7 +483,7 @@ function onCheck() {
 }
 
 function onHint() {
-  if (state.finished || state.paused) return;
+  if (state.finished) return;
   const sol = state.puzzle.solution;
   const empties: number[] = [];
   if (state.selected !== null && state.current[state.selected] === 0) {
@@ -557,7 +515,6 @@ function onSolve() {
   state.finished = true;
   state.revealed = true;
   state.elapsedAtPause = elapsed;
-  state.paused = true;
   saveState(state);
   render();
 }
@@ -714,7 +671,7 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") modal.hidden = true;
     return;
   }
-  if (e.key === " ") { e.preventDefault(); togglePause(); return; }
+  if (e.key === " ") { return; }
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
     e.preventDefault();
     if (e.shiftKey) redo(); else undo();
@@ -755,14 +712,6 @@ setInterval(() => {
   if (!el) return;
   el.textContent = formatTime(elapsedMs(state));
 }, 500);
-
-// auto-pause on tab hide
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden && !state.finished && !state.paused) {
-    pauseTimer(state);
-    render();
-  }
-});
 
 // ---------- PWA ----------
 if ("serviceWorker" in navigator) {
