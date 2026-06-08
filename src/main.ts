@@ -551,11 +551,12 @@ function onHint() {
 
 function onSolve() {
   if (!confirm(t("confirmSolve"))) return;
+  const elapsed = elapsedMs(state);
   const sol = solveOne(state.puzzle.puzzle, state.size) ?? state.puzzle.solution;
   state.current = [...sol];
   state.finished = true;
   state.revealed = true;
-  state.elapsedAtPause = elapsedMs(state);
+  state.elapsedAtPause = elapsed;
   state.paused = true;
   saveState(state);
   render();
@@ -563,8 +564,8 @@ function onSolve() {
 
 function finishGame() {
   if (state.finished) return;
-  state.finished = true;
   const elapsed = elapsedMs(state);
+  state.finished = true;
   state.elapsedAtPause = elapsed;
   if (state.revealed) {
     saveState(state);
