@@ -2,7 +2,7 @@
 
 A Vite + TypeScript Sudoku web app supporting 4×4 and 9×9 boards with Easy / Standard / Hard difficulty.
 
-Live demo: https://shudu.weavejam.com
+Live demo: https://sudoku.weavejam.com
 
 ## Features
 

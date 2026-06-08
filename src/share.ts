@@ -22,7 +22,7 @@ ${t("shareMode")}: ${mode}
 ${t("shareTime")}: ${formatTime(d.timeMs)}
 ${t("shareMistakes")}: ${d.mistakes}${hints}${perfect}
 ${d.date}
-https://shudu.weavejam.com`;
+https://sudoku.weavejam.com`;
 }
 
 export async function copyShareText(d: ShareData) {
@@ -101,7 +101,7 @@ export function downloadShareImage(d: ShareData) {
 
   ctx.fillStyle = "#6b6f80";
   ctx.font = "500 22px system-ui,sans-serif";
-  ctx.fillText("shudu.weavejam.com", w / 2, h - 60);
+  ctx.fillText("sudoku.weavejam.com", w / 2, h - 60);
 
   c.toBlob((blob) => {
     if (!blob) return;
