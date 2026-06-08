@@ -73,7 +73,7 @@ const dict: Record<Lang, Record<string, Entry>> = {
     new: "New",
     hint: "Hint",
     solve: "Reveal",
-    stats: "📊 Stats",
+    stats: "Stats",
     pause: "⏸ Pause",
     resume: "▶ Resume",
     undo: "Undo",
