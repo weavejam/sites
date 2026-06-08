@@ -30,6 +30,7 @@ import {
   localizedDesc,
 } from "./achievements";
 import { copyShareText, downloadShareImage, type ShareData } from "./share";
+import { track } from "./ga";
 
 const stats = loadStats();
 
@@ -156,6 +157,7 @@ function toggleTheme() {
   const next = cur === "dark" ? "light" : "dark";
   localStorage.setItem(THEME_KEY, next);
   document.documentElement.dataset.theme = next;
+  track("theme_switch", { theme: next });
   rebuild();
 }
 applyTheme();
@@ -259,6 +261,7 @@ function wireHome() {
     }
     state = makeState(SIZE_9, "standard", true);
     saveState(state);
+    track("game_start", { size: 9, difficulty: "standard", mode: "daily" });
     screen = "game";
     rebuild();
   });
@@ -268,6 +271,7 @@ function wireHome() {
       const d = b.dataset.diff as Difficulty;
       state = makeState(sizeFromN(n), d);
       saveState(state);
+      track("game_start", { size: n, difficulty: d, mode: "normal" });
       screen = "game";
       rebuild();
     });
@@ -275,7 +279,9 @@ function wireHome() {
   document.querySelector("#home-stats")!.addEventListener("click", openStats);
   document.querySelector("#theme-btn")!.addEventListener("click", toggleTheme);
   document.querySelector("#lang-btn")!.addEventListener("click", () => {
-    setLang(getLang() === "zh" ? "en" : "zh");
+    const next = getLang() === "zh" ? "en" : "zh";
+    track("lang_switch", { lang: next });
+    setLang(next);
     rebuild();
   });
   wireStatsModal();
@@ -542,6 +548,7 @@ function onHint() {
   state.givens[idx] = true;
   state.hintsUsed += 1;
   state.elapsedAtPause += 30_000;
+  track("hint_used", { size: state.size.size, difficulty: state.difficulty, hint_count: state.hintsUsed });
   pushMove({ idx, prevVal, newVal: sol[idx], prevNotes, newNotes: [], countedMistake: false });
   state.selected = idx;
   showToast(getLang() === "zh" ? "💡 提示 · 罚时 +30s" : "💡 Hint · +30s penalty", 2000);
@@ -572,6 +579,32 @@ function finishGame() {
   });
   saveStats(stats);
   saveState(state);
+
+  track("game_win", {
+    size: state.size.size,
+    difficulty: state.difficulty,
+    mode: state.isDaily ? "daily" : "normal",
+    time_seconds: Math.round(elapsed / 1000),
+    mistakes: state.mistakes,
+    hints_used: state.hintsUsed,
+    perfect: outcome.perfect,
+    new_record: outcome.newRecord,
+  });
+  if (outcome.newRecord) {
+    track("new_record", {
+      size: state.size.size,
+      difficulty: state.difficulty,
+      time_seconds: Math.round(elapsed / 1000),
+      previous_seconds: outcome.previousRecord ? Math.round(outcome.previousRecord.timeMs / 1000) : null,
+    });
+  }
+  if (state.isDaily && outcome.firstOfDay) {
+    track("daily_complete", {
+      time_seconds: Math.round(elapsed / 1000),
+      streak: outcome.streakAfter,
+    });
+  }
+  for (const a of newAch) track("achievement_unlock", { id: a });
 
   showWinOverlay({
     elapsed,
@@ -676,6 +709,7 @@ function onShare() {
   };
   copyShareText(data);
   setTimeout(() => downloadShareImage(data), 200);
+  track("share", { size: data.size, difficulty: data.difficulty, mode: data.isDaily ? "daily" : "normal" });
 }
 
 // ---------- Stats modal ----------
