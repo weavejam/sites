@@ -12,9 +12,11 @@ export const SIZE_4: PuzzleSize = { size: 4, boxRows: 2, boxCols: 2 };
 
 export type Difficulty = "easy" | "standard" | "hard";
 
-function shuffle<T>(arr: T[]): T[] {
+export type Rng = () => number;
+
+function shuffle<T>(arr: T[], rng: Rng): T[] {
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(rng() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
@@ -46,7 +48,7 @@ export function isValidPlacement(
   return true;
 }
 
-function solve(grid: Grid, p: PuzzleSize, countLimit = 2): number {
+function solve(grid: Grid, p: PuzzleSize, countLimit = 2, rng: Rng = Math.random): number {
   const n = p.size;
   let idx = -1;
   for (let i = 0; i < grid.length; i++) {
@@ -56,11 +58,11 @@ function solve(grid: Grid, p: PuzzleSize, countLimit = 2): number {
   const r = Math.floor(idx / n);
   const c = idx % n;
   let count = 0;
-  const nums = shuffle([...Array(n).keys()].map((x) => x + 1));
+  const nums = shuffle([...Array(n).keys()].map((x) => x + 1), rng);
   for (const v of nums) {
     if (isValidPlacement(grid, r, c, v, p)) {
       grid[idx] = v;
-      count += solve(grid, p, countLimit - count);
+      count += solve(grid, p, countLimit - count, rng);
       if (count >= countLimit) {
         grid[idx] = 0;
         return count;
@@ -90,23 +92,23 @@ export function solveOne(grid: Grid, p: PuzzleSize): Grid | null {
   return null;
 }
 
-function generateFull(p: PuzzleSize): Grid {
+function generateFull(p: PuzzleSize, rng: Rng): Grid {
   const grid: Grid = new Array(p.size * p.size).fill(0);
-  fill(grid, 0, p);
+  fill(grid, 0, p, rng);
   return grid;
 }
 
-function fill(grid: Grid, idx: number, p: PuzzleSize): boolean {
+function fill(grid: Grid, idx: number, p: PuzzleSize, rng: Rng): boolean {
   if (idx >= grid.length) return true;
-  if (grid[idx] !== 0) return fill(grid, idx + 1, p);
+  if (grid[idx] !== 0) return fill(grid, idx + 1, p, rng);
   const n = p.size;
   const r = Math.floor(idx / n);
   const c = idx % n;
-  const nums = shuffle([...Array(n).keys()].map((x) => x + 1));
+  const nums = shuffle([...Array(n).keys()].map((x) => x + 1), rng);
   for (const v of nums) {
     if (isValidPlacement(grid, r, c, v, p)) {
       grid[idx] = v;
-      if (fill(grid, idx + 1, p)) return true;
+      if (fill(grid, idx + 1, p, rng)) return true;
       grid[idx] = 0;
     }
   }
@@ -125,15 +127,14 @@ export interface Puzzle {
   size: PuzzleSize;
 }
 
-export function generatePuzzle(p: PuzzleSize, diff: Difficulty): Puzzle {
-  const solution = generateFull(p);
+export function generatePuzzle(p: PuzzleSize, diff: Difficulty, rng: Rng = Math.random): Puzzle {
+  const solution = generateFull(p, rng);
   const puzzle = [...solution];
   const total = p.size * p.size;
   const targetClues = CLUE_RATIO[diff][p.size];
-  const removeOrder = shuffle([...Array(total).keys()]);
+  const removeOrder = shuffle([...Array(total).keys()], rng);
   let clues = total;
-  // For 4x4, uniqueness check; for 9x9, also enforce uniqueness but cap attempts
-  const maxAttempts = p.size === 9 ? total : total;
+  const maxAttempts = total;
   let attempts = 0;
   for (const idx of removeOrder) {
     if (clues <= targetClues) break;
@@ -141,7 +142,7 @@ export function generatePuzzle(p: PuzzleSize, diff: Difficulty): Puzzle {
     const saved = puzzle[idx];
     puzzle[idx] = 0;
     const copy = [...puzzle];
-    const count = solve(copy, p, 2);
+    const count = solve(copy, p, 2, rng);
     if (count !== 1) {
       puzzle[idx] = saved;
     } else {
