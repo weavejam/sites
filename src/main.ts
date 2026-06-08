@@ -5,6 +5,7 @@ import {
   isSolved,
   solveOne,
   SIZE_4,
+  SIZE_6,
   SIZE_9,
   type Difficulty,
   type Puzzle,
@@ -43,7 +44,8 @@ function loadState(): State | null {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
     const obj = JSON.parse(raw);
-    const size: PuzzleSize = obj.size?.size === 4 ? SIZE_4 : SIZE_9;
+    const size: PuzzleSize =
+      obj.size?.size === 4 ? SIZE_4 : obj.size?.size === 6 ? SIZE_6 : SIZE_9;
     return {
       size,
       difficulty: obj.difficulty,
@@ -87,6 +89,7 @@ app.innerHTML = `
   <div class="controls">
     <div class="group" id="size-group">
       <button data-size="4">四宫 4×4</button>
+      <button data-size="6">六宫 6×6</button>
       <button data-size="9">九宫 9×9</button>
     </div>
     <div class="group" id="diff-group">
@@ -248,7 +251,8 @@ document.addEventListener("keydown", (e) => {
 
 document.querySelectorAll<HTMLButtonElement>("#size-group button").forEach((b) => {
   b.addEventListener("click", () => {
-    const s = Number(b.dataset.size) === 4 ? SIZE_4 : SIZE_9;
+    const n = Number(b.dataset.size);
+    const s = n === 4 ? SIZE_4 : n === 6 ? SIZE_6 : SIZE_9;
     if (s.size === state.size.size) return;
     state = newGame(s, state.difficulty);
     saveState(state);

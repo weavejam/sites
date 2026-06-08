@@ -7,6 +7,7 @@ export interface PuzzleSize {
 }
 
 export const SIZE_9: PuzzleSize = { size: 9, boxRows: 3, boxCols: 3 };
+export const SIZE_6: PuzzleSize = { size: 6, boxRows: 2, boxCols: 3 };
 export const SIZE_4: PuzzleSize = { size: 4, boxRows: 2, boxCols: 2 };
 
 export type Difficulty = "easy" | "standard" | "hard";
@@ -112,10 +113,10 @@ function fill(grid: Grid, idx: number, p: PuzzleSize): boolean {
   return false;
 }
 
-const CLUE_RATIO: Record<Difficulty, { 4: number; 9: number }> = {
-  easy:     { 4: 11, 9: 42 },
-  standard: { 4: 8,  9: 32 },
-  hard:     { 4: 6,  9: 26 },
+const CLUE_RATIO: Record<Difficulty, Record<number, number>> = {
+  easy:     { 4: 11, 6: 22, 9: 42 },
+  standard: { 4: 8,  6: 17, 9: 32 },
+  hard:     { 4: 6,  6: 14, 9: 26 },
 };
 
 export interface Puzzle {
@@ -128,7 +129,7 @@ export function generatePuzzle(p: PuzzleSize, diff: Difficulty): Puzzle {
   const solution = generateFull(p);
   const puzzle = [...solution];
   const total = p.size * p.size;
-  const targetClues = CLUE_RATIO[diff][p.size as 4 | 9];
+  const targetClues = CLUE_RATIO[diff][p.size];
   const removeOrder = shuffle([...Array(total).keys()]);
   let clues = total;
   // For 4x4, uniqueness check; for 9x9, also enforce uniqueness but cap attempts
