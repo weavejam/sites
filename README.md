@@ -1,35 +1,49 @@
-# 数独 Sudoku
+# weavejam/sites
 
-A Vite + TypeScript Sudoku web app supporting 4×4 and 9×9 boards with Easy / Standard / Hard difficulty.
+Monorepo for all `*.weavejam.com` sites.
 
-Live demo: https://sudoku.weavejam.com
-
-## Features
-
-- 4×4 (four-box) and 9×9 (nine-box) modes
-- Three difficulty levels: Easy / Standard / Hard
-- Random puzzle generation with unique-solution check
-- Click or keyboard input (number keys, arrow keys, backspace)
-- Conflict highlighting, peer/same-number highlighting
-- Hint, check, and reveal-answer actions
-- Timer and auto-save (localStorage)
-- Mobile-friendly responsive layout
-
-## Develop
-
-```bash
-npm install
-npm run dev
+```
+apps/
+  sudoku/          # Vite + TS — https://sudoku.weavejam.com
+packages/          # shared libs (per-site tailwind/eslint/tsconfig stay local)
+templates/
+  vite-react/      # starter for new Vite + React + TS sites
+  nextjs/          # starter for new Next.js + Tailwind sites
+scripts/
+  new-site.ps1     # scaffold a new site + create GA4 property
 ```
 
-## Build
+## Quick start
 
 ```bash
-npm run build
+pnpm install            # install all workspaces
+pnpm dev                # turbo runs every site's dev (use --filter for one)
+pnpm --filter @weavejam/sudoku dev
+pnpm --filter @weavejam/sudoku build
 ```
 
-Output goes to `dist/`. Deployed via Cloudflare Pages.
+## Add a new site
 
-## License
+```powershell
+# Vite + React + TS site
+pnpm new-site -Name blog -Template vite -Domain blog.weavejam.com
 
-MIT
+# Next.js + Tailwind site
+pnpm new-site -Name shop -Template nextjs -Domain shop.weavejam.com
+```
+
+The script:
+1. Copies the template into `apps/<name>/`
+2. Calls the `ga4-property` skill to create a GA4 Property and injects the Measurement ID
+3. Prints next steps (Cloudflare Pages project + DNS — handled by the `cloudflare-dns` skill)
+
+## Deploy
+
+Each app deploys to its own Cloudflare Pages project:
+
+```bash
+pnpm --filter @weavejam/sudoku build
+pnpm --filter @weavejam/sudoku deploy
+```
+
+CF Pages "Build watch paths" should be set so only the affected app rebuilds on push.
