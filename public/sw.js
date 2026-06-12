@@ -1,4 +1,4 @@
-const CACHE = "shudu-v3";
+const CACHE = "shudu-v4";
 const SHELL = ["/", "/index.html", "/favicon.svg", "/manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {

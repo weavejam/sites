@@ -62,6 +62,7 @@ interface State {
   isDaily: boolean;
   dailyDate?: string;
   hintsUsed: number;
+  lastHintAt: number;
   elapsedAtPause: number;
   resumeAt: number;
 }
@@ -96,6 +97,7 @@ function makeState(size: PuzzleSize, difficulty: Difficulty, isDaily = false): S
     isDaily,
     dailyDate: isDaily ? todayISO() : undefined,
     hintsUsed: 0,
+    lastHintAt: 0,
     elapsedAtPause: 0,
     resumeAt: Date.now(),
   };
@@ -116,6 +118,7 @@ function loadState(): State | null {
       mistakes: obj.mistakes ?? 0,
       isDaily: !!obj.isDaily,
       hintsUsed: obj.hintsUsed ?? 0,
+      lastHintAt: obj.lastHintAt ?? 0,
       resumeAt: Date.now(),
       elapsedAtPause: obj.elapsedAtPause ?? 0,
       selected: null,
@@ -220,7 +223,7 @@ function buildHome() {
 
       <button class="daily-card ${dailyDoneToday ? "done" : ""}" id="daily-card">
         <div class="dc-left">
-          <div class="dc-title">🌟 ${t("daily")}</div>
+          <div class="dc-title">${t("daily")}</div>
           <div class="dc-date">${todayISO()}</div>
         </div>
         <div class="dc-right">
@@ -233,7 +236,7 @@ function buildHome() {
       <div class="size-list">${sizeBlocks}</div>
 
       <div class="home-footer">
-        <button class="home-action" id="home-stats">📊 ${t("stats")}</button>
+        <button class="home-action" id="home-stats">${t("stats")}</button>
         <div class="spacer"></div>
         <button class="icon-btn" id="theme-btn" title="theme">${
           document.documentElement.dataset.theme === "dark" ? t("themeLight") : t("themeDark")
@@ -314,10 +317,10 @@ function buildGame() {
       <div class="pad" id="pad"></div>
 
       <div class="tools">
-        <button class="tool" id="undo-btn" title="${t("undo")}">↶<span class="lbl">${t("undo")}</span></button>
-        <button class="tool" id="redo-btn" title="${t("redo")}">↷<span class="lbl">${t("redo")}</span></button>
-        <button class="tool" id="notes-btn" title="${t("notes")}">✏️<span class="lbl">${t("notes")}</span></button>
-        <button class="tool" id="hint-btn" title="${t("hint")}">💡<span class="lbl">${t("hint")}</span></button>
+        <button class="tool" id="undo-btn" title="${t("undo")}"><span class="lbl">${t("undo")}</span></button>
+        <button class="tool" id="redo-btn" title="${t("redo")}"><span class="lbl">${t("redo")}</span></button>
+        <button class="tool" id="notes-btn" title="${t("notes")}"><span class="lbl">${t("notes")}</span></button>
+        <button class="tool" id="hint-btn" title="${t("hint")}"><span class="lbl">${t("hint")}</span></button>
       </div>
 
       <div class="win-overlay" id="win-overlay" hidden></div>
@@ -509,7 +512,8 @@ function undo() {
   const m = state.history.pop()!;
   state.current[m.idx] = m.prevVal;
   state.notes[m.idx] = [...m.prevNotes];
-  if (m.countedMistake) state.mistakes = Math.max(0, state.mistakes - 1);
+  // Mistakes are NEVER undone — once you make a wrong input, it counts forever.
+  // Otherwise users can probe "is this answer correct?" by typing then undoing.
   state.future.push(m);
   saveState(state);
   render();
@@ -519,12 +523,15 @@ function redo() {
   const m = state.future.pop()!;
   state.current[m.idx] = m.newVal;
   state.notes[m.idx] = [...m.newNotes];
-  if (m.countedMistake) state.mistakes += 1;
+  // Mistakes were counted at the original input — redo doesn't re-count.
   state.history.push(m);
   if (isSolved(state.current, state.size)) finishGame();
   saveState(state);
   render();
 }
+
+const HINT_COOLDOWN_MS = 30_000;
+const HINT_EXPLAINED_KEY = "shudu-hint-explained";
 
 function onHint() {
   if (!state || state.finished) return;
@@ -532,6 +539,34 @@ function onHint() {
     showToast(getLang() === "zh" ? "🌟 今日挑战禁用提示" : "🌟 Daily challenge: hints disabled");
     return;
   }
+  // Cooldown check — silently enforced after the first hint, with toast.
+  if (state.lastHintAt) {
+    const remaining = HINT_COOLDOWN_MS - (Date.now() - state.lastHintAt);
+    if (remaining > 0) {
+      showToast(t("hintCooldown", Math.ceil(remaining / 1000)), 2000);
+      return;
+    }
+  }
+  // First-ever hint: explain the penalty + cooldown, then perform.
+  const explained = localStorage.getItem(HINT_EXPLAINED_KEY) === "1";
+  if (!explained) {
+    showConfirm({
+      title: t("hintExplainTitle"),
+      body: t("hintExplainBody"),
+      okText: t("hintExplainOk"),
+      cancelText: t("hintExplainCancel"),
+      onOk: () => {
+        localStorage.setItem(HINT_EXPLAINED_KEY, "1");
+        performHint();
+      },
+    });
+    return;
+  }
+  performHint();
+}
+
+function performHint() {
+  if (!state || state.finished) return;
   const sol = state.puzzle.solution;
   const empties: number[] = [];
   if (state.selected !== null && state.current[state.selected] === 0) {
@@ -547,6 +582,7 @@ function onHint() {
   state.notes[idx] = [];
   state.givens[idx] = true;
   state.hintsUsed += 1;
+  state.lastHintAt = Date.now();
   state.elapsedAtPause += 30_000;
   track("hint_used", { size: state.size.size, difficulty: state.difficulty, hint_count: state.hintsUsed });
   pushMove({ idx, prevVal, newVal: sol[idx], prevNotes, newNotes: [], countedMistake: false });
@@ -669,9 +705,9 @@ function showWinOverlay(info: WinInfo) {
       ${achHtml}
       ${best ? `<div class="win-best">${t("bestTimes")}: 🏆 ${formatTime(best.timeMs)}</div>` : ""}
       <div class="win-actions">
-        <button class="win-btn primary" id="win-share">📤 ${t("share")}</button>
-        <button class="win-btn" id="win-again">🔄 ${t("new")}</button>
-        <button class="win-btn" id="win-home">🏠</button>
+        <button class="win-btn primary" id="win-share">${t("share")}</button>
+        <button class="win-btn" id="win-again">${t("new")}</button>
+        <button class="win-btn" id="win-home" title="home">🏠</button>
       </div>
       <button class="win-stats-link" id="win-stats">${t("stats")} →</button>
     </div>
@@ -732,6 +768,39 @@ function wireStatsModal() {
   const modal = document.querySelector<HTMLDivElement>("#stats-modal")!;
   document.querySelector("#stats-close")!.addEventListener("click", () => (modal.hidden = true));
   modal.querySelector(".modal-backdrop")!.addEventListener("click", () => (modal.hidden = true));
+}
+
+// ---------- Generic confirm modal ----------
+interface ConfirmOpts {
+  title: string;
+  body: string;
+  okText: string;
+  cancelText: string;
+  onOk: () => void;
+}
+function showConfirm(opts: ConfirmOpts) {
+  // Reuse same .modal styling, append to body so it works on any screen.
+  const existing = document.querySelector("#confirm-modal");
+  if (existing) existing.remove();
+  const wrap = document.createElement("div");
+  wrap.id = "confirm-modal";
+  wrap.className = "modal";
+  wrap.innerHTML = `
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <div class="modal-head"><h2>${opts.title}</h2></div>
+      <div class="modal-body"><p class="confirm-body">${opts.body.replace(/\n/g, "<br>")}</p></div>
+      <div class="confirm-actions">
+        <button class="confirm-btn ghost" id="confirm-cancel">${opts.cancelText}</button>
+        <button class="confirm-btn primary" id="confirm-ok">${opts.okText}</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(wrap);
+  const close = () => wrap.remove();
+  wrap.querySelector(".modal-backdrop")!.addEventListener("click", close);
+  wrap.querySelector("#confirm-cancel")!.addEventListener("click", close);
+  wrap.querySelector("#confirm-ok")!.addEventListener("click", () => { close(); opts.onOk(); });
 }
 
 function openStats() {
