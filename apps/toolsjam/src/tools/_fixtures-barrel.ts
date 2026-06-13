@@ -20,6 +20,11 @@ import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.f
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
+import { fixtures as f_tukey_hsd_calculator } from "@/tools/tukey-hsd-calculator.fixtures";
+import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-envelopes-paradox-calculator.fixtures";
+import { fixtures as f_uniform_distribution_calculator } from "@/tools/uniform-distribution-calculator.fixtures";
+import { fixtures as f_upper_and_lower_fence_calculator } from "@/tools/upper-and-lower-fence-calculator.fixtures";
+import { fixtures as f_upper_control_limit_calculator } from "@/tools/upper-control-limit-calculator.fixtures";
 
 export const fixturesByTool: Record<string, ToolFixture[]> = {
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
@@ -39,4 +44,9 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
+  "tukey-hsd-calculator": f_tukey_hsd_calculator,
+  "two-envelopes-paradox-calculator": f_two_envelopes_paradox_calculator,
+  "uniform-distribution-calculator": f_uniform_distribution_calculator,
+  "upper-and-lower-fence-calculator": f_upper_and_lower_fence_calculator,
+  "upper-control-limit-calculator": f_upper_control_limit_calculator,
 };
