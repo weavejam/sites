@@ -33,7 +33,7 @@ const TEMPLATE_FILE = path.join(__dirname, "prd-template.md");
 const TOOLS_DATA_DIR = path.join(APP, "src", "data", "tools");
 
 const BATCH_SIZE = 5;
-const BASE_URL = "https://___WEAVETOOLS_DOT_COM___";
+const BASE_URL = "https://tooldone.com";
 const LABELS = ["weavetools-port", "ready"];
 
 interface Args {
@@ -70,7 +70,7 @@ function readPortedToolIds(): Set<string> {
 interface PageJob { category: string; toolId: string; url: string; htmlPath: string; }
 
 function parseUrl(raw: string): PageJob | null {
-  const stripped = raw.replace(/^https?:\/\/weavetools\.com\//, "").replace(/^\/+|\/+$/g, "");
+  const stripped = raw.replace(/^https?:\/\/tooldone\.com\//, "").replace(/^\/+|\/+$/g, "");
   const [category, toolId, ...rest] = stripped.split("/");
   if (!category || !toolId || rest.length) return null;
   return {

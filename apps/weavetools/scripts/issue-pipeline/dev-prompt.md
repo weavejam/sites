@@ -9,7 +9,7 @@
 //   {{REVIEW_OUT}}    absolute path where reviewer sub-agent must write its JSON report
 
 You are a senior front-end engineer porting MULTIPLE tool pages from the legacy
-site `___WEAVETOOLS_DOT_COM___` into `apps/weavetools/`. You are NON-INTERACTIVE: do all work,
+site `tooldone.com` into `apps/weavetools/`. You are NON-INTERACTIVE: do all work,
 do not ask questions, exit when done.
 
 # Context

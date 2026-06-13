@@ -37,7 +37,7 @@ const REVIEW_PROMPT_FILE = path.join(MAIN_REPO, APP_REL, "scripts", "review-prom
 const STATE_FILE = path.join(MAIN_REPO, APP_REL, ".port-page-cache", "batch-state.json");
 const MERGE_LOCK = path.join(WORKTREE_ROOT, ".merge-lock");
 const GIT_LOCK = path.join(WORKTREE_ROOT, ".git-lock");
-const BASE_URL = "https://___WEAVETOOLS_DOT_COM___";
+const BASE_URL = "https://tooldone.com";
 
 type Args = { id: string; urls: string[]; batchFile: string | null; skipDeploy: boolean };
 
@@ -68,7 +68,7 @@ interface Job { category: string; toolId: string; url: string; htmlPath: string;
 function parseJobs(urls: string[]): Job[] {
   const out: Job[] = [];
   for (const raw of urls) {
-    const p = raw.replace(/^https?:\/\/weavetools\.com\//, "").replace(/^\/+|\/+$/g, "");
+    const p = raw.replace(/^https?:\/\/tooldone\.com\//, "").replace(/^\/+|\/+$/g, "");
     const [category, toolId] = p.split("/");
     if (!category || !toolId) { console.warn(`skip ${raw}`); continue; }
     const htmlPath = path.join(MAIN_REPO, APP_REL, ".scrape", "html", category, `${toolId}.html`);

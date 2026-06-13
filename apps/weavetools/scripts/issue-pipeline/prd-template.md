@@ -1,10 +1,10 @@
 # weavetools Port Batch PRD: {{BATCH_ID}}
 
 ## Overview
-Port {{N_PAGES}} calculator pages from legacy ___WEAVETOOLS_DOT_COM___ into `apps/weavetools/`. English locale only — other 9 locales are handled by a separate `translate-tool.ts` pipeline after merge.
+Port {{N_PAGES}} calculator pages from legacy tooldone.com into `apps/weavetools/`. English locale only — other 9 locales are handled by a separate `translate-tool.ts` pipeline after merge.
 
 ## Motivation
-Part of the full ___WEAVETOOLS_DOT_COM___ → apps/weavetools migration (~568 batches × 5 pages = 2840 pages total). Each batch ships as one reviewable, revertable PR.
+Part of the full tooldone.com → apps/weavetools migration (~568 batches × 5 pages = 2840 pages total). Each batch ships as one reviewable, revertable PR.
 
 ## Scope — Pages in this batch
 

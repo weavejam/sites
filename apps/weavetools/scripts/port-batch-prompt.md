@@ -1,4 +1,4 @@
-You are porting MULTIPLE tool pages from the legacy site `___WEAVETOOLS_DOT_COM___`
+You are porting MULTIPLE tool pages from the legacy site `tooldone.com`
 into the new app at `apps/weavetools/`. Process ALL pages listed below in
 this single session — don't ask which to do first. Read the inputs, write
 the files for every page, exit when all are done. Do not ask questions.

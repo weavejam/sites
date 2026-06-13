@@ -130,7 +130,7 @@ function renderJobsBlock(jobs: PageJob[]): string {
     `Page ${i + 1}:
 - Tool id:               ${j.toolId}
 - Category id:           ${j.category}
-- Source URL:            https://___WEAVETOOLS_DOT_COM___/${j.category}/${j.toolId}
+- Source URL:            https://tooldone.com/${j.category}/${j.toolId}
 - Local HTML snapshot:   ${j.htmlPath.replaceAll("\\", "\\\\")}`,
   ).join("\n\n");
 }

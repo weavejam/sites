@@ -1,6 +1,6 @@
 # @weavejam/weavetools
 
-Multilingual static rebuild of [___WEAVETOOLS_DOT_COM___](https://___WEAVETOOLS_DOT_COM___) at
+Multilingual static rebuild of [tooldone.com](https://tooldone.com) at
 `tools.weavejam.com`. Next.js (App Router) + Tailwind v4 + shadcn-style UI +
 next-intl, static-exported, deployed to Azure Storage Static Website fronted by
 Cloudflare CDN.
@@ -32,7 +32,7 @@ pnpm install
 pnpm --filter @weavejam/weavetools dev
 ```
 
-## Porting tool pages from ___WEAVETOOLS_DOT_COM___
+## Porting tool pages from tooldone.com
 
 ```pwsh
 # Snapshot all en pages locally (one-time, ~1 min).
@@ -73,7 +73,7 @@ Cloudflare CNAME (with CF proxy on).
   `buildAlternates()`.
 - AdSense is gated by `NEXT_PUBLIC_ADSENSE_ENABLED=1`; ship to production with
   it off until the AdSense application is approved, then flip the flag.
-- 301 redirects from legacy ___WEAVETOOLS_DOT_COM___ paths are handled at the CF layer (CF
+- 301 redirects from legacy tooldone.com paths are handled at the CF layer (CF
   Worker or page rules). See `docs/redirects.md` (TODO after migration).
 
 ## Adding a locale

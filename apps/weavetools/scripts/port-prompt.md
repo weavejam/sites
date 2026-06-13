@@ -1,4 +1,4 @@
-You are porting a single page from the legacy site `___WEAVETOOLS_DOT_COM___` into the
+You are porting a single page from the legacy site `tooldone.com` into the
 new app at `apps/weavetools/`. This run is fully non-interactive — read the
 inputs, write the files, exit. Do not ask questions.
 

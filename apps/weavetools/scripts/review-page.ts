@@ -48,7 +48,7 @@ function loadJobs(args: Args): Job[] {
   all.push(...args.paths);
   const jobs: Job[] = [];
   for (const raw of all) {
-    const p = raw.replace(/^https?:\/\/weavetools\.com\//, "").replace(/^\/+|\/+$/g, "");
+    const p = raw.replace(/^https?:\/\/tooldone\.com\//, "").replace(/^\/+|\/+$/g, "");
     const parts = p.split("/");
     if (parts.length !== 2) { console.warn(`skip ${raw}: expected <category>/<slug>`); continue; }
     jobs.push({ category: parts[0], toolId: parts[1] });

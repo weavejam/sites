@@ -1,4 +1,4 @@
-// Port a single tool page from ___WEAVETOOLS_DOT_COM___ to apps/weavetools/.
+// Port a single tool page from tooldone.com to apps/weavetools/.
 //
 // Usage:
 //   pnpm port-page math/percentage-calculator
@@ -23,7 +23,7 @@ const PROMPT_FILE = path.join(APP, "scripts", "port-prompt.md");
 const SCRAPE_DIR = path.join(APP, ".scrape", "html");
 const CACHE_DIR = path.join(APP, ".port-page-cache");
 const STATE_FILE = path.join(CACHE_DIR, "state.json");
-const BASE_URL = "https://___WEAVETOOLS_DOT_COM___";
+const BASE_URL = "https://tooldone.com";
 
 interface State {
   [path: string]: { status: "ok" | "fail"; at: string; durationMs: number; error?: string };
@@ -63,7 +63,7 @@ function loadJobs(paths: string[], batch: string | null): Job[] {
   all.push(...paths);
   const jobs: Job[] = [];
   for (const raw of all) {
-    let p = raw.replace(/^https?:\/\/weavetools\.com\//, "").replace(/^\/+|\/+$/g, "");
+    let p = raw.replace(/^https?:\/\/tooldone\.com\//, "").replace(/^\/+|\/+$/g, "");
     if (!p) continue;
     const parts = p.split("/");
     if (parts.length !== 2) {
