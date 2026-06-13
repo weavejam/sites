@@ -4,7 +4,12 @@
 
 import type { ToolFixture } from "@/tools/fixture";
 import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } from "@/tools/a1c-calculator-hemoglobin-a1c-to-average-blood-sugar.fixtures";
+import { fixtures as f_acres_per_hour_calculator } from "@/tools/acres-per-hour-calculator.fixtures";
 import { fixtures as f_acres_to_hectares_converter } from "@/tools/acres-to-hectares-converter.fixtures";
+import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-frequency-calculator.fixtures";
+import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
+import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
+import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
@@ -13,7 +18,12 @@ import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-de
 
 export const fixturesByTool: Record<string, ToolFixture[]> = {
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
+  "acres-per-hour-calculator": f_acres_per_hour_calculator,
   "acres-to-hectares-converter": f_acres_to_hectares_converter,
+  "allele-frequency-calculator": f_allele_frequency_calculator,
+  "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
+  "annealing-temperature-calculator": f_annealing_temperature_calculator,
+  "basal-area-calculator": f_basal_area_calculator,
   "loan-calculator": f_loan_calculator,
   "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
