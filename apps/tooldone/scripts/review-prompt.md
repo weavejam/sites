@@ -85,7 +85,7 @@ For each item, check; if it fails, fix it directly.
 ## Output
 
 After applying any fixes, write a short markdown report to:
-  `D:\\shudu\\shudu\\apps\\tooldone\\.port-page-cache\\reviews\\{{TOOL_ID}}.md`
+  `{{APP_DIR}}/.port-page-cache/reviews/{{TOOL_ID}}.md`
 
 The report MUST have this structure:
 
