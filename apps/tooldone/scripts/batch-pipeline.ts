@@ -36,6 +36,7 @@ const PROMPT_FILE = path.join(MAIN_REPO, APP_REL, "scripts", "port-batch-prompt.
 const REVIEW_PROMPT_FILE = path.join(MAIN_REPO, APP_REL, "scripts", "review-prompt.md");
 const STATE_FILE = path.join(MAIN_REPO, APP_REL, ".port-page-cache", "batch-state.json");
 const MERGE_LOCK = path.join(WORKTREE_ROOT, ".merge-lock");
+const GIT_LOCK = path.join(WORKTREE_ROOT, ".git-lock");
 const BASE_URL = "https://tooldone.com";
 
 type Args = { id: string; urls: string[]; batchFile: string | null; skipDeploy: boolean };
@@ -64,13 +65,13 @@ function parseArgs(argv: string[]): Args {
 
 interface Job { category: string; toolId: string; url: string; htmlPath: string; }
 
-function parseJobs(urls: string[], worktreeRoot: string): Job[] {
+function parseJobs(urls: string[]): Job[] {
   const out: Job[] = [];
   for (const raw of urls) {
     const p = raw.replace(/^https?:\/\/tooldone\.com\//, "").replace(/^\/+|\/+$/g, "");
     const [category, toolId] = p.split("/");
     if (!category || !toolId) { console.warn(`skip ${raw}`); continue; }
-    const htmlPath = path.join(worktreeRoot, APP_REL, ".scrape", "html", category, `${toolId}.html`);
+    const htmlPath = path.join(MAIN_REPO, APP_REL, ".scrape", "html", category, `${toolId}.html`);
     out.push({ category, toolId, url: `${BASE_URL}/${category}/${toolId}`, htmlPath });
   }
   return out;
@@ -93,7 +94,13 @@ function runCopilot(prompt: string, model: string, cwd: string, label: string): 
     log(label, `→ copilot --model ${model} (cwd=${cwd}, prompt ${prompt.length} chars)`);
     const child = spawn(
       "copilot",
-      ["--allow-all-tools", "--model", model, "--add-dir", JSON.stringify(cwd), "--no-color"],
+      [
+        "--allow-all-tools",
+        "--model", model,
+        "--add-dir", JSON.stringify(cwd),
+        "--add-dir", JSON.stringify(path.join(MAIN_REPO, APP_REL, ".scrape")),
+        "--no-color",
+      ],
       { cwd, stdio: ["pipe", "inherit", "pipe"], shell: true },
     );
     child.stderr.on("data", (b) => process.stderr.write(b));
@@ -141,19 +148,24 @@ function saveState(s: BatchState) {
 }
 
 async function acquireMergeLock(id: string): Promise<void> {
-  mkdirSync(path.dirname(MERGE_LOCK), { recursive: true });
+  await acquireLock(MERGE_LOCK, id, "merge-lock");
+}
+function releaseMergeLock() { try { rmSync(MERGE_LOCK); } catch {} }
+
+async function acquireLock(file: string, id: string, label: string): Promise<void> {
+  mkdirSync(path.dirname(file), { recursive: true });
   while (true) {
     try {
-      writeFileSync(MERGE_LOCK, id, { flag: "wx" });
-      log(id, `merge-lock acquired`);
+      writeFileSync(file, id, { flag: "wx" });
+      log(id, `${label} acquired`);
       return;
     } catch {
-      log(id, `waiting for merge-lock (held by ${existsSync(MERGE_LOCK) ? readFileSync(MERGE_LOCK, "utf8") : "?"})...`);
+      log(id, `waiting for ${label} (held by ${existsSync(file) ? readFileSync(file, "utf8") : "?"})...`);
       await new Promise((r) => setTimeout(r, 3000));
     }
   }
 }
-function releaseMergeLock() { try { rmSync(MERGE_LOCK); } catch {} }
+function releaseLock(file: string) { try { rmSync(file); } catch {} }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
@@ -166,28 +178,30 @@ async function main() {
 
   const t0 = Date.now();
   const cleanup = (success: boolean) => {
-    log(args.id, `cleanup (success=${success})`);
+    if (!success) {
+      log(args.id, `cleanup skipped on failure — worktree preserved at ${wt} (branch ${branch}) for recovery`);
+      return;
+    }
+    log(args.id, `cleanup`);
     run("git", ["worktree", "remove", "--force", JSON.stringify(wt)], MAIN_REPO, args.id);
-    if (success) run("git", ["branch", "-D", branch], MAIN_REPO, args.id);
+    run("git", ["branch", "-D", branch], MAIN_REPO, args.id);
   };
 
   try {
-    // 1. worktree
+    // 1. worktree (serialized — `git worktree add` can't run concurrently in
+    //    the same repo because it locks .git/config)
     state[args.id].phase = "worktree"; saveState(state);
-    log(args.id, `fetching origin/main`);
-    run("git", ["fetch", "origin", "main"], MAIN_REPO, args.id);
-    if (existsSync(wt)) run("git", ["worktree", "remove", "--force", JSON.stringify(wt)], MAIN_REPO, args.id);
-    mkdirSync(WORKTREE_ROOT, { recursive: true });
-    const wAdd = run("git", ["worktree", "add", "-b", branch, JSON.stringify(wt), "origin/main"], MAIN_REPO, args.id);
-    if (wAdd.code !== 0) throw new Error("worktree add failed");
-
-    // Symlink .scrape/html (huge, gitignored) from main checkout into the worktree
-    // so the child copilot can read snapshots without re-scraping.
-    const wtScrape = path.join(wtApp, ".scrape", "html");
-    if (!existsSync(wtScrape)) {
-      mkdirSync(path.dirname(wtScrape), { recursive: true });
-      // mklink /J is the only reliable Windows option that doesn't need admin.
-      run("cmd", ["/c", `mklink /J "${wtScrape}" "${path.join(MAIN_REPO, APP_REL, ".scrape", "html")}"`], MAIN_REPO, args.id);
+    await acquireLock(GIT_LOCK, args.id, "git-lock");
+    try {
+      log(args.id, `fetching origin/main`);
+      run("git", ["fetch", "origin", "main"], MAIN_REPO, args.id);
+      if (existsSync(wt)) run("git", ["worktree", "remove", "--force", JSON.stringify(wt)], MAIN_REPO, args.id);
+      run("git", ["branch", "-D", branch], MAIN_REPO, args.id);
+      mkdirSync(WORKTREE_ROOT, { recursive: true });
+      const wAdd = run("git", ["worktree", "add", "-b", branch, JSON.stringify(wt), "origin/main"], MAIN_REPO, args.id);
+      if (wAdd.code !== 0) throw new Error("worktree add failed");
+    } finally {
+      releaseLock(GIT_LOCK);
     }
 
     // 2. install
@@ -197,7 +211,7 @@ async function main() {
 
     // 3. port (one copilot call for all N pages)
     state[args.id].phase = "port"; saveState(state);
-    const jobs = parseJobs(args.urls, wt);
+    const jobs = parseJobs(args.urls);
     const portCode = await runCopilot(renderPortPrompt(jobs, wt), "claude-opus-4.8", wt, args.id);
     if (portCode !== 0) throw new Error(`port copilot exit=${portCode}`);
 

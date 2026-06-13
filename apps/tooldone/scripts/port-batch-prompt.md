@@ -14,6 +14,13 @@ the files for every page, exit when all are done. Do not ask questions.
 - Tool registry: `src/data/tools/<category>.ts` — append a `ToolEntry` here.
 - Per-tool UI:   `src/tools/<id>.tsx` — default export
                  `(props: { locale: Locale }) => React.ReactNode`.
+- HTML snapshots live OUTSIDE this worktree under
+  `D:\shudu\shudu\apps\tooldone\.scrape\html\<category>\<slug>.html`.
+  The exact absolute path for each page is given below. Read it directly
+  (the path is already added to your trusted dirs). DO NOT enumerate
+  `.scrape\html\` inside the worktree (it's gitignored and empty there).
+  DO NOT fall back to fetching the live site unless a specific snapshot
+  file genuinely cannot be opened.
 - Per-tool i18n: write to `messages/en.json` only under `tool.<id>`.
                  Other 9 locales are filled by a later batch step. DO NOT
                  touch other locale files.
@@ -27,6 +34,11 @@ the files for every page, exit when all are done. Do not ask questions.
 {{JOBS_BLOCK}}
 
 # For EACH page, perform all tasks below
+
+**Order of operations matters for crash recovery: complete ALL work
+(tsx + registry + en.json + fixtures) for tool #1 before starting tool
+#2. That way, if the session dies mid-batch, the completed tools are
+fully usable.**
 
 1. Parse the snapshot HTML. Extract:
    - Page title, meta description, all visible copy, FAQ, examples, input
@@ -68,6 +80,12 @@ the files for every page, exit when all are done. Do not ask questions.
    `{ input, output, note? }`, ≥ 3), `howto.heading`, `howto.steps`
    (array of strings, 3–5), `faq.heading`, `faq.items` (array of
    `{ q, a }`, 4–6).
+
+   **CRITICAL — to survive transient API errors, do en.json edits ONE
+   TOOL AT A TIME, not all 5 tools in a single Edit call.** Workflow:
+   for each tool, (a) re-read the last ~10 lines of en.json to find the
+   current insertion point, (b) emit a single Edit call adding just that
+   one `"<TOOL_ID>": { ... }` block, (c) move to the next tool.
 
 5. Generate `src/tools/<TOOL_ID>.fixtures.ts` exporting
    `fixtures: ToolFixture[]` with at least 2 happy-path cases. Use exact
