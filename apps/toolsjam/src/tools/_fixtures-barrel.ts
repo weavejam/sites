@@ -25,6 +25,11 @@ import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.f
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
+import { fixtures as f_wilcoxon_rank_sum_test_calculator } from "@/tools/wilcoxon-rank-sum-test-calculator.fixtures";
+import { fixtures as f_wilcoxon_signed_rank_test_calculator } from "@/tools/wilcoxon-signed-rank-test-calculator.fixtures";
+import { fixtures as f_yates_correction_for_continuity_calculator } from "@/tools/yates-correction-for-continuity-calculator.fixtures";
+import { fixtures as f_z_score_calculator } from "@/tools/z-score-calculator.fixtures";
+import { fixtures as f_z_test_calculator } from "@/tools/z-test-calculator.fixtures";
 
 export const fixturesByTool: Record<string, ToolFixture[]> = {
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
@@ -49,4 +54,9 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
+  "wilcoxon-rank-sum-test-calculator": f_wilcoxon_rank_sum_test_calculator,
+  "wilcoxon-signed-rank-test-calculator": f_wilcoxon_signed_rank_test_calculator,
+  "yates-correction-for-continuity-calculator": f_yates_correction_for_continuity_calculator,
+  "z-score-calculator": f_z_score_calculator,
+  "z-test-calculator": f_z_test_calculator,
 };
