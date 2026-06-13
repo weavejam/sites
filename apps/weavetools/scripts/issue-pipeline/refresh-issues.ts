@@ -2,9 +2,9 @@
 // Use when the PRD template or pipeline changes and you want the existing
 // issues to reflect the new contract.
 
-import { execSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
+import { ghExec } from "./gh-helper";
 
 const APP = path.resolve(__dirname, "..", "..");
 const REPO_ROOT = path.resolve(APP, "..", "..");
@@ -66,9 +66,9 @@ async function main() {
     const title = titleFor(batchId, jobs);
     writeFileSync(tmpBody, body, "utf8");
     try {
-      execSync(
-        `gh issue edit ${entry.issue} --title ${JSON.stringify(title)} --body-file ${JSON.stringify(tmpBody)}`,
-        { cwd: REPO_ROOT, stdio: "inherit" },
+      await ghExec(
+        ["issue", "edit", String(entry.issue), "--title", title, "--body-file", tmpBody],
+        { cwd: REPO_ROOT },
       );
       console.log(`refreshed ${batchId} #${entry.issue}`);
     } catch (e) {

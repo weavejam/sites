@@ -27,6 +27,7 @@ import {
   existsSync,
   mkdirSync,
   readFileSync,
+  rmSync,
   writeFileSync,
 } from "node:fs";
 import path from "node:path";
@@ -196,14 +197,14 @@ After writing the file, exit. Do not print the JSON to the terminal.
 `;
 }
 
-async function runCopilot(prompt: string): Promise<{ code: number; stderr: string }> {
+async function runCopilot(prompt: string, model: string): Promise<{ code: number; stderr: string }> {
   return await new Promise((resolve, reject) => {
     const child = spawn(
       "copilot",
       [
         "--allow-all",
         "--no-ask-user",
-        "--model", "gpt-5.4-mini",
+        "--model", model,
         "--add-dir", JSON.stringify(REPO),
         "--no-color",
       ],
@@ -217,6 +218,13 @@ async function runCopilot(prompt: string): Promise<{ code: number; stderr: strin
     child.stdin.end();
   });
 }
+
+// Models tried in order. gpt-5.4-mini handles 90%+ at ~5x lower cost; we
+// fall back to gpt-5.5 for the long-tail tools the mini model can't get
+// right (typically returns JSON missing one locale, especially "pt", on
+// content with many domain-specific terms).
+const MODEL_FALLBACK = ["gpt-5.4-mini", "gpt-5.5"] as const;
+const ATTEMPTS_PER_MODEL = 2;
 
 async function translateOne(toolId: string, force: boolean): Promise<boolean> {
   const found = findEntry(toolId);
@@ -239,39 +247,43 @@ async function translateOne(toolId: string, force: boolean): Promise<boolean> {
   mkdirSync(outDir, { recursive: true });
   const outFile = path.join(outDir, `${toolId}.json`);
 
-  // copilot may flake; retry up to 3 times.
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    console.log(`→ ${toolId} (attempt ${attempt}/3)`);
-    const t0 = Date.now();
-    const { code } = await runCopilot(prompt);
-    const dur = ((Date.now() - t0) / 1000).toFixed(1);
-    if (code !== 0) { console.warn(`  exit=${code} after ${dur}s`); continue; }
-    if (!existsSync(outFile)) { console.warn(`  no output file after ${dur}s`); continue; }
-    let parsed: Record<string, { slug: string; title: string; description: string; content: Record<string, unknown> }>;
-    try {
-      parsed = JSON.parse(readFileSync(outFile, "utf8"));
-    } catch (e) {
-      console.warn(`  output not valid JSON (${e})`);
-      continue;
-    }
-    const missing = TARGET_LOCALES.filter((l) => !parsed[l]?.content);
-    if (missing.length) { console.warn(`  missing locales: ${missing.join(",")}`); continue; }
+  // copilot may flake; try gpt-5.4-mini first (cheap, 90%+ success), then
+  // gpt-5.5 as fallback. Each model gets ATTEMPTS_PER_MODEL tries.
+  for (const model of MODEL_FALLBACK) {
+    for (let attempt = 1; attempt <= ATTEMPTS_PER_MODEL; attempt++) {
+      console.log(`→ ${toolId} (${model} attempt ${attempt}/${ATTEMPTS_PER_MODEL})`);
+      try { rmSync(outFile, { force: true }); } catch {}
+      const t0 = Date.now();
+      const { code } = await runCopilot(prompt, model);
+      const dur = ((Date.now() - t0) / 1000).toFixed(1);
+      if (code !== 0) { console.warn(`  exit=${code} after ${dur}s`); continue; }
+      if (!existsSync(outFile)) { console.warn(`  no output file after ${dur}s`); continue; }
+      let parsed: Record<string, { slug: string; title: string; description: string; content: Record<string, unknown> }>;
+      try {
+        parsed = JSON.parse(readFileSync(outFile, "utf8"));
+      } catch (e) {
+        console.warn(`  output not valid JSON (${e})`);
+        continue;
+      }
+      const missing = TARGET_LOCALES.filter((l) => !parsed[l]?.content);
+      if (missing.length) { console.warn(`  missing locales: ${missing.join(",")}`); continue; }
 
-    // Merge messages and registry.
-    for (const l of TARGET_LOCALES) {
-      const m = loadJson(path.join(MESSAGES_DIR, `${l}.json`));
-      (m as any).tool = (m as any).tool || {};
-      (m as any).tool[toolId] = parsed[l].content;
-      saveJson(path.join(MESSAGES_DIR, `${l}.json`), m);
-      found.entry.slugs[l] = parsed[l].slug;
-      found.entry.titles[l] = parsed[l].title;
-      found.entry.descriptions[l] = parsed[l].description;
+      // Merge messages and registry.
+      for (const l of TARGET_LOCALES) {
+        const m = loadJson(path.join(MESSAGES_DIR, `${l}.json`));
+        (m as any).tool = (m as any).tool || {};
+        (m as any).tool[toolId] = parsed[l].content;
+        saveJson(path.join(MESSAGES_DIR, `${l}.json`), m);
+        found.entry.slugs[l] = parsed[l].slug;
+        found.entry.titles[l] = parsed[l].title;
+        found.entry.descriptions[l] = parsed[l].description;
+      }
+      writeCategoryFile(found.category, found.entries);
+      console.log(`✓ ${toolId} translated in ${dur}s (${model})`);
+      return true;
     }
-    writeCategoryFile(found.category, found.entries);
-    console.log(`✓ ${toolId} translated in ${dur}s`);
-    return true;
   }
-  console.error(`✗ ${toolId}: failed after 3 attempts`);
+  console.error(`✗ ${toolId}: failed after ${MODEL_FALLBACK.length * ATTEMPTS_PER_MODEL} attempts across ${MODEL_FALLBACK.join("/")}`);
   return false;
 }
 
