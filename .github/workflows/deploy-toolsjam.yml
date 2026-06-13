@@ -1,0 +1,50 @@
+name: Deploy toolsjam
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/toolsjam/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - "turbo.json"
+      - ".github/workflows/deploy-toolsjam.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-toolsjam
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install (filtered)
+        run: pnpm install --frozen-lockfile --filter @weavejam/toolsjam...
+
+      - name: Build
+        run: pnpm --filter @weavejam/toolsjam build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://tools.weavejam.com
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/toolsjam/out --project-name=toolsjam --branch=main --commit-dirty=true
