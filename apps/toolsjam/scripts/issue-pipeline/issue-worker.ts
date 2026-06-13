@@ -232,11 +232,17 @@ async function main() {
     const portCode = await runCopilot(prompt, "claude-sonnet-4.6", wt, wid, [path.join(APP, ".scrape")]);
     if (portCode !== 0) throw new Error(`dev copilot exit=${portCode}`);
 
-    // 4. translate tool registry + messages into 9 non-en locales
+    // 4. translate tool registry + messages into 9 non-en locales.
+    //    NON-FATAL: translate-tool is flaky (model outages, JSON validation
+    //    failures); we prefer to ship English-only pages now and back-fill
+    //    translations later via a separate `pnpm translate-tool --all` pass.
     updateState(issue.number, { phase: "translate" });
     const toolIds = jobs.map((j) => j.toolId);
     const tr = run("pnpm", ["translate-tool", ...toolIds], wtApp, wid);
-    if (tr.code !== 0) throw new Error(`translate-tool failed (${toolIds.join(",")})`);
+    const translateOK = tr.code === 0;
+    if (!translateOK) {
+      log(wid, `⚠ translate-tool failed (exit=${tr.code}); continuing English-only — back-fill later`);
+    }
 
     // 5. barrel + tests + build + e2e
     updateState(issue.number, { phase: "test" });

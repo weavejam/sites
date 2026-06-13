@@ -224,7 +224,7 @@ async function runCopilot(prompt: string, model: string): Promise<{ code: number
 // right (typically returns JSON missing one locale, especially "pt", on
 // content with many domain-specific terms).
 const MODEL_FALLBACK = ["gpt-5.4-mini", "gpt-5.5"] as const;
-const ATTEMPTS_PER_MODEL = 2;
+const ATTEMPTS_PER_MODEL = 1;
 
 async function translateOne(toolId: string, force: boolean): Promise<boolean> {
   const found = findEntry(toolId);
@@ -284,6 +284,27 @@ async function translateOne(toolId: string, force: boolean): Promise<boolean> {
     }
   }
   console.error(`✗ ${toolId}: failed after ${MODEL_FALLBACK.length * ATTEMPTS_PER_MODEL} attempts across ${MODEL_FALLBACK.join("/")}`);
+  // Fallback: copy English into every non-en locale so the build still
+  // produces valid generateStaticParams paths (output: 'export' +
+  // dynamicParams: false requires every locale to have a non-empty slug).
+  // The pages will visibly contain English under /zh-CN/ etc., which is a
+  // recognised TODO — a follow-up `pnpm translate-tool --all` pass will
+  // back-fill these once the model cooperates.
+  try {
+    for (const l of TARGET_LOCALES) {
+      const m = loadJson(path.join(MESSAGES_DIR, `${l}.json`)) as Record<string, unknown>;
+      const toolBag = (m as any).tool = (m as any).tool || {};
+      if (!toolBag[toolId]) toolBag[toolId] = enContent;
+      saveJson(path.join(MESSAGES_DIR, `${l}.json`), m);
+      if (!found.entry.slugs[l]) found.entry.slugs[l] = found.entry.slugs.en;
+      if (!found.entry.titles[l]) found.entry.titles[l] = found.entry.titles.en;
+      if (!found.entry.descriptions[l]) found.entry.descriptions[l] = found.entry.descriptions.en;
+    }
+    writeCategoryFile(found.category, found.entries);
+    console.warn(`  ↳ filled English fallback for all 9 non-en locales (back-fill later)`);
+  } catch (e) {
+    console.error(`  ↳ english-fallback also failed: ${e}`);
+  }
   return false;
 }
 
