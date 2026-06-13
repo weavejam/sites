@@ -232,7 +232,13 @@ async function main() {
     const portCode = await runCopilot(prompt, "claude-sonnet-4.6", wt, wid, [path.join(APP, ".scrape")]);
     if (portCode !== 0) throw new Error(`dev copilot exit=${portCode}`);
 
-    // 4. barrel + tests + build + e2e
+    // 4. translate tool registry + messages into 9 non-en locales
+    updateState(issue.number, { phase: "translate" });
+    const toolIds = jobs.map((j) => j.toolId);
+    const tr = run("pnpm", ["translate-tool", ...toolIds], wtApp, wid);
+    if (tr.code !== 0) throw new Error(`translate-tool failed (${toolIds.join(",")})`);
+
+    // 5. barrel + tests + build + e2e
     updateState(issue.number, { phase: "test" });
     const bar = run("pnpm", ["fixtures:barrel"], wtApp, wid);
     if (bar.code !== 0) throw new Error("fixtures:barrel failed");
