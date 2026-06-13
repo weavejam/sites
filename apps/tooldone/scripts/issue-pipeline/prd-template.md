@@ -1,4 +1,4 @@
-# tooldone Port Batch PRD: batch-{{BATCH_ID}}
+# tooldone Port Batch PRD: {{BATCH_ID}}
 
 ## Overview
 Port {{N_PAGES}} calculator pages from legacy tooldone.com into `apps/tooldone/`. English locale only — other 9 locales are handled by a separate `translate-tool.ts` pipeline after merge.
@@ -52,6 +52,6 @@ Part of the full tooldone.com → apps/tooldone migration (~568 batches × 5 pag
 4. Spawn `copilot --model claude-sonnet-4.6` with `port-batch-prompt.md` rendered for these {{N_PAGES}} pages; instructions tell it to invoke an internal task sub-agent (`gpt-5.5`) for review after writing files, parse its structured-JSON output, fix BLOCKERs, then exit
 5. `pnpm fixtures:barrel && pnpm test && pnpm build && pnpm test:e2e --grep "<tool-ids>"`
 6. Commit all changes, push branch
-7. `gh pr create --title "port(tooldone): batch-{{BATCH_ID}}" --body "Closes #{{ISSUE_NUMBER}}\n\n<review report>"`
+7. `gh pr create --title "port(tooldone): {{BATCH_ID}}" --body "Closes #{{ISSUE_NUMBER}}\n\n<review report>"`
 8. `gh pr merge --auto --squash --delete-branch`
 9. Remove worktree (branch lives on remote until auto-merge fires)

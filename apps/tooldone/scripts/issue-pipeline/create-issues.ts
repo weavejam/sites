@@ -160,6 +160,16 @@ async function main() {
   console.log(`total batches: ${allBatches.length}`);
 
   const index = loadIndex();
+  // Track which allBatches indices have already been consumed by a previous
+  // run. We key on the first url of each entry (stable) — if two index entries
+  // share the same first url, dedupe (defensive).
+  const consumedFirstUrls = new Set<string>();
+  for (const entry of Object.values(index)) {
+    if (entry.urls[0]) consumedFirstUrls.add(entry.urls[0]);
+  }
+  const remainingBatches = allBatches.filter((b) => !consumedFirstUrls.has(`${b[0].category}/${b[0].toolId}`));
+  console.log(`already-created batches in index: ${Object.keys(index).length}; remaining: ${remainingBatches.length}`);
+
   const existingBatchNums = Object.keys(index)
     .map((k) => Number(k.replace("batch-", "")))
     .filter((n) => !Number.isNaN(n));
@@ -170,8 +180,8 @@ async function main() {
     const [from, to] = args.range;
     toCreate = allBatches.slice(from - 1, to).map((j, i) => ({ num: from + i, jobs: j }));
   } else {
-    const take = args.all ? allBatches.length : (args.count ?? 0);
-    toCreate = allBatches.slice(0, take).map((j, i) => ({ num: startNum + i, jobs: j }));
+    const take = args.all ? remainingBatches.length : (args.count ?? 0);
+    toCreate = remainingBatches.slice(0, take).map((j, i) => ({ num: startNum + i, jobs: j }));
   }
   console.log(`will create ${toCreate.length} issues starting at batch-${String(toCreate[0]?.num).padStart(3, "0")}`);
 

@@ -148,7 +148,8 @@ function runCopilot(prompt: string, model: string, cwd: string, workerId: string
   return new Promise((resolve, reject) => {
     log(workerId, `→ copilot --model ${model} (cwd=${cwd}, prompt ${prompt.length} chars)`);
     const args = [
-      "--allow-all-tools",
+      "--allow-all",
+      "--no-ask-user",
       "--model", model,
       "--add-dir", JSON.stringify(cwd),
       ...extraDirs.flatMap((d) => ["--add-dir", JSON.stringify(d)]),
@@ -240,7 +241,7 @@ async function main() {
     const b = run("pnpm", ["build"], wtApp, wid);
     if (b.code !== 0) throw new Error("build failed");
     const grep = jobs.map((j) => j.toolId).join("|");
-    const e2e = run("pnpm", ["test:e2e", "--", "--grep", JSON.stringify(grep)], wtApp, wid);
+    const e2e = run("pnpm", ["test:e2e", "--grep", JSON.stringify(grep)], wtApp, wid);
     if (e2e.code !== 0) throw new Error("playwright failed");
 
     // 5. commit + push
@@ -273,6 +274,9 @@ async function main() {
       await acquireLock(GIT_LOCK, wid, wid, "git-lock");
       try {
         run("git", ["worktree", "remove", "--force", JSON.stringify(wt)], MAIN_REPO, wid);
+        // git worktree remove may leave node_modules junctions / build cache behind
+        try { rmSync(wt, { recursive: true, force: true }); } catch {}
+        run("git", ["worktree", "prune"], MAIN_REPO, wid);
       } finally {
         releaseLock(GIT_LOCK);
       }
