@@ -2774,6 +2774,443 @@
           }
         ]
       }
+    },
+    "tukey-hsd-calculator": {
+      "title": "Tukey's HSD Calculator - Post-Hoc ANOVA Test",
+      "tagline": "Run Tukey's Honestly Significant Difference test after ANOVA to identify which group means differ significantly from each other.",
+      "intro": "Enter comma-separated data for each group, select the number of groups and significance level, then click Calculate to see the ANOVA table and all pairwise comparisons.",
+      "field": {
+        "group": "Group",
+        "numGroups": "Number of groups",
+        "alpha": "Significance level (α)"
+      },
+      "placeholder": {
+        "group": "e.g., 23, 25, 28, 30"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Enter at least 2 values in each of the 2 or more groups, then click Calculate."
+      },
+      "result": {
+        "anovaHeading": "ANOVA Table",
+        "source": "Source",
+        "ss": "SS",
+        "df": "df",
+        "ms": "MS",
+        "f": "F",
+        "between": "Between groups",
+        "within": "Within groups",
+        "hsdValue": "HSD threshold",
+        "qCritical": "q critical",
+        "pairHeading": "Pairwise Comparisons (Tukey HSD)",
+        "pair": "Pair",
+        "meanI": "Mean i",
+        "meanJ": "Mean j",
+        "diff": "|Diff|",
+        "significance": "Result",
+        "significant": "Significant",
+        "notSignificant": "Not significant",
+        "vsLabel": "vs"
+      },
+      "about": {
+        "heading": "About Tukey's HSD test",
+        "body": "Tukey's Honestly Significant Difference (HSD) test is a widely used post-hoc procedure performed after a one-way ANOVA returns a significant F-statistic. When ANOVA tells you that at least one group mean differs from the others, Tukey's HSD pinpoints exactly which pairs of means are responsible for that difference while controlling the family-wise error rate at the chosen α level across all comparisons simultaneously.\n\nThe test was developed by statistician John Tukey in 1949 and remains the gold standard when all pairwise comparisons are of interest. Unlike the Bonferroni correction, which can be overly conservative, Tukey's method achieves an exact control of the experiment-wise error rate when sample sizes are equal, and an approximate control for unequal sizes. This balance between statistical power and error control makes it the default choice for comparing three or more treatment groups in fields ranging from agriculture and psychology to clinical trials and manufacturing.\n\nThe calculation begins with a one-way ANOVA: the grand mean is computed from all observations, then the sum of squares is partitioned into between-group variation (how much the group means differ from the grand mean) and within-group variation (how much individual values scatter around their group means). Dividing each sum of squares by its degrees of freedom gives the mean squares. The F-statistic is the ratio of the between-group mean square to the within-group mean square; a large F value suggests the groups have genuinely different means.\n\nFor the HSD step, the critical value q is looked up from the studentized range distribution table using the number of groups k and the within-group degrees of freedom. The HSD threshold is then q × √(MS_within / n_harmonic), where n_harmonic is the harmonic mean of the group sample sizes. Any pair of means whose absolute difference exceeds this threshold is declared significantly different.\n\nThis calculator handles between 2 and 6 groups with unequal sample sizes, using the harmonic mean for the effective sample size. Results include the full ANOVA table and a complete pairwise comparison matrix. Use α = 0.05 for the standard 95% confidence level or α = 0.01 for the more stringent 99% level."
+      },
+      "examples": {
+        "heading": "Tukey HSD examples",
+        "intro": "Representative data sets showing how the test detects or fails to detect significant group differences.",
+        "colInput": "Groups",
+        "colOutput": "Verdict",
+        "colNote": "Notes",
+        "items": [
+          {
+            "input": "G1: 23,25,28,30 | G2: 22,24,26,28 | G3: 35,38,40,42",
+            "output": "G1 vs G3: Significant; G2 vs G3: Significant",
+            "note": "Group 3 mean (~38.75) is far above groups 1 and 2 (~26.5 and ~25). Pairs involving G3 exceed the HSD threshold."
+          },
+          {
+            "input": "G1: 10,11,12 | G2: 10,12,11 | G3: 11,13,12",
+            "output": "No significant differences",
+            "note": "Means are 11, 11, and 12. Small differences relative to within-group variability keep all pairs below the HSD threshold."
+          },
+          {
+            "input": "G1: 5,6,7,8 | G2: 12,14,13,15 | G3: 20,21,22,23 | G4: 30,31,29,32",
+            "output": "All pairs significant",
+            "note": "Four equally-spaced groups with tight within-group spread. Every pair of means differs by more than the HSD threshold at alpha=0.05."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the Tukey HSD calculator",
+        "steps": [
+          "Select the number of groups (2-6) using the group selector buttons at the top of the calculator.",
+          "Type the comma-separated data values for each group into the corresponding input field.",
+          "Choose your significance level: alpha=0.05 for the conventional 5% threshold, or alpha=0.01 for a stricter 1% threshold.",
+          "Click Calculate to see the ANOVA table (SS, df, MS, F) and the full pairwise comparison table.",
+          "Check the Result column in the pairwise table — pairs marked Significant have mean differences that exceed the HSD threshold."
+        ]
+      },
+      "faq": {
+        "heading": "Tukey HSD FAQ",
+        "q1": "When should I use Tukey's HSD test?",
+        "q1_a": "Use Tukey's HSD after you obtain a significant one-way ANOVA result and you want to find which specific group means differ. It is ideal when all pairwise comparisons are planned and you want strict control of the experiment-wise error rate.",
+        "q2": "What does the HSD threshold mean?",
+        "q2_a": "The HSD threshold is the minimum absolute difference between two group means that is deemed statistically significant at the chosen alpha level. Any pair whose mean difference exceeds this value is flagged as significantly different.",
+        "q3": "How does Tukey HSD differ from the t-test?",
+        "q3_a": "A pairwise t-test does not correct for multiple comparisons, so running several t-tests inflates the chance of a false positive. Tukey's HSD controls the family-wise error rate across all comparisons simultaneously, making it more appropriate when testing three or more groups.",
+        "q4": "Does Tukey's HSD require equal sample sizes?",
+        "q4_a": "Equal sample sizes give the exact family-wise error rate. For unequal sizes, this calculator uses the harmonic mean of the group sizes, which provides a good approximation known as the Tukey-Kramer method.",
+        "q5": "What is the studentized range statistic q?",
+        "q5_a": "The q statistic is the ratio of the range of the group means to the standard error. Critical values are looked up from the studentized range distribution, which accounts for the number of groups k and the error degrees of freedom.",
+        "q6": "What do I do if ANOVA is not significant?",
+        "q6_a": "If the overall ANOVA F-test is not significant, post-hoc tests like Tukey's HSD are generally not performed because there is no statistical evidence that any means differ. Reporting the non-significant F and stopping there is the standard practice."
+      }
+    },
+    "two-envelopes-paradox-calculator": {
+      "title": "Two Envelopes Paradox Calculator - Decision Theory",
+      "tagline": "Explore the famous Two Envelopes Paradox interactively. Enter the amount in your envelope to analyze the expected values and understand the mathematical puzzle.",
+      "intro": "Enter the amount you see in your chosen envelope and click Analyze to see the expected value for switching versus keeping, along with the paradox explanation.",
+      "field": {
+        "amount": "Amount in Your Envelope (X)"
+      },
+      "placeholder": {
+        "amount": "e.g., 100"
+      },
+      "button": {
+        "analyze": "Analyze",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter a positive number for the amount in the envelope."
+      },
+      "result": {
+        "heading": "Expected Value Analysis",
+        "evKeepLabel": "Expected value if you keep",
+        "evKeepDesc": "The value in your envelope is certain.",
+        "evSwitchLabel": "Expected value if you switch",
+        "evSwitchDesc": "Based on E[other] = 0.5×(2X) + 0.5×(X/2) = 1.25X",
+        "paradoxNote": "Paradox: The same reasoning applied to the other envelope also yields 1.25× its value, creating an apparent infinite loop. The flaw is that X cannot simultaneously be both the larger and the smaller amount."
+      },
+      "about": {
+        "heading": "About the Two Envelopes Paradox",
+        "body": "The Two Envelopes Paradox is one of the most celebrated puzzles in probability theory and decision theory. It was popularized in the 1980s and 1990s and continues to generate lively debate among mathematicians, philosophers, and statisticians. The setup is deceptively simple: two envelopes each contain some amount of money. One envelope holds exactly twice what the other holds. You pick one envelope at random, peek at the amount X inside, and must then decide whether to switch to the other envelope.\n\nThe naive probabilistic argument goes like this: the other envelope contains either 2X (if you happened to pick the smaller) or X/2 (if you picked the larger). Each case is equally likely with probability 0.5. Therefore, the expected value of the other envelope is 0.5 × 2X + 0.5 × X/2 = X + X/4 = 1.25X. Since 1.25X is greater than X, you should always switch. But here lies the paradox: if you switched and now hold the other envelope with amount Y = 1.25X, the same logic tells you to switch back, and so on ad infinitum.\n\nThis calculator computes both expected values using the naive argument, making the paradox tangible with real numbers. When you enter X = 100, it shows that the naive analysis predicts an EV of 125 by switching and only 100 by keeping. The calculation is arithmetically correct, so why is the conclusion flawed?\n\nThe resolution hinges on probability theory. The naive argument implicitly assumes that after seeing X, it is equally likely that the other envelope contains 2X or X/2 — that is, it treats X as if it could be either the smaller or the larger amount with equal probability. But in any concrete setup, X is either the smaller amount (in which case the other envelope definitely has 2X) or X is the larger amount (in which case the other envelope definitely has X/2). The correct analysis requires a prior distribution over the possible amounts hidden in the envelopes. For most natural priors — including any distribution with a finite expected value — the correct expected value of switching is exactly X, providing no advantage.\n\nMore formally, let the two amounts be m and 2m drawn from some distribution. If you observe X, the conditional expectation of the other envelope given the prior is not 1.25X in general. The naive formula mixes two reference amounts (m and 2m) as if they share the same base, which is the algebraic sleight of hand that creates the illusion of gain.\n\nThe Two Envelopes Paradox beautifully illustrates how informal probabilistic reasoning can lead to contradictions when applied carelessly, and why rigorous Bayesian conditioning on the correct prior is essential. It has spurred research into improper priors, exchangeability, and decision theory under ambiguity, making it a staple example in advanced probability courses."
+      },
+      "examples": {
+        "heading": "Two envelopes paradox examples",
+        "intro": "Concrete amounts showing the naive expected-value calculation and the paradox it creates.",
+        "colInput": "Amount seen (X)",
+        "colOutput": "EV if switch (naive)",
+        "colNote": "Interpretation",
+        "items": [
+          {
+            "input": "X = $100",
+            "output": "$125",
+            "note": "Naive EV = 0.5×$200 + 0.5×$50 = $125. Looks like switching gains $25, but the same logic applied to the other side yields the same conclusion."
+          },
+          {
+            "input": "X = $40",
+            "output": "$50",
+            "note": "EV = 0.5×$80 + 0.5×$20 = $50. The naive argument always inflates the expected gain by 25% of the observed amount."
+          },
+          {
+            "input": "X = $500",
+            "output": "$625",
+            "note": "EV = 0.5×$1000 + 0.5×$250 = $625. For any X the formula gives 1.25X, illustrating why the paradox persists regardless of the observed amount."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the Two Envelopes calculator",
+        "steps": [
+          "Enter the amount you observe in your chosen envelope in the input field labeled Amount in Your Envelope (X).",
+          "Click Analyze to compute the naive expected values for both keeping and switching.",
+          "Read the Expected value if you keep panel — it simply shows your observed amount X as the certain value.",
+          "Read the Expected value if you switch panel — it shows 1.25X, the result of the naive probability argument.",
+          "Review the Paradox note below the results to understand why the 1.25X figure is misleading and what the correct resolution is."
+        ]
+      },
+      "faq": {
+        "heading": "Two envelopes paradox FAQ",
+        "q1": "Why does the naive argument give 1.25X?",
+        "q1_a": "The naive formula computes 0.5×(2X) + 0.5×(X/2) = 1.25X by treating both possibilities as equally likely given the observed value. This is algebraically correct but probabilistically flawed because it mixes two different reference amounts as if they shared the same base.",
+        "q2": "Is it ever correct to switch envelopes?",
+        "q2_a": "Without additional information, switching and keeping are equally good choices. The expected value of both envelopes is the same when computed correctly using a proper prior distribution over the amounts. Switching never provides a guaranteed advantage.",
+        "q3": "What is the flaw in the switching argument?",
+        "q3_a": "The flaw is that after seeing X, you do not know whether X is the smaller or larger amount. The naive argument treats X as simultaneously possibly equal to m and 2m, but these are mutually exclusive. A rigorous Bayesian analysis shows that the correct expected gain from switching is zero for any proper prior.",
+        "q4": "Does the paradox change if I peek at the envelope?",
+        "q4_a": "Peeking and seeing X provides information, but without knowing the distribution of amounts it cannot help you decide. If you know the prior distribution (e.g., amounts are drawn from a uniform distribution up to some maximum), you can sometimes gain by switching, but the naive 1.25X rule is still wrong in general.",
+        "q5": "Is this the same as the Monty Hall problem?",
+        "q5_a": "They are related but different. In the Monty Hall problem, the host's action after your choice provides genuine new information that changes the probabilities, so switching is genuinely beneficial. In the Two Envelopes Paradox, no new information is revealed after you see X, so switching has zero expected benefit over keeping.",
+        "q6": "What does this paradox teach us about probability?",
+        "q6_a": "The paradox highlights the importance of specifying the prior distribution before applying probability arguments. Informal reasoning about equally likely events must be grounded in a well-defined probability space. It is a cautionary tale about the dangers of using expected value formulas without checking the underlying assumptions."
+      }
+    },
+    "uniform-distribution-calculator": {
+      "title": "Uniform Distribution Calculator - PDF, CDF & Mean",
+      "tagline": "Calculate the probability density function, cumulative distribution function, mean, variance, and interval probability for any continuous uniform distribution.",
+      "intro": "Enter the minimum value a and maximum value b. Optionally enter a point x for the CDF, or lower and upper bounds x1/x2 for interval probability.",
+      "field": {
+        "a": "Minimum Value (a)",
+        "b": "Maximum Value (b)",
+        "x": "Point value (x) for CDF",
+        "xHint": "Optional — enter x to compute P(X ≤ x).",
+        "x1": "Lower bound (x1) for interval",
+        "x2": "Upper bound (x2) for interval",
+        "intervalHint": "Optional — enter both x1 and x2 to compute P(x1 ≤ X ≤ x2)."
+      },
+      "placeholder": {
+        "a": "e.g., 2",
+        "b": "e.g., 10",
+        "x": "e.g., 6",
+        "x1": "e.g., 3",
+        "x2": "e.g., 7"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers for a and b, with b strictly greater than a."
+      },
+      "result": {
+        "heading": "Results",
+        "pdf": "PDF (probability density)",
+        "mean": "Mean (expected value)",
+        "variance": "Variance",
+        "stdDev": "Standard deviation",
+        "cdf": "CDF P(X ≤ x)",
+        "pInterval": "P(x1 ≤ X ≤ x2)",
+        "formula": "Formulas: PDF = 1/(b−a) | Mean = (a+b)/2 | Variance = (b−a)²/12 | CDF(x) = (x−a)/(b−a)"
+      },
+      "about": {
+        "heading": "About the uniform distribution",
+        "body": "The continuous uniform distribution, sometimes called the rectangular distribution, describes a situation in which every value in a given interval [a, b] is equally likely to occur. It is the simplest continuous probability distribution and serves as the canonical model for phenomena where all outcomes in a range are equally probable — for example, the precise moment a bus arrives within a scheduled window, or the landing position of a spinning wheel stopped at a random time.\n\nThe probability density function (PDF) of the uniform distribution is constant across the interval: f(x) = 1/(b − a) for a ≤ x ≤ b, and zero elsewhere. Because the total area under the PDF must equal one and the shape is a flat rectangle, the height of the rectangle is simply the reciprocal of the width. This makes the PDF easy to interpret: any sub-interval of the same width has the same probability, regardless of where it sits within [a, b].\n\nThe cumulative distribution function (CDF) gives the probability that a random observation falls at or below a specific value x. For the uniform distribution, F(x) = (x − a)/(b − a) for a ≤ x ≤ b. It increases linearly from zero at x = a to one at x = b, reflecting the steady accumulation of probability as x moves across the interval. To find the probability that the value falls in an interval [x1, x2], subtract: P(x1 ≤ X ≤ x2) = (x2 − x1)/(b − a), which is simply the sub-interval width divided by the total width.\n\nThe mean (expected value) of the uniform distribution is the midpoint of the interval: E[X] = (a + b)/2. This makes intuitive sense — if all values are equally likely, the average value is right in the middle. The variance measures the average squared deviation from the mean and equals (b − a)² / 12. A wider interval produces a larger variance, reflecting greater uncertainty about where the outcome will fall.\n\nThe uniform distribution is widely used as a starting point or benchmark in simulation, Monte Carlo methods, and random number generation. Pseudo-random number generators typically produce uniform random variables on [0, 1], which can then be transformed into other distributions using the inverse CDF method. In Bayesian statistics, the uniform prior expresses a state of complete ignorance about a parameter within a known range. In reliability engineering and scheduling, it models unknown arrival or failure times when only the range is known.\n\nUnderstanding the uniform distribution also provides a foundation for grasping more complex continuous distributions. Its simplicity makes it ideal for teaching the concepts of PDF, CDF, expected value, and variance before introducing the normal, exponential, or beta distributions."
+      },
+      "examples": {
+        "heading": "Uniform distribution examples",
+        "intro": "Worked calculations using the uniform distribution formulas for common scenarios.",
+        "colInput": "Parameters",
+        "colOutput": "Key metrics",
+        "colNote": "Application",
+        "items": [
+          {
+            "input": "a = 0, b = 1",
+            "output": "PDF = 1, Mean = 0.5, Variance = 0.0833",
+            "note": "The standard uniform distribution U(0,1), the foundation of all pseudo-random number generators and the inverse CDF transformation method."
+          },
+          {
+            "input": "a = 2, b = 10",
+            "output": "PDF = 0.125, Mean = 6, Variance ≈ 5.333",
+            "note": "A bus arrives uniformly between 2 and 10 minutes. The average wait is 6 minutes, and the variance is (10−2)²/12 = 64/12 ≈ 5.333."
+          },
+          {
+            "input": "a = 0, b = 60, x1 = 20, x2 = 40",
+            "output": "P(20 ≤ X ≤ 40) = 0.333",
+            "note": "A random minute within an hour. The probability of landing between minute 20 and minute 40 is (40−20)/60 = 1/3 ≈ 0.333."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the uniform distribution calculator",
+        "steps": [
+          "Enter the minimum value a in the first field and the maximum value b in the second field. Ensure b is strictly greater than a.",
+          "Click Calculate to instantly see the PDF, mean, variance, and standard deviation for your distribution.",
+          "Optionally enter a value x in the CDF field to compute P(X ≤ x), the probability that the random variable is at most x.",
+          "Optionally enter both x1 and x2 to compute the interval probability P(x1 ≤ X ≤ x2).",
+          "Click Reset to clear all fields and start a new calculation."
+        ]
+      },
+      "faq": {
+        "heading": "Uniform distribution FAQ",
+        "q1": "What is the uniform distribution used for?",
+        "q1_a": "The uniform distribution models situations where every outcome in a range is equally likely. Common applications include random number generation, simulation studies, Bayesian uninformative priors, and scheduling or arrival time models when only the range of possible values is known.",
+        "q2": "How do I calculate the probability for an interval?",
+        "q2_a": "For a uniform distribution on [a, b], the probability of a value falling in [x1, x2] is simply (x2 − x1) / (b − a). This is proportional to the width of the sub-interval relative to the total range, which reflects the flat PDF.",
+        "q3": "What is the difference between PDF and CDF for the uniform distribution?",
+        "q3_a": "The PDF gives the density at a single point and equals 1/(b−a) for any point in [a, b]. The CDF gives the cumulative probability up to a point x and equals (x−a)/(b−a). For continuous distributions, probabilities are only meaningful over intervals, not at individual points.",
+        "q4": "Why is variance (b−a)²/12?",
+        "q4_a": "The variance is derived by integrating (x − mean)² × f(x) over [a, b], where f(x) = 1/(b−a). The calculation simplifies to (b−a)²/12. A wider interval increases the variance proportionally to the square of the width, since values are spread further from the mean.",
+        "q5": "Is the uniform distribution the same as equally likely outcomes?",
+        "q5_a": "For continuous random variables, yes. The uniform distribution is the continuous analogue of a fair die or a random draw — every sub-interval of equal length has the same probability. However, in the continuous case, individual point probabilities are zero; only interval probabilities are non-zero.",
+        "q6": "How does the standard uniform distribution U(0,1) relate to other distributions?",
+        "q6_a": "The standard uniform U(0,1) is the building block for generating any continuous distribution. If U is uniform on [0,1] and F is the CDF of a target distribution, then F⁻¹(U) follows the target distribution. This inverse transform method is the basis of most random sampling algorithms."
+      }
+    },
+    "upper-and-lower-fence-calculator": {
+      "title": "Upper and Lower Fence Calculator - IQR Outliers",
+      "tagline": "Identify statistical outliers in your dataset using the interquartile range (IQR) fence method. Enter comma-separated numbers to instantly find Q1, Q3, IQR, and both fences.",
+      "intro": "Enter your data values separated by commas, click Calculate, and see the upper fence, lower fence, and any outliers in your dataset.",
+      "field": {
+        "data": "Data Set"
+      },
+      "placeholder": {
+        "data": "e.g., 4, 8, 15, 16, 23, 42"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least 4 comma-separated numbers to compute the fences."
+      },
+      "result": {
+        "heading": "Results",
+        "n": "Count (n)",
+        "q1": "Q1 (25th percentile)",
+        "q3": "Q3 (75th percentile)",
+        "iqr": "IQR (Q3 − Q1)",
+        "lowerFence": "Lower Fence (Q1 − 1.5 × IQR)",
+        "upperFence": "Upper Fence (Q3 + 1.5 × IQR)",
+        "outliersHeading": "Outliers",
+        "noOutliers": "No outliers detected."
+      },
+      "about": {
+        "heading": "About the upper and lower fence calculator",
+        "body": "The upper and lower fence method is the standard technique for identifying outliers in a dataset using the interquartile range (IQR). Developed as part of John Tukey's exploratory data analysis framework in 1977, it provides a robust, non-parametric way to flag unusual observations without assuming the data follows any particular distribution. The method is widely taught in introductory statistics courses and is the default outlier detection approach in box-and-whisker plots.\n\nThe calculation begins by sorting the dataset and finding the first and third quartiles. Q1 (the 25th percentile) is the value below which 25% of the data falls, while Q3 (the 75th percentile) is the value below which 75% falls. The IQR is simply Q3 minus Q1, representing the spread of the middle half of the data. Because the IQR ignores the extreme values at both ends of the distribution, it is resistant to the very outliers it is trying to detect — a property that makes the fence method more reliable than range-based methods.\n\nOnce the IQR is computed, the fences are set at 1.5 × IQR below Q1 (lower fence) and 1.5 × IQR above Q3 (upper fence). Any data point below the lower fence or above the upper fence is classified as an outlier. The 1.5 multiplier was chosen empirically by Tukey because it works well for roughly normal data: in a normal distribution, this rule flags about 0.7% of observations as outliers, which corresponds to values more than about 2.7 standard deviations from the mean.\n\nFor more extreme outliers, some applications use a multiplier of 3 instead of 1.5, labeling such points as far outliers or extreme outliers. Points outside the 1.5 × IQR fence but inside the 3 × IQR fence are sometimes called mild outliers. This calculator uses the standard 1.5 × IQR rule, which is appropriate for most exploratory analyses.\n\nOutlier detection is a critical step in data cleaning, quality control, and statistical modeling. In manufacturing, a process measurement outside the fence might indicate a defective unit or a measurement error. In finance, extreme returns might signal data errors, market anomalies, or genuine events requiring investigation. In clinical research, physiologically impossible values are identified and reviewed. In machine learning, outliers can distort model training if not addressed.\n\nIt is important to remember that statistical outliers are not necessarily erroneous values. An outlier is simply an observation that is unusually far from the bulk of the data according to the IQR rule. Investigation is needed to determine whether the value represents a genuine extreme event, a measurement error, or a data entry mistake."
+      },
+      "examples": {
+        "heading": "Upper and lower fence examples",
+        "intro": "Step-by-step worked examples showing how the fence method identifies outliers in typical datasets.",
+        "colInput": "Dataset",
+        "colOutput": "Fences & outliers",
+        "colNote": "Interpretation",
+        "items": [
+          {
+            "input": "10, 12, 14, 16, 18, 20, 100",
+            "output": "Lower: 4 | Upper: 28 | Outlier: 100",
+            "note": "Q1=13, Q3=19, IQR=6. Lower fence = 13 − 9 = 4. Upper fence = 19 + 9 = 28. Value 100 exceeds the upper fence and is flagged as an outlier."
+          },
+          {
+            "input": "5, 7, 8, 9, 10, 11, 12, 14",
+            "output": "Lower: 2.5 | Upper: 16.5 | No outliers",
+            "note": "Q1=7.75, Q3=11.25, IQR=3.5. Fences are 2.5 and 16.5. All values (5 to 14) fall within the fences, so there are no outliers."
+          },
+          {
+            "input": "2, 3, 5, 7, 8, 9, 10, 11, 12, 50",
+            "output": "Lower: −2.375 | Upper: 18.625 | Outlier: 50",
+            "note": "Q1=5.5, Q3=10.75, IQR=5.25. Upper fence = 10.75 + 7.875 = 18.625. Value 50 is well above the upper fence and is a clear outlier."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the fence calculator",
+        "steps": [
+          "Type your data values in the input field, separated by commas or spaces. You need at least 4 values to compute meaningful quartiles.",
+          "Click Calculate to compute Q1, Q3, the IQR, the lower fence (Q1 − 1.5 × IQR), and the upper fence (Q3 + 1.5 × IQR).",
+          "Review the highlighted fence values — any data point below the lower fence or above the upper fence is an outlier.",
+          "Check the Outliers section to see the specific flagged values listed explicitly.",
+          "Click Reset to clear the input and start fresh with a new dataset."
+        ]
+      },
+      "faq": {
+        "heading": "Upper and lower fence FAQ",
+        "q1": "What are the upper and lower fences?",
+        "q1_a": "The upper fence is Q3 + 1.5 × IQR and the lower fence is Q1 − 1.5 × IQR. Any data point outside these fences is considered an outlier. The fences create a range that encloses the expected spread of a roughly bell-shaped distribution.",
+        "q2": "Why use 1.5 times the IQR?",
+        "q2_a": "The 1.5 multiplier was chosen by John Tukey because it is approximately optimal for detecting outliers in normal data while keeping the false-positive rate low. In a normal distribution it flags roughly 0.7% of observations. Doubling the multiplier to 3 catches only extreme outliers.",
+        "q3": "What is the IQR and how is it calculated?",
+        "q3_a": "The IQR (interquartile range) is Q3 minus Q1, representing the spread of the middle 50% of the data. It is computed by sorting the data, finding the 25th percentile (Q1) and 75th percentile (Q3), then subtracting. The IQR is resistant to outliers because it ignores the top and bottom 25% of values.",
+        "q4": "Does an outlier mean the data is wrong?",
+        "q4_a": "Not necessarily. An outlier is simply an unusually extreme observation relative to the bulk of the data. It could be a genuine extreme event, a measurement error, or a data entry mistake. Each flagged value should be investigated in context before being removed or corrected.",
+        "q5": "How do the fences relate to box plots?",
+        "q5_a": "The upper and lower fences define the whiskers in a standard Tukey box plot. The box covers the IQR (Q1 to Q3), the line in the box is the median, and the whiskers extend to the most extreme data points that are still within the fences. Points beyond the whiskers are plotted individually as outlier dots.",
+        "q6": "Is the fence method appropriate for small datasets?",
+        "q6_a": "The method works best with at least 10 to 20 observations. With fewer values, the quartile estimates are imprecise and the fences can be unreliable. For very small datasets consider examining all values visually rather than relying solely on the automatic fence rule."
+      }
+    },
+    "upper-control-limit-calculator": {
+      "title": "Upper Control Limit (UCL) Calculator - SPC Charts",
+      "tagline": "Calculate the Upper Control Limit (UCL) and Lower Control Limit (LCL) for statistical process control charts using raw data or summary statistics.",
+      "intro": "Select a calculation mode (From Data or From Summary), enter your values, and click Calculate to get the UCL, LCL, mean, and standard deviation instantly.",
+      "field": {
+        "mode": "Calculation mode",
+        "data": "Data (comma-separated)",
+        "mean": "Process Mean (x̅)",
+        "stdDev": "Standard Deviation (σ)",
+        "sigmaK": "Sigma multiplier (k)",
+        "sigmaKHint": "Typical values: 3 (99.73%), 2 (95.45%). Default is 3."
+      },
+      "type": {
+        "data": "From Data",
+        "summary": "From Summary"
+      },
+      "placeholder": {
+        "data": "e.g., 10, 11, 9, 12, 10, 11",
+        "mean": "e.g., 50",
+        "stdDev": "e.g., 5"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least 2 data points, or valid mean and standard deviation values."
+      },
+      "result": {
+        "heading": "Control Limits",
+        "mean": "Process mean (x̅)",
+        "stdDev": "Standard deviation (σ)",
+        "n": "Sample size (n)",
+        "ucl": "Upper Control Limit (UCL)",
+        "lcl": "Lower Control Limit (LCL)",
+        "formula": "Formulas: UCL = x̅ + {k}σ | LCL = x̅ − {k}σ"
+      },
+      "about": {
+        "heading": "About the Upper Control Limit (UCL)",
+        "body": "The Upper Control Limit (UCL) is a key element of Statistical Process Control (SPC), the methodology developed by Walter Shewhart at Bell Laboratories in the 1920s to distinguish normal process variation from signals that warrant investigation. Control charts plot process measurements over time and use the UCL (and its counterpart, the Lower Control Limit, LCL) to define the boundaries of acceptable variation. A process is said to be in statistical control when all measurements fall within the control limits and show no non-random patterns.\n\nThe UCL is calculated as the process mean plus k times the process standard deviation: UCL = x̄ + kσ. The corresponding LCL is x̄ − kσ. The value of k is typically set at 3, which for a normal distribution means that 99.73% of observations should fall within the control limits when the process is stable. A point exceeding the UCL (or falling below the LCL) is a signal that the process may have shifted or that an unusual cause is operating. Some applications use k = 2 (95.45%) for more sensitive detection, at the cost of more frequent false alarms.\n\nSPC control charts come in several varieties. The X-bar chart monitors the average of subgroup samples. The individual (I) chart monitors single measurements. The R chart and S chart monitor within-subgroup variability. This calculator computes the UCL for individual measurements or subgroup means using either raw data (to estimate the mean and standard deviation directly) or pre-computed summary statistics (mean and standard deviation provided by the user).\n\nWhen raw data is provided, the calculator estimates the process mean as the sample average and the standard deviation using the sample formula (dividing by n − 1, Bessel's correction). This gives an unbiased estimate of the population standard deviation, which is appropriate for estimating long-run process variation. The resulting UCL and LCL define the expected range of future observations if the process remains stable.\n\nControl limits are not specification limits. Specification limits define what is acceptable to the customer (engineering tolerances, regulatory requirements). Control limits define what the process is naturally capable of producing. A process can be in statistical control while still producing output outside the specification limits — in which case the process capability must be improved, not just monitored.\n\nThe UCL and LCL are used across manufacturing, healthcare, software development, call centers, and any context where output quality needs to be tracked over time. Understanding and computing these limits is an essential skill in quality engineering and process improvement."
+      },
+      "examples": {
+        "heading": "UCL examples",
+        "intro": "Worked calculations showing how the UCL is computed from data and from summary statistics.",
+        "colInput": "Inputs",
+        "colOutput": "UCL / LCL",
+        "colNote": "Context",
+        "items": [
+          {
+            "input": "Data: 10,11,9,12,10,11,10,9,12,11 | k=3",
+            "output": "UCL ≈ 13.74 | LCL ≈ 7.26",
+            "note": "Mean = 10.5, sample Std Dev ≈ 1.080. UCL = 10.5 + 3×1.080 ≈ 13.74, LCL = 10.5 − 3×1.080 ≈ 7.26. Any measurement outside these limits is an out-of-control signal."
+          },
+          {
+            "input": "Mean = 50, Std Dev = 5 | k=3",
+            "output": "UCL = 65 | LCL = 35",
+            "note": "UCL = 50 + 3×5 = 65. Classic 3-sigma rule. A manufactured part measured above 65 triggers a review of the production process."
+          },
+          {
+            "input": "Mean = 100, Std Dev = 8 | k=2",
+            "output": "UCL = 116 | LCL = 84",
+            "note": "Using k=2 (2-sigma limits) catches 95.45% of normal variation. More sensitive than 3-sigma but generates more false alarms."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the UCL calculator",
+        "steps": [
+          "Choose From Data if you have raw measurements, or From Summary if you already know the mean and standard deviation.",
+          "In From Data mode, enter your comma-separated measurements in the data field. In From Summary mode, enter the process mean and standard deviation.",
+          "Set the sigma multiplier k (default 3). Use 3 for standard 3-sigma control limits or 2 for tighter 2-sigma limits.",
+          "Click Calculate to see the UCL, LCL, mean, and standard deviation.",
+          "Any future process measurement above the UCL or below the LCL is an out-of-control signal requiring investigation."
+        ]
+      },
+      "faq": {
+        "heading": "UCL calculator FAQ",
+        "q1": "What is the Upper Control Limit (UCL)?",
+        "q1_a": "The UCL is the upper boundary on a control chart, set at k standard deviations above the process mean (typically k=3). Measurements exceeding the UCL are statistically unlikely under stable process conditions and signal that the process may have changed or an unusual cause is present.",
+        "q2": "What is the difference between UCL and an upper specification limit?",
+        "q2_a": "A specification limit is set by the customer or design requirements and defines acceptable product quality. The UCL is calculated from the process data and reflects natural process variation. A process can be in control (within UCL) but still produce defects (outside specification limits) if the process spread is too wide.",
+        "q3": "Why is k=3 the standard choice?",
+        "q3_a": "For a normally distributed process, setting k=3 means 99.73% of observations fall within the control limits when the process is stable. This limits false alarms (incorrectly flagging a stable process) to about 0.27%, which balances detection sensitivity against the cost of unnecessary investigations.",
+        "q4": "What does it mean when a point exceeds the UCL?",
+        "q4_a": "A point above the UCL is called an out-of-control signal. It indicates that the observation is unlikely to have occurred by random chance alone, suggesting that a special cause (an unusual event, a process change, a measurement error) may have occurred. The process should be investigated to find and eliminate the cause.",
+        "q5": "Can I use this calculator for subgroup means?",
+        "q5_a": "Yes. If you provide the mean of your subgroup means and the standard deviation of the subgroup means (also called the standard error), the calculator will compute the UCL and LCL for the X-bar chart directly. The inputs are the same regardless of whether values represent individual measurements or subgroup averages.",
+        "q6": "How do I estimate the standard deviation from data?",
+        "q6_a": "The calculator uses the sample standard deviation formula, dividing by n−1 (Bessel's correction), which gives an unbiased estimate of the population standard deviation. In practice, SPC charts sometimes use the average range divided by d2 for subgroup data, but for individual measurements the sample standard deviation is the appropriate estimate."
+      }
     }
   }
 }
