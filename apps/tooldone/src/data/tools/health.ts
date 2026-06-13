@@ -1,2 +1,43 @@
 import type { ToolEntry } from "@/data/tools";
-export const tools: ToolEntry[] = [];
+export const tools: ToolEntry[] = [
+  {
+    id: "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar",
+    category: "health",
+    slugs: {
+      en: "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    titles: {
+      en: "A1C Calculator: Hemoglobin A1C to Average Blood Sugar",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    descriptions: {
+      en: "A1C calculator converts Hemoglobin A1C to estimated average blood sugar (eAG) in mg/dL and mmol/L. Track diabetes trends with clear context.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+  },
+];

@@ -3,10 +3,20 @@
 // (Playwright/esbuild, Vitest/Vite) can statically resolve everything.
 
 import type { ToolFixture } from "@/tools/fixture";
+import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } from "@/tools/a1c-calculator-hemoglobin-a1c-to-average-blood-sugar.fixtures";
 import { fixtures as f_acres_to_hectares_converter } from "@/tools/acres-to-hectares-converter.fixtures";
+import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
+import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
+import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
+import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
 
 export const fixturesByTool: Record<string, ToolFixture[]> = {
+  "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
   "acres-to-hectares-converter": f_acres_to_hectares_converter,
+  "loan-calculator": f_loan_calculator,
+  "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
+  "ph-calculator": f_ph_calculator,
+  "standard-deviation-calculator": f_standard_deviation_calculator,
 };

@@ -1,2 +1,43 @@
 import type { ToolEntry } from "@/data/tools";
-export const tools: ToolEntry[] = [];
+export const tools: ToolEntry[] = [
+  {
+    id: "ph-calculator",
+    category: "chemistry",
+    slugs: {
+      en: "ph-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    titles: {
+      en: "pH Calculator - Acids, Bases & Buffer Solutions",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    descriptions: {
+      en: "pH calculator for acids, bases, and buffer solutions. Find pH, pOH, [H+], and [OH-] with Henderson-Hasselbalch steps in seconds.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+  },
+];
