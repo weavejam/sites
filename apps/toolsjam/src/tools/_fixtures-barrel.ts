@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_gamma_function_calculator } from "@/tools/gamma-function-calculator.fixtures";
+import { fixtures as f_gauss_jordan_elimination_calculator } from "@/tools/gauss-jordan-elimination-calculator.fixtures";
+import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calculator.fixtures";
+import { fixtures as f_gcf_calculator_greatest_common_factor } from "@/tools/gcf-calculator-greatest-common-factor.fixtures";
+import { fixtures as f_generic_rectangle_calculator } from "@/tools/generic-rectangle-calculator.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
@@ -24,6 +29,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "gamma-function-calculator": f_gamma_function_calculator,
+  "gauss-jordan-elimination-calculator": f_gauss_jordan_elimination_calculator,
+  "gcf-and-lcm-calculator": f_gcf_and_lcm_calculator,
+  "gcf-calculator-greatest-common-factor": f_gcf_calculator_greatest_common_factor,
+  "generic-rectangle-calculator": f_generic_rectangle_calculator,
   "loan-calculator": f_loan_calculator,
   "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
