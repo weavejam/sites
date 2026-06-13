@@ -200,7 +200,13 @@ async function runCopilot(prompt: string): Promise<{ code: number; stderr: strin
   return await new Promise((resolve, reject) => {
     const child = spawn(
       "copilot",
-      ["--allow-all-tools", "--add-dir", JSON.stringify(REPO), "--no-color"],
+      [
+        "--allow-all",
+        "--no-ask-user",
+        "--model", "gpt-5.4-mini",
+        "--add-dir", JSON.stringify(REPO),
+        "--no-color",
+      ],
       { cwd: REPO, stdio: ["pipe", "inherit", "pipe"], shell: true },
     );
     let stderr = "";
