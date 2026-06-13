@@ -20,6 +20,11 @@ import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.f
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
+import { fixtures as f_variance_calculator } from "@/tools/variance-calculator.fixtures";
+import { fixtures as f_venn_diagram_calculator } from "@/tools/venn-diagram-calculator.fixtures";
+import { fixtures as f_wald_test_calculator } from "@/tools/wald-test-calculator.fixtures";
+import { fixtures as f_weibull_distribution_calculator } from "@/tools/weibull-distribution-calculator.fixtures";
+import { fixtures as f_weighted_mean_calculator } from "@/tools/weighted-mean-calculator.fixtures";
 
 export const fixturesByTool: Record<string, ToolFixture[]> = {
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
@@ -39,4 +44,9 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
+  "variance-calculator": f_variance_calculator,
+  "venn-diagram-calculator": f_venn_diagram_calculator,
+  "wald-test-calculator": f_wald_test_calculator,
+  "weibull-distribution-calculator": f_weibull_distribution_calculator,
+  "weighted-mean-calculator": f_weighted_mean_calculator,
 };
