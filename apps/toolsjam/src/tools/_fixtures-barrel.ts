@@ -15,6 +15,11 @@ import { fixtures as f_expanding_logarithms_calculator } from "@/tools/expanding
 import { fixtures as f_exponent_calculator } from "@/tools/exponent-calculator.fixtures";
 import { fixtures as f_exponential_form_calculator } from "@/tools/exponential-form-calculator.fixtures";
 import { fixtures as f_exponential_function_calculator } from "@/tools/exponential-function-calculator.fixtures";
+import { fixtures as f_gamma_function_calculator } from "@/tools/gamma-function-calculator.fixtures";
+import { fixtures as f_gauss_jordan_elimination_calculator } from "@/tools/gauss-jordan-elimination-calculator.fixtures";
+import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calculator.fixtures";
+import { fixtures as f_gcf_calculator_greatest_common_factor } from "@/tools/gcf-calculator-greatest-common-factor.fixtures";
+import { fixtures as f_generic_rectangle_calculator } from "@/tools/generic-rectangle-calculator.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
@@ -34,6 +39,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "exponent-calculator": f_exponent_calculator,
   "exponential-form-calculator": f_exponential_form_calculator,
   "exponential-function-calculator": f_exponential_function_calculator,
+  "gamma-function-calculator": f_gamma_function_calculator,
+  "gauss-jordan-elimination-calculator": f_gauss_jordan_elimination_calculator,
+  "gcf-and-lcm-calculator": f_gcf_and_lcm_calculator,
+  "gcf-calculator-greatest-common-factor": f_gcf_calculator_greatest_common_factor,
+  "generic-rectangle-calculator": f_generic_rectangle_calculator,
   "loan-calculator": f_loan_calculator,
   "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
