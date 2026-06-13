@@ -1,2 +1,43 @@
 import type { ToolEntry } from "@/data/tools";
-export const tools: ToolEntry[] = [];
+export const tools: ToolEntry[] = [
+  {
+    id: "loan-calculator",
+    category: "finance",
+    slugs: {
+      en: "loan-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    titles: {
+      en: "Loan Calculator - Monthly Payment & Interest",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    descriptions: {
+      en: "Loan calculator for monthly payments, total interest, and payoff timing on mortgages, auto loans, or personal loans. Compare costs before you borrow.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+  },
+];

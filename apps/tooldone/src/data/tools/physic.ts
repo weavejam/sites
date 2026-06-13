@@ -1,2 +1,43 @@
 import type { ToolEntry } from "@/data/tools";
-export const tools: ToolEntry[] = [];
+export const tools: ToolEntry[] = [
+  {
+    id: "ohms-law-calculator",
+    category: "physic",
+    slugs: {
+      en: "ohms-law-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    titles: {
+      en: "Ohm's Law Calculator for Voltage, Current, Resistance",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    descriptions: {
+      en: "Ohm's Law calculator: enter any two of voltage, current, resistance, or power to instantly solve the rest using V=IR and P=VI for circuit design.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+  },
+];

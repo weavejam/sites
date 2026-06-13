@@ -1,2 +1,43 @@
 import type { ToolEntry } from "@/data/tools";
-export const tools: ToolEntry[] = [];
+export const tools: ToolEntry[] = [
+  {
+    id: "standard-deviation-calculator",
+    category: "statistic",
+    slugs: {
+      en: "standard-deviation-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    titles: {
+      en: "Standard Deviation Calculator - Sample & Population",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+    descriptions: {
+      en: "Standard deviation calculator for sample and population data. Find standard deviation, variance, mean, sum, and range from a list of numbers instantly.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: "",
+    },
+  },
+];
