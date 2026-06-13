@@ -1,0 +1,49 @@
+name: Deploy __SITENAME__
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/__SITENAME__/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - "turbo.json"
+      - ".github/workflows/deploy-__SITENAME__.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-__SITENAME__
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install (filtered)
+        run: pnpm install --frozen-lockfile --filter @weavejam/__SITENAME__...
+
+      - name: Build
+        run: pnpm --filter @weavejam/__SITENAME__ build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://__DOMAIN__
+
+      - name: Deploy to Cloudflare Pages
+        run: pnpm dlx wrangler@4 pages deploy apps/__SITENAME__/__OUTDIR__ --project-name=__SITENAME__ --branch=main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
