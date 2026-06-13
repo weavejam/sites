@@ -9,7 +9,7 @@ export const SITE_URL =
 
 // GA4. Injected by scripts/new-site.ps1 or supplied via env at build time.
 export const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-XXXXXXXXXX";
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-GWW4BQS5YS";
 
 // AdSense. Wrapped in a feature flag so we can ship before the AdSense
 // application is approved. Flip ADSENSE_ENABLED to "1" (or set in CI) once
