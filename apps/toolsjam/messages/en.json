@@ -1820,6 +1820,528 @@
                               }
                             ]
                           }
-                        }
+                        },
+    "wilcoxon-rank-sum-test-calculator": {
+      "title": "Wilcoxon Rank Sum Test Calculator (Mann-Whitney U)",
+      "tagline": "Compare two independent samples using the non-parametric Wilcoxon Rank Sum Test (Mann-Whitney U). Get U statistic, Z-score, and p-value — no normality assumption required.",
+      "intro": "Enter your two independent samples as comma-separated numbers, choose a significance level and tail type, then click Calculate.",
+      "field": {
+        "sample1": "Sample 1 Data",
+        "sample2": "Sample 2 Data",
+        "alpha": "Significance Level (α)",
+        "tail": "Hypothesis Test Type"
+      },
+      "placeholder": {
+        "sample": "e.g., 8, 9, 10, 5, 7"
+      },
+      "type": {
+        "two-tailed": "Two-Tailed",
+        "left-tailed": "Left-Tailed",
+        "right-tailed": "Right-Tailed"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least one valid number in each sample."
+      },
+      "result": {
+        "heading": "Results",
+        "U": "U Statistic",
+        "Z": "Z-Score",
+        "pValue": "p-Value",
+        "n1": "n₁ (Sample 1 size)",
+        "n2": "n₂ (Sample 2 size)",
+        "reject": "Reject H₀ — statistically significant difference detected.",
+        "failReject": "Fail to reject H₀ — no significant difference detected."
+      },
+      "about": {
+        "heading": "About the Wilcoxon Rank Sum Test",
+        "body": "The Wilcoxon Rank Sum Test, also known as the Mann-Whitney U Test, is a non-parametric statistical hypothesis test used to determine whether two independent samples come from populations with the same distribution. Unlike the independent-samples t-test, it does not assume that the data follow a normal distribution, making it a powerful alternative for ordinal data, skewed distributions, or small samples where normality cannot be established.\n\nThe test was originally proposed by Frank Wilcoxon in 1945 and later extended by Mann and Whitney in 1947 into the form most commonly used today. The Mann-Whitney U statistic counts the number of times a value from one group exceeds a value from the other group. A large U for one sample relative to the other provides evidence that the medians or central tendencies of the two populations differ.\n\nThe calculation procedure begins by combining both samples and ranking all observations from lowest to highest. Tied values receive the average of the ranks they would otherwise occupy. The sum of ranks for each group is computed separately; the U statistics are then derived from these rank sums. For larger samples, the distribution of U is well approximated by a normal distribution, and a Z-score is used to obtain the p-value.\n\nThe null hypothesis states that the two populations are identical — there is no systematic difference in their distributions. The alternative hypothesis can be two-tailed (any difference), right-tailed (group 1 tends to be larger), or left-tailed (group 1 tends to be smaller). Selecting the appropriate tail depends on your research question and must be decided before collecting data to avoid inflating Type I error.\n\nThe p-value is interpreted in relation to the chosen significance level α (commonly 0.05). If p < α, you reject the null hypothesis and conclude that a statistically significant difference exists between the groups. If p ≥ α, there is insufficient evidence to conclude a difference.\n\nThe test is widely used in medicine to compare patient outcomes between treatment and control groups when the outcome may not be normally distributed. In psychology, it can compare Likert-scale survey responses between demographic groups. In ecology, it can test whether measurements at two sites differ significantly. In education, it compares test scores of students taught by different methods.\n\nFor best results, ensure that the observations within each sample are independent of each other and that the two samples are independent of one another. The test is most powerful for detecting location differences (median shifts) when the underlying distributions have similar shapes."
+      },
+      "examples": {
+        "heading": "Practical Examples",
+        "intro": "Explore these common scenarios to see how the Wilcoxon Rank Sum Test is applied.",
+        "colInput": "Input",
+        "colOutput": "Output",
+        "colNote": "Note",
+        "items": [
+          {
+            "input": "S1: 7, 8, 8, 9, 10, 12 — S2: 9, 11, 12, 13, 14, 15 — α=0.05, two-tailed",
+            "output": "U=4, Z≈−2.24, p≈0.025",
+            "note": "Drug recovery times — significant difference; drug group recovers faster."
+          },
+          {
+            "input": "S1: 85, 90, 78, 92, 88, 76 — S2: 72, 80, 81, 75, 68, 79 — α=0.05, right-tailed",
+            "output": "U=6, Z≈1.92, p≈0.027",
+            "note": "Teaching method scores — new method produces significantly higher scores."
+          },
+          {
+            "input": "S1: 120, 125, 130, 110, 115, 122, 128 — S2: 130, 135, 140, 128, 132, 138, 142 — α=0.01, left-tailed",
+            "output": "U=2, Z≈−2.88, p≈0.002",
+            "note": "Fertilizer crop yield — Fertilizer B yields significantly more."
+          }
+        ],
+        "loadDrug": "Drug Efficacy",
+        "loadTeaching": "Teaching Method",
+        "loadFertilizer": "Fertilizer Yield"
+      },
+      "howto": {
+        "heading": "How to use the calculator",
+        "steps": [
+          "Enter the numeric values for Sample 1 in the first field, separated by commas or spaces.",
+          "Enter the values for the independent Sample 2 in the second field.",
+          "Select the significance level α (0.01, 0.05, or 0.10) by clicking the corresponding button.",
+          "Choose the tail type: Two-Tailed for any difference, Right-Tailed if you expect Sample 1 to be larger, or Left-Tailed if you expect Sample 1 to be smaller.",
+          "Click Calculate to see the U statistic, Z-score, p-value, and the statistical decision."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ",
+        "items": [
+          {
+            "q": "What is the difference between the Wilcoxon Rank Sum Test and the Mann-Whitney U Test?",
+            "a": "They are the same test with different names and formulations. Wilcoxon defined the test statistic as the rank sum, while Mann and Whitney defined U as the count of pairwise comparisons favoring one group. The two statistics are linearly related and yield identical p-values."
+          },
+          {
+            "q": "When should I use the Wilcoxon Rank Sum Test instead of the t-test?",
+            "a": "Use the Wilcoxon test when your data is ordinal, when the normality assumption is violated (especially in small samples), or when outliers are present. For large samples from approximately normal distributions, the t-test and Wilcoxon test give similar results, but the t-test has slightly more statistical power."
+          },
+          {
+            "q": "What does a two-tailed versus one-tailed test mean?",
+            "a": "A two-tailed test checks for any difference between the groups, regardless of direction. A right-tailed test checks whether Sample 1 is stochastically larger than Sample 2, and a left-tailed test checks the opposite. Always decide the tail type based on your hypothesis before collecting data."
+          },
+          {
+            "q": "How does the calculator handle tied values?",
+            "a": "Tied values across the combined dataset receive the average of the ranks they would occupy. For example, if two observations tie for ranks 3 and 4, both receive rank 3.5. This midrank correction ensures the rank sums remain valid and the Z approximation stays accurate."
+          },
+          {
+            "q": "What sample size do I need for a reliable Z-score approximation?",
+            "a": "The normal approximation is generally considered adequate when both n₁ and n₂ are at least 8–10. For very small samples (n < 8), the exact distribution of U should be used. This calculator uses the normal approximation, so interpret p-values cautiously with very small samples."
+          },
+          {
+            "q": "Can I use this test with non-numeric or ordinal data?",
+            "a": "Yes. As long as you can assign meaningful ranks to observations — such as Likert-scale responses (1=strongly disagree to 5=strongly agree) — the Wilcoxon Rank Sum Test is appropriate. You only need to be able to order the observations; exact numerical distances are not required."
+          }
+        ]
+      }
+    },
+    "wilcoxon-signed-rank-test-calculator": {
+      "title": "Wilcoxon Signed-Rank Test Calculator - Paired Samples",
+      "tagline": "Compare two related samples or repeated measurements using the non-parametric Wilcoxon Signed-Rank Test. Get W statistic, Z-score, and p-value without assuming normality.",
+      "intro": "Enter your paired before/after measurements as comma-separated numbers. Both samples must have the same number of values.",
+      "field": {
+        "sample1": "Sample 1 Data (e.g., Before Treatment)",
+        "sample2": "Sample 2 Data (e.g., After Treatment)"
+      },
+      "placeholder": {
+        "sample": "e.g., 10, 12, 15, 11, 20"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least one valid number in each sample.",
+        "mismatch": "Both samples must have the same number of values."
+      },
+      "result": {
+        "heading": "Results",
+        "W": "W Statistic",
+        "Z": "Z-Score",
+        "pValue": "p-Value (two-tailed)",
+        "n": "n (non-zero differences)",
+        "Wplus": "W⁺ (positive ranks sum)",
+        "Wminus": "W⁻ (negative ranks sum)",
+        "reject": "Reject H₀ — significant difference between paired samples (α = 0.05).",
+        "failReject": "Fail to reject H₀ — no significant difference detected (α = 0.05)."
+      },
+      "about": {
+        "heading": "About the Wilcoxon Signed-Rank Test",
+        "body": "The Wilcoxon Signed-Rank Test is a non-parametric statistical hypothesis test used to compare two related samples or repeated measurements on a single group. It is the non-parametric counterpart of the paired t-test, applied when the assumption of normality for the differences between pairs cannot be justified.\n\nIntroduced by Frank Wilcoxon in 1945, the test is especially valuable in clinical trials and behavioral science, where the same individuals are measured before and after an intervention. Instead of using raw data values, the test ranks the absolute differences between paired observations and sums the ranks associated with positive and negative differences separately.\n\nThe test procedure works as follows. For each pair, the difference d = (after − before) is computed. Pairs with a difference of zero are excluded. The absolute differences are ranked from smallest to largest, with ties receiving average ranks. The sum of ranks for positive differences is W⁺, and the sum for negative differences is W⁻. The test statistic W is the smaller of W⁺ and W⁻.\n\nFor larger samples (typically n ≥ 10), the distribution of W is approximated by a normal distribution. The Z-score is calculated using the mean and standard deviation of W under the null hypothesis. The mean is n(n+1)/4 and the standard deviation is √[n(n+1)(2n+1)/24], where n is the count of non-zero differences.\n\nThe null hypothesis states that the median difference between paired observations is zero — the treatment has no effect. The alternative hypothesis is that the median difference is not zero (two-tailed), or that it is positive or negative (one-tailed). This calculator reports the two-tailed p-value, which is the most conservative choice.\n\nA p-value below 0.05 is conventionally interpreted as evidence that the paired measurements differ significantly. In a blood pressure study, this might indicate that a medication significantly lowered systolic pressure. In a psychology study, it might show that a therapy program significantly reduced anxiety scores.\n\nThe test requires that the observations be paired — each observation in Sample 1 must correspond to a specific observation in Sample 2 (the same subject at a different time, or matched subjects). The pairs must be independent of each other, and the differences must come from a symmetric distribution, though not necessarily a normal one.\n\nCompared to the paired t-test, the Wilcoxon Signed-Rank Test is more robust to outliers and non-normal distributions, but slightly less powerful when the normality assumption holds. It is the recommended choice for small samples, ordinal outcomes, or when extreme values are present in the data."
+      },
+      "examples": {
+        "heading": "Practical Examples",
+        "intro": "Use these examples to see how the calculator works with different paired datasets.",
+        "colInput": "Input",
+        "colOutput": "Output",
+        "colNote": "Note",
+        "items": [
+          {
+            "input": "Before: 140,135,150,160,130,145,155,138,148,152 — After: 132,130,142,151,125,137,145,130,140,148",
+            "output": "W=0, Z≈−2.80, p≈0.005",
+            "note": "Blood pressure medication — all differences negative, significant reduction."
+          },
+          {
+            "input": "Before: 8,7,6,9,8,7,8,9 — After: 6,5,5,7,6,6,7,7",
+            "output": "W=0, Z≈−2.52, p≈0.012",
+            "note": "Anxiety scores after therapy — significant improvement at α = 0.05."
+          },
+          {
+            "input": "Before: 75,80,82,79,88,90,76,85,89,92,78,84 — After: 80,85,85,83,90,94,81,88,92,95,81,89",
+            "output": "W=0, Z≈+3.06, p≈0.002",
+            "note": "Student test scores pre/post new teaching method — highly significant gain."
+          }
+        ],
+        "loadBP": "Blood Pressure",
+        "loadAnxiety": "Anxiety Scores",
+        "loadScores": "Student Scores"
+      },
+      "howto": {
+        "heading": "How to use the calculator",
+        "steps": [
+          "Enter the before-treatment (or baseline) measurements in the Sample 1 field, separated by commas.",
+          "Enter the corresponding after-treatment measurements in the Sample 2 field. Both samples must have exactly the same number of values.",
+          "Click Calculate to compute the differences, rank them, and produce the W statistic, Z-score, and p-value.",
+          "A p-value below 0.05 (shown in red) indicates a statistically significant difference between the two conditions.",
+          "Use the example buttons to quickly load real-world datasets and verify the calculator with known results."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ",
+        "items": [
+          {
+            "q": "What is the difference between the Wilcoxon Signed-Rank Test and the paired t-test?",
+            "a": "Both tests compare paired measurements, but the paired t-test assumes the differences are normally distributed. The Wilcoxon Signed-Rank Test makes no such assumption and is therefore preferred for small samples, ordinal data, or data with significant outliers. When normality holds, the t-test has slightly more power."
+          },
+          {
+            "q": "What happens to pairs with a difference of zero?",
+            "a": "Pairs where the before and after values are identical (difference = 0) are excluded from the analysis. The effective sample size n used for computing the test statistic and p-value only counts the non-zero differences. This is the standard procedure recommended in most statistical textbooks."
+          },
+          {
+            "q": "How are tied differences handled?",
+            "a": "When multiple pairs produce the same absolute difference, those values receive the average of the ranks they would occupy. For example, three pairs with |d| = 5 competing for ranks 4, 5, and 6 each receive rank 5. This midrank correction preserves the validity of the Z approximation."
+          },
+          {
+            "q": "Why does this calculator only report a two-tailed p-value?",
+            "a": "The two-tailed test is the most conservative and the default for most exploratory studies. It tests whether the median difference is zero in either direction. For directional hypotheses (e.g., treatment always improves outcomes), you can halve the reported two-tailed p-value to get the one-tailed p-value."
+          },
+          {
+            "q": "How large does the sample need to be for the Z approximation to be valid?",
+            "a": "The normal approximation for the W statistic is generally reliable when n ≥ 10 (after removing zero differences). For smaller samples, exact critical values from the Wilcoxon table should be consulted. This calculator uses the normal approximation, so be cautious with n < 10."
+          }
+        ]
+      }
+    },
+    "yates-correction-for-continuity-calculator": {
+      "title": "Yates Correction for Continuity Calculator - Chi-Square",
+      "tagline": "Calculate the Yates-corrected chi-square statistic for 2×2 contingency tables. Reduce Type I error when expected cell frequencies are small.",
+      "intro": "Enter the four cell counts (a, b, c, d) from your 2×2 contingency table to compute the Yates-corrected χ² value and p-value.",
+      "table": {
+        "label": "Enter counts for your 2×2 contingency table: Group A in rows, Outcome 1/2 in columns."
+      },
+      "field": {
+        "a": "Group A, Outcome 1 (a)",
+        "b": "Group A, Outcome 2 (b)",
+        "c": "Group B, Outcome 1 (c)",
+        "d": "Group B, Outcome 2 (d)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter non-negative integers for all four cells, with at least one non-zero row and column."
+      },
+      "result": {
+        "heading": "Results",
+        "chi2": "Yates χ² Statistic",
+        "pValue": "p-Value",
+        "df": "Degrees of Freedom",
+        "N": "Total N",
+        "significant": "Significant association detected (p < 0.05).",
+        "notSignificant": "No significant association detected (p ≥ 0.05)."
+      },
+      "about": {
+        "heading": "About Yates' Correction for Continuity",
+        "body": "Yates' correction for continuity is an adjustment applied to the chi-square (χ²) test when used with a 2×2 contingency table. The chi-square distribution is continuous, but the observed cell frequencies in a contingency table are discrete counts. This discrepancy causes the chi-square approximation to overestimate the test statistic, leading to p-values that are too small and an increased risk of Type I error — especially when sample sizes or expected cell counts are small.\n\nFrank Yates proposed the correction in 1934. The idea is simple: subtract 0.5 from the absolute difference between each observed and expected frequency before squaring. The corrected formula is χ² = Σ (|O − E| − 0.5)² / E summed over all four cells. This small adjustment reduces the overall chi-square value, producing a more conservative (larger) p-value that better reflects the true probability of the observed or more extreme results.\n\nThe correction is particularly important when any expected cell frequency falls below 10, and especially when any expected frequency is below 5. Under those conditions, the standard chi-square test is known to be unreliable, and Yates' correction helps compensate. For larger samples where all expected frequencies exceed 10, the correction has minimal impact and the standard chi-square test is adequate.\n\nTo use the calculator, you need to structure your data as a 2×2 contingency table. The two rows represent the two groups (for example, Treatment vs. Control), and the two columns represent the two possible outcomes (for example, Success vs. Failure). Cell a is the count of Group A subjects with Outcome 1, cell b is Group A with Outcome 2, cell c is Group B with Outcome 1, and cell d is Group B with Outcome 2.\n\nThe degrees of freedom for a 2×2 table are always 1. The p-value is calculated from the chi-square distribution with 1 degree of freedom. A p-value below 0.05 is conventionally interpreted as evidence of a statistically significant association between group membership and outcome.\n\nThere is ongoing debate in the statistical community about when to use Yates' correction. Some statisticians argue it over-corrects and reduces statistical power. The alternative preferred by many modern statisticians for very small expected frequencies is Fisher's Exact Test, which calculates the exact probability without relying on the chi-square approximation at all. However, Yates' correction remains widely taught and accepted in many disciplines and is the appropriate choice when you want a quick, conservative result for a 2×2 table."
+      },
+      "examples": {
+        "heading": "Practical Examples",
+        "intro": "Explore various scenarios to understand how the calculator works.",
+        "colInput": "Input (a, b, c, d)",
+        "colOutput": "χ² / p-Value",
+        "colNote": "Note",
+        "items": [
+          {
+            "input": "a=3, b=22, c=11, d=14",
+            "output": "χ²≈4.86, p≈0.027",
+            "note": "Vaccine trial — significant; vaccine reduces infection rate."
+          },
+          {
+            "input": "a=15, b=5, c=8, d=12",
+            "output": "χ²≈3.68, p≈0.055",
+            "note": "Teaching method — borderline, not significant at α=0.05."
+          },
+          {
+            "input": "a=25, b=975, c=15, d=985",
+            "output": "χ²≈2.07, p≈0.151",
+            "note": "A/B ad test — no significant difference in click-through rate."
+          },
+          {
+            "input": "a=1, b=49, c=6, d=44",
+            "output": "χ²≈2.48, p≈0.115",
+            "note": "Rare side effect study — Yates correction is essential here due to low cell counts."
+          }
+        ],
+        "loadVaccine": "Vaccine Trial",
+        "loadTeaching": "Teaching Method",
+        "loadAB": "A/B Ad Test"
+      },
+      "howto": {
+        "heading": "How to use the calculator",
+        "steps": [
+          "Arrange your data in a 2×2 table: Group A in the first row, Group B in the second row, Outcome 1 in the first column, and Outcome 2 in the second column.",
+          "Enter the count for cell a (Group A, Outcome 1) in the first field, and b (Group A, Outcome 2) in the second field.",
+          "Enter the count for cell c (Group B, Outcome 1) and d (Group B, Outcome 2) in the remaining fields. All values must be non-negative integers.",
+          "Click Calculate to see the Yates-corrected χ² value, degrees of freedom (always 1), p-value, and the significance decision.",
+          "Use the example buttons to load preset data and verify results or explore common use cases."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ",
+        "items": [
+          {
+            "q": "What is Yates' correction for continuity?",
+            "a": "Yates' correction is an adjustment to the standard chi-square formula for 2×2 tables. It subtracts 0.5 from the absolute difference between observed and expected frequencies before squaring. This makes the test more conservative, reducing the risk of a false positive (Type I error) when sample sizes or expected cell counts are small."
+          },
+          {
+            "q": "When should I use Yates' correction versus the standard chi-square test?",
+            "a": "Use Yates' correction when any expected cell frequency falls below 10. The standard chi-square test is adequate when all expected frequencies are 10 or more. For very small samples where any expected frequency is below 5, consider Fisher's Exact Test instead, as it is even more reliable in that scenario."
+          },
+          {
+            "q": "What do the cells a, b, c, and d represent?",
+            "a": "Cell a is the number of subjects in Group A who experienced Outcome 1. Cell b is the number in Group A with Outcome 2. Cell c is the number in Group B with Outcome 1. Cell d is the number in Group B with Outcome 2. For a vaccine study, Group A might be vaccinated, Group B unvaccinated, Outcome 1 infected, and Outcome 2 not infected."
+          },
+          {
+            "q": "Why is the degree of freedom always 1 for a 2×2 table?",
+            "a": "The degrees of freedom for a chi-square test of independence equal (rows − 1) × (columns − 1). For a 2×2 table, that is (2−1) × (2−1) = 1. This means that once you know the marginal totals and one cell value, all other cell values are fully determined, leaving only one free parameter."
+          },
+          {
+            "q": "Does Yates' correction reduce statistical power?",
+            "a": "Yes, making the test more conservative means it requires stronger evidence to reject the null hypothesis. Critics argue that Yates' correction can over-correct, increasing the risk of a Type II error (missing a real effect). For larger samples with high expected counts, the correction is negligible. Many modern statisticians prefer Fisher's Exact Test for small sample 2×2 analyses."
+          },
+          {
+            "q": "Can I use this calculator for tables larger than 2×2?",
+            "a": "No. Yates' correction is specifically designed for 2×2 contingency tables. For larger tables (such as 3×2 or 3×3), use the standard Pearson chi-square test without continuity correction. The formula and degrees of freedom are different for larger tables."
+          }
+        ]
+      }
+    },
+    "z-score-calculator": {
+      "title": "Z-Score Calculator - Calculate Standard Score Instantly",
+      "tagline": "Calculate the z-score (standard score) of any data point. Find how many standard deviations a value is from the mean using the formula Z = (X − μ) / σ.",
+      "intro": "Enter the raw score (X), population mean (μ), and standard deviation (σ) to calculate the z-score instantly.",
+      "formula": "Formula: Z = (X − μ) / σ",
+      "field": {
+        "x": "Raw Data Score (X)",
+        "mu": "Mean (μ)",
+        "sigma": "Standard Deviation (σ)"
+      },
+      "placeholder": {
+        "number": "e.g., 85",
+        "positive": "e.g., 10 (must be > 0)"
+      },
+      "button": {
+        "calculate": "Calculate Z-Score",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers. Standard deviation must be greater than zero."
+      },
+      "result": {
+        "heading": "Result",
+        "zEquals": "Z = {z}",
+        "above": "The value is {z} standard deviations above the mean.",
+        "below": "The value is {z} standard deviations below the mean.",
+        "exact": "The value is exactly at the mean."
+      },
+      "about": {
+        "heading": "About the Z-Score",
+        "body": "A z-score, also called a standard score, is a statistical measurement that describes how far a data point lies from the mean of a distribution, measured in units of standard deviation. A z-score of 0 means the value is equal to the mean. A positive z-score indicates the value is above the mean, and a negative z-score indicates it is below the mean.\n\nThe formula for the z-score is Z = (X − μ) / σ, where X is the raw data value, μ is the population mean, and σ is the population standard deviation. This simple transformation standardizes data from any distribution into a common scale, enabling direct comparisons between measurements that originally used different units or scales.\n\nZ-scores are foundational in many areas of statistics and data science. In hypothesis testing, the z-score is used as a test statistic to determine whether a sample mean differs significantly from a known population mean. In quality control, z-scores help flag measurements that fall outside acceptable ranges. In finance, they are used to assess the relative performance of stocks or portfolios, and the Altman Z-score is a well-known formula for predicting bankruptcy risk.\n\nIn education, z-scores are used to standardize test results across different exams. Converting an SAT score and an ACT score to z-scores allows a direct comparison of how well two students performed relative to their respective peer groups. In healthcare, z-scores are used to track children's height and weight relative to national growth standards.\n\nUnder the assumption of a normal distribution, z-scores have well-defined probability interpretations. Approximately 68% of values fall within one standard deviation of the mean (z between −1 and 1), 95% within two standard deviations, and 99.7% within three standard deviations. These percentages underpin the empirical rule widely used in statistics.\n\nWhen the population standard deviation is unknown, the sample standard deviation s is used instead. The resulting statistic is technically a t-score rather than a z-score, and the t-distribution should be used for inference. The z-distribution is appropriate when the standard deviation is known — which is common in quality control, standardized testing, and other fields where large historical datasets establish reliable population parameters.\n\nThe calculator on this page uses the classical population formula Z = (X − μ) / σ. Enter any real number for X and μ, and any positive number for σ, to instantly obtain the z-score and a plain-English interpretation."
+      },
+      "examples": {
+        "heading": "Practical Examples",
+        "intro": "Explore these real-world scenarios to understand how z-scores work.",
+        "colInput": "X / μ / σ",
+        "colOutput": "Z-Score",
+        "colNote": "Interpretation",
+        "items": [
+          {
+            "input": "X=90, μ=75, σ=10",
+            "output": "Z = 1.5",
+            "note": "Student scored 1.5 standard deviations above the class average."
+          },
+          {
+            "input": "X=140, μ=120, σ=8",
+            "output": "Z = 2.5",
+            "note": "Blood pressure 2.5 standard deviations above group mean — elevated."
+          },
+          {
+            "input": "X=5.1, μ=5.0, σ=0.05",
+            "output": "Z = 2.0",
+            "note": "Bolt length 2 standard deviations above specification — may be rejected in QC."
+          },
+          {
+            "input": "X=12, μ=8, σ=2",
+            "output": "Z = 2.0",
+            "note": "Stock return 2 standard deviations above average market return."
+          }
+        ],
+        "loadExam": "Student Exam",
+        "loadBP": "Blood Pressure",
+        "loadStock": "Stock Return"
+      },
+      "howto": {
+        "heading": "How to use the z-score calculator",
+        "steps": [
+          "Enter the individual data point you want to evaluate in the Raw Data Score (X) field.",
+          "Enter the population mean (μ) — the average of the entire dataset or reference population.",
+          "Enter the standard deviation (σ) — must be greater than zero. This measures the spread of the reference population.",
+          "Click Calculate Z-Score to apply the formula Z = (X − μ) / σ and see the result with an interpretation.",
+          "Use Reset to clear all fields and start a new calculation."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ",
+        "items": [
+          {
+            "q": "What does a z-score of 2 mean?",
+            "a": "A z-score of 2 means the data point is 2 standard deviations above the mean. In a normal distribution, about 97.7% of values fall below this point, so a z-score of 2 is relatively high. Conversely, a z-score of −2 means the value is 2 standard deviations below the mean."
+          },
+          {
+            "q": "Can a z-score be negative?",
+            "a": "Yes. A negative z-score simply means the raw score is below the mean. For example, if a student scores 60 on an exam with a mean of 75 and a standard deviation of 10, the z-score is (60 − 75) / 10 = −1.5, meaning the student scored 1.5 standard deviations below average."
+          },
+          {
+            "q": "What is the difference between a z-score and a t-score?",
+            "a": "Both measure distance from the mean in standard-deviation units, but a t-score is used when the population standard deviation is unknown and must be estimated from a sample. For small samples, the t-distribution is broader than the standard normal distribution. When the sample size is large (n > 30), the t-distribution closely approximates the normal distribution and z-scores and t-scores converge."
+          },
+          {
+            "q": "How do I convert a z-score to a percentile?",
+            "a": "Look up the z-score in a standard normal distribution table, or use a normal CDF calculator. For example, a z-score of 1.0 corresponds to approximately the 84th percentile, meaning 84% of the distribution falls below that value. A z-score of 0 is the 50th percentile."
+          },
+          {
+            "q": "Does the z-score assume a normal distribution?",
+            "a": "The z-score formula itself does not require normality — you can calculate a z-score for any value in any distribution. However, the probability interpretations (percentiles, confidence intervals) are only meaningful when the underlying distribution is approximately normal. For non-normal data, z-scores still indicate relative distance from the mean but should not be directly converted to probabilities without caution."
+          }
+        ]
+      }
+    },
+    "z-test-calculator": {
+      "title": "Z-Test Calculator for Hypothesis Testing",
+      "tagline": "Perform one-sample and two-sample Z-tests for hypothesis testing. Enter sample statistics to get the Z-score, p-value, and critical value with a clear rejection decision.",
+      "intro": "Select one-sample or two-sample mode, enter your sample statistics, choose a significance level and tail type, then click Calculate.",
+      "field": {
+        "mode": "Test Type",
+        "xbar": "Sample Mean (x̄)",
+        "mu": "Population Mean (μ)",
+        "sigma": "Population Std Dev (σ)",
+        "n": "Sample Size (n)",
+        "xbar2": "Sample 2 Mean (x̄₂)",
+        "sigma2": "Sample 2 Std Dev (σ₂)",
+        "n2": "Sample 2 Size (n₂)",
+        "alpha": "Significance Level (α)",
+        "tail": "Tail Type"
+      },
+      "placeholder": {
+        "number": "e.g., 105",
+        "positive": "e.g., 15 (must be > 0)",
+        "n": "e.g., 30 (whole number)"
+      },
+      "type": {
+        "one-sample": "One-Sample",
+        "two-sample": "Two-Sample",
+        "two-tailed": "Two-Tailed",
+        "left-tailed": "Left-Tailed",
+        "right-tailed": "Right-Tailed"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers. Standard deviation must be positive and sample size must be at least 1."
+      },
+      "result": {
+        "heading": "Results",
+        "Z": "Z-Statistic",
+        "pValue": "p-Value",
+        "criticalZ": "Critical Z",
+        "reject": "Reject H₀ — statistically significant result.",
+        "failReject": "Fail to reject H₀ — result is not statistically significant."
+      },
+      "about": {
+        "heading": "About the Z-Test",
+        "body": "A Z-test is a statistical hypothesis test that uses the standard normal (Z) distribution to assess whether a sample mean differs significantly from a known population mean, or whether two independent sample means differ significantly from each other. The Z-test assumes that the population standard deviation is known and that either the population is normally distributed or the sample size is large enough for the Central Limit Theorem to apply (typically n ≥ 30).\n\nThe one-sample Z-test compares a single sample mean to a hypothesized population mean. The formula is Z = (x̄ − μ) / (σ / √n), where x̄ is the sample mean, μ is the hypothesized population mean, σ is the population standard deviation, and n is the sample size. A large absolute Z-value means the sample mean is far from the hypothesized mean, making it unlikely to have occurred by chance.\n\nThe two-sample Z-test compares the means of two independent groups when the population standard deviations of both groups are known. The formula is Z = (x̄₁ − x̄₂) / √(σ₁²/n₁ + σ₂²/n₂). This test is commonly used in clinical trials, A/B testing, and manufacturing quality comparisons.\n\nThe choice of tail type reflects the direction of the alternative hypothesis. A two-tailed test (H₁: μ ≠ μ₀) tests for any difference, regardless of direction. A right-tailed test (H₁: μ > μ₀) tests whether the sample mean is significantly larger than the hypothesized value. A left-tailed test (H₁: μ < μ₀) tests whether the sample mean is significantly smaller.\n\nThe p-value is the probability of obtaining a test statistic as extreme as, or more extreme than, the observed Z-score, assuming the null hypothesis is true. If the p-value is less than the significance level α (commonly 0.05), you reject the null hypothesis. The critical Z-value is the threshold that the Z-statistic must exceed to reject H₀.\n\nThe Z-test is distinct from the t-test. The t-test is used when the population standard deviation is unknown and must be estimated from the sample. For large samples (n > 30), the t-distribution and Z-distribution converge, so results are nearly identical. For small samples with unknown population variance, always prefer the t-test.\n\nCommon applications include testing whether a new manufacturing process meets a quality standard, whether a clinical intervention changes a health outcome, whether one website variant has a different conversion rate than another, and whether two educational programs produce different student performance outcomes."
+      },
+      "examples": {
+        "heading": "Practical Examples",
+        "intro": "See how the Z-Test Calculator is used in different scenarios.",
+        "colInput": "Input",
+        "colOutput": "Z / p-Value",
+        "colNote": "Decision",
+        "items": [
+          {
+            "input": "One-sample: x̄=105, μ=100, σ=15, n=30, α=0.05, two-tailed",
+            "output": "Z≈1.826, p≈0.068",
+            "note": "IQ scores — fail to reject H₀; new teaching method not significantly different."
+          },
+          {
+            "input": "Two-sample: x̄₁=15, σ₁=3, n₁=35; x̄₂=16, σ₂=3.2, n₂=40; α=0.05, left-tailed",
+            "output": "Z≈−1.396, p≈0.081",
+            "note": "Drug recovery — fail to reject H₀; drug not significantly faster."
+          },
+          {
+            "input": "Two-sample: x̄₁=85, σ₁=10, n₁=100; x̄₂=82, σ₂=9, n₂=90; α=0.01, two-tailed",
+            "output": "Z≈2.176, p≈0.030",
+            "note": "School scores — reject H₀ at α=0.05 but not at α=0.01."
+          }
+        ],
+        "loadIQ": "IQ Study",
+        "loadDrug": "Drug Trial",
+        "loadSchools": "School Scores"
+      },
+      "howto": {
+        "heading": "How to use the Z-test calculator",
+        "steps": [
+          "Select One-Sample to compare a sample mean against a known population mean, or Two-Sample to compare two independent group means.",
+          "For one-sample: enter the sample mean, population mean, population standard deviation, and sample size.",
+          "For two-sample: enter the mean, standard deviation, and size for both samples. Leave the Population Mean field empty.",
+          "Choose the significance level α and the tail type based on your hypothesis, then click Calculate.",
+          "Review the Z-statistic, p-value, and critical Z to determine whether to reject the null hypothesis."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ",
+        "items": [
+          {
+            "q": "When should I use a Z-test instead of a t-test?",
+            "a": "Use a Z-test when the population standard deviation is known and the sample size is large (n ≥ 30). Use a t-test when the population standard deviation is unknown and must be estimated from the sample, or when the sample is small. In practice, the Z-test is most common in quality control and standardized testing where historical population data is available."
+          },
+          {
+            "q": "What is the p-value and how do I interpret it?",
+            "a": "The p-value is the probability of observing a test statistic as extreme as or more extreme than the one computed from your sample, assuming the null hypothesis is true. A small p-value (typically below 0.05) means the observed data would be unlikely under the null hypothesis, providing evidence to reject it. A large p-value means the data are consistent with the null hypothesis."
+          },
+          {
+            "q": "What is the difference between a one-tailed and two-tailed Z-test?",
+            "a": "A two-tailed test checks for any difference between means (above or below). A one-tailed test checks for a difference in a specific direction. Use a right-tailed test when you expect the sample mean to be higher than the reference; use a left-tailed test when you expect it to be lower. The tail type must be decided based on your hypothesis before collecting data."
+          },
+          {
+            "q": "What does the critical Z-value mean?",
+            "a": "The critical Z-value is the threshold the test statistic must exceed (in absolute value for two-tailed tests) to reject the null hypothesis. For example, for a two-tailed test at α = 0.05, the critical Z is approximately ±1.96. If the absolute value of the computed Z exceeds 1.96, you reject H₀."
+          },
+          {
+            "q": "Does the Z-test require normally distributed data?",
+            "a": "Not necessarily. By the Central Limit Theorem, the sampling distribution of the sample mean is approximately normal for large samples (n ≥ 30) regardless of the population distribution. For small samples, normality of the population is required for the Z-test to be valid. When in doubt, verify normality with a normality test or use the t-test."
+          },
+          {
+            "q": "What is the two-sample Z-test used for?",
+            "a": "The two-sample Z-test compares the means of two independent groups when the population standard deviations of both are known. Common uses include comparing the average test scores of students from two schools, the average recovery times of patients in two treatment arms, or the conversion rates of two website variants in an A/B test."
+          }
+        ]
+      }
+    }
               }
-            }
+    }
