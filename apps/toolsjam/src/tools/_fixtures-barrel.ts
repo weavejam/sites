@@ -30,6 +30,11 @@ import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-enve
 import { fixtures as f_uniform_distribution_calculator } from "@/tools/uniform-distribution-calculator.fixtures";
 import { fixtures as f_upper_and_lower_fence_calculator } from "@/tools/upper-and-lower-fence-calculator.fixtures";
 import { fixtures as f_upper_control_limit_calculator } from "@/tools/upper-control-limit-calculator.fixtures";
+import { fixtures as f_variance_calculator } from "@/tools/variance-calculator.fixtures";
+import { fixtures as f_venn_diagram_calculator } from "@/tools/venn-diagram-calculator.fixtures";
+import { fixtures as f_wald_test_calculator } from "@/tools/wald-test-calculator.fixtures";
+import { fixtures as f_weibull_distribution_calculator } from "@/tools/weibull-distribution-calculator.fixtures";
+import { fixtures as f_weighted_mean_calculator } from "@/tools/weighted-mean-calculator.fixtures";
 import { fixtures as f_wilcoxon_rank_sum_test_calculator } from "@/tools/wilcoxon-rank-sum-test-calculator.fixtures";
 import { fixtures as f_wilcoxon_signed_rank_test_calculator } from "@/tools/wilcoxon-signed-rank-test-calculator.fixtures";
 import { fixtures as f_yates_correction_for_continuity_calculator } from "@/tools/yates-correction-for-continuity-calculator.fixtures";
@@ -64,6 +69,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "uniform-distribution-calculator": f_uniform_distribution_calculator,
   "upper-and-lower-fence-calculator": f_upper_and_lower_fence_calculator,
   "upper-control-limit-calculator": f_upper_control_limit_calculator,
+  "variance-calculator": f_variance_calculator,
+  "venn-diagram-calculator": f_venn_diagram_calculator,
+  "wald-test-calculator": f_wald_test_calculator,
+  "weibull-distribution-calculator": f_weibull_distribution_calculator,
+  "weighted-mean-calculator": f_weighted_mean_calculator,
   "wilcoxon-rank-sum-test-calculator": f_wilcoxon_rank_sum_test_calculator,
   "wilcoxon-signed-rank-test-calculator": f_wilcoxon_signed_rank_test_calculator,
   "yates-correction-for-continuity-calculator": f_yates_correction_for_continuity_calculator,
