@@ -5877,6 +5877,476 @@
         "q6": "¿Por qué la prevalencia importa más que la precisión de la prueba?",
         "q6_a": "Con prevalencias muy bajas, incluso una tasa minúscula de falsos positivos aplicada a una enorme población sana eclipsa a los verdaderos positivos de la pequeña población enferma. Duplicar la especificidad de 95% a 97,5% solo reduce a la mitad los falsos positivos por persona, pero duplicar la prevalencia duplica el número de verdaderos positivos; por eso la prevalencia impulsa mucho más el PPV que la precisión."
       }
+    },
+    "fishers-exact-test-calculator": {
+      "title": "Calculadora de la prueba exacta de Fisher - tabla 2x2",
+      "tagline": "Calcula los valores p unilateral y bilateral, además de la razón de momios, para una tabla de contingencia 2×2 con la prueba exacta de Fisher; ideal para muestras pequeñas.",
+      "intro": "Ingresa los cuatro conteos de celdas de tu tabla 2×2 (grupo × resultado) y luego haz clic en Calcular para obtener los valores p exactos y la razón de momios.",
+      "card": {
+        "title": "Prueba exacta de Fisher",
+        "description": "Analiza la significancia estadística de una tabla de contingencia 2×2"
+      },
+      "table": {
+        "outcome1": "Resultado 1",
+        "outcome2": "Resultado 2",
+        "group1": "Grupo 1",
+        "group2": "Grupo 2"
+      },
+      "field": {
+        "cellA": "Celda A (Grupo 1, Resultado 1)",
+        "cellB": "Celda B (Grupo 1, Resultado 2)",
+        "cellC": "Celda C (Grupo 2, Resultado 1)",
+        "cellD": "Celda D (Grupo 2, Resultado 2)"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Ingresa enteros no negativos en las cuatro celdas y asegúrate de que el total sea mayor que cero."
+      },
+      "result": {
+        "heading": "Resultado",
+        "oneTailed": "Valor p unilateral",
+        "twoTailed": "Valor p bilateral",
+        "oddsRatio": "Razón de momios",
+        "significant": "Es estadísticamente significativo con p < 0.05 — se rechaza H₀.",
+        "notSignificant": "No es estadísticamente significativo con p < 0.05 — no se rechaza H₀."
+      },
+      "about": {
+        "heading": "Acerca de la prueba exacta de Fisher",
+        "body": "La prueba exacta de Fisher es una prueba de significancia estadística para analizar tablas de contingencia 2×2. Desarrollada por Sir Ronald A. Fisher en 1922, determina si existe una asociación no aleatoria entre dos variables categóricas, por ejemplo, entre un grupo de tratamiento y el resultado de un paciente. A diferencia de la prueba chi-cuadrado, que es una aproximación que se vuelve inexacta con conteos esperados pequeños, la prueba exacta de Fisher calcula la probabilidad exacta de los datos observados (y de todas las configuraciones más extremas) usando la distribución hipergeométrica.\n\nLa prueba organiza los datos en una tabla 2×2 con totales marginales fijos (sumas de filas y columnas). Dadas estas márgenes, calcula la probabilidad de la disposición observada bajo la hipótesis nula de no asociación. La probabilidad de una tabla específica con celdas [a, b; c, d] se da por la fórmula hipergeométrica: P = C(a+b, a) × C(c+d, c) / C(n, a+c), donde n = a+b+c+d. El valor p se obtiene sumando las probabilidades de todas las tablas al menos tan extremas como la observada.\n\nPara un valor p unilateral, 'extrema' significa tablas donde la asociación va en la misma dirección que la observada. Para un valor p bilateral — adecuado para la mayoría de las preguntas de investigación — 'extrema' significa tablas con una probabilidad igual o menor que la observada, sumando ambos extremos. Por ello, el valor p bilateral es más conservador y se usa con más frecuencia en la investigación publicada.\n\nLa razón de momios cuantifica la fuerza de la asociación: OR = (a × d) / (b × c). Una razón de momios de 1 significa que no hay asociación; un valor mayor que 1 indica que el Resultado 1 es más probable en el Grupo 1 que en el Grupo 2; un valor menor que 1 indica lo contrario. La razón de momios es una medida clave en estudios de casos y controles, ensayos clínicos y estudios de asociación genética.\n\nLa prueba exacta de Fisher es apropiada siempre que el conteo esperado en cualquier celda de la tabla 2×2 sea menor que 5, que es el umbral en el que la aproximación chi-cuadrado deja de ser fiable. Entre sus aplicaciones comunes están los ensayos clínicos que comparan tasas de éxito entre dos grupos, la epidemiología genética que evalúa si un alelo está asociado con una enfermedad, la investigación educativa que compara tasas de aprobado/suspenso entre dos métodos de enseñanza y el análisis de marketing que compara tasas de conversión entre dos variantes de anuncio. La prueba es exacta independientemente del tamaño de muestra, lo que la convierte en el estándar de referencia para muestras pequeñas en estos ámbitos."
+      },
+      "examples": {
+        "heading": "Prueba exacta de Fisher — Ejemplos",
+        "intro": "Tres escenarios reales que muestran cómo configurar una tabla de contingencia 2×2 e interpretar los valores p exactos.",
+        "colInput": "Tabla [a, b; c, d]",
+        "colOutput": "p bilateral",
+        "colNote": "Contexto",
+        "loadDrug": "Cargar ejemplo de eficacia de fármaco",
+        "loadGene": "Cargar ejemplo de genética",
+        "loadTeaching": "Cargar ejemplo de método de enseñanza",
+        "items": [
+          {
+            "input": "a=9, b=1, c=2, d=8 (n=20)",
+            "output": "p = 0.0350 (significativo)",
+            "note": "Ensayo de un nuevo fármaco: 9 de 10 pacientes tratados mejoraron frente a 2 de 10 del placebo. La asociación entre tratamiento y mejoría es estadísticamente significativa."
+          },
+          {
+            "input": "a=7, b=3, c=1, d=12 (n=23)",
+            "output": "p = 0.0189 (significativo)",
+            "note": "Genética: 7 de 10 portadores de la variante génica tienen la enfermedad frente a 1 de 13 sin la variante. El gen está significativamente asociado con la enfermedad."
+          },
+          {
+            "input": "a=10, b=2, c=5, d=8 (n=25)",
+            "output": "p = 0.0840 (no significativo con 0.05)",
+            "note": "Métodos de enseñanza: 10 de 12 aprobaron con el Método A frente a 5 de 13 con el Método B. La diferencia no es significativa al nivel del 5%."
+          },
+          {
+            "input": "a=4, b=100, c=0, d=110 (n=214)",
+            "output": "p = 0.0563 (marginal)",
+            "note": "Prueba A/B de campaña publicitaria: 4 conversiones del anuncio A frente a 0 del anuncio B en unas 110 visualizaciones por cada uno. El resultado es límite y merece seguimiento con una muestra mayor."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de la prueba exacta de Fisher",
+        "steps": [
+          "Organiza tus datos en una tabla de contingencia 2×2: las filas son los dos grupos (Grupo 1 y Grupo 2) y las columnas son los dos resultados posibles (Resultado 1 y Resultado 2).",
+          "Ingresa el conteo de cada celda: Celda A (Grupo 1, Resultado 1), Celda B (Grupo 1, Resultado 2), Celda C (Grupo 2, Resultado 1), Celda D (Grupo 2, Resultado 2). Todos los valores deben ser enteros no negativos.",
+          "Haz clic en 'Calcular'. La calculadora enumera todas las tablas 2×2 posibles con los mismos totales marginales y suma las probabilidades hipergeométricas para obtener los valores p exactos unilateral y bilateral.",
+          "Lee el valor p bilateral para la mayoría de las preguntas de investigación. Si p < 0.05, la asociación entre los dos grupos y los dos resultados es estadísticamente significativa.",
+          "Interpreta la razón de momios: valores > 1 indican que el Resultado 1 es más probable en el Grupo 1; valores < 1 indican que es menos probable. Usa los botones de ejemplos debajo de la tabla para ver cómo funciona la prueba en escenarios reales."
+        ]
+      },
+      "faq": {
+        "heading": "Prueba exacta de Fisher — FAQ",
+        "q1": "¿Cuándo debo usar la prueba exacta de Fisher en lugar de la chi-cuadrado?",
+        "q1_a": "Usa la prueba exacta de Fisher siempre que el conteo esperado de alguna celda de tu tabla 2×2 sea inferior a 5, o cuando el tamaño total de la muestra sea pequeño (n < 20 es una regla práctica común). La prueba chi-cuadrado usa una aproximación que falla con conteos pequeños, produciendo valores p poco fiables. La prueba de Fisher siempre es exacta, por lo que puede usarse con seguridad para cualquier tamaño de muestra.",
+        "q2": "¿Qué significa el valor p bilateral en la prueba de Fisher?",
+        "q2_a": "El valor p bilateral es la probabilidad de observar una tabla tan extrema como, o más extrema que, la que tienes en cualquiera de las dos direcciones, suponiendo que la hipótesis nula de no asociación es cierta. Aquí 'extrema' significa que la probabilidad hipergeométrica sea tan pequeña como, o menor que, la de la tabla observada. Un valor p < 0.05 significa convencionalmente que la asociación es estadísticamente significativa.",
+        "q3": "¿Qué es la razón de momios y cómo la interpreto?",
+        "q3_a": "La razón de momios (OR) es (a × d) / (b × c). Una OR de 1 significa que el Resultado 1 es igual de probable en ambos grupos — no hay asociación. OR > 1 significa que el Resultado 1 es más probable en el Grupo 1 que en el Grupo 2; OR < 1 significa que es menos probable. Por ejemplo, OR = 9 significa que las probabilidades del Resultado 1 en el Grupo 1 son nueve veces las del Grupo 2, una asociación positiva fuerte.",
+        "q4": "¿Cuál es la diferencia entre los valores p unilateral y bilateral?",
+        "q4_a": "El valor p unilateral prueba la asociación en una dirección específica (por ejemplo, que el Grupo 1 tenga una mayor tasa de Resultado 1 que el Grupo 2). El valor p bilateral prueba cualquier asociación, independientemente de la dirección. Salvo que tuvieras una hipótesis direccional previa antes de ver los datos, el valor p bilateral es la opción adecuada y más conservadora.",
+        "q5": "¿Qué son los totales marginales y por qué deben fijarse?",
+        "q5_a": "Los totales marginales son las sumas de filas (a+b y c+d) y de columnas (a+c y b+d) de la tabla. La prueba de Fisher condiciona sobre estos totales fijos, lo que sustenta la derivación de la distribución hipergeométrica exacta. En la práctica, los márgenes los fija el diseño del estudio (por ejemplo, tamaños de grupo predeterminados o número total de eventos).",
+        "q6": "¿Se puede usar la prueba exacta de Fisher para tablas mayores que 2×2?",
+        "q6_a": "La prueba exacta de Fisher clásica está definida para tablas 2×2. Existen generalizaciones para tablas de contingencia r×c más grandes (usando una distribución hipergeométrica multidimensional), pero son computacionalmente exigentes. Para tablas más grandes con conteos esperados pequeños, se puede aplicar la prueba exacta a subtablas 2×2, o usar pruebas exactas basadas en simulación Monte Carlo disponibles en software estadístico."
+      }
+    },
+    "frequency-distribution-calculator": {
+      "title": "Calculadora de distribución de frecuencias - Crear tablas",
+      "tagline": "Genera al instante una tabla completa de distribución de frecuencias a partir de cualquier conjunto de datos. Obtén intervalos de clase, frecuencias, frecuencias relativas, frecuencias acumuladas y estadísticas clave.",
+      "intro": "Pega o escribe tus números separados por comas o espacios, elige el número de intervalos de clase y haz clic en Calcular para generar la tabla completa y el resumen.",
+      "card": {
+        "title": "Calculadora de distribución de frecuencias",
+        "description": "Organiza los datos en intervalos de clase agrupados con frecuencias y estadísticas"
+      },
+      "field": {
+        "dataSet": "Conjunto de datos",
+        "dataHint": "Separa los números con comas, espacios o saltos de línea.",
+        "numClasses": "Número de clases (bins)"
+      },
+      "placeholder": {
+        "data": "p. ej. 82, 90, 75, 68, 88, 95, 72, 85..."
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce al menos 2 números válidos y elige entre 2 y 50 clases."
+      },
+      "result": {
+        "heading": "Tabla de distribución de frecuencias",
+        "colClass": "Intervalo de clase",
+        "colMidpoint": "Punto medio",
+        "colFreq": "Frecuencia",
+        "colRelFreq": "Frecuencia relativa",
+        "colCumFreq": "Frecuencia acumulada",
+        "statCount": "Cantidad (n)",
+        "statMean": "Media (agrupada)",
+        "statMedian": "Mediana (agrupada)",
+        "statStdDev": "Desv. estándar (agrupada)",
+        "statMin": "Mínimo",
+        "statMax": "Máximo",
+        "statClassWidth": "Ancho de clase"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de distribución de frecuencias",
+        "body": "Una distribución de frecuencias es un resumen tabular que muestra con qué frecuencia aparece cada valor —o rango de valores— en un conjunto de datos. Al organizar los datos brutos en un número manejable de intervalos de clase y contar las observaciones de cada intervalo, una tabla de distribución de frecuencias transforma una lista desordenada de números en una imagen estructurada de la forma, el centro y la dispersión de los datos. Las distribuciones de frecuencias son un concepto fundamental de la estadística descriptiva y sirven de base para los histogramas, los polígonos de frecuencia relativa y las curvas de frecuencia acumulada.\n\nUna distribución de frecuencias agrupada divide el rango de los datos en un número fijo de intervalos de clase no superpuestos y de igual ancho. Cada intervalo tiene un límite inferior, un límite superior y un punto medio. La frecuencia es el número de datos que caen dentro del intervalo. La frecuencia relativa es la frecuencia expresada como proporción (o porcentaje) del total, lo que facilita comparar distribuciones de conjuntos de datos de distinto tamaño. La frecuencia acumulada es la suma progresiva de las frecuencias desde la primera clase hasta la actual, y muestra cuántos datos están en o por debajo del límite superior de cada clase.\n\nElegir el número de clases es un equilibrio: muy pocas clases fusionan patrones distintos en un solo bloque, mientras que demasiadas clases dispersan tanto los datos que no emerge un patrón claro. Una regla práctica común es la regla de Sturges: k = 1 + 3.322 × log₁₀(n), donde n es el número de datos. Por ejemplo, 20 datos sugieren k ≈ 5 clases; 100 datos sugieren k ≈ 7 clases. Luego, el ancho de clase se calcula como width = (max − min) / k, redondeado hacia arriba a un valor conveniente para que todos los datos entren de forma ordenada.\n\nLas estadísticas resumidas derivadas de una distribución de frecuencias son aproximaciones basadas en los datos agrupados y no en los valores individuales. La media agrupada se calcula como Σ(punto medio × frecuencia) / n. La desviación estándar agrupada mide la dispersión de los datos alrededor de la media agrupada. La mediana agrupada se estima por interpolación dentro del intervalo de clase que contiene la observación n/2. Estas aproximaciones son muy cercanas a los valores exactos calculados con los datos brutos cuando el ancho de clase es pequeño en relación con el rango.\n\nLas distribuciones de frecuencias se usan en todos los campos que generan datos numéricos. Los docentes las utilizan para analizar calificaciones y detectar estudiantes que pueden necesitar apoyo adicional. Las empresas analizan importes de ventas, valoraciones de productos o tiempos de espera de clientes para identificar picos y cuellos de botella. Los investigadores de salud distribuyen mediciones clínicas como presión arterial, colesterol o IMC para comprender la salud de la población. Los ingenieros de control de calidad examinan mediciones de procesos de producción para detectar defectos o desviaciones. En cada caso, la tabla de distribución de frecuencias es el punto de partida para análisis más avanzados."
+      },
+      "examples": {
+        "heading": "Distribución de frecuencias — Ejemplos",
+        "intro": "Tres conjuntos de datos prácticos que muestran distintas estructuras de clases y estadísticas resumidas.",
+        "colInput": "Conjunto de datos",
+        "colOutput": "Estructura",
+        "colNote": "Contexto",
+        "loadScores": "Cargar ejemplo de calificaciones",
+        "loadSales": "Cargar ejemplo de ventas diarias",
+        "loadPlants": "Cargar ejemplo de alturas de plantas",
+        "items": [
+          {
+            "input": "82,90,75,68,88,75,95,100,72,85,91,78,84,88,77,95,65,80,73,86 — 5 clases",
+            "output": "Clases: [65,72), [72,79), [79,86) … ; Media ≈ 82.85",
+            "note": "Calificaciones de estudiantes de una clase de 20. Ancho de clase = 7. La mayoría de las notas se agrupa entre 72 y 93, con una ligera cola a la izquierda."
+          },
+          {
+            "input": "150,220,180,190,250,160,200,210,170,240,195,175,215,185,230 — 6 clases",
+            "output": "Clases: [150,170), [170,190), [190,210) … ; Media ≈ 202.7",
+            "note": "Ventas diarias. Ancho de clase = 20. La distribución muestra que la mayoría de los días se concentra en el rango de 170–230 dólares."
+          },
+          {
+            "input": "35,42,38,50,45,48,36,39,47,41,43,46,40,37,44,49,38,42,45,36 — 5 clases",
+            "output": "Clases: [35,38), [38,41), [41,44) … ; Media ≈ 42.1",
+            "note": "Alturas de plantas en cm de un estudio botánico. La distribución en forma de campana confirma un patrón de crecimiento aproximadamente normal."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de distribución de frecuencias",
+        "steps": [
+          "Introduce tus datos numéricos en el campo 'Conjunto de datos'. Puedes separar los valores con comas, espacios o saltos de línea; la calculadora acepta cualquier combinación de estos delimitadores.",
+          "Elige el número de clases (bins) que mejor se adapte a tu conjunto de datos. Un buen punto de partida son 5 clases para conjuntos pequeños (n < 30) y 7–10 para conjuntos más grandes. Puedes usar la regla de Sturges: k ≈ 1 + 3.322 × log₁₀(n).",
+          "Haz clic en 'Calcular'. La calculadora encuentra el mínimo y el máximo, calcula el ancho de clase como (max − min) / classes redondeado hacia arriba y asigna cada dato al intervalo correspondiente.",
+          "Lee la tabla de frecuencias. Cada fila muestra el intervalo de clase, el punto medio, la frecuencia, la frecuencia relativa (como porcentaje del total) y la frecuencia acumulada (suma progresiva).",
+          "Revisa las estadísticas de resumen debajo de la tabla para ver la media agrupada, la mediana, la desviación estándar y el ancho de clase. Usa los botones de ejemplo para probar la calculadora con conjuntos de datos precargados."
+        ]
+      },
+      "faq": {
+        "heading": "Calculadora de distribución de frecuencias — Preguntas frecuentes",
+        "q1": "¿Qué es una tabla de distribución de frecuencias?",
+        "q1_a": "Una tabla de distribución de frecuencias organiza datos numéricos brutos en grupos llamados intervalos de clase (o bins) y cuenta cuántos valores caen en cada grupo. Convierte una lista desordenada en un resumen estructurado que muestra dónde se agrupan los datos, qué tan dispersos están y cómo es la forma general de la distribución.",
+        "q2": "¿Cómo elijo el número de clases?",
+        "q2_a": "Un enfoque común es la regla de Sturges: k = 1 + 3.322 × log₁₀(n), donde n es el tamaño de la muestra. Esto da unas 5 clases para 20 datos y unas 7 para 100. Como alternativa, prueba: empieza con 5 clases y aumenta hasta que la distribución revele un patrón claro sin volverse demasiado ruidosa. La mayoría de los libros recomienda entre 5 y 15 clases.",
+        "q3": "¿Qué es la frecuencia relativa y por qué es útil?",
+        "q3_a": "La frecuencia relativa es la proporción del total de observaciones que cae en una clase: frecuencia relativa = frecuencia de la clase / n total. Convierte conteos en porcentajes, lo que facilita comparar distribuciones de conjuntos de distinto tamaño. Por ejemplo, saber que el 35% de las notas cae en el rango 70–80 es más informativo que conocer solo el conteo al comparar dos clases de tamaños distintos.",
+        "q4": "¿Qué es la frecuencia acumulada?",
+        "q4_a": "La frecuencia acumulada es la suma progresiva de las frecuencias desde la primera clase hasta la actual. Indica cuántos datos están en o por debajo del límite superior de cada clase. Por ejemplo, si la frecuencia acumulada al final de la tercera clase es 15 de 20, entonces el 75% de las observaciones cae en las tres primeras clases. La frecuencia acumulada es la base de la ogiva (curva de frecuencia acumulada).",
+        "q5": "¿Por qué la media y la desviación estándar se etiquetan como 'agrupadas'?",
+        "q5_a": "Cuando los datos se agrupan en intervalos de clase, se pierden los valores exactos individuales. La media y la desviación estándar agrupadas se calculan usando el punto medio de cada clase como valor representativo, lo que introduce una pequeña aproximación. Estas estimaciones son muy precisas cuando el ancho de clase es pequeño en relación con el rango, pero pueden diferir ligeramente de las estadísticas calculadas sobre los datos brutos.",
+        "q6": "¿Cuál es la diferencia entre histogramas de frecuencia y de frecuencia relativa?",
+        "q6_a": "Un histograma de frecuencia grafica el conteo bruto en el eje y, mientras que un histograma de frecuencia relativa grafica la proporción (o porcentaje). Los histogramas de frecuencia relativa son comparables directamente entre conjuntos de datos de distinto tamaño y pueden usarse como aproximaciones empíricas de la distribución de probabilidad subyacente. La forma es idéntica en ambos casos; solo cambia la escala del eje y."
+      }
+    },
+    "error-propagation-calculator": {
+      "title": "Calculadora de propagación de errores",
+      "tagline": "Calcula la propagación de la incertidumbre para fórmulas de suma/diferencia y producto/potencia.",
+      "intro": "Determina cómo se combinan las incertidumbres de medición al realizar operaciones matemáticas.",
+      "field": {
+        "formulaType": "Tipo de fórmula",
+        "a": "Constante A",
+        "x": "Valor de X",
+        "dx": "Incertidumbre en X (Δx)",
+        "b": "Constante B",
+        "y": "Valor de Y",
+        "dy": "Incertidumbre en Y (Δy)",
+        "k": "Constante K",
+        "aExp": "Exponente 'a'",
+        "bExp": "Exponente 'b'"
+      },
+      "type": {
+        "sumDifference": "Suma / Diferencia (z = ax + by)",
+        "productPower": "Producto / Potencia (z = k · xᵃ · yᵇ)"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "placeholder": {
+        "number": "Introduce un número"
+      },
+      "result": {
+        "heading": "Resultados",
+        "z": "Resultado (Z)",
+        "deltaZ": "Incertidumbre absoluta (ΔZ)",
+        "relativeUncertainty": "Incertidumbre relativa (%ΔZ)"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de propagación de errores",
+        "body": "La propagación de errores, también conocida como propagación de la incertidumbre, es una técnica fundamental en la ciencia experimental y la ingeniería. Siempre que realizas un cálculo con magnitudes medidas, cada medición tiene una incertidumbre inherente, y esas incertidumbres se combinan para producir una incertidumbre en el resultado final. Comprender cómo se propagan los errores es esencial para informar resultados con la precisión y la confianza adecuadas.\n\nEsta calculadora admite dos de los tipos de fórmulas más comunes en física, química e ingeniería. La fórmula de suma/diferencia maneja combinaciones lineales de la forma z = ax + by, donde se suman o restan múltiplos de dos magnitudes medidas. La incertidumbre absoluta en z viene dada por ΔZ = √((aΔx)² + (bΔy)²), lo que se deriva de la regla general de sumar incertidumbres en cuadratura (suponiendo que las mediciones son independientes y los errores son aleatorios).\n\nLa fórmula de producto/potencia cubre el caso z = k · xᵃ · yᵇ, que aparece en cálculos de área (largo × ancho), densidad (masa / volumen), potencia eléctrica (voltaje × corriente) y muchas otras magnitudes físicas. Para este tipo, primero se calcula la incertidumbre relativa: %ΔZ / 100 = √((a·Δx/x)² + (b·Δy/y)²). Luego, la incertidumbre absoluta es ΔZ = |Z| × (%ΔZ / 100).\n\nEstas fórmulas suponen que los errores de medición son aleatorios (no sistemáticos), independientes entre sí y pequeños en comparación con los valores medidos, condiciones que normalmente se cumplen en experimentos de laboratorio bien diseñados. Cuando los errores están correlacionados, se requiere un tratamiento más avanzado que incluya términos de covarianza.\n\nLas aplicaciones prácticas son muy amplias. Los científicos miden longitudes, masas, voltajes, temperaturas y presiones, siempre con precisión finita. Los ingenieros calculan propiedades de materiales, concentraciones de esfuerzo y caudales a partir de datos imperfectos. Los investigadores médicos propagan incertidumbres mediante fórmulas bioestadísticas. En cada caso, informar un resultado sin su incertidumbre —por ejemplo, escribir density = 8.94 g/cm³ en lugar de density = (8.94 ± 0.07) g/cm³— ofrece una imagen incompleta y potencialmente engañosa.\n\nLa incertidumbre relativa (%ΔZ) es especialmente útil porque expresa la precisión fraccional del resultado y permite comparar fácilmente magnitudes de tamaños muy diferentes. Un resultado con incertidumbre relativa inferior al 1% suele considerarse preciso, mientras que por encima del 10% puede requerir mejores técnicas de medición."
+      },
+      "examples": {
+        "heading": "Ejemplos prácticos",
+        "intro": "Observa cómo funciona la calculadora de propagación de errores con escenarios de medición reales.",
+        "colInput": "Entradas",
+        "colOutput": "Resultado (Z ± ΔZ)",
+        "colNote": "Notas",
+        "items": [
+          {
+            "input": "Suma: A=1, X=10.5 ± 0.2 cm, B=1, Y=5.2 ± 0.1 cm",
+            "output": "Z = 15.7 ± 0.22 cm",
+            "note": "Suma de dos longitudes; los errores se suman en cuadratura"
+          },
+          {
+            "input": "Producto: k=1, X=5.0 ± 0.1 m (a=1), Y=10.0 ± 0.2 m (b=1)",
+            "output": "Z = 50.0 ± 1.41 m²",
+            "note": "Área de un rectángulo; se combinan los errores relativos"
+          },
+          {
+            "input": "Producto: k=1, X=100 ± 2 g (a=1), Y=10 ± 0.5 cm³ (b=−1)",
+            "output": "Z = 10.0 ± 0.6 g/cm³",
+            "note": "Densidad = masa/volumen; b=−1 para la división"
+          },
+          {
+            "input": "Suma: A=2, X=15.0 ± 0.3 m, B=2, Y=8.0 ± 0.2 m",
+            "output": "Z = 46.0 ± 0.72 m",
+            "note": "Perímetro P = 2L + 2W"
+          }
+        ],
+        "loadAddLengths": "Cargar: sumar longitudes",
+        "loadRectArea": "Cargar: área de rectángulo",
+        "loadDensity": "Cargar: densidad"
+      },
+      "howto": {
+        "heading": "Cómo usar esta calculadora",
+        "steps": [
+          "Selecciona el tipo de fórmula: Suma/Diferencia (z = ax + by) para combinaciones lineales, o Producto/Potencia (z = k · xᵃ · yᵇ) para productos y cocientes.",
+          "Introduce los coeficientes constantes (A, B para suma; K, a, b para producto); usa 1 si no corresponde ningún coeficiente.",
+          "Introduce los valores medidos de X e Y junto con sus incertidumbres absolutas Δx y Δy (desviaciones estándar o incertidumbres de semirrango).",
+          "Haz clic en Calcular para ver el resultado Z, la incertidumbre absoluta ΔZ y la incertidumbre relativa %ΔZ.",
+          "Usa los botones de carga rápida para explorar los ejemplos integrados y comprobar que entiendes las fórmulas."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué es la propagación de errores?",
+        "q1_a": "La propagación de errores (o propagación de la incertidumbre) es el proceso matemático para determinar cómo las incertidumbres de las mediciones de entrada se combinan y producen incertidumbre en un resultado calculado. Al calcular z = f(x, y, …), la incertidumbre ΔZ depende de las derivadas parciales de f y de las incertidumbres individuales Δx, Δy. Esta calculadora cubre los dos patrones de fórmula más comunes.",
+        "q2": "¿Por qué las incertidumbres se suman en cuadratura?",
+        "q2_a": "Cuando los errores de medición son aleatorios e independientes, tienen la misma probabilidad de ser positivos o negativos. Sumarlos directamente sobrestimaría el error combinado. La regla de cuadratura (raíz cuadrada de la suma de cuadrados) refleja la independencia estadística: ΔZ = √((∂f/∂x·Δx)² + (∂f/∂y·Δy)²). Para errores sistemáticos que siempre van en la misma dirección, sería más apropiada la suma lineal.",
+        "q3": "¿Cuál es la diferencia entre incertidumbre absoluta y relativa?",
+        "q3_a": "La incertidumbre absoluta (ΔZ) se expresa en las mismas unidades que el resultado e indica la dispersión alrededor del valor central; por ejemplo, (15.7 ± 0.2) cm. La incertidumbre relativa (%ΔZ = ΔZ/|Z| × 100%) es adimensional y expresa la precisión como fracción del resultado. Es útil para comparar la precisión de distintas mediciones sin importar su escala.",
+        "q4": "¿Cuándo debo usar Suma/Diferencia frente a Producto/Potencia?",
+        "q4_a": "Usa Suma/Diferencia cuando la fórmula suma o resta múltiplos de magnitudes medidas: perímetro, longitud total, desplazamiento neto. Usa Producto/Potencia cuando la fórmula multiplica o divide magnitudes medidas elevadas a potencias: área (L×W), volumen (L×W×H), densidad (m/V), energía cinética (½mv²). En fórmulas compuestas, aplica la propagación de errores por etapas.",
+        "q5": "¿Por qué X o Y no pueden ser cero en la fórmula Producto/Potencia?",
+        "q5_a": "La fórmula de incertidumbre relativa para productos/potencias es %ΔZ = √((a·Δx/|x|)² + (b·Δy/|y|)²). Como aparece una división por x o y, los valores cero provocarían una división por cero. Físicamente, un valor cero significa que la magnitud no se midió (o que es exactamente cero sin incertidumbre), caso en el que la fórmula de producto/potencia no se aplica.",
+        "q6": "¿Qué me dice la incertidumbre relativa sobre la calidad de mi medición?",
+        "q6_a": "La incertidumbre relativa es una medida directa de la calidad de la medición. Los valores por debajo del 1% se consideran muy precisos y aceptables para la mayoría del trabajo científico. Los valores entre 1% y 5% son adecuados para muchas aplicaciones de ingeniería. Los valores por encima del 10% sugieren mejorar la técnica de medición: usar instrumentos más precisos, tomar más lecturas o reducir fuentes sistemáticas de error."
+      }
+    },
+    "expected-value-calculator": {
+      "title": "Calculadora de valor esperado",
+      "tagline": "Calcula la esperanza matemática de distribuciones discretas.",
+      "intro": "Ingresa los valores de resultado y sus probabilidades para calcular E[X], la varianza y la desviación estándar.",
+      "field": {
+        "outcomeValue": "Valor del resultado",
+        "probability": "Probabilidad",
+        "outcomeValuePlaceholder": "p. ej., 10",
+        "probabilityPlaceholder": "p. ej., 0.25"
+      },
+      "button": {
+        "calculate": "Calcular valor esperado",
+        "addRow": "Agregar resultado",
+        "remove": "Eliminar",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Asegúrate de que todos los valores de resultado sean números, que todas las probabilidades estén entre 0 y 1 y que la suma total sea 1."
+      },
+      "result": {
+        "heading": "Resultados del valor esperado",
+        "expectedValue": "Valor esperado E[X]",
+        "variance": "Varianza Var(X)",
+        "stdDev": "Desviación estándar σ",
+        "probSum": "Suma de probabilidades"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de valor esperado",
+        "body": "El valor esperado, también conocido como esperanza matemática o media de una distribución de probabilidad, es uno de los conceptos más importantes en teoría de la probabilidad y estadística. Representa el promedio a largo plazo del resultado de un experimento aleatorio si se repitiera muchas veces bajo condiciones idénticas. Para una variable aleatoria discreta X con resultados x₁, x₂, …, xₙ y probabilidades correspondientes p₁, p₂, …, pₙ, el valor esperado se define como E[X] = Σ xᵢ pᵢ.\n\nEl valor esperado no necesariamente es un valor que la variable aleatoria pueda tomar realmente: es un promedio ponderado de todos los resultados posibles. Por ejemplo, lanzar un dado justo de seis caras tiene un valor esperado de 3.5, aunque 3.5 no sea una cara del dado. Esta interpretación como promedio a largo plazo se formaliza mediante la ley de los grandes números, que establece que la media muestral converge al valor esperado a medida que aumenta el número de ensayos.\n\nEsta calculadora también calcula la varianza Var(X) = E[(X − E[X])²] = E[X²] − (E[X])², que mide qué tan dispersa está la distribución alrededor de su media. La desviación estándar σ = √Var(X) es la raíz cuadrada de la varianza y se expresa en las mismas unidades que X, por lo que resulta más fácil de interpretar en la práctica.\n\nEl valor esperado tiene innumerables aplicaciones en ciencia, economía, finanzas e ingeniería. En teoría de decisiones, sirve como base para maximizar la utilidad esperada: la idea de que los agentes racionales eligen la acción con el mayor beneficio esperado. En seguros, los actuarios usan el valor esperado para fijar primas: la prima debe cubrir el pago esperado más los costos operativos y el margen de beneficio. En diseño de juegos, el valor esperado determina si un juego es justo. En teoría de carteras, el rendimiento esperado de una cartera de inversión es el promedio ponderado de los rendimientos esperados de sus activos.\n\nAl usar la calculadora, asegúrate de que todas las probabilidades sean no negativas y sumen exactamente 1 (dentro de una pequeña tolerancia). Si las probabilidades no suman 1, la distribución no está bien definida y el cálculo del valor esperado no tendrá sentido. Los errores comunes incluyen ingresar porcentajes en lugar de probabilidades decimales (por ejemplo, escribir 25 en lugar de 0.25) u olvidar alguno de los posibles resultados."
+      },
+      "examples": {
+        "heading": "Ejemplos",
+        "intro": "Estos ejemplos ilustran cómo se aplica el valor esperado en distintos escenarios reales.",
+        "colInput": "Resultados y probabilidades",
+        "colOutput": "E[X]",
+        "colNote": "Notas",
+        "items": [
+          {
+            "input": "Dado: valores 1–6, cada uno con probabilidad 1/6 ≈ 0.1667",
+            "output": "E[X] = 3.5",
+            "note": "Dado justo de seis caras; ejemplo clásico de libro"
+          },
+          {
+            "input": "Inversión: +$1000 (30%), +$500 (40%), −$200 (20%), −$500 (10%)",
+            "output": "E[X] = $410",
+            "note": "Rendimiento esperado positivo a pesar del riesgo a la baja"
+          },
+          {
+            "input": "Seguro: pago de $0 (95%), $5,000 (4%), $25,000 (1%)",
+            "output": "E[X] = $450",
+            "note": "Pago anual promedio por póliza; usado para fijar primas"
+          },
+          {
+            "input": "Control de calidad: costo de $0 (85%), $50 (10%), $150 (4%), $500 (1%)",
+            "output": "E[X] = $15",
+            "note": "Costo esperado de defectos por unidad en fabricación"
+          }
+        ],
+        "loadDice": "Cargar: tiro de dado",
+        "loadInvestment": "Cargar: inversión",
+        "loadInsurance": "Cargar: seguro"
+      },
+      "howto": {
+        "heading": "Cómo usar esta calculadora",
+        "steps": [
+          "Ingresa cada posible resultado en el campo Valor del resultado; puede ser cualquier número real (positivo, negativo o cero) que represente el pago o el resultado.",
+          "Ingresa la probabilidad correspondiente en el campo Probabilidad; debe ser un decimal entre 0 y 1 (por ejemplo, 0.25 para 25%).",
+          "Agrega más filas con el botón Agregar resultado hasta que estén listados todos los resultados posibles.",
+          "Verifica que las probabilidades sumen 1 antes de hacer clic en Calcular valor esperado; la calculadora mostrará un error si no lo hacen.",
+          "Haz clic en Calcular valor esperado para ver E[X], la varianza, la desviación estándar y la suma de probabilidades."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué es el valor esperado?",
+        "q1_a": "El valor esperado E[X] es el promedio ponderado por probabilidades de todos los resultados posibles de una variable aleatoria. Representa la media a largo plazo que observarías si el experimento se repitiera muchas veces. Formalmente, E[X] = Σ xᵢ × pᵢ, donde xᵢ es cada resultado posible y pᵢ es su probabilidad.",
+        "q2": "¿Las probabilidades deben sumar exactamente 1?",
+        "q2_a": "Sí. Para que una distribución de probabilidad sea válida, las probabilidades deben sumar exactamente 1 (o muy cerca de 1 dentro de la tolerancia por redondeo). Si no lo hacen, la distribución no está bien especificada y el valor esperado no tiene sentido. Esta calculadora revisa la suma y mostrará un error si se desvía de 1 en más de 1%.",
+        "q3": "¿Cuál es la diferencia entre valor esperado y promedio?",
+        "q3_a": "Los términos están relacionados, pero se usan en contextos distintos. “Promedio” (o media muestral) se refiere a la media aritmética de un conjunto observado de datos. “Valor esperado” se refiere a la media teórica de una distribución de probabilidad, es decir, la media que esperarías observar a largo plazo. A medida que crece el tamaño de la muestra, la media muestral converge al valor esperado (ley de los grandes números).",
+        "q4": "¿El valor esperado puede ser negativo?",
+        "q4_a": "Sí, el valor esperado puede ser cualquier número real, incluidos valores negativos. Un valor esperado negativo significa que el proceso es desfavorable en promedio; por ejemplo, la mayoría de los juegos de casino tienen un valor esperado negativo para el jugador. Un valor esperado positivo significa que el proceso es favorable en promedio, por eso los seguros y las inversiones legítimas se fijan para tener valor esperado positivo para el proveedor.",
+        "q5": "¿Qué me dice la varianza sobre una distribución?",
+        "q5_a": "La varianza Var(X) = E[(X − E[X])²] mide la desviación cuadrática promedio respecto de la media. Una varianza alta significa que los resultados están muy dispersos, con colas pesadas o valores extremos. Una varianza baja significa que los resultados se agrupan cerca de la media. La desviación estándar σ = √Var(X) suele preferirse porque tiene las mismas unidades que X, lo que la hace más intuitiva.",
+        "q6": "¿Cómo se usa el valor esperado en la toma de decisiones?",
+        "q6_a": "En teoría de decisiones, el criterio del valor esperado dice que un agente racional debería elegir la acción con el mayor beneficio esperado. Este principio sustenta la fijación de precios de seguros, el análisis de inversiones, la teoría de juegos y el diseño de ensayos clínicos. Sin embargo, el valor esperado por sí solo no capta la aversión al riesgo: una persona podría preferir una ganancia segura de $50 a una probabilidad del 50% de ganar $120, aunque la segunda tenga mayor valor esperado. Por eso la teoría de la utilidad esperada amplía el marco básico."
+      }
+    },
+    "exponential-distribution-calculator": {
+      "title": "Calculadora de distribución exponencial",
+      "tagline": "Calcula la PDF, la CDF y estadísticas de la distribución exponencial.",
+      "intro": "Ingresa el parámetro de tasa λ y el valor x para calcular probabilidades y medidas estadísticas de una distribución exponencial.",
+      "field": {
+        "lambda": "Parámetro de tasa (λ)",
+        "x": "Valor (x)",
+        "calcType": "Tipo de cálculo"
+      },
+      "type": {
+        "pdf": "PDF f(x)",
+        "cdfLessThan": "P(X < x)",
+        "cdfLessOrEqual": "P(X ≤ x)",
+        "cdfGreaterThan": "P(X > x)",
+        "cdfGreaterOrEqual": "P(X ≥ x)"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "placeholder": {
+        "number": "Ingresa un número"
+      },
+      "error": {
+        "invalid": "Ingresa un parámetro de tasa positivo (λ > 0) y un valor x no negativo (x ≥ 0)."
+      },
+      "result": {
+        "heading": "Resultados",
+        "mean": "Media (1/λ)",
+        "median": "Mediana (ln 2 / λ)",
+        "variance": "Varianza (1/λ²)",
+        "stdDev": "Desviación estándar (1/λ)"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de distribución exponencial",
+        "body": "La distribución exponencial es una distribución de probabilidad continua que describe el tiempo entre eventos en un proceso de Poisson, es decir, un proceso en el que los eventos ocurren de forma continua e independiente a una tasa media constante. Se caracteriza por un único parámetro λ (lambda), el parámetro de tasa, que equivale al número promedio de eventos por unidad de tiempo. El tiempo medio entre eventos es 1/λ.\n\nLa función de densidad de probabilidad (PDF) es f(x) = λe^(−λx) para x ≥ 0. La función de distribución acumulada (CDF) es F(x) = P(X ≤ x) = 1 − e^(−λx), que da la probabilidad de que el tiempo hasta el próximo evento sea menor o igual que x. La función de supervivencia P(X > x) = e^(−λx) da la probabilidad de que el evento aún no haya ocurrido al tiempo x.\n\nLa distribución exponencial tiene una propiedad clave llamada ausencia de memoria: P(X > s + t | X > s) = P(X > t). Esto significa que la probabilidad de esperar un tiempo adicional t no depende de cuánto tiempo ya hayas esperado. Entre las distribuciones continuas, la exponencial es la única con esta propiedad, lo que la hace especialmente útil para modelar sistemas sin envejecimiento ni degradación.\n\nLos momentos estadísticos de la distribución exponencial se expresan todos en términos de λ: media = 1/λ, varianza = 1/λ², desviación estándar = 1/λ y mediana = ln(2)/λ ≈ 0.693/λ. Observa que la media es mayor que la mediana, lo que refleja la forma sesgada a la derecha de la distribución.\n\nSus aplicaciones en el mundo real abarcan muchos campos. En ingeniería de confiabilidad, la distribución exponencial modela la vida útil de componentes electrónicos que no se desgastan (como ciertos tipos de transistores). En teoría de colas, describe los tiempos entre llegadas y los tiempos de servicio. En física nuclear, la desintegración radiactiva sigue una distribución exponencial. En telecomunicaciones, modela el tiempo entre llegadas sucesivas de paquetes. En finanzas, aproxima el tiempo entre operaciones o eventos de crédito en modelos simplificados."
+      },
+      "examples": {
+        "heading": "Ejemplos",
+        "intro": "Estos ejemplos muestran cómo surge la distribución exponencial en escenarios prácticos.",
+        "colInput": "Parámetros",
+        "colOutput": "Probabilidad",
+        "colNote": "Escenario",
+        "items": [
+          {
+            "input": "λ = 2 per min, x = 0.5 min",
+            "output": "P(X < 0.5) ≈ 0.6321",
+            "note": "Las llamadas al servicio al cliente llegan a 2 por minuto; 63% de probabilidad de que la siguiente llegue en 30 segundos"
+          },
+          {
+            "input": "λ = 0.0005 per hr, x = 2500 hr",
+            "output": "P(X ≥ 2500) ≈ 0.2865",
+            "note": "Bombilla con vida media de 2000 horas; 29% de probabilidad de durar más de 2500 horas"
+          },
+          {
+            "input": "λ = 0.1 per sec, x = 5 sec",
+            "output": "f(5) ≈ 0.0607",
+            "note": "PDF de desintegración radiactiva exactamente a los 5 segundos"
+          },
+          {
+            "input": "λ = 0.1 per min, x = 15 min",
+            "output": "P(X > 15) ≈ 0.2231",
+            "note": "El autobús llega cada 10 minutos en promedio; 22% de probabilidad de esperar más de 15 minutos"
+          }
+        ],
+        "loadCustomerService": "Cargar: Servicio al cliente",
+        "loadLightBulb": "Cargar: Bombilla",
+        "loadRadioactive": "Cargar: Desintegración radiactiva"
+      },
+      "howto": {
+        "heading": "Cómo usar esta calculadora",
+        "steps": [
+          "Ingresa el parámetro de tasa λ (lambda): es el número promedio de eventos por unidad de tiempo. Si el tiempo medio entre llegadas es de 10 minutos, entonces λ = 1/10 = 0.1.",
+          "Ingresa el valor x: el tiempo específico (o distancia u otra cantidad) en el que deseas evaluar la distribución.",
+          "Selecciona el tipo de cálculo: PDF para la densidad en x, o una de las opciones CDF para probabilidades acumuladas.",
+          "Haz clic en Calcular para ver la probabilidad seleccionada junto con la media, mediana, varianza y desviación estándar de la distribución.",
+          "Usa los botones de carga rápida para explorar escenarios reales comunes relacionados con la distribución exponencial."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué representa el parámetro de tasa λ?",
+        "q1_a": "El parámetro de tasa λ (lambda) es el número promedio de eventos que ocurren por unidad de tiempo (o distancia, o espacio). Por ejemplo, si los clientes llegan a una tasa de 3 por hora, entonces λ = 3 por hora y el tiempo medio entre llegadas es 1/λ = 20 minutos. Un λ más alto significa que los eventos ocurren con más frecuencia y la distribución se concentra más cerca de cero.",
+        "q2": "¿Cuál es la diferencia entre PDF y CDF?",
+        "q2_a": "La PDF f(x) = λe^(−λx) da la densidad de probabilidad en un punto específico x; no es una probabilidad en sí, sino una tasa de probabilidad por unidad de x. La CDF F(x) = P(X ≤ x) = 1 − e^(−λx) da la probabilidad de que la variable aleatoria sea como mucho x, que sí es una probabilidad real entre 0 y 1. En distribuciones continuas, la probabilidad en un punto exacto es cero; las probabilidades solo se aplican a intervalos.",
+        "q3": "¿Qué es la propiedad de falta de memoria?",
+        "q3_a": "La propiedad de falta de memoria establece que P(X > s + t | X > s) = P(X > t): dado que ya has esperado s unidades sin que ocurra un evento, la probabilidad de esperar otras t unidades es la misma que si hubieras empezado de nuevo. En la práctica, una bombilla que ha funcionado durante 1000 horas tiene la misma probabilidad de fallar en la próxima hora que una bombilla nueva; no existe efecto de envejecimiento. Entre las distribuciones continuas, solo la exponencial tiene esta propiedad.",
+        "q4": "¿Por qué la media es mayor que la mediana?",
+        "q4_a": "La media de la distribución exponencial es 1/λ, mientras que la mediana es ln(2)/λ ≈ 0.693/λ. La mediana es menor porque la distribución está sesgada a la derecha: una cola larga de valores grandes empuja la media hacia arriba. Más de la mitad de las observaciones quedan por debajo de la media, lo cual es una característica de las distribuciones con sesgo positivo. Esto es importante en análisis de confiabilidad, donde el tiempo de falla 'típico' suele ser la mediana y no la media.",
+        "q5": "¿La distribución exponencial puede modelar datos de vida útil?",
+        "q5_a": "La distribución exponencial es adecuada para componentes con tasa de falla constante: aquellos que no se desgastan con el tiempo ni están sujetos a fatiga o envejecimiento. Es un modelo razonable para ciertos componentes electrónicos y algunos tipos de fallos de software. Sin embargo, para componentes que sí se desgastan (como piezas mecánicas o vidas humanas), la distribución Weibull con un parámetro de forma distinto de 1 suele ser más apropiada.",
+        "q6": "¿Cómo encuentro λ a partir de datos empíricos?",
+        "q6_a": "El estimador de máxima verosimilitud de λ a partir de datos observados x₁, x₂, …, xₙ es simplemente el inverso de la media muestral: λ̂ = n / Σxᵢ = 1 / x̄. Esto tiene sentido intuitivo: si los eventos ocurren en promedio cada 5 minutos (media = 5), entonces la tasa es λ = 1/5 = 0.2 por minuto. Puedes verificar el ajuste exponencial con un gráfico Q-Q o una prueba de bondad de ajuste."
+      }
     }
   }
 }

@@ -1566,39 +1566,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "fishers-exact-test-calculator",
-      "zh-CN": "fishers-exact-test-calculator",
-      "zh-TW": "fishers-exact-test-calculator",
-      ja: "fishers-exact-test-calculator",
-      ko: "fishers-exact-test-calculator",
-      es: "fishers-exact-test-calculator",
-      fr: "fishers-exact-test-calculator",
-      de: "fishers-exact-test-calculator",
-      pt: "fishers-exact-test-calculator",
-      ru: "fishers-exact-test-calculator"
+      "zh-CN": "fisher-jingque-ceshi-2x2-lianbiao-jisuanqi",
+      "zh-TW": "fisher-jingque-ceshi-2x2-lianbiao-jisuanqi",
+      ja: "fissheru-seikaku-kentei-2x2-kakuritsuhyo-jisuanki",
+      ko: "piseo-jeonghwak-gamjeong-2x2-hoebupyo-gyeolsangi",
+      es: "prueba-exacta-fisher-tabla-2x2",
+      fr: "test-exact-fisher-tableau-2x2",
+      de: "fisher-exakter-test-2x2-kontingenztabelle",
+      pt: "teste-exato-fisher-tabela-2x2",
+      ru: "tochnyy-kriteriy-fishera-kalkulyator-2x2-tablica"
     },
     titles: {
       en: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
-      "zh-CN": "Fisher's Exact Test Calculator - 2x2 Contingency Table",
-      "zh-TW": "Fisher's Exact Test Calculator - 2x2 Contingency Table",
-      ja: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
-      ko: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
-      es: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
-      fr: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
-      de: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
-      pt: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
-      ru: "Fisher's Exact Test Calculator - 2x2 Contingency Table"
+      "zh-CN": "Fisher精确检验：2×2列联表",
+      "zh-TW": "Fisher確切檢定：2×2列聯表",
+      ja: "Fisherの正確検定：2×2分割表",
+      ko: "피셔의 정확 검정: 2×2 분할표",
+      es: "Prueba exacta de Fisher: tabla 2x2",
+      fr: "Test exact de Fisher : tableau 2x2",
+      de: "Fisher-Exakter Test: 2×2-Kontingenztabelle",
+      pt: "Teste exato de Fisher: tabela 2x2",
+      ru: "Точный критерий Фишера: таблица 2×2"
     },
     descriptions: {
       en: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
-      "zh-CN": "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
-      "zh-TW": "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
-      ja: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
-      ko: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
-      es: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
-      fr: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
-      de: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
-      pt: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
-      ru: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research."
+      "zh-CN": "对2×2列联表进行Fisher精确检验，获取单尾和双尾p值以及优势比，适合小样本研究。",
+      "zh-TW": "對2×2列聯表進行Fisher確切檢定，取得單尾與雙尾 p 值及勝算比，適合小樣本研究。",
+      ja: "2×2分割表にFisherの正確検定を実行し、両側・片側p値とオッズ比を取得できます。小標本研究に最適です。",
+      ko: "2×2 분할표에 Fisher의 정확 검정을 적용해 단측·양측 p값과 오즈비를 확인하세요. 소표본 연구에 적합합니다.",
+      es: "Aplica la prueba exacta de Fisher a una tabla de contingencia 2×2 y obtén p bilaterales, unilaterales y la razón de momios.",
+      fr: "Appliquez le test exact de Fisher à un tableau de contingence 2×2 et obtenez les p unilatéraux, bilatéraux et l’odds ratio.",
+      de: "Führe den exakten Fisher-Test auf einer 2×2-Kontingenztabelle aus und erhalte ein- und zweiseitige p-Werte sowie die Odds Ratio.",
+      pt: "Aplique o teste exato de Fisher a uma tabela de contingência 2×2 e obtenha p unilaterais, bilaterais e a razão de chances.",
+      ru: "Примените точный критерий Фишера к таблице сопряжённости 2×2 и получите односторонние, двусторонние p-значения и отношение шансов."
     }
   },
   {
@@ -1606,39 +1606,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "frequency-distribution-calculator",
-      "zh-CN": "frequency-distribution-calculator",
-      "zh-TW": "frequency-distribution-calculator",
-      ja: "frequency-distribution-calculator",
-      ko: "frequency-distribution-calculator",
-      es: "frequency-distribution-calculator",
-      fr: "frequency-distribution-calculator",
-      de: "frequency-distribution-calculator",
-      pt: "frequency-distribution-calculator",
-      ru: "frequency-distribution-calculator"
+      "zh-CN": "pinlv-fenbu-jisuanqi",
+      "zh-TW": "pinlv-fenbu-jisuanqi",
+      ja: "dosu-bunpu-keisanki",
+      ko: "dosu-bunpo-gyesan-gi",
+      es: "calculadora-distribucion-frecuencias",
+      fr: "calculateur-distribution-frequences",
+      de: "frequenzverteilung-rechner",
+      pt: "calculadora-distribuicao-frequencias",
+      ru: "kalkulyator-raspredeleniya-chastot"
     },
     titles: {
       en: "Frequency Distribution Calculator - Create Tables",
-      "zh-CN": "Frequency Distribution Calculator - Create Tables",
-      "zh-TW": "Frequency Distribution Calculator - Create Tables",
-      ja: "Frequency Distribution Calculator - Create Tables",
-      ko: "Frequency Distribution Calculator - Create Tables",
-      es: "Frequency Distribution Calculator - Create Tables",
-      fr: "Frequency Distribution Calculator - Create Tables",
-      de: "Frequency Distribution Calculator - Create Tables",
-      pt: "Frequency Distribution Calculator - Create Tables",
-      ru: "Frequency Distribution Calculator - Create Tables"
+      "zh-CN": "频率分布计算器",
+      "zh-TW": "頻率分布計算器",
+      ja: "度数分布計算機",
+      ko: "도수분포 계산기",
+      es: "Calculadora de distribución de frecuencias",
+      fr: "Calculateur de distribution de fréquences",
+      de: "Frequenzverteilungsrechner",
+      pt: "Calculadora de distribuição de frequências",
+      ru: "Калькулятор распределения частот"
     },
     descriptions: {
       en: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
-      "zh-CN": "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
-      "zh-TW": "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
-      ja: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
-      ko: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
-      es: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
-      fr: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
-      de: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
-      pt: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
-      ru: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation."
+      "zh-CN": "从任意数据集创建频率分布表，计算频率、相对频率、累计频率、均值、中位数和标准差。",
+      "zh-TW": "從任意資料集建立頻率分布表，計算頻率、相對頻率、累積頻率、平均數、中位數與標準差。",
+      ja: "任意のデータから度数分布表を作成し、度数、相対度数、累積度数、平均、中央値、標準偏差を計算します。",
+      ko: "임의의 데이터에서 도수분포표를 만들고 도수, 상대도수, 누적도수, 평균, 중앙값, 표준편차를 계산합니다.",
+      es: "Crea tablas de distribución de frecuencias a partir de cualquier conjunto de datos y calcula frecuencia, frecuencia relativa, acumulada, media, mediana y desviación estándar.",
+      fr: "Créez un tableau de distribution de fréquences à partir de n'importe quel jeu de données et calculez fréquence, fréquence relative, fréquence cumulée, moyenne, médiane et écart type.",
+      de: "Erstellen Sie eine Häufigkeitsverteilungstabelle aus beliebigen Daten und berechnen Sie Häufigkeit, relative Häufigkeit, kumulierte Häufigkeit, Mittelwert, Median und Standardabweichung.",
+      pt: "Crie tabelas de distribuição de frequências a partir de qualquer conjunto de dados e calcule frequência, frequência relativa, frequência acumulada, média, mediana e desvio padrão.",
+      ru: "Создавайте таблицы распределения частот из любых данных и вычисляйте частоту, относительную частоту, накопленную частоту, среднее, медиану и стандартное отклонение."
     }
   },
   {
@@ -1646,39 +1646,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "error-propagation-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "wucha-chuanbo-jisuanqi",
+      "zh-TW": "wucha-chuanbo-jisuanqi",
+      ja: "gosa-denpa-keisanki",
+      ko: "ocha-jeonpa-gyesangi",
+      es: "calculadora-propagacion-errores",
+      fr: "calculateur-propagation-erreurs",
+      de: "fehlerfortpflanzung-rechner",
+      pt: "calculadora-propagacao-erros",
+      ru: "kalkulyator-rasprostraneniya-pogreshnostey"
     },
     titles: {
       en: "Error Propagation Calculator - Uncertainty",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "误差传播计算器 - 不确定度",
+      "zh-TW": "誤差傳播計算器 - 不確定度",
+      ja: "誤差伝播計算機 - 不確かさ",
+      ko: "오차 전파 계산기 - 불확도",
+      es: "Calculadora de propagación de errores",
+      fr: "Calculateur de propagation des erreurs",
+      de: "Fehlerfortpflanzung Rechner",
+      pt: "Calculadora de propagação de erros",
+      ru: "Калькулятор распространения погрешностей"
     },
     descriptions: {
       en: "Calculate error propagation and measurement uncertainty for sum/difference and product/power formulas. Get absolute and relative uncertainty instantly.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算和差、乘积及幂公式中的误差传播与测量不确定度，立即获得绝对不确定度和相对不确定度。",
+      "zh-TW": "計算和差、乘積與冪公式中的誤差傳播與測量不確定度，立即取得絕對不確定度和相對不確定度。",
+      ja: "和・差、積・べき乗の式における誤差伝播と測定不確かさを計算し、絶対不確かさと相対不確かさをすぐに確認できます。",
+      ko: "합/차 및 곱/거듭제곱 공식의 오차 전파와 측정 불확도를 계산하고 절대·상대 불확도를 즉시 확인하세요.",
+      es: "Calcula la propagación de errores y la incertidumbre de medición en sumas, diferencias, productos y potencias al instante.",
+      fr: "Calculez la propagation des erreurs et l’incertitude de mesure pour sommes, différences, produits et puissances, instantanément.",
+      de: "Berechne Fehlerfortpflanzung und Messunsicherheit für Summen, Differenzen, Produkte und Potenzen sofort.",
+      pt: "Calcule propagação de erros e incerteza de medição em somas, diferenças, produtos e potências instantaneamente.",
+      ru: "Рассчитайте распространение погрешностей и неопределенность измерений для сумм, разностей, произведений и степеней."
     }
   },
   {
@@ -1686,39 +1686,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "expected-value-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "qiwangzhi-jisuanqi",
+      "zh-TW": "qiwangzhi-jisuanqi",
+      ja: "kitai-chi-keisanki",
+      ko: "gidae-gabs-gyesangi",
+      es: "valor-esperado",
+      fr: "esperance-mathematique",
+      de: "erwartungswert-rechner",
+      pt: "valor-esperado",
+      ru: "matozhidanie-kalkulyator"
     },
     titles: {
       en: "Expected Value Calculator - Probability Distribution",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "期望值计算器",
+      "zh-TW": "期望值計算機",
+      ja: "期待値計算機",
+      ko: "기댓값 계산기",
+      es: "Calculadora de valor esperado",
+      fr: "Calculateur d'espérance",
+      de: "Erwartungswert-Rechner",
+      pt: "Calculadora de valor esperado",
+      ru: "Калькулятор матожидания"
     },
     descriptions: {
       en: "Calculate expected value, variance, and standard deviation for discrete probability distributions. Enter outcomes and probabilities to get E[X] instantly.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算离散概率分布的期望值、方差和标准差，输入结果与概率即可立即得到 E[X]。",
+      "zh-TW": "計算離散機率分布的期望值、變異數與標準差，輸入結果與機率即可立即得到 E[X]。",
+      ja: "離散確率分布の期待値・分散・標準偏差を計算。結果と確率を入力すると E[X] をすぐ求められます。",
+      ko: "이산 확률분포의 기댓값, 분산, 표준편차를 계산합니다. 결과와 확률을 입력하면 E[X]를 바로 확인할 수 있습니다.",
+      es: "Calcula el valor esperado, la varianza y la desviación estándar de distribuciones discretas. Ingresa resultados y probabilidades para obtener E[X].",
+      fr: "Calculez l'espérance, la variance et l'écart-type de distributions discrètes. Saisissez les issues et probabilités pour obtenir E[X].",
+      de: "Berechnen Sie Erwartungswert, Varianz und Standardabweichung diskreter Verteilungen. Werte und Wahrscheinlichkeiten eingeben für E[X].",
+      pt: "Calcule valor esperado, variância e desvio padrão de distribuições discretas. Insira resultados e probabilidades para obter E[X].",
+      ru: "Рассчитайте матожидание, дисперсию и стандартное отклонение дискретных распределений. Введите исходы и вероятности для E[X]."
     }
   },
   {
@@ -1726,39 +1726,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "exponential-distribution-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "zhi-shu-fen-bu-ji-suan-qi",
+      "zh-TW": "zhi-shu-fen-bu-ji-suan-qi",
+      ja: "shisuu-bunpu-keisanki",
+      ko: "jisu-bunpo-gyesangi",
+      es: "calculadora-distribucion-exponencial",
+      fr: "calculatrice-distribution-exponentielle",
+      de: "exponentialverteilung-rechner",
+      pt: "calculadora-distribuicao-exponencial",
+      ru: "eksponentsialnoe-raspredelenie-kalkulyator"
     },
     titles: {
       en: "Exponential Distribution Calculator - PDF & CDF",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "指数分布计算器",
+      "zh-TW": "指數分布計算器",
+      ja: "指数分布計算器",
+      ko: "지수분포 계산기",
+      es: "Calculadora de distribución exponencial",
+      fr: "Calculatrice de loi exponentielle",
+      de: "Exponentialverteilung Rechner",
+      pt: "Calculadora de distribuição exponencial",
+      ru: "Калькулятор экспоненциального распределения"
     },
     descriptions: {
       en: "Compute exponential distribution PDF, CDF, mean, variance, and survival probability. Enter rate parameter λ and value x for instant statistical results.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算指数分布的 PDF、CDF、均值、方差和生存概率。输入速率参数 λ 和数值 x，立即得到统计结果。",
+      "zh-TW": "計算指數分布的 PDF、CDF、平均數、變異數與存活機率。輸入速率參數 λ 與數值 x，立即得到統計結果。",
+      ja: "指数分布の PDF、CDF、平均、分散、存続確率を計算。速度パラメータ λ と x を入力して即座に結果を表示。",
+      ko: "지수분포의 PDF, CDF, 평균, 분산, 생존확률을 계산합니다. 속도 매개변수 λ와 x를 입력해 즉시 결과를 확인하세요.",
+      es: "Calcula la PDF, CDF, media, varianza y probabilidad de supervivencia de la distribución exponencial. Ingresa λ y x para ver resultados al instante.",
+      fr: "Calculez la PDF, la CDF, la moyenne, la variance et la probabilité de survie de la loi exponentielle. Saisissez λ et x pour des résultats instantanés.",
+      de: "Berechnen Sie PDF, CDF, Mittelwert, Varianz und Überlebenswahrscheinlichkeit der Exponentialverteilung. Geben Sie λ und x ein für Sofortergebnisse.",
+      pt: "Calcule a PDF, CDF, média, variância e probabilidade de sobrevivência da distribuição exponencial. Informe λ e x para resultados instantâneos.",
+      ru: "Рассчитайте PDF, CDF, среднее, дисперсию и вероятность выживания экспоненциального распределения. Введите λ и x для мгновенного результата."
     }
   },
   {
@@ -2846,15 +2846,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "dice-probability-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Dice Probability Calculator - Exact & At Least Odds",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Dice probability calculator: find exact, at-least, or at-most probabilities for any combination of dice with up to 10 dice and 20 sides per die.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2862,15 +2886,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "dice-roller-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Dice Roller Calculator - Roll Dice & Analyze Statistics",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Dice roller calculator: simulate rolling multiple dice and get instant statistics — mean, median, mode, standard deviation, and full frequency distribution.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2878,15 +2926,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "dispersion-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Dispersion Calculator - Variance, Std Dev & IQR",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Dispersion calculator: enter comma-separated numbers to get range, variance, standard deviation, IQR, coefficient of variation, and MAD in one click.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2894,15 +2966,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "dot-plot-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Dot Plot Calculator - Create Dot Plots Online Free",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Dot plot calculator: enter a data set to generate a visual dot plot with mean, median, mode, and range — perfect for classrooms and quick data exploration.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2910,16 +3006,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "empirical-rule-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Empirical Rule Calculator - 68-95-99.7 Rule for Normal",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Empirical rule calculator: enter mean and standard deviation to get the 68%, 95%, and 99.7% ranges for any normal distribution instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   }
-
 ];

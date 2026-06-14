@@ -5877,6 +5877,476 @@
         "q6": "Warum ist die Prävalenz wichtiger als die Testgenauigkeit?",
         "q6_a": "Bei sehr niedriger Prävalenz überwiegt schon eine winzige Falschpositivrate in der riesigen gesunden Bevölkerung die echten Positiven aus der kleinen kranken Population. Eine Verdopplung der Spezifität von 95 % auf 97,5 % halbiert nur die Falschpositiven pro Person, eine Verdopplung der Prävalenz verdoppelt dagegen die Zahl der echten Positiven — daher beeinflusst die Prävalenz den PPV viel stärker als die Genauigkeit."
       }
+    },
+    "fishers-exact-test-calculator": {
+      "title": "Fisher-Exakter-Test-Rechner - 2x2-Kontingenztabelle",
+      "tagline": "Berechne einseitige und zweiseitige p-Werte sowie die Odds Ratio für eine 2×2-Kontingenztabelle mit dem exakten Fisher-Test — ideal für kleine Stichproben.",
+      "intro": "Gib die vier Zellhäufigkeiten deiner 2×2-Tabelle (Gruppe × Ergebnis) ein und klicke dann auf Berechnen, um exakte p-Werte und die Odds Ratio zu erhalten.",
+      "card": {
+        "title": "Fisher-Exakter Test",
+        "description": "Analysiert eine 2×2-Kontingenztabelle auf statistische Signifikanz"
+      },
+      "table": {
+        "outcome1": "Ergebnis 1",
+        "outcome2": "Ergebnis 2",
+        "group1": "Gruppe 1",
+        "group2": "Gruppe 2"
+      },
+      "field": {
+        "cellA": "Zelle A (Gruppe 1, Ergebnis 1)",
+        "cellB": "Zelle B (Gruppe 1, Ergebnis 2)",
+        "cellC": "Zelle C (Gruppe 2, Ergebnis 1)",
+        "cellD": "Zelle D (Gruppe 2, Ergebnis 2)"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte gib für alle vier Zellen nicht-negative Ganzzahlen ein und stelle sicher, dass die Gesamtsumme größer als null ist."
+      },
+      "result": {
+        "heading": "Ergebnis",
+        "oneTailed": "Einseitiger p-Wert",
+        "twoTailed": "Zweiseitiger p-Wert",
+        "oddsRatio": "Odds Ratio",
+        "significant": "Statistisch signifikant bei p < 0,05 — H₀ verwerfen.",
+        "notSignificant": "Nicht statistisch signifikant bei p < 0,05 — H₀ nicht verwerfen."
+      },
+      "about": {
+        "heading": "Über den exakten Fisher-Test",
+        "body": "Der exakte Fisher-Test ist ein Test auf statistische Signifikanz zur Analyse von 2×2-Kontingenztabellen. Entwickelt wurde er 1922 von Sir Ronald A. Fisher. Der Test bestimmt, ob zwischen zwei kategorialen Variablen eine nicht zufällige Assoziation besteht — etwa zwischen einer Behandlungsgruppe und einem Patientenergebnis. Im Gegensatz zum Chi-Quadrat-Test, der eine Näherung verwendet und bei kleinen erwarteten Zellhäufigkeiten ungenau wird, berechnet der exakte Fisher-Test die exakte Wahrscheinlichkeit der beobachteten Daten (und aller extremeren Konfigurationen) mit der hypergeometrischen Verteilung.\n\nDer Test ordnet die Daten in eine 2×2-Tabelle mit festen Randtotalen (Zeilen- und Spaltensummen) ein. Unter diesen Rändern berechnet er die Wahrscheinlichkeit der beobachteten Anordnung unter der Nullhypothese ohne Zusammenhang. Die Wahrscheinlichkeit einer bestimmten Tabelle mit den Zellen [a, b; c, d] ergibt sich aus der hypergeometrischen Formel: P = C(a+b, a) × C(c+d, c) / C(n, a+c), wobei n = a+b+c+d ist. Der p-Wert wird durch Aufsummieren der Wahrscheinlichkeiten aller Tabellen erhalten, die mindestens so extrem sind wie die beobachtete Tabelle.\n\nBei einem einseitigen p-Wert bedeutet 'extrem', dass die Tabellen den Zusammenhang in derselben Richtung wie beobachtet aufweisen. Bei einem zweiseitigen p-Wert — für die meisten Forschungsfragen passend — bedeutet 'extrem', dass die Tabellen eine gleiche oder geringere Wahrscheinlichkeit als die beobachtete Tabelle haben, wobei beide Verteilungsschwänze berücksichtigt werden. Der zweiseitige p-Wert ist daher konservativer und wird in veröffentlichter Forschung häufiger verwendet.\n\nDie Odds Ratio quantifiziert die Stärke des Zusammenhangs: OR = (a × d) / (b × c). Eine Odds Ratio von 1 bedeutet keinen Zusammenhang; ein Wert größer als 1 bedeutet, dass Ergebnis 1 in Gruppe 1 wahrscheinlicher ist als in Gruppe 2; ein Wert kleiner als 1 bedeutet das Gegenteil. Die Odds Ratio ist ein zentrales Maß in Fall-Kontroll-Studien, klinischen Studien und genetischen Assoziationsstudien.\n\nDer exakte Fisher-Test ist immer dann geeignet, wenn die erwartete Häufigkeit in einer Zelle der 2×2-Tabelle unter 5 liegt — der Schwellenwert, ab dem die Chi-Quadrat-Approximation unzuverlässig wird. Typische Anwendungen sind klinische Studien zum Vergleich von Behandlungserfolgsraten zwischen zwei Gruppen, genetische Epidemiologie zur Prüfung, ob ein Allel mit einer Krankheit assoziiert ist, Bildungsforschung zum Vergleich von Bestehens-/Durchfallquoten zwischen zwei Lehrmethoden und Marketinganalysen zum Vergleich von Conversion-Raten zwischen zwei Anzeigenvarianten. Der Test ist unabhängig von der Stichprobengröße exakt und damit der Goldstandard für kleine Stichproben in diesen Bereichen."
+      },
+      "examples": {
+        "heading": "Exakter Fisher-Test — Beispiele",
+        "intro": "Drei reale Szenarien zeigen, wie man eine 2×2-Kontingenztabelle aufbaut und die exakten p-Werte interpretiert.",
+        "colInput": "Tabelle [a, b; c, d]",
+        "colOutput": "Zweiseitiger p",
+        "colNote": "Kontext",
+        "loadDrug": "Arzneiwirksamkeitsbeispiel laden",
+        "loadGene": "Genetikbeispiel laden",
+        "loadTeaching": "Lehrmethodenbeispiel laden",
+        "items": [
+          {
+            "input": "a=9, b=1, c=2, d=8 (n=20)",
+            "output": "p = 0.0350 (signifikant)",
+            "note": "Neues Medikament: 9 von 10 behandelten Patienten verbesserten sich gegenüber 2 von 10 in der Placebogruppe. Der Zusammenhang zwischen Behandlung und Verbesserung ist statistisch signifikant."
+          },
+          {
+            "input": "a=7, b=3, c=1, d=12 (n=23)",
+            "output": "p = 0.0189 (signifikant)",
+            "note": "Genetik: 7 von 10 Trägern der Genvariante sind krank gegenüber 1 von 13 ohne Variante. Das Gen ist signifikant mit der Krankheit assoziiert."
+          },
+          {
+            "input": "a=10, b=2, c=5, d=8 (n=25)",
+            "output": "p = 0.0840 (bei 0,05 nicht signifikant)",
+            "note": "Lehrmethoden: 10 von 12 bestanden mit Methode A gegenüber 5 von 13 mit Methode B. Der Unterschied ist auf dem 5%-Niveau nicht signifikant."
+          },
+          {
+            "input": "a=4, b=100, c=0, d=110 (n=214)",
+            "output": "p = 0.0563 (grenzwertig)",
+            "note": "A/B-Test einer Werbekampagne: 4 Conversions bei Anzeige A gegenüber 0 bei Anzeige B bei jeweils etwa 110 Aufrufen. Das Ergebnis liegt an der Grenze und verdient eine Nachverfolgung mit größerer Stichprobe."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwendest du den Fisher-Exakter-Test-Rechner",
+        "steps": [
+          "Ordne deine Daten in eine 2×2-Kontingenztabelle: Die Zeilen sind die beiden Gruppen (Gruppe 1 und Gruppe 2), die Spalten die beiden möglichen Ergebnisse (Ergebnis 1 und Ergebnis 2).",
+          "Gib die Häufigkeit für jede Zelle ein: Zelle A (Gruppe 1, Ergebnis 1), Zelle B (Gruppe 1, Ergebnis 2), Zelle C (Gruppe 2, Ergebnis 1), Zelle D (Gruppe 2, Ergebnis 2). Alle Werte müssen nicht-negative Ganzzahlen sein.",
+          "Klicke auf 'Berechnen'. Der Rechner enumeriert alle möglichen 2×2-Tabellen mit denselben Randtotalen und summiert die hypergeometrischen Wahrscheinlichkeiten für die exakten einseitigen und zweiseitigen p-Werte.",
+          "Lies für die meisten Forschungsfragen den zweiseitigen p-Wert ab. Wenn p < 0,05 ist, ist der Zusammenhang zwischen den beiden Gruppen und den beiden Ergebnissen statistisch signifikant.",
+          "Interpretiere die Odds Ratio: Werte > 1 zeigen, dass Ergebnis 1 in Gruppe 1 wahrscheinlicher ist; Werte < 1 zeigen, dass es unwahrscheinlicher ist. Verwende die Beispiel-Buttons unter der Tabelle, um zu sehen, wie der Test in realen Szenarien funktioniert."
+        ]
+      },
+      "faq": {
+        "heading": "Exakter Fisher-Test — FAQ",
+        "q1": "Wann sollte ich den exakten Fisher-Test statt des Chi-Quadrat-Tests verwenden?",
+        "q1_a": "Verwende den exakten Fisher-Test immer dann, wenn die erwartete Häufigkeit in einer Zelle deiner 2×2-Tabelle unter 5 liegt oder wenn die Gesamtstichprobe klein ist (n < 20 ist eine gängige Faustregel). Der Chi-Quadrat-Test nutzt eine Näherung, die bei kleinen Häufigkeiten versagt und unzuverlässige p-Werte erzeugt. Der Fisher-Test ist immer exakt und kann daher für jede Stichprobengröße sicher verwendet werden.",
+        "q2": "Was bedeutet der zweiseitige p-Wert beim Fisher-Test?",
+        "q2_a": "Der zweiseitige p-Wert ist die Wahrscheinlichkeit, eine Tabelle zu beobachten, die in beide Richtungen so extrem wie oder extremer als die vorliegende ist — unter der Annahme, dass die Nullhypothese ohne Zusammenhang wahr ist. 'Extrem' bedeutet hier, dass die hypergeometrische Wahrscheinlichkeit so klein wie oder kleiner als die der beobachteten Tabelle ist. Ein p-Wert < 0,05 bedeutet konventionell, dass der Zusammenhang statistisch signifikant ist.",
+        "q3": "Was ist die Odds Ratio und wie interpretiere ich sie?",
+        "q3_a": "Die Odds Ratio (OR) ist (a × d) / (b × c). Eine OR von 1 bedeutet, dass Ergebnis 1 in beiden Gruppen gleich wahrscheinlich ist — also kein Zusammenhang besteht. OR > 1 bedeutet, dass Ergebnis 1 in Gruppe 1 wahrscheinlicher ist als in Gruppe 2; OR < 1 bedeutet, dass es unwahrscheinlicher ist. Zum Beispiel bedeutet OR = 9, dass die Chancen für Ergebnis 1 in Gruppe 1 neunmal so hoch sind wie in Gruppe 2 — ein starker positiver Zusammenhang.",
+        "q4": "Was ist der Unterschied zwischen einseitigen und zweiseitigen p-Werten?",
+        "q4_a": "Der einseitige p-Wert testet einen Zusammenhang in eine bestimmte Richtung (z. B. dass Gruppe 1 eine höhere Rate von Ergebnis 1 hat als Gruppe 2). Der zweiseitige p-Wert testet jeden Zusammenhang unabhängig von der Richtung. Wenn du vor dem Blick auf die Daten keine gerichtete Hypothese hattest, ist der zweiseitige p-Wert die passende und konservativere Wahl.",
+        "q5": "Was sind die Randtotalen und warum müssen sie fest sein?",
+        "q5_a": "Die Randtotalen sind die Zeilensummen (a+b und c+d) sowie die Spaltensummen (a+c und b+d) der Tabelle. Der Fisher-Test bedingt auf diese festen Totalen, was die Grundlage für die Ableitung der exakten hypergeometrischen Verteilung bildet. In der Praxis werden die Ränder durch das Studiendesign festgelegt (z. B. vorab definierte Gruppengrößen oder Gesamtzahl der Ereignisse).",
+        "q6": "Kann der exakte Fisher-Test für Tabellen größer als 2×2 verwendet werden?",
+        "q6_a": "Der klassische exakte Fisher-Test ist für 2×2-Tabellen definiert. Verallgemeinerungen für größere r×c-Kontingenztabellen existieren (mit einer mehrdimensionalen hypergeometrischen Verteilung), sind aber rechnerisch aufwendig. Bei größeren Tabellen mit kleinen erwarteten Häufigkeiten kann man exakte Tests auf 2×2-Teiltabellen anwenden oder Monte-Carlo-simulierte exakte Tests in Statistiksoftware verwenden."
+      }
+    },
+    "frequency-distribution-calculator": {
+      "title": "Frequenzverteilungsrechner - Tabellen erstellen",
+      "tagline": "Erstellen Sie sofort eine vollständige Häufigkeitsverteilungstabelle aus jedem Datensatz. Erhalten Sie Klassenintervalle, Häufigkeiten, relative Häufigkeiten, kumulierte Häufigkeiten und wichtige Kennzahlen.",
+      "intro": "Fügen Sie Ihre Zahlen durch Kommas, Leerzeichen oder Zeilenumbrüche getrennt ein oder tippen Sie sie ein, wählen Sie die Anzahl der Klassenintervalle und klicken Sie auf Berechnen, um die vollständige Häufigkeitstabelle und Zusammenfassung zu erzeugen.",
+      "card": {
+        "title": "Frequenzverteilungsrechner",
+        "description": "Daten in gruppierte Klassenintervalle mit Häufigkeiten und Kennzahlen einordnen"
+      },
+      "field": {
+        "dataSet": "Datensatz",
+        "dataHint": "Zahlen mit Kommas, Leerzeichen oder Zeilenumbrüchen trennen.",
+        "numClasses": "Anzahl der Klassen (Bins)"
+      },
+      "placeholder": {
+        "data": "z. B. 82, 90, 75, 68, 88, 95, 72, 85..."
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie mindestens 2 gültige Zahlen ein und wählen Sie zwischen 2 und 50 Klassen."
+      },
+      "result": {
+        "heading": "Häufigkeitsverteilungstabelle",
+        "colClass": "Klassenintervall",
+        "colMidpoint": "Klassenmitte",
+        "colFreq": "Häufigkeit",
+        "colRelFreq": "Relative Häufigkeit",
+        "colCumFreq": "Kumulierte Häufigkeit",
+        "statCount": "Anzahl (n)",
+        "statMean": "Mittelwert (gruppiert)",
+        "statMedian": "Median (gruppiert)",
+        "statStdDev": "Std.-Abw. (gruppiert)",
+        "statMin": "Minimum",
+        "statMax": "Maximum",
+        "statClassWidth": "Klassenbreite"
+      },
+      "about": {
+        "heading": "Über den Frequenzverteilungsrechner",
+        "body": "Eine Häufigkeitsverteilung ist eine tabellarische Zusammenfassung, die zeigt, wie oft jeder Wert — oder jeder Wertebereich — in einem Datensatz vorkommt. Indem Rohdaten in eine handhabbare Zahl von Klassenintervallen gegliedert und die Beobachtungen in jedem Intervall gezählt werden, verwandelt eine Häufigkeitstabelle eine ungeordnete Zahlenliste in ein strukturiertes Bild von Form, Zentrum und Streuung der Daten. Häufigkeitsverteilungen sind ein Grundkonzept der deskriptiven Statistik und bilden die Grundlage für Histogramme, Relative-Häufigkeits-Polygone und kumulative Häufigkeitskurven.\n\nEine gruppierte Häufigkeitsverteilung teilt den Wertebereich der Daten in eine feste Anzahl sich nicht überlappender Klassenintervalle mit gleicher Breite. Jedes Intervall hat eine Untergrenze, eine Obergrenze und eine Klassenmitte. Die Häufigkeit ist die Anzahl der Datenpunkte, die in das Intervall fallen. Die relative Häufigkeit ist die Häufigkeit als Anteil (oder Prozentsatz) der Gesamtmenge, wodurch sich Verteilungen unterschiedlicher Größe leicht vergleichen lassen. Die kumulierte Häufigkeit ist die laufende Summe der Häufigkeiten von der ersten bis zur aktuellen Klasse und zeigt, wie viele Datenpunkte auf oder unter der oberen Klassengrenze liegen.\n\nDie Wahl der Klassenanzahl ist ein Ausgleich: Zu wenige Klassen verschmelzen unterschiedliche Muster zu einem einzigen Block, zu viele Klassen streuen die Daten so stark, dass kein klares Muster erkennbar wird. Eine gängige Faustregel ist die Sturges-Regel: k = 1 + 3.322 × log₁₀(n), wobei n die Anzahl der Datenpunkte ist. Beispielsweise deuten 20 Datenpunkte auf etwa 5 Klassen hin; 100 Datenpunkte auf etwa 7 Klassen. Die Klassenbreite ist dann width = (max − min) / k und wird auf einen praktischen Wert aufgerundet, damit alle Daten sauber hineinpassen.\n\nDie aus einer Häufigkeitsverteilung abgeleiteten Kennzahlen sind Näherungen auf Basis der gruppierten Daten und nicht der Einzelwerte. Der gruppierte Mittelwert wird als Σ(Klassenmitte × Häufigkeit) / n berechnet. Die gruppierte Standardabweichung misst die Streuung der Daten um den gruppierten Mittelwert. Der gruppierte Median wird durch Interpolation innerhalb des Klassenintervalls geschätzt, das die n/2-te Beobachtung enthält. Diese Näherungen sind sehr nah an den exakten Werten aus den Rohdaten, wenn die Klassenbreite im Verhältnis zum Wertebereich klein ist.\n\nHäufigkeitsverteilungen werden in allen Bereichen eingesetzt, in denen numerische Daten entstehen. Lehrkräfte analysieren damit Klassenarbeiten und erkennen Schülerinnen und Schüler, die zusätzliche Unterstützung benötigen. Unternehmen untersuchen Verkaufsbeträge, Produktbewertungen oder Wartezeiten, um Spitzen und Engpässe zu erkennen. Gesundheitsforscher verteilen klinische Messwerte wie Blutdruck, Cholesterin oder BMI, um die Gesundheit von Bevölkerungen zu verstehen. Qualitätsingenieure prüfen Messwerte aus Produktionsprozessen, um Fehler oder Abweichungen zu erkennen. In jedem Fall ist die Häufigkeitstabelle der Ausgangspunkt für weiterführende Analysen."
+      },
+      "examples": {
+        "heading": "Frequenzverteilung — Beispiele",
+        "intro": "Drei praktische Datensätze mit unterschiedlichen Klassenstrukturen und Kennzahlen.",
+        "colInput": "Datensatz",
+        "colOutput": "Struktur",
+        "colNote": "Kontext",
+        "loadScores": "Beispiel für Testergebnisse laden",
+        "loadSales": "Beispiel für tägliche Umsätze laden",
+        "loadPlants": "Beispiel für Pflanzenhöhen laden",
+        "items": [
+          {
+            "input": "82,90,75,68,88,75,95,100,72,85,91,78,84,88,77,95,65,80,73,86 — 5 Klassen",
+            "output": "Klassen: [65,72), [72,79), [79,86) … ; Mittelwert ≈ 82.85",
+            "note": "Prüfungsergebnisse einer Klasse mit 20 Schülern. Klassenbreite = 7. Die meisten Werte liegen im Bereich 72–93, mit leichtem Linksschwanz."
+          },
+          {
+            "input": "150,220,180,190,250,160,200,210,170,240,195,175,215,185,230 — 6 Klassen",
+            "output": "Klassen: [150,170), [170,190), [190,210) … ; Mittelwert ≈ 202.7",
+            "note": "Tägliche Umsatzzahlen. Klassenbreite = 20. Die Verteilung zeigt, dass sich die meisten Tage im Bereich von 170–230 Dollar konzentrieren."
+          },
+          {
+            "input": "35,42,38,50,45,48,36,39,47,41,43,46,40,37,44,49,38,42,45,36 — 5 Klassen",
+            "output": "Klassen: [35,38), [38,41), [41,44) … ; Mittelwert ≈ 42.1",
+            "note": "Pflanzenhöhen in cm aus einer botanischen Studie. Die glockenförmige Verteilung bestätigt ein ungefähr normales Wachstumsmuster."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Frequenzverteilungsrechner",
+        "steps": [
+          "Geben Sie Ihre numerischen Daten im Feld 'Datensatz' ein. Sie können Werte mit Kommas, Leerzeichen oder Zeilenumbrüchen trennen; der Rechner akzeptiert jede Kombination dieser Trennzeichen.",
+          "Wählen Sie die Anzahl der Klassen (Bins), die am besten zu Ihrem Datensatz passt. Ein guter Startwert sind 5 Klassen für kleine Datensätze (n < 30) und 7–10 für größere. Sie können die Sturges-Regel verwenden: k ≈ 1 + 3.322 × log₁₀(n).",
+          "Klicken Sie auf 'Berechnen'. Der Rechner ermittelt Minimum und Maximum, berechnet die Klassenbreite als (max − min) / classes, aufgerundet, und ordnet jeden Datenpunkt dem passenden Intervall zu.",
+          "Lesen Sie die Häufigkeitstabelle. Jede Zeile zeigt das Klassenintervall, die Klassenmitte, die Häufigkeit, die relative Häufigkeit (als Prozentsatz der Gesamtzahl) und die kumulierte Häufigkeit (laufende Summe).",
+          "Prüfen Sie die Kennzahlen unter der Tabelle für den gruppierten Mittelwert, Median, die Standardabweichung und die Klassenbreite. Mit den Beispiel-Buttons können Sie den Rechner mit vorgefüllten Datensätzen testen."
+        ]
+      },
+      "faq": {
+        "heading": "Frequenzverteilungsrechner — FAQ",
+        "q1": "Was ist eine Häufigkeitsverteilungstabelle?",
+        "q1_a": "Eine Häufigkeitsverteilungstabelle ordnet rohe numerische Daten in Gruppen namens Klassenintervalle (oder Bins) und zählt, wie viele Werte in jede Gruppe fallen. Sie verwandelt eine ungeordnete Liste in eine strukturierte Zusammenfassung, die zeigt, wo sich Datenpunkte häufen, wie stark sie streuen und wie die Verteilung insgesamt aussieht.",
+        "q2": "Wie wähle ich die Anzahl der Klassen?",
+        "q2_a": "Ein gängiger Ansatz ist die Sturges-Regel: k = 1 + 3.322 × log₁₀(n), wobei n die Stichprobengröße ist. Das ergibt etwa 5 Klassen für 20 Datenpunkte und etwa 7 für 100. Alternativ können Sie experimentieren: Beginnen Sie mit 5 Klassen und erhöhen Sie die Anzahl, bis ein klares Muster sichtbar wird, ohne zu unruhig zu werden. Die meisten Lehrbücher empfehlen 5–15 Klassen.",
+        "q3": "Was ist relative Häufigkeit und warum ist sie nützlich?",
+        "q3_a": "Die relative Häufigkeit ist der Anteil aller Beobachtungen, der in eine Klasse fällt: relative Häufigkeit = Klassenhäufigkeit / Gesamtzahl n. Sie wandelt Zählwerte in Prozentsätze um und erleichtert so den Vergleich von Verteilungen unterschiedlich großer Datensätze. Wenn beispielsweise 35 % der Prüfungsnoten im Bereich 70–80 liegen, ist das bei zwei unterschiedlich großen Klassen informativer als nur die Anzahl zu kennen.",
+        "q4": "Was ist die kumulierte Häufigkeit?",
+        "q4_a": "Die kumulierte Häufigkeit ist die laufende Summe der Häufigkeiten von der ersten bis zur aktuellen Klasse. Sie zeigt, wie viele Datenpunkte auf oder unter der oberen Grenze jeder Klasse liegen. Wenn die kumulierte Häufigkeit am Ende der dritten Klasse 15 von 20 beträgt, liegen 75 % der Beobachtungen in den ersten drei Klassen. Die kumulierte Häufigkeit ist die Grundlage der Ogive (kumulativen Häufigkeitskurve).",
+        "q5": "Warum sind Mittelwert und Standardabweichung als 'gruppiert' gekennzeichnet?",
+        "q5_a": "Wenn Daten in Klassenintervalle gruppiert werden, gehen die genauen Einzelwerte verloren. Der gruppierte Mittelwert und die Standardabweichung werden mithilfe der Klassenmitte als repräsentativem Wert berechnet, was eine kleine Näherung erzeugt. Diese Schätzungen sind sehr genau, wenn die Klassenbreite im Verhältnis zum Wertebereich klein ist, können aber leicht von auf den Rohdaten berechneten Kennzahlen abweichen.",
+        "q6": "Worin liegt der Unterschied zwischen Häufigkeits- und relativen Häufigkeitshistogrammen?",
+        "q6_a": "Ein Häufigkeitshistogramm stellt die rohe Anzahl auf der y-Achse dar, während ein relatives Häufigkeitshistogramm den Anteil (oder Prozentsatz) darstellt. Relative Häufigkeitshistogramme sind direkt über unterschiedlich große Datensätze hinweg vergleichbar und können als empirische Approximation der zugrunde liegenden Wahrscheinlichkeitsverteilung verwendet werden. Die Form ist in beiden Fällen identisch — nur die Skala der y-Achse ändert sich."
+      }
+    },
+    "error-propagation-calculator": {
+      "title": "Fehlerfortpflanzung Rechner",
+      "tagline": "Berechnet die Unsicherheitsfortpflanzung für Summen-/Differenz- und Produkt-/Potenzformeln.",
+      "intro": "Bestimme, wie sich Messunsicherheiten bei mathematischen Operationen kombinieren.",
+      "field": {
+        "formulaType": "Formeltyp",
+        "a": "Konstante A",
+        "x": "Wert von X",
+        "dx": "Unsicherheit von X (Δx)",
+        "b": "Konstante B",
+        "y": "Wert von Y",
+        "dy": "Unsicherheit von Y (Δy)",
+        "k": "Konstante K",
+        "aExp": "Exponent 'a'",
+        "bExp": "Exponent 'b'"
+      },
+      "type": {
+        "sumDifference": "Summe / Differenz (z = ax + by)",
+        "productPower": "Produkt / Potenz (z = k · xᵃ · yᵇ)"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "placeholder": {
+        "number": "Zahl eingeben"
+      },
+      "result": {
+        "heading": "Ergebnisse",
+        "z": "Ergebnis (Z)",
+        "deltaZ": "Absolute Unsicherheit (ΔZ)",
+        "relativeUncertainty": "Relative Unsicherheit (%ΔZ)"
+      },
+      "about": {
+        "heading": "Über den Fehlerfortpflanzung Rechner",
+        "body": "Fehlerfortpflanzung, auch Fortpflanzung der Unsicherheit genannt, ist eine grundlegende Methode in experimenteller Wissenschaft und Technik. Immer wenn du mit gemessenen Größen rechnest, trägt jede Messung eine inhärente Unsicherheit, und diese Unsicherheiten kombinieren sich zu einer Unsicherheit im Endergebnis. Zu verstehen, wie sich Fehler fortpflanzen, ist entscheidend, um Ergebnisse mit angemessener Genauigkeit und Vertrauenswürdigkeit anzugeben.\n\nDieser Rechner unterstützt zwei der in Physik, Chemie und Ingenieurwesen am häufigsten vorkommenden Formeltypen. Die Summen-/Differenzformel behandelt lineare Kombinationen der Form z = ax + by, bei denen Vielfache zweier gemessener Größen addiert oder subtrahiert werden. Die absolute Unsicherheit von z ist ΔZ = √((aΔx)² + (bΔy)²). Dies folgt aus der allgemeinen Regel, Unsicherheiten quadratisch zu addieren (unter der Annahme, dass die Messungen unabhängig und die Fehler zufällig sind).\n\nDie Produkt-/Potenzformel deckt den Fall z = k · xᵃ · yᵇ ab, der bei Berechnungen von Fläche (Länge × Breite), Dichte (Masse / Volumen), elektrischer Leistung (Spannung × Strom) und vielen anderen physikalischen Größen auftritt. Für diesen Typ wird zuerst die relative Unsicherheit berechnet: %ΔZ / 100 = √((a·Δx/x)² + (b·Δy/y)²). Die absolute Unsicherheit ist anschließend ΔZ = |Z| × (%ΔZ / 100).\n\nDiese Formeln setzen voraus, dass die Messfehler zufällig (nicht systematisch), voneinander unabhängig und im Vergleich zu den Werten selbst klein sind — Bedingungen, die in gut geplanten Laborversuchen meist erfüllt sind. Wenn Fehler korreliert sind, ist eine fortgeschrittenere Behandlung mit Kovarianztermen erforderlich.\n\nDie praktischen Anwendungen sind vielfältig. Wissenschaftler messen Längen, Massen, Spannungen, Temperaturen und Drücke, jeweils mit endlicher Präzision. Ingenieure berechnen Materialeigenschaften, Spannungskonzentrationen und Durchflussraten aus unvollkommenen Daten. Medizinische Forschende propagieren Unsicherheiten durch biostatistische Formeln. In jedem Fall liefert ein Ergebnis ohne Unsicherheit — zum Beispiel density = 8.94 g/cm³ statt density = (8.94 ± 0.07) g/cm³ — ein unvollständiges und potenziell irreführendes Bild.\n\nDie relative Unsicherheit (%ΔZ) ist besonders nützlich, weil sie die fraktionale Präzision des Ergebnisses ausdrückt und einen einfachen Vergleich zwischen Größen sehr unterschiedlicher Größenordnung ermöglicht. Ein Ergebnis mit einer relativen Unsicherheit unter 1 % gilt im Allgemeinen als präzise, während Werte über 10 % verbesserte Messverfahren erfordern können."
+      },
+      "examples": {
+        "heading": "Praktische Beispiele",
+        "intro": "Sieh dir an, wie der Fehlerfortpflanzung Rechner bei realen Messszenarien funktioniert.",
+        "colInput": "Eingaben",
+        "colOutput": "Ergebnis (Z ± ΔZ)",
+        "colNote": "Hinweise",
+        "items": [
+          {
+            "input": "Summe: A=1, X=10.5 ± 0.2 cm, B=1, Y=5.2 ± 0.1 cm",
+            "output": "Z = 15.7 ± 0.22 cm",
+            "note": "Addition zweier Längen; Fehler werden quadratisch addiert"
+          },
+          {
+            "input": "Produkt: k=1, X=5.0 ± 0.1 m (a=1), Y=10.0 ± 0.2 m (b=1)",
+            "output": "Z = 50.0 ± 1.41 m²",
+            "note": "Fläche eines Rechtecks; relative Fehler werden kombiniert"
+          },
+          {
+            "input": "Produkt: k=1, X=100 ± 2 g (a=1), Y=10 ± 0.5 cm³ (b=−1)",
+            "output": "Z = 10.0 ± 0.6 g/cm³",
+            "note": "Dichte = Masse/Volumen; b=−1 für Division"
+          },
+          {
+            "input": "Summe: A=2, X=15.0 ± 0.3 m, B=2, Y=8.0 ± 0.2 m",
+            "output": "Z = 46.0 ± 0.72 m",
+            "note": "Umfang P = 2L + 2W"
+          }
+        ],
+        "loadAddLengths": "Laden: Längen addieren",
+        "loadRectArea": "Laden: Rechteckfläche",
+        "loadDensity": "Laden: Dichte"
+      },
+      "howto": {
+        "heading": "So verwendest du diesen Rechner",
+        "steps": [
+          "Wähle den Formeltyp: Summe/Differenz (z = ax + by) für lineare Kombinationen oder Produkt/Potenz (z = k · xᵃ · yᵇ) für Produkte und Quotienten.",
+          "Gib die konstanten Koeffizienten ein (A, B für Summe; K, a, b für Produkt) — verwende 1, wenn kein Koeffizient gilt.",
+          "Gib die Messwerte von X und Y sowie ihre absoluten Unsicherheiten Δx und Δy ein (Standardabweichungen oder Halbintervall-Unsicherheiten).",
+          "Klicke auf Berechnen, um das Ergebnis Z, die absolute Unsicherheit ΔZ und die relative Unsicherheit %ΔZ zu sehen.",
+          "Nutze die Schnellladen-Schaltflächen, um die integrierten Beispiele zu erkunden und dein Verständnis der Formeln zu prüfen."
+        ]
+      },
+      "faq": {
+        "heading": "Häufig gestellte Fragen",
+        "q1": "Was ist Fehlerfortpflanzung?",
+        "q1_a": "Fehlerfortpflanzung (oder Fortpflanzung der Unsicherheit) ist der mathematische Prozess, mit dem bestimmt wird, wie Unsicherheiten in Eingangsmessungen zusammenwirken und eine Unsicherheit in einem berechneten Ergebnis erzeugen. Wenn du z = f(x, y, …) berechnest, hängt die Unsicherheit ΔZ von den partiellen Ableitungen von f und den einzelnen Unsicherheiten Δx, Δy ab. Dieser Rechner behandelt die zwei häufigsten Formelmuster.",
+        "q2": "Warum werden Unsicherheiten quadratisch addiert?",
+        "q2_a": "Wenn Messfehler zufällig und unabhängig sind, sind sie gleich wahrscheinlich positiv oder negativ. Eine direkte Addition würde den kombinierten Fehler überschätzen. Die Quadraturregel (Quadratwurzel der Summe der Quadrate) spiegelt die statistische Unabhängigkeit wider: ΔZ = √((∂f/∂x·Δx)² + (∂f/∂y·Δy)²). Bei systematischen Fehlern, die stets in dieselbe Richtung gehen, wäre eine lineare Addition angemessener.",
+        "q3": "Was ist der Unterschied zwischen absoluter und relativer Unsicherheit?",
+        "q3_a": "Die absolute Unsicherheit (ΔZ) wird in denselben Einheiten wie das Ergebnis angegeben und beschreibt die Streuung um den Zentralwert, z. B. (15.7 ± 0.2) cm. Die relative Unsicherheit (%ΔZ = ΔZ/|Z| × 100%) ist dimensionslos und drückt die Präzision als Anteil des Ergebnisses aus. Sie eignet sich zum Vergleich der Präzision verschiedener Messungen unabhängig von deren Größenordnung.",
+        "q4": "Wann sollte ich Summe/Differenz und wann Produkt/Potenz verwenden?",
+        "q4_a": "Verwende Summe/Differenz, wenn deine Formel Vielfache gemessener Größen addiert oder subtrahiert: Umfang, Gesamtlänge, Nettoverschiebung. Verwende Produkt/Potenz, wenn deine Formel gemessene Größen mit Potenzen multipliziert oder dividiert: Fläche (L×W), Volumen (L×W×H), Dichte (m/V), kinetische Energie (½mv²). Bei zusammengesetzten Formeln wende die Fehlerfortpflanzung schrittweise an.",
+        "q5": "Warum dürfen X oder Y in der Produkt-/Potenzformel nicht null sein?",
+        "q5_a": "Die Formel für die relative Unsicherheit bei Produkten/Potenzen lautet %ΔZ = √((a·Δx/|x|)² + (b·Δy/|y|)²). Da durch x oder y dividiert wird, würden Nullwerte zu einer Division durch null führen. Physikalisch bedeutet ein Nullwert, dass die Größe nicht gemessen wurde (oder exakt null ohne Unsicherheit ist); in diesem Fall ist die Produkt-/Potenzformel nicht anwendbar.",
+        "q6": "Was sagt mir die relative Unsicherheit über die Qualität meiner Messung?",
+        "q6_a": "Die relative Unsicherheit ist ein direktes Maß für die Messqualität. Werte unter 1 % gelten als sehr präzise und sind für die meisten wissenschaftlichen Arbeiten akzeptabel. Werte zwischen 1 % und 5 % reichen für viele technische Anwendungen aus. Werte über 10 % deuten darauf hin, dass die Messtechnik verbessert werden sollte — etwa durch präzisere Instrumente, mehr Messungen oder eine Verringerung systematischer Fehlerquellen."
+      }
+    },
+    "expected-value-calculator": {
+      "title": "Erwartungswert-Rechner",
+      "tagline": "Berechnet den mathematischen Erwartungswert diskreter Verteilungen.",
+      "intro": "Geben Sie Ergebniswerte und ihre Wahrscheinlichkeiten ein, um E[X], Varianz und Standardabweichung zu berechnen.",
+      "field": {
+        "outcomeValue": "Ergebniswert",
+        "probability": "Wahrscheinlichkeit",
+        "outcomeValuePlaceholder": "z. B. 10",
+        "probabilityPlaceholder": "z. B. 0.25"
+      },
+      "button": {
+        "calculate": "Erwartungswert berechnen",
+        "addRow": "Ergebnis hinzufügen",
+        "remove": "Entfernen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte stellen Sie sicher, dass alle Ergebniswerte Zahlen sind, alle Wahrscheinlichkeiten zwischen 0 und 1 liegen und die Gesamtwahrscheinlichkeit 1 ergibt."
+      },
+      "result": {
+        "heading": "Erwartungswert-Ergebnisse",
+        "expectedValue": "Erwartungswert E[X]",
+        "variance": "Varianz Var(X)",
+        "stdDev": "Standardabweichung σ",
+        "probSum": "Wahrscheinlichkeitssumme"
+      },
+      "about": {
+        "heading": "Über den Erwartungswert-Rechner",
+        "body": "Der Erwartungswert, auch mathematischer Erwartungswert oder Mittelwert einer Wahrscheinlichkeitsverteilung genannt, ist eines der wichtigsten Konzepte der Wahrscheinlichkeitstheorie und Statistik. Er beschreibt den langfristigen Durchschnittsausgang eines Zufallsexperiments, wenn es unter identischen Bedingungen sehr oft wiederholt würde. Für eine diskrete Zufallsvariable X mit den Ergebnissen x₁, x₂, …, xₙ und den zugehörigen Wahrscheinlichkeiten p₁, p₂, …, pₙ ist der Erwartungswert definiert als E[X] = Σ xᵢ pᵢ.\n\nDer Erwartungswert ist nicht zwingend ein Wert, den die Zufallsvariable tatsächlich annehmen kann — er ist ein gewichteter Durchschnitt aller möglichen Ergebnisse. So hat beispielsweise das Werfen eines fairen sechsseitigen Würfels einen Erwartungswert von 3.5, obwohl 3.5 keine Würfelseite ist. Diese Deutung als Langzeitmittel wird durch das Gesetz der großen Zahlen formalisiert, das besagt, dass der Stichprobenmittelwert mit zunehmender Anzahl von Versuchen gegen den Erwartungswert konvergiert.\n\nDieser Rechner berechnet außerdem die Varianz Var(X) = E[(X − E[X])²] = E[X²] − (E[X])², die misst, wie stark die Verteilung um ihren Mittelwert streut. Die Standardabweichung σ = √Var(X) ist die Quadratwurzel der Varianz und wird in denselben Einheiten wie X angegeben, wodurch sie sich in der Praxis leichter interpretieren lässt.\n\nDer Erwartungswert hat unzählige Anwendungen in Wissenschaft, Wirtschaft, Finanzen und Technik. In der Entscheidungstheorie bildet er die Grundlage für die Maximierung des erwarteten Nutzens — die Idee, dass rationale Akteure die Handlung mit dem höchsten erwarteten Nutzen wählen. In der Versicherungswirtschaft verwenden Aktuare den Erwartungswert zur Preisgestaltung von Policen: Die Prämie muss die erwartete Auszahlung sowie Betriebs- und Gewinnmargen decken. In der Spieledesign-Praxis entscheidet der Erwartungswert darüber, ob ein Spiel fair ist. In der Portfoliotheorie ist die erwartete Rendite eines Portfolios der gewichtete Durchschnitt der erwarteten Renditen seiner Vermögenswerte.\n\nAchten Sie bei der Verwendung des Rechners darauf, dass alle Wahrscheinlichkeiten nicht negativ sind und sich innerhalb einer kleinen Toleranz exakt zu 1 addieren. Wenn die Wahrscheinlichkeiten nicht 1 ergeben, ist die Verteilung nicht korrekt definiert und die Berechnung des Erwartungswerts ist nicht sinnvoll. Häufige Fehler sind die Eingabe von Prozentwerten statt Dezimalwahrscheinlichkeiten (z. B. 25 statt 0.25) oder das Vergessen möglicher Ergebnisse."
+      },
+      "examples": {
+        "heading": "Beispiele",
+        "intro": "Diese Beispiele zeigen, wie der Erwartungswert in verschiedenen realen Szenarien angewendet wird.",
+        "colInput": "Ergebnisse & Wahrscheinlichkeiten",
+        "colOutput": "E[X]",
+        "colNote": "Hinweise",
+        "items": [
+          {
+            "input": "Würfel: Werte 1–6, jeweils mit Wahrscheinlichkeit 1/6 ≈ 0.1667",
+            "output": "E[X] = 3.5",
+            "note": "Fairer sechsseitiger Würfel; klassisches Lehrbuchbeispiel"
+          },
+          {
+            "input": "Investition: +$1000 (30%), +$500 (40%), −$200 (20%), −$500 (10%)",
+            "output": "E[X] = $410",
+            "note": "Positiver erwarteter Ertrag trotz Abwärtsrisiko"
+          },
+          {
+            "input": "Versicherung: $0 Auszahlung (95%), $5,000 (4%), $25,000 (1%)",
+            "output": "E[X] = $450",
+            "note": "Durchschnittliche jährliche Auszahlung pro Police; für die Prämienkalkulation genutzt"
+          },
+          {
+            "input": "Qualitätskontrolle: $0 Kosten (85%), $50 (10%), $150 (4%), $500 (1%)",
+            "output": "E[X] = $15",
+            "note": "Erwartete Fehlerkosten pro Einheit in der Produktion"
+          }
+        ],
+        "loadDice": "Laden: Würfelwurf",
+        "loadInvestment": "Laden: Investition",
+        "loadInsurance": "Laden: Versicherung"
+      },
+      "howto": {
+        "heading": "So verwenden Sie diesen Rechner",
+        "steps": [
+          "Geben Sie jeden möglichen Ausgang im Feld Ergebniswert ein — das kann jede reelle Zahl sein (positiv, negativ oder null), die den Gewinn oder das Ergebnis beschreibt.",
+          "Geben Sie die zugehörige Wahrscheinlichkeit im Feld Wahrscheinlichkeit ein — sie muss eine Dezimalzahl zwischen 0 und 1 sein (z. B. 0.25 für 25%).",
+          "Fügen Sie mit dem Button Ergebnis hinzufügen weitere Zeilen hinzu, bis alle möglichen Ergebnisse aufgelistet sind.",
+          "Prüfen Sie, ob die Wahrscheinlichkeiten 1 ergeben, bevor Sie auf Erwartungswert berechnen klicken — andernfalls zeigt der Rechner einen Fehler an.",
+          "Klicken Sie auf Erwartungswert berechnen, um E[X], Varianz, Standardabweichung und die Wahrscheinlichkeitssumme anzuzeigen."
+        ]
+      },
+      "faq": {
+        "heading": "Häufig gestellte Fragen",
+        "q1": "Was ist der Erwartungswert?",
+        "q1_a": "Der Erwartungswert E[X] ist der nach Wahrscheinlichkeiten gewichtete Durchschnitt aller möglichen Ergebnisse einer Zufallsvariable. Er beschreibt den langfristigen Mittelwert, den man bei sehr vielen Wiederholungen des Experiments beobachten würde. Formal gilt E[X] = Σ xᵢ × pᵢ, wobei xᵢ jedes mögliche Ergebnis und pᵢ seine Wahrscheinlichkeit ist.",
+        "q2": "Müssen die Wahrscheinlichkeiten genau 1 ergeben?",
+        "q2_a": "Ja. Für eine gültige Wahrscheinlichkeitsverteilung müssen die Wahrscheinlichkeiten genau 1 ergeben oder sich innerhalb einer Rundungstoleranz sehr nahe bei 1 befinden. Andernfalls ist die Verteilung nicht korrekt spezifiziert und der Erwartungswert ist bedeutungslos. Dieser Rechner prüft die Summe und zeigt einen Fehler an, wenn sie um mehr als 1% von 1 abweicht.",
+        "q3": "Was ist der Unterschied zwischen Erwartungswert und Durchschnitt?",
+        "q3_a": "Die Begriffe sind eng verwandt, werden aber in unterschiedlichen Kontexten verwendet. „Durchschnitt“ (oder Stichprobenmittelwert) bezeichnet den arithmetischen Mittelwert eines beobachteten Datensatzes. „Erwartungswert“ bezeichnet den theoretischen Mittelwert einer Wahrscheinlichkeitsverteilung — also den Mittelwert, den man langfristig erwarten würde. Mit wachsender Stichprobengröße konvergiert der Stichprobenmittelwert gegen den Erwartungswert (Gesetz der großen Zahlen).",
+        "q4": "Kann der Erwartungswert negativ sein?",
+        "q4_a": "Ja, der Erwartungswert kann jeder reelle Wert sein, einschließlich negativer Werte. Ein negativer Erwartungswert bedeutet, dass der Prozess im Durchschnitt ungünstig ist — viele Casinospiele haben zum Beispiel einen negativen Erwartungswert für den Spieler. Ein positiver Erwartungswert bedeutet, dass der Prozess im Durchschnitt günstig ist, weshalb legitime Versicherungs- und Anlageprodukte für den Anbieter einen positiven Erwartungswert haben.",
+        "q5": "Was sagt mir die Varianz über eine Verteilung?",
+        "q5_a": "Die Varianz Var(X) = E[(X − E[X])²] misst die mittlere quadrierte Abweichung vom Mittelwert. Eine hohe Varianz bedeutet, dass die Ergebnisse stark streuen — die Verteilung hat dicke Ränder oder extreme Werte. Eine niedrige Varianz bedeutet, dass die Ergebnisse eng um den Mittelwert liegen. Die Standardabweichung σ = √Var(X) wird oft bevorzugt, weil sie dieselben Einheiten wie X hat und dadurch intuitiver ist.",
+        "q6": "Wie wird der Erwartungswert bei Entscheidungen verwendet?",
+        "q6_a": "In der Entscheidungstheorie besagt das Erwartungswert-Kriterium, dass ein rationaler Akteur die Handlung mit dem höchsten erwarteten Nutzen wählen sollte. Dieses Prinzip liegt der Preisgestaltung von Versicherungen, der Investitionsanalyse, der Spieltheorie und dem Design klinischer Studien zugrunde. Der Erwartungswert allein erfasst jedoch keine Risikoaversion — jemand könnte einen sicheren Gewinn von 50 $ einer 50%igen Chance auf 120 $ vorziehen, obwohl die zweite Option den höheren Erwartungswert hat. Deshalb erweitert die Erwartungsnutzentheorie den Grundrahmen."
+      }
+    },
+    "exponential-distribution-calculator": {
+      "title": "Exponentialverteilung Rechner",
+      "tagline": "Berechnen Sie PDF, CDF und Statistiken der Exponentialverteilung.",
+      "intro": "Geben Sie den Ratenparameter λ und den Wert x ein, um Wahrscheinlichkeiten und statistische Kennwerte einer Exponentialverteilung zu berechnen.",
+      "field": {
+        "lambda": "Ratenparameter (λ)",
+        "x": "Wert (x)",
+        "calcType": "Berechnungstyp"
+      },
+      "type": {
+        "pdf": "PDF f(x)",
+        "cdfLessThan": "P(X < x)",
+        "cdfLessOrEqual": "P(X ≤ x)",
+        "cdfGreaterThan": "P(X > x)",
+        "cdfGreaterOrEqual": "P(X ≥ x)"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "placeholder": {
+        "number": "Eine Zahl eingeben"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie einen positiven Ratenparameter (λ > 0) und einen nichtnegativen Wert x ≥ 0 ein."
+      },
+      "result": {
+        "heading": "Ergebnisse",
+        "mean": "Mittelwert (1/λ)",
+        "median": "Median (ln 2 / λ)",
+        "variance": "Varianz (1/λ²)",
+        "stdDev": "Standardabweichung (1/λ)"
+      },
+      "about": {
+        "heading": "Über den Exponentialverteilung Rechner",
+        "body": "Die Exponentialverteilung ist eine stetige Wahrscheinlichkeitsverteilung, die die Zeit zwischen Ereignissen in einem Poisson-Prozess beschreibt — also einem Prozess, bei dem Ereignisse fortlaufend und unabhängig mit konstanter durchschnittlicher Rate auftreten. Sie wird durch einen einzigen Parameter λ (Lambda) charakterisiert, den Ratenparameter, der der durchschnittlichen Ereigniszahl pro Zeiteinheit entspricht. Die mittlere Zeit zwischen Ereignissen ist 1/λ.\n\nDie Wahrscheinlichkeitsdichtefunktion (PDF) lautet für x ≥ 0: f(x) = λe^(−λx). Die kumulative Verteilungsfunktion (CDF) ist F(x) = P(X ≤ x) = 1 − e^(−λx) und gibt die Wahrscheinlichkeit an, dass die Zeit bis zum nächsten Ereignis kleiner oder gleich x ist. Die Überlebensfunktion P(X > x) = e^(−λx) gibt die Wahrscheinlichkeit an, dass das Ereignis bis zum Zeitpunkt x noch nicht eingetreten ist.\n\nDie Exponentialverteilung hat eine wichtige Eigenschaft namens Gedächtnislosigkeit: P(X > s + t | X > s) = P(X > t). Das bedeutet, dass die Wahrscheinlichkeit, noch weitere t Zeiteinheiten zu warten, nicht davon abhängt, wie lange Sie bereits gewartet haben. Unter den stetigen Verteilungen besitzt nur die Exponentialverteilung diese Eigenschaft, weshalb sie sich besonders gut für Systeme ohne Alterung oder Verschleiß eignet.\n\nStatistische Kennwerte der Exponentialverteilung lassen sich alle in λ ausdrücken: Mittelwert = 1/λ, Varianz = 1/λ², Standardabweichung = 1/λ und Median = ln(2)/λ ≈ 0.693/λ. Beachten Sie, dass der Mittelwert größer als der Median ist, was die rechtsschiefe Form der Verteilung widerspiegelt.\n\nDie praktischen Anwendungen reichen über viele Bereiche. In der Zuverlässigkeitstechnik modelliert die Exponentialverteilung die Lebensdauer von elektronischen Bauteilen, die nicht verschleißen (etwa bestimmte Transistoren). In der Warteschlangentheorie beschreibt sie Zwischenankunftszeiten und Bedienzeiten. In der Kernphysik folgt der radioaktive Zerfall einer Exponentialverteilung. In der Telekommunikation modelliert sie die Zeit zwischen aufeinanderfolgenden Paketankünften. In der Finanzwelt nähert sie in vereinfachten Modellen die Zeit zwischen Trades oder Kreditausfällen an."
+      },
+      "examples": {
+        "heading": "Beispiele",
+        "intro": "Diese Beispiele zeigen, wie die Exponentialverteilung in praktischen Szenarien auftritt.",
+        "colInput": "Parameter",
+        "colOutput": "Wahrscheinlichkeit",
+        "colNote": "Szenario",
+        "items": [
+          {
+            "input": "λ = 2 per min, x = 0.5 min",
+            "output": "P(X < 0.5) ≈ 0.6321",
+            "note": "Kundendienstanrufe kommen mit 2 pro Minute; 63 % Chance, dass der nächste Anruf innerhalb von 30 Sekunden eintrifft"
+          },
+          {
+            "input": "λ = 0.0005 per hr, x = 2500 hr",
+            "output": "P(X ≥ 2500) ≈ 0.2865",
+            "note": "Glühbirne mit einer mittleren Lebensdauer von 2000 Stunden; 29 % Chance, länger als 2500 Stunden zu halten"
+          },
+          {
+            "input": "λ = 0.1 per sec, x = 5 sec",
+            "output": "f(5) ≈ 0.0607",
+            "note": "Radioaktiver Zerfall als PDF genau bei 5 Sekunden"
+          },
+          {
+            "input": "λ = 0.1 per min, x = 15 min",
+            "output": "P(X > 15) ≈ 0.2231",
+            "note": "Ein Bus kommt im Schnitt alle 10 Minuten; 22 % Chance, länger als 15 Minuten zu warten"
+          }
+        ],
+        "loadCustomerService": "Laden: Kundendienst",
+        "loadLightBulb": "Laden: Glühbirne",
+        "loadRadioactive": "Laden: Radioaktiver Zerfall"
+      },
+      "howto": {
+        "heading": "So verwenden Sie diesen Rechner",
+        "steps": [
+          "Geben Sie den Ratenparameter λ (Lambda) ein — das ist die durchschnittliche Anzahl von Ereignissen pro Zeiteinheit. Beträgt die mittlere Ankunftszeit 10 Minuten, dann gilt λ = 1/10 = 0.1.",
+          "Geben Sie den Wert x ein — die konkrete Zeit (oder Strecke oder andere Größe), an der Sie die Verteilung auswerten möchten.",
+          "Wählen Sie den Berechnungstyp: PDF für die Wahrscheinlichkeitsdichte bei x oder eine der CDF-Optionen für kumulative Wahrscheinlichkeiten.",
+          "Klicken Sie auf Berechnen, um die gewählte Wahrscheinlichkeit sowie Mittelwert, Median, Varianz und Standardabweichung der Verteilung anzuzeigen.",
+          "Nutzen Sie die Schnellladen-Schaltflächen, um typische reale Szenarien mit der Exponentialverteilung zu erkunden."
+        ]
+      },
+      "faq": {
+        "heading": "Häufig gestellte Fragen",
+        "q1": "Was bedeutet der Ratenparameter λ?",
+        "q1_a": "Der Ratenparameter λ (Lambda) ist die durchschnittliche Anzahl von Ereignissen pro Zeiteinheit (oder Strecke bzw. Raum). Wenn Kunden beispielsweise mit einer Rate von 3 pro Stunde eintreffen, dann gilt λ = 3 pro Stunde und die mittlere Zeit zwischen Ankünften beträgt 1/λ = 20 Minuten. Ein höheres λ bedeutet, dass Ereignisse häufiger auftreten und die Verteilung stärker nahe Null konzentriert ist.",
+        "q2": "Was ist der Unterschied zwischen PDF und CDF?",
+        "q2_a": "Die PDF f(x) = λe^(−λx) gibt die Wahrscheinlichkeitsdichte an einem bestimmten Punkt x an — sie ist keine Wahrscheinlichkeit selbst, sondern eine Wahrscheinlichkeitsrate pro x-Einheit. Die CDF F(x) = P(X ≤ x) = 1 − e^(−λx) gibt die Wahrscheinlichkeit an, dass die Zufallsvariable höchstens x ist; das ist eine echte Wahrscheinlichkeit zwischen 0 und 1. Bei stetigen Verteilungen ist die Wahrscheinlichkeit an einem exakten Punkt null; Wahrscheinlichkeiten gelten nur für Intervalle.",
+        "q3": "Was ist die Gedächtnislosigkeit?",
+        "q3_a": "Die Gedächtnislosigkeit besagt: P(X > s + t | X > s) = P(X > t). Wenn Sie bereits s Zeiteinheiten ohne Ereignis gewartet haben, ist die Wahrscheinlichkeit, weitere t Zeiteinheiten zu warten, dieselbe wie beim Neustart. Praktisch heißt das: Eine Glühbirne, die 1000 Stunden gelaufen ist, hat die gleiche Ausfallwahrscheinlichkeit in der nächsten Stunde wie eine neue — es gibt keinen Alterungseffekt. Unter den stetigen Verteilungen besitzt nur die Exponentialverteilung diese Eigenschaft.",
+        "q4": "Warum ist der Mittelwert größer als der Median?",
+        "q4_a": "Der Mittelwert der Exponentialverteilung ist 1/λ, während der Median ln(2)/λ ≈ 0.693/λ beträgt. Der Median ist kleiner, weil die Verteilung rechtsschief ist: Ein langer Schwanz großer Werte zieht den Mittelwert nach oben. Mehr als die Hälfte aller Beobachtungen liegt unter dem Mittelwert, was ein Merkmal positiv schiefer Verteilungen ist. Das ist in der Zuverlässigkeitsanalyse wichtig, da die 'typische' Ausfallzeit oft der Median und nicht der Mittelwert ist.",
+        "q5": "Kann die Exponentialverteilung Lebensdauerdaten modellieren?",
+        "q5_a": "Die Exponentialverteilung eignet sich für Bauteile mit konstanter Ausfallrate — also solche, die mit der Zeit nicht verschleißen und weder Ermüdung noch Alterung unterliegen. Das ist ein sinnvolles Modell für bestimmte elektronische Bauteile und manche Softwarefehler. Für verschleißende Bauteile (etwa mechanische Teile oder menschliche Lebensdauern) ist jedoch die Weibull-Verteilung mit einem Formparameter ungleich 1 meist geeigneter.",
+        "q6": "Wie bestimme ich λ aus empirischen Daten?",
+        "q6_a": "Der Maximum-Likelihood-Schätzer von λ aus beobachteten Daten x₁, x₂, …, xₙ ist einfach der Kehrwert des Stichprobenmittelwerts: λ̂ = n / Σxᵢ = 1 / x̄. Das ist intuitiv: Wenn Ereignisse im Schnitt alle 5 Minuten auftreten (Mittelwert = 5), dann ist die Rate λ = 1/5 = 0.2 pro Minute. Sie können die Exponentialanpassung mit einem Q-Q-Plot oder einem Goodness-of-Fit-Test überprüfen."
+      }
     }
   }
 }

@@ -5877,6 +5877,476 @@
         "q6": "Pourquoi la prévalence compte-t-elle plus que l’exactitude du test ?",
         "q6_a": "À très faible prévalence, même un minuscule taux de faux positifs appliqué à une immense population saine dépasse les vrais positifs issus de la petite population malade. Doubler la spécificité de 95 % à 97,5 % ne fait que diviser par deux les faux positifs par personne, alors que doubler la prévalence double le nombre de vrais positifs — la prévalence influence donc bien plus fortement la PPV que l’exactitude."
       }
+    },
+    "fishers-exact-test-calculator": {
+      "title": "Calculateur du test exact de Fisher - tableau de contingence 2x2",
+      "tagline": "Calculez les p-values unilatérales et bilatérales ainsi que l’odds ratio pour un tableau de contingence 2×2 avec le test exact de Fisher — idéal pour les petits échantillons.",
+      "intro": "Saisissez les quatre effectifs de votre tableau 2×2 (groupe × résultat), puis cliquez sur Calculer pour obtenir les p-values exactes et l’odds ratio.",
+      "card": {
+        "title": "Test exact de Fisher",
+        "description": "Analyse un tableau de contingence 2×2 pour sa significativité statistique"
+      },
+      "table": {
+        "outcome1": "Résultat 1",
+        "outcome2": "Résultat 2",
+        "group1": "Groupe 1",
+        "group2": "Groupe 2"
+      },
+      "field": {
+        "cellA": "Cellule A (Groupe 1, Résultat 1)",
+        "cellB": "Cellule B (Groupe 1, Résultat 2)",
+        "cellC": "Cellule C (Groupe 2, Résultat 1)",
+        "cellD": "Cellule D (Groupe 2, Résultat 2)"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des entiers non négatifs dans les quatre cases et assurez-vous que le total est supérieur à zéro."
+      },
+      "result": {
+        "heading": "Résultat",
+        "oneTailed": "p-value unilatérale",
+        "twoTailed": "p-value bilatérale",
+        "oddsRatio": "Odds ratio",
+        "significant": "Statistiquement significatif à p < 0,05 — rejet de H₀.",
+        "notSignificant": "Non statistiquement significatif à p < 0,05 — H₀ non rejetée."
+      },
+      "about": {
+        "heading": "À propos du test exact de Fisher",
+        "body": "Le test exact de Fisher est un test de significativité statistique destiné à l’analyse de tableaux de contingence 2×2. Développé par Sir Ronald A. Fisher en 1922, il détermine s’il existe une association non aléatoire entre deux variables catégorielles — par exemple entre un groupe de traitement et une issue patient. Contrairement au test du chi carré, qui repose sur une approximation devenant inexacte lorsque les effectifs attendus sont faibles, le test exact de Fisher calcule la probabilité exacte des données observées (et de toutes les configurations plus extrêmes) à l’aide de la distribution hypergéométrique.\n\nLe test organise les données dans un tableau 2×2 dont les totaux marginaux sont fixés (sommes des lignes et des colonnes). À partir de ces marges, il calcule la probabilité de l’agencement observé sous l’hypothèse nulle d’absence d’association. La probabilité d’un tableau donné avec les cellules [a, b; c, d] est fournie par la formule hypergéométrique : P = C(a+b, a) × C(c+d, c) / C(n, a+c), où n = a+b+c+d. La p-value s’obtient en sommant les probabilités de tous les tableaux au moins aussi extrêmes que celui observé.\n\nPour une p-value unilatérale, 'extrême' signifie des tableaux où l’association va dans la même direction que celle observée. Pour une p-value bilatérale — adaptée à la plupart des questions de recherche — 'extrême' signifie des tableaux ayant une probabilité égale ou inférieure à celle du tableau observé, en additionnant les deux queues. La p-value bilatérale est donc plus conservative et plus largement utilisée dans la littérature.\n\nL’odds ratio quantifie la force de l’association : OR = (a × d) / (b × c). Un odds ratio de 1 signifie absence d’association ; une valeur supérieure à 1 indique que le Résultat 1 est plus probable dans le Groupe 1 que dans le Groupe 2 ; une valeur inférieure à 1 indique l’inverse. L’odds ratio est une mesure clé dans les études cas-témoins, les essais cliniques et les études d’association génétique.\n\nLe test exact de Fisher est approprié chaque fois que l’effectif attendu dans une cellule du tableau 2×2 est inférieur à 5, seuil à partir duquel l’approximation du chi carré devient peu fiable. Parmi les applications courantes figurent les essais cliniques comparant les taux de succès de traitement entre deux groupes, l’épidémiologie génétique testant l’association d’un allèle avec une maladie, la recherche en éducation comparant les taux de réussite/échec entre deux méthodes d’enseignement, et l’analyse marketing comparant les taux de conversion de deux variantes publicitaires. Le test est exact quel que soit la taille de l’échantillon, ce qui en fait la référence pour les petits échantillons dans ces domaines."
+      },
+      "examples": {
+        "heading": "Test exact de Fisher — Exemples",
+        "intro": "Trois scénarios réels montrant comment construire un tableau de contingence 2×2 et interpréter les p-values exactes.",
+        "colInput": "Tableau [a, b; c, d]",
+        "colOutput": "p bilatérale",
+        "colNote": "Contexte",
+        "loadDrug": "Charger l’exemple d’efficacité médicamenteuse",
+        "loadGene": "Charger l’exemple de génétique",
+        "loadTeaching": "Charger l’exemple de méthode d’enseignement",
+        "items": [
+          {
+            "input": "a=9, b=1, c=2, d=8 (n=20)",
+            "output": "p = 0.0350 (significatif)",
+            "note": "Essai d’un nouveau médicament : 9 des 10 patients traités se sont améliorés contre 2 des 10 sous placebo. L’association entre traitement et amélioration est statistiquement significative."
+          },
+          {
+            "input": "a=7, b=3, c=1, d=12 (n=23)",
+            "output": "p = 0.0189 (significatif)",
+            "note": "Génétique : 7 porteurs de la variante sur 10 sont malades contre 1 sur 13 chez les non-porteurs. Le gène est significativement associé à la maladie."
+          },
+          {
+            "input": "a=10, b=2, c=5, d=8 (n=25)",
+            "output": "p = 0.0840 (non significatif à 0,05)",
+            "note": "Méthodes d’enseignement : 10 des 12 élèves ont réussi avec la méthode A contre 5 des 13 avec la méthode B. La différence n’est pas significative au seuil de 5 %."
+          },
+          {
+            "input": "a=4, b=100, c=0, d=110 (n=214)",
+            "output": "p = 0.0563 (limite)",
+            "note": "Test A/B d’une campagne publicitaire : 4 conversions pour l’annonce A contre 0 pour l’annonce B, sur environ 110 vues chacune. Le résultat est borderline et mérite un suivi sur un échantillon plus grand."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur du test exact de Fisher",
+        "steps": [
+          "Organisez vos données dans un tableau de contingence 2×2 : les lignes sont les deux groupes (Groupe 1 et Groupe 2) et les colonnes sont les deux résultats possibles (Résultat 1 et Résultat 2).",
+          "Saisissez l’effectif de chaque cellule : Cellule A (Groupe 1, Résultat 1), Cellule B (Groupe 1, Résultat 2), Cellule C (Groupe 2, Résultat 1), Cellule D (Groupe 2, Résultat 2). Toutes les valeurs doivent être des entiers non négatifs.",
+          "Cliquez sur « Calculer ». Le calculateur énumère tous les tableaux 2×2 possibles ayant les mêmes totaux marginaux et additionne les probabilités hypergéométriques pour obtenir les p-values exactes unilatérales et bilatérales.",
+          "Lisez la p-value bilatérale pour la plupart des questions de recherche. Si p < 0,05, l’association entre les deux groupes et les deux résultats est statistiquement significative.",
+          "Interprétez l’odds ratio : des valeurs > 1 indiquent que le Résultat 1 est plus probable dans le Groupe 1 ; des valeurs < 1 indiquent qu’il est moins probable. Utilisez les boutons d’exemple sous le tableau pour voir comment le test fonctionne dans des scénarios réels."
+        ]
+      },
+      "faq": {
+        "heading": "Test exact de Fisher — FAQ",
+        "q1": "Quand dois-je utiliser le test exact de Fisher plutôt que le chi carré ?",
+        "q1_a": "Utilisez le test exact de Fisher dès qu’un effectif attendu dans votre tableau 2×2 est inférieur à 5, ou lorsque la taille totale de l’échantillon est faible (n < 20 est une règle empirique courante). Le test du chi carré repose sur une approximation qui se dégrade avec de petits effectifs, produisant des p-values peu fiables. Le test de Fisher est toujours exact, donc il peut être utilisé en toute sécurité pour n’importe quelle taille d’échantillon.",
+        "q2": "Que signifie la p-value bilatérale dans le test de Fisher ?",
+        "q2_a": "La p-value bilatérale est la probabilité d’observer un tableau aussi extrême, ou plus extrême, que celui obtenu dans l’une ou l’autre direction, en supposant que l’hypothèse nulle d’absence d’association est vraie. 'Extrême' signifie ici une probabilité hypergéométrique aussi faible que, ou plus faible que, celle du tableau observé. Une p-value < 0,05 signifie conventionnellement que l’association est statistiquement significative.",
+        "q3": "Qu’est-ce que l’odds ratio et comment l’interpréter ?",
+        "q3_a": "L’odds ratio (OR) est (a × d) / (b × c). Un OR de 1 signifie que le Résultat 1 est tout aussi probable dans les deux groupes — aucune association. OR > 1 signifie que le Résultat 1 est plus probable dans le Groupe 1 que dans le Groupe 2 ; OR < 1 signifie qu’il est moins probable. Par exemple, OR = 9 signifie que les chances du Résultat 1 dans le Groupe 1 sont neuf fois celles du Groupe 2, une forte association positive.",
+        "q4": "Quelle est la différence entre les p-values unilatérales et bilatérales ?",
+        "q4_a": "La p-value unilatérale teste une association dans une direction précise (par exemple, que le Groupe 1 a un taux de Résultat 1 plus élevé que le Groupe 2). La p-value bilatérale teste toute association, quelle qu’en soit la direction. Sauf si vous aviez une hypothèse directionnelle préalable avant de voir les données, la p-value bilatérale est le choix approprié et plus conservateur.",
+        "q5": "Que sont les totaux marginaux et pourquoi doivent-ils être fixes ?",
+        "q5_a": "Les totaux marginaux sont les sommes des lignes (a+b et c+d) et des colonnes (a+c et b+d) du tableau. Le test de Fisher conditionne ces totaux comme fixes, ce qui sert de base à la dérivation de la distribution hypergéométrique exacte. En pratique, les marges sont fixées par la conception de l’étude (par exemple, des tailles de groupe prédéterminées ou un nombre total d’événements).",
+        "q6": "Le test exact de Fisher peut-il être utilisé pour des tableaux plus grands que 2×2 ?",
+        "q6_a": "Le test exact de Fisher classique est défini pour les tableaux 2×2. Des généralisations aux tableaux de contingence r×c plus grands existent (avec une distribution hypergéométrique multidimensionnelle), mais elles sont coûteuses en calcul. Pour les tableaux plus grands avec de petits effectifs attendus, on peut appliquer le test exact à des sous-tableaux 2×2, ou utiliser des tests exacts basés sur une simulation Monte Carlo disponibles dans les logiciels statistiques."
+      }
+    },
+    "frequency-distribution-calculator": {
+      "title": "Calculateur de distribution de fréquences - Créer des tableaux",
+      "tagline": "Créez instantanément un tableau complet de distribution de fréquences à partir de n'importe quel jeu de données. Obtenez intervalles de classe, fréquences, fréquences relatives, fréquences cumulées et statistiques clés.",
+      "intro": "Collez ou saisissez vos nombres séparés par des virgules ou des espaces, choisissez le nombre d'intervalles de classe, puis cliquez sur Calculer pour générer le tableau complet et le résumé.",
+      "card": {
+        "title": "Calculateur de distribution de fréquences",
+        "description": "Organise les données en intervalles de classe groupés avec fréquences et statistiques"
+      },
+      "field": {
+        "dataSet": "Jeu de données",
+        "dataHint": "Séparez les nombres avec des virgules, des espaces ou des retours à la ligne.",
+        "numClasses": "Nombre de classes (bins)"
+      },
+      "placeholder": {
+        "data": "p. ex. 82, 90, 75, 68, 88, 95, 72, 85..."
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins 2 nombres valides et choisir entre 2 et 50 classes."
+      },
+      "result": {
+        "heading": "Tableau de distribution de fréquences",
+        "colClass": "Intervalle de classe",
+        "colMidpoint": "Milieu",
+        "colFreq": "Fréquence",
+        "colRelFreq": "Fréquence relative",
+        "colCumFreq": "Fréquence cumulée",
+        "statCount": "Nombre (n)",
+        "statMean": "Moyenne (groupée)",
+        "statMedian": "Médiane (groupée)",
+        "statStdDev": "Écart type (groupé)",
+        "statMin": "Minimum",
+        "statMax": "Maximum",
+        "statClassWidth": "Largeur de classe"
+      },
+      "about": {
+        "heading": "À propos du calculateur de distribution de fréquences",
+        "body": "Une distribution de fréquences est un résumé tabulaire qui montre à quelle fréquence chaque valeur — ou chaque plage de valeurs — apparaît dans un jeu de données. En organisant les données brutes en un nombre maniable d'intervalles de classe et en comptant les observations dans chaque intervalle, un tableau de distribution de fréquences transforme une liste désordonnée de nombres en une image structurée de la forme, du centre et de la dispersion des données. Les distributions de fréquences sont un concept fondamental de la statistique descriptive et servent de base aux histogrammes, aux polygones de fréquence relative et aux courbes de fréquence cumulée.\n\nUne distribution de fréquences groupée divise l'étendue des données en un nombre fixe d'intervalles de classe non superposés et de même largeur. Chaque intervalle a une borne inférieure, une borne supérieure et un milieu. La fréquence est le nombre de données qui tombent dans l'intervalle. La fréquence relative est la fréquence exprimée comme proportion (ou pourcentage) du total, ce qui facilite la comparaison entre des jeux de données de tailles différentes. La fréquence cumulée est la somme progressive des fréquences depuis la première classe jusqu'à la classe courante, et elle indique combien de données se trouvent au plus à la borne supérieure de chaque classe.\n\nLe choix du nombre de classes est un équilibre : trop peu de classes fusionnent des motifs distincts en un seul bloc, tandis que trop de classes étalent les données au point qu'aucun schéma clair n'émerge. Une règle empirique courante est la règle de Sturges : k = 1 + 3.322 × log₁₀(n), où n est le nombre de données. Par exemple, 20 données suggèrent k ≈ 5 classes ; 100 données suggèrent k ≈ 7 classes. La largeur de classe est alors width = (max − min) / k, arrondie au supérieur à une valeur pratique pour que toutes les données entrent proprement.\n\nLes statistiques résumées tirées d'une distribution de fréquences sont des approximations basées sur les données groupées plutôt que sur les valeurs individuelles. La moyenne groupée se calcule comme Σ(milieu × fréquence) / n. L'écart type groupé mesure la dispersion des données autour de la moyenne groupée. La médiane groupée est estimée par interpolation à l'intérieur de l'intervalle de classe contenant la n/2e observation. Ces approximations sont très proches des valeurs exactes calculées à partir des données brutes lorsque la largeur de classe est petite par rapport à l'étendue.\n\nLes distributions de fréquences sont utilisées dans tous les domaines qui génèrent des données numériques. Les enseignants les emploient pour analyser des notes et repérer les élèves qui pourraient avoir besoin d'un soutien supplémentaire. Les entreprises analysent les montants des ventes, les notes des produits ou les temps d'attente des clients pour identifier les pics et les goulots d'étranglement. Les chercheurs en santé répartissent des mesures cliniques comme la tension artérielle, le cholestérol ou l'IMC pour comprendre l'état de santé des populations. Les ingénieurs qualité examinent les mesures issues des processus de production pour détecter des défauts ou des dérives. Dans chaque cas, le tableau de distribution de fréquences est le point de départ d'analyses plus avancées."
+      },
+      "examples": {
+        "heading": "Distribution de fréquences — Exemples",
+        "intro": "Trois jeux de données pratiques montrant différentes structures de classes et statistiques résumées.",
+        "colInput": "Jeu de données",
+        "colOutput": "Structure",
+        "colNote": "Contexte",
+        "loadScores": "Charger l'exemple de notes",
+        "loadSales": "Charger l'exemple de ventes quotidiennes",
+        "loadPlants": "Charger l'exemple de hauteurs de plantes",
+        "items": [
+          {
+            "input": "82,90,75,68,88,75,95,100,72,85,91,78,84,88,77,95,65,80,73,86 — 5 classes",
+            "output": "Classes : [65,72), [72,79), [79,86) … ; Moyenne ≈ 82.85",
+            "note": "Notes d'élèves d'une classe de 20. Largeur de classe = 7. La plupart des notes se regroupent entre 72 et 93, avec une légère queue à gauche."
+          },
+          {
+            "input": "150,220,180,190,250,160,200,210,170,240,195,175,215,185,230 — 6 classes",
+            "output": "Classes : [150,170), [170,190), [190,210) … ; Moyenne ≈ 202.7",
+            "note": "Ventes quotidiennes. Largeur de classe = 20. La distribution montre que la plupart des jours se concentrent dans la fourchette 170–230 dollars."
+          },
+          {
+            "input": "35,42,38,50,45,48,36,39,47,41,43,46,40,37,44,49,38,42,45,36 — 5 classes",
+            "output": "Classes : [35,38), [38,41), [41,44) … ; Moyenne ≈ 42.1",
+            "note": "Hauteurs de plantes en cm dans une étude botanique. La distribution en cloche confirme un schéma de croissance approximativement normal."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de distribution de fréquences",
+        "steps": [
+          "Saisissez vos données numériques dans le champ 'Jeu de données'. Vous pouvez séparer les valeurs par des virgules, des espaces ou des retours à la ligne ; la calculatrice accepte toute combinaison de ces séparateurs.",
+          "Choisissez le nombre de classes (bins) qui convient le mieux à votre jeu de données. Un bon point de départ est 5 classes pour les petits jeux de données (n < 30) et 7–10 pour les plus grands. Vous pouvez utiliser la règle de Sturges : k ≈ 1 + 3.322 × log₁₀(n).",
+          "Cliquez sur 'Calculer'. Le calculateur trouve le minimum et le maximum, calcule la largeur de classe comme (max − min) / classes arrondie au supérieur, puis affecte chaque donnée à l'intervalle approprié.",
+          "Lisez le tableau des fréquences. Chaque ligne affiche l'intervalle de classe, le milieu, la fréquence, la fréquence relative (en pourcentage du total) et la fréquence cumulée (somme progressive).",
+          "Consultez les statistiques résumées sous le tableau pour voir la moyenne groupée, la médiane, l'écart type et la largeur de classe. Utilisez les boutons d'exemple pour tester la calculatrice avec des jeux de données préremplis."
+        ]
+      },
+      "faq": {
+        "heading": "Calculateur de distribution de fréquences — FAQ",
+        "q1": "Qu'est-ce qu'un tableau de distribution de fréquences ?",
+        "q1_a": "Un tableau de distribution de fréquences organise des données numériques brutes en groupes appelés intervalles de classe (ou bins) et compte combien de valeurs tombent dans chaque groupe. Il transforme une liste désordonnée en un résumé structuré montrant où les données se regroupent, à quel point elles sont dispersées et quelle est la forme générale de la distribution.",
+        "q2": "Comment choisir le nombre de classes ?",
+        "q2_a": "Une approche courante est la règle de Sturges : k = 1 + 3.322 × log₁₀(n), où n est la taille de l'échantillon. Cela donne environ 5 classes pour 20 données et environ 7 pour 100. Sinon, essayez : commencez avec 5 classes et augmentez jusqu'à ce que la distribution révèle un motif clair sans devenir trop bruitée. La plupart des manuels recommandent 5 à 15 classes.",
+        "q3": "Qu'est-ce que la fréquence relative et pourquoi est-elle utile ?",
+        "q3_a": "La fréquence relative est la proportion du total des observations qui tombe dans une classe : fréquence relative = fréquence de la classe / n total. Elle convertit les comptes en pourcentages, ce qui facilite la comparaison de distributions issues de jeux de tailles différentes. Par exemple, savoir que 35 % des notes se situent entre 70 et 80 est plus informatif que connaître seulement le nombre d'élèves lorsqu'on compare deux classes de tailles différentes.",
+        "q4": "Qu'est-ce que la fréquence cumulée ?",
+        "q4_a": "La fréquence cumulée est la somme progressive des fréquences depuis la première classe jusqu'à la classe courante. Elle indique combien de données se trouvent au plus à la borne supérieure de chaque classe. Par exemple, si la fréquence cumulée à la fin de la troisième classe est de 15 sur 20, alors 75 % des observations appartiennent aux trois premières classes. La fréquence cumulée est à la base de l'ogive (courbe de fréquence cumulée).",
+        "q5": "Pourquoi la moyenne et l'écart type sont-ils indiqués comme 'groupés' ?",
+        "q5_a": "Lorsque les données sont regroupées en intervalles de classe, les valeurs individuelles exactes sont perdues. La moyenne et l'écart type groupés sont calculés en utilisant le milieu de chaque classe comme valeur représentative, ce qui introduit une petite approximation. Ces estimations sont très précises lorsque la largeur de classe est petite par rapport à l'étendue, mais peuvent différer légèrement des statistiques calculées sur les données brutes.",
+        "q6": "Quelle est la différence entre histogramme de fréquence et histogramme de fréquence relative ?",
+        "q6_a": "Un histogramme de fréquence trace le nombre brut sur l'axe y, tandis qu'un histogramme de fréquence relative trace la proportion (ou le pourcentage). Les histogrammes de fréquence relative sont directement comparables entre jeux de tailles différentes et peuvent servir d'approximation empirique de la distribution de probabilité sous-jacente. La forme est identique dans les deux cas ; seule l'échelle de l'axe y change."
+      }
+    },
+    "error-propagation-calculator": {
+      "title": "Calculateur de propagation des erreurs",
+      "tagline": "Calculez la propagation de l’incertitude pour les formules de somme/différence et de produit/puissance.",
+      "intro": "Déterminez comment les incertitudes de mesure se combinent lors d’opérations mathématiques.",
+      "field": {
+        "formulaType": "Type de formule",
+        "a": "Constante A",
+        "x": "Valeur de X",
+        "dx": "Incertitude sur X (Δx)",
+        "b": "Constante B",
+        "y": "Valeur de Y",
+        "dy": "Incertitude sur Y (Δy)",
+        "k": "Constante K",
+        "aExp": "Exposant 'a'",
+        "bExp": "Exposant 'b'"
+      },
+      "type": {
+        "sumDifference": "Somme / Différence (z = ax + by)",
+        "productPower": "Produit / Puissance (z = k · xᵃ · yᵇ)"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "placeholder": {
+        "number": "Saisissez un nombre"
+      },
+      "result": {
+        "heading": "Résultats",
+        "z": "Résultat (Z)",
+        "deltaZ": "Incertitude absolue (ΔZ)",
+        "relativeUncertainty": "Incertitude relative (%ΔZ)"
+      },
+      "about": {
+        "heading": "À propos du calculateur de propagation des erreurs",
+        "body": "La propagation des erreurs, aussi appelée propagation de l’incertitude, est une technique fondamentale en sciences expérimentales et en ingénierie. Chaque fois que vous effectuez un calcul à partir de grandeurs mesurées, chaque mesure porte une incertitude intrinsèque, et ces incertitudes se combinent pour produire une incertitude sur le résultat final. Comprendre comment les erreurs se propagent est essentiel pour présenter les résultats avec une précision et un niveau de confiance appropriés.\n\nCe calculateur prend en charge deux types de formules parmi les plus courants en physique, en chimie et en ingénierie. La formule Somme/Différence traite les combinaisons linéaires de la forme z = ax + by, où l’on additionne ou soustrait des multiples de deux grandeurs mesurées. L’incertitude absolue sur z est donnée par ΔZ = √((aΔx)² + (bΔy)²), conformément à la règle générale d’addition des incertitudes en quadrature (en supposant que les mesures sont indépendantes et que les erreurs sont aléatoires).\n\nLa formule Produit/Puissance couvre le cas z = k · xᵃ · yᵇ, que l’on rencontre dans les calculs d’aire (longueur × largeur), de densité (masse / volume), de puissance électrique (tension × courant) et de nombreuses autres grandeurs physiques. Pour ce type, l’incertitude relative est calculée en premier : %ΔZ / 100 = √((a·Δx/x)² + (b·Δy/y)²). L’incertitude absolue est ensuite ΔZ = |Z| × (%ΔZ / 100).\n\nCes formules supposent que les erreurs de mesure sont aléatoires (non systématiques), indépendantes les unes des autres et petites par rapport aux valeurs elles-mêmes — des conditions généralement satisfaites dans des expériences de laboratoire bien conçues. Lorsque les erreurs sont corrélées, un traitement plus avancé incluant des termes de covariance est nécessaire.\n\nLes applications pratiques sont nombreuses. Les scientifiques mesurent des longueurs, des masses, des tensions, des températures et des pressions, toujours avec une précision finie. Les ingénieurs calculent des propriétés de matériaux, des concentrations de contraintes et des débits à partir de données imparfaites. Les chercheurs médicaux propagent les incertitudes dans des formules biostatistiques. Dans chaque cas, donner un résultat sans son incertitude — par exemple écrire density = 8.94 g/cm³ au lieu de density = (8.94 ± 0.07) g/cm³ — fournit une image incomplète et potentiellement trompeuse.\n\nL’incertitude relative (%ΔZ) est particulièrement utile, car elle exprime la précision fractionnaire du résultat et permet de comparer facilement des grandeurs d’ordres de grandeur très différents. Un résultat dont l’incertitude relative est inférieure à 1 % est généralement considéré comme précis, tandis qu’au-dessus de 10 %, il peut être nécessaire d’améliorer les techniques de mesure."
+      },
+      "examples": {
+        "heading": "Exemples pratiques",
+        "intro": "Découvrez comment le calculateur de propagation des erreurs fonctionne avec des scénarios de mesure réels.",
+        "colInput": "Entrées",
+        "colOutput": "Résultat (Z ± ΔZ)",
+        "colNote": "Remarques",
+        "items": [
+          {
+            "input": "Somme : A=1, X=10.5 ± 0.2 cm, B=1, Y=5.2 ± 0.1 cm",
+            "output": "Z = 15.7 ± 0.22 cm",
+            "note": "Addition de deux longueurs ; les erreurs s’additionnent en quadrature"
+          },
+          {
+            "input": "Produit : k=1, X=5.0 ± 0.1 m (a=1), Y=10.0 ± 0.2 m (b=1)",
+            "output": "Z = 50.0 ± 1.41 m²",
+            "note": "Aire d’un rectangle ; les erreurs relatives se combinent"
+          },
+          {
+            "input": "Produit : k=1, X=100 ± 2 g (a=1), Y=10 ± 0.5 cm³ (b=−1)",
+            "output": "Z = 10.0 ± 0.6 g/cm³",
+            "note": "Densité = masse/volume ; b=−1 pour la division"
+          },
+          {
+            "input": "Somme : A=2, X=15.0 ± 0.3 m, B=2, Y=8.0 ± 0.2 m",
+            "output": "Z = 46.0 ± 0.72 m",
+            "note": "Périmètre P = 2L + 2W"
+          }
+        ],
+        "loadAddLengths": "Charger : addition de longueurs",
+        "loadRectArea": "Charger : aire du rectangle",
+        "loadDensity": "Charger : densité"
+      },
+      "howto": {
+        "heading": "Comment utiliser ce calculateur",
+        "steps": [
+          "Sélectionnez le type de formule : Somme/Différence (z = ax + by) pour les combinaisons linéaires, ou Produit/Puissance (z = k · xᵃ · yᵇ) pour les produits et quotients.",
+          "Saisissez les coefficients constants (A, B pour la somme ; K, a, b pour le produit) — utilisez 1 si aucun coefficient ne s’applique.",
+          "Saisissez les valeurs mesurées de X et Y avec leurs incertitudes absolues Δx et Δy (écarts types ou incertitudes de demi-intervalle).",
+          "Cliquez sur Calculer pour afficher le résultat Z, l’incertitude absolue ΔZ et l’incertitude relative %ΔZ.",
+          "Utilisez les boutons de chargement rapide pour explorer les exemples intégrés et vérifier votre compréhension des formules."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "q1": "Qu’est-ce que la propagation des erreurs ?",
+        "q1_a": "La propagation des erreurs (ou propagation de l’incertitude) est le processus mathématique qui détermine comment les incertitudes des mesures d’entrée se combinent pour produire une incertitude sur un résultat calculé. Lorsque vous calculez z = f(x, y, …), l’incertitude ΔZ dépend des dérivées partielles de f et des incertitudes individuelles Δx, Δy. Ce calculateur traite les deux modèles de formule les plus courants.",
+        "q2": "Pourquoi additionne-t-on les incertitudes en quadrature ?",
+        "q2_a": "Lorsque les erreurs de mesure sont aléatoires et indépendantes, elles ont autant de chances d’être positives que négatives. Les additionner directement surestimerait l’erreur combinée. La règle de quadrature (racine carrée de la somme des carrés) reflète l’indépendance statistique : ΔZ = √((∂f/∂x·Δx)² + (∂f/∂y·Δy)²). Pour des erreurs systématiques qui vont toujours dans le même sens, une addition linéaire serait plus appropriée.",
+        "q3": "Quelle est la différence entre incertitude absolue et relative ?",
+        "q3_a": "L’incertitude absolue (ΔZ) est exprimée dans les mêmes unités que le résultat et indique la dispersion autour de la valeur centrale, par exemple (15.7 ± 0.2) cm. L’incertitude relative (%ΔZ = ΔZ/|Z| × 100%) est sans dimension et exprime la précision comme une fraction du résultat. Elle est utile pour comparer la précision de mesures différentes, quelle que soit leur échelle.",
+        "q4": "Quand utiliser Somme/Différence plutôt que Produit/Puissance ?",
+        "q4_a": "Utilisez Somme/Différence lorsque votre formule ajoute ou soustrait des multiples de grandeurs mesurées : périmètre, longueur totale, déplacement net. Utilisez Produit/Puissance lorsque votre formule multiplie ou divise des grandeurs mesurées élevées à des puissances : aire (L×W), volume (L×W×H), densité (m/V), énergie cinétique (½mv²). Pour les formules composites, appliquez la propagation des erreurs par étapes.",
+        "q5": "Pourquoi X ou Y ne peuvent-ils pas être nuls dans la formule Produit/Puissance ?",
+        "q5_a": "La formule de l’incertitude relative pour les produits/puissances est %ΔZ = √((a·Δx/|x|)² + (b·Δy/|y|)²). Une division par x ou y apparaît, donc des valeurs nulles provoqueraient une division par zéro. Physiquement, une valeur nulle signifie que la grandeur n’a pas été mesurée (ou qu’elle est exactement nulle sans incertitude), auquel cas la formule Produit/Puissance ne s’applique pas.",
+        "q6": "Que m’indique l’incertitude relative sur la qualité de ma mesure ?",
+        "q6_a": "L’incertitude relative est une mesure directe de la qualité de mesure. Les valeurs inférieures à 1 % sont considérées comme très précises et acceptables pour la plupart des travaux scientifiques. Les valeurs entre 1 % et 5 % conviennent à de nombreuses applications d’ingénierie. Les valeurs supérieures à 10 % suggèrent d’améliorer la technique de mesure : utiliser des instruments plus précis, prendre davantage de mesures ou réduire les sources systématiques d’erreur."
+      }
+    },
+    "expected-value-calculator": {
+      "title": "Calculateur d'espérance",
+      "tagline": "Calcule l'espérance mathématique de distributions discrètes.",
+      "intro": "Saisissez les valeurs des issues et leurs probabilités pour calculer E[X], la variance et l'écart-type.",
+      "field": {
+        "outcomeValue": "Valeur de l'issue",
+        "probability": "Probabilité",
+        "outcomeValuePlaceholder": "p. ex. 10",
+        "probabilityPlaceholder": "p. ex. 0.25"
+      },
+      "button": {
+        "calculate": "Calculer l'espérance",
+        "addRow": "Ajouter une issue",
+        "remove": "Supprimer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez vous assurer que toutes les valeurs d'issue sont des nombres, que toutes les probabilités sont comprises entre 0 et 1, et que la somme totale des probabilités est égale à 1."
+      },
+      "result": {
+        "heading": "Résultats de l'espérance",
+        "expectedValue": "Espérance E[X]",
+        "variance": "Variance Var(X)",
+        "stdDev": "Écart-type σ",
+        "probSum": "Somme des probabilités"
+      },
+      "about": {
+        "heading": "À propos du calculateur d'espérance",
+        "body": "L'espérance, aussi appelée espérance mathématique ou moyenne d'une distribution de probabilité, est l'un des concepts les plus importants en théorie des probabilités et en statistiques. Elle représente la moyenne à long terme du résultat d'une expérience aléatoire si celle-ci était répétée de nombreuses fois dans des conditions identiques. Pour une variable aléatoire discrète X avec des issues x₁, x₂, …, xₙ et des probabilités correspondantes p₁, p₂, …, pₙ, l'espérance est définie par E[X] = Σ xᵢ pᵢ.\n\nL'espérance n'est pas nécessairement une valeur que la variable aléatoire peut réellement prendre : c'est une moyenne pondérée de toutes les issues possibles. Par exemple, lancer un dé équilibré à six faces donne une espérance de 3.5, même si 3.5 n'est pas une face du dé. Cette interprétation comme moyenne à long terme est formalisée par la loi des grands nombres, qui affirme que la moyenne empirique converge vers l'espérance à mesure que le nombre d'essais augmente.\n\nCe calculateur calcule aussi la variance Var(X) = E[(X − E[X])²] = E[X²] − (E[X])², qui mesure l'étalement de la distribution autour de sa moyenne. L'écart-type σ = √Var(X) est la racine carrée de la variance et s'exprime dans les mêmes unités que X, ce qui le rend plus facile à interpréter en pratique.\n\nL'espérance a d'innombrables applications en science, en économie, en finance et en ingénierie. En théorie de la décision, elle constitue la base de la maximisation de l'utilité espérée : l'idée qu'un agent rationnel choisit l'action au gain espéré le plus élevé. En assurance, les actuaires utilisent l'espérance pour tarifer les contrats : la prime doit couvrir l'indemnisation attendue ainsi que les coûts d'exploitation et la marge bénéficiaire. Dans la conception de jeux, l'espérance permet de déterminer si un jeu est équitable. En théorie de portefeuille, le rendement attendu d'un portefeuille d'investissement est la moyenne pondérée des rendements attendus de ses actifs.\n\nLorsque vous utilisez le calculateur, assurez-vous que toutes les probabilités sont non négatives et que leur somme est exactement 1 (à une petite tolérance près). Si les probabilités ne totalisent pas 1, la distribution n'est pas correctement définie et le calcul de l'espérance n'a pas de sens. Les erreurs courantes consistent à saisir des pourcentages au lieu de probabilités décimales (par exemple 25 au lieu de 0.25) ou à oublier certaines issues possibles."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Ces exemples illustrent comment l'espérance s'applique à différents cas réels.",
+        "colInput": "Issues et probabilités",
+        "colOutput": "E[X]",
+        "colNote": "Notes",
+        "items": [
+          {
+            "input": "Dé : valeurs 1–6, chacune avec une probabilité de 1/6 ≈ 0.1667",
+            "output": "E[X] = 3.5",
+            "note": "Dé équilibré à six faces ; exemple classique de manuel"
+          },
+          {
+            "input": "Investissement : +$1000 (30%), +$500 (40%), −$200 (20%), −$500 (10%)",
+            "output": "E[X] = $410",
+            "note": "Rendement espéré positif malgré le risque de baisse"
+          },
+          {
+            "input": "Assurance : versement de $0 (95%), $5,000 (4%), $25,000 (1%)",
+            "output": "E[X] = $450",
+            "note": "Versement annuel moyen par contrat ; utilisé pour fixer les primes"
+          },
+          {
+            "input": "Contrôle qualité : coût de $0 (85%), $50 (10%), $150 (4%), $500 (1%)",
+            "output": "E[X] = $15",
+            "note": "Coût des défauts attendu par unité en fabrication"
+          }
+        ],
+        "loadDice": "Charger : lancer de dé",
+        "loadInvestment": "Charger : investissement",
+        "loadInsurance": "Charger : assurance"
+      },
+      "howto": {
+        "heading": "Comment utiliser ce calculateur",
+        "steps": [
+          "Saisissez chaque issue possible dans le champ Valeur de l'issue — cela peut être n'importe quel nombre réel (positif, négatif ou nul) représentant le gain ou le résultat.",
+          "Saisissez la probabilité correspondante dans le champ Probabilité — elle doit être un décimal entre 0 et 1 (par exemple 0.25 pour 25%).",
+          "Ajoutez d'autres lignes avec le bouton Ajouter une issue jusqu'à ce que toutes les issues possibles soient listées.",
+          "Vérifiez que les probabilités totalisent 1 avant de cliquer sur Calculer l'espérance — le calculateur affichera une erreur si ce n'est pas le cas.",
+          "Cliquez sur Calculer l'espérance pour voir E[X], la variance, l'écart-type et la somme des probabilités."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "q1": "Qu'est-ce que l'espérance ?",
+        "q1_a": "L'espérance E[X] est la moyenne pondérée par les probabilités de toutes les issues possibles d'une variable aléatoire. Elle représente la moyenne à long terme que l'on observerait si l'expérience était répétée de nombreuses fois. Formellement, E[X] = Σ xᵢ × pᵢ, où xᵢ est chaque issue possible et pᵢ sa probabilité.",
+        "q2": "Les probabilités doivent-elles sommer exactement à 1 ?",
+        "q2_a": "Oui. Pour une distribution de probabilité valide, les probabilités doivent sommer exactement à 1 (ou très près de 1 dans la tolérance d'arrondi). Sinon, la distribution n'est pas correctement définie et l'espérance n'a pas de sens. Ce calculateur vérifie la somme et affichera une erreur si elle s'écarte de 1 de plus de 1%.",
+        "q3": "Quelle est la différence entre espérance et moyenne ?",
+        "q3_a": "Les termes sont proches mais employés dans des contextes différents. La « moyenne » (ou moyenne empirique) désigne la moyenne arithmétique d'un ensemble de données observées. L'« espérance » désigne la moyenne théorique d'une distribution de probabilité — celle que l'on s'attend à observer à long terme. À mesure que la taille de l'échantillon augmente, la moyenne empirique converge vers l'espérance (loi des grands nombres).",
+        "q4": "L'espérance peut-elle être négative ?",
+        "q4_a": "Oui, l'espérance peut prendre n'importe quelle valeur réelle, y compris des valeurs négatives. Une espérance négative signifie que le processus est défavorable en moyenne — par exemple, la plupart des jeux de casino ont une espérance négative pour le joueur. Une espérance positive signifie que le processus est favorable en moyenne, ce qui explique pourquoi les produits d'assurance et d'investissement légitimes sont tarifés pour avoir une espérance positive pour le fournisseur.",
+        "q5": "Que m'indique la variance sur une distribution ?",
+        "q5_a": "La variance Var(X) = E[(X − E[X])²] mesure l'écart quadratique moyen par rapport à la moyenne. Une variance élevée signifie que les résultats sont largement dispersés — la distribution a des queues épaisses ou des valeurs extrêmes. Une variance faible signifie que les résultats se concentrent étroitement autour de la moyenne. L'écart-type σ = √Var(X) est souvent préféré car il a les mêmes unités que X, ce qui le rend plus intuitif.",
+        "q6": "Comment l'espérance est-elle utilisée dans la prise de décision ?",
+        "q6_a": "En théorie de la décision, le critère de l'espérance stipule qu'un agent rationnel devrait choisir l'action au gain espéré le plus élevé. Ce principe sous-tend la tarification des assurances, l'analyse des investissements, la théorie des jeux et la conception des essais cliniques. Toutefois, l'espérance seule ne capture pas l'aversion au risque — une personne peut préférer un gain certain de 50 $ à 50% de chance de gagner 120 $, même si cette dernière option a une espérance plus élevée. C'est pourquoi la théorie de l'utilité espérée étend le cadre de base."
+      }
+    },
+    "exponential-distribution-calculator": {
+      "title": "Calculatrice de loi exponentielle",
+      "tagline": "Calculez la PDF, la CDF et les statistiques de la loi exponentielle.",
+      "intro": "Saisissez le paramètre de taux λ et la valeur x pour calculer les probabilités et les mesures statistiques d'une loi exponentielle.",
+      "field": {
+        "lambda": "Paramètre de taux (λ)",
+        "x": "Valeur (x)",
+        "calcType": "Type de calcul"
+      },
+      "type": {
+        "pdf": "PDF f(x)",
+        "cdfLessThan": "P(X < x)",
+        "cdfLessOrEqual": "P(X ≤ x)",
+        "cdfGreaterThan": "P(X > x)",
+        "cdfGreaterOrEqual": "P(X ≥ x)"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "placeholder": {
+        "number": "Saisissez un nombre"
+      },
+      "error": {
+        "invalid": "Saisissez un paramètre de taux positif (λ > 0) et une valeur x non négative (x ≥ 0)."
+      },
+      "result": {
+        "heading": "Résultats",
+        "mean": "Moyenne (1/λ)",
+        "median": "Médiane (ln 2 / λ)",
+        "variance": "Variance (1/λ²)",
+        "stdDev": "Écart type (1/λ)"
+      },
+      "about": {
+        "heading": "À propos de la calculatrice de loi exponentielle",
+        "body": "La loi exponentielle est une distribution de probabilité continue qui décrit le temps entre des événements dans un processus de Poisson, c'est-à-dire un processus où les événements surviennent de manière continue et indépendante à un rythme moyen constant. Elle est caractérisée par un seul paramètre λ (lambda), le paramètre de taux, qui correspond au nombre moyen d'événements par unité de temps. Le temps moyen entre deux événements est 1/λ.\n\nLa fonction de densité de probabilité (PDF) est f(x) = λe^(−λx) pour x ≥ 0. La fonction de répartition (CDF) est F(x) = P(X ≤ x) = 1 − e^(−λx), qui donne la probabilité que le temps jusqu'au prochain événement soit inférieur ou égal à x. La fonction de survie P(X > x) = e^(−λx) donne la probabilité que l'événement ne se soit pas encore produit au temps x.\n\nLa loi exponentielle possède une propriété clé appelée absence de mémoire : P(X > s + t | X > s) = P(X > t). Cela signifie que la probabilité d'attendre un temps supplémentaire t ne dépend pas du temps déjà attendu. Parmi les lois continues, l'exponentielle est la seule à posséder cette propriété, ce qui la rend particulièrement adaptée à la modélisation de systèmes sans vieillissement ni dégradation.\n\nLes moments statistiques de la loi exponentielle s'expriment tous en fonction de λ : moyenne = 1/λ, variance = 1/λ², écart type = 1/λ et médiane = ln(2)/λ ≈ 0.693/λ. Notez que la moyenne est supérieure à la médiane, ce qui reflète la forme asymétrique à droite de la distribution.\n\nLes applications réelles couvrent de nombreux domaines. En ingénierie de la fiabilité, la loi exponentielle modélise la durée de vie de composants électroniques qui ne s'usent pas (comme certains transistors). En théorie des files d'attente, elle décrit les intervalles entre arrivées et les temps de service. En physique nucléaire, la désintégration radioactive suit une loi exponentielle. En télécommunications, elle modélise le temps entre des arrivées successives de paquets. En finance, elle approxime le temps entre des transactions ou des événements de crédit dans des modèles simplifiés."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Ces exemples montrent comment la loi exponentielle apparaît dans des situations concrètes.",
+        "colInput": "Paramètres",
+        "colOutput": "Probabilité",
+        "colNote": "Scénario",
+        "items": [
+          {
+            "input": "λ = 2 per min, x = 0.5 min",
+            "output": "P(X < 0.5) ≈ 0.6321",
+            "note": "Les appels au service client arrivent à raison de 2 par minute ; 63 % de chances que le prochain appel arrive dans les 30 secondes"
+          },
+          {
+            "input": "λ = 0.0005 per hr, x = 2500 hr",
+            "output": "P(X ≥ 2500) ≈ 0.2865",
+            "note": "Ampoule avec une durée de vie moyenne de 2000 heures ; 29 % de chances de durer plus de 2500 heures"
+          },
+          {
+            "input": "λ = 0.1 per sec, x = 5 sec",
+            "output": "f(5) ≈ 0.0607",
+            "note": "PDF de désintégration radioactive exactement à 5 secondes"
+          },
+          {
+            "input": "λ = 0.1 per min, x = 15 min",
+            "output": "P(X > 15) ≈ 0.2231",
+            "note": "Le bus arrive toutes les 10 minutes en moyenne ; 22 % de chances d'attendre plus de 15 minutes"
+          }
+        ],
+        "loadCustomerService": "Charger : Service client",
+        "loadLightBulb": "Charger : Ampoule",
+        "loadRadioactive": "Charger : Désintégration radioactive"
+      },
+      "howto": {
+        "heading": "Comment utiliser cette calculatrice",
+        "steps": [
+          "Saisissez le paramètre de taux λ (lambda) — c'est le nombre moyen d'événements par unité de temps. Si le temps moyen entre arrivées est de 10 minutes, alors λ = 1/10 = 0.1.",
+          "Saisissez la valeur x — le temps (ou la distance, ou autre grandeur) spécifique auquel vous souhaitez évaluer la distribution.",
+          "Sélectionnez le type de calcul : PDF pour la densité de probabilité en x, ou l'une des options CDF pour les probabilités cumulées.",
+          "Cliquez sur Calculer pour afficher la probabilité sélectionnée ainsi que la moyenne, la médiane, la variance et l'écart type de la distribution.",
+          "Utilisez les boutons de chargement rapide pour explorer des scénarios réels courants impliquant la loi exponentielle."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "q1": "Que représente le paramètre de taux λ ?",
+        "q1_a": "Le paramètre de taux λ (lambda) est le nombre moyen d'événements qui se produisent par unité de temps (ou de distance, ou d'espace). Par exemple, si les clients arrivent au rythme de 3 par heure, alors λ = 3 par heure et le temps moyen entre arrivées est 1/λ = 20 minutes. Un λ plus élevé signifie que les événements se produisent plus fréquemment et que la distribution est plus concentrée près de zéro.",
+        "q2": "Quelle est la différence entre PDF et CDF ?",
+        "q2_a": "La PDF f(x) = λe^(−λx) donne la densité de probabilité en un point spécifique x — ce n'est pas une probabilité en soi, mais un taux de probabilité par unité de x. La CDF F(x) = P(X ≤ x) = 1 − e^(−λx) donne la probabilité que la variable aléatoire soit au plus égale à x, ce qui est une vraie probabilité comprise entre 0 et 1. Pour les lois continues, la probabilité en un point exact est nulle ; les probabilités s'appliquent uniquement aux intervalles.",
+        "q3": "Qu'est-ce que la propriété sans mémoire ?",
+        "q3_a": "La propriété sans mémoire stipule que P(X > s + t | X > s) = P(X > t) : sachant que vous avez déjà attendu s unités sans événement, la probabilité d'attendre encore t unités est la même que si vous veniez de commencer. En pratique, une ampoule qui a fonctionné pendant 1000 heures a la même probabilité de tomber en panne dans l'heure suivante qu'une ampoule neuve — il n'y a pas d'effet de vieillissement. Parmi les lois continues, seule la loi exponentielle possède cette propriété.",
+        "q4": "Pourquoi la moyenne est-elle supérieure à la médiane ?",
+        "q4_a": "La moyenne de la loi exponentielle est 1/λ, tandis que la médiane est ln(2)/λ ≈ 0.693/λ. La médiane est plus petite parce que la distribution est asymétrique à droite : une longue queue de grandes valeurs tire la moyenne vers le haut. Plus de la moitié des observations sont inférieures à la moyenne, ce qui est caractéristique des distributions à asymétrie positive. C'est important en analyse de fiabilité, où le temps de défaillance « typique » est souvent la médiane plutôt que la moyenne.",
+        "q5": "La loi exponentielle peut-elle modéliser des données de durée de vie ?",
+        "q5_a": "La loi exponentielle convient aux composants dont le taux de défaillance est constant — ceux qui ne s'usent pas avec le temps et ne subissent ni fatigue ni vieillissement. C'est un modèle raisonnable pour certains composants électroniques et certains types de pannes logicielles. En revanche, pour les composants qui s'usent (comme les pièces mécaniques ou la durée de vie humaine), la loi de Weibull avec un paramètre de forme différent de 1 est plus appropriée.",
+        "q6": "Comment trouver λ à partir de données empiriques ?",
+        "q6_a": "L'estimateur du maximum de vraisemblance de λ à partir des données observées x₁, x₂, …, xₙ est simplement l'inverse de la moyenne de l'échantillon : λ̂ = n / Σxᵢ = 1 / x̄. Cela a du sens intuitivement : si les événements se produisent en moyenne toutes les 5 minutes (moyenne = 5), alors le taux est λ = 1/5 = 0.2 par minute. Vous pouvez vérifier l'ajustement exponentiel à l'aide d'un diagramme Q-Q ou d'un test d'adéquation."
+      }
     }
   }
 }
