@@ -566,39 +566,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "weibull-distribution-calculator",
-      "zh-CN": "weibull-fenbu-ji-suanqi",
-      "zh-TW": "weibull-fenbu-ji-suanqi",
-      ja: "weibull-bunpu-keisanki",
-      ko: "weibull-bunpo-gyesan-gi",
+      "zh-CN": "weibuer-fenbu-jisuanqi",
+      "zh-TW": "weibuer-fenbu-jisuanqi",
+      ja: "waiburu-bunpu-keisanki",
+      ko: "waibeul-bunpo-gyesan-gi",
       es: "calculadora-distribucion-weibull",
       fr: "calculateur-distribution-weibull",
-      de: "weibull-verteilung-rechner",
+      de: "weibull-verteilungsrechner",
       pt: "calculadora-distribuicao-weibull",
-      ru: "raschet-weibull-raspredeleniya"
+      ru: "kalkulyator-raspredeleniya-veibulla"
     },
     titles: {
       en: "Weibull Distribution Calculator - PDF, CDF & Reliability",
-      "zh-CN": "Weibull分布计算器",
-      "zh-TW": "Weibull分布計算器",
-      ja: "Weibull分布計算ツール",
-      ko: "Weibull 분포 계산기",
-      es: "Calculadora de distribución de Weibull",
-      fr: "Calculateur de distribution de Weibull",
-      de: "Weibull-Verteilungsrechner",
-      pt: "Calculadora da distribuição de Weibull",
-      ru: "Калькулятор распределения Вейбулла"
+      "zh-CN": "韦布尔分布计算器 - PDF、CDF 与可靠性",
+      "zh-TW": "韋布爾分布計算器 - PDF、CDF 與可靠度",
+      ja: "ワイブル分布計算機 - PDF、CDF、信頼性",
+      ko: "와이블 분포 계산기 - PDF, CDF 및 신뢰성",
+      es: "Calculadora de distribución Weibull - PDF, CDF y fiabilidad",
+      fr: "Calculateur de Weibull - PDF, CDF et fiabilité",
+      de: "Weibull-Verteilungsrechner - PDF, CDF und Zuverlässigkeit",
+      pt: "Calculadora Weibull - PDF, CDF e confiabilidade",
+      ru: "Калькулятор распределения Вейбулла - PDF, CDF и надёжность"
     },
     descriptions: {
       en: "Weibull distribution calculator for reliability analysis. Compute PDF, CDF, hazard rate, mean, median, and variance from shape and scale parameters instantly.",
-      "zh-CN": "用于可靠性分析的Weibull分布计算器。可根据形状参数和尺度参数即时计算PDF、CDF、危险率、均值、中位数和方差。",
-      "zh-TW": "用於可靠度分析的Weibull分布計算器。可依形狀與尺度參數即時計算PDF、CDF、危險率、平均數、中位數與變異數。",
-      ja: "信頼性解析向けのWeibull分布計算ツール。形状・尺度パラメータからPDF、CDF、危険率、平均、中央値、分散を即時計算。",
-      ko: "신뢰성 분석용 Weibull 분포 계산기. 형태와 척도 매개변수로 PDF, CDF, 위험률, 평균, 중앙값, 분산을 즉시 계산합니다.",
-      es: "Calculadora de distribución de Weibull para análisis de confiabilidad. Calcula PDF, CDF, tasa de riesgo, media, mediana y varianza al instante.",
-      fr: "Calculateur de distribution de Weibull pour l'analyse de fiabilité. Calcule instantanément la PDF, la CDF, le taux de risque, la moyenne, la médiane et la variance.",
-      de: "Weibull-Verteilungsrechner für Zuverlässigkeitsanalysen. Berechnet PDF, CDF, Ausfallrate, Mittelwert, Median und Varianz sofort.",
+      "zh-CN": "韦布尔分布可靠性分析计算器。根据形状和尺度参数，立即计算 PDF、CDF、失效率、均值、中位数和方差。",
+      "zh-TW": "韋布爾分布可靠度分析計算器。依形狀與尺度參數，立即計算 PDF、CDF、失效率、平均數、中位數與變異數。",
+      ja: "信頼性解析向けのワイブル分布計算機。形状と尺度のパラメータから、PDF、CDF、ハザード率、平均、中央値、分散を即座に算出します。",
+      ko: "신뢰성 분석용 와이블 분포 계산기입니다. 형상과 척도 매개변수로 PDF, CDF, 고장률, 평균, 중앙값, 분산을 즉시 계산합니다.",
+      es: "Calculadora de distribución Weibull para análisis de fiabilidad. Calcula PDF, CDF, tasa de riesgo, media, mediana y varianza al instante.",
+      fr: "Calculateur de distribution de Weibull pour l'analyse de fiabilité. Calculez instantanément PDF, CDF, taux de défaillance, moyenne, médiane et variance.",
+      de: "Weibull-Verteilungsrechner für Zuverlässigkeitsanalysen. Berechnen Sie PDF, CDF, Hazard-Rate, Mittelwert, Median und Varianz sofort.",
       pt: "Calculadora da distribuição de Weibull para análise de confiabilidade. Calcule PDF, CDF, taxa de risco, média, mediana e variância instantaneamente.",
-      ru: "Калькулятор распределения Вейбулла для анализа надежности. Мгновенно вычисляет PDF, CDF, интенсивность отказов, среднее, медиану и дисперсию."
+      ru: "Калькулятор распределения Вейбулла для анализа надёжности. Мгновенно вычисляет PDF, CDF, интенсивность отказов, среднее, медиану и дисперсию."
     }
   },
   {
@@ -606,39 +606,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "weighted-mean-calculator",
-      "zh-CN": "jia-quan-ping-jun-shu-ji-suan-qi",
-      "zh-TW": "jia-quan-ping-jun-shu-ji-suan-qi",
-      ja: "kajuu-heikin-keisanki",
-      ko: "gajung-pyeonggyun-gyesangi",
+      "zh-CN": "jiaquan-pingjun-jisuanqi",
+      "zh-TW": "jiaquan-pingjun-jisuanqi",
+      ja: "juka-heikin-keisanki",
+      ko: "gajung-pyeonggyun-gyesan-gi",
       es: "calculadora-media-ponderada",
-      fr: "calculatrice-moyenne-ponderee",
-      de: "gewichteter-durchschnitt-rechner",
+      fr: "calculateur-moyenne-ponderee",
+      de: "gewichteter-mittelwert-rechner",
       pt: "calculadora-media-ponderada",
-      ru: "kalkulyator-vzveshennogo-srednego"
+      ru: "vzveshennoye-sredneye-kalkulyator"
     },
     titles: {
       en: "Weighted Mean Calculator - Calculate Weighted Average",
-      "zh-CN": "加权平均数计算器",
-      "zh-TW": "加權平均數計算器",
-      ja: "加重平均計算ツール",
-      ko: "가중평균 계산기",
-      es: "Calculadora de media ponderada",
-      fr: "Calculatrice de moyenne pondérée",
-      de: "Gewichteter Durchschnittsrechner",
-      pt: "Calculadora de média ponderada",
-      ru: "Калькулятор взвешенного среднего"
+      "zh-CN": "加权平均计算器 - 计算加权平均值",
+      "zh-TW": "加權平均計算器 - 計算加權平均值",
+      ja: "加重平均計算機 - 加重平均を計算",
+      ko: "가중 평균 계산기 - 가중 평균 계산",
+      es: "Calculadora de media ponderada - Calcula el promedio",
+      fr: "Calculateur de moyenne pondérée - Calculer la moyenne",
+      de: "Gewichteter Mittelwert Rechner - Mittelwert berechnen",
+      pt: "Calculadora de média ponderada - Calcule a média",
+      ru: "Калькулятор взвешенного среднего - Рассчитать среднее"
     },
     descriptions: {
       en: "Weighted mean calculator for grades, finance, and surveys. Enter values and weights to compute the weighted average — supports any number of data points.",
-      "zh-CN": "加权平均数计算器，适用于成绩、理财和问卷。输入数值与权重即可计算加权平均，支持任意数量的数据点。",
-      "zh-TW": "加權平均數計算器，適用於成績、理財與問卷。輸入數值與權重即可計算加權平均，支援任意數量資料點。",
-      ja: "成績、資産運用、アンケートに使える加重平均計算ツール。値と重みを入力して、任意の件数の加重平均を計算します。",
-      ko: "성적, 재무, 설문에 유용한 가중평균 계산기입니다. 값과 가중치를 입력해任意 개수의 가중평균을 계산하세요.",
+      "zh-CN": "适用于成绩、金融和调查的加权平均计算器。输入数值和权重即可计算加权平均值，支持任意数量的数据点。",
+      "zh-TW": "適用於成績、金融與調查的加權平均計算器。輸入數值和權重即可計算加權平均值，支援任意數量的資料點。",
+      ja: "成績、金融、調査に使える加重平均計算機。値と重みを入力して、任意のデータ数の加重平均を求められます。",
+      ko: "성적, 금융, 설문에 사용할 수 있는 가중 평균 계산기입니다. 값과 가중치를 입력해 임의 개수의 데이터의 가중 평균을 구하세요.",
       es: "Calculadora de media ponderada para notas, finanzas y encuestas. Ingresa valores y pesos para calcular el promedio ponderado.",
-      fr: "Calculatrice de moyenne pondérée pour les notes, la finance et les sondages. Saisissez valeurs et poids pour calculer la moyenne.",
-      de: "Gewichteter Durchschnittsrechner für Noten, Finanzen und Umfragen. Werte und Gewichte eingeben und den gewichteten Mittelwert berechnen.",
+      fr: "Calculateur de moyenne pondérée pour notes, finance et sondages. Saisissez des valeurs et des poids pour obtenir la moyenne pondérée.",
+      de: "Gewichteter Mittelwert Rechner für Noten, Finanzen und Umfragen. Werte und Gewichte eingeben und den gewichteten Durchschnitt berechnen.",
       pt: "Calculadora de média ponderada para notas, finanças e pesquisas. Insira valores e pesos para calcular a média ponderada.",
-      ru: "Калькулятор взвешенного среднего для оценок, финансов и опросов. Введите значения и веса, чтобы вычислить средневзвешенное."
+      ru: "Калькулятор взвешенного среднего для оценок, финансов и опросов. Введите значения и веса, чтобы вычислить взвешенное среднее."
     }
   },
   {
@@ -646,39 +646,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "smp-x-distribution-calculator",
-      "zh-CN": "yangben-junzhi-chouyang-fenbu-jisuanqi",
-      "zh-TW": "yangben-junzhi-chouyang-fenbu-jisuanqi",
-      ja: "sampuringu-bunpu-heikin-keisanki",
-      ko: "pyobon-pyeonggyun-bunpo-gyesangi",
-      es: "distribucion-muestral-media-calculadora",
-      fr: "distribution-echantillonnale-moyenne-calculatrice",
-      de: "stichprobenverteilung-mittelwert-rechner",
-      pt: "distribuicao-amostral-media-calculadora",
-      ru: "raspredelenie-vyborochnogo-srednego-kalkulyator"
+      "zh-CN": "chouyang-pingjun-shu-fenbu-ji-suan-qi",
+      "zh-TW": "chouyang-pingjun-shu-fenbu-ji-suan-qi",
+      ja: "hyohon-heikin-hyohon-bunpu-keisan",
+      ko: "pyobon-pyeonggyun-pyobon-bunpo-gyesangi",
+      es: "calculadora-distribucion-media-muestral",
+      fr: "calculateur-distribution-moyenne-echantillon",
+      de: "stichprobenmittelwert-verteilung-rechner",
+      pt: "calculadora-distribuicao-media-amostral",
+      ru: "kalkulyator-raspredeleniya-vyborochnogo-srednego"
     },
     titles: {
       en: "Sampling Distribution of Sample Mean Calculator",
       "zh-CN": "样本均值抽样分布计算器",
-      "zh-TW": "樣本平均抽樣分配計算機",
-      ja: "標本平均のサンプリング分布計算機",
-      ko: "표본평균의 표본분포 계산기",
-      es: "Calculadora de distribución muestral de la media",
-      fr: "Calculatrice de la distribution de la moyenne",
-      de: "Rechner für die Stichprobenverteilung des Mittelwerts",
-      pt: "Calculadora da distribuição amostral da média",
+      "zh-TW": "樣本平均數抽樣分布計算器",
+      ja: "標本平均の標本分布計算機",
+      ko: "표본평균 표본분포 계산기",
+      es: "Calculadora de distribución de la media muestral",
+      fr: "Calculateur de distribution de la moyenne d’échantillon",
+      de: "Rechner für Verteilung des Stichprobenmittelwerts",
+      pt: "Calculadora de distribuição da média amostral",
       ru: "Калькулятор распределения выборочного среднего"
     },
     descriptions: {
       en: "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
-      "zh-CN": "样本均值抽样分布计算器：用中心极限定理快速求标准误、z 分数和概率（小于、大于、区间）。",
-      "zh-TW": "樣本平均抽樣分配計算機：用中央極限定理快速求標準誤、z 分數與機率（小於、大於、區間）。",
-      ja: "中心極限定理で標本平均のSE、zスコア、確率（未満・超過・範囲）を計算します。",
-      ko: "중심극한정리로 표본평균의 SE, z점수, 확률(미만·초과·구간)을 계산합니다.",
-      es: "Calcula SE, z y probabilidad (menor, mayor o entre) de la media muestral con el teorema central del límite.",
-      fr: "Calculez SE, score z et probabilité (inférieure, supérieure ou entre) de la moyenne d’échantillon avec le TCL.",
-      de: "Berechnen Sie mit dem zentralen Grenzwertsatz SE, z-Wert und Wahrscheinlichkeit (kleiner, größer, dazwischen) für den Stichprobenmittelwert.",
-      pt: "Calcule SE, escore z e probabilidade (menor, maior ou entre) da média amostral com o Teorema Central do Limite.",
-      ru: "По ЦПТ вычисляет SE, z-оценку и вероятность (меньше, больше, между) для выборочного среднего."
+      "zh-CN": "样本均值抽样分布计算器：用中心极限定理求标准误、z 分数及小于、大于、区间概率。",
+      "zh-TW": "樣本平均數抽樣分布計算器：用中央極限定理求標準誤、z 分數，以及小於、大於、區間機率。",
+      ja: "標本平均の標本分布計算機：中心極限定理で標準誤差、zスコア、小さい・大きい・範囲内の確率を計算します。",
+      ko: "표본평균의 표본분포 계산기: 중심극한정리로 표준오차, z-점수, 작음·큼·구간 확률을 계산합니다.",
+      es: "Calculadora de distribución de la media muestral: calcula error estándar, z y probabilidades menor que, mayor que o entre valores.",
+      fr: "Calculez la distribution de la moyenne d’échantillon : erreur standard, score z et probabilités inférieur, supérieur ou entre deux valeurs.",
+      de: "Berechnen Sie Standardfehler, z-Wert und Wahrscheinlichkeiten für den Stichprobenmittelwert mit dem zentralen Grenzwertsatz.",
+      pt: "Calculadora da distribuição da média amostral: encontre erro padrão, escore z e probabilidades menor que, maior que ou entre valores.",
+      ru: "Калькулятор распределения выборочного среднего: стандартная ошибка, z-оценка и вероятности меньше, больше или между значениями."
     }
   },
   {
@@ -686,39 +686,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "spearmans-correlation-calculator",
-      "zh-CN": "siman-dengji-xiangguan-jisuanqi",
-      "zh-TW": "siman-dengji-xiangguan-jisuanqi",
-      ja: "supiaman-juni-sokan-keisanki",
-      ko: "seupieomeon-sunwi-sanggwan-gyesangi",
+      "zh-CN": "spearman-dengji-xiangguan-ji-suanqi",
+      "zh-TW": "spearman-dengji-xiangguan-ji-suanqi",
+      ja: "spearman-junii-sokkan-keisanki",
+      ko: "spearman-junwi-sanggwan-gyeonggye-calculator",
       es: "calculadora-correlacion-spearman",
       fr: "calculateur-correlation-spearman",
-      de: "spearman-korrelation-rechner",
+      de: "spearman-rangkorrelation-rechner",
       pt: "calculadora-correlacao-spearman",
-      ru: "kalkulyator-korrelyacii-spirmena"
+      ru: "kalkulyator-korrelyatsii-spearmana"
     },
     titles: {
       en: "Spearman's Correlation Calculator - Rank Correlation",
-      "zh-CN": "斯皮尔曼相关系数计算器 - 等级相关",
-      "zh-TW": "斯皮爾曼相關係數計算器 - 等級相關",
-      ja: "スピアマン相関係数計算機 - 順位相関",
-      ko: "스피어만 상관계수 계산기 - 순위 상관",
+      "zh-CN": "Spearman等级相关计算器",
+      "zh-TW": "Spearman等級相關計算器",
+      ja: "Spearman順位相関計算機",
+      ko: "Spearman 순위상관 계산기",
       es: "Calculadora de correlación de Spearman",
       fr: "Calculateur de corrélation de Spearman",
-      de: "Spearman-Korrelation Rechner",
+      de: "Spearman-Rangkorrelationsrechner",
       pt: "Calculadora de correlação de Spearman",
       ru: "Калькулятор корреляции Спирмена"
     },
     descriptions: {
       en: "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
-      "zh-CN": "斯皮尔曼等级相关计算器：为两组数据计算 ρ。无需正态性假设，衡量单调关系，适合有序数据。",
-      "zh-TW": "斯皮爾曼等級相關計算器：為兩組資料計算 ρ。無需常態性假設，衡量單調關係，適合序位資料。",
-      ja: "スピアマンの順位相関を計算し、2つのデータセットのρを求めます。正規性を仮定せず単調関係を測定でき、順序データに最適です。",
-      ko: "스피어만 순위 상관 계산기: 두 데이터셋의 ρ를 계산합니다. 정규성 가정 없이 단조 관계를 측정해 순서형 데이터에 적합합니다.",
-      es: "Calcula la correlación de rangos de Spearman ρ para dos conjuntos de datos. Mide relaciones monótonas sin exigir normalidad, ideal para datos ordinales.",
-      fr: "Calculez la corrélation de rangs de Spearman ρ pour deux jeux de données. Mesure les relations monotones sans normalité, idéal pour données ordinales.",
-      de: "Berechnen Sie Spearmans Rangkorrelation ρ für zwei Datensätze. Misst monotone Zusammenhänge ohne Normalverteilung, ideal für ordinale Daten.",
-      pt: "Calcule a correlação de postos de Spearman ρ para dois conjuntos de dados. Mede relações monotônicas sem exigir normalidade, ideal para dados ordinais.",
-      ru: "Калькулятор ранговой корреляции Спирмена: вычисляет ρ для двух наборов данных. Оценивает монотонные связи без требования нормальности."
+      "zh-CN": "Spearman等级相关计算器：计算两组数据的ρ，衡量单调关系强度，无需满足正态分布假设，适合顺序数据。",
+      "zh-TW": "Spearman等級相關計算器：計算兩組資料的ρ，衡量單調關係強度，無需正態分布假設，適合順序資料。",
+      ja: "Spearman順位相関計算機：2つのデータのρを計算し、正規性を仮定せずに単調関係の強さを測定します。",
+      ko: "Spearman 순위상관 계산기: 두 데이터의 ρ를 계산해 정규성 가정 없이 단조 관계의 강도를 측정합니다.",
+      es: "Calculadora de correlación de Spearman: calcula ρ para dos conjuntos y mide relaciones monótonas sin asumir normalidad.",
+      fr: "Calculateur de corrélation de Spearman : calcule ρ pour deux jeux de données et mesure des relations monotones sans supposer la normalité.",
+      de: "Spearman-Rangkorrelationsrechner: berechnet ρ für zwei Datensätze und misst monotone Zusammenhänge ohne Normalitätsannahme.",
+      pt: "Calculadora de correlação de Spearman: calcule ρ para dois conjuntos e meça relações monótonas sem exigir normalidade.",
+      ru: "Калькулятор корреляции Спирмена: вычисляйте ρ для двух наборов данных и оценивайте монотонные связи без предположения о нормальности."
     }
   },
   {
@@ -726,39 +726,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "standard-deviation-index-calculator",
-      "zh-CN": "biaozhun-chaixu-jisuanqi",
-      "zh-TW": "biaozhun-chaixu-jisuanqi",
-      ja: "hyojun-hensa-keisanki",
-      ko: "pyojun-pyeoncha-gyesangi",
+      "zh-CN": "biaozhun-chaiyi-jisuanqi",
+      "zh-TW": "biaozhun-chaiyi-jisuanqi",
+      ja: "hyojunsa-keisanki",
+      ko: "pyojunpcha-gye-san-gi",
       es: "calculadora-desviacion-estandar",
       fr: "calculateur-ecart-type",
-      de: "standardabweichung-rechner",
+      de: "standardabweichungsrechner",
       pt: "calculadora-desvio-padrao",
-      ru: "kalkulyator-standartnogo-otkloneniya"
+      ru: "kalkulyator-standardnogo-otkloneniya"
     },
     titles: {
       en: "Standard Deviation Calculator - Sample & Population SD",
-      "zh-CN": "标准差计算器 - 样本与总体",
-      "zh-TW": "標準差計算器 - 樣本與總體",
-      ja: "標準偏差計算機 - 標本と母集団",
-      ko: "표준편차 계산기 - 표본과 모집단",
-      es: "Calculadora de desviación estándar - Muestra y población",
-      fr: "Calculateur d'écart type - Échantillon et population",
-      de: "Standardabweichung-Rechner - Stichprobe und Grundgesamtheit",
-      pt: "Calculadora de desvio padrão - Amostra e população",
-      ru: "Калькулятор стандартного отклонения - выборка и совокупность"
+      "zh-CN": "标准差计算器：样本与总体",
+      "zh-TW": "標準差計算器：樣本與母體",
+      ja: "標準偏差計算機：標本と母集団",
+      ko: "표준편차 계산기: 표본과 모집단",
+      es: "Calculadora de desviación estándar: muestra y población",
+      fr: "Calculateur d’écart type : échantillon et population",
+      de: "Standardabweichungsrechner: Stichprobe und Grundgesamtheit",
+      pt: "Calculadora de desvio padrão: amostra e população",
+      ru: "Калькулятор стандартного отклонения: выборка и совокупность"
     },
     descriptions: {
       en: "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
-      "zh-CN": "标准差计算器：从任意数据集中计算样本标准差、总体标准差、均值、方差和变异系数，输入数字即可立即得到结果。",
-      "zh-TW": "標準差計算器：從任意資料集計算樣本標準差、總體標準差、平均數、變異數與變異係數，輸入數字即可立即取得結果。",
-      ja: "標準偏差計算機：任意のデータセットから標本標準偏差・母標準偏差・平均・分散・変動係数を計算し、入力後すぐ結果を表示します。",
-      ko: "표준편차 계산기: 어떤 데이터셋이든 표본·모집단 표준편차, 평균, 분산, 변동계수를 계산하고 숫자를 넣으면 바로 결과를 보여줍니다.",
-      es: "Calculadora de desviación estándar: calcula desviación estándar muestral y poblacional, media, varianza y CV de cualquier conjunto de datos al instante.",
-      fr: "Calculateur d'écart type : calculez l’écart type d’échantillon et de population, la moyenne, la variance et le coefficient de variation de tout jeu de données.",
-      de: "Standardabweichung-Rechner: Berechnet Stichproben- und Populations-Standardabweichung, Mittelwert, Varianz und CV aus jedem Datensatz sofort.",
-      pt: "Calculadora de desvio padrão: calcule desvio padrão amostral e populacional, média, variância e CV de qualquer conjunto de dados na hora.",
-      ru: "Калькулятор стандартного отклонения: рассчитывает выборочное и генеральное стандартное отклонение, среднее, дисперсию и CV по любому набору данных."
+      "zh-CN": "标准差计算器：可从任意数据集计算样本标准差、总体标准差、均值、方差和变异系数。输入数字即可立即得到结果。",
+      "zh-TW": "標準差計算器：可從任意資料集計算樣本標準差、母體標準差、平均數、變異數與變異係數。輸入數字即可立即得到結果。",
+      ja: "標準偏差計算機：任意のデータから標本標準偏差、母集団標準偏差、平均、分散、変動係数を計算。数字を入力するとすぐ結果が表示されます。",
+      ko: "표준편차 계산기: 어떤 데이터셋이든 표본 표준편차, 모집단 표준편차, 평균, 분산, 변동계수를 계산합니다. 숫자를 입력하면 즉시 결과를 볼 수 있습니다.",
+      es: "Calculadora de desviación estándar: calcula la desviación muestral, poblacional, la media, la varianza y el CV de cualquier conjunto de datos.",
+      fr: "Calculateur d’écart type : calcule l’écart type d’échantillon, de population, la moyenne, la variance et le CV pour n’importe quelles données.",
+      de: "Standardabweichungsrechner: Berechnet Stichproben- und Populations-SD, Mittelwert, Varianz und CV aus beliebigen Daten.",
+      pt: "Calculadora de desvio padrão: calcule o desvio amostral e populacional, a média, a variância e o CV de qualquer conjunto de dados.",
+      ru: "Калькулятор стандартного отклонения: считает выборочное и генеральное SD, среднее, дисперсию и CV для любых данных."
     }
   },
   {
@@ -2046,15 +2046,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "odds-ratio-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Odds Ratio Calculator - OR, CI & P-Value from 2×2 Table",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Odds ratio calculator for 2×2 contingency tables: compute OR, confidence interval, Z-score, and p-value for case-control and epidemiological research studies.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2062,15 +2086,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "outlier-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Outlier Calculator - Detect Outliers Using IQR Method",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Outlier calculator using the IQR method: enter a data set to find mild outliers (1.5×IQR) or extreme outliers (3×IQR) with Q1, Q3, and fence values instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2078,15 +2126,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "p-hat-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "P-Hat Calculator - Sample Proportion (p̂) and q̂",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "P-hat calculator: enter sample size (n) and successes (x) to compute the sample proportion p̂ and its complement q̂ as decimals and percentages in one click.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2094,15 +2166,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "p-value-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "P-Value Calculator - Z, T, F & Chi-Square Tests",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "P-value calculator for Z, T, F, and Chi-square tests: enter a test statistic and degrees of freedom to get the exact p-value and significance verdict.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2110,15 +2206,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "paired-samples-t-test-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Paired Samples t-Test Calculator - Before & After Data",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Paired samples t-test calculator: enter two matched data groups to get the t-statistic, degrees of freedom, p-value, and 95% confidence interval.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   }
 ];
