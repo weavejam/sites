@@ -2040,5 +2040,85 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "odds-ratio-calculator",
+    category: "statistic",
+    slugs: {
+      en: "odds-ratio-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Odds Ratio Calculator - OR, CI & P-Value from 2×2 Table",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Odds ratio calculator for 2×2 contingency tables: compute OR, confidence interval, Z-score, and p-value for case-control and epidemiological research studies.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "outlier-calculator",
+    category: "statistic",
+    slugs: {
+      en: "outlier-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Outlier Calculator - Detect Outliers Using IQR Method",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Outlier calculator using the IQR method: enter a data set to find mild outliers (1.5×IQR) or extreme outliers (3×IQR) with Q1, Q3, and fence values instantly.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "p-hat-calculator",
+    category: "statistic",
+    slugs: {
+      en: "p-hat-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "P-Hat Calculator - Sample Proportion (p̂) and q̂",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "P-hat calculator: enter sample size (n) and successes (x) to compute the sample proportion p̂ and its complement q̂ as decimals and percentages in one click.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "p-value-calculator",
+    category: "statistic",
+    slugs: {
+      en: "p-value-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "P-Value Calculator - Z, T, F & Chi-Square Tests",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "P-value calculator for Z, T, F, and Chi-square tests: enter a test statistic and degrees of freedom to get the exact p-value and significance verdict.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "paired-samples-t-test-calculator",
+    category: "statistic",
+    slugs: {
+      en: "paired-samples-t-test-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Paired Samples t-Test Calculator - Before & After Data",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Paired samples t-test calculator: enter two matched data groups to get the t-statistic, degrees of freedom, p-value, and 95% confidence interval.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
 ];
