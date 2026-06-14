@@ -164,8 +164,11 @@ function findAllUntranslated(): string[] {
   return out;
 }
 
-function buildPrompt(toolId: string, enContent: Record<string, unknown>, enMeta: { title: string; description: string; categoryEnglish: string }): string {
+function buildPrompt(toolId: string, enContent: Record<string, unknown>, enMeta: { title: string; description: string; categoryEnglish: string }, outFilePath: string): string {
   const targetSpec = TARGET_LOCALES.map((l) => `  - "${l}" (${LOCALE_NAMES[l]})`).join("\n");
+  // Escape backslashes for the prompt so Windows paths survive copy/paste
+  // into shell quoting inside the copilot CLI session.
+  const escapedPath = outFilePath.replace(/\\/g, "\\\\");
   return `Translate the English content below into 9 locales:
 ${targetSpec}
 
@@ -203,9 +206,10 @@ Translation rules:
   it's a high-search-volume phrase in that language.
 
 Write the JSON to a file you create at:
-  D:\\shudu\\shudu\\apps\\toolsjam\\.port-page-cache\\translations\\${toolId}.json
+  ${escapedPath}
 
-After writing the file, exit. Do not print the JSON to the terminal.
+That EXACT path — do not change directories, do not pick a different cache
+folder.  After writing the file, exit.  Do not print the JSON to the terminal.
 `;
 }
 
@@ -311,15 +315,15 @@ async function translateOne(toolId: string, force: boolean): Promise<boolean> {
   const enContent = enMessages.tool?.[toolId];
   if (!enContent) { console.error(`✗ ${toolId}: missing tool.${toolId} in en.json`); return false; }
 
+  const outDir = path.join(CACHE_DIR, "translations");
+  mkdirSync(outDir, { recursive: true });
+  const outFile = path.join(outDir, `${toolId}.json`);
+
   const prompt = buildPrompt(toolId, enContent as Record<string, unknown>, {
     title: found.entry.titles.en,
     description: found.entry.descriptions.en,
     categoryEnglish: found.category,
-  });
-
-  const outDir = path.join(CACHE_DIR, "translations");
-  mkdirSync(outDir, { recursive: true });
-  const outFile = path.join(outDir, `${toolId}.json`);
+  }, outFile);
 
   // copilot may flake; try gpt-5.4-mini first (cheap, 90%+ success), then
   // gpt-5.5 as fallback. Each model gets ATTEMPTS_PER_MODEL tries with
