@@ -10,11 +10,16 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_error_propagation_calculator } from "@/tools/error-propagation-calculator.fixtures";
 import { fixtures as f_expanded_form_calculator } from "@/tools/expanded-form-calculator.fixtures";
 import { fixtures as f_expanding_logarithms_calculator } from "@/tools/expanding-logarithms-calculator.fixtures";
+import { fixtures as f_expected_value_calculator } from "@/tools/expected-value-calculator.fixtures";
 import { fixtures as f_exponent_calculator } from "@/tools/exponent-calculator.fixtures";
+import { fixtures as f_exponential_distribution_calculator } from "@/tools/exponential-distribution-calculator.fixtures";
 import { fixtures as f_exponential_form_calculator } from "@/tools/exponential-form-calculator.fixtures";
 import { fixtures as f_exponential_function_calculator } from "@/tools/exponential-function-calculator.fixtures";
+import { fixtures as f_exponential_growth_prediction_calculator } from "@/tools/exponential-growth-prediction-calculator.fixtures";
+import { fixtures as f_exponential_regression_calculator } from "@/tools/exponential-regression-calculator.fixtures";
 import { fixtures as f_gamma_function_calculator } from "@/tools/gamma-function-calculator.fixtures";
 import { fixtures as f_gauss_jordan_elimination_calculator } from "@/tools/gauss-jordan-elimination-calculator.fixtures";
 import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calculator.fixtures";
@@ -69,11 +74,16 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "error-propagation-calculator": f_error_propagation_calculator,
   "expanded-form-calculator": f_expanded_form_calculator,
   "expanding-logarithms-calculator": f_expanding_logarithms_calculator,
+  "expected-value-calculator": f_expected_value_calculator,
   "exponent-calculator": f_exponent_calculator,
+  "exponential-distribution-calculator": f_exponential_distribution_calculator,
   "exponential-form-calculator": f_exponential_form_calculator,
   "exponential-function-calculator": f_exponential_function_calculator,
+  "exponential-growth-prediction-calculator": f_exponential_growth_prediction_calculator,
+  "exponential-regression-calculator": f_exponential_regression_calculator,
   "gamma-function-calculator": f_gamma_function_calculator,
   "gauss-jordan-elimination-calculator": f_gauss_jordan_elimination_calculator,
   "gcf-and-lcm-calculator": f_gcf_and_lcm_calculator,
