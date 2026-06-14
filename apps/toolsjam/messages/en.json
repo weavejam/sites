@@ -9424,6 +9424,485 @@
         "q6": "Can I use this for one-sided probabilities?",
         "q6_a": "The empirical rule gives two-sided intervals centred on the mean. For one-sided probabilities, divide the complement in half. For example, about 95.45% of data falls within 2σ on both sides, so 4.55% falls outside — 2.275% above μ+2σ and 2.275% below μ−2σ. This is why a 95% two-sided confidence interval uses z = 1.96 (approximately 2σ): 2.5% is excluded from each tail."
       }
+    },
+    "wheatstone-bridge-calculator": {
+      "title": "Wheatstone Bridge Calculator – Measure Unknown Resistance",
+      "tagline": "Calculate unknown resistance using the balanced Wheatstone bridge circuit with high precision.",
+      "intro": "Enter known resistance values (R1, R2, R3), the bridge output voltage ratio, and supply voltage to solve for the unknown resistance Rx.",
+      "field": {
+        "r1": "Resistance R1 (Ω)",
+        "r2": "Resistance R2 (Ω)",
+        "r3": "Resistance R3 (Ω)",
+        "voltageRatio": "Voltage Ratio (V)",
+        "supplyVoltage": "Supply Voltage (V)"
+      },
+      "placeholder": {
+        "r1": "e.g. 1000",
+        "r2": "e.g. 1000",
+        "r3": "e.g. 500",
+        "voltageRatio": "e.g. 0",
+        "supplyVoltage": "e.g. 5"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for all fields.",
+        "outOfRange": "No valid solution — check that R values and voltage ratio are physically consistent."
+      },
+      "result": {
+        "heading": "Result",
+        "rx": "Unknown Resistance Rx = {value} Ω",
+        "vout": "Bridge Output Voltage = {value} V",
+        "balanced": "Bridge status: Balanced (Vout ≈ 0)",
+        "unbalanced": "Bridge status: Unbalanced"
+      },
+      "formula": "Formula: Rx = R2·R3/R1 (balanced) | Vout = Vs·(Rx/(R2+Rx) − R3/(R1+R3))",
+      "about": {
+        "heading": "About the Wheatstone Bridge Calculator",
+        "body": "The Wheatstone bridge is one of the most elegant and precise methods for measuring electrical resistance. Invented by Samuel Hunter Christie in 1833 and popularised by Sir Charles Wheatstone in 1843, the bridge circuit remains a cornerstone of electrical measurement and sensor technology more than 180 years later.\n\nThe classic Wheatstone bridge consists of four resistors arranged in a diamond (rhombus) configuration, with a voltage source connected across one pair of opposite nodes and a galvanometer (or differential voltmeter) connected across the other pair. When the bridge is balanced — meaning the ratio of resistances in one arm equals the ratio in the other arm — no current flows through the galvanometer. This null condition is exploited to determine an unknown resistance with extraordinary accuracy.\n\nThe balance condition is expressed as R1/R2 = R3/Rx, which rearranges to Rx = R2·R3/R1. This formula is exact and requires no calibration; accuracy depends only on how accurately R1, R2, and R3 are known. Precision laboratory bridges can measure resistance to better than one part per million.\n\nWhen the bridge is not at balance — as is often the case in sensor applications where a small resistance change must be detected — the output voltage Vout is related to the supply voltage Vs by: Vout = Vs·(Rx/(R2+Rx) − R3/(R1+R3)). This calculator uses that formula in reverse: given the measured output voltage, it solves for Rx.\n\nThe Wheatstone bridge is indispensable in strain gauge applications. A strain gauge is a resistive element whose resistance changes proportionally to mechanical strain. By bonding strain gauges to a structural member and connecting them in a Wheatstone bridge, engineers can measure forces, pressures, torques, and displacements with sub-microstrain precision. Load cells, pressure transducers, and force sensors in everything from industrial scales to aircraft landing gear typically use Wheatstone bridge configurations.\n\nTemperature sensors based on resistance temperature detectors (RTDs) and thermistors also benefit from bridge circuits. Because resistance changes with temperature, the bridge output voltage varies predictably with temperature, enabling precise temperature measurement. Platinum RTDs (Pt100, Pt1000) are commonly read using bridge circuits in industrial process control.\n\nModern applications extend to biosensors, chemical sensors, and MEMS devices where tiny resistance changes caused by biological or chemical interactions are detected through bridge imbalances. The fundamental simplicity and noise immunity of the bridge principle — based on a null measurement or a differential voltage — makes it robust against common-mode interference and power supply fluctuations."
+      },
+      "examples": {
+        "heading": "Wheatstone Bridge Examples",
+        "intro": "Click any example to load it into the calculator.",
+        "colInput": "Circuit Setup",
+        "colOutput": "Unknown Rx (Ω)",
+        "colNote": "Notes",
+        "loadBalanced": "Load balanced bridge",
+        "loadUnbalanced": "Load unbalanced bridge",
+        "loadStrainGauge": "Load strain gauge",
+        "items": [
+          {
+            "input": "R1=1000Ω, R2=1000Ω, R3=500Ω, Vout=0V, Vs=5V",
+            "output": "Rx = 500 Ω",
+            "note": "Perfectly balanced bridge. R1/R2 = R3/Rx gives Rx = R2·R3/R1 = 500 Ω."
+          },
+          {
+            "input": "R1=1000Ω, R2=1000Ω, R3=750Ω, Vout=0.25V, Vs=10V",
+            "output": "Rx ≈ 830 Ω",
+            "note": "Unbalanced bridge. The output voltage indicates a resistance deviation from balance."
+          },
+          {
+            "input": "R1=120Ω, R2=120Ω, R3=120Ω, Vout=0.05V, Vs=5V",
+            "output": "Rx ≈ 124.9 Ω",
+            "note": "Typical strain gauge setup. A small voltage offset indicates a resistance change of about 4.9 Ω from the nominal 120 Ω."
+          },
+          {
+            "input": "R1=10000Ω, R2=10000Ω, R3=100Ω, Vout=0.01V, Vs=3.3V",
+            "output": "Rx ≈ 131 Ω",
+            "note": "High-ratio bridge for measuring small resistances. Tiny Vout offset from near-balance shifts Rx from the 100 Ω baseline."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Wheatstone Bridge Calculator",
+        "steps": [
+          "Enter the three known resistances R1, R2, and R3 in ohms (Ω). Use the same unit for all three.",
+          "Enter the Supply Voltage (Vs) — the voltage applied across the bridge.",
+          "Enter the Voltage Ratio (bridge output voltage Vout) measured between the two midpoints of the bridge. For a balanced bridge, enter 0.",
+          "Click Calculate. The calculator solves Rx = R2·R3/R1 adjusted for any voltage offset.",
+          "Use the example buttons to load common bridge configurations and verify your setup."
+        ]
+      },
+      "faq": {
+        "heading": "Wheatstone Bridge FAQ",
+        "q1": "What is a Wheatstone bridge used for?",
+        "q1_a": "A Wheatstone bridge is used to measure an unknown electrical resistance with high precision. It works by balancing the bridge circuit so that no current flows through the measuring device, then using the known resistances to calculate the unknown one. It is also widely used in sensor applications (strain gauges, temperature sensors, pressure transducers) where small resistance changes need to be detected accurately.",
+        "q2": "What is the formula for the Wheatstone bridge?",
+        "q2_a": "For a balanced bridge (Vout = 0): Rx = R2 × R3 / R1. For an unbalanced bridge with output voltage Vout and supply voltage Vs: Vout = Vs × (Rx/(R2+Rx) − R3/(R1+R3)). Solving this for Rx gives: Rx = ratio × R2 / (1 − ratio), where ratio = Vout/Vs + R3/(R1+R3).",
+        "q3": "What does it mean when the bridge is balanced?",
+        "q3_a": "A balanced Wheatstone bridge means the output voltage between the two midpoints is exactly zero. This occurs when R1/R2 = R3/Rx. In this condition, no current flows through the galvanometer (or differential voltmeter). The balance condition allows the unknown resistance to be calculated from the three known resistances with no dependence on the supply voltage, which improves accuracy.",
+        "q4": "Why is the Wheatstone bridge so accurate?",
+        "q4_a": "The Wheatstone bridge is accurate because it is a null measurement method — at balance, the result depends only on the ratios of resistances, not on the absolute values of the supply voltage or the sensitivity of the measuring instrument. This eliminates errors from voltage source drift and galvanometer non-linearity. Modern bridge circuits achieve parts-per-million accuracy.",
+        "q5": "How does a Wheatstone bridge work with strain gauges?",
+        "q5_a": "A strain gauge is a resistive element whose resistance changes slightly under mechanical stress. By bonding one or more strain gauges to a structural member and placing them in a Wheatstone bridge, tiny resistance changes (often less than 0.1%) produce measurable output voltages. Four active gauges (full bridge) maximise sensitivity and cancel out temperature effects. This configuration is used in load cells, torque sensors, and pressure transducers.",
+        "q6": "What are the limitations of the Wheatstone bridge?",
+        "q6_a": "The Wheatstone bridge is most accurate near the balance condition. For large resistance deviations, the relationship between Vout and Rx becomes nonlinear, requiring the full formula or correction factors. Lead resistance in long cables can introduce errors unless compensated for. At very high frequencies, capacitance and inductance of the bridge arms affect performance, requiring AC bridge variants (such as Maxwell or Hay bridges) for accurate measurements."
+      }
+    },
+    "wiens-law-calculator": {
+      "title": "Wien's Law Calculator – Peak Wavelength from Temperature",
+      "tagline": "Determine the peak wavelength of blackbody radiation from temperature using Wien's displacement law.",
+      "intro": "Enter the temperature in Kelvin to calculate the peak wavelength (λmax), frequency, and radiation category.",
+      "field": {
+        "temperature": "Temperature (K)"
+      },
+      "placeholder": {
+        "temperature": "e.g. 5778"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter a valid positive temperature in Kelvin."
+      },
+      "result": {
+        "heading": "Result",
+        "wavelength": "Peak Wavelength λmax = {value}",
+        "frequency": "Peak Frequency ≈ {value} Hz",
+        "category": {
+          "gamma": "Radiation type: Gamma rays",
+          "xray": "Radiation type: X-rays",
+          "uv": "Radiation type: Ultraviolet",
+          "visible": "Radiation type: Visible light",
+          "infrared": "Radiation type: Infrared",
+          "microwave": "Radiation type: Microwave / Radio"
+        }
+      },
+      "formula": "Wien's Law: λmax = b / T, where b = 2.898 × 10⁻³ m·K",
+      "about": {
+        "heading": "About the Wien's Law Calculator",
+        "body": "Wien's displacement law is a fundamental relationship in thermodynamics and thermal radiation that describes the wavelength at which a blackbody emitter radiates most intensely. Formulated by German physicist Wilhelm Wien in 1893, the law states that the peak wavelength of thermal radiation is inversely proportional to the absolute temperature of the emitting body.\n\nThe mathematical expression is λmax = b / T, where λmax is the peak wavelength in metres, T is the absolute temperature in Kelvin, and b is Wien's displacement constant equal to 2.897771955 × 10⁻³ m·K. This elegant inverse relationship has profound implications: as a body gets hotter, it emits radiation at shorter (higher-energy) wavelengths. A cool body radiates in the infrared, a warm body glows red, a hot body glows white or blue-white.\n\nThe law emerges from Planck's law of blackbody radiation by differentiating the spectral radiance with respect to wavelength and setting the derivative to zero. The result is a transcendental equation whose solution gives the constant b. Planck's more complete quantum theory, developed in 1900, supersedes Wien's approximation for the full spectral distribution, but Wien's displacement law for the peak remains exactly valid as a special case.\n\nAstronomical applications of Wien's law are particularly striking. The surface temperature of the Sun is approximately 5778 K, corresponding to a peak wavelength of about 502 nm — green light. The human visual system evolved to be most sensitive near this wavelength. Cooler red giant stars (3000–4000 K) peak in the near-infrared; hotter blue-white stars (20,000–50,000 K) peak in the ultraviolet. By measuring the peak wavelength of a star's spectrum, astronomers can determine its surface temperature with high precision.\n\nIn everyday life, Wien's law governs the appearance of heated metal. Steel glows faintly red at around 800–900 K, bright orange-red at 1100 K, and yellow-white at 1500 K. Incandescent light bulb filaments operate at about 2700–3000 K, producing warm yellow-white light that peaks in the near-infrared — which is why incandescent bulbs are relatively inefficient: most of their energy is emitted as heat rather than visible light.\n\nInfrared thermography and remote sensing rely on Wien's law to infer temperatures from measured peak wavelengths. Medical infrared cameras detect body temperature variations (normal body temperature ≈ 310 K, λmax ≈ 9.3 μm, deep mid-infrared). Industrial kilns, furnaces, and steel-processing equipment use optical pyrometers and infrared sensors calibrated using Wien's law to measure temperatures contactlessly. The cosmic microwave background radiation, the thermal relic of the Big Bang, has a perfect blackbody spectrum with a peak corresponding to T ≈ 2.725 K — far into the microwave region, just as the name suggests."
+      },
+      "examples": {
+        "heading": "Wien's Law Examples",
+        "intro": "Common temperature values and their peak wavelengths of blackbody radiation.",
+        "colInput": "Temperature",
+        "colOutput": "Peak Wavelength",
+        "colNote": "Context",
+        "loadSun": "Load Sun's surface",
+        "loadBulb": "Load incandescent bulb",
+        "loadBody": "Load human body",
+        "items": [
+          {
+            "input": "5778 K (Sun's surface)",
+            "output": "≈ 501.5 nm (visible green)",
+            "note": "The peak is in the visible green region, explaining why the human eye evolved peak sensitivity near 550 nm."
+          },
+          {
+            "input": "2800 K (incandescent bulb)",
+            "output": "≈ 1035 nm (near infrared)",
+            "note": "Most energy is radiated as infrared heat, making incandescent bulbs only about 5% efficient for visible light."
+          },
+          {
+            "input": "310 K (human body)",
+            "output": "≈ 9348 nm (mid infrared)",
+            "note": "Human body heat peaks deep in the mid-infrared, invisible to the naked eye but detectable by thermal cameras."
+          },
+          {
+            "input": "2.725 K (cosmic background)",
+            "output": "≈ 1.06 mm (microwave)",
+            "note": "The Big Bang afterglow — discovered in 1964 — is a near-perfect blackbody at 2.725 K, peaking in the microwave band."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Wien's Law Calculator",
+        "steps": [
+          "Enter the temperature of the blackbody emitter in Kelvin (K). Kelvin = Celsius + 273.15.",
+          "Click Calculate. The calculator applies λmax = b / T using Wien's displacement constant b = 2.898 × 10⁻³ m·K.",
+          "Read the peak wavelength in nm, μm, or cm depending on magnitude, plus the approximate frequency.",
+          "The radiation type panel tells you whether the peak falls in the gamma, X-ray, UV, visible, infrared, or microwave region.",
+          "Use the example buttons to load common temperatures (Sun, incandescent bulb, human body) for quick reference."
+        ]
+      },
+      "faq": {
+        "heading": "Wien's Law FAQ",
+        "q1": "What is Wien's displacement law?",
+        "q1_a": "Wien's displacement law states that the peak wavelength of thermal (blackbody) radiation is inversely proportional to the absolute temperature: λmax = b / T, where b = 2.898 × 10⁻³ m·K is Wien's displacement constant. As temperature increases, the peak wavelength shortens — hotter objects emit bluer (higher-energy) light. The law was derived by Wilhelm Wien in 1893 and is confirmed by Planck's complete quantum theory of blackbody radiation.",
+        "q2": "Why does the Sun peak in the green but appear yellow-white?",
+        "q2_a": "The Sun's photosphere at ~5778 K has a peak wavelength around 501–502 nm (green). However, the Sun emits across the full visible spectrum in roughly equal amounts near its peak, so the integrated colour appears white or pale yellow. The yellow appearance is partly due to atmospheric scattering that preferentially removes blue light at low angles, and partly due to the non-uniform spectral sensitivity of the human eye.",
+        "q3": "What is the Wien's displacement constant b?",
+        "q3_a": "Wien's displacement constant b = 2.897771955 × 10⁻³ m·K (metres times Kelvin). It can be derived from fundamental constants: b = hc / (x·kB), where h is Planck's constant, c is the speed of light, kB is Boltzmann's constant, and x ≈ 4.965 is the solution to the transcendental equation x·e^x/(e^x − 1) = 5. The NIST value is 2.897771955 × 10⁻³ m·K.",
+        "q4": "How does Wien's law relate to Planck's law?",
+        "q4_a": "Planck's law gives the complete spectral distribution of blackbody radiation: B(λ,T) = 2hc²/λ⁵ × 1/(e^(hc/λkT) − 1). Wien's law is derived by differentiating this with respect to λ and finding where it is maximised. Wien's law provides only the peak wavelength; Planck's law is needed for the full spectrum. Planck's law reduces to Wien's approximation at short wavelengths where hc/λkT ≫ 1.",
+        "q5": "Can Wien's law be applied to non-blackbody sources?",
+        "q5_a": "Wien's law strictly applies to ideal blackbody radiators. Real objects are 'grey bodies' with emissivity less than 1, which reduces the total emission but does not shift the peak wavelength. The peak wavelength relationship still holds if the emissivity is spectrally flat (grey body). For sources with strongly wavelength-dependent emissivity, Wien's law gives only an approximate guide to peak emission.",
+        "q6": "How do astronomers use Wien's law to measure star temperatures?",
+        "q6_a": "Astronomers measure the spectral energy distribution of a star and locate the wavelength of maximum flux. Applying λmax = b / T and solving for T gives the effective surface temperature. For the Sun, λmax ≈ 502 nm gives T ≈ 5778 K. For Betelgeuse (~3500 K), λmax ≈ 828 nm (near-infrared), explaining its red colour. For hot blue stars like Rigel (~12000 K), λmax ≈ 242 nm (ultraviolet), making them appear blue-white in visible light."
+      }
+    },
+    "wind-correction-angle-calculator": {
+      "title": "Wind Correction Angle Calculator – Aviation Navigation",
+      "tagline": "Calculate wind correction angle, true heading, and ground speed for accurate flight navigation.",
+      "intro": "Enter true course, wind direction, wind speed, and true airspeed to determine the heading correction needed to maintain your desired ground track.",
+      "field": {
+        "trueCourse": "True Course (°)",
+        "windDirection": "Wind Direction (°)",
+        "windSpeed": "Wind Speed (kts)",
+        "trueAirspeed": "True Airspeed (kts)"
+      },
+      "placeholder": {
+        "trueCourse": "e.g. 090",
+        "windDirection": "e.g. 270",
+        "windSpeed": "e.g. 15",
+        "trueAirspeed": "e.g. 120"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid values. True airspeed must be positive.",
+        "windTooStrong": "Wind speed exceeds airspeed — no valid wind correction angle exists."
+      },
+      "result": {
+        "heading": "Navigation Results",
+        "wca": "Wind Correction Angle (WCA) = {value}°",
+        "trueHeading": "True Heading (TH) = {value}°",
+        "groundSpeed": "Ground Speed (GS) = {value} kts"
+      },
+      "formula": "WCA = arcsin(WS × sin(WD − TC) / TAS) | GS from law of cosines",
+      "about": {
+        "heading": "About the Wind Correction Angle Calculator",
+        "body": "The wind correction angle (WCA), also called the crab angle, is the angular difference between the direction an aircraft must point (true heading) and the direction it actually needs to travel over the ground (true course). Without correcting for wind, an aircraft flying at a fixed heading will drift off its intended track, potentially missing a destination or entering restricted airspace.\n\nThis calculation is one of the most fundamental skills in aviation navigation, taught in every private pilot ground school. The underlying mathematics comes from vector addition: the aircraft's velocity through the air (represented by its true airspeed and true heading) plus the wind velocity vector equals the aircraft's velocity over the ground (represented by its ground speed and ground track).\n\nThe formula for wind correction angle is: WCA = arcsin(WS × sin(WD − TC) / TAS), where WS is wind speed, WD is wind direction (the direction FROM which the wind is blowing, in aviation convention), TC is the desired true course, and TAS is true airspeed. The result gives the angle the pilot must add or subtract from the true course to obtain the true heading.\n\nGround speed is then computed from the law of cosines: GS² = TAS² + WS² − 2 × TAS × WS × cos(TH − WD + 180°). Ground speed determines flight time and fuel requirements. A headwind reduces ground speed; a tailwind increases it. Crosswinds reduce ground speed slightly and require a heading correction.\n\nIn the E6B flight computer (the classic circular slide rule used by pilots for decades), the wind correction is performed by laying off the wind vector and reading off the correction angle and ground speed graphically. Modern electronic flight bags (EFBs) and GPS flight management systems compute this automatically, but pilots are still trained to calculate it manually as a backup.\n\nThe limitation of the formula is that it breaks down when wind speed exceeds true airspeed (the aircraft cannot maintain the desired course at all), which is why the calculator checks for this condition.\n\nBeyond VFR (visual flight rules) navigation, wind correction is critical for IFR (instrument flight rules) operations, especially on final approach where maintaining the exact runway centreline requires precise crab angle calculation and removal of the crab just before touchdown."
+      },
+      "examples": {
+        "heading": "Wind Correction Angle Examples",
+        "intro": "Common flight scenarios showing wind correction calculations.",
+        "colInput": "Flight Parameters",
+        "colOutput": "WCA / True Heading / GS",
+        "colNote": "Scenario",
+        "loadCrosswind": "Load crosswind scenario",
+        "loadHeadwind": "Load headwind scenario",
+        "loadTailwind": "Load tailwind scenario",
+        "items": [
+          {
+            "input": "TC=090°, WD=000°, WS=15 kts, TAS=80 kts",
+            "output": "WCA ≈ −10.8°, TH ≈ 79.2°, GS ≈ 78.6 kts",
+            "note": "Left crosswind from the north. Crab left 10.8° into wind; ground speed drops slightly to 78.6 kts."
+          },
+          {
+            "input": "TC=180°, WD=180°, WS=20 kts, TAS=120 kts",
+            "output": "WCA = 0°, TH = 180°, GS = 100 kts",
+            "note": "Pure headwind — no correction angle needed, but ground speed is reduced by full wind speed."
+          },
+          {
+            "input": "TC=270°, WD=090°, WS=25 kts, TAS=150 kts",
+            "output": "WCA = 0°, TH = 270°, GS = 175 kts",
+            "note": "Pure tailwind — no correction needed, and ground speed is boosted by full wind speed."
+          },
+          {
+            "input": "TC=045°, WD=315°, WS=10 kts, TAS=100 kts",
+            "output": "WCA ≈ −7.2°, TH ≈ 37.8°, GS ≈ 99.4 kts",
+            "note": "Quartering left crosswind. Small crab angle required; ground speed nearly equals TAS."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Wind Correction Angle Calculator",
+        "steps": [
+          "Enter the True Course (TC) — the magnetic or true course you wish to fly, in degrees (0–360).",
+          "Enter the Wind Direction (WD) — the direction FROM which the wind is blowing, in degrees. In aviation, winds are reported as the direction they come from.",
+          "Enter the Wind Speed (WS) and True Airspeed (TAS) in consistent units (knots recommended).",
+          "Click Calculate. The calculator returns the Wind Correction Angle, True Heading, and Ground Speed.",
+          "Apply the Wind Correction Angle to your True Course to get your True Heading. Convert to magnetic heading by applying variation as needed."
+        ]
+      },
+      "faq": {
+        "heading": "Wind Correction Angle FAQ",
+        "q1": "What is wind correction angle in aviation?",
+        "q1_a": "Wind correction angle (WCA) is the angle a pilot must offset their heading from the desired track to compensate for wind drift. If you fly straight ahead at a fixed heading in a crosswind, you will drift off course. By 'crabbing' into the wind — pointing slightly upwind — the wind pushes you sideways just enough to keep you on the desired track. The WCA is the difference between your true heading (where you point the nose) and your true course (where you actually travel).",
+        "q2": "How is wind direction reported in aviation?",
+        "q2_a": "In aviation, wind direction is always reported as the direction FROM which the wind blows, measured in degrees true or magnetic. For example, a 270° wind means the wind is coming from the west. This is the opposite of the meteorological convention used in some other fields where wind direction can mean the direction the wind is going. ATIS and METAR reports use this FROM convention, as does this calculator.",
+        "q3": "What is the difference between true course and true heading?",
+        "q3_a": "True course (TC) is the direction you want to travel over the ground — the line between your departure and destination. True heading (TH) is the direction the aircraft's nose actually points. In calm air, TC equals TH. In a crosswind, TH differs from TC by the wind correction angle. After applying WCA to TC you get TH; then apply magnetic variation to TH to get magnetic heading (MH), and add compass deviation to get compass heading (CH).",
+        "q4": "What happens when wind speed is greater than airspeed?",
+        "q4_a": "If wind speed exceeds true airspeed, there is no solution for the wind correction angle formula — sin(WCA) = WS/TAS × sin(angle) would require sin > 1, which is impossible. This means the aircraft simply cannot make headway against the wind on that particular course. The pilot must increase airspeed, wait for the wind to decrease, or choose a different routing to avoid the adverse wind component.",
+        "q5": "How does a crosswind affect landing?",
+        "q5_a": "On approach, a pilot must crab into the wind to maintain the runway centreline. Just before touchdown, the crab angle is removed by applying rudder to align the aircraft with the runway direction — otherwise the aircraft would touch down while moving sideways, stressing the landing gear. The maximum demonstrated crosswind component for an aircraft is listed in the Pilot Operating Handbook and must not be exceeded for safe operations.",
+        "q6": "What is ground speed and why does it matter?",
+        "q6_a": "Ground speed (GS) is the aircraft's actual speed over the ground, combining the effects of airspeed and wind. A headwind reduces ground speed below airspeed; a tailwind increases it. Ground speed determines flight time (distance ÷ GS = time) and fuel required. Flight planning uses ground speed to calculate estimated time enroute (ETE), fuel consumption, and required fuel reserves. GPS displays ground speed directly; in pre-GPS navigation it was computed from airspeed and wind triangle calculations."
+      }
+    },
+    "wind-load-calculator": {
+      "title": "Wind Load Calculator – Wind Pressure and Force on Structures",
+      "tagline": "Calculate wind pressure and total wind force on buildings and structures for structural design.",
+      "intro": "Enter wind speed, building dimensions, exposure category, and drag coefficient to compute dynamic pressure, wind pressure, and total force.",
+      "field": {
+        "windSpeed": "Wind Speed (m/s)",
+        "buildingHeight": "Building Height (m)",
+        "buildingWidth": "Building Width (m)",
+        "buildingLength": "Building Length (m)",
+        "exposureCategory": "Exposure Category",
+        "dragCoefficient": "Drag Coefficient (Cd)"
+      },
+      "placeholder": {
+        "windSpeed": "e.g. 25",
+        "buildingHeight": "e.g. 30",
+        "buildingWidth": "e.g. 20",
+        "buildingLength": "e.g. 40",
+        "dragCoefficient": "e.g. 1.3"
+      },
+      "type": {
+        "exposure1": "1 – Open Terrain",
+        "exposure1_desc": "Open flat terrain such as grass plains, coastal areas, or farmland with few obstacles.",
+        "exposure2": "2 – Suburban",
+        "exposure2_desc": "Suburban or woodland areas with scattered obstructions 1.5 to 10 m in height.",
+        "exposure3": "3 – Urban",
+        "exposure3_desc": "Urban centres and densely built-up areas with closely spaced obstructions."
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for all fields."
+      },
+      "result": {
+        "heading": "Wind Load Results",
+        "totalForce": "Total Wind Force = {value} N",
+        "dynamicPressure": "Dynamic Pressure (q) = {value} Pa",
+        "windPressure": "Design Wind Pressure (p) = {value} Pa",
+        "frontArea": "Windward Area = {value} m²"
+      },
+      "formula": "q = 0.5·ρ·v² | p = q·Cd·Ce | F = p·A",
+      "about": {
+        "heading": "About the Wind Load Calculator",
+        "body": "Wind load is the force exerted by moving air on a structure. It is one of the most important lateral loads that structural engineers must account for when designing buildings, bridges, towers, and other structures. Incorrectly estimating wind loads has contributed to many structural failures throughout history, from the Tay Bridge disaster of 1879 to more recent failures of poorly designed facades and roof structures.\n\nThe fundamental quantity in wind load calculation is the dynamic pressure, also called velocity pressure or stagnation pressure. It is given by q = 0.5 × ρ × v², where ρ is the air density (approximately 1.225 kg/m³ at sea level and standard temperature) and v is the wind speed in metres per second. This relationship comes directly from Bernoulli's principle and represents the kinetic energy per unit volume of the moving air.\n\nThe design wind pressure on a surface is then p = q × Cd × Ce, where Cd is the drag coefficient (also called pressure coefficient) reflecting how aerodynamically bluff or streamlined the structure is, and Ce is an exposure factor accounting for the terrain roughness around the structure. A flat-sided building in open terrain experiences higher wind pressure than the same building surrounded by dense urban development that shelters it from the wind.\n\nDrag coefficients for common structures range from about 0.8–1.3 for rectangular buildings (depending on aspect ratio), to 0.4–0.7 for circular cylinders, to 1.0–2.0 for lattice frames and signboards. The drag coefficient is determined experimentally through wind tunnel testing or specified in structural design codes.\n\nExposure categories classify the terrain surrounding a building and affect how wind speed varies with height. In open terrain (Exposure A or Category 1), wind speed close to the ground is relatively high because there are few obstacles to slow it down. In dense urban centres (Exposure D or Category 3), the many large buildings create turbulence and sheltering effects that reduce mean wind speeds at low levels.\n\nStructural design codes — including ASCE 7 in the United States, Eurocode 1 (EN 1991-1-4) in Europe, and AS/NZS 1170.2 in Australia — provide detailed procedures for calculating design wind loads, including adjustments for gust factors, topographic effects, internal pressure, and component and cladding loads. This calculator provides a simplified first-principles estimate that is useful for preliminary design and educational purposes."
+      },
+      "examples": {
+        "heading": "Wind Load Examples",
+        "intro": "Representative buildings showing wind load calculations at different scales.",
+        "colInput": "Building & Wind Parameters",
+        "colOutput": "Total Wind Force",
+        "colNote": "Application",
+        "loadResidential": "Load residential house",
+        "loadCommercial": "Load commercial building",
+        "loadIndustrial": "Load industrial warehouse",
+        "items": [
+          {
+            "input": "v=20 m/s, H=8 m, W=12 m, Exp=2, Cd=1.3",
+            "output": "≈ 25,990 N (26 kN)",
+            "note": "Suburban house. q=245 Pa, design pressure=271 Pa; total force on 96 m² windward face."
+          },
+          {
+            "input": "v=30 m/s, H=50 m, W=25 m, Exp=3, Cd=1.4",
+            "output": "≈ 675,000 N (675 kN)",
+            "note": "Mid-rise office. Urban sheltering (Ce=0.7) reduces pressure; large 1250 m² windward area."
+          },
+          {
+            "input": "v=25 m/s, H=15 m, W=60 m, Exp=1, Cd=1.2",
+            "output": "≈ 413,000 N (413 kN)",
+            "note": "Industrial warehouse in open terrain. Full exposure (Ce=1.0) and large 900 m² face give high wind loads."
+          },
+          {
+            "input": "v=35 m/s, H=100 m, W=5 m, Exp=1, Cd=1.0",
+            "output": "≈ 375,000 N (375 kN)",
+            "note": "Communication tower. Very high wind speed and full exposure; small 500 m² face keeps total manageable."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Wind Load Calculator",
+        "steps": [
+          "Enter the design wind speed in metres per second. Use local meteorological data or building code wind speed maps.",
+          "Enter the building height, width, and length in metres. Width is the dimension perpendicular to the wind direction.",
+          "Select the exposure category matching the terrain around the building: open, suburban, or urban.",
+          "Enter the drag coefficient (Cd). Use 1.3 for a typical rectangular building or consult your design code for your specific geometry.",
+          "Click Calculate to see dynamic pressure, design wind pressure, windward face area, and total wind force."
+        ]
+      },
+      "faq": {
+        "heading": "Wind Load FAQ",
+        "q1": "What is wind load in structural engineering?",
+        "q1_a": "Wind load is the force exerted by wind pressure on a structure. It acts as a lateral (horizontal) load on buildings and must be resisted by the structure's lateral force-resisting system — shear walls, moment frames, or braced frames. Wind load is a dynamic load that varies with height, terrain, building geometry, and local climate. Design codes specify wind pressures that structures must withstand without collapse or excessive deflection.",
+        "q2": "What is dynamic pressure and how is it calculated?",
+        "q2_a": "Dynamic pressure (q) is the kinetic energy per unit volume of moving air: q = 0.5 × ρ × v², where ρ is air density (1.225 kg/m³ at sea level) and v is wind speed in m/s. At 20 m/s, q = 0.5 × 1.225 × 400 = 245 Pa. At 30 m/s, q = 551 Pa. Dynamic pressure increases with the square of wind speed — doubling the wind speed quadruples the wind load.",
+        "q3": "What does the drag coefficient represent?",
+        "q3_a": "The drag coefficient (Cd) quantifies how aerodynamically bluff a structure is — how much it resists airflow compared to a theoretical perfect streamlined body. A flat plate perpendicular to the wind has Cd ≈ 1.28, a sphere has Cd ≈ 0.5, and a streamlined airfoil has Cd < 0.05. For buildings, Cd (or pressure coefficient Cp) depends on the building's shape and aspect ratio and is determined from wind tunnel testing or code tables.",
+        "q4": "What are exposure categories in wind load calculations?",
+        "q4_a": "Exposure categories classify the terrain surrounding a building based on the size and spacing of surface roughness elements. Open terrain (Category 1) includes flat plains, coastal areas, and airports where wind is relatively unimpeded. Suburban terrain (Category 2) includes residential areas with trees and houses. Urban terrain (Category 3) includes city centres with tall buildings. More sheltered terrain reduces mean wind speed but increases turbulence intensity.",
+        "q5": "How does building height affect wind load?",
+        "q5_a": "Wind speed and thus dynamic pressure increase with height above ground. Taller buildings are exposed to higher wind speeds at their upper floors. Design codes specify wind speed profiles as a function of height — typically a power law or logarithmic profile. This calculator uses a simplified approach assuming uniform wind speed; for tall buildings, engineers use height-dependent wind pressure distributions as specified in ASCE 7, Eurocode 1, or similar codes.",
+        "q6": "Is this calculator suitable for professional structural design?",
+        "q6_a": "This calculator provides a simplified first-principles estimate of wind loads and is suitable for educational purposes and preliminary feasibility checks. Professional structural design requires using the full provisions of applicable building codes (ASCE 7, Eurocode 1, AS/NZS 1170.2, etc.), which include gust factors, topographic effects, directional factors, internal pressure, component and cladding loads, and site-specific wind speed data from national wind speed maps. Always consult a licensed structural engineer for building design."
+      }
+    },
+    "wing-loading-calculator": {
+      "title": "Wing Loading Calculator – Aircraft Performance and Stall Speed",
+      "tagline": "Calculate aircraft wing loading and estimate stall speed from weight and wing area.",
+      "intro": "Enter the aircraft weight and wing area in metric or imperial units to calculate wing loading and estimate stall speed at sea level.",
+      "field": {
+        "aircraftWeight": "Aircraft Weight",
+        "wingArea": "Wing Area",
+        "unitSystem": "Unit System"
+      },
+      "placeholder": {
+        "aircraftWeight": "e.g. 1111",
+        "wingArea": "e.g. 16.2"
+      },
+      "type": {
+        "metric": "Metric (kg / m²)",
+        "imperial": "Imperial (lb / ft²)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for weight and wing area."
+      },
+      "result": {
+        "heading": "Wing Loading Results",
+        "wingLoading": "Wing Loading = {value} {unit}",
+        "stallSpeed": "Estimated Stall Speed ≈ {value} {unit}",
+        "clmaxNote": "Stall speed assumes CLmax = {value} at sea level"
+      },
+      "formula": "Wing Loading = W / S | Stall Speed = √(2W / (ρ·S·CLmax))",
+      "about": {
+        "heading": "About the Wing Loading Calculator",
+        "body": "Wing loading is one of the most fundamental performance parameters in aeronautics. It is defined as the ratio of an aircraft's total weight to its wing reference area: W/S, expressed in kg/m² (metric) or lb/ft² (imperial). Wing loading directly determines stall speed, cruise performance, manoeuvrability, ride quality, and takeoff and landing distances.\n\nA low wing loading means the wings are large relative to the aircraft's weight. This produces a low stall speed, gentle handling characteristics, and the ability to soar in weak thermal lift — hence sailplanes and gliders have very low wing loadings (20–40 kg/m²). The downside is that light-wing-loading aircraft are sensitive to gusts and turbulence, which is why gliders are uncomfortable in rough air.\n\nA high wing loading means the wings are small relative to the weight. High-performance jet fighters have wing loadings of 300–700 kg/m², enabling high speeds and tight turns in calm air. The tradeoff is a high stall speed, which requires long runways and sophisticated high-lift systems (leading-edge slats, trailing-edge flaps) to achieve safe landing speeds. The F-16 Fighting Falcon has a wing loading of about 430 kg/m² in a clean configuration.\n\nFor commercial transport aircraft, wing loading is a compromise between cruise efficiency and low-speed handling. The Boeing 737 has a wing loading of roughly 570 kg/m², while the Airbus A380 is about 650 kg/m². Long-range aircraft tend to have higher wing loadings because they carry large amounts of fuel (which increases weight) and need thin wings for high-speed cruise.\n\nStall speed is directly related to wing loading through the lift equation: L = 0.5 × ρ × v² × S × CL. At stall, L = W and CL = CLmax. Solving for stall speed: Vs = √(2 × W / (ρ × S × CLmax)) = √(2 × (W/S) / (ρ × CLmax)). For a typical general aviation aircraft with CLmax ≈ 1.5 and sea-level air density 1.225 kg/m³, a wing loading of 70 kg/m² gives Vs ≈ 27 m/s (53 knots). Adding flaps increases CLmax to 2.0–2.5, reducing stall speed.\n\nRC model aircraft have the lowest wing loadings (5–20 kg/m²) to allow slow, gentle flight suitable for beginners. High-performance aerobatic RC planes and racing drones have much higher loadings for speed and agility.\n\nWhen choosing wing loading for a new design, engineers must balance all these competing requirements: stall speed (safety), climb rate, range, maneuverability, gust response, and structural weight."
+      },
+      "examples": {
+        "heading": "Wing Loading Examples",
+        "intro": "Representative aircraft showing how wing loading varies across different aircraft types.",
+        "colInput": "Aircraft / Weight / Wing Area",
+        "colOutput": "Wing Loading",
+        "colNote": "Performance Notes",
+        "loadCessna": "Load Cessna 172",
+        "loadGlider": "Load high-perf glider",
+        "loadRC": "Load RC model",
+        "items": [
+          {
+            "input": "Cessna 172: 1111 kg, 16.2 m²",
+            "output": "68.6 kg/m²",
+            "note": "Light trainer/touring aircraft. Low wing loading gives docile stall characteristics and short-field capability."
+          },
+          {
+            "input": "High-performance glider: 600 kg, 12.5 m²",
+            "output": "48.0 kg/m²",
+            "note": "Modern composite sailplane. Low wing loading for maximum soaring efficiency; glide ratio > 50:1."
+          },
+          {
+            "input": "Military fighter: 15000 kg, 27.9 m²",
+            "output": "537.6 kg/m²",
+            "note": "High wing loading enables high-speed flight and tight turns. Requires powerful engines and advanced flaps."
+          },
+          {
+            "input": "RC model: 2.5 kg, 0.8 m²",
+            "output": "3.1 kg/m²",
+            "note": "Very low wing loading typical of beginner RC aircraft. Slow stall speed and gentle handling for easy control."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Wing Loading Calculator",
+        "steps": [
+          "Select the unit system: Metric (kg and m²) or Imperial (lb and ft²).",
+          "Enter the aircraft total weight — the maximum takeoff weight (MTOW) is typically used for worst-case analysis.",
+          "Enter the wing reference area — the total plan-view area of the wing including the portion inside the fuselage.",
+          "Click Calculate. Wing loading (W/S) and estimated stall speed at sea level are displayed.",
+          "Use the example buttons to load common aircraft configurations and compare their wing loadings."
+        ]
+      },
+      "faq": {
+        "heading": "Wing Loading FAQ",
+        "q1": "What is wing loading?",
+        "q1_a": "Wing loading is the ratio of an aircraft's total weight to its wing reference area: W/S, measured in kg/m² (metric) or lb/ft² (imperial). It is one of the most important parameters in aircraft design because it determines stall speed, cruise efficiency, manoeuvrability, and sensitivity to turbulence. A lower wing loading generally means a slower stall speed and gentler handling; a higher wing loading enables higher speeds and tighter manoeuvres.",
+        "q2": "How does wing loading affect stall speed?",
+        "q2_a": "Stall speed increases with the square root of wing loading: Vs = √(2 × (W/S) / (ρ × CLmax)). Doubling the wing loading increases stall speed by a factor of √2 ≈ 1.41 (41% faster). This is why large aircraft with high wing loadings need sophisticated high-lift systems (leading-edge slats and trailing-edge flaps) to reduce stall speed for safe takeoff and landing. CLmax for a clean wing is typically 1.2–1.6; with full flaps it can reach 2.5–3.0.",
+        "q3": "What is a typical wing loading for different aircraft types?",
+        "q3_a": "Typical wing loadings: gliders 20–50 kg/m², light trainers 50–100 kg/m², general aviation singles 60–120 kg/m², regional turboprops 200–300 kg/m², commercial jets 400–700 kg/m², military fighters 300–700 kg/m². RC aircraft range from 5 kg/m² (beginner park flyers) to over 100 kg/m² (jet-powered racers). Lower wing loadings favour slow flight; higher wing loadings favour high-speed cruise.",
+        "q4": "Why do gliders have lower wing loading than fighters?",
+        "q4_a": "Gliders need to fly slowly in weak thermals and ridge lift, maintaining controlled flight at very low speeds. A low wing loading (20–40 kg/m²) gives a low stall speed and high lift-to-drag ratio at low speeds, enabling efficient soaring. Fighters must fly fast and manoeuvre aggressively; their high wing loading (300–700 kg/m²) means higher speeds are needed to generate enough lift, but the large load factor capability and high speed are more important than low stall speed.",
+        "q5": "How does altitude affect stall speed?",
+        "q5_a": "Air density (ρ) decreases with altitude, reducing the aerodynamic lift generated at a given speed. Since stall speed Vs = √(2W / (ρ·S·CLmax)), a lower ρ at altitude means a higher true airspeed (TAS) at stall. At 10,000 ft, air density is about 74% of sea-level density, so stall TAS is about 1/√0.74 ≈ 16% higher than at sea level. However, indicated airspeed (IAS) at stall remains approximately constant because the airspeed indicator senses dynamic pressure.",
+        "q6": "What is the difference between wing reference area and wetted area?",
+        "q6_a": "Wing reference area (S) is the plan-view projection of the wing's outline, including the portion inside the fuselage. It is a conventional reference used for normalising aerodynamic coefficients and computing wing loading. Wetted area is the total surface area actually exposed to airflow (both top and bottom surfaces), which is roughly twice the reference area. Wing loading W/S uses the reference area; skin friction drag calculations use the wetted area."
+      }
     }
   }
 }
