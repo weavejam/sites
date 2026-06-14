@@ -7004,6 +7004,276 @@
         "q6": "Posso usar esta calculadora para dados categóricos (não numéricos)?",
         "q6_a": "A calculadora exige entrada numérica. Para usá-la com dados categóricos — como cores, notas (A/B/C) ou respostas sim/não — atribua a cada categoria um código numérico (ex.: 1 = Red, 2 = Blue, 3 = Green) e insira os valores codificados. A saída mostrará corretamente a frequência e a frequência relativa de cada código numérico, que você poderá renomear no seu relatório."
       }
+    },
+    "odds-ratio-calculator": {
+      "title": "Calculadora de razão de chances - OR, IC e valor p",
+      "tagline": "Calcule a razão de chances, o intervalo de confiança, o escore Z e o valor p a partir de uma tabela de contingência 2×2 para estudos caso-controle e epidemiológicos.",
+      "intro": "Digite as quatro contagens da sua tabela 2×2, escolha um nível de confiança e receba instantaneamente a razão de chances com inferência estatística completa.",
+      "tableNote": "Preencha as contagens dos grupos exposto e não exposto. As células devem ser inteiros não negativos. Quando qualquer célula é zero, aplica-se automaticamente a correção de Haldane-Anscombe (somar 0,5 a cada célula).",
+      "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+      "group": {
+        "exposed": "Grupo exposto",
+        "unexposed": "Grupo não exposto"
+      },
+      "field": {
+        "a": "Resultado positivo – Casos (a)",
+        "b": "Resultado negativo – Não casos (b)",
+        "c": "Resultado positivo – Casos (c)",
+        "d": "Resultado negativo – Não casos (d)",
+        "confidenceLevel": "Nível de confiança"
+      },
+      "placeholder": {
+        "cell": "Digite uma contagem ≥ 0"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Redefinir"
+      },
+      "error": {
+        "invalid": "Digite números não negativos em todas as quatro células."
+      },
+      "result": {
+        "heading": "Resultados",
+        "or": "Razão de chances (OR)",
+        "ciLabel": "Intervalo de confiança",
+        "z": "Escore Z",
+        "pValue": "Valor p",
+        "lnOR": "ln(OR)",
+        "se": "Erro padrão",
+        "correctionNote": "Célula zero detectada — correção de Haldane-Anscombe (+ 0,5) aplicada a todas as células."
+      },
+      "about": {
+        "heading": "Sobre a calculadora de razão de chances",
+        "body": "A razão de chances (OR) é uma das medidas de associação mais usadas em pesquisa biomédica, epidemiologia e ciências sociais. Ela quantifica a força da relação entre uma exposição e um desfecho binário ao comparar as chances do desfecho em um grupo exposto com as chances no grupo não exposto. Uma OR igual a 1 indica ausência de associação; uma OR maior que 1 sugere que a exposição aumenta as chances do desfecho; e uma OR menor que 1 sugere efeito protetor.\n\nA razão de chances é calculada a partir de uma tabela de contingência 2×2, o formato padrão para apresentar dados de estudos caso-controle. A tabela tem quatro células: (a) expostos com o desfecho, (b) expostos sem o desfecho, (c) não expostos com o desfecho e (d) não expostos sem o desfecho. A fórmula é simplesmente OR = (a × d) / (b × c), isto é, a razão dos produtos cruzados da tabela.\n\nA inferência estatística para a OR é feita sobre seu logaritmo natural, porque a distribuição amostral de ln(OR) é aproximadamente normal, mesmo com tamanhos de amostra moderados. O erro padrão de ln(OR) é SE = √(1/a + 1/b + 1/c + 1/d). A partir disso, calcula-se um escore Z como Z = ln(OR) / SE, que segue a distribuição normal padrão sob a hipótese nula de ausência de associação (OR = 1). O valor p bicaudal é p = 2 × Φ(−|Z|), onde Φ é a função de distribuição acumulada normal padrão. Se o valor p ficar abaixo do nível de significância escolhido (normalmente 0,05), a razão de chances é estatisticamente diferente de 1.\n\nO intervalo de confiança (IC) da OR é construído exponenciando o intervalo ao redor de ln(OR): CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. Para um IC de 95%, Z_α/2 = 1,96. Se o IC não incluir 1,0, o resultado é estatisticamente significativo ao nível de 5%. A largura do IC reflete a precisão da estimativa; intervalos mais largos surgem de tamanhos de amostra menores ou células esparsas.\n\nSurge uma complicação prática quando alguma célula da tabela 2×2 é zero, o que torna a fórmula padrão da OR indefinida (divisão por zero ou logaritmo de zero). A solução padrão é a correção de Haldane-Anscombe: adicionar 0,5 a cada célula antes de calcular a OR e o SE. Esta calculadora aplica a correção automaticamente e avisa quando ela é usada. A correção introduz um pequeno viés, mas é muito melhor do que não retornar nenhum resultado.\n\nA OR é a medida natural em estudos caso-controle, em que o desenho fixa o número de casos e controles em vez da prevalência da exposição. Em estudos de coorte e ensaios randomizados, o risco relativo (RR) costuma ser preferido porque é mais intuitivo. Para desfechos raros (prevalência abaixo de cerca de 10%), OR ≈ RR, mas para desfechos comuns a OR ficará sempre mais distante de 1 do que o RR correspondente, e interpretá-la como RR pode superestimar a magnitude da associação. Sempre informe qual medida está usando e verifique se a suposição de doença rara se aplica aos seus dados."
+      },
+      "examples": {
+        "heading": "Exemplos resolvidos",
+        "intro": "Três cenários clássicos de estudo mostrando como ler a saída da razão de chances e avaliar a significância estatística.",
+        "colInput": "Cenário do estudo",
+        "colOutput": "Razão de chances",
+        "colNote": "Interpretação",
+        "loadSmoking": "Carregar exemplo de tabagismo",
+        "loadDrug": "Carregar exemplo de fármaco",
+        "loadVaccine": "Carregar exemplo de vacina",
+        "items": [
+          {
+            "input": "Tabagismo e câncer de pulmão: a=650, b=350, c=100, d=900 (95% CI)",
+            "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+            "note": "Fumantes têm cerca de 16,7 vezes mais chances de câncer de pulmão do que não fumantes. O IC exclui 1,0, portanto a associação é altamente significativa."
+          },
+          {
+            "input": "Novo fármaco vs. placebo: a=38, b=162, c=85, d=115 (95% CI)",
+            "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+            "note": "O fármaco reduz as chances da doença em cerca de 68%. OR < 1 indica efeito protetor; o IC está totalmente abaixo de 1."
+          },
+          {
+            "input": "Estudo de vacinação: a=15, b=485, c=55, d=445 (95% CI)",
+            "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+            "note": "Pessoas vacinadas têm 75% menos chances de infecção. Uma associação protetora forte, com intervalo de confiança estreito e significativo."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora de razão de chances",
+        "steps": [
+          "Organize seus dados em uma tabela 2×2: célula (a) = casos expostos, (b) = não casos expostos, (c) = casos não expostos, (d) = não casos não expostos.",
+          "Digite as quatro contagens não negativas nos campos correspondentes sob 'Grupo exposto' e 'Grupo não exposto'.",
+          "Selecione o nível de confiança desejado (90%, 95% ou 99%) no menu suspenso. A maioria dos estudos publicados usa 95%.",
+          "Clique em Calcular. A ferramenta retorna a OR, o intervalo de confiança, o escore Z e o valor p. Se alguma célula foi zero, uma nota de correção aparecerá.",
+          "Interprete o resultado: OR > 1 significa que a exposição aumenta as chances; OR < 1 significa que as diminui. Verifique se o IC inclui 1 e se p ≤ α."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes",
+        "q1": "O que é uma razão de chances e como ela difere do risco relativo?",
+        "q1_a": "A razão de chances compara as chances de um desfecho em dois grupos, enquanto o risco relativo (RR) compara as probabilidades. Para desfechos raros (prevalência < 10%), OR ≈ RR; para desfechos comuns, a OR se afasta mais de 1,0 do que o RR. Estudos caso-controle só podem estimar validamente a OR, não o RR, porque a amostragem é baseada no desfecho.",
+        "q2": "Como interpreto OR = 2,5?",
+        "q2_a": "Uma OR de 2,5 significa que as chances do desfecho no grupo exposto são 2,5 vezes as do grupo não exposto. Isso não quer dizer que o risco seja 2,5 vezes maior, a menos que o desfecho seja raro. Para desfechos comuns, a razão de riscos real será menor que 2,5.",
+        "q3": "O que o intervalo de confiança me diz?",
+        "q3_a": "Um intervalo de confiança de 95% significa que, se você repetisse o estudo muitas vezes nas mesmas condições, cerca de 95% dos intervalos calculados conteriam a OR verdadeira da população. Na prática, se o IC exclui 1,0, o resultado é estatisticamente significativo em α = 0,05. Um IC amplo indica baixa precisão, geralmente por uma amostra pequena.",
+        "q4": "Quando a correção de Haldane-Anscombe é aplicada?",
+        "q4_a": "A correção adiciona 0,5 a cada célula quando alguma célula é zero. Uma célula zero torna a fórmula padrão da OR indefinida (logaritmo de zero ou divisão por zero). A correção permite continuar a estimativa e é a solução mais comum, embora introduza um pequeno viés. A calculadora destaca quando ela foi usada.",
+        "q5": "Posso usar esta calculadora em um ensaio clínico randomizado?",
+        "q5_a": "Sim, mas considere relatar o risco relativo (RR) em vez da OR ou junto com ela, porque o RR é mais intuitivo para desfechos comuns e é a medida preferida por muitas diretrizes clínicas. Para ECRs com desfechos raros ou ao combinar desenhos de estudo em uma meta-análise, a OR continua apropriada.",
+        "q6": "Por que valores p e intervalos de confiança às vezes parecem contraditórios?",
+        "q6_a": "Eles não deveriam ser contraditórios: um IC de 95% que exclui 1,0 sempre corresponde a p < 0,05 em um teste bicaudal. As aparentes contradições costumam surgir por arredondamento, pela comparação de valores p unicaudais com ICs bicaudais ou pela aplicação de níveis diferentes ao IC e ao alfa do teste. Use configurações consistentes para ambos."
+      }
+    },
+    "outlier-calculator": {
+      "title": "Calculadora de outliers - Detecte outliers usando IQR",
+      "tagline": "Encontre outliers estatísticos em qualquer conjunto de dados usando o método do intervalo interquartil — escolha detecção leve (1,5×IQR) ou extrema (3×IQR) na hora.",
+      "intro": "Digite uma lista de números separada por vírgulas, selecione o método de detecção de outliers e obtenha Q1, Q3, IQR, os valores dos limites e a lista de outliers.",
+      "formula": "IQR = Q3 − Q1  |  Limite inferior = Q1 − k × IQR  |  Limite superior = Q3 + k × IQR  |  k = 1,5 (leve) ou 3,0 (extremo)",
+      "field": {
+        "data": "Conjunto de dados (números separados por vírgulas)",
+        "method": "Método de detecção de outliers"
+      },
+      "placeholder": {
+        "data": "ex.: 10, 12, 14, 15, 16, 18, 20, 50"
+      },
+      "type": {
+        "mild": "Outliers leves (1,5 × IQR)",
+        "extreme": "Outliers extremos (3,0 × IQR)"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Redefinir"
+      },
+      "error": {
+        "invalid": "Insira pelo menos 4 números separados por vírgulas."
+      },
+      "result": {
+        "heading": "Resultados",
+        "q1": "Q1 (primeiro quartil)",
+        "q3": "Q3 (terceiro quartil)",
+        "iqr": "IQR",
+        "lowerBound": "Limite inferior",
+        "upperBound": "Limite superior",
+        "outlierCount": "Quantidade de outliers",
+        "outliersLabel": "Outliers detectados",
+        "noOutliers": "Nenhum outlier encontrado",
+        "cleanDataLabel": "Dados sem outliers (ordenados)"
+      },
+      "about": {
+        "heading": "Sobre a calculadora de outliers",
+        "body": "Um outlier é um ponto de dados que fica a uma distância anormal dos outros valores em um conjunto de dados. Na análise estatística, outliers podem distorcer medidas-resumo como média e desvio padrão, inflar estimativas de variância e violar premissas de testes paramétricos. Identificá-los cedo é uma etapa crítica em análise exploratória de dados, controle de qualidade e pré-processamento para machine learning.\n\nO método mais usado para detectar outliers é baseado no intervalo interquartil (IQR), que é a diferença entre o terceiro quartil (Q3) e o primeiro quartil (Q1) dos dados. Esse método é robusto porque o IQR, ao contrário da média e do desvio padrão, não é distorcido pelos próprios valores extremos. A fórmula dos dois limites é: limite inferior = Q1 − k × IQR e limite superior = Q3 + k × IQR. Qualquer ponto de dados fora desses limites é classificado como outlier.\n\nO multiplicador k define o quão agressiva é a marcação. A escolha mais comum é k = 1,5, o padrão em boxplots, que identifica os chamados outliers “leves” — valores que se afastam de forma perceptível da maior parte dos dados, mas ainda podem ter uma explicação legítima. Com k = 3,0, o critério é mais rígido; apenas outliers “extremos” são marcados — valores tão distantes da distribuição principal que quase certamente representam erros, anomalias ou eventos realmente raros.\n\nPara calcular os quartis, a calculadora primeiro ordena os dados em ordem crescente. Q1 é o percentil 25 e Q3 é o percentil 75 dos dados ordenados. Quando a posição do quartil cai entre dois pontos de dados, a calculadora interpola linearmente para produzir um resultado suave, consistente com o padrão do Excel e com muitas convenções de pacotes estatísticos.\n\nDetectar um outlier não significa excluí-lo automaticamente. Antes de remover ou transformar um outlier detectado, você deve investigar sua causa. Ele pode ser um erro de digitação, um erro de medição, um erro de amostragem (um valor de outra população) ou uma observação extrema genuína, cientificamente importante e que deve ser mantida. Por exemplo, em detecção de fraude, o ponto de dados mais importante pode ser o outlier. Em pesquisa clínica, o paciente com a resposta mais extrema pode ser o mais informativo. Sempre documente sua decisão e, se houver dúvida, reporte os resultados com e sem o outlier para mostrar sensibilidade.\n\nO método IQR é não paramétrico, ou seja, não assume a forma da distribuição subjacente. Isso o torna especialmente adequado para distribuições assimétricas, amostras pequenas e dados com vários agrupamentos. Para dados aproximadamente normais com amostras grandes, o método do escore Z (marcando valores com mais de 2 ou 3 desvios padrão da média) é uma alternativa, mas o próprio escore Z é inflado pelos outliers que ele tenta detectar, tornando a abordagem IQR geralmente mais confiável."
+      },
+      "examples": {
+        "heading": "Exemplos resolvidos",
+        "intro": "Três conjuntos de dados ilustrando um único outlier, vários outliers e um conjunto limpo sem outliers.",
+        "colInput": "Conjunto de dados",
+        "colOutput": "Outliers (1,5×IQR)",
+        "colNote": "Valores-chave",
+        "loadBasic": "Carregar exemplo básico",
+        "loadMultiple": "Carregar exemplo com vários outliers",
+        "loadNone": "Carregar exemplo sem outlier",
+        "items": [
+          {
+            "input": "10, 12, 14, 15, 16, 18, 20, 50",
+            "output": "50",
+            "note": "Q1=13,5, Q3=18,5, IQR=5, limite superior=26. O valor 50 ultrapassa 26 e é marcado como outlier."
+          },
+          {
+            "input": "1, 25, 28, 30, 32, 35, 38, 100",
+            "output": "1, 100",
+            "note": "Q1=27,25, Q3=35,75, IQR=8,5, limites: 14,5 a 48,5. Tanto 1 quanto 100 ficam fora desses limites."
+          },
+          {
+            "input": "10, 20, 30, 40, 50, 60, 70, 80",
+            "output": "None",
+            "note": "O espaçamento uniforme significa que nenhum ponto está a mais de 1,5×IQR do limite. Todos os valores estão limpos."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora de outliers",
+        "steps": [
+          "Digite ou cole seus dados no campo como uma lista de números separada por vírgulas. Inteiros, decimais e números negativos são aceitos.",
+          "Selecione “Outliers leves (1,5 × IQR)” para a análise padrão usada em boxplots, ou “Outliers extremos (3,0 × IQR)” para marcar apenas as anomalias mais graves.",
+          "Clique em Calcular. A ferramenta exibe Q1, Q3, IQR, os limites inferior e superior e a quantidade de outliers.",
+          "Revise a lista de “Outliers detectados”. Investigue cada valor marcado antes de decidir removê-lo ou mantê-lo.",
+          "O conjunto de dados limpo (ordenado e sem outliers) aparece abaixo da lista para copiar rapidamente para sua análise."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes",
+        "q1": "O que é o método IQR para detecção de outliers?",
+        "q1_a": "O método IQR (intervalo interquartil) calcula dois limites: Q1 − 1,5×IQR e Q3 + 1,5×IQR. Qualquer ponto de dados fora desses limites é marcado como outlier. O método é robusto porque Q1, Q3 e IQR não são influenciados pelos próprios outliers, ao contrário da média e do desvio padrão.",
+        "q2": "Devo sempre remover outliers?",
+        "q2_a": "Não. Investigue antes de remover. Outliers podem representar dados reais e importantes — uma transação fraudulenta, uma descoberta científica nova ou um defeito de fabricação que vale estudar. Remova apenas se houver um motivo válido, como um erro de digitação confirmado. Sempre registre as remoções ao reportar sua análise.",
+        "q3": "Qual é a diferença entre outliers leves e extremos?",
+        "q3_a": "Outliers leves ficam entre 1,5×IQR e 3×IQR além de um quartil. Outliers extremos ficam além de 3×IQR. Boxplots normalmente mostram outliers leves como círculos vazios e extremos como estrelas ou círculos preenchidos. Para a maioria das análises exploratórias, o limite de 1,5×IQR é o padrão.",
+        "q4": "Esta calculadora funciona com números negativos?",
+        "q4_a": "Sim. O método IQR é independente de escala e funciona corretamente com qualquer combinação de valores positivos, zero ou negativos. Basta incluir os números negativos na sua lista separada por vírgulas, por exemplo: −20, 5, 8, 9, 10, 12, 15.",
+        "q5": "Qual é o número mínimo de pontos de dados necessário?",
+        "q5_a": "A calculadora requer pelo menos 4 pontos de dados para calcular quartis e IQR de forma significativa. Para amostras muito pequenas (menos de 10 a 15 valores), os limites podem variar bastante e um outlier detectado deve ser interpretado com cautela.",
+        "q6": "Como este método se compara à abordagem de escore Z?",
+        "q6_a": "O método de escore Z marca valores com mais de 2 ou 3 desvios padrão da média. Ele assume dados aproximadamente normais e é sensível aos próprios outliers que tenta detectar, porque valores extremos aumentam a média e o desvio padrão. O método IQR não assume normalidade e, portanto, é preferível para dados assimétricos, distribuições com caudas pesadas e amostras pequenas ou moderadas."
+      }
+    },
+    "p-hat-calculator": {
+      "title": "Calculadora p-hat - Proporção amostral p̂ e q̂",
+      "tagline": "Calcule a proporção amostral p̂ (p-hat) e seu complemento q̂ a partir do tamanho da amostra e do número de sucessos em qualquer estudo estatístico.",
+      "intro": "Informe o tamanho total da amostra (n) e o número de sucessos (x) para obter p̂ e q̂ como decimais e porcentagens imediatamente.",
+      "formula": "p̂ = x / n  |  q̂ = 1 − p̂  |  onde x é a contagem de sucessos e n é o tamanho total da amostra",
+      "field": {
+        "n": "Tamanho da amostra (n)",
+        "x": "Número de sucessos (x)"
+      },
+      "placeholder": {
+        "n": "ex.: 1000",
+        "x": "ex.: 550"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Redefinir"
+      },
+      "error": {
+        "invalid": "Insira um inteiro positivo para n e um inteiro não negativo para x que seja ≤ n."
+      },
+      "result": {
+        "heading": "Resultados",
+        "pHatDecimal": "p̂ (decimal)",
+        "pHatPercent": "p̂ (porcentagem)",
+        "qHatDecimal": "q̂ (decimal)",
+        "qHatPercent": "q̂ (porcentagem)"
+      },
+      "about": {
+        "heading": "Sobre a calculadora p-hat",
+        "body": "Na estatística inferencial, a proporção amostral p̂ (pronunciada “p-hat”) é a fração de indivíduos em uma amostra que possuem uma característica específica ou atendem a um critério definido. Ela é uma das estatísticas mais fundamentais na pesquisa aplicada, servindo de base para intervalos de confiança de proporções, testes de hipóteses sobre proporções e cálculos de tamanho de amostra para pesquisas e ensaios clínicos.\n\nA fórmula é simples: p̂ = x / n, onde x é o número de “sucessos” (observações com a característica de interesse) e n é o tamanho total da amostra. O complemento q̂ = 1 − p̂ representa a proporção da amostra que não tem a característica. Juntos, p̂ e q̂ somam exatamente 1 e descrevem a divisão binária da amostra.\n\nO principal objetivo de p̂ é estimar a verdadeira proporção populacional p, que geralmente é desconhecida. Como uma amostra é apenas um subconjunto da população, p̂ é uma variável aleatória — seu valor varia ligeiramente de uma amostra para outra. O Teorema Central do Limite garante que, para n suficientemente grande (tipicamente np̂ ≥ 5 e nq̂ ≥ 5), a distribuição amostral de p̂ é aproximadamente normal, com média p e erro padrão √(p(1−p)/n). Essa aproximação normal sustenta os intervalos de confiança para proporções e os testes z de proporções mais comuns.\n\nAs aplicações práticas de p̂ abrangem todos os campos quantitativos. Em pesquisas eleitorais, institutos entrevistam alguns milhares de eleitores prováveis e reportam p̂ como o apoio estimado a um candidato, geralmente com uma margem de erro (± 2–3%) derivada do erro padrão. No controle de qualidade industrial, um engenheiro de produção coleta 200 unidades de um lote e calcula a proporção de defeitos p̂ para decidir se a taxa de defeitos está dentro de limites aceitáveis. Em ensaios clínicos, o desfecho primário costuma ser a proporção de pacientes que respondem a um tratamento; p̂ no braço de tratamento versus p̂ no braço de controle forma a base da comparação estatística principal. Em testes A/B de produtos digitais, p̂ é a taxa de conversão de cada variante.\n\nÉ importante distinguir p̂ de uma média. Uma média resume dados numéricos contínuos (altura média, renda média), enquanto p̂ resume dados categóricos binários (sucesso ou fracasso, sim ou não, defeituoso ou não defeituoso). Ambos são estimativas pontuais, mas seguem distribuições amostrais diferentes e exigem fórmulas diferentes para intervalos de confiança e testes de hipóteses.\n\nAo reportar p̂, sempre a acompanhe de um intervalo de confiança e do tamanho da amostra n. Um p̂ de 0.6 é muito mais significativo quando declarado como “0.6 (IC 95%: 0.57 – 0.63, n = 1,000)” do que quando apresentado sozinho. O intervalo de confiança comunica a precisão da estimativa e permite que os leitores avaliem se a proporção verdadeira poderia plausivelmente estar acima ou abaixo de qualquer limite relevante. Sem n e o IC, p̂ é um achado incompleto."
+      },
+      "examples": {
+        "heading": "Exemplos resolvidos",
+        "intro": "Três cenários reais mostrando como p̂ é calculado e o que os resultados significam no contexto.",
+        "colInput": "Entrada (n, x)",
+        "colOutput": "p̂",
+        "colNote": "Contexto",
+        "loadPoll": "Carregar exemplo de pesquisa",
+        "loadQC": "Carregar exemplo de controle de qualidade",
+        "loadMedical": "Carregar exemplo de ensaio médico",
+        "items": [
+          {
+            "input": "n = 1000, x = 550",
+            "output": "p̂ = 0.55 (55%)",
+            "note": "Pesquisa pré-eleitoral: 550 de 1,000 eleitores apoiam o candidato A. p̂ = 0.55, q̂ = 0.45."
+          },
+          {
+            "input": "n = 200, x = 15",
+            "output": "p̂ = 0.075 (7.5%)",
+            "note": "Controle de qualidade: 15 lâmpadas defeituosas em uma amostra de 200. Taxa de defeitos p̂ = 7.5%, taxa de aprovação q̂ = 92.5%."
+          },
+          {
+            "input": "n = 120, x = 80",
+            "output": "p̂ = 0.6667 (66.67%)",
+            "note": "Ensaio clínico: 80 de 120 pacientes responderam positivamente a um novo medicamento. Taxa de resposta p̂ ≈ 0.667."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora p-hat",
+        "steps": [
+          "Informe o tamanho total da amostra (n) — um inteiro positivo que representa quantos itens, pessoas ou observações você amostrou.",
+          "Informe o número de sucessos (x) — um inteiro não negativo no máximo igual a n, representando quantos itens da amostra têm a característica de interesse.",
+          "Clique em Calcular. A ferramenta retorna p̂ e q̂ tanto como decimal quanto como porcentagem.",
+          "Use p̂ como uma estimativa pontual da proporção populacional p. Lembre-se de que p̂ sozinho é incompleto; calcule um intervalo de confiança para uma inferência mais completa.",
+          "Clique em Redefinir para limpar os campos e iniciar um novo cálculo."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes",
+        "q1": "O que p̂ significa em estatística?",
+        "q1_a": "p̂ (lido como “p-hat”) é a proporção amostral — a fração de uma amostra que possui um atributo específico. Ela é usada para estimar a proporção populacional desconhecida p. O símbolo de chapéu (^) é uma notação estatística padrão que indica uma estimativa baseada em amostra de um parâmetro populacional.",
+        "q2": "O que é q̂ e por que ele é reportado?",
+        "q2_a": "q̂ = 1 − p̂ é o complemento de p̂, representando a proporção da amostra que não tem a característica. Ele é sempre reportado junto com p̂ porque, juntos, descrevem a divisão binária completa da amostra, e q̂ aparece diretamente na fórmula do erro padrão de p̂: SE = √(p̂ × q̂ / n).",
+        "q3": "Qual deve ser o tamanho de n para que p̂ seja confiável?",
+        "q3_a": "Uma regra prática comum para usar a aproximação normal para proporções é que tanto np̂ ≥ 5 quanto nq̂ ≥ 5 sejam satisfeitos. Para intervalos de confiança mais precisos quando essas condições não são atendidas, use o intervalo de pontuação de Wilson ou o intervalo exato de Clopper-Pearson em vez da fórmula padrão de aproximação normal.",
+        "q4": "p̂ pode ser usado se x ou n não forem inteiros?",
+        "q4_a": "Na definição estrita, p̂ é uma contagem dividida por uma contagem, portanto ambas devem ser inteiros não negativos com x ≤ n. No entanto, em alguns contextos (como pesquisas ponderadas ou meta-análises com tamanhos de amostra efetivos), entradas fracionárias podem surgir. Esta calculadora exige entradas inteiras para manter a integridade matemática.",
+        "q5": "Como p̂ é usado em testes de hipóteses?",
+        "q5_a": "Para um teste de uma amostra de H₀: p = p₀, a estatística de teste é Z = (p̂ − p₀) / √(p₀(1 − p₀) / n). Se |Z| exceder o valor crítico no nível de significância escolhido, você rejeita a hipótese nula. O valor-p desse escore Z informa a probabilidade de observar um p̂ pelo menos tão extremo quanto o obtido se p realmente fosse p₀.",
+        "q6": "p̂ é o mesmo que uma porcentagem?",
+        "q6_a": "p̂ é um decimal entre 0 e 1; multiplicar por 100 dá a porcentagem equivalente. Eles transmitem a mesma informação — 0.55 e 55% são o mesmo valor expresso de formas diferentes. Decimais são preferidos em fórmulas e cálculos de intervalos de confiança; porcentagens são preferidas ao comunicar resultados a um público geral."
+      }
     }
   }
 }

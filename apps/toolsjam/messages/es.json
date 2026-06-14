@@ -7004,6 +7004,276 @@
         "q6": "¿Puedo usar esta calculadora con datos categóricos (no numéricos)?",
         "q6_a": "La calculadora requiere entrada numérica. Para usarla con datos categóricos, como colores, calificaciones (A/B/C) o respuestas sí/no, asigna a cada categoría un código numérico (p. ej. 1 = Red, 2 = Blue, 3 = Green) e ingresa los valores codificados. La salida mostrará correctamente la frecuencia y la frecuencia relativa de cada código numérico, que luego podrás volver a etiquetar en tu informe."
       }
+    },
+    "odds-ratio-calculator": {
+      "title": "Calculadora de razón de momios - OR, IC y valor P",
+      "tagline": "Calcula la razón de momios, el intervalo de confianza, el valor Z y el valor P a partir de una tabla de contingencia 2×2 para estudios caso-control y epidemiológicos.",
+      "intro": "Ingresa los cuatro conteos de celdas de tu tabla 2×2, elige un nivel de confianza y recibe al instante la razón de momios con inferencia estadística completa.",
+      "tableNote": "Completa los conteos de los grupos expuesto y no expuesto. Las celdas deben ser enteros no negativos. Cuando alguna celda es cero, se aplica automáticamente la corrección de Haldane-Anscombe (sumar 0.5 a cada celda).",
+      "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+      "group": {
+        "exposed": "Grupo expuesto",
+        "unexposed": "Grupo no expuesto"
+      },
+      "field": {
+        "a": "Resultado positivo – Casos (a)",
+        "b": "Resultado negativo – No casos (b)",
+        "c": "Resultado positivo – Casos (c)",
+        "d": "Resultado negativo – No casos (d)",
+        "confidenceLevel": "Nivel de confianza"
+      },
+      "placeholder": {
+        "cell": "Ingresa un conteo ≥ 0"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Ingresa números no negativos en las cuatro celdas."
+      },
+      "result": {
+        "heading": "Resultados",
+        "or": "Razón de momios (OR)",
+        "ciLabel": "Intervalo de confianza",
+        "z": "Z",
+        "pValue": "Valor P",
+        "lnOR": "ln(OR)",
+        "se": "Error estándar",
+        "correctionNote": "Se detectó una celda cero: se aplicó la corrección de Haldane-Anscombe (+ 0.5) a todas las celdas."
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de razón de momios",
+        "body": "La razón de momios (OR) es una de las medidas de asociación más usadas en la investigación biomédica, la epidemiología y las ciencias sociales. Cuantifica la fuerza de la relación entre una exposición y un resultado binario al comparar la probabilidad del resultado en un grupo expuesto con la del grupo no expuesto. Una OR de 1 indica ausencia de asociación; una OR mayor que 1 sugiere que la exposición aumenta la probabilidad del resultado; y una OR menor que 1 sugiere un efecto protector.\n\nLa razón de momios se calcula a partir de una tabla de contingencia 2×2, el formato estándar para presentar datos de estudios caso-control. La tabla tiene cuatro celdas: (a) expuestos con el resultado, (b) expuestos sin el resultado, (c) no expuestos con el resultado y (d) no expuestos sin el resultado. La fórmula es simplemente OR = (a × d) / (b × c), es decir, la razón de productos cruzados de la tabla.\n\nLa inferencia estadística para la OR se realiza sobre su logaritmo natural, porque la distribución muestral de ln(OR) es aproximadamente normal, incluso con tamaños de muestra moderados. El error estándar de ln(OR) es SE = √(1/a + 1/b + 1/c + 1/d). A partir de esto, se calcula un valor Z como Z = ln(OR) / SE, que sigue una distribución normal estándar bajo la hipótesis nula de ausencia de asociación (OR = 1). El valor P bilateral es p = 2 × Φ(−|Z|), donde Φ es la función de distribución acumulada normal estándar. Si el valor P está por debajo del nivel de significancia elegido (normalmente 0.05), la razón de momios difiere de 1 de forma estadísticamente significativa.\n\nEl intervalo de confianza (IC) de la OR se construye exponenciando el intervalo alrededor de ln(OR): CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. Para un IC del 95%, Z_α/2 = 1.96. Si el IC no incluye 1.0, el resultado es estadísticamente significativo al nivel del 5%. El ancho del IC refleja la precisión de la estimación; intervalos más amplios surgen de tamaños de muestra pequeños o celdas escasas.\n\nSurge una complicación práctica cuando alguna celda de la tabla 2×2 es cero, lo que hace que la fórmula estándar de la OR no esté definida (división por cero o logaritmo de cero). La solución habitual es la corrección de Haldane-Anscombe: agregar 0.5 a cada celda antes de calcular la OR y el SE. Esta calculadora aplica la corrección automáticamente y te avisa cuando la usa. La corrección introduce un sesgo pequeño, pero es mucho mejor que no devolver ningún resultado.\n\nLa OR es la medida natural en los estudios caso-control, donde el diseño fija el número de casos y controles en lugar de la prevalencia de la exposición. En estudios de cohorte y ensayos aleatorizados, suele preferirse el riesgo relativo (RR) porque es más intuitivo. Para resultados raros (prevalencia por debajo de aproximadamente 10%), OR ≈ RR, pero para resultados comunes la OR siempre estará más alejada de 1 que el RR correspondiente, y interpretarla como RR puede sobrestimar la magnitud de la asociación. Indica siempre qué medida estás usando y comprueba si tu datos cumplen el supuesto de enfermedad rara."
+      },
+      "examples": {
+        "heading": "Ejemplos resueltos",
+        "intro": "Tres escenarios clásicos de estudio que muestran cómo leer la salida de la razón de momios y juzgar la significancia estadística.",
+        "colInput": "Escenario del estudio",
+        "colOutput": "Razón de momios",
+        "colNote": "Interpretación",
+        "loadSmoking": "Cargar ejemplo de tabaquismo",
+        "loadDrug": "Cargar ejemplo de fármaco",
+        "loadVaccine": "Cargar ejemplo de vacuna",
+        "items": [
+          {
+            "input": "Tabaquismo y cáncer de pulmón: a=650, b=350, c=100, d=900 (95% CI)",
+            "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+            "note": "Los fumadores tienen aproximadamente 16.7 veces las probabilidades de cáncer de pulmón en comparación con los no fumadores. El IC excluye 1.0, por lo que la asociación es altamente significativa."
+          },
+          {
+            "input": "Nuevo fármaco vs. placebo: a=38, b=162, c=85, d=115 (95% CI)",
+            "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+            "note": "El fármaco reduce las probabilidades de enfermedad en aproximadamente 68%. OR < 1 indica un efecto protector; el IC está completamente por debajo de 1."
+          },
+          {
+            "input": "Estudio de vacunación: a=15, b=485, c=55, d=445 (95% CI)",
+            "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+            "note": "Las personas vacunadas tienen 75% menos probabilidades de infección. Una asociación protectora fuerte, con un intervalo de confianza estrecho y significativo."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de razón de momios",
+        "steps": [
+          "Organiza tus datos en una tabla 2×2: la celda (a) = casos expuestos, (b) = no casos expuestos, (c) = casos no expuestos, (d) = no casos no expuestos.",
+          "Ingresa los cuatro conteos no negativos en los campos correspondientes bajo 'Grupo expuesto' y 'Grupo no expuesto'.",
+          "Selecciona el nivel de confianza deseado (90%, 95% o 99%) en el menú desplegable. La mayoría de las investigaciones publicadas usan 95%.",
+          "Haz clic en Calcular. La herramienta devuelve la OR, el intervalo de confianza, el valor Z y el valor P. Si alguna celda fue cero, aparecerá una nota de corrección.",
+          "Interpreta el resultado: OR > 1 significa que la exposición aumenta las probabilidades; OR < 1 significa que las disminuye. Comprueba si el IC incluye 1 y si p ≤ α."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué es una razón de momios y en qué se diferencia del riesgo relativo?",
+        "q1_a": "La razón de momios compara las probabilidades de un resultado en dos grupos, mientras que el riesgo relativo (RR) compara las probabilidades. Para resultados raros (prevalencia < 10%), OR ≈ RR; para resultados comunes la OR se aleja más de 1.0 que el RR. Los estudios caso-control solo pueden estimar de forma válida la OR, no el RR, porque el muestreo se basa en el resultado.",
+        "q2": "¿Cómo interpreto OR = 2.5?",
+        "q2_a": "Una OR de 2.5 significa que las probabilidades del resultado en el grupo expuesto son 2.5 veces las del grupo no expuesto. No significa que el riesgo sea 2.5 veces mayor salvo que el resultado sea raro. Para resultados comunes, la razón de riesgos real será menor que 2.5.",
+        "q3": "¿Qué me dice el intervalo de confianza?",
+        "q3_a": "Un intervalo de confianza del 95% significa que, si repitieras el estudio muchas veces bajo las mismas condiciones, aproximadamente el 95% de los intervalos calculados contendrían la OR verdadera de la población. En la práctica, si el IC excluye 1.0, el resultado es estadísticamente significativo con α = 0.05. Un IC amplio indica baja precisión, normalmente por una muestra pequeña.",
+        "q4": "¿Cuándo se aplica la corrección de Haldane-Anscombe?",
+        "q4_a": "La corrección agrega 0.5 a cada celda cuando alguna celda es cero. Una celda cero hace que la fórmula estándar de la OR no esté definida (logaritmo de cero o división por cero). La corrección permite continuar la estimación y es el remedio más común, aunque introduce un pequeño sesgo. La calculadora lo destaca cuando se usa.",
+        "q5": "¿Puedo usar esta calculadora para un ensayo controlado aleatorizado?",
+        "q5_a": "Sí, pero considera reportar el riesgo relativo (RR) en lugar de la OR o junto con ella, porque el RR es más intuitivo para resultados comunes y es la medida que prefieren muchas guías clínicas. Para ECA con resultados raros o al combinar diseños de estudio en un metanálisis, la OR sigue siendo apropiada.",
+        "q6": "¿Por qué a veces parecen contradictorios los valores P y los intervalos de confianza?",
+        "q6_a": "No deberían ser contradictorios: un IC del 95% que excluye 1.0 siempre corresponde a p < 0.05 en una prueba bilateral. Las aparentes contradicciones suelen deberse al redondeo, a comparar valores P unilaterales con IC bilaterales o a usar distintos niveles de confianza y alfa para la prueba. Usa configuraciones consistentes en ambos."
+      }
+    },
+    "outlier-calculator": {
+      "title": "Calculadora de valores atípicos - Detecta atípicos con el método IQR",
+      "tagline": "Encuentra valores atípicos estadísticos en cualquier conjunto de datos con el método del rango intercuartílico: elige detección leve (1.5×IQR) o extrema (3×IQR) al instante.",
+      "intro": "Introduce una lista de números separada por comas, selecciona el método de detección de atípicos y obtén Q1, Q3, IQR, los valores de los límites y la lista de atípicos.",
+      "formula": "IQR = Q3 − Q1  |  Límite inferior = Q1 − k × IQR  |  Límite superior = Q3 + k × IQR  |  k = 1.5 (leve) o 3.0 (extremo)",
+      "field": {
+        "data": "Conjunto de datos (números separados por comas)",
+        "method": "Método de detección de atípicos"
+      },
+      "placeholder": {
+        "data": "p. ej. 10, 12, 14, 15, 16, 18, 20, 50"
+      },
+      "type": {
+        "mild": "Atípicos leves (1.5 × IQR)",
+        "extreme": "Atípicos extremos (3.0 × IQR)"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce al menos 4 números separados por comas."
+      },
+      "result": {
+        "heading": "Resultados",
+        "q1": "Q1 (primer cuartil)",
+        "q3": "Q3 (tercer cuartil)",
+        "iqr": "IQR",
+        "lowerBound": "Límite inferior",
+        "upperBound": "Límite superior",
+        "outlierCount": "Cantidad de atípicos",
+        "outliersLabel": "Atípicos detectados",
+        "noOutliers": "No se encontraron atípicos",
+        "cleanDataLabel": "Datos sin atípicos (ordenados)"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de atípicos",
+        "body": "Un valor atípico es un dato que se encuentra a una distancia anormal de los demás valores de un conjunto de datos. En el análisis estadístico, los atípicos pueden distorsionar medidas resumen como la media y la desviación estándar, inflar las estimaciones de varianza y violar los supuestos de las pruebas paramétricas. Identificarlos pronto es un paso clave en el análisis exploratorio de datos, el control de calidad y el preprocesamiento para aprendizaje automático.\n\nEl método más utilizado para detectar atípicos se basa en el rango intercuartílico (IQR), que es la diferencia entre el tercer cuartil (Q3) y el primer cuartil (Q1). Este método es robusto porque, a diferencia de la media y la desviación estándar, el IQR no se ve distorsionado por los valores extremos. La fórmula de los dos límites es: límite inferior = Q1 − k × IQR y límite superior = Q3 + k × IQR. Cualquier dato que quede fuera de estos límites se clasifica como atípico.\n\nEl multiplicador k determina cuán estricta es la detección. La opción más común es k = 1.5, el valor predeterminado en los diagramas de caja, que identifica lo que a veces se llama atípicos “leves”: valores que se apartan de forma notable del grueso de los datos, pero que aún pueden tener una explicación válida. Con k = 3.0, el criterio es más estricto; solo se marcan los atípicos “extremos”, valores tan alejados de la distribución principal que casi con certeza representan errores, anomalías o sucesos realmente raros.\n\nPara calcular los cuartiles, la calculadora primero ordena los datos de menor a mayor. Q1 es el percentil 25 y Q3 es el percentil 75 del conjunto ordenado. Cuando la posición del cuartil cae entre dos valores, la calculadora interpola linealmente para producir un resultado suave, coherente con la configuración predeterminada de Excel y con muchas convenciones de paquetes estadísticos.\n\nDetectar un atípico no significa borrarlo automáticamente. Antes de eliminar o transformar un valor detectado, conviene investigar su causa. Puede ser un error de entrada (un dígito mal escrito), un error de medición (una lectura defectuosa), un error de muestreo (un valor de otra población) o una observación extrema real que sea científicamente importante y deba conservarse. Por ejemplo, en la detección de fraude, el dato más importante puede ser precisamente el atípico. En investigación clínica, el paciente con la respuesta más extrema puede ser el más informativo. Documenta siempre tu decisión y, si tienes dudas, informa los resultados con y sin el atípico para mostrar sensibilidad.\n\nEl método IQR es no paramétrico, lo que significa que no asume una forma concreta para la distribución subyacente. Por eso es especialmente útil para distribuciones asimétricas, muestras pequeñas y datos con varios grupos. Para datos aproximadamente normales con muestras grandes, el método de la puntuación Z (marcar valores a más de 2 o 3 desviaciones estándar de la media) es una alternativa, pero la propia puntuación Z se ve inflada por los valores atípicos que intenta detectar, por lo que el enfoque IQR suele ser más fiable."
+      },
+      "examples": {
+        "heading": "Ejemplos resueltos",
+        "intro": "Tres conjuntos de datos que ilustran un atípico único, varios atípicos y un conjunto limpio sin atípicos.",
+        "colInput": "Conjunto de datos",
+        "colOutput": "Atípicos (1.5×IQR)",
+        "colNote": "Valores clave",
+        "loadBasic": "Cargar ejemplo básico",
+        "loadMultiple": "Cargar varios atípicos",
+        "loadNone": "Cargar ejemplo sin atípicos",
+        "items": [
+          {
+            "input": "10, 12, 14, 15, 16, 18, 20, 50",
+            "output": "50",
+            "note": "Q1=13.5, Q3=18.5, IQR=5, límite superior=26. El valor 50 supera 26 y se marca como atípico."
+          },
+          {
+            "input": "1, 25, 28, 30, 32, 35, 38, 100",
+            "output": "1, 100",
+            "note": "Q1=27.25, Q3=35.75, IQR=8.5, límites: 14.5 a 48.5. Tanto 1 como 100 quedan fuera de estos límites."
+          },
+          {
+            "input": "10, 20, 30, 40, 50, 60, 70, 80",
+            "output": "None",
+            "note": "El espaciado uniforme significa que ningún punto está a más de 1.5×IQR del límite. Todos los valores son limpios."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de atípicos",
+        "steps": [
+          "Escribe o pega tus datos en el campo de entrada como una lista de números separada por comas. Se aceptan enteros, decimales y números negativos.",
+          "Selecciona 'Atípicos leves (1.5 × IQR)' para el análisis estándar de los diagramas de caja, o 'Atípicos extremos (3.0 × IQR)' para marcar solo las anomalías más graves.",
+          "Haz clic en Calcular. La herramienta mostrará Q1, Q3, IQR, los límites inferior y superior, y la cantidad de atípicos.",
+          "Revisa la lista de 'Atípicos detectados'. Investiga cada valor marcado antes de decidir si lo eliminas o lo conservas.",
+          "El conjunto de datos depurado (ordenado y sin atípicos) se muestra debajo para copiarlo rápidamente en tu análisis."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué es el método IQR para detectar atípicos?",
+        "q1_a": "El método IQR (rango intercuartílico) calcula dos límites: Q1 − 1.5×IQR y Q3 + 1.5×IQR. Cualquier dato fuera de estos límites se marca como atípico. El método es robusto porque Q1, Q3 e IQR no se ven influidos por los propios atípicos, a diferencia de la media y la desviación estándar.",
+        "q2": "¿Debo eliminar siempre los atípicos?",
+        "q2_a": "No. Investiga antes de eliminar. Los atípicos pueden representar datos reales e importantes: una transacción fraudulenta, un hallazgo científico novedoso o un defecto de fabricación digno de estudio. Elimínalos solo si tienes una razón válida, como un error de entrada confirmado. Siempre indica las eliminaciones al informar tu análisis.",
+        "q3": "¿Cuál es la diferencia entre atípicos leves y extremos?",
+        "q3_a": "Los atípicos leves quedan entre 1.5×IQR y 3×IQR más allá de un cuartil. Los atípicos extremos quedan por encima de 3×IQR. Los diagramas de caja suelen mostrar los atípicos leves como círculos vacíos y los extremos como estrellas o círculos rellenos. Para la mayoría de los análisis exploratorios, el umbral de 1.5×IQR es el estándar.",
+        "q4": "¿Esta calculadora funciona con números negativos?",
+        "q4_a": "Sí. El método IQR es independiente de la escala y funciona correctamente con cualquier combinación de valores positivos, cero y negativos. Solo incluye los números negativos en tu lista separada por comas, por ejemplo: −20, 5, 8, 9, 10, 12, 15.",
+        "q5": "¿Cuál es el número mínimo de datos necesario?",
+        "q5_a": "La calculadora requiere al menos 4 datos para calcular cuartiles e IQR de forma significativa. En muestras muy pequeñas (menos de 10 a 15 valores), los límites pueden variar mucho y un atípico detectado debe interpretarse con cautela.",
+        "q6": "¿Cómo se compara este método con el enfoque Z-score?",
+        "q6_a": "El método Z-score marca valores a más de 2 o 3 desviaciones estándar de la media. Asume datos aproximadamente normales y es sensible a los propios atípicos que intenta detectar, porque los valores extremos inflan la media y la desviación estándar. El método IQR no asume normalidad y, por tanto, se prefiere para datos asimétricos, distribuciones de colas pesadas y muestras pequeñas o moderadas."
+      }
+    },
+    "p-hat-calculator": {
+      "title": "Calculadora p-hat - Proporción muestral p̂ y q̂",
+      "tagline": "Calcula la proporción muestral p̂ (p-hat) y su complemento q̂ a partir del tamaño de muestra y el número de éxitos en cualquier estudio estadístico.",
+      "intro": "Introduce el tamaño total de la muestra (n) y el número de éxitos (x) para obtener p̂ y q̂ como decimales y porcentajes al instante.",
+      "formula": "p̂ = x / n  |  q̂ = 1 − p̂  |  donde x es el recuento de éxitos y n es el tamaño total de la muestra",
+      "field": {
+        "n": "Tamaño de muestra (n)",
+        "x": "Número de éxitos (x)"
+      },
+      "placeholder": {
+        "n": "p. ej., 1000",
+        "x": "p. ej., 550"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce un entero positivo para n y un entero no negativo para x que sea ≤ n."
+      },
+      "result": {
+        "heading": "Resultados",
+        "pHatDecimal": "p̂ (decimal)",
+        "pHatPercent": "p̂ (porcentaje)",
+        "qHatDecimal": "q̂ (decimal)",
+        "qHatPercent": "q̂ (porcentaje)"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora p-hat",
+        "body": "En estadística inferencial, la proporción muestral p̂ (pronunciada “p-hat”) es la fracción de individuos de una muestra que poseen una característica específica o cumplen un criterio definido. Es uno de los estadísticos más fundamentales en la investigación aplicada y constituye la base de los intervalos de confianza para proporciones, las pruebas de hipótesis sobre proporciones y los cálculos de tamaño de muestra para encuestas y ensayos clínicos.\n\nLa fórmula es directa: p̂ = x / n, donde x es el número de “éxitos” (observaciones con la característica de interés) y n es el tamaño total de la muestra. El complemento q̂ = 1 − p̂ representa la proporción de la muestra que no tiene la característica. Juntas, p̂ y q̂ suman exactamente 1 y describen la división binaria de la muestra.\n\nEl propósito principal de p̂ es estimar la verdadera proporción poblacional p, que normalmente se desconoce. Como una muestra es solo un subconjunto de la población, p̂ es una variable aleatoria: su valor variará ligeramente de una muestra a otra. El teorema central del límite garantiza que, para n suficientemente grande (normalmente np̂ ≥ 5 y nq̂ ≥ 5), la distribución muestral de p̂ es aproximadamente normal con media p y error estándar √(p(1−p)/n). Esta aproximación normal sustenta los intervalos de confianza para proporciones y las pruebas z de proporciones más comunes.\n\nLas aplicaciones prácticas de p̂ abarcan todos los campos cuantitativos. En sondeos políticos, las organizaciones encuestadoras toman muestras de unos miles de votantes probables y reportan p̂ como el apoyo estimado a un candidato, normalmente con un margen de error (± 2–3%) derivado del error estándar. En control de calidad de manufactura, un ingeniero de producción toma 200 unidades de un lote y calcula la proporción de defectos p̂ para decidir si la tasa de defectos está dentro de límites aceptables. En ensayos clínicos, el criterio principal de valoración suele ser la proporción de pacientes que responden a un tratamiento; p̂ en el grupo de tratamiento frente a p̂ en el grupo de control constituye la base de la comparación estadística principal. En pruebas A/B para productos digitales, p̂ es la tasa de conversión de cada variante.\n\nEs importante distinguir p̂ de una media. Una media resume datos numéricos continuos (estatura promedio, ingreso promedio), mientras que p̂ resume datos categóricos binarios (éxito o fracaso, sí o no, defectuoso o no defectuoso). Ambos son estimaciones puntuales, pero siguen distribuciones muestrales diferentes y requieren fórmulas distintas para intervalos de confianza y pruebas de hipótesis.\n\nAl informar p̂, acompáñala siempre con un intervalo de confianza y el tamaño de muestra n. Un p̂ de 0.6 es mucho más significativo cuando se expresa como “0.6 (IC 95%: 0.57 – 0.63, n = 1,000)” que cuando se presenta solo. El intervalo de confianza comunica la precisión de la estimación y permite a los lectores juzgar si la proporción verdadera podría estar plausiblemente por encima o por debajo de cualquier umbral que les importe. Sin n y el IC, p̂ es un hallazgo incompleto."
+      },
+      "examples": {
+        "heading": "Ejemplos resueltos",
+        "intro": "Tres situaciones reales que muestran cómo se calcula p̂ y qué significan los resultados en contexto.",
+        "colInput": "Entrada (n, x)",
+        "colOutput": "p̂",
+        "colNote": "Contexto",
+        "loadPoll": "Cargar ejemplo de encuesta",
+        "loadQC": "Cargar ejemplo de control de calidad",
+        "loadMedical": "Cargar ejemplo de ensayo médico",
+        "items": [
+          {
+            "input": "n = 1000, x = 550",
+            "output": "p̂ = 0.55 (55%)",
+            "note": "Encuesta preelectoral: 550 de 1,000 votantes apoyan al candidato A. p̂ = 0.55, q̂ = 0.45."
+          },
+          {
+            "input": "n = 200, x = 15",
+            "output": "p̂ = 0.075 (7.5%)",
+            "note": "Control de calidad: 15 bombillas defectuosas en una muestra de 200. Tasa de defectos p̂ = 7.5%, tasa de aprobación q̂ = 92.5%."
+          },
+          {
+            "input": "n = 120, x = 80",
+            "output": "p̂ = 0.6667 (66.67%)",
+            "note": "Ensayo clínico: 80 de 120 pacientes respondieron positivamente a un nuevo fármaco. Tasa de respuesta p̂ ≈ 0.667."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora p-hat",
+        "steps": [
+          "Introduce el tamaño total de la muestra (n): un entero positivo que representa cuántos elementos, personas u observaciones muestreaste.",
+          "Introduce el número de éxitos (x): un entero no negativo como máximo igual a n, que representa cuántos elementos de la muestra tienen la característica de interés.",
+          "Haz clic en Calcular. La herramienta devuelve p̂ y q̂ tanto como decimal como porcentaje.",
+          "Usa p̂ como estimación puntual de la proporción poblacional p. Recuerda que p̂ por sí sola es incompleta; calcula un intervalo de confianza para una inferencia más completa.",
+          "Haz clic en Restablecer para borrar los campos e iniciar un nuevo cálculo."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué significa p̂ en estadística?",
+        "q1_a": "p̂ (leída “p-hat”) es la proporción muestral: la fracción de una muestra que tiene un atributo particular. Se usa para estimar la proporción poblacional desconocida p. El símbolo de sombrero (^) es una notación estadística estándar que indica una estimación basada en una muestra de un parámetro poblacional.",
+        "q2": "¿Qué es q̂ y por qué se informa?",
+        "q2_a": "q̂ = 1 − p̂ es el complemento de p̂ y representa la proporción de la muestra que no tiene la característica. Siempre se informa junto con p̂ porque juntas describen la división binaria completa de la muestra, y q̂ aparece directamente en la fórmula del error estándar de p̂: SE = √(p̂ × q̂ / n).",
+        "q3": "¿Qué tan grande debe ser n para que p̂ sea fiable?",
+        "q3_a": "Una regla general común para usar la aproximación normal para proporciones es que se cumplan tanto np̂ ≥ 5 como nq̂ ≥ 5. Para intervalos de confianza más precisos cuando estas condiciones no se cumplen, usa el intervalo de puntuación de Wilson o el intervalo exacto de Clopper-Pearson en lugar de la fórmula estándar de aproximación normal.",
+        "q4": "¿Puede usarse p̂ si x o n no son enteros?",
+        "q4_a": "En la definición estricta, p̂ es un recuento dividido por un recuento, por lo que ambos deben ser enteros no negativos con x ≤ n. Sin embargo, en algunos contextos (como encuestas ponderadas o metaanálisis con tamaños de muestra efectivos) aparecen entradas fraccionarias. Esta calculadora exige entradas enteras para mantener la integridad matemática.",
+        "q5": "¿Cómo se usa p̂ en pruebas de hipótesis?",
+        "q5_a": "Para una prueba de una muestra de H₀: p = p₀, el estadístico de prueba es Z = (p̂ − p₀) / √(p₀(1 − p₀) / n). Si |Z| supera el valor crítico en el nivel de significancia elegido, rechazas la hipótesis nula. El valor p de esta puntuación Z indica la probabilidad de observar un p̂ al menos tan extremo como el obtenido si p realmente fuera p₀.",
+        "q6": "¿p̂ es lo mismo que un porcentaje?",
+        "q6_a": "p̂ es un decimal entre 0 y 1; al multiplicarlo por 100 se obtiene el porcentaje equivalente. Transmiten la misma información: 0.55 y 55% son el mismo valor expresado de forma diferente. Los decimales se prefieren en fórmulas y cálculos de intervalos de confianza; los porcentajes se prefieren al comunicar resultados a una audiencia general."
+      }
     }
   }
 }

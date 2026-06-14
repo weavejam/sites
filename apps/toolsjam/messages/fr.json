@@ -7004,6 +7004,276 @@
         "q6": "Puis-je utiliser ce calculateur pour des données catégorielles (non numériques) ?",
         "q6_a": "Le calculateur exige une entrée numérique. Pour l'utiliser avec des données catégorielles — comme des couleurs, des notes (A/B/C) ou des réponses oui/non — attribuez un code numérique à chaque catégorie (p. ex. 1 = Red, 2 = Blue, 3 = Green) et saisissez les valeurs codées. La sortie affichera correctement la fréquence et la fréquence relative de chaque code numérique, que vous pourrez ensuite renommer dans votre rapport."
       }
+    },
+    "odds-ratio-calculator": {
+      "title": "Calculateur de rapport de cotes - OR, IC et valeur p",
+      "tagline": "Calculez le rapport de cotes, l’intervalle de confiance, le score Z et la valeur p à partir d’un tableau de contingence 2×2 pour des études cas-témoins et épidémiologiques.",
+      "intro": "Saisissez les quatre effectifs de votre tableau 2×2, choisissez un niveau de confiance et obtenez instantanément le rapport de cotes avec une inférence statistique complète.",
+      "tableNote": "Renseignez les effectifs des groupes exposé et non exposé. Les cellules doivent être des entiers non négatifs. Lorsqu’une cellule vaut zéro, la correction de Haldane-Anscombe (ajout de 0,5 à chaque cellule) est appliquée automatiquement.",
+      "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+      "group": {
+        "exposed": "Groupe exposé",
+        "unexposed": "Groupe non exposé"
+      },
+      "field": {
+        "a": "Résultat positif – Cas (a)",
+        "b": "Résultat négatif – Non-cas (b)",
+        "c": "Résultat positif – Cas (c)",
+        "d": "Résultat négatif – Non-cas (d)",
+        "confidenceLevel": "Niveau de confiance"
+      },
+      "placeholder": {
+        "cell": "Saisissez un effectif ≥ 0"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres non négatifs dans les quatre cellules."
+      },
+      "result": {
+        "heading": "Résultats",
+        "or": "Rapport de cotes (OR)",
+        "ciLabel": "Intervalle de confiance",
+        "z": "Score Z",
+        "pValue": "Valeur p",
+        "lnOR": "ln(OR)",
+        "se": "Erreur standard",
+        "correctionNote": "Cellule nulle détectée — correction de Haldane-Anscombe (+ 0,5) appliquée à toutes les cellules."
+      },
+      "about": {
+        "heading": "À propos du calculateur de rapport de cotes",
+        "body": "Le rapport de cotes (OR) est l’une des mesures d’association les plus utilisées en recherche biomédicale, en épidémiologie et dans les sciences sociales. Il quantifie la force de la relation entre une exposition et un résultat binaire en comparant les cotes du résultat dans un groupe exposé avec celles du groupe non exposé. Un OR de 1 indique l’absence d’association ; un OR supérieur à 1 suggère que l’exposition augmente les cotes du résultat ; un OR inférieur à 1 suggère un effet protecteur.\n\nLe rapport de cotes est calculé à partir d’un tableau de contingence 2×2, format standard pour présenter des données d’études cas-témoins. Le tableau comporte quatre cellules : (a) personnes exposées ayant le résultat, (b) personnes exposées n’ayant pas le résultat, (c) personnes non exposées ayant le résultat et (d) personnes non exposées n’ayant pas le résultat. La formule est simplement OR = (a × d) / (b × c), soit le rapport des produits croisés du tableau.\n\nL’inférence statistique pour l’OR se fait sur son logarithme naturel, car la distribution d’échantillonnage de ln(OR) est approximativement normale, même avec des tailles d’échantillon modérées. L’erreur standard de ln(OR) est SE = √(1/a + 1/b + 1/c + 1/d). On en déduit un score Z : Z = ln(OR) / SE, qui suit une loi normale standard sous l’hypothèse nulle d’absence d’association (OR = 1). La valeur p bilatérale est p = 2 × Φ(−|Z|), où Φ est la fonction de répartition de la loi normale standard. Si la valeur p est inférieure au seuil de significativité choisi (généralement 0,05), le rapport de cotes est statistiquement différent de 1.\n\nL’intervalle de confiance (IC) de l’OR est obtenu en exponentiant l’intervalle autour de ln(OR) : CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. Pour un IC à 95 %, Z_α/2 = 1,96. Si l’IC n’inclut pas 1,0, le résultat est statistiquement significatif au seuil de 5 %. La largeur de l’IC reflète la précision de l’estimation ; des intervalles plus larges résultent d’échantillons plus petits ou de cellules clairsemées.\n\nUne difficulté pratique apparaît lorsqu’une cellule du tableau 2×2 vaut zéro, ce qui rend la formule standard de l’OR indéfinie (division par zéro ou logarithme de zéro). La solution habituelle est la correction de Haldane-Anscombe : ajouter 0,5 à chaque cellule avant de calculer l’OR et l’erreur standard. Ce calculateur applique cette correction automatiquement et vous en avertit lorsqu’elle est utilisée. La correction introduit un léger biais, mais c’est bien préférable à l’absence totale de résultat.\n\nL’OR est la mesure naturelle dans les études cas-témoins, où le plan d’échantillonnage fixe le nombre de cas et de témoins plutôt que la prévalence de l’exposition. Dans les études de cohorte et les essais randomisés, le risque relatif (RR) est souvent préféré car il est plus intuitif. Pour des issues rares (prévalence inférieure à environ 10 %), OR ≈ RR, mais pour des issues fréquentes l’OR s’éloigne toujours davantage de 1 que le RR correspondant, et l’interpréter comme un RR peut surestimer l’ampleur de l’association. Indiquez toujours la mesure utilisée et vérifiez si l’hypothèse de rareté de la maladie s’applique à vos données."
+      },
+      "examples": {
+        "heading": "Exemples détaillés",
+        "intro": "Trois scénarios d’étude classiques montrant comment lire la sortie du rapport de cotes et juger la significativité statistique.",
+        "colInput": "Scénario d’étude",
+        "colOutput": "Rapport de cotes",
+        "colNote": "Interprétation",
+        "loadSmoking": "Charger l’exemple tabac",
+        "loadDrug": "Charger l’exemple médicament",
+        "loadVaccine": "Charger l’exemple vaccin",
+        "items": [
+          {
+            "input": "Tabagisme et cancer du poumon : a=650, b=350, c=100, d=900 (95% CI)",
+            "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+            "note": "Les fumeurs ont environ 16,7 fois plus de cotes de cancer du poumon que les non-fumeurs. L’IC n’inclut pas 1,0, donc l’association est hautement significative."
+          },
+          {
+            "input": "Nouveau médicament vs placebo : a=38, b=162, c=85, d=115 (95% CI)",
+            "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+            "note": "Le médicament réduit les cotes de maladie d’environ 68 %. OR < 1 indique un effet protecteur ; l’IC est entièrement inférieur à 1."
+          },
+          {
+            "input": "Étude vaccinale : a=15, b=485, c=55, d=445 (95% CI)",
+            "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+            "note": "Les personnes vaccinées ont 75 % de cotes d’infection en moins. Association protectrice forte, avec un intervalle de confiance étroit et significatif."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de rapport de cotes",
+        "steps": [
+          "Organisez vos données dans un tableau 2×2 : la cellule (a) = cas exposés, (b) = non-cas exposés, (c) = cas non exposés, (d) = non-cas non exposés.",
+          "Saisissez les quatre effectifs non négatifs dans les champs correspondants sous 'Groupe exposé' et 'Groupe non exposé'.",
+          "Choisissez le niveau de confiance souhaité (90 %, 95 % ou 99 %) dans la liste déroulante. La plupart des études publiées utilisent 95 %.",
+          "Cliquez sur Calculer. L’outil renvoie l’OR, l’intervalle de confiance, le score Z et la valeur p. Si une cellule était à zéro, une note de correction apparaît.",
+          "Interprétez le résultat : OR > 1 signifie que l’exposition augmente les cotes ; OR < 1 signifie qu’elle les diminue. Vérifiez si l’IC inclut 1 et si p ≤ α."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "q1": "Qu’est-ce qu’un rapport de cotes et en quoi diffère-t-il du risque relatif ?",
+        "q1_a": "Le rapport de cotes compare les cotes d’un résultat dans deux groupes, alors que le risque relatif (RR) compare les probabilités. Pour des issues rares (prévalence < 10 %), OR ≈ RR ; pour des issues fréquentes, l’OR s’éloigne davantage de 1,0 que le RR. Les études cas-témoins ne peuvent estimer valablement que l’OR, pas le RR, car l’échantillonnage est basé sur le résultat.",
+        "q2": "Comment interpréter OR = 2.5 ?",
+        "q2_a": "Un OR de 2,5 signifie que les cotes du résultat dans le groupe exposé sont 2,5 fois celles du groupe non exposé. Cela ne veut pas dire que le risque est 2,5 fois plus élevé, sauf si l’issue est rare. Pour des issues fréquentes, le ratio de risques réel sera inférieur à 2,5.",
+        "q3": "Que m’indique l’intervalle de confiance ?",
+        "q3_a": "Un intervalle de confiance à 95 % signifie que si l’étude était répétée de nombreuses fois dans les mêmes conditions, environ 95 % des intervalles calculés contiendraient la véritable OR de la population. En pratique, si l’IC exclut 1,0, le résultat est statistiquement significatif au seuil α = 0,05. Un IC large indique une faible précision, généralement due à un petit échantillon.",
+        "q4": "Quand la correction de Haldane-Anscombe est-elle appliquée ?",
+        "q4_a": "La correction ajoute 0,5 à chaque cellule lorsqu’une cellule vaut zéro. Une cellule nulle rend la formule standard de l’OR indéfinie (logarithme de zéro ou division par zéro). Cette correction permet de poursuivre l’estimation et constitue le remède le plus courant, bien qu’elle introduise un léger biais. Le calculateur le signale lorsqu’elle est utilisée.",
+        "q5": "Puis-je utiliser ce calculateur pour un essai contrôlé randomisé ?",
+        "q5_a": "Oui, mais envisagez de rapporter le risque relatif (RR) plutôt que l’OR, ou en plus de l’OR, car le RR est plus intuitif pour des issues fréquentes et constitue la mesure privilégiée par de nombreuses recommandations cliniques. Pour des ECR avec issues rares ou lors d’une méta-analyse combinant plusieurs plans d’étude, l’OR reste approprié.",
+        "q6": "Pourquoi les valeurs p et les intervalles de confiance semblent-ils parfois contradictoires ?",
+        "q6_a": "Ils ne devraient pas l’être : un IC à 95 % qui exclut 1,0 correspond toujours à p < 0,05 pour un test bilatéral. Les contradictions apparentes proviennent généralement des arrondis, de la comparaison de valeurs p unilatérales avec des IC bilatéraux, ou de l’utilisation de niveaux différents pour l’IC et l’alpha du test. Utilisez des réglages cohérents pour les deux."
+      }
+    },
+    "outlier-calculator": {
+      "title": "Calculateur de valeurs aberrantes - Détecter avec la méthode IQR",
+      "tagline": "Repérez les valeurs aberrantes dans n’importe quel jeu de données grâce à la méthode de l’écart interquartile — choisissez instantanément une détection légère (1,5×IQR) ou extrême (3×IQR).",
+      "intro": "Saisissez une liste de nombres séparés par des virgules, sélectionnez votre méthode de détection des valeurs aberrantes, puis obtenez Q1, Q3, IQR, les bornes et la liste des valeurs aberrantes.",
+      "formula": "IQR = Q3 − Q1  |  Borne inférieure = Q1 − k × IQR  |  Borne supérieure = Q3 + k × IQR  |  k = 1,5 (léger) ou 3,0 (extrême)",
+      "field": {
+        "data": "Jeu de données (nombres séparés par des virgules)",
+        "method": "Méthode de détection des valeurs aberrantes"
+      },
+      "placeholder": {
+        "data": "ex. 10, 12, 14, 15, 16, 18, 20, 50"
+      },
+      "type": {
+        "mild": "Valeurs aberrantes légères (1,5 × IQR)",
+        "extreme": "Valeurs aberrantes extrêmes (3,0 × IQR)"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins 4 nombres séparés par des virgules."
+      },
+      "result": {
+        "heading": "Résultats",
+        "q1": "Q1 (premier quartile)",
+        "q3": "Q3 (troisième quartile)",
+        "iqr": "IQR",
+        "lowerBound": "Borne inférieure",
+        "upperBound": "Borne supérieure",
+        "outlierCount": "Nombre de valeurs aberrantes",
+        "outliersLabel": "Valeurs aberrantes détectées",
+        "noOutliers": "Aucune valeur aberrante trouvée",
+        "cleanDataLabel": "Données sans valeurs aberrantes (triées)"
+      },
+      "about": {
+        "heading": "À propos du calculateur de valeurs aberrantes",
+        "body": "Une valeur aberrante est un point de données situé à une distance anormale des autres valeurs d’un jeu de données. En analyse statistique, les valeurs aberrantes peuvent fausser des indicateurs comme la moyenne et l’écart type, gonfler les estimations de variance et violer les hypothèses des tests paramétriques. Les identifier tôt est une étape essentielle de l’analyse exploratoire, du contrôle qualité et du prétraitement pour le machine learning.\n\nLa méthode la plus utilisée pour détecter les valeurs aberrantes repose sur l’écart interquartile (IQR), c’est-à-dire la différence entre le troisième quartile (Q3) et le premier quartile (Q1). Cette méthode est robuste car l’IQR, contrairement à la moyenne et à l’écart type, n’est pas lui-même déformé par les valeurs extrêmes. La formule des deux bornes est : borne inférieure = Q1 − k × IQR et borne supérieure = Q3 + k × IQR. Tout point de données situé en dehors de ces bornes est classé comme valeur aberrante.\n\nLe multiplicateur k détermine la sévérité du signalement. Le choix le plus courant est k = 1,5, valeur par défaut des diagrammes en boîte, qui identifie ce qu’on appelle parfois des valeurs aberrantes « légères » — des valeurs qui s’écartent nettement de la masse des données, mais qui peuvent encore avoir une explication valable. Avec k = 3,0, le critère est plus strict ; seules les valeurs aberrantes « extrêmes » sont signalées — des valeurs si éloignées de la distribution principale qu’elles représentent presque certainement des erreurs, des anomalies ou des événements réellement rares.\n\nPour calculer les quartiles, le calculateur trie d’abord les données par ordre croissant. Q1 correspond au 25e percentile et Q3 au 75e percentile du jeu trié. Lorsque la position du quartile tombe entre deux points, le calculateur effectue une interpolation linéaire pour produire un résultat fluide, conforme au comportement par défaut d’Excel et à de nombreuses conventions de logiciels statistiques.\n\nDétecter une valeur aberrante ne signifie pas la supprimer automatiquement. Avant de retirer ou de transformer une valeur détectée, il faut en rechercher la cause. Il peut s’agir d’une erreur de saisie (un chiffre mal tapé), d’une erreur de mesure (un instrument défectueux), d’une erreur d’échantillonnage (une valeur provenant d’une autre population) ou d’une observation extrême réelle, importante sur le plan scientifique et à conserver. Par exemple, en détection de fraude, le point de données le plus important est souvent la valeur aberrante. En recherche clinique, le patient présentant la réponse la plus extrême peut être le plus informatif. Documentez toujours votre décision et, en cas de doute, présentez les résultats avec et sans la valeur aberrante pour montrer la sensibilité.\n\nLa méthode IQR est non paramétrique, ce qui signifie qu’elle ne suppose aucune forme particulière pour la distribution sous-jacente. Elle est donc particulièrement adaptée aux distributions asymétriques, aux petits échantillons et aux données comportant plusieurs groupes. Pour des données approximativement normales avec de grands échantillons, la méthode du score Z (signalement des valeurs situées à plus de 2 ou 3 écarts types de la moyenne) constitue une alternative, mais le score Z est lui-même influencé par les valeurs aberrantes qu’il cherche à détecter, ce qui rend l’approche IQR généralement plus fiable."
+      },
+      "examples": {
+        "heading": "Exemples pratiques",
+        "intro": "Trois jeux de données illustrant une valeur aberrante unique, plusieurs valeurs aberrantes et un jeu de données propre sans valeurs aberrantes.",
+        "colInput": "Jeu de données",
+        "colOutput": "Valeurs aberrantes (1,5×IQR)",
+        "colNote": "Valeurs clés",
+        "loadBasic": "Charger l’exemple de base",
+        "loadMultiple": "Charger l’exemple avec plusieurs valeurs aberrantes",
+        "loadNone": "Charger l’exemple sans valeur aberrante",
+        "items": [
+          {
+            "input": "10, 12, 14, 15, 16, 18, 20, 50",
+            "output": "50",
+            "note": "Q1=13,5, Q3=18,5, IQR=5, borne supérieure=26. La valeur 50 dépasse 26 et est signalée comme valeur aberrante."
+          },
+          {
+            "input": "1, 25, 28, 30, 32, 35, 38, 100",
+            "output": "1, 100",
+            "note": "Q1=27,25, Q3=35,75, IQR=8,5, bornes : 14,5 à 48,5. 1 et 100 sont tous deux hors de ces limites."
+          },
+          {
+            "input": "10, 20, 30, 40, 50, 60, 70, 80",
+            "output": "None",
+            "note": "Un espacement uniforme signifie qu’aucun point n’est à plus de 1,5×IQR de la borne. Toutes les valeurs sont propres."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de valeurs aberrantes",
+        "steps": [
+          "Saisissez ou collez vos données dans le champ sous forme de liste de nombres séparés par des virgules. Les entiers, décimales et nombres négatifs sont acceptés.",
+          "Choisissez « Valeurs aberrantes légères (1,5 × IQR) » pour l’analyse standard utilisée dans les boîtes à moustaches, ou « Valeurs aberrantes extrêmes (3,0 × IQR) » pour ne signaler que les anomalies les plus sévères.",
+          "Cliquez sur Calculer. L’outil affiche Q1, Q3, IQR, les bornes inférieure et supérieure, ainsi que le nombre de valeurs aberrantes.",
+          "Consultez la liste des « Valeurs aberrantes détectées ». Examinez chaque valeur signalée avant de décider de la supprimer ou de la conserver.",
+          "Le jeu de données nettoyé (trié et sans valeurs aberrantes) s’affiche ci-dessous pour un copier-coller rapide dans votre analyse."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "q1": "Qu’est-ce que la méthode IQR pour détecter les valeurs aberrantes ?",
+        "q1_a": "La méthode IQR (écart interquartile) calcule deux bornes : Q1 − 1,5×IQR et Q3 + 1,5×IQR. Tout point de données situé en dehors de ces bornes est signalé comme valeur aberrante. La méthode est robuste car Q1, Q3 et IQR ne sont pas influencés par les valeurs aberrantes elles-mêmes, contrairement à la moyenne et à l’écart type.",
+        "q2": "Dois-je toujours supprimer les valeurs aberrantes ?",
+        "q2_a": "Non. Il faut enquêter avant de supprimer. Les valeurs aberrantes peuvent représenter des données réelles et importantes — une transaction frauduleuse, une découverte scientifique nouvelle ou un défaut de fabrication digne d’étude. Ne les supprimez que si vous avez une raison valable, comme une erreur de saisie confirmée. Signalez toujours les suppressions dans votre analyse.",
+        "q3": "Quelle est la différence entre valeurs aberrantes légères et extrêmes ?",
+        "q3_a": "Les valeurs aberrantes légères se situent entre 1,5×IQR et 3×IQR au-delà d’un quartile. Les valeurs aberrantes extrêmes dépassent 3×IQR. Les diagrammes en boîte affichent généralement les valeurs aberrantes légères sous forme de cercles vides et les extrêmes sous forme d’étoiles ou de cercles pleins. Pour la plupart des analyses exploratoires, le seuil 1,5×IQR est la norme.",
+        "q4": "Ce calculateur fonctionne-t-il avec des nombres négatifs ?",
+        "q4_a": "Oui. La méthode IQR est indépendante de l’échelle et fonctionne correctement avec n’importe quelle combinaison de valeurs positives, nulles ou négatives. Il suffit d’inclure les nombres négatifs dans votre liste séparée par des virgules, par exemple : −20, 5, 8, 9, 10, 12, 15.",
+        "q5": "Quel est le nombre minimal de points de données requis ?",
+        "q5_a": "Le calculateur nécessite au moins 4 points de données pour calculer des quartiles et un IQR significatifs. Pour de très petits échantillons (moins de 10 à 15 valeurs), les bornes peuvent varier fortement et une valeur aberrante détectée doit être interprétée avec prudence.",
+        "q6": "Comment cette méthode se compare-t-elle à l’approche Z-score ?",
+        "q6_a": "La méthode Z-score signale les valeurs situées à plus de 2 ou 3 écarts types de la moyenne. Elle suppose des données approximativement normales et est sensible aux valeurs aberrantes qu’elle cherche à détecter, car les valeurs extrêmes gonflent la moyenne et l’écart type. La méthode IQR ne suppose pas la normalité et est donc préférable pour les données asymétriques, les distributions à queues épaisses et les petits ou moyens échantillons."
+      }
+    },
+    "p-hat-calculator": {
+      "title": "Calculateur p-hat - Proportion d’échantillon p̂ et q̂",
+      "tagline": "Calculez la proportion d’échantillon p̂ (p-hat) et son complément q̂ à partir d’une taille d’échantillon et d’un nombre de succès dans toute étude statistique.",
+      "intro": "Saisissez la taille totale de l’échantillon (n) et le nombre de succès (x) pour obtenir immédiatement p̂ et q̂ sous forme décimale et en pourcentage.",
+      "formula": "p̂ = x / n  |  q̂ = 1 − p̂  |  où x est le nombre de succès et n la taille totale de l’échantillon",
+      "field": {
+        "n": "Taille d’échantillon (n)",
+        "x": "Nombre de succès (x)"
+      },
+      "placeholder": {
+        "n": "p. ex. 1000",
+        "x": "p. ex. 550"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir un entier positif pour n et un entier non négatif pour x, avec x ≤ n."
+      },
+      "result": {
+        "heading": "Résultats",
+        "pHatDecimal": "p̂ (décimal)",
+        "pHatPercent": "p̂ (pourcentage)",
+        "qHatDecimal": "q̂ (décimal)",
+        "qHatPercent": "q̂ (pourcentage)"
+      },
+      "about": {
+        "heading": "À propos du calculateur p-hat",
+        "body": "En statistique inférentielle, la proportion d’échantillon p̂ (prononcée « p-hat ») est la fraction des individus d’un échantillon qui possèdent une caractéristique précise ou satisfont à un critère défini. C’est l’une des statistiques les plus fondamentales en recherche appliquée, car elle sert de base aux intervalles de confiance sur les proportions, aux tests d’hypothèse sur les proportions et aux calculs de taille d’échantillon pour les enquêtes et les essais cliniques.\n\nLa formule est simple : p̂ = x / n, où x est le nombre de « succès » (observations présentant la caractéristique d’intérêt) et n la taille totale de l’échantillon. Le complément q̂ = 1 − p̂ représente la proportion de l’échantillon qui ne présente pas cette caractéristique. Ensemble, p̂ et q̂ totalisent exactement 1 et décrivent conjointement la division binaire de l’échantillon.\n\nL’objectif principal de p̂ est d’estimer la vraie proportion de population p, généralement inconnue. Comme un échantillon n’est qu’un sous-ensemble de la population, p̂ est une variable aléatoire : sa valeur varie légèrement d’un échantillon à l’autre. Le théorème central limite garantit que, pour un n suffisamment grand (typiquement np̂ ≥ 5 et nq̂ ≥ 5), la distribution d’échantillonnage de p̂ est approximativement normale, de moyenne p et d’erreur standard √(p(1−p)/n). Cette approximation normale sous-tend les intervalles de confiance de proportion et les tests z de proportion les plus courants.\n\nLes applications pratiques de p̂ couvrent tous les domaines quantitatifs. Dans les sondages politiques, les instituts interrogent quelques milliers d’électeurs probables et rapportent p̂ comme soutien estimé à un candidat, généralement avec une marge d’erreur (± 2–3 %) dérivée de l’erreur standard. En contrôle qualité industriel, un ingénieur de production échantillonne 200 unités d’un lot et calcule la proportion de défauts p̂ afin de décider si le taux de défauts reste dans les limites acceptables. Dans les essais cliniques, le critère principal est souvent la proportion de patients répondant à un traitement ; p̂ dans le bras traité comparé à p̂ dans le bras contrôle constitue la base de la comparaison statistique principale. Dans les tests A/B de produits numériques, p̂ est le taux de conversion de chaque variante.\n\nIl est important de distinguer p̂ d’une moyenne. Une moyenne résume des données numériques continues (taille moyenne, revenu moyen), tandis que p̂ résume des données catégorielles binaires (succès ou échec, oui ou non, défectueux ou non défectueux). Les deux sont des estimations ponctuelles, mais elles suivent des distributions d’échantillonnage différentes et exigent des formules différentes pour les intervalles de confiance et les tests d’hypothèse.\n\nLorsque vous rapportez p̂, accompagnez-la toujours d’un intervalle de confiance et de la taille d’échantillon n. Une p̂ de 0.6 est bien plus parlante lorsqu’elle est indiquée comme « 0.6 (IC 95 % : 0.57 – 0.63, n = 1,000) » que lorsqu’elle est donnée seule. L’intervalle de confiance communique la précision de l’estimation et permet aux lecteurs de juger si la vraie proportion pourrait plausiblement être au-dessus ou au-dessous de tout seuil qui leur importe. Sans n et l’IC, p̂ est un résultat incomplet."
+      },
+      "examples": {
+        "heading": "Exemples détaillés",
+        "intro": "Trois scénarios réels montrant comment p̂ est calculée et ce que les résultats signifient en contexte.",
+        "colInput": "Entrée (n, x)",
+        "colOutput": "p̂",
+        "colNote": "Contexte",
+        "loadPoll": "Charger l’exemple de sondage",
+        "loadQC": "Charger l’exemple de contrôle qualité",
+        "loadMedical": "Charger l’exemple d’essai médical",
+        "items": [
+          {
+            "input": "n = 1000, x = 550",
+            "output": "p̂ = 0.55 (55%)",
+            "note": "Sondage préélectoral : 550 électeurs sur 1,000 soutiennent le candidat A. p̂ = 0.55, q̂ = 0.45."
+          },
+          {
+            "input": "n = 200, x = 15",
+            "output": "p̂ = 0.075 (7.5%)",
+            "note": "Contrôle qualité : 15 ampoules défectueuses dans un échantillon de 200. Taux de défaut p̂ = 7.5 %, taux conforme q̂ = 92.5 %."
+          },
+          {
+            "input": "n = 120, x = 80",
+            "output": "p̂ = 0.6667 (66.67%)",
+            "note": "Essai clinique : 80 patients sur 120 ont répondu positivement à un nouveau médicament. Taux de réponse p̂ ≈ 0.667."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur p-hat",
+        "steps": [
+          "Saisissez la taille totale de l’échantillon (n), un entier positif représentant le nombre d’éléments, de personnes ou d’observations échantillonnés.",
+          "Saisissez le nombre de succès (x), un entier non négatif au plus égal à n, représentant le nombre d’éléments de l’échantillon ayant la caractéristique d’intérêt.",
+          "Cliquez sur Calculer. L’outil renvoie p̂ et q̂ à la fois sous forme décimale et en pourcentage.",
+          "Utilisez p̂ comme estimation ponctuelle de la proportion de population p. N’oubliez pas que p̂ seule est incomplète ; calculez un intervalle de confiance pour une inférence plus complète.",
+          "Cliquez sur Réinitialiser pour effacer les champs et commencer un nouveau calcul."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "q1": "Que signifie p̂ en statistique ?",
+        "q1_a": "p̂ (lue « p-hat ») est la proportion d’échantillon : la fraction d’un échantillon qui possède un attribut particulier. Elle sert à estimer la proportion de population inconnue p. Le symbole chapeau (^) est une notation statistique standard indiquant une estimation fondée sur un échantillon d’un paramètre de population.",
+        "q2": "Qu’est-ce que q̂ et pourquoi la rapporte-t-on ?",
+        "q2_a": "q̂ = 1 − p̂ est le complément de p̂ et représente la proportion de l’échantillon qui ne possède pas la caractéristique. Elle est toujours rapportée avec p̂, car ensemble elles décrivent la division binaire complète de l’échantillon, et q̂ apparaît directement dans la formule de l’erreur standard de p̂ : SE = √(p̂ × q̂ / n).",
+        "q3": "Quelle taille n doit-elle avoir pour que p̂ soit fiable ?",
+        "q3_a": "Une règle empirique courante pour utiliser l’approximation normale des proportions est que np̂ ≥ 5 et nq̂ ≥ 5 soient tous deux satisfaits. Pour des intervalles de confiance plus précis lorsque ces conditions ne sont pas remplies, utilisez l’intervalle de score de Wilson ou l’intervalle exact de Clopper-Pearson plutôt que la formule standard d’approximation normale.",
+        "q4": "Peut-on utiliser p̂ si x ou n ne sont pas des entiers ?",
+        "q4_a": "Dans la définition stricte, p̂ est un comptage divisé par un comptage ; les deux doivent donc être des entiers non négatifs avec x ≤ n. Toutefois, dans certains contextes (comme les enquêtes pondérées ou les méta-analyses avec tailles d’échantillon effectives), des entrées fractionnaires peuvent apparaître. Ce calculateur impose des entrées entières afin de préserver l’intégrité mathématique.",
+        "q5": "Comment p̂ est-elle utilisée dans les tests d’hypothèse ?",
+        "q5_a": "Pour un test à un échantillon de H₀: p = p₀, la statistique de test est Z = (p̂ − p₀) / √(p₀(1 − p₀) / n). Si |Z| dépasse la valeur critique au niveau de signification choisi, vous rejetez l’hypothèse nulle. La valeur p issue de ce score Z indique la probabilité d’observer une p̂ au moins aussi extrême que celle obtenue si p était réellement p₀.",
+        "q6": "p̂ est-elle identique à un pourcentage ?",
+        "q6_a": "p̂ est un décimal entre 0 et 1 ; le multiplier par 100 donne le pourcentage équivalent. Ils transmettent la même information : 0.55 et 55 % sont la même valeur exprimée différemment. Les décimaux sont préférés dans les formules et les calculs d’intervalles de confiance ; les pourcentages sont préférés pour communiquer des résultats à un public général."
+      }
     }
   }
 }
