@@ -1440,5 +1440,205 @@ export const tools: ToolEntry[] = [
       pt: "Calcule a probabilidade pós-teste com o teorema de Bayes. Informe probabilidade prévia, sensibilidade e especificidade para obter PPV, NPV e LR.",
       ru: "Рассчитайте посттестовую вероятность по теореме Байеса. Введите априорную вероятность, чувствительность и специфичность, чтобы получить PPV, NPV и LR."
     }
+  },
+  {
+    id: "f-statistic-calculator",
+    category: "statistic",
+    slugs: {
+      en: "f-statistic-calculator",
+      "zh-CN": "f-statistic-calculator",
+      "zh-TW": "f-statistic-calculator",
+      ja: "f-statistic-calculator",
+      ko: "f-statistic-calculator",
+      es: "f-statistic-calculator",
+      fr: "f-statistic-calculator",
+      de: "f-statistic-calculator",
+      pt: "f-statistic-calculator",
+      ru: "f-statistic-calculator"
+    },
+    titles: {
+      en: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      "zh-CN": "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      "zh-TW": "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      ja: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      ko: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      es: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      fr: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      de: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      pt: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      ru: "F-Statistic Calculator - ANOVA & Variance Ratio Test"
+    },
+    descriptions: {
+      en: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
+      "zh-CN": "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
+      "zh-TW": "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
+      ja: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
+      ko: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
+      es: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
+      fr: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
+      de: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
+      pt: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
+      ru: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly."
+    }
+  },
+  {
+    id: "f-test-for-equality-of-two-variances-calculator",
+    category: "statistic",
+    slugs: {
+      en: "f-test-for-equality-of-two-variances-calculator",
+      "zh-CN": "f-test-for-equality-of-two-variances-calculator",
+      "zh-TW": "f-test-for-equality-of-two-variances-calculator",
+      ja: "f-test-for-equality-of-two-variances-calculator",
+      ko: "f-test-for-equality-of-two-variances-calculator",
+      es: "f-test-for-equality-of-two-variances-calculator",
+      fr: "f-test-for-equality-of-two-variances-calculator",
+      de: "f-test-for-equality-of-two-variances-calculator",
+      pt: "f-test-for-equality-of-two-variances-calculator",
+      ru: "f-test-for-equality-of-two-variances-calculator"
+    },
+    titles: {
+      en: "F-Test for Equality of Two Variances Calculator",
+      "zh-CN": "F-Test for Equality of Two Variances Calculator",
+      "zh-TW": "F-Test for Equality of Two Variances Calculator",
+      ja: "F-Test for Equality of Two Variances Calculator",
+      ko: "F-Test for Equality of Two Variances Calculator",
+      es: "F-Test for Equality of Two Variances Calculator",
+      fr: "F-Test for Equality of Two Variances Calculator",
+      de: "F-Test for Equality of Two Variances Calculator",
+      pt: "F-Test for Equality of Two Variances Calculator",
+      ru: "F-Test for Equality of Two Variances Calculator"
+    },
+    descriptions: {
+      en: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
+      "zh-CN": "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
+      "zh-TW": "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
+      ja: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
+      ko: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
+      es: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
+      fr: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
+      de: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
+      pt: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
+      ru: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision."
+    }
+  },
+  {
+    id: "false-positive-paradox-calculator",
+    category: "statistic",
+    slugs: {
+      en: "false-positive-paradox-calculator",
+      "zh-CN": "false-positive-paradox-calculator",
+      "zh-TW": "false-positive-paradox-calculator",
+      ja: "false-positive-paradox-calculator",
+      ko: "false-positive-paradox-calculator",
+      es: "false-positive-paradox-calculator",
+      fr: "false-positive-paradox-calculator",
+      de: "false-positive-paradox-calculator",
+      pt: "false-positive-paradox-calculator",
+      ru: "false-positive-paradox-calculator"
+    },
+    titles: {
+      en: "False Positive Paradox Calculator - Bayes' Theorem",
+      "zh-CN": "False Positive Paradox Calculator - Bayes' Theorem",
+      "zh-TW": "False Positive Paradox Calculator - Bayes' Theorem",
+      ja: "False Positive Paradox Calculator - Bayes' Theorem",
+      ko: "False Positive Paradox Calculator - Bayes' Theorem",
+      es: "False Positive Paradox Calculator - Bayes' Theorem",
+      fr: "False Positive Paradox Calculator - Bayes' Theorem",
+      de: "False Positive Paradox Calculator - Bayes' Theorem",
+      pt: "False Positive Paradox Calculator - Bayes' Theorem",
+      ru: "False Positive Paradox Calculator - Bayes' Theorem"
+    },
+    descriptions: {
+      en: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
+      "zh-CN": "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
+      "zh-TW": "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
+      ja: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
+      ko: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
+      es: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
+      fr: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
+      de: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
+      pt: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
+      ru: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox."
+    }
+  },
+  {
+    id: "fishers-exact-test-calculator",
+    category: "statistic",
+    slugs: {
+      en: "fishers-exact-test-calculator",
+      "zh-CN": "fishers-exact-test-calculator",
+      "zh-TW": "fishers-exact-test-calculator",
+      ja: "fishers-exact-test-calculator",
+      ko: "fishers-exact-test-calculator",
+      es: "fishers-exact-test-calculator",
+      fr: "fishers-exact-test-calculator",
+      de: "fishers-exact-test-calculator",
+      pt: "fishers-exact-test-calculator",
+      ru: "fishers-exact-test-calculator"
+    },
+    titles: {
+      en: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      "zh-CN": "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      "zh-TW": "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      ja: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      ko: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      es: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      fr: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      de: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      pt: "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      ru: "Fisher's Exact Test Calculator - 2x2 Contingency Table"
+    },
+    descriptions: {
+      en: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
+      "zh-CN": "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
+      "zh-TW": "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
+      ja: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
+      ko: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
+      es: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
+      fr: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
+      de: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
+      pt: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research.",
+      ru: "Run Fisher's Exact Test on a 2×2 contingency table. Get one-tailed and two-tailed p-values plus the odds ratio — ideal for small sample sizes in research."
+    }
+  },
+  {
+    id: "frequency-distribution-calculator",
+    category: "statistic",
+    slugs: {
+      en: "frequency-distribution-calculator",
+      "zh-CN": "frequency-distribution-calculator",
+      "zh-TW": "frequency-distribution-calculator",
+      ja: "frequency-distribution-calculator",
+      ko: "frequency-distribution-calculator",
+      es: "frequency-distribution-calculator",
+      fr: "frequency-distribution-calculator",
+      de: "frequency-distribution-calculator",
+      pt: "frequency-distribution-calculator",
+      ru: "frequency-distribution-calculator"
+    },
+    titles: {
+      en: "Frequency Distribution Calculator - Create Tables",
+      "zh-CN": "Frequency Distribution Calculator - Create Tables",
+      "zh-TW": "Frequency Distribution Calculator - Create Tables",
+      ja: "Frequency Distribution Calculator - Create Tables",
+      ko: "Frequency Distribution Calculator - Create Tables",
+      es: "Frequency Distribution Calculator - Create Tables",
+      fr: "Frequency Distribution Calculator - Create Tables",
+      de: "Frequency Distribution Calculator - Create Tables",
+      pt: "Frequency Distribution Calculator - Create Tables",
+      ru: "Frequency Distribution Calculator - Create Tables"
+    },
+    descriptions: {
+      en: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
+      "zh-CN": "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
+      "zh-TW": "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
+      ja: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
+      ko: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
+      es: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
+      fr: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
+      de: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
+      pt: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation.",
+      ru: "Create a frequency distribution table from any data set. Calculate frequency, relative frequency, cumulative frequency, mean, median, and standard deviation."
+    }
   }
 ];

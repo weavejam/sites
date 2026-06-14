@@ -5577,6 +5577,498 @@
         "q6": "What is the difference between PPV and post-test probability after a positive result?",
         "q6_a": "For a simple two-outcome test (positive/negative), PPV and the post-test probability after a positive result are the same value. Both represent P(disease | positive test). The term 'post-test probability' is the more general Bayesian language used in clinical decision-making, while PPV is the epidemiological term used in test validation studies."
       }
+    },
+    "f-statistic-calculator": {
+      "title": "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+      "tagline": "Calculate the F-statistic, degrees of freedom, p-value, and critical F-value for comparing two sample variances in an ANOVA or F-ratio test.",
+      "intro": "Enter the sample variance and size for each group, choose a significance level, and get the F-statistic with a clear reject/fail-to-reject decision.",
+      "card": {
+        "title": "F-Statistic Calculator",
+        "description": "Compare two group variances using the F-ratio test"
+      },
+      "field": {
+        "group1": "Group 1 Data",
+        "group2": "Group 2 Data",
+        "variance": "Sample Variance (s²)",
+        "variance1": "Group 1 Sample Variance (s²)",
+        "variance2": "Group 2 Sample Variance (s²)",
+        "sampleSize": "Sample Size (n)",
+        "sampleSize1": "Group 1 Sample Size (n)",
+        "sampleSize2": "Group 2 Sample Size (n)",
+        "alpha": "Significance Level (α)"
+      },
+      "placeholder": {
+        "variance": "e.g. 0.34",
+        "sampleSize": "e.g. 25"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid values. Variances must be ≥ 0 and sample sizes must be integers ≥ 2."
+      },
+      "result": {
+        "heading": "Result",
+        "fStatistic": "F-Statistic",
+        "df1": "df₁ (numerator)",
+        "df2": "df₂ (denominator)",
+        "pValue": "p-Value (two-tailed)",
+        "criticalF": "Critical F-Value",
+        "reject": "Reject H₀ — the variances are significantly different.",
+        "failReject": "Fail to reject H₀ — no significant difference between the variances."
+      },
+      "about": {
+        "heading": "About the F-Statistic Calculator",
+        "body": "The F-statistic is a ratio of two variances used to determine whether differences between group means or group variances are statistically significant. Named after Sir Ronald A. Fisher, it forms the backbone of Analysis of Variance (ANOVA) and is also the key quantity in the F-test for equality of two variances. Whenever you need to decide whether the spread of values in one group differs meaningfully from another, the F-statistic gives you a rigorous, probability-based answer.\n\nAt its core, the F-statistic is simply F = s₁² / s₂², where s₁² and s₂² are the sample variances of two independent groups. By convention, the larger variance is placed in the numerator so that F is always ≥ 1, which confines all the probability mass of interest to the right tail of the F-distribution. The resulting value is then compared to a theoretical F-distribution parameterised by two degrees-of-freedom values: df₁ = n₁ − 1 (numerator) and df₂ = n₂ − 1 (denominator). A large F-value means the variances are very different; an F near 1 means they are similar.\n\nThe F-distribution is right-skewed and takes only non-negative values. Its exact shape depends on df₁ and df₂. For a two-tailed test — the most common type, which checks for any difference regardless of direction — the p-value is calculated as 2 × P(F > F_obs), where P(F > F_obs) is the area in the right tail of the F-distribution beyond the observed statistic. If this p-value is less than or equal to your chosen significance level α, you reject the null hypothesis H₀: σ₁² = σ₂² and conclude that the variances differ significantly.\n\nIn ANOVA, the F-statistic takes a slightly different form: it is the ratio of between-group variance (mean squares between, or MSB) to within-group variance (mean squares within, or MSW). If the group means are all identical, MSB and MSW should be roughly equal, giving F ≈ 1. As the group means diverge, MSB grows relative to MSW and F increases, eventually exceeding the critical threshold.\n\nCommon applications of the F-statistic include quality control in manufacturing (are two machines producing parts with the same variability?), educational research (do two teaching methods lead to equally consistent test scores?), financial analysis (do two stocks have similar volatility?), and agricultural science (do two fertilisers yield crops with the same consistency?). Before running a two-sample t-test, many analysts use the F-test first to verify the equal-variances assumption — if the F-test rejects H₀, a Welch t-test (unequal variances) is more appropriate.\n\nThis calculator automates the F-distribution CDF computation using the regularised incomplete beta function, giving you accurate p-values for any positive degrees of freedom without needing statistical tables. The critical F-value is found by inverting the CDF numerically. Both outputs are consistent with the values produced by R, Python (scipy), and SPSS."
+      },
+      "examples": {
+        "heading": "F-Statistic Calculator Examples",
+        "intro": "Three real-world scenarios showing how to apply the F-test to compare variances.",
+        "colInput": "Input",
+        "colOutput": "Result",
+        "colNote": "Context",
+        "loadMfg": "Load manufacturing example",
+        "loadTeaching": "Load teaching-methods example",
+        "loadStock": "Load stock-volatility example",
+        "items": [
+          {
+            "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+            "output": "F = 1.1724, p ≈ 0.6767 — fail to reject H₀",
+            "note": "Two machines producing bolts. The variance in diameter is not significantly different at the 5% level."
+          },
+          {
+            "input": "s₁² = 110, n₁ = 41; s₂² = 135, n₂ = 31; α = 0.05",
+            "output": "F = 1.2273, p ≈ 0.5061 — fail to reject H₀",
+            "note": "Two teaching methods. Test-score variances are not significantly different; both methods produce similar consistency."
+          },
+          {
+            "input": "s₁² = 1.5, n₁ = 30; s₂² = 1.2, n₂ = 30; α = 0.01",
+            "output": "F = 1.25, p ≈ 0.5717 — fail to reject H₀",
+            "note": "Stock daily-return variances. At the 1% significance level there is no evidence of different volatility."
+          },
+          {
+            "input": "s₁² = 550, n₁ = 50; s₂² = 620, n₂ = 50; α = 0.10",
+            "output": "F = 1.1273, p ≈ 0.5659 — fail to reject H₀",
+            "note": "Crop yield with two fertilisers. Variance in output is statistically similar at the 10% level."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the F-Statistic Calculator",
+        "steps": [
+          "Enter the sample variance (s²) and sample size (n) for Group 1 under the 'Group 1 Data' section. Both values must be numbers ≥ 0 (variance) and ≥ 2 (sample size).",
+          "Enter the corresponding variance and sample size for Group 2 in the 'Group 2 Data' section.",
+          "Select your desired significance level α from the dropdown — 0.01, 0.05, or 0.10 are the three standard choices.",
+          "Click 'Calculate'. The calculator places the larger variance in the numerator, computes F = s_max² / s_min², derives the degrees of freedom (df₁ = n_max − 1, df₂ = n_min − 1), and evaluates the two-tailed p-value and critical F-value.",
+          "Compare the p-value to α. If p ≤ α, reject H₀ and conclude the variances differ significantly. Otherwise, fail to reject H₀. Click 'Reset' to clear all fields and start over."
+        ]
+      },
+      "faq": {
+        "heading": "F-Statistic Calculator FAQ",
+        "q1": "What is the F-statistic?",
+        "q1_a": "The F-statistic is the ratio of two sample variances: F = s₁² / s₂². By convention, the larger variance goes in the numerator so F ≥ 1. It follows an F-distribution with df₁ = n₁ − 1 and df₂ = n₂ − 1 degrees of freedom under the null hypothesis that both population variances are equal.",
+        "q2": "What does the p-value represent in an F-test?",
+        "q2_a": "The p-value is the probability of observing an F-statistic as extreme as — or more extreme than — the one calculated, assuming H₀ (equal variances) is true. A small p-value (≤ α) means such a large ratio is unlikely under H₀, so you reject H₀. A large p-value means the data are consistent with equal variances.",
+        "q3": "When should I use a one-tailed versus two-tailed F-test?",
+        "q3_a": "Use a two-tailed test (the default here) when you want to detect any difference between the variances, regardless of direction. Use a one-tailed test only if you have a prior directional hypothesis — for example, that σ₁² > σ₂². For a one-tailed p-value, halve the two-tailed p-value from this calculator.",
+        "q4": "What are the assumptions of the F-test?",
+        "q4_a": "The F-test for equality of variances requires that both samples be drawn from normally distributed populations and that the samples be independent. If normality is in doubt, consider Levene's test or the Brown–Forsythe test, which are more robust to non-normality.",
+        "q5": "How is the critical F-value used?",
+        "q5_a": "The critical F-value F_crit is the threshold beyond which you reject H₀ at your chosen α. If F_obs > F_crit, reject H₀. The critical value is equivalent to the p-value approach: F_obs > F_crit if and only if p-value < α. Both methods always give the same decision.",
+        "q6": "What is the difference between an F-test and a t-test?",
+        "q6_a": "A t-test compares the means of two groups, while an F-test (in the two-sample context) compares their variances. In ANOVA, the F-statistic compares the variance between group means to the variance within groups, effectively testing whether all group means are equal. The two-sample t-test can be seen as a special case where the F-value equals t²."
+      }
+    },
+    "f-test-for-equality-of-two-variances-calculator": {
+      "title": "F-Test for Equality of Two Variances Calculator",
+      "tagline": "Determine whether two population variances are equal using the F-test. Get the F-statistic, p-value, degrees of freedom, and a clear statistical decision.",
+      "intro": "Input the sample variance and sample size for each group, set the significance level, and instantly see whether the two variances are statistically equal.",
+      "card": {
+        "title": "F-Test for Equality of Two Variances",
+        "description": "Test whether two independent samples have equal population variances"
+      },
+      "field": {
+        "group1": "Group 1",
+        "group2": "Group 2",
+        "variance": "Variance (s²)",
+        "variance1": "Group 1 Variance (s²)",
+        "variance2": "Group 2 Variance (s²)",
+        "sampleSize": "Sample Size (n)",
+        "sampleSize1": "Group 1 Sample Size (n)",
+        "sampleSize2": "Group 2 Sample Size (n)",
+        "alpha": "Significance Level (α)"
+      },
+      "placeholder": {
+        "variance": "e.g. 5.2",
+        "sampleSize": "e.g. 30"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid values. Variances must be ≥ 0 and sample sizes must be integers ≥ 2."
+      },
+      "result": {
+        "heading": "Result",
+        "fStatistic": "F-Statistic",
+        "df1": "df₁ (numerator)",
+        "df2": "df₂ (denominator)",
+        "pValue": "p-Value (two-tailed)",
+        "criticalF": "Critical F-Value",
+        "reject": "Reject H₀ — the two variances are significantly different.",
+        "failReject": "Fail to reject H₀ — no significant difference between the variances."
+      },
+      "about": {
+        "heading": "About the F-Test for Equality of Two Variances",
+        "body": "The F-test for equality of two variances is a classical statistical procedure used to determine whether two independent populations have the same variance. Named after Sir Ronald A. Fisher, the test is widely used as a diagnostic check before applying a two-sample t-test, which assumes that the two groups have equal population variances. If the F-test rejects that assumption, the Welch t-test — which does not require equal variances — should be used instead.\n\nThe test statistic is the ratio of the two sample variances: F = s₁² / s₂². By convention, the larger sample variance is placed in the numerator so that F ≥ 1, which restricts all critical mass to the upper tail of the F-distribution and simplifies interpretation. The null hypothesis H₀ states that the population variances are equal (σ₁² = σ₂²), while the alternative hypothesis H₁ states that they differ (σ₁² ≠ σ₂²). The degrees of freedom are df₁ = n₁ − 1 (numerator) and df₂ = n₂ − 1 (denominator), where n₁ and n₂ are the respective sample sizes.\n\nTo evaluate significance, the calculated F-value is compared to the F-distribution with (df₁, df₂) degrees of freedom. For a two-tailed test, the p-value equals 2 × P(F > F_obs). If the p-value is less than or equal to the chosen significance level α (typically 0.05 or 0.01), H₀ is rejected and the variances are declared significantly different. The critical F-value at the chosen α provides an equivalent decision boundary: if F_obs > F_crit, reject H₀.\n\nThe F-test has broad practical applications. In manufacturing, it verifies whether two production lines produce parts with equal dimensional variability — a prerequisite for quality-control procedures that assume uniform processes. In clinical research, it checks whether two treatment groups have similar response variability, which affects both study design and interpretation. In finance, it compares the volatility of two assets or portfolios, informing risk assessment and diversification strategies. In agriculture, it evaluates whether two fertilisers produce crops with equal yield consistency.\n\nDespite its power, the F-test has an important limitation: it is highly sensitive to departures from normality. Both samples must come from normally distributed populations for the test to be valid. When normality is uncertain, analysts often prefer the more robust Levene's test or the Brown–Forsythe test, which replace raw deviations from the mean with absolute deviations or median deviations. This calculator uses the exact F-distribution CDF via the regularised incomplete beta function, producing p-values consistent with R (var.test), Python (scipy.stats.levene), and SPSS."
+      },
+      "examples": {
+        "heading": "F-Test for Equality of Variances — Examples",
+        "intro": "Three worked examples from manufacturing, education, and finance.",
+        "colInput": "Input",
+        "colOutput": "Result",
+        "colNote": "Context",
+        "loadMfg": "Load manufacturing example",
+        "loadTeaching": "Load teaching-methods example",
+        "loadStock": "Load stock-volatility example",
+        "items": [
+          {
+            "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+            "output": "F = 1.1724, p ≈ 0.6767 — fail to reject H₀",
+            "note": "Two machines produce bolts. Bolt-diameter variances are not significantly different; both machines are equally consistent."
+          },
+          {
+            "input": "s₁² = 110, n₁ = 41; s₂² = 125, n₂ = 31; α = 0.05",
+            "output": "F = 1.1364, p ≈ 0.6679 — fail to reject H₀",
+            "note": "Two teaching methods. Test-score variances are statistically equal; both methods produce similar consistency of outcomes."
+          },
+          {
+            "input": "s₁² = 5.2, n₁ = 100; s₂² = 4.8, n₂ = 100; α = 0.01",
+            "output": "F = 1.0833, p ≈ 0.6366 — fail to reject H₀",
+            "note": "Two stocks compared for daily-return volatility. At the 1% level there is no evidence of different risk profiles."
+          },
+          {
+            "input": "s₁² = 18, n₁ = 16; s₂² = 12, n₂ = 16; α = 0.10",
+            "output": "F = 1.5, p ≈ 0.3952 — fail to reject H₀",
+            "note": "Plant height under two fertilisers. Variance in plant growth is not statistically different at the 10% level."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the F-Test for Equality of Variances Calculator",
+        "steps": [
+          "Enter the sample variance (s²) for Group 1 — this is the mean squared deviation from the group mean — along with the number of observations (n) in that group.",
+          "Enter the corresponding variance and sample size for Group 2 in the Group 2 fields.",
+          "Choose a significance level α from the dropdown: 0.01 (1%), 0.05 (5%), or 0.10 (10%). The most common choice in published research is 0.05.",
+          "Click 'Calculate'. The calculator automatically places the larger variance in the numerator, computes F = s_max²/s_min², calculates the two-tailed p-value using the F-distribution, and displays the critical F-value.",
+          "Interpret the result: if p-value ≤ α, the variances are significantly different and you should use a Welch t-test instead of a standard equal-variance t-test. Otherwise, equal variances can be assumed."
+        ]
+      },
+      "faq": {
+        "heading": "F-Test for Equality of Variances — FAQ",
+        "q1": "What does the F-test for equality of variances test?",
+        "q1_a": "It tests the null hypothesis H₀: σ₁² = σ₂² against the alternative H₁: σ₁² ≠ σ₂². A significant result (p ≤ α) means the two population variances are statistically different. A non-significant result means the data are consistent with equal variances, but does not prove they are equal.",
+        "q2": "Why is the F-test used before a two-sample t-test?",
+        "q2_a": "The pooled two-sample t-test assumes that both groups have the same population variance. If this assumption is violated, the test can produce incorrect p-values. Running an F-test first checks this assumption: if the F-test is significant, use the Welch t-test instead, which does not assume equal variances.",
+        "q3": "What are the assumptions of the F-test for equality of variances?",
+        "q3_a": "Both samples must be drawn from normally distributed populations, and the samples must be independent of each other. The F-test is quite sensitive to non-normality — even moderate departures can distort the p-value. If normality is doubtful, use Levene's test or the Brown–Forsythe test instead.",
+        "q4": "Why is the larger variance always placed in the numerator?",
+        "q4_a": "Placing the larger variance in the numerator ensures F ≥ 1, which confines the critical region to the upper tail of the F-distribution and avoids the need to consult a lower-tail table. For a two-tailed test, the p-value is then simply 2 × P(F > F_obs), which is straightforward to compute.",
+        "q5": "How do I interpret the critical F-value?",
+        "q5_a": "The critical F-value (F_crit) is the value that cuts off the top α/2 of the F-distribution. If your calculated F exceeds F_crit, you reject H₀ at significance level α. Using the p-value and using the critical value always lead to the same decision — they are two equivalent ways of summarising the same comparison.",
+        "q6": "When should I use Levene's test instead of the F-test?",
+        "q6_a": "Levene's test is preferable when your data may not follow a normal distribution, because it is robust to non-normality. The F-test for equality of variances is the optimal test when normality holds, but its Type I error rate can be severely distorted by skewed or heavy-tailed data. In practice, many statisticians use Levene's test by default to avoid this risk."
+      }
+    },
+    "false-positive-paradox-calculator": {
+      "title": "False Positive Paradox Calculator - Bayes' Theorem",
+      "tagline": "Calculate the true probability of having a condition after a positive test. Enter prevalence, sensitivity, and specificity to reveal how low base rates create false positive paradoxes.",
+      "intro": "Enter the condition's prevalence in the population and the test's sensitivity and specificity, then click to see the real probability that a positive result is genuine.",
+      "card": {
+        "title": "False Positive Paradox Calculator",
+        "description": "Find the true probability of a condition given a positive test result"
+      },
+      "field": {
+        "prevalence": "Prevalence of Condition (%)",
+        "sensitivity": "Test Sensitivity (%)",
+        "specificity": "Test Specificity (%)"
+      },
+      "placeholder": {
+        "percent": "e.g. 1.5"
+      },
+      "button": {
+        "calculate": "Calculate Probability",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid percentages. Prevalence must be 0–100, sensitivity and specificity must be > 0 and ≤ 100."
+      },
+      "result": {
+        "heading": "Result",
+        "ppv": "Probability of Having Condition (PPV)",
+        "npv": "Probability of Not Having Condition (NPV)",
+        "breakdownHeading": "Population breakdown (per 100,000 people)",
+        "truePositive": "True Positives",
+        "falsePositive": "False Positives",
+        "trueNegative": "True Negatives",
+        "falseNegative": "False Negatives",
+        "breakdownNote": "Estimated counts out of a hypothetical population of 100,000 people."
+      },
+      "about": {
+        "heading": "About the False Positive Paradox Calculator",
+        "body": "The false positive paradox — also known as the base-rate fallacy — is a counterintuitive statistical phenomenon where the number of false positive results from a test exceeds the number of true positive results, even when the test itself is highly accurate. The paradox arises whenever the condition being tested for is rare: the small pool of genuinely affected individuals generates far fewer true positives than the much larger pool of healthy individuals generates false alarms, even at a low false-positive rate.\n\nThe mathematics behind the paradox is Bayes' theorem. Given the prevalence P(D) of the condition, the test's sensitivity (true positive rate) Se, and its specificity (true negative rate) Sp, the positive predictive value (PPV) — the probability that a person who tested positive actually has the condition — is: PPV = (Se × P(D)) / (Se × P(D) + (1 − Sp) × (1 − P(D))). When P(D) is very small, the denominator is dominated by the false-positive term (1 − Sp) × (1 − P(D)), and even a minuscule false-positive rate applied to the large healthy population overwhelms the small true-positive count.\n\nA classic illustration: suppose a disease affects 0.1% of the population (1 in 1,000), and a test has 99% sensitivity and 99% specificity. Out of 100,000 people, roughly 100 have the disease (0.1%) and 99,900 do not. The test correctly identifies 99 of the 100 sick people (true positives), but also incorrectly flags 1% of the 99,900 healthy people — about 999 false positives. So among all 1,098 people who test positive, only 99 actually have the disease: a PPV of just 9%. A 99% accurate test produces 91% false alarms because prevalence is so low.\n\nThis principle has profound implications in medicine, security, and technology. In medical screening programmes, mass testing for rare diseases — even with highly accurate tests — can produce large numbers of anxious patients who are actually healthy, wasting resources and causing harm. Public health guidelines therefore often restrict mass screening to higher-prevalence subpopulations where the PPV is clinically acceptable. In security screening, facial recognition systems with very high accuracy can still produce thousands of false positives when scanning millions of innocent travellers for a handful of suspects. In spam filtering, high false-positive rates erode trust even when the system catches nearly all spam.\n\nThe solution, both in medicine and in policy, is to apply Bayes' theorem and factor in the prior probability (prevalence) before interpreting any test result. A positive result on a screening test does not mean you have the disease — it means your probability of having the disease has increased from the population prevalence to the PPV, which may still be very low. Follow-up with a second, more specific confirmatory test then updates the probability again, typically to a much higher value that justifies clinical action. This calculator makes that reasoning transparent and interactive, allowing clinicians, researchers, and policy-makers to explore how changes in prevalence, sensitivity, and specificity shift the PPV and the population breakdown."
+      },
+      "examples": {
+        "heading": "False Positive Paradox — Examples",
+        "intro": "Four scenarios illustrating how prevalence dominates test accuracy in determining the true predictive value.",
+        "colInput": "Input",
+        "colOutput": "PPV",
+        "colNote": "Context",
+        "loadRare": "Load rare disease example",
+        "loadCommon": "Load common condition example",
+        "loadSpam": "Load spam filter example",
+        "items": [
+          {
+            "input": "Prevalence 0.1%, Sensitivity 99%, Specificity 99%",
+            "output": "PPV ≈ 9.0%",
+            "note": "Rare disease screening. Despite a 99% accurate test, 91 of every 100 positive results are false alarms — the classic false positive paradox."
+          },
+          {
+            "input": "Prevalence 10%, Sensitivity 95%, Specificity 90%",
+            "output": "PPV ≈ 51.4%",
+            "note": "A more common condition. Higher prevalence dramatically improves the PPV; about half of positive results are genuine."
+          },
+          {
+            "input": "Prevalence 1%, Sensitivity 99.9%, Specificity 98%",
+            "output": "PPV ≈ 33.5%",
+            "note": "Spam filter analogy. Even an excellent filter still generates many false positives when spam is only 1% of all email."
+          },
+          {
+            "input": "Prevalence 0.01%, Sensitivity 99.5%, Specificity 99%",
+            "output": "PPV ≈ 0.99%",
+            "note": "Airport security scanner for a very rare threat. 99 of 100 alerts are false alarms, illustrating the needle-in-a-haystack problem."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the False Positive Paradox Calculator",
+        "steps": [
+          "Enter the prevalence of the condition — the percentage of the population that has it. For example, if 1 in 200 people are affected, enter 0.5.",
+          "Enter the test's sensitivity (true positive rate): the percentage of genuinely affected people the test correctly identifies as positive.",
+          "Enter the test's specificity (true negative rate): the percentage of genuinely healthy people the test correctly identifies as negative.",
+          "Click 'Calculate Probability'. The calculator applies Bayes' theorem to output the PPV (probability of having the condition given a positive test) and the NPV (probability of not having it given a negative test), plus a breakdown of true/false positives and negatives per 100,000 people.",
+          "Adjust the values to explore how changes in prevalence, sensitivity, and specificity shift the PPV — you will see that prevalence has the biggest impact on whether a positive test is meaningful."
+        ]
+      },
+      "faq": {
+        "heading": "False Positive Paradox — FAQ",
+        "q1": "What is the false positive paradox?",
+        "q1_a": "The false positive paradox occurs when the number of false positive results from a test exceeds the number of true positives, even though the test is accurate. It happens because a low disease prevalence means the large healthy population generates many false alarms — more than the small diseased population generates true alarms — even at a low false-positive rate.",
+        "q2": "What is sensitivity and specificity?",
+        "q2_a": "Sensitivity (the true positive rate) is the probability that a person who has the condition will test positive. Specificity (the true negative rate) is the probability that a person who does not have the condition will test negative. A 95% sensitive test catches 95 out of 100 cases; a 90% specific test correctly clears 90 out of 100 healthy people.",
+        "q3": "What is PPV and why is it different from accuracy?",
+        "q3_a": "PPV (positive predictive value) is the probability that a positive test result reflects a true positive — that the person actually has the condition. Accuracy measures how often the test is correct overall. PPV depends heavily on prevalence, whereas accuracy does not. A test can be 99% accurate yet have a PPV of less than 10% when the condition is rare.",
+        "q4": "How can I improve the PPV of a test?",
+        "q4_a": "The most effective ways to increase PPV are to increase the test's specificity (reducing the false-positive rate), to restrict testing to higher-prevalence subpopulations where the prior probability is already elevated, and to apply sequential confirmatory testing. In sequential testing, a positive first-screen result becomes the new 'prevalence' input for a second, more specific confirmatory test, which updates the probability to a much higher and more clinically actionable value.",
+        "q5": "What does NPV tell me?",
+        "q5_a": "NPV (negative predictive value) is the probability that a person who tests negative truly does not have the condition. For rare diseases, NPV is typically very high: when prevalence is 0.1%, nearly every negative result is a true negative. A high NPV means a negative test result is very reassuring. NPV falls as prevalence increases.",
+        "q6": "Why does prevalence matter more than test accuracy?",
+        "q6_a": "At very low prevalences, even a tiny false-positive rate applied to the enormous healthy population dwarfs the true positives from the small diseased population. Doubling specificity from 95% to 97.5% only halves the false positives per person, but doubling the prevalence doubles the number of true positives — so prevalence drives PPV much more strongly than accuracy does."
+      }
+    },
+    "fishers-exact-test-calculator": {
+      "title": "Fisher's Exact Test Calculator - 2x2 Contingency Table",
+      "tagline": "Calculate one-tailed and two-tailed p-values plus the odds ratio for a 2×2 contingency table using Fisher's Exact Test — ideal for small sample sizes.",
+      "intro": "Enter the four cell counts of your 2×2 table (group × outcome), then click Calculate to get exact p-values and the odds ratio.",
+      "card": {
+        "title": "Fisher's Exact Test",
+        "description": "Analyse a 2×2 contingency table for statistical significance"
+      },
+      "table": {
+        "outcome1": "Outcome 1",
+        "outcome2": "Outcome 2",
+        "group1": "Group 1",
+        "group2": "Group 2"
+      },
+      "field": {
+        "cellA": "Cell A (Group 1, Outcome 1)",
+        "cellB": "Cell B (Group 1, Outcome 2)",
+        "cellC": "Cell C (Group 2, Outcome 1)",
+        "cellD": "Cell D (Group 2, Outcome 2)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter non-negative integers for all four cells and ensure the total is greater than zero."
+      },
+      "result": {
+        "heading": "Result",
+        "oneTailed": "One-Tailed p-Value",
+        "twoTailed": "Two-Tailed p-Value",
+        "oddsRatio": "Odds Ratio",
+        "significant": "Statistically significant at p < 0.05 — reject H₀.",
+        "notSignificant": "Not statistically significant at p < 0.05 — fail to reject H₀."
+      },
+      "about": {
+        "heading": "About Fisher's Exact Test",
+        "body": "Fisher's Exact Test is a statistical significance test for analysing 2×2 contingency tables. Developed by Sir Ronald A. Fisher in 1922, the test determines whether there is a non-random association between two categorical variables — for instance, between a treatment group and a patient outcome. Unlike the chi-squared test, which is an approximation that becomes inaccurate with small expected cell counts, Fisher's Exact Test computes the exact probability of the observed data (and all more extreme configurations) using the hypergeometric distribution.\n\nThe test arranges data into a 2×2 table with fixed marginal totals (row sums and column sums). Given these margins, the test calculates the probability of the observed arrangement under the null hypothesis of no association. The probability of a specific table with cells [a, b; c, d] is given by the hypergeometric formula: P = C(a+b, a) × C(c+d, c) / C(n, a+c), where n = a+b+c+d. The p-value is obtained by summing the probabilities of all tables that are at least as extreme as the observed table.\n\nFor a one-tailed p-value, 'extreme' means tables where the association is in the same direction as observed. For a two-tailed p-value — appropriate for most research questions — 'extreme' means tables with an equal or smaller probability than the observed table, summing across both tails. The two-tailed p-value is therefore more conservative and more widely used in published research.\n\nThe odds ratio quantifies the strength of the association: OR = (a × d) / (b × c). An odds ratio of 1 means no association; a value greater than 1 indicates that Outcome 1 is more likely in Group 1 than in Group 2; a value less than 1 indicates the reverse. The odds ratio is a key measure in case-control studies, clinical trials, and genetic association studies.\n\nFisher's Exact Test is appropriate whenever the expected count in any cell of the 2×2 table falls below 5, which is the threshold where the chi-squared approximation becomes unreliable. Common applications include clinical trials comparing treatment success rates between two groups, genetic epidemiology testing whether an allele is associated with a disease, educational research comparing pass/fail rates between two teaching methods, and marketing analytics comparing conversion rates between two advertisement variants. The test is exact regardless of sample size, making it the gold standard for small samples in these domains."
+      },
+      "examples": {
+        "heading": "Fisher's Exact Test — Examples",
+        "intro": "Three real-world scenarios showing how to set up a 2×2 contingency table and interpret the exact p-values.",
+        "colInput": "Table [a, b; c, d]",
+        "colOutput": "Two-Tailed p",
+        "colNote": "Context",
+        "loadDrug": "Load drug efficacy example",
+        "loadGene": "Load genetics example",
+        "loadTeaching": "Load teaching method example",
+        "items": [
+          {
+            "input": "a=9, b=1, c=2, d=8 (n=20)",
+            "output": "p = 0.0350 (significant)",
+            "note": "New drug trial: 9/10 treated patients improved vs 2/10 placebo. The association between treatment and improvement is statistically significant."
+          },
+          {
+            "input": "a=7, b=3, c=1, d=12 (n=23)",
+            "output": "p = 0.0189 (significant)",
+            "note": "Genetics: 7 of 10 gene-variant carriers have disease vs 1 of 13 without variant. The gene is significantly associated with disease."
+          },
+          {
+            "input": "a=10, b=2, c=5, d=8 (n=25)",
+            "output": "p = 0.0840 (not significant at 0.05)",
+            "note": "Teaching methods: 10/12 passed with Method A vs 5/13 with Method B. The difference is not significant at the 5% level."
+          },
+          {
+            "input": "a=4, b=100, c=0, d=110 (n=214)",
+            "output": "p = 0.0563 (marginal)",
+            "note": "Ad campaign A/B test: 4 conversions from Ad A vs 0 from Ad B out of ~110 views each. The result is borderline and warrants larger-sample follow-up."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the Fisher's Exact Test Calculator",
+        "steps": [
+          "Organise your data into a 2×2 contingency table: rows are the two groups (Group 1 and Group 2), columns are the two possible outcomes (Outcome 1 and Outcome 2).",
+          "Enter the count for each cell: Cell A (Group 1, Outcome 1), Cell B (Group 1, Outcome 2), Cell C (Group 2, Outcome 1), Cell D (Group 2, Outcome 2). All values must be non-negative integers.",
+          "Click 'Calculate'. The calculator enumerates all possible 2×2 tables with the same marginal totals and sums the hypergeometric probabilities for the exact one-tailed and two-tailed p-values.",
+          "Read the two-tailed p-value for most research questions. If p < 0.05, the association between the two groups and the two outcomes is statistically significant.",
+          "Interpret the odds ratio: values > 1 indicate Outcome 1 is more likely in Group 1; values < 1 indicate it is less likely. Use the load-example buttons below the table to see how the test works on real scenarios."
+        ]
+      },
+      "faq": {
+        "heading": "Fisher's Exact Test — FAQ",
+        "q1": "When should I use Fisher's Exact Test instead of the chi-squared test?",
+        "q1_a": "Use Fisher's Exact Test whenever any expected cell count in your 2×2 table falls below 5, or whenever the overall sample size is small (n < 20 is a common rule of thumb). The chi-squared test uses an approximation that breaks down with small counts, producing unreliable p-values. Fisher's test is always exact, so it can safely be used for any sample size.",
+        "q2": "What does the two-tailed p-value mean in Fisher's test?",
+        "q2_a": "The two-tailed p-value is the probability of observing a table as extreme as, or more extreme than, the one you have in either direction — assuming the null hypothesis of no association is true. 'Extreme' here means having a hypergeometric probability as small as or smaller than the observed table. A p-value < 0.05 conventionally means the association is statistically significant.",
+        "q3": "What is the odds ratio and how do I interpret it?",
+        "q3_a": "The odds ratio (OR) is (a × d) / (b × c). An OR of 1 means Outcome 1 is equally likely in both groups — no association. OR > 1 means Outcome 1 is more likely in Group 1 than Group 2; OR < 1 means it is less likely. For example, OR = 9 means the odds of Outcome 1 in Group 1 are nine times the odds in Group 2, a strong positive association.",
+        "q4": "What is the difference between the one-tailed and two-tailed p-values?",
+        "q4_a": "The one-tailed p-value tests for association in one specific direction (e.g., that Group 1 has a higher rate of Outcome 1 than Group 2). The two-tailed p-value tests for any association regardless of direction. Unless you had a prior directional hypothesis before seeing the data, the two-tailed p-value is the appropriate and more conservative choice.",
+        "q5": "What are the marginal totals and why must they be fixed?",
+        "q5_a": "The marginal totals are the row sums (a+b and c+d) and column sums (a+c and b+d) of the table. Fisher's test conditions on these totals being fixed, which is the basis for deriving the exact hypergeometric distribution. In practice, the marginals are fixed by the design of the study (e.g., predetermined group sizes or total events).",
+        "q6": "Can Fisher's Exact Test be used for tables larger than 2×2?",
+        "q6_a": "The classic Fisher's Exact Test is defined for 2×2 tables. Generalisations to larger r×c contingency tables exist (using a multi-dimensional hypergeometric distribution), but they are computationally demanding. For larger tables with small expected counts, Fisher's exact test can still be applied to 2×2 sub-tables, or you can use Monte Carlo simulation-based exact tests available in statistical software."
+      }
+    },
+    "frequency-distribution-calculator": {
+      "title": "Frequency Distribution Calculator - Create Tables",
+      "tagline": "Build a complete frequency distribution table from any dataset. Get class intervals, frequencies, relative frequencies, cumulative frequencies, and key summary statistics instantly.",
+      "intro": "Paste or type your numbers separated by commas or spaces, choose the number of class intervals, and click Calculate to generate the full frequency table and summary.",
+      "card": {
+        "title": "Frequency Distribution Calculator",
+        "description": "Organise data into grouped class intervals with frequencies and statistics"
+      },
+      "field": {
+        "dataSet": "Data Set",
+        "dataHint": "Separate numbers with commas, spaces, or line breaks.",
+        "numClasses": "Number of Classes (Bins)"
+      },
+      "placeholder": {
+        "data": "e.g. 82, 90, 75, 68, 88, 95, 72, 85..."
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least 2 valid numbers and choose between 2 and 50 classes."
+      },
+      "result": {
+        "heading": "Frequency Distribution Table",
+        "colClass": "Class Interval",
+        "colMidpoint": "Midpoint",
+        "colFreq": "Frequency",
+        "colRelFreq": "Relative Frequency",
+        "colCumFreq": "Cumulative Frequency",
+        "statCount": "Count (n)",
+        "statMean": "Mean (grouped)",
+        "statMedian": "Median (grouped)",
+        "statStdDev": "Std Dev (grouped)",
+        "statMin": "Minimum",
+        "statMax": "Maximum",
+        "statClassWidth": "Class Width"
+      },
+      "about": {
+        "heading": "About the Frequency Distribution Calculator",
+        "body": "A frequency distribution is a tabular summary that shows how often each value — or range of values — appears in a dataset. By organising raw data into a manageable number of class intervals and counting the observations in each interval, a frequency distribution table transforms an unordered list of numbers into a structured picture of the data's shape, centre, and spread. Frequency distributions are a foundational concept in descriptive statistics and form the basis for histograms, relative frequency polygons, and cumulative frequency curves.\n\nA grouped frequency distribution divides the data's range into a fixed number of non-overlapping class intervals of equal width. Each interval has a lower bound, an upper bound, and a midpoint. The frequency is the count of data points that fall within the interval. The relative frequency is the frequency expressed as a proportion (or percentage) of the total count, making it easy to compare distributions across datasets of different sizes. The cumulative frequency is a running total of the frequencies from the first class to the current one, showing how many data points lie at or below each class boundary.\n\nChoosing the number of classes is a balance: too few classes merge distinct patterns into a single lump, while too many classes spread data so thinly that no clear pattern emerges. A common heuristic is Sturges' rule: k = 1 + 3.322 × log₁₀(n), where n is the number of data points. For example, 20 data points suggest k ≈ 5 classes; 100 data points suggest k ≈ 7 classes. The class width is then width = (max − min) / k, rounded up to a convenient value to ensure all data points fit neatly.\n\nThe summary statistics derived from a frequency distribution are approximations based on the grouped data rather than the individual values. The grouped mean is calculated as Σ(midpoint × frequency) / n. The grouped standard deviation measures the spread of the data around the grouped mean. The grouped median is estimated by interpolation within the class interval containing the n/2-th observation. These approximations are very close to the exact values calculated from the raw data when the class width is small relative to the range.\n\nFrequency distributions are used across every field that generates numerical data. Educators use them to analyse class test scores and identify students who may need extra support. Businesses analyse sales transaction amounts, product review ratings, or customer wait times to identify peaks and bottlenecks. Healthcare researchers distribute clinical measurements such as blood pressure, cholesterol, or BMI readings to understand population health. Quality-control engineers examine measurements from production processes to detect defects or drift. In each case, the frequency distribution table is the starting point for more advanced analysis."
+      },
+      "examples": {
+        "heading": "Frequency Distribution — Examples",
+        "intro": "Three practical datasets showing different class structures and summary statistics.",
+        "colInput": "Dataset",
+        "colOutput": "Structure",
+        "colNote": "Context",
+        "loadScores": "Load test scores example",
+        "loadSales": "Load daily sales example",
+        "loadPlants": "Load plant heights example",
+        "items": [
+          {
+            "input": "82,90,75,68,88,75,95,100,72,85,91,78,84,88,77,95,65,80,73,86 — 5 classes",
+            "output": "Classes: [65,72), [72,79), [79,86) … ; Mean ≈ 82.85",
+            "note": "Student test scores for a class of 20. Class width = 7. Most scores cluster in the 72–93 range with a slight left tail."
+          },
+          {
+            "input": "150,220,180,190,250,160,200,210,170,240,195,175,215,185,230 — 6 classes",
+            "output": "Classes: [150,170), [170,190), [190,210) … ; Mean ≈ 202.7",
+            "note": "Daily sales figures. Class width = 20. The distribution shows most days clustering in the $170–$230 range."
+          },
+          {
+            "input": "35,42,38,50,45,48,36,39,47,41,43,46,40,37,44,49,38,42,45,36 — 5 classes",
+            "output": "Classes: [35,38), [38,41), [41,44) … ; Mean ≈ 42.1",
+            "note": "Plant heights in cm from a botanical study. The bell-shaped distribution confirms a roughly normal growth pattern."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the Frequency Distribution Calculator",
+        "steps": [
+          "Enter your numeric data in the 'Data Set' field. You can separate values with commas, spaces, or line breaks. The calculator accepts any mix of these delimiters.",
+          "Choose the number of classes (bins) that best suits your dataset. A good starting point is 5 classes for small datasets (n < 30) and 7–10 for larger ones. You can use Sturges' rule: k ≈ 1 + 3.322 × log₁₀(n).",
+          "Click 'Calculate'. The calculator finds the minimum and maximum, computes the class width as (max − min) / classes rounded up, and assigns each data point to the appropriate interval.",
+          "Read the frequency table. Each row shows the class interval, midpoint, frequency count, relative frequency (as a percentage of total), and cumulative frequency (running total).",
+          "Check the summary statistics below the table for the grouped mean, median, standard deviation, and class width. Use the load-example buttons to try the calculator with pre-filled datasets."
+        ]
+      },
+      "faq": {
+        "heading": "Frequency Distribution Calculator — FAQ",
+        "q1": "What is a frequency distribution table?",
+        "q1_a": "A frequency distribution table organises raw numerical data into groups called class intervals (or bins) and counts how many values fall in each group. It transforms an unordered list into a structured summary showing where data points cluster, how spread out they are, and what the overall shape of the distribution looks like.",
+        "q2": "How do I choose the number of classes?",
+        "q2_a": "A common approach is Sturges' rule: k = 1 + 3.322 × log₁₀(n), where n is the sample size. This gives about 5 classes for 20 data points and about 7 for 100. Alternatively, just experiment: start with 5 classes and increase until the distribution reveals a clear pattern without becoming too noisy. Most textbooks recommend 5–15 classes.",
+        "q3": "What is relative frequency and why is it useful?",
+        "q3_a": "Relative frequency is the proportion of total observations that fall in a class: relative frequency = class frequency / total n. It converts counts to percentages, making it easy to compare distributions from datasets of different sizes. For example, knowing that 35% of exam scores fall in the 70–80 range is more informative than knowing the count when comparing two classes of different sizes.",
+        "q4": "What is cumulative frequency?",
+        "q4_a": "Cumulative frequency is the running total of frequencies from the first class to the current one. It tells you how many data points lie at or below the upper boundary of each class. For example, if the cumulative frequency at the end of the third class is 15 out of 20, then 75% of observations fall in the first three classes. Cumulative frequency is the basis for the ogive (cumulative frequency curve).",
+        "q5": "Why are the mean and standard deviation labelled 'grouped'?",
+        "q5_a": "When data is grouped into class intervals, you lose the exact individual values. The grouped mean and standard deviation are computed using the midpoint of each class as a representative value, which introduces a small approximation. These estimates are very accurate when the class width is small relative to the range, but may differ slightly from statistics computed on the exact raw data.",
+        "q6": "What is the difference between frequency and relative frequency histograms?",
+        "q6_a": "A frequency histogram plots the raw count on the y-axis, while a relative frequency histogram plots the proportion (or percentage). Relative frequency histograms are directly comparable across datasets of different sizes and can be used as empirical approximations of the underlying probability distribution. The shape is identical in both cases — only the scale of the y-axis changes."
+      }
     }
   }
 }

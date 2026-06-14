@@ -15,6 +15,11 @@ import { fixtures as f_expanding_logarithms_calculator } from "@/tools/expanding
 import { fixtures as f_exponent_calculator } from "@/tools/exponent-calculator.fixtures";
 import { fixtures as f_exponential_form_calculator } from "@/tools/exponential-form-calculator.fixtures";
 import { fixtures as f_exponential_function_calculator } from "@/tools/exponential-function-calculator.fixtures";
+import { fixtures as f_f_statistic_calculator } from "@/tools/f-statistic-calculator.fixtures";
+import { fixtures as f_f_test_for_equality_of_two_variances_calculator } from "@/tools/f-test-for-equality-of-two-variances-calculator.fixtures";
+import { fixtures as f_false_positive_paradox_calculator } from "@/tools/false-positive-paradox-calculator.fixtures";
+import { fixtures as f_fishers_exact_test_calculator } from "@/tools/fishers-exact-test-calculator.fixtures";
+import { fixtures as f_frequency_distribution_calculator } from "@/tools/frequency-distribution-calculator.fixtures";
 import { fixtures as f_gamma_function_calculator } from "@/tools/gamma-function-calculator.fixtures";
 import { fixtures as f_gauss_jordan_elimination_calculator } from "@/tools/gauss-jordan-elimination-calculator.fixtures";
 import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calculator.fixtures";
@@ -74,6 +79,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "exponent-calculator": f_exponent_calculator,
   "exponential-form-calculator": f_exponential_form_calculator,
   "exponential-function-calculator": f_exponential_function_calculator,
+  "f-statistic-calculator": f_f_statistic_calculator,
+  "f-test-for-equality-of-two-variances-calculator": f_f_test_for_equality_of_two_variances_calculator,
+  "false-positive-paradox-calculator": f_false_positive_paradox_calculator,
+  "fishers-exact-test-calculator": f_fishers_exact_test_calculator,
+  "frequency-distribution-calculator": f_frequency_distribution_calculator,
   "gamma-function-calculator": f_gamma_function_calculator,
   "gauss-jordan-elimination-calculator": f_gauss_jordan_elimination_calculator,
   "gcf-and-lcm-calculator": f_gcf_and_lcm_calculator,
