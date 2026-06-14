@@ -7004,6 +7004,508 @@
         "q6": "How does this differ from the Relative Risk Calculator?",
         "q6_a": "The Relative Risk Calculator takes a 2×2 contingency table (cells a, b, c, d) typically used in cohort epidemiology studies, and is focused on computing RR and its confidence interval. The Relative Risk Reduction Calculator takes treatment and control group totals and events, and focuses on computing the clinically useful metrics of RRR, ARR, and NNT that are standard in clinical trial reporting and evidence-based medicine. Both tools compute relative risk, but serve different primary use cases."
       }
+    },
+    "kruskal-wallis-h-test-calculator": {
+      "title": "Kruskal-Wallis H Test Calculator",
+      "tagline": "Non-parametric one-way ANOVA — compare medians of three or more independent groups without assuming normality.",
+      "intro": "Enter comma-separated values for each group, choose a significance level, and click Calculate to get the H statistic, degrees of freedom, and p-value.",
+      "field": {
+        "group": "Group",
+        "alpha": "Significance Level (α)"
+      },
+      "placeholder": {
+        "values": "e.g., 5, 8, 12, 15"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset",
+        "addGroup": "Add Group",
+        "removeGroup": "Remove"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers for at least 2 groups."
+      },
+      "result": {
+        "heading": "Results",
+        "H": "H Statistic",
+        "df": "Degrees of Freedom",
+        "pValue": "p-value",
+        "N": "Total N",
+        "groupCol": "Group",
+        "nCol": "n",
+        "rankSumCol": "Rank Sum",
+        "meanRankCol": "Mean Rank",
+        "reject": "Reject H₀ — significant difference between groups",
+        "failReject": "Fail to Reject H₀ — no significant difference detected"
+      },
+      "about": {
+        "heading": "About the Kruskal-Wallis H Test",
+        "body": "The Kruskal-Wallis H test is a non-parametric statistical method used to determine whether there are statistically significant differences between two or more independent groups. It is the non-parametric equivalent of the one-way ANOVA and is used when the assumptions of normality are not met or when the data is ordinal.\n\nDeveloped by William Kruskal and W. Allen Wallis in 1952, the test ranks all data values across groups and then checks whether those ranks are distributed randomly across groups or show a pattern suggesting group differences. The test statistic H follows a chi-squared distribution with k−1 degrees of freedom, where k is the number of groups.\n\nThe formula for H is: H = (12 / (N(N+1))) × Σ(Rj² / nj) − 3(N+1), where N is the total number of observations, Rj is the rank sum for group j, and nj is the sample size of group j. When tied values exist, the H statistic is divided by a tie-correction factor 1 − Σ(t³−t)/(N³−N), where t is the size of each tie group. This adjustment slightly increases H when many observations share the same value.\n\nThe Kruskal-Wallis test is widely used in medical research, behavioral sciences, ecology, and education when comparing groups across ordinal or non-normal continuous outcomes. For example, researchers use it to compare pain scores across treatment groups, test whether different fertilizers produce different crop yields, or analyze whether student performance differs across schools.\n\nWhen the test is significant (p < α), it tells you only that at least one group differs — it does not specify which groups are different. Post-hoc pairwise comparisons (such as Dunn's test) are required to identify which specific groups differ.\n\nThe test assumes that the observations are independent, that the variable is at least ordinal, and that the groups are mutually exclusive. It does not assume normality, equal variances, or equal sample sizes, making it highly versatile for real-world data. A minimum of five observations per group is recommended for a reliable chi-squared approximation of the p-value."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples illustrate the Kruskal-Wallis H test with realistic data across different domains.",
+        "colInput": "Groups",
+        "colOutput": "H Statistic / p-value",
+        "colNote": "Interpretation",
+        "items": [
+          {
+            "input": "G1: 2,3,4,5 | G2: 8,9,10,11 | G3: 15,16,17,18",
+            "output": "H = 9.85, p = 0.007",
+            "note": "Highly significant — groups occupy completely separate rank bands"
+          },
+          {
+            "input": "G1: 5,6,7,8 | G2: 5,7,8,9 | G3: 6,7,8,10",
+            "output": "H = 1.17, p = 0.558",
+            "note": "Not significant — groups overlap; tie correction applied"
+          },
+          {
+            "input": "G1: 10,12,14 | G2: 20,22,25 | G3: 30,35,40",
+            "output": "H = 7.20, p = 0.027",
+            "note": "Significant at α = 0.05; post-hoc test recommended"
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Enter comma-separated values for each group in the corresponding input fields.",
+          "Use the Add Group button to include additional groups (up to 5 supported).",
+          "Select the significance level α (0.01, 0.05, or 0.10) that fits your study.",
+          "Click Calculate to compute the H statistic, degrees of freedom, and p-value.",
+          "Compare the p-value to α: if p < α, reject H₀ and conclude significant differences exist."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What is the null hypothesis in the Kruskal-Wallis test?",
+            "a": "The null hypothesis (H₀) states that all groups come from the same distribution — equivalently, that the population medians are equal. The alternative hypothesis (H₁) states that at least one group differs from the others. The test does not tell you which groups differ; post-hoc pairwise tests are needed for that."
+          },
+          {
+            "q": "When should I use Kruskal-Wallis instead of one-way ANOVA?",
+            "a": "Use Kruskal-Wallis when your data violates the normality assumption, contains outliers, is measured on an ordinal scale, or when your sample sizes are small. If the data is normally distributed with roughly equal variances, one-way ANOVA is more statistically powerful. For two groups, the Mann-Whitney U test is the equivalent non-parametric alternative."
+          },
+          {
+            "q": "What does the H statistic measure?",
+            "a": "The H statistic measures the degree to which the rank distributions of the groups differ. A larger H value indicates greater divergence between the groups' rank sums relative to what would be expected by chance. The test uses the chi-squared distribution with k−1 degrees of freedom to convert H into a p-value."
+          },
+          {
+            "q": "Does the Kruskal-Wallis test require equal sample sizes?",
+            "a": "No. The Kruskal-Wallis test works with unequal group sizes. However, very unbalanced designs can affect the power of the test. A minimum of at least 5 observations per group is recommended for the chi-squared approximation to be reliable, though the test can still be performed with smaller samples."
+          },
+          {
+            "q": "What do I do after a significant Kruskal-Wallis result?",
+            "a": "A significant Kruskal-Wallis result tells you that at least one group differs but does not identify which groups. You should follow up with a post-hoc pairwise comparison method such as Dunn's test with a Bonferroni correction, or pairwise Wilcoxon rank-sum tests with a multiple-comparison adjustment, to identify which specific pairs of groups are significantly different."
+          },
+          {
+            "q": "How are ties handled in the Kruskal-Wallis test?",
+            "a": "When two or more observations have the same value (ties), they are assigned the average of the ranks they would have occupied. A tie correction factor is applied to the H statistic: H_corrected = H_raw / (1 − Σ(t³−t)/(N³−N)). The calculator uses average rank assignment and applies this tie correction, which is the standard approach in most statistical software."
+          }
+        ]
+      }
+    },
+    "least-to-greatest-calculator": {
+      "title": "Least to Greatest Calculator - Sort & Analyze Numbers",
+      "tagline": "Sort any set of numbers from smallest to largest and instantly get mean, median, mode, range, and more.",
+      "intro": "Enter numbers separated by commas, spaces, or new lines to sort them in ascending order and view key statistical measures.",
+      "field": {
+        "numbers": "Enter Numbers",
+        "numbersHint": "Separate values with commas, spaces, or new lines. Decimals and negatives are supported."
+      },
+      "placeholder": {
+        "numbers": "e.g., 4, -1.5, 8, 15, 8"
+      },
+      "button": {
+        "sort": "Sort & Analyze",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least one valid number."
+      },
+      "result": {
+        "heading": "Results",
+        "sortedList": "Sorted (Least to Greatest)",
+        "count": "Count",
+        "min": "Minimum",
+        "max": "Maximum",
+        "range": "Range",
+        "sum": "Sum",
+        "mean": "Mean",
+        "median": "Median",
+        "mode": "Mode",
+        "noMode": "No mode"
+      },
+      "about": {
+        "heading": "About the Least to Greatest Calculator",
+        "body": "Sorting numbers from least to greatest — also called ascending order — is one of the most fundamental operations in mathematics and data analysis. Whether you are a student organizing a dataset, a teacher preparing grade distributions, or a professional analyzing metrics, sorting numbers in order makes patterns immediately visible.\n\nThis calculator does more than simply sort your numbers. It automatically computes a complete set of descriptive statistics: the count of values, the minimum and maximum, the range (difference between max and min), the sum of all values, the arithmetic mean (average), the median (middle value), and the mode (most frequently occurring value).\n\nThe mean is calculated by dividing the sum of all values by the count. The median is the middle value when the data is sorted — or the average of the two middle values if the count is even. The mode is the value that appears most often; if no value repeats, the calculator reports no mode.\n\nAscending order is the default way humans and computers compare and rank data. It is used in academic grading curves, financial reporting, sports leaderboards, scientific experiment results, and everyday tasks like ordering a shopping list by price. Understanding where a number falls in a sorted sequence immediately reveals its relative position in the dataset.\n\nThe range is particularly useful for understanding data spread at a glance. A small range suggests the values are tightly clustered, while a large range indicates high variability. Together with the mean and median, these statistics give a quick but powerful summary of any numerical dataset.\n\nNegative numbers, decimals, and integers are all supported. You can enter your data in any order and with any delimiter — the calculator handles commas, spaces, and newlines automatically. This makes it ideal for quickly analyzing raw data copied from spreadsheets, exam sheets, or data files without any reformatting."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples demonstrate sorting and statistical analysis on different kinds of number sets.",
+        "colInput": "Input Numbers",
+        "colOutput": "Sorted Result",
+        "colNote": "Key Stats",
+        "items": [
+          {
+            "input": "4, -1.5, 8, 15, 8",
+            "output": "-1.5, 4, 8, 8, 15",
+            "note": "Mean = 6.7, Median = 8, Mode = 8"
+          },
+          {
+            "input": "100, 50, 75, 25, 90",
+            "output": "25, 50, 75, 90, 100",
+            "note": "Range = 75, Mean = 68"
+          },
+          {
+            "input": "3.5, 1.2, 7.8, 2.9, 5.0",
+            "output": "1.2, 2.9, 3.5, 5, 7.8",
+            "note": "Median = 3.5, no mode"
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Type or paste your numbers into the input box, separating them with commas, spaces, or line breaks.",
+          "Include any mix of integers, decimals, or negative numbers — the calculator handles all formats.",
+          "Click Sort & Analyze to instantly sort the numbers and compute descriptive statistics.",
+          "Read the sorted list and review the statistics displayed below: count, min, max, range, sum, mean, median, and mode.",
+          "Click Reset to clear all inputs and start a new analysis."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What is the difference between mean and median?",
+            "a": "The mean (average) is calculated by adding all values and dividing by the count. The median is the middle value in a sorted list. The median is more robust to outliers — a single very large or very small number shifts the mean significantly but may not change the median at all. For skewed datasets, the median is often a better measure of center than the mean."
+          },
+          {
+            "q": "What does the mode tell me?",
+            "a": "The mode is the value that appears most frequently in your dataset. It is useful for identifying the most common measurement, grade, or response. If all values are unique, there is no mode. A dataset can have multiple modes (bimodal or multimodal) if several values share the highest frequency."
+          },
+          {
+            "q": "How is the range different from standard deviation?",
+            "a": "The range is simply the difference between the maximum and minimum values, giving a rough measure of spread. Standard deviation measures how far each value deviates from the mean, providing a more precise picture of variability. A dataset can have a large range but a small standard deviation if most values cluster near the center with only one outlier at each end."
+          },
+          {
+            "q": "Can I enter negative numbers or decimals?",
+            "a": "Yes. The calculator fully supports negative numbers (e.g., -5, -0.3), decimal numbers (e.g., 3.14, 2.5), and any combination. Simply separate values with commas, spaces, or line breaks. The sorting algorithm correctly orders all numeric types including negatives and decimals."
+          },
+          {
+            "q": "What is the difference between ascending and descending order?",
+            "a": "Ascending order (least to greatest) arranges values from the smallest to the largest — for example, 1, 3, 7, 12. Descending order (greatest to least) reverses this, going from largest to smallest. Ascending order is the default in most mathematical and statistical contexts. This calculator sorts in ascending order only."
+          },
+          {
+            "q": "How is the median calculated for an even number of values?",
+            "a": "When a dataset has an even number of values, the median is calculated as the average of the two middle values. For example, with 6 values sorted as 2, 5, 7, 10, 13, 18, the two middle values are 7 and 10, so the median is (7 + 10) / 2 = 8.5. This is the standard definition used in statistics and is how this calculator computes the median."
+          }
+        ]
+      }
+    },
+    "linear-regression-calculator": {
+      "title": "Linear Regression Calculator - Slope, Intercept & R²",
+      "tagline": "Compute the least-squares regression line, correlation coefficient, R², and standard error for any X–Y dataset.",
+      "intro": "Enter X values and Y values as comma-separated lists of equal length. Optionally provide an X value to predict the corresponding Y.",
+      "field": {
+        "xValues": "X Values (independent variable)",
+        "yValues": "Y Values (dependent variable)",
+        "predictX": "Predict Y for X ="
+      },
+      "placeholder": {
+        "values": "e.g., 1, 2, 3, 4, 5",
+        "optional": "Optional"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least 2 valid X–Y pairs with equal counts."
+      },
+      "result": {
+        "heading": "Regression Results",
+        "slope": "Slope (b₁)",
+        "intercept": "Intercept (b₀)",
+        "r": "Correlation (r)",
+        "r2": "R² (Coefficient of Determination)",
+        "se": "Standard Error",
+        "n": "n (data points)",
+        "predictedY": "Predicted ŷ",
+        "forX": "when x = {x}"
+      },
+      "about": {
+        "heading": "About Linear Regression",
+        "body": "Linear regression is one of the most widely used statistical techniques for modeling the relationship between two variables. It fits a straight line — called the regression line or line of best fit — through a set of data points in a way that minimizes the sum of the squared vertical distances from each point to the line (the least-squares criterion).\n\nThe regression equation takes the form ŷ = b₀ + b₁x, where b₀ is the y-intercept (the predicted value of y when x = 0) and b₁ is the slope (how much y changes for each one-unit increase in x). A positive slope indicates a positive relationship; a negative slope indicates an inverse relationship.\n\nThe slope is calculated as b₁ = Σ((xᵢ − x̄)(yᵢ − ȳ)) / Σ((xᵢ − x̄)²), and the intercept as b₀ = ȳ − b₁x̄. These are the ordinary least-squares (OLS) estimates, which are the most common in practice.\n\nThe Pearson correlation coefficient r measures the strength and direction of the linear association between x and y. It ranges from −1 (perfect negative correlation) to +1 (perfect positive correlation). The coefficient of determination R² = r² tells you what proportion of the total variance in y is explained by x — for example, R² = 0.85 means the regression model accounts for 85% of the variability in y.\n\nThe standard error of the estimate (SE) measures the average distance that the observed values fall from the regression line. A smaller SE indicates a tighter fit. It is calculated as √(SSE / (n − 2)), where SSE is the sum of squared residuals.\n\nLinear regression is used extensively in science, engineering, economics, medicine, and social sciences to predict outcomes, test hypotheses about relationships, and quantify the size of effects. Applications include predicting sales from advertising spend, estimating crop yield from rainfall, and modeling patient outcomes from drug dosage."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples show linear regression applied to real-world data patterns.",
+        "colInput": "X / Y Values",
+        "colOutput": "Equation / R²",
+        "colNote": "Interpretation",
+        "items": [
+          {
+            "input": "X: 1,2,3,4,5 | Y: 2,4,5,4,5",
+            "output": "ŷ = 2.2 + 0.6x, R² = 0.600",
+            "note": "Moderate positive linear relationship"
+          },
+          {
+            "input": "X: 10,20,30,40,50 | Y: 500,450,400,350,300",
+            "output": "ŷ = 550 − 5x, R² = 1.000",
+            "note": "Perfect negative linear relationship"
+          },
+          {
+            "input": "X: 1,2,3,4,5 | Y: 3,3.5,4,4.5,5",
+            "output": "ŷ = 2.5 + 0.5x, R² = 1.000",
+            "note": "Perfect positive linear fit"
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Enter X values (independent variable) as a comma-separated list in the first field.",
+          "Enter the corresponding Y values (dependent variable) in the second field — both lists must have the same number of values.",
+          "Optionally enter an X value in the Predict Y field to get a predicted output from the regression equation.",
+          "Click Calculate to compute the regression equation, slope, intercept, r, R², and standard error.",
+          "Use the regression equation ŷ = b₀ + b₁x to make predictions for any new X value."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What does R² mean in linear regression?",
+            "a": "R² (the coefficient of determination) measures the proportion of variance in the dependent variable (Y) that is explained by the independent variable (X). An R² of 1.0 means the model perfectly predicts Y from X. An R² of 0 means X provides no information about Y. In practice, R² values above 0.7 are often considered a good fit, though this depends on the field and context."
+          },
+          {
+            "q": "What is the difference between the slope and the correlation coefficient?",
+            "a": "The slope (b₁) tells you the direction and magnitude of the change in Y for each one-unit increase in X, expressed in the original units of the data. The correlation coefficient (r) is dimensionless and measures the strength of the linear association on a scale from −1 to +1. Two datasets can have the same r but very different slopes if their variables are measured on different scales."
+          },
+          {
+            "q": "How many data points do I need?",
+            "a": "Linear regression requires at least 2 data points to estimate a line, but that gives zero degrees of freedom for error estimation. For reliable regression, at least 10–20 points are recommended, with more points needed to detect smaller effects. The standard error and R² become more meaningful estimates as n grows."
+          },
+          {
+            "q": "What does the standard error of the estimate measure?",
+            "a": "The standard error (SE) measures the typical distance between the observed Y values and the values predicted by the regression line. A smaller SE means the data points lie closer to the fitted line and the model predicts more precisely. It is expressed in the same units as Y and is used to construct prediction intervals."
+          },
+          {
+            "q": "Does linear regression prove causation?",
+            "a": "No. Linear regression identifies and quantifies a statistical association between X and Y, but association does not imply causation. To establish a causal relationship, controlled experiments or causal inference methods are needed. A strong R² simply means the two variables move together — it does not tell you why."
+          },
+          {
+            "q": "What if my data is not linear?",
+            "a": "If the relationship between X and Y is curved rather than straight, a linear regression model will give poor predictions. You can try transforming the variables (e.g., using log(x) or x²), fitting a polynomial regression, or using a non-linear regression approach. Always plot your data first to visually check whether a linear model is appropriate."
+          }
+        ]
+      }
+    },
+    "log-rank-test-calculator": {
+      "title": "Log-Rank Test Calculator - Survival Curve Comparison",
+      "tagline": "Compare survival curves of two groups using the log-rank test — get chi-squared statistic and p-value instantly.",
+      "intro": "Enter survival times and event indicators (1 = event, 0 = censored) for each group to test whether the survival functions differ significantly.",
+      "field": {
+        "group1": "Group 1",
+        "group2": "Group 2",
+        "times": "Survival Times",
+        "events": "Event Indicators (1/0)",
+        "alpha": "Significance Level (α)"
+      },
+      "placeholder": {
+        "times": "e.g., 5, 10, 15, 20",
+        "events": "e.g., 1, 1, 0, 1"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter matching time and event arrays for both groups with at least one event."
+      },
+      "result": {
+        "heading": "Results",
+        "chiSquared": "Chi-Squared Statistic",
+        "pValue": "p-value",
+        "n": "Total N",
+        "groupCol": "Group",
+        "observedCol": "Observed (O)",
+        "expectedCol": "Expected (E)",
+        "reject": "Reject H₀ — survival curves differ significantly",
+        "failReject": "Fail to Reject H₀ — no significant difference in survival"
+      },
+      "about": {
+        "heading": "About the Log-Rank Test",
+        "body": "The log-rank test (also called the Mantel-Cox test) is the standard non-parametric method for comparing the survival distributions of two or more groups. It is widely used in clinical trials and medical research to determine whether treatment, exposure, or some other factor is associated with time-to-event outcomes such as death, disease recurrence, or equipment failure.\n\nThe test works by examining what happens at each observed event time. At each failure time, it computes the expected number of events in each group under the null hypothesis that the groups have the same survival function, and compares that to the observed number of events. The test statistic is the sum of these differences across all event times, weighted by the number of subjects at risk.\n\nThe log-rank test is particularly sensitive to differences in the tails of survival distributions, making it ideal for detecting late-diverging survival curves. It assumes proportional hazards — meaning the hazard ratio between groups is constant over time — which is the same assumption required for Cox proportional hazards regression.\n\nCensoring is a key feature of survival data. A subject is censored when the event has not occurred by the end of the study, or when the subject withdraws or is lost to follow-up. The log-rank test correctly accounts for censored observations by treating them as still at risk until their censoring time, then removing them from the risk set. This makes it possible to include all recruited subjects in the analysis even if the study ends before all events occur.\n\nThe test statistic follows a chi-squared distribution with 1 degree of freedom when comparing two groups (or k−1 df for k groups). A small p-value (typically p < 0.05) provides evidence that the survival curves differ.\n\nCommon applications include comparing new versus standard treatments in randomized controlled trials, analyzing time to failure for different product batches, and comparing survival rates between demographic groups in epidemiological studies. The log-rank test is often the primary analysis endpoint in oncology and cardiology trials."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples show the log-rank test applied to typical survival analysis scenarios.",
+        "colInput": "Times / Events",
+        "colOutput": "χ² / p-value",
+        "colNote": "Interpretation",
+        "items": [
+          {
+            "input": "G1 T: 1,2,3,4 E: 1,1,1,1 | G2 T: 7,8,9,10 E: 1,1,1,1",
+            "output": "χ² = 7.35, p = 0.007",
+            "note": "Highly significant — G2 survives far longer than G1"
+          },
+          {
+            "input": "G1 T: 2,4,6,8 E: 1,1,1,1 | G2 T: 3,5,7,9 E: 1,1,1,1",
+            "output": "χ² = 0.41, p = 0.522",
+            "note": "Not significant — alternating event times produce balanced O vs E"
+          },
+          {
+            "input": "G1 T: 3,7,10,14,18 E: 1,0,1,0,1 | G2 T: 5,9,12,16,20 E: 1,1,0,1,0",
+            "output": "χ² = 0.06, p = 0.808",
+            "note": "Censored data; no significant difference detected"
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Enter Group 1 survival times as a comma-separated list, then enter the corresponding event indicators (1 = event occurred, 0 = censored).",
+          "Repeat for Group 2 — survival times and event indicators must have matching lengths within each group.",
+          "Select the significance level α (0.01, 0.05, or 0.10) for your test.",
+          "Click Calculate to get the chi-squared statistic, p-value, and observed vs expected events for each group.",
+          "If p < α, the survival curves differ significantly; consider post-hoc analysis or hazard ratio estimation."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What is a censored observation in survival analysis?",
+            "a": "A censored observation occurs when the event of interest (e.g., death, failure) has not happened by the time the subject leaves the study — either because the study ended, the subject withdrew, or contact was lost. These observations are included in the analysis up to their last known time. Censoring is coded as 0 in the event column, while an actual event is coded as 1."
+          },
+          {
+            "q": "What does the log-rank test assume?",
+            "a": "The log-rank test assumes proportional hazards — that is, the ratio of hazard rates between the two groups remains constant over time. It is non-parametric and does not assume any particular distribution for survival times. It also assumes that censoring is non-informative (censoring time is independent of the event risk) and that events in the two groups are independent."
+          },
+          {
+            "q": "Why use the log-rank test instead of a t-test?",
+            "a": "A t-test compares means and assumes normally distributed data. Survival times are almost never normally distributed — they are skewed, always positive, and contain censored observations. The log-rank test handles all these features correctly by working directly with the rank ordering of event times and properly accounting for censoring. Using a t-test on survival data would give biased and misleading results."
+          },
+          {
+            "q": "Can the log-rank test compare more than two groups?",
+            "a": "Yes. The log-rank test can be extended to compare three or more groups simultaneously. In that case, the test statistic follows a chi-squared distribution with k−1 degrees of freedom, where k is the number of groups. This calculator currently supports two-group comparisons. A significant overall test should be followed by pairwise comparisons with appropriate correction for multiple testing."
+          },
+          {
+            "q": "What does a non-significant log-rank test mean?",
+            "a": "A non-significant result (p ≥ α) means there is insufficient evidence to reject the null hypothesis that both groups have the same survival function. This does not prove the groups are identical — the study may simply lack statistical power, particularly if sample sizes are small or the number of events is low. Report confidence intervals and consider whether the study was adequately powered."
+          },
+          {
+            "q": "How is the expected number of events calculated?",
+            "a": "At each event time t, the expected number of events for Group 1 is E₁ₜ = (total events at t) × (n₁ₜ / nₜ), where n₁ₜ is the number of Group 1 subjects at risk at time t and nₜ is the total at-risk count across both groups. The expected counts are summed over all event times to give the total E₁ and E₂ used in the test statistic."
+          }
+        ]
+      }
+    },
+    "lognormal-distribution-calculator": {
+      "title": "Lognormal Distribution Calculator - PDF, CDF & Stats",
+      "tagline": "Calculate PDF, CDF, survival function, mean, median, mode, and variance for any lognormal distribution.",
+      "intro": "Enter the log-scale parameters μ (mu) and σ (sigma), along with an x value greater than 0, to compute lognormal probabilities and distribution statistics.",
+      "field": {
+        "mu": "μ (log-scale mean)",
+        "sigma": "σ (log-scale std dev, > 0)",
+        "x": "x value (x > 0)"
+      },
+      "placeholder": {
+        "mu": "e.g., 0",
+        "sigma": "e.g., 1",
+        "x": "e.g., 2.5"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid values: μ is any real number, σ > 0, and x > 0."
+      },
+      "result": {
+        "heading": "Results",
+        "pointHeading": "Point Probabilities at x",
+        "pdf": "PDF f(x)",
+        "cdf": "CDF F(x) = P(X ≤ x)",
+        "ccdf": "Survival S(x) = P(X > x)",
+        "distHeading": "Distribution Statistics",
+        "mean": "Mean",
+        "median": "Median",
+        "mode": "Mode",
+        "variance": "Variance",
+        "stdDev": "Std Dev"
+      },
+      "about": {
+        "heading": "About the Lognormal Distribution",
+        "body": "A random variable X follows a lognormal distribution if its natural logarithm ln(X) is normally distributed. In other words, if Y = ln(X) is normal with mean μ and standard deviation σ, then X is lognormal with parameters μ and σ. The lognormal distribution is always positive and right-skewed, making it ideal for modeling quantities that cannot be negative.\n\nThe probability density function (PDF) of a lognormal distribution is: f(x) = (1 / (xσ√(2π))) × exp(−(ln(x) − μ)² / (2σ²)) for x > 0. The cumulative distribution function (CDF) is F(x) = Φ((ln(x) − μ) / σ), where Φ is the standard normal CDF.\n\nThe lognormal distribution has several important properties. The mean (expected value) is exp(μ + σ²/2), which is always greater than the median exp(μ). The mode is exp(μ − σ²), which is less than the median. This ordering (mode < median < mean) reflects the right skew of the distribution. The variance is (exp(σ²) − 1) × exp(2μ + σ²).\n\nThe lognormal distribution is widely used in many fields. In finance, it models stock prices and asset returns (the Black-Scholes model assumes log-normal prices). In environmental science, it models pollutant concentrations. In biology, it describes organism sizes and survival times. In engineering, it models failure times for products subject to fatigue and wear.\n\nOne practical advantage of the lognormal distribution is that all the familiar tools of normal distribution analysis apply after log transformation. If you take the logarithm of lognormally distributed data, you get a normal distribution, and you can then use standard statistical methods.\n\nThe parameters μ and σ in this calculator are the mean and standard deviation of ln(X), not of X itself. To estimate them from data, compute the mean and standard deviation of the log-transformed observations. This distinction is important: the lognormal mean exp(μ + σ²/2) grows rapidly with σ, so a large σ implies a heavy-tailed distribution with high average values."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples show lognormal calculations for different parameter sets and x values.",
+        "colInput": "μ, σ, x",
+        "colOutput": "PDF / CDF",
+        "colNote": "Mean / Median / Mode",
+        "items": [
+          {
+            "input": "μ = 0, σ = 1, x = 1",
+            "output": "PDF = 0.3989, CDF = 0.5000",
+            "note": "Mean = 1.6487, Median = 1, Mode = 0.3679"
+          },
+          {
+            "input": "μ = 0, σ = 0.5, x = 2",
+            "output": "PDF = 0.1527, CDF = 0.9172",
+            "note": "Mean = 1.1331, Median = 1, Mode = 0.7788"
+          },
+          {
+            "input": "μ = 1, σ = 0.5, x = 3",
+            "output": "PDF = 0.2608, CDF = 0.5781",
+            "note": "Mean = 3.0802, Median = 2.7183, Mode = 2.1170"
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Enter μ (the mean of ln(X) on the log scale) — this can be any real number.",
+          "Enter σ (the standard deviation of ln(X)) — must be greater than 0; larger σ means more spread and heavier tail.",
+          "Enter x — the specific value at which to evaluate the distribution (must be positive).",
+          "Click Calculate to get the PDF (probability density), CDF (cumulative probability), survival function, and distribution statistics.",
+          "Use the mean, median, mode, and variance to understand the overall shape and center of the distribution."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What is the difference between μ and the mean of X?",
+            "a": "μ is the mean of ln(X), not the mean of X itself. The arithmetic mean of X is exp(μ + σ²/2), which is always larger than exp(μ). For example, with μ = 0 and σ = 1, the mean of X is approximately 1.649, while exp(μ) = 1. This distinction is a common source of confusion when working with lognormal distributions."
+          },
+          {
+            "q": "When should I use the lognormal distribution instead of the normal distribution?",
+            "a": "Use the lognormal distribution when your data is always positive, right-skewed, and multiplicatively structured. Classic examples include income distributions, stock prices, organism sizes, reaction times, and service durations. If the data can be negative or is approximately symmetric, the normal distribution is more appropriate. A histogram of your data or a log-transform check can help you decide."
+          },
+          {
+            "q": "What does the PDF value tell me?",
+            "a": "The PDF value f(x) is the probability density at a specific point x. It does not give the probability of exactly x — for continuous distributions, the probability of any single point is zero. Instead, f(x) × dx approximates the probability that X falls in a very small interval around x. The PDF is used to compare how likely different values are relative to each other."
+          },
+          {
+            "q": "What is the survival function S(x)?",
+            "a": "The survival function S(x) = P(X > x) = 1 − F(x) gives the probability that the random variable exceeds a specific value x. In survival analysis and reliability engineering, it represents the probability that a component or subject survives beyond time x. When S(x) = 0.5, x equals the median of the distribution."
+          },
+          {
+            "q": "Why is mode < median < mean for a lognormal distribution?",
+            "a": "This ordering arises from the right skewness of the lognormal distribution. The mode is the most likely value (the peak of the PDF), the median splits the distribution in half, and the mean is pulled upward by the long right tail. As σ increases, the distribution becomes more skewed and the gap between mode, median, and mean widens. For very large σ, the mean can be orders of magnitude larger than the mode."
+          },
+          {
+            "q": "How do I estimate lognormal parameters from data?",
+            "a": "To estimate μ and σ from a sample, compute the natural logarithm of each observation, then take the sample mean and sample standard deviation of those log-transformed values. These are the maximum likelihood estimates for μ and σ. Verify the lognormal assumption by plotting the log-transformed data on a normal probability plot or by performing a normality test on the log values."
+          }
+        ]
+      }
     }
   }
 }

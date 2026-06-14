@@ -30,7 +30,12 @@ import { fixtures as f_gauss_jordan_elimination_calculator } from "@/tools/gauss
 import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calculator.fixtures";
 import { fixtures as f_gcf_calculator_greatest_common_factor } from "@/tools/gcf-calculator-greatest-common-factor.fixtures";
 import { fixtures as f_generic_rectangle_calculator } from "@/tools/generic-rectangle-calculator.fixtures";
+import { fixtures as f_kruskal_wallis_h_test_calculator } from "@/tools/kruskal-wallis-h-test-calculator.fixtures";
+import { fixtures as f_least_to_greatest_calculator } from "@/tools/least-to-greatest-calculator.fixtures";
+import { fixtures as f_linear_regression_calculator } from "@/tools/linear-regression-calculator.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
+import { fixtures as f_log_rank_test_calculator } from "@/tools/log-rank-test-calculator.fixtures";
+import { fixtures as f_lognormal_distribution_calculator } from "@/tools/lognormal-distribution-calculator.fixtures";
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
@@ -104,7 +109,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "gcf-and-lcm-calculator": f_gcf_and_lcm_calculator,
   "gcf-calculator-greatest-common-factor": f_gcf_calculator_greatest_common_factor,
   "generic-rectangle-calculator": f_generic_rectangle_calculator,
+  "kruskal-wallis-h-test-calculator": f_kruskal_wallis_h_test_calculator,
+  "least-to-greatest-calculator": f_least_to_greatest_calculator,
+  "linear-regression-calculator": f_linear_regression_calculator,
   "loan-calculator": f_loan_calculator,
+  "log-rank-test-calculator": f_log_rank_test_calculator,
+  "lognormal-distribution-calculator": f_lognormal_distribution_calculator,
   "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
