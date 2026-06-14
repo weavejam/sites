@@ -2,11 +2,13 @@ import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { GAMES, COMING_SOON } from "../games/registry";
 import { type Locale, isLocale } from "../i18n/locales";
+import { useDocumentTitle } from "../shell/useDocumentTitle";
 
 export function HomePage() {
   const { t } = useTranslation();
   const params = useParams();
   const locale: Locale = isLocale(params.locale) ? params.locale : "en";
+  useDocumentTitle(t("home.heading"));
 
   return (
     <section className="px-4 sm:px-6 py-6 max-w-5xl w-full mx-auto">

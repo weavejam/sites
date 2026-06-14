@@ -24,7 +24,8 @@ mini-games portal. v1 ships the portal shell + the first game: a standard Tetris
 5. PWA: installable, full-screen on mobile, custom splash + icons, works offline
    for already-visited routes (assets cached).
 6. Settings drawer (gear icon in header): master volume slider, music toggle, SFX
-   toggle, language switch, theme (system / light / dark). Persisted to localStorage.
+   toggle, language switch. Persisted to localStorage. (Dark theme only in v1 —
+   light/system theme deferred.)
 7. Wake Lock active during gameplay so the phone doesn't dim/lock mid-game.
 8. Safe-area aware layout (`100dvh` + `env(safe-area-inset-*)`).
 9. GA4 measurement ID injected via existing `scripts/new-site.ps1` flow.
@@ -46,8 +47,9 @@ mini-games portal. v1 ships the portal shell + the first game: a standard Tetris
 20. Level + gravity curve: level rises every 10 lines, gravity follows the
      standard table up to level 20.
 21. Game over when a new piece can't spawn; restart and "back to home" buttons.
-22. Local high-score persisted per device (`localStorage`, namespaced
-     `gamesjam:tetris:highscore`).
+22. Local high-score persisted per device (`localStorage`, key
+     `gamesjam:scores` — a JSON map of `{ [gameSlug]: bestScore }` so the
+     shell can persist scores for additional games without code changes).
 23. Audio: Korobeiniki BGM (loops, crossfades on game-over), SFX for move,
      rotate, lock, hard-drop, line-clear, level-up, hold, fail, win. Sourced from
      `D:\fluttergames\little-games\godot\assets\audio\tetris\`. Respect master /
@@ -196,7 +198,7 @@ apps/gamesjam/
 - Multiplayer / online play.
 - Achievements, dailies, ad units.
 - Replays / undo.
-- Custom themes/skins beyond light/dark.
+- Custom themes/skins; light/system theme.
 - Sentry / error monitoring backend (rely on GA4 only).
 - Cross-game shared `packages/game-shell` extraction — keep everything in
   `apps/gamesjam/src/shell/` for v1; extract when a second game ships.

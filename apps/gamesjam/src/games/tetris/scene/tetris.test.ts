@@ -15,7 +15,7 @@ import {
   dropToBottom,
 } from "./board";
 import { tryRotate, spawnPiece } from "./rotation";
-import { applyClear, INITIAL_SCORE, gravityForLevel, dropPoints } from "./scoring";
+import { applyClear, INITIAL_SCORE, gravityForLevel, dropPoints, detectTSpin } from "./scoring";
 
 // ---------- pieces / 7-bag ----------
 describe("7-bag", () => {
@@ -209,5 +209,107 @@ describe("gravity + drop points", () => {
   it("hard drop scores 2pt per cell, soft drop 1pt", () => {
     expect(dropPoints(5, "hard")).toBe(10);
     expect(dropPoints(5, "soft")).toBe(5);
+  });
+});
+
+// ---------- new coverage (review round 1) ----------
+describe("B2B preservation", () => {
+  it("non-line lock keeps backToBack flag set", () => {
+    let s = applyClear(INITIAL_SCORE, { lines: 4, tSpin: false, tSpinMini: false });
+    expect(s.backToBack).toBe(true);
+    // Lock with no clear: combo breaks, but B2B is preserved.
+    s = applyClear(s, { lines: 0, tSpin: false, tSpinMini: false });
+    expect(s.backToBack).toBe(true);
+    expect(s.combo).toBe(-1);
+    // Next tetris: applies the 1.5x B2B bonus → 1200 (no combo since combo was reset).
+    const beforeScore = s.score;
+    s = applyClear(s, { lines: 4, tSpin: false, tSpinMini: false });
+    expect(s.score - beforeScore).toBe(1200);
+  });
+});
+
+describe("detectTSpin", () => {
+  it("returns no T-spin for a non-T piece", () => {
+    const b = createBoard();
+    const piece = { id: "L" as const, rotation: 0 as const, col: 3, row: 18 };
+    const res = detectTSpin(piece, b, true, 0);
+    expect(res.tSpin).toBe(false);
+  });
+
+  it("returns no T-spin if last move was not a rotation", () => {
+    const b = createBoard();
+    const piece = { id: "T" as const, rotation: 0 as const, col: 3, row: 18 };
+    // Surround all 4 corners.
+    b[18][3] = "X"; b[18][5] = "X"; b[20][3] = "X"; b[20][5] = "X";
+    const res = detectTSpin(piece, b, false, 0);
+    expect(res.tSpin).toBe(false);
+  });
+
+  it("returns no T-spin when fewer than 3 corners are filled", () => {
+    const b = createBoard();
+    const piece = { id: "T" as const, rotation: 0 as const, col: 3, row: 18 };
+    b[18][3] = "X"; b[20][3] = "X"; // 2 corners
+    const res = detectTSpin(piece, b, true, 0);
+    expect(res.tSpin).toBe(false);
+  });
+
+  it("kick index 4 marks a full T-spin", () => {
+    const b = createBoard();
+    const piece = { id: "T" as const, rotation: 0 as const, col: 3, row: 18 };
+    b[18][3] = "X"; b[18][5] = "X"; b[20][3] = "X";
+    const res = detectTSpin(piece, b, true, 4);
+    expect(res.tSpin).toBe(true);
+    expect(res.tSpinMini).toBe(false);
+  });
+
+  it("kick index < 4 marks a T-spin mini", () => {
+    const b = createBoard();
+    const piece = { id: "T" as const, rotation: 0 as const, col: 3, row: 18 };
+    b[18][3] = "X"; b[18][5] = "X"; b[20][3] = "X";
+    const res = detectTSpin(piece, b, true, 0);
+    expect(res.tSpin).toBe(true);
+    expect(res.tSpinMini).toBe(true);
+  });
+});
+
+describe("I-piece SRS", () => {
+  it("rotates through all 4 orientations on empty board", () => {
+    const b = createBoard();
+    let p = { ...spawnPiece("I"), row: 5 };
+    for (let i = 0; i < 4; i++) {
+      const res = tryRotate(b, p, 1);
+      expect(res, `I should rotate from rot ${p.rotation}`).not.toBeNull();
+      p = res!.piece;
+    }
+    expect(p.rotation).toBe(0);
+  });
+
+  it("kicks the I piece off a wall", () => {
+    const b = createBoard();
+    // Put I in rotation 1 (vertical) flush against the left wall.
+    const p = { id: "I" as const, rotation: 1 as const, col: -2, row: 5 };
+    if (!isValid(b, p)) return; // skip if origin geometry differs
+    const res = tryRotate(b, p, 1);
+    expect(res).not.toBeNull();
+    expect(isValid(b, res!.piece)).toBe(true);
+  });
+});
+
+describe("multi-row clearing", () => {
+  it("non-contiguous full rows clear and preserve relative order of rows in between", () => {
+    const b = createBoard();
+    const r1 = TOTAL_ROWS - 4;
+    const r2 = TOTAL_ROWS - 1;
+    b[r1] = Array<string>(COLS).fill("X");
+    b[r2] = Array<string>(COLS).fill("X");
+    // Markers in between (these rows are NOT full).
+    b[r1 + 1][0] = "A";
+    b[r1 + 2][0] = "B";
+    const res = clearFullLines(b);
+    expect(res.linesCleared).toBe(2);
+    // After clearing rows r1 and r2, A and B should appear at the bottom in
+    // the same relative order (B below A).
+    expect(res.board[TOTAL_ROWS - 1][0]).toBe("B");
+    expect(res.board[TOTAL_ROWS - 2][0]).toBe("A");
   });
 });

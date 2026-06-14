@@ -2,14 +2,10 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import { Layout } from "../shell/Layout";
 import { HomePage } from "./HomePage";
 import { GamePage } from "./GamePage";
-import { detectLocale, isLocale, LOCALES } from "../i18n/locales";
+import { detectLocale, isLocale } from "../i18n/locales";
 
 function LocaleRedirect() {
   return <Navigate to={`/${detectLocale()}`} replace />;
-}
-
-function LocaleGate({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
 }
 
 const router = createBrowserRouter([
@@ -21,8 +17,8 @@ const router = createBrowserRouter([
     path: "/:locale",
     element: <Layout />,
     children: [
-      { index: true, element: <LocaleGate><HomePage /></LocaleGate> },
-      { path: ":gameSlug", element: <LocaleGate><GamePage /></LocaleGate> },
+      { index: true, element: <HomePage /> },
+      { path: ":gameSlug", element: <GamePage /> },
     ],
     loader: ({ params }) => {
       if (!isLocale(params.locale)) {
@@ -44,6 +40,3 @@ const router = createBrowserRouter([
 export function AppRouter() {
   return <RouterProvider router={router} />;
 }
-
-// re-export so we can check at top-level
-export { LOCALES };

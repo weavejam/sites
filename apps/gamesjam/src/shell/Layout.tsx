@@ -3,8 +3,13 @@ import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
 import { SettingsDrawer } from "./SettingsDrawer";
 
+export interface LayoutContext {
+  openSettings: () => void;
+}
+
 export function Layout() {
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const ctx: LayoutContext = { openSettings: () => setSettingsOpen(true) };
   return (
     <div
       className="flex flex-col text-jam-text bg-jam-bg"
@@ -17,7 +22,7 @@ export function Layout() {
     >
       <Header onOpenSettings={() => setSettingsOpen(true)} />
       <main className="flex-1 flex flex-col">
-        <Outlet />
+        <Outlet context={ctx} />
       </main>
       <SettingsDrawer open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </div>

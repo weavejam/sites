@@ -44,6 +44,7 @@ const NEXT_COUNT = 5;
 const LOCK_DELAY_MS = 500;
 const MAX_LOCK_RESETS = 15;
 const HARD_DROP_BGM_KEY = "korobeiniki";
+const FLASH_MS = 120;
 
 export interface ScoreUpdate {
   score: number;
@@ -76,6 +77,10 @@ export class PlayScene extends Phaser.Scene {
   private ghostGfx!: Phaser.GameObjects.Graphics;
   private holdGfx!: Phaser.GameObjects.Graphics;
   private nextGfx!: Phaser.GameObjects.Graphics;
+
+  // Line-clear visual flash
+  private flashRows: number[] = [];
+  private flashUntil = 0;
 
   // Layout
   private cellSize = 24;
@@ -114,6 +119,7 @@ export class PlayScene extends Phaser.Scene {
 
     this.scale.on("resize", this.onResize, this);
     this.input.keyboard?.on("keydown", this.onKey, this);
+    this.input.keyboard?.on("keyup", this.onKeyUp, this);
 
     audio.playBgm(HARD_DROP_BGM_KEY);
     this.resetGame();
@@ -125,6 +131,7 @@ export class PlayScene extends Phaser.Scene {
     audio.stopBgm();
     this.scale.off("resize", this.onResize, this);
     this.input.keyboard?.off("keydown", this.onKey, this);
+    this.input.keyboard?.off("keyup", this.onKeyUp, this);
   }
 
   private resetGame() {
@@ -187,6 +194,10 @@ export class PlayScene extends Phaser.Scene {
       return;
     }
     this.handleKey(e);
+  };
+
+  private onKeyUp = (e: KeyboardEvent) => {
+    if (e.key === "ArrowDown") this.command("softUp");
   };
 
   private handleKey(e: KeyboardEvent) {
@@ -336,8 +347,17 @@ export class PlayScene extends Phaser.Scene {
       this.lastKickIndex,
     );
     const lockedBoard = lockPiece(this.board, piece);
+    const fullRows: number[] = [];
+    for (let r = 0; r < lockedBoard.length; r++) {
+      if (lockedBoard[r].every((c) => c !== "")) fullRows.push(r);
+    }
     const cleared = clearFullLines(lockedBoard);
     this.board = cleared.board;
+
+    if (fullRows.length > 0) {
+      this.flashRows = fullRows;
+      this.flashUntil = this.time.now + FLASH_MS;
+    }
 
     const prevLevel = this.score.level;
     const prevBackToBack = this.score.backToBack;
@@ -358,11 +378,11 @@ export class PlayScene extends Phaser.Scene {
       audio.playSfx("lock");
     }
 
-    // Check top-out: any cell in the hidden buffer below the spawn rows.
+    // Lock-out: a piece came to rest entirely above the visible playfield.
     for (let r = 0; r < HIDDEN_ROWS; r++) {
       if (this.board[r].some((c) => c !== "")) {
-        this.spawnFromQueue();
         this.emitScore();
+        this.endGame();
         return;
       }
     }
@@ -452,6 +472,17 @@ export class PlayScene extends Phaser.Scene {
           g.lineStyle(1, 0x262640, 1);
           g.strokeRect(x + 0.5, y + 0.5, cs - 1, cs - 1);
         }
+      }
+    }
+
+    // Line-clear flash overlay
+    if (this.flashUntil > this.time.now && this.flashRows.length > 0) {
+      const t = (this.flashUntil - this.time.now) / FLASH_MS;
+      g.fillStyle(0xffffff, Math.max(0, Math.min(1, t)));
+      for (const r of this.flashRows) {
+        if (r < HIDDEN_ROWS) continue;
+        const y = this.boardY + (r - HIDDEN_ROWS) * cs;
+        g.fillRect(this.boardX, y, cs * COLS, cs);
       }
     }
 

@@ -93,10 +93,3 @@ export interface ActivePiece {
 export function pieceCells(p: ActivePiece): [number, number][] {
   return PIECE_SHAPES[p.id][p.rotation].map(([c, r]) => [p.col + c, p.row + r]);
 }
-
-/** Returns the bounding-box size for a piece. */
-export function pieceBoxSize(id: PieceId): number {
-  if (id === "I") return 4;
-  if (id === "O") return 2;
-  return 3;
-}

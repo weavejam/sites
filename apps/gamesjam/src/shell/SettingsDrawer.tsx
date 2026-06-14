@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useSettings, type ThemeMode } from "./SettingsStore";
+import { useSettings } from "./SettingsStore";
 import { changeLocale } from "../i18n";
 import { LOCALES, type Locale } from "../i18n/locales";
 
@@ -81,18 +81,6 @@ export function SettingsDrawer({ open, onClose }: Props) {
           </Section>
 
           <Section title={t("settings.appearance")}>
-            <SegRow
-              label={t("settings.theme")}
-              value={s.theme}
-              options={
-                [
-                  ["system", t("settings.themeSystem")],
-                  ["light", t("settings.themeLight")],
-                  ["dark", t("settings.themeDark")],
-                ] as [ThemeMode, string][]
-              }
-              onChange={s.setTheme}
-            />
             <SegRow
               label={t("settings.language")}
               value={s.language}

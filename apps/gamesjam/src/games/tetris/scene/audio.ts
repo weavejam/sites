@@ -10,13 +10,9 @@ export const TETRIS_SFX = [
   { key: "levelUp",     src: "/games/tetris/audio/levelUp.mp3" },
   { key: "inputFailed", src: "/games/tetris/audio/inputFailed.mp3" },
   { key: "backToBack",  src: "/games/tetris/audio/backToBackTetris.mp3" },
-  { key: "win",         src: "/games/tetris/audio/win.mp3" },
   { key: "gameOver",    src: "/games/tetris/audio/blockout.mp3" },
 ] as const;
 
 export const TETRIS_BGM = [
-  { key: "korobeiniki",        src: "/games/tetris/audio/tetris_theme_music.mp3" },
-  { key: "korobeiniki-br",     src: "/games/tetris/audio/Korobeiniki-BR-01.mp3" },
-  { key: "korobeiniki-cn",     src: "/games/tetris/audio/Korobeiniki-CN-01.mp3" },
-  { key: "korobeiniki-folk",   src: "/games/tetris/audio/Korobeiniki-FVR-01.mp3" },
+  { key: "korobeiniki", src: "/games/tetris/audio/tetris_theme_music.mp3" },
 ] as const;

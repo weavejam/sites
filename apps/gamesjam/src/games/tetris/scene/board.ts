@@ -6,8 +6,8 @@ export const ROWS = 20;
 export const HIDDEN_ROWS = 4;
 export const TOTAL_ROWS = ROWS + HIDDEN_ROWS;
 
-/** 0 = empty; otherwise the PieceId character (or any truthy string). */
-export type Cell = "" | string;
+/** 0 = empty (""); any non-empty string is a locked PieceId character. */
+export type Cell = string;
 
 export type Board = Cell[][];
 

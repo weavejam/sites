@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import Phaser from "phaser";
 import { PlayScene, type ScoreUpdate } from "./scene/PlayScene";
 import { audio } from "../../shell/AudioManager";
@@ -10,11 +10,13 @@ import { useScores } from "../../shell/ScoreStore";
 import { useWakeLock } from "../../shell/useWakeLock";
 import { TouchHUD } from "./TouchHUD";
 import { type Locale, isLocale } from "../../i18n/locales";
+import type { LayoutContext } from "../../shell/Layout";
 
 export default function TetrisGame() {
   const { t } = useTranslation();
   const params = useParams();
   const navigate = useNavigate();
+  const { openSettings } = useOutletContext<LayoutContext>();
   const locale: Locale = isLocale(params.locale) ? params.locale : "en";
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<PlayScene | null>(null);
@@ -109,6 +111,7 @@ export default function TetrisGame() {
         <Overlay title={t("overlay.paused")}>
           <OverlayBtn onClick={() => send("resume")}>{t("overlay.resume")}</OverlayBtn>
           <OverlayBtn onClick={() => send("restart")}>{t("overlay.restart")}</OverlayBtn>
+          <OverlayBtn onClick={openSettings}>{t("nav.settings")}</OverlayBtn>
           <OverlayBtn onClick={() => navigate(`/${locale}`)}>{t("overlay.quit")}</OverlayBtn>
         </Overlay>
       )}

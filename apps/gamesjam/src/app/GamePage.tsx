@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { findGameByUrlSlug } from "../games/registry";
 import { type Locale, isLocale } from "../i18n/locales";
+import { useDocumentTitle } from "../shell/useDocumentTitle";
 
 const TetrisGame = lazy(() => import("../games/tetris/TetrisGame"));
 
@@ -13,6 +14,7 @@ export function GamePage() {
   const slug = params.gameSlug ?? "";
 
   const game = findGameByUrlSlug(locale, slug);
+  useDocumentTitle(game ? t(game.titleKey) : "");
   if (!game) return <Navigate to={`/${locale}`} replace />;
 
   return (
