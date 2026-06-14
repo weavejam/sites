@@ -439,7 +439,88 @@ export const tools: ToolEntry[] = [
       en: "Calculate free-space path loss, received signal power, SNR, Shannon capacity, and bandwidth efficiency for wireless and satellite communication links.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "thin-film-optical-coating-calculator",
+    category: "physic",
+    slugs: {
+      en: "thin-film-optical-coating-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Thin Film Optical Coating Calculator – AR & HR",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate reflectance and transmittance of single-layer thin film coatings using Fresnel equations. Analyze AR and HR coatings for s- and p-polarizations.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "thin-lens-equation-calculator",
+    category: "physic",
+    slugs: {
+      en: "thin-lens-equation-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Thin Lens Equation Calculator – Focal Length",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Solve the thin lens equation for focal length, object, or image distance. Find magnification and identify real, virtual, upright, or inverted images.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "three-phase-calculator",
+    category: "physic",
+    slugs: {
+      en: "three-phase-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Three Phase Power Calculator – Voltage & Current",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate three-phase apparent, active, and reactive power from voltage, current, and power factor. Essential tool for electrical engineers.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "thrust-to-weight-ratio-calculator",
+    category: "physic",
+    slugs: {
+      en: "thrust-to-weight-ratio-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Thrust to Weight Ratio Calculator – Aerospace Performance",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate thrust-to-weight ratio (TWR), net force, and net acceleration for rockets, aircraft, and drones. Instantly determine if your vehicle can lift off.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "time-dilation-calculator",
+    category: "physic",
+    slugs: {
+      en: "time-dilation-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Time Dilation Calculator – Einstein's Special Relativity",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate relativistic time dilation using Einstein's special relativity. Enter velocity and proper time to find dilated time and Lorentz factor.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
+
 
 
 ];

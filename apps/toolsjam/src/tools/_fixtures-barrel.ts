@@ -85,6 +85,11 @@ import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-de
 import { fixtures as f_standard_deviation_index_calculator } from "@/tools/standard-deviation-index-calculator.fixtures";
 import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/tools/standard-deviation-of-sample-mean-calculator.fixtures";
 import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
+import { fixtures as f_thin_film_optical_coating_calculator } from "@/tools/thin-film-optical-coating-calculator.fixtures";
+import { fixtures as f_thin_lens_equation_calculator } from "@/tools/thin-lens-equation-calculator.fixtures";
+import { fixtures as f_three_phase_calculator } from "@/tools/three-phase-calculator.fixtures";
+import { fixtures as f_thrust_to_weight_ratio_calculator } from "@/tools/thrust-to-weight-ratio-calculator.fixtures";
+import { fixtures as f_time_dilation_calculator } from "@/tools/time-dilation-calculator.fixtures";
 import { fixtures as f_torsional_stiffness_calculator } from "@/tools/torsional-stiffness-calculator.fixtures";
 import { fixtures as f_trajectory_calculator } from "@/tools/trajectory-calculator.fixtures";
 import { fixtures as f_transformer_sizing_calculator } from "@/tools/transformer-sizing-calculator.fixtures";
@@ -209,6 +214,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "standard-deviation-index-calculator": f_standard_deviation_index_calculator,
   "standard-deviation-of-sample-mean-calculator": f_standard_deviation_of_sample_mean_calculator,
   "standard-error-calculator": f_standard_error_calculator,
+  "thin-film-optical-coating-calculator": f_thin_film_optical_coating_calculator,
+  "thin-lens-equation-calculator": f_thin_lens_equation_calculator,
+  "three-phase-calculator": f_three_phase_calculator,
+  "thrust-to-weight-ratio-calculator": f_thrust_to_weight_ratio_calculator,
+  "time-dilation-calculator": f_time_dilation_calculator,
   "torsional-stiffness-calculator": f_torsional_stiffness_calculator,
   "trajectory-calculator": f_trajectory_calculator,
   "transformer-sizing-calculator": f_transformer_sizing_calculator,
