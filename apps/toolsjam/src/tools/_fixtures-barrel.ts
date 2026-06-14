@@ -93,6 +93,11 @@ import { fixtures as f_upper_control_limit_calculator } from "@/tools/upper-cont
 import { fixtures as f_variance_calculator } from "@/tools/variance-calculator.fixtures";
 import { fixtures as f_venn_diagram_calculator } from "@/tools/venn-diagram-calculator.fixtures";
 import { fixtures as f_wald_test_calculator } from "@/tools/wald-test-calculator.fixtures";
+import { fixtures as f_water_viscosity_calculator } from "@/tools/water-viscosity-calculator.fixtures";
+import { fixtures as f_watt_calculator } from "@/tools/watt-calculator.fixtures";
+import { fixtures as f_watt_converter } from "@/tools/watt-converter.fixtures";
+import { fixtures as f_watt_hour_calculator } from "@/tools/watt-hour-calculator.fixtures";
+import { fixtures as f_watts_to_amps_calculator } from "@/tools/watts-to-amps-calculator.fixtures";
 import { fixtures as f_weibull_distribution_calculator } from "@/tools/weibull-distribution-calculator.fixtures";
 import { fixtures as f_weighted_mean_calculator } from "@/tools/weighted-mean-calculator.fixtures";
 import { fixtures as f_wheatstone_bridge_calculator } from "@/tools/wheatstone-bridge-calculator.fixtures";
@@ -197,6 +202,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "variance-calculator": f_variance_calculator,
   "venn-diagram-calculator": f_venn_diagram_calculator,
   "wald-test-calculator": f_wald_test_calculator,
+  "water-viscosity-calculator": f_water_viscosity_calculator,
+  "watt-calculator": f_watt_calculator,
+  "watt-converter": f_watt_converter,
+  "watt-hour-calculator": f_watt_hour_calculator,
+  "watts-to-amps-calculator": f_watts_to_amps_calculator,
   "weibull-distribution-calculator": f_weibull_distribution_calculator,
   "weighted-mean-calculator": f_weighted_mean_calculator,
   "wheatstone-bridge-calculator": f_wheatstone_bridge_calculator,
