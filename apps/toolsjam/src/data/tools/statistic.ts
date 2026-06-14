@@ -6,39 +6,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "standard-deviation-calculator",
-      "zh-CN": "biaozhuncha-jisuanqi-yangben-zongti",
-      "zh-TW": "biaozhuncha-jisuanqi-yangben-muti",
-      ja: "hyoujunhensa-keisanki-hyohon-boshudan",
-      ko: "pyojunpyeoncha-gyesangi-pyobon-mojipdan",
+      "zh-CN": "biaozhun-cha-jisuanqi-yangben-zongti",
+      "zh-TW": "biaozhun-cha-jisuanqi-yangben-muti",
+      ja: "hyoujun-hensa-keisanki-sanpuru-boshudan",
+      ko: "pyojun-pyeoncha-gyesangi-pyobon-mojipdan",
       es: "calculadora-desviacion-estandar-muestra-poblacion",
-      fr: "ecart-type-calculatrice-echantillon-population",
-      de: "standardabweichung-berechnen-stichprobe-grundgesamtheit",
-      pt: "desvio-padrao-calculadora-amostra-populacao",
-      ru: "standartnogo-otkloneniya-kalkulyator-vyborka-populyatsiya"
+      fr: "calcul-ecart-type-echantillon-population",
+      de: "standardabweichungsrechner-stichprobe-grundgesamtheit",
+      pt: "calculadora-desvio-padrao-amostra-populacao",
+      ru: "kalkulyator-standartnogo-otkloneniya-vyborka-sovokupnost"
     },
     titles: {
       en: "Standard Deviation Calculator - Sample & Population",
-      "zh-CN": "标准差计算器 - 样本与总体",
-      "zh-TW": "標準差計算器 - 樣本與母體",
-      ja: "標準偏差計算機 - 標本と母集団",
-      ko: "표준편차 계산기 - 표본 및 모집단",
-      es: "Desviación estándar: calculadora de muestra y población",
-      fr: "Écart type : calculatrice échantillon et population",
-      de: "Standardabweichung Rechner - Stichprobe und Grundgesamtheit",
-      pt: "Desvio padrão: calculadora de amostra e população",
-      ru: "Стандартное отклонение калькулятор - выборка и совокупность"
+      "zh-CN": "标准差计算器：样本与总体",
+      "zh-TW": "標準差計算器：樣本與母體",
+      ja: "標準偏差計算機：標本と母集団",
+      ko: "표준편차 계산기: 표본과 모집단",
+      es: "Calculadora de desviación estándar: muestra y población",
+      fr: "Calcul de l'écart type : échantillon et population",
+      de: "Standardabweichungsrechner: Stichprobe und Grundgesamtheit",
+      pt: "Calculadora de desvio padrão: amostra e população",
+      ru: "Калькулятор стандартного отклонения: выборка и совокупность"
     },
     descriptions: {
       en: "Standard deviation calculator for sample and population data. Find standard deviation, variance, mean, sum, and range from a list of numbers instantly.",
-      "zh-CN": "用于样本和总体数据的标准差计算器。可快速计算标准差、方差、均值、总和和极差。",
-      "zh-TW": "適用於樣本與母體資料的標準差計算器。可快速算出標準差、變異數、平均數、總和與範圍。",
-      ja: "標本データと母集団データに対応した標準偏差計算機。標準偏差、分散、平均、合計、範囲をすぐに算出できます。",
-      ko: "표본과 모집단 데이터의 표준편차 계산기입니다. 표준편차, 분산, 평균, 합계, 범위를 빠르게 구하세요.",
-      es: "Calculadora de desviación estándar para datos de muestra y población. Calcula al instante desviación, varianza, media, suma y rango.",
-      fr: "Calculatrice d'écart type pour données d'échantillon et de population. Trouvez instantanément l'écart type, la variance, la moyenne, la somme et l'étendue.",
-      de: "Standardabweichungsrechner für Stichproben- und Grundgesamtheitsdaten. Standardabweichung, Varianz, Mittelwert, Summe und Spanne sofort finden.",
-      pt: "Calculadora de desvio padrão para dados de amostra e população. Encontre desvio padrão, variância, média, soma e faixa instantaneamente.",
-      ru: "Калькулятор стандартного отклонения для данных выборки и совокупности. Мгновенно найдите стандартное отклонение, дисперсию, среднее, сумму и диапазон."
+      "zh-CN": "计算样本和总体数据的标准差。输入数字列表，即可快速得到标准差、方差、平均值、总和和范围。",
+      "zh-TW": "可計算樣本與母體資料的標準差。輸入數字清單，立即取得標準差、變異數、平均值、總和與範圍。",
+      ja: "標本と母集団のデータの標準偏差を計算。数値一覧から標準偏差、分散、平均、合計、範囲をすぐに求めます。",
+      ko: "표본과 모집단 데이터의 표준편차를 계산합니다. 숫자 목록에서 표준편차, 분산, 평균, 합계, 범위를 즉시 구하세요.",
+      es: "Calcula la desviación estándar de muestras y poblaciones. Obtén al instante desviación, varianza, media, suma y rango a partir de una lista de números.",
+      fr: "Calculez l'écart type d'un échantillon ou d'une population. Obtenez instantanément écart type, variance, moyenne, somme et étendue.",
+      de: "Berechnen Sie die Standardabweichung für Stichproben und Grundgesamtheiten. Sofort Standardabweichung, Varianz, Mittelwert, Summe und Spannweite ermitteln.",
+      pt: "Calcule o desvio padrão de amostras e populações. Obtenha na hora desvio padrão, variância, média, soma e faixa de uma lista de números.",
+      ru: "Вычисляйте стандартное отклонение для выборок и совокупностей. Сразу получайте стандартное отклонение, дисперсию, среднее, сумму и размах."
     }
   },
   {
@@ -46,39 +46,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "wilcoxon-rank-sum-test-calculator",
-      "zh-CN": "wilcoxon-zhixuhe-jianyan-ji-suan-qi",
-      "zh-TW": "wilcoxon-zhixuhe-jianyan-ji-suan-qi",
-      ja: "wilcoxon-juniiwa-kensa-keisan",
-      ko: "wilokson-sunwi-hap-geomsa-gyeonsan-gi",
-      es: "wilcoxon-suma-de-rangos-calculadora",
-      fr: "wilcoxon-somme-des-rangs-calculateur",
+      "zh-CN": "wilcoxon-rank-sum-test-calculator",
+      "zh-TW": "wilcoxon-rank-sum-test-calculator",
+      ja: "wilcoxon-rank-sum-test-calculator",
+      ko: "wilcoxon-rank-sum-test-calculator",
+      es: "calculadora-prueba-suma-rangos-wilcoxon",
+      fr: "calculateur-test-somme-des-rangs-wilcoxon",
       de: "wilcoxon-rangsummentest-rechner",
-      pt: "wilcoxon-soma-dos-rangos-calculadora",
-      ru: "wilcoxon-summa-rangov-kalkulyator"
+      pt: "calculadora-teste-soma-rangos-wilcoxon",
+      ru: "kalkulyator-test-summy-rangov-vilkoksona"
     },
     titles: {
       en: "Wilcoxon Rank Sum Test Calculator (Mann-Whitney U)",
-      "zh-CN": "Wilcoxon秩和检验计算器（Mann-Whitney U）",
-      "zh-TW": "Wilcoxon秩和檢定計算器（Mann-Whitney U）",
-      ja: "Wilcoxon順位和検定計算器",
-      ko: "Wilcoxon 순위합 검정 계산기",
-      es: "Calculadora de Wilcoxon de Suma de Rangos",
-      fr: "Calculateur Wilcoxon Somme des Rangs",
-      de: "Wilcoxon-Rangsummentest Rechner",
-      pt: "Calculadora de Wilcoxon Soma dos Rangos",
-      ru: "Калькулятор критерия Уилкоксона суммы рангов"
+      "zh-CN": "Wilcoxon秩和检验计算器",
+      "zh-TW": "Wilcoxon秩和檢定計算器",
+      ja: "ウィルコクソン順位和検定計算機",
+      ko: "윌콕슨 순위합 검정 계산기",
+      es: "Calculadora de suma de rangos de Wilcoxon",
+      fr: "Calculateur de somme des rangs de Wilcoxon",
+      de: "Wilcoxon-Rangsummentest-Rechner",
+      pt: "Calculadora de soma dos postos de Wilcoxon",
+      ru: "Калькулятор критерия Вилкоксона"
     },
     descriptions: {
       en: "Perform a Wilcoxon Rank Sum Test (Mann-Whitney U) for two independent samples. Get the U statistic, Z-score, and p-value instantly — no normality required.",
-      "zh-CN": "对两组独立样本进行Wilcoxon秩和检验，快速得到U统计量、Z分数和p值，无需正态性假设。",
-      "zh-TW": "對兩組獨立樣本進行Wilcoxon秩和檢定，快速取得U統計量、Z分數與p值，無需常態性假設。",
-      ja: "2つの独立標本にWilcoxon順位和検定を適用し、U統計量、Zスコア、p値をすぐに算出します。正規性は不要です。",
-      ko: "두 독립 표본에 Wilcoxon 순위합 검정을 적용해 U 통계량, Z 점수, p값을 바로 구합니다. 정규성 가정이 필요 없습니다.",
-      es: "Aplica la prueba de Wilcoxon de suma de rangos a dos muestras independientes y obtiene U, Z y p al instante, sin suponer normalidad.",
-      fr: "Appliquez le test de Wilcoxon sur deux échantillons indépendants et obtenez instantanément U, Z et la p-value, sans supposer la normalité.",
-      de: "Führe den Wilcoxon-Rangsummentest für zwei unabhängige Stichproben durch und erhalte U, Z und p sofort, ohne Normalverteilungsannahme.",
-      pt: "Aplique o teste de Wilcoxon de soma dos rangos a duas amostras independentes e obtenha U, Z e p na hora, sem assumir normalidade.",
-      ru: "Примените критерий Уилкоксона суммы рангов к двум независимым выборкам и мгновенно получите U, Z и p без предположения о нормальности."
+      "zh-CN": "对两个独立样本进行Wilcoxon秩和检验（Mann-Whitney U），即时获取U统计量、Z分数和p值，无需正态性假设。",
+      "zh-TW": "對兩個獨立樣本進行Wilcoxon秩和檢定（Mann-Whitney U），即時取得U統計量、Z分數與p值，無需常態性假設。",
+      ja: "2つの独立した標本に対するウィルコクソン順位和検定（Mann-Whitney U）を実行し、U統計量、Zスコア、p値をすぐに取得できます。正規性は不要です。",
+      ko: "두 독립 표본에 대해 윌콕슨 순위합 검정(Mann-Whitney U)을 수행하고 U 통계량, Z 점수, p값을 즉시 확인하세요. 정규성 가정이 필요 없습니다.",
+      es: "Realiza la prueba de suma de rangos de Wilcoxon (Mann-Whitney U) para dos muestras independientes. Obtén U, Z y p al instante, sin suponer normalidad.",
+      fr: "Réalisez un test de somme des rangs de Wilcoxon (Mann-Whitney U) pour deux échantillons indépendants. Obtenez U, Z et p instantanément, sans hypothèse de normalité.",
+      de: "Führen Sie einen Wilcoxon-Rangsummentest (Mann-Whitney U) für zwei unabhängige Stichproben durch. U, Z und p-Wert sofort erhalten – ohne Normalverteilungsannahme.",
+      pt: "Realize o teste de soma dos postos de Wilcoxon (Mann-Whitney U) para duas amostras independentes. Obtenha U, Z e p instantaneamente, sem exigir normalidade.",
+      ru: "Выполните критерий суммы рангов Вилкоксона (Mann-Whitney U) для двух независимых выборок. Сразу получите U, Z и p-значение без предположения о нормальности."
     }
   },
   {
@@ -86,39 +86,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "wilcoxon-signed-rank-test-calculator",
-      "zh-CN": "wilcoxon-signed-rank-yi-dui-yang-ben-jisuanqi",
-      "zh-TW": "wilcoxon-signed-rank-paired-samples",
-      ja: "uirukoson-saindo-ranku-pea-samupuru",
-      ko: "wilkeukoseon-sainjeong-rang-paeeo-seompeul",
-      es: "wilcoxon-signed-rank-test-muestras-pareadas",
-      fr: "wilcoxon-signed-rank-test-echantillons-paires",
-      de: "wilcoxon-vorzeichen-rangtest-gepaarte-stichproben",
-      pt: "wilcoxon-signed-rank-test-amostras-pareadas",
-      ru: "kriteriy-uilkoksona-svyazannye-vyborki"
+      "zh-CN": "wilcoxon-peidui-yangben-jisuanqi",
+      "zh-TW": "wilcoxon-peidui-yangben-jisuanqi",
+      ja: "wirukokuson-fugotsuki-juni-kentei-keisanki",
+      ko: "wilkokseun-buhosunwi-geumjeong-gyesangi",
+      es: "calculadora-prueba-rangos-con-signo-wilcoxon",
+      fr: "calculateur-rangs-signes-wilcoxon",
+      de: "wilcoxon-vorzeichen-rang-test-rechner",
+      pt: "calculadora-teste-postos-sinalizados-wilcoxon",
+      ru: "kalkulyator-kriteriya-znakovyh-rangov-vilkoksona"
     },
     titles: {
       en: "Wilcoxon Signed-Rank Test Calculator - Paired Samples",
-      "zh-CN": "Wilcoxon符号秩检验计算器：配对样本",
-      "zh-TW": "Wilcoxon符號等級檢定計算器：配對樣本",
-      ja: "ウィルコクソン符号順位検定計算機：対応のある標本",
-      ko: "윌콕슨 부호순위검정 계산기: 대응 표본",
-      es: "Calculadora de Wilcoxon para muestras pareadas",
-      fr: "Calculateur du test de Wilcoxon pour échantillons appariés",
-      de: "Wilcoxon-Vorzeichen-Rangtest Rechner für gepaarte Stichproben",
-      pt: "Calculadora de Wilcoxon para amostras pareadas",
-      ru: "Калькулятор критерия Уилкоксона для парных выборок"
+      "zh-CN": "Wilcoxon符号秩检验计算器",
+      "zh-TW": "Wilcoxon符號等級檢定計算器",
+      ja: "ウィルコクソン符号付順位検定計算機",
+      ko: "윌콕슨 부호순위 검정 계산기",
+      es: "Calculadora de rangos con signo de Wilcoxon",
+      fr: "Calculateur de rangs signés de Wilcoxon",
+      de: "Wilcoxon-Vorzeichen-Rang-Test-Rechner",
+      pt: "Calculadora do teste de postos sinalizados de Wilcoxon",
+      ru: "Калькулятор критерия знаковых рангов Вилкоксона"
     },
     descriptions: {
       en: "Wilcoxon signed-rank test calculator for paired samples. Compare before-and-after measurements with W statistic, Z-score, and p-value — no normality assumption.",
-      "zh-CN": "Wilcoxon符号秩检验配对样本计算器。比较前后测量，输出W统计量、Z分数和p值，无需正态性假设。",
-      "zh-TW": "Wilcoxon符號等級檢定配對樣本計算器。比較前後測量，輸出W統計量、Z分數與p值，無需常態性假設。",
-      ja: "対応のある標本向けのウィルコクソン符号順位検定計算機。W統計量、Zスコア、p値を正規性仮定なしで算出します。",
-      ko: "대응 표본용 윌콕슨 부호순위검정 계산기입니다. 정규성 가정 없이 W 통계량, Z 점수, p값을 계산합니다.",
-      es: "Calculadora de la prueba de rangos con signo de Wilcoxon para muestras pareadas. Compara antes y después con W, Z y p sin asumir normalidad.",
-      fr: "Calculateur du test des rangs signés de Wilcoxon pour échantillons appariés. Comparez avant/après avec W, Z et p sans supposer la normalité.",
-      de: "Wilcoxon-Vorzeichen-Rangtest-Rechner für gepaarte Stichproben. Vergleichen Sie Vorher/Nachher mit W, Z und p ohne Normalverteilungsannahme.",
-      pt: "Calculadora do teste de Wilcoxon para amostras pareadas. Compare antes e depois com estatística W, Z e valor-p sem assumir normalidade.",
-      ru: "Калькулятор критерия знаковых рангов Уилкоксона для парных выборок. Сравнивайте до и после по W, Z и p без предположения о нормальности."
+      "zh-CN": "Wilcoxon符号秩检验计算器：比较配对前后测量，获取W统计量、Z分数和p值，无需正态性假设。",
+      "zh-TW": "Wilcoxon符號等級檢定計算器：比較配對前後量測，取得W統計量、Z分數與p值，無需常態性假設。",
+      ja: "対応する前後測定を比較するウィルコクソン符号付順位検定計算機。正規性を仮定せずにW統計量、Zスコア、p値を取得できます。",
+      ko: "대응되는 전후 측정을 비교하는 윌콕슨 부호순위 검정 계산기입니다. 정규성 가정 없이 W 통계량, Z 점수, p값을 확인하세요.",
+      es: "Calculadora de rangos con signo de Wilcoxon: compara mediciones pareadas antes y después y obtén W, Z y p sin suponer normalidad.",
+      fr: "Calculateur de rangs signés de Wilcoxon : comparez des mesures appariées avant/après et obtenez W, Z et p sans supposer la normalité.",
+      de: "Wilcoxon-Vorzeichen-Rang-Test-Rechner: Vergleichen Sie gepaarte Vorher-Nachher-Messungen und erhalten Sie W, Z und p ohne Normalverteilungsannahme.",
+      pt: "Calculadora do teste de postos sinalizados de Wilcoxon: compare medidas pareadas antes e depois e obtenha W, Z e p sem assumir normalidade.",
+      ru: "Калькулятор критерия знаковых рангов Вилкоксона: сравнивайте парные измерения до и после и получайте W, Z и p без предположения о нормальности."
     }
   },
   {
@@ -126,15 +126,15 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "yates-correction-for-continuity-calculator",
-      "zh-CN": "yates-lianxu-xiaozheng-jisuanqi",
-      "zh-TW": "yates-lianxu-xiaozheng-jisuanqi",
-      ja: "yates-renzokusei-hosei-keisanki",
-      ko: "yiteu-yeonsokseong-bojeong-gyeonsangi",
-      es: "calculadora-chi-cuadrado-correccion-yates",
-      fr: "chi-carre-correction-yates",
-      de: "chi-quadrat-yates-korrektur",
-      pt: "qui-quadrado-correcao-yates",
-      ru: "khi-kvadrat-popravka-yeitsa"
+      "zh-CN": "yates-lianxu-xiuzheng-kafang-jisuanqi",
+      "zh-TW": "yates-lianxu-xiuzheng-kafang-jisuanqi",
+      ja: "yates-renzokusei-hosei-kafun-keisanki",
+      ko: "yates-yeonsuseong-boseong-kajedung-gyeosan-gi",
+      es: "calculadora-correccion-yates-chi-cuadrado",
+      fr: "calculateur-correction-yates-khi-deux",
+      de: "yates-kontinuitaetskorrektur-chi-quadrat-rechner",
+      pt: "calculadora-correcao-yates-qui-quadrado",
+      ru: "yates-korrekciya-nepreryvnosti-khi-kvadrat-kalkulyator"
     },
     titles: {
       en: "Yates Correction for Continuity Calculator - Chi-Square",
@@ -142,23 +142,23 @@ export const tools: ToolEntry[] = [
       "zh-TW": "Yates連續性校正卡方計算器",
       ja: "Yates連続性補正カイ二乗計算機",
       ko: "Yates 연속성 보정 카이제곱 계산기",
-      es: "Chi-cuadrado con corrección de Yates",
-      fr: "Chi carré avec correction de Yates",
-      de: "Chi-Quadrat mit Yates-Korrektur",
-      pt: "Qui-quadrado com correção de Yates",
-      ru: "Калькулятор хи-квадрат с поправкой Йейтса"
+      es: "Calculadora chi-cuadrado con corrección de Yates",
+      fr: "Calculateur khi-deux avec correction de Yates",
+      de: "Chi-Quadrat-Rechner mit Yates-Korrektur",
+      pt: "Calculadora qui-quadrado com correção de Yates",
+      ru: "Калькулятор хи‑квадрата с поправкой Йейтса"
     },
     descriptions: {
       en: "Calculate a Yates-corrected chi-square statistic for 2×2 contingency tables. Enter a, b, c, d cell counts and get the adjusted χ² value and p-value instantly.",
-      "zh-CN": "计算 2×2 列联表的 Yates 校正卡方统计量。输入 a、b、c、d 计数即可立即得到调整后的 χ² 值和 p 值。",
-      "zh-TW": "計算 2×2 列聯表的 Yates 校正卡方統計量。輸入 a、b、c、d 計數即可立即得到調整後的 χ² 值與 p 值。",
-      ja: "2×2分割表のYates補正付きカイ二乗統計量を計算します。a、b、c、dの度数を入力すると、調整後のχ²値とp値を即時に表示します。",
-      ko: "2×2 분할표의 Yates 보정 카이제곱 통계량을 계산합니다. a, b, c, d 셀 값을 입력하면 조정된 χ² 값과 p값을 즉시 확인할 수 있습니다.",
-      es: "Calcula el estadístico chi-cuadrado corregido de Yates para tablas de contingencia 2×2. Introduce a, b, c y d y obtén χ² y el valor p al instante.",
-      fr: "Calculez le chi carré corrigé de Yates pour les tableaux de contingence 2×2. Saisissez a, b, c et d pour obtenir immédiatement χ² et la valeur p.",
-      de: "Berechnet die Yates-korrigierte Chi-Quadrat-Statistik für 2×2-Kontingenztafeln. Geben Sie a, b, c und d ein und erhalten Sie χ² und p-Wert sofort.",
-      pt: "Calcule o qui-quadrado corrigido de Yates para tabelas de contingência 2×2. Digite a, b, c e d e obtenha χ² e o valor de p na hora.",
-      ru: "Вычисляет хи-квадрат со поправкой Йейтса для таблиц сопряжённости 2×2. Введите a, b, c и d и сразу получите χ² и p-значение."
+      "zh-CN": "计算2×2列联表的Yates校正卡方统计量，输入a、b、c、d即可立即获得调整后的χ²值和p值。",
+      "zh-TW": "計算2×2列聯表的Yates校正卡方統計量，輸入a、b、c、d即可立即取得調整後的χ²值與p值。",
+      ja: "2×2分割表のYates補正カイ二乗統計量を計算し、a、b、c、dを入力すると調整済みχ²値とp値を即座に表示します。",
+      ko: "2×2 분할표의 Yates 보정 카이제곱 통계를 계산합니다. a, b, c, d를 입력하면 조정된 χ² 값과 p값을 바로 확인할 수 있습니다.",
+      es: "Calcula una estadística chi-cuadrado con corrección de Yates para tablas de contingencia 2×2. Ingresa a, b, c y d y obtén χ² y p al instante.",
+      fr: "Calculez un khi-deux corrigé de Yates pour les tableaux de contingence 2×2. Saisissez a, b, c et d pour obtenir immédiatement χ² et la p-value.",
+      de: "Berechnen Sie eine Yates-korrigierte Chi-Quadrat-Statistik für 2×2-Kontingenztafeln. Geben Sie a, b, c, d ein und erhalten Sie sofort χ² und p-Wert.",
+      pt: "Calcule uma estatística qui-quadrado com correção de Yates para tabelas de contingência 2×2. Informe a, b, c, d e obtenha χ² e p-valor na hora.",
+      ru: "Рассчитайте хи-квадрат с поправкой Йейтса для таблиц сопряженности 2×2. Введите a, b, c, d и сразу получите χ² и p-значение."
     }
   },
   {
@@ -1646,15 +1646,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "error-propagation-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Error Propagation Calculator - Uncertainty",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate error propagation and measurement uncertainty for sum/difference and product/power formulas. Get absolute and relative uncertainty instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1662,15 +1686,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "expected-value-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Expected Value Calculator - Probability Distribution",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate expected value, variance, and standard deviation for discrete probability distributions. Enter outcomes and probabilities to get E[X] instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1678,15 +1726,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "exponential-distribution-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Exponential Distribution Calculator - PDF & CDF",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Compute exponential distribution PDF, CDF, mean, variance, and survival probability. Enter rate parameter λ and value x for instant statistical results.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1694,15 +1766,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "exponential-growth-prediction-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Exponential Growth Prediction Calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Predict future values with exponential growth. Use initial value and rate, or two data points to forecast population, investment, or bacterial growth.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1710,15 +1806,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "exponential-regression-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Exponential Regression Calculator - y = ab^x",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Fit an exponential regression model y = ab^x to your data. Get coefficients a and b, R-squared, correlation, and predicted values from paired data points.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1726,15 +1846,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "rayleigh-distribution-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Rayleigh Distribution Calculator - PDF, CDF & Stats",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Rayleigh distribution calculator: compute PDF, CDF, complementary CDF, mean, median, mode, and variance from scale parameter σ and value x instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1742,15 +1886,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "relative-error-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Relative Error Calculator - Percentage Error Formula",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Relative error calculator: find absolute error, relative error, and percentage error by comparing an observed value to the true value in any measurement.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1758,15 +1926,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "relative-frequency-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Relative Frequency Calculator - Frequency Distribution",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Relative frequency calculator: enter a comma-separated data set and instantly get frequency counts, relative frequency, and cumulative frequency for each value.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1774,15 +1966,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "relative-risk-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Relative Risk Calculator - Risk Ratio for Cohort Studies",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Relative risk calculator for 2×2 contingency tables: compute risk ratio, 95% confidence interval, and attributable risk for exposed vs. unexposed cohort data.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1790,17 +2006,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "relative-risk-reduction-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Relative Risk Reduction Calculator - RRR, ARR & NNT",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Relative risk reduction calculator: compute RRR, ARR, NNT, and relative risk from treatment and control group data to evaluate any intervention's effectiveness.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   }
-
-
 ];
