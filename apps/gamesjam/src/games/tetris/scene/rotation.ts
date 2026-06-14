@@ -4,7 +4,7 @@ import {
   type Rotation,
   PIECE_SHAPES,
 } from "./pieces";
-import { type Board, isValid } from "./board";
+import { type Board, HIDDEN_ROWS, isValid } from "./board";
 
 /** Standard SRS kick offsets for J/L/S/T/Z. */
 const SRS_JLSTZ: Record<string, [number, number][]> = {
@@ -69,7 +69,12 @@ export function tryRotate(
 export function spawnPiece(id: PieceId): ActivePiece {
   // 10-wide board, 3-wide spawn box → col 3; I (4-wide) → col 3 too (centered).
   const col = id === "O" ? 4 : 3;
-  return { id, rotation: 0, col, row: 0 };
+  // Spawn with the piece's bottom row at the top of the visible playfield, so
+  // it appears immediately on screen instead of falling silently through the
+  // hidden buffer for several seconds. All standard-orientation piece shapes
+  // have their lowest cell at relative row 1, so origin row = HIDDEN_ROWS - 1
+  // puts that cell at the first visible row.
+  return { id, rotation: 0, col, row: HIDDEN_ROWS - 1 };
 }
 
 /**
