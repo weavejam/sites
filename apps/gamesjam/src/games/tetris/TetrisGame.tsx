@@ -32,8 +32,8 @@ export default function TetrisGame() {
   useWakeLock(phase === "playing");
 
   useEffect(() => {
-    audio.loadSfx(TETRIS_SFX.map((s) => ({ key: s.key, src: s.src })));
-    audio.loadBgm(TETRIS_BGM.map((b) => ({ key: b.key, src: b.src })));
+    audio.loadSfx(TETRIS_SFX);
+    audio.loadBgm(TETRIS_BGM);
   }, []);
 
   useEffect(() => {

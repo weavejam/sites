@@ -9,7 +9,6 @@ export interface GameDef {
   descriptionKey: string;
   /** localized URL slug under each locale */
   urlSlug: Record<Locale, string>;
-  status: "live" | "soon";
   /** simple emoji or short label for the card thumbnail (until we have art). */
   badge: string;
 }
@@ -20,7 +19,6 @@ export const GAMES: GameDef[] = [
     titleKey: "tetris.title",
     descriptionKey: "tetris.description",
     urlSlug: { en: "tetris", "zh-CN": "eluosi-fangkuai" },
-    status: "live",
     badge: "🟦",
   },
 ];

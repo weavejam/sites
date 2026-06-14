@@ -19,6 +19,11 @@ interface SettingsState {
   setShowTouchHud: (on: boolean) => void;
 }
 
+function isTouchDevice(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia?.("(pointer: coarse)").matches ?? false;
+}
+
 export const useSettings = create<SettingsState>()(
   persist(
     (set) => ({
@@ -28,7 +33,7 @@ export const useSettings = create<SettingsState>()(
       musicEnabled: true,
       sfxEnabled: true,
       language: detectLocale(),
-      showTouchHud: true,
+      showTouchHud: isTouchDevice(),
       setMasterVolume: (v) => set({ masterVolume: clamp(v) }),
       setMusicVolume: (v) => set({ musicVolume: clamp(v) }),
       setSfxVolume: (v) => set({ sfxVolume: clamp(v) }),

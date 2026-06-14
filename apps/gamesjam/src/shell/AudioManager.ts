@@ -1,17 +1,15 @@
 import { Howl, Howler } from "howler";
 import { useSettings } from "./SettingsStore";
 
-export interface SfxDef {
+export interface AudioDef {
   /** key used by callers */
   key: string;
   /** url under /public */
   src: string;
 }
 
-export interface BgmDef {
-  key: string;
-  src: string;
-}
+export type SfxDef = AudioDef;
+export type BgmDef = AudioDef;
 
 class AudioManager {
   private sfx = new Map<string, Howl>();
@@ -71,7 +69,7 @@ class AudioManager {
     // state and will call `resumeBgm()` when (and if) the user resumes play.
   };
 
-  loadSfx(defs: SfxDef[]) {
+  loadSfx(defs: readonly AudioDef[]) {
     const settings = useSettings.getState();
     for (const def of defs) {
       if (this.sfx.has(def.key)) continue;
@@ -83,7 +81,7 @@ class AudioManager {
     }
   }
 
-  loadBgm(defs: BgmDef[]) {
+  loadBgm(defs: readonly AudioDef[]) {
     const settings = useSettings.getState();
     for (const def of defs) {
       if (this.bgm.has(def.key)) continue;

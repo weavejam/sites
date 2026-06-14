@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSettings } from "./SettingsStore";
-import { changeLocale } from "../i18n";
 import { LOCALES, type Locale } from "../i18n/locales";
+import { useSwitchLocale } from "./useSwitchLocale";
 
 interface Props {
   open: boolean;
@@ -12,6 +12,7 @@ interface Props {
 export function SettingsDrawer({ open, onClose }: Props) {
   const { t } = useTranslation();
   const s = useSettings();
+  const switchLocale = useSwitchLocale();
 
   useEffect(() => {
     if (!open) return;
@@ -85,10 +86,7 @@ export function SettingsDrawer({ open, onClose }: Props) {
               label={t("settings.language")}
               value={s.language}
               options={LOCALES.map((l) => [l, l === "en" ? "EN" : "中文"] as [Locale, string])}
-              onChange={(l) => {
-                s.onLanguageChange(l);
-                void changeLocale(l);
-              }}
+              onChange={switchLocale}
             />
           </Section>
 

@@ -1,8 +1,7 @@
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LOCALES, type Locale, isLocale } from "../i18n/locales";
-import { changeLocale } from "../i18n";
-import { useSettings } from "./SettingsStore";
+import { useSwitchLocale } from "./useSwitchLocale";
 
 interface Props {
   onOpenSettings: () => void;
@@ -36,16 +35,12 @@ export function Header({ onOpenSettings }: Props) {
 }
 
 function LocaleSwitcher({ current }: { current: Locale }) {
-  const { onLanguageChange } = useSettings();
+  const switchLocale = useSwitchLocale();
   return (
     <select
       className="bg-jam-surface text-jam-text text-sm rounded-md border border-jam-border px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-jam-primary"
       value={current}
-      onChange={(e) => {
-        const next = e.target.value as Locale;
-        void changeLocale(next);
-        onLanguageChange(next);
-      }}
+      onChange={(e) => switchLocale(e.target.value as Locale)}
       aria-label="Language"
     >
       {LOCALES.map((l) => (

@@ -335,6 +335,8 @@ export class PlayScene extends Phaser.Scene {
     this.holdUsed = true;
     this.lockTimer = 0;
     this.lockResets = 0;
+    this.lastMoveWasRotation = false;
+    this.lastKickIndex = 0;
   }
 
   private lockNow() {
