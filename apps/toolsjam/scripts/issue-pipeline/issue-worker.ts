@@ -272,16 +272,10 @@ async function main() {
       }
     }
 
-    // 4. translate tool registry + messages into 9 non-en locales.
-    //    HARD GATE: if translate fails after all backoff retries, fail the
-    //    batch and leave the issue `in-progress` for a re-run later under
-    //    lower concurrent load.  We deliberately do NOT fall back to
-    //    English — silent English-only pages pollute the messages files
-    //    and make morning debugging harder than just rerunning.
-    updateState(issue.number, { phase: "translate" });
-    const toolIds = jobs.map((j) => j.toolId);
-    const tr = run("pnpm", ["translate-tool", ...toolIds], wtApp, wid);
-    if (tr.code !== 0) throw new Error(`translate-tool failed (exit=${tr.code})`);
+    // 4. (translation moved to a separate sweeper — see translate-sweeper.ts)
+    //    Port PRs ship English only; non-en locales are filled in by an
+    //    out-of-band content-only push from the sweeper.  This keeps port
+    //    cycle time short and isolates throttle-prone translate failures.
 
     // 5. barrel + tests + build + e2e
     updateState(issue.number, { phase: "test" });
