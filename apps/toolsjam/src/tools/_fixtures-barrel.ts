@@ -92,7 +92,12 @@ import { fixtures as f_upper_and_lower_fence_calculator } from "@/tools/upper-an
 import { fixtures as f_upper_control_limit_calculator } from "@/tools/upper-control-limit-calculator.fixtures";
 import { fixtures as f_variance_calculator } from "@/tools/variance-calculator.fixtures";
 import { fixtures as f_venn_diagram_calculator } from "@/tools/venn-diagram-calculator.fixtures";
+import { fixtures as f_von_mises_stress_calculator } from "@/tools/von-mises-stress-calculator.fixtures";
+import { fixtures as f_vswr_calculator_voltage_standing_wave_ratio_calculator } from "@/tools/vswr-calculator-voltage-standing-wave-ratio-calculator.fixtures";
 import { fixtures as f_wald_test_calculator } from "@/tools/wald-test-calculator.fixtures";
+import { fixtures as f_warp_speed_calculator } from "@/tools/warp-speed-calculator.fixtures";
+import { fixtures as f_water_density_calculator } from "@/tools/water-density-calculator.fixtures";
+import { fixtures as f_water_heating_calculator } from "@/tools/water-heating-calculator.fixtures";
 import { fixtures as f_weibull_distribution_calculator } from "@/tools/weibull-distribution-calculator.fixtures";
 import { fixtures as f_weighted_mean_calculator } from "@/tools/weighted-mean-calculator.fixtures";
 import { fixtures as f_wheatstone_bridge_calculator } from "@/tools/wheatstone-bridge-calculator.fixtures";
@@ -196,7 +201,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "upper-control-limit-calculator": f_upper_control_limit_calculator,
   "variance-calculator": f_variance_calculator,
   "venn-diagram-calculator": f_venn_diagram_calculator,
+  "von-mises-stress-calculator": f_von_mises_stress_calculator,
+  "vswr-calculator-voltage-standing-wave-ratio-calculator": f_vswr_calculator_voltage_standing_wave_ratio_calculator,
   "wald-test-calculator": f_wald_test_calculator,
+  "warp-speed-calculator": f_warp_speed_calculator,
+  "water-density-calculator": f_water_density_calculator,
+  "water-heating-calculator": f_water_heating_calculator,
   "weibull-distribution-calculator": f_weibull_distribution_calculator,
   "weighted-mean-calculator": f_weighted_mean_calculator,
   "wheatstone-bridge-calculator": f_wheatstone_bridge_calculator,

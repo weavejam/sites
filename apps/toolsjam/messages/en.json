@@ -9903,6 +9903,456 @@
         "q6": "What is the difference between wing reference area and wetted area?",
         "q6_a": "Wing reference area (S) is the plan-view projection of the wing's outline, including the portion inside the fuselage. It is a conventional reference used for normalising aerodynamic coefficients and computing wing loading. Wetted area is the total surface area actually exposed to airflow (both top and bottom surfaces), which is roughly twice the reference area. Wing loading W/S uses the reference area; skin friction drag calculations use the wetted area."
       }
+    },
+    "von-mises-stress-calculator": {
+      "title": "Von Mises Stress Calculator – Yield & Safety Analysis",
+      "tagline": "Compute von Mises equivalent stress and factor of safety from normal and shear stress components.",
+      "intro": "Enter the six stress components (σx, σy, σz, τxy, τyz, τzx) and optional yield strength to evaluate material safety.",
+      "field": {
+        "sigmaX": "Normal Stress σx (MPa)",
+        "sigmaY": "Normal Stress σy (MPa)",
+        "sigmaZ": "Normal Stress σz (MPa)",
+        "tauXY": "Shear Stress τxy (MPa)",
+        "tauYZ": "Shear Stress τyz (MPa)",
+        "tauZX": "Shear Stress τzx (MPa)",
+        "yieldStrength": "Yield Strength (MPa)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Von Mises Stress Results",
+        "vonMises": "Von Mises Stress: {value} MPa",
+        "factorOfSafety": "Factor of Safety: {value}",
+        "safe": "Safe (No Yield)",
+        "yielding": "Yielding"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers for the stress components."
+      },
+      "formula": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)])",
+      "about": {
+        "heading": "About the Von Mises Stress Calculator",
+        "body": "The von Mises stress, also called the equivalent stress or effective stress, is a scalar measure used to predict yielding of ductile materials under complex loading conditions. It combines all six stress components — three normal stresses (σx, σy, σz) and three shear stresses (τxy, τyz, τzx) — into a single equivalent value that can be directly compared to the uniaxial yield strength of the material.\n\nThe von Mises yield criterion, proposed by Richard von Mises in 1913, states that a ductile material begins to yield when the distortion energy per unit volume reaches the distortion energy at yield under uniaxial tension. This is mathematically expressed as: σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). When σ_vm equals or exceeds the yield strength σ_y, the material is predicted to yield.\n\nIn finite element analysis (FEA), von Mises stress is one of the most commonly reported results because it provides a convenient single number summarizing the severity of the stress state at any point. Engineers use it to identify critical regions, assess material utilization, and calculate factors of safety. The factor of safety (FoS) is defined as the ratio of yield strength to von Mises stress: FoS = σ_y / σ_vm. A FoS greater than 1 means the component is safe; values below 1 indicate yielding.\n\nFor uniaxial loading (σx only, all others zero), the von Mises stress equals σx, consistent with the direct definition of yielding in a simple tensile test. For pure shear loading (τxy only), σ_vm = √3 × τxy, showing that yielding in shear occurs at τ_y = σ_y/√3 ≈ 0.577σ_y. This relationship is a key result of plasticity theory and is used in shear failure predictions for bolts, welds, and structural connections.\n\nThe von Mises criterion is preferred over the Tresca (maximum shear stress) criterion for most engineering applications because it is smooth and differentiable, matches experimental data better for most ductile metals including steel, aluminum, and copper, and is more convenient in numerical computations. The Tresca criterion is slightly more conservative (predicts yielding at lower stress levels) and is sometimes used in pressure vessel codes.\n\nIn practice, von Mises stress is used in component design, weld analysis, bolted joint evaluation, pressure vessel and piping codes (ASME, EN), aerospace structural certification, and automotive crash simulation. Understanding the full stress tensor and applying the von Mises criterion allows engineers to make reliable and material-efficient designs."
+      },
+      "examples": {
+        "heading": "Von Mises Stress Examples",
+        "intro": "Representative loading scenarios showing von Mises stress, factor of safety, and safety status.",
+        "colInput": "Loading Scenario",
+        "colOutput": "Von Mises Stress / FoS",
+        "colNote": "Safety Status",
+        "items": [
+          {
+            "input": "Uniaxial Tension: σx=150 MPa, all others=0, yield=300 MPa",
+            "output": "σ_vm = 150 MPa, FoS = 2.0",
+            "note": "Safe (No Yield). Von Mises stress equals applied normal stress for uniaxial loading."
+          },
+          {
+            "input": "Pure Shear: τxy=60 MPa, all normal stresses=0, yield=200 MPa",
+            "output": "σ_vm ≈ 103.9 MPa, FoS ≈ 1.92",
+            "note": "Safe (No Yield). σ_vm = √3 × τxy for pure shear; yield occurs at τ = σ_y/√3."
+          },
+          {
+            "input": "Biaxial: σx=100, σy=80, τxy=30 MPa, yield=250 MPa",
+            "output": "σ_vm ≈ 105.4 MPa, FoS ≈ 2.37",
+            "note": "Safe (No Yield). Combined normal and shear stresses produce moderate equivalent stress."
+          },
+          {
+            "input": "Complex: σx=120, σy=−40, σz=20, τxy=45, τyz=15, τzx=25 MPa, yield=350 MPa",
+            "output": "σ_vm ≈ 168.0 MPa, FoS ≈ 2.08",
+            "note": "Safe (No Yield). Full 3D stress state with significant shear contributions."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Von Mises Stress Calculator",
+        "steps": [
+          "Enter the three normal stress components σx, σy, σz in MPa. For 2D plane stress, set σz = 0.",
+          "Enter the three shear stress components τxy, τyz, τzx in MPa. For 2D problems, set τyz = τzx = 0.",
+          "Optionally enter the material yield strength in MPa to calculate factor of safety and safety status.",
+          "Click Calculate. The von Mises equivalent stress is displayed along with FoS and safety status if yield strength was provided.",
+          "Use negative values for compressive normal stresses. The von Mises criterion is independent of sign for normal stresses when combined with shear."
+        ]
+      },
+      "faq": {
+        "heading": "Von Mises Stress FAQ",
+        "q1": "What is von Mises stress?",
+        "q1_a": "Von Mises stress is a scalar equivalent stress measure that combines all six stress tensor components into a single value. It represents the distortional energy component of the stress state and is used to predict yielding in ductile materials. When σ_vm ≥ σ_yield, the material is predicted to yield.",
+        "q2": "What is the von Mises stress formula?",
+        "q2_a": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). This is derived from the distortion energy theory and can also be expressed in terms of the principal stresses σ1, σ2, σ3 as σ_vm = √(0.5 × [(σ1−σ2)² + (σ2−σ3)² + (σ3−σ1)²]).",
+        "q3": "How is factor of safety calculated?",
+        "q3_a": "The factor of safety (FoS) is the ratio of material yield strength to von Mises stress: FoS = σ_yield / σ_vm. An FoS > 1 means the component is safe; FoS = 1 means the material is at the yield point; FoS < 1 indicates yielding (plastic deformation). Engineering codes typically require FoS of 1.5 to 4 depending on application.",
+        "q4": "What is the difference between von Mises and Tresca criteria?",
+        "q4_a": "Both predict yielding in ductile materials. The von Mises criterion is based on distortion energy and gives σ_y = √3 × τ_y. The Tresca criterion is based on maximum shear stress and gives σ_y = 2 × τ_y. Tresca is slightly more conservative (predicts yielding at lower loads) and is used in some pressure vessel codes. Von Mises fits experimental data better for most metals.",
+        "q5": "Can von Mises stress be used for brittle materials?",
+        "q5_a": "No — the von Mises criterion applies specifically to ductile materials that yield before fracture (metals like steel, aluminum, copper). For brittle materials (cast iron, ceramics, concrete), maximum principal stress or Mohr-Coulomb criteria are more appropriate because brittle fracture is governed by tensile cracking rather than shear-driven plastic flow.",
+        "q6": "What does a negative von Mises stress mean?",
+        "q6_a": "Von Mises stress is always non-negative (it is a square root of a sum of squares). It does not have a sign. A von Mises stress of zero means there is no stress at that point. The direction of loading (tension vs. compression) is captured in the individual stress components, but the equivalent von Mises scalar does not differentiate between tensile and compressive loading."
+      }
+    },
+    "vswr-calculator-voltage-standing-wave-ratio-calculator": {
+      "title": "VSWR Calculator – Voltage Standing Wave Ratio",
+      "tagline": "Calculate VSWR, return loss, mismatch loss, and transmission efficiency from power or impedance measurements.",
+      "intro": "Choose power measurement or impedance measurement mode to compute reflection coefficient, VSWR, and related RF transmission parameters.",
+      "type": {
+        "powerMode": "Power Measurement",
+        "impedanceMode": "Impedance Measurement"
+      },
+      "field": {
+        "forwardPower": "Forward Power (W)",
+        "reflectedPower": "Reflected Power (W)",
+        "loadImpedance": "Load Impedance (Ω)",
+        "charImpedance": "Characteristic Impedance (Ω)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "VSWR Results",
+        "gamma": "Reflection Coefficient (Γ): {value}",
+        "vswr": "VSWR: {value}",
+        "returnLoss": "Return Loss: {value} dB",
+        "mismatchLoss": "Mismatch Loss: {value} dB",
+        "efficiency": "Transmission Efficiency: {value}%"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers.",
+        "reflectedExceedsForward": "Reflected power cannot exceed forward power.",
+        "forwardZero": "Forward power must be greater than zero.",
+        "impedanceShort": "ZL + Z0 cannot be zero."
+      },
+      "formula": "Γ = √(Pr/Pf) or |(ZL−Z0)/(ZL+Z0)| | VSWR = (1+Γ)/(1−Γ) | RL = −20·log10(Γ) dB",
+      "about": {
+        "heading": "About the VSWR Calculator",
+        "body": "Voltage Standing Wave Ratio (VSWR) is a fundamental measurement in radio frequency (RF) and microwave engineering that quantifies how well a transmission line is matched to its load. When RF power travels along a coaxial cable or waveguide and encounters an impedance mismatch at the load, some power is reflected back toward the source. The superposition of the forward-traveling and reflected waves creates a standing wave pattern, and VSWR measures the ratio of the maximum to minimum voltage in this pattern.\n\nA perfect impedance match gives VSWR = 1.0, meaning no power is reflected. Practical systems aim for VSWR ≤ 1.5 (meaning less than 4% of power is reflected). High VSWR values (above 3 or 4) are undesirable because they waste transmitter power, can damage the power amplifier due to reflected power, and degrade signal quality. In broadcast and cellular systems, antenna VSWR is continuously monitored, and automatic protection circuits shut down transmitters when VSWR exceeds safe thresholds.\n\nThe reflection coefficient Γ (gamma) is the ratio of the reflected wave amplitude to the incident wave amplitude. It ranges from 0 (perfect match) to 1 (total reflection, as with an open or short circuit). VSWR is directly related to Γ: VSWR = (1 + |Γ|) / (1 − |Γ|). For power measurements, |Γ| = √(P_reflected / P_forward). For impedance measurements, Γ = (ZL − Z0) / (ZL + Z0), where ZL is the load impedance and Z0 is the characteristic impedance.\n\nReturn loss (in dB) quantifies the ratio of reflected power to forward power on a logarithmic scale: RL = −20 × log10(|Γ|). High return loss means low reflection. A return loss of 20 dB means 1% of power is reflected; 10 dB means 10% reflected. Mismatch loss represents the power absorbed by the transmission system due to impedance mismatch, while transmission efficiency (1 − Γ²) × 100% shows the percentage of power that actually reaches the load.\n\nCommon applications include antenna matching, coaxial cable system design, amplifier output matching, filter characterization, and impedance matching networks in RF circuit design."
+      },
+      "examples": {
+        "heading": "VSWR Examples",
+        "intro": "Common RF matching scenarios with VSWR, return loss, and transmission efficiency.",
+        "colInput": "Measurement",
+        "colOutput": "VSWR / Return Loss",
+        "colNote": "Transmission Efficiency",
+        "items": [
+          {
+            "input": "Perfect Match (Power): Pf=100W, Pr=0W",
+            "output": "Γ=0, VSWR=1.0, RL=∞ dB",
+            "note": "100% efficiency. Ideal matched system — all power delivered to load."
+          },
+          {
+            "input": "Good Match (Impedance): ZL=75Ω, Z0=50Ω",
+            "output": "Γ=0.2, VSWR=1.5, RL=14.0 dB",
+            "note": "96% efficiency. Acceptable for most applications; typical antenna specification."
+          },
+          {
+            "input": "Poor Match (Power): Pf=100W, Pr=25W",
+            "output": "Γ=0.5, VSWR=3.0, RL=6.0 dB",
+            "note": "75% efficiency. Significant mismatch — 25% of power reflected back to source."
+          },
+          {
+            "input": "High Mismatch (Impedance): ZL=200Ω, Z0=50Ω",
+            "output": "Γ=0.6, VSWR=4.0, RL=4.4 dB",
+            "note": "64% efficiency. Poor match requiring an impedance matching network for efficient operation."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the VSWR Calculator",
+        "steps": [
+          "Select the measurement mode: Power Measurement (uses forward and reflected power) or Impedance Measurement (uses load and characteristic impedances).",
+          "For Power mode: enter the forward (incident) power in watts and reflected power in watts. Reflected power must be less than forward power.",
+          "For Impedance mode: enter the load impedance ZL and characteristic impedance Z0 in ohms. Z0 is typically 50Ω for coaxial systems or 75Ω for cable TV systems.",
+          "Click Calculate to see the reflection coefficient (Γ), VSWR, return loss, mismatch loss, and transmission efficiency.",
+          "Aim for VSWR ≤ 1.5 (return loss ≥ 14 dB) for well-matched RF systems. Values above 3 indicate significant impedance mismatch requiring corrective action."
+        ]
+      },
+      "faq": {
+        "heading": "VSWR FAQ",
+        "q1": "What does VSWR mean?",
+        "q1_a": "VSWR stands for Voltage Standing Wave Ratio. It is the ratio of the maximum to minimum voltage amplitude in a standing wave pattern created when a transmission line is not perfectly matched to its load. VSWR = 1.0 is a perfect match; VSWR > 1 indicates impedance mismatch. A VSWR of 2.0 means the maximum voltage is twice the minimum voltage in the standing wave.",
+        "q2": "What is a good VSWR value?",
+        "q2_a": "For most RF applications, VSWR ≤ 1.5 is considered good (return loss ≥ 14 dB, reflection < 4%). VSWR ≤ 2.0 is acceptable for many broadcast and amateur applications. Values above 3.0 indicate significant mismatch and wasted power. Critical systems like satellite uplinks may require VSWR ≤ 1.2. VSWR = 1.0 is ideal but practically unachievable.",
+        "q3": "What is return loss and how does it relate to VSWR?",
+        "q3_a": "Return loss is the ratio of reflected power to forward power expressed in dB: RL = −20 × log10(|Γ|). High return loss means low reflection. VSWR and return loss are directly related: VSWR 1.5 → RL 14 dB; VSWR 2.0 → RL 9.5 dB; VSWR 3.0 → RL 6.0 dB. RF engineers often prefer to specify return loss because it increases as the match improves (higher is better).",
+        "q4": "What causes high VSWR?",
+        "q4_a": "High VSWR is caused by impedance mismatch between the transmission line and the load. Common causes include: antenna not tuned to the operating frequency; damaged or corroded connectors; coaxial cable with water ingress; incorrect feedline impedance; transmitter output impedance not matched to the cable; or a load (e.g., filter, amplifier) with incorrect input impedance. Impedance matching networks (L-networks, pi-networks, stub matching) can reduce VSWR.",
+        "q5": "Can VSWR damage a transmitter?",
+        "q5_a": "Yes — high VSWR means significant power is reflected back to the transmitter. Modern transmitters have directional couplers and protection circuits that detect high reflected power and reduce output or shut down automatically. However, sustained high VSWR can cause thermal stress in the final amplifier stage, damage transistors, and cause power supply instability. Always ensure the VSWR is within the transmitter's specified operating range.",
+        "q6": "What is the difference between VSWR and S11?",
+        "q6_a": "S11 (the input reflection coefficient in S-parameter notation) and VSWR describe the same impedance mismatch from different perspectives. |S11| = |Γ| (magnitude of reflection coefficient). They are related by: VSWR = (1 + |S11|) / (1 − |S11|) and Return Loss = −20 × log10(|S11|) dB. S11 is commonly used in vector network analyzer (VNA) measurements and is expressed as a complex number, while VSWR is always real and positive."
+      }
+    },
+    "warp-speed-calculator": {
+      "title": "Warp Speed Calculator – Star Trek Warp Factor",
+      "tagline": "Calculate travel speed, distance, travel time, and energy for warp factor speeds from science fiction.",
+      "intro": "Enter a warp factor (1–9.9), distance in light years, ship mass, and energy efficiency to compute warp travel parameters.",
+      "field": {
+        "warpFactor": "Warp Factor",
+        "distance": "Distance (Light Years)",
+        "mass": "Ship Mass (Metric Tons)",
+        "efficiency": "Energy Efficiency (%)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Warp Speed Results",
+        "multiplier": "Warp Speed Multiplier: {value}×c",
+        "speed": "Effective Speed: {value} km/s",
+        "travelTime": "Travel Time: {value}",
+        "energy": "Energy Required: {value} TJ"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for all fields.",
+        "warpRange": "Warp factor must be between 1 and 9.9."
+      },
+      "formula": "Multiplier = WF^(10/3) | Speed = Multiplier × 299,792.458 km/s | Time = Distance / Multiplier",
+      "unit": {
+        "days": "days",
+        "years": "years"
+      },
+      "about": {
+        "heading": "About the Warp Speed Calculator",
+        "body": "Warp drive is the iconic faster-than-light (FTL) propulsion system from the Star Trek universe, first depicted in 1966 and developed into a consistent technological framework in Star Trek: The Next Generation. In the fictional universe, warp drive works by creating an asymmetric warp bubble that compresses space in front of the ship and expands it behind, allowing the vessel to move faster than light without violating relativistic physics within its local reference frame.\n\nThe warp factor scale used in this calculator follows the TNG-era formula: speed in multiples of the speed of light = WF^(10/3). This gives: WF1 = 1c (the speed of light); WF2 ≈ 10.08c; WF5 ≈ 213.8c; WF8 ≈ 1024c; WF9 ≈ 1516c; and WF9.9 ≈ 3053c. The original TOS-era formula used WF^3 (a cube), giving much lower speeds — WF1 = 1c, WF2 = 8c, WF6 = 216c. The TNG formula was introduced to make warp factors more consistent with the show's implied travel times across galactic distances.\n\nThe energy calculation in this calculator is a fictional extrapolation based on kinetic energy principles. In the real universe, accelerating any mass to superluminal speeds would require infinite energy by Einsteinian physics. The warp bubble concept sidesteps this by moving space rather than the ship, but the energy budget for creating and sustaining such a bubble would be astronomical — calculations based on general relativity suggest the Alcubierre drive (the theoretical real-world analog of warp drive) would require exotic matter with negative energy density equivalent to the mass-energy of an entire planet.\n\nFor entertainment and educational purposes, this calculator uses a simplified energy model: E = 0.5 × m × v² scaled by efficiency, treating the ship as a classical kinetic energy problem at relativistic speeds divided by an efficiency factor representing matter-antimatter annihilation and warp field generation. Real antimatter propulsion in Star Trek is described as achieving nearly perfect mass-energy conversion through matter-antimatter reactions, with typical stated efficiencies of 85–95% for modern warp cores.\n\nTravel time calculations assume constant warp speed, ignoring acceleration and deceleration periods. For reference: at WF5 (≈214c), the distance to Alpha Centauri (4.37 light years) takes about 7.5 days. At WF9 (≈1516c), crossing the Milky Way (105,000 light years) would take about 69 years. These numbers align reasonably well with canonical travel times mentioned in Star Trek episodes."
+      },
+      "examples": {
+        "heading": "Warp Speed Examples",
+        "intro": "Example warp travel scenarios showing speed multipliers, travel times, and energy requirements.",
+        "colInput": "Mission / Warp Factor / Distance",
+        "colOutput": "Speed / Travel Time",
+        "colNote": "Energy Required",
+        "items": [
+          {
+            "input": "Alpha Centauri: WF5, 4.3 ly, 1000t, 85% efficiency",
+            "output": "≈213.8×c, ≈7.3 days",
+            "note": "Moderate warp; standard cargo/patrol mission energy budget."
+          },
+          {
+            "input": "Emergency: WF8.5, 10 ly, 500t, 90% efficiency",
+            "output": "≈1253×c, ≈2.9 days",
+            "note": "High warp factor; massive energy spike from cubic scaling."
+          },
+          {
+            "input": "Cargo: WF3.2, 25 ly, 5000t, 75% efficiency",
+            "output": "≈48.3×c, ≈189 days",
+            "note": "Economy warp; slow but fuel-efficient for heavy freighters."
+          },
+          {
+            "input": "Scout: WF6.8, 50 ly, 200t, 95% efficiency",
+            "output": "≈595.7×c, ≈30.7 days",
+            "note": "Fast scout; low mass keeps energy reasonable despite high warp factor."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Warp Speed Calculator",
+        "steps": [
+          "Enter a warp factor between 1 and 9.9. Warp 1 equals the speed of light; Warp 9.9 is near the theoretical maximum in the TNG-era scale.",
+          "Enter the distance to travel in light years. For reference: Alpha Centauri is 4.37 ly, the galactic center is 26,000 ly, and the Andromeda galaxy is 2.5 million ly.",
+          "Enter the ship mass in metric tons and energy efficiency percentage for the warp core system.",
+          "Click Calculate to see warp speed multiplier, effective speed in km/s, travel time (in years or days), and fictional energy required.",
+          "Experiment with different warp factors to see the dramatic effect of the 10/3 power scaling — warp 9 is over 7× faster than warp 8."
+        ]
+      },
+      "faq": {
+        "heading": "Warp Speed FAQ",
+        "q1": "What warp factor formula does this calculator use?",
+        "q1_a": "This calculator uses the TNG-era (Star Trek: The Next Generation) warp formula: speed = WF^(10/3) × c. This gives WF1 = 1c, WF5 ≈ 214c, WF9 ≈ 1516c, WF9.9 ≈ 3053c. The earlier TOS (original series) formula used WF^3, which gives WF1 = 1c, WF5 = 125c, WF9 = 729c.",
+        "q2": "Is warp drive scientifically possible?",
+        "q2_a": "In 1994, physicist Miguel Alcubierre proposed a theoretical warp drive metric in general relativity that moves space around a ship rather than accelerating the ship itself. The Alcubierre drive is mathematically consistent with general relativity but requires exotic matter with negative energy density — a substance not known to exist in useful quantities. Energy requirements are estimated to be equivalent to the mass-energy of a planet or more, making it currently physically impossible.",
+        "q3": "How fast is Warp 9?",
+        "q3_a": "Using the TNG formula, Warp 9 = 9^(10/3) × c ≈ 1516 times the speed of light, or about 4.54 × 10^11 km/s. At this speed, you could cross the diameter of the Milky Way (about 100,000 light years) in approximately 66 years. It takes about 2.9 days to travel from Earth to the nearest star, Alpha Centauri, at 4.37 light years.",
+        "q4": "Why does the energy increase so dramatically at high warp factors?",
+        "q4_a": "Because of the WF^(10/3) speed scaling and the v² term in kinetic energy, total energy scales roughly as WF^(20/3). Going from WF8 to WF9 increases speed by about 48% but energy by roughly 120%. This is why Star Trek consistently shows engineers warning against prolonged high-warp travel — the fuel consumption rate increases dramatically near the upper limit of the warp scale.",
+        "q5": "What is Warp 10 in Star Trek?",
+        "q5_a": "In the TNG-era canon, Warp 10 is defined as infinite velocity — a theoretical absolute limit called the 'transwarp threshold'. Reaching Warp 10 would mean existing at all points in the universe simultaneously. In the Voyager episode 'Threshold', Tom Paris briefly achieves Warp 10 with unusual biological consequences. This makes the warp scale asymptotic: Warp 9, 9.9, 9.99, 9.999 represent progressively higher but never infinite speeds.",
+        "q6": "How accurate are the travel times?",
+        "q6_a": "This calculator computes travel time as distance (in light years) divided by the speed multiplier, giving the time in years. No acceleration or deceleration time is included. For short distances (< 1 year travel time), the result is displayed in days. The results are fictional and based only on the Star Trek warp formula, not actual physics. Real relativistic travel would involve time dilation, but warp drive is specifically designed to avoid relativistic effects."
+      }
+    },
+    "water-density-calculator": {
+      "title": "Water Density Calculator – Temperature, Salinity & Pressure",
+      "tagline": "Calculate water density from temperature, salinity, and pressure using the UNESCO equation of state.",
+      "intro": "Enter temperature (°C), salinity (%), and pressure (atm), plus optional mass and volume for measured density comparison.",
+      "field": {
+        "mass": "Mass (g)",
+        "volume": "Volume (mL)",
+        "temperature": "Temperature (°C)",
+        "salinity": "Salinity (%)",
+        "pressure": "Pressure (atm)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Water Density Results",
+        "measuredDensity": "Measured Density: {gml} g/mL ({kgm3} kg/m³)",
+        "theoreticalDensity": "Theoretical Density: {gml} g/mL ({kgm3} kg/m³)",
+        "difference": "Density Difference: {value} g/mL"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers. Temperature, salinity, and pressure are required.",
+        "massVolume": "Both mass and volume must be provided for measured density."
+      },
+      "formula": "ρ = f(T, S, P) using UNESCO equation of state | ρ_measured = mass / volume",
+      "about": {
+        "heading": "About the Water Density Calculator",
+        "body": "Water density varies significantly with temperature, salinity, and pressure — variations that have profound effects on oceanography, aquatic biology, engineering, and everyday applications. Pure water at 4°C reaches its maximum density of approximately 999.97 kg/m³ (essentially 1.000 g/mL). This unusual maximum causes ice to float (ice is less dense than liquid water), lakes to stratify in winter, and convection patterns that drive ocean circulation.\n\nThe temperature dependence of water density is non-linear and asymmetric. As temperature increases from 0°C, density first increases slightly to reach maximum at 4°C, then decreases monotonically to 100°C and beyond. At 20°C (room temperature), pure water density is about 998.2 kg/m³; at 80°C, it drops to about 971.8 kg/m³. This means hot water is measurably lighter — a fact used in thermosiphon heating systems and natural convection cooling.\n\nSalinity significantly increases water density. The ocean's average salinity is about 35 parts per thousand (3.5%), which raises density by approximately 25–28 kg/m³ compared to fresh water at the same temperature. Ocean density at 25°C with 3.5% salinity is about 1023–1027 kg/m³. The Dead Sea, with salinity of about 30–34%, has density approaching 1240 kg/m³, making objects float much more easily than in fresh water.\n\nPressure effects are much smaller than temperature and salinity effects in typical conditions. At sea level (1 atm), the pressure effect is zero by convention. In the deep ocean, pressure can reach 1000 atm or more, increasing water density by about 4–5%. This deep-water compressibility plays an important role in the thermohaline circulation and deep-ocean dynamics.\n\nThis calculator uses polynomial equations based on the UNESCO (1981) equation of state for seawater, which is the international standard for oceanographic calculations. The pure water density polynomial is accurate to ±0.001 kg/m³ for 0–40°C; the salinity corrections follow the Millero-Poisson equations valid for 0–40 ppt salinity at atmospheric pressure. The measured density feature allows comparison between a direct mass/volume measurement and the theoretical prediction.\n\nEngineering applications include buoyancy calculations, pipeline design, heat exchanger analysis, desalination system design, aquaculture facility planning, brewing and food processing, and environmental impact assessment for thermal and saline discharges."
+      },
+      "examples": {
+        "heading": "Water Density Examples",
+        "intro": "Water density under various temperature, salinity, and pressure conditions.",
+        "colInput": "Conditions",
+        "colOutput": "Theoretical Density",
+        "colNote": "Notes",
+        "items": [
+          {
+            "input": "Room Temp: T=20°C, S=0%, P=1 atm; measured: 100g / 100mL",
+            "output": "Measured: 1.000 g/mL, Theoretical: ≈0.9982 g/mL",
+            "note": "Small difference due to measurement uncertainty or dissolved gases in real water."
+          },
+          {
+            "input": "Max Density: T=4°C, S=0%, P=1 atm",
+            "output": "≈0.9999 g/mL (999.9 kg/m³)",
+            "note": "Pure water reaches maximum density at approximately 4°C."
+          },
+          {
+            "input": "Seawater: T=25°C, S=3.5%, P=1 atm",
+            "output": "≈1.0234 g/mL (1023.4 kg/m³)",
+            "note": "Average ocean surface water. Salinity raises density by ~25 kg/m³."
+          },
+          {
+            "input": "Hot Water: T=80°C, S=0%, P=1 atm",
+            "output": "≈0.9739 g/mL (973.9 kg/m³)",
+            "note": "Hot water is significantly less dense — important for thermal system design."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Water Density Calculator",
+        "steps": [
+          "Enter the water temperature in degrees Celsius. The formula is valid from 0°C to 100°C.",
+          "Enter the salinity as a percentage (e.g., 3.5 for seawater). For pure fresh water, enter 0.",
+          "Enter the pressure in atmospheres. For surface conditions, use 1 atm. For deep ocean, use 1 + depth_m × 0.0987 atm.",
+          "Optionally, enter mass in grams and volume in milliliters to calculate measured density and compare it with the theoretical prediction.",
+          "Click Calculate to see theoretical density in both g/mL and kg/m³. If measured values were entered, the difference between measured and theoretical is also displayed."
+        ]
+      },
+      "faq": {
+        "heading": "Water Density FAQ",
+        "q1": "What is the density of water at room temperature?",
+        "q1_a": "At 20°C (68°F) and standard atmospheric pressure, pure water density is approximately 998.2 kg/m³ or 0.9982 g/mL. This is slightly less than the commonly cited 1.000 g/mL (1000 kg/m³), which is the density at 4°C — water's maximum density point. For most engineering calculations, 1000 kg/m³ is used as a convenient approximation.",
+        "q2": "Why does water have maximum density at 4°C?",
+        "q2_a": "Water's anomalous density maximum at 4°C is caused by the tetrahedral hydrogen bond structure of water molecules. Above 4°C, thermal expansion (molecules moving faster and taking more space) reduces density. Below 4°C, water molecules begin arranging into a hexagonal lattice structure (the beginning of ice formation) which is less dense than liquid water. This dual effect creates the density maximum at 4°C.",
+        "q3": "How much does salinity affect water density?",
+        "q3_a": "Each 1 ppt (0.1%) increase in salinity raises water density by approximately 0.8 kg/m³. Ocean water at 35 ppt salinity (3.5%) is about 25–28 kg/m³ denser than fresh water at the same temperature. The Dead Sea at ~300 ppt salinity has density around 1240 kg/m³, making it easy for people to float. Dissolved salts reduce the volume occupied by water molecules through electrostriction, increasing density.",
+        "q4": "What is the equation of state for seawater?",
+        "q4_a": "This calculator uses the UNESCO (1981) equation of state for seawater, which expresses density as a polynomial function of temperature (T), salinity (S), and pressure (P). The pure water density polynomial has 5 terms; salinity adds three correction terms; pressure adds a further correction. The result is accurate to about ±0.005 kg/m³ for oceanic conditions. The modern standard is TEOS-10 (2010), but the 1981 equations remain widely used.",
+        "q5": "How does pressure affect water density?",
+        "q5_a": "Water is compressible under high pressure, unlike the common engineering assumption of incompressibility. At 1000 atm (roughly 10 km ocean depth), water density increases by about 4–5% compared to surface conditions. For surface engineering calculations (P ≈ 1 atm), the pressure effect is negligible. Deep ocean pressure effects are important for submarine design, deep-sea ROVs, and understanding thermohaline circulation.",
+        "q6": "How do I measure water density experimentally?",
+        "q6_a": "The simplest method is mass-to-volume ratio: weigh a known volume of water using a calibrated volumetric flask and precision balance. Density = mass (g) / volume (mL). A pycnometer (specific gravity bottle) provides high accuracy by precisely defining the volume. A hydrometer measures density directly by flotation depth. Digital density meters use oscillating U-tube technology for fast, highly accurate measurements (±0.0001 g/mL)."
+      }
+    },
+    "water-heating-calculator": {
+      "title": "Water Heating Calculator – Energy, Time & Cost",
+      "tagline": "Calculate energy required, heating time, cost, and CO₂ emissions to heat water from any initial to target temperature.",
+      "intro": "Enter water volume, temperatures, heater power, efficiency, and energy cost to calculate heating energy, time, and total cost.",
+      "type": {
+        "liters": "L",
+        "gallons": "gal"
+      },
+      "field": {
+        "volume": "Water Volume",
+        "initialTemp": "Initial Temperature (°C)",
+        "targetTemp": "Target Temperature (°C)",
+        "power": "Heater Power (kW)",
+        "efficiency": "Efficiency (%)",
+        "costPerKwh": "Energy Cost ($/kWh)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Water Heating Results",
+        "heatEnergy": "Heat Energy Required: {value} kWh",
+        "actualEnergy": "Actual Energy Input: {value} kWh",
+        "heatingTime": "Heating Time: {value}",
+        "cost": "Total Cost: ${value}",
+        "co2": "CO₂ Equivalent: {value} kg"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for all fields.",
+        "tempRange": "Target temperature must be higher than initial temperature."
+      },
+      "formula": "E = m·c·ΔT / 3,600,000 kWh | E_actual = E / efficiency | t = E_actual / power",
+      "unit": {
+        "hours": "h",
+        "minutes": "m"
+      },
+      "about": {
+        "heading": "About the Water Heating Calculator",
+        "body": "Heating water is one of the most energy-intensive processes in residential and commercial buildings, typically accounting for 15–20% of total energy consumption in homes. Understanding the energy, time, and cost required to heat a given volume of water is essential for selecting the right water heater, optimizing energy efficiency, and reducing utility costs.\n\nThe fundamental formula for water heating is based on the specific heat capacity of water: Q = m × c × ΔT, where Q is heat energy in joules, m is mass in kilograms (equal to volume in liters for water at room temperature), c is the specific heat capacity of water (4186 J/(kg·K)), and ΔT is the temperature rise in degrees Celsius. Converting joules to kilowatt-hours (1 kWh = 3,600,000 J) gives Q_kWh = volume_L × 4186 × ΔT / 3,600,000.\n\nActual energy consumption is higher than the theoretical minimum because no heating system is 100% efficient. Resistance electric heaters have efficiency ratings of 95–100% (most electrical energy converts to heat). Gas water heaters are typically 60–80% efficient due to flue losses. Heat pumps are uniquely described by a Coefficient of Performance (COP) of 2–4, meaning they can deliver 200–400% of the electrical energy consumed as heat by extracting thermal energy from the air or ground. In this calculator, enter heat pump efficiency as 200%, 300%, etc.\n\nHeating time depends on heater power: t = E_actual / P_kW. A 3 kW electric element heating 200 liters from 10°C to 60°C requires about 12.9 kWh of actual energy, taking approximately 4.3 hours. Increasing heater power reduces time proportionally — a 6 kW element would achieve the same in 2.15 hours.\n\nThe CO₂ equivalent output in this calculator uses the average grid electricity emission factor of 0.233 kg CO₂/kWh (UK grid average 2023). This factor varies significantly by country and energy mix: French electricity from nuclear is about 0.05 kg/kWh; Australian coal-heavy grid is about 0.67 kg/kWh. For gas water heaters, multiply by the gas emission factor (approximately 0.184 kg CO₂/kWh for natural gas), not the electricity factor.\n\nCost optimization strategies include: using off-peak electricity tariffs for overnight heating; choosing the correct heater size (oversized units cycle more and lose standby heat); setting water heater thermostats to 60°C (minimum for Legionella prevention) rather than 70–80°C; insulating hot water pipes and storage tanks; and replacing old resistance heaters with heat pump water heaters, which can reduce water heating energy consumption by 60–70%."
+      },
+      "examples": {
+        "heading": "Water Heating Examples",
+        "intro": "Typical heating scenarios showing energy, time, and cost for different applications.",
+        "colInput": "Scenario / Volume / Temperatures / Heater",
+        "colOutput": "Energy / Time",
+        "colNote": "Cost",
+        "items": [
+          {
+            "input": "Domestic: 200L, 10→60°C, 3kW, 90%, $0.15/kWh",
+            "output": "Heat=11.63 kWh, Actual=12.92 kWh, Time≈4h 18m",
+            "note": "$1.94. Typical overnight electric storage water heater scenario."
+          },
+          {
+            "input": "Commercial: 1000L, 15→80°C, 15kW, 85%, $0.12/kWh",
+            "output": "Heat=75.6 kWh, Actual=88.9 kWh, Time≈5h 56m",
+            "note": "$10.67. Restaurant or hotel boiler morning heat-up."
+          },
+          {
+            "input": "Heat Pump: 150L, 12→55°C, 2.5kW, 300%, $0.18/kWh",
+            "output": "Heat=7.50 kWh, Actual=2.50 kWh, Time≈1h 0m",
+            "note": "$0.45. Heat pump COP=3 delivers 3× more heat than electrical input."
+          },
+          {
+            "input": "Solar Booster: 300L, 20→65°C, 4kW, 95%, $0.14/kWh",
+            "output": "Heat=15.7 kWh, Actual=16.5 kWh, Time≈4h 8m",
+            "note": "$2.31. Electric boost for solar-preheated water storage tank."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Water Heating Calculator",
+        "steps": [
+          "Enter the water volume and select the unit (L for liters or gal for US gallons). 1 US gallon = 3.785 liters.",
+          "Enter initial temperature (current water temperature) and target temperature (desired hot water temperature) in degrees Celsius.",
+          "Enter heater power in kilowatts. Common values: 1.5–3 kW (domestic element), 5–15 kW (commercial), 2–4 kW (heat pump).",
+          "Enter efficiency as a percentage. Resistance heaters: 95–100%. Gas heaters: 60–80%. Heat pumps: 200–400% (COP × 100).",
+          "Enter your energy cost per kilowatt-hour. Click Calculate to see heat energy required, actual energy input, heating time (hours and minutes), total cost, and CO₂ equivalent."
+        ]
+      },
+      "faq": {
+        "heading": "Water Heating FAQ",
+        "q1": "How much energy does it take to heat water?",
+        "q1_a": "The energy required is Q = volume_L × 4186 × ΔT / 3,600,000 kWh. For example, heating 100 liters by 50°C requires 100 × 4186 × 50 / 3,600,000 ≈ 5.81 kWh of heat energy. The actual energy consumed depends on heater efficiency — an 85% efficient gas heater would consume 5.81 / 0.85 ≈ 6.84 kWh of gas energy.",
+        "q2": "How long does it take to heat a 200L hot water tank?",
+        "q2_a": "With a 3 kW electric element and 90% efficiency heating from 10°C to 60°C: energy = 200 × 4186 × 50 / 3,600,000 = 11.63 kWh heat; actual = 11.63/0.9 = 12.92 kWh; time = 12.92/3 = 4.31 hours (about 4 hours 18 minutes). A 6 kW element would halve this to about 2h 9m.",
+        "q3": "What is heating efficiency and why does it matter?",
+        "q3_a": "Heating efficiency is the ratio of useful heat delivered to the water versus total energy consumed. Resistance electric heaters are nearly 100% efficient (all electricity becomes heat). Gas heaters lose 20–40% through flue gases. Heat pumps have efficiency above 100% (expressed as COP) because they move heat rather than generate it — a COP of 3 means 3 kWh of heat per 1 kWh of electricity. Efficiency determines actual energy cost and carbon footprint.",
+        "q4": "What temperature should I set my water heater to?",
+        "q4_a": "For health and safety, water heaters should be set to at least 60°C to prevent Legionella bacteria growth. For delivery to taps, thermostatic mixing valves blend hot water down to 50–55°C to prevent scalding. Setting the thermostat higher than 60°C wastes energy with no safety benefit. Heat pump water heaters may need to run a periodic 65°C sanitation cycle because they typically operate at lower temperatures for efficiency.",
+        "q5": "How much does it cost to heat water with electricity vs gas?",
+        "q5_a": "Cost = (heat energy / efficiency) × fuel cost per unit. For 200L, 10→60°C: heat energy = 11.63 kWh. Electric at 98% efficiency and $0.25/kWh: 11.63/0.98 × 0.25 = $2.97. Gas at 75% efficiency and $0.05/kWh equivalent: 11.63/0.75 × 0.05 = $0.78. Despite gas being cheaper per kWh, heat pump water heaters at 300% COP: 11.63/3 × 0.25 = $0.97 — often cheaper than gas despite higher electricity prices.",
+        "q6": "What is the CO₂ equivalent for water heating?",
+        "q6_a": "CO₂ emissions depend on the energy source and grid carbon intensity. This calculator uses 0.233 kg CO₂/kWh — the UK average grid intensity. In France (mostly nuclear), emissions are about 0.05 kg/kWh; in Australia (coal-heavy), about 0.67 kg/kWh. To reduce water heating emissions: install solar thermal panels (eliminates 60–80% of heating energy), use a heat pump water heater, insulate storage tanks and pipes, and choose renewable electricity tariffs."
+      }
     }
   }
 }
+
