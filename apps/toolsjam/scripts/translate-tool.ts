@@ -136,7 +136,19 @@ function isEntryFullyTranslated(e: ToolEntry): boolean {
   return true;
 }
 
+function isCacheComplete(toolId: string): boolean {
+  const f = path.join(CACHE_DIR, "translations", `${toolId}.json`);
+  if (!existsSync(f)) return false;
+  try {
+    const parsed = JSON.parse(readFileSync(f, "utf8")) as Record<string, { content?: unknown }>;
+    return TARGET_LOCALES.every((l) => !!parsed[l]?.content);
+  } catch { return false; }
+}
+
 function findAllUntranslated(): string[] {
+  // "Untranslated" now means: tool registry entry exists but cache JSON is
+  // missing or incomplete.  Tools with a complete cache but un-applied entry
+  // are NOT returned — apply-translations handles those.
   const fs = require("node:fs") as typeof import("node:fs");
   const out: string[] = [];
   for (const f of fs.readdirSync(DATA_DIR)) {
@@ -145,7 +157,7 @@ function findAllUntranslated(): string[] {
     try {
       const { entries } = readCategoryFile(category);
       for (const e of entries) {
-        if (!isEntryFullyTranslated(e)) out.push(e.id);
+        if (!isCacheComplete(e.id)) out.push(e.id);
       }
     } catch { /* ignore */ }
   }
@@ -291,8 +303,8 @@ function sleep(ms: number): Promise<void> {
 async function translateOne(toolId: string, force: boolean): Promise<boolean> {
   const found = findEntry(toolId);
   if (!found) { console.error(`✗ ${toolId}: not in any category registry`); return false; }
-  if (!force && isEntryFullyTranslated(found.entry)) {
-    console.log(`= ${toolId}: already fully translated`);
+  if (!force && isCacheComplete(toolId)) {
+    console.log(`= ${toolId}: cache already complete`);
     return true;
   }
   const enMessages = loadJson(path.join(MESSAGES_DIR, "en.json")) as Record<string, Record<string, unknown>>;
@@ -336,17 +348,12 @@ async function translateOne(toolId: string, force: boolean): Promise<boolean> {
       const missing = TARGET_LOCALES.filter((l) => !parsed[l]?.content);
       if (missing.length) { console.warn(`  missing locales: ${missing.join(",")}`); continue; }
 
-      // Merge messages and registry.
-      for (const l of TARGET_LOCALES) {
-        const m = loadJson(path.join(MESSAGES_DIR, `${l}.json`));
-        (m as any).tool = (m as any).tool || {};
-        (m as any).tool[toolId] = parsed[l].content;
-        saveJson(path.join(MESSAGES_DIR, `${l}.json`), m);
-        found.entry.slugs[l] = parsed[l].slug;
-        found.entry.titles[l] = parsed[l].title;
-        found.entry.descriptions[l] = parsed[l].description;
-      }
-      writeCategoryFile(found.category, found.entries);
+      // SUCCESS — cache file is complete and valid.  We deliberately do NOT
+      // mutate src/data/tools/<cat>.ts or messages/*.json here: those writes
+      // are shared across many tools (e.g. statistic.ts holds 200+) and any
+      // parallel translate-tool process would race us.  Source-file flushing
+      // happens via apply-translations.ts at the end of main() (and on any
+      // subsequent re-run — it is idempotent and uses an FS lock).
       console.log(`✓ ${toolId} translated in ${dur}s (${model})`);
       return true;
     }
@@ -371,13 +378,25 @@ async function main() {
   console.log(`translate-tool: ${ids.length} tool(s)`);
   const state = loadState();
   let ok = 0, fail = 0;
+  const succeeded: string[] = [];
   for (const id of ids) {
     const success = await translateOne(id, args.force);
     state[id] = { at: new Date().toISOString(), status: success ? "ok" : "fail" };
     saveState(state);
-    if (success) ok++; else fail++;
+    if (success) { ok++; succeeded.push(id); } else { fail++; }
   }
-  console.log(`\nfinished: ok=${ok} fail=${fail}`);
+  console.log(`\ntranslated: ok=${ok} fail=${fail}`);
+
+  // Flush cache → source files (category .ts + messages JSON). This is
+  // serialized via an FS lock so N parallel translate-tool processes can
+  // each call it safely without losing writes to shared category files.
+  if (succeeded.length > 0) {
+    const { applyTranslations } = await import("./apply-translations");
+    const r = await applyTranslations(succeeded);
+    console.log(`applied: applied=${r.applied.length} skipped=${r.skipped.length} categories=${r.categories.length}`);
+    for (const s of r.skipped) console.warn(`  - apply skipped ${s.id}: ${s.reason}`);
+  }
+
   process.exit(fail === 0 ? 0 : 1);
 }
 
