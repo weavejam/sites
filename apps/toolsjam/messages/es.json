@@ -8771,6 +8771,392 @@
         "q6": "¿Esta calculadora puede manejar monedas sesgadas?",
         "q6_a": "Esta calculadora asume una moneda justa con p = 0.5. Para una moneda sesgada con probabilidad p de cara, la fórmula es P(X=k) = C(n,k) × p^k × (1−p)^(n−k). Para calcular probabilidades de una moneda sesgada, tendrías que sustituir el valor adecuado de p. Las sumas acumuladas de Al menos y Como máximo funcionan igual; solo cambia 0.5 por la probabilidad sesgada."
       }
+    },
+    "wheatstone-bridge-calculator": {
+      "title": "Calculadora de puente de Wheatstone — Mide resistencia desconocida",
+      "tagline": "Calcula resistencia desconocida con el puente de Wheatstone equilibrado y alta precisión.",
+      "intro": "Ingresa los valores de resistencia conocidos (R1, R2, R3), la razón de voltaje de salida del puente y el voltaje de alimentación para resolver la resistencia desconocida Rx.",
+      "field": {
+        "r1": "Resistencia R1 (Ω)",
+        "r2": "Resistencia R2 (Ω)",
+        "r3": "Resistencia R3 (Ω)",
+        "voltageRatio": "Razón de voltaje (V)",
+        "supplyVoltage": "Voltaje de alimentación (V)"
+      },
+      "placeholder": {
+        "r1": "p. ej. 1000",
+        "r2": "p. ej. 1000",
+        "r3": "p. ej. 500",
+        "voltageRatio": "p. ej. 0",
+        "supplyVoltage": "p. ej. 5"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Ingresa números positivos válidos para todos los campos.",
+        "outOfRange": "No hay una solución válida; verifica que los valores de R y la razón de voltaje sean físicamente coherentes."
+      },
+      "result": {
+        "heading": "Resultado",
+        "rx": "Resistencia desconocida Rx = {value} Ω",
+        "vout": "Voltaje de salida del puente = {value} V",
+        "balanced": "Estado del puente: equilibrado (Vout ≈ 0)",
+        "unbalanced": "Estado del puente: desequilibrado"
+      },
+      "formula": "Fórmula: Rx = R2·R3/R1 (equilibrado) | Vout = Vs·(Rx/(R2+Rx) − R3/(R1+R3))",
+      "about": {
+        "heading": "Acerca de la calculadora de puente de Wheatstone",
+        "body": "El puente de Wheatstone es uno de los métodos más elegantes y precisos para medir resistencia eléctrica. Inventado por Samuel Hunter Christie en 1833 y popularizado por Sir Charles Wheatstone en 1843, el circuito de puente sigue siendo una piedra angular de la medición eléctrica y la tecnología de sensores más de 180 años después.\n\nEl puente de Wheatstone clásico consta de cuatro resistencias dispuestas en forma de rombo, con una fuente de voltaje conectada entre un par de nodos opuestos y un galvanómetro (o voltímetro diferencial) conectado entre el otro par. Cuando el puente está equilibrado —es decir, cuando la razón de resistencias en un brazo es igual a la del otro— no circula corriente por el galvanómetro. Esta condición de nulidad se aprovecha para determinar una resistencia desconocida con precisión extraordinaria.\n\nLa condición de equilibrio se expresa como R1/R2 = R3/Rx, que se reordena como Rx = R2·R3/R1. Esta fórmula es exacta y no requiere calibración; la precisión depende únicamente de cuán bien se conozcan R1, R2 y R3. Los puentes de laboratorio de alta precisión pueden medir resistencia con una exactitud mejor que una parte por millón.\n\nCuando el puente no está equilibrado —como suele ocurrir en aplicaciones de sensores donde debe detectarse un pequeño cambio de resistencia— el voltaje de salida Vout se relaciona con el voltaje de alimentación Vs mediante: Vout = Vs·(Rx/(R2+Rx) − R3/(R1+R3)). Esta calculadora usa esa fórmula al revés: dado el voltaje de salida medido, resuelve Rx.\n\nEl puente de Wheatstone es indispensable en aplicaciones con galgas extensométricas. Una galga extensométrica es un elemento resistivo cuya resistencia cambia proporcionalmente a la deformación mecánica. Al unir galgas a un elemento estructural y conectarlas en un puente de Wheatstone, los ingenieros pueden medir fuerzas, presiones, torques y desplazamientos con precisión submicrodeformación. Las celdas de carga, los transductores de presión y los sensores de fuerza en todo, desde balanzas industriales hasta trenes de aterrizaje de aeronaves, suelen usar configuraciones de puente de Wheatstone.\n\nLos sensores de temperatura basados en detectores de temperatura por resistencia (RTD) y termistores también se benefician de los circuitos de puente. Como la resistencia cambia con la temperatura, el voltaje de salida del puente varía de forma predecible con la temperatura, lo que permite una medición precisa. Los RTD de platino (Pt100, Pt1000) se suelen leer mediante circuitos de puente en control de procesos industriales.\n\nLas aplicaciones modernas se extienden a biosensores, sensores químicos y dispositivos MEMS, donde pequeños cambios de resistencia causados por interacciones biológicas o químicas se detectan mediante desequilibrios del puente. La simplicidad fundamental y la inmunidad al ruido del principio de puente —basado en una medición nula o en un voltaje diferencial— lo hacen robusto frente a interferencias en modo común y fluctuaciones de la fuente de alimentación."
+      },
+      "examples": {
+        "heading": "Ejemplos de puente de Wheatstone",
+        "intro": "Haz clic en cualquier ejemplo para cargarlo en la calculadora.",
+        "colInput": "Configuración del circuito",
+        "colOutput": "Rx desconocida (Ω)",
+        "colNote": "Notas",
+        "loadBalanced": "Cargar puente equilibrado",
+        "loadUnbalanced": "Cargar puente desequilibrado",
+        "loadStrainGauge": "Cargar galga extensométrica",
+        "items": [
+          {
+            "input": "R1=1000Ω, R2=1000Ω, R3=500Ω, Vout=0V, Vs=5V",
+            "output": "Rx = 500 Ω",
+            "note": "Puente perfectamente equilibrado. R1/R2 = R3/Rx, por lo que Rx = R2·R3/R1 = 500 Ω."
+          },
+          {
+            "input": "R1=1000Ω, R2=1000Ω, R3=750Ω, Vout=0.25V, Vs=10V",
+            "output": "Rx ≈ 830 Ω",
+            "note": "Puente desequilibrado. El voltaje de salida indica una desviación de la resistencia respecto al equilibrio."
+          },
+          {
+            "input": "R1=120Ω, R2=120Ω, R3=120Ω, Vout=0.05V, Vs=5V",
+            "output": "Rx ≈ 124.9 Ω",
+            "note": "Configuración típica de galga extensométrica. Un pequeño desplazamiento de voltaje indica un cambio de unos 4.9 Ω respecto al valor nominal de 120 Ω."
+          },
+          {
+            "input": "R1=10000Ω, R2=10000Ω, R3=100Ω, Vout=0.01V, Vs=3.3V",
+            "output": "Rx ≈ 131 Ω",
+            "note": "Puente de alta relación para medir resistencias pequeñas. Un Vout mínimo cerca del equilibrio desplaza Rx desde la referencia de 100 Ω."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de puente de Wheatstone",
+        "steps": [
+          "Ingresa las tres resistencias conocidas R1, R2 y R3 en ohmios (Ω). Usa la misma unidad para las tres.",
+          "Ingresa el voltaje de alimentación (Vs), es decir, el voltaje aplicado al puente.",
+          "Ingresa la razón de voltaje (voltaje de salida del puente Vout) medida entre los dos puntos medios del puente. Para un puente equilibrado, escribe 0.",
+          "Haz clic en Calcular. La calculadora resuelve Rx = R2·R3/R1 ajustado por cualquier desplazamiento de voltaje.",
+          "Usa los botones de ejemplo para cargar configuraciones comunes del puente y verificar tu montaje."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre el puente de Wheatstone",
+        "q1": "¿Para qué se usa un puente de Wheatstone?",
+        "q1_a": "Un puente de Wheatstone se usa para medir con alta precisión una resistencia eléctrica desconocida. Funciona equilibrando el circuito de puente para que no circule corriente por el dispositivo de medición y luego usa las resistencias conocidas para calcular la desconocida. También se usa ampliamente en aplicaciones de sensores (galgas extensométricas, sensores de temperatura, transductores de presión) donde hay que detectar con precisión pequeños cambios de resistencia.",
+        "q2": "¿Cuál es la fórmula del puente de Wheatstone?",
+        "q2_a": "Para un puente equilibrado (Vout = 0): Rx = R2 × R3 / R1. Para un puente desequilibrado con voltaje de salida Vout y voltaje de alimentación Vs: Vout = Vs × (Rx/(R2+Rx) − R3/(R1+R3)). Al resolver esto para Rx se obtiene: Rx = ratio × R2 / (1 − ratio), donde ratio = Vout/Vs + R3/(R1+R3).",
+        "q3": "¿Qué significa que el puente esté equilibrado?",
+        "q3_a": "Que un puente de Wheatstone esté equilibrado significa que el voltaje de salida entre los dos puntos medios es exactamente cero. Esto ocurre cuando R1/R2 = R3/Rx. En esta condición no circula corriente por el galvanómetro (o voltímetro diferencial). La condición de equilibrio permite calcular la resistencia desconocida a partir de las tres resistencias conocidas sin depender del voltaje de alimentación, lo que mejora la precisión.",
+        "q4": "¿Por qué el puente de Wheatstone es tan preciso?",
+        "q4_a": "El puente de Wheatstone es preciso porque es un método de medición nulo: en equilibrio, el resultado depende solo de las razones de resistencias, no de los valores absolutos del voltaje de alimentación ni de la sensibilidad del instrumento. Esto elimina errores por deriva de la fuente y no linealidad del galvanómetro. Los circuitos de puente modernos alcanzan precisión de una parte por millón.",
+        "q5": "¿Cómo funciona un puente de Wheatstone con galgas extensométricas?",
+        "q5_a": "Una galga extensométrica es un elemento resistivo cuya resistencia cambia ligeramente bajo esfuerzo mecánico. Al fijar una o más galgas a un miembro estructural y colocarlas en un puente de Wheatstone, cambios de resistencia muy pequeños (a menudo menos del 0.1%) producen voltajes de salida medibles. Cuatro galgas activas (puente completo) maximizan la sensibilidad y cancelan los efectos de temperatura. Esta configuración se usa en celdas de carga, sensores de torque y transductores de presión.",
+        "q6": "¿Cuáles son las limitaciones del puente de Wheatstone?",
+        "q6_a": "El puente de Wheatstone es más preciso cerca de la condición de equilibrio. Para desviaciones grandes de resistencia, la relación entre Vout y Rx se vuelve no lineal y requiere la fórmula completa o factores de corrección. La resistencia de los cables en tendidos largos puede introducir errores si no se compensa. A frecuencias muy altas, la capacitancia y la inductancia de los brazos del puente afectan el rendimiento, por lo que se necesitan variantes de puente AC, como los puentes de Maxwell o Hay, para mediciones precisas."
+      }
+    },
+    "wiens-law-calculator": {
+      "title": "Calculadora de la ley de Wien — Longitud de onda máxima desde la temperatura",
+      "tagline": "Determina la longitud de onda máxima de la radiación de cuerpo negro a partir de la temperatura usando la ley de desplazamiento de Wien.",
+      "intro": "Introduce la temperatura en Kelvin para calcular la longitud de onda máxima (λmax), la frecuencia y la categoría de radiación.",
+      "field": {
+        "temperature": "Temperatura (K)"
+      },
+      "placeholder": {
+        "temperature": "p. ej. 5778"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce una temperatura positiva válida en Kelvin."
+      },
+      "result": {
+        "heading": "Resultado",
+        "wavelength": "Longitud de onda máxima λmax = {value}",
+        "frequency": "Frecuencia máxima ≈ {value} Hz",
+        "category": {
+          "gamma": "Tipo de radiación: rayos gamma",
+          "xray": "Tipo de radiación: rayos X",
+          "uv": "Tipo de radiación: ultravioleta",
+          "visible": "Tipo de radiación: luz visible",
+          "infrared": "Tipo de radiación: infrarrojo",
+          "microwave": "Tipo de radiación: microondas / radio"
+        }
+      },
+      "formula": "Ley de Wien: λmax = b / T, donde b = 2.898 × 10⁻³ m·K",
+      "about": {
+        "heading": "Acerca de la calculadora de la ley de Wien",
+        "body": "La ley de desplazamiento de Wien es una relación fundamental en termodinámica y radiación térmica que describe la longitud de onda a la que un emisor de cuerpo negro radia con mayor intensidad. Formulada por el físico alemán Wilhelm Wien en 1893, establece que la longitud de onda máxima de la radiación térmica es inversamente proporcional a la temperatura absoluta del cuerpo emisor.\n\nLa expresión matemática es λmax = b / T, donde λmax es la longitud de onda máxima en metros, T es la temperatura absoluta en Kelvin y b es la constante de desplazamiento de Wien, igual a 2.897771955 × 10⁻³ m·K. Esta elegante relación inversa tiene implicaciones profundas: cuanto más caliente está un cuerpo, más corta (y más energética) es la radiación que emite. Un cuerpo frío radia en el infrarrojo, un cuerpo templado brilla en rojo y un cuerpo muy caliente brilla en blanco o azul-blanco.\n\nLa ley surge de la ley de radiación de cuerpo negro de Planck al derivarla respecto a la longitud de onda y fijar la derivada en cero. El resultado es una ecuación trascendental cuya solución da la constante b. La teoría cuántica más completa de Planck, desarrollada en 1900, supera la aproximación de Wien para la distribución espectral completa, pero la ley de desplazamiento de Wien para el pico sigue siendo válida exactamente como caso especial.\n\nLas aplicaciones astronómicas de la ley de Wien son especialmente notables. La temperatura superficial del Sol es aproximadamente 5778 K, lo que corresponde a una longitud de onda máxima de unos 502 nm: luz verde. El sistema visual humano evolucionó para ser más sensible cerca de esta longitud de onda. Las estrellas gigantes rojas más frías (3000–4000 K) presentan su pico en el infrarrojo cercano; las estrellas azules-blancas más calientes (20,000–50,000 K) lo hacen en el ultravioleta. Midiendo la longitud de onda máxima del espectro de una estrella, los astrónomos pueden determinar su temperatura superficial con gran precisión.\n\nEn la vida cotidiana, la ley de Wien gobierna el aspecto del metal calentado. El acero brilla tenuemente en rojo a unos 800–900 K, en rojo anaranjado intenso a 1100 K y en amarillo-blanco a 1500 K. Los filamentos de las bombillas incandescentes operan a unos 2700–3000 K, produciendo una luz cálida amarillo-blanca cuyo pico cae en el infrarrojo cercano, motivo por el cual las bombillas incandescentes son relativamente ineficientes: la mayor parte de su energía se emite como calor y no como luz visible.\n\nLa termografía infrarroja y la teledetección se apoyan en la ley de Wien para inferir temperaturas a partir de las longitudes de onda máximas medidas. Las cámaras infrarrojas médicas detectan variaciones de la temperatura corporal (temperatura normal ≈ 310 K, λmax ≈ 9.3 μm, en el infrarrojo medio profundo). Los hornos industriales, las fundiciones y los equipos de procesamiento del acero usan pirómetros ópticos y sensores infrarrojos calibrados con la ley de Wien para medir temperaturas sin contacto. La radiación cósmica de fondo de microondas, reliquia térmica del Big Bang, tiene un espectro de cuerpo negro casi perfecto con un pico correspondiente a T ≈ 2.725 K — muy adentro de la región de microondas, como su nombre indica."
+      },
+      "examples": {
+        "heading": "Ejemplos de la ley de Wien",
+        "intro": "Valores comunes de temperatura y sus longitudes de onda máximas de radiación de cuerpo negro.",
+        "colInput": "Temperatura",
+        "colOutput": "Longitud de onda máxima",
+        "colNote": "Contexto",
+        "loadSun": "Cargar superficie del Sol",
+        "loadBulb": "Cargar bombilla incandescente",
+        "loadBody": "Cargar cuerpo humano",
+        "items": [
+          {
+            "input": "5778 K (superficie del Sol)",
+            "output": "≈ 501.5 nm (verde visible)",
+            "note": "El pico está en la región verde visible, lo que explica por qué el ojo humano evolucionó con sensibilidad máxima cerca de 550 nm."
+          },
+          {
+            "input": "2800 K (bombilla incandescente)",
+            "output": "≈ 1035 nm (infrarrojo cercano)",
+            "note": "La mayor parte de la energía se emite como calor infrarrojo, por lo que las bombillas incandescentes solo son eficaces en torno al 5% para producir luz visible."
+          },
+          {
+            "input": "310 K (cuerpo humano)",
+            "output": "≈ 9348 nm (infrarrojo medio)",
+            "note": "El calor corporal humano alcanza su pico en el infrarrojo medio profundo, invisible a simple vista pero detectable por cámaras térmicas."
+          },
+          {
+            "input": "2.725 K (fondo cósmico)",
+            "output": "≈ 1.06 mm (microondas)",
+            "note": "El resplandor residual del Big Bang — descubierto en 1964 — es un cuerpo negro casi perfecto a 2.725 K, con su pico en la banda de microondas."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de la ley de Wien",
+        "steps": [
+          "Introduce la temperatura del emisor de cuerpo negro en Kelvin (K). Kelvin = Celsius + 273.15.",
+          "Haz clic en Calcular. La calculadora aplica λmax = b / T usando la constante de desplazamiento de Wien b = 2.898 × 10⁻³ m·K.",
+          "Lee la longitud de onda máxima en nm, μm o cm según su magnitud, además de la frecuencia aproximada.",
+          "El panel de tipo de radiación te indica si el pico cae en la región gamma, rayos X, UV, visible, infrarrojo o microondas.",
+          "Usa los botones de ejemplo para cargar temperaturas comunes (Sol, bombilla incandescente, cuerpo humano) como referencia rápida."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre la ley de Wien",
+        "q1": "¿Qué es la ley de desplazamiento de Wien?",
+        "q1_a": "La ley de desplazamiento de Wien establece que la longitud de onda máxima de la radiación térmica (cuerpo negro) es inversamente proporcional a la temperatura absoluta: λmax = b / T, donde b = 2.898 × 10⁻³ m·K es la constante de desplazamiento de Wien. A medida que aumenta la temperatura, la longitud de onda máxima disminuye: los objetos más calientes emiten luz más azul (de mayor energía). La ley fue derivada por Wilhelm Wien en 1893 y queda confirmada por la teoría cuántica completa de la radiación de cuerpo negro de Planck.",
+        "q2": "¿Por qué el Sol tiene su pico en el verde pero parece amarillo-blanco?",
+        "q2_a": "La fotosfera del Sol, a ~5778 K, tiene una longitud de onda máxima alrededor de 501–502 nm (verde). Sin embargo, el Sol emite en todo el espectro visible con cantidades parecidas cerca de su pico, por lo que el color integrado se percibe como blanco o amarillo pálido. El aspecto amarillento se debe en parte a la dispersión atmosférica, que elimina preferentemente la luz azul en ángulos bajos, y en parte a la sensibilidad espectral no uniforme del ojo humano.",
+        "q3": "¿Qué es la constante de desplazamiento de Wien b?",
+        "q3_a": "La constante de desplazamiento de Wien b = 2.897771955 × 10⁻³ m·K (metros por kelvin). Puede derivarse de constantes fundamentales: b = hc / (x·kB), donde h es la constante de Planck, c es la velocidad de la luz, kB es la constante de Boltzmann y x ≈ 4.965 es la solución de la ecuación trascendental x·e^x/(e^x − 1) = 5. El valor de NIST es 2.897771955 × 10⁻³ m·K.",
+        "q4": "¿Cómo se relaciona la ley de Wien con la ley de Planck?",
+        "q4_a": "La ley de Planck da la distribución espectral completa de la radiación de cuerpo negro: B(λ,T) = 2hc²/λ⁵ × 1/(e^(hc/λkT) − 1). La ley de Wien se obtiene derivando esta expresión respecto a λ y hallando dónde se maximiza. La ley de Wien solo proporciona la longitud de onda máxima; para el espectro completo se necesita la ley de Planck. La ley de Planck se reduce a la aproximación de Wien en longitudes de onda cortas donde hc/λkT ≫ 1.",
+        "q5": "¿Puede aplicarse la ley de Wien a fuentes que no sean cuerpos negros?",
+        "q5_a": "La ley de Wien se aplica estrictamente a radiadores ideales de cuerpo negro. Los objetos reales son 'cuerpos grises' con emisividad menor que 1, lo que reduce la emisión total pero no desplaza la longitud de onda máxima. La relación de la longitud de onda máxima sigue siendo válida si la emisividad es espectralmente plana (cuerpo gris). Para fuentes con emisividad fuertemente dependiente de la longitud de onda, la ley de Wien solo ofrece una guía aproximada del pico de emisión.",
+        "q6": "¿Cómo usan los astrónomos la ley de Wien para medir temperaturas estelares?",
+        "q6_a": "Los astrónomos miden la distribución espectral de energía de una estrella y localizan la longitud de onda del flujo máximo. Aplicando λmax = b / T y despejando T se obtiene la temperatura superficial efectiva. En el Sol, λmax ≈ 502 nm da T ≈ 5778 K. Betelgeuse (~3500 K) tiene λmax ≈ 828 nm (infrarrojo cercano), lo que explica su color rojo. Las estrellas azules calientes como Rigel (~12000 K) tienen λmax ≈ 242 nm (ultravioleta), por eso se ven azul-blancas en luz visible."
+      }
+    },
+    "wind-correction-angle-calculator": {
+      "title": "Calculadora de ángulo de corrección del viento – Navegación aérea",
+      "tagline": "Calcula el ángulo de corrección del viento, el rumbo verdadero y la velocidad sobre el suelo para navegar con precisión.",
+      "intro": "Introduce la ruta verdadera, la dirección del viento, la velocidad del viento y la velocidad aerodinámica verdadera para determinar la corrección de rumbo necesaria y mantener la trayectoria deseada sobre el suelo.",
+      "field": {
+        "trueCourse": "Ruta verdadera (°)",
+        "windDirection": "Dirección del viento (°)",
+        "windSpeed": "Velocidad del viento (kts)",
+        "trueAirspeed": "Velocidad aerodinámica verdadera (kts)"
+      },
+      "placeholder": {
+        "trueCourse": "p. ej. 090",
+        "windDirection": "p. ej. 270",
+        "windSpeed": "p. ej. 15",
+        "trueAirspeed": "p. ej. 120"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce valores válidos. La velocidad aerodinámica verdadera debe ser positiva.",
+        "windTooStrong": "La velocidad del viento supera la velocidad aerodinámica; no existe un ángulo de corrección válido."
+      },
+      "result": {
+        "heading": "Resultados de navegación",
+        "wca": "Ángulo de corrección del viento (WCA) = {value}°",
+        "trueHeading": "Rumbo verdadero (TH) = {value}°",
+        "groundSpeed": "Velocidad sobre el suelo (GS) = {value} kts"
+      },
+      "formula": "WCA = arcsin(WS × sin(WD − TC) / TAS) | GS a partir de la ley de cosenos",
+      "about": {
+        "heading": "Acerca de la calculadora de ángulo de corrección del viento",
+        "body": "El ángulo de corrección del viento (WCA), también llamado ángulo de deriva o crab angle, es la diferencia angular entre la dirección hacia la que debe apuntar un avión (rumbo verdadero) y la dirección que realmente necesita seguir sobre el suelo (ruta verdadera). Sin compensar el viento, un avión que vuele con un rumbo fijo se desviará de su trayectoria prevista, pudiendo perder el destino o entrar en espacio aéreo restringido.\n\nEste cálculo es una de las habilidades más básicas de la navegación aérea y se enseña en todas las escuelas teóricas de piloto privado. La matemática subyacente procede de la suma vectorial: la velocidad de la aeronave a través del aire (representada por la velocidad aerodinámica verdadera y el rumbo verdadero) más el vector de viento equivale a la velocidad sobre el suelo de la aeronave (representada por la velocidad sobre el suelo y la trayectoria sobre el terreno).\n\nLa fórmula del ángulo de corrección del viento es: WCA = arcsin(WS × sin(WD − TC) / TAS), donde WS es la velocidad del viento, WD es la dirección del viento (la dirección DESDE la que sopla, según la convención aeronáutica), TC es la ruta verdadera deseada y TAS es la velocidad aerodinámica verdadera. El resultado indica el ángulo que el piloto debe sumar o restar a la ruta verdadera para obtener el rumbo verdadero.\n\nLa velocidad sobre el suelo se calcula entonces con la ley de cosenos: GS² = TAS² + WS² − 2 × TAS × WS × cos(TH − WD + 180°). La velocidad sobre el suelo determina el tiempo de vuelo y los requerimientos de combustible. Un viento de frente reduce la velocidad sobre el suelo; un viento de cola la aumenta. Los vientos cruzados reducen ligeramente la velocidad sobre el suelo y requieren una corrección de rumbo.\n\nEn la computadora de vuelo E6B, la corrección se realiza trazando el vector del viento y leyendo gráficamente el ángulo de corrección y la velocidad sobre el suelo. Los modernos EFB y los sistemas de gestión de vuelo por GPS lo calculan automáticamente, pero los pilotos siguen entrenándose para hacerlo manualmente como respaldo.\n\nLa limitación de la fórmula aparece cuando la velocidad del viento supera la velocidad aerodinámica verdadera (el avión no puede mantener la ruta deseada en absoluto), por eso la calculadora comprueba esa condición.\n\nMás allá de la navegación VFR, la corrección del viento es crítica en operaciones IFR, especialmente en la aproximación final, donde mantener exactamente la línea central de la pista requiere calcular con precisión el crab angle y eliminarlo justo antes del aterrizaje."
+      },
+      "examples": {
+        "heading": "Ejemplos de ángulo de corrección del viento",
+        "intro": "Escenarios de vuelo comunes que muestran cálculos de corrección del viento.",
+        "colInput": "Parámetros de vuelo",
+        "colOutput": "WCA / Rumbo verdadero / GS",
+        "colNote": "Escenario",
+        "loadCrosswind": "Cargar escenario de viento cruzado",
+        "loadHeadwind": "Cargar escenario de viento de frente",
+        "loadTailwind": "Cargar escenario de viento de cola",
+        "items": [
+          {
+            "input": "TC=090°, WD=000°, WS=15 kts, TAS=80 kts",
+            "output": "WCA ≈ −10.8°, TH ≈ 79.2°, GS ≈ 78.6 kts",
+            "note": "Viento cruzado izquierdo desde el norte. Hay que crabar 10.8° a la izquierda contra el viento; la velocidad sobre el suelo baja ligeramente a 78.6 kts."
+          },
+          {
+            "input": "TC=180°, WD=180°, WS=20 kts, TAS=120 kts",
+            "output": "WCA = 0°, TH = 180°, GS = 100 kts",
+            "note": "Viento de frente puro: no hace falta corrección, pero la velocidad sobre el suelo se reduce en toda la velocidad del viento."
+          },
+          {
+            "input": "TC=270°, WD=090°, WS=25 kts, TAS=150 kts",
+            "output": "WCA = 0°, TH = 270°, GS = 175 kts",
+            "note": "Viento de cola puro: no hace falta corrección y la velocidad sobre el suelo aumenta en toda la velocidad del viento."
+          },
+          {
+            "input": "TC=045°, WD=315°, WS=10 kts, TAS=100 kts",
+            "output": "WCA ≈ −7.2°, TH ≈ 37.8°, GS ≈ 99.4 kts",
+            "note": "Viento cruzado delantero izquierdo. Solo se necesita un pequeño crab angle; la velocidad sobre el suelo casi iguala la TAS."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de ángulo de corrección del viento",
+        "steps": [
+          "Introduce la Ruta verdadera (TC): la ruta magnética o verdadera que deseas volar, en grados (0–360).",
+          "Introduce la Dirección del viento (WD): la dirección DESDE la que sopla el viento, en grados. En aviación, el viento siempre se reporta por la dirección de procedencia.",
+          "Introduce la Velocidad del viento (WS) y la Velocidad aerodinámica verdadera (TAS) en unidades coherentes (se recomiendan nudos).",
+          "Haz clic en Calcular. La calculadora devuelve el ángulo de corrección del viento, el rumbo verdadero y la velocidad sobre el suelo.",
+          "Aplica el ángulo de corrección del viento a tu ruta verdadera para obtener el rumbo verdadero. Luego, convierte a rumbo magnético aplicando la variación si es necesario."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre el ángulo de corrección del viento",
+        "q1": "¿Qué es el ángulo de corrección del viento en aviación?",
+        "q1_a": "El ángulo de corrección del viento (WCA) es el ángulo que un piloto debe desviar su rumbo respecto a la trayectoria deseada para compensar la deriva por viento. Si vuelas recto con un rumbo fijo en un viento cruzado, te saldrás de la ruta. Al crabar contra el viento, apuntando ligeramente hacia barlovento, el viento empuja al avión lateralmente lo justo para mantener la trayectoria deseada. El WCA es la diferencia entre el rumbo verdadero (hacia dónde apunta la nariz) y la ruta verdadera (hacia dónde realmente se desplaza).",
+        "q2": "¿Cómo se reporta la dirección del viento en aviación?",
+        "q2_a": "En aviación, la dirección del viento siempre se reporta como la dirección DESDE la que sopla, medida en grados verdaderos o magnéticos. Por ejemplo, un viento de 270° significa que viene del oeste. Esto es lo contrario de la convención meteorológica usada en otros campos, donde la dirección del viento puede significar hacia dónde va. Los informes ATIS y METAR usan esta convención de procedencia, igual que esta calculadora.",
+        "q3": "¿Cuál es la diferencia entre ruta verdadera y rumbo verdadero?",
+        "q3_a": "La ruta verdadera (TC) es la dirección que quieres seguir sobre el suelo: la línea entre tu salida y tu destino. El rumbo verdadero (TH) es la dirección hacia la que apunta realmente la nariz del avión. En aire en calma, TC y TH son iguales. Con viento cruzado, TH difiere de TC por el ángulo de corrección del viento. Al aplicar el WCA a TC obtienes TH; luego, aplicas la variación magnética para obtener el rumbo magnético (MH) y la desviación para obtener el rumbo de brújula (CH).",
+        "q4": "¿Qué ocurre cuando la velocidad del viento es mayor que la velocidad aerodinámica?",
+        "q4_a": "Si la velocidad del viento supera la velocidad aerodinámica verdadera, no hay solución para la fórmula del ángulo de corrección del viento: sin(WCA) = WS/TAS × sin(ángulo) requeriría un seno mayor que 1, lo cual es imposible. Eso significa que la aeronave no puede avanzar contra el viento en esa ruta. El piloto debe aumentar la velocidad aerodinámica, esperar a que baje el viento o elegir una ruta distinta para evitar el componente desfavorable.",
+        "q5": "¿Cómo afecta un viento cruzado al aterrizaje?",
+        "q5_a": "En aproximación, el piloto debe crabar contra el viento para mantener la línea central de la pista. Justo antes del toque, se elimina el crab angle con timón para alinear el avión con la pista; de lo contrario, tocaría mientras se mueve lateralmente, cargando el tren de aterrizaje. El componente máximo de viento cruzado demostrado para cada aeronave figura en el Manual de Operaciones del Piloto y no debe superarse para operar con seguridad.",
+        "q6": "¿Qué es la velocidad sobre el suelo y por qué importa?",
+        "q6_a": "La velocidad sobre el suelo (GS) es la velocidad real del avión respecto al terreno, combinando el efecto de la velocidad aerodinámica y el viento. Un viento de frente reduce la GS por debajo de la TAS; un viento de cola la aumenta. La GS determina el tiempo de vuelo (distancia ÷ GS = tiempo) y el combustible necesario. La planificación de vuelo usa la GS para calcular el tiempo estimado en ruta (ETE), el consumo de combustible y las reservas requeridas. El GPS muestra la GS directamente; antes del GPS se calculaba con velocidad aerodinámica y triángulo del viento."
+      }
+    },
+    "wind-load-calculator": {
+      "title": "Calculadora de carga de viento y presión",
+      "tagline": "Calcula la presión del viento y la fuerza total sobre edificios y estructuras para diseño estructural.",
+      "intro": "Introduce la velocidad del viento, las dimensiones del edificio, la categoría de exposición y el coeficiente de arrastre para calcular la presión dinámica, la presión del viento y la fuerza total.",
+      "field": {
+        "windSpeed": "Velocidad del viento (m/s)",
+        "buildingHeight": "Altura del edificio (m)",
+        "buildingWidth": "Ancho del edificio (m)",
+        "buildingLength": "Longitud del edificio (m)",
+        "exposureCategory": "Categoría de exposición",
+        "dragCoefficient": "Coeficiente de arrastre (Cd)"
+      },
+      "placeholder": {
+        "windSpeed": "p. ej. 25",
+        "buildingHeight": "p. ej. 30",
+        "buildingWidth": "p. ej. 20",
+        "buildingLength": "p. ej. 40",
+        "dragCoefficient": "p. ej. 1.3"
+      },
+      "type": {
+        "exposure1": "1 – Terreno abierto",
+        "exposure1_desc": "Terreno llano y abierto, como praderas, zonas costeras o tierras de cultivo con pocos obstáculos.",
+        "exposure2": "2 – Suburbano",
+        "exposure2_desc": "Zonas suburbanas o boscosas con obstáculos dispersos de 1.5 a 10 m de altura.",
+        "exposure3": "3 – Urbano",
+        "exposure3_desc": "Centros urbanos y áreas densamente edificadas con obstáculos muy próximos entre sí."
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce números positivos válidos en todos los campos."
+      },
+      "result": {
+        "heading": "Resultados de carga de viento",
+        "totalForce": "Fuerza total del viento = {value} N",
+        "dynamicPressure": "Presión dinámica (q) = {value} Pa",
+        "windPressure": "Presión de diseño del viento (p) = {value} Pa",
+        "frontArea": "Área expuesta al viento = {value} m²"
+      },
+      "formula": "q = 0.5·ρ·v² | p = q·Cd·Ce | F = p·A",
+      "about": {
+        "heading": "Acerca de la calculadora de carga de viento",
+        "body": "La carga de viento es la fuerza que ejerce el aire en movimiento sobre una estructura. Es una de las cargas laterales más importantes que los ingenieros estructurales deben considerar al diseñar edificios, puentes, torres y otras estructuras. Una estimación incorrecta de las cargas de viento ha contribuido a muchos fallos estructurales a lo largo de la historia, desde el desastre del puente Tay en 1879 hasta fallos más recientes de fachadas y cubiertas mal diseñadas.\n\nLa magnitud fundamental en el cálculo de la carga de viento es la presión dinámica, también llamada presión de velocidad o de estancamiento. Se expresa como q = 0.5 × ρ × v², donde ρ es la densidad del aire (aproximadamente 1.225 kg/m³ al nivel del mar y a temperatura estándar) y v es la velocidad del viento en metros por segundo. Esta relación proviene directamente del principio de Bernoulli y representa la energía cinética por unidad de volumen del aire en movimiento.\n\nLa presión de diseño sobre una superficie se calcula como p = q × Cd × Ce, donde Cd es el coeficiente de arrastre (también llamado coeficiente de presión), que refleja cuán aerodinámicamente maciza o estilizada es la estructura, y Ce es un factor de exposición que tiene en cuenta la rugosidad del terreno alrededor de la estructura. Un edificio de caras planas en terreno abierto experimenta una presión de viento mayor que el mismo edificio rodeado por una densa urbanización que lo protege del viento.\n\nLos coeficientes de arrastre para estructuras comunes van aproximadamente de 0.8–1.3 para edificios rectangulares (según la relación de aspecto), de 0.4–0.7 para cilindros circulares, y de 1.0–2.0 para estructuras reticuladas y carteles. El coeficiente de arrastre se determina experimentalmente mediante ensayos en túnel de viento o se especifica en los códigos de diseño estructural.\n\nLas categorías de exposición clasifican el terreno que rodea un edificio y afectan cómo varía la velocidad del viento con la altura. En terreno abierto (Exposición A o Categoría 1), la velocidad del viento cerca del suelo es relativamente alta porque hay pocos obstáculos que la frenen. En centros urbanos densos (Exposición D o Categoría 3), los numerosos edificios altos generan turbulencia y efectos de apantallamiento que reducen las velocidades medias a bajos niveles.\n\nLos códigos de diseño estructural —incluidos ASCE 7 en Estados Unidos, Eurocódigo 1 (EN 1991-1-4) en Europa y AS/NZS 1170.2 en Australia— proporcionan procedimientos detallados para calcular las cargas de viento de diseño, incluyendo ajustes por ráfagas, efectos topográficos, presión interna y cargas en componentes y revestimientos. Esta calculadora ofrece una estimación simplificada a partir de principios básicos, útil para el diseño preliminar y fines educativos."
+      },
+      "examples": {
+        "heading": "Ejemplos de carga de viento",
+        "intro": "Edificios representativos con cálculos de carga de viento a diferentes escalas.",
+        "colInput": "Parámetros del edificio y del viento",
+        "colOutput": "Fuerza total del viento",
+        "colNote": "Aplicación",
+        "loadResidential": "Cargar vivienda residencial",
+        "loadCommercial": "Cargar edificio comercial",
+        "loadIndustrial": "Cargar almacén industrial",
+        "items": [
+          {
+            "input": "v=20 m/s, H=8 m, W=12 m, Exp=2, Cd=1.3",
+            "output": "≈ 25,990 N (26 kN)",
+            "note": "Vivienda suburbana. q=245 Pa, presión de diseño=271 Pa; fuerza total sobre una cara de barlovento de 96 m²."
+          },
+          {
+            "input": "v=30 m/s, H=50 m, W=25 m, Exp=3, Cd=1.4",
+            "output": "≈ 675,000 N (675 kN)",
+            "note": "Oficina de media altura. El apantallamiento urbano (Ce=0.7) reduce la presión; gran área de barlovento de 1250 m²."
+          },
+          {
+            "input": "v=25 m/s, H=15 m, W=60 m, Exp=1, Cd=1.2",
+            "output": "≈ 413,000 N (413 kN)",
+            "note": "Almacén industrial en terreno abierto. La exposición total (Ce=1.0) y una gran cara de 900 m² generan cargas de viento elevadas."
+          },
+          {
+            "input": "v=35 m/s, H=100 m, W=5 m, Exp=1, Cd=1.0",
+            "output": "≈ 375,000 N (375 kN)",
+            "note": "Torre de comunicaciones. La velocidad del viento muy alta y la exposición total; la cara de 500 m² mantiene la carga total manejable."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de carga de viento",
+        "steps": [
+          "Introduce la velocidad de diseño del viento en metros por segundo. Usa datos meteorológicos locales o mapas de velocidad del viento del código de edificación.",
+          "Introduce la altura, el ancho y la longitud del edificio en metros. El ancho es la dimensión perpendicular a la dirección del viento.",
+          "Selecciona la categoría de exposición que corresponda al terreno alrededor del edificio: abierto, suburbano o urbano.",
+          "Introduce el coeficiente de arrastre (Cd). Usa 1.3 para un edificio rectangular típico o consulta tu código de diseño para la geometría específica.",
+          "Haz clic en Calcular para ver la presión dinámica, la presión de diseño del viento, el área de barlovento y la fuerza total del viento."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre carga de viento",
+        "q1": "¿Qué es la carga de viento en ingeniería estructural?",
+        "q1_a": "La carga de viento es la fuerza que ejerce la presión del viento sobre una estructura. Actúa como una carga lateral (horizontal) sobre los edificios y debe ser resistida por el sistema resistente a cargas laterales de la estructura: muros de corte, pórticos resistentes a momento o pórticos arriostrados. La carga de viento es una carga dinámica que varía con la altura, el terreno, la geometría del edificio y el clima local. Los códigos de diseño especifican las presiones de viento que las estructuras deben resistir sin colapsar ni deformarse en exceso.",
+        "q2": "¿Qué es la presión dinámica y cómo se calcula?",
+        "q2_a": "La presión dinámica (q) es la energía cinética por unidad de volumen del aire en movimiento: q = 0.5 × ρ × v², donde ρ es la densidad del aire (1.225 kg/m³ al nivel del mar) y v es la velocidad del viento en m/s. A 20 m/s, q = 0.5 × 1.225 × 400 = 245 Pa. A 30 m/s, q = 551 Pa. La presión dinámica aumenta con el cuadrado de la velocidad del viento: duplicar la velocidad cuadruplica la carga de viento.",
+        "q3": "¿Qué representa el coeficiente de arrastre?",
+        "q3_a": "El coeficiente de arrastre (Cd) cuantifica cuán aerodinámicamente maciza es una estructura, es decir, cuánto resiste el flujo de aire en comparación con un cuerpo ideal perfectamente estilizado. Una placa plana perpendicular al viento tiene Cd ≈ 1.28, una esfera tiene Cd ≈ 0.5 y un perfil aerodinámico estilizado tiene Cd < 0.05. En edificios, Cd (o coeficiente de presión Cp) depende de la forma y la relación de aspecto del edificio, y se determina mediante ensayos en túnel de viento o tablas normativas.",
+        "q4": "¿Qué son las categorías de exposición en los cálculos de carga de viento?",
+        "q4_a": "Las categorías de exposición clasifican el terreno que rodea un edificio según el tamaño y la separación de los elementos de rugosidad superficial. El terreno abierto (Categoría 1) incluye llanuras, zonas costeras y aeropuertos donde el viento está relativamente libre de obstrucciones. El terreno suburbano (Categoría 2) incluye áreas residenciales con árboles y casas. El terreno urbano (Categoría 3) incluye centros urbanos con edificios altos. Un terreno más protegido reduce la velocidad media del viento pero aumenta la intensidad de la turbulencia.",
+        "q5": "¿Cómo afecta la altura del edificio a la carga de viento?",
+        "q5_a": "La velocidad del viento y, por tanto, la presión dinámica aumentan con la altura sobre el suelo. Los edificios más altos están expuestos a velocidades de viento mayores en sus niveles superiores. Los códigos de diseño especifican perfiles de velocidad del viento en función de la altura, normalmente mediante una ley potencial o un perfil logarítmico. Esta calculadora usa un enfoque simplificado suponiendo una velocidad de viento uniforme; para edificios altos, los ingenieros utilizan distribuciones de presión del viento dependientes de la altura según ASCE 7, Eurocódigo 1 o códigos similares.",
+        "q6": "¿Es adecuada esta calculadora para diseño estructural profesional?",
+        "q6_a": "Esta calculadora proporciona una estimación simplificada de la carga de viento a partir de primeros principios y es adecuada para fines educativos y comprobaciones preliminares de viabilidad. El diseño estructural profesional requiere usar todas las disposiciones de los códigos de edificación aplicables (ASCE 7, Eurocódigo 1, AS/NZS 1170.2, etc.), que incluyen factores de ráfaga, efectos topográficos, factores direccionales, presión interna y cargas de componentes y revestimientos. Consulta siempre a un ingeniero estructural colegiado para el diseño de edificios."
+      }
     }
   }
 }
