@@ -39,6 +39,11 @@ import { fixtures as f_polynomial_regression_calculator } from "@/tools/polynomi
 import { fixtures as f_pooled_standard_deviation_calculator } from "@/tools/pooled-standard-deviation-calculator.fixtures";
 import { fixtures as f_population_variance_calculator } from "@/tools/population-variance-calculator.fixtures";
 import { fixtures as f_post_test_probability_calculator } from "@/tools/post-test-probability-calculator.fixtures";
+import { fixtures as f_rayleigh_distribution_calculator } from "@/tools/rayleigh-distribution-calculator.fixtures";
+import { fixtures as f_relative_error_calculator } from "@/tools/relative-error-calculator.fixtures";
+import { fixtures as f_relative_frequency_calculator } from "@/tools/relative-frequency-calculator.fixtures";
+import { fixtures as f_relative_risk_calculator } from "@/tools/relative-risk-calculator.fixtures";
+import { fixtures as f_relative_risk_reduction_calculator } from "@/tools/relative-risk-reduction-calculator.fixtures";
 import { fixtures as f_relative_standard_deviation_calculator } from "@/tools/relative-standard-deviation-calculator.fixtures";
 import { fixtures as f_repeated_measures_anova_calculator } from "@/tools/repeated-measures-anova-calculator.fixtures";
 import { fixtures as f_residual_calculator } from "@/tools/residual-calculator.fixtures";
@@ -108,6 +113,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "pooled-standard-deviation-calculator": f_pooled_standard_deviation_calculator,
   "population-variance-calculator": f_population_variance_calculator,
   "post-test-probability-calculator": f_post_test_probability_calculator,
+  "rayleigh-distribution-calculator": f_rayleigh_distribution_calculator,
+  "relative-error-calculator": f_relative_error_calculator,
+  "relative-frequency-calculator": f_relative_frequency_calculator,
+  "relative-risk-calculator": f_relative_risk_calculator,
+  "relative-risk-reduction-calculator": f_relative_risk_reduction_calculator,
   "relative-standard-deviation-calculator": f_relative_standard_deviation_calculator,
   "repeated-measures-anova-calculator": f_repeated_measures_anova_calculator,
   "residual-calculator": f_residual_calculator,

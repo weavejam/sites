@@ -6537,6 +6537,473 @@
         "q6": "Can I use this calculator for exponential decay?",
         "q6_a": "Yes. Exponential decay is a special case where 0 < b < 1. If b = 0.95, the quantity decreases by 5% per unit of x. The calculator handles both growth and decay automatically — you do not need to change any settings. Just enter your data points and the algorithm will determine the correct b value. Radioactive decay, drug concentration in the bloodstream, and cooling temperature all follow this pattern."
       }
+    },
+    "rayleigh-distribution-calculator": {
+      "title": "Rayleigh Distribution Calculator - PDF, CDF & Stats",
+      "tagline": "Calculate PDF, CDF, complementary CDF, mean, median, mode, and variance of the Rayleigh distribution for any scale parameter σ and value x.",
+      "intro": "Enter the scale parameter σ (must be positive) and a value x (non-negative) to see all key properties of the Rayleigh distribution instantly.",
+      "formula": "PDF: f(x;σ) = (x/σ²)·exp(−x²/(2σ²)) | CDF: F(x;σ) = 1 − exp(−x²/(2σ²)) | Mean: σ√(π/2) | Median: σ√(2 ln 2) | Mode: σ | Variance: (4−π)/2 · σ²",
+      "field": {
+        "sigma": "Scale Parameter (σ)",
+        "x": "Value (x)"
+      },
+      "placeholder": {
+        "positiveNumber": "e.g. 5",
+        "nonNegativeNumber": "e.g. 4"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "σ must be a positive number and x must be non-negative."
+      },
+      "result": {
+        "heading": "Results",
+        "pdf": "PDF f(x)",
+        "cdf": "CDF F(x)",
+        "ccdf": "CCDF 1−F(x)",
+        "mean": "Mean",
+        "median": "Median",
+        "mode": "Mode",
+        "variance": "Variance"
+      },
+      "about": {
+        "heading": "About the Rayleigh Distribution Calculator",
+        "body": "The Rayleigh distribution is a continuous probability distribution for non-negative random variables, named after Lord Rayleigh who originally derived it in the context of sound wave amplitudes. It is defined entirely by a single parameter, σ (the scale parameter), which simultaneously represents the mode of the distribution — the most probable value — and governs the spread of the entire distribution.\n\nThe probability density function (PDF) is given by f(x; σ) = (x/σ²) · exp(−x²/(2σ²)) for x ≥ 0. This bell-like shape rises from zero at x = 0, peaks at x = σ, and then falls away asymptotically toward zero. The cumulative distribution function (CDF) is F(x; σ) = 1 − exp(−x²/(2σ²)), which gives the probability that a random observation falls at or below x. The complementary CDF (CCDF = 1 − CDF) gives the probability of observing a value strictly greater than x — this is often called the survival function and is critical in reliability and communications engineering.\n\nThe Rayleigh distribution is a special case of the two-parameter Weibull distribution with shape parameter k = 2. It also has a deep connection to the normal distribution: if two independent random variables X and Y each follow a zero-mean normal distribution with variance σ², then the vector magnitude R = √(X² + Y²) follows a Rayleigh distribution with scale parameter σ. This geometric interpretation makes it the natural model for the amplitude of a 2D random vector.\n\nIn wireless communications, the Rayleigh fading model describes how radio signals propagate in environments with many scatterers and no dominant line-of-sight path. When a transmitted signal reflects off buildings, vehicles, and terrain before reaching the receiver, the envelope of the received signal follows a Rayleigh distribution. Engineers use this model to compute link budgets, determine outage probabilities, and design error-correcting codes. The parameter σ is estimated from signal measurements and feeds directly into system-level simulations.\n\nIn oceanography and meteorology, the distribution models significant wave heights and peak wind speeds at a site. By fitting σ to historical data, engineers and scientists can estimate the probability of extreme events — for example, the probability that wave height exceeds a safety threshold during a 50-year storm. Similar applications appear in offshore platform design, coastal flood modelling, and wind turbine siting.\n\nIn reliability engineering, the Rayleigh distribution serves as a life-time distribution for components subject to cumulative damage from multiple independent stress factors. Unlike the exponential distribution, the Rayleigh hazard rate increases linearly with time (h(t) = t/σ²), meaning older components fail at higher rates — a realistic model for wear-out mechanisms such as metal fatigue and corrosion.\n\nThe key summary statistics are: Mean = σ√(π/2) ≈ 1.2533σ; Median = σ√(2 ln 2) ≈ 1.1774σ; Mode = σ; Variance = (4 − π)/2 · σ² ≈ 0.4292σ². The mean always exceeds the mode, reflecting the right skew of the distribution. The variance grows quadratically with σ, so doubling σ quadruples the spread."
+      },
+      "examples": {
+        "heading": "Rayleigh distribution examples",
+        "intro": "Worked examples showing the PDF, CDF, and key statistics for different σ and x values.",
+        "colInput": "Inputs",
+        "colOutput": "Key Outputs",
+        "colNote": "Application",
+        "loadBasic": "Load basic example",
+        "loadWind": "Load wind speed example",
+        "loadSignal": "Load signal example",
+        "items": [
+          {
+            "input": "σ = 1, x = 1",
+            "output": "PDF ≈ 0.6065, CDF ≈ 0.3935, Mean ≈ 1.2533",
+            "note": "Standard Rayleigh distribution. The mode equals σ = 1 and the mean is about 25% larger."
+          },
+          {
+            "input": "σ = 10, x = 12",
+            "output": "PDF ≈ 0.0584, CDF ≈ 0.5132, Mean ≈ 12.533",
+            "note": "Wind speed modeling. About 49% of observed wind speeds at this site will exceed 12 m/s."
+          },
+          {
+            "input": "σ = 5, x = 4",
+            "output": "PDF ≈ 0.1162, CDF ≈ 0.2739, Mean ≈ 6.267",
+            "note": "Signal envelope analysis. There is a 27.4% chance the signal amplitude is at or below 4 units."
+          },
+          {
+            "input": "σ = 1000, x = 800",
+            "output": "PDF ≈ 0.000581, CDF ≈ 0.2739, Mean ≈ 1253.3",
+            "note": "Reliability engineering. 72.6% of components survive beyond 800 hours with σ = 1000 h."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the Rayleigh Distribution Calculator",
+        "steps": [
+          "Enter the scale parameter σ in the first field. σ must be a positive number; it equals the mode of the distribution and controls the overall spread.",
+          "Enter the value x at which you want to evaluate the distribution. x must be zero or positive; negative values are outside the support of the distribution.",
+          "Click Calculate. The tool instantly returns the PDF, CDF, complementary CDF, mean, median, mode, and variance.",
+          "Read the CDF to find the probability that a random observation is ≤ x, or read the CCDF for the probability that it exceeds x.",
+          "Click Reset to clear both fields, or load one of the example buttons to explore typical real-world parameter values."
+        ]
+      },
+      "faq": {
+        "heading": "Rayleigh Distribution FAQ",
+        "q1": "What is the scale parameter σ in the Rayleigh distribution?",
+        "q1_a": "σ is the sole parameter of the Rayleigh distribution. It equals the mode (the most probable value) of the distribution. A larger σ shifts the entire distribution to the right and increases its spread. In wireless communications σ is estimated from received-signal power measurements; in oceanography it is fitted to historical wave-height records.",
+        "q2": "How is the Rayleigh distribution related to the normal distribution?",
+        "q2_a": "If X and Y are independent zero-mean normal random variables each with variance σ², then the magnitude R = √(X² + Y²) follows a Rayleigh distribution with parameter σ. This is why the distribution arises naturally whenever you are interested in the 2D distance from the origin of a random point whose x- and y-coordinates are independent Gaussian noise.",
+        "q3": "What is the difference between the PDF and the CDF?",
+        "q3_a": "The PDF f(x) gives the probability density at a specific point — it describes how likely values near x are relative to other values. The CDF F(x) = P(X ≤ x) is the integral of the PDF from 0 to x and gives the probability that an observation falls at or below x. For the Rayleigh distribution, F(x) = 1 − exp(−x²/(2σ²)).",
+        "q4": "Why is the mean larger than the mode for the Rayleigh distribution?",
+        "q4_a": "The Rayleigh distribution is right-skewed: there is a long tail of high values that pulls the mean above the peak. The mean is σ√(π/2) ≈ 1.253σ while the mode is simply σ. The median σ√(2 ln 2) ≈ 1.177σ sits between them, as is typical for right-skewed distributions.",
+        "q5": "Can the Rayleigh distribution model wind speeds accurately?",
+        "q5_a": "The Rayleigh distribution is often used as a simplified model for wind speed in wind-energy assessments. It is a special case of the more general Weibull distribution with shape parameter k = 2. For sites where the wind-speed distribution is approximately symmetric around its peak, the Rayleigh model works well; otherwise, fitting a full Weibull distribution with its two parameters is preferred.",
+        "q6": "What is the complementary CDF (CCDF) and when do I use it?",
+        "q6_a": "The CCDF (or survival function) is 1 − F(x) = exp(−x²/(2σ²)) and gives the probability that an observation exceeds x. Engineers use it to compute outage probabilities (probability that signal strength drops below a threshold), exceedance probabilities in hydrology (probability that a flood level is exceeded), and survival fractions in reliability (fraction of components still working at time x)."
+      }
+    },
+    "relative-error-calculator": {
+      "title": "Relative Error Calculator - Percentage Error Formula",
+      "tagline": "Calculate absolute error, relative error, and percentage error by comparing your observed measurement to the accepted true value.",
+      "intro": "Enter the true (accepted) value and your observed (measured) value to instantly compute all three error metrics used in science, engineering, and finance.",
+      "formula": "Absolute Error = |Observed − True| | Relative Error = |Observed − True| / |True| | Percentage Error = Relative Error × 100",
+      "field": {
+        "trueValue": "True Value (Accepted Value)",
+        "observedValue": "Observed Value (Measured Value)"
+      },
+      "placeholder": {
+        "number": "Enter a number"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers in both fields.",
+        "trueZero": "The true value cannot be zero — relative error is undefined when dividing by zero."
+      },
+      "result": {
+        "heading": "Results",
+        "absoluteError": "Absolute Error",
+        "relativeError": "Relative Error",
+        "percentageError": "Percentage Error"
+      },
+      "about": {
+        "heading": "About the Relative Error Calculator",
+        "body": "Relative error, also known as percentage error or fractional error, is a dimensionless measure of how inaccurate a measurement is relative to the size of what is being measured. While absolute error tells you the raw magnitude of the discrepancy between an observed value and a true value, it gives no sense of context. A measurement error of 1 metre is enormous when measuring the height of a room but completely negligible when measuring the distance to the moon. Relative error eliminates this ambiguity by expressing the error as a proportion of the true value, making it universally comparable across measurements of very different magnitudes.\n\nThe calculation proceeds in two steps. First, compute the absolute error: take the absolute value of the difference between the observed (measured) value and the true (accepted) value. Second, divide that absolute error by the absolute value of the true value to get the relative error. Multiply by 100 to express it as a percentage. Symbolically: Relative Error = |Observed − True| / |True|, and Percentage Error = (|Observed − True| / |True|) × 100. Note that the true value cannot be zero, since this would make the denominator undefined.\n\nIn the physical sciences, relative error is central to assessing experimental accuracy. A physics student measuring the acceleration due to gravity might obtain 9.75 m/s² against the accepted value of 9.81 m/s². The absolute error is 0.06 m/s² and the relative error is 0.06/9.81 ≈ 0.0061, or 0.61%. This small relative error confirms that the experiment was well-designed and carefully executed. If the same student had measured 9.40 m/s², the relative error would be 4.2% — a signal that something in the experimental setup needs investigation.\n\nIn manufacturing and quality control, tolerance specifications are almost always expressed as relative errors. A precision machine part with a nominal length of 50 mm and a tolerance of ±0.1 mm has a maximum allowable relative error of 0.2%. Microchip fabrication, aerospace components, and pharmaceutical dosing are examples where extremely small relative errors — often below 0.1% — are required to ensure safety and performance. The relative error calculator makes it straightforward to check whether a measured dimension or dosage is within the specified tolerance band.\n\nIn economics and finance, relative error quantifies forecast accuracy. If an analyst predicts a company's quarterly revenue will be $500 million but the actual result is $480 million, the absolute error is $20 million. The relative error is 20/500 = 0.04, or 4%. This 4% figure is far more informative than the dollar figure alone because it allows direct comparison against other forecasts, other companies, and other time periods, regardless of the magnitude of the revenues involved.\n\nOne important subtlety is the sign convention. Some formulations of relative error use the signed difference (Observed − True) rather than its absolute value, which preserves information about the direction of the error (over-estimate vs. under-estimate). The calculator here uses the absolute value convention to give a non-negative error magnitude, which is standard in most scientific and engineering contexts. If the sign of the error matters for your application, simply note whether your observed value is larger or smaller than the true value."
+      },
+      "examples": {
+        "heading": "Relative error examples",
+        "intro": "Real-world scenarios across science, engineering, and finance showing how to interpret relative error results.",
+        "colInput": "Inputs",
+        "colOutput": "Results",
+        "colNote": "Context",
+        "loadChemistry": "Load chemistry example",
+        "loadPhysics": "Load physics example",
+        "loadManufacturing": "Load manufacturing example",
+        "items": [
+          {
+            "input": "True = 10.5 g, Observed = 10.2 g",
+            "output": "Abs. Error = 0.3 g, Rel. Error = 0.02857, % Error = 2.857%",
+            "note": "Chemistry experiment: a student weighs a compound as 10.2 g against a known mass of 10.5 g. The 2.86% error suggests a small systematic loss."
+          },
+          {
+            "input": "True = 9.81 m/s², Observed = 9.7 m/s²",
+            "output": "Abs. Error = 0.11, Rel. Error = 0.01121, % Error = 1.121%",
+            "note": "Physics lab: measured gravity is 9.7 m/s² vs. accepted 9.81 m/s². A 1.1% relative error is reasonable for a simple pendulum experiment."
+          },
+          {
+            "input": "True = 50 cm, Observed = 50.1 cm",
+            "output": "Abs. Error = 0.1, Rel. Error = 0.002, % Error = 0.2%",
+            "note": "Manufacturing: a rod is 0.2% over the nominal length — within tolerance for most general-purpose machining."
+          },
+          {
+            "input": "True = 250000, Observed = 245000",
+            "output": "Abs. Error = 5000, Rel. Error = 0.02, % Error = 2.0%",
+            "note": "Financial forecast: quarterly profit was $245k vs. a $250k forecast. The 2% relative error indicates a slightly pessimistic projection."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the Relative Error Calculator",
+        "steps": [
+          "Enter the true (accepted) value in the first field. This is the reference value — the theoretically correct, experimentally established, or officially specified quantity.",
+          "Enter the observed (measured) value in the second field. This is the value you actually recorded or calculated in your experiment, measurement, or forecast.",
+          "Click Calculate. The tool instantly displays the absolute error, relative error (as a decimal), and percentage error.",
+          "Check the percentage error against your accepted tolerance. Values below 1% are considered excellent in most science and engineering contexts; values below 5% are typically acceptable.",
+          "Click Reset to clear the fields and start a new calculation, or use the example buttons to load typical real-world values."
+        ]
+      },
+      "faq": {
+        "heading": "Relative Error FAQ",
+        "q1": "What is the difference between absolute error and relative error?",
+        "q1_a": "Absolute error is the magnitude of the raw difference between the observed and true values (|Observed − True|) expressed in the same units as the measurement. Relative error divides that difference by the absolute value of the true value, producing a dimensionless fraction. Relative error is more useful for comparing the accuracy of measurements taken in different units or at different scales.",
+        "q2": "Can relative error be greater than 1 (or 100%)?",
+        "q2_a": "Yes. If the observed value differs from the true value by more than the true value itself, the relative error exceeds 1 (100%). For example, if the true value is 50 and the observed value is 120, the absolute error is 70 and the relative error is 70/50 = 1.4 (140%). This would indicate a very poor measurement or a significantly wrong model.",
+        "q3": "Why can the true value not be zero?",
+        "q3_a": "Relative error is defined as the absolute error divided by the absolute value of the true value. If the true value is zero, the denominator is zero and the division is undefined — mathematically, relative error is infinite. In such cases, absolute error alone must be used to assess the precision of the measurement.",
+        "q4": "What counts as a 'good' relative error?",
+        "q4_a": "The acceptable threshold depends entirely on the application. In precision manufacturing, relative errors must often be below 0.1%. In student physics labs, errors below 5% are typically considered acceptable. In financial forecasting, errors below 2–3% are good. There is no universal standard — always compare against the tolerance or accuracy requirement of your specific context.",
+        "q5": "Is percentage error the same as relative error?",
+        "q5_a": "Percentage error is simply relative error multiplied by 100 to express it as a percentage rather than a decimal. They carry the same information. Relative error = 0.035 is identical to a percentage error of 3.5%. The choice between the two is purely a matter of convention — scientific literature often uses percentage error for clarity.",
+        "q6": "Does relative error account for systematic vs. random errors?",
+        "q6_a": "No — relative error is a summary statistic that measures the total discrepancy between a single observed value and the true value. It does not distinguish between systematic bias (consistent over- or under-estimation) and random noise (fluctuating errors). To separate them, you would need repeated measurements: systematic error can be estimated from the mean of multiple trials, while random error is captured by their standard deviation."
+      }
+    },
+    "relative-frequency-calculator": {
+      "title": "Relative Frequency Calculator - Frequency Distribution",
+      "tagline": "Enter any numeric data set and instantly get frequency, relative frequency, and cumulative frequency for each value — sorted and ready to use.",
+      "intro": "Type or paste your comma-separated numbers into the data field, then click Calculate to see a complete frequency distribution table.",
+      "formula": "Relative Frequency = Frequency / Total Observations | Cumulative Relative Frequency = sum of relative frequencies up to and including this value",
+      "field": {
+        "dataSet": "Data Set"
+      },
+      "placeholder": {
+        "dataSet": "e.g. 1, 2, 2, 3, 3, 3, 4"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter a valid comma-separated list of numbers."
+      },
+      "result": {
+        "heading": "Frequency Distribution",
+        "totalLabel": "Total observations",
+        "colValue": "Value",
+        "colFrequency": "Frequency",
+        "colRelFreq": "Rel. Freq.",
+        "colRelFreqPct": "Rel. Freq. (%)",
+        "colCumFreq": "Cum. Freq.",
+        "colCumRelFreq": "Cum. Rel. Freq. (%)"
+      },
+      "about": {
+        "heading": "About the Relative Frequency Calculator",
+        "body": "Frequency is one of the most fundamental concepts in statistics: it simply counts how many times each value appears in a data set. Relative frequency goes one step further by expressing each count as a proportion of the total number of observations, turning raw counts into fractions or percentages that remain meaningful regardless of how large or small the data set is. A frequency of 6 is hard to interpret in isolation; a relative frequency of 30% immediately tells you that nearly a third of all observations took this value.\n\nThe calculation is straightforward. For each distinct value in your data set, count the number of times it appears — this is the absolute frequency. Then divide that count by the total number of data points. Multiply by 100 to express it as a percentage. For a data set of 20 die rolls where the value 3 appears 4 times, the frequency is 4 and the relative frequency is 4/20 = 0.20, or 20%. Across all distinct values, the relative frequencies always sum to 1 (or 100%), which is a useful sanity check.\n\nCumulative frequency builds on this by adding up the frequencies as you move through the sorted values. The cumulative frequency at value v is the total number of observations that are less than or equal to v. Similarly, cumulative relative frequency (also called the empirical CDF) at v is the proportion of observations that are ≤ v. The cumulative relative frequency at the largest value in the data set is always exactly 1.0 (100%).\n\nIn education and assessment, relative frequency tables are used to describe the distribution of test scores, grades, or survey responses. A teacher with 30 students can instantly see what fraction earned each score level and whether the distribution is roughly symmetric, left-skewed, or right-skewed. In market research, relative frequencies summarise customer satisfaction ratings, product preferences, and demographic categories in a format that executives and clients can immediately understand.\n\nIn quality control and manufacturing, frequency distributions are the foundation of Statistical Process Control (SPC). By plotting the relative frequency of defect counts, dimensions, or process measurements over time, engineers can identify drift, unusual variation, or systematic shifts before they affect product quality. The Pareto chart — a bar chart sorted by frequency — is a standard tool for identifying the few defect types that account for most of the problems, based on the principle that 20% of causes often explain 80% of defects.\n\nIn probability theory, the Law of Large Numbers states that as the number of trials of a random experiment increases, the observed relative frequencies converge toward the theoretical probabilities. This connection makes the relative frequency table an empirical bridge between experimental data and theoretical probability distributions. With a small data set of 10 coin flips, the relative frequency of heads might be far from 0.5; with 10,000 flips it will be very close. The relative frequency calculator lets you explore this convergence directly with any data set you supply.\n\nOne practical tip: the calculator sorts values in ascending numerical order before computing frequencies. If your data set contains categorical labels rather than numbers, you will need to encode them as numbers (e.g., survey responses of Never/Sometimes/Always encoded as 1/2/3) before entering them."
+      },
+      "examples": {
+        "heading": "Relative frequency examples",
+        "intro": "Worked examples from dice rolling, student scores, and survey data to show what the frequency distribution output looks like.",
+        "colInput": "Data Set",
+        "colOutput": "Sample Output",
+        "colNote": "Notes",
+        "loadDice": "Load dice rolls",
+        "loadScores": "Load test scores",
+        "loadSurvey": "Load survey responses",
+        "items": [
+          {
+            "input": "1, 6, 2, 4, 3, 5, 2, 6, 4, 1 (10 die rolls)",
+            "output": "Each value 1–6 appears; rel. freq. = count/10",
+            "note": "Simulating 10 die rolls. Values near 1/6 ≈ 16.7% confirm the die is approximately fair, though small samples show variation."
+          },
+          {
+            "input": "8, 7, 9, 8, 10, 7, 5, 8, 9, 7, 8, 6, 10, 8, 7 (15 scores)",
+            "output": "Score 8: freq=5, rel.freq=33.3%; Score 7: freq=4, rel.freq=26.7%",
+            "note": "Student test scores out of 10. The most common score is 8 (33% of students) — the teacher can see the class is performing well overall."
+          },
+          {
+            "input": "5, 4, 5, 3, 2, 4, 5, 1, 3, 5, 4, 4, 2, 5, 4 (15 survey responses)",
+            "output": "Response 5: freq=5, rel.freq=33.3%; Response 4: freq=5, rel.freq=33.3%",
+            "note": "Likert-scale survey (1=Never to 5=Always). Two-thirds of responses are 4 or 5, showing strong positive sentiment."
+          },
+          {
+            "input": "0, 1, 0, 2, 0, 1, 1, 0, 3, 0, 1, 0, 1, 2, 0 (15 batch defect counts)",
+            "output": "0 defects: freq=7, rel.freq=46.7%; 1 defect: freq=5, rel.freq=33.3%",
+            "note": "Manufacturing defect counts per batch. Nearly half of batches are defect-free; only 1 batch had 3 defects — a fairly low defect rate overall."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the Relative Frequency Calculator",
+        "steps": [
+          "Enter your data set in the text area as a comma-separated list of numbers (e.g. 1, 2, 2, 3, 3, 3). Spaces around commas are ignored.",
+          "Click Calculate. The tool counts the occurrences of each distinct value, sorts them in ascending order, and builds the frequency distribution table.",
+          "Read the Frequency column for raw counts, the Rel. Freq. (%) column for proportions, and the Cumulative columns to see how the distribution builds up.",
+          "Check that the relative frequencies sum to 100% — if they do not, verify that your data is correctly formatted with no stray text.",
+          "Use the example buttons to load pre-built data sets and explore what the output looks like before entering your own data."
+        ]
+      },
+      "faq": {
+        "heading": "Relative Frequency FAQ",
+        "q1": "What is the difference between frequency and relative frequency?",
+        "q1_a": "Frequency is the raw count of how many times a value appears in a data set. Relative frequency is that count divided by the total number of observations, giving a proportion between 0 and 1 (or 0% and 100%). Relative frequencies are more useful when comparing data sets of different sizes because they normalise the counts to a common scale.",
+        "q2": "Must the data values be whole numbers (integers)?",
+        "q2_a": "No. The calculator accepts any numeric values, including decimals. However, keep in mind that if your data contains many unique decimal values (e.g. continuous measurements), the resulting frequency table will have many rows, each with a frequency of 1. For continuous data it is more informative to first group values into class intervals and use a grouped frequency distribution instead.",
+        "q3": "How do I use relative frequency to estimate probability?",
+        "q3_a": "The relative frequency of an outcome in an experiment is an empirical estimate of its probability. If you rolled a die 100 times and the number 4 appeared 18 times, the relative frequency is 18% — an estimate of the true probability of rolling a 4 (theoretically 16.7%). As the number of trials increases, the relative frequency converges to the true probability by the Law of Large Numbers.",
+        "q4": "What does cumulative relative frequency tell me?",
+        "q4_a": "Cumulative relative frequency at value v is the proportion of observations that are less than or equal to v. It is the empirical cumulative distribution function (CDF) of your data. For example, if the cumulative relative frequency at score 7 is 40%, it means 40% of students scored 7 or below. This is useful for finding median values, percentile ranks, and for comparing observed distributions against theoretical ones.",
+        "q5": "Why do my relative frequencies not sum exactly to 100%?",
+        "q5_a": "Rounding each relative frequency to a fixed number of decimal places before summing can introduce small discrepancies. The calculator displays rounded values in each cell but uses full-precision values internally. If you need exact 100% totals for a report, apply rounding only after you have summed the full-precision values and then adjust the last row by the residual rounding error.",
+        "q6": "Can I use this calculator for categorical (non-numeric) data?",
+        "q6_a": "The calculator requires numeric input. To use it for categorical data — such as colours, grades (A/B/C), or yes/no responses — assign each category a numeric code (e.g. 1 = Red, 2 = Blue, 3 = Green) and enter the coded values. The output will correctly show the frequency and relative frequency for each numeric code, which you can then relabel in your report."
+      }
+    },
+    "relative-risk-calculator": {
+      "title": "Relative Risk Calculator - Risk Ratio for Cohort Studies",
+      "tagline": "Compute relative risk (risk ratio), 95% confidence interval, and attributable risk from a 2×2 contingency table for exposed and unexposed groups.",
+      "intro": "Enter the four cell counts (a, b, c, d) of your cohort study contingency table to instantly calculate the risk ratio and its confidence interval.",
+      "formula": "RR = (a/(a+b)) / (c/(c+d)) | 95% CI: exp(ln(RR) ± 1.96 × SE) where SE = √(b/(a·nE) + d/(c·nU))",
+      "tableNote": "Enter the four cell values from your 2×2 contingency table: a = exposed with outcome, b = exposed without outcome, c = unexposed with outcome, d = unexposed without outcome.",
+      "group": {
+        "exposed": "Exposed Group",
+        "unexposed": "Unexposed Group"
+      },
+      "field": {
+        "a": "Exposed: Outcome Positive (a)",
+        "b": "Exposed: Outcome Negative (b)",
+        "c": "Unexposed: Outcome Positive (c)",
+        "d": "Unexposed: Outcome Negative (d)"
+      },
+      "placeholder": {
+        "a": "e.g. 70",
+        "b": "e.g. 6930",
+        "c": "e.g. 3",
+        "d": "e.g. 2997"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid non-negative counts for all four cells. The unexposed outcome-positive count cannot be zero."
+      },
+      "result": {
+        "heading": "Results",
+        "riskExposed": "Risk (Exposed)",
+        "riskUnexposed": "Risk (Unexposed)",
+        "relativeRisk": "Relative Risk (RR)",
+        "ci95": "95% CI for RR",
+        "ciUnavailable": "Not available (zero cell)",
+        "attributableRisk": "Attributable Risk"
+      },
+      "about": {
+        "heading": "About the Relative Risk Calculator",
+        "body": "Relative Risk (RR), also called the Risk Ratio, is a measure of association used in cohort studies and randomised controlled trials. It answers the question: how many times more likely is an exposed group to develop the outcome than an unexposed group? An RR of 1.0 means the two groups have identical risk; an RR greater than 1.0 indicates that exposure is associated with increased risk; an RR less than 1.0 indicates that exposure is protective.\n\nThe calculation is built on a 2×2 contingency table that cross-classifies exposure status (yes/no) and outcome status (yes/no). The four cells are conventionally labelled a (exposed, outcome present), b (exposed, outcome absent), c (unexposed, outcome present), and d (unexposed, outcome absent). The risk in the exposed group is a/(a+b) and the risk in the unexposed group is c/(c+d). Relative Risk is simply the ratio of these two incidence proportions.\n\nThe 95% confidence interval (CI) for the RR quantifies the uncertainty of the estimate caused by sampling variability. The standard method uses the log-normal approximation: compute the standard error of the log-RR as √(b/(a·nE) + d/(c·nU)), then exponentiate the interval [ln(RR) ± 1.96 × SE]. If the 95% CI does not include 1.0, the association is statistically significant at the α = 0.05 level. A narrow CI indicates a precise estimate; a wide CI indicates substantial uncertainty, typically due to a small sample size.\n\nAttributable risk (also called Risk Difference or Absolute Risk Increase/Reduction) is the arithmetic difference between the two incidence proportions: AR = riskExposed − riskUnexposed. Unlike the relative risk, which is a ratio, attributable risk expresses the excess risk in absolute terms. An RR of 3.0 sounds dramatic, but if the baseline risk is 0.1%, an AR of 0.2% may be clinically trivial. Conversely, an AR of 10 percentage points is clinically important regardless of the RR. Both measures are needed to fully interpret an epidemiological association.\n\nRelative risk is appropriate for cohort studies and clinical trials where the incidence of the outcome can be directly measured in both the exposed and unexposed groups over a defined follow-up period. It is not appropriate for case-control studies, where participants are selected based on outcome status, not exposure status — in that design the Odds Ratio is used instead. A key practical difference: when the outcome is rare (incidence < 10%), the Odds Ratio numerically approximates the Relative Risk, so the two measures can be compared across study designs. When the outcome is common, they diverge and cannot be used interchangeably.\n\nIn clinical medicine, RR is used to evaluate the effectiveness of treatments, vaccines, and preventive interventions. A vaccine that reduces infection risk from 4% to 1% has an RR of 0.25 — meaning vaccinated individuals are 75% less likely to be infected. In occupational health, RR quantifies how much more likely workers exposed to a chemical or physical hazard are to develop a specific disease than unexposed workers. In nutritional epidemiology, RR links dietary patterns and lifestyle factors to disease outcomes in large prospective cohorts."
+      },
+      "examples": {
+        "heading": "Relative risk examples",
+        "intro": "Classic epidemiological scenarios showing how to set up the contingency table and interpret the resulting risk ratio.",
+        "colInput": "Contingency Table",
+        "colOutput": "Key Metrics",
+        "colNote": "Interpretation",
+        "loadSmoking": "Load smoking example",
+        "loadVaccine": "Load vaccine example",
+        "loadDiet": "Load diet example",
+        "items": [
+          {
+            "input": "Smoking/lung cancer: a=70, b=6930, c=3, d=2997",
+            "output": "RR = 10.0; Risk exposed ≈ 1.0%, Risk unexposed ≈ 0.1%",
+            "note": "Smokers are exactly 10 times more likely to develop lung cancer than non-smokers over 20 years. The attributable risk is ~0.9 percentage points."
+          },
+          {
+            "input": "Flu vaccine trial: a=25, b=4975, c=80, d=4920",
+            "output": "RR ≈ 0.3125; Risk vaccinated ≈ 0.5%, Risk placebo ≈ 1.6%",
+            "note": "Vaccinated individuals are about 69% less likely to get the flu. RR of 0.31 is well below 1.0, confirming a strong protective effect."
+          },
+          {
+            "input": "High-fat diet: a=150, b=1850, c=100, d=2900",
+            "output": "RR = 2.25; Risk exposed ≈ 7.5%, Risk unexposed ≈ 3.3%",
+            "note": "People on a high-fat diet are 2.25 times more likely to develop heart disease. The attributable risk is ~4.2 percentage points."
+          },
+          {
+            "input": "Drug side effect: a=60, b=940, c=20, d=980",
+            "output": "RR = 3.0; Risk drug ≈ 6%, Risk placebo ≈ 2%",
+            "note": "Patients on the drug are exactly 3 times more likely to experience nausea. The 95% CI should be checked to assess statistical significance."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the Relative Risk Calculator",
+        "steps": [
+          "Identify the four cell counts from your 2×2 contingency table: a = number of exposed individuals who developed the outcome; b = exposed who did not; c = unexposed who developed the outcome; d = unexposed who did not.",
+          "Enter a and b in the Exposed Group fields, and c and d in the Unexposed Group fields.",
+          "Click Calculate. The tool returns the risk in each group, the relative risk, the 95% confidence interval, and the attributable risk.",
+          "Interpret the relative risk: RR > 1 means exposure is associated with increased risk; RR < 1 means exposure is protective; RR = 1 means no association.",
+          "Check whether the 95% CI includes 1.0: if it does not, the association is statistically significant at the 5% level. A narrow CI indicates a more precise estimate."
+        ]
+      },
+      "faq": {
+        "heading": "Relative Risk FAQ",
+        "q1": "What is relative risk and how does it differ from odds ratio?",
+        "q1_a": "Relative risk (RR) is the ratio of the incidence of the outcome in the exposed group to the incidence in the unexposed group. Odds ratio (OR) is the ratio of the odds of the outcome in each group. Both measure association, but RR is more intuitive and directly interpretable as a risk multiplier. OR is used in case-control studies where incidence cannot be measured; for rare outcomes (<10%), OR ≈ RR. For common outcomes, OR overestimates RR.",
+        "q2": "Can relative risk be less than 1? What does that mean?",
+        "q2_a": "Yes. An RR less than 1.0 means that the exposed group has a lower risk of the outcome than the unexposed group — in other words, exposure is protective. For example, a vaccine trial might find RR = 0.25, meaning vaccinated participants are 75% less likely to develop the disease. The reduction in risk (1 − RR) is sometimes called the Relative Risk Reduction (RRR).",
+        "q3": "How do I interpret the 95% confidence interval?",
+        "q3_a": "The 95% CI gives a range of plausible values for the true population RR based on your sample. If you repeated the study many times, about 95% of the resulting CIs would contain the true RR. Practically: if the CI excludes 1.0 (e.g. 1.5–3.2), the association is statistically significant at α = 0.05. A CI that includes 1.0 (e.g. 0.8–2.5) is not statistically significant.",
+        "q4": "What is attributable risk and when is it useful?",
+        "q4_a": "Attributable risk (AR) is the absolute difference in risk between exposed and unexposed groups: AR = riskExposed − riskUnexposed. It tells you how many extra cases per person are caused by the exposure. AR is most useful for public-health decision-making because it quantifies the potential benefit of eliminating the exposure. A high RR with a very low baseline risk (low AR) may justify less urgent intervention than a moderate RR with a high baseline risk (high AR).",
+        "q5": "Why does the calculator require the unexposed outcome-positive count (c) to be non-zero?",
+        "q5_a": "Relative risk is defined as the ratio of two incidence rates. If c = 0, the unexposed incidence is zero and the denominator is undefined, making RR undefined. In practice, a c of zero usually means either the unexposed group is protected from the outcome entirely (a very unusual finding) or the sample is too small to observe any events in the unexposed group. In both cases, a different analysis (such as exact methods) is needed.",
+        "q6": "Is relative risk valid for case-control studies?",
+        "q6_a": "No. Relative risk requires the incidence of the outcome in each group, which can only be measured when the study enrols participants based on exposure status (cohort design) or randomly assigns them (RCT). In a case-control study, participants are selected based on outcome status, so the incidence proportion cannot be calculated from the sample. Use the odds ratio for case-control studies instead, and note that it approximates the RR when the outcome is rare."
+      }
+    },
+    "relative-risk-reduction-calculator": {
+      "title": "Relative Risk Reduction Calculator - RRR, ARR & NNT",
+      "tagline": "Calculate RRR, ARR, NNT, relative risk, and event rates from treatment and control group data to measure how effective an intervention really is.",
+      "intro": "Enter the number of events and total patients for both your treatment group and control group to compute all key intervention-effectiveness metrics instantly.",
+      "formula": "CER = control events / control total | EER = treatment events / treatment total | RR = EER / CER | RRR = (CER − EER) / CER | ARR = CER − EER | NNT = 1 / |ARR|",
+      "group": {
+        "treatment": "Treatment Group",
+        "control": "Control Group"
+      },
+      "field": {
+        "treatmentEvents": "Treatment: Patients with Event",
+        "treatmentTotal": "Treatment: Total Patients",
+        "controlEvents": "Control: Patients with Event",
+        "controlTotal": "Control: Total Patients"
+      },
+      "placeholder": {
+        "events": "e.g. 80",
+        "total": "e.g. 1000"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid counts. Events cannot exceed total patients, totals must be positive, and the control event rate cannot be zero."
+      },
+      "result": {
+        "heading": "Results",
+        "cer": "CER (Control Event Rate)",
+        "eer": "EER (Treatment Event Rate)",
+        "rr": "Relative Risk (RR)",
+        "rrr": "RRR (Relative Risk Reduction)",
+        "arr": "ARR (Absolute Risk Reduction)",
+        "nnt": "NNT (Number Needed to Treat)"
+      },
+      "about": {
+        "heading": "About the Relative Risk Reduction Calculator",
+        "body": "Relative Risk Reduction (RRR) is a statistical measure that expresses the proportional reduction in an adverse outcome rate that is attributable to a treatment or intervention. If the control event rate (CER) is 12% and the treatment event rate (EER) is 8%, the RRR is (12% − 8%) / 12% = 33.3%. This tells clinicians, policy-makers, and researchers that the intervention reduces the risk of the event by one-third compared to the control condition.\n\nRRR is calculated from two event rates. The Control Event Rate (CER) is the proportion of patients in the control (untreated or placebo) group who experience the outcome of interest: CER = control events / control total. The Experimental (or Treatment) Event Rate (EER) is the corresponding proportion in the treatment group: EER = treatment events / treatment total. The Relative Risk (RR) is the ratio EER / CER. RRR = 1 − RR = (CER − EER) / CER. When the treatment is beneficial (EER < CER), RRR is positive and between 0 and 1 (0% to 100%). A negative RRR indicates that the treatment increases rather than reduces risk — it could also be called a Relative Risk Increase.\n\nAbsolute Risk Reduction (ARR), also called the Risk Difference, is the arithmetic difference between the two event rates: ARR = CER − EER. Unlike RRR, which is relative to the baseline, ARR is expressed in the same units as the event rate and conveys the actual size of the treatment effect. A drug with an RRR of 50% sounds impressive, but if the baseline risk is only 0.2%, the ARR is only 0.1% — meaning only 1 in 1000 patients benefit. This is why ARR and NNT are essential complements to RRR.\n\nNumber Needed to Treat (NNT) is the reciprocal of ARR: NNT = 1 / |ARR|. It answers the question: on average, how many patients need to receive the treatment for one additional patient to avoid the outcome? An NNT of 10 means that, on average, treating 10 patients prevents one adverse event. A lower NNT indicates a more efficient treatment. NNT should always be interpreted alongside the severity of the outcome: an NNT of 100 to prevent a fatal heart attack may be very worthwhile, while an NNT of 100 to prevent a mild headache may not justify the cost and side-effect burden.\n\nThese four metrics — CER, EER, RRR, ARR, and NNT — appear routinely in clinical guidelines, pharmaceutical product labels, systematic reviews, and health technology assessments. Regulatory agencies such as the FDA and EMA require absolute risk data in labelling to ensure prescribers and patients have a complete picture of treatment benefit. The RRR alone can be misleading: a headline claiming a drug reduces risk by 40% sounds dramatic, but if the ARR is 0.5% and the NNT is 200, clinicians need all three numbers to make an informed decision.\n\nThis calculator also handles cases where the treatment increases the event rate (ARR is negative). In that context, the NNT becomes the Number Needed to Harm (NNH) — the number of patients who need to be treated for one additional adverse event to occur. The interpretation flips but the formula is identical: NNH = 1 / |ARR| when ARR < 0."
+      },
+      "examples": {
+        "heading": "RRR calculation examples",
+        "intro": "Real clinical trial scenarios showing how to enter the data and interpret RRR, ARR, and NNT together.",
+        "colInput": "Study Data",
+        "colOutput": "Key Metrics",
+        "colNote": "Clinical Interpretation",
+        "loadDrug": "Load cholesterol drug",
+        "loadVaccine": "Load flu vaccine",
+        "loadSurgery": "Load surgical technique",
+        "items": [
+          {
+            "input": "Treatment: 80/1000 events; Control: 120/1000 events",
+            "output": "CER=12%, EER=8%, RR=0.667, RRR=33.3%, ARR=4%, NNT=25",
+            "note": "New cholesterol drug: treats 25 patients to prevent 1 heart attack. RRR of 33% sounds impressive; ARR of 4% and NNT of 25 put it in practical context."
+          },
+          {
+            "input": "Treatment: 25/5000 events; Control: 85/5000 events",
+            "output": "CER=1.7%, EER=0.5%, RR=0.294, RRR=70.6%, ARR=1.2%, NNT=83.3",
+            "note": "Flu vaccine: treats 83 people to prevent 1 flu case. Very high RRR of ~71% reflects strong vaccine efficacy despite the low absolute risk baseline."
+          },
+          {
+            "input": "Treatment: 10/250 events; Control: 25/250 events",
+            "output": "CER=10%, EER=4%, RR=0.4, RRR=60%, ARR=6%, NNT=16.7",
+            "note": "New surgical technique: NNT of ~17 means treating 17 patients with the new technique prevents 1 post-operative complication compared to the standard technique."
+          },
+          {
+            "input": "Drug side effect: treat=60/1000 events; control=20/1000 events",
+            "output": "CER=2%, EER=6%, RR=3.0, RRR=−200%, ARR=−4%, NNH=25",
+            "note": "The drug triples the nausea rate compared to placebo. ARR is negative (−4%) because EER > CER; NNT becomes NNH=25, meaning 25 patients treated per additional nausea case caused."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the RRR Calculator",
+        "steps": [
+          "Enter the number of patients who experienced the outcome in the Treatment Group, then enter the total number of patients in that group.",
+          "Enter the number of patients who experienced the outcome in the Control Group (placebo or untreated), then enter that group's total.",
+          "Click Calculate. The tool computes and displays CER, EER, Relative Risk, RRR, ARR, and NNT.",
+          "Interpret RRR as the proportional reduction in risk relative to the control event rate. Check ARR to understand the absolute size of the effect.",
+          "Use NNT to assess clinical efficiency: a lower NNT means fewer patients need treatment to achieve one beneficial outcome. If ARR is negative, interpret NNT as Number Needed to Harm."
+        ]
+      },
+      "faq": {
+        "heading": "RRR, ARR & NNT FAQ",
+        "q1": "What is the difference between RRR and ARR?",
+        "q1_a": "RRR (Relative Risk Reduction) is the proportional reduction in event rate relative to the control: (CER − EER) / CER. ARR (Absolute Risk Reduction) is the arithmetic difference: CER − EER. RRR is always larger in magnitude and can be misleading when the baseline risk is very low. ARR gives the actual reduction in risk per patient, making it a more clinically meaningful single number. Both are needed for a complete picture.",
+        "q2": "What does NNT mean and what is a 'good' NNT?",
+        "q2_a": "NNT is the Number Needed to Treat — the average number of patients who must receive the treatment for one additional patient to avoid the outcome, compared to the control. There is no universal 'good' threshold: it depends on the severity of the outcome, the cost of treatment, and the side-effect burden. An NNT of 5 to prevent a stroke is excellent; an NNT of 5 to prevent a mild headache may not justify treatment. Always consider NNT alongside the severity and frequency of the outcome and harms.",
+        "q3": "What is the Control Event Rate (CER) and why does it matter?",
+        "q3_a": "CER is the proportion of patients in the control group who experience the outcome: CER = control events / control total. It represents the baseline risk without treatment. CER determines how large the RRR translates to in absolute terms: a 50% RRR with CER = 20% gives ARR = 10% and NNT = 10, while the same RRR with CER = 0.4% gives ARR = 0.2% and NNT = 500. The same relative reduction can have very different practical importance depending on the baseline risk.",
+        "q4": "Can RRR be negative? What does that mean?",
+        "q4_a": "Yes. A negative RRR means the treatment group has a higher event rate than the control group — the treatment is associated with increased risk rather than reduced risk. In that case, (CER − EER) is negative and RRR is negative. The absolute value of ARR in this scenario is the Absolute Risk Increase, and the reciprocal is the Number Needed to Harm (NNH) — how many patients must be treated for one additional harm to occur.",
+        "q5": "Is RRR the same as efficacy in vaccine trials?",
+        "q5_a": "Vaccine efficacy (VE) is conceptually identical to RRR: VE = (CER − EER) / CER = 1 − RR. A vaccine efficacy of 95% means that vaccinated individuals have a 95% lower risk of the outcome compared to unvaccinated controls. The terms are used interchangeably in this context, though 'efficacy' typically refers to results from controlled trials while 'effectiveness' is used for real-world observational data.",
+        "q6": "How does this differ from the Relative Risk Calculator?",
+        "q6_a": "The Relative Risk Calculator takes a 2×2 contingency table (cells a, b, c, d) typically used in cohort epidemiology studies, and is focused on computing RR and its confidence interval. The Relative Risk Reduction Calculator takes treatment and control group totals and events, and focuses on computing the clinically useful metrics of RRR, ARR, and NNT that are standard in clinical trial reporting and evidence-based medicine. Both tools compute relative risk, but serve different primary use cases."
+      }
     }
   }
 }
