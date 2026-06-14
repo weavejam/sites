@@ -95,8 +95,13 @@ import { fixtures as f_venn_diagram_calculator } from "@/tools/venn-diagram-calc
 import { fixtures as f_wald_test_calculator } from "@/tools/wald-test-calculator.fixtures";
 import { fixtures as f_weibull_distribution_calculator } from "@/tools/weibull-distribution-calculator.fixtures";
 import { fixtures as f_weighted_mean_calculator } from "@/tools/weighted-mean-calculator.fixtures";
+import { fixtures as f_wheatstone_bridge_calculator } from "@/tools/wheatstone-bridge-calculator.fixtures";
+import { fixtures as f_wiens_law_calculator } from "@/tools/wiens-law-calculator.fixtures";
 import { fixtures as f_wilcoxon_rank_sum_test_calculator } from "@/tools/wilcoxon-rank-sum-test-calculator.fixtures";
 import { fixtures as f_wilcoxon_signed_rank_test_calculator } from "@/tools/wilcoxon-signed-rank-test-calculator.fixtures";
+import { fixtures as f_wind_correction_angle_calculator } from "@/tools/wind-correction-angle-calculator.fixtures";
+import { fixtures as f_wind_load_calculator } from "@/tools/wind-load-calculator.fixtures";
+import { fixtures as f_wing_loading_calculator } from "@/tools/wing-loading-calculator.fixtures";
 import { fixtures as f_yates_correction_for_continuity_calculator } from "@/tools/yates-correction-for-continuity-calculator.fixtures";
 import { fixtures as f_z_score_calculator } from "@/tools/z-score-calculator.fixtures";
 import { fixtures as f_z_test_calculator } from "@/tools/z-test-calculator.fixtures";
@@ -194,8 +199,13 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "wald-test-calculator": f_wald_test_calculator,
   "weibull-distribution-calculator": f_weibull_distribution_calculator,
   "weighted-mean-calculator": f_weighted_mean_calculator,
+  "wheatstone-bridge-calculator": f_wheatstone_bridge_calculator,
+  "wiens-law-calculator": f_wiens_law_calculator,
   "wilcoxon-rank-sum-test-calculator": f_wilcoxon_rank_sum_test_calculator,
   "wilcoxon-signed-rank-test-calculator": f_wilcoxon_signed_rank_test_calculator,
+  "wind-correction-angle-calculator": f_wind_correction_angle_calculator,
+  "wind-load-calculator": f_wind_load_calculator,
+  "wing-loading-calculator": f_wing_loading_calculator,
   "yates-correction-for-continuity-calculator": f_yates_correction_for_continuity_calculator,
   "z-score-calculator": f_z_score_calculator,
   "z-test-calculator": f_z_test_calculator,
