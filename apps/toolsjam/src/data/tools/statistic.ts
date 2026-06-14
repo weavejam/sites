@@ -441,7 +441,6 @@ export const tools: ToolEntry[] = [
       ru: "Calculate the Upper Control Limit (UCL) for statistical process control charts. Enter raw data or summary stats to monitor process variation and quality."
     }
   },
-  
   {
     id: "variance-calculator",
     category: "statistic",
@@ -641,7 +640,209 @@ export const tools: ToolEntry[] = [
       pt: "Weighted mean calculator for grades, finance, and surveys. Enter values and weights to compute the weighted average — supports any number of data points.",
       ru: "Weighted mean calculator for grades, finance, and surveys. Enter values and weights to compute the weighted average — supports any number of data points."
     }
+  },
+  
+  {
+    id: "smp-x-distribution-calculator",
+    category: "statistic",
+    slugs: {
+      en: "smp-x-distribution-calculator",
+      "zh-CN": "smp-x-distribution-calculator",
+      "zh-TW": "smp-x-distribution-calculator",
+      ja: "smp-x-distribution-calculator",
+      ko: "smp-x-distribution-calculator",
+      es: "smp-x-distribution-calculator",
+      fr: "smp-x-distribution-calculator",
+      de: "smp-x-distribution-calculator",
+      pt: "smp-x-distribution-calculator",
+      ru: "smp-x-distribution-calculator"
+    },
+    titles: {
+      en: "Sampling Distribution of Sample Mean Calculator",
+      "zh-CN": "Sampling Distribution of Sample Mean Calculator",
+      "zh-TW": "Sampling Distribution of Sample Mean Calculator",
+      ja: "Sampling Distribution of Sample Mean Calculator",
+      ko: "Sampling Distribution of Sample Mean Calculator",
+      es: "Sampling Distribution of Sample Mean Calculator",
+      fr: "Sampling Distribution of Sample Mean Calculator",
+      de: "Sampling Distribution of Sample Mean Calculator",
+      pt: "Sampling Distribution of Sample Mean Calculator",
+      ru: "Sampling Distribution of Sample Mean Calculator"
+    },
+    descriptions: {
+      en: "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
+      "zh-CN": "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
+      "zh-TW": "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
+      ja: "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
+      ko: "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
+      es: "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
+      fr: "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
+      de: "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
+      pt: "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem.",
+      ru: "Sampling distribution of the sample mean calculator: find SE, z-score, and probability (less than, greater than, between) using the Central Limit Theorem."
+    }
+  },
+  {
+    id: "spearmans-correlation-calculator",
+    category: "statistic",
+    slugs: {
+      en: "spearmans-correlation-calculator",
+      "zh-CN": "spearmans-correlation-calculator",
+      "zh-TW": "spearmans-correlation-calculator",
+      ja: "spearmans-correlation-calculator",
+      ko: "spearmans-correlation-calculator",
+      es: "spearmans-correlation-calculator",
+      fr: "spearmans-correlation-calculator",
+      de: "spearmans-correlation-calculator",
+      pt: "spearmans-correlation-calculator",
+      ru: "spearmans-correlation-calculator"
+    },
+    titles: {
+      en: "Spearman's Correlation Calculator - Rank Correlation",
+      "zh-CN": "Spearman's Correlation Calculator - Rank Correlation",
+      "zh-TW": "Spearman's Correlation Calculator - Rank Correlation",
+      ja: "Spearman's Correlation Calculator - Rank Correlation",
+      ko: "Spearman's Correlation Calculator - Rank Correlation",
+      es: "Spearman's Correlation Calculator - Rank Correlation",
+      fr: "Spearman's Correlation Calculator - Rank Correlation",
+      de: "Spearman's Correlation Calculator - Rank Correlation",
+      pt: "Spearman's Correlation Calculator - Rank Correlation",
+      ru: "Spearman's Correlation Calculator - Rank Correlation"
+    },
+    descriptions: {
+      en: "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
+      "zh-CN": "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
+      "zh-TW": "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
+      ja: "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
+      ko: "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
+      es: "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
+      fr: "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
+      de: "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
+      pt: "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data.",
+      ru: "Spearman's rank correlation calculator: compute ρ for two datasets. Measures monotonic relationships without normality requirements — ideal for ordinal data."
+    }
+  },
+  {
+    id: "standard-deviation-index-calculator",
+    category: "statistic",
+    slugs: {
+      en: "standard-deviation-index-calculator",
+      "zh-CN": "standard-deviation-index-calculator",
+      "zh-TW": "standard-deviation-index-calculator",
+      ja: "standard-deviation-index-calculator",
+      ko: "standard-deviation-index-calculator",
+      es: "standard-deviation-index-calculator",
+      fr: "standard-deviation-index-calculator",
+      de: "standard-deviation-index-calculator",
+      pt: "standard-deviation-index-calculator",
+      ru: "standard-deviation-index-calculator"
+    },
+    titles: {
+      en: "Standard Deviation Calculator - Sample & Population SD",
+      "zh-CN": "Standard Deviation Calculator - Sample & Population SD",
+      "zh-TW": "Standard Deviation Calculator - Sample & Population SD",
+      ja: "Standard Deviation Calculator - Sample & Population SD",
+      ko: "Standard Deviation Calculator - Sample & Population SD",
+      es: "Standard Deviation Calculator - Sample & Population SD",
+      fr: "Standard Deviation Calculator - Sample & Population SD",
+      de: "Standard Deviation Calculator - Sample & Population SD",
+      pt: "Standard Deviation Calculator - Sample & Population SD",
+      ru: "Standard Deviation Calculator - Sample & Population SD"
+    },
+    descriptions: {
+      en: "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
+      "zh-CN": "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
+      "zh-TW": "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
+      ja: "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
+      ko: "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
+      es: "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
+      fr: "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
+      de: "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
+      pt: "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly.",
+      ru: "Standard deviation calculator: compute sample SD, population SD, mean, variance, and CV from any dataset. Enter numbers and get results instantly."
+    }
+  },
+  {
+    id: "standard-deviation-of-sample-mean-calculator",
+    category: "statistic",
+    slugs: {
+      en: "standard-deviation-of-sample-mean-calculator",
+      "zh-CN": "standard-deviation-of-sample-mean-calculator",
+      "zh-TW": "standard-deviation-of-sample-mean-calculator",
+      ja: "standard-deviation-of-sample-mean-calculator",
+      ko: "standard-deviation-of-sample-mean-calculator",
+      es: "standard-deviation-of-sample-mean-calculator",
+      fr: "standard-deviation-of-sample-mean-calculator",
+      de: "standard-deviation-of-sample-mean-calculator",
+      pt: "standard-deviation-of-sample-mean-calculator",
+      ru: "standard-deviation-of-sample-mean-calculator"
+    },
+    titles: {
+      en: "Standard Deviation of Sample Mean Calculator (SEM)",
+      "zh-CN": "Standard Deviation of Sample Mean Calculator (SEM)",
+      "zh-TW": "Standard Deviation of Sample Mean Calculator (SEM)",
+      ja: "Standard Deviation of Sample Mean Calculator (SEM)",
+      ko: "Standard Deviation of Sample Mean Calculator (SEM)",
+      es: "Standard Deviation of Sample Mean Calculator (SEM)",
+      fr: "Standard Deviation of Sample Mean Calculator (SEM)",
+      de: "Standard Deviation of Sample Mean Calculator (SEM)",
+      pt: "Standard Deviation of Sample Mean Calculator (SEM)",
+      ru: "Standard Deviation of Sample Mean Calculator (SEM)"
+    },
+    descriptions: {
+      en: "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly.",
+      "zh-CN": "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly.",
+      "zh-TW": "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly.",
+      ja: "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly.",
+      ko: "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly.",
+      es: "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly.",
+      fr: "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly.",
+      de: "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly.",
+      pt: "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly.",
+      ru: "Standard deviation of sample mean (SEM) calculator: compute SEM, mean, variance, and SD from raw data. Enter comma-separated numbers to get results instantly."
+    }
+  },
+  {
+    id: "standard-error-calculator",
+    category: "statistic",
+    slugs: {
+      en: "standard-error-calculator",
+      "zh-CN": "standard-error-calculator",
+      "zh-TW": "standard-error-calculator",
+      ja: "standard-error-calculator",
+      ko: "standard-error-calculator",
+      es: "standard-error-calculator",
+      fr: "standard-error-calculator",
+      de: "standard-error-calculator",
+      pt: "standard-error-calculator",
+      ru: "standard-error-calculator"
+    },
+    titles: {
+      en: "Standard Error Calculator - SE from Raw Data or Summary",
+      "zh-CN": "Standard Error Calculator - SE from Raw Data or Summary",
+      "zh-TW": "Standard Error Calculator - SE from Raw Data or Summary",
+      ja: "Standard Error Calculator - SE from Raw Data or Summary",
+      ko: "Standard Error Calculator - SE from Raw Data or Summary",
+      es: "Standard Error Calculator - SE from Raw Data or Summary",
+      fr: "Standard Error Calculator - SE from Raw Data or Summary",
+      de: "Standard Error Calculator - SE from Raw Data or Summary",
+      pt: "Standard Error Calculator - SE from Raw Data or Summary",
+      ru: "Standard Error Calculator - SE from Raw Data or Summary"
+    },
+    descriptions: {
+      en: "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate.",
+      "zh-CN": "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate.",
+      "zh-TW": "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate.",
+      ja: "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate.",
+      ko: "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate.",
+      es: "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate.",
+      fr: "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate.",
+      de: "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate.",
+      pt: "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate.",
+      ru: "Standard error calculator: compute SE from raw data or summary statistics. Includes confidence intervals at 90%, 95%, and 99% — free and accurate."
+    }
   }
+
 
 
 
