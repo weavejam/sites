@@ -7475,6 +7475,461 @@
         "q6": "What does a significant result actually mean?",
         "q6_a": "A significant result (p ≤ α) means the observed mean difference is unlikely to have occurred by chance if the null hypothesis were true. It does not prove the null is false, nor does it guarantee the effect is large or clinically important. Always report the mean difference d̄, its confidence interval, and an effect size (such as Cohen's d = d̄ / s_d) so readers can judge the practical significance of the finding."
       }
+    },
+    "dice-probability-calculator": {
+      "title": "Dice Probability Calculator - Exact & At Least Odds",
+      "tagline": "Calculate the exact probability of any dice roll outcome — exact sum, at least, or at most — for up to 10 dice with any number of sides.",
+      "intro": "Enter the number of dice, sides per die, and your target sum, then choose whether you want the exact, at-least, or at-most probability.",
+      "type": {
+        "exact": "Exact Sum",
+        "atLeast": "At Least",
+        "atMost": "At Most"
+      },
+      "field": {
+        "calcType": "Calculation type",
+        "numberOfDice": "Number of Dice",
+        "sidesPerDie": "Sides per Die",
+        "targetSum": "Target Sum"
+      },
+      "placeholder": {
+        "dice": "1–10",
+        "targetSum": "Enter target sum"
+      },
+      "button": {
+        "calculate": "Calculate Probability",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid values: 1–10 dice, at least 2 sides, and a positive target sum.",
+        "range": "Target sum must be between {min} (minimum) and {max} (maximum) for this dice configuration."
+      },
+      "result": {
+        "heading": "Probability",
+        "fraction": "{favorable} favorable outcomes out of {total} total ({fraction})",
+        "summary": "{n} dice × d{s}, {type} {target}"
+      },
+      "about": {
+        "heading": "About the Dice Probability Calculator",
+        "body": "Dice probability is a foundational topic in both recreational mathematics and formal probability theory. Every time you roll a fair die, each face has an equal probability of landing face-up — for a standard six-sided die, that is 1/6 for each outcome. When you roll multiple dice and sum the results, the number of ways to reach each possible total follows a characteristic distribution that is distinctly non-uniform and strongly bell-shaped for three or more dice.\n\nThe dice probability calculator uses a dynamic-programming convolution approach to count the exact number of ways to obtain every possible sum. Starting from a single outcome of 0 with 1 way, it iterates over each die and expands the distribution by considering every possible face value. This produces an exact count of favorable outcomes for any target sum. Dividing by the total number of outcomes — which is simply (sides per die) raised to the power (number of dice) — gives the probability as a decimal fraction between 0 and 1.\n\nThe calculator supports three types of probability queries. The exact probability answers \"What is the probability the dice total exactly T?\" — useful when a board game rule requires hitting a specific number. The at-least probability answers \"What is the probability the dice total T or more?\" — relevant in role-playing games where you need a minimum score to succeed. The at-most probability answers \"What is the probability the dice total T or less?\" — useful for risk assessments and threshold calculations.\n\nKnowing the theoretical probability of a dice outcome is valuable for game design, strategy, education, and gambling analysis. For example, when rolling two standard six-sided dice, the sum 7 has the highest probability (6 out of 36, or 16.67%) because there are six combinations that produce it: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Sums at the extremes — 2 (snake eyes) or 12 (boxcars) — have only one combination each, giving them a probability of just 1/36 (≈ 2.78%). Understanding this distribution is the core of many board game and casino strategies.\n\nBeyond six-sided dice, the calculator handles polyhedral dice common in tabletop role-playing games: d4, d8, d10, d12, and d20. The distribution of sums changes significantly with the number of sides. A single d20 produces a uniform distribution; two d20 dice produce a triangular distribution; three or more produce an increasingly bell-shaped curve. This convergence towards a normal distribution is a concrete illustration of the Central Limit Theorem in action."
+      },
+      "examples": {
+        "heading": "Dice Probability Examples",
+        "intro": "Three scenarios illustrating exact, at-least, and at-most probability calculations.",
+        "colInput": "Scenario",
+        "colOutput": "Probability",
+        "colNote": "Explanation",
+        "loadSingle": "Single d6 — roll a 4",
+        "loadLucky7": "Two d6 — sum = 7",
+        "loadHighRoll": "Three d6 — sum ≥ 16",
+        "items": [
+          {
+            "input": "1 die, d6, exact sum = 4",
+            "output": "16.6667%",
+            "note": "One favorable outcome (face showing 4) out of 6 total. P = 1/6."
+          },
+          {
+            "input": "2 dice, d6, exact sum = 7",
+            "output": "16.6667%",
+            "note": "Six combinations produce a sum of 7 out of 36 total: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). P = 6/36 = 1/6."
+          },
+          {
+            "input": "3 dice, d6, at least sum = 16",
+            "output": "4.6296%",
+            "note": "10 combinations out of 216 total produce a sum of 16 or more. P = 10/216 ≈ 4.63%."
+          },
+          {
+            "input": "2 dice, d6, at most sum = 4",
+            "output": "16.6667%",
+            "note": "Sums of 2 (1 way), 3 (2 ways), 4 (3 ways) give 6 favorable outcomes out of 36. P = 6/36 = 1/6."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Dice Probability Calculator",
+        "steps": [
+          "Choose the calculation type: Exact Sum for a specific total, At Least for a minimum threshold, or At Most for a maximum threshold.",
+          "Enter the number of dice (1–10) in the first field. More dice shifts the distribution towards a bell curve.",
+          "Select the number of sides per die from the dropdown (d4, d6, d8, d10, d12, or d20).",
+          "Enter the target sum you are interested in. The valid range is shown if you enter an out-of-range value.",
+          "Click Calculate Probability. The result shows the probability as a percentage, the fraction of favorable outcomes over total outcomes, and the simplified fraction."
+        ]
+      },
+      "faq": {
+        "heading": "Dice Probability FAQ",
+        "q1": "Why is 7 the most common sum for two six-sided dice?",
+        "q1_a": "There are 6 combinations that produce a sum of 7 out of 36 total outcomes, giving it the highest probability of 1/6 ≈ 16.67%. The sums 6 and 8 are the next most common (5/36 each), while 2 and 12 are the rarest at 1/36 each. This asymmetric distribution is why craps, Monopoly, and many other dice games revolve around the number 7.",
+        "q2": "What is the difference between 'exact', 'at least', and 'at most' probability?",
+        "q2_a": "Exact probability gives the chance that the total equals precisely the target number. At-least probability gives the chance the total is greater than or equal to the target — useful when you need a minimum roll to succeed. At-most probability gives the chance the total is less than or equal to the target — useful when you want to stay below a threshold.",
+        "q3": "How does the number of dice affect the distribution shape?",
+        "q3_a": "With a single die the distribution is perfectly uniform — every face is equally likely. With two dice the distribution becomes triangular, peaking at the midpoint. With three or more dice it becomes bell-shaped and increasingly resembles a normal distribution, a direct consequence of the Central Limit Theorem. This means extreme sums become exponentially rarer as you add more dice.",
+        "q4": "Can I use this calculator for non-standard dice?",
+        "q4_a": "The calculator supports d4, d6, d8, d10, d12, and d20 — the standard polyhedral dice used in most tabletop games. These cover the vast majority of real-world dice. If you need probabilities for a die with a different number of sides, use the standard formulas: total outcomes = sides^n, and count favorable outcomes using the same convolution logic the calculator applies internally.",
+        "q5": "Is the probability calculation exact or approximate?",
+        "q5_a": "The calculation is exact using integer arithmetic. The calculator counts every possible combination using dynamic programming (generating functions convolution), then divides by the total number of outcomes. No sampling, simulation, or approximation is involved. The displayed percentage is rounded to four decimal places for readability, but the underlying fraction is exact.",
+        "q6": "How can I use dice probability in game strategy?",
+        "q6_a": "Knowing the probability of each outcome lets you make informed decisions. In Settlers of Catan, placing settlements on hexes labeled 6 and 8 gives the highest frequency of resource production because each corresponds to a 5/36 chance with two d6. In Dungeons & Dragons combat, knowing the probability of rolling a 15 or higher on a d20 (P = 6/20 = 30%) helps you gauge risk when deciding whether to attempt a risky action."
+      }
+            },
+            "dice-roller-calculator": {
+              "title": "Dice Roller Calculator - Roll Dice & Analyze Statistics",
+              "tagline": "Simulate rolling multiple dice and instantly see statistical analysis including mean, median, mode, standard deviation, and full frequency distribution.",
+              "intro": "Set the number of dice, sides per die, and how many rolls to simulate, then click Roll Dice to see the results and statistics.",
+              "field": {
+                "numberOfDice": "Number of Dice",
+                "diceSides": "Dice Sides",
+                "numberOfRolls": "Number of Rolls"
+              },
+              "placeholder": {
+                "dice": "1–10",
+                "rolls": "1–10000"
+              },
+              "button": {
+                "roll": "Roll Dice",
+                "reset": "Reset"
+              },
+              "error": {
+                "invalid": "Please enter valid values: 1–10 dice, at least 2 sides, and 1–10,000 rolls."
+              },
+              "result": {
+                "heading": "Roll Statistics",
+                "mean": "Mean",
+                "median": "Median",
+                "mode": "Mode",
+                "stdDev": "Std Dev",
+                "min": "Min",
+                "max": "Max",
+                "freqHeading": "Frequency Distribution",
+                "colValue": "Sum",
+                "colCount": "Count",
+                "colPct": "Frequency %"
+              },
+              "about": {
+                "heading": "About the Dice Roller Calculator",
+                "body": "A dice roller calculator is a digital tool that simulates the rolling of physical dice using pseudo-random number generation. Each roll of a fair n-sided die is modelled as a uniformly distributed random variable taking integer values from 1 to n with equal probability 1/n. When multiple dice are rolled and summed, the resulting distribution depends on the number of dice and sides: with one die the distribution is uniform, with two it is triangular, and with three or more it approaches a bell curve in accordance with the Central Limit Theorem.\n\nRunning a large number of simulated rolls and recording the outcomes gives you an empirical frequency distribution that you can compare directly against the theoretical probability distribution. This is a powerful way to understand how quickly real distributions converge to their theoretical counterparts — even 100 rolls of two six-sided dice will show a clear peak at 7, while 10,000 rolls produce a frequency table that closely matches the theoretical probabilities.\n\nThe statistical summary output by this calculator includes the mean (average sum across all rolls), the median (the middle value when all sums are sorted), the mode (the most frequently occurring sum or sums), the standard deviation (a measure of spread around the mean), and the minimum and maximum observed sums. Together these five-number summary statistics give you a complete picture of the roll distribution in a small space.\n\nFor a single fair n-sided die, the theoretical expected value (mean) is (n+1)/2, the variance is (n²−1)/12, and the standard deviation is sqrt((n²−1)/12). For multiple dice, the expected value is additive (n×(s+1)/2 where n is number of dice and s is sides per die), and the variance is also additive, so the standard deviation grows as sqrt(n)×sigma_single. This calculator uses simulation rather than exact computation, so results will vary slightly between runs — but with 1,000 or more rolls, the sample statistics converge very close to their theoretical values.\n\nPractical uses for the dice roller calculator span game development, statistical education, and probability research. Game designers use it to verify that their game mechanics produce the intended difficulty curves and balance. Statistics teachers use it to demonstrate the Central Limit Theorem without requiring students to perform calculations by hand. Tabletop RPG players use it to understand the probability profiles of different dice combinations before choosing their builds. And probability students use it as a hands-on laboratory for concepts like expected value, variance, and the law of large numbers."
+              },
+              "examples": {
+                "heading": "Dice Roller Examples",
+                "intro": "Three simulation scenarios illustrating how the frequency distribution changes with different dice configurations.",
+                "colInput": "Configuration",
+                "colOutput": "Expected Mean",
+                "colNote": "Use Case",
+                "loadSingle": "1×d6, 100 rolls",
+                "loadTwo": "2×d6, 500 rolls",
+                "loadD20": "1×d20, 200 rolls",
+                "items": [
+                  {
+                    "input": "1 die, d6, 100 rolls",
+                    "output": "Mean ≈ 3.5",
+                    "note": "Uniform distribution across 1–6. Expected mean = 3.5, std dev ≈ 1.71. Each value appears roughly 16–17 times in 100 rolls."
+                  },
+                  {
+                    "input": "2 dice, d6, 500 rolls",
+                    "output": "Mean ≈ 7.0",
+                    "note": "Triangular distribution peaked at 7. Expected mean = 7, std dev ≈ 2.42. Sum 7 appears about 83 times (16.7%) in 500 rolls."
+                  },
+                  {
+                    "input": "1 die, d20, 200 rolls",
+                    "output": "Mean ≈ 10.5",
+                    "note": "Uniform distribution across 1–20. Expected mean = 10.5, std dev ≈ 5.77. Each value appears roughly 10 times in 200 rolls."
+                  },
+                  {
+                    "input": "5 dice, d8, 1000 rolls",
+                    "output": "Mean ≈ 22.5",
+                    "note": "Near-normal bell curve centered on 22.5. Expected mean = 5×4.5 = 22.5, std dev ≈ 4.33. Illustrates Central Limit Theorem clearly."
+                  }
+                ]
+              },
+              "howto": {
+                "heading": "How to Use the Dice Roller Calculator",
+                "steps": [
+                  "Set the Number of Dice (1–10) to specify how many dice are rolled on each simulation step.",
+                  "Select the Dice Sides from the dropdown (d4, d6, d8, d10, d12, or d20) to choose the die type.",
+                  "Enter the Number of Rolls (1–10,000) to set how many independent rolls the simulation will perform.",
+                  "Click Roll Dice. Because the simulation uses randomness, each run produces slightly different results — click again to re-roll.",
+                  "Review the statistics summary (mean, median, mode, standard deviation, min, max) and the frequency distribution table to analyse the results."
+                ]
+              },
+              "faq": {
+                "heading": "Dice Roller FAQ",
+                "q1": "Why does the mean change slightly on each roll?",
+                "q1_a": "Each simulation run uses a different sequence of pseudo-random numbers, so the sample statistics fluctuate around the theoretical expected value. With only 10–20 rolls the variation can be large; with 1,000 rolls the sample mean will typically be within a few tenths of the theoretical mean; with 10,000 rolls it is usually within a hundredth. This convergence is the law of large numbers in action.",
+                "q2": "What does the standard deviation tell me about my dice rolls?",
+                "q2_a": "The standard deviation measures the spread of sums around the mean. A small standard deviation means most rolls cluster tightly near the average; a large one means there is a wide range of outcomes. For a single d6 the theoretical std dev is about 1.71; for two d6 it is about 2.42 (sqrt(2)×1.71 ≈ 2.42). As you add more dice the std dev grows, but more slowly than the mean, so the coefficient of variation decreases.",
+                "q3": "What is the frequency distribution table?",
+                "q3_a": "The frequency distribution table shows every sum value that occurred at least once, how many times it occurred, and its observed frequency as a percentage of total rolls. This lets you compare the empirical results directly to the theoretical probabilities. For two d6 the sum 7 should appear about 16.67% of the time; larger samples will show a percentage closer to this theoretical value.",
+                "q4": "How many rolls do I need for an accurate estimate?",
+                "q4_a": "For a rough picture, 100 rolls is usually sufficient to see the shape of the distribution. For accurate frequency estimates, use 1,000 or more rolls. At 10,000 rolls, the sample frequencies will typically be within 0.5 percentage points of the theoretical probabilities for standard six-sided dice. The exact number depends on the number of possible outcomes and the desired precision.",
+                "q5": "Can I use this for educational demonstrations?",
+                "q5_a": "Yes, this is one of the most common uses. Clicking Roll Dice multiple times and comparing the resulting histograms is an excellent hands-on demonstration of the law of large numbers. Increasing the number of dice from 1 to 5 while holding rolls constant is a clear visual demonstration of the Central Limit Theorem as the distribution shifts from uniform to near-normal.",
+                "q6": "Why does the mode sometimes show multiple values?",
+                "q6_a": "The mode is the most frequently occurring value in the sample. When two or more sums tie for the highest frequency, all tied values are shown as modes. This is common with small sample sizes. For two six-sided dice with 1,000 rolls, the mode is almost always 7, but with 20 rolls any sum might occur 3–4 times and several modes can appear simultaneously."
+              }
+            },
+    "dispersion-calculator": {
+      "title": "Dispersion Calculator - Variance, Std Dev & IQR",
+      "tagline": "Calculate the full range of statistical dispersion measures — range, variance, standard deviation, IQR, coefficient of variation, and MAD — from any numerical data set.",
+      "intro": "Enter your numbers as a comma-separated list and click Calculate to see all dispersion and central tendency statistics instantly.",
+      "field": {
+        "data": "Data (comma-separated numbers)"
+      },
+      "placeholder": {
+        "data": "e.g. 12, 15, 14, 10, 18, 11"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least 2 valid numbers separated by commas."
+      },
+      "result": {
+        "heading": "Dispersion Results",
+        "count": "Count",
+        "mean": "Mean",
+        "median": "Median",
+        "range": "Range",
+        "sampleVariance": "Sample Variance",
+        "populationVariance": "Population Variance",
+        "sampleStdDev": "Sample Std Dev",
+        "populationStdDev": "Population Std Dev",
+        "q1": "Q1 (25th percentile)",
+        "q3": "Q3 (75th percentile)",
+        "iqr": "IQR",
+        "cv": "Coefficient of Variation",
+        "mad": "Median Absolute Deviation"
+      },
+      "about": {
+        "heading": "About the Dispersion Calculator",
+        "body": "Statistical dispersion describes how spread out the values in a data set are. While measures of central tendency — mean, median, and mode — tell you where the centre of a distribution is, measures of dispersion tell you how much the individual data points deviate from that centre. Two data sets can share the same mean but have very different distributions; dispersion measures are what reveal this difference.\n\nThe range is the simplest measure of dispersion: the difference between the largest and smallest values. It is easy to compute and interpret, but it is sensitive to outliers because it depends entirely on the two extreme values and ignores everything in between.\n\nVariance measures the average squared deviation from the mean. The sample variance divides the sum of squared deviations by (n−1) — using Bessel's correction to give an unbiased estimate of the population variance when working with a sample. The population variance divides by n and is appropriate only when your data set is the entire population of interest. Standard deviation is the square root of variance, expressed in the same units as the original data.\n\nThe interquartile range (IQR) measures the spread of the middle 50% of the data. It is calculated as Q3 − Q1 where Q1 is the 25th percentile and Q3 is the 75th percentile. Because it ignores the bottom and top 25% of values, the IQR is resistant to outliers and is the preferred measure of spread for skewed distributions.\n\nThe coefficient of variation (CV) expresses the sample standard deviation as a percentage of the mean, making it a dimensionless measure that allows you to compare the relative variability of data sets measured in different units or at different scales. A CV of 10% means the standard deviation is 10% of the mean — a useful benchmark for comparing measurement precision across experiments.\n\nThe median absolute deviation (MAD) is the median of the absolute deviations from the median. It is even more robust to outliers than the IQR and is used in robust statistics and anomaly detection. Like the IQR, the MAD is resistant to extreme values and provides a reliable measure of spread for data sets with heavy tails or skewed distributions."
+      },
+      "examples": {
+        "heading": "Dispersion Calculator Examples",
+        "intro": "Three real-world data sets illustrating different dispersion patterns.",
+        "colInput": "Data Set",
+        "colOutput": "Key Metrics",
+        "colNote": "Interpretation",
+        "loadScores": "Load test scores",
+        "loadStocks": "Load stock returns",
+        "loadQuality": "Load quality control",
+        "items": [
+          {
+            "input": "85, 92, 78, 88, 76, 95, 89, 72",
+            "output": "Mean=84.375, SD≈8.19, IQR=12.25",
+            "note": "Class test scores. CV≈9.71% indicates moderate relative spread. IQR of 12.25 shows the middle 50% of students scored within a 12-point band."
+          },
+          {
+            "input": "1.2, -0.5, 2.1, 0.8, -1.9, 1.5, 2.5, -0.2, 0.3, 1.7, -1.1, 2.3",
+            "output": "Mean=0.725, SD≈1.40, IQR=2.075",
+            "note": "Monthly stock returns (%). High CV (>100%) reflects substantial volatility relative to the small positive mean return."
+          },
+          {
+            "input": "502, 499, 505, 498, 501, 503, 497, 500",
+            "output": "Mean=500.625, SD≈2.67, CV≈0.53%",
+            "note": "Product weights (g) in a quality control batch. Very low CV confirms tight manufacturing consistency around the 500 g target."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Dispersion Calculator",
+        "steps": [
+          "Type or paste your data values into the text area, separated by commas, spaces, or newlines.",
+          "Click Calculate. The calculator parses the numbers, ignoring any non-numeric tokens.",
+          "Review the central tendency measures (count, mean, median) to understand where your data is centred.",
+          "Check the dispersion metrics: range for overall spread, standard deviation for average deviation from the mean, and IQR for the middle-50% spread.",
+          "Use the coefficient of variation to compare relative variability across different data sets, and the MAD for a robust outlier-resistant measure of spread."
+        ]
+      },
+      "faq": {
+        "heading": "Dispersion Calculator FAQ",
+        "q1": "When should I use the IQR instead of the standard deviation?",
+        "q1_a": "Use the IQR when your data is skewed, contains outliers, or comes from a non-normal distribution. The IQR only considers the middle 50% of data and is unaffected by extreme values. The standard deviation takes all values into account, so one outlier can inflate it substantially. For normally distributed data without outliers, both measures are informative.",
+        "q2": "What is the difference between sample variance and population variance?",
+        "q2_a": "Population variance divides the sum of squared deviations by n (the total count), appropriate when you have data for the entire population. Sample variance divides by n−1 (Bessel's correction), which corrects for the bias that arises when estimating population variance from a sample. For large samples the difference is negligible; for small samples (n < 30) it matters more.",
+        "q3": "What does the coefficient of variation tell me?",
+        "q3_a": "The coefficient of variation (CV) expresses the standard deviation as a percentage of the mean, giving a scale-independent measure of relative variability. A CV of 5% means the data is relatively consistent; a CV of 50% means it is highly variable relative to its average. CV is particularly useful for comparing the variability of measurements in different units, such as comparing the consistency of two different manufacturing processes.",
+        "q4": "How is the median absolute deviation (MAD) calculated?",
+        "q4_a": "The MAD is the median of the absolute values of the deviations from the median: MAD = median(|xi − median(x)|). It is more resistant to outliers than the standard deviation because it uses the median of deviations rather than the mean. A commonly used robust estimate of standard deviation is 1.4826 × MAD, which equals the standard deviation for a normal distribution.",
+        "q5": "Why might the mean and median differ significantly?",
+        "q5_a": "When the mean and median differ substantially, the distribution is skewed. A mean much larger than the median indicates right skew (a few very large values pulling the mean up). A mean much smaller than the median indicates left skew. In skewed distributions, the median is usually a better measure of central tendency than the mean, and the IQR is a better measure of spread than the standard deviation.",
+        "q6": "Can I use this calculator for very large data sets?",
+        "q6_a": "The calculator handles any size data set you can enter, but very large inputs may be slow to parse. For best performance, use comma-separated values on a single line or spread across lines. The calculations use numerically stable algorithms that avoid overflow and underflow for typical data ranges. If you are analysing millions of values, a dedicated statistics package such as R or Python pandas would be more efficient."
+      }
+    },
+    "dot-plot-calculator": {
+      "title": "Dot Plot Calculator - Create Dot Plots Online Free",
+      "tagline": "Enter a numerical data set to generate an interactive dot plot and compute mean, median, mode, and range instantly.",
+      "intro": "Type or paste your comma-separated numbers, click Calculate, and see the dot plot along with key summary statistics.",
+      "field": {
+        "data": "Data Set (comma-separated numbers)"
+      },
+      "placeholder": {
+        "data": "e.g. 8, 7, 9, 8, 10, 7, 8, 9"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least one valid number."
+      },
+      "result": {
+        "plotHeading": "Dot Plot",
+        "statsHeading": "Summary Statistics",
+        "count": "Count",
+        "mean": "Mean",
+        "median": "Median",
+        "mode": "Mode",
+        "range": "Range",
+        "min": "Min",
+        "max": "Max",
+        "tooManyValues": "Too many unique values ({count}) to render a dot plot. Summary statistics are shown above.",
+        "rangeLabel": "Range: {min} – {max}"
+      },
+      "about": {
+        "heading": "About the Dot Plot Calculator",
+        "body": "A dot plot is one of the simplest and most intuitive ways to display a small or medium-sized numerical data set. Each individual data point is represented by a single dot placed above a number line at the position corresponding to its value. When multiple data points share the same value, the dots are stacked vertically, so the height of each stack immediately shows how frequently that value occurs in the data set.\n\nDot plots are particularly useful in educational settings because they retain every original data value without any binning or aggregation. Unlike histograms, which group values into intervals and can obscure individual data points, a dot plot shows the complete picture: every value, every gap, every cluster, and every outlier is visible at a glance. This transparency makes dot plots ideal for exploratory data analysis, classroom demonstrations, and any situation where the raw data is important.\n\nThe dot plot calculator computes several key summary statistics alongside the visual display. The mean (arithmetic average) tells you the balance point of the data. The median (middle value when sorted) tells you the typical value and is resistant to outliers. The mode identifies the most frequently occurring value or values — visible directly as the tallest column in the dot plot. The range (max minus min) gives a quick sense of the overall spread.\n\nReading a dot plot is straightforward. The x-axis shows the range of values from the smallest to the largest. Each dot above a value represents one observation with that value. Gaps in the dot plot (no dots above a value between two occupied positions) indicate values that don't appear in the data. Clusters of tall stacks suggest concentrations of data, while isolated dots at the edges suggest potential outliers.\n\nCompared to other chart types, the dot plot has advantages and limitations. It excels for small to medium data sets (up to about 50 observations) where individual points matter. For very large data sets, the dots become too numerous to display clearly, and a histogram or box plot is more appropriate. The dot plot also works best when the data has relatively few unique values, so that multiple observations can stack up into readable columns."
+      },
+      "examples": {
+        "heading": "Dot Plot Examples",
+        "intro": "Three data sets showing how dot plots reveal different distribution shapes.",
+        "colInput": "Data Set",
+        "colOutput": "Distribution Shape",
+        "colNote": "Insight",
+        "loadScores": "Load quiz scores",
+        "loadTemps": "Load temperatures",
+        "loadHeights": "Load plant heights",
+        "items": [
+          {
+            "input": "8, 7, 9, 8, 10, 7, 8, 9, 6, 8, 7, 9, 8, 5, 9",
+            "output": "Approx. normal, peak at 8",
+            "note": "Quiz scores 5–10. The dot plot shows a clear peak at 8 (the mode with 5 occurrences) and symmetric tails, suggesting a roughly normal distribution."
+          },
+          {
+            "input": "2, 1, -1, 0, 2, -1, -2, -1, 0, 1, 2, 3, 0, -1",
+            "output": "Spread across -2 to 3, mode at -1",
+            "note": "Daily low temperatures (°C). The mode of -1 appears 4 times. The range of 5 degrees shows moderate spread across the two-week period."
+          },
+          {
+            "input": "3.5, 4.0, 3.5, 4.2, 3.8, 4.0, 3.5, 3.5, 4.1, 3.8",
+            "output": "Clustered 3.5–4.2, mode at 3.5",
+            "note": "Seedling heights in cm. All plants fall within a tight 0.7 cm range. The mode of 3.5 (4 occurrences) may indicate a measurement ceiling."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Dot Plot Calculator",
+        "steps": [
+          "Enter your data values in the text area separated by commas, spaces, or newlines. Decimal numbers and negative values are supported.",
+          "Click Calculate. The calculator parses all valid numbers and ignores any non-numeric tokens.",
+          "Read the dot plot: each column of dots represents one value, and the height of the column shows how many times that value appears.",
+          "Use the summary statistics (mean, median, mode, range) to quickly characterise the distribution.",
+          "Try the example buttons below the table to load pre-set data sets and see how different distribution shapes look on a dot plot."
+        ]
+      },
+      "faq": {
+        "heading": "Dot Plot Calculator FAQ",
+        "q1": "When should I use a dot plot instead of a histogram?",
+        "q1_a": "Use a dot plot when your data set is small (fewer than about 50 observations) and you want to see every individual data point. Dot plots preserve all the raw data without binning, which is valuable when individual values matter or when you want to identify the exact frequency of each value. Histograms are better for large data sets where the overall shape of the distribution matters more than individual points.",
+        "q2": "What does the mode tell me in a dot plot?",
+        "q2_a": "The mode is the value (or values) with the most dots stacked above it — the tallest column in the dot plot. For a unimodal data set there is one clear tallest column. For a bimodal distribution there are two peaks of similar height. If every value appears exactly once (all columns the same height), every value is a mode. The dot plot makes the mode visually immediate in a way that a table of numbers cannot.",
+        "q3": "How do I identify outliers on a dot plot?",
+        "q3_a": "Outliers appear as isolated dots far from the main cluster of data — either a single dot (or small group) separated from the rest by a gap on the number line. On a dot plot you can see outliers at a glance without any formal calculation. For a formal definition, the IQR method defines outliers as values more than 1.5 × IQR below Q1 or above Q3.",
+        "q4": "Can a dot plot handle decimal or negative numbers?",
+        "q4_a": "Yes, the calculator supports decimal numbers (e.g. 3.5, 4.2) and negative numbers (e.g. −1, −2.5). The number line will automatically extend to cover the full range of your data. For decimal data with many unique values, the plot may become wide; the calculator shows a message if there are too many unique values to render clearly.",
+        "q5": "What is the difference between mean and median on a dot plot?",
+        "q5_a": "The mean is the arithmetic average — the balance point where the distribution would balance perfectly if it were a physical object. The median is the middle value: half the dots fall to the left and half to the right. For symmetric distributions the two are equal. For skewed distributions or data with outliers, the mean is pulled towards the tail while the median stays near the centre of the main cluster. The dot plot makes this comparison visual.",
+        "q6": "Why might the dot plot show 'too many unique values'?",
+        "q6_a": "When a data set has more than about 40 distinct values (common with continuous measurements), the dot plot becomes too wide to display compactly. In that case the calculator shows the summary statistics but skips the visual dot plot. To get a useful visual for such data, consider rounding values to a smaller number of decimal places, or switching to a histogram or box plot which handles large numbers of unique values more gracefully."
+      }
+    },
+    "empirical-rule-calculator": {
+      "title": "Empirical Rule Calculator - 68-95-99.7 Rule for Normal",
+      "tagline": "Apply the empirical rule (68-95-99.7 rule) to any normal distribution: enter mean and standard deviation to get the exact ranges for 68%, 95%, and 99.7% of the data.",
+      "intro": "Enter the mean (μ) and standard deviation (σ) of a normal distribution to calculate the three empirical rule intervals.",
+      "field": {
+        "mean": "Mean (μ)",
+        "stdDev": "Standard Deviation (σ)"
+      },
+      "placeholder": {
+        "mean": "e.g. 100",
+        "stdDev": "e.g. 15"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers for both mean and standard deviation.",
+        "negSigma": "Standard deviation must be a positive number greater than zero."
+      },
+      "result": {
+        "heading": "Empirical Rule Intervals",
+        "sigma1Label": "68.27% of data (μ ± 1σ)",
+        "sigma2Label": "95.45% of data (μ ± 2σ)",
+        "sigma3Label": "99.73% of data (μ ± 3σ)",
+        "rangeLabel": "Range: {lo} to {hi}"
+      },
+      "about": {
+        "heading": "About the Empirical Rule Calculator",
+        "body": "The empirical rule, also known as the three-sigma rule or the 68-95-99.7 rule, is a statistical shorthand that describes how data is distributed in a normal (bell-shaped) distribution. It states that approximately 68% of observations fall within one standard deviation of the mean, about 95% fall within two standard deviations, and about 99.7% fall within three standard deviations. These are some of the most important numbers in applied statistics.\n\nMore precisely, the percentages are 68.27%, 95.45%, and 99.73%, derived from the cumulative distribution function of the standard normal distribution. The complement probabilities are also important: roughly 32% of data falls outside the one-sigma interval, about 5% outside the two-sigma interval, and only 0.27% (about 1 in 370) outside the three-sigma interval. This last figure is the basis of the \"three-sigma limit\" widely used in quality control and Six Sigma methodology.\n\nThe empirical rule only applies when the data follows — or closely approximates — a normal distribution. Many natural phenomena are approximately normal: adult heights, IQ scores, measurement errors, blood pressure readings, and many economic and financial metrics approximate normal distributions. In those cases, the empirical rule gives rapid, practical answers without any calculation beyond basic arithmetic.\n\nTo apply the rule, you need just two parameters: the mean (μ), which locates the centre of the distribution, and the standard deviation (σ), which measures the spread. The one-sigma interval is (μ − σ, μ + σ), the two-sigma interval is (μ − 2σ, μ + 2σ), and the three-sigma interval is (μ − 3σ, μ + 3σ). This calculator computes all three intervals instantly.\n\nPractical applications are numerous. In manufacturing and quality control, a process is considered in control if the output falls within the three-sigma limits (99.73% of the time). In IQ testing with μ = 100 and σ = 15, about 68% of people score between 85 and 115, about 95% score between 70 and 130, and about 99.7% score between 55 and 145. In finance, the empirical rule is used to estimate the likelihood of extreme returns under the normality assumption, forming the basis of Value at Risk calculations. In biology and medicine, it helps identify unusual measurements: a blood pressure reading more than two standard deviations from the mean is outside the 95% interval and worth investigating."
+      },
+      "examples": {
+        "heading": "Empirical Rule Examples",
+        "intro": "Three real-world distributions showing how the 68-95-99.7 rule gives instant insight.",
+        "colInput": "Distribution",
+        "colOutput": "1σ Range (68%)",
+        "colNote": "Application",
+        "loadIQ": "Load IQ scores",
+        "loadHeight": "Load adult height",
+        "loadExam": "Load exam scores",
+        "items": [
+          {
+            "input": "IQ scores: μ = 100, σ = 15",
+            "output": "85 to 115",
+            "note": "About 68% of people score 85–115, about 95% score 70–130, and about 99.7% score 55–145. A score above 130 (2σ above mean) is in the top 2.5%."
+          },
+          {
+            "input": "Adult male height: μ = 175 cm, σ = 7 cm",
+            "output": "168 to 182 cm",
+            "note": "About 68% of adult males are 168–182 cm tall. About 95% fall in 161–189 cm. Heights below 154 cm or above 196 cm are outside the 3σ range (<0.3%)."
+          },
+          {
+            "input": "University exam scores: μ = 78, σ = 6",
+            "output": "72 to 84",
+            "note": "About 68% of students score 72–84. The top 2.5% (above 2σ = 90) qualify for distinction. About 99.7% score between 60 and 96."
+          },
+          {
+            "input": "Manufacturing bolt length: μ = 50 mm, σ = 0.5 mm",
+            "output": "49.5 to 50.5 mm",
+            "note": "About 99.73% of bolts are within 3σ = 48.5–51.5 mm. Any bolt outside this range is flagged as defective under Six Sigma quality standards."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Empirical Rule Calculator",
+        "steps": [
+          "Enter the mean (μ) of your normally distributed data in the first field. The mean can be any real number.",
+          "Enter the standard deviation (σ) in the second field. The standard deviation must be a positive number greater than zero.",
+          "Click Calculate. The calculator shows three coloured panels: the 68.27%, 95.45%, and 99.73% intervals.",
+          "Each panel shows the range (lower bound to upper bound) and the percentage of data expected to fall within it.",
+          "Use the example buttons to load well-known distributions (IQ scores, adult height, exam scores) and see the empirical rule in action."
+        ]
+      },
+      "faq": {
+        "heading": "Empirical Rule FAQ",
+        "q1": "What is the empirical rule in statistics?",
+        "q1_a": "The empirical rule (also called the 68-95-99.7 rule or three-sigma rule) states that for a normal distribution, about 68% of data falls within one standard deviation of the mean, about 95% within two standard deviations, and about 99.7% within three. It is a quick way to describe how spread out a normal distribution is and to estimate the probability of observations falling in different ranges.",
+        "q2": "Does the empirical rule apply to all distributions?",
+        "q2_a": "No — the empirical rule only applies to normal (Gaussian) distributions. If your data is skewed, multimodal, or has heavy tails, the percentages will be different. For non-normal distributions, Chebyshev's inequality gives a weaker but universally valid result: at least 75% of data falls within 2σ of the mean (vs 95% for normal), and at least 88.9% within 3σ (vs 99.7% for normal).",
+        "q3": "How do I know if my data is normally distributed?",
+        "q3_a": "Common approaches include examining a histogram (bell-shaped and symmetric?), plotting a Q-Q (quantile-quantile) plot (points should fall near a straight line for normal data), or applying formal tests like the Shapiro-Wilk or Kolmogorov-Smirnov test. For large samples (n > 30), the Central Limit Theorem means the sampling distribution of the mean is approximately normal even if the underlying data is not.",
+        "q4": "What does it mean to be 'outside two standard deviations'?",
+        "q4_a": "For a normal distribution, about 95.45% of data falls within 2σ of the mean, which means about 4.55% falls outside — roughly 2.275% in each tail. Being more than 2σ above the mean is statistically unusual and falls in the top 2.27% of the distribution. This threshold (often loosely stated as 5% or 1-in-20) is the basis of the conventional p < 0.05 significance level in hypothesis testing.",
+        "q5": "How is the empirical rule used in quality control?",
+        "q5_a": "In manufacturing and process quality, control limits are typically set at three standard deviations from the mean (the 3σ limits). Under the normality assumption, 99.73% of a process's output falls within these limits when the process is in control. Points outside the 3σ limits are treated as signals of a special cause of variation requiring investigation. This forms the foundation of Statistical Process Control (SPC) and the Six Sigma quality management methodology.",
+        "q6": "Can I use this for one-sided probabilities?",
+        "q6_a": "The empirical rule gives two-sided intervals centred on the mean. For one-sided probabilities, divide the complement in half. For example, about 95.45% of data falls within 2σ on both sides, so 4.55% falls outside — 2.275% above μ+2σ and 2.275% below μ−2σ. This is why a 95% two-sided confidence interval uses z = 1.96 (approximately 2σ): 2.5% is excluded from each tail."
+      }
     }
   }
 }

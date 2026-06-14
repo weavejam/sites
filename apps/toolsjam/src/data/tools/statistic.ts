@@ -2120,5 +2120,85 @@ export const tools: ToolEntry[] = [
       en: "Paired samples t-test calculator: enter two matched data groups to get the t-statistic, degrees of freedom, p-value, and 95% confidence interval.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "dice-probability-calculator",
+    category: "statistic",
+    slugs: {
+      en: "dice-probability-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Dice Probability Calculator - Exact & At Least Odds",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Dice probability calculator: find exact, at-least, or at-most probabilities for any combination of dice with up to 10 dice and 20 sides per die.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "dice-roller-calculator",
+    category: "statistic",
+    slugs: {
+      en: "dice-roller-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Dice Roller Calculator - Roll Dice & Analyze Statistics",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Dice roller calculator: simulate rolling multiple dice and get instant statistics — mean, median, mode, standard deviation, and full frequency distribution.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "dispersion-calculator",
+    category: "statistic",
+    slugs: {
+      en: "dispersion-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Dispersion Calculator - Variance, Std Dev & IQR",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Dispersion calculator: enter comma-separated numbers to get range, variance, standard deviation, IQR, coefficient of variation, and MAD in one click.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "dot-plot-calculator",
+    category: "statistic",
+    slugs: {
+      en: "dot-plot-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Dot Plot Calculator - Create Dot Plots Online Free",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Dot plot calculator: enter a data set to generate a visual dot plot with mean, median, mode, and range — perfect for classrooms and quick data exploration.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "empirical-rule-calculator",
+    category: "statistic",
+    slugs: {
+      en: "empirical-rule-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Empirical Rule Calculator - 68-95-99.7 Rule for Normal",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Empirical rule calculator: enter mean and standard deviation to get the 68%, 95%, and 99.7% ranges for any normal distribution instantly.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
 ];

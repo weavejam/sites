@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_dice_probability_calculator } from "@/tools/dice-probability-calculator.fixtures";
+import { fixtures as f_dice_roller_calculator } from "@/tools/dice-roller-calculator.fixtures";
+import { fixtures as f_dispersion_calculator } from "@/tools/dispersion-calculator.fixtures";
+import { fixtures as f_dot_plot_calculator } from "@/tools/dot-plot-calculator.fixtures";
+import { fixtures as f_empirical_rule_calculator } from "@/tools/empirical-rule-calculator.fixtures";
 import { fixtures as f_error_propagation_calculator } from "@/tools/error-propagation-calculator.fixtures";
 import { fixtures as f_expanded_form_calculator } from "@/tools/expanded-form-calculator.fixtures";
 import { fixtures as f_expanding_logarithms_calculator } from "@/tools/expanding-logarithms-calculator.fixtures";
@@ -89,6 +94,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "dice-probability-calculator": f_dice_probability_calculator,
+  "dice-roller-calculator": f_dice_roller_calculator,
+  "dispersion-calculator": f_dispersion_calculator,
+  "dot-plot-calculator": f_dot_plot_calculator,
+  "empirical-rule-calculator": f_empirical_rule_calculator,
   "error-propagation-calculator": f_error_propagation_calculator,
   "expanded-form-calculator": f_expanded_form_calculator,
   "expanding-logarithms-calculator": f_expanding_logarithms_calculator,
