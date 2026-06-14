@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { type Locale, isLocale } from "../i18n/locales";
 import { changeLocale } from "../i18n";
-import { findGameByUrlSlug, GAMES } from "../games/registry";
+import { findGameByUrlSlug } from "../games/registry";
 import { useSettings } from "./SettingsStore";
 
 /**
@@ -26,8 +26,7 @@ export function useSwitchLocale() {
 
       const slug = params.gameSlug;
       if (slug) {
-        const game = findGameByUrlSlug(currentLocale, slug)
-          ?? GAMES.find((g) => g.urlSlug[currentLocale] === slug);
+        const game = findGameByUrlSlug(currentLocale, slug);
         if (game) {
           navigate(`/${next}/${game.urlSlug[next]}${location.search}${location.hash}`);
           return;

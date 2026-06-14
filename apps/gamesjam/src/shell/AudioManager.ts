@@ -8,9 +8,6 @@ export interface AudioDef {
   src: string;
 }
 
-export type SfxDef = AudioDef;
-export type BgmDef = AudioDef;
-
 class AudioManager {
   private sfx = new Map<string, Howl>();
   private bgm = new Map<string, Howl>();
