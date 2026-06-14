@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_combination_calculator } from "@/tools/combination-calculator.fixtures";
+import { fixtures as f_conditional_probability_calculator } from "@/tools/conditional-probability-calculator.fixtures";
+import { fixtures as f_confidence_interval_calculator } from "@/tools/confidence-interval-calculator.fixtures";
+import { fixtures as f_confusion_matrix_calculator } from "@/tools/confusion-matrix-calculator.fixtures";
+import { fixtures as f_constant_of_proportionality_calculator } from "@/tools/constant-of-proportionality-calculator.fixtures";
 import { fixtures as f_error_propagation_calculator } from "@/tools/error-propagation-calculator.fixtures";
 import { fixtures as f_expanded_form_calculator } from "@/tools/expanded-form-calculator.fixtures";
 import { fixtures as f_expanding_logarithms_calculator } from "@/tools/expanding-logarithms-calculator.fixtures";
@@ -89,6 +94,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "combination-calculator": f_combination_calculator,
+  "conditional-probability-calculator": f_conditional_probability_calculator,
+  "confidence-interval-calculator": f_confidence_interval_calculator,
+  "confusion-matrix-calculator": f_confusion_matrix_calculator,
+  "constant-of-proportionality-calculator": f_constant_of_proportionality_calculator,
   "error-propagation-calculator": f_error_propagation_calculator,
   "expanded-form-calculator": f_expanded_form_calculator,
   "expanding-logarithms-calculator": f_expanding_logarithms_calculator,
