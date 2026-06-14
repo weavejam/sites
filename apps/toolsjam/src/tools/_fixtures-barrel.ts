@@ -24,6 +24,11 @@ import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures"
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
+import { fixtures as f_relative_standard_deviation_calculator } from "@/tools/relative-standard-deviation-calculator.fixtures";
+import { fixtures as f_repeated_measures_anova_calculator } from "@/tools/repeated-measures-anova-calculator.fixtures";
+import { fixtures as f_residual_calculator } from "@/tools/residual-calculator.fixtures";
+import { fixtures as f_risk_calculator } from "@/tools/risk-calculator.fixtures";
+import { fixtures as f_roc_curve_calculator } from "@/tools/roc-curve-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
 import { fixtures as f_tukey_hsd_calculator } from "@/tools/tukey-hsd-calculator.fixtures";
 import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-envelopes-paradox-calculator.fixtures";
@@ -58,6 +63,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
+  "relative-standard-deviation-calculator": f_relative_standard_deviation_calculator,
+  "repeated-measures-anova-calculator": f_repeated_measures_anova_calculator,
+  "residual-calculator": f_residual_calculator,
+  "risk-calculator": f_risk_calculator,
+  "roc-curve-calculator": f_roc_curve_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
   "tukey-hsd-calculator": f_tukey_hsd_calculator,
   "two-envelopes-paradox-calculator": f_two_envelopes_paradox_calculator,

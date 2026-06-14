@@ -241,7 +241,6 @@ export const tools: ToolEntry[] = [
       ru: "One-sample and two-sample Z-test calculator for hypothesis testing. Enter sample mean, population SD, and sample size to get the Z-statistic and p-value."
     }
   },
-  
   {
     id: "tukey-hsd-calculator",
     category: "statistic",
@@ -441,7 +440,205 @@ export const tools: ToolEntry[] = [
       pt: "Calculate the Upper Control Limit (UCL) for statistical process control charts. Enter raw data or summary stats to monitor process variation and quality.",
       ru: "Calculate the Upper Control Limit (UCL) for statistical process control charts. Enter raw data or summary stats to monitor process variation and quality."
     }
+  },
+  {
+    id: "relative-standard-deviation-calculator",
+    category: "statistic",
+    slugs: {
+      en: "relative-standard-deviation-calculator",
+      "zh-CN": "relative-standard-deviation-calculator",
+      "zh-TW": "relative-standard-deviation-calculator",
+      ja: "relative-standard-deviation-calculator",
+      ko: "relative-standard-deviation-calculator",
+      es: "relative-standard-deviation-calculator",
+      fr: "relative-standard-deviation-calculator",
+      de: "relative-standard-deviation-calculator",
+      pt: "relative-standard-deviation-calculator",
+      ru: "relative-standard-deviation-calculator"
+    },
+    titles: {
+      en: "Relative Standard Deviation Calculator - RSD & CV",
+      "zh-CN": "Relative Standard Deviation Calculator - RSD & CV",
+      "zh-TW": "Relative Standard Deviation Calculator - RSD & CV",
+      ja: "Relative Standard Deviation Calculator - RSD & CV",
+      ko: "Relative Standard Deviation Calculator - RSD & CV",
+      es: "Relative Standard Deviation Calculator - RSD & CV",
+      fr: "Relative Standard Deviation Calculator - RSD & CV",
+      de: "Relative Standard Deviation Calculator - RSD & CV",
+      pt: "Relative Standard Deviation Calculator - RSD & CV",
+      ru: "Relative Standard Deviation Calculator - RSD & CV"
+    },
+    descriptions: {
+      en: "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision.",
+      "zh-CN": "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision.",
+      "zh-TW": "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision.",
+      ja: "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision.",
+      ko: "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision.",
+      es: "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision.",
+      fr: "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision.",
+      de: "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision.",
+      pt: "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision.",
+      ru: "Calculate Relative Standard Deviation (RSD) and Coefficient of Variation (CV) instantly. Free statistical analysis tool for data dispersion and precision."
+    }
+  },
+  {
+    id: "repeated-measures-anova-calculator",
+    category: "statistic",
+    slugs: {
+      en: "repeated-measures-anova-calculator",
+      "zh-CN": "repeated-measures-anova-calculator",
+      "zh-TW": "repeated-measures-anova-calculator",
+      ja: "repeated-measures-anova-calculator",
+      ko: "repeated-measures-anova-calculator",
+      es: "repeated-measures-anova-calculator",
+      fr: "repeated-measures-anova-calculator",
+      de: "repeated-measures-anova-calculator",
+      pt: "repeated-measures-anova-calculator",
+      ru: "repeated-measures-anova-calculator"
+    },
+    titles: {
+      en: "Repeated Measures ANOVA Calculator - η² and F",
+      "zh-CN": "Repeated Measures ANOVA Calculator - η² and F",
+      "zh-TW": "Repeated Measures ANOVA Calculator - η² and F",
+      ja: "Repeated Measures ANOVA Calculator - η² and F",
+      ko: "Repeated Measures ANOVA Calculator - η² and F",
+      es: "Repeated Measures ANOVA Calculator - η² and F",
+      fr: "Repeated Measures ANOVA Calculator - η² and F",
+      de: "Repeated Measures ANOVA Calculator - η² and F",
+      pt: "Repeated Measures ANOVA Calculator - η² and F",
+      ru: "Repeated Measures ANOVA Calculator - η² and F"
+    },
+    descriptions: {
+      en: "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly.",
+      "zh-CN": "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly.",
+      "zh-TW": "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly.",
+      ja: "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly.",
+      ko: "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly.",
+      es: "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly.",
+      fr: "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly.",
+      de: "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly.",
+      pt: "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly.",
+      ru: "Perform one-way repeated measures ANOVA analysis. Enter subject data to get F-statistic, effect size (eta squared), and complete ANOVA table instantly."
+    }
+  },
+  {
+    id: "residual-calculator",
+    category: "statistic",
+    slugs: {
+      en: "residual-calculator",
+      "zh-CN": "residual-calculator",
+      "zh-TW": "residual-calculator",
+      ja: "residual-calculator",
+      ko: "residual-calculator",
+      es: "residual-calculator",
+      fr: "residual-calculator",
+      de: "residual-calculator",
+      pt: "residual-calculator",
+      ru: "residual-calculator"
+    },
+    titles: {
+      en: "Residual Calculator - Linear Regression Residuals Online",
+      "zh-CN": "Residual Calculator - Linear Regression Residuals Online",
+      "zh-TW": "Residual Calculator - Linear Regression Residuals Online",
+      ja: "Residual Calculator - Linear Regression Residuals Online",
+      ko: "Residual Calculator - Linear Regression Residuals Online",
+      es: "Residual Calculator - Linear Regression Residuals Online",
+      fr: "Residual Calculator - Linear Regression Residuals Online",
+      de: "Residual Calculator - Linear Regression Residuals Online",
+      pt: "Residual Calculator - Linear Regression Residuals Online",
+      ru: "Residual Calculator - Linear Regression Residuals Online"
+    },
+    descriptions: {
+      en: "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset.",
+      "zh-CN": "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset.",
+      "zh-TW": "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset.",
+      ja: "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset.",
+      ko: "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset.",
+      es: "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset.",
+      fr: "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset.",
+      de: "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset.",
+      pt: "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset.",
+      ru: "Calculate linear regression residuals instantly. Enter X and Y values to get the regression line, predicted values, residuals, and R-squared for any dataset."
+    }
+  },
+  {
+    id: "risk-calculator",
+    category: "statistic",
+    slugs: {
+      en: "risk-calculator",
+      "zh-CN": "risk-calculator",
+      "zh-TW": "risk-calculator",
+      ja: "risk-calculator",
+      ko: "risk-calculator",
+      es: "risk-calculator",
+      fr: "risk-calculator",
+      de: "risk-calculator",
+      pt: "risk-calculator",
+      ru: "risk-calculator"
+    },
+    titles: {
+      en: "Risk Calculator - Relative Risk, Absolute Risk & NNT",
+      "zh-CN": "Risk Calculator - Relative Risk, Absolute Risk & NNT",
+      "zh-TW": "Risk Calculator - Relative Risk, Absolute Risk & NNT",
+      ja: "Risk Calculator - Relative Risk, Absolute Risk & NNT",
+      ko: "Risk Calculator - Relative Risk, Absolute Risk & NNT",
+      es: "Risk Calculator - Relative Risk, Absolute Risk & NNT",
+      fr: "Risk Calculator - Relative Risk, Absolute Risk & NNT",
+      de: "Risk Calculator - Relative Risk, Absolute Risk & NNT",
+      pt: "Risk Calculator - Relative Risk, Absolute Risk & NNT",
+      ru: "Risk Calculator - Relative Risk, Absolute Risk & NNT"
+    },
+    descriptions: {
+      en: "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology.",
+      "zh-CN": "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology.",
+      "zh-TW": "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology.",
+      ja: "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology.",
+      ko: "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology.",
+      es: "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology.",
+      fr: "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology.",
+      de: "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology.",
+      pt: "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology.",
+      ru: "Calculate relative risk (RR), absolute risk reduction (ARR), and number needed to treat (NNT). Free online risk calculator for clinical trials and epidemiology."
+    }
+  },
+  {
+    id: "roc-curve-calculator",
+    category: "statistic",
+    slugs: {
+      en: "roc-curve-calculator",
+      "zh-CN": "roc-curve-calculator",
+      "zh-TW": "roc-curve-calculator",
+      ja: "roc-curve-calculator",
+      ko: "roc-curve-calculator",
+      es: "roc-curve-calculator",
+      fr: "roc-curve-calculator",
+      de: "roc-curve-calculator",
+      pt: "roc-curve-calculator",
+      ru: "roc-curve-calculator"
+    },
+    titles: {
+      en: "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+      "zh-CN": "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+      "zh-TW": "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+      ja: "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+      ko: "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+      es: "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+      fr: "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+      de: "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+      pt: "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+      ru: "ROC Curve & AUC Calculator - Binary Classifier Evaluation"
+    },
+    descriptions: {
+      en: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
+      "zh-CN": "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
+      "zh-TW": "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
+      ja: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
+      ko: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
+      es: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
+      fr: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
+      de: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
+      pt: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
+      ru: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold."
+    }
   }
-
-
 ];
