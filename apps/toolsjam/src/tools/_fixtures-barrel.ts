@@ -24,6 +24,11 @@ import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures"
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
+import { fixtures as f_roulette_payout_calculator } from "@/tools/roulette-payout-calculator.fixtures";
+import { fixtures as f_rse_calculator_relative_standard_error } from "@/tools/rse-calculator-relative-standard-error.fixtures";
+import { fixtures as f_sample_size_calculator } from "@/tools/sample-size-calculator.fixtures";
+import { fixtures as f_sampling_distribution_of_the_sample_proportion_calculator } from "@/tools/sampling-distribution-of-the-sample-proportion-calculator.fixtures";
+import { fixtures as f_sampling_error_calculator } from "@/tools/sampling-error-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
 import { fixtures as f_tukey_hsd_calculator } from "@/tools/tukey-hsd-calculator.fixtures";
 import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-envelopes-paradox-calculator.fixtures";
@@ -58,6 +63,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
+  "roulette-payout-calculator": f_roulette_payout_calculator,
+  "rse-calculator-relative-standard-error": f_rse_calculator_relative_standard_error,
+  "sample-size-calculator": f_sample_size_calculator,
+  "sampling-distribution-of-the-sample-proportion-calculator": f_sampling_distribution_of_the_sample_proportion_calculator,
+  "sampling-error-calculator": f_sampling_error_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
   "tukey-hsd-calculator": f_tukey_hsd_calculator,
   "two-envelopes-paradox-calculator": f_two_envelopes_paradox_calculator,
