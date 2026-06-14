@@ -11419,6 +11419,489 @@
         "q6": "What is the CO₂ equivalent for water heating?",
         "q6_a": "CO₂ emissions depend on the energy source and grid carbon intensity. This calculator uses 0.233 kg CO₂/kWh — the UK average grid intensity. In France (mostly nuclear), emissions are about 0.05 kg/kWh; in Australia (coal-heavy), about 0.67 kg/kWh. To reduce water heating emissions: install solar thermal panels (eliminates 60–80% of heating energy), use a heat pump water heater, insulate storage tanks and pipes, and choose renewable electricity tariffs."
       }
+    },
+    "torsional-stiffness-calculator": {
+      "title": "Torsional Stiffness Calculator – Shear Stress and Torque",
+      "tagline": "Calculate torsional stiffness, max shear stress, and strain energy for circular shafts from shear modulus, length, and diameter.",
+      "intro": "Enter your shaft geometry and material properties to instantly compute torsional stiffness, maximum shear stress, polar moment of inertia, and strain energy.",
+      "formula": "K = G·J/L | J = πd⁴/32 | τ_max = T·(d/2)/J | U = T²·L/(2·G·J)",
+      "field": {
+        "crossSectionType": "Cross Section Type",
+        "torque": "Applied Torque (N·m)",
+        "angle": "Twist Angle (rad)",
+        "shearModulus": "Shear Modulus G (GPa)",
+        "length": "Length (m)",
+        "diameter": "Diameter (m)"
+      },
+      "type": {
+        "circular": "Circular"
+      },
+      "placeholder": {
+        "torque": "e.g. 1500",
+        "angle": "e.g. 0.05",
+        "shearModulus": "e.g. 80",
+        "length": "e.g. 1.5",
+        "diameter": "e.g. 0.03"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers in all fields."
+      },
+      "result": {
+        "heading": "Results",
+        "stiffness": "Torsional Stiffness (analytical K=GJ/L): {value} N·m/rad",
+        "stiffnessMeasured": "Torsional Stiffness (measured K=T/θ): {value} N·m/rad",
+        "shearStress": "Max Shear Stress: {value} MPa",
+        "polarMoment": "Polar Moment of Inertia: {value} m⁴",
+        "strainEnergy": "Strain Energy: {value} J"
+      },
+      "about": {
+        "heading": "About the torsional stiffness calculator",
+        "body": "Torsional stiffness is a fundamental mechanical property that quantifies a structural component's resistance to angular deformation when subjected to a twisting moment, or torque. Engineers working with rotating shafts, drive systems, precision instruments, and structural frames rely on accurate torsional stiffness calculations to ensure reliable, safe, and efficient designs.\n\nThe core relationship is straightforward: torsional stiffness K equals the product of the material's shear modulus G and the cross-section's polar moment of inertia J, divided by the component's length L. Written as K = G·J/L, this formula captures two independent contributions — the material's inherent resistance to shear deformation, and the geometry's contribution through how material is distributed around the rotation axis.\n\nFor a solid circular cross-section, the polar moment of inertia is J = πd⁴/32, where d is the diameter. This fourth-power dependence on diameter means that doubling the diameter increases torsional stiffness sixteen-fold — geometry matters enormously. That is why solid thick shafts are much stiffer than slender rods of the same material, and why hollow circular sections are so attractive in aerospace applications where weight must be minimized while stiffness is maintained.\n\nThe shear modulus G is a material constant. Steel has G ≈ 79–80 GPa, aluminum alloys range from 26–30 GPa, brass sits around 38–42 GPa, titanium is typically 40–45 GPa, and engineering polymers are much lower at 1–5 GPa. Selecting the right material and cross-section to meet a stiffness target is one of the most common tasks in mechanical design.\n\nBeyond stiffness, this calculator also computes maximum shear stress τ_max = T·r/J and strain energy U = T²·L/(2·G·J). Maximum shear stress governs whether a shaft will yield or fracture under the applied torque, and must be compared against the material's shear yield strength (approximately 0.577 × tensile yield strength for ductile metals). Strain energy indicates how much elastic energy is stored in the twisted component — relevant for fatigue life calculations and for understanding dynamic response under cyclic loading.\n\nPractical applications span automotive driveshafts that transmit engine torque to wheels, gas-turbine engine shafts that must resist enormous torques without excessive twist, machine-tool spindles where even tiny angular deflections degrade surface finish, and torsion bars in vehicle suspensions. In each case, the designer balances stiffness, weight, cost, and strength to achieve reliable performance over the product's intended lifetime."
+      },
+      "examples": {
+        "heading": "Torsional stiffness examples",
+        "intro": "Three worked scenarios covering common engineering materials and applications.",
+        "colInput": "Input",
+        "colOutput": "Torsional Stiffness",
+        "colNote": "Application",
+        "loadSteel": "Load steel shaft",
+        "loadAluminum": "Load aluminum shaft",
+        "loadBrass": "Load brass shaft",
+        "items": [
+          {
+            "input": "Steel shaft: T=1500 N·m, θ=0.05 rad, G=80 GPa, L=1.5 m, d=0.03 m",
+            "output": "K ≈ 4,241 N·m/rad, τ_max ≈ 283 MPa",
+            "note": "Typical automotive driveshaft. K = G·J/L with J = πd⁴/32 = 7.95 × 10⁻⁸ m⁴; shear stress from τ = T·r/J."
+          },
+          {
+            "input": "Aluminum shaft: T=800 N·m, θ=0.08 rad, G=26 GPa, L=2.0 m, d=0.04 m",
+            "output": "K ≈ 3,267 N·m/rad, τ_max ≈ 63.6 MPa",
+            "note": "Lightweight aerospace drive shaft. Lower shear modulus of aluminum requires larger diameter for similar stiffness."
+          },
+          {
+            "input": "Brass shaft: T=200 N·m, θ=0.02 rad, G=40 GPa, L=0.5 m, d=0.01 m",
+            "output": "K ≈ 78.5 N·m/rad, τ_max ≈ 1019 MPa",
+            "note": "Small-diameter precision shaft. Very high shear stress exceeds typical brass strength — increase diameter or reduce torque."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the torsional stiffness calculator",
+        "steps": [
+          "Select the cross-section type. Currently the calculator supports solid circular sections, which cover the vast majority of engineering shaft designs.",
+          "Enter the applied torque in newton-metres (N·m) and the expected twist angle in radians. These are used to compute shear stress and strain energy.",
+          "Enter the shear modulus G of your material in gigapascals (GPa). Use 80 for carbon steel, 26–30 for aluminium alloys, 40 for brass, or consult your material datasheet.",
+          "Enter the component length in metres and the shaft diameter in metres. Remember the polar moment of inertia scales with d⁴, so small changes in diameter have a large effect.",
+          "Click Calculate to view torsional stiffness (N·m/rad), maximum shear stress (MPa), polar moment of inertia (m⁴), and strain energy (J). Compare the shear stress against your material's allowable shear stress before finalising the design."
+        ]
+      },
+      "faq": {
+        "heading": "Torsional stiffness FAQ",
+        "q1": "What is the difference between torsional stiffness and torsional strength?",
+        "q1_a": "Torsional stiffness (K, in N·m/rad) describes how much a component deforms (twists) per unit of applied torque — it is a measure of rigidity. Torsional strength is the maximum torque the component can carry before it yields or fractures. A component can be stiff but brittle, or flexible but tough; both properties must be evaluated independently in design.",
+        "q2": "Why does diameter have such a large influence on torsional stiffness?",
+        "q2_a": "Because the polar moment of inertia J = πd⁴/32 scales with the fourth power of diameter. Doubling the diameter increases J — and therefore K — by a factor of 16. This makes cross-section size the most powerful lever in shaft design, far more influential than material choice or length.",
+        "q3": "What shear modulus should I use for steel?",
+        "q3_a": "Most carbon and alloy steels have G in the range 78–82 GPa. A standard design value is 80 GPa. Stainless steels are slightly lower at around 73–77 GPa. Always check your specific material datasheet when designing safety-critical components.",
+        "q4": "How do I convert twist angle from degrees to radians?",
+        "q4_a": "Multiply degrees by π/180 (approximately 0.01745). For example, 5° = 5 × 0.01745 ≈ 0.0873 rad. The calculator requires the angle in radians because the shear stress and strain-energy formulas use the SI radian system.",
+        "q5": "What is strain energy stored in a twisted shaft?",
+        "q5_a": "Strain energy U = T²L/(2GJ) is the elastic energy stored in the shaft when it is twisted by torque T. It equals the work done by the torque during the twisting. Understanding strain energy is important for fatigue analysis, since it directly relates to the cyclic loading the shaft experiences, and for assessing impact resistance.",
+        "q6": "Can this calculator handle hollow circular sections?",
+        "q6_a": "The current calculator covers solid circular sections. For hollow circular sections (tubes), replace J with π(D⁴ − d⁴)/32, where D is the outer diameter and d is the inner diameter. Hollow sections offer excellent stiffness-to-weight ratios, which is why they are preferred in aerospace and bicycle frame design."
+      }
+    },
+    "trajectory-calculator": {
+      "title": "Trajectory Calculator – Projectile Motion Range and Height",
+      "tagline": "Calculate horizontal range, maximum height, and time of flight for any projectile from initial velocity, launch angle, and starting height.",
+      "intro": "Enter initial velocity, launch angle (0–90°), and initial height. Choose metric (m, m/s) or imperial (ft, ft/s) units for instant trajectory analysis.",
+      "formula": "R = v₀ₓ·t | H_max = h + v₀y²/(2g) | t = (v₀y + √(v₀y² + 2gh))/g | v₀ₓ = v₀·cos α | v₀y = v₀·sin α",
+      "field": {
+        "units": "Units",
+        "velocity": "Initial Velocity ({unit})",
+        "angle": "Launch Angle (°)",
+        "height": "Initial Height ({unit})"
+      },
+      "type": {
+        "metric": "Metric (m, m/s)",
+        "imperial": "Imperial (ft, ft/s)"
+      },
+      "placeholder": {
+        "velocity": "e.g. 100",
+        "angle": "e.g. 45",
+        "height": "e.g. 0"
+      },
+      "button": {
+        "calculate": "Calculate Trajectory",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Enter a positive velocity, angle between 0° and 90°, and non-negative height."
+      },
+      "result": {
+        "heading": "Trajectory Results",
+        "range": "Horizontal Range: {value} {unit}",
+        "maxHeight": "Maximum Height: {value} {unit}",
+        "timeOfFlight": "Time of Flight: {value} s",
+        "vx": "Horizontal Velocity: {value} {unit}",
+        "vy": "Initial Vertical Velocity: {value} {unit}"
+      },
+      "about": {
+        "heading": "About the trajectory calculator",
+        "body": "Projectile motion is one of the most studied problems in classical mechanics. When an object is launched into the air under the influence of gravity alone — with air resistance neglected — its path traces a smooth parabolic arc called a trajectory. This calculator uses the standard kinematic equations of projectile motion to compute the three key outputs engineers, athletes, and physicists need most: maximum height, horizontal range, and total time of flight.\n\nThe motion is decomposed into two independent components. In the horizontal direction there is no acceleration (ignoring drag), so the object travels at the constant horizontal velocity v₀ₓ = v₀·cos α throughout its flight. In the vertical direction the object experiences a constant downward acceleration g — equal to 9.81 m/s² near Earth's surface in metric units, or 32.2 ft/s² in imperial units. The vertical velocity at any instant is v_y = v₀y − g·t, where v₀y = v₀·sin α.\n\nWhen the object is launched from a height h above the landing surface, the time of flight is found by solving the quadratic: 0 = h + v₀y·t − ½g·t². The positive root gives t = (v₀y + √(v₀y² + 2gh))/g. The horizontal range follows immediately as R = v₀ₓ·t. The maximum height is reached when the vertical velocity equals zero, occurring at t_peak = v₀y/g; substituting back gives H_max = h + v₀y²/(2g).\n\nA widely cited rule of thumb says the optimal launch angle for maximum range is 45°. This is only correct when the launch and landing heights are equal. When a projectile is launched from an elevation — say a cannon on a hill — the optimal angle is less than 45°. Conversely, when launched upward toward a higher landing point, the optimal angle exceeds 45°. This calculator handles all three scenarios through its initial height input.\n\nPractical applications are broad: sports science uses trajectory analysis to optimise ball kicks, throws, and shots; ballistics engineers apply the same equations to artillery, missiles, and small arms; video game and simulation developers use projectile physics for realistic object movement; and safety engineers calculate the throw distance of fragments in explosion scenarios. The metric/imperial toggle makes the calculator equally useful in research contexts and in countries that use the US customary system."
+      },
+      "examples": {
+        "heading": "Trajectory calculator examples",
+        "intro": "Three scenarios demonstrating metric and imperial units across different launch conditions.",
+        "colInput": "Input",
+        "colOutput": "Range",
+        "colNote": "Notes",
+        "loadCannonball": "Load cannonball example",
+        "loadGolf": "Load golf drive example",
+        "loadBaseball": "Load baseball throw example",
+        "items": [
+          {
+            "input": "v₀=100 m/s, α=30°, h=0 m (metric)",
+            "output": "Range ≈ 882.9 m, H_max ≈ 127.4 m",
+            "note": "Classic cannonball scenario. At 30° the range is 882.9 m and max height 127.4 m; time of flight is 10.19 s."
+          },
+          {
+            "input": "v₀=70 m/s, α=15°, h=0.05 m (metric)",
+            "output": "Range ≈ 249.9 m, H_max ≈ 16.8 m",
+            "note": "Golf drive. Drivers typically launch at 9–15°; low angle trades height for distance on a flat fairway."
+          },
+          {
+            "input": "v₀=90 ft/s, α=45°, h=6 ft (imperial)",
+            "output": "Range ≈ 257.4 ft, H_max ≈ 68.9 ft",
+            "note": "Baseball throw from 6 ft above ground. Imperial units show the range and height in feet for direct field comparison."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the trajectory calculator",
+        "steps": [
+          "Select your preferred unit system — Metric (metres, m/s) or Imperial (feet, ft/s). Gravity is automatically set to 9.81 m/s² or 32.2 ft/s².",
+          "Enter the initial velocity (the speed at which the object leaves the launch point) as a positive number.",
+          "Enter the launch angle in degrees between 0° and 90°. A 0° angle means purely horizontal launch, 90° means straight up.",
+          "Enter the initial height — the vertical distance above the ground level where the object will land. Use 0 for a flat surface and a positive number for an elevated launch point.",
+          "Click Calculate Trajectory. The calculator returns horizontal range, maximum height, time of flight, and horizontal and vertical velocity components."
+        ]
+      },
+      "faq": {
+        "heading": "Trajectory calculator FAQ",
+        "q1": "Why is 45° not always the optimal launch angle?",
+        "q1_a": "The 45° rule applies only when the launch and landing heights are identical. If you launch from an elevation above the landing point, the optimal angle is less than 45°. If you are launching upward toward a higher landing point, the optimal angle is greater than 45°. The exact optimum can be derived by differentiating the range formula with respect to angle and setting the result to zero.",
+        "q2": "Does air resistance affect the results?",
+        "q2_a": "This calculator uses ideal projectile motion equations with no air drag. In reality, air resistance reduces range and maximum height — sometimes significantly for light or fast-moving projectiles like golf balls, bullets, or shuttlecocks. For engineering work requiring drag modelling, you would need numerical integration with a drag coefficient term.",
+        "q3": "What is the difference between time of flight and time to peak height?",
+        "q3_a": "Time to peak height is t_peak = v₀y/g, the moment when vertical velocity reaches zero and the object is momentarily stationary in the vertical direction. Time of flight is the total time until the projectile lands, which equals t_peak plus the descent time back to the landing altitude. When the initial height equals zero, the descent takes exactly as long as the ascent.",
+        "q4": "How can I convert the result to kilometres or miles?",
+        "q4_a": "The metric result is in metres; divide by 1000 for kilometres. The imperial result is in feet; divide by 5280 for miles, or divide by 3.281 to convert feet to metres. The velocity components are in m/s (metric) or ft/s (imperial); multiply m/s by 3.6 for km/h or by 2.237 for mph.",
+        "q5": "Can I use this for objects thrown horizontally?",
+        "q5_a": "Yes — set the launch angle to 0°. With a horizontal launch the initial vertical velocity is zero, so the time of flight is entirely determined by the initial height: t = √(2h/g). The horizontal range is then simply v₀ × t. This is the classic scenario for objects rolling off a table or jumping from a cliff.",
+        "q6": "What gravitational constant does the calculator use?",
+        "q6_a": "For metric calculations, the calculator uses g = 9.81 m/s², the standard gravitational acceleration at sea level. For imperial calculations it uses g = 32.2 ft/s². Both values are accurate for most Earth-surface applications. Calculations on other planets or at high altitude would require a different g value."
+      }
+    },
+    "transformer-sizing-calculator": {
+      "title": "Transformer Sizing Calculator – Required kVA Rating",
+      "tagline": "Calculate the correct transformer kVA rating from load power, power factor, efficiency, ambient temperature, and safety factor.",
+      "intro": "Enter load power, power factor, efficiency, temperature conditions, and safety margin to determine the minimum and recommended transformer kVA size.",
+      "formula": "kVA = kW / (PF × η) × continuous_factor × (1 + SF/100) / temp_derate",
+      "field": {
+        "loadPower": "Load Power (kW)",
+        "powerFactor": "Power Factor (0–1)",
+        "ambientTemp": "Ambient Temperature (°C)",
+        "safetyFactor": "Safety Factor (%)",
+        "efficiency": "Transformer Efficiency (%)",
+        "loadType": "Load Type",
+        "phaseType": "Phase Type"
+      },
+      "type": {
+        "loadType": {
+          "continuous": "Continuous",
+          "non-continuous": "Non-Continuous"
+        },
+        "phaseType": {
+          "single": "Single Phase",
+          "three": "Three Phase"
+        }
+      },
+      "placeholder": {
+        "loadPower": "e.g. 150",
+        "powerFactor": "e.g. 0.85",
+        "ambientTemp": "e.g. 25",
+        "safetyFactor": "e.g. 20",
+        "efficiency": "e.g. 96"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid values. Power factor must be 0–1, efficiency 0–100%, and all fields must be positive."
+      },
+      "result": {
+        "heading": "Transformer Sizing Results",
+        "recommended": "Recommended Standard Size: {value} kVA",
+        "required": "Calculated Required: {value} kVA",
+        "apparentPower": "Apparent Power (before derating): {value} kVA",
+        "tempDerate": "Temperature Derating Applied: {value}%"
+      },
+      "about": {
+        "heading": "About the transformer sizing calculator",
+        "body": "Transformer sizing is the process of selecting the appropriate kVA (kilovolt-ampere) rating for a power transformer based on the electrical load it must serve. Correct sizing is critical: an undersized transformer overheats and fails prematurely, while an oversized transformer wastes capital cost, floor space, and energy through increased no-load core losses.\n\nThe first step is to understand the distinction between real power and apparent power. Real power, measured in kilowatts (kW), is the actual power consumed by resistive loads like heaters and incandescent lamps. Apparent power, measured in kilovolt-amperes (kVA), includes both real power and reactive power — the oscillating energy drawn and returned by inductive loads like motors and fluorescent ballasts. The ratio between them is the power factor (PF): kVA = kW ÷ PF. A load with a power factor of 0.8 requires 25% more transformer capacity than a purely resistive load of the same wattage.\n\nTransformer efficiency also matters. Even a transformer rated at 97% efficiency dissipates 3% of throughput as heat, meaning the source must supply 100/97 ≈ 1.031 times the delivered load. For large industrial transformers this overhead is small but cannot be ignored in tight sizing calculations.\n\nLoad type affects sizing through the continuous load rule, widely adopted from the National Electrical Code (NEC) and similar standards worldwide. A continuously operating load (defined as one running for three or more hours at rated current) is derated to 80% of the transformer's rated capacity — or equivalently, the transformer must be sized at 125% of the continuous load kVA. Non-continuous loads do not require this derating.\n\nAmbient temperature degrades transformer performance. Most distribution transformers are rated at a 40°C maximum ambient. Above 40°C, the permissible loading falls roughly 1% per degree of excess. In hot climates, this can require a substantially larger transformer than the load alone suggests.\n\nFinally, engineers apply a safety factor — typically 15–30% — to accommodate future load growth, measurement uncertainties, harmonic distortion from variable-frequency drives and electronic equipment, and unexpected peak demands. The calculator adds all these corrections and then rounds up to the next standard kVA rating from the industry list of preferred sizes (5, 7.5, 10, 15, 25, 37.5, 50, 75, 100, 167, 250, 333, 500 kVA and larger)."
+      },
+      "examples": {
+        "heading": "Transformer sizing examples",
+        "intro": "Three real-world scenarios illustrating how load type, temperature, and safety factors affect the final transformer kVA selection.",
+        "colInput": "Load Conditions",
+        "colOutput": "Recommended kVA",
+        "colNote": "Notes",
+        "loadOffice": "Load office building",
+        "loadIndustrial": "Load industrial plant",
+        "loadResidential": "Load residential complex",
+        "items": [
+          {
+            "input": "150 kW, PF=0.85, continuous, 25°C, 20% safety, 96% eff., three-phase",
+            "output": "333 kVA",
+            "note": "Commercial office: apparent power ≈ 183.8 kVA; continuous 125% factor and 20% safety factor → required ≈ 275.7 kVA; next standard size is 333 kVA."
+          },
+          {
+            "input": "500 kW, PF=0.75, continuous, 35°C, 25% safety, 95% eff., three-phase",
+            "output": "1500 kVA",
+            "note": "Industrial plant with poor power factor. Apparent power ≈ 701.8 kVA; continuous and safety factors → required ≈ 1096.5 kVA; next standard is 1500 kVA."
+          },
+          {
+            "input": "75 kW, PF=0.90, non-continuous, 20°C, 15% safety, 97% eff., single-phase",
+            "output": "100 kVA",
+            "note": "Residential complex with non-continuous load. Apparent power ≈ 85.9 kVA; 15% safety → required ≈ 98.8 kVA; next standard size is 100 kVA."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the transformer sizing calculator",
+        "steps": [
+          "Enter the total real load power in kilowatts (kW). For an existing installation, read from a power meter; for new designs, sum the nameplate wattages of all connected equipment.",
+          "Enter the power factor of your load. Use 0.9–1.0 for resistive loads, 0.7–0.85 for mixed motor and lighting loads, and check equipment datasheets for precise values.",
+          "Enter the ambient temperature in °C. Above 40°C, the calculator automatically applies temperature derating.",
+          "Enter the safety factor percentage (typically 15–30%) and the transformer efficiency (usually 95–98%). Select continuous or non-continuous load type and single-phase or three-phase configuration.",
+          "Click Calculate to see the calculated required kVA and the recommended next standard transformer size to specify when ordering."
+        ]
+      },
+      "faq": {
+        "heading": "Transformer sizing FAQ",
+        "q1": "What is the difference between kVA and kW in transformer sizing?",
+        "q1_a": "kW is real power consumed by the load; kVA is apparent power the transformer must supply, which includes reactive power. For loads with a power factor less than 1.0, the transformer must be sized to the kVA figure, not the kW figure. A 100 kW load at 0.8 PF requires a transformer capable of delivering 125 kVA.",
+        "q2": "Why do continuous loads require a 125% sizing factor?",
+        "q2_a": "Electrical codes (such as NEC Article 210 in the USA) specify that conductors and transformers must not be loaded above 80% of their rated capacity for continuous loads — loads running three or more hours. This 80% maximum corresponds to the 125% sizing rule. It provides a thermal margin that prevents insulation degradation and extends equipment life.",
+        "q3": "How does a higher power factor affect transformer size?",
+        "q3_a": "Higher power factor reduces the required transformer kVA for the same kW load. Improving power factor from 0.7 to 0.9 reduces required kVA by about 22%, which can allow selection of a smaller, cheaper transformer. Power factor correction capacitors are often installed on industrial sites for this reason.",
+        "q4": "What standard kVA transformer sizes are available?",
+        "q4_a": "Common distribution transformer ratings include 5, 7.5, 10, 15, 25, 37.5, 50, 75, 100, 167, 250, 333, 500, 667, and 1000 kVA, continuing through 1500, 2000, and 2500 kVA. Always select the next size above your calculated requirement to ensure adequate capacity.",
+        "q5": "How does ambient temperature affect transformer sizing?",
+        "q5_a": "Most transformers are rated for a 40°C maximum ambient temperature. Above 40°C, the core and winding temperatures rise, accelerating insulation aging. As a rule of thumb, every 10°C rise in winding temperature halves insulation life. The calculator applies a derating of approximately 1% per degree above 40°C to compensate.",
+        "q6": "Should I include future load growth in the safety factor?",
+        "q6_a": "Yes. A safety factor of 20–30% typically covers both measurement uncertainty and near-term load growth. For longer planning horizons (10–20 years), it is common to select a transformer one standard size larger than the immediate calculation suggests. Oversizing a transformer by one standard step costs relatively little but avoids an expensive replacement if load grows faster than expected."
+      }
+    },
+    "transistor-biasing-calculator": {
+      "title": "Transistor Biasing Calculator – DC Operating Point",
+      "tagline": "Calculate the DC operating point, collector current, voltage gain, and stability factor for voltage divider bias transistor circuits.",
+      "intro": "Enter supply voltage, resistor values, current gain β, and base-emitter voltage to analyse a common-emitter amplifier with voltage divider bias.",
+      "formula": "Vb = Vcc·R2/(R1+R2) | Ic = β·Ib | Vc = Vcc − Ic·Rc | Vce = Vc − Ve | Av = −(Rc‖RL)/(Re + re) where re = 26 mV/Ic",
+      "field": {
+        "vcc": "Supply Voltage Vcc (V)",
+        "r1": "Base Resistor R1 (Ω)",
+        "r2": "Base Resistor R2 (Ω)",
+        "rc": "Collector Resistor Rc (Ω)",
+        "re": "Emitter Resistor Re (Ω)",
+        "rl": "Load Resistor RL (Ω)",
+        "beta": "Current Gain β (hFE)",
+        "vbe": "Base-Emitter Voltage Vbe (V)"
+      },
+      "placeholder": {
+        "vcc": "e.g. 12",
+        "r1": "e.g. 22000",
+        "r2": "e.g. 4700",
+        "rc": "e.g. 2200",
+        "re": "e.g. 1000",
+        "rl": "e.g. 10000",
+        "beta": "e.g. 100",
+        "vbe": "e.g. 0.7"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid positive values for all fields. Vbe is typically 0.6–0.7 V for silicon transistors."
+      },
+      "result": {
+        "heading": "DC Operating Point",
+        "vb": "Base Voltage Vb: {value} V",
+        "ve": "Emitter Voltage Ve: {value} V",
+        "vc": "Collector Voltage Vc: {value} V",
+        "vce": "Collector-Emitter Voltage Vce: {value} V",
+        "ic": "Collector Current Ic: {value} mA",
+        "ib": "Base Current Ib: {value} μA",
+        "voltageGain": "Voltage Gain |Av|: {value}",
+        "stabilityFactor": "Stability Factor S: {value}"
+      },
+      "about": {
+        "heading": "About the transistor biasing calculator",
+        "body": "Transistor biasing is the process of establishing a stable DC operating point — the quiescent or Q-point — for a bipolar junction transistor (BJT) amplifier. Without correct biasing, the transistor operates in cutoff (no current flow) or saturation (maximum current), making linear amplification impossible. Proper biasing places the Q-point near the centre of the transistor's active region, allowing the output signal to swing symmetrically above and below the quiescent level without distortion.\n\nThis calculator implements the voltage divider bias configuration, the most widely used biasing method in practical circuits. Two resistors, R1 and R2, form a resistive voltage divider from the supply rail Vcc to ground. The junction of R1 and R2 sets the base voltage: Vb = Vcc × R2/(R1+R2), assuming the voltage divider is stiff (i.e., the divider current is much larger than the base current). The emitter voltage follows as Ve = Vb − Vbe, where Vbe ≈ 0.7 V for silicon NPN transistors at room temperature.\n\nThe emitter current flows through the emitter resistor Re, establishing Ve = Ie × Re. Since Ic ≈ Ie for large β, the collector current is approximately Ic = Ve/Re. The collector voltage is Vc = Vcc − Ic×Rc, and the collector-emitter voltage is Vce = Vc − Ve. For the transistor to remain in the active region, Vce must be positive and greater than the saturation voltage (typically 0.2–0.3 V).\n\nThe voltage gain of the common-emitter stage is determined by the ratio of the AC collector load to the effective emitter impedance. The AC collector load is Rc in parallel with RL (the external load resistor). The effective emitter impedance is Re plus the intrinsic emitter resistance re = VT/Ic, where VT ≈ 26 mV at room temperature. The gain magnitude is |Av| = (Rc‖RL)/(Re + re).\n\nThe stability factor S quantifies how well the biasing network stabilises the operating point against transistor parameter variations, primarily changes in β with temperature or between units. Lower stability factors (ideally below 10) indicate a more stable design. Voltage divider bias with a large emitter resistor achieves low S by applying negative feedback: any tendency for Ic to increase raises Ve, which reduces Vbe and hence Ib, partially counteracting the original increase in Ic.\n\nPractical design guidelines: choose Ic in the range 1–10 mA for small-signal amplifiers; position Vc at about half Vcc for maximum undistorted output swing; keep the stability factor below 10; and verify that Vce exceeds the saturation voltage under worst-case conditions of maximum β and maximum temperature."
+      },
+      "examples": {
+        "heading": "Transistor biasing examples",
+        "intro": "Three common-emitter amplifier configurations showing operating-point and gain calculations.",
+        "colInput": "Circuit Parameters",
+        "colOutput": "Key Results",
+        "colNote": "Application",
+        "loadStandard": "Load standard bias",
+        "loadHighGain": "Load high-gain bias",
+        "loadAudio": "Load audio stage",
+        "items": [
+          {
+            "input": "Vcc=12V, R1=22kΩ, R2=4.7kΩ, Rc=2.2kΩ, Re=1kΩ, RL=10kΩ, β=100, Vbe=0.7V",
+            "output": "Ic≈1.35 mA, Vc≈9.04V, Vce≈7.68V, |Av|≈1.77",
+            "note": "Standard voltage-divider bias. Q-point near mid-rail, moderate gain. Suitable as a general-purpose small-signal amplifier stage."
+          },
+          {
+            "input": "Vcc=15V, R1=15kΩ, R2=3kΩ, Rc=3.3kΩ, Re=500Ω, RL=15kΩ, β=150, Vbe=0.7V",
+            "output": "Ic≈3.46 mA, Vc≈3.58V, Vce≈1.84V, |Av|≈5.33",
+            "note": "High-gain configuration. Low Vce approaches saturation — consider reducing Rc or increasing Vcc for wider output swing."
+          },
+          {
+            "input": "Vcc=18V, R1=18kΩ, R2=3.9kΩ, Rc=1.8kΩ, Re=820Ω, RL=8.2kΩ, β=120, Vbe=0.7V",
+            "output": "Ic≈2.94 mA, Vc≈12.72V, Vce≈10.29V, |Av|≈1.78",
+            "note": "Audio amplifier output stage. Higher Vcc provides wider output swing; RL matched to typical loudspeaker impedance."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the transistor biasing calculator",
+        "steps": [
+          "Enter the supply voltage Vcc in volts. This is the positive rail voltage powering the circuit, typically 5–24 V for small-signal BJT stages.",
+          "Enter the four resistor values in ohms: R1 and R2 form the base voltage divider; Rc is the collector resistor that sets voltage gain and output impedance; Re is the emitter resistor that stabilises the bias point.",
+          "Enter the load resistor RL in ohms. This represents the impedance the amplifier drives — for example, the input impedance of the next stage or a speaker load.",
+          "Enter the transistor current gain β (hFE) from the datasheet and the base-emitter voltage Vbe (0.6–0.7 V for silicon, 0.2–0.3 V for germanium).",
+          "Click Calculate. Check that Vce is positive and above saturation, Ic is in a practical range (1–10 mA for small-signal stages), and the stability factor S is below 10 for good temperature stability."
+        ]
+      },
+      "faq": {
+        "heading": "Transistor biasing FAQ",
+        "q1": "What is the Q-point and why does it matter?",
+        "q1_a": "The Q-point (quiescent point) is the transistor's DC operating condition when no AC signal is applied. It is defined by the pair (Ic, Vce). Placing the Q-point near the centre of the active region maximises the undistorted output voltage swing. A Q-point too close to cutoff or saturation causes clipping — the output waveform is flattened at one or both peaks.",
+        "q2": "Why is the voltage divider bias method preferred over fixed bias?",
+        "q2_a": "Fixed bias sets the base current directly from the supply via a single resistor, making Ic proportional to β. Because β varies significantly with temperature and from transistor to transistor (often 2:1 or more), the Q-point drifts unpredictably. Voltage divider bias adds an emitter resistor that provides negative feedback, holding Ic approximately constant regardless of β variations — provided the voltage divider is sufficiently stiff.",
+        "q3": "What is the intrinsic emitter resistance re?",
+        "q3_a": "The intrinsic emitter resistance re = VT/Ic ≈ 26 mV / Ic (with Ic in amps) arises from the physics of the forward-biased base-emitter junction. It is the small-signal resistance seen looking into the emitter terminal. At Ic = 1 mA, re ≈ 26 Ω. At higher collector currents re decreases, which increases voltage gain. It must be included in gain calculations when Re is small relative to re.",
+        "q4": "How do I choose R1 and R2 for a given base voltage?",
+        "q4_a": "First decide the desired base voltage Vb = Ve + Vbe, where Ve is typically set to 10–20% of Vcc for good stability. Then choose the divider current to be at least 10× the base current Ib = Ic/β, which ensures the divider is stiff. From the divider current and Vb, calculate R2 = Vb/I_div and R1 = (Vcc − Vb)/I_div. Round to the nearest standard resistor values.",
+        "q5": "What does the stability factor S tell me?",
+        "q5_a": "The stability factor S approximates the ratio of change in collector current to change in the transistor's reverse saturation current (or equivalently, it indicates sensitivity to β variation). A lower S means better stability. Voltage divider bias with adequate emitter degeneration typically achieves S < 5, compared to S = β + 1 for fixed bias, which can be 100 or more.",
+        "q6": "How do I increase the voltage gain without changing the Q-point significantly?",
+        "q6_a": "Bypass the emitter resistor Re with a large capacitor. At AC signal frequencies, the capacitor short-circuits Re, so the small-signal gain rises to Av ≈ Rc‖RL / re, which is much higher. The DC bias is set by the full Re value, preserving stability, while AC gain benefits from the bypassed low-impedance path. This technique is standard in audio preamplifier stages."
+      }
+    },
+    "transmission-calculator": {
+      "title": "Transmission Calculator – Signal Power and Data Rate",
+      "tagline": "Calculate free-space path loss, received power, SNR, Shannon channel capacity, and bandwidth efficiency for wireless communication links.",
+      "intro": "Enter transmitter power, distance, frequency, bandwidth, data rate, and antenna gain to analyse signal propagation in any wireless system.",
+      "formula": "FSPL = 20·log(d) + 20·log(f) − 147.55 dB | Pr = Pt + 2·Ga − FSPL (dBm) | C = B·log₂(1 + SNR)",
+      "field": {
+        "txPower": "Transmission Power (W)",
+        "distance": "Distance (m)",
+        "frequency": "Frequency (Hz)",
+        "bandwidth": "Bandwidth (Hz)",
+        "dataRate": "Data Rate (bps)",
+        "antennaGain": "Antenna Gain (dB)"
+      },
+      "placeholder": {
+        "txPower": "e.g. 0.1",
+        "distance": "e.g. 10",
+        "frequency": "e.g. 2400000000",
+        "bandwidth": "e.g. 20000000",
+        "dataRate": "e.g. 54000000",
+        "antennaGain": "e.g. 2"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter positive values for all fields. Frequency, bandwidth, and data rate must be greater than zero."
+      },
+      "result": {
+        "heading": "Transmission Results",
+        "pathLoss": "Free-Space Path Loss: {value} dB",
+        "rxPower": "Received Power: {value} dBm",
+        "snr": "Signal-to-Noise Ratio: {value} dB",
+        "shannonCapacity": "Shannon Capacity: {value} Mbit/s",
+        "spectralEfficiency": "Spectral Efficiency (Shannon): {value} bit/s/Hz",
+        "bwEfficiency": "Bandwidth Efficiency (actual): {value} bit/s/Hz"
+      },
+      "about": {
+        "heading": "About the transmission calculator",
+        "body": "Signal transmission analysis is a cornerstone of telecommunications engineering. Whenever electromagnetic energy is broadcast from an antenna, it spreads outward in three dimensions and its power density decreases with the square of the distance from the source. Understanding this behaviour — and the limits it places on communication system design — is essential for engineers designing WiFi networks, cellular base stations, satellite links, broadcast radio, and radar systems.\n\nThe most important single metric in a link budget is free-space path loss (FSPL). For a signal travelling distance d at frequency f in an unobstructed environment, FSPL (in decibels) = 20·log₁₀(d) + 20·log₁₀(f) − 147.55, where d is in metres and f is in hertz. Path loss is not a dissipative loss; it is simply the consequence of the spherically expanding wavefront diluting the transmitted energy over a growing surface area. Higher frequency signals lose proportionally more power than lower frequency signals at the same distance because their wavelength is shorter — the antenna aperture subtends a smaller fraction of the expanding sphere.\n\nThe received power is then: Pr (dBm) = Pt (dBm) + Gt (dB) + Gr (dB) − FSPL (dB), where Pt is the transmitted power, Gt is the transmitting antenna gain, and Gr is the receiving antenna gain. This calculator assumes the same antenna is used at both ends for simplicity. Antenna gain does not create power; it concentrates it in a particular direction. A 15 dB gain antenna focuses power like a searchlight compared to the isotropic reference, making it equivalent to multiplying transmitter power by a factor of about 31.\n\nSignal-to-noise ratio (SNR) is computed by comparing the received power to the thermal noise power N = k·T·B, where k is Boltzmann's constant (1.38 × 10⁻²³ J/K), T is the noise temperature (290 K standard), and B is the bandwidth. Higher bandwidth captures more noise, which is one reason that broad-bandwidth systems require much higher signal power than narrow-band systems for the same SNR.\n\nThe Shannon–Hartley theorem places a fundamental upper bound on the information rate that can be reliably transmitted over any channel: C = B·log₂(1 + SNR). This theoretical maximum, called the Shannon capacity, can never be exceeded regardless of the cleverness of the modulation and coding scheme. Modern systems such as 5G NR and Wi-Fi 6 use adaptive modulation and coding that approaches this limit to within a few tenths of a dB in good channel conditions. The ratio of the Shannon capacity to bandwidth, called spectral efficiency, tells you how many bits per second per hertz the channel can theoretically deliver. Comparing this with the actual data rate efficiency reveals how efficiently the system exploits its available spectrum."
+      },
+      "examples": {
+        "heading": "Transmission calculator examples",
+        "intro": "Three communication scenarios from indoor WiFi to geostationary satellite, illustrating how scale affects path loss and capacity.",
+        "colInput": "Scenario Parameters",
+        "colOutput": "Path Loss / Rx Power",
+        "colNote": "Notes",
+        "loadWifi": "Load WiFi example",
+        "loadCellular": "Load cellular example",
+        "loadSatellite": "Load satellite example",
+        "items": [
+          {
+            "input": "WiFi: 0.1 W, 10 m, 2.4 GHz, 20 MHz BW, 54 Mbit/s, 2 dBi gain",
+            "output": "FSPL ≈ 60.1 dB, Pr ≈ −36.1 dBm",
+            "note": "Typical home router at 10 m. With thermal noise floor around −101 dBm, SNR ≈ 65 dB — more than enough for 54 Mbit/s 802.11g."
+          },
+          {
+            "input": "Cellular: 50 W, 1 km, 900 MHz, 5 MHz BW, 10 Mbit/s, 15 dBi gain",
+            "output": "FSPL ≈ 91.5 dB, Pr ≈ −14.5 dBm",
+            "note": "GSM/LTE base station. High antenna gain compensates for the 1 km path loss; SNR well above threshold for voice and basic data."
+          },
+          {
+            "input": "Satellite: 100 W, 35,786 km, 12 GHz, 50 MHz BW, 100 Mbit/s, 40 dBi gain",
+            "output": "FSPL ≈ 205.1 dB, Pr ≈ −75.1 dBm",
+            "note": "GEO satellite link. Enormous path loss is compensated by very high antenna gains (dish antennas) on both uplink and downlink sides."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the transmission calculator",
+        "steps": [
+          "Enter the transmitter output power in watts. This is the power delivered to the antenna — not the DC input power to the transmitter.",
+          "Enter the distance between transmitter and receiver in metres. For satellite links, use the slant range (not the altitude) in metres.",
+          "Enter the carrier frequency in hertz. For example, 2.4 GHz = 2,400,000,000 Hz. Higher frequencies experience greater free-space path loss.",
+          "Enter the channel bandwidth in hertz, the nominal data rate in bits per second, and the antenna gain in dBi (decibels relative to an isotropic radiator). The calculator applies the same gain at both transmitter and receiver.",
+          "Click Calculate. Review path loss, received power, SNR, and Shannon capacity. If received power is below the system's noise floor, the link will not work at the specified range."
+        ]
+      },
+      "faq": {
+        "heading": "Transmission calculator FAQ",
+        "q1": "What is free-space path loss and why does it increase with frequency?",
+        "q1_a": "Free-space path loss is the attenuation of signal power due to the spherical spreading of the electromagnetic wave as it propagates away from the source. It increases with frequency because a higher-frequency signal has a shorter wavelength — and a receiving antenna of fixed physical size captures a smaller fraction of the incident power at shorter wavelengths. Alternatively, a fixed-gain antenna has a smaller effective aperture at higher frequencies.",
+        "q2": "Why does doubling the distance increase path loss by only 6 dB?",
+        "q2_a": "Path loss follows the inverse square law: received power is proportional to 1/d². In decibels, this means path loss increases by 20·log₁₀(2) ≈ 6 dB when distance doubles. So doubling the distance reduces received power by a factor of 4, not a factor of 2. This is often misunderstood by people who expect a linear relationship between distance and signal strength.",
+        "q3": "What is the Shannon capacity and how close do real systems get to it?",
+        "q3_a": "Shannon capacity C = B·log₂(1 + SNR) is the theoretical maximum data rate that can be transmitted reliably over a channel with a given bandwidth and SNR, regardless of modulation or coding scheme. Modern systems using LDPC codes or turbo codes in conjunction with adaptive modulation (256-QAM or 1024-QAM) can reach within 1–2 dB of the Shannon limit, meaning they transmit at 70–90% of the theoretical maximum.",
+        "q4": "What is antenna gain and how does it affect link budget?",
+        "q4_a": "Antenna gain measures how much more power an antenna radiates (or receives) in its preferred direction compared to an isotropic radiator. A 15 dBi antenna concentrates power by a factor of about 31× in its beam. In the link budget equation, transmit and receive antenna gains directly add to the received signal level in dB, effectively multiplying the useful signal power without increasing transmitter power.",
+        "q5": "How does bandwidth affect noise and data capacity?",
+        "q5_a": "Thermal noise power is proportional to bandwidth: N = kTB. Doubling the bandwidth doubles noise power (adds 3 dB of noise), which reduces SNR by 3 dB. However, double the bandwidth also potentially doubles the achievable data rate per unit SNR according to Shannon's formula. The trade-off is managed by modulation order and coding rate in adaptive systems.",
+        "q6": "Can this calculator be used for indoor or urban propagation?",
+        "q6_a": "The calculator models free-space propagation, which is accurate for line-of-sight outdoor links (satellite, point-to-point microwave). Indoor and urban environments experience additional losses from walls, furniture, buildings, and multipath fading — often modelled as extra path loss of 10–40 dB depending on the scenario. For those applications, add an indoor penetration loss or use an empirical model such as ITU-R P.1238 or the COST 231 Hata model."
+      }
     }
   }
 }
