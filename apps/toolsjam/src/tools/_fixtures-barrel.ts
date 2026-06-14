@@ -97,7 +97,12 @@ import { fixtures as f_voltage_divider_calculator } from "@/tools/voltage-divide
 import { fixtures as f_voltage_drop_calculator } from "@/tools/voltage-drop-calculator.fixtures";
 import { fixtures as f_voltage_regulation_calculator } from "@/tools/voltage-regulation-calculator.fixtures";
 import { fixtures as f_volume_to_mass_calculator } from "@/tools/volume-to-mass-calculator.fixtures";
+import { fixtures as f_von_mises_stress_calculator } from "@/tools/von-mises-stress-calculator.fixtures";
+import { fixtures as f_vswr_calculator_voltage_standing_wave_ratio_calculator } from "@/tools/vswr-calculator-voltage-standing-wave-ratio-calculator.fixtures";
 import { fixtures as f_wald_test_calculator } from "@/tools/wald-test-calculator.fixtures";
+import { fixtures as f_warp_speed_calculator } from "@/tools/warp-speed-calculator.fixtures";
+import { fixtures as f_water_density_calculator } from "@/tools/water-density-calculator.fixtures";
+import { fixtures as f_water_heating_calculator } from "@/tools/water-heating-calculator.fixtures";
 import { fixtures as f_water_viscosity_calculator } from "@/tools/water-viscosity-calculator.fixtures";
 import { fixtures as f_watt_calculator } from "@/tools/watt-calculator.fixtures";
 import { fixtures as f_watt_converter } from "@/tools/watt-converter.fixtures";
@@ -211,7 +216,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "voltage-drop-calculator": f_voltage_drop_calculator,
   "voltage-regulation-calculator": f_voltage_regulation_calculator,
   "volume-to-mass-calculator": f_volume_to_mass_calculator,
+  "von-mises-stress-calculator": f_von_mises_stress_calculator,
+  "vswr-calculator-voltage-standing-wave-ratio-calculator": f_vswr_calculator_voltage_standing_wave_ratio_calculator,
   "wald-test-calculator": f_wald_test_calculator,
+  "warp-speed-calculator": f_warp_speed_calculator,
+  "water-density-calculator": f_water_density_calculator,
+  "water-heating-calculator": f_water_heating_calculator,
   "water-viscosity-calculator": f_water_viscosity_calculator,
   "watt-calculator": f_watt_calculator,
   "watt-converter": f_watt_converter,
