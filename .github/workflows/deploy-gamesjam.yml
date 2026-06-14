@@ -1,0 +1,49 @@
+name: Deploy gamesjam
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/gamesjam/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - "turbo.json"
+      - ".github/workflows/deploy-gamesjam.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-gamesjam
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install (filtered)
+        run: pnpm install --frozen-lockfile --filter @weavejam/gamesjam...
+
+      - name: Build
+        run: pnpm --filter @weavejam/gamesjam build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://games.weavejam.com
+
+      - name: Deploy to Cloudflare Pages
+        run: pnpm dlx wrangler@4 pages deploy apps/gamesjam/dist --project-name=gamesjam --branch=main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

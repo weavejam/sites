@@ -6069,6 +6069,474 @@
         "q6": "What is the difference between frequency and relative frequency histograms?",
         "q6_a": "A frequency histogram plots the raw count on the y-axis, while a relative frequency histogram plots the proportion (or percentage). Relative frequency histograms are directly comparable across datasets of different sizes and can be used as empirical approximations of the underlying probability distribution. The shape is identical in both cases — only the scale of the y-axis changes."
       }
+    },
+    "error-propagation-calculator": {
+      "title": "Error Propagation Calculator",
+      "tagline": "Calculate uncertainty propagation for sum/difference and product/power formulas.",
+      "intro": "Determine how measurement uncertainties combine when performing mathematical operations.",
+      "field": {
+        "formulaType": "Formula Type",
+        "a": "Constant A",
+        "x": "Value of X",
+        "dx": "Uncertainty in X (Δx)",
+        "b": "Constant B",
+        "y": "Value of Y",
+        "dy": "Uncertainty in Y (Δy)",
+        "k": "Constant K",
+        "aExp": "Exponent 'a'",
+        "bExp": "Exponent 'b'"
+      },
+      "type": {
+        "sumDifference": "Sum / Difference (z = ax + by)",
+        "productPower": "Product / Power (z = k · xᵃ · yᵇ)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "placeholder": {
+        "number": "Enter a number"
+      },
+      "result": {
+        "heading": "Results",
+        "z": "Result (Z)",
+        "deltaZ": "Absolute Uncertainty (ΔZ)",
+        "relativeUncertainty": "Relative Uncertainty (%ΔZ)"
+      },
+      "about": {
+        "heading": "About the Error Propagation Calculator",
+        "body": "Error propagation, also known as propagation of uncertainty, is a fundamental technique in experimental science and engineering. Whenever you perform a calculation using measured quantities, each measurement carries an inherent uncertainty, and those uncertainties combine to produce an uncertainty in the final result. Understanding how errors propagate is essential for reporting results with appropriate precision and confidence.\n\nThis calculator supports two of the most commonly encountered formula types in physics, chemistry, and engineering. The Sum/Difference formula handles linear combinations of the form z = ax + by, where you add or subtract multiples of two measured quantities. The absolute uncertainty in z is given by ΔZ = √((aΔx)² + (bΔy)²), which follows from the general rule of adding uncertainties in quadrature (assuming the measurements are independent and errors are random).\n\nThe Product/Power formula covers the case z = k · xᵃ · yᵇ, which arises in calculations of area (length × width), density (mass / volume), power (voltage × current), and many other physical quantities. For this type, the relative uncertainty is computed first: %ΔZ / 100 = √((a·Δx/x)² + (b·Δy/y)²). The absolute uncertainty is then ΔZ = |Z| × (%ΔZ / 100).\n\nThese formulas assume that the measurement errors are random (not systematic), independent of each other, and small compared to the values themselves — conditions that are usually satisfied in well-designed laboratory experiments. When errors are correlated, a more advanced treatment including covariance terms is required.\n\nPractical applications are widespread. Scientists measure lengths, masses, voltages, temperatures, and pressures, all with finite precision. Engineers calculate material properties, stress concentrations, and flow rates from imperfect data. Medical researchers propagate uncertainties through biostatistical formulas. In each case, reporting a result without its uncertainty — for example, writing density = 8.94 g/cm³ instead of density = (8.94 ± 0.07) g/cm³ — gives an incomplete and potentially misleading picture.\n\nThe relative uncertainty (%ΔZ) is particularly useful because it expresses the fractional precision of the result and allows easy comparison between quantities of very different magnitudes. A result with a relative uncertainty below 1% is generally considered precise, while above 10% may require improved measurement techniques."
+      },
+      "examples": {
+        "heading": "Practical Examples",
+        "intro": "See how the error propagation calculator works with real-world measurement scenarios.",
+        "colInput": "Inputs",
+        "colOutput": "Result (Z ± ΔZ)",
+        "colNote": "Notes",
+        "items": [
+          {
+            "input": "Sum: A=1, X=10.5 ± 0.2 cm, B=1, Y=5.2 ± 0.1 cm",
+            "output": "Z = 15.7 ± 0.22 cm",
+            "note": "Adding two lengths; errors add in quadrature"
+          },
+          {
+            "input": "Product: k=1, X=5.0 ± 0.1 m (a=1), Y=10.0 ± 0.2 m (b=1)",
+            "output": "Z = 50.0 ± 1.41 m²",
+            "note": "Area of a rectangle; relative errors combine"
+          },
+          {
+            "input": "Product: k=1, X=100 ± 2 g (a=1), Y=10 ± 0.5 cm³ (b=−1)",
+            "output": "Z = 10.0 ± 0.6 g/cm³",
+            "note": "Density = mass/volume; b=−1 for division"
+          },
+          {
+            "input": "Sum: A=2, X=15.0 ± 0.3 m, B=2, Y=8.0 ± 0.2 m",
+            "output": "Z = 46.0 ± 0.72 m",
+            "note": "Perimeter P = 2L + 2W"
+          }
+        ],
+        "loadAddLengths": "Load: Add Lengths",
+        "loadRectArea": "Load: Rectangle Area",
+        "loadDensity": "Load: Density"
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Select the formula type — Sum/Difference (z = ax + by) for linear combinations, or Product/Power (z = k · xᵃ · yᵇ) for products and quotients.",
+          "Enter the constant coefficients (A, B for sum; K, a, b for product) — use 1 if no coefficient applies.",
+          "Enter the measured values of X and Y along with their absolute uncertainties Δx and Δy (standard deviations or half-range uncertainties).",
+          "Click Calculate to see the result Z, the absolute uncertainty ΔZ, and the relative uncertainty %ΔZ.",
+          "Use the Quick Load buttons to explore the built-in examples and verify your understanding of the formulas."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "What is error propagation?",
+        "q1_a": "Error propagation (or propagation of uncertainty) is the mathematical process of determining how uncertainties in input measurements combine to produce uncertainty in a calculated result. When you compute z = f(x, y, …), the uncertainty ΔZ depends on the partial derivatives of f and the individual uncertainties Δx, Δy. This calculator handles the two most common formula patterns.",
+        "q2": "Why are uncertainties added in quadrature?",
+        "q2_a": "When measurement errors are random and independent, they are equally likely to be positive or negative. Adding them directly would overestimate the combined error. The quadrature rule (square root of sum of squares) reflects the statistical independence: ΔZ = √((∂f/∂x·Δx)² + (∂f/∂y·Δy)²). For systematic errors that always go in the same direction, linear addition would be more appropriate.",
+        "q3": "What is the difference between absolute and relative uncertainty?",
+        "q3_a": "Absolute uncertainty (ΔZ) is expressed in the same units as the result and tells you the spread around the central value — e.g., (15.7 ± 0.2) cm. Relative uncertainty (%ΔZ = ΔZ/|Z| × 100%) is dimensionless and expresses precision as a fraction of the result. Relative uncertainty is useful for comparing the precision of different measurements regardless of their scale.",
+        "q4": "When should I use Sum/Difference vs Product/Power?",
+        "q4_a": "Use Sum/Difference when your formula involves adding or subtracting multiples of measured quantities: perimeter, total length, net displacement. Use Product/Power when your formula involves multiplying or dividing measured quantities raised to powers: area (L×W), volume (L×W×H), density (m/V), kinetic energy (½mv²). For composite formulas, apply error propagation in stages.",
+        "q5": "Why can't X or Y be zero in the Product/Power formula?",
+        "q5_a": "The relative uncertainty formula for products/powers is %ΔZ = √((a·Δx/|x|)² + (b·Δy/|y|)²). Division by x or y appears, so zero values would cause division by zero. Physically, a zero value means the quantity was not measured (or is exactly zero with no uncertainty), in which case the product/power formula does not apply.",
+        "q6": "What does the relative uncertainty tell me about my measurement quality?",
+        "q6_a": "Relative uncertainty is a direct measure of measurement quality. Values below 1% are considered highly precise and acceptable for most scientific work. Values between 1% and 5% are adequate for many engineering applications. Values above 10% suggest that measurement technique should be improved — use more precise instruments, take more readings, or reduce systematic sources of error."
+      }
+    },
+    "expected-value-calculator": {
+      "title": "Expected Value Calculator",
+      "tagline": "Calculate mathematical expectation for discrete probability distributions.",
+      "intro": "Enter outcome values and their probabilities to compute E[X], variance, and standard deviation.",
+      "field": {
+        "outcomeValue": "Outcome Value",
+        "probability": "Probability",
+        "outcomeValuePlaceholder": "e.g., 10",
+        "probabilityPlaceholder": "e.g., 0.25"
+      },
+      "button": {
+        "calculate": "Calculate Expected Value",
+        "addRow": "Add Outcome",
+        "remove": "Remove",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please ensure all outcome values are numbers, all probabilities are between 0 and 1, and the total probability sums to 1."
+      },
+      "result": {
+        "heading": "Expected Value Results",
+        "expectedValue": "Expected Value E[X]",
+        "variance": "Variance Var(X)",
+        "stdDev": "Standard Deviation σ",
+        "probSum": "Probability Sum"
+      },
+      "about": {
+        "heading": "About the Expected Value Calculator",
+        "body": "The expected value, also known as the mathematical expectation or mean of a probability distribution, is one of the most important concepts in probability theory and statistics. It represents the long-run average outcome of a random experiment if it were repeated many times under identical conditions. For a discrete random variable X with outcomes x₁, x₂, …, xₙ and corresponding probabilities p₁, p₂, …, pₙ, the expected value is defined as E[X] = Σ xᵢ pᵢ.\n\nThe expected value is not necessarily a value that the random variable can actually take — it is a weighted average of all possible outcomes. For example, rolling a fair six-sided die has an expected value of 3.5, even though 3.5 is not a face on the die. This interpretation as a long-run average is formalized by the Law of Large Numbers, which states that the sample mean converges to the expected value as the number of trials increases.\n\nThis calculator also computes the variance Var(X) = E[(X − E[X])²] = E[X²] − (E[X])², which measures how spread out the distribution is around its mean. The standard deviation σ = √Var(X) is the square root of the variance and is expressed in the same units as X, making it easier to interpret practically.\n\nExpected value has countless applications across science, economics, finance, and engineering. In decision theory, it forms the basis of expected utility maximization — the idea that rational agents choose the action with the highest expected payoff. In insurance, actuaries use expected value to price policies: the premium must cover the expected payout plus operating costs and profit margin. In game design, expected value determines whether a game is fair. In portfolio theory, the expected return of an investment portfolio is the weighted average of the expected returns of its assets.\n\nWhen working with the calculator, be sure that all probabilities are non-negative and sum to exactly 1 (within a small tolerance). If the probabilities do not sum to 1, the distribution is not properly defined and the expected value calculation will not be meaningful. Common mistakes include entering percentages instead of decimal probabilities (e.g., entering 25 instead of 0.25) or forgetting to account for all possible outcomes."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples illustrate how expected value applies across different real-world scenarios.",
+        "colInput": "Outcomes & Probabilities",
+        "colOutput": "E[X]",
+        "colNote": "Notes",
+        "items": [
+          {
+            "input": "Die: values 1–6, each with probability 1/6 ≈ 0.1667",
+            "output": "E[X] = 3.5",
+            "note": "Fair six-sided die; classic textbook example"
+          },
+          {
+            "input": "Investment: +$1000 (30%), +$500 (40%), −$200 (20%), −$500 (10%)",
+            "output": "E[X] = $410",
+            "note": "Positive expected return despite downside risk"
+          },
+          {
+            "input": "Insurance: $0 payout (95%), $5,000 (4%), $25,000 (1%)",
+            "output": "E[X] = $450",
+            "note": "Average annual payout per policy; used for premium pricing"
+          },
+          {
+            "input": "Quality control: $0 cost (85%), $50 (10%), $150 (4%), $500 (1%)",
+            "output": "E[X] = $15",
+            "note": "Expected defect cost per unit in manufacturing"
+          }
+        ],
+        "loadDice": "Load: Dice Roll",
+        "loadInvestment": "Load: Investment",
+        "loadInsurance": "Load: Insurance"
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Enter each possible outcome in the Outcome Value field — this can be any real number (positive, negative, or zero) representing the payoff or result.",
+          "Enter the corresponding probability in the Probability field — this must be a decimal between 0 and 1 (e.g., enter 0.25 for 25%).",
+          "Add more outcome rows using the Add Outcome button until all possible outcomes are listed.",
+          "Verify that the probabilities sum to 1 before clicking Calculate Expected Value — the calculator will show an error if they do not.",
+          "Click Calculate Expected Value to see E[X], variance, standard deviation, and the sum of probabilities."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "What is the expected value?",
+        "q1_a": "The expected value E[X] is the probability-weighted average of all possible outcomes of a random variable. It represents the long-run mean you would observe if the experiment were repeated many times. Formally, E[X] = Σ xᵢ × pᵢ, where xᵢ is each possible outcome and pᵢ is its probability.",
+        "q2": "Do the probabilities have to sum to exactly 1?",
+        "q2_a": "Yes, for a valid probability distribution the probabilities must sum to exactly 1 (or very close to 1 within rounding tolerance). If they do not, the distribution is not properly specified and the expected value is meaningless. This calculator checks the sum and will show an error if it deviates from 1 by more than 1%.",
+        "q3": "What is the difference between expected value and average?",
+        "q3_a": "The terms are closely related but used in different contexts. 'Average' (or sample mean) refers to the arithmetic mean of an observed set of data values. 'Expected value' refers to the theoretical mean of a probability distribution — the mean you would expect to observe in the long run. As sample size grows, the sample mean converges to the expected value (Law of Large Numbers).",
+        "q4": "Can the expected value be negative?",
+        "q4_a": "Yes, the expected value can be any real number, including negative values. A negative expected value means the process is unfavorable on average — for example, most casino games have a negative expected value for the player. A positive expected value means the process is favorable on average, which is why all legitimate insurance and investment products are priced to have positive expected value for the provider.",
+        "q5": "What does variance tell me about a distribution?",
+        "q5_a": "Variance Var(X) = E[(X − E[X])²] measures the average squared deviation from the mean. A high variance means outcomes are widely spread — the distribution has heavy tails or extreme values. A low variance means outcomes cluster tightly around the mean. Standard deviation σ = √Var(X) is often preferred because it has the same units as X, making interpretation more intuitive.",
+        "q6": "How is expected value used in decision-making?",
+        "q6_a": "In decision theory, the expected value criterion says a rational agent should choose the action with the highest expected payoff. This principle underlies insurance pricing, investment analysis, game theory, and clinical trial design. However, expected value alone does not capture risk aversion — a person might prefer a certain $50 gain over a 50% chance of $120, even though the latter has higher expected value. This is why expected utility theory extends the basic framework."
+      }
+    },
+    "exponential-distribution-calculator": {
+      "title": "Exponential Distribution Calculator",
+      "tagline": "Calculate PDF, CDF, and statistics for the exponential distribution.",
+      "intro": "Enter the rate parameter λ and value x to compute probabilities and statistical measures for an exponential distribution.",
+      "field": {
+        "lambda": "Rate Parameter (λ)",
+        "x": "Value (x)",
+        "calcType": "Calculation Type"
+      },
+      "type": {
+        "pdf": "PDF f(x)",
+        "cdfLessThan": "P(X < x)",
+        "cdfLessOrEqual": "P(X ≤ x)",
+        "cdfGreaterThan": "P(X > x)",
+        "cdfGreaterOrEqual": "P(X ≥ x)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "placeholder": {
+        "number": "Enter a number"
+      },
+      "error": {
+        "invalid": "Please enter a positive rate parameter (λ > 0) and a non-negative value x ≥ 0."
+      },
+      "result": {
+        "heading": "Results",
+        "mean": "Mean (1/λ)",
+        "median": "Median (ln 2 / λ)",
+        "variance": "Variance (1/λ²)",
+        "stdDev": "Std Deviation (1/λ)"
+      },
+      "about": {
+        "heading": "About the Exponential Distribution Calculator",
+        "body": "The exponential distribution is a continuous probability distribution that describes the time between events in a Poisson process — a process where events occur continuously and independently at a constant average rate. It is characterized by a single parameter λ (lambda), the rate parameter, which equals the average number of events per unit time. The mean time between events is 1/λ.\n\nThe probability density function (PDF) is f(x) = λe^(−λx) for x ≥ 0. The cumulative distribution function (CDF) is F(x) = P(X ≤ x) = 1 − e^(−λx), giving the probability that the time until the next event is less than or equal to x. The survival function P(X > x) = e^(−λx) gives the probability that the event has not yet occurred by time x.\n\nThe exponential distribution has a key property called memorylessness: P(X > s + t | X > s) = P(X > t). This means that the probability of waiting an additional time t does not depend on how long you have already waited. Among continuous distributions, the exponential is the only distribution with this property, making it uniquely suited for modeling systems without aging or degradation.\n\nStatistical moments of the exponential distribution are all expressible in terms of λ: mean = 1/λ, variance = 1/λ², standard deviation = 1/λ, and median = ln(2)/λ ≈ 0.693/λ. Note that the mean is larger than the median, which reflects the right-skewed shape of the distribution.\n\nReal-world applications span many fields. In reliability engineering, the exponential distribution models the lifetime of electronic components that do not wear out (such as certain types of transistors). In queuing theory, it describes inter-arrival times and service times. In nuclear physics, radioactive decay follows an exponential distribution. In telecommunications, it models the time between successive packet arrivals. In finance, it approximates the time between trades or credit events in simplified models."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples show how the exponential distribution arises in practical scenarios.",
+        "colInput": "Parameters",
+        "colOutput": "Probability",
+        "colNote": "Scenario",
+        "items": [
+          {
+            "input": "λ = 2 per min, x = 0.5 min",
+            "output": "P(X < 0.5) ≈ 0.6321",
+            "note": "Customer service calls arrive at 2/min; 63% chance next call within 30 seconds"
+          },
+          {
+            "input": "λ = 0.0005 per hr, x = 2500 hr",
+            "output": "P(X ≥ 2500) ≈ 0.2865",
+            "note": "Light bulb with mean 2000 hr lifespan; 29% chance of lasting over 2500 hr"
+          },
+          {
+            "input": "λ = 0.1 per sec, x = 5 sec",
+            "output": "f(5) ≈ 0.0607",
+            "note": "Radioactive decay PDF at exactly 5 seconds"
+          },
+          {
+            "input": "λ = 0.1 per min, x = 15 min",
+            "output": "P(X > 15) ≈ 0.2231",
+            "note": "Bus arrives every 10 min on average; 22% chance of waiting over 15 min"
+          }
+        ],
+        "loadCustomerService": "Load: Customer Service",
+        "loadLightBulb": "Load: Light Bulb",
+        "loadRadioactive": "Load: Radioactive Decay"
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Enter the rate parameter λ (lambda) — this is the average number of events per unit time. For a mean inter-arrival time of 10 minutes, λ = 1/10 = 0.1.",
+          "Enter the value x — the specific time (or distance, or other quantity) at which you want to evaluate the distribution.",
+          "Select the calculation type: PDF for the probability density at x, or one of the CDF options for cumulative probabilities.",
+          "Click Calculate to see the selected probability along with the mean, median, variance, and standard deviation of the distribution.",
+          "Use the Quick Load buttons to explore common real-world scenarios involving the exponential distribution."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "What does the rate parameter λ represent?",
+        "q1_a": "The rate parameter λ (lambda) is the average number of events that occur per unit of time (or distance, or space). For example, if customers arrive at a rate of 3 per hour, then λ = 3 per hour and the mean time between arrivals is 1/λ = 20 minutes. A higher λ means events happen more frequently and the distribution is more concentrated near zero.",
+        "q2": "What is the difference between PDF and CDF?",
+        "q2_a": "The PDF f(x) = λe^(−λx) gives the probability density at a specific point x — it is not a probability itself but rather a rate of probability per unit of x. The CDF F(x) = P(X ≤ x) = 1 − e^(−λx) gives the probability that the random variable is at most x, which is a true probability between 0 and 1. For continuous distributions, the probability at an exact point is zero; probabilities apply only to intervals.",
+        "q3": "What is the memoryless property?",
+        "q3_a": "The memoryless property states that P(X > s + t | X > s) = P(X > t): given that you have already waited s units without an event, the probability of waiting an additional t units is the same as if you had just started. In practical terms, a light bulb that has been working for 1000 hours has the same probability of failing in the next hour as a brand-new bulb — there is no aging effect. Only the exponential distribution has this property among continuous distributions.",
+        "q4": "Why is the mean larger than the median?",
+        "q4_a": "The mean of the exponential distribution is 1/λ, while the median is ln(2)/λ ≈ 0.693/λ. The median is smaller because the distribution is right-skewed: there is a long tail of large values that pulls the mean upward. More than half of all observations fall below the mean, which is a characteristic feature of positively skewed distributions. This is important in reliability analysis where the 'typical' failure time is the median, not the mean.",
+        "q5": "Can the exponential distribution model lifetime data?",
+        "q5_a": "The exponential distribution is appropriate for components with a constant failure rate — ones that do not wear out over time and are not subject to fatigue or aging. This is a reasonable model for certain electronic components and some types of software failures. However, for components that exhibit wear (like mechanical parts or human lifespans), the Weibull distribution with a shape parameter other than 1 is more appropriate.",
+        "q6": "How do I find λ from empirical data?",
+        "q6_a": "The maximum likelihood estimate of λ from observed data x₁, x₂, …, xₙ is simply the reciprocal of the sample mean: λ̂ = n / Σxᵢ = 1 / x̄. This makes intuitive sense: if events occur on average every 5 minutes (mean = 5), then the rate is λ = 1/5 = 0.2 per minute. You can verify the exponential fit using a Q-Q plot or a goodness-of-fit test."
+      }
+    },
+    "exponential-growth-prediction-calculator": {
+      "title": "Exponential Growth Prediction Calculator",
+      "tagline": "Predict future values using exponential growth models.",
+      "intro": "Calculate the future value of a quantity that grows exponentially. Use initial value and growth rate, or provide two data points.",
+      "field": {
+        "method": "Calculation Method",
+        "initialValue": "Initial Value (P₀)",
+        "growthRate": "Growth Rate (r) per Time Period",
+        "timePeriods": "Number of Time Periods (t)",
+        "value1": "Value at Time 1 (P₁)",
+        "time1": "Time 1 (t₁)",
+        "value2": "Value at Time 2 (P₂)",
+        "time2": "Time 2 (t₂)",
+        "predictionTime": "Future Time for Prediction (t_pred)"
+      },
+      "type": {
+        "methodRate": "Initial Value and Growth Rate",
+        "methodPoints": "Two Data Points",
+        "methodRateDesc": "Use this if you know the initial value and the growth rate per period.",
+        "methodPointsDesc": "Use this if you have measurements at two different times."
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "placeholder": {
+        "number": "Enter a number"
+      },
+      "error": {
+        "invalid": "Please check your inputs. Initial values and time values must be valid numbers. For two-point method, P₁ and P₂ must be positive and t₂ must be greater than t₁."
+      },
+      "result": {
+        "heading": "Calculation Results",
+        "futureValue": "Predicted Future Value",
+        "growthRate": "Growth Rate per Period",
+        "tableHeading": "Growth Projection Over Time",
+        "timePeriod": "Time",
+        "value": "Value"
+      },
+      "about": {
+        "heading": "About the Exponential Growth Prediction Calculator",
+        "body": "Exponential growth is one of the most important mathematical patterns in science, economics, and biology. A quantity grows exponentially when its rate of change is proportional to its current size — the larger it is, the faster it grows. This self-reinforcing dynamic produces the characteristic J-shaped curve that initially appears slow but eventually accelerates dramatically.\n\nThe fundamental formula for exponential growth is P(t) = P₀ × (1 + r)^t, where P₀ is the initial value, r is the growth rate per time period (expressed as a decimal), and t is the number of time periods elapsed. For continuous growth, the formula is P(t) = P₀ × e^(kt), where k is the continuous growth rate and e is Euler's number (approximately 2.718). This calculator uses the discrete-period formula, which is more natural for most business and demographic applications.\n\nThis calculator offers two methods for computing exponential growth predictions. The first method is straightforward: you provide the initial value P₀ and the per-period growth rate r, and the calculator determines the value at any future time t. The second method is more powerful for data analysis: you provide two observed data points (P₁ at time t₁ and P₂ at time t₂), and the calculator infers the underlying growth rate and predicts the value at any future time t_pred.\n\nFor the two-point method, the growth rate is computed as r = (P₂/P₁)^(1/(t₂−t₁)) − 1, and the initial value at t=0 is back-calculated as P₀ = P₁ / (1+r)^t₁. This approach is widely used in population ecology, epidemiology, and economics, where two census data points are used to estimate population trends.\n\nImportant caveats apply when using exponential models. Exponential growth cannot continue indefinitely in physical systems — eventually resource constraints, saturation effects, or competition slow growth. Bacterial populations, stock prices, and internet adoption all eventually transition from exponential to logistic (S-curve) growth. The exponential model is most accurate over shorter time horizons and in the early phases of growth."
+      },
+      "examples": {
+        "heading": "Practical Examples",
+        "intro": "These examples demonstrate exponential growth prediction in real-world scenarios.",
+        "colInput": "Inputs",
+        "colOutput": "Predicted Value",
+        "colNote": "Scenario",
+        "items": [
+          {
+            "input": "P₀ = $10,000, r = 7% per year, t = 15 years",
+            "output": "$27,590.32",
+            "note": "Investment growing at 7% annually — rule of 72 predicts doubling every ~10 years"
+          },
+          {
+            "input": "P₀ = 5,000 users, r = 15% per month, t = 12 months",
+            "output": "26,568 users",
+            "note": "Startup user growth at 15% monthly over one year"
+          },
+          {
+            "input": "P₁ = 1,200,000 (2010), P₂ = 1,500,000 (2020), predict 2030",
+            "output": "1,875,000",
+            "note": "Country population growth projected from two census data points"
+          },
+          {
+            "input": "P₁ = 500 cells (t=0), P₂ = 4,500 cells (t=4 hr), predict t=8 hr",
+            "output": "40,500 cells",
+            "note": "Bacterial culture growing ninefold every 4 hours"
+          }
+        ],
+        "loadInvestment": "Load: Investment",
+        "loadPopulation": "Load: Population",
+        "loadBacteria": "Load: Bacteria"
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Choose your calculation method — use 'Initial Value and Growth Rate' if you know the starting quantity and the rate, or 'Two Data Points' if you have two observations at different times.",
+          "For the rate method: enter the initial value P₀, the growth rate r as a percentage per period (e.g., 7 for 7%), and the number of time periods t.",
+          "For the two-point method: enter the values P₁ and P₂ observed at times t₁ and t₂ (t₂ must be greater than t₁), then enter the future time t_pred for the prediction.",
+          "Click Calculate to see the predicted future value, the implied growth rate, and a growth projection table showing values at intermediate time points.",
+          "Use the Quick Load buttons to explore built-in examples and verify your understanding of exponential growth formulas."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "What is the formula for exponential growth?",
+        "q1_a": "The discrete-period formula is P(t) = P₀ × (1 + r)^t, where P₀ is the initial value, r is the fractional growth rate per period, and t is the number of periods. For continuous compounding, the formula is P(t) = P₀ × e^(kt), where k = ln(1 + r) is the continuous growth rate. Both formulas give the same result when properly parameterized.",
+        "q2": "How is the growth rate estimated from two data points?",
+        "q2_a": "Given observations P₁ at time t₁ and P₂ at time t₂, the per-period growth rate is r = (P₂/P₁)^(1/(t₂−t₁)) − 1. This is derived by solving P₂ = P₁ × (1+r)^(t₂−t₁) for r. The initial value at t=0 is then P₀ = P₁ / (1+r)^t₁, and predictions use P(t) = P₀ × (1+r)^t.",
+        "q3": "What is the Rule of 72?",
+        "q3_a": "The Rule of 72 is a quick mental approximation: the doubling time of an exponentially growing quantity is approximately 72 / r, where r is the growth rate in percent. For example, at 7% annual growth, the doubling time is about 72/7 ≈ 10.3 years. The exact formula is t_double = ln(2)/ln(1+r), but the Rule of 72 is accurate within a few percent for rates between 2% and 20%.",
+        "q4": "Can this calculator model exponential decay?",
+        "q4_a": "Yes. To model exponential decay (decreasing quantity), enter a negative growth rate r. For example, a radioactive substance with a half-life of 10 years has a decay constant k = −ln(2)/10 ≈ −0.0693 per year, equivalent to r ≈ −6.67% per year. You can also use the two-point method with P₂ < P₁ to fit a decay model from observations.",
+        "q5": "When does exponential growth break down?",
+        "q5_a": "Exponential growth assumes a constant, unlimited rate of increase. In real systems, growth eventually slows due to resource constraints, competition, saturation, or physical limits. Population growth slows due to carrying capacity (logistic model). Epidemic spread slows as susceptible individuals are depleted (SIR model). Use exponential predictions cautiously for long time horizons and verify against the most recent data.",
+        "q6": "What is the difference between exponential and compound interest growth?",
+        "q6_a": "Compound interest growth uses the formula P(t) = P₀ × (1 + r/n)^(nt) for interest compounded n times per period. When n → ∞ (continuous compounding), this converges to P(t) = P₀ × e^(rt). This calculator uses annual (once-per-period) compounding. For continuous compounding, multiply the per-period rate r by ln(1+r) to get the continuous rate k."
+      }
+    },
+    "exponential-regression-calculator": {
+      "title": "Exponential Regression Calculator",
+      "tagline": "Fit an exponential model y = ab^x to your data and predict future values.",
+      "intro": "Enter paired (x, y) data points to compute the exponential regression equation, R², and predictions.",
+      "field": {
+        "dataPoints": "Data Points (x, y)",
+        "dataPointsPlaceholder": "1 1.6\n2 2.5\n3 3.8\n4 5.9\n5 9.1",
+        "dataPointsHint": "Enter one pair per line, separated by a space or comma. Example: 1 2.5",
+        "predictX": "Predict Y for a given X",
+        "predictXPlaceholder": "e.g., 6"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least 3 valid data points with positive y values. Each line should contain two numbers separated by a space or comma."
+      },
+      "result": {
+        "heading": "Results",
+        "equation": "Regression Equation",
+        "a": "Coefficient 'a'",
+        "b": "Coefficient 'b'",
+        "rSquared": "R² (Coefficient of Determination)",
+        "correlation": "Correlation Coefficient (R)",
+        "predictedY": "Predicted Y"
+      },
+      "about": {
+        "heading": "About the Exponential Regression Calculator",
+        "body": "Exponential regression is a curve-fitting technique that finds the best-fitting exponential function y = ab^x for a given set of data points. It is used when the data suggests exponential growth or decay — when plotting the data, the points appear to follow a J-shaped curve (growth) or a decreasing concave curve (decay). The exponential model is linear in its logarithm: taking the natural log of both sides gives ln(y) = ln(a) + x·ln(b), which is a linear equation in ln(y) and x.\n\nThe fitting procedure uses the method of least squares applied to the linearized equation. Specifically, we minimize the sum of squared residuals in ln(y) space. This gives the formulas: ln(b) = [n·Σ(x·ln y) − Σx·Σ(ln y)] / [n·Σx² − (Σx)²] and ln(a) = [Σ(ln y) − ln(b)·Σx] / n, from which a = e^(ln a) and b = e^(ln b) are recovered.\n\nThe model y = ab^x can be interpreted as follows. The coefficient a is the y-intercept: it represents the value of y when x = 0. The base b controls the rate of change: if b > 1, the model shows growth with a per-unit factor of b (e.g., b = 1.05 means 5% growth per unit increase in x). If 0 < b < 1, the model shows decay. The growth rate as a percentage is (b − 1) × 100%.\n\nThe coefficient of determination R² measures how well the model fits the data on a scale from 0 to 1. An R² of 0.95 means that 95% of the variance in y is explained by the exponential model. R² values above 0.90 are generally considered a good fit for scientific data. The correlation coefficient R = √R² × sign(ln b) indicates the direction and strength of the exponential relationship.\n\nImportant constraint: all y values must be positive for exponential regression because the logarithm of zero or a negative number is undefined. If your data contains non-positive y values, you may need to transform or shift the data, or consider a different regression model such as polynomial regression."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples illustrate exponential regression applied to biological, financial, and physical data.",
+        "colInput": "Data Points",
+        "colOutput": "Equation",
+        "colNote": "Scenario",
+        "items": [
+          {
+            "input": "(1,2), (2,4.1), (3,7.9), (4,16.2), (5,33.0)",
+            "output": "y ≈ 0.98 × 2.01^x, R² ≈ 0.999",
+            "note": "Bacterial colony doubling approximately every hour"
+          },
+          {
+            "input": "(0,1000), (1,1050), (2,1102.5), (3,1157.6), (4,1215.5)",
+            "output": "y = 1000 × 1.05^x, R² = 1.000",
+            "note": "Perfect 5% compound interest growth; R² = 1"
+          },
+          {
+            "input": "(0,100), (10,82), (20,67), (30,55), (40,45)",
+            "output": "y ≈ 100 × 0.981^x, R² ≈ 0.999",
+            "note": "Radioactive decay; b < 1 indicates exponential decay"
+          },
+          {
+            "input": "(1971,2300), (1982,134000), (1993,3.1M), (2000,42M), (2011,2.6B)",
+            "output": "y fits exponential, R² ≈ 0.97",
+            "note": "Moore's Law: transistor count doubling approximately every 2 years"
+          }
+        ],
+        "loadBacteria": "Load: Bacteria Growth",
+        "loadCompoundInterest": "Load: Compound Interest",
+        "loadRadioactive": "Load: Radioactive Decay"
+      },
+      "howto": {
+        "heading": "How to Use This Calculator",
+        "steps": [
+          "Enter your data points in the text area — one pair per line, with x and y values separated by a space or comma (e.g., '1 2.5' or '1,2.5'). You need at least 3 data points.",
+          "Ensure all y values are strictly positive (greater than zero) — the exponential regression algorithm requires taking logarithms of y.",
+          "Optionally enter an x value in the Predict Y field to get a prediction from the fitted model.",
+          "Click Calculate to see the regression equation y = ab^x, coefficients a and b, R², correlation R, and any requested prediction.",
+          "Use the Quick Load buttons to load pre-built examples and explore how the regression equation is derived."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "What is exponential regression?",
+        "q1_a": "Exponential regression fits a curve of the form y = ab^x to a set of data points, where a is the initial value and b is the growth/decay factor per unit of x. It is used when the data grows or decays at a rate proportional to its current value. The fitting is done by linearizing the model via logarithms and applying ordinary least squares to the transformed data.",
+        "q2": "What do the coefficients a and b mean?",
+        "q2_a": "The coefficient a is the y-intercept — the predicted value of y when x = 0. The base b determines the multiplicative change in y per unit increase in x. If b = 1.1, the value of y increases by 10% for each unit increase in x. If b = 0.9, the value decreases by 10% per unit. The growth rate as a percentage is (b − 1) × 100%.",
+        "q3": "What does R² measure and what is a good value?",
+        "q3_a": "R² (the coefficient of determination) measures the proportion of variance in the original y values explained by the fitted exponential model. It ranges from 0 to 1, where 1 indicates a perfect fit. For scientific data, R² > 0.95 is excellent, 0.80–0.95 is good, and below 0.80 suggests the exponential model may not be appropriate and another model form should be tried.",
+        "q4": "Why must y values be positive?",
+        "q4_a": "The exponential regression algorithm linearizes the model by taking ln(y). The natural logarithm is only defined for strictly positive numbers — ln(0) is negative infinity and ln(negative number) is undefined in real arithmetic. If your data has non-positive y values, you may need to shift the data (add a constant to all y values), use a different model (polynomial, power law), or investigate whether the data follows exponential growth at all.",
+        "q5": "How is this different from linear regression?",
+        "q5_a": "Linear regression fits a straight line y = mx + b to data, assuming a constant rate of change. Exponential regression fits y = ab^x, assuming a constant proportional rate of change. To choose between them, plot your data on a linear scale (linear if straight line) and a semi-log scale (exponential if straight line on semi-log). You can also compare R² values, though R² from the two models is not directly comparable since exponential regression minimizes residuals in log space.",
+        "q6": "Can I use this calculator for exponential decay?",
+        "q6_a": "Yes. Exponential decay is a special case where 0 < b < 1. If b = 0.95, the quantity decreases by 5% per unit of x. The calculator handles both growth and decay automatically — you do not need to change any settings. Just enter your data points and the algorithm will determine the correct b value. Radioactive decay, drug concentration in the bloodstream, and cooling temperature all follow this pattern."
+      }
     }
   }
 }
