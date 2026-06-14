@@ -6347,6 +6347,203 @@
         "q6": "¿Cómo encuentro λ a partir de datos empíricos?",
         "q6_a": "El estimador de máxima verosimilitud de λ a partir de datos observados x₁, x₂, …, xₙ es simplemente el inverso de la media muestral: λ̂ = n / Σxᵢ = 1 / x̄. Esto tiene sentido intuitivo: si los eventos ocurren en promedio cada 5 minutos (media = 5), entonces la tasa es λ = 1/5 = 0.2 por minuto. Puedes verificar el ajuste exponencial con un gráfico Q-Q o una prueba de bondad de ajuste."
       }
+    },
+    "relative-risk-calculator": {
+      "title": "Riesgo relativo: calculadora para cohortes",
+      "tagline": "Calcula el riesgo relativo (razón de riesgos), el intervalo de confianza del 95% y el riesgo atribuible a partir de una tabla de contingencia 2×2 para grupos expuestos y no expuestos.",
+      "intro": "Introduce los cuatro conteos de celda (a, b, c, d) de tu tabla de contingencia de cohorte para calcular al instante la razón de riesgos y su intervalo de confianza.",
+      "formula": "RR = (a/(a+b)) / (c/(c+d)) | 95% CI: exp(ln(RR) ± 1.96 × SE) where SE = √(b/(a·nE) + d/(c·nU))",
+      "tableNote": "Introduce los cuatro valores de tu tabla 2×2: a = expuestos con resultado, b = expuestos sin resultado, c = no expuestos con resultado, d = no expuestos sin resultado.",
+      "group": {
+        "exposed": "Grupo expuesto",
+        "unexposed": "Grupo no expuesto"
+      },
+      "field": {
+        "a": "Expuestos: resultado positivo (a)",
+        "b": "Expuestos: resultado negativo (b)",
+        "c": "No expuestos: resultado positivo (c)",
+        "d": "No expuestos: resultado negativo (d)"
+      },
+      "placeholder": {
+        "a": "p. ej. 70",
+        "b": "p. ej. 6930",
+        "c": "p. ej. 3",
+        "d": "p. ej. 2997"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce conteos válidos no negativos para las cuatro celdas. El conteo de resultado positivo en el grupo no expuesto no puede ser cero."
+      },
+      "result": {
+        "heading": "Resultados",
+        "riskExposed": "Riesgo (expuestos)",
+        "riskUnexposed": "Riesgo (no expuestos)",
+        "relativeRisk": "Riesgo relativo (RR)",
+        "ci95": "IC del 95% para RR",
+        "ciUnavailable": "No disponible (celda cero)",
+        "attributableRisk": "Riesgo atribuible"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de riesgo relativo",
+        "body": "El riesgo relativo (RR), también llamado razón de riesgos, es una medida de asociación usada en estudios de cohortes y ensayos clínicos aleatorizados. Responde a la pregunta: ¿cuántas veces más probable es que un grupo expuesto desarrolle el desenlace que un grupo no expuesto? Un RR de 1.0 significa que ambos grupos tienen el mismo riesgo; un RR mayor que 1.0 indica que la exposición se asocia con mayor riesgo; un RR menor que 1.0 indica que la exposición es protectora.\n\nEl cálculo se basa en una tabla de contingencia 2×2 que cruza el estado de exposición (sí/no) con el estado del desenlace (sí/no). Las cuatro celdas se etiquetan convencionalmente como a (expuesto, con desenlace), b (expuesto, sin desenlace), c (no expuesto, con desenlace) y d (no expuesto, sin desenlace). El riesgo en el grupo expuesto es a/(a+b) y el riesgo en el grupo no expuesto es c/(c+d). El riesgo relativo es simplemente el cociente de estas dos proporciones de incidencia.\n\nEl intervalo de confianza (IC) del 95% para el RR cuantifica la incertidumbre de la estimación causada por la variabilidad muestral. El método estándar usa la aproximación log-normal: calcula el error estándar del log-RR como √(b/(a·nE) + d/(c·nU)), y luego exponentia el intervalo [ln(RR) ± 1.96 × SE]. Si el IC del 95% no incluye 1.0, la asociación es estadísticamente significativa al nivel α = 0.05. Un IC estrecho indica una estimación precisa; un IC amplio indica una incertidumbre considerable, normalmente debida a un tamaño muestral pequeño.\n\nEl riesgo atribuible (también llamado diferencia de riesgos o aumento/reducción absoluta del riesgo) es la diferencia aritmética entre las dos proporciones de incidencia: AR = riskExposed − riskUnexposed. A diferencia del riesgo relativo, que es un cociente, el riesgo atribuible expresa el exceso de riesgo en términos absolutos. Un RR de 3.0 suena dramático, pero si el riesgo basal es 0.1%, un AR de 0.2% puede ser clínicamente trivial. Por el contrario, un AR de 10 puntos porcentuales es clínicamente importante independientemente del RR. Ambos indicadores son necesarios para interpretar por completo una asociación epidemiológica.\n\nEl riesgo relativo es adecuado para estudios de cohortes y ensayos clínicos en los que la incidencia del desenlace puede medirse directamente en los grupos expuesto y no expuesto durante un período de seguimiento definido. No es adecuado para estudios de casos y controles, en los que los participantes se seleccionan según el estado del desenlace, no según la exposición; en ese diseño se usa la razón de momios (odds ratio). Una diferencia práctica clave: cuando el desenlace es raro (incidencia < 10%), la odds ratio aproxima numéricamente al riesgo relativo, por lo que ambas medidas pueden compararse entre diseños. Cuando el desenlace es común, se separan y no pueden usarse indistintamente.\n\nEn medicina clínica, el RR se usa para evaluar la eficacia de tratamientos, vacunas e intervenciones preventivas. Una vacuna que reduce el riesgo de infección del 4% al 1% tiene un RR de 0.25, lo que significa que las personas vacunadas tienen un 75% menos de probabilidad de infectarse. En salud ocupacional, el RR cuantifica cuánto más probable es que los trabajadores expuestos a un peligro químico o físico desarrollen una enfermedad específica que los trabajadores no expuestos. En epidemiología nutricional, el RR relaciona patrones dietéticos y factores de estilo de vida con desenlaces de enfermedad en grandes cohortes prospectivas."
+      },
+      "examples": {
+        "heading": "Ejemplos de riesgo relativo",
+        "intro": "Escenarios epidemiológicos clásicos que muestran cómo configurar la tabla de contingencia e interpretar la razón de riesgos resultante.",
+        "colInput": "Tabla de contingencia",
+        "colOutput": "Métricas clave",
+        "colNote": "Interpretación",
+        "loadSmoking": "Cargar ejemplo de tabaco",
+        "loadVaccine": "Cargar ejemplo de vacuna",
+        "loadDiet": "Cargar ejemplo de dieta",
+        "items": [
+          {
+            "input": "Tabaco/cáncer de pulmón: a=70, b=6930, c=3, d=2997",
+            "output": "RR = 10.0; Riesgo expuesto ≈ 1.0%, riesgo no expuesto ≈ 0.1%",
+            "note": "Los fumadores tienen exactamente 10 veces más probabilidad de desarrollar cáncer de pulmón que los no fumadores en 20 años. El riesgo atribuible es de ~0.9 puntos porcentuales."
+          },
+          {
+            "input": "Ensayo de vacuna contra la gripe: a=25, b=4975, c=80, d=4920",
+            "output": "RR ≈ 0.3125; Riesgo vacunados ≈ 0.5%, riesgo placebo ≈ 1.6%",
+            "note": "Las personas vacunadas tienen alrededor de un 69% menos de probabilidad de contraer la gripe. Un RR de 0.31 está muy por debajo de 1.0 y confirma un fuerte efecto protector."
+          },
+          {
+            "input": "Dieta rica en grasas: a=150, b=1850, c=100, d=2900",
+            "output": "RR = 2.25; Riesgo expuesto ≈ 7.5%, riesgo no expuesto ≈ 3.3%",
+            "note": "Las personas con dieta alta en grasas tienen 2.25 veces más probabilidad de desarrollar enfermedad cardíaca. El riesgo atribuible es de ~4.2 puntos porcentuales."
+          },
+          {
+            "input": "Efecto secundario de fármaco: a=60, b=940, c=20, d=980",
+            "output": "RR = 3.0; Riesgo del fármaco ≈ 6%, riesgo placebo ≈ 2%",
+            "note": "Los pacientes que toman el fármaco tienen exactamente 3 veces más probabilidad de experimentar náuseas. Conviene revisar el IC del 95% para evaluar la significación estadística."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de riesgo relativo",
+        "steps": [
+          "Identifica los cuatro conteos de la tabla 2×2: a = número de personas expuestas que desarrollaron el desenlace; b = expuestas que no lo desarrollaron; c = no expuestas que desarrollaron el desenlace; d = no expuestas que no lo desarrollaron.",
+          "Introduce a y b en los campos del grupo expuesto, y c y d en los campos del grupo no expuesto.",
+          "Haz clic en Calcular. La herramienta devuelve el riesgo en cada grupo, el riesgo relativo, el intervalo de confianza del 95% y el riesgo atribuible.",
+          "Interpreta el riesgo relativo: RR > 1 significa que la exposición se asocia con mayor riesgo; RR < 1 significa que la exposición es protectora; RR = 1 significa que no hay asociación.",
+          "Comprueba si el IC del 95% incluye 1.0: si no lo incluye, la asociación es estadísticamente significativa al 5%. Un IC estrecho indica una estimación más precisa."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre riesgo relativo",
+        "q1": "¿Qué es el riesgo relativo y en qué se diferencia de la razón de momios?",
+        "q1_a": "El riesgo relativo (RR) es la razón entre la incidencia del desenlace en el grupo expuesto y la incidencia en el grupo no expuesto. La razón de momios (OR) es la razón de las probabilidades (odds) del desenlace en cada grupo. Ambas miden asociación, pero el RR es más intuitivo y se interpreta directamente como multiplicador del riesgo. La OR se usa en estudios de casos y controles, donde no puede medirse la incidencia; para desenlaces raros (<10%), OR ≈ RR. Para desenlaces comunes, la OR sobrestima el RR.",
+        "q2": "¿Puede el riesgo relativo ser menor que 1? ¿Qué significa?",
+        "q2_a": "Sí. Un RR menor que 1.0 significa que el grupo expuesto tiene menor riesgo del desenlace que el grupo no expuesto; en otras palabras, la exposición es protectora. Por ejemplo, un ensayo de vacuna podría encontrar RR = 0.25, lo que significa que los vacunados tienen un 75% menos de probabilidad de desarrollar la enfermedad. La reducción del riesgo (1 − RR) a veces se llama reducción relativa del riesgo (RRR).",
+        "q3": "¿Cómo interpreto el intervalo de confianza del 95%?",
+        "q3_a": "El IC del 95% ofrece un rango de valores plausibles para el RR verdadero de la población a partir de tu muestra. Si repitieras el estudio muchas veces, alrededor del 95% de los IC resultantes contendrían el RR verdadero. En la práctica: si el IC excluye 1.0 (por ejemplo, 1.5–3.2), la asociación es estadísticamente significativa con α = 0.05. Un IC que incluye 1.0 (por ejemplo, 0.8–2.5) no es estadísticamente significativo.",
+        "q4": "¿Qué es el riesgo atribuible y cuándo es útil?",
+        "q4_a": "El riesgo atribuible (AR) es la diferencia absoluta de riesgo entre los grupos expuesto y no expuesto: AR = riskExposed − riskUnexposed. Indica cuántos casos extra por persona son causados por la exposición. El AR es especialmente útil para la salud pública porque cuantifica el beneficio potencial de eliminar la exposición. Un RR alto con un riesgo basal muy bajo (AR bajo) puede justificar una intervención menos urgente que un RR moderado con un riesgo basal alto (AR alto).",
+        "q5": "¿Por qué la calculadora exige que el conteo de resultado positivo en el grupo no expuesto (c) no sea cero?",
+        "q5_a": "El riesgo relativo se define como el cociente de dos incidencias. Si c = 0, la incidencia en el grupo no expuesto es cero y el denominador no está definido, así que el RR tampoco lo está. En la práctica, un c de cero suele significar que el grupo no expuesto está completamente protegido del desenlace (algo muy inusual) o que la muestra es demasiado pequeña para observar eventos en ese grupo. En ambos casos, hace falta un análisis distinto, como métodos exactos.",
+        "q6": "¿Es válido el riesgo relativo para estudios de casos y controles?",
+        "q6_a": "No. El riesgo relativo requiere poder medir la incidencia del desenlace en cada grupo, algo que solo es posible cuando el estudio recluta participantes según la exposición (diseño de cohorte) o los asigna aleatoriamente (ensayo clínico). En un estudio de casos y controles, los participantes se seleccionan según el estado del desenlace, por lo que no puede calcularse la proporción de incidencia a partir de la muestra. En ese caso se usa la razón de momios, que aproxima al RR cuando el desenlace es raro."
+      }
+    },
+    "relative-risk-reduction-calculator": {
+      "title": "Calculadora de reducción del riesgo relativo - RRR, ARR y NNT",
+      "tagline": "Calcula RRR, ARR, NNT, riesgo relativo y tasas de eventos a partir de datos de tratamiento y control para medir la eficacia real de una intervención.",
+      "intro": "Ingresa el número de eventos y el total de pacientes en tu grupo de tratamiento y en tu grupo control para calcular al instante todas las métricas clave de eficacia.",
+      "formula": "CER = eventos del control / total del control | EER = eventos del tratamiento / total del tratamiento | RR = EER / CER | RRR = (CER − EER) / CER | ARR = CER − EER | NNT = 1 / |ARR|",
+      "group": {
+        "treatment": "Grupo de tratamiento",
+        "control": "Grupo control"
+      },
+      "field": {
+        "treatmentEvents": "Tratamiento: pacientes con evento",
+        "treatmentTotal": "Tratamiento: total de pacientes",
+        "controlEvents": "Control: pacientes con evento",
+        "controlTotal": "Control: total de pacientes"
+      },
+      "placeholder": {
+        "events": "p. ej. 80",
+        "total": "p. ej. 1000"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Ingresa cantidades válidas. Los eventos no pueden superar el total de pacientes, los totales deben ser positivos y la tasa de eventos del control no puede ser cero."
+      },
+      "result": {
+        "heading": "Resultados",
+        "cer": "CER (tasa de eventos del control)",
+        "eer": "EER (tasa de eventos del tratamiento)",
+        "rr": "Riesgo relativo (RR)",
+        "rrr": "RRR (reducción relativa del riesgo)",
+        "arr": "ARR (reducción absoluta del riesgo)",
+        "nnt": "NNT (número necesario a tratar)"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de reducción del riesgo relativo",
+        "body": "La reducción relativa del riesgo (RRR) es una medida estadística que expresa la disminución proporcional de la tasa de un resultado adverso atribuible a un tratamiento o intervención. Si la tasa de eventos del control (CER) es 12% y la del tratamiento (EER) es 8%, la RRR es (12% − 8%) / 12% = 33.3%. Esto les dice a clínicos, responsables de políticas e investigadores que la intervención reduce el riesgo del evento en un tercio frente a la condición de control.\n\nLa RRR se calcula a partir de dos tasas de eventos. La tasa de eventos del control (CER) es la proporción de pacientes del grupo control (sin tratamiento o con placebo) que experimentan el resultado de interés: CER = eventos del control / total del control. La tasa de eventos experimental o del tratamiento (EER) es la proporción correspondiente en el grupo tratado: EER = eventos del tratamiento / total del tratamiento. El riesgo relativo (RR) es la razón EER / CER. RRR = 1 − RR = (CER − EER) / CER. Cuando el tratamiento es beneficioso (EER < CER), la RRR es positiva y está entre 0 y 1 (0% a 100%). Una RRR negativa indica que el tratamiento aumenta el riesgo en lugar de reducirlo; también puede llamarse aumento relativo del riesgo.\n\nLa reducción absoluta del riesgo (ARR), también llamada diferencia de riesgos, es la diferencia aritmética entre ambas tasas de eventos: ARR = CER − EER. A diferencia de la RRR, que es relativa a la línea base, la ARR se expresa en las mismas unidades que la tasa de eventos y transmite el tamaño real del efecto. Un fármaco con una RRR del 50% suena impresionante, pero si el riesgo basal es solo 0.2%, la ARR es apenas 0.1%: es decir, solo se beneficia 1 de cada 1000 pacientes. Por eso la ARR y el NNT son complementos esenciales de la RRR.\n\nEl número necesario a tratar (NNT) es el recíproco de la ARR: NNT = 1 / |ARR|. Responde a la pregunta: en promedio, ¿a cuántos pacientes hay que tratar para que 1 paciente adicional evite el desenlace? Un NNT de 10 significa que, en promedio, tratar a 10 pacientes previene un evento adverso. Un NNT más bajo indica un tratamiento más eficiente. El NNT siempre debe interpretarse junto con la gravedad del desenlace: un NNT de 100 para prevenir un infarto fatal puede ser muy valioso, mientras que un NNT de 100 para prevenir un dolor de cabeza leve quizá no justifique el costo ni los efectos secundarios.\n\nEstas cuatro métricas —CER, EER, RRR, ARR y NNT— aparecen con frecuencia en guías clínicas, prospectos de medicamentos, revisiones sistemáticas y evaluaciones de tecnologías sanitarias. Organismos reguladores como la FDA y la EMA exigen datos de riesgo absoluto en el etiquetado para que prescriptores y pacientes tengan una visión completa del beneficio del tratamiento. La RRR por sí sola puede ser engañosa: un titular que afirma que un fármaco reduce el riesgo en 40% suena dramático, pero si la ARR es 0.5% y el NNT es 200, los clínicos necesitan los tres números para decidir con criterio.\n\nEsta calculadora también maneja casos en los que el tratamiento aumenta la tasa de eventos (la ARR es negativa). En ese contexto, el NNT pasa a ser el número necesario para dañar (NNH): cuántos pacientes hay que tratar para que ocurra un evento adverso adicional. La interpretación cambia, pero la fórmula es idéntica: cuando ARR < 0, NNH = 1 / |ARR|."
+      },
+      "examples": {
+        "heading": "Ejemplos de cálculo de RRR",
+        "intro": "Escenarios clínicos reales que muestran cómo ingresar los datos e interpretar juntos RRR, ARR y NNT.",
+        "colInput": "Datos del estudio",
+        "colOutput": "Métricas clave",
+        "colNote": "Interpretación clínica",
+        "loadDrug": "Cargar fármaco para colesterol",
+        "loadVaccine": "Cargar vacuna contra la gripe",
+        "loadSurgery": "Cargar técnica quirúrgica",
+        "items": [
+          {
+            "input": "Tratamiento: 80/1000 eventos; Control: 120/1000 eventos",
+            "output": "CER=12%, EER=8%, RR=0.667, RRR=33.3%, ARR=4%, NNT=25",
+            "note": "Nuevo fármaco para el colesterol: tratar a 25 pacientes previene 1 infarto. Una RRR del 33% suena impresionante, pero una ARR del 4% y un NNT de 25 la ponen en contexto práctico."
+          },
+          {
+            "input": "Tratamiento: 25/5000 eventos; Control: 85/5000 eventos",
+            "output": "CER=1.7%, EER=0.5%, RR=0.294, RRR=70.6%, ARR=1.2%, NNT=83.3",
+            "note": "Vacuna contra la gripe: tratar a 83 personas previene 1 caso de gripe. La RRR muy alta, de ~71%, refleja una fuerte eficacia vacunal a pesar de la baja línea base de riesgo absoluto."
+          },
+          {
+            "input": "Tratamiento: 10/250 eventos; Control: 25/250 eventos",
+            "output": "CER=10%, EER=4%, RR=0.4, RRR=60%, ARR=6%, NNT=16.7",
+            "note": "Nueva técnica quirúrgica: un NNT de ~17 significa que tratar a 17 pacientes con la nueva técnica previene 1 complicación posoperatoria frente a la técnica estándar."
+          },
+          {
+            "input": "Efecto secundario del fármaco: tratamiento=60/1000 eventos; control=20/1000 eventos",
+            "output": "CER=2%, EER=6%, RR=3.0, RRR=−200%, ARR=−4%, NNH=25",
+            "note": "El fármaco triplica la tasa de náuseas frente al placebo. La ARR es negativa (−4%) porque EER > CER; el NNT pasa a NNH=25, lo que significa un caso adicional de náuseas por cada 25 pacientes tratados."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de RRR",
+        "steps": [
+          "Ingresa primero el número de pacientes del grupo de tratamiento que experimentaron el desenlace y luego el total de pacientes de ese grupo.",
+          "Ingresa después el número de pacientes del grupo control (placebo o sin tratamiento) que experimentaron el desenlace y luego el total de ese grupo.",
+          "Haz clic en Calcular. La herramienta calcula y muestra CER, EER, riesgo relativo, RRR, ARR y NNT.",
+          "Interpreta la RRR como la reducción proporcional del riesgo respecto a la tasa de eventos del control. Revisa la ARR para entender el tamaño absoluto del efecto.",
+          "Usa el NNT para valorar la eficiencia clínica: un NNT más bajo significa que se necesita tratar a menos pacientes para lograr un resultado beneficioso. Si la ARR es negativa, interpreta el NNT como NNH."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre RRR, ARR y NNT",
+        "q1": "¿Cuál es la diferencia entre RRR y ARR?",
+        "q1_a": "La RRR (reducción relativa del riesgo) es la reducción proporcional de la tasa de eventos respecto al control: (CER − EER) / CER. La ARR (reducción absoluta del riesgo) es la diferencia aritmética: CER − EER. La RRR suele ser mayor en magnitud y puede ser engañosa cuando el riesgo basal es muy bajo. La ARR da la reducción real del riesgo por paciente, por lo que es un número más útil clínicamente. Se necesitan ambas para tener una visión completa.",
+        "q2": "¿Qué significa NNT y qué sería un NNT 'bueno'?",
+        "q2_a": "NNT es el número necesario a tratar: el número promedio de pacientes que deben recibir el tratamiento para que un paciente adicional evite el desenlace, comparado con el control. No existe un umbral universal de 'bueno'; depende de la gravedad del desenlace, del costo del tratamiento y de la carga de efectos adversos. Un NNT de 5 para prevenir un accidente cerebrovascular es excelente; un NNT de 5 para prevenir un dolor de cabeza leve quizá no justifique el tratamiento. Siempre considera la gravedad, la frecuencia y los daños junto con el NNT.",
+        "q3": "¿Qué es la tasa de eventos del control (CER) y por qué importa?",
+        "q3_a": "La CER es la proporción de pacientes del grupo control que experimentan el desenlace: CER = eventos del control / total del control. Representa el riesgo basal sin tratamiento. La CER determina cuánto se traduce la RRR en términos absolutos: una RRR del 50% con CER=20% da ARR=10% y NNT=10, mientras que la misma RRR con CER=0.4% da ARR=0.2% y NNT=500. La misma reducción relativa puede tener una importancia práctica muy distinta según el riesgo basal.",
+        "q4": "¿Puede la RRR ser negativa? ¿Qué significa eso?",
+        "q4_a": "Sí. Una RRR negativa significa que el grupo tratado tiene una tasa de eventos mayor que el grupo control; es decir, el tratamiento se asocia con un aumento del riesgo en lugar de una reducción. En ese caso, (CER − EER) es negativo y la RRR también. El valor absoluto de la ARR en esta situación es el aumento absoluto del riesgo, y su recíproco es el NNH: cuántos pacientes hay que tratar para que ocurra un daño adicional.",
+        "q5": "¿La RRR es lo mismo que la eficacia en ensayos de vacunas?",
+        "q5_a": "La eficacia vacunal (VE) es conceptualmente idéntica a la RRR: VE = (CER − EER) / CER = 1 − RR. Una eficacia vacunal del 95% significa que las personas vacunadas tienen un riesgo 95% menor del desenlace que los controles no vacunados. En este contexto los términos se usan de forma intercambiable, aunque 'efficacy' suele referirse a ensayos controlados y 'effectiveness' a datos observacionales del mundo real.",
+        "q6": "¿En qué se diferencia de la Calculadora de Riesgo Relativo?",
+        "q6_a": "La Calculadora de Riesgo Relativo usa una tabla de contingencia 2×2 (las celdas a, b, c y d típicas de los estudios de cohorte) y se centra en calcular el RR y su intervalo de confianza. La Calculadora de Reducción del Riesgo Relativo usa los eventos y totales de los grupos de tratamiento y control, y se centra en RRR, ARR y NNT, que son métricas estándar en ensayos clínicos y medicina basada en la evidencia. Ambas calculan riesgo relativo, pero sirven para casos de uso distintos."
+      }
     }
   }
 }
