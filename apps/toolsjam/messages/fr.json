@@ -8280,6 +8280,497 @@
           }
         ]
       }
+    },
+    "inverse-normal-distribution-calculator": {
+      "title": "Calculateur de loi normale inverse - trouver X",
+      "tagline": "Trouvez la valeur x correspondant à une probabilité cumulée donnée sous la courbe normale. Prend en charge les calculs en queue gauche, queue droite et deux queues (centre).",
+      "intro": "Saisissez la moyenne μ, l'écart type σ, la probabilité cumulée et le type de queue pour obtenir la valeur x ou l'intervalle correspondant.",
+      "field": {
+        "mean": "Moyenne (μ)",
+        "stdDev": "Écart type (σ)",
+        "probability": "Probabilité cumulée",
+        "tailType": "Type de queue",
+        "probabilityHintOne": "Saisissez une valeur entre 0 et 1 (exclus). En queue gauche : aire à gauche de x. En queue droite : aire à droite de x.",
+        "probabilityHintTwo": "Saisissez l'aire centrale (entre les deux valeurs x), par exemple 0.95 pour le centre à 95 %."
+      },
+      "placeholder": {
+        "probability": "ex. 0.95"
+      },
+      "tail": {
+        "left": "Queue gauche",
+        "right": "Queue droite",
+        "two": "Deux queues (centre)"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Vérifiez vos saisies. La probabilité doit être comprise entre 0 et 1, σ doit être positif et tous les champs doivent être renseignés."
+      },
+      "result": {
+        "heading": "Résultat",
+        "xValue": "valeur x",
+        "zScore": "score Z",
+        "xLow": "valeur x inférieure",
+        "xHigh": "valeur x supérieure",
+        "zRange": "plage de scores Z",
+        "zRangeSep": "à"
+      },
+      "about": {
+        "heading": "À propos du calculateur de loi normale inverse",
+        "body": "Le calculateur de loi normale inverse — parfois appelé fonction quantile ou fonction percentile de la loi normale — répond à la question suivante : étant donnée une probabilité cumulée, quelle est la valeur x correspondante ? C’est l’inverse de la consultation d’une table de CDF normale standard. Au lieu de calculer P(X ≤ x) à partir de x, vous indiquez P et résolvez pour x.\n\nEn statistique, la loi normale (aussi appelée loi gaussienne ou courbe en cloche) est paramétrée par sa moyenne μ et son écart type σ. Toute loi normale peut être convertie en loi normale centrée réduite (μ=0, σ=1) en calculant le score Z : Z = (x − μ) / σ. Réciproquement, tout quantile Z de la loi normale centrée réduite peut être reconverti en valeur brute x = μ + σ·Z. Le calculateur de loi normale inverse exploite cela pour vous permettre de travailler directement avec n’importe quelle moyenne et n’importe quel écart type, sans conversion en deux étapes.\n\nLe mode queue gauche trouve la valeur x en dessous de laquelle se situe la fraction spécifiée de la distribution. Si vous saisissez μ=0, σ=1 et probability=0.95, l’outil renvoie environ 1.6449, ce qui signifie que 95 % de la loi normale standard est en dessous de Z=1.6449. C’est le 95e percentile, largement utilisé pour construire des intervalles de confiance unilatéraux à 95 % ou pour trouver la valeur critique d’un test unilatéral à α=0.05.\n\nLe mode queue droite trouve la valeur x au-dessus de laquelle se situe la fraction spécifiée de la distribution. En saisissant μ=100, σ=15 et probability=0.02, on obtient environ 130.8, ce qui signifie que seulement 2 % des scores de QI (modélisés par N(100,15)) dépassent cette valeur. C’est ainsi que l’on détermine des seuils pour les programmes pour élèves surdoués, des seuils d’admission par percentile élevé et des limites de contrôle qualité pour les dépassements dans la queue supérieure.\n\nLe mode deux queues (centre) trouve l’intervalle symétrique autour de la moyenne qui contient la probabilité centrale spécifiée. Saisir probability=0.95 signifie que vous voulez l’intervalle qui couvre les 95 % centraux de la distribution, chaque queue contenant alors 2.5 %. L’outil renvoie les valeurs x inférieure et supérieure. C’est exactement ainsi que sont construits les intervalles de confiance à 95 % : la moyenne d’échantillon ± 1.96 erreurs standards correspond à μ=0, σ=1 et à l’intervalle bilatéral à 95 %.\n\nLes applications pratiques incluent : trouver des scores Z pour des valeurs critiques de tests d’hypothèse ; calculer des intervalles de tolérance en fabrication (par exemple la plage contenant les 99 % centraux des dimensions d’un produit) ; fixer des seuils de réussite/échec dans les tests standardisés ; déterminer des seuils de Value at Risk (VaR) en finance ; et inverser une prévision probabiliste pour retrouver le seuil d’origine. La fonction inverse normale est l’une des opérations les plus utilisées en statistique appliquée, juste derrière la CDF elle-même."
+      },
+      "examples": {
+        "heading": "Exemples de loi normale inverse",
+        "intro": "Scénarios courants en statistique, contrôle qualité et psychométrie.",
+        "colInput": "Paramètres",
+        "colOutput": "Résultat",
+        "colNote": "Application",
+        "loadZ95": "Charger le score Z du 95e percentile",
+        "loadIQ": "Charger le score de QI du top 2 %",
+        "loadTolerance": "Charger l'intervalle de tolérance à 99 %",
+        "items": [
+          {
+            "input": "μ=0, σ=1, P=0.95, Left-Tailed",
+            "output": "x = 1.6449 (Z = 1.6449)",
+            "note": "Le 95e percentile de la loi normale standard. Utilisé comme valeur critique pour un test unilatéral à α=0.05."
+          },
+          {
+            "input": "μ=100, σ=15, P=0.02, Right-Tailed",
+            "output": "x ≈ 130.8 (Z ≈ 2.054)",
+            "note": "QI minimal pour faire partie des 2 % supérieurs. Utile pour les seuils d’admissibilité aux programmes pour surdoués."
+          },
+          {
+            "input": "μ=50, σ=0.5, P=0.99, Two-Tailed",
+            "output": "x = 48.71 to 51.29",
+            "note": "Intervalle de tolérance de fabrication contenant 99 % des longueurs de produit. Le 1 % restant est réparti entre trop court et trop long."
+          },
+          {
+            "input": "μ=75, σ=8, P=0.10, Left-Tailed",
+            "output": "x ≈ 64.74 (Z ≈ −1.282)",
+            "note": "Seuil des 10 % inférieurs pour les notes d’examen. Les élèves sous ce seuil peuvent avoir besoin d’un soutien de rattrapage."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de loi normale inverse",
+        "steps": [
+          "Sélectionnez le type de queue : Queue gauche si vous voulez la valeur en dessous de laquelle se situe une fraction donnée ; Queue droite si vous voulez la valeur au-dessus de laquelle se situe une fraction ; Deux queues (centre) si vous voulez l’intervalle symétrique autour de la moyenne qui capture une fraction centrale.",
+          "Saisissez la Moyenne μ (le centre de la distribution) et l’Écart type σ (doit être positif). Utilisez μ=0 et σ=1 pour la loi normale standard / la consultation d’un score Z.",
+          "Saisissez la Probabilité cumulée sous forme décimale entre 0 et 1. Pour Queue gauche, il s’agit de l’aire à gauche de x. Pour Queue droite, c’est l’aire à droite. Pour Deux queues, c’est l’aire centrale (par exemple 0.95 pour le centre à 95 %).",
+          "Cliquez sur Calculer. En mode une queue, le résultat affiche la valeur x et son score Z. En mode deux queues, il affiche les bornes inférieure et supérieure ainsi que la plage de scores Z correspondante.",
+          "Utilisez les boutons d’exemple pour précharger des cas courants tels que les scores Z pour des intervalles de confiance à 95 %, des seuils percentiles de QI ou des plages de tolérance de fabrication."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la loi normale inverse",
+        "items": [
+          {
+            "q": "Qu’est-ce que la loi normale inverse ?",
+            "a": "La loi normale inverse (aussi appelée fonction quantile ou fonction probit) ramène une probabilité cumulée à la valeur correspondante sur la courbe normale. Si la CDF normale vous donne P(X ≤ x), l’inverse normale vous donne x à partir de P. C’est la fonction utilisée lorsque vous cherchez une valeur critique Z pour un niveau de confiance donné — par exemple Z=1.96 pour 97.5 % de la loi normale standard."
+          },
+          {
+            "q": "Quelle est la différence entre un score Z et une valeur x ?",
+            "a": "Un score Z est la valeur standardisée, exprimée en nombre d’écarts types par rapport à la moyenne : Z = (x − μ) / σ. Une valeur x est la mesure brute dans ses unités d’origine. Le calculateur renvoie les deux : la valeur x utile pour les seuils réels (note d’examen, longueur de produit, tension artérielle) et le score Z utile pour comparer des distributions ou consulter des tables statistiques."
+          },
+          {
+            "q": "Comment trouver la valeur critique pour un intervalle de confiance à 95 % ?",
+            "a": "Un intervalle de confiance à 95 % utilise des valeurs critiques bilatérales qui retranchent 2.5 % dans chaque queue. Réglez μ=0, σ=1, probability=0.95 et choisissez Deux queues (centre). Le calculateur renvoie Z≈1.96 comme borne supérieure (et −1.96 comme borne inférieure). La moyenne d’échantillon ± 1.96 × (erreur standard) donne l’intervalle de confiance à 95 % pour tout estimateur approximativement normalement distribué."
+          },
+          {
+            "q": "Quelle probabilité dois-je saisir pour un test unilatéral à α=0.05 ?",
+            "a": "Pour un test à gauche avec α=0.05, saisissez probability=0.05 avec Queue gauche sélectionnée ; le résultat est la valeur critique en dessous de laquelle vous rejetez H₀. Pour un test à droite avec α=0.05, saisissez probability=0.05 avec Queue droite sélectionnée ; le résultat est la valeur critique au-dessus de laquelle vous rejetez H₀. Pour un test bilatéral à α=0.05, saisissez probability=0.95 avec Deux queues (centre) afin d’obtenir ±1.96."
+          },
+          {
+            "q": "Puis-je l’utiliser pour une loi normale non standard ?",
+            "a": "Oui — c’est l’un des principaux avantages du calculateur par rapport aux simples tables Z. Saisissez la moyenne μ et l’écart type σ réels de votre distribution, et le calculateur transforme automatiquement le score Z en vos unités d’origine avec x = μ + σ × Z. Vous n’avez pas besoin de standardiser vos données manuellement."
+          }
+        ]
+      }
+    },
+    "iqr-calculator-interquartile-range": {
+      "title": "Calculateur IQR - écart interquartile et valeurs aberrantes",
+      "tagline": "Calculez l'écart interquartile (IQR), les quartiles Q1 et Q3, la médiane, et identifiez les valeurs aberrantes avec la règle 1.5×IQR à partir de tout jeu de données séparé par des virgules.",
+      "intro": "Saisissez vos données sous forme de nombres séparés par des virgules, puis cliquez sur Calculer pour obtenir le résumé à cinq nombres, l'IQR, les valeurs des seuils et les valeurs aberrantes.",
+      "field": {
+        "data": "Jeu de données (nombres séparés par des virgules)",
+        "dataHint": "Saisissez des nombres séparés par des virgules ou des espaces, p. ex. 2, 4, 4, 5, 6, 7, 8, 9"
+      },
+      "placeholder": {
+        "data": "p. ex. 2, 4, 4, 5, 6, 7, 8, 9"
+      },
+      "button": {
+        "calculate": "Calculer l'IQR",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins deux nombres valides séparés par des virgules."
+      },
+      "result": {
+        "heading": "Résultats",
+        "n": "Effectif (n)",
+        "min": "Minimum",
+        "max": "Maximum",
+        "q1": "Q1 (25e percentile)",
+        "median": "Médiane (Q2)",
+        "q3": "Q3 (75e percentile)",
+        "iqr": "IQR (Q3 − Q1)",
+        "lowerFence": "Seuil inférieur (Q1 − 1.5×IQR)",
+        "upperFence": "Seuil supérieur (Q3 + 1.5×IQR)",
+        "outliersLabel": "Valeurs aberrantes",
+        "noOutliers": "Aucune valeur aberrante détectée."
+      },
+      "about": {
+        "heading": "À propos du calculateur IQR",
+        "body": "L'écart interquartile (IQR) est l'étendue des 50% centraux d'un jeu de données : la distance entre le 25e percentile (Q1) et le 75e percentile (Q3). C'est l'une des mesures de dispersion statistique les plus robustes et les plus utilisées, car contrairement à l'étendue totale ou à l'écart type, elle n'est pas affectée par les valeurs extrêmes ni par les valeurs aberrantes. Que vous analysiez des notes d'examen, des mesures de tension artérielle, des prix immobiliers, des tolérances de fabrication ou tout autre jeu de données réel, l'IQR donne une image fiable de la dispersion centrale.\n\nPour calculer l'IQR, le calculateur trie d'abord les données de la plus petite à la plus grande, puis localise Q1 et Q3 à l'aide d'une interpolation linéaire sur les statistiques d'ordre. Q1 est la valeur au 25e percentile, le point en dessous duquel se trouvent 25% des données. Q3 est la valeur au 75e percentile, le point en dessous duquel se trouvent 75% des données. L'IQR est simplement Q3 − Q1. La médiane (Q2), le minimum et le maximum sont également fournis afin de présenter le résumé complet à cinq nombres, fondement d'un diagramme en boîte à moustaches.\n\nLa règle 1.5×IQR, introduite par John Tukey, est la méthode standard pour identifier les valeurs aberrantes potentielles. Tout point de données situé sous le seuil inférieur (Q1 − 1.5×IQR) ou au-dessus du seuil supérieur (Q3 + 1.5×IQR) est considéré comme une valeur aberrante suspecte. Ces seuils définissent les moustaches dans une boîte à moustaches de Tukey. Un point situé à plus de 3×IQR du quartile le plus proche (le seuil interne prolongé jusqu'à un seuil externe) est considéré comme une valeur aberrante extrême. Le calculateur signale toutes les valeurs situées hors des seuils 1.5×IQR.\n\nIl est important de noter que la règle 1.5×IQR identifie des valeurs aberrantes statistiques — des valeurs anormalement éloignées du bloc central des données — mais pas nécessairement des erreurs de données. Un point signalé comme aberrant peut être une erreur de mesure, une erreur de saisie, un signal de fraude ou simplement une observation réellement rare mais légitime. Les connaissances métier restent indispensables pour décider quoi faire des points signalés.\n\nL'IQR est la mesure de dispersion privilégiée lorsque les données sont asymétriques ou lorsque des valeurs aberrantes sont attendues, comme dans les distributions de revenus, les temps de réaction ou les prix immobiliers sur des marchés mixtes. Pour des données symétriques, normalement distribuées et sans valeurs aberrantes, l'écart type est légèrement plus efficace. Mais lorsque la robustesse compte — en analyse exploratoire des données, en statistiques non paramétriques ou dès que vous ne pouvez pas supposer la normalité — l'IQR est l'outil de référence pour caractériser la dispersion du centre de vos données."
+      },
+      "examples": {
+        "heading": "Exemples d'IQR",
+        "intro": "Quatre jeux de données montrant comment l'IQR et la détection des valeurs aberrantes fonctionnent en pratique.",
+        "colInput": "Jeu de données",
+        "colOutput": "IQR",
+        "colNote": "Notes",
+        "loadBasic": "Charger le jeu de données simple",
+        "loadOutliers": "Charger le jeu avec valeurs aberrantes",
+        "loadScores": "Charger les notes de test",
+        "items": [
+          {
+            "input": "2, 4, 4, 5, 6, 7, 8, 9",
+            "output": "IQR = 3.25 (Q1=4, Q3=7.25)",
+            "note": "Nombre pair de valeurs. Q1=4, médiane=5.5, Q3=7.25. Aucune valeur aberrante détectée."
+          },
+          {
+            "input": "10, 20, 30, 40, 50, 60, 70",
+            "output": "IQR = 30 (Q1=25, Q3=55)",
+            "note": "Effectif impair : Q1=25, médiane=40, Q3=55, IQR=30. Seuil inférieur=−20, seuil supérieur=100. Aucune valeur aberrante."
+          },
+          {
+            "input": "6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49, 78, 108",
+            "output": "IQR = 11 (Q1=36, Q3=47)",
+            "note": "Seuil inférieur=19.5, seuil supérieur=63.5. Les valeurs 6, 7, 15, 78 et 108 sont signalées comme aberrantes."
+          },
+          {
+            "input": "88, 92, 80, 78, 95, 84, 76, 90, 81, 85, 93",
+            "output": "IQR = 10.5 (Q1=80.5, Q3=91)",
+            "note": "Notes de test allant de 76 à 95. Aucune valeur aberrante : les performances de la classe sont bien regroupées."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur IQR",
+        "steps": [
+          "Saisissez votre jeu de données dans le champ d'entrée sous forme de nombres séparés par des virgules. Vous pouvez aussi utiliser des espaces comme séparateurs. L'ordre des valeurs n'a pas d'importance : le calculateur les trie automatiquement.",
+          "Cliquez sur Calculer l'IQR. L'outil affiche n (effectif), le minimum, le maximum, Q1, la médiane, Q3, l'IQR, les seuils inférieur et supérieur, ainsi que les valeurs aberrantes.",
+          "Examinez l'IQR pour comprendre à quel point les 50% centraux de vos données sont dispersés. Un IQR plus grand signifie une plus forte variabilité dans la partie centrale des données.",
+          "Vérifiez les valeurs des seuils. Tout point inférieur à Q1 − 1.5×IQR ou supérieur à Q3 + 1.5×IQR est listé comme valeur aberrante potentielle. Examinez chaque point signalé pour déterminer s'il s'agit d'une erreur de données ou d'une vraie valeur extrême.",
+          "Utilisez les boutons d'exemple pour charger des jeux de données prédéfinis et voir comment l'IQR et la détection des valeurs aberrantes réagissent à différentes distributions."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ IQR",
+        "items": [
+          {
+            "q": "Qu'est-ce que l'écart interquartile (IQR) ?",
+            "a": "L'écart interquartile est la différence entre le troisième quartile (Q3, 75e percentile) et le premier quartile (Q1, 25e percentile) : IQR = Q3 − Q1. Il représente la dispersion des 50% centraux des données. Comme il ignore les 25% supérieurs et les 25% inférieurs des valeurs, l'IQR n'est pas affecté par les valeurs extrêmes, ce qui en fait une mesure de dispersion plus robuste que l'étendue totale ou l'écart type lorsque les données sont asymétriques ou contiennent des anomalies."
+          },
+          {
+            "q": "Comment Q1 et Q3 sont-ils calculés ?",
+            "a": "Le calculateur utilise une interpolation linéaire sur les données triées. Pour Q1, la position est 0.25 × (n−1) dans un tableau trié indexé à partir de zéro. Si cette position n'est pas un entier, la valeur est interpolée entre les deux points de données adjacents. La même méthode est utilisée pour Q3 à la position 0.75 × (n−1). C'est la même méthode que celle utilisée par des logiciels statistiques comme R (type 7) et la fonction QUARTILE.INC d'Excel."
+          },
+          {
+            "q": "Comment la règle 1.5×IQR identifie-t-elle les valeurs aberrantes ?",
+            "a": "La règle 1.5×IQR de John Tukey définit le seuil inférieur = Q1 − 1.5×IQR et le seuil supérieur = Q3 + 1.5×IQR. Tout point de données situé hors de ces seuils est une valeur aberrante potentielle. Le multiplicateur 1.5 a été choisi parce que, pour une distribution parfaitement normale, seulement environ 0.7% des valeurs tombent hors de ces seuils, ce qui les rend très peu susceptibles d'apparaître par hasard. Une règle plus stricte utilise un multiplicateur de 3.0 et ne signale que les points les plus extrêmes comme valeurs très éloignées."
+          },
+          {
+            "q": "L'IQR est-il meilleur que l'écart type pour mesurer la dispersion ?",
+            "a": "Chaque mesure convient à des situations différentes. L'écart type utilise toutes les valeurs et est optimal pour des données symétriques, normalement distribuées et sans valeurs aberrantes. L'IQR n'utilise que les 50% centraux des valeurs et résiste beaucoup mieux à l'asymétrie et aux valeurs aberrantes. Si vos données sont approximativement normales, l'écart type fournit plus d'informations. Si elles sont asymétriques (revenus, prix immobiliers, durées de survie) ou contiennent des valeurs aberrantes, l'IQR est la meilleure mesure de la dispersion typique."
+          },
+          {
+            "q": "Puis-je utiliser l'IQR pour un jeu de données de seulement deux ou trois valeurs ?",
+            "a": "Techniquement oui, mais le résultat est d'une utilité limitée. Avec de très petits échantillons (n < 4 ou 5), les estimations des quartiles sont très instables et l'IQR ne représente pas de manière fiable la dispersion de la population. La règle de détection 1.5×IQR fonctionne aussi mal avec de minuscules échantillons : elle peut ne signaler aucune valeur aberrante même si les données contiennent des erreurs, ou produire des seuils qui excluent des valeurs légitimes. Une analyse IQR pertinente nécessite généralement au moins 5 à 10 observations."
+          }
+        ]
+      }
+    },
+    "coefficient-of-variation-calculator": {
+      "title": "Calculateur de coefficient de variation (CV)",
+      "tagline": "Calculez le coefficient de variation pour comparer la variabilité relative entre jeux de données et obtenir instantanément la moyenne, l’écart type et le CV%.",
+      "intro": "Saisissez une liste de nombres séparés par des virgules, puis cliquez sur Calculer pour voir la moyenne, l’écart type d’échantillon et le coefficient de variation.",
+      "formula": "Formule : CV = (s / |moyenne|) × 100%  •  s = écart type d’échantillon  •  moyenne = moyenne arithmétique",
+      "field": {
+        "data": "Jeu de données",
+        "dataHint": "Saisissez des nombres séparés par des virgules ou des espaces (au moins 2 valeurs requises)."
+      },
+      "placeholder": {
+        "data": "ex. 10, 20, 15, 25, 18"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins 2 valeurs numériques valides séparées par des virgules ou des espaces.",
+        "meanZero": "Le coefficient de variation n’est pas défini lorsque la moyenne est égale à zéro."
+      },
+      "result": {
+        "heading": "Résultats",
+        "mean": "Moyenne",
+        "sd": "Écart type (s)",
+        "cv": "CV (%)"
+      },
+      "about": {
+        "heading": "À propos du calculateur de coefficient de variation",
+        "body": "Le coefficient de variation (CV), également appelé écart type relatif (RSD), est une mesure normalisée de la dispersion statistique. Il est défini comme le rapport entre l’écart type d’échantillon et la valeur absolue de la moyenne, exprimé en pourcentage : CV = (s / |moyenne|) × 100%. Comme il est sans dimension, le CV permet de comparer la variabilité de jeux de données ayant des unités différentes ou des ordres de grandeur très différents, ce que l’écart type brut ne permet pas de faire.\n\nUn exemple simple montre pourquoi c’est important. Supposons que l’action A ait un prix quotidien moyen de $100 et un écart type de $5, tandis que l’action B ait un prix quotidien moyen de $500 et un écart type de $20. L’action B a un écart type absolu plus élevé, mais son CV n’est que de 4%, contre 5% pour l’action A. Un investisseur qui mesure le risque relatif pur conclurait correctement que l’action A est proportionnellement plus volatile, même si ses variations en dollars sont plus faibles.\n\nLe CV est particulièrement utile dans les domaines qui comparent régulièrement des mesures à des échelles différentes. Dans le contrôle qualité industriel, les ingénieurs l’utilisent pour évaluer si un processus de production est cohérent indépendamment de la taille nominale de la pièce fabriquée. Un procédé d’usinage produisant des boulons de 5 mm de diamètre avec un CV de 0.5% est tout aussi cohérent, proportionnellement, qu’un procédé produisant des arbres de 50 mm de diamètre avec un CV de 0.5%, même si le second procédé présente une dispersion absolue dix fois plus grande. Dans les sciences de la vie, les chercheurs comparent les valeurs de CV pour juger la précision des essais : un CV inférieur à 5% est généralement considéré comme excellent pour un essai de laboratoire, tandis que des valeurs supérieures à 15–20% peuvent signaler du bruit de mesure ou une mauvaise reproductibilité.\n\nCe calculateur utilise la formule de l’écart type d’échantillon, en divisant par n − 1 plutôt que par n, ce qui fournit une estimation sans biais de l’écart type de la population à partir d’un échantillon. C’est le choix conventionnel lorsque vous traitez vos données comme un échantillon tiré d’une population plus vaste, comme c’est le cas dans la plupart des contextes scientifiques, d’ingénierie et commerciaux. Si vous calculez le CV d’une population complète (chaque membre étant compté), utilisez l’écart type de population en remplaçant n − 1 par n au dénominateur.\n\nQuelques précautions s’imposent lors de l’interprétation des valeurs de CV. Le CV n’a de sens que lorsque les données sont mesurées sur une échelle de rapport avec un zéro réel et significatif, comme le poids, la longueur, la concentration ou le prix. Il n’est pas adapté aux données d’intervalle dont le zéro est arbitraire, comme la température en Celsius ou l’année civile, car la moyenne peut prendre n’importe quel signe et le rapport perd sa valeur interprétative. De plus, le CV est sensible à la moyenne : lorsque la moyenne est proche de zéro, même un faible écart type produit un CV énorme, ce qui peut être trompeur. Examinez toujours la moyenne brute avec le CV avant de tirer des conclusions.\n\nDans les exemples de ce calculateur, le scénario des prix d’actions illustre comment deux actifs ayant une volatilité absolue similaire peuvent sembler très différents une fois leurs niveaux de prix pris en compte. Le scénario de précision industrielle montre comment le CV aide à définir des repères de qualité de processus indépendants de la taille des pièces. Le scénario de performance sportive montre comment les entraîneurs peuvent utiliser le CV pour repérer les joueurs les plus réguliers sur une saison, afin d’éclairer les choix de composition et les négociations contractuelles."
+      },
+      "examples": {
+        "heading": "Exemples de coefficient de variation",
+        "intro": "Trois scénarios pratiques montrant comment le CV compare la variabilité relative dans différents domaines.",
+        "colInput": "Jeu de données",
+        "colOutput": "CV",
+        "colNote": "Interprétation",
+        "loadStock": "Charger l’exemple d’actions",
+        "loadManufacturing": "Charger l’exemple industriel",
+        "loadAthlete": "Charger l’exemple sportif",
+        "items": [
+          {
+            "input": "100, 102, 105, 98, 103 (prix de l’action A)",
+            "output": "CV ≈ 2.66%",
+            "note": "Faible volatilité relative — typique d’une valeur de premier ordre stable. Moyenne = 101.6, SD ≈ 2.70."
+          },
+          {
+            "input": "10.2, 10.1, 9.9, 10.3, 9.8, 10.0 (poids de produits, g)",
+            "output": "CV ≈ 1.86%",
+            "note": "Excellente régularité de fabrication. Moyenne = 10.05 g, SD ≈ 0.187 g."
+          },
+          {
+            "input": "25, 28, 22, 30, 24, 26, 25 (points par match)",
+            "output": "CV ≈ 10.22%",
+            "note": "Variabilité de performance modérée. Moyenne ≈ 25.71 points, SD ≈ 2.63."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de coefficient de variation",
+        "steps": [
+          "Saisissez ou collez votre jeu de données dans le champ Jeu de données, en séparant les valeurs par des virgules, des espaces ou des sauts de ligne.",
+          "Assurez-vous d’avoir au moins 2 valeurs numériques : l’écart type d’échantillon nécessite au minimum deux points de données.",
+          "Cliquez sur Calculer. Le calculateur affiche instantanément la moyenne, l’écart type d’échantillon et le CV sous forme de pourcentage.",
+          "Utilisez les boutons d’exemple pour charger des jeux de données prédéfinis et voir comment les résultats changent selon les distributions.",
+          "Cliquez sur Réinitialiser pour vider le champ et commencer un nouveau calcul."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur le coefficient de variation",
+        "q1": "Qu’est-ce qu’un bon coefficient de variation ?",
+        "q1_a": "Il n’existe pas de seuil universel : le contexte compte. Dans les essais de laboratoire, un CV inférieur à 5% est généralement considéré comme excellent, et inférieur à 15% comme acceptable. En finance, un CV inférieur à 10% indique souvent un actif relativement stable. En production industrielle, les objectifs dépendent de la spécification de tolérance de chaque pièce. Comparez toujours avec la norme sectorielle pertinente pour votre application.",
+        "q2": "Quelle est la différence entre le CV et l’écart type ?",
+        "q2_a": "L’écart type est une mesure absolue de dispersion exprimée dans les mêmes unités que les données. Le CV est une mesure relative, exprimée en pourcentage, qui normalise l’écart type par la moyenne. Cela rend le CV sans dimension et permet des comparaisons valables entre jeux de données ayant des unités ou des échelles différentes, par exemple comparer la variabilité de rendements boursiers à celle de temps de réaction.",
+        "q3": "Quand utiliser l’écart type de population plutôt que l’écart type d’échantillon ?",
+        "q3_a": "Utilisez l’écart type d’échantillon (division par n − 1) lorsque vos données sont un échantillon tiré d’une population plus vaste et que vous souhaitez une estimation sans biais de la dispersion de la population ; cela s’applique à la plupart des scénarios scientifiques, d’ingénierie et commerciaux. Utilisez l’écart type de population (division par n) uniquement lorsque votre jeu de données représente l’ensemble de la population sans échantillonnage, par exemple les notes de tous les élèves d’une même classe fermée.",
+        "q4": "Le CV peut-il être supérieur à 100% ?",
+        "q4_a": "Oui. Un CV supérieur à 100% indique que l’écart type est plus grand que la moyenne, ce qui signale généralement une distribution très hétérogène ou asymétrique. Cela peut apparaître naturellement dans des jeux de données contenant des valeurs aberrantes, des comptages à excès de zéros ou des distributions à queues épaisses. Un CV largement supérieur à 100% est un signal fort invitant à vérifier si des valeurs aberrantes faussent l’analyse.",
+        "q5": "Pourquoi le CV n’est-il pas défini lorsque la moyenne est zéro ?",
+        "q5_a": "Le CV divise l’écart type par la moyenne. La division par zéro est mathématiquement indéfinie. Conceptuellement, lorsque la moyenne est zéro, la notion de « relatif à la moyenne » perd son sens. En pratique, si votre moyenne est exactement nulle ou très proche de zéro, le CV n’est pas une statistique de synthèse appropriée ; envisagez d’utiliser seulement l’écart type ou une autre mesure de dispersion.",
+        "q6": "Le CV est-il affecté par les valeurs aberrantes ?",
+        "q6_a": "Oui. La moyenne et l’écart type, et donc le CV, sont sensibles aux valeurs aberrantes. Une seule valeur extrême peut fortement augmenter l’écart type tout en déplaçant la moyenne, ce qui fait monter ou baisser le CV de manière spectaculaire. Avant de publier un CV, il est recommandé d’examiner les données à la recherche de valeurs aberrantes à l’aide d’une boîte à moustaches ou de l’écart interquartile, et d’indiquer si des valeurs ont été exclues et pourquoi."
+      }
+    },
+    "cohens-d-calculator": {
+      "title": "Calculatrice du d de Cohen",
+      "tagline": "Calculez d de Cohen pour quantifier la différence standardisée entre deux moyennes — obtenez instantanément l’écart-type poolé, la taille d’effet et une étiquette d’interprétation.",
+      "intro": "Saisissez la moyenne, l’écart-type et la taille d’échantillon de chaque groupe, puis cliquez sur Calculer pour voir d de Cohen avec son interprétation de la taille d’effet.",
+      "formula": "Formule : pooled_sd = √[((n₁−1)s₁² + (n₂−1)s₂²) / (n₁+n₂−2)]  •  d = (M₁ − M₂) / pooled_sd",
+      "field": {
+        "group1": "Données du groupe 1",
+        "group2": "Données du groupe 2",
+        "mean1": "Moyenne (M₁)",
+        "sd1": "Écart-type (s₁)",
+        "n1": "Taille d’échantillon (n₁)",
+        "mean2": "Moyenne (M₂)",
+        "sd2": "Écart-type (s₂)",
+        "n2": "Taille d’échantillon (n₂)"
+      },
+      "placeholder": {
+        "number": "Entrez un nombre",
+        "sampleSize": "p. ex. 30"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres valides dans les six champs. Les tailles d’échantillon doivent être ≥ 2 et les écarts-types ≥ 0.",
+        "pooledZero": "d de Cohen n’est pas défini lorsque les deux écarts-types sont nuls."
+      },
+      "result": {
+        "heading": "Résultats",
+        "pooledSd": "Écart-type poolé",
+        "cohensD": "d de Cohen",
+        "interpretation": "Taille d’effet",
+        "size": {
+          "negligible": "Négligeable",
+          "small": "Faible",
+          "medium": "Moyenne",
+          "large": "Grande"
+        }
+      },
+      "about": {
+        "heading": "À propos de la calculatrice d de Cohen",
+        "body": "d de Cohen est la mesure de taille d’effet la plus utilisée pour comparer les moyennes de deux groupes indépendants. Introduite par le statisticien Jacob Cohen dans son ouvrage majeur de 1969, Statistical Power Analysis for the Behavioral Sciences, elle exprime la différence entre deux moyennes en termes d’écart-type poolé. Le résultat est une valeur sans dimension qui se place sur une échelle commune, quel que soit ce qui a été mesuré — notes d’examen, temps de réaction, tension artérielle ou revenu par utilisateur.\n\nLa formule est simple : d = (M₁ − M₂) / s_pooled, où s_pooled est la racine carrée de la moyenne pondérée des deux variances d’échantillon. Cet écart-type poolé tient compte du fait que les deux groupes peuvent avoir des tailles d’échantillon différentes. Le signe de d indique la direction : un d positif signifie que le groupe 1 a une moyenne plus élevée, un d négatif signifie que le groupe 2 la dépasse.\n\nJacob Cohen a proposé des repères conventionnels qui sont devenus la norme dans les sciences sociales et biomédicales. Une valeur absolue de d inférieure à 0,2 est considérée comme négligeable — les groupes sont si proches que la différence est pratiquement invisible dans les données. Un d compris entre 0,2 et 0,5 est faible mais réel ; il correspond approximativement au chevauchement observé lorsqu’on compare la taille de garçons de 15 et 16 ans. Un d entre 0,5 et 0,8 est moyen, comparable à l’écart moyen de QI entre employés de bureau et ouvriers semi-qualifiés dans les analyses originales de Cohen. Un d supérieur à 0,8 est grand et correspond à des différences facilement observables, comme l’écart de taille entre des garçons de 13 et 18 ans.\n\nCes repères doivent être considérés comme des heuristiques et non comme des règles absolues. Dans certains domaines, une petite taille d’effet peut avoir une immense importance pratique. Un médicament qui réduit la mortalité, même très légèrement à l’échelle absolue, dans une population de millions de personnes, produit un bénéfice de santé publique très important. À l’inverse, une grande taille d’effet sur un questionnaire mal conçu ne se traduit pas forcément par une différence pertinente dans le monde réel. Interprétez toujours d avec les intervalles de confiance, la taille d’échantillon et les connaissances du domaine.\n\nd de Cohen est étroitement lié à d’autres mesures de taille d’effet. Hedges' g applique une correction de biais à l’écart-type poolé et est préférable pour les petits échantillons (n < 20 par groupe). Glass's Δ divise uniquement par l’écart-type du groupe contrôle, ce qui est utile lorsque les deux groupes sont censés avoir des variances différentes. Pour des plans plus complexes — corrélation, ANOVA, régression — les mesures équivalentes sont Pearson's r, η² (eta-carré) et η² partiel.\n\nEn pratique, d de Cohen est surtout rencontré dans l’analyse de puissance, la méta-analyse et la rédaction scientifique. En analyse de puissance, connaître une taille d’effet attendue permet de calculer la taille d’échantillon nécessaire pour détecter l’effet avec une probabilité donnée (puissance). En méta-analyse, les valeurs de d issues de plusieurs études peuvent être moyennées et pondérées pour produire une estimation groupée de l’effet réel. En recherche clinique, de nombreuses revues exigent désormais de rapporter d en plus de la valeur p, car un résultat peut être statistiquement significatif (p < 0,05) tout en ayant une taille d’effet dérisoire lorsque l’échantillon est très grand."
+      },
+      "examples": {
+        "heading": "Exemples de d de Cohen",
+        "intro": "Quatre scénarios issus de l’éducation, de la médecine, de la psychologie et du marketing illustrent l’interprétation de la taille d’effet.",
+        "colInput": "Groupes (M, SD, n)",
+        "colOutput": "d de Cohen",
+        "colNote": "Interprétation",
+        "loadEducation": "Charger l’exemple éducation",
+        "loadMedical": "Charger l’exemple médical",
+        "loadPsych": "Charger l’exemple psychologie",
+        "items": [
+          {
+            "input": "G1: M=85, SD=10, n=30 vs G2: M=80, SD=9, n=30",
+            "output": "d ≈ 0.52",
+            "note": "Effet moyen. La nouvelle méthode d’enseignement produit un score nettement plus élevé que celui du groupe témoin."
+          },
+          {
+            "input": "G1: M=120, SD=15, n=50 vs G2: M=130, SD=16, n=50",
+            "output": "d ≈ −0.65",
+            "note": "Effet moyen (négatif). Le groupe médicament a une pression artérielle plus basse que le groupe placebo — un résultat clinique favorable."
+          },
+          {
+            "input": "G1: M=450, SD=50, n=25 vs G2: M=500, SD=55, n=25",
+            "output": "d ≈ −0.95",
+            "note": "Grand effet. La caféine réduit fortement le temps de réaction par rapport au groupe sans caféine."
+          },
+          {
+            "input": "G1: M=75.50, SD=20, n=100 vs G2: M=70.25, SD=18, n=100",
+            "output": "d ≈ 0.28",
+            "note": "Petit effet. La disposition A augmente légèrement la valeur d’achat moyenne — détectable statistiquement, mais modeste sur le plan pratique."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser la calculatrice d de Cohen",
+        "steps": [
+          "Saisissez la moyenne (M), l’écart-type (s) et la taille d’échantillon (n) du groupe 1 dans le panneau de gauche.",
+          "Saisissez les mêmes trois valeurs pour le groupe 2 dans le panneau de droite. Les tailles d’échantillon doivent être au moins de 2.",
+          "Cliquez sur Calculer. La calculatrice affiche l’écart-type poolé, d de Cohen et une étiquette d’interprétation (négligeable / faible / moyenne / grande).",
+          "Utilisez les boutons d’exemple pour charger des scénarios préconfigurés en éducation, en recherche médicale et en psychologie.",
+          "Cliquez sur Réinitialiser pour effacer tous les champs et recommencer un nouveau calcul."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur d de Cohen",
+        "q1": "Quelle est une bonne valeur de d de Cohen ?",
+        "q1_a": "Les repères conventionnels de Cohen sont d = 0,2 (faible), 0,5 (moyenne) et 0,8 (grande). Toutefois, ce qui est « bon » dépend du contexte. En psychologie cognitive, un effet de d = 0,3 est souvent jugé pertinent. En médecine, un petit d sur une intervention qui sauve des vies peut être extrêmement important. Interprétez toujours d à la lumière des tailles d’effet habituelles de votre domaine et des conséquences pratiques du résultat.",
+        "q2": "Qu’est-ce que l’écart-type poolé ?",
+        "q2_a": "L’écart-type poolé combine la variance des deux groupes en une seule estimation de la dispersion intra-groupe, pondérée par les degrés de liberté de chaque groupe (n − 1). C’est le dénominateur de la formule de d de Cohen. Utiliser l’écart-type poolé plutôt que celui d’un seul groupe évite de déformer la taille d’effet lorsque les deux groupes ont des tailles d’échantillon différentes ou des variances modérément différentes.",
+        "q3": "Quand faut-il utiliser Hedges' g plutôt que d de Cohen ?",
+        "q3_a": "Hedges' g applique une correction de biais pour petits échantillons à d de Cohen. La différence est négligeable pour n > 20 par groupe, mais peut être significative pour des échantillons plus petits. Si l’un des groupes compte moins de 20 observations, il est recommandé de rapporter Hedges' g. Le facteur de correction est approximativement (1 − 3 / (4(n₁+n₂) − 9)), que vous pouvez multiplier par la valeur de d de Cohen fournie par cette calculatrice.",
+        "q4": "d de Cohen suppose-t-il des variances égales ?",
+        "q4_a": "La formule standard de l’écart-type poolé suppose implicitement que les deux variances de population sont à peu près égales (homogénéité des variances). Si les variances sont très différentes, envisagez d’utiliser Glass's Δ, qui divise uniquement par l’écart-type du groupe contrôle, ou rapportez des tailles d’effet séparées pour chaque comparaison. Un test de Levene ou une simple inspection visuelle des deux écarts-types peut aider à juger si cette hypothèse est raisonnable.",
+        "q5": "d de Cohen peut-il être négatif ?",
+        "q5_a": "Oui. Un d négatif signifie simplement que le groupe 2 a une moyenne plus élevée que le groupe 1. Le signe reflète la direction de la différence, pas son ampleur. Dans de nombreux plans d’étude, le signe est arbitraire et dépend de la façon dont vous avez défini le groupe 1. Pour interpréter la taille d’effet, c’est la valeur absolue de d qui compte ; le signe indique quel groupe a obtenu la moyenne la plus élevée.",
+        "q6": "Quel est le lien entre taille d’effet et significativité statistique ?",
+        "q6_a": "La significativité statistique (valeur p) indique si un effet est peu susceptible d’être dû au hasard. La taille d’effet (d de Cohen) indique à quel point cet effet est important. Un résultat peut être très significatif (p très petite) tout en ayant une taille d’effet dérisoire lorsque l’échantillon est énorme. À l’inverse, une grande taille d’effet peut ne pas atteindre la significativité dans un petit échantillon. Rapporter à la fois la valeur p et d de Cohen donne une image complète de la force et de la fiabilité du résultat."
+      }
+    },
+    "coin-flip-probability-calculator": {
+      "title": "Calculateur de probabilité pile ou face - Loi binomiale",
+      "tagline": "Calculez la probabilité exacte de n’importe quel résultat de pile ou face avec la loi binomiale — trouvez la probabilité d’avoir exactement, au moins ou au plus N faces.",
+      "intro": "Saisissez le nombre de lancers, le nombre de faces qui vous intéresse et choisissez le type de calcul pour obtenir une probabilité instantanée.",
+      "formula": "Formule : P(X=k) = C(n,k) × (0.5)^n  •  au moins : Σ P(X=i) pour i=k..n  •  au plus : Σ P(X=i) pour i=0..k",
+      "field": {
+        "flips": "Nombre de lancers",
+        "heads": "Nombre de faces",
+        "calcType": "Type de calcul"
+      },
+      "placeholder": {
+        "flips": "ex. 10",
+        "heads": "ex. 5"
+      },
+      "type": {
+        "exactly": "Exactement",
+        "exactly_desc": "Calcule la probabilité d’obtenir exactement le nombre de faces indiqué.",
+        "atLeast": "Au moins",
+        "atLeast_desc": "Calcule la probabilité d’obtenir le nombre de faces indiqué ou plus.",
+        "atMost": "Au plus",
+        "atMost_desc": "Calcule la probabilité d’obtenir le nombre de faces indiqué ou moins."
+      },
+      "button": {
+        "calculate": "Calculer la probabilité",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir un nombre valide de lancers (1–10000) et un nombre de faces compris entre 0 et le nombre de lancers."
+      },
+      "result": {
+        "heading": "Probabilité",
+        "decimal": "Décimal"
+      },
+      "about": {
+        "heading": "À propos du calculateur de probabilité pile ou face",
+        "body": "Une pièce équilibrée n’a que deux résultats possibles — pile et face — et chacun a une probabilité de 0.5. Lorsque vous lancez la même pièce plusieurs fois, les résultats des lancers individuels sont indépendants : la pièce n’a pas de mémoire, donc le résultat d’un lancer ne peut pas influencer le suivant. Cette combinaison de probabilité fixe et d’indépendance est la caractéristique définissant une expérience binomiale, et la loi binomiale est donc le modèle mathématique exact des suites de lancers de pièce.\n\nLa probabilité d’obtenir exactement k faces en n lancers est donnée par la fonction de masse binomiale : P(X = k) = C(n, k) × (0.5)^n, où C(n, k) est le coefficient binomial n! / (k! × (n − k)!). Le facteur C(n, k) compte le nombre de séquences distinctes de n lancers contenant exactement k faces. Le facteur (0.5)^n est la probabilité d’une séquence précise de longueur n. En les multipliant, on obtient la probabilité totale de k faces pour tous les ordres possibles.\n\nPour les questions cumulées — « au moins k faces » ou « au plus k faces » — le calculateur additionne les probabilités ponctuelles de l’intervalle pertinent. « Au moins k » signifie la somme de i = k à i = n ; « au plus k » signifie la somme de i = 0 à i = k. Pour de grandes valeurs de n, ces sommes peuvent comporter des milliers de termes, ce qui rend un outil de calcul bien plus pratique qu’un calcul manuel.\n\nCertains résultats sont immédiatement intuitifs. Pour une pièce équilibrée lancée 10 fois, obtenir exactement 5 faces a une probabilité d’environ 24.61%. Obtenir au moins 5 faces a une probabilité exactement de 50% par symétrie. Obtenir 10 faces d’affilée a une probabilité de (0.5)^10 ≈ 0.098%, ce qui semble surprenant jusqu’à ce qu’on réalise qu’il ne s’agit que d’une des 1,024 séquences équiprobables. Aucune séquence individuelle n’est plus ou moins probable qu’une autre — seuls les ensembles de séquences partageant une propriété commune (comme exactement 5 faces) ont des totaux différents.\n\nLa probabilité pile ou face intervient dans de nombreux contextes pratiques au-delà du jeu. Dans les essais cliniques, un schéma de randomisation à deux bras basé sur une répartition 50/50 est mathématiquement identique au lancer d’une pièce équilibrée. En cryptographie, les suites de bits générées par un générateur matériel de nombres aléatoires devraient suivre une distribution indiscernable de celle d’une pièce équilibrée. En contrôle qualité, la proportion d’articles défectueux sur une ligne de production peut être modélisée par une proportion binomiale, et décider si le taux de défauts s’écarte de la cible utilise exactement les mêmes calculs de probabilité. En analyse sportive, les séries de victoires d’une équipe équilibrée suivent un modèle de pile ou face, et comprendre la loi binomiale aide à distinguer la vraie compétence de la variation due au hasard.\n\nCe calculateur utilise en interne une arithmétique logarithmique pour gérer de grandes valeurs de n sans dépassement, ce qui permet de calculer avec précision jusqu’à 10,000 lancers. Pour des n très grands et des k modérés, la loi binomiale peut aussi être approximée par une loi normale de moyenne np et d’écart type √(np(1−p)), mais le calculateur utilise toujours la formule exacte pour une précision maximale."
+      },
+      "examples": {
+        "heading": "Exemples de probabilité pile ou face",
+        "intro": "Quatre exemples détaillés couvrant des cas courants, des exercices scolaires aux paris et au contrôle qualité.",
+        "colInput": "Lancers / Faces / Type",
+        "colOutput": "Probabilité",
+        "colNote": "Explication",
+        "loadFair": "Charger l’exemple pièce équilibrée",
+        "loadGambling": "Charger l’exemple de pari",
+        "loadConservative": "Charger l’exemple conservateur",
+        "items": [
+          {
+            "input": "10 lancers, exactement 5 faces",
+            "output": "≈ 24.61%",
+            "note": "Résultat individuel le plus probable sur 10 lancers d’une pièce équilibrée. Utilise P(X=5) = C(10,5) × (0.5)^10."
+          },
+          {
+            "input": "10 lancers, au moins 7 faces",
+            "output": "≈ 17.19%",
+            "note": "Somme de P(X=7) + P(X=8) + P(X=9) + P(X=10). Utile pour les paris sur une majorité de faces."
+          },
+          {
+            "input": "8 lancers, au plus 3 faces",
+            "output": "≈ 36.33%",
+            "note": "Somme de P(X=0) à P(X=3). Utile pour les estimations prudentes et l’analyse de la queue basse."
+          },
+          {
+            "input": "100 lancers, exactement 50 faces",
+            "output": "≈ 7.96%",
+            "note": "Bien que ce soit le résultat individuel le plus probable, il représente moins de 8% car il existe énormément de résultats possibles."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de probabilité pile ou face",
+        "steps": [
+          "Entrez le nombre total de lancers dans le champ Nombre de lancers (1 à 10,000).",
+          "Entrez le nombre de faces qui vous intéresse — il doit être compris entre 0 et le nombre de lancers.",
+          "Choisissez le type de calcul : Exactement (probabilité ponctuelle), Au moins (cumul supérieur) ou Au plus (cumul inférieur).",
+          "Cliquez sur Calculer la probabilité. La probabilité s’affiche en pourcentage et en décimal.",
+          "Utilisez les boutons d’exemple pour charger immédiatement des scénarios courants et vérifier votre compréhension du résultat."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la probabilité pile ou face",
+        "q1": "Pourquoi obtenir exactement 5 faces en 10 lancers n’a-t-il qu’environ 24.6% de chances ?",
+        "q1_a": "Même si 5 sur 10 est le résultat individuel le plus probable, il existe 11 résultats possibles (de 0 à 10 faces) et leurs probabilités totalisent 100%. Les 75.4% restants se répartissent sur les 10 autres résultats. Même si chaque résultat isolé proche des extrêmes est peu probable, ensemble ils représentent une part importante de la probabilité totale.",
+        "q2": "L’ordre des faces et des piles compte-t-il ?",
+        "q2_a": "Non. Le calculateur compte la probabilité d’obtenir k faces dans n’importe quel ordre. Le coefficient binomial C(n,k) prend automatiquement en compte tous les ordres possibles. Si vous vouliez la probabilité d’une séquence précise — par exemple exactement HTHTHTHTHT — ce serait simplement (0.5)^10 ≈ 0.098% et ce calculateur n’est pas nécessaire.",
+        "q3": "Quel est le nombre attendu de faces en n lancers ?",
+        "q3_a": "L’espérance (moyenne) d’une loi binomiale avec n essais et une probabilité p est E[X] = n × p. Pour une pièce équilibrée, p = 0.5, donc on s’attend en moyenne à n/2 faces. Pour 10 lancers, on attend 5 faces ; pour 100 lancers, 50 faces. L’espérance n’est pas une garantie, mais une moyenne à long terme sur de nombreuses répétitions de l’expérience.",
+        "q4": "Comment calculer la probabilité d’obtenir au moins une face en n lancers ?",
+        "q4_a": "Utilisez la règle du complément : P(au moins 1 face) = 1 − P(0 face) = 1 − (0.5)^n. Pour 5 lancers, cela donne 1 − (0.5)^5 = 1 − 0.03125 = 96.875%. Vous pouvez le vérifier dans ce calculateur avec le mode Au moins et Faces = 1.",
+        "q5": "Une longue série de piles signifie-t-elle que le prochain lancer a plus de chances d’être face ?",
+        "q5_a": "Non. C’est le sophisme du joueur. Comme chaque lancer est indépendant, la probabilité d’obtenir face au prochain lancer reste exactement 0.5, quel que soit ce qui s’est passé avant. La pièce n’a pas de mémoire. Même si de longues séries sont peu probables avant qu’elles ne commencent, une fois que vous êtes dedans, les lancers restants sont tout aussi aléatoires que n’importe quelle autre séquence.",
+        "q6": "Ce calculateur peut-il gérer des pièces biaisées ?",
+        "q6_a": "Ce calculateur suppose une pièce équilibrée avec p = 0.5. Pour une pièce biaisée avec une probabilité p de face, la formule est P(X=k) = C(n,k) × p^k × (1−p)^(n−k). Pour calculer des probabilités de pièce biaisée, il faut remplacer p par la bonne valeur. Les sommes cumulées Au moins et Au plus fonctionnent de la même manière — seul 0.5 est remplacé par la probabilité biaisée."
+      }
     }
   }
 }

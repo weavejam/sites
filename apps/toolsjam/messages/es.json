@@ -8280,6 +8280,497 @@
           }
         ]
       }
+    },
+    "inverse-normal-distribution-calculator": {
+      "title": "Calculadora de distribución normal inversa - hallar X",
+      "tagline": "Encuentra el valor x correspondiente a una probabilidad acumulada dada bajo la curva normal. Soporta cálculos de cola izquierda, cola derecha y dos colas (centro).",
+      "intro": "Introduce la media μ, la desviación estándar σ, la probabilidad acumulada y el tipo de cola para encontrar el valor x o el intervalo correspondientes.",
+      "field": {
+        "mean": "Media (μ)",
+        "stdDev": "Desviación estándar (σ)",
+        "probability": "Probabilidad acumulada",
+        "tailType": "Tipo de cola",
+        "probabilityHintOne": "Introduce un valor entre 0 y 1 (exclusivo). Para cola izquierda: área a la izquierda de x. Para cola derecha: área a la derecha de x.",
+        "probabilityHintTwo": "Introduce el área central (entre los dos valores x), por ejemplo 0.95 para el 95% central."
+      },
+      "placeholder": {
+        "probability": "p. ej. 0.95"
+      },
+      "tail": {
+        "left": "Cola izquierda",
+        "right": "Cola derecha",
+        "two": "Dos colas (centro)"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Revisa tus datos. La probabilidad debe estar entre 0 y 1, σ debe ser positiva y todos los campos deben estar completos."
+      },
+      "result": {
+        "heading": "Resultado",
+        "xValue": "valor x",
+        "zScore": "puntuación Z",
+        "xLow": "valor x inferior",
+        "xHigh": "valor x superior",
+        "zRange": "rango de puntuación Z",
+        "zRangeSep": "a"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de distribución normal inversa",
+        "body": "La calculadora de distribución normal inversa —también llamada función cuantil o función percentil de la normal— responde a la pregunta: dada una probabilidad acumulada, ¿cuál es el valor x correspondiente? Es lo contrario de consultar la tabla de la CDF normal estándar. En lugar de calcular P(X ≤ x) a partir de x, tú indicas P y resuelves x.\n\nEn estadística, la distribución normal (también llamada distribución gaussiana o curva de campana) se parametriza mediante su media μ y desviación estándar σ. Cualquier distribución normal puede convertirse en normal estándar (μ=0, σ=1) calculando la puntuación Z: Z = (x − μ) / σ. Del mismo modo, cualquier cuantil Z de la normal estándar puede convertirse en una puntuación original x = μ + σ·Z. La calculadora de distribución normal inversa aprovecha esto para trabajar directamente con cualquier media y desviación estándar, evitando la conversión en dos pasos.\n\nEl modo de cola izquierda encuentra el valor x por debajo del cual cae la fracción especificada de la distribución. Si introduces μ=0, σ=1 y probability=0.95, la herramienta devuelve aproximadamente 1.6449, lo que significa que el 95% de la distribución normal estándar queda por debajo de Z=1.6449. Este es el percentil 95, muy utilizado para construir intervalos de confianza unilaterales del 95% o para hallar el valor crítico de una prueba unilateral con α=0.05.\n\nEl modo de cola derecha encuentra el valor x por encima del cual cae la fracción especificada de la distribución. Introducir μ=100, σ=15 y probability=0.02 devuelve aproximadamente 130.8, lo que significa que solo el 2% de las puntuaciones de CI (modeladas como N(100,15)) superan ese valor. Así se determinan puntos de corte para programas para superdotados, umbrales de admisión en percentiles altos y límites de control de calidad para excesos en la cola superior.\n\nEl modo de dos colas (centro) encuentra el intervalo simétrico alrededor de la media que contiene la probabilidad central especificada. Introducir probability=0.95 significa que quieres el intervalo que cubre el 95% central de la distribución, por lo que cada cola contiene el 2.5%. La herramienta devuelve tanto el valor x inferior como el superior. Así se construyen exactamente los intervalos de confianza del 95%: la media muestral ± 1.96 errores estándar corresponde a μ=0, σ=1 y al intervalo bilateral del 95%.\n\nLas aplicaciones prácticas incluyen: hallar puntuaciones Z para valores críticos en pruebas de hipótesis; calcular intervalos de tolerancia en manufactura (por ejemplo, el rango que contiene el 99% central de las dimensiones del producto); fijar umbrales de aprobado/suspenso en exámenes estandarizados; determinar límites de value-at-risk (VaR) en finanzas; y deshacer una previsión probabilística para recuperar el umbral original. La función inversa normal es una de las operaciones más usadas en estadística aplicada, solo por detrás de la CDF."
+      },
+      "examples": {
+        "heading": "Ejemplos de distribución normal inversa",
+        "intro": "Escenarios habituales de estadística, control de calidad y psicometría.",
+        "colInput": "Parámetros",
+        "colOutput": "Resultado",
+        "colNote": "Aplicación",
+        "loadZ95": "Cargar puntuación Z para el percentil 95",
+        "loadIQ": "Cargar puntuación de CI del 2% superior",
+        "loadTolerance": "Cargar intervalo de tolerancia del 99%",
+        "items": [
+          {
+            "input": "μ=0, σ=1, P=0.95, Left-Tailed",
+            "output": "x = 1.6449 (Z = 1.6449)",
+            "note": "El percentil 95 de la normal estándar. Se usa como valor crítico para una prueba unilateral con α=0.05."
+          },
+          {
+            "input": "μ=100, σ=15, P=0.02, Right-Tailed",
+            "output": "x ≈ 130.8 (Z ≈ 2.054)",
+            "note": "CI mínimo para estar en el 2% superior. Útil para umbrales de admisión en programas para superdotados."
+          },
+          {
+            "input": "μ=50, σ=0.5, P=0.99, Two-Tailed",
+            "output": "x = 48.71 to 51.29",
+            "note": "Intervalo de tolerancia de fabricación que contiene el 99% de las longitudes de producto. El 1% restante se reparte entre demasiado corto y demasiado largo."
+          },
+          {
+            "input": "μ=75, σ=8, P=0.10, Left-Tailed",
+            "output": "x ≈ 64.74 (Z ≈ −1.282)",
+            "note": "Punto de corte del 10% inferior para notas de examen. Los estudiantes por debajo de este umbral pueden necesitar apoyo de recuperación."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de distribución normal inversa",
+        "steps": [
+          "Selecciona el tipo de cola: Cola izquierda si quieres el valor por debajo del cual cae una fracción dada; Cola derecha si quieres el valor por encima del cual cae una fracción; Dos colas (centro) si quieres el intervalo simétrico alrededor de la media que captura una fracción central.",
+          "Introduce la Media μ (el centro de la distribución) y la Desviación estándar σ (debe ser positiva). Usa μ=0 y σ=1 para consultar la normal estándar / puntuación Z.",
+          "Introduce la Probabilidad acumulada como un decimal entre 0 y 1. Para Cola izquierda, es el área a la izquierda de x. Para Cola derecha, es el área a la derecha. Para Dos colas, es el área central (por ejemplo, 0.95 para el 95% central).",
+          "Haz clic en Calcular. En los modos de una sola cola, el resultado muestra el valor x y su puntuación Z. En el modo de dos colas, muestra los límites inferior y superior y el rango de puntuaciones Z correspondiente.",
+          "Usa los botones de ejemplo para cargar casos comunes como puntuaciones Z para intervalos de confianza del 95%, umbrales percentiles de CI o rangos de tolerancia de fabricación."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre la distribución normal inversa",
+        "items": [
+          {
+            "q": "¿Qué es la distribución normal inversa?",
+            "a": "La distribución normal inversa (también llamada función cuantil o función probit) convierte una probabilidad acumulada en el valor correspondiente de la curva normal. Si la CDF normal te da P(X ≤ x), la inversa normal te da x a partir de P. Es la función que usa tu calculadora cuando buscas un valor Z crítico para un nivel de confianza dado; por ejemplo, Z=1.96 para el 97.5% de la normal estándar."
+          },
+          {
+            "q": "¿Cuál es la diferencia entre una puntuación Z y un valor x?",
+            "a": "Una puntuación Z es el valor estandarizado en unidades de desviaciones estándar respecto de la media: Z = (x − μ) / σ. Un valor x es la medida original en sus unidades reales. La calculadora devuelve ambos: el valor x útil para umbrales del mundo real (nota de examen, longitud de producto, presión arterial) y la puntuación Z útil para comparar distribuciones o consultar tablas estadísticas."
+          },
+          {
+            "q": "¿Cómo encuentro el valor crítico para un intervalo de confianza del 95%?",
+            "a": "Un intervalo de confianza del 95% usa valores críticos de dos colas que recortan el 2.5% en cada cola. Establece μ=0, σ=1, probability=0.95 y elige Dos colas (centro). La calculadora devuelve Z≈1.96 como límite superior (y −1.96 como límite inferior). La media muestral ± 1.96 × (error estándar) da el intervalo de confianza del 95% para cualquier estimador normalmente distribuido."
+          },
+          {
+            "q": "¿Qué probabilidad debo introducir para una prueba unilateral con α=0.05?",
+            "a": "Para una prueba de cola izquierda con α=0.05, introduce probability=0.05 con Cola izquierda seleccionada; el resultado es el valor crítico por debajo del cual rechazas H₀. Para una prueba de cola derecha con α=0.05, introduce probability=0.05 con Cola derecha seleccionada; el resultado es el valor crítico por encima del cual rechazas H₀. Para una prueba bilateral con α=0.05, introduce probability=0.95 con Dos colas (centro) para obtener ±1.96."
+          },
+          {
+            "q": "¿Puedo usarla para una distribución normal no estándar?",
+            "a": "Sí: esa es una de las principales ventajas de la calculadora frente a las tablas Z simples. Introduce la media μ y la desviación estándar σ reales de tu distribución, y la calculadora transforma automáticamente la puntuación Z a tus unidades originales usando x = μ + σ × Z. No necesitas estandarizar los datos manualmente."
+          }
+        ]
+      }
+    },
+    "iqr-calculator-interquartile-range": {
+      "title": "Calculadora IQR - rango intercuartílico y atípicos",
+      "tagline": "Calcula el rango intercuartílico (IQR), los cuartiles Q1 y Q3, la mediana e identifica valores atípicos con la regla 1.5×IQR en cualquier conjunto de datos separado por comas.",
+      "intro": "Introduce tus datos como números separados por comas y haz clic en Calcular para obtener el resumen de cinco números, el IQR, los valores de las vallas y los valores atípicos.",
+      "field": {
+        "data": "Conjunto de datos (números separados por comas)",
+        "dataHint": "Introduce números separados por comas o espacios, p. ej. 2, 4, 4, 5, 6, 7, 8, 9"
+      },
+      "placeholder": {
+        "data": "p. ej. 2, 4, 4, 5, 6, 7, 8, 9"
+      },
+      "button": {
+        "calculate": "Calcular IQR",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce al menos dos números válidos separados por comas."
+      },
+      "result": {
+        "heading": "Resultados",
+        "n": "Conteo (n)",
+        "min": "Mínimo",
+        "max": "Máximo",
+        "q1": "Q1 (percentil 25)",
+        "median": "Mediana (Q2)",
+        "q3": "Q3 (percentil 75)",
+        "iqr": "IQR (Q3 − Q1)",
+        "lowerFence": "Valla inferior (Q1 − 1.5×IQR)",
+        "upperFence": "Valla superior (Q3 + 1.5×IQR)",
+        "outliersLabel": "Valores atípicos",
+        "noOutliers": "No se detectaron valores atípicos."
+      },
+      "about": {
+        "heading": "Acerca de la calculadora IQR",
+        "body": "El rango intercuartílico (IQR) es el rango del 50% central de un conjunto de datos: la distancia entre el percentil 25 (Q1) y el percentil 75 (Q3). Es una de las medidas de dispersión estadística más robustas y utilizadas porque, a diferencia del rango total o la desviación estándar, no se ve afectada por valores extremos ni por valores atípicos. Ya sea que analices calificaciones de exámenes, lecturas de presión arterial, precios de viviendas, tolerancias de fabricación o cualquier otro conjunto de datos del mundo real, el IQR ofrece una imagen fiable de la dispersión central.\n\nPara calcular el IQR, la calculadora primero ordena los datos de menor a mayor y luego localiza Q1 y Q3 mediante interpolación lineal sobre los estadísticos de orden. Q1 es el valor en el percentil 25, el punto por debajo del cual cae el 25% de los datos. Q3 es el valor en el percentil 75, el punto por debajo del cual cae el 75% de los datos. El IQR es simplemente Q3 − Q1. También se muestran la mediana (Q2), el mínimo y el máximo para darte el resumen completo de cinco números, base de un diagrama de caja y bigotes.\n\nLa regla 1.5×IQR, introducida por John Tukey, es el método estándar para identificar posibles valores atípicos. Cualquier dato por debajo de la valla inferior (Q1 − 1.5×IQR) o por encima de la valla superior (Q3 + 1.5×IQR) se considera un valor atípico sospechoso. Estas vallas definen los bigotes en un diagrama de caja de Tukey. Un punto a más de 3×IQR del cuartil más cercano (la valla interna extendida a una valla externa) se considera un valor atípico extremo. La calculadora marca todos los valores fuera de las vallas de 1.5×IQR.\n\nEs importante señalar que la regla 1.5×IQR identifica valores atípicos estadísticos —valores inusualmente alejados del bloque central de los datos—, pero no necesariamente errores de datos. Un punto marcado como atípico puede ser un error de medición, un error de captura, una señal de fraude o simplemente una observación genuinamente rara pero válida. Siempre se necesita conocimiento del dominio para decidir qué hacer con los puntos marcados.\n\nEl IQR es la medida de dispersión preferida cuando los datos están sesgados o se esperan valores atípicos, como en distribuciones de ingresos, tiempos de reacción o precios de viviendas en mercados mixtos. Para datos simétricos, normalmente distribuidos y sin valores atípicos, la desviación estándar es ligeramente más eficiente. Pero cuando la robustez importa —en el análisis exploratorio de datos, en estadística no paramétrica o siempre que no puedas asumir normalidad—, el IQR es la herramienta de referencia para caracterizar cuán dispersa está la parte central de tus datos."
+      },
+      "examples": {
+        "heading": "Ejemplos de IQR",
+        "intro": "Cuatro conjuntos de datos que muestran cómo funcionan el IQR y la detección de valores atípicos en la práctica.",
+        "colInput": "Conjunto de datos",
+        "colOutput": "IQR",
+        "colNote": "Notas",
+        "loadBasic": "Cargar conjunto básico",
+        "loadOutliers": "Cargar conjunto con atípicos",
+        "loadScores": "Cargar calificaciones",
+        "items": [
+          {
+            "input": "2, 4, 4, 5, 6, 7, 8, 9",
+            "output": "IQR = 3.25 (Q1=4, Q3=7.25)",
+            "note": "Número par de valores. Q1=4, mediana=5.5, Q3=7.25. No se detectan valores atípicos."
+          },
+          {
+            "input": "10, 20, 30, 40, 50, 60, 70",
+            "output": "IQR = 30 (Q1=25, Q3=55)",
+            "note": "Conteo impar: Q1=25, mediana=40, Q3=55, IQR=30. Valla inferior=−20, valla superior=100. Sin valores atípicos."
+          },
+          {
+            "input": "6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49, 78, 108",
+            "output": "IQR = 11 (Q1=36, Q3=47)",
+            "note": "Valla inferior=19.5, valla superior=63.5. Los valores 6, 7, 15, 78 y 108 se marcan como atípicos."
+          },
+          {
+            "input": "88, 92, 80, 78, 95, 84, 76, 90, 81, 85, 93",
+            "output": "IQR = 10.5 (Q1=80.5, Q3=91)",
+            "note": "Calificaciones entre 76 y 95. Sin valores atípicos: desempeño de la clase muy agrupado."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora IQR",
+        "steps": [
+          "Introduce tu conjunto de datos en el campo de entrada como números separados por comas. También puedes usar espacios como separadores. El orden de los valores no importa: la calculadora los ordena automáticamente.",
+          "Haz clic en Calcular IQR. La herramienta muestra n (conteo), mínimo, máximo, Q1, mediana, Q3, IQR, las vallas inferior y superior, y cualquier valor atípico.",
+          "Examina el IQR para entender qué tan disperso está el 50% central de tus datos. Un IQR mayor significa más variabilidad en la parte central de los datos.",
+          "Revisa los valores de las vallas. Cualquier dato por debajo de Q1 − 1.5×IQR o por encima de Q3 + 1.5×IQR aparece como posible valor atípico. Investiga cada punto marcado para determinar si es un error de datos o un valor extremo genuino.",
+          "Usa los botones de ejemplo para cargar conjuntos de datos predefinidos y ver cómo se comportan el IQR y la detección de atípicos con distintas distribuciones."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre IQR",
+        "items": [
+          {
+            "q": "¿Qué es el rango intercuartílico (IQR)?",
+            "a": "El rango intercuartílico es la diferencia entre el tercer cuartil (Q3, percentil 75) y el primer cuartil (Q1, percentil 25): IQR = Q3 − Q1. Representa la dispersión del 50% central de los datos. Como ignora el 25% superior y el 25% inferior de los valores, el IQR no se ve afectado por valores extremos, lo que lo convierte en una medida de dispersión más robusta que el rango total o la desviación estándar cuando los datos están sesgados o contienen anomalías."
+          },
+          {
+            "q": "¿Cómo se calculan Q1 y Q3?",
+            "a": "La calculadora usa interpolación lineal sobre los datos ordenados. Para Q1, la posición es 0.25 × (n−1) en una matriz ordenada con índice inicial cero. Si esa posición no es un entero, el valor se interpola entre los dos puntos de datos adyacentes. El mismo método se usa para Q3 en la posición 0.75 × (n−1). Es el mismo método utilizado por software estadístico como R (type 7) y la función QUARTILE.INC de Excel."
+          },
+          {
+            "q": "¿Cómo identifica valores atípicos la regla 1.5×IQR?",
+            "a": "La regla 1.5×IQR de John Tukey define valla inferior = Q1 − 1.5×IQR y valla superior = Q3 + 1.5×IQR. Cualquier punto de datos fuera de estas vallas es un posible valor atípico. El multiplicador 1.5 se eligió porque, en una distribución perfectamente normal, solo alrededor del 0.7% de los valores caen fuera de estas vallas, por lo que es muy poco probable que ocurran por azar. Una regla más estricta usa un multiplicador de 3.0 y marca solo los puntos más extremos como atípicos lejanos."
+          },
+          {
+            "q": "¿Es el IQR mejor que la desviación estándar para medir dispersión?",
+            "a": "Cada medida se adapta a situaciones distintas. La desviación estándar usa todos los valores y es óptima para datos simétricos, normalmente distribuidos y sin valores atípicos. El IQR usa solo el 50% central de los valores y es mucho más resistente al sesgo y a los atípicos. Si tus datos son aproximadamente normales, la desviación estándar ofrece más información. Si están sesgados (ingresos, precios de viviendas, tiempos de supervivencia) o contienen valores atípicos, el IQR es la mejor medida de la dispersión típica."
+          },
+          {
+            "q": "¿Puedo usar IQR con un conjunto de datos de solo dos o tres valores?",
+            "a": "Técnicamente sí, pero el resultado tiene utilidad limitada. Con muestras muy pequeñas (n < 4 o 5), las estimaciones de cuartiles son muy inestables y el IQR no representa de forma fiable la dispersión de la población. La regla de valores atípicos 1.5×IQR también funciona mal con muestras diminutas: puede no marcar valores atípicos aunque haya errores, o producir vallas que excluyan valores legítimos. Un análisis IQR significativo generalmente requiere al menos 5–10 observaciones."
+          }
+        ]
+      }
+    },
+    "coefficient-of-variation-calculator": {
+      "title": "Calculadora de coeficiente de variación (CV)",
+      "tagline": "Calcula el coeficiente de variación para comparar la variabilidad relativa entre conjuntos de datos y obtener la media, la desviación estándar y el CV% al instante.",
+      "intro": "Ingresa una lista de números separados por comas y haz clic en Calcular para ver la media, la desviación estándar muestral y el coeficiente de variación.",
+      "formula": "Fórmula: CV = (s / |media|) × 100%  •  s = desviación estándar muestral  •  media = media aritmética",
+      "field": {
+        "data": "Conjunto de datos",
+        "dataHint": "Ingresa números separados por comas o espacios (se requieren al menos 2 valores)."
+      },
+      "placeholder": {
+        "data": "p. ej., 10, 20, 15, 25, 18"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Ingresa al menos 2 valores numéricos válidos separados por comas o espacios.",
+        "meanZero": "El coeficiente de variación no está definido cuando la media es cero."
+      },
+      "result": {
+        "heading": "Resultados",
+        "mean": "Media",
+        "sd": "Desviación estándar (s)",
+        "cv": "CV (%)"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de coeficiente de variación",
+        "body": "El coeficiente de variación (CV), también llamado desviación estándar relativa (RSD), es una medida estandarizada de dispersión estadística. Se define como la razón entre la desviación estándar muestral y el valor absoluto de la media, expresada como porcentaje: CV = (s / |media|) × 100%. Como no tiene unidades, el CV permite comparar la variabilidad entre conjuntos de datos con unidades distintas o magnitudes muy diferentes, algo que la desviación estándar sin ajustar no puede hacer.\n\nUn ejemplo sencillo deja claro por qué esto importa. Supongamos que la acción A tiene un precio diario medio de $100 y una desviación estándar de $5, mientras que la acción B tiene un precio diario medio de $500 y una desviación estándar de $20. La acción B tiene una desviación estándar absoluta mayor, pero su CV es solo 4%, frente al 5% de la acción A. Un inversionista que mida el riesgo relativo puro concluiría correctamente que la acción A es proporcionalmente más volátil, aunque sus oscilaciones en dólares sean menores.\n\nEl CV es especialmente valioso en campos que comparan habitualmente mediciones con escalas distintas. En el control de calidad de manufactura, los ingenieros lo usan para evaluar si un proceso de producción es consistente independientemente del tamaño nominal de la pieza fabricada. Un proceso de mecanizado que produce pernos de 5 mm de diámetro con un CV de 0.5% es igual de consistente, proporcionalmente, que uno que produce ejes de 50 mm de diámetro con un CV de 0.5%, aunque el segundo proceso tenga diez veces más dispersión absoluta. En ciencias de la vida, los investigadores comparan valores de CV para evaluar la precisión de los ensayos: un CV inferior a 5% suele considerarse excelente para un ensayo de laboratorio, mientras que valores superiores a 15–20% pueden indicar ruido de medición o baja reproducibilidad.\n\nEsta calculadora usa la fórmula de desviación estándar muestral, dividiendo por n − 1 en lugar de n, lo que proporciona una estimación no sesgada de la desviación estándar poblacional a partir de una muestra. Es la opción convencional cuando tratas tus datos como una muestra extraída de una población mayor, como ocurre en la mayoría de contextos científicos, de ingeniería y de negocios. Si estás calculando el CV de una población completa (con todos sus miembros incluidos), sustituye la desviación estándar poblacional reemplazando n − 1 por n en el denominador.\n\nHay algunas advertencias al interpretar valores de CV. El CV solo es significativo cuando los datos se miden en una escala de razón con un cero verdadero y significativo, como peso, longitud, concentración o precio. No es apropiado para datos de intervalo cuyo cero es arbitrario, como la temperatura Celsius o el año calendario, porque la media puede tomar cualquier signo y la razón pierde valor interpretativo. Además, el CV es sensible a la media: cuando la media está cerca de cero, incluso una desviación estándar pequeña produce un CV enorme, lo que puede ser engañoso. Revisa siempre la media original junto con el CV antes de sacar conclusiones.\n\nEn los ejemplos de esta calculadora, el escenario de precios de acciones muestra cómo dos activos con volatilidad absoluta similar pueden verse bastante diferentes al considerar sus niveles de precio. El escenario de precisión de manufactura muestra cómo el CV ayuda a establecer referencias de calidad de proceso independientes del tamaño de la pieza. El escenario de rendimiento deportivo demuestra cómo los entrenadores pueden usar el CV para identificar qué jugadores son los contribuyentes más constantes durante una temporada, ayudando a tomar decisiones de alineación y negociaciones contractuales."
+      },
+      "examples": {
+        "heading": "Ejemplos de coeficiente de variación",
+        "intro": "Tres escenarios prácticos que muestran cómo el CV compara la variabilidad relativa en distintos ámbitos.",
+        "colInput": "Conjunto de datos",
+        "colOutput": "CV",
+        "colNote": "Interpretación",
+        "loadStock": "Cargar ejemplo de acciones",
+        "loadManufacturing": "Cargar ejemplo de manufactura",
+        "loadAthlete": "Cargar ejemplo de atleta",
+        "items": [
+          {
+            "input": "100, 102, 105, 98, 103 (precios de la acción A)",
+            "output": "CV ≈ 2.66%",
+            "note": "Baja volatilidad relativa: típica de una acción estable de primera línea. Media = 101.6, SD ≈ 2.70."
+          },
+          {
+            "input": "10.2, 10.1, 9.9, 10.3, 9.8, 10.0 (pesos de producto, g)",
+            "output": "CV ≈ 1.86%",
+            "note": "Excelente consistencia de manufactura. Media = 10.05 g, SD ≈ 0.187 g."
+          },
+          {
+            "input": "25, 28, 22, 30, 24, 26, 25 (puntos por partido)",
+            "output": "CV ≈ 10.22%",
+            "note": "Variabilidad de rendimiento moderada. Media ≈ 25.71 puntos, SD ≈ 2.63."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de coeficiente de variación",
+        "steps": [
+          "Escribe o pega tu conjunto de datos en el campo Conjunto de datos, separando los valores con comas, espacios o saltos de línea.",
+          "Asegúrate de tener al menos 2 valores numéricos: la desviación estándar muestral requiere un mínimo de dos puntos de datos.",
+          "Haz clic en Calcular. La calculadora muestra al instante la media, la desviación estándar muestral y el CV como porcentaje.",
+          "Usa los botones de ejemplo para cargar conjuntos de datos predefinidos y ver cómo cambian los resultados con distintas distribuciones.",
+          "Haz clic en Restablecer para borrar el campo e iniciar un nuevo cálculo."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre el coeficiente de variación",
+        "q1": "¿Qué es un buen coeficiente de variación?",
+        "q1_a": "No existe un umbral universal; el contexto importa. En ensayos de laboratorio, un CV inferior a 5% suele considerarse excelente y por debajo de 15% aceptable. En finanzas, un CV inferior a 10% a menudo indica un activo relativamente estable. En manufactura, los objetivos dependen de la especificación de tolerancia de cada pieza. Compara siempre con el estándar de la industria pertinente para tu aplicación.",
+        "q2": "¿Cuál es la diferencia entre CV y desviación estándar?",
+        "q2_a": "La desviación estándar es una medida absoluta de dispersión expresada en las mismas unidades que los datos. El CV es una medida relativa, expresada como porcentaje, que normaliza la desviación estándar por la media. Esto hace que el CV no tenga unidades y permite comparaciones válidas entre conjuntos de datos con distintas unidades o escalas; por ejemplo, comparar la variabilidad de rendimientos bursátiles con la variabilidad de tiempos de reacción.",
+        "q3": "¿Cuándo debo usar la SD poblacional en lugar de la SD muestral?",
+        "q3_a": "Usa la desviación estándar muestral (dividiendo por n − 1) cuando tus datos sean una muestra extraída de una población mayor y quieras una estimación no sesgada de la dispersión poblacional; esto aplica a la mayoría de escenarios científicos, de ingeniería y de negocios. Usa la desviación estándar poblacional (dividiendo por n) solo cuando tu conjunto de datos represente toda la población sin muestreo, como las calificaciones de todos los estudiantes de una clase cerrada.",
+        "q4": "¿Puede el CV ser mayor que 100%?",
+        "q4_a": "Sí. Un CV superior a 100% indica que la desviación estándar es mayor que la media, lo que normalmente señala una distribución muy heterogénea o sesgada. Esto puede aparecer naturalmente en conjuntos de datos con valores atípicos, conteos con exceso de ceros o distribuciones de colas pesadas. Un CV muy por encima de 100% es una señal fuerte para investigar si los valores atípicos están distorsionando el análisis.",
+        "q5": "¿Por qué el CV no está definido cuando la media es cero?",
+        "q5_a": "El CV divide la desviación estándar por la media. La división por cero no está definida matemáticamente. Conceptualmente, cuando la media es cero, la idea de 'relativo a la media' pierde significado. En la práctica, si tu media es exactamente cero o muy cercana a cero, el CV no es una estadística resumen apropiada; considera usar solo la desviación estándar u otra medida de dispersión.",
+        "q6": "¿El CV se ve afectado por valores atípicos?",
+        "q6_a": "Sí. Tanto la media como la desviación estándar, y por tanto el CV, son sensibles a los valores atípicos. Un solo valor extremo puede inflar sustancialmente la desviación estándar mientras desplaza la media, haciendo que el CV suba o baje de forma drástica. Antes de informar un CV, conviene revisar los datos en busca de valores atípicos con un diagrama de caja o el rango intercuartílico, e indicar si se excluyó algún valor y por qué."
+      }
+    },
+    "cohens-d-calculator": {
+      "title": "Calculadora d de Cohen",
+      "tagline": "Calcula d de Cohen para cuantificar la diferencia estandarizada entre dos medias: obtén al instante la DE combinada, el tamaño del efecto y una etiqueta interpretativa.",
+      "intro": "Introduce la media, la desviación estándar y el tamaño muestral de cada grupo y pulsa Calcular para ver d de Cohen con su interpretación del tamaño del efecto.",
+      "formula": "Fórmula: pooled_sd = √[((n₁−1)s₁² + (n₂−1)s₂²) / (n₁+n₂−2)]  •  d = (M₁ − M₂) / pooled_sd",
+      "field": {
+        "group1": "Datos del grupo 1",
+        "group2": "Datos del grupo 2",
+        "mean1": "Media (M₁)",
+        "sd1": "Desviación estándar (s₁)",
+        "n1": "Tamaño muestral (n₁)",
+        "mean2": "Media (M₂)",
+        "sd2": "Desviación estándar (s₂)",
+        "n2": "Tamaño muestral (n₂)"
+      },
+      "placeholder": {
+        "number": "Introduce un número",
+        "sampleSize": "p. ej. 30"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce números válidos en los seis campos. Los tamaños muestrales deben ser ≥ 2 y las desviaciones estándar ≥ 0.",
+        "pooledZero": "d de Cohen no está definido cuando ambas desviaciones estándar son cero."
+      },
+      "result": {
+        "heading": "Resultados",
+        "pooledSd": "DE combinada",
+        "cohensD": "d de Cohen",
+        "interpretation": "Tamaño del efecto",
+        "size": {
+          "negligible": "Despreciable",
+          "small": "Pequeño",
+          "medium": "Medio",
+          "large": "Grande"
+        }
+      },
+      "about": {
+        "heading": "Acerca de la calculadora d de Cohen",
+        "body": "d de Cohen es la medida de tamaño del efecto más utilizada para comparar las medias de dos grupos independientes. Fue introducida por el estadístico Jacob Cohen en su obra pionera de 1969 Statistical Power Analysis for the Behavioral Sciences y expresa la diferencia entre dos medias en términos de la desviación estándar combinada. El resultado es un número sin dimensiones que se sitúa en una escala común, independientemente de lo que se haya medido: puntuaciones de examen, tiempos de reacción, lecturas de presión arterial o ingresos por usuario.\n\nLa fórmula es sencilla: d = (M₁ − M₂) / s_pooled, donde s_pooled es la raíz cuadrada del promedio ponderado de las varianzas muestrales de ambos grupos. Esta desviación estándar combinada tiene en cuenta que los tamaños muestrales pueden ser distintos. El signo de d indica la dirección: un d positivo significa que el grupo 1 tiene una media mayor, mientras que un d negativo indica que la tiene el grupo 2.\n\nLos umbrales convencionales propuestos por Jacob Cohen se han convertido desde entonces en estándar en las ciencias sociales y biomédicas. Un d absoluto por debajo de 0.2 se considera despreciable: los grupos son tan similares que la diferencia apenas se aprecia en los datos. Un d entre 0.2 y 0.5 es pequeño pero real; corresponde aproximadamente al solapamiento que se observa al comparar la estatura de chicos de 15 y 16 años. Un d entre 0.5 y 0.8 es medio, comparable a la diferencia media de CI entre empleados de oficina y trabajadores semicalificados en los análisis originales de Cohen. Un d por encima de 0.8 es grande y corresponde a diferencias fáciles de observar, como la brecha de estatura entre chicos de 13 y 18 años.\n\nEstos umbrales deben entenderse como heurísticas, no como reglas rígidas. En ciertos ámbitos, un tamaño del efecto pequeño puede tener una enorme importancia práctica. Un medicamento que reduce la mortalidad incluso en una pequeña cantidad absoluta en una población de millones genera un beneficio muy grande para la salud pública. A la inversa, un tamaño del efecto grande en un cuestionario mal diseñado puede no traducirse en diferencias relevantes en el mundo real. Interpreta d siempre junto con intervalos de confianza, tamaño muestral y conocimiento del dominio.\n\nd de Cohen está estrechamente relacionado con otras medidas de tamaño del efecto. Hedges' g aplica una corrección por sesgo a la desviación estándar combinada y se prefiere en muestras pequeñas (n < 20 por grupo). Glass's Δ divide solo por la desviación estándar del grupo control, lo que resulta útil cuando se espera que los dos grupos tengan varianzas distintas. Para diseños más complejos —correlación, ANOVA, regresión— las medidas equivalentes son Pearson's r, η² (eta-cuadrado) y η² parcial, respectivamente.\n\nEn la práctica, d de Cohen aparece sobre todo en análisis de potencia, metaanálisis e informes de investigación. En análisis de potencia, conocer el tamaño del efecto esperado permite calcular el tamaño muestral necesario para detectar el efecto con una probabilidad determinada (potencia). En metaanálisis, los valores de d de varios estudios pueden promediarse y ponderarse para producir una estimación combinada del efecto verdadero. En investigación clínica, muchas revistas exigen reportar d junto con los valores p, porque un resultado puede ser estadísticamente significativo (p < 0.05) y, aun así, tener un tamaño del efecto trivial cuando la muestra es muy grande."
+      },
+      "examples": {
+        "heading": "Ejemplos de d de Cohen",
+        "intro": "Cuatro escenarios de educación, medicina, psicología y marketing que ilustran cómo interpretar el tamaño del efecto.",
+        "colInput": "Grupos (M, SD, n)",
+        "colOutput": "d de Cohen",
+        "colNote": "Interpretación",
+        "loadEducation": "Cargar ejemplo de educación",
+        "loadMedical": "Cargar ejemplo médico",
+        "loadPsych": "Cargar ejemplo de psicología",
+        "items": [
+          {
+            "input": "G1: M=85, SD=10, n=30 vs G2: M=80, SD=9, n=30",
+            "output": "d ≈ 0.52",
+            "note": "Efecto medio. El nuevo método de enseñanza produce una puntuación notablemente mayor que la del grupo control."
+          },
+          {
+            "input": "G1: M=120, SD=15, n=50 vs G2: M=130, SD=16, n=50",
+            "output": "d ≈ −0.65",
+            "note": "Efecto medio (negativo). El grupo tratado presenta una presión arterial más baja que el grupo placebo, un resultado clínico favorable."
+          },
+          {
+            "input": "G1: M=450, SD=50, n=25 vs G2: M=500, SD=55, n=25",
+            "output": "d ≈ −0.95",
+            "note": "Efecto grande. La cafeína reduce de forma sustancial el tiempo de reacción frente al grupo sin cafeína."
+          },
+          {
+            "input": "G1: M=75.50, SD=20, n=100 vs G2: M=70.25, SD=18, n=100",
+            "output": "d ≈ 0.28",
+            "note": "Efecto pequeño. La disposición A eleva ligeramente el valor medio de compra: detectable estadísticamente, pero modesto en términos prácticos."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora d de Cohen",
+        "steps": [
+          "Introduce en el panel izquierdo la media (M), la desviación estándar (s) y el tamaño muestral (n) del grupo 1.",
+          "Introduce en el panel derecho las mismas tres variables para el grupo 2. Los tamaños muestrales deben ser al menos 2.",
+          "Pulsa Calcular. La calculadora mostrará la desviación estándar combinada, d de Cohen y una etiqueta interpretativa (despreciable / pequeño / medio / grande).",
+          "Usa los botones de ejemplo para cargar escenarios predefinidos de educación, investigación médica y psicología.",
+          "Pulsa Restablecer para borrar todos los campos y comenzar un nuevo cálculo."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre d de Cohen",
+        "q1": "¿Cuál es un buen valor de d de Cohen?",
+        "q1_a": "Los umbrales convencionales de Cohen son d = 0.2 (pequeño), 0.5 (medio) y 0.8 (grande). Sin embargo, lo 'bueno' depende del contexto. En psicología cognitiva, efectos de d = 0.3 suelen considerarse significativos. En medicina, un d pequeño en una intervención que salva vidas puede ser muy importante. Interpreta d siempre en el contexto de los tamaños del efecto habituales de tu área y de las consecuencias prácticas del hallazgo.",
+        "q2": "¿Qué es la desviación estándar combinada?",
+        "q2_a": "La desviación estándar combinada reúne la varianza de ambos grupos en una única estimación de la dispersión dentro de los grupos, ponderada por los grados de libertad de cada grupo (n − 1). Es el denominador de la fórmula de d de Cohen. Usar la DE combinada en lugar de la DE de un solo grupo evita distorsionar el tamaño del efecto cuando los dos grupos tienen tamaños muestrales distintos o varianzas moderadamente diferentes.",
+        "q3": "¿Cuándo debo usar Hedges' g en lugar de d de Cohen?",
+        "q3_a": "Hedges' g aplica una corrección por sesgo de muestra pequeña a d de Cohen. La diferencia es despreciable cuando n > 20 por grupo, pero puede ser relevante en muestras más pequeñas. Si alguno de los grupos tiene menos de 20 observaciones, se recomienda informar Hedges' g. El factor de corrección es aproximadamente (1 − 3 / (4(n₁+n₂) − 9)), que puedes multiplicar por el valor de d de Cohen que genera esta calculadora.",
+        "q4": "¿d de Cohen asume varianzas iguales?",
+        "q4_a": "La fórmula estándar de la DE combinada asume implícitamente que las dos varianzas poblacionales son aproximadamente iguales (homogeneidad de varianzas). Si las varianzas son muy diferentes, considera usar Glass's Δ, que divide solo por la desviación estándar del grupo control, o informa tamaños del efecto separados para cada comparación. Una prueba de Levene o una simple inspección visual de las dos DE puede ayudarte a evaluar si el supuesto es razonable.",
+        "q5": "¿Puede d de Cohen ser negativo?",
+        "q5_a": "Sí. Un d negativo solo significa que el grupo 2 tiene una media mayor que el grupo 1. El signo refleja la dirección de la diferencia, no su magnitud. En muchos diseños de investigación, el signo es arbitrario y depende de cómo hayas etiquetado al grupo 1. Lo que importa para interpretar el tamaño del efecto es el valor absoluto de d; el signo indica qué grupo obtuvo la media más alta.",
+        "q6": "¿Cómo se relaciona el tamaño del efecto con la significación estadística?",
+        "q6_a": "La significación estadística (valor p) te dice si es improbable que un efecto haya surgido por azar. El tamaño del efecto (d de Cohen) te dice cuán grande es ese efecto. Un resultado puede ser muy significativo (p muy pequeño) pero tener un tamaño del efecto trivial cuando la muestra es enorme. A la inversa, un tamaño del efecto grande puede no alcanzar significación en una muestra pequeña. Informar tanto el valor p como d de Cohen ofrece una visión completa de la fuerza y la fiabilidad del hallazgo."
+      }
+    },
+    "coin-flip-probability-calculator": {
+      "title": "Calculadora de probabilidad de lanzamiento de moneda - Distribución binomial",
+      "tagline": "Calcula la probabilidad exacta de cualquier resultado al lanzar una moneda usando la distribución binomial: encuentra la probabilidad de exactamente, al menos o como máximo N caras.",
+      "intro": "Introduce el número de lanzamientos, la cantidad de caras que te interesa y elige el tipo de cálculo para obtener la probabilidad al instante.",
+      "formula": "Fórmula: P(X=k) = C(n,k) × (0.5)^n  •  al menos: Σ P(X=i) para i=k..n  •  como máximo: Σ P(X=i) para i=0..k",
+      "field": {
+        "flips": "Número de lanzamientos",
+        "heads": "Número de caras",
+        "calcType": "Tipo de cálculo"
+      },
+      "placeholder": {
+        "flips": "p. ej. 10",
+        "heads": "p. ej. 5"
+      },
+      "type": {
+        "exactly": "Exactamente",
+        "exactly_desc": "Calcula la probabilidad de obtener exactamente la cantidad indicada de caras.",
+        "atLeast": "Al menos",
+        "atLeast_desc": "Calcula la probabilidad de obtener la cantidad indicada de caras o más.",
+        "atMost": "Como máximo",
+        "atMost_desc": "Calcula la probabilidad de obtener la cantidad indicada de caras o menos."
+      },
+      "button": {
+        "calculate": "Calcular probabilidad",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce un número válido de lanzamientos (1–10000) y una cantidad de caras entre 0 y el número de lanzamientos."
+      },
+      "result": {
+        "heading": "Probabilidad",
+        "decimal": "Decimal"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de probabilidad de moneda",
+        "body": "Una moneda justa tiene exactamente dos resultados: cara y cruz, y cada uno tiene una probabilidad de 0.5. Cuando lanzas la misma moneda varias veces, los resultados de cada lanzamiento son independientes: la moneda no tiene memoria, así que el resultado de un lanzamiento no puede influir en el siguiente. Esta combinación de probabilidad fija e independencia es la característica definitoria de un experimento binomial, por lo que la distribución binomial es el modelo matemático exacto para las secuencias de lanzamientos de moneda.\n\nLa probabilidad de obtener exactamente k caras en n lanzamientos se obtiene con la función de masa de probabilidad binomial: P(X = k) = C(n, k) × (0.5)^n, donde C(n, k) es el coeficiente binomial n! / (k! × (n − k)!). El factor C(n, k) cuenta el número de secuencias distintas de n lanzamientos que contienen exactamente k caras. El factor (0.5)^n es la probabilidad de una secuencia concreta de longitud n. Al multiplicarlos obtenemos la probabilidad total de k caras en todos los posibles órdenes.\n\nPara preguntas acumuladas —\"al menos k caras\" o \"como máximo k caras\"— la calculadora suma las probabilidades puntuales del rango correspondiente. \"Al menos k\" significa sumar de i = k a i = n; \"como máximo k\" significa sumar de i = 0 a i = k. Para n grandes, estas sumas pueden incluir miles de términos, por eso una herramienta de cálculo es mucho más práctica que hacerlo a mano.\n\nAlgunos resultados son intuitivos de inmediato. Para una moneda justa lanzada 10 veces, obtener exactamente 5 caras tiene una probabilidad de ≈ 24.61%. Obtener al menos 5 caras tiene una probabilidad exacta del 50% por simetría. Obtener 10 caras seguidas tiene una probabilidad de (0.5)^10 ≈ 0.098%, lo que parece sorprendente hasta que recuerdas que solo es una de las 1,024 secuencias igualmente probables. Ninguna secuencia individual es más o menos probable que otra; solo los conjuntos de secuencias con propiedades compartidas (como exactamente 5 caras) tienen totales distintos.\n\nLa probabilidad del lanzamiento de moneda aparece en muchos contextos prácticos más allá del juego. En ensayos clínicos, un esquema de aleatorización de dos brazos con asignación 50/50 es matemáticamente idéntico a lanzar una moneda justa. En criptografía, las cadenas de bits generadas por un generador de números aleatorios por hardware deberían seguir una distribución indistinguible de la de una moneda justa. En control de calidad, la proporción de artículos defectuosos de una línea de producción puede modelarse como una proporción binomial, y decidir si la tasa de defectos difiere del objetivo usa exactamente los mismos cálculos de probabilidad. En analítica deportiva, las rachas de victorias de un equipo igualado siguen un modelo de lanzamiento de moneda, y entender la distribución binomial ayuda a separar la habilidad real de la variación aleatoria.\n\nEsta calculadora usa aritmética logarítmica internamente para manejar n grandes sin desbordamiento, lo que permite calcular con precisión hasta 10,000 lanzamientos. Para n muy grandes y k moderado, la distribución binomial también puede aproximarse con una distribución normal con media np y desviación estándar √(np(1−p)), pero la calculadora usa siempre la fórmula exacta para lograr la máxima precisión."
+      },
+      "examples": {
+        "heading": "Ejemplos de probabilidad de moneda",
+        "intro": "Cuatro ejemplos resueltos que cubren escenarios comunes, desde ejercicios de clase hasta apuestas y control de calidad.",
+        "colInput": "Lanzamientos / Caras / Tipo",
+        "colOutput": "Probabilidad",
+        "colNote": "Explicación",
+        "loadFair": "Cargar ejemplo de moneda justa",
+        "loadGambling": "Cargar ejemplo de apuestas",
+        "loadConservative": "Cargar ejemplo conservador",
+        "items": [
+          {
+            "input": "10 lanzamientos, exactamente 5 caras",
+            "output": "≈ 24.61%",
+            "note": "Resultado individual más probable en 10 lanzamientos de una moneda justa. Usa P(X=5) = C(10,5) × (0.5)^10."
+          },
+          {
+            "input": "10 lanzamientos, al menos 7 caras",
+            "output": "≈ 17.19%",
+            "note": "Suma P(X=7) + P(X=8) + P(X=9) + P(X=10). Útil para apuestas sobre una mayoría de caras."
+          },
+          {
+            "input": "8 lanzamientos, como máximo 3 caras",
+            "output": "≈ 36.33%",
+            "note": "Suma P(X=0) hasta P(X=3). Útil para estimaciones conservadoras y análisis de cola inferior."
+          },
+          {
+            "input": "100 lanzamientos, exactamente 50 caras",
+            "output": "≈ 7.96%",
+            "note": "Aunque es el resultado individual más probable, representa menos del 8% porque hay muchísimos resultados posibles."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de probabilidad de moneda",
+        "steps": [
+          "Introduce el número total de lanzamientos de moneda en el campo Número de lanzamientos (1 a 10,000).",
+          "Introduce la cantidad de caras que te interesa; debe estar entre 0 y el número de lanzamientos.",
+          "Selecciona el tipo de cálculo: Exactamente (probabilidad puntual), Al menos (acumulada superior) o Como máximo (acumulada inferior).",
+          "Haz clic en Calcular probabilidad. La probabilidad se muestra como porcentaje y como decimal.",
+          "Usa los botones de ejemplo para cargar al instante escenarios comunes y comprobar que entiendes el resultado."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre la probabilidad de moneda",
+        "q1": "¿Por qué obtener exactamente 5 caras en 10 lanzamientos solo tiene una probabilidad de unos 24.6%?",
+        "q1_a": "Aunque 5 de 10 es el resultado individual más probable, hay 11 resultados posibles (de 0 a 10 caras) y sus probabilidades suman 100%. El 75.4% restante se reparte entre los otros 10 resultados. Aunque cada resultado individual en los extremos sea poco probable, juntos suman una parte importante de la probabilidad total.",
+        "q2": "¿Importa el orden de caras y cruces?",
+        "q2_a": "No. La calculadora cuenta la probabilidad de obtener k caras en cualquier orden. El coeficiente binomial C(n,k) ya incluye automáticamente todas las ordenaciones posibles. Si quisieras la probabilidad de una secuencia concreta —por ejemplo, exactamente HTHTHTHTHT— sería simplemente (0.5)^10 ≈ 0.098% y no necesitarías esta calculadora.",
+        "q3": "¿Cuál es el número esperado de caras en n lanzamientos?",
+        "q3_a": "El valor esperado (media) de una distribución binomial con n ensayos y probabilidad p es E[X] = n × p. Para una moneda justa, p = 0.5, así que esperarías n/2 caras en promedio. En 10 lanzamientos esperas 5 caras; en 100 lanzamientos, 50 caras. El valor esperado no es una garantía, sino el promedio a largo plazo tras repetir el experimento muchas veces.",
+        "q4": "¿Cómo calculo la probabilidad de obtener caras al menos una vez en n lanzamientos?",
+        "q4_a": "Usa la regla del complemento: P(al menos 1 cara) = 1 − P(0 caras) = 1 − (0.5)^n. Para 5 lanzamientos, esto es 1 − (0.5)^5 = 1 − 0.03125 = 96.875%. Puedes comprobarlo usando el modo Al menos con Caras = 1 en esta calculadora.",
+        "q5": "¿Una larga racha de cruces hace que el siguiente lanzamiento sea más probable que sea cara?",
+        "q5_a": "No. Eso es la falacia del jugador. Como cada lanzamiento es independiente, la probabilidad de cara en el siguiente lanzamiento sigue siendo exactamente 0.5, sin importar lo que ocurrió antes. La moneda no tiene memoria. Aunque las rachas largas son poco probables antes de empezar, una vez estás dentro de una, los lanzamientos restantes son tan aleatorios como cualquier otra secuencia.",
+        "q6": "¿Esta calculadora puede manejar monedas sesgadas?",
+        "q6_a": "Esta calculadora asume una moneda justa con p = 0.5. Para una moneda sesgada con probabilidad p de cara, la fórmula es P(X=k) = C(n,k) × p^k × (1−p)^(n−k). Para calcular probabilidades de una moneda sesgada, tendrías que sustituir el valor adecuado de p. Las sumas acumuladas de Al menos y Como máximo funcionan igual; solo cambia 0.5 por la probabilidad sesgada."
+      }
     }
   }
 }

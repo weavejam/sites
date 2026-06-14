@@ -8280,6 +8280,497 @@
           }
         ]
       }
+    },
+    "inverse-normal-distribution-calculator": {
+      "title": "Inverse Normalverteilung Rechner - X aus P",
+      "tagline": "Ermittelt den x-Wert zu einer gegebenen kumulativen Wahrscheinlichkeit unter der Normalverteilung. Unterstützt linksseitige, rechtsseitige und zweiseitige (zentrale) Berechnungen.",
+      "intro": "Geben Sie Mittelwert μ, Standardabweichung σ, kumulative Wahrscheinlichkeit und Seitentyp ein, um den entsprechenden x-Wert oder Bereich zu erhalten.",
+      "field": {
+        "mean": "Mittelwert (μ)",
+        "stdDev": "Standardabweichung (σ)",
+        "probability": "Kumulative Wahrscheinlichkeit",
+        "tailType": "Seitentyp",
+        "probabilityHintOne": "Geben Sie einen Wert zwischen 0 und 1 ein (ohne Randwerte). Linksseitig: Fläche links von x. Rechtsseitig: Fläche rechts von x.",
+        "probabilityHintTwo": "Geben Sie die Fläche in der Mitte ein (zwischen den beiden x-Werten), z. B. 0.95 für die zentralen 95 %."
+      },
+      "placeholder": {
+        "probability": "z. B. 0.95"
+      },
+      "tail": {
+        "left": "Linksseitig",
+        "right": "Rechtsseitig",
+        "two": "Zweiseitig (Mitte)"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte prüfen Sie Ihre Eingaben. Die Wahrscheinlichkeit muss zwischen 0 und 1 liegen, σ muss positiv sein und alle Felder müssen ausgefüllt sein."
+      },
+      "result": {
+        "heading": "Ergebnis",
+        "xValue": "x-Wert",
+        "zScore": "Z-Wert",
+        "xLow": "Unterer x-Wert",
+        "xHigh": "Oberer x-Wert",
+        "zRange": "Z-Wert-Bereich",
+        "zRangeSep": "bis"
+      },
+      "about": {
+        "heading": "Über den Inversen Normalverteilungsrechner",
+        "body": "Der Inverse Normalverteilungsrechner — manchmal auch Quantilfunktion oder Percent-Point-Funktion der Normalverteilung genannt — beantwortet die Frage: Welcher x-Wert gehört zu einer gegebenen kumulativen Wahrscheinlichkeit? Das ist die Umkehrung des Nachschlagens in der Tabelle der Standardnormalverteilung. Statt P(X ≤ x) aus x zu berechnen, geben Sie P vor und lösen nach x auf.\n\nIn der Statistik wird die Normalverteilung (auch Gauß-Verteilung oder Glockenkurve genannt) durch ihren Mittelwert μ und ihre Standardabweichung σ parametrisiert. Jede konkrete Normalverteilung kann durch den Z-Wert Z = (x − μ) / σ in die Standardnormalverteilung (μ=0, σ=1) überführt werden. Umgekehrt lässt sich jedes Standardnormal-Quantil Z in einen Rohwert x = μ + σ·Z zurückrechnen. Der Inverse Normalverteilungsrechner nutzt dies, damit Sie direkt mit beliebigem Mittelwert und beliebiger Standardabweichung arbeiten können, ohne die Zweischritt-Umrechnung.\n\nDer linksseitige Modus ermittelt den x-Wert, unter dem der angegebene Anteil der Verteilung liegt. Wenn Sie μ=0, σ=1 und probability=0.95 eingeben, gibt das Tool ungefähr 1.6449 zurück; das bedeutet, dass 95 % der Standardnormalverteilung unter Z=1.6449 liegen. Das ist das 95. Perzentil und wird häufig für einseitige 95%-Konfidenzintervalle oder für den kritischen Wert eines einseitigen Tests mit α=0.05 verwendet.\n\nDer rechtsseitige Modus ermittelt den x-Wert, oberhalb dessen der angegebene Anteil der Verteilung liegt. Bei μ=100, σ=15 und probability=0.02 ergibt sich ungefähr 130.8; das bedeutet, dass nur 2 % der IQ-Werte (modelliert als N(100,15)) diesen Wert überschreiten. So findet man Grenzwerte für Begabtenprogramme, Zulassungsschwellen im oberen Perzentil und Qualitätsgrenzen für Überschreitungen im oberen Randbereich.\n\nDer zweiseitige Modus (Mitte) ermittelt das symmetrische Intervall um den Mittelwert, das die angegebene zentrale Wahrscheinlichkeit enthält. Wenn Sie probability=0.95 eingeben, möchten Sie das Intervall, das die zentralen 95 % der Verteilung abdeckt; jeder Randbereich enthält dann 2.5 %. Das Tool gibt sowohl den unteren als auch den oberen x-Wert aus. Genau so werden 95%-Konfidenzintervalle gebildet: Stichprobenmittelwert ± 1.96 Standardfehler entspricht μ=0, σ=1 und dem zweiseitigen 95%-Intervall.\n\nPraktische Anwendungen sind: Z-Werte für kritische Werte von Hypothesentests; Toleranzintervalle in der Fertigung (z. B. der Bereich, der die zentralen 99 % der Produktmaße enthält); Festlegen von Bestehens-/Nichtbestehensgrenzen bei standardisierten Tests; Bestimmen von Value-at-Risk-(VaR)-Schwellen in der Finanzwelt; und das Zurückführen einer Wahrscheinlichkeitsprognose auf den ursprünglichen Grenzwert. Die inverse Normalfunktion ist eine der am häufigsten verwendeten Operationen in der angewandten Statistik, direkt nach der CDF selbst."
+      },
+      "examples": {
+        "heading": "Beispiele für die inverse Normalverteilung",
+        "intro": "Häufige Szenarien aus Statistik, Qualitätskontrolle und Psychometrie.",
+        "colInput": "Parameter",
+        "colOutput": "Ergebnis",
+        "colNote": "Anwendung",
+        "loadZ95": "Z-Wert für das 95. Perzentil laden",
+        "loadIQ": "IQ-Wert für die obersten 2 % laden",
+        "loadTolerance": "99%-Toleranzintervall laden",
+        "items": [
+          {
+            "input": "μ=0, σ=1, P=0.95, Left-Tailed",
+            "output": "x = 1.6449 (Z = 1.6449)",
+            "note": "Das 95. Perzentil der Standardnormalverteilung. Wird als kritischer Wert für einen einseitigen Test bei α=0.05 verwendet."
+          },
+          {
+            "input": "μ=100, σ=15, P=0.02, Right-Tailed",
+            "output": "x ≈ 130.8 (Z ≈ 2.054)",
+            "note": "Mindest-IQ für die obersten 2 %. Nützlich für Aufnahmeschwellen in Begabtenprogrammen."
+          },
+          {
+            "input": "μ=50, σ=0.5, P=0.99, Two-Tailed",
+            "output": "x = 48.71 to 51.29",
+            "note": "Fertigungstoleranzintervall, das 99 % der Produktlängen enthält. Die restlichen 1 % verteilen sich auf zu kurz und zu lang."
+          },
+          {
+            "input": "μ=75, σ=8, P=0.10, Left-Tailed",
+            "output": "x ≈ 64.74 (Z ≈ −1.282)",
+            "note": "Grenze für die unteren 10 % bei Prüfungsergebnissen. Lernende unterhalb dieses Werts benötigen möglicherweise Fördermaßnahmen."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Inversen Normalverteilungsrechner",
+        "steps": [
+          "Wählen Sie den Seitentyp: Linksseitig, wenn Sie den Wert unterhalb eines gegebenen Anteils suchen; Rechtsseitig, wenn Sie den Wert oberhalb eines gegebenen Anteils suchen; Zweiseitig (Mitte), wenn Sie das symmetrische Intervall um den Mittelwert mit einem zentralen Anteil suchen.",
+          "Geben Sie Mittelwert μ (das Zentrum der Verteilung) und Standardabweichung σ (muss positiv sein) ein. Für die Standardnormalverteilung / Z-Wert-Abfrage verwenden Sie μ=0 und σ=1.",
+          "Geben Sie die kumulative Wahrscheinlichkeit als Dezimalzahl zwischen 0 und 1 ein. Bei Linksseitig ist das die Fläche links von x. Bei Rechtsseitig ist es die Fläche rechts. Bei Zweiseitig ist es die zentrale Fläche (z. B. 0.95 für die zentralen 95 %).",
+          "Klicken Sie auf Berechnen. In den Einseiten-Modi zeigt das Ergebnis den x-Wert und den Z-Wert. Im zweiseitigen Modus werden die untere und obere Grenze sowie der entsprechende Z-Wert-Bereich angezeigt.",
+          "Verwenden Sie die Beispiel-Buttons, um häufige Szenarien wie Z-Werte für 95%-Konfidenzintervalle, IQ-Perzentilschwellen oder Fertigungstoleranzbereiche vorzuladen."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zur inversen Normalverteilung",
+        "items": [
+          {
+            "q": "Was ist die inverse Normalverteilung?",
+            "a": "Die inverse Normalverteilung (auch Quantilfunktion oder Probit-Funktion genannt) ordnet einer kumulativen Wahrscheinlichkeit wieder den entsprechenden Wert auf der Normalverteilungskurve zu. Wenn die Normal-CDF Ihnen P(X ≤ x) liefert, gibt die inverse Normalverteilung x zu P zurück. Diese Funktion verwenden Sie, wenn Sie für ein bestimmtes Konfidenzniveau einen kritischen Z-Wert nachschlagen — zum Beispiel Z=1.96 für 97.5 % der Standardnormalverteilung."
+          },
+          {
+            "q": "Was ist der Unterschied zwischen einem Z-Wert und einem x-Wert?",
+            "a": "Ein Z-Wert ist der standardisierte Wert in Einheiten von Standardabweichungen vom Mittelwert: Z = (x − μ) / σ. Ein x-Wert ist die Rohmessung in den ursprünglichen Einheiten. Der Rechner liefert beides: den x-Wert für praktische Schwellen (Prüfungspunktzahl, Produktlänge, Blutdruck) und den Z-Wert für Vergleiche zwischen Verteilungen oder das Nachschlagen von Wahrscheinlichkeiten in statistischen Tabellen."
+          },
+          {
+            "q": "Wie finde ich den kritischen Wert für ein 95%-Konfidenzintervall?",
+            "a": "Ein 95%-Konfidenzintervall verwendet zweiseitige kritische Werte, die in jedem Randbereich 2.5 % abschneiden. Setzen Sie μ=0, σ=1, probability=0.95 und wählen Sie Zweiseitig (Mitte). Der Rechner gibt Z≈1.96 als obere Grenze aus (und −1.96 als untere Grenze). Der Stichprobenmittelwert ± 1.96 × (Standardfehler) ergibt das 95%-Konfidenzintervall für jeden annähernd normalverteilten Schätzer."
+          },
+          {
+            "q": "Welche Wahrscheinlichkeit soll ich für einen einseitigen Test bei α=0.05 eingeben?",
+            "a": "Für einen linksseitigen Test bei α=0.05 geben Sie bei ausgewählter Linksseitig probability=0.05 ein; das Ergebnis ist der kritische Wert, unter dem Sie H₀ verwerfen. Für einen rechtsseitigen Test bei α=0.05 geben Sie bei ausgewählter Rechtsseitig probability=0.05 ein; das Ergebnis ist der kritische Wert, oberhalb dessen Sie H₀ verwerfen. Für einen zweiseitigen Test bei α=0.05 geben Sie probability=0.95 ein und wählen Zweiseitig (Mitte), um ±1.96 zu erhalten."
+          },
+          {
+            "q": "Kann ich das für eine nicht standardisierte Normalverteilung verwenden?",
+            "a": "Ja — das ist einer der Hauptvorteile des Rechners gegenüber einfachen Z-Tabellen. Geben Sie den tatsächlichen Mittelwert μ und die Standardabweichung σ Ihrer Verteilung ein, und der Rechner wandelt den Z-Wert automatisch mit x = μ + σ × Z in Ihre ursprünglichen Einheiten um. Sie müssen Ihre Daten nicht manuell standardisieren."
+          }
+        ]
+      }
+    },
+    "iqr-calculator-interquartile-range": {
+      "title": "IQR-Rechner - Interquartilsabstand, Q1, Q3 und Ausreißer",
+      "tagline": "Berechnen Sie den Interquartilsabstand (IQR), die Quartile Q1 und Q3, den Median und erkennen Sie Ausreißer mit der 1.5×IQR-Regel in jedem kommagetrennten Datensatz.",
+      "intro": "Geben Sie Ihre Daten als kommagetrennte Zahlen ein und klicken Sie auf Berechnen, um die vollständige Fünf-Zahlen-Zusammenfassung, den IQR, die Zaunwerte und alle Ausreißer zu erhalten.",
+      "field": {
+        "data": "Datensatz (kommagetrennte Zahlen)",
+        "dataHint": "Geben Sie Zahlen ein, getrennt durch Kommas oder Leerzeichen, z. B. 2, 4, 4, 5, 6, 7, 8, 9"
+      },
+      "placeholder": {
+        "data": "z. B. 2, 4, 4, 5, 6, 7, 8, 9"
+      },
+      "button": {
+        "calculate": "IQR berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie mindestens zwei gültige Zahlen ein, getrennt durch Kommas."
+      },
+      "result": {
+        "heading": "Ergebnisse",
+        "n": "Anzahl (n)",
+        "min": "Minimum",
+        "max": "Maximum",
+        "q1": "Q1 (25. Perzentil)",
+        "median": "Median (Q2)",
+        "q3": "Q3 (75. Perzentil)",
+        "iqr": "IQR (Q3 − Q1)",
+        "lowerFence": "Unterer Zaun (Q1 − 1.5×IQR)",
+        "upperFence": "Oberer Zaun (Q3 + 1.5×IQR)",
+        "outliersLabel": "Ausreißer",
+        "noOutliers": "Keine Ausreißer erkannt."
+      },
+      "about": {
+        "heading": "Über den IQR-Rechner",
+        "body": "Der Interquartilsabstand (IQR) ist die Spannweite der mittleren 50% eines Datensatzes, also der Abstand zwischen dem 25. Perzentil (Q1) und dem 75. Perzentil (Q3). Er ist eine der robustesten und am häufigsten verwendeten Kennzahlen statistischer Streuung, weil er im Gegensatz zur Gesamtspannweite oder Standardabweichung von Extremwerten und Ausreißern völlig unbeeinflusst bleibt. Ob Sie Prüfungsergebnisse, Blutdruckwerte, Immobilienpreise, Fertigungstoleranzen oder andere reale Datensätze analysieren: Der IQR liefert ein zuverlässiges Bild der zentralen Streuung.\n\nZur Berechnung des IQR sortiert der Rechner die Daten zunächst von klein nach groß und bestimmt anschließend Q1 und Q3 mithilfe linearer Interpolation auf den Ordnungsstatistiken. Q1 ist der Wert am 25. Perzentil, also der Punkt, unter dem 25% der Daten liegen. Q3 ist der Wert am 75. Perzentil, also der Punkt, unter dem 75% der Daten liegen. Der IQR ist einfach Q3 − Q1. Median (Q2), Minimum und Maximum werden ebenfalls ausgegeben, sodass Sie die vollständige Fünf-Zahlen-Zusammenfassung erhalten, die Grundlage eines Boxplots.\n\nDie von John Tukey eingeführte 1.5×IQR-Regel ist die Standardmethode zur Identifikation potenzieller Ausreißer. Jeder Datenpunkt unterhalb des unteren Zauns (Q1 − 1.5×IQR) oder oberhalb des oberen Zauns (Q3 + 1.5×IQR) gilt als vermuteter Ausreißer. Diese Zäune definieren die Whisker in einem Tukey-Boxplot. Ein Punkt, der mehr als 3×IQR vom nächstgelegenen Quartil entfernt ist (der innere Zaun bis zu einem äußeren Zaun erweitert), gilt als extremer Ausreißer. Der Rechner markiert alle Werte außerhalb der 1.5×IQR-Zäune.\n\nWichtig ist, dass die 1.5×IQR-Regel statistische Ausreißer identifiziert — Werte, die ungewöhnlich weit vom zentralen Datenkörper entfernt sind —, aber nicht zwingend Datenfehler. Ein als Ausreißer markierter Punkt kann ein Messfehler, ein Eingabefehler, ein Betrugssignal oder einfach eine wirklich seltene, aber legitime Beobachtung sein. Fachwissen ist immer erforderlich, um zu entscheiden, wie mit markierten Punkten umzugehen ist.\n\nDer IQR ist die bevorzugte Streuungskennzahl, wenn Daten schief verteilt sind oder Ausreißer erwartet werden, etwa bei Einkommensverteilungen, Reaktionszeiten oder Immobilienpreisen in gemischten Märkten. Für symmetrische, normalverteilte Daten ohne Ausreißer ist die Standardabweichung etwas effizienter. Wenn jedoch Robustheit zählt — in der explorativen Datenanalyse, in der nichtparametrischen Statistik oder immer dann, wenn Normalverteilung nicht angenommen werden kann —, ist der IQR das Mittel der Wahl, um zu beschreiben, wie stark die Mitte Ihrer Daten streut."
+      },
+      "examples": {
+        "heading": "IQR-Beispiele",
+        "intro": "Vier Datensätze zeigen, wie IQR und Ausreißererkennung in der Praxis funktionieren.",
+        "colInput": "Datensatz",
+        "colOutput": "IQR",
+        "colNote": "Hinweise",
+        "loadBasic": "Einfachen Datensatz laden",
+        "loadOutliers": "Datensatz mit Ausreißern laden",
+        "loadScores": "Testergebnisse laden",
+        "items": [
+          {
+            "input": "2, 4, 4, 5, 6, 7, 8, 9",
+            "output": "IQR = 3.25 (Q1=4, Q3=7.25)",
+            "note": "Gerade Anzahl von Werten. Q1=4, Median=5.5, Q3=7.25. Keine Ausreißer erkannt."
+          },
+          {
+            "input": "10, 20, 30, 40, 50, 60, 70",
+            "output": "IQR = 30 (Q1=25, Q3=55)",
+            "note": "Ungerade Anzahl: Q1=25, Median=40, Q3=55, IQR=30. Unterer Zaun=−20, oberer Zaun=100. Keine Ausreißer."
+          },
+          {
+            "input": "6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49, 78, 108",
+            "output": "IQR = 11 (Q1=36, Q3=47)",
+            "note": "Unterer Zaun=19.5, oberer Zaun=63.5. Die Werte 6, 7, 15, 78 und 108 werden als Ausreißer markiert."
+          },
+          {
+            "input": "88, 92, 80, 78, 95, 84, 76, 90, 81, 85, 93",
+            "output": "IQR = 10.5 (Q1=80.5, Q3=91)",
+            "note": "Testergebnisse von 76 bis 95. Keine Ausreißer — eine eng gebündelte Klassenleistung."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den IQR-Rechner",
+        "steps": [
+          "Geben Sie Ihren Datensatz im Eingabefeld als kommagetrennte Zahlen ein. Sie können auch Leerzeichen als Trennzeichen verwenden. Die Reihenfolge der Werte spielt keine Rolle — der Rechner sortiert sie automatisch.",
+          "Klicken Sie auf IQR berechnen. Das Tool zeigt n (Anzahl), Minimum, Maximum, Q1, Median, Q3, IQR, den unteren und oberen Zaun sowie alle Ausreißer an.",
+          "Betrachten Sie den IQR, um zu verstehen, wie stark die mittleren 50% Ihrer Daten streuen. Ein größerer IQR bedeutet mehr Variabilität im zentralen Teil der Daten.",
+          "Prüfen Sie die Zaunwerte. Jeder Datenpunkt unter Q1 − 1.5×IQR oder über Q3 + 1.5×IQR wird als potenzieller Ausreißer aufgeführt. Untersuchen Sie jeden markierten Punkt, um festzustellen, ob es sich um einen Datenfehler oder einen echten Extremwert handelt.",
+          "Verwenden Sie die Beispielschaltflächen, um vorbereitete Datensätze zu laden und zu sehen, wie sich IQR und Ausreißererkennung bei verschiedenen Datenverteilungen verhalten."
+        ]
+      },
+      "faq": {
+        "heading": "IQR FAQ",
+        "items": [
+          {
+            "q": "Was ist der Interquartilsabstand (IQR)?",
+            "a": "Der Interquartilsabstand ist die Differenz zwischen dem dritten Quartil (Q3, 75. Perzentil) und dem ersten Quartil (Q1, 25. Perzentil): IQR = Q3 − Q1. Er beschreibt die Streuung der mittleren 50% der Daten. Da er die oberen und unteren 25% der Werte ignoriert, wird der IQR nicht von extremen Ausreißern beeinflusst und ist bei schiefen Daten oder Anomalien eine robustere Streuungskennzahl als Gesamtspannweite oder Standardabweichung."
+          },
+          {
+            "q": "Wie werden Q1 und Q3 berechnet?",
+            "a": "Der Rechner verwendet lineare Interpolation auf den sortierten Daten. Für Q1 liegt die Position bei 0.25 × (n−1) in einem nullbasierten sortierten Array. Wenn diese Position keine ganze Zahl ist, wird der Wert zwischen den beiden benachbarten Datenpunkten interpoliert. Für Q3 wird dieselbe Methode an Position 0.75 × (n−1) verwendet. Dies ist die gleiche Methode, die Statistiksoftware wie R (type 7) und Excels Funktion QUARTILE.INC verwendet."
+          },
+          {
+            "q": "Wie erkennt die 1.5×IQR-Regel Ausreißer?",
+            "a": "John Tukeys 1.5×IQR-Regel definiert unterer Zaun = Q1 − 1.5×IQR und oberer Zaun = Q3 + 1.5×IQR. Jeder Datenpunkt außerhalb dieser Zäune ist ein potenzieller Ausreißer. Der Multiplikator 1.5 wurde gewählt, weil bei einer vollkommenen Normalverteilung nur etwa 0.7% der Werte außerhalb dieser Zäune liegen und sie daher sehr unwahrscheinlich zufällig auftreten. Eine strengere Regel verwendet den Multiplikator 3.0 und markiert nur die extremsten Punkte als ferne Ausreißer."
+          },
+          {
+            "q": "Ist der IQR besser als die Standardabweichung zur Messung der Streuung?",
+            "a": "Jede Kennzahl eignet sich für unterschiedliche Situationen. Die Standardabweichung nutzt alle Datenwerte und ist optimal für symmetrische, normalverteilte Daten ohne Ausreißer. Der IQR nutzt nur die mittleren 50% der Werte und ist deutlich widerstandsfähiger gegenüber Schiefe und Ausreißern. Wenn Ihre Daten annähernd normalverteilt sind, liefert die Standardabweichung mehr Informationen. Wenn Ihre Daten schief sind (Einkommen, Immobilienpreise, Überlebenszeiten) oder Ausreißer enthalten, ist der IQR die bessere Kennzahl für typische Streuung."
+          },
+          {
+            "q": "Kann ich den IQR für einen Datensatz mit nur zwei oder drei Werten verwenden?",
+            "a": "Technisch ja, aber das Ergebnis ist nur begrenzt nützlich. Bei sehr kleinen Stichproben (n < 4 oder 5) sind Quartilsschätzungen sehr instabil, und der IQR repräsentiert die Streuung der Grundgesamtheit nicht zuverlässig. Auch die 1.5×IQR-Ausreißerregel verhält sich bei winzigen Stichproben schlecht: Sie markiert möglicherweise keine Ausreißer, obwohl Fehler vorhanden sind, oder erzeugt Zäune, die legitime Werte ausschließen. Eine aussagekräftige IQR-Analyse erfordert in der Regel mindestens 5–10 Beobachtungen."
+          }
+        ]
+      }
+    },
+    "coefficient-of-variation-calculator": {
+      "title": "Variationskoeffizient-Rechner (CV)",
+      "tagline": "Berechnen Sie den Variationskoeffizienten, um relative Streuung zwischen Datensätzen zu vergleichen und Mittelwert, Standardabweichung und CV% sofort zu erhalten.",
+      "intro": "Geben Sie eine kommagetrennte Zahlenliste ein und klicken Sie auf Berechnen, um Mittelwert, Stichproben-Standardabweichung und Variationskoeffizient zu sehen.",
+      "formula": "Formel: CV = (s / |Mittelwert|) × 100%  •  s = Stichproben-Standardabweichung  •  Mittelwert = arithmetisches Mittel",
+      "field": {
+        "data": "Datensatz",
+        "dataHint": "Geben Sie Zahlen getrennt durch Kommas oder Leerzeichen ein (mindestens 2 Werte erforderlich)."
+      },
+      "placeholder": {
+        "data": "z. B. 10, 20, 15, 25, 18"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie mindestens 2 gültige numerische Werte ein, getrennt durch Kommas oder Leerzeichen.",
+        "meanZero": "Der Variationskoeffizient ist nicht definiert, wenn der Mittelwert null ist."
+      },
+      "result": {
+        "heading": "Ergebnisse",
+        "mean": "Mittelwert",
+        "sd": "Standardabweichung (s)",
+        "cv": "CV (%)"
+      },
+      "about": {
+        "heading": "Über den Variationskoeffizient-Rechner",
+        "body": "Der Variationskoeffizient (CV), auch relative Standardabweichung (RSD) genannt, ist ein standardisiertes Maß der statistischen Streuung. Er ist definiert als Verhältnis der Stichproben-Standardabweichung zum Absolutwert des Mittelwerts, ausgedrückt als Prozentsatz: CV = (s / |Mittelwert|) × 100%. Da er dimensionslos ist, können Sie mit dem CV die Variabilität von Datensätzen vergleichen, die unterschiedliche Einheiten oder sehr unterschiedliche Größenordnungen haben – etwas, das die rohe Standardabweichung nicht leisten kann.\n\nWarum das wichtig ist, zeigt ein einfaches Beispiel. Angenommen, Aktie A hat einen durchschnittlichen Tagespreis von $100 und eine Standardabweichung von $5, während Aktie B einen durchschnittlichen Tagespreis von $500 und eine Standardabweichung von $20 hat. Aktie B hat die größere absolute Standardabweichung, ihr CV beträgt jedoch nur 4% gegenüber 5% bei Aktie A. Ein Anleger, der das reine relative Risiko misst, würde korrekt schließen, dass Aktie A proportional volatiler ist, auch wenn ihre Dollarschwankungen kleiner sind.\n\nDer CV ist besonders wertvoll in Bereichen, die regelmäßig Messungen mit unterschiedlichen Skalen vergleichen. In der Fertigungsqualitätssicherung nutzen Ingenieure ihn, um zu beurteilen, ob ein Produktionsprozess unabhängig von der Nenngröße des hergestellten Teils konsistent ist. Ein Bearbeitungsprozess, der Bolzen mit 5 mm Durchmesser und einem CV von 0.5% herstellt, ist proportional genauso konsistent wie ein Prozess, der Wellen mit 50 mm Durchmesser und einem CV von 0.5% produziert – obwohl der zweite Prozess die zehnfache absolute Streuung aufweist. In den Lebenswissenschaften vergleichen Forschende CV-Werte, um die Präzision von Assays einzuschätzen: Ein CV unter 5% gilt bei einem Laborassay typischerweise als ausgezeichnet, während Werte über 15–20% auf Messrauschen oder schlechte Reproduzierbarkeit hinweisen können.\n\nDieser Rechner verwendet die Formel der Stichproben-Standardabweichung, also die Division durch n − 1 statt durch n. Dadurch ergibt sich aus einer Stichprobe eine unverzerrte Schätzung der Standardabweichung der Grundgesamtheit. Dies ist die übliche Wahl, wenn Sie Ihre Daten als Stichprobe aus einer größeren Grundgesamtheit behandeln, wie es in den meisten wissenschaftlichen, technischen und geschäftlichen Kontexten der Fall ist. Wenn Sie den CV einer vollständigen Grundgesamtheit berechnen (jedes Mitglied gezählt), verwenden Sie die Standardabweichung der Grundgesamtheit, indem Sie im Nenner n − 1 durch n ersetzen.\n\nBei der Interpretation von CV-Werten gelten einige Einschränkungen. Der CV ist nur sinnvoll, wenn die Daten auf einer Verhältnisskala mit einem echten, bedeutungsvollen Nullpunkt gemessen werden, etwa Gewicht, Länge, Konzentration oder Preis. Für Intervalldaten mit willkürlichem Nullpunkt, etwa Celsius-Temperatur oder Kalenderjahr, ist er nicht geeignet, weil der Mittelwert jedes Vorzeichen annehmen kann und das Verhältnis seinen Interpretationswert verliert. Außerdem ist der CV empfindlich gegenüber dem Mittelwert: Liegt der Mittelwert nahe null, erzeugt selbst eine kleine Standardabweichung einen enormen CV, was irreführend sein kann. Prüfen Sie vor Schlussfolgerungen immer den ursprünglichen Mittelwert zusammen mit dem CV.\n\nIn den Beispielen dieses Rechners zeigt das Aktienpreisszenario, wie zwei Anlagen mit ähnlicher absoluter Volatilität sehr unterschiedlich erscheinen können, sobald man ihre Preisniveaus berücksichtigt. Das Fertigungspräzisionsszenario zeigt, wie der CV hilft, Prozessqualitäts-Benchmarks unabhängig von der Teilegröße festzulegen. Das Sportlerszenario demonstriert, wie Trainer den CV nutzen können, um die über eine Saison konstantesten Leistungsträger zu identifizieren und so Aufstellungsentscheidungen und Vertragsverhandlungen zu unterstützen."
+      },
+      "examples": {
+        "heading": "Beispiele für den Variationskoeffizienten",
+        "intro": "Drei praktische Szenarien, die zeigen, wie der CV relative Variabilität in verschiedenen Bereichen vergleicht.",
+        "colInput": "Datensatz",
+        "colOutput": "CV",
+        "colNote": "Interpretation",
+        "loadStock": "Aktienbeispiel laden",
+        "loadManufacturing": "Fertigungsbeispiel laden",
+        "loadAthlete": "Sportlerbeispiel laden",
+        "items": [
+          {
+            "input": "100, 102, 105, 98, 103 (Preise von Aktie A)",
+            "output": "CV ≈ 2.66%",
+            "note": "Geringe relative Volatilität – typisch für eine stabile Blue-Chip-Aktie. Mittelwert = 101.6, SD ≈ 2.70."
+          },
+          {
+            "input": "10.2, 10.1, 9.9, 10.3, 9.8, 10.0 (Produktgewichte, g)",
+            "output": "CV ≈ 1.86%",
+            "note": "Ausgezeichnete Fertigungskonsistenz. Mittelwert = 10.05 g, SD ≈ 0.187 g."
+          },
+          {
+            "input": "25, 28, 22, 30, 24, 26, 25 (Punkte pro Spiel)",
+            "output": "CV ≈ 10.22%",
+            "note": "Moderate Leistungsvariabilität. Mittelwert ≈ 25.71 Punkte, SD ≈ 2.63."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Variationskoeffizient-Rechner",
+        "steps": [
+          "Geben Sie Ihren Datensatz in das Feld Datensatz ein oder fügen Sie ihn dort ein; trennen Sie Werte durch Kommas, Leerzeichen oder Zeilenumbrüche.",
+          "Stellen Sie sicher, dass mindestens 2 numerische Werte vorhanden sind – die Stichproben-Standardabweichung benötigt mindestens zwei Datenpunkte.",
+          "Klicken Sie auf Berechnen. Der Rechner zeigt sofort Mittelwert, Stichproben-Standardabweichung und CV als Prozentsatz an.",
+          "Nutzen Sie die Beispielschaltflächen, um vorbereitete Datensätze zu laden und zu sehen, wie sich die Ergebnisse bei unterschiedlichen Verteilungen ändern.",
+          "Klicken Sie auf Zurücksetzen, um das Feld zu leeren und eine neue Berechnung zu starten."
+        ]
+      },
+      "faq": {
+        "heading": "Häufige Fragen zum Variationskoeffizienten",
+        "q1": "Was ist ein guter Variationskoeffizient?",
+        "q1_a": "Es gibt keinen universellen Schwellenwert; der Kontext ist entscheidend. Bei Laborassays gilt ein CV unter 5% im Allgemeinen als ausgezeichnet und unter 15% als akzeptabel. In der Finanzwelt weist ein CV unter 10% häufig auf einen relativ stabilen Vermögenswert hin. In der Fertigung hängen Zielwerte von der Toleranzspezifikation des jeweiligen Teils ab. Vergleichen Sie immer mit dem relevanten Branchenstandard für Ihre Anwendung.",
+        "q2": "Was ist der Unterschied zwischen CV und Standardabweichung?",
+        "q2_a": "Die Standardabweichung ist ein absolutes Streuungsmaß, ausgedrückt in denselben Einheiten wie die Daten. Der CV ist ein relatives Maß, ausgedrückt als Prozentsatz, das die Standardabweichung durch den Mittelwert normalisiert. Dadurch ist der CV dimensionslos und ermöglicht gültige Vergleiche zwischen Datensätzen mit unterschiedlichen Einheiten oder Skalen, zum Beispiel zwischen der Variabilität von Aktienrenditen und der Variabilität von Reaktionszeiten.",
+        "q3": "Wann sollte ich die Populations-SD statt der Stichproben-SD verwenden?",
+        "q3_a": "Verwenden Sie die Stichproben-Standardabweichung (Division durch n − 1), wenn Ihre Daten eine Stichprobe aus einer größeren Grundgesamtheit sind und Sie eine unverzerrte Schätzung der Populationsstreuung wünschen; dies gilt für die meisten wissenschaftlichen, technischen und geschäftlichen Szenarien. Verwenden Sie die Populations-Standardabweichung (Division durch n) nur, wenn Ihr Datensatz die gesamte Grundgesamtheit ohne Stichprobenziehung darstellt, zum Beispiel die Noten aller Schüler in einer einzelnen geschlossenen Klasse.",
+        "q4": "Kann der CV größer als 100% sein?",
+        "q4_a": "Ja. Ein CV über 100% zeigt an, dass die Standardabweichung größer ist als der Mittelwert, was typischerweise auf eine stark heterogene oder schiefe Verteilung hinweist. Das kann in Datensätzen mit Ausreißern, null-inflationierten Zählwerten oder Verteilungen mit schweren Rändern natürlich auftreten. Ein CV deutlich über 100% ist ein starkes Signal, zu prüfen, ob Ausreißer die Analyse verzerren.",
+        "q5": "Warum ist der CV undefiniert, wenn der Mittelwert null ist?",
+        "q5_a": "Der CV teilt die Standardabweichung durch den Mittelwert. Division durch null ist mathematisch nicht definiert. Begrifflich verliert bei einem Mittelwert von null die Vorstellung 'relativ zum Mittelwert' ihre Bedeutung. In der Praxis ist der CV keine geeignete Kennzahl, wenn Ihr Mittelwert genau null oder sehr nahe null ist; verwenden Sie stattdessen nur die Standardabweichung oder ein anderes Streuungsmaß.",
+        "q6": "Wird der CV durch Ausreißer beeinflusst?",
+        "q6_a": "Ja. Sowohl Mittelwert als auch Standardabweichung – und damit der CV – reagieren empfindlich auf Ausreißer. Ein einzelner Extremwert kann die Standardabweichung erheblich erhöhen und zugleich den Mittelwert verschieben, sodass der CV stark steigt oder fällt. Bevor Sie einen CV berichten, sollten Sie die Daten mit einem Boxplot oder dem Interquartilsabstand auf Ausreißer prüfen und angeben, ob Werte ausgeschlossen wurden und warum."
+      }
+    },
+    "cohens-d-calculator": {
+      "title": "Cohens-d-Rechner",
+      "tagline": "Berechnen Sie Cohens d, um den standardisierten Unterschied zwischen zwei Mittelwerten zu quantifizieren — inklusive gepoolter SD, Effektstärke und sofortiger Interpretationsstufe.",
+      "intro": "Geben Sie Mittelwert, Standardabweichung und Stichprobengröße für beide Gruppen ein und klicken Sie auf Berechnen, um Cohens d samt Effektstärken-Interpretation zu sehen.",
+      "formula": "Formel: pooled_sd = √[((n₁−1)s₁² + (n₂−1)s₂²) / (n₁+n₂−2)]  •  d = (M₁ − M₂) / pooled_sd",
+      "field": {
+        "group1": "Daten von Gruppe 1",
+        "group2": "Daten von Gruppe 2",
+        "mean1": "Mittelwert (M₁)",
+        "sd1": "Standardabweichung (s₁)",
+        "n1": "Stichprobengröße (n₁)",
+        "mean2": "Mittelwert (M₂)",
+        "sd2": "Standardabweichung (s₂)",
+        "n2": "Stichprobengröße (n₂)"
+      },
+      "placeholder": {
+        "number": "Zahl eingeben",
+        "sampleSize": "z. B. 30"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie für alle sechs Felder gültige Zahlen ein. Stichprobengrößen müssen ≥ 2 und Standardabweichungen müssen ≥ 0 sein.",
+        "pooledZero": "Cohens d ist nicht definiert, wenn beide Standardabweichungen 0 sind."
+      },
+      "result": {
+        "heading": "Ergebnisse",
+        "pooledSd": "Gepoolte SD",
+        "cohensD": "Cohens d",
+        "interpretation": "Effektstärke",
+        "size": {
+          "negligible": "Vernachlässigbar",
+          "small": "Klein",
+          "medium": "Mittel",
+          "large": "Groß"
+        }
+      },
+      "about": {
+        "heading": "Über den Cohens-d-Rechner",
+        "body": "Cohens d ist das am weitesten verbreitete Maß für Effektstärken beim Vergleich der Mittelwerte zweier unabhängiger Gruppen. Es wurde vom Statistiker Jacob Cohen in seinem wegweisenden Buch Statistical Power Analysis for the Behavioral Sciences aus dem Jahr 1969 eingeführt und drückt den Unterschied zwischen zwei Mittelwerten in Einheiten der gepoolten Standardabweichung aus. Das Ergebnis ist eine dimensionslose Zahl auf einer gemeinsamen Skala — unabhängig davon, ob Sie Testergebnisse, Reaktionszeiten, Blutdruckwerte oder Umsatz pro Nutzer messen.\n\nDie Formel ist einfach: d = (M₁ − M₂) / s_pooled, wobei s_pooled die Quadratwurzel des gewichteten Mittelwerts der beiden Stichprobenvarianzen ist. Diese gepoolte Standardabweichung berücksichtigt, dass die Gruppen unterschiedliche Stichprobengrößen haben können. Das Vorzeichen von d gibt die Richtung an: Ein positives d bedeutet, dass Gruppe 1 den höheren Mittelwert hat, ein negatives d, dass Gruppe 2 höher liegt.\n\nJacob Cohen schlug konventionelle Richtwerte vor, die sich inzwischen in den Sozial- und Biowissenschaften etabliert haben. Ein absoluter d-Wert unter 0,2 gilt als vernachlässigbar — die Gruppen sind so ähnlich, dass der Unterschied in den Daten praktisch unsichtbar ist. Ein d zwischen 0,2 und 0,5 ist klein, aber real; er entspricht ungefähr der Überschneidung, die man beim Vergleich der Körpergröße von 15- und 16-jährigen Jungen sieht. Ein d zwischen 0,5 und 0,8 ist mittel und vergleichbar mit dem mittleren IQ-Unterschied zwischen Büroangestellten und angelernten Arbeitern in Cohens ursprünglichen Analysen. Ein d über 0,8 ist groß und entspricht leicht erkennbaren Unterschieden, etwa beim Größenunterschied zwischen 13- und 18-jährigen Jungen.\n\nDiese Richtwerte sollten als Heuristiken und nicht als harte Regeln verstanden werden. In manchen Bereichen kann eine kleine Effektstärke enorme praktische Bedeutung haben. Ein Medikament, das die Sterblichkeit in einer Bevölkerung von Millionen auch nur geringfügig senkt, erzeugt einen sehr großen Nutzen für die öffentliche Gesundheit. Umgekehrt muss eine große Effektstärke in einem schlecht konstruierten Fragebogen nicht zwangsläufig reale Unterschiede bedeuten. Interpretieren Sie d immer zusammen mit Konfidenzintervallen, Stichprobengröße und Fachwissen.\n\nCohens d steht auch in engem Zusammenhang mit anderen Effektstärkemaßen. Hedges' g verwendet eine bias-korrigierte Version der gepoolten Standardabweichung und wird bei kleinen Stichproben bevorzugt (n < 20 pro Gruppe). Glass' Δ teilt nur durch die Standardabweichung der Kontrollgruppe und ist nützlich, wenn die Gruppen erwartungsgemäß unterschiedliche Varianzen haben. Für komplexere Designs — Korrelation, ANOVA, Regression — entsprechen die Größen Pearson's r, η² (Eta-Quadrat) und partielle η².\n\nIn der Praxis begegnet man Cohens d vor allem in Power-Analysen, Metaanalysen und Forschungsberichten. In der Power-Analyse ermöglicht die erwartete Effektstärke die Berechnung der Stichprobengröße, die nötig ist, um einen Effekt mit einer bestimmten Wahrscheinlichkeit (Power) zu entdecken. In der Metaanalyse können d-Werte mehrerer Studien gewichtet gemittelt werden, um eine gepoolte Schätzung des wahren Effekts zu erhalten. In der klinischen Forschung verlangen viele Journals neben p-Werten auch d, weil ein Ergebnis statistisch signifikant (p < 0,05) sein kann und dennoch bei sehr großen Stichproben nur eine triviale Effektstärke aufweisen kann."
+      },
+      "examples": {
+        "heading": "Cohens-d-Beispiele",
+        "intro": "Vier Szenarien aus Bildung, Medizin, Psychologie und Marketing zeigen, wie man Effektstärken interpretiert.",
+        "colInput": "Gruppen (M, SD, n)",
+        "colOutput": "Cohens d",
+        "colNote": "Interpretation",
+        "loadEducation": "Bildungsbeispiel laden",
+        "loadMedical": "Medizinbeispiel laden",
+        "loadPsych": "Psychologiebeispiel laden",
+        "items": [
+          {
+            "input": "G1: M=85, SD=10, n=30 vs G2: M=80, SD=9, n=30",
+            "output": "d ≈ 0.52",
+            "note": "Mittlere Effektstärke. Die neue Lehrmethode führt zu einem deutlich höheren Testergebnis als die Kontrollgruppe."
+          },
+          {
+            "input": "G1: M=120, SD=15, n=50 vs G2: M=130, SD=16, n=50",
+            "output": "d ≈ −0.65",
+            "note": "Mittlere Effektstärke (negativ). Die Medikamentengruppe hat einen niedrigeren Blutdruck als die Placebogruppe — ein günstiges klinisches Ergebnis."
+          },
+          {
+            "input": "G1: M=450, SD=50, n=25 vs G2: M=500, SD=55, n=25",
+            "output": "d ≈ −0.95",
+            "note": "Große Effektstärke. Koffein verkürzt die Reaktionszeit gegenüber der Gruppe ohne Koffein deutlich."
+          },
+          {
+            "input": "G1: M=75.50, SD=20, n=100 vs G2: M=70.25, SD=18, n=100",
+            "output": "d ≈ 0.28",
+            "note": "Kleine Effektstärke. Layout A erhöht den durchschnittlichen Bestellwert leicht — statistisch messbar, aber praktisch eher moderat."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Cohens-d-Rechner",
+        "steps": [
+          "Geben Sie im linken Bereich Mittelwert (M), Standardabweichung (s) und Stichprobengröße (n) für Gruppe 1 ein.",
+          "Geben Sie im rechten Bereich dieselben drei Werte für Gruppe 2 ein. Die Stichprobengröße muss mindestens 2 betragen.",
+          "Klicken Sie auf Berechnen. Der Rechner zeigt gepoolte Standardabweichung, Cohens d und eine Interpretationsstufe (vernachlässigbar / klein / mittel / groß).",
+          "Mit den Beispiel-Buttons laden Sie vorgefertigte Szenarien aus Bildung, medizinischer Forschung und Psychologie.",
+          "Klicken Sie auf Zurücksetzen, um alle Felder zu leeren und eine neue Berechnung zu starten."
+        ]
+      },
+      "faq": {
+        "heading": "Cohens-d-FAQ",
+        "q1": "Was ist ein guter Cohens-d-Wert?",
+        "q1_a": "Cohens konventionelle Richtwerte sind d = 0,2 (klein), 0,5 (mittel) und 0,8 (groß). Was „gut“ ist, hängt jedoch vom Kontext ab. In der kognitiven Psychologie werden Effekte von d = 0,3 oft bereits als bedeutsam angesehen. In der Medizin kann ein kleiner d bei einer lebensrettenden Intervention äußerst wichtig sein. Interpretieren Sie d stets im Kontext der typischen Effektstärken Ihres Fachgebiets und der praktischen Folgen des Befunds.",
+        "q2": "Was ist die gepoolte Standardabweichung?",
+        "q2_a": "Die gepoolte Standardabweichung fasst die Varianz beider Gruppen zu einer einzigen Schätzung der Streuung innerhalb der Gruppen zusammen, gewichtet nach den Freiheitsgraden jeder Gruppe (n − 1). Sie ist der Nenner in der Cohens-d-Formel. Die Verwendung der gepoolten SD statt nur der SD einer Gruppe verhindert Verzerrungen, wenn die Gruppen unterschiedliche Stichprobengrößen oder moderat unterschiedliche Varianzen haben.",
+        "q3": "Wann sollte ich Hedges' g statt Cohens d verwenden?",
+        "q3_a": "Hedges' g wendet eine Klein-Stichproben-Biaskorrektur auf Cohens d an. Der Unterschied ist bei n > 20 pro Gruppe vernachlässigbar, kann bei kleineren Stichproben aber relevant sein. Wenn eine der Gruppen weniger als 20 Beobachtungen hat, wird die Berichterstattung von Hedges' g empfohlen. Der Korrekturfaktor ist ungefähr (1 − 3 / (4(n₁+n₂) − 9)), den Sie mit dem von diesem Rechner berechneten Cohens-d-Wert multiplizieren können.",
+        "q4": "Setzt Cohens d gleiche Varianzen voraus?",
+        "q4_a": "Die Standardformel der gepoolten SD setzt implizit voraus, dass die beiden Populationsvarianzen ungefähr gleich sind (Varianzhomogenität). Wenn die Varianzen stark unterschiedlich sind, sollten Sie Glass' Δ in Betracht ziehen, das nur durch die Standardabweichung der Kontrollgruppe teilt, oder separate Effektstärken für jede Vergleichspaarung berichten. Ein Levene-Test oder ein einfacher visueller Vergleich der beiden SDs hilft zu beurteilen, ob diese Annahme plausibel ist.",
+        "q5": "Kann Cohens d negativ sein?",
+        "q5_a": "Ja. Ein negatives d bedeutet einfach, dass Gruppe 2 einen höheren Mittelwert hat als Gruppe 1. Das Vorzeichen gibt die Richtung des Unterschieds an, nicht seine Größe. In vielen Studiendesigns ist das Vorzeichen willkürlich und hängt davon ab, wie Sie Gruppe 1 definiert haben. Für die Interpretation der Effektstärke ist der Absolutwert von d entscheidend; das Vorzeichen zeigt nur, welche Gruppe höher lag.",
+        "q6": "Wie hängt Effektstärke mit statistischer Signifikanz zusammen?",
+        "q6_a": "Statistische Signifikanz (p-Wert) sagt Ihnen, ob ein Effekt wahrscheinlich nicht zufällig entstanden ist. Die Effektstärke (Cohens d) sagt Ihnen, wie groß dieser Effekt ist. Ein Ergebnis kann hochsignifikant sein (sehr kleines p), aber eine triviale Effektstärke haben, wenn die Stichprobe enorm groß ist. Umgekehrt kann eine große Effektstärke in einer kleinen Stichprobe nicht signifikant werden. Die gemeinsame Berichterstattung von p-Wert und Cohens d liefert ein vollständiges Bild von Stärke und Zuverlässigkeit des Befunds."
+      }
+    },
+    "coin-flip-probability-calculator": {
+      "title": "Münzwurf-Wahrscheinlichkeitsrechner - Binomialverteilung",
+      "tagline": "Berechnen Sie die exakte Wahrscheinlichkeit jedes Münzwurfergebnisses mit der Binomialverteilung — ermitteln Sie die Chance auf genau, mindestens oder höchstens N Köpfe.",
+      "intro": "Geben Sie die Anzahl der Würfe, die Anzahl der interessierenden Köpfe und den Berechnungstyp ein, um sofort eine Wahrscheinlichkeit zu erhalten.",
+      "formula": "Formel: P(X=k) = C(n,k) × (0.5)^n  •  mindestens: Σ P(X=i) für i=k..n  •  höchstens: Σ P(X=i) für i=0..k",
+      "field": {
+        "flips": "Anzahl der Würfe",
+        "heads": "Anzahl der Köpfe",
+        "calcType": "Berechnungstyp"
+      },
+      "placeholder": {
+        "flips": "z. B. 10",
+        "heads": "z. B. 5"
+      },
+      "type": {
+        "exactly": "Genau",
+        "exactly_desc": "Berechnet die Wahrscheinlichkeit, genau die angegebene Anzahl an Köpfen zu erhalten.",
+        "atLeast": "Mindestens",
+        "atLeast_desc": "Berechnet die Wahrscheinlichkeit, die angegebene Anzahl an Köpfen oder mehr zu erhalten.",
+        "atMost": "Höchstens",
+        "atMost_desc": "Berechnet die Wahrscheinlichkeit, die angegebene Anzahl an Köpfen oder weniger zu erhalten."
+      },
+      "button": {
+        "calculate": "Wahrscheinlichkeit berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie eine gültige Anzahl an Würfen (1–10000) und eine Anzahl an Köpfen zwischen 0 und der Anzahl der Würfe ein."
+      },
+      "result": {
+        "heading": "Wahrscheinlichkeit",
+        "decimal": "Dezimal"
+      },
+      "about": {
+        "heading": "Über den Münzwurf-Wahrscheinlichkeitsrechner",
+        "body": "Eine faire Münze hat genau zwei mögliche Ergebnisse — Kopf und Zahl — und jedes hat die Wahrscheinlichkeit 0.5. Wenn Sie dieselbe Münze mehrfach werfen, sind die Ergebnisse der einzelnen Würfe unabhängig: Die Münze hat kein Gedächtnis, also kann das Ergebnis eines Wurfs den nächsten nicht beeinflussen. Diese Kombination aus fester Wahrscheinlichkeit und Unabhängigkeit ist das definierende Merkmal eines Binomialversuchs, und die Binomialverteilung ist daher das exakte mathematische Modell für Münzwurf-Folgen.\n\nDie Wahrscheinlichkeit, in n Würfen genau k Köpfe zu erhalten, ergibt sich aus der Binomialverteilung: P(X = k) = C(n, k) × (0.5)^n, wobei C(n, k) der Binomialkoeffizient n! / (k! × (n − k)!) ist. Der Faktor C(n, k) zählt die Anzahl der unterschiedlichen Folgen von n Würfen, die genau k Köpfe enthalten. Der Faktor (0.5)^n ist die Wahrscheinlichkeit einer konkreten Folge der Länge n. Multipliziert man beides, erhält man die Gesamtwahrscheinlichkeit für k Köpfe über alle möglichen Reihenfolgen.\n\nFür kumulative Fragen — „mindestens k Köpfe“ oder „höchstens k Köpfe“ — summiert der Rechner die Einzelwahrscheinlichkeiten über den relevanten Bereich. „Mindestens k“ bedeutet die Summe von i = k bis i = n; „höchstens k“ bedeutet die Summe von i = 0 bis i = k. Bei großen n können diese Summen Tausende von Termen enthalten, weshalb ein Rechentool viel praktischer ist als Handrechnung.\n\nEinige Ergebnisse sind sofort intuitiv. Bei 10 Würfen einer fairen Münze beträgt die Wahrscheinlichkeit für genau 5 Köpfe etwa 24.61%. Mindestens 5 Köpfe haben wegen der Symmetrie genau 50% Wahrscheinlichkeit. 10 Köpfe in Folge haben die Wahrscheinlichkeit (0.5)^10 ≈ 0.098%, was überraschend klingt, bis man erkennt, dass dies nur eine von 1,024 gleich wahrscheinlichen Folgen ist. Keine einzelne Folge ist wahrscheinlicher als eine andere — nur Mengen von Folgen mit gemeinsamen Eigenschaften (z. B. genau 5 Köpfe) haben unterschiedliche Summen.\n\nMünzwurf-Wahrscheinlichkeiten spielen auch außerhalb von Glücksspiel viele praktische Rollen. In klinischen Studien ist ein Zwei-Arm-Randomisierungsschema mit 50/50-Zuteilung mathematisch identisch mit dem Werfen einer fairen Münze. In der Kryptographie sollten Bitfolgen eines Hardware-Zufallszahlengenerators eine Verteilung zeigen, die von einer fairen Münze nicht zu unterscheiden ist. In der Qualitätskontrolle kann der Anteil fehlerhafter Teile einer Produktionslinie als Binomialanteil modelliert werden, und die Frage, ob die Fehlerquote vom Zielwert abweicht, verwendet genau dieselben Wahrscheinlichkeitsrechnungen. In der Sportanalyse folgen Siegesserien eines ausgeglichenen Teams einem Münzwurf-Modell, und das Verständnis der Binomialverteilung hilft, echte Stärke von Zufallsschwankungen zu trennen.\n\nDieser Rechner verwendet intern Logarithmen, um große n ohne Überlauf zu handhaben, sodass Wahrscheinlichkeiten für bis zu 10,000 Würfe genau berechnet werden können. Für sehr große n und mittlere k kann die Binomialverteilung auch durch eine Normalverteilung mit Mittelwert np und Standardabweichung √(np(1−p)) approximiert werden, doch der Rechner nutzt für maximale Genauigkeit durchgehend die exakte Formel."
+      },
+      "examples": {
+        "heading": "Beispiele für Münzwurf-Wahrscheinlichkeiten",
+        "intro": "Vier durchgerechnete Beispiele zu typischen Szenarien von Unterrichtsaufgaben bis Glücksspiel und Qualitätskontrolle.",
+        "colInput": "Würfe / Köpfe / Typ",
+        "colOutput": "Wahrscheinlichkeit",
+        "colNote": "Erklärung",
+        "loadFair": "Faires-Münze-Beispiel laden",
+        "loadGambling": "Glücksspiel-Beispiel laden",
+        "loadConservative": "Konservatives Beispiel laden",
+        "items": [
+          {
+            "input": "10 Würfe, genau 5 Köpfe",
+            "output": "≈ 24.61%",
+            "note": "Das wahrscheinlichste einzelne Ergebnis bei 10 Würfen einer fairen Münze. Verwendet P(X=5) = C(10,5) × (0.5)^10."
+          },
+          {
+            "input": "10 Würfe, mindestens 7 Köpfe",
+            "output": "≈ 17.19%",
+            "note": "Summiert P(X=7) + P(X=8) + P(X=9) + P(X=10). Relevant für Wetten auf eine Kopf-Mehrheit."
+          },
+          {
+            "input": "8 Würfe, höchstens 3 Köpfe",
+            "output": "≈ 36.33%",
+            "note": "Summiert P(X=0) bis P(X=3). Nützlich für konservative Schätzungen und untere Randanalysen."
+          },
+          {
+            "input": "100 Würfe, genau 50 Köpfe",
+            "output": "≈ 7.96%",
+            "note": "Trotzdem das wahrscheinlichste einzelne Ergebnis, aber wegen der vielen möglichen Ergebnisse unter 8%."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Münzwurf-Wahrscheinlichkeitsrechner",
+        "steps": [
+          "Geben Sie die Gesamtzahl der Münzwürfe im Feld Anzahl der Würfe ein (1 bis 10,000).",
+          "Geben Sie die Anzahl der interessierenden Köpfe ein — sie muss zwischen 0 und der Anzahl der Würfe liegen.",
+          "Wählen Sie den Berechnungstyp: Genau (Punktwahrscheinlichkeit), Mindestens (obere kumulative) oder Höchstens (untere kumulative).",
+          "Klicken Sie auf Wahrscheinlichkeit berechnen. Das Ergebnis wird als Prozentwert und als Dezimalzahl angezeigt.",
+          "Mit den Beispiel-Buttons laden Sie häufige Szenarien sofort und können Ihr Verständnis der Ergebnisse prüfen."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zur Münzwurf-Wahrscheinlichkeit",
+        "q1": "Warum liegt die Wahrscheinlichkeit für genau 5 Köpfe in 10 Würfen nur bei etwa 24.6%?",
+        "q1_a": "Obwohl 5 von 10 das wahrscheinlichste einzelne Ergebnis ist, gibt es 11 mögliche Ergebnisse (0 bis 10 Köpfe), und ihre Wahrscheinlichkeiten ergeben zusammen 100%. Die restlichen 75.4% verteilen sich auf die anderen 10 Ergebnisse. Auch wenn einzelne Randereignisse unwahrscheinlich sind, ergeben sie zusammen einen erheblichen Anteil der Gesamtwahrscheinlichkeit.",
+        "q2": "Spielt die Reihenfolge von Kopf und Zahl eine Rolle?",
+        "q2_a": "Nein. Der Rechner ermittelt die Wahrscheinlichkeit, k Köpfe in beliebiger Reihenfolge zu erhalten. Der Binomialkoeffizient C(n,k) berücksichtigt alle möglichen Anordnungen automatisch. Wenn Sie die Wahrscheinlichkeit einer bestimmten Folge wissen wollten — etwa genau HTHTHTHTHT — wäre das einfach (0.5)^10 ≈ 0.098% und dieser Rechner wäre nicht nötig.",
+        "q3": "Wie viele Köpfe erwarte ich bei n Würfen?",
+        "q3_a": "Der Erwartungswert (Mittelwert) einer Binomialverteilung mit n Versuchen und Wahrscheinlichkeit p ist E[X] = n × p. Für eine faire Münze gilt p = 0.5, also erwarten Sie im Mittel n/2 Köpfe. Bei 10 Würfen erwarten Sie 5 Köpfe; bei 100 Würfen 50 Köpfe. Der Erwartungswert ist keine Garantie, sondern der Langzeitdurchschnitt über viele Wiederholungen des Experiments.",
+        "q4": "Wie berechne ich die Wahrscheinlichkeit, bei n Würfen mindestens einmal Kopf zu bekommen?",
+        "q4_a": "Verwenden Sie die Gegenwahrscheinlichkeit: P(mindestens 1 Kopf) = 1 − P(0 Köpfe) = 1 − (0.5)^n. Für 5 Würfe ist das 1 − (0.5)^5 = 1 − 0.03125 = 96.875%. Sie können das im Modus Mindestens mit Köpfe = 1 überprüfen.",
+        "q5": "Macht eine lange Serie von Zahl den nächsten Wurf wahrscheinlicher für Kopf?",
+        "q5_a": "Nein. Das ist der Irrtum des Spielers. Da jeder Münzwurf unabhängig ist, bleibt die Wahrscheinlichkeit für Kopf beim nächsten Wurf immer genau 0.5, unabhängig von der Vorgeschichte. Die Münze hat kein Gedächtnis. Lange Serien sind zwar vor ihrem Beginn unwahrscheinlich, aber wenn man mitten in einer steckt, sind die restlichen Würfe genauso zufällig wie jede andere Folge.",
+        "q6": "Kann dieser Rechner auch gezinkte Münzen behandeln?",
+        "q6_a": "Dieser Rechner geht von einer fairen Münze mit p = 0.5 aus. Für eine gezinkte Münze mit Kopf-Wahrscheinlichkeit p lautet die Formel P(X=k) = C(n,k) × p^k × (1−p)^(n−k). Für gezinkte Münzen müssten Sie den passenden p-Wert einsetzen. Die kumulativen Summen für Mindestens und Höchstens funktionieren genauso — nur mit der gezinkten Wahrscheinlichkeit statt 0.5."
+      }
     }
   }
 }
