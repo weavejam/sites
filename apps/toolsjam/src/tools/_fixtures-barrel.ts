@@ -81,6 +81,11 @@ import { fixtures as f_sampling_distribution_of_the_sample_proportion_calculator
 import { fixtures as f_sampling_error_calculator } from "@/tools/sampling-error-calculator.fixtures";
 import { fixtures as f_smp_x_distribution_calculator } from "@/tools/smp-x-distribution-calculator.fixtures";
 import { fixtures as f_spearmans_correlation_calculator } from "@/tools/spearmans-correlation-calculator.fixtures";
+import { fixtures as f_specific_gas_constant_calculator } from "@/tools/specific-gas-constant-calculator.fixtures";
+import { fixtures as f_specific_gravity_calculator } from "@/tools/specific-gravity-calculator.fixtures";
+import { fixtures as f_specific_heat_calculator } from "@/tools/specific-heat-calculator.fixtures";
+import { fixtures as f_specific_impulse_calculator } from "@/tools/specific-impulse-calculator.fixtures";
+import { fixtures as f_speed_of_light_calculator } from "@/tools/speed-of-light-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
 import { fixtures as f_standard_deviation_index_calculator } from "@/tools/standard-deviation-index-calculator.fixtures";
 import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/tools/standard-deviation-of-sample-mean-calculator.fixtures";
@@ -215,6 +220,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "sampling-error-calculator": f_sampling_error_calculator,
   "smp-x-distribution-calculator": f_smp_x_distribution_calculator,
   "spearmans-correlation-calculator": f_spearmans_correlation_calculator,
+  "specific-gas-constant-calculator": f_specific_gas_constant_calculator,
+  "specific-gravity-calculator": f_specific_gravity_calculator,
+  "specific-heat-calculator": f_specific_heat_calculator,
+  "specific-impulse-calculator": f_specific_impulse_calculator,
+  "speed-of-light-calculator": f_speed_of_light_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
   "standard-deviation-index-calculator": f_standard_deviation_index_calculator,
   "standard-deviation-of-sample-mean-calculator": f_standard_deviation_of_sample_mean_calculator,
