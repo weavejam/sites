@@ -184,12 +184,22 @@ function createWorktree(wid: string, branch: string): string {
     const jr = sh("cmd", ["/c", "mklink", "/J", wtCache, CACHE_ROOT], MAIN_REPO, wid);
     if (jr.code !== 0) log(wid, `WARN junction create failed (cache will not be shared): ${jr.out.slice(-200)}`);
   }
+  // Install deps so tsx/translate-tool can run inside the worktree
+  const inst = sh("pnpm", ["install", "--frozen-lockfile", "--prefer-offline"], wt, wid, 15 * 60 * 1000);
+  if (inst.code !== 0) throw new Error(`pnpm install in worktree failed: ${inst.out.slice(-300)}`);
   return wt;
 }
 
 function destroyWorktree(wt: string, wid: string) {
+  // Remove the cache junction first; otherwise rm -rf would walk into the
+  // main repo's cache. `rmdir` without /S removes a junction without
+  // recursing into its target — this is the right Windows semantics.
+  const wtCache = path.join(wt, "apps", "toolsjam", ".port-page-cache");
+  if (existsSync(wtCache)) {
+    sh("cmd", ["/c", "rmdir", wtCache], MAIN_REPO, wid);
+  }
   sh("git", ["worktree", "remove", "--force", wt], MAIN_REPO, wid);
-  try { rmSync(wt, { recursive: true, force: true }); } catch {}
+  try { rmSync(wt, { recursive: true, force: true, maxRetries: 3, retryDelay: 500 }); } catch {}
   sh("git", ["worktree", "prune"], MAIN_REPO, wid);
 }
 
@@ -240,8 +250,11 @@ async function runWorker(wid: string, queue: Queue, batchSize: number, maxBatche
           continue;
         }
         sh("git", ["add", "messages/", "src/data/tools/"], wtApp, wid);
-        const msg = `i18n(toolsjam): translate ${batch.length} tool(s) — ${batch.slice(0, 3).join(", ")}${batch.length > 3 ? ", …" : ""}\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`;
-        const ci = sh("git", ["commit", "-m", msg], wt, wid);
+        const msg = `i18n(toolsjam): translate ${batch.length} tool(s) — ${batch.slice(0, 3).join(", ")}${batch.length > 3 ? ", …" : ""}\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>\n`;
+        const msgFile = path.join(wt, ".sweeper-commit-msg");
+        require("node:fs").writeFileSync(msgFile, msg, "utf8");
+        const ci = sh("git", ["commit", "-F", msgFile], wt, wid);
+        try { require("node:fs").rmSync(msgFile, { force: true }); } catch {}
         if (ci.code !== 0) { log(wid, "git commit failed"); fail += batch.length; releasePushLock(); continue; }
         const push = sh("git", ["push", "origin", `HEAD:main`], wt, wid);
         if (push.code !== 0) { log(wid, "git push failed (will recover next pass)"); fail += batch.length; releasePushLock(); continue; }
