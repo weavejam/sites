@@ -11419,6 +11419,495 @@
         "q6": "What is the CO₂ equivalent for water heating?",
         "q6_a": "CO₂ emissions depend on the energy source and grid carbon intensity. This calculator uses 0.233 kg CO₂/kWh — the UK average grid intensity. In France (mostly nuclear), emissions are about 0.05 kg/kWh; in Australia (coal-heavy), about 0.67 kg/kWh. To reduce water heating emissions: install solar thermal panels (eliminates 60–80% of heating energy), use a heat pump water heater, insulate storage tanks and pipes, and choose renewable electricity tariffs."
       }
+    },
+    "thermal-energy-calculator": {
+      "title": "Thermal Energy Calculator",
+      "tagline": "Calculate heat energy, specific heat capacity, and phase change energy for any material.",
+      "intro": "Determine the thermal energy required to heat substances, calculate specific heat capacities, and find energy needed for phase changes like melting and boiling.",
+      "field": {
+        "mass": "Mass (kg)",
+        "specificHeat": "Specific Heat Capacity (J/kg°C)",
+        "initialTemp": "Initial Temperature (°C)",
+        "finalTemp": "Final Temperature (°C)",
+        "latentHeat": "Latent Heat (J/kg) (optional)",
+        "power": "Power (W) (optional)",
+        "time": "Time (seconds) (optional)"
+      },
+      "placeholder": {
+        "mass": "e.g., 2.5",
+        "specificHeat": "e.g., 4186",
+        "temp": "e.g., 20",
+        "optional": "optional"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Results",
+        "sensibleHeat": "Sensible Heat (Q = mcΔT)",
+        "phaseHeat": "Phase Change Heat (Q = mL)",
+        "totalHeat": "Total Thermal Energy",
+        "tempChange": "Temperature Change",
+        "heatingTime": "Heating Time",
+        "electricalEnergy": "Electrical Energy"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for mass, specific heat, and both temperatures."
+      },
+      "formula": "Q = m × c × ΔT (sensible heat) | Q_L = m × L (phase change) | t = Q / P (heating time)",
+      "about": {
+        "heading": "About the Thermal Energy Calculator",
+        "body": "Thermal energy is the total kinetic energy of all particles within a substance due to their random thermal motion. It is directly related to temperature but also depends on the mass and specific heat capacity of the material. When a substance is heated, the average kinetic energy of its molecules increases, causing them to move faster and vibrate more vigorously. The fundamental equation governing this relationship is Q = mcΔT, where Q is heat energy in joules, m is mass in kilograms, c is the specific heat capacity in J/(kg·°C), and ΔT is the temperature change in degrees Celsius.\n\nSpecific heat capacity is one of the most important thermal properties of a material. Water has an unusually high specific heat capacity of 4186 J/(kg·°C), which is why it is such an effective coolant and why it moderates climate near large bodies of water. By contrast, metals like aluminum (900 J/(kg·°C)) and iron (450 J/(kg·°C)) heat up and cool down much more quickly. This property determines how much energy must be supplied to achieve a desired temperature change for a given mass of material.\n\nPhase changes require a different type of thermal energy calculation. When a substance melts, boils, freezes, or condenses, its temperature remains constant even as it absorbs or releases large amounts of energy. This energy, called latent heat, is calculated as Q_L = m × L, where L is the specific latent heat in J/kg. For water, the latent heat of fusion (melting/freezing) is 334,000 J/kg and the latent heat of vaporization (boiling/condensing) is 2,260,000 J/kg — values far larger than the energy needed for typical temperature changes.\n\nIn practice, thermal energy calculations are essential across many engineering domains. In building design, they determine heating and cooling loads. In food processing, they set cooking and pasteurization times. In materials science, they guide heat treatment of metals. Manufacturing processes such as casting, welding, and sintering all require careful thermal energy budgets to achieve the correct microstructure and dimensional accuracy.\n\nThis calculator also accepts power and time inputs to compute heating time and electrical energy consumption. If you enter heater power (in watts) along with the total heat required, the calculator divides to give the minimum heating time: t = Q / P. Similarly, if both power and time are provided, it calculates the total electrical energy input, which may exceed the theoretical heat requirement if system efficiency is below 100%. Understanding these relationships helps in sizing heaters, designing thermal systems, and estimating energy costs for industrial processes."
+      },
+      "examples": {
+        "heading": "Thermal Energy Examples",
+        "intro": "Realistic heating scenarios illustrating sensible heat, phase changes, and heater power calculations.",
+        "colInput": "Scenario / Inputs",
+        "colOutput": "Thermal Energy",
+        "colNote": "Notes",
+        "items": [
+          {
+            "input": "1 kg water, c=4186, 25°C→100°C, latent heat=2,260,000 J/kg, P=2000W",
+            "output": "Sensible: 313,950 J | Phase: 2,260,000 J | Total: 2,573,950 J",
+            "note": "Boiling 1 kg from room temperature includes both heating and vaporization energy."
+          },
+          {
+            "input": "2 kg aluminum, c=900, 20°C→150°C, P=1500W",
+            "output": "Sensible: 234,000 J | Heating time ≈ 156 s",
+            "note": "Aluminum heats quickly due to low specific heat. No phase change needed here."
+          },
+          {
+            "input": "0.5 kg ice, c=2100, 0°C→0°C, latent heat=334,000 J/kg",
+            "output": "Phase change: 167,000 J | Temperature unchanged",
+            "note": "All energy goes into melting the ice; temperature stays at 0°C throughout."
+          },
+          {
+            "input": "1.5 kg cooking oil, c=2000, 20°C→180°C, P=3000W",
+            "output": "Sensible: 480,000 J | Heating time ≈ 160 s",
+            "note": "Typical deep-frying scenario. Oil has lower specific heat than water."
+          }
+        ],
+        "loadBoilingWater": "Boiling Water",
+        "loadHeatingAluminum": "Heating Aluminum",
+        "loadMeltingIce": "Melting Ice"
+      },
+      "howto": {
+        "heading": "How to Use the Thermal Energy Calculator",
+        "steps": [
+          "Enter the mass of the substance in kilograms. For liquids, use density × volume to convert: 1 liter of water = 1 kg.",
+          "Enter the specific heat capacity in J/(kg·°C). Common values: water = 4186, aluminum = 900, iron = 450, air ≈ 1005.",
+          "Enter the initial and final temperatures in °C. The calculator uses |ΔT| for the sensible heat formula, so order does not affect the energy magnitude.",
+          "Optionally enter latent heat in J/kg if a phase change (melting, boiling, freezing) occurs at or between the two temperatures. Water melting: 334,000; water boiling: 2,260,000.",
+          "Optionally enter heater power in watts and/or elapsed time in seconds to compute minimum heating time and total electrical energy input. Click Calculate to see all results."
+        ]
+      },
+      "faq": {
+        "heading": "Thermal Energy FAQ",
+        "q1": "What is the formula for thermal energy?",
+        "q1_a": "The primary formula is Q = m × c × ΔT, where Q is heat energy in joules, m is mass in kg, c is specific heat capacity in J/(kg·°C), and ΔT is temperature change. For phase changes (melting, boiling), an additional term Q_L = m × L is added, where L is the latent heat in J/kg. Total energy = Q_sensible + Q_latent.",
+        "q2": "How much energy is needed to heat 1 kg of water from 20°C to 100°C?",
+        "q2_a": "Using Q = m × c × ΔT: Q = 1 kg × 4186 J/(kg·°C) × 80°C = 334,880 J ≈ 335 kJ. This is for heating only; boiling the water requires an additional 2,260,000 J for the phase change, giving a total of about 2.595 MJ to convert 1 kg of room-temperature water to steam.",
+        "q3": "What is specific heat capacity and why does it vary between materials?",
+        "q3_a": "Specific heat capacity (c) is the energy required to raise 1 kg of a substance by 1°C. It varies because different materials have different atomic masses and bonding structures. Lighter atoms and weaker bonds generally mean lower specific heat. Water's unusually high value (4186 J/(kg·°C)) arises from extensive hydrogen bonding between molecules, making it an excellent thermal buffer and coolant.",
+        "q4": "What is latent heat and when should I include it?",
+        "q4_a": "Latent heat is the energy absorbed or released during a phase change (solid↔liquid or liquid↔gas) at constant temperature. Include it when your process crosses a phase boundary — for example, melting ice at 0°C requires 334,000 J/kg before the temperature can rise above 0°C. Ignoring latent heat leads to significant underestimates of total energy requirements.",
+        "q5": "How do I calculate heating time from power?",
+        "q5_a": "Heating time (seconds) = Total heat energy (J) ÷ Heater power (W). For example, if you need 234,000 J and your heater is rated at 1500 W, the minimum time is 234,000 ÷ 1500 = 156 seconds. Real heating time will be longer if the heater efficiency is less than 100% or if heat is lost to the surroundings.",
+        "q6": "Why does the calculator show both sensible heat and total heat separately?",
+        "q6_a": "Sensible heat (Q = mcΔT) is the energy that changes the temperature. Phase change heat (Q = mL) is the energy needed to change the state at constant temperature. Displaying them separately helps you understand the energy budget: for boiling water, the phase change component (2.26 MJ/kg) dwarfs the sensible heat (~335 kJ/kg to heat from 20°C to 100°C), which is crucial for sizing industrial steam generators and kettles."
+      }
+    },
+    "thermal-equilibrium-calculator": {
+      "title": "Thermal Equilibrium Calculator",
+      "tagline": "Calculate equilibrium temperature and heat transfer between two objects.",
+      "intro": "Model thermal interactions between objects with different temperatures, masses, and heat capacities. Determine final equilibrium temperature and heat transfer quantities.",
+      "field": {
+        "object1": "Object 1",
+        "object2": "Object 2",
+        "temp1": "Object 1 Temperature (°C)",
+        "mass1": "Object 1 Mass (kg)",
+        "specificHeat1": "Object 1 Specific Heat (J/kg·K)",
+        "temp2": "Object 2 Temperature (°C)",
+        "mass2": "Object 2 Mass (kg)",
+        "specificHeat2": "Object 2 Specific Heat (J/kg·K)",
+        "thermalConductivity": "Thermal Conductivity (W/m·K) (optional)",
+        "contactArea": "Contact Area (m²) (optional)",
+        "contactLength": "Contact Length (m) (optional)",
+        "time": "Time (seconds) (optional)"
+      },
+      "placeholder": {
+        "temp": "e.g., 80",
+        "mass": "e.g., 1.0",
+        "specificHeat": "e.g., 4200",
+        "optional": "optional"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Results",
+        "equilibriumTemp": "Equilibrium Temperature",
+        "heatTransferred": "Heat Transferred",
+        "conductionHeat": "Conduction Heat Flow"
+      },
+      "error": {
+        "invalid": "Please enter valid values for all required fields (temperatures, masses, and specific heats must be positive numbers)."
+      },
+      "formula": "T_eq = (m₁c₁T₁ + m₂c₂T₂) / (m₁c₁ + m₂c₂) | Q = k × A × ΔT × t / L (conduction)",
+      "about": {
+        "heading": "About the Thermal Equilibrium Calculator",
+        "body": "Thermal equilibrium is the state reached when two or more objects in thermal contact achieve the same temperature and there is no net flow of heat between them. The zeroth law of thermodynamics states that if two systems are each in thermal equilibrium with a third system, they are in thermal equilibrium with each other. This fundamental principle underpins all temperature measurement and forms the basis for the concept of temperature itself.\n\nThe equilibrium temperature for a closed system of two objects is found by applying conservation of energy: the heat lost by the hotter object equals the heat gained by the cooler object. For two objects with masses m₁, m₂, specific heat capacities c₁, c₂, and initial temperatures T₁, T₂ (where T₁ > T₂), the equilibrium temperature is T_eq = (m₁c₁T₁ + m₂c₂T₂) / (m₁c₁ + m₂c₂). This is a weighted average of the two initial temperatures, weighted by each object's thermal mass (mc).\n\nThe rate at which equilibrium is approached depends on the nature of the heat transfer between the objects. If direct contact conduction dominates, Fourier's law gives Q = k × A × ΔT × t, where k is thermal conductivity, A is contact area, ΔT is the current temperature difference, and t is time. In practice, the temperature difference decreases exponentially toward zero as equilibrium is approached. Convection and radiation also contribute when fluids or gaps are involved.\n\nThermal equilibrium calculations appear in many practical contexts. When hot food is placed in a cold container, the equilibrium temperature determines how much the food cools and how much the container warms — essential for food safety and storage design. In metallurgy, quenching a hot metal piece in water uses the same principle: the water temperature rise predicts how much heat the metal has shed. In building physics, understanding equilibrium between indoor air and walls determines comfort and condensation risk.\n\nThe calculator also includes an optional conduction heat flow calculation using Fourier's law. This is useful when you want to estimate how quickly heat flows between two objects in contact over a given time, such as in heat exchanger design, thermal pad selection for electronics, or assessment of insulation performance. Entering thermal conductivity, contact area, and elapsed time gives you the total conductive heat transferred during that period, allowing you to check whether the system has approached equilibrium or significant thermal resistance remains."
+      },
+      "examples": {
+        "heading": "Thermal Equilibrium Examples",
+        "intro": "Illustrative scenarios showing equilibrium temperature calculations for common thermal mixing problems.",
+        "colInput": "Objects / Properties",
+        "colOutput": "Equilibrium Temperature",
+        "colNote": "Notes",
+        "items": [
+          {
+            "input": "Hot water: 90°C, 1.0 kg, c=4200 J/kg·K + Metal container: 20°C, 0.5 kg, c=900 J/kg·K",
+            "output": "T_eq ≈ 83.2°C | Heat transferred ≈ 28,560 J",
+            "note": "Water dominates due to high thermal mass (m×c = 4200 vs 450). Final temperature close to initial water temperature."
+          },
+          {
+            "input": "Steel block: 500°C, 10 kg, c=450 J/kg·K + Water bath: 25°C, 2.0 kg, c=800 J/kg·K",
+            "output": "T_eq ≈ 375.4°C | Heat transferred ≈ 560,700 J",
+            "note": "Large steel mass (thermal mass 4500) dominates the small water bath (thermal mass 1600). High ΔT drives significant heat transfer."
+          },
+          {
+            "input": "Warm liquid: 80°C, 0.5 kg, c=4200 J/kg·K + Cold container: 15°C, 1.0 kg, c=4200 J/kg·K",
+            "output": "T_eq ≈ 36.7°C | Heat transferred ≈ 90,720 J",
+            "note": "Same specific heat simplifies to a mass-weighted average: (0.5×80 + 1.0×15)/(0.5+1.0) = 36.7°C."
+          },
+          {
+            "input": "Two equal masses: 60°C water (1 kg, c=4186) + 20°C water (1 kg, c=4186)",
+            "output": "T_eq = 40°C | Heat transferred = 83,720 J",
+            "note": "Equal masses of same material always reach the arithmetic average. Q = 1×4186×(60-40) = 83,720 J transferred from the hot object to the cold one."
+          }
+        ],
+        "loadHotWater": "Hot Water Cooling",
+        "loadMetalHeating": "Metal Quenching"
+      },
+      "howto": {
+        "heading": "How to Use the Thermal Equilibrium Calculator",
+        "steps": [
+          "Enter temperature, mass, and specific heat capacity for Object 1 (the hotter object, but order does not affect the result).",
+          "Enter temperature, mass, and specific heat capacity for Object 2. Common specific heats: water = 4186, aluminum = 900, steel = 450, copper = 385 J/(kg·K).",
+          "Optionally enter thermal conductivity (W/m·K), contact area (m²), and time (s) to also compute the conductive heat flow using Fourier's law.",
+          "Click Calculate to see the equilibrium temperature and total heat transferred from the hotter object.",
+          "Use the quick-load buttons below the table to populate the fields with pre-built scenarios and experiment with different masses and specific heats."
+        ]
+      },
+      "faq": {
+        "heading": "Thermal Equilibrium FAQ",
+        "q1": "What is thermal equilibrium?",
+        "q1_a": "Thermal equilibrium is reached when two objects in thermal contact have the same temperature and no net heat flows between them. The zeroth law of thermodynamics states this is a transitive property: if A is in equilibrium with B, and B with C, then A is in equilibrium with C. This principle makes temperature a well-defined, measurable physical quantity.",
+        "q2": "How is equilibrium temperature calculated?",
+        "q2_a": "For two objects with no heat loss to surroundings, heat conservation gives T_eq = (m₁c₁T₁ + m₂c₂T₂) / (m₁c₁ + m₂c₂). The thermal mass (m×c) acts as a weighting factor: an object with higher thermal mass pulls the final temperature closer to its initial temperature. For equal masses of the same material, the result is simply the arithmetic average of the two initial temperatures.",
+        "q3": "Why does the hotter object not always dominate the final temperature?",
+        "q3_a": "The equilibrium temperature depends on thermal mass (m×c), not just temperature. A large, cool object with high specific heat can absorb a great deal of energy with minimal temperature rise. For example, a 10 kg steel block at 500°C mixed with 2 kg of water at 25°C will reach only about 227°C, because water's thermal mass (2 × 4186 = 8372) is comparable to steel's (10 × 450 = 4500).",
+        "q4": "What is the difference between equilibrium temperature and heat transferred?",
+        "q4_a": "Equilibrium temperature is the final common temperature of both objects. Heat transferred is the energy that moved from the hotter object to the cooler one: Q = m₁c₁(T₁ − T_eq). These are related but distinct: a system can reach a high equilibrium temperature while transferring relatively little heat, or reach a moderate temperature after transferring enormous amounts of energy.",
+        "q5": "How does thermal conductivity affect how quickly equilibrium is reached?",
+        "q5_a": "Thermal conductivity determines the rate of heat flow, not the final equilibrium state. A material with high thermal conductivity (like copper at 400 W/m·K) reaches equilibrium quickly, while an insulator (like foam at 0.04 W/m·K) approaches it very slowly. The equilibrium temperature itself depends only on masses and specific heats, regardless of how fast or slow the heat transfer occurs.",
+        "q6": "Can thermal equilibrium calculations account for heat loss to the environment?",
+        "q6_a": "This calculator assumes an isolated system with no heat loss to surroundings — the simplest and most common case. In real scenarios, some heat is always lost, meaning the actual equilibrium temperature will be lower than calculated. To account for heat loss, you would need to model the heat transfer to the environment separately using Newton's law of cooling or a more detailed thermal model with boundary conditions."
+      }
+    },
+    "thermal-expansion-calculator": {
+      "title": "Thermal Expansion Calculator",
+      "tagline": "Calculate how materials expand or contract with temperature changes.",
+      "intro": "Determine linear, area, and volume expansion of materials based on temperature changes and material properties. Essential for engineering design and thermal stress analysis.",
+      "field": {
+        "calcType": "Calculation Type",
+        "material": "Material",
+        "initialLength": "Initial Length (m)",
+        "tempChange": "Temperature Change (°C)",
+        "customCoeff": "Custom Coefficient (1/°C)",
+        "coefficientNote": "Expansion coefficient: {value} × 10⁻⁶ /°C"
+      },
+      "placeholder": {
+        "length": "e.g., 10.0",
+        "deltaTemp": "e.g., 30 (negative for cooling)",
+        "coeff": "e.g., 0.000012"
+      },
+      "type": {
+        "linear": "Linear (1D)",
+        "area": "Area (2D)",
+        "volume": "Volume (3D)"
+      },
+      "material": {
+        "steel": "Steel (11.7×10⁻⁶/°C)",
+        "aluminum": "Aluminum (23.1×10⁻⁶/°C)",
+        "copper": "Copper (16.5×10⁻⁶/°C)",
+        "glass": "Glass (9.0×10⁻⁶/°C)",
+        "concrete": "Concrete (12.0×10⁻⁶/°C)",
+        "custom": "Custom"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Results",
+        "expansion": "Expansion / Contraction",
+        "finalValue": "Final Dimension",
+        "thermalStrain": "Thermal Strain (ε)"
+      },
+      "error": {
+        "invalid": "Please enter a positive initial length, a valid temperature change, and a positive expansion coefficient."
+      },
+      "about": {
+        "heading": "About the Thermal Expansion Calculator",
+        "body": "Thermal expansion is the tendency of matter to change its dimensions in response to temperature changes. When a substance is heated, its particles vibrate more energetically and require more space, causing the material to expand. Conversely, cooling causes contraction as particle motion decreases. This phenomenon occurs in solids, liquids, and gases, though the magnitude and behavior differ significantly between states of matter.\n\nFor solids, thermal expansion is characterized by the coefficient of linear thermal expansion (α), measured in units of 1/°C or 1/K. The fundamental equation for linear expansion is ΔL = α × L₀ × ΔT, where ΔL is the change in length, L₀ is the original length, and ΔT is the temperature change. Area expansion uses the formula ΔA = 2α × A₀ × ΔT, and volume expansion uses ΔV = 3α × V₀ × ΔT. The factors of 2 and 3 arise from the two and three dimensions of expansion, respectively, assuming the material is isotropic (expands equally in all directions).\n\nExpansion coefficients vary dramatically between materials. Aluminum (23.1 × 10⁻⁶/°C) expands about twice as much as steel (11.7 × 10⁻⁶/°C) for the same temperature change. Glass-ceramic materials engineered for zero expansion (such as Zerodur, α ≈ 0.05 × 10⁻⁶/°C) are used in telescope mirrors and precision instruments. Invar, a nickel-iron alloy, has an exceptionally low expansion coefficient (1.2 × 10⁻⁶/°C) and is used in geodetic measurement standards and seismic instruments.\n\nIn civil and structural engineering, thermal expansion is a critical design consideration. Railway tracks expand in summer and must include expansion gaps to prevent buckling. Long bridges require expansion joints every 50–100 meters to accommodate thermal movement of several centimeters over the annual temperature cycle. Concrete structures also require control joints because concrete's expansion coefficient is close to that of steel reinforcing bars — a fortunate coincidence that makes reinforced concrete structurally stable across temperature ranges.\n\nIn mechanical and electronic engineering, thermal expansion mismatches cause failures when different materials are bonded or constrained. Printed circuit boards suffer delamination when solder alloys, copper traces, and epoxy substrates expand at different rates during thermal cycling. Engine components must be designed with precise clearances that account for thermal expansion during warm-up and operation. Precision instruments and optical systems use temperature-compensated designs or materials with matched expansion coefficients to maintain accuracy across their operating temperature range."
+      },
+      "examples": {
+        "heading": "Thermal Expansion Examples",
+        "intro": "Engineering scenarios illustrating linear, area, and volume expansion for common materials.",
+        "colInput": "Material / Dimensions / ΔT",
+        "colOutput": "Expansion",
+        "colNote": "Application",
+        "items": [
+          {
+            "input": "Steel, L₀=10 m, ΔT=+30°C, α=11.7×10⁻⁶/°C (linear)",
+            "output": "ΔL = 0.00351 m = 3.51 mm | L_final = 10.00351 m",
+            "note": "Steel bridge expansion on a hot summer day. Expansion joints must accommodate this movement."
+          },
+          {
+            "input": "Aluminum plate, L₀=0.5 m (side), ΔT=+150°C, α=23.1×10⁻⁶/°C (area)",
+            "output": "ΔA = 0.001733 m² | A_final = 0.251733 m²",
+            "note": "Industrial aluminum processing. Area expands by ~0.69% with 150°C rise."
+          },
+          {
+            "input": "Copper, L₀=0.1 m (side), ΔT=−200°C, α=16.5×10⁻⁶/°C (volume)",
+            "output": "ΔV = −9.9×10⁻⁶ m³ | Volume contracts by 0.99%",
+            "note": "Cryogenic copper cooling. Contraction must be considered in pipe and fitting design."
+          },
+          {
+            "input": "Concrete slab, L₀=50 m, ΔT=+40°C, α=12.0×10⁻⁶/°C (linear)",
+            "output": "ΔL = 0.024 m = 24 mm",
+            "note": "Expansion joint sizing for a 50 m concrete structure with 40°C annual temperature swing."
+          }
+        ],
+        "loadSteelBridge": "Steel Bridge",
+        "loadAluminumPlate": "Aluminum Plate",
+        "loadCopperWire": "Copper Cooling"
+      },
+      "howto": {
+        "heading": "How to Use the Thermal Expansion Calculator",
+        "steps": [
+          "Select the calculation type: Linear (1D) for length changes, Area (2D) for surface area changes, or Volume (3D) for volumetric changes.",
+          "Select the material. Built-in coefficients are provided for steel, aluminum, copper, glass, and concrete. Choose Custom to enter your own coefficient in 1/°C.",
+          "Enter the initial dimension in meters: length for 1D, side length for 2D (area = L²), or side length for 3D (volume = L³).",
+          "Enter the temperature change in °C. Use positive values for heating (expansion) and negative values for cooling (contraction).",
+          "Click Calculate to see expansion/contraction amount, final dimension, and thermal strain (ε = α × ΔT)."
+        ]
+      },
+      "faq": {
+        "heading": "Thermal Expansion FAQ",
+        "q1": "What is the coefficient of thermal expansion?",
+        "q1_a": "The coefficient of linear thermal expansion (α) is the fractional change in length per unit temperature change, in units of 1/°C or 1/K. For example, steel has α = 11.7 × 10⁻⁶/°C, meaning a 1 m steel bar grows by 0.0000117 m (11.7 micrometers) for every 1°C temperature rise. Values range from near zero for engineered low-expansion ceramics to about 30 × 10⁻⁶/°C for soft polymers.",
+        "q2": "How is area expansion related to linear expansion?",
+        "q2_a": "For an isotropic material (same properties in all directions), area expansion uses ΔA = 2α × A₀ × ΔT, where the factor of 2 comes from expansion in two dimensions. Volume expansion uses ΔV = 3α × V₀ × ΔT with factor 3 for three dimensions. These approximations are exact for infinitesimal expansions and accurate for most engineering applications where ΔT is not extreme.",
+        "q3": "Why do bridges need expansion joints?",
+        "q3_a": "Long structures like bridges and railway tracks undergo significant dimensional changes with temperature. A 100 m steel bridge spanning a 50°C annual temperature range (α = 11.7 × 10⁻⁶/°C) expands by ΔL = 11.7 × 10⁻⁶ × 100 × 50 = 0.0585 m = 5.85 cm. Without expansion joints to accommodate this movement, the resulting thermal stress (σ = EαΔT) can cause buckling or cracking in compression, or fracture in tension.",
+        "q4": "What happens when thermal expansion is constrained?",
+        "q4_a": "When a material cannot expand freely because it is rigidly restrained, thermal stress develops. The uniaxial thermal stress is σ = E × α × ΔT, where E is the Young's modulus. For a fully constrained steel beam heated by 100°C: σ = 200 × 10⁹ × 11.7 × 10⁻⁶ × 100 = 234 MPa — a substantial compressive stress approaching steel's yield strength. This is the principle behind thermally pre-stressed concrete and explains pipe stress in rigidly supported piping systems.",
+        "q5": "Which materials expand the least with temperature?",
+        "q5_a": "The lowest expansion coefficients belong to engineered glass-ceramics like Zerodur (α ≈ 0.05 × 10⁻⁶/°C) and ultralow-expansion (ULE) fused silica glass (α ≈ 0.03 × 10⁻⁶/°C). These are used in large telescope mirror blanks and precision metrology. Invar (nickel-iron alloy) has α ≈ 1.2 × 10⁻⁶/°C and is used in watch springs, geodetic tapes, and seismic instruments. Carbon fiber composites can be designed for near-zero or even negative expansion along the fiber axis.",
+        "q6": "How does thermal expansion affect electronic components?",
+        "q6_a": "Thermal expansion mismatch between different materials in electronic assemblies causes cyclic stresses during power-on/power-off cycles. Silicon (α ≈ 2.6 × 10⁻⁶/°C) is bonded to copper heat spreaders (α ≈ 16.5 × 10⁻⁶/°C) through solder layers; the mismatch creates shear stress that eventually causes solder fatigue and failure. Printed circuit boards (FR4, α ≈ 14–18 × 10⁻⁶/°C in-plane) matched to copper trace expansion (α ≈ 16.5 × 10⁻⁶/°C) to minimize in-plane delamination, while the through-thickness expansion (~50 × 10⁻⁶/°C) stresses plated through-holes significantly."
+      }
+    },
+    "thermal-resistance-calculator": {
+      "title": "Thermal Resistance Calculator",
+      "tagline": "Calculate thermal resistance, heat flow rate, and temperature gradient for materials.",
+      "intro": "Determine the thermal resistance of materials and analyze heat transfer properties for engineering applications, insulation design, and thermal analysis.",
+      "field": {
+        "thickness": "Material Thickness (m)",
+        "conductivity": "Thermal Conductivity (W/m·K)",
+        "area": "Cross-sectional Area (m²)",
+        "tempDiff": "Temperature Difference (K)"
+      },
+      "placeholder": {
+        "thickness": "e.g., 0.15",
+        "conductivity": "e.g., 0.04",
+        "area": "e.g., 10.0",
+        "tempDiff": "e.g., 25"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Results",
+        "resistance": "Thermal Resistance",
+        "heatFlow": "Heat Flow Rate",
+        "gradient": "Temperature Gradient",
+        "rValue": "R-Value (per unit area)"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for all fields."
+      },
+      "formula": "R = L / (k × A) | Q = ΔT / R | Gradient = ΔT / L | R-value = L / k",
+      "about": {
+        "heading": "About the Thermal Resistance Calculator",
+        "body": "Thermal resistance is a measure of a material's opposition to heat flow, analogous to electrical resistance in circuit theory. Just as electrical resistance (R = V/I) relates voltage to current, thermal resistance (R_th = ΔT/Q) relates temperature difference to heat flow rate. This analogy is powerful: series and parallel combinations of thermal resistances obey the same mathematical rules as electrical networks, allowing complex multi-layer insulation systems to be analysed using simple circuit arithmetic.\n\nThe formula for thermal resistance of a flat slab is R = L / (k × A), where L is thickness in metres, k is thermal conductivity in W/(m·K), and A is cross-sectional area in m². The resulting unit is K/W (kelvin per watt). Once R is known, the steady-state heat flow rate is simply Q = ΔT / R, where ΔT is the temperature difference across the material in kelvin. The temperature gradient within the material is ΔT / L, in units of K/m.\n\nThermal conductivity k characterises the intrinsic ability of a material to conduct heat. Still air has k ≈ 0.024 W/(m·K), making it an excellent insulator — the basis for fiberglass and foam insulation products, which trap air in small cells. High-performance aerogel insulation achieves k as low as 0.015 W/(m·K). At the other extreme, copper has k ≈ 400 W/(m·K) and is used in heat sinks, heat pipes, and heat exchangers where maximum heat transfer is required. Steel (k ≈ 50), concrete (k ≈ 1.4), and wood (k ≈ 0.12) fall between these extremes.\n\nIn building construction, insulation performance is often expressed as R-value (per unit area): R_spec = L / k in m²·K/W. This allows direct comparison of different insulation thicknesses and materials without specifying the wall area. UK and European building codes specify minimum U-values (U = 1/R_spec) for walls, roofs, and floors. A well-insulated UK cavity wall might achieve U = 0.18 W/(m²·K), requiring a total R_spec > 5.5 m²·K/W.\n\nIn electronics cooling, thermal resistance is the key metric for heat sink and thermal interface material selection. A processor with 100 W power dissipation and a junction-to-case resistance of 0.5 K/W will have its die temperature rise 50°C above the package case temperature. If the thermal interface material and heat sink add another 1.5 K/W, the junction temperature rises 150°C above ambient — potentially exceeding the maximum rated temperature. Minimising every element of the thermal resistance chain from chip to ambient is essential for reliable electronics design."
+      },
+      "examples": {
+        "heading": "Thermal Resistance Examples",
+        "intro": "Practical scenarios illustrating thermal resistance calculations for insulation, construction, and industrial applications.",
+        "colInput": "Material / Thickness / Conductivity / Area / ΔT",
+        "colOutput": "R / Heat Flow",
+        "colNote": "Application",
+        "items": [
+          {
+            "input": "Fiberglass insulation, L=0.15 m, k=0.04 W/m·K, A=10 m², ΔT=25 K",
+            "output": "R = 0.375 K/W | Q = 66.7 W | R-value = 3.75 m²·K/W",
+            "note": "Typical residential wall insulation. Good R-value, low heat flux."
+          },
+          {
+            "input": "Concrete wall, L=0.2 m, k=1.4 W/m·K, A=20 m², ΔT=15 K",
+            "output": "R = 0.00714 K/W | Q = 2,100 W | R-value = 0.143 m²·K/W",
+            "note": "Plain concrete is a poor insulator. Requires additional insulation layers for energy-efficient buildings."
+          },
+          {
+            "input": "Steel heat exchanger plate, L=0.01 m, k=50 W/m·K, A=5 m², ΔT=100 K",
+            "output": "R = 0.00004 K/W | Q = 2,500,000 W = 2.5 MW",
+            "note": "Steel conducts heat readily. Very low R means extremely high heat transfer rate."
+          },
+          {
+            "input": "Wooden wall, L=0.05 m, k=0.12 W/m·K, A=15 m², ΔT=20 K",
+            "output": "R = 0.0278 K/W | Q = 720 W | R-value = 0.417 m²·K/W",
+            "note": "Solid wood provides moderate insulation, better than concrete but far below fiberglass."
+          }
+        ],
+        "loadFiberglass": "Fiberglass Insulation",
+        "loadConcrete": "Concrete Wall",
+        "loadSteel": "Steel Plate"
+      },
+      "howto": {
+        "heading": "How to Use the Thermal Resistance Calculator",
+        "steps": [
+          "Enter material thickness in metres. For a wall, this is the distance between the two surfaces. For a thin film or coating, use millimetres converted to metres (divide by 1000).",
+          "Enter thermal conductivity in W/(m·K). Lookup values: still air = 0.024, fiberglass = 0.04, wood = 0.12, concrete = 1.4, steel = 50, copper = 400.",
+          "Enter the cross-sectional area in m² perpendicular to the heat flow direction. For a flat wall this is simply length × height.",
+          "Enter the temperature difference across the material in kelvin (K). Note that 1 K difference equals 1°C difference; the units are interchangeable for differences.",
+          "Click Calculate to see thermal resistance (K/W), heat flow rate (W), temperature gradient (K/m), and specific R-value (m²·K/W) for the material."
+        ]
+      },
+      "faq": {
+        "heading": "Thermal Resistance FAQ",
+        "q1": "What is thermal resistance and how is it measured?",
+        "q1_a": "Thermal resistance (R) measures how strongly a material opposes heat flow, defined as R = ΔT / Q in units of K/W. For a uniform slab: R = L / (k × A). It depends on the material's thermal conductivity, thickness, and area. Unlike thermal conductivity (a material property), thermal resistance depends on geometry, just as electrical resistance depends on conductor length and cross-section.",
+        "q2": "What is the difference between thermal resistance and R-value?",
+        "q2_a": "Thermal resistance (K/W) depends on the area of the material. R-value (m²·K/W), also called specific thermal resistance, is area-independent: R-value = L / k. R-values allow fair comparison of different insulation products regardless of the wall size being considered. In the imperial system, R-value is expressed in ft²·°F·h/Btu; to convert: 1 m²·K/W ≈ 5.678 ft²·°F·h/Btu.",
+        "q3": "How do I add thermal resistances for multiple layers?",
+        "q3_a": "For layers in series (e.g., insulation + concrete + plaster), total thermal resistance is the sum: R_total = R₁ + R₂ + R₃ + … This is exactly analogous to resistors in series in an electrical circuit. The total heat flow is Q = ΔT_total / R_total. For parallel paths (e.g., wall studs and insulation side by side), the conductances (1/R) add: 1/R_total = 1/R₁ + 1/R₂.",
+        "q4": "What thermal conductivity values should I use for common building materials?",
+        "q4_a": "Typical values in W/(m·K): still air = 0.024, aerogel = 0.015, fiberglass batt = 0.04, mineral wool = 0.035–0.045, expanded polystyrene (EPS) = 0.033–0.040, extruded polystyrene (XPS) = 0.029–0.036, polyurethane foam = 0.022–0.028, plywood = 0.12–0.15, brick = 0.4–0.9, concrete = 1.0–1.8, gypsum board = 0.17. Values vary with temperature, moisture content, and density; always use measured or certified data for critical design calculations.",
+        "q5": "How does thermal resistance apply to electronic cooling?",
+        "q5_a": "In electronics, thermal resistance is the key metric in the junction-to-ambient thermal model: T_junction = T_ambient + P × (R_jc + R_cs + R_sa), where P is power dissipation and R_jc, R_cs, R_sa are junction-to-case, case-to-sink, and sink-to-ambient resistances respectively. Reducing any resistance in the chain lowers the operating temperature and improves reliability. Thermal interface materials (TIMs) typically have R-values of 0.1–1.0 K·cm²/W.",
+        "q6": "What is U-value and how does it relate to thermal resistance?",
+        "q6_a": "U-value (W/(m²·K)) is the reciprocal of specific R-value: U = k / L = 1 / R-value. It expresses how much heat passes through 1 m² of a construction element per second per kelvin of temperature difference. Lower U-value means better insulation. Building regulations specify maximum U-values: in the UK, external walls ≤ 0.30 W/(m²·K) for new buildings, roofs ≤ 0.20, floors ≤ 0.25, windows ≤ 1.60. A triple-glazed window achieves U ≈ 0.6–0.8 W/(m²·K)."
+      }
+    },
+    "thermal-stress-calculator": {
+      "title": "Thermal Stress Calculator",
+      "tagline": "Calculate thermal stress and strain in constrained materials due to temperature changes.",
+      "intro": "Enter material properties and temperature changes to calculate thermal stress, strain, and expansion. Supports uniaxial and biaxial constraint models.",
+      "field": {
+        "initialTemp": "Initial Temperature (°C)",
+        "finalTemp": "Final Temperature (°C)",
+        "expansionCoeff": "Thermal Expansion Coefficient (1/°C)",
+        "youngsModulus": "Young's Modulus (GPa)",
+        "poisson": "Poisson's Ratio"
+      },
+      "placeholder": {
+        "temp": "e.g., 20",
+        "alpha": "e.g., 0.000012",
+        "youngs": "e.g., 200",
+        "poisson": "e.g., 0.3"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Results",
+        "tempChange": "Temperature Change",
+        "thermalStrain": "Thermal Strain (ε = αΔT)",
+        "uniaxialStress": "Uniaxial Stress (fully constrained)",
+        "biaxialStress": "Biaxial Stress (plane stress)"
+      },
+      "error": {
+        "invalid": "Please enter valid values for all fields. Expansion coefficient and Young's modulus must be positive; Poisson's ratio must be between 0 and 0.5."
+      },
+      "formula": "ε = α × ΔT | σ_uniaxial = E × α × ΔT | σ_biaxial = E × α × ΔT / (1 − ν)",
+      "about": {
+        "heading": "About the Thermal Stress Calculator",
+        "body": "Thermal stress is the mechanical stress that develops in a material when it is subjected to a temperature change but is prevented from expanding or contracting freely. In an unconstrained material, heating produces thermal strain ε = α × ΔT without any stress. When constraints are applied — by surrounding structure, rigid end fittings, or differential expansion between bonded layers — the blocked thermal expansion generates internal stress that can cause yielding, cracking, or fatigue failure.\n\nThe magnitude of uniaxial thermal stress for a fully constrained member is σ = E × α × ΔT, where E is Young's modulus in pascals, α is the coefficient of linear thermal expansion in 1/°C, and ΔT is the temperature change. This formula assumes the constraint prevents all axial strain. For a 1 m steel bar (E = 200 GPa, α = 12 × 10⁻⁶/°C) heated by 100°C: σ = 200 × 10⁹ × 12 × 10⁻⁶ × 100 = 240 MPa — approaching the yield strength of mild steel (250 MPa). This explains why unrestrained thermal expansion provisions are essential in pipework, bridge design, and railway tracks.\n\nFor plate or shell structures constrained in two directions (plane stress or biaxial state), the thermal stress formula becomes σ = E × α × ΔT / (1 − ν), where ν is Poisson's ratio. The (1 − ν) denominator increases the stress beyond the uniaxial value because lateral expansion is also prevented. For steel with ν = 0.3: the factor becomes 1/0.7 ≈ 1.43, so biaxial thermal stress is 43% higher than the uniaxial value for the same temperature change.\n\nThermal stress analysis is critical in aerospace engineering, where components experience extreme temperature cycles. Jet engine turbine blades are exposed to combustion temperatures exceeding 1400°C while being cooled internally to 800–900°C, creating steep through-thickness gradients and high cyclic thermal stresses. Thermal barrier coatings of yttria-stabilised zirconia (α ≈ 10 × 10⁻⁶/°C) are matched as closely as possible to the metallic substrate (α ≈ 12–16 × 10⁻⁶/°C) to reduce coating delamination stress.\n\nIn civil engineering, thermal stress is managed through design features rather than eliminated. Concrete road slabs include saw-cut control joints at intervals that limit the thermal stress between joints to below the tensile strength of concrete. Steel bridges use roller bearings and sliding plates at expansion joints to allow free thermal movement. In contrast, integral abutment bridges intentionally allow the bridge deck to thermally stress the supporting piles, relying on the ductility of steel H-piles to accommodate repeated thermal cycles over the bridge's lifetime."
+      },
+      "examples": {
+        "heading": "Thermal Stress Examples",
+        "intro": "Engineering scenarios showing thermal stress and strain for common constrained material problems.",
+        "colInput": "Material / Temperature Change / Properties",
+        "colOutput": "Stress / Strain",
+        "colNote": "Engineering Context",
+        "items": [
+          {
+            "input": "Steel beam: T₁=20°C, T₂=150°C | α=12×10⁻⁶/°C, E=200 GPa, ν=0.3",
+            "output": "ε = 1.56×10⁻³ | σ_uniaxial = 312 MPa | σ_biaxial = 445.7 MPa",
+            "note": "Fully constrained steel heated 130°C. Uniaxial stress exceeds mild steel yield strength."
+          },
+          {
+            "input": "Aluminum plate cooling: T₁=200°C, T₂=0°C | α=23×10⁻⁶/°C, E=70 GPa, ν=0.33",
+            "output": "ε = −4.6×10⁻³ | σ_uniaxial = −322 MPa | σ_biaxial = −480.6 MPa",
+            "note": "Tensile stress in constrained aluminum cooling. Negative values indicate tension."
+          },
+          {
+            "input": "Copper wire heating: T₁=25°C, T₂=80°C | α=17×10⁻⁶/°C, E=110 GPa, ν=0.34",
+            "output": "ε = 9.35×10⁻⁴ | σ_uniaxial = 102.85 MPa",
+            "note": "Copper electrical conductor heating under constraint. Moderate compressive stress."
+          },
+          {
+            "input": "Glass thermal shock: T₁=20°C, T₂=300°C | α=9×10⁻⁶/°C, E=70 GPa, ν=0.23",
+            "output": "ε = 2.52×10⁻³ | σ_uniaxial = 176.4 MPa | σ_biaxial = 229.1 MPa",
+            "note": "Glass has low fracture toughness; biaxial stress ≥160 MPa typically causes fracture."
+          }
+        ],
+        "loadSteel": "Steel Beam",
+        "loadAluminum": "Aluminum Cooling",
+        "loadCopper": "Copper Wire"
+      },
+      "howto": {
+        "heading": "How to Use the Thermal Stress Calculator",
+        "steps": [
+          "Enter initial and final temperatures in °C. The calculator computes ΔT = T_final − T_initial; positive ΔT means heating (compressive stress in constrained material), negative ΔT means cooling (tensile stress).",
+          "Enter the thermal expansion coefficient in 1/°C. Common values: steel = 12×10⁻⁶, aluminum = 23×10⁻⁶, copper = 17×10⁻⁶, glass = 9×10⁻⁶, concrete = 12×10⁻⁶.",
+          "Enter Young's modulus in GPa (gigapascals). Common values: steel = 200, aluminum = 70, copper = 110, glass = 70, concrete = 30–40.",
+          "Enter Poisson's ratio (dimensionless, typically 0.25–0.35). Common values: steel = 0.30, aluminum = 0.33, copper = 0.34, glass = 0.23.",
+          "Click Calculate to see thermal strain, uniaxial stress (for bar or beam constrained in one direction), and biaxial stress (for plate constrained in two directions). Negative stress values indicate tension."
+        ]
+      },
+      "faq": {
+        "heading": "Thermal Stress FAQ",
+        "q1": "What causes thermal stress in materials?",
+        "q1_a": "Thermal stress occurs when a material undergoes a temperature change but cannot expand or contract freely. The constraint may be external (rigid supports, bolted joints) or internal (different expansion rates in different layers of a composite material). If the material were unconstrained, it would simply change dimensions with no stress. The constraint prevents this dimensional change and forces the development of elastic stress equal to the product of stiffness (E) and blocked strain (αΔT).",
+        "q2": "What is the difference between uniaxial and biaxial thermal stress?",
+        "q2_a": "Uniaxial thermal stress (σ = EαΔT) applies to members constrained in one direction only, such as a rod or beam fixed at both ends. Biaxial thermal stress (σ = EαΔT / (1 − ν)) applies to plates or shells constrained in two in-plane directions simultaneously. The biaxial case produces higher stress because lateral (Poisson) contraction is also prevented. Most thin-walled structures and electronic components are better modelled as biaxial problems.",
+        "q3": "How do I know if thermal stress will cause failure?",
+        "q3_a": "Compare the calculated thermal stress to the material's yield strength (for ductile metals) or fracture strength (for brittle materials like glass or ceramics). For steel (yield strength ≈ 250 MPa), a uniaxial stress of 312 MPa from 130°C heating would exceed yield and cause permanent deformation. For cyclic thermal loading, also check fatigue strength. Safety factors of 1.5–3 are typical in structural applications. Use the von Mises criterion for combined stress states.",
+        "q4": "What materials are most susceptible to thermal stress failure?",
+        "q4_a": "Brittle materials (glass, ceramics, concrete) are most vulnerable because they cannot plastically deform to relieve stress — any stress exceeding fracture strength causes sudden brittle fracture. Materials with high Young's modulus and high thermal expansion coefficient are inherently more prone to thermal stress: diamond (E = 1,000 GPa, α = 1×10⁻⁶/°C) is stiff but has low expansion; polymer films (E = 1–3 GPa, α = 50–200×10⁻⁶/°C) have high expansion but low modulus, resulting in moderate stress.",
+        "q5": "How can thermal stress be reduced in engineering design?",
+        "q5_a": "Design strategies include: (1) using expansion joints and sliding supports to allow free thermal movement; (2) selecting materials with compatible expansion coefficients for bonded assemblies; (3) using low-modulus interlayers (such as compliant solder or polymer adhesive) between stiff components with different α values; (4) designing gradual thermal ramp-up procedures to minimise ΔT at any instant; (5) using thermal barrier coatings or insulation to reduce the temperature difference experienced by structural components. Combining multiple strategies — for example, expansion joints plus material matching plus controlled heating rates — provides the best protection against thermal stress failure in demanding applications such as power plant pipework and aerospace structures.",
+        "q6": "How is Poisson's ratio relevant to thermal stress?",
+        "q6_a": "Poisson's ratio (ν) describes the lateral contraction that accompanies axial strain: ν = −ε_lateral / ε_axial. In biaxial thermal stress, the constraint prevents both in-plane strain directions. The Poisson effect means that blocking strain in X also induces stress in the Y direction and vice versa, coupling the two stress components. The resulting biaxial stress is E × α × ΔT / (1 − ν), which is always larger than the uniaxial value. For typical metals where ν ≈ 0.3, biaxial stress is about 43% higher than uniaxial."
+      }
     }
   }
 }

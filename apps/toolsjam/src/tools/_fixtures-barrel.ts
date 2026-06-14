@@ -85,6 +85,11 @@ import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-de
 import { fixtures as f_standard_deviation_index_calculator } from "@/tools/standard-deviation-index-calculator.fixtures";
 import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/tools/standard-deviation-of-sample-mean-calculator.fixtures";
 import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
+import { fixtures as f_thermal_energy_calculator } from "@/tools/thermal-energy-calculator.fixtures";
+import { fixtures as f_thermal_equilibrium_calculator } from "@/tools/thermal-equilibrium-calculator.fixtures";
+import { fixtures as f_thermal_expansion_calculator } from "@/tools/thermal-expansion-calculator.fixtures";
+import { fixtures as f_thermal_resistance_calculator } from "@/tools/thermal-resistance-calculator.fixtures";
+import { fixtures as f_thermal_stress_calculator } from "@/tools/thermal-stress-calculator.fixtures";
 import { fixtures as f_tukey_hsd_calculator } from "@/tools/tukey-hsd-calculator.fixtures";
 import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-envelopes-paradox-calculator.fixtures";
 import { fixtures as f_uniform_distribution_calculator } from "@/tools/uniform-distribution-calculator.fixtures";
@@ -204,6 +209,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "standard-deviation-index-calculator": f_standard_deviation_index_calculator,
   "standard-deviation-of-sample-mean-calculator": f_standard_deviation_of_sample_mean_calculator,
   "standard-error-calculator": f_standard_error_calculator,
+  "thermal-energy-calculator": f_thermal_energy_calculator,
+  "thermal-equilibrium-calculator": f_thermal_equilibrium_calculator,
+  "thermal-expansion-calculator": f_thermal_expansion_calculator,
+  "thermal-resistance-calculator": f_thermal_resistance_calculator,
+  "thermal-stress-calculator": f_thermal_stress_calculator,
   "tukey-hsd-calculator": f_tukey_hsd_calculator,
   "two-envelopes-paradox-calculator": f_two_envelopes_paradox_calculator,
   "uniform-distribution-calculator": f_uniform_distribution_calculator,
