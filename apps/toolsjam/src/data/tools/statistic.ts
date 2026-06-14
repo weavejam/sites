@@ -1040,7 +1040,208 @@ export const tools: ToolEntry[] = [
       pt: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
       ru: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold."
     }
+  },
+  {
+    id: "roulette-payout-calculator",
+    category: "statistic",
+    slugs: {
+      en: "roulette-payout-calculator",
+      "zh-CN": "roulette-payout-calculator",
+      "zh-TW": "roulette-payout-calculator",
+      ja: "roulette-payout-calculator",
+      ko: "roulette-payout-calculator",
+      es: "roulette-payout-calculator",
+      fr: "roulette-payout-calculator",
+      de: "roulette-payout-calculator",
+      pt: "roulette-payout-calculator",
+      ru: "roulette-payout-calculator"
+    },
+    titles: {
+      en: "Roulette Payout Calculator - Bet Winnings & Odds",
+      "zh-CN": "Roulette Payout Calculator - Bet Winnings & Odds",
+      "zh-TW": "Roulette Payout Calculator - Bet Winnings & Odds",
+      ja: "Roulette Payout Calculator - Bet Winnings & Odds",
+      ko: "Roulette Payout Calculator - Bet Winnings & Odds",
+      es: "Roulette Payout Calculator - Bet Winnings & Odds",
+      fr: "Roulette Payout Calculator - Bet Winnings & Odds",
+      de: "Roulette Payout Calculator - Bet Winnings & Odds",
+      pt: "Roulette Payout Calculator - Bet Winnings & Odds",
+      ru: "Roulette Payout Calculator - Bet Winnings & Odds"
+    },
+    descriptions: {
+      en: "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability.",
+      "zh-CN": "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability.",
+      "zh-TW": "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability.",
+      ja: "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability.",
+      ko: "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability.",
+      es: "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability.",
+      fr: "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability.",
+      de: "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability.",
+      pt: "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability.",
+      ru: "Roulette payout calculator for American and European wheels. Enter bet type and wager to get net winnings, total payout, payout odds, and win probability."
+    }
+  },
+  {
+    id: "rse-calculator-relative-standard-error",
+    category: "statistic",
+    slugs: {
+      en: "rse-calculator-relative-standard-error",
+      "zh-CN": "rse-calculator-relative-standard-error",
+      "zh-TW": "rse-calculator-relative-standard-error",
+      ja: "rse-calculator-relative-standard-error",
+      ko: "rse-calculator-relative-standard-error",
+      es: "rse-calculator-relative-standard-error",
+      fr: "rse-calculator-relative-standard-error",
+      de: "rse-calculator-relative-standard-error",
+      pt: "rse-calculator-relative-standard-error",
+      ru: "rse-calculator-relative-standard-error"
+    },
+    titles: {
+      en: "RSE Calculator - Relative Standard Error",
+      "zh-CN": "RSE Calculator - Relative Standard Error",
+      "zh-TW": "RSE Calculator - Relative Standard Error",
+      ja: "RSE Calculator - Relative Standard Error",
+      ko: "RSE Calculator - Relative Standard Error",
+      es: "RSE Calculator - Relative Standard Error",
+      fr: "RSE Calculator - Relative Standard Error",
+      de: "RSE Calculator - Relative Standard Error",
+      pt: "RSE Calculator - Relative Standard Error",
+      ru: "RSE Calculator - Relative Standard Error"
+    },
+    descriptions: {
+      en: "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating.",
+      "zh-CN": "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating.",
+      "zh-TW": "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating.",
+      ja: "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating.",
+      ko: "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating.",
+      es: "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating.",
+      fr: "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating.",
+      de: "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating.",
+      pt: "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating.",
+      ru: "Relative Standard Error (RSE) calculator — divide standard error by the estimate to get a unit-free precision percentage and a qualitative reliability rating."
+    }
+  },
+  {
+    id: "sample-size-calculator",
+    category: "statistic",
+    slugs: {
+      en: "sample-size-calculator",
+      "zh-CN": "sample-size-calculator",
+      "zh-TW": "sample-size-calculator",
+      ja: "sample-size-calculator",
+      ko: "sample-size-calculator",
+      es: "sample-size-calculator",
+      fr: "sample-size-calculator",
+      de: "sample-size-calculator",
+      pt: "sample-size-calculator",
+      ru: "sample-size-calculator"
+    },
+    titles: {
+      en: "Sample Size Calculator - Cochran's Formula",
+      "zh-CN": "Sample Size Calculator - Cochran's Formula",
+      "zh-TW": "Sample Size Calculator - Cochran's Formula",
+      ja: "Sample Size Calculator - Cochran's Formula",
+      ko: "Sample Size Calculator - Cochran's Formula",
+      es: "Sample Size Calculator - Cochran's Formula",
+      fr: "Sample Size Calculator - Cochran's Formula",
+      de: "Sample Size Calculator - Cochran's Formula",
+      pt: "Sample Size Calculator - Cochran's Formula",
+      ru: "Sample Size Calculator - Cochran's Formula"
+    },
+    descriptions: {
+      en: "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys.",
+      "zh-CN": "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys.",
+      "zh-TW": "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys.",
+      ja: "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys.",
+      ko: "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys.",
+      es: "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys.",
+      fr: "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys.",
+      de: "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys.",
+      pt: "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys.",
+      ru: "Sample size calculator using Cochran's formula. Enter confidence level, margin of error, and proportion to get the minimum sample size for reliable surveys."
+    }
+  },
+  {
+    id: "sampling-distribution-of-the-sample-proportion-calculator",
+    category: "statistic",
+    slugs: {
+      en: "sampling-distribution-of-the-sample-proportion-calculator",
+      "zh-CN": "sampling-distribution-of-the-sample-proportion-calculator",
+      "zh-TW": "sampling-distribution-of-the-sample-proportion-calculator",
+      ja: "sampling-distribution-of-the-sample-proportion-calculator",
+      ko: "sampling-distribution-of-the-sample-proportion-calculator",
+      es: "sampling-distribution-of-the-sample-proportion-calculator",
+      fr: "sampling-distribution-of-the-sample-proportion-calculator",
+      de: "sampling-distribution-of-the-sample-proportion-calculator",
+      pt: "sampling-distribution-of-the-sample-proportion-calculator",
+      ru: "sampling-distribution-of-the-sample-proportion-calculator"
+    },
+    titles: {
+      en: "Sampling Distribution of Sample Proportion Calculator",
+      "zh-CN": "Sampling Distribution of Sample Proportion Calculator",
+      "zh-TW": "Sampling Distribution of Sample Proportion Calculator",
+      ja: "Sampling Distribution of Sample Proportion Calculator",
+      ko: "Sampling Distribution of Sample Proportion Calculator",
+      es: "Sampling Distribution of Sample Proportion Calculator",
+      fr: "Sampling Distribution of Sample Proportion Calculator",
+      de: "Sampling Distribution of Sample Proportion Calculator",
+      pt: "Sampling Distribution of Sample Proportion Calculator",
+      ru: "Sampling Distribution of Sample Proportion Calculator"
+    },
+    descriptions: {
+      en: "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly.",
+      "zh-CN": "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly.",
+      "zh-TW": "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly.",
+      ja: "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly.",
+      ko: "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly.",
+      es: "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly.",
+      fr: "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly.",
+      de: "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly.",
+      pt: "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly.",
+      ru: "Sampling distribution of the sample proportion calculator. Find mean, standard error, normality check, Z-score, and cumulative probabilities instantly."
+    }
+  },
+  {
+    id: "sampling-error-calculator",
+    category: "statistic",
+    slugs: {
+      en: "sampling-error-calculator",
+      "zh-CN": "sampling-error-calculator",
+      "zh-TW": "sampling-error-calculator",
+      ja: "sampling-error-calculator",
+      ko: "sampling-error-calculator",
+      es: "sampling-error-calculator",
+      fr: "sampling-error-calculator",
+      de: "sampling-error-calculator",
+      pt: "sampling-error-calculator",
+      ru: "sampling-error-calculator"
+    },
+    titles: {
+      en: "Sampling Error Calculator - Margin of Error",
+      "zh-CN": "Sampling Error Calculator - Margin of Error",
+      "zh-TW": "Sampling Error Calculator - Margin of Error",
+      ja: "Sampling Error Calculator - Margin of Error",
+      ko: "Sampling Error Calculator - Margin of Error",
+      es: "Sampling Error Calculator - Margin of Error",
+      fr: "Sampling Error Calculator - Margin of Error",
+      de: "Sampling Error Calculator - Margin of Error",
+      pt: "Sampling Error Calculator - Margin of Error",
+      ru: "Sampling Error Calculator - Margin of Error"
+    },
+    descriptions: {
+      en: "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support.",
+      "zh-CN": "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support.",
+      "zh-TW": "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support.",
+      ja: "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support.",
+      ko: "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support.",
+      es: "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support.",
+      fr: "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support.",
+      de: "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support.",
+      pt: "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support.",
+      ru: "Sampling error calculator for proportions and means. Enter sample data and confidence level to get the standard error and margin of error with FPC support."
+    }
   }
+
 
 
 

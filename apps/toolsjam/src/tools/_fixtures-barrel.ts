@@ -29,6 +29,11 @@ import { fixtures as f_repeated_measures_anova_calculator } from "@/tools/repeat
 import { fixtures as f_residual_calculator } from "@/tools/residual-calculator.fixtures";
 import { fixtures as f_risk_calculator } from "@/tools/risk-calculator.fixtures";
 import { fixtures as f_roc_curve_calculator } from "@/tools/roc-curve-calculator.fixtures";
+import { fixtures as f_roulette_payout_calculator } from "@/tools/roulette-payout-calculator.fixtures";
+import { fixtures as f_rse_calculator_relative_standard_error } from "@/tools/rse-calculator-relative-standard-error.fixtures";
+import { fixtures as f_sample_size_calculator } from "@/tools/sample-size-calculator.fixtures";
+import { fixtures as f_sampling_distribution_of_the_sample_proportion_calculator } from "@/tools/sampling-distribution-of-the-sample-proportion-calculator.fixtures";
+import { fixtures as f_sampling_error_calculator } from "@/tools/sampling-error-calculator.fixtures";
 import { fixtures as f_smp_x_distribution_calculator } from "@/tools/smp-x-distribution-calculator.fixtures";
 import { fixtures as f_spearmans_correlation_calculator } from "@/tools/spearmans-correlation-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
@@ -78,6 +83,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "residual-calculator": f_residual_calculator,
   "risk-calculator": f_risk_calculator,
   "roc-curve-calculator": f_roc_curve_calculator,
+  "roulette-payout-calculator": f_roulette_payout_calculator,
+  "rse-calculator-relative-standard-error": f_rse_calculator_relative_standard_error,
+  "sample-size-calculator": f_sample_size_calculator,
+  "sampling-distribution-of-the-sample-proportion-calculator": f_sampling_distribution_of_the_sample_proportion_calculator,
+  "sampling-error-calculator": f_sampling_error_calculator,
   "smp-x-distribution-calculator": f_smp_x_distribution_calculator,
   "spearmans-correlation-calculator": f_spearmans_correlation_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
