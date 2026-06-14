@@ -1367,38 +1367,38 @@ export const tools: ToolEntry[] = [
     slugs: {
       en: "population-variance-calculator",
       "zh-CN": "zongti-fangcha-jisuanqi",
-      "zh-TW": "zongti-bianyi-shu-jisuanqi",
-      ja: "bunsan-keisanki",
-      ko: "mopujipan-bun-san-gye-sangi",
+      "zh-TW": "muti-bianyishu-jisuanqi",
+      ja: "boshudan-bunsan-keisanki",
+      ko: "mojipdan-bunsan-gyesangi",
       es: "calculadora-varianza-poblacional",
       fr: "calculateur-variance-population",
       de: "populationsvarianz-rechner",
-      pt: "calculadora-varianza-populacional",
-      ru: "kalkulyator-populyatsionnoy-dispersii"
+      pt: "calculadora-variancia-populacional",
+      ru: "kalkulyator-dispersii-generalnoi-sovokupnosti"
     },
     titles: {
       en: "Population Variance Calculator - Dispersion Analysis",
       "zh-CN": "总体方差计算器",
       "zh-TW": "母體變異數計算器",
-      ja: "母分散計算機",
+      ja: "母集団分散計算機",
       ko: "모집단 분산 계산기",
       es: "Calculadora de varianza poblacional",
       fr: "Calculateur de variance de population",
       de: "Populationsvarianz-Rechner",
       pt: "Calculadora de variância populacional",
-      ru: "Калькулятор дисперсии совокупности"
+      ru: "Калькулятор дисперсии генеральной совокупности"
     },
     descriptions: {
       en: "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
-      "zh-CN": "快速计算任意数据集的总体方差、标准差和均值。免费在线统计离散工具，粘贴数字即可立即查看结果。",
-      "zh-TW": "快速計算任何資料集的母體變異數、標準差與平均數。免費線上統計離散工具，貼上數字即可立即查看結果。",
-      ja: "任意のデータセットの母分散、標準偏差、平均をすばやく計算。無料のオンライン統計ツールで、数値を貼り付ければすぐ結果が出ます。",
-      ko: "임의의 데이터 세트에 대한 모집단 분산, 표준편차, 평균을 빠르게 계산하세요. 무료 온라인 통계 도구로 숫자를 붙여 넣으면 즉시 결과가 나옵니다.",
-      es: "Calcula la varianza poblacional, la desviación estándar y la media de cualquier conjunto de datos. Herramienta estadística gratis para pegar números y ver resultados al instante.",
-      fr: "Calculez la variance de population, l’écart type et la moyenne de n’importe quel jeu de données. Outil statistique en ligne gratuit pour coller des nombres et obtenir les résultats instantanément.",
-      de: "Berechnen Sie Populationsvarianz, Standardabweichung und Mittelwert für beliebige Datensätze. Kostenloses Online-Statistiktool: Zahlen einfügen und sofort Ergebnisse erhalten.",
-      pt: "Calcule a variância populacional, o desvio padrão e a média de qualquer conjunto de dados. Ferramenta estatística online grátis para colar números e ver os resultados na hora.",
-      ru: "Рассчитайте дисперсию совокупности, стандартное отклонение и среднее для любого набора данных. Бесплатный онлайн-инструмент: вставьте числа и сразу получите результат."
+      "zh-CN": "即时计算总体方差、标准差和均值；粘贴数据即可快速得到完整统计结果。",
+      "zh-TW": "可即時計算母體變異數、標準差與平均數；貼上資料即可快速取得完整統計結果。",
+      ja: "データを貼り付けるだけで、母集団分散・標準偏差・平均値をすぐに計算できます。",
+      ko: "데이터를 붙여넣기만 하면 모집단 분산, 표준편차, 평균을 즉시 계산합니다.",
+      es: "Calcula al instante la varianza poblacional, la desviación estándar y la media; pega datos y obtén resultados rápidos.",
+      fr: "Calculez instantanément la variance de population, l’écart type et la moyenne ; collez vos données et obtenez des résultats rapides.",
+      de: "Berechnen Sie sofort Populationsvarianz, Standardabweichung und Mittelwert; Daten einfügen und schnell Ergebnisse erhalten.",
+      pt: "Calcule instantaneamente a variância populacional, o desvio padrão e a média; cole os dados e obtenha resultados rápidos.",
+      ru: "Мгновенно вычисляйте дисперсию генеральной совокупности, стандартное отклонение и среднее; вставьте данные и быстро получите результат."
     }
   },
   {
@@ -1406,39 +1406,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "post-test-probability-calculator",
-      "zh-CN": "houce-gailv-jisuanqi",
-      "zh-TW": "houce-gailv-jisuanqi",
+      "zh-CN": "hou-ceshi-gailv-jisuanqi",
+      "zh-TW": "hou-ceshi-gailv-jisuanqi",
       ja: "kensa-go-kakuritsu-keisan",
-      ko: "geomsa-hu-hwakryul-gyesangi",
+      ko: "geomsa-hu-gwallyul-gyesan-gi",
       es: "calculadora-probabilidad-posprueba",
       fr: "calculateur-probabilite-post-test",
-      de: "post-test-wahrscheinlichkeitsrechner",
+      de: "post-test-wahrscheinlichkeit-rechner",
       pt: "calculadora-probabilidade-pos-teste",
-      ru: "kalkulyator-posttestovoy-veroyatnosti"
+      ru: "kalkulyator-post-test-veroyatnosti"
     },
     titles: {
       en: "Post-Test Probability Calculator - Bayes Theorem",
-      "zh-CN": "后测概率计算器",
-      "zh-TW": "後測機率計算器",
+      "zh-CN": "检后概率计算器",
+      "zh-TW": "檢後機率計算器",
       ja: "検査後確率計算機",
       ko: "검사 후 확률 계산기",
       es: "Calculadora de probabilidad posprueba",
       fr: "Calculateur de probabilité post-test",
-      de: "Post-Test-Wahrscheinlichkeitsrechner",
+      de: "Rechner für Post-Test-Wahrscheinlichkeit",
       pt: "Calculadora de probabilidade pós-teste",
       ru: "Калькулятор посттестовой вероятности"
     },
     descriptions: {
       en: "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
-      "zh-CN": "使用贝叶斯定理计算后测概率。输入先验概率、敏感度和特异度，得到 PPV、NPV 和似然比。",
-      "zh-TW": "使用貝氏定理計算後測機率。輸入先驗機率、敏感度與特異度，取得 PPV、NPV 與似然比。",
+      "zh-CN": "使用贝叶斯定理计算检后概率，输入先验概率、敏感度和特异度，得到 PPV、NPV 和似然比。",
+      "zh-TW": "使用貝葉斯定理計算檢後機率，輸入先驗機率、敏感度與特異度，即可得到 PPV、NPV 與似然比。",
       ja: "ベイズの定理で検査後確率を計算。事前確率、感度、特異度を入力して PPV、NPV、尤度比を求めます。",
-      ko: "베이즈 정리로 검사 후 확률을 계산합니다. 사전 확률, 민감도, 특이도를 입력해 PPV, NPV, 우도비를 구하세요.",
-      es: "Calcula la probabilidad posprueba con el teorema de Bayes. Ingresa probabilidad previa, sensibilidad y especificidad para obtener PPV, NPV y LR.",
-      fr: "Calculez la probabilité post-test avec le théorème de Bayes. Saisissez probabilité préalable, sensibilité et spécificité pour obtenir PPV, NPV et LR.",
-      de: "Berechnen Sie die Post-Test-Wahrscheinlichkeit mit dem Bayes-Theorem. Geben Sie Vortestwahrscheinlichkeit, Sensitivität und Spezifität ein.",
-      pt: "Calcule a probabilidade pós-teste com o teorema de Bayes. Informe probabilidade prévia, sensibilidade e especificidade para obter PPV, NPV e LR.",
-      ru: "Рассчитайте посттестовую вероятность по теореме Байеса. Введите априорную вероятность, чувствительность и специфичность, чтобы получить PPV, NPV и LR."
+      ko: "베이즈 정리로 검사 후 확률을 계산합니다. 사전확률, 민감도, 특이도를 입력해 PPV, NPV, 가능도비를 구하세요.",
+      es: "Calcula la probabilidad posprueba con el teorema de Bayes. Ingresa probabilidad previa, sensibilidad y especificidad para obtener PPV, NPV y razones de verosimilitud.",
+      fr: "Calculez la probabilité post-test avec le théorème de Bayes. Saisissez probabilité prétest, sensibilité et spécificité pour obtenir VPP, VPN et rapports de vraisemblance.",
+      de: "Berechnen Sie die Post-Test-Wahrscheinlichkeit mit dem Satz von Bayes. Geben Sie Vortestwahrscheinlichkeit, Sensitivität und Spezifität ein, um PPV, NPV und Likelihood-Ratios zu erhalten.",
+      pt: "Calcule a probabilidade pós-teste com o teorema de Bayes. Informe probabilidade pré-teste, sensibilidade e especificidade para obter VPP, VPN e razões de verossimilhança.",
+      ru: "Рассчитайте посттестовую вероятность по теореме Байеса. Введите априорную вероятность, чувствительность и специфичность, чтобы получить PPV, NPV и отношения правдоподобия."
     }
   },
   {
@@ -1446,39 +1446,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "f-statistic-calculator",
-      "zh-CN": "f-statistic-calculator",
-      "zh-TW": "f-statistic-calculator",
-      ja: "f-statistic-calculator",
-      ko: "f-statistic-calculator",
-      es: "f-statistic-calculator",
-      fr: "f-statistic-calculator",
-      de: "f-statistic-calculator",
-      pt: "f-statistic-calculator",
-      ru: "f-statistic-calculator"
+      "zh-CN": "f-tongjiliang-jisuanqi",
+      "zh-TW": "f-tongjiliang-jisuanqi",
+      ja: "f-tokeiryo-keisanki",
+      ko: "f-tonggyeryang-gyesangi",
+      es: "calculadora-estadistico-f",
+      fr: "calculateur-statistique-f",
+      de: "f-statistik-rechner",
+      pt: "calculadora-estatistica-f",
+      ru: "kalkulyator-f-statistiki"
     },
     titles: {
       en: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
-      "zh-CN": "F-Statistic Calculator - ANOVA & Variance Ratio Test",
-      "zh-TW": "F-Statistic Calculator - ANOVA & Variance Ratio Test",
-      ja: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
-      ko: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
-      es: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
-      fr: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
-      de: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
-      pt: "F-Statistic Calculator - ANOVA & Variance Ratio Test",
-      ru: "F-Statistic Calculator - ANOVA & Variance Ratio Test"
+      "zh-CN": "F统计量计算器 - ANOVA与方差比检验",
+      "zh-TW": "F統計量計算器 - ANOVA與變異數比檢定",
+      ja: "F統計量計算機 - ANOVAと分散比検定",
+      ko: "F 통계량 계산기 - ANOVA 및 분산비 검정",
+      es: "Calculadora de estadístico F - ANOVA y prueba de varianzas",
+      fr: "Calculateur de statistique F - ANOVA et test de variance",
+      de: "F-Statistik-Rechner - ANOVA und Varianzquotiententest",
+      pt: "Calculadora de estatística F - ANOVA e teste de variância",
+      ru: "Калькулятор F-статистики - ANOVA и тест отношения дисперсий"
     },
     descriptions: {
       en: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
-      "zh-CN": "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
-      "zh-TW": "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
-      ja: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
-      ko: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
-      es: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
-      fr: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
-      de: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
-      pt: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly.",
-      ru: "Calculate the F-statistic and p-value for comparing two sample variances. Enter group variances and sizes to run an ANOVA or F-ratio test instantly."
+      "zh-CN": "计算用于比较两个样本方差的F统计量和p值。输入各组方差和样本量，即可快速执行ANOVA或F比率检验。",
+      "zh-TW": "計算用於比較兩個樣本變異數的F統計量與p值。輸入各組變異數和樣本數，即可快速執行ANOVA或F比率檢定。",
+      ja: "2つの標本分散を比較するF統計量とp値を計算。各群の分散と標本サイズを入力してANOVAやF比検定をすぐ実行できます。",
+      ko: "두 표본분산 비교를 위한 F 통계량과 p값을 계산하세요. 각 그룹의 분산과 표본 크기를 입력해 ANOVA 또는 F비 검정을 즉시 실행합니다.",
+      es: "Calcula el estadístico F y el valor p para comparar dos varianzas muestrales. Introduce varianzas y tamaños para ANOVA o prueba F al instante.",
+      fr: "Calculez la statistique F et la valeur p pour comparer deux variances d'échantillon. Saisissez variances et tailles pour lancer ANOVA ou test F.",
+      de: "Berechne F-Statistik und p-Wert zum Vergleich zweier Stichprobenvarianzen. Varianzen und Stichprobengrößen eingeben und F-Test starten.",
+      pt: "Calcule a estatística F e o valor p para comparar duas variâncias amostrais. Insira variâncias e tamanhos para ANOVA ou teste F instantâneo.",
+      ru: "Рассчитайте F-статистику и p-значение для сравнения двух выборочных дисперсий. Введите дисперсии и размеры групп для ANOVA или F-теста."
     }
   },
   {
@@ -1486,39 +1486,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "f-test-for-equality-of-two-variances-calculator",
-      "zh-CN": "f-test-for-equality-of-two-variances-calculator",
-      "zh-TW": "f-test-for-equality-of-two-variances-calculator",
-      ja: "f-test-for-equality-of-two-variances-calculator",
-      ko: "f-test-for-equality-of-two-variances-calculator",
-      es: "f-test-for-equality-of-two-variances-calculator",
-      fr: "f-test-for-equality-of-two-variances-calculator",
-      de: "f-test-for-equality-of-two-variances-calculator",
-      pt: "f-test-for-equality-of-two-variances-calculator",
-      ru: "f-test-for-equality-of-two-variances-calculator"
+      "zh-CN": "f-jianyan-liangge-fangcha-xiangdeng-jisuanqi",
+      "zh-TW": "f-jianyan-liangge-fangcha-xiangdeng-jisuanqi",
+      ja: "f-kentei-bunsan-todo-keisanki",
+      ko: "f-geomjeong-du-bunsan-dongdeung-gyesangi",
+      es: "calculadora-prueba-f-igualdad-varianzas",
+      fr: "calculateur-test-f-egalite-variances",
+      de: "f-test-gleichheit-varianzen-rechner",
+      pt: "calculadora-teste-f-igualdade-variancias",
+      ru: "f-test-ravenstvo-dvuh-dispersiy-kalkulyator"
     },
     titles: {
       en: "F-Test for Equality of Two Variances Calculator",
-      "zh-CN": "F-Test for Equality of Two Variances Calculator",
-      "zh-TW": "F-Test for Equality of Two Variances Calculator",
-      ja: "F-Test for Equality of Two Variances Calculator",
-      ko: "F-Test for Equality of Two Variances Calculator",
-      es: "F-Test for Equality of Two Variances Calculator",
-      fr: "F-Test for Equality of Two Variances Calculator",
-      de: "F-Test for Equality of Two Variances Calculator",
-      pt: "F-Test for Equality of Two Variances Calculator",
-      ru: "F-Test for Equality of Two Variances Calculator"
+      "zh-CN": "两方差相等 F 检验计算器",
+      "zh-TW": "兩方差相等 F 檢定計算器",
+      ja: "2つの分散の等質性 F検定計算機",
+      ko: "두 분산 동등성 F-검정 계산기",
+      es: "Calculadora de prueba F para igualdad de varianzas",
+      fr: "Calculateur de test F d’égalité des variances",
+      de: "F-Test-Rechner für Gleichheit von Varianzen",
+      pt: "Calculadora de teste F para igualdade de variâncias",
+      ru: "Калькулятор F-теста равенства дисперсий"
     },
     descriptions: {
       en: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
-      "zh-CN": "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
-      "zh-TW": "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
-      ja: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
-      ko: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
-      es: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
-      fr: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
-      de: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
-      pt: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision.",
-      ru: "Perform an F-test for equality of two variances. Enter sample variances and sizes to get the F-statistic, p-value, and reject/fail-to-reject decision."
+      "zh-CN": "执行两方差相等的 F 检验。输入样本方差和样本量，获得 F 统计量、p 值以及拒绝或不拒绝的判断。",
+      "zh-TW": "執行兩方差相等的 F 檢定。輸入樣本方差與樣本數，取得 F 統計量、p 值以及拒絕或不拒絕的判斷。",
+      ja: "2つの分散の等質性を F 検定で判定。標本分散と標本サイズを入力し、F統計量、p値、棄却判断を取得します。",
+      ko: "두 분산의 동등성을 F-검정으로 확인하세요. 표본분산과 표본크기를 입력해 F통계량, p값, 기각 여부를 얻습니다.",
+      es: "Realiza una prueba F de igualdad de varianzas. Ingresa varianzas y tamaños muestrales para obtener F, p-valor y decisión estadística.",
+      fr: "Réalisez un test F d’égalité des variances. Entrez variances et tailles d’échantillon pour obtenir F, p-valeur et décision.",
+      de: "F-Test auf Gleichheit zweier Varianzen durchführen. Stichprobenvarianzen und Größen eingeben, F-Wert, p-Wert und Entscheidung erhalten.",
+      pt: "Faça um teste F de igualdade de variâncias. Informe variâncias e tamanhos amostrais para obter F, valor-p e decisão estatística.",
+      ru: "Выполните F-тест равенства двух дисперсий. Введите выборочные дисперсии и размеры, чтобы получить F-статистику, p-значение и решение."
     }
   },
   {
@@ -1526,39 +1526,39 @@ export const tools: ToolEntry[] = [
     category: "statistic",
     slugs: {
       en: "false-positive-paradox-calculator",
-      "zh-CN": "false-positive-paradox-calculator",
-      "zh-TW": "false-positive-paradox-calculator",
-      ja: "false-positive-paradox-calculator",
-      ko: "false-positive-paradox-calculator",
-      es: "false-positive-paradox-calculator",
-      fr: "false-positive-paradox-calculator",
-      de: "false-positive-paradox-calculator",
-      pt: "false-positive-paradox-calculator",
-      ru: "false-positive-paradox-calculator"
+      "zh-CN": "wu-yan-lu-qi-fen-xi-ji-suan-qi",
+      "zh-TW": "jia-yang-xing-bei-lun-ji-suan-qi",
+      ja: "gisei-yousei-paradox-calculator",
+      ko: "gajangseong-yangseong-paradoxeu-gyesangi",
+      es: "calculadora-paradoja-falso-positivo",
+      fr: "calculateur-paradoxe-faux-positif",
+      de: "falschpositiv-paradoxon-rechner",
+      pt: "calculadora-paradoxo-falso-positivo",
+      ru: "paradoks-lzhepozitivnogo-rezultata-kalkulyator"
     },
     titles: {
       en: "False Positive Paradox Calculator - Bayes' Theorem",
-      "zh-CN": "False Positive Paradox Calculator - Bayes' Theorem",
-      "zh-TW": "False Positive Paradox Calculator - Bayes' Theorem",
-      ja: "False Positive Paradox Calculator - Bayes' Theorem",
-      ko: "False Positive Paradox Calculator - Bayes' Theorem",
-      es: "False Positive Paradox Calculator - Bayes' Theorem",
-      fr: "False Positive Paradox Calculator - Bayes' Theorem",
-      de: "False Positive Paradox Calculator - Bayes' Theorem",
-      pt: "False Positive Paradox Calculator - Bayes' Theorem",
-      ru: "False Positive Paradox Calculator - Bayes' Theorem"
+      "zh-CN": "假阳性悖论计算器",
+      "zh-TW": "假陽性悖論計算器",
+      ja: "偽陽性パラドックス計算機",
+      ko: "위양성 역설 계산기",
+      es: "Calculadora de paradoja del falso positivo",
+      fr: "Calculateur de paradoxe du faux positif",
+      de: "Falschpositiv-Paradoxon Rechner",
+      pt: "Calculadora de paradoxo do falso positivo",
+      ru: "Калькулятор парадокса ложноположительного"
     },
     descriptions: {
       en: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
-      "zh-CN": "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
-      "zh-TW": "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
-      ja: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
-      ko: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
-      es: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
-      fr: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
-      de: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
-      pt: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox.",
-      ru: "Calculate the probability of truly having a condition after a positive test. Enter prevalence, sensitivity, and specificity to see the false positive paradox."
+      "zh-CN": "计算阳性检测后真正患病的概率。输入患病率、灵敏度和特异度，了解假阳性悖论。",
+      "zh-TW": "計算陽性檢測後真正患病的機率。輸入盛行率、靈敏度與特異度，了解假陽性悖論。",
+      ja: "陽性結果の後に本当に病気である確率を計算。有病率、感度、特異度を入力して偽陽性パラドックスを確認。",
+      ko: "양성 검사 후 실제로 질환이 있을 확률을 계산하세요. 유병률, 민감도, 특이도를 입력해 위양성 역설을 확인합니다.",
+      es: "Calcula la probabilidad real de tener una condición tras un resultado positivo. Introduce prevalencia, sensibilidad y especificidad.",
+      fr: "Calculez la probabilité réelle d’avoir une condition après un test positif. Entrez prévalence, sensibilité et spécificité.",
+      de: "Berechnen Sie die wahre Wahrscheinlichkeit für eine Erkrankung nach einem positiven Test. Prävalenz, Sensitivität und Spezifität eingeben.",
+      pt: "Calcule a probabilidade real de ter uma condição após um teste positivo. Informe prevalência, sensibilidade e especificidade.",
+      ru: "Рассчитайте реальную вероятность заболевания после положительного теста. Введите распространённость, чувствительность и специфичность."
     }
   },
   {
@@ -2841,6 +2841,4 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   }
-
-
 ];
