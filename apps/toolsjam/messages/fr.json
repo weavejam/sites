@@ -6544,6 +6544,466 @@
         "q6": "En quoi cela diffère-t-il du calculateur de risque relatif ?",
         "q6_a": "Le calculateur de risque relatif utilise un tableau de contingence 2×2 (les cellules a, b, c, d souvent employées en épidémiologie de cohorte) et se concentre sur le RR et son intervalle de confiance. Le calculateur de réduction du risque relatif prend les événements et les totaux des groupes traitement et témoin, et se concentre sur la RRR, l’ARR et le NNT, qui sont les métriques usuelles des essais cliniques et de la médecine fondée sur les preuves. Les deux calculent un risque relatif, mais pour des usages principaux différents."
       }
+    },
+    "exponential-growth-prediction-calculator": {
+      "title": "Calculateur de croissance exponentielle",
+      "tagline": "Prédisez des valeurs futures à l'aide de modèles de croissance exponentielle.",
+      "intro": "Calculez la valeur future d'une quantité qui croît de façon exponentielle. Utilisez la valeur initiale et le taux de croissance, ou fournissez deux points de données.",
+      "field": {
+        "method": "Méthode de calcul",
+        "initialValue": "Valeur initiale (P₀)",
+        "growthRate": "Taux de croissance (r) par période",
+        "timePeriods": "Nombre de périodes (t)",
+        "value1": "Valeur au temps 1 (P₁)",
+        "time1": "Temps 1 (t₁)",
+        "value2": "Valeur au temps 2 (P₂)",
+        "time2": "Temps 2 (t₂)",
+        "predictionTime": "Temps futur pour la prédiction (t_pred)"
+      },
+      "type": {
+        "methodRate": "Valeur initiale et taux de croissance",
+        "methodPoints": "Deux points de données",
+        "methodRateDesc": "À utiliser si vous connaissez la valeur initiale et le taux de croissance par période.",
+        "methodPointsDesc": "À utiliser si vous disposez de mesures prises à deux moments différents."
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "placeholder": {
+        "number": "Entrez un nombre"
+      },
+      "error": {
+        "invalid": "Vérifiez vos saisies. Les valeurs initiales et les temps doivent être des nombres valides. Pour la méthode à deux points, P₁ et P₂ doivent être positifs et t₂ doit être supérieur à t₁."
+      },
+      "result": {
+        "heading": "Résultats du calcul",
+        "futureValue": "Valeur future prédite",
+        "growthRate": "Taux de croissance par période",
+        "tableHeading": "Projection de croissance dans le temps",
+        "timePeriod": "Temps",
+        "value": "Valeur"
+      },
+      "about": {
+        "heading": "À propos du calculateur de croissance exponentielle",
+        "body": "La croissance exponentielle est l'un des modèles mathématiques les plus importants en science, en économie et en biologie. Une quantité croît de façon exponentielle lorsque son taux de variation est proportionnel à sa taille actuelle — plus elle est grande, plus elle croît vite. Cette dynamique d'auto-renforcement produit la courbe en J caractéristique, qui semble d'abord lente mais finit par s'accélérer fortement.\n\nLa formule fondamentale de la croissance exponentielle est P(t) = P₀ × (1 + r)^t, où P₀ est la valeur initiale, r est le taux de croissance par période (exprimé sous forme décimale) et t est le nombre de périodes écoulées. Pour une croissance continue, la formule est P(t) = P₀ × e^(kt), où k est le taux de croissance continu et e est le nombre d'Euler (environ 2,718). Ce calculateur utilise la formule à périodes discrètes, qui est plus naturelle pour la plupart des usages commerciaux et démographiques.\n\nCe calculateur propose deux méthodes pour calculer des prévisions de croissance exponentielle. La première est directe : vous indiquez la valeur initiale P₀ et le taux de croissance r par période, et le calculateur détermine la valeur à n'importe quel instant futur t. La seconde est plus puissante pour l'analyse de données : vous fournissez deux points de données observés (P₁ au temps t₁ et P₂ au temps t₂), et le calculateur déduit le taux de croissance sous-jacent puis prédit la valeur à n'importe quel temps futur t_pred.\n\nPour la méthode à deux points, le taux de croissance est calculé par r = (P₂/P₁)^(1/(t₂−t₁)) − 1, et la valeur initiale à t=0 est recalculée par P₀ = P₁ / (1+r)^t₁. Cette approche est largement utilisée en écologie des populations, en épidémiologie et en économie, où deux points de recensement servent à estimer les tendances démographiques.\n\nQuelques mises en garde importantes s'appliquent aux modèles exponentiels. La croissance exponentielle ne peut pas se poursuivre indéfiniment dans les systèmes physiques — les contraintes de ressources, les effets de saturation ou la concurrence finissent par ralentir la croissance. Les populations bactériennes, les cours boursiers et l'adoption d'Internet passent tous, à terme, d'une croissance exponentielle à une croissance logistique (courbe en S). Le modèle exponentiel est le plus précis sur des horizons plus courts et aux premières phases de croissance."
+      },
+      "examples": {
+        "heading": "Exemples pratiques",
+        "intro": "Ces exemples illustrent la prévision de croissance exponentielle dans des scénarios réels.",
+        "colInput": "Entrées",
+        "colOutput": "Valeur prédite",
+        "colNote": "Scénario",
+        "items": [
+          {
+            "input": "P₀ = $10,000, r = 7% par an, t = 15 ans",
+            "output": "$27,590.32",
+            "note": "Investissement croissant à 7% par an — la règle des 72 prévoit un doublement tous les ~10 ans"
+          },
+          {
+            "input": "P₀ = 5,000 utilisateurs, r = 15% par mois, t = 12 mois",
+            "output": "26,568 utilisateurs",
+            "note": "Croissance des utilisateurs d'une startup à 15% par mois sur un an"
+          },
+          {
+            "input": "P₁ = 1,200,000 (2010), P₂ = 1,500,000 (2020), prédire 2030",
+            "output": "1,875,000",
+            "note": "Croissance de la population d'un pays projetée à partir de deux points de recensement"
+          },
+          {
+            "input": "P₁ = 500 cellules (t=0), P₂ = 4,500 cellules (t=4 h), prédire t=8 h",
+            "output": "40,500 cellules",
+            "note": "Culture bactérienne multipliée par 9 toutes les 4 heures"
+          }
+        ],
+        "loadInvestment": "Charger : Investissement",
+        "loadPopulation": "Charger : Population",
+        "loadBacteria": "Charger : Bactéries"
+      },
+      "howto": {
+        "heading": "Comment utiliser ce calculateur",
+        "steps": [
+          "Choisissez votre méthode de calcul — utilisez 'Valeur initiale et taux de croissance' si vous connaissez la quantité de départ et le taux, ou 'Deux points de données' si vous disposez de deux observations à des moments différents.",
+          "Pour la méthode au taux : saisissez la valeur initiale P₀, le taux de croissance r sous forme de pourcentage par période (par exemple 7 pour 7%), et le nombre de périodes t.",
+          "Pour la méthode à deux points : saisissez les valeurs P₁ et P₂ observées aux temps t₁ et t₂ (t₂ doit être supérieur à t₁), puis saisissez le temps futur t_pred pour la prédiction.",
+          "Cliquez sur Calculer pour voir la valeur future prédite, le taux de croissance implicite et un tableau de projection de croissance montrant les valeurs aux points intermédiaires.",
+          "Utilisez les boutons de chargement rapide pour explorer des exemples intégrés et vérifier votre compréhension des formules de croissance exponentielle."
+        ]
+      },
+      "faq": {
+        "heading": "Foire aux questions",
+        "q1": "Quelle est la formule de la croissance exponentielle ?",
+        "q1_a": "La formule à périodes discrètes est P(t) = P₀ × (1 + r)^t, où P₀ est la valeur initiale, r est le taux de croissance fractionnaire par période et t est le nombre de périodes. Pour la capitalisation continue, la formule est P(t) = P₀ × e^(kt), où k = ln(1 + r) est le taux de croissance continu. Les deux formules donnent le même résultat lorsqu'elles sont correctement paramétrées.",
+        "q2": "Comment estimer le taux de croissance à partir de deux points de données ?",
+        "q2_a": "Étant donné P₁ au temps t₁ et P₂ au temps t₂, le taux de croissance par période est r = (P₂/P₁)^(1/(t₂−t₁)) − 1. Cela découle de la résolution de P₂ = P₁ × (1+r)^(t₂−t₁) pour r. La valeur initiale à t=0 est alors P₀ = P₁ / (1+r)^t₁, et les prévisions utilisent P(t) = P₀ × (1+r)^t.",
+        "q3": "Qu'est-ce que la règle des 72 ?",
+        "q3_a": "La règle des 72 est une approximation mentale rapide : le temps de doublement d'une quantité qui croît exponentiellement est approximativement 72 / r, où r est le taux de croissance en pourcentage. Par exemple, avec une croissance annuelle de 7%, le temps de doublement est d'environ 72/7 ≈ 10,3 ans. La formule exacte est t_double = ln(2)/ln(1+r), mais la règle des 72 est précise à quelques pourcents près pour des taux compris entre 2% et 20%.",
+        "q4": "Ce calculateur peut-il modéliser la décroissance exponentielle ?",
+        "q4_a": "Oui. Pour modéliser une décroissance exponentielle (quantité en baisse), entrez un taux de croissance négatif r. Par exemple, une substance radioactive ayant une demi-vie de 10 ans a une constante de décroissance k = −ln(2)/10 ≈ −0,0693 par an, soit r ≈ −6,67% par an. Vous pouvez aussi utiliser la méthode à deux points avec P₂ < P₁ pour ajuster un modèle de décroissance à partir d'observations.",
+        "q5": "Quand la croissance exponentielle cesse-t-elle d'être valable ?",
+        "q5_a": "La croissance exponentielle suppose un taux d'augmentation constant et illimité. Dans les systèmes réels, la croissance ralentit à terme à cause des contraintes de ressources, de la concurrence, de la saturation ou des limites physiques. La croissance démographique ralentit à cause de la capacité d'accueil (modèle logistique). La propagation des épidémies ralentit à mesure que les individus susceptibles s'épuisent (modèle SIR). Utilisez les prévisions exponentielles avec prudence sur de longs horizons et vérifiez-les avec les données les plus récentes.",
+        "q6": "Quelle est la différence entre la croissance exponentielle et les intérêts composés ?",
+        "q6_a": "Les intérêts composés utilisent la formule P(t) = P₀ × (1 + r/n)^(nt), où les intérêts sont capitalisés n fois par période. Lorsque n → ∞ (capitalisation continue), on obtient P(t) = P₀ × e^(rt). Ce calculateur utilise une capitalisation annuelle (une fois par période). Pour la capitalisation continue, multipliez le taux par période r par ln(1+r) pour obtenir le taux continu k."
+      }
+    },
+    "exponential-regression-calculator": {
+      "title": "Calculatrice de régression exponentielle",
+      "tagline": "Ajustez un modèle exponentiel y = ab^x à vos données et prédisez des valeurs futures.",
+      "intro": "Saisissez des paires de données (x, y) pour calculer l'équation de régression exponentielle, R² et les prédictions.",
+      "field": {
+        "dataPoints": "Points de données (x, y)",
+        "dataPointsPlaceholder": "1 1.6\n2 2.5\n3 3.8\n4 5.9\n5 9.1",
+        "dataPointsHint": "Saisissez une paire par ligne, séparée par un espace ou une virgule. Exemple : 1 2.5",
+        "predictX": "Prédire Y pour un X donné",
+        "predictXPlaceholder": "p. ex. 6"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins 3 points de données valides avec des valeurs de y positives. Chaque ligne doit contenir deux nombres séparés par un espace ou une virgule."
+      },
+      "result": {
+        "heading": "Résultats",
+        "equation": "Équation de régression",
+        "a": "Coefficient 'a'",
+        "b": "Coefficient 'b'",
+        "rSquared": "R² (coefficient de détermination)",
+        "correlation": "Coefficient de corrélation (R)",
+        "predictedY": "Y prédit"
+      },
+      "about": {
+        "heading": "À propos de la calculatrice de régression exponentielle",
+        "body": "La régression exponentielle est une technique d'ajustement de courbe qui permet de trouver la fonction exponentielle y = ab^x la mieux adaptée à un ensemble de points de données. Elle est utilisée lorsque les données suggèrent une croissance ou une décroissance exponentielle — quand on trace les données, les points semblent suivre une courbe en J (croissance) ou une courbe concave décroissante (décroissance). Le modèle exponentiel est linéaire dans son logarithme : prendre le logarithme népérien des deux côtés donne ln(y) = ln(a) + x·ln(b), ce qui est une équation linéaire en ln(y) et x.\n\nL'ajustement utilise la méthode des moindres carrés appliquée à l'équation linéarisée. Plus précisément, on minimise la somme des carrés des résidus dans l'espace ln(y). On obtient ainsi les formules suivantes : ln(b) = [n·Σ(x·ln y) − Σx·Σ(ln y)] / [n·Σx² − (Σx)²] et ln(a) = [Σ(ln y) − ln(b)·Σx] / n, d'où l'on récupère a = e^(ln a) et b = e^(ln b).\n\nLe modèle y = ab^x peut s'interpréter ainsi. Le coefficient a est l'ordonnée à l'origine : il représente la valeur de y lorsque x = 0. La base b contrôle le taux de variation : si b > 1, le modèle montre une croissance avec un facteur de b par unité (par exemple, b = 1.05 signifie 5% de croissance par incrément de x). Si 0 < b < 1, le modèle montre une décroissance. Le taux de croissance en pourcentage est (b − 1) × 100%.\n\nLe coefficient de détermination R² mesure la qualité de l'ajustement du modèle aux données sur une échelle de 0 à 1. Un R² de 0.95 signifie que 95% de la variance de y est expliquée par le modèle exponentiel. Pour des données scientifiques, des valeurs de R² supérieures à 0.90 sont généralement considérées comme un bon ajustement. Le coefficient de corrélation R = √R² × sign(ln b) indique la direction et l'intensité de la relation exponentielle.\n\nContrainte importante : toutes les valeurs de y doivent être positives pour une régression exponentielle, car le logarithme de zéro ou d'un nombre négatif n'est pas défini. Si vos données contiennent des valeurs de y non positives, vous devrez peut-être transformer ou décaler les données, ou envisager un autre modèle de régression, comme la régression polynomiale."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Ces exemples illustrent la régression exponentielle appliquée à des données biologiques, financières et physiques.",
+        "colInput": "Points de données",
+        "colOutput": "Équation",
+        "colNote": "Scénario",
+        "items": [
+          {
+            "input": "(1,2), (2,4.1), (3,7.9), (4,16.2), (5,33.0)",
+            "output": "y ≈ 0.98 × 2.01^x, R² ≈ 0.999",
+            "note": "Colonies bactériennes doublant environ toutes les heures"
+          },
+          {
+            "input": "(0,1000), (1,1050), (2,1102.5), (3,1157.6), (4,1215.5)",
+            "output": "y = 1000 × 1.05^x, R² = 1.000",
+            "note": "Croissance parfaite à intérêts composés de 5% ; R² = 1"
+          },
+          {
+            "input": "(0,100), (10,82), (20,67), (30,55), (40,45)",
+            "output": "y ≈ 100 × 0.981^x, R² ≈ 0.999",
+            "note": "Désintégration radioactive ; b < 1 indique une décroissance exponentielle"
+          },
+          {
+            "input": "(1971,2300), (1982,134000), (1993,3.1M), (2000,42M), (2011,2.6B)",
+            "output": "y suit une tendance exponentielle, R² ≈ 0.97",
+            "note": "Loi de Moore : le nombre de transistors double environ tous les 2 ans"
+          }
+        ],
+        "loadBacteria": "Charger : croissance bactérienne",
+        "loadCompoundInterest": "Charger : intérêts composés",
+        "loadRadioactive": "Charger : décroissance radioactive"
+      },
+      "howto": {
+        "heading": "Comment utiliser cette calculatrice",
+        "steps": [
+          "Saisissez vos points de données dans la zone de texte — une paire par ligne, avec les valeurs x et y séparées par un espace ou une virgule (par ex. '1 2.5' ou '1,2.5'). Vous avez besoin d'au moins 3 points de données.",
+          "Assurez-vous que toutes les valeurs de y sont strictement positives — l'algorithme de régression exponentielle nécessite de prendre le logarithme de y.",
+          "Si besoin, saisissez une valeur x dans le champ 'Prédire Y' pour obtenir une prédiction du modèle ajusté.",
+          "Cliquez sur Calculer pour afficher l'équation de régression y = ab^x, les coefficients a et b, R², le coefficient de corrélation R et toute prédiction demandée.",
+          "Utilisez les boutons de chargement rapide pour charger des exemples prédéfinis et voir comment l'équation de régression est dérivée."
+        ]
+      },
+      "faq": {
+        "heading": "Foire aux questions",
+        "q1": "Qu'est-ce que la régression exponentielle ?",
+        "q1_a": "La régression exponentielle ajuste une courbe de la forme y = ab^x à un ensemble de points de données, où a est la valeur initiale et b le facteur de croissance/décroissance par unité de x. Elle est utilisée lorsque les données croissent ou décroissent à un rythme proportionnel à leur valeur actuelle. L'ajustement se fait en linéarisant le modèle par les logarithmes puis en appliquant la méthode des moindres carrés ordinaires aux données transformées.",
+        "q2": "Que signifient les coefficients a et b ?",
+        "q2_a": "Le coefficient a est l'ordonnée à l'origine — la valeur de y prévue lorsque x = 0. La base b détermine la variation multiplicative de y pour chaque augmentation de 1 de x. Si b = 1.1, la valeur de y augmente de 10% à chaque unité. Si b = 0.9, la valeur diminue de 10% par unité. Le taux de croissance en pourcentage est (b − 1) × 100%.",
+        "q3": "Que mesure R² et quelle est une bonne valeur ?",
+        "q3_a": "R² (le coefficient de détermination) mesure la proportion de la variance des valeurs originales de y expliquée par le modèle exponentiel ajusté. Il varie de 0 à 1, 1 indiquant un ajustement parfait. Pour des données scientifiques, R² > 0.95 est excellent, 0.80–0.95 est bon, et en dessous de 0.80 cela suggère que le modèle exponentiel n'est peut-être pas approprié et qu'il faut essayer une autre forme de modèle.",
+        "q4": "Pourquoi les valeurs de y doivent-elles être positives ?",
+        "q4_a": "L'algorithme de régression exponentielle linéarise le modèle en prenant ln(y). Le logarithme népérien n'est défini que pour des nombres strictement positifs — ln(0) vaut moins l'infini et le logarithme d'un nombre négatif n'est pas défini en arithmétique réelle. Si vos données contiennent des valeurs de y non positives, vous devrez peut-être décaler les données (ajouter une constante à toutes les valeurs de y), utiliser un modèle différent (polynomial, loi de puissance) ou vérifier si les données suivent vraiment une croissance exponentielle.",
+        "q5": "En quoi est-ce différent de la régression linéaire ?",
+        "q5_a": "La régression linéaire ajuste une droite y = mx + b aux données, en supposant un taux de variation constant. La régression exponentielle ajuste y = ab^x, en supposant un taux de variation proportionnel constant. Pour choisir entre les deux, tracez vos données sur une échelle linéaire (linéaire si elles forment une droite) et sur une échelle semi-logarithmique (exponentielle si elles forment une droite en semi-log). Vous pouvez aussi comparer les valeurs de R², mais le R² des deux modèles n'est pas directement comparable car la régression exponentielle minimise les résidus dans l'espace logarithmique.",
+        "q6": "Puis-je utiliser cette calculatrice pour une décroissance exponentielle ?",
+        "q6_a": "Oui. La décroissance exponentielle est un cas particulier où 0 < b < 1. Si b = 0.95, la quantité diminue de 5% par unité de x. La calculatrice gère automatiquement la croissance et la décroissance — vous n'avez rien à modifier. Saisissez simplement vos points de données et l'algorithme déterminera la bonne valeur de b. La désintégration radioactive, la concentration de médicament dans le sang et la température de refroidissement suivent tous ce schéma."
+      }
+    },
+    "rayleigh-distribution-calculator": {
+      "title": "Calculateur de loi de Rayleigh - PDF, CDF et statistiques",
+      "tagline": "Calculez la PDF, la CDF, la CDF complémentaire, la moyenne, la médiane, le mode et la variance de la loi de Rayleigh pour tout paramètre d’échelle σ et toute valeur x.",
+      "intro": "Entrez le paramètre d’échelle σ (doit être positif) et une valeur x (non négative) pour voir instantanément toutes les propriétés clés de la loi de Rayleigh.",
+      "formula": "PDF : f(x;σ) = (x/σ²)·exp(−x²/(2σ²)) | CDF : F(x;σ) = 1 − exp(−x²/(2σ²)) | Mean : σ√(π/2) | Median : σ√(2 ln 2) | Mode : σ | Variance : (4−π)/2 · σ²",
+      "field": {
+        "sigma": "Paramètre d’échelle (σ)",
+        "x": "Valeur (x)"
+      },
+      "placeholder": {
+        "positiveNumber": "p. ex. 5",
+        "nonNegativeNumber": "p. ex. 4"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "σ doit être un nombre positif et x doit être non négatif."
+      },
+      "result": {
+        "heading": "Résultats",
+        "pdf": "PDF f(x)",
+        "cdf": "CDF F(x)",
+        "ccdf": "CCDF 1−F(x)",
+        "mean": "Moyenne",
+        "median": "Médiane",
+        "mode": "Mode",
+        "variance": "Variance"
+      },
+      "about": {
+        "heading": "À propos du calculateur de loi de Rayleigh",
+        "body": "La loi de Rayleigh est une loi de probabilité continue pour les variables aléatoires non négatives, nommée d’après Lord Rayleigh qui l’a initialement dérivée dans le contexte des amplitudes d’ondes sonores. Elle est définie par un seul paramètre, σ (le paramètre d’échelle), qui représente à la fois le mode de la distribution — la valeur la plus probable — et contrôle l’ampleur de la dispersion.\n\nLa fonction de densité de probabilité (PDF) est f(x; σ) = (x/σ²) · exp(−x²/(2σ²)) pour x ≥ 0. Sa forme en cloche part de zéro en x = 0, atteint son maximum en x = σ, puis décroît asymptotiquement vers zéro. La fonction de répartition (CDF) est F(x; σ) = 1 − exp(−x²/(2σ²)), qui donne la probabilité qu’une observation aléatoire soit inférieure ou égale à x. La CDF complémentaire (CCDF = 1 − CDF) donne la probabilité d’observer une valeur strictement supérieure à x ; on l’appelle souvent fonction de survie et elle est essentielle en fiabilité et en ingénierie des communications.\n\nLa loi de Rayleigh est un cas particulier de la loi de Weibull à deux paramètres avec paramètre de forme k = 2. Elle a aussi un lien profond avec la loi normale : si deux variables aléatoires indépendantes X et Y suivent chacune une loi normale de moyenne nulle et de variance σ², alors la norme R = √(X² + Y²) suit une loi de Rayleigh de paramètre σ. Cette interprétation géométrique en fait le modèle naturel de l’amplitude d’un vecteur aléatoire 2D.\n\nEn télécommunications sans fil, le modèle d’évanouissement de Rayleigh décrit la propagation des signaux radio dans des environnements où il existe de nombreux diffuseurs et aucun trajet direct dominant. Lorsqu’un signal transmis se réfléchit sur des bâtiments, des véhicules et le relief avant d’atteindre le récepteur, l’enveloppe du signal reçu suit une loi de Rayleigh. Les ingénieurs utilisent ce modèle pour calculer les budgets de liaison, déterminer les probabilités de coupure et concevoir des codes correcteurs d’erreurs. Le paramètre σ est estimé à partir des mesures du signal et alimente directement les simulations au niveau système.\n\nEn océanographie et en météorologie, la loi modélise les hauteurs significatives des vagues et les vitesses de pointe du vent sur un site. En ajustant σ aux données historiques, ingénieurs et scientifiques peuvent estimer la probabilité d’événements extrêmes — par exemple la probabilité que la hauteur des vagues dépasse un seuil de sécurité lors d’une tempête centennale. Des applications similaires apparaissent dans la conception de plateformes offshore, la modélisation des inondations côtières et l’implantation des éoliennes.\n\nEn ingénierie de la fiabilité, la loi de Rayleigh sert de loi de durée de vie pour des composants soumis à des dommages cumulés provenant de plusieurs facteurs de contrainte indépendants. Contrairement à la loi exponentielle, le taux de défaillance de Rayleigh augmente linéairement avec le temps (h(t) = t/σ²), ce qui signifie que les composants anciens tombent en panne plus souvent — un modèle réaliste pour des mécanismes d’usure tels que la fatigue des métaux et la corrosion.\n\nLes statistiques clés sont : Moyenne = σ√(π/2) ≈ 1,2533σ ; Médiane = σ√(2 ln 2) ≈ 1,1774σ ; Mode = σ ; Variance = (4 − π)/2 · σ² ≈ 0,4292σ². La moyenne est toujours supérieure au mode, ce qui reflète l’asymétrie à droite de la distribution. La variance croît quadratiquement avec σ ; doubler σ quadruple donc la dispersion."
+      },
+      "examples": {
+        "heading": "Exemples de loi de Rayleigh",
+        "intro": "Exemples détaillés montrant la PDF, la CDF et les statistiques clés pour différentes valeurs de σ et de x.",
+        "colInput": "Entrées",
+        "colOutput": "Sorties clés",
+        "colNote": "Application",
+        "loadBasic": "Charger l’exemple de base",
+        "loadWind": "Charger l’exemple de vitesse du vent",
+        "loadSignal": "Charger l’exemple de signal",
+        "items": [
+          {
+            "input": "σ = 1, x = 1",
+            "output": "PDF ≈ 0.6065, CDF ≈ 0.3935, Mean ≈ 1.2533",
+            "note": "Loi de Rayleigh standard. Le mode vaut σ = 1 et la moyenne est environ 25 % plus grande."
+          },
+          {
+            "input": "σ = 10, x = 12",
+            "output": "PDF ≈ 0.0584, CDF ≈ 0.5132, Mean ≈ 12.533",
+            "note": "Modélisation de la vitesse du vent. Environ 49 % des vitesses observées sur ce site dépasseront 12 m/s."
+          },
+          {
+            "input": "σ = 5, x = 4",
+            "output": "PDF ≈ 0.1162, CDF ≈ 0.2739, Mean ≈ 6.267",
+            "note": "Analyse de l’enveloppe du signal. Il y a 27,4 % de chances que l’amplitude du signal soit inférieure ou égale à 4 unités."
+          },
+          {
+            "input": "σ = 1000, x = 800",
+            "output": "PDF ≈ 0.000581, CDF ≈ 0.2739, Mean ≈ 1253.3",
+            "note": "Ingénierie de la fiabilité. 72,6 % des composants survivent au-delà de 800 heures avec σ = 1000 h."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de loi de Rayleigh",
+        "steps": [
+          "Saisissez le paramètre d’échelle σ dans le premier champ. σ doit être un nombre positif ; il est égal au mode de la distribution et contrôle la dispersion globale.",
+          "Saisissez la valeur x pour laquelle vous souhaitez évaluer la distribution. x doit être nul ou positif ; les valeurs négatives sont hors du support de la distribution.",
+          "Cliquez sur Calculer. L’outil renvoie instantanément la PDF, la CDF, la CDF complémentaire, la moyenne, la médiane, le mode et la variance.",
+          "Lisez la CDF pour obtenir la probabilité qu’une observation aléatoire soit ≤ x, ou la CCDF pour la probabilité qu’elle dépasse x.",
+          "Cliquez sur Réinitialiser pour effacer les deux champs, ou chargez l’un des exemples pour explorer des valeurs de paramètres réalistes."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la loi de Rayleigh",
+        "q1": "Que représente le paramètre d’échelle σ dans la loi de Rayleigh ?",
+        "q1_a": "σ est l’unique paramètre de la loi de Rayleigh. Il est égal au mode (la valeur la plus probable) de la distribution. Un σ plus grand décale toute la distribution vers la droite et augmente sa dispersion. En télécommunications sans fil, σ est estimé à partir des mesures de puissance du signal reçu ; en océanographie, il est ajusté à partir des relevés historiques de hauteur de vagues.",
+        "q2": "Quel est le lien entre la loi de Rayleigh et la loi normale ?",
+        "q2_a": "Si X et Y sont des variables aléatoires normales indépendantes de moyenne nulle et de variance σ², alors la norme R = √(X² + Y²) suit une loi de Rayleigh de paramètre σ. C’est pourquoi cette loi apparaît naturellement lorsqu’on s’intéresse à la distance 2D à l’origine d’un point aléatoire dont les coordonnées x et y sont deux bruits gaussiens indépendants.",
+        "q3": "Quelle est la différence entre la PDF et la CDF ?",
+        "q3_a": "La PDF f(x) donne la densité de probabilité en un point précis — elle décrit à quel point les valeurs proches de x sont probables par rapport aux autres. La CDF F(x) = P(X ≤ x) est l’intégrale de la PDF de 0 à x et donne la probabilité qu’une observation soit inférieure ou égale à x. Pour la loi de Rayleigh, F(x) = 1 − exp(−x²/(2σ²)).",
+        "q4": "Pourquoi la moyenne est-elle supérieure au mode dans la loi de Rayleigh ?",
+        "q4_a": "La loi de Rayleigh est asymétrique à droite : une longue queue de valeurs élevées tire la moyenne au-dessus du pic. La moyenne vaut σ√(π/2) ≈ 1,253σ, tandis que le mode est simplement σ. La médiane σ√(2 ln 2) ≈ 1,177σ se situe entre les deux, comme c’est typique des lois asymétriques à droite.",
+        "q5": "La loi de Rayleigh peut-elle modéliser correctement la vitesse du vent ?",
+        "q5_a": "La loi de Rayleigh est souvent utilisée comme modèle simplifié de la vitesse du vent dans les études d’énergie éolienne. C’est un cas particulier de la loi de Weibull plus générale avec paramètre de forme k = 2. Pour les sites où la distribution des vitesses est à peu près symétrique autour du pic, le modèle de Rayleigh fonctionne bien ; sinon, il vaut mieux ajuster la loi de Weibull complète avec ses deux paramètres.",
+        "q6": "Qu’est-ce que la CDF complémentaire (CCDF) et quand l’utiliser ?",
+        "q6_a": "La CCDF (ou fonction de survie) est 1 − F(x) = exp(−x²/(2σ²)) et donne la probabilité qu’une observation dépasse x. Les ingénieurs l’utilisent pour calculer les probabilités de coupure (probabilité que la puissance du signal passe sous un seuil), les probabilités de dépassement en hydrologie (probabilité qu’un niveau d’inondation soit dépassé) et les fractions de survie en fiabilité (part des composants encore en fonctionnement au temps x)."
+      }
+    },
+    "relative-error-calculator": {
+      "title": "Calculateur d'erreur relative - Formule en %",
+      "tagline": "Calculez l'erreur absolue, l'erreur relative et l'erreur en pourcentage en comparant votre mesure observée à la valeur vraie acceptée.",
+      "intro": "Saisissez la valeur vraie (acceptée) et votre valeur observée (mesurée) pour calculer instantanément les trois indicateurs d'erreur utilisés en science, en ingénierie et en finance.",
+      "formula": "Erreur absolue = |Observée − Vraie| | Erreur relative = |Observée − Vraie| / |Vraie| | Erreur en pourcentage = Erreur relative × 100",
+      "field": {
+        "trueValue": "Valeur vraie (valeur acceptée)",
+        "observedValue": "Valeur observée (valeur mesurée)"
+      },
+      "placeholder": {
+        "number": "Entrez un nombre"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres valides dans les deux champs.",
+        "trueZero": "La valeur vraie ne peut pas être nulle : l'erreur relative n'est pas définie lorsqu'on divise par zéro."
+      },
+      "result": {
+        "heading": "Résultats",
+        "absoluteError": "Erreur absolue",
+        "relativeError": "Erreur relative",
+        "percentageError": "Erreur en pourcentage"
+      },
+      "about": {
+        "heading": "À propos du calculateur d'erreur relative",
+        "body": "L'erreur relative, aussi appelée erreur en pourcentage ou erreur fractionnaire, est une mesure sans dimension qui indique à quel point une mesure est inexacte par rapport à la grandeur de ce qui est mesuré. Alors que l'erreur absolue donne la magnitude brute de l'écart entre une valeur observée et une valeur vraie, elle n'apporte aucun contexte. Une erreur de 1 mètre est énorme pour mesurer la hauteur d'une pièce, mais totalement négligeable pour mesurer la distance jusqu'à la Lune. L'erreur relative lève cette ambiguïté en exprimant l'erreur comme une proportion de la valeur vraie, ce qui la rend comparable entre mesures de tailles très différentes.\n\nLe calcul se fait en deux étapes. D'abord, calculez l'erreur absolue : prenez la valeur absolue de la différence entre la valeur observée (mesurée) et la valeur vraie (acceptée). Ensuite, divisez cette erreur absolue par la valeur absolue de la valeur vraie pour obtenir l'erreur relative. Multipliez par 100 pour l'exprimer en pourcentage. Formellement : Erreur relative = |Observée − Vraie| / |Vraie|, et Erreur en pourcentage = (|Observée − Vraie| / |Vraie|) × 100. Notez que la valeur vraie ne peut pas être nulle, car le dénominateur serait alors indéfini.\n\nDans les sciences physiques, l'erreur relative est essentielle pour évaluer la précision expérimentale. Un étudiant en physique mesurant l'accélération de la pesanteur peut obtenir 9.75 m/s² contre la valeur acceptée de 9.81 m/s². L'erreur absolue est de 0.06 m/s² et l'erreur relative est de 0.06/9.81 ≈ 0.0061, soit 0.61 %. Cette faible erreur relative confirme que l'expérience a été bien conçue et soigneusement menée. Si le même étudiant avait mesuré 9.40 m/s², l'erreur relative serait de 4.2 %, signe qu'il faut examiner le montage expérimental.\n\nDans l'industrie manufacturière et le contrôle qualité, les spécifications de tolérance sont presque toujours exprimées en erreur relative. Une pièce de précision d'une longueur nominale de 50 mm avec une tolérance de ±0.1 mm a une erreur relative maximale admissible de 0.2 %. La fabrication de microprocesseurs, les composants aéronautiques et le dosage pharmaceutique sont des exemples où des erreurs relatives extrêmement faibles — souvent inférieures à 0.1 % — sont nécessaires pour garantir la sécurité et les performances. Le calculateur d'erreur relative permet de vérifier facilement si une dimension ou une dose mesurée reste dans la plage de tolérance spécifiée.\n\nEn économie et en finance, l'erreur relative quantifie la précision des prévisions. Si un analyste prévoit que le chiffre d'affaires trimestriel d'une entreprise sera de 500 millions de dollars mais que le résultat réel est de 480 millions, l'erreur absolue est de 20 millions. L'erreur relative est de 20/500 = 0.04, soit 4 %. Ce chiffre de 4 % est bien plus informatif que le montant seul, car il permet une comparaison directe avec d'autres prévisions, d'autres entreprises et d'autres périodes, quelle que soit l'ampleur des revenus.\n\nUn point subtil important concerne la convention de signe. Certaines formulations de l'erreur relative utilisent la différence signée (Observée − Vraie) plutôt que sa valeur absolue, ce qui conserve l'information sur la direction de l'erreur (surestimation ou sous-estimation). Ici, le calculateur utilise la convention de la valeur absolue afin de fournir une magnitude d'erreur non négative, ce qui est standard dans la plupart des contextes scientifiques et d'ingénierie. Si le signe de l'erreur compte pour votre usage, il suffit de noter si votre valeur observée est supérieure ou inférieure à la valeur vraie."
+      },
+      "examples": {
+        "heading": "Exemples d'erreur relative",
+        "intro": "Des scénarios réels en science, en ingénierie et en finance montrant comment interpréter les résultats d'erreur relative.",
+        "colInput": "Entrées",
+        "colOutput": "Résultats",
+        "colNote": "Contexte",
+        "loadChemistry": "Charger l'exemple de chimie",
+        "loadPhysics": "Charger l'exemple de physique",
+        "loadManufacturing": "Charger l'exemple de fabrication",
+        "items": [
+          {
+            "input": "Vraie = 10.5 g, Observée = 10.2 g",
+            "output": "Err. abs. = 0.3 g, Err. rel. = 0.02857, Err. % = 2.857%",
+            "note": "Expérience de chimie : un étudiant pèse un composé à 10.2 g contre une masse connue de 10.5 g. L'erreur de 2.86 % suggère une légère perte systématique."
+          },
+          {
+            "input": "Vraie = 9.81 m/s², Observée = 9.7 m/s²",
+            "output": "Err. abs. = 0.11, Err. rel. = 0.01121, Err. % = 1.121%",
+            "note": "TP de physique : la gravité mesurée est de 9.7 m/s² contre 9.81 m/s² acceptés. Une erreur relative de 1.1 % est raisonnable pour une expérience de pendule simple."
+          },
+          {
+            "input": "Vraie = 50 cm, Observée = 50.1 cm",
+            "output": "Err. abs. = 0.1, Err. rel. = 0.002, Err. % = 0.2%",
+            "note": "Fabrication : une tige est 0.2 % au-dessus de la longueur nominale, ce qui reste dans la tolérance pour la plupart des usinages généraux."
+          },
+          {
+            "input": "Vraie = 250000, Observée = 245000",
+            "output": "Err. abs. = 5000, Err. rel. = 0.02, Err. % = 2.0%",
+            "note": "Prévision financière : le bénéfice trimestriel a été de 245 k$ contre une prévision de 250 k$. L'erreur relative de 2 % indique une projection légèrement pessimiste."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur d'erreur relative",
+        "steps": [
+          "Saisissez la valeur vraie (acceptée) dans le premier champ. C'est la valeur de référence — théoriquement correcte, établie expérimentalement ou définie officiellement.",
+          "Saisissez la valeur observée (mesurée) dans le second champ. C'est la valeur que vous avez réellement relevée ou calculée dans votre expérience, mesure ou prévision.",
+          "Cliquez sur Calculer. L'outil affiche instantanément l'erreur absolue, l'erreur relative (en décimal) et l'erreur en pourcentage.",
+          "Comparez l'erreur en pourcentage à votre tolérance acceptée. Dans la plupart des contextes scientifiques et d'ingénierie, une valeur inférieure à 1 % est considérée comme excellente ; une valeur inférieure à 5 % est généralement acceptable.",
+          "Cliquez sur Réinitialiser pour effacer les champs et recommencer un nouveau calcul, ou utilisez les boutons d'exemple pour charger des valeurs réelles typiques."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur l'erreur relative",
+        "q1": "Quelle est la différence entre erreur absolue et erreur relative ?",
+        "q1_a": "L'erreur absolue est la magnitude de l'écart brut entre la valeur observée et la valeur vraie (|Observée − Vraie|), exprimée dans les mêmes unités que la mesure. L'erreur relative divise cet écart par la valeur absolue de la valeur vraie, ce qui produit une fraction sans dimension. L'erreur relative est plus utile pour comparer la précision de mesures prises dans des unités différentes ou à des échelles différentes.",
+        "q2": "L'erreur relative peut-elle être supérieure à 1 (ou 100 %) ?",
+        "q2_a": "Oui. Si la valeur observée diffère de la valeur vraie de plus que la valeur vraie elle-même, l'erreur relative dépasse 1 (100 %). Par exemple, si la valeur vraie est 50 et la valeur observée 120, l'erreur absolue est 70 et l'erreur relative est 70/50 = 1.4 (140 %). Cela indiquerait une très mauvaise mesure ou un modèle fortement erroné.",
+        "q3": "Pourquoi la valeur vraie ne peut-elle pas être nulle ?",
+        "q3_a": "L'erreur relative est définie comme l'erreur absolue divisée par la valeur absolue de la valeur vraie. Si la valeur vraie est nulle, le dénominateur est nul et la division n'est pas définie — mathématiquement, l'erreur relative est infinie. Dans ce cas, il faut utiliser l'erreur absolue seule pour évaluer la précision de la mesure.",
+        "q4": "Qu'est-ce qu'une 'bonne' erreur relative ?",
+        "q4_a": "Le seuil acceptable dépend entièrement de l'application. En fabrication de précision, l'erreur relative doit souvent être inférieure à 0.1 %. Dans les TP de physique, une erreur inférieure à 5 % est généralement considérée comme acceptable. En prévision financière, une erreur inférieure à 2–3 % est bonne. Il n'existe pas de norme universelle : comparez toujours avec la tolérance ou l'exigence de précision de votre contexte.",
+        "q5": "L'erreur en pourcentage est-elle la même chose que l'erreur relative ?",
+        "q5_a": "L'erreur en pourcentage est simplement l'erreur relative multipliée par 100 pour l'exprimer en pourcentage plutôt qu'en décimal. Elles véhiculent la même information. Une erreur relative de 0.035 est identique à une erreur en pourcentage de 3.5 %. Le choix entre les deux relève uniquement de la convention — la littérature scientifique utilise souvent l'erreur en pourcentage pour plus de clarté.",
+        "q6": "L'erreur relative tient-elle compte des erreurs systématiques et aléatoires ?",
+        "q6_a": "Non — l'erreur relative est une statistique récapitulative qui mesure l'écart total entre une seule valeur observée et la valeur vraie. Elle ne distingue pas le biais systématique (surestimation ou sous-estimation constante) du bruit aléatoire (erreurs fluctuantes). Pour les séparer, il faut des mesures répétées : l'erreur systématique peut être estimée à partir de la moyenne de plusieurs essais, tandis que l'erreur aléatoire est captée par leur écart-type."
+      }
+    },
+    "relative-frequency-calculator": {
+      "title": "Calculateur de fréquence relative - Distribution",
+      "tagline": "Saisissez n'importe quel jeu de données numériques et obtenez instantanément la fréquence, la fréquence relative et la fréquence cumulée de chaque valeur, triées et prêtes à l'emploi.",
+      "intro": "Saisissez ou collez vos nombres séparés par des virgules dans le champ de données, puis cliquez sur Calculer pour afficher un tableau complet de distribution des fréquences.",
+      "formula": "Fréquence relative = Fréquence / Total des observations | Fréquence relative cumulée = somme des fréquences relatives jusqu'à cette valeur incluse",
+      "field": {
+        "dataSet": "Jeu de données"
+      },
+      "placeholder": {
+        "dataSet": "p. ex. 1, 2, 2, 3, 3, 3, 4"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir une liste valide de nombres séparés par des virgules."
+      },
+      "result": {
+        "heading": "Distribution des fréquences",
+        "totalLabel": "Total des observations",
+        "colValue": "Valeur",
+        "colFrequency": "Fréquence",
+        "colRelFreq": "Fréq. rel.",
+        "colRelFreqPct": "Fréq. rel. (%)",
+        "colCumFreq": "Fréq. cumulée",
+        "colCumRelFreq": "Fréq. rel. cumulée (%)"
+      },
+      "about": {
+        "heading": "À propos du calculateur de fréquence relative",
+        "body": "La fréquence est l'un des concepts les plus fondamentaux en statistique : elle compte simplement le nombre de fois où chaque valeur apparaît dans un jeu de données. La fréquence relative va plus loin en exprimant chaque effectif comme une proportion du nombre total d'observations, transformant des effectifs bruts en fractions ou en pourcentages qui restent significatifs quelle que soit la taille du jeu de données. Une fréquence de 6 est difficile à interpréter isolément ; une fréquence relative de 30% indique immédiatement que près d'un tiers de toutes les observations ont pris cette valeur.\n\nLe calcul est simple. Pour chaque valeur distincte de votre jeu de données, comptez le nombre de fois où elle apparaît : c'est la fréquence absolue. Divisez ensuite cet effectif par le nombre total de points de données. Multipliez par 100 pour l'exprimer en pourcentage. Pour un jeu de données de 20 lancers de dé où la valeur 3 apparaît 4 fois, la fréquence est 4 et la fréquence relative est 4/20 = 0.20, soit 20%. Sur l'ensemble des valeurs distinctes, les fréquences relatives totalisent toujours 1 (ou 100%), ce qui constitue un contrôle de cohérence utile.\n\nLa fréquence cumulée s'appuie sur ce principe en additionnant les fréquences au fil des valeurs triées. La fréquence cumulée à la valeur v est le nombre total d'observations inférieures ou égales à v. De même, la fréquence relative cumulée (également appelée CDF empirique) à v est la proportion d'observations ≤ v. La fréquence relative cumulée à la plus grande valeur du jeu de données est toujours exactement 1.0 (100%).\n\nDans l'éducation et l'évaluation, les tableaux de fréquence relative servent à décrire la distribution des notes de tests, des résultats ou des réponses à des enquêtes. Un enseignant avec 30 élèves peut voir instantanément quelle fraction a obtenu chaque niveau de score et si la distribution est à peu près symétrique, asymétrique à gauche ou asymétrique à droite. En études de marché, les fréquences relatives synthétisent les notes de satisfaction client, les préférences produit et les catégories démographiques dans un format immédiatement compréhensible pour les dirigeants et les clients.\n\nDans le contrôle qualité et la fabrication, les distributions de fréquences constituent la base du contrôle statistique des processus (SPC). En traçant la fréquence relative des nombres de défauts, des dimensions ou des mesures de processus au fil du temps, les ingénieurs peuvent repérer une dérive, une variation inhabituelle ou des changements systématiques avant qu'ils n'affectent la qualité du produit. Le diagramme de Pareto — un graphique en barres trié par fréquence — est un outil standard pour identifier les quelques types de défauts responsables de la plupart des problèmes, selon le principe que 20% des causes expliquent souvent 80% des défauts.\n\nEn théorie des probabilités, la loi des grands nombres affirme qu'à mesure que le nombre d'essais d'une expérience aléatoire augmente, les fréquences relatives observées convergent vers les probabilités théoriques. Ce lien fait du tableau de fréquence relative une passerelle empirique entre les données expérimentales et les distributions de probabilité théoriques. Avec un petit jeu de données de 10 lancers de pièce, la fréquence relative de pile peut être loin de 0.5 ; avec 10,000 lancers, elle en sera très proche. Le calculateur de fréquence relative vous permet d'explorer directement cette convergence avec n'importe quel jeu de données fourni.\n\nConseil pratique : le calculateur trie les valeurs par ordre numérique croissant avant de calculer les fréquences. Si votre jeu de données contient des étiquettes catégorielles plutôt que des nombres, vous devrez les coder en nombres (par exemple, réponses d'enquête Never/Sometimes/Always codées 1/2/3) avant de les saisir."
+      },
+      "examples": {
+        "heading": "Exemples de fréquence relative",
+        "intro": "Exemples détaillés avec des lancers de dés, des notes d'étudiants et des données d'enquête pour montrer l'apparence de la distribution des fréquences.",
+        "colInput": "Jeu de données",
+        "colOutput": "Exemple de sortie",
+        "colNote": "Notes",
+        "loadDice": "Charger les lancers de dé",
+        "loadScores": "Charger les notes de test",
+        "loadSurvey": "Charger les réponses d'enquête",
+        "items": [
+          {
+            "input": "1, 6, 2, 4, 3, 5, 2, 6, 4, 1 (10 lancers de dé)",
+            "output": "Chaque valeur 1–6 apparaît ; fréq. rel. = effectif/10",
+            "note": "Simulation de 10 lancers de dé. Des valeurs proches de 1/6 ≈ 16.7% confirment que le dé est à peu près équilibré, même si les petits échantillons varient."
+          },
+          {
+            "input": "8, 7, 9, 8, 10, 7, 5, 8, 9, 7, 8, 6, 10, 8, 7 (15 notes)",
+            "output": "Note 8 : fréq=5, fréq.rel=33.3% ; Note 7 : fréq=4, fréq.rel=26.7%",
+            "note": "Notes d'étudiants sur 10. La note la plus fréquente est 8 (33% des étudiants) : l'enseignant voit que la classe réussit bien globalement."
+          },
+          {
+            "input": "5, 4, 5, 3, 2, 4, 5, 1, 3, 5, 4, 4, 2, 5, 4 (15 réponses d'enquête)",
+            "output": "Réponse 5 : fréq=5, fréq.rel=33.3% ; Réponse 4 : fréq=5, fréq.rel=33.3%",
+            "note": "Enquête sur échelle de Likert (1=Never à 5=Always). Deux tiers des réponses sont 4 ou 5, indiquant un fort sentiment positif."
+          },
+          {
+            "input": "0, 1, 0, 2, 0, 1, 1, 0, 3, 0, 1, 0, 1, 2, 0 (15 nombres de défauts par lot)",
+            "output": "0 défaut : fréq=7, fréq.rel=46.7% ; 1 défaut : fréq=5, fréq.rel=33.3%",
+            "note": "Nombre de défauts de fabrication par lot. Près de la moitié des lots sont sans défaut ; un seul lot avait 3 défauts, soit un taux de défaut global assez faible."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de fréquence relative",
+        "steps": [
+          "Saisissez votre jeu de données dans la zone de texte sous forme de liste de nombres séparés par des virgules (p. ex. 1, 2, 2, 3, 3, 3). Les espaces autour des virgules sont ignorés.",
+          "Cliquez sur Calculer. L'outil compte les occurrences de chaque valeur distincte, les trie par ordre croissant et construit le tableau de distribution des fréquences.",
+          "Lisez la colonne Fréquence pour les effectifs bruts, la colonne Fréq. rel. (%) pour les proportions et les colonnes cumulées pour voir comment la distribution se construit.",
+          "Vérifiez que les fréquences relatives totalisent 100% ; sinon, assurez-vous que vos données sont correctement formatées et sans texte parasite.",
+          "Utilisez les boutons d'exemple pour charger des jeux de données prédéfinis et explorer le résultat avant de saisir vos propres données."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la fréquence relative",
+        "q1": "Quelle est la différence entre fréquence et fréquence relative ?",
+        "q1_a": "La fréquence est l'effectif brut indiquant combien de fois une valeur apparaît dans un jeu de données. La fréquence relative est cet effectif divisé par le nombre total d'observations, ce qui donne une proportion entre 0 et 1 (ou entre 0% et 100%). Les fréquences relatives sont plus utiles pour comparer des jeux de données de tailles différentes, car elles normalisent les effectifs sur une échelle commune.",
+        "q2": "Les valeurs doivent-elles être des nombres entiers ?",
+        "q2_a": "Non. Le calculateur accepte toute valeur numérique, y compris les décimales. Toutefois, si vos données contiennent de nombreuses valeurs décimales uniques (par exemple des mesures continues), le tableau de fréquences obtenu comportera de nombreuses lignes, chacune avec une fréquence de 1. Pour des données continues, il est plus informatif de regrouper d'abord les valeurs en intervalles de classe et d'utiliser une distribution de fréquences groupée.",
+        "q3": "Comment utiliser la fréquence relative pour estimer une probabilité ?",
+        "q3_a": "La fréquence relative d'un résultat dans une expérience est une estimation empirique de sa probabilité. Si vous lancez un dé 100 fois et que le nombre 4 apparaît 18 fois, la fréquence relative est 18% : une estimation de la vraie probabilité d'obtenir un 4 (théoriquement 16.7%). À mesure que le nombre d'essais augmente, la fréquence relative converge vers la vraie probabilité selon la loi des grands nombres.",
+        "q4": "Que m'indique la fréquence relative cumulée ?",
+        "q4_a": "La fréquence relative cumulée à la valeur v est la proportion d'observations inférieures ou égales à v. C'est la fonction de distribution cumulative empirique (CDF) de vos données. Par exemple, si la fréquence relative cumulée au score 7 est 40%, cela signifie que 40% des étudiants ont obtenu 7 ou moins. C'est utile pour trouver des médianes, des rangs percentiles et comparer des distributions observées à des distributions théoriques.",
+        "q5": "Pourquoi mes fréquences relatives ne totalisent-elles pas exactement 100% ?",
+        "q5_a": "Arrondir chaque fréquence relative à un nombre fixe de décimales avant la somme peut introduire de petits écarts. Le calculateur affiche des valeurs arrondies dans chaque cellule, mais utilise des valeurs en pleine précision en interne. Si vous avez besoin d'un total exact de 100% pour un rapport, n'arrondissez qu'après avoir additionné les valeurs en pleine précision, puis ajustez la dernière ligne avec l'erreur d'arrondi résiduelle.",
+        "q6": "Puis-je utiliser ce calculateur pour des données catégorielles (non numériques) ?",
+        "q6_a": "Le calculateur exige une entrée numérique. Pour l'utiliser avec des données catégorielles — comme des couleurs, des notes (A/B/C) ou des réponses oui/non — attribuez un code numérique à chaque catégorie (p. ex. 1 = Red, 2 = Blue, 3 = Green) et saisissez les valeurs codées. La sortie affichera correctement la fréquence et la fréquence relative de chaque code numérique, que vous pourrez ensuite renommer dans votre rapport."
+      }
     }
   }
 }
