@@ -85,6 +85,11 @@ import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-de
 import { fixtures as f_standard_deviation_index_calculator } from "@/tools/standard-deviation-index-calculator.fixtures";
 import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/tools/standard-deviation-of-sample-mean-calculator.fixtures";
 import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
+import { fixtures as f_thermal_energy_calculator } from "@/tools/thermal-energy-calculator.fixtures";
+import { fixtures as f_thermal_equilibrium_calculator } from "@/tools/thermal-equilibrium-calculator.fixtures";
+import { fixtures as f_thermal_expansion_calculator } from "@/tools/thermal-expansion-calculator.fixtures";
+import { fixtures as f_thermal_resistance_calculator } from "@/tools/thermal-resistance-calculator.fixtures";
+import { fixtures as f_thermal_stress_calculator } from "@/tools/thermal-stress-calculator.fixtures";
 import { fixtures as f_thin_film_optical_coating_calculator } from "@/tools/thin-film-optical-coating-calculator.fixtures";
 import { fixtures as f_thin_lens_equation_calculator } from "@/tools/thin-lens-equation-calculator.fixtures";
 import { fixtures as f_three_phase_calculator } from "@/tools/three-phase-calculator.fixtures";
@@ -214,6 +219,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "standard-deviation-index-calculator": f_standard_deviation_index_calculator,
   "standard-deviation-of-sample-mean-calculator": f_standard_deviation_of_sample_mean_calculator,
   "standard-error-calculator": f_standard_error_calculator,
+  "thermal-energy-calculator": f_thermal_energy_calculator,
+  "thermal-equilibrium-calculator": f_thermal_equilibrium_calculator,
+  "thermal-expansion-calculator": f_thermal_expansion_calculator,
+  "thermal-resistance-calculator": f_thermal_resistance_calculator,
+  "thermal-stress-calculator": f_thermal_stress_calculator,
   "thin-film-optical-coating-calculator": f_thin_film_optical_coating_calculator,
   "thin-lens-equation-calculator": f_thin_lens_equation_calculator,
   "three-phase-calculator": f_three_phase_calculator,
