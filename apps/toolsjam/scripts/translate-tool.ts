@@ -224,7 +224,17 @@ async function runCopilot(prompt: string, model: string): Promise<{ code: number
 // right (typically returns JSON missing one locale, especially "pt", on
 // content with many domain-specific terms).
 const MODEL_FALLBACK = ["gpt-5.4-mini", "gpt-5.5"] as const;
-const ATTEMPTS_PER_MODEL = 1;
+const ATTEMPTS_PER_MODEL = 3;
+// Backoff between attempts (seconds) — copilot CLI relays "transient API
+// error" from the model gateway; with 4 concurrent workers each issuing
+// 10-locale prompts the gateway throttles for ~30-60s.  Sleeping long
+// enough past the throttle window gets a much higher success rate than
+// hammering immediately.
+const BACKOFF_SEC = [0, 45, 90];
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((r) => setTimeout(r, ms));
+}
 
 async function translateOne(toolId: string, force: boolean): Promise<boolean> {
   const found = findEntry(toolId);
@@ -248,9 +258,15 @@ async function translateOne(toolId: string, force: boolean): Promise<boolean> {
   const outFile = path.join(outDir, `${toolId}.json`);
 
   // copilot may flake; try gpt-5.4-mini first (cheap, 90%+ success), then
-  // gpt-5.5 as fallback. Each model gets ATTEMPTS_PER_MODEL tries.
+  // gpt-5.5 as fallback. Each model gets ATTEMPTS_PER_MODEL tries with
+  // exponential backoff so the model gateway's throttle window can clear.
   for (const model of MODEL_FALLBACK) {
     for (let attempt = 1; attempt <= ATTEMPTS_PER_MODEL; attempt++) {
+      const backoff = BACKOFF_SEC[attempt - 1] ?? 90;
+      if (backoff > 0) {
+        console.log(`  ↳ backing off ${backoff}s before ${model} attempt ${attempt}`);
+        await sleep(backoff * 1000);
+      }
       console.log(`→ ${toolId} (${model} attempt ${attempt}/${ATTEMPTS_PER_MODEL})`);
       try { rmSync(outFile, { force: true }); } catch {}
       const t0 = Date.now();
@@ -284,27 +300,12 @@ async function translateOne(toolId: string, force: boolean): Promise<boolean> {
     }
   }
   console.error(`✗ ${toolId}: failed after ${MODEL_FALLBACK.length * ATTEMPTS_PER_MODEL} attempts across ${MODEL_FALLBACK.join("/")}`);
-  // Fallback: copy English into every non-en locale so the build still
-  // produces valid generateStaticParams paths (output: 'export' +
-  // dynamicParams: false requires every locale to have a non-empty slug).
-  // The pages will visibly contain English under /zh-CN/ etc., which is a
-  // recognised TODO — a follow-up `pnpm translate-tool --all` pass will
-  // back-fill these once the model cooperates.
-  try {
-    for (const l of TARGET_LOCALES) {
-      const m = loadJson(path.join(MESSAGES_DIR, `${l}.json`)) as Record<string, unknown>;
-      const toolBag = (m as any).tool = (m as any).tool || {};
-      if (!toolBag[toolId]) toolBag[toolId] = enContent;
-      saveJson(path.join(MESSAGES_DIR, `${l}.json`), m);
-      if (!found.entry.slugs[l]) found.entry.slugs[l] = found.entry.slugs.en;
-      if (!found.entry.titles[l]) found.entry.titles[l] = found.entry.titles.en;
-      if (!found.entry.descriptions[l]) found.entry.descriptions[l] = found.entry.descriptions.en;
-    }
-    writeCategoryFile(found.category, found.entries);
-    console.warn(`  ↳ filled English fallback for all 9 non-en locales (back-fill later)`);
-  } catch (e) {
-    console.error(`  ↳ english-fallback also failed: ${e}`);
-  }
+  // NOTE: previously we filled English fallback here to keep the build
+  // valid (output: 'export' + dynamicParams: false needs every locale
+  // populated).  That silently merged English-only batches.  We now fail
+  // hard — the issue-worker will not open a PR for this batch, the issue
+  // stays `in-progress`, and a retry pass (or a manual re-run later with
+  // less concurrent load) can finish it cleanly.
   return false;
 }
 

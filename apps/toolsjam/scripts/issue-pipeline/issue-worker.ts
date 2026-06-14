@@ -233,16 +233,15 @@ async function main() {
     if (portCode !== 0) throw new Error(`dev copilot exit=${portCode}`);
 
     // 4. translate tool registry + messages into 9 non-en locales.
-    //    NON-FATAL: translate-tool is flaky (model outages, JSON validation
-    //    failures); we prefer to ship English-only pages now and back-fill
-    //    translations later via a separate `pnpm translate-tool --all` pass.
+    //    HARD GATE: if translate fails after all backoff retries, fail the
+    //    batch and leave the issue `in-progress` for a re-run later under
+    //    lower concurrent load.  We deliberately do NOT fall back to
+    //    English — silent English-only pages pollute the messages files
+    //    and make morning debugging harder than just rerunning.
     updateState(issue.number, { phase: "translate" });
     const toolIds = jobs.map((j) => j.toolId);
     const tr = run("pnpm", ["translate-tool", ...toolIds], wtApp, wid);
-    const translateOK = tr.code === 0;
-    if (!translateOK) {
-      log(wid, `⚠ translate-tool failed (exit=${tr.code}); continuing English-only — back-fill later`);
-    }
+    if (tr.code !== 0) throw new Error(`translate-tool failed (exit=${tr.code})`);
 
     // 5. barrel + tests + build + e2e
     updateState(issue.number, { phase: "test" });
