@@ -31,7 +31,12 @@ import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calcul
 import { fixtures as f_gcf_calculator_greatest_common_factor } from "@/tools/gcf-calculator-greatest-common-factor.fixtures";
 import { fixtures as f_generic_rectangle_calculator } from "@/tools/generic-rectangle-calculator.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
+import { fixtures as f_odds_ratio_calculator } from "@/tools/odds-ratio-calculator.fixtures";
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
+import { fixtures as f_outlier_calculator } from "@/tools/outlier-calculator.fixtures";
+import { fixtures as f_p_hat_calculator } from "@/tools/p-hat-calculator.fixtures";
+import { fixtures as f_p_value_calculator } from "@/tools/p-value-calculator.fixtures";
+import { fixtures as f_paired_samples_t_test_calculator } from "@/tools/paired-samples-t-test-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
 import { fixtures as f_poisson_distribution_calculator } from "@/tools/poisson-distribution-calculator.fixtures";
@@ -105,7 +110,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "gcf-calculator-greatest-common-factor": f_gcf_calculator_greatest_common_factor,
   "generic-rectangle-calculator": f_generic_rectangle_calculator,
   "loan-calculator": f_loan_calculator,
+  "odds-ratio-calculator": f_odds_ratio_calculator,
   "ohms-law-calculator": f_ohms_law_calculator,
+  "outlier-calculator": f_outlier_calculator,
+  "p-hat-calculator": f_p_hat_calculator,
+  "p-value-calculator": f_p_value_calculator,
+  "paired-samples-t-test-calculator": f_paired_samples_t_test_calculator,
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
   "poisson-distribution-calculator": f_poisson_distribution_calculator,

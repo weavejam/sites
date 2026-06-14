@@ -7004,6 +7004,477 @@
         "q6": "How does this differ from the Relative Risk Calculator?",
         "q6_a": "The Relative Risk Calculator takes a 2×2 contingency table (cells a, b, c, d) typically used in cohort epidemiology studies, and is focused on computing RR and its confidence interval. The Relative Risk Reduction Calculator takes treatment and control group totals and events, and focuses on computing the clinically useful metrics of RRR, ARR, and NNT that are standard in clinical trial reporting and evidence-based medicine. Both tools compute relative risk, but serve different primary use cases."
       }
+    },
+    "odds-ratio-calculator": {
+      "title": "Odds Ratio Calculator - OR, CI & P-Value from 2×2 Table",
+      "tagline": "Calculate the odds ratio, confidence interval, Z-score, and p-value from a 2×2 contingency table for case-control and epidemiological studies.",
+      "intro": "Enter the four cell counts from your 2×2 table, choose a confidence level, and instantly receive the odds ratio with full statistical inference.",
+      "tableNote": "Fill in the exposed and unexposed group counts. Cells must be non-negative integers. A Haldane-Anscombe correction (adding 0.5 to each cell) is applied automatically when any cell is zero.",
+      "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+      "group": {
+        "exposed": "Exposed Group",
+        "unexposed": "Unexposed Group"
+      },
+      "field": {
+        "a": "Outcome Positive – Cases (a)",
+        "b": "Outcome Negative – Non-Cases (b)",
+        "c": "Outcome Positive – Cases (c)",
+        "d": "Outcome Negative – Non-Cases (d)",
+        "confidenceLevel": "Confidence Level"
+      },
+      "placeholder": {
+        "cell": "Enter count ≥ 0"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter non-negative numbers in all four cells."
+      },
+      "result": {
+        "heading": "Results",
+        "or": "Odds Ratio (OR)",
+        "ciLabel": "Confidence Interval",
+        "z": "Z-Score",
+        "pValue": "P-Value",
+        "lnOR": "ln(OR)",
+        "se": "Standard Error",
+        "correctionNote": "Zero cell detected — Haldane-Anscombe correction (+ 0.5) applied to all cells."
+      },
+      "about": {
+        "heading": "About the Odds Ratio Calculator",
+        "body": "The odds ratio (OR) is one of the most widely used measures of association in biomedical research, epidemiology, and the social sciences. It quantifies the strength of the relationship between an exposure and a binary outcome by comparing the odds of the outcome occurring in an exposed group with the odds of the outcome occurring in an unexposed group. An OR of 1 indicates no association; an OR greater than 1 suggests the exposure increases the odds of the outcome; and an OR less than 1 suggests the exposure is protective.\n\nThe odds ratio is calculated from a 2×2 contingency table, which is the standard format for presenting case-control study data. The table has four cells: (a) exposed individuals who have the outcome, (b) exposed individuals who do not have the outcome, (c) unexposed individuals who have the outcome, and (d) unexposed individuals who do not have the outcome. The formula is simply OR = (a × d) / (b × c), which is the cross-product ratio of the table.\n\nStatistical inference for the OR is performed on its natural logarithm because the sampling distribution of ln(OR) is approximately normal, even for moderate sample sizes. The standard error of ln(OR) is SE = √(1/a + 1/b + 1/c + 1/d). From this, a Z-score is computed as Z = ln(OR) / SE, which follows a standard normal distribution under the null hypothesis of no association (OR = 1). The two-tailed p-value is p = 2 × Φ(−|Z|), where Φ is the standard normal CDF. If the p-value is below your chosen significance level (typically 0.05), the odds ratio is statistically significantly different from 1.\n\nThe confidence interval (CI) for the OR is constructed by exponentiating the interval around ln(OR): CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. For a 95% CI, Z_α/2 = 1.96. If the CI does not include 1.0, the result is statistically significant at the 5% level. The CI width reflects the precision of the estimate; wider intervals arise from smaller sample sizes or sparse cells.\n\nA practical complication arises when any cell in the 2×2 table equals zero, which makes the standard OR formula undefined (division by zero or log of zero). The standard remedy is the Haldane-Anscombe correction: add 0.5 to every cell before computing the OR and SE. This calculator applies the correction automatically and alerts you when it has been used. The correction introduces a small bias but is far better than returning no result at all.\n\nThe OR is the natural measure in case-control studies, where the sampling design fixes the number of cases and controls rather than the exposure prevalence. In cohort studies and randomized trials, the relative risk (RR) is often preferred because it is more directly interpretable. For rare outcomes (prevalence below about 10%), OR ≈ RR, but for common outcomes the OR will always be further from 1 than the corresponding RR, and interpreting OR as RR can overstate the magnitude of the association. Always report which measure you are using and check whether the rare-disease assumption holds in your data."
+      },
+      "examples": {
+        "heading": "Worked Examples",
+        "intro": "Three classic study scenarios showing how to read the odds ratio output and judge statistical significance.",
+        "colInput": "Study Scenario",
+        "colOutput": "Odds Ratio",
+        "colNote": "Interpretation",
+        "loadSmoking": "Load smoking example",
+        "loadDrug": "Load drug trial example",
+        "loadVaccine": "Load vaccine example",
+        "items": [
+          {
+            "input": "Smoking & lung cancer: a=650, b=350, c=100, d=900 (95% CI)",
+            "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+            "note": "Smokers have roughly 16.7× the odds of lung cancer compared to non-smokers. The CI excludes 1.0, so the association is highly significant."
+          },
+          {
+            "input": "New drug vs. placebo: a=38, b=162, c=85, d=115 (95% CI)",
+            "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+            "note": "The drug reduces the odds of disease by about 68%. OR < 1 indicates a protective effect; the CI is entirely below 1."
+          },
+          {
+            "input": "Vaccination study: a=15, b=485, c=55, d=445 (95% CI)",
+            "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+            "note": "Vaccinated individuals have 75% lower odds of infection. A strong protective association with a tight, significant confidence interval."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Odds Ratio Calculator",
+        "steps": [
+          "Organise your data into a 2×2 table: cell (a) = exposed cases, (b) = exposed non-cases, (c) = unexposed cases, (d) = unexposed non-cases.",
+          "Enter the four non-negative counts into the corresponding input fields under 'Exposed Group' and 'Unexposed Group'.",
+          "Select the desired confidence level (90%, 95%, or 99%) from the dropdown. Most published research uses 95%.",
+          "Click Calculate. The tool returns the OR, confidence interval, Z-score, and p-value. If any cell was zero, a correction note appears.",
+          "Interpret the result: OR > 1 means the exposure increases odds; OR < 1 means it decreases odds. Check whether the CI includes 1 and whether p ≤ α."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "What is an odds ratio and how does it differ from relative risk?",
+        "q1_a": "The odds ratio compares the odds of an outcome in two groups, while the relative risk (RR) compares the probabilities. For rare outcomes (prevalence < 10%), OR ≈ RR; for common outcomes the OR drifts further from 1.0 than the RR. Case-control studies can only validly estimate OR, not RR, because the sampling is outcome-based.",
+        "q2": "How do I interpret OR = 2.5?",
+        "q2_a": "An OR of 2.5 means the odds of the outcome in the exposed group are 2.5 times the odds in the unexposed group. It does not mean the risk is 2.5 times higher unless the outcome is rare. For common outcomes, the actual risk ratio will be smaller than 2.5.",
+        "q3": "What does the confidence interval tell me?",
+        "q3_a": "A 95% confidence interval means that if you repeated the study many times under the same conditions, about 95% of the calculated intervals would contain the true population OR. Practically, if the CI excludes 1.0, the result is statistically significant at α = 0.05. A wide CI indicates low precision, usually due to a small sample.",
+        "q4": "When is the Haldane-Anscombe correction applied?",
+        "q4_a": "The correction adds 0.5 to every cell when any cell equals zero. A zero cell makes the standard OR formula undefined (log of zero or division by zero). The correction allows estimation to proceed and is the most common remedy, though it introduces a slight bias. The calculator highlights when this correction has been used.",
+        "q5": "Can I use this calculator for a randomized controlled trial?",
+        "q5_a": "Yes, but consider reporting the relative risk (RR) instead of or alongside the OR, because RR is more intuitively interpretable for common outcomes and is the measure most clinical guidelines prefer. For RCTs with rare outcomes or when pooling across study designs in a meta-analysis, OR remains appropriate.",
+        "q6": "Why are p-values and confidence intervals sometimes contradictory?",
+        "q6_a": "They should not be contradictory: a 95% CI that excludes 1.0 always corresponds to p < 0.05 for a two-tailed test. Apparent contradictions usually arise from rounding, from comparing one-tailed p-values against two-tailed CIs, or from applying different confidence levels to the CI and alpha level of the test. Use consistent settings for both."
+      }
+    },
+    "outlier-calculator": {
+      "title": "Outlier Calculator - Detect Outliers Using IQR Method",
+      "tagline": "Find statistical outliers in any data set using the interquartile range method — choose mild (1.5×IQR) or extreme (3×IQR) detection instantly.",
+      "intro": "Enter a comma-separated list of numbers, select your outlier detection method, and get Q1, Q3, IQR, fence values, and the list of outliers.",
+      "formula": "IQR = Q3 − Q1  |  Lower fence = Q1 − k × IQR  |  Upper fence = Q3 + k × IQR  |  k = 1.5 (mild) or 3.0 (extreme)",
+      "field": {
+        "data": "Data Set (comma-separated numbers)",
+        "method": "Outlier Detection Method"
+      },
+      "placeholder": {
+        "data": "e.g. 10, 12, 14, 15, 16, 18, 20, 50"
+      },
+      "type": {
+        "mild": "Mild Outliers (1.5 × IQR)",
+        "extreme": "Extreme Outliers (3.0 × IQR)"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least 4 comma-separated numbers."
+      },
+      "result": {
+        "heading": "Results",
+        "q1": "Q1 (First Quartile)",
+        "q3": "Q3 (Third Quartile)",
+        "iqr": "IQR",
+        "lowerBound": "Lower Fence",
+        "upperBound": "Upper Fence",
+        "outlierCount": "Outlier Count",
+        "outliersLabel": "Outliers detected",
+        "noOutliers": "No outliers found",
+        "cleanDataLabel": "Data without outliers (sorted)"
+      },
+      "about": {
+        "heading": "About the Outlier Calculator",
+        "body": "An outlier is a data point that lies an abnormal distance from other values in a data set. In statistical analysis, outliers can distort summary statistics like the mean and standard deviation, inflate variance estimates, and violate the assumptions of parametric tests. Identifying them early is a critical step in exploratory data analysis, quality control, and machine learning preprocessing.\n\nThe most widely used method for detecting outliers is based on the interquartile range (IQR), which is the difference between the third quartile (Q3) and the first quartile (Q1) of the data. This method is robust because the IQR, unlike the mean and standard deviation, is not itself distorted by extreme values. The formula for the two fences is: lower fence = Q1 − k × IQR and upper fence = Q3 + k × IQR. Any data point that falls outside these fences is classified as an outlier.\n\nThe multiplier k determines how aggressively outliers are flagged. The most common choice is k = 1.5, which is the default in box-plot analysis and identifies what are sometimes called 'mild' outliers — values that deviate noticeably from the bulk of the data but may still have a legitimate explanation. For k = 3.0, the criterion is stricter; only 'extreme' outliers are flagged — values that are so far from the main distribution that they almost certainly represent errors, anomalies, or genuinely rare events.\n\nTo compute the quartiles, the calculator first sorts the data in ascending order. Q1 is the 25th percentile and Q3 is the 75th percentile of the sorted data. When the quartile position falls between two data points, the calculator linearly interpolates to produce a smooth result consistent with the default Excel and many statistics package conventions.\n\nOutlier detection does not mean automatic deletion. Before removing or transforming a detected outlier, you should investigate its cause. An outlier may be a data entry error (a mistyped digit), a measurement error (a faulty instrument reading), a sampling error (a value from a different population), or a genuine extreme observation that is scientifically important and should be retained. For example, in fraud detection, the most important data point is the outlier. In clinical research, the patient with the most extreme response may be the most informative. Always document your decision and, when in doubt, report results with and without the outlier to show sensitivity.\n\nThe IQR method is non-parametric, meaning it makes no assumption about the shape of the underlying distribution. This makes it especially suitable for skewed distributions, small samples, and data that contain multiple clusters. For roughly normal data with large samples, the Z-score method (flagging values more than 2 or 3 standard deviations from the mean) is an alternative, but the Z-score is itself inflated by the outliers it is meant to detect, making the IQR approach generally more reliable."
+      },
+      "examples": {
+        "heading": "Worked Examples",
+        "intro": "Three data sets illustrating single outliers, multiple outliers, and a clean data set with no outliers.",
+        "colInput": "Data Set",
+        "colOutput": "Outliers (1.5×IQR)",
+        "colNote": "Key Values",
+        "loadBasic": "Load basic example",
+        "loadMultiple": "Load multiple outliers",
+        "loadNone": "Load no-outlier example",
+        "items": [
+          {
+            "input": "10, 12, 14, 15, 16, 18, 20, 50",
+            "output": "50",
+            "note": "Q1=13.5, Q3=18.5, IQR=5, Upper fence=26. The value 50 exceeds 26 and is flagged as an outlier."
+          },
+          {
+            "input": "1, 25, 28, 30, 32, 35, 38, 100",
+            "output": "1, 100",
+            "note": "Q1=27.25, Q3=35.75, IQR=8.5, Fences: 14.5 to 48.5. Both 1 and 100 fall outside these bounds."
+          },
+          {
+            "input": "10, 20, 30, 40, 50, 60, 70, 80",
+            "output": "None",
+            "note": "Uniform spacing means no point is more than 1.5×IQR from the fence. All values are clean."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Outlier Calculator",
+        "steps": [
+          "Type or paste your data into the input field as a comma-separated list of numbers. Integers, decimals, and negative numbers are all accepted.",
+          "Select 'Mild Outliers (1.5 × IQR)' for the standard analysis used in box plots, or 'Extreme Outliers (3.0 × IQR)' to flag only the most severe anomalies.",
+          "Click Calculate. The tool displays Q1, Q3, IQR, the lower and upper fences, and the outlier count.",
+          "Review the 'Outliers detected' list. Investigate each flagged value before deciding to remove or retain it.",
+          "The cleaned data set (sorted, with outliers removed) is displayed below the outlier list for quick copying into your analysis."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "What is the IQR method for outlier detection?",
+        "q1_a": "The IQR (interquartile range) method computes two fences: Q1 − 1.5×IQR and Q3 + 1.5×IQR. Any data point outside these fences is flagged as an outlier. The method is robust because Q1, Q3, and IQR are not influenced by the outliers themselves, unlike the mean and standard deviation.",
+        "q2": "Should I always remove outliers?",
+        "q2_a": "No. Investigate before removing. Outliers may represent real, important data points — a fraud transaction, a novel scientific finding, or a manufacturing defect worth studying. Remove only if you have a valid reason such as a confirmed data entry error. Always note removals when reporting your analysis.",
+        "q3": "What is the difference between mild and extreme outliers?",
+        "q3_a": "Mild outliers fall between 1.5×IQR and 3×IQR beyond a quartile. Extreme outliers fall beyond 3×IQR. Box plots typically show mild outliers as open circles and extreme outliers as stars or filled circles. For most exploratory analyses, the 1.5×IQR threshold is standard.",
+        "q4": "Does this calculator work with negative numbers?",
+        "q4_a": "Yes. The IQR method is scale-invariant and works correctly with any combination of positive, zero, or negative values. Simply include the negative numbers in your comma-separated list using a minus sign, for example: −20, 5, 8, 9, 10, 12, 15.",
+        "q5": "What is the minimum number of data points needed?",
+        "q5_a": "The calculator requires at least 4 data points to compute meaningful quartiles and IQR. For very small samples (fewer than 10–15 values), the fence boundaries can be highly variable and a detected outlier should be interpreted cautiously.",
+        "q6": "How does this method compare to the Z-score approach?",
+        "q6_a": "The Z-score method flags values more than 2 or 3 standard deviations from the mean. It assumes approximately normal data and is sensitive to the outliers it is trying to detect because extreme values inflate the mean and standard deviation. The IQR method makes no normality assumption and is therefore preferred for skewed data, heavy-tailed distributions, and small or moderate samples."
+      }
+    },
+    "p-hat-calculator": {
+      "title": "P-Hat Calculator - Sample Proportion (p̂) and q̂",
+      "tagline": "Calculate the sample proportion p̂ (p-hat) and its complement q̂ from a sample size and number of successes in any statistical study.",
+      "intro": "Enter the total sample size (n) and the number of successes (x) to get p̂ and q̂ as decimals and percentages immediately.",
+      "formula": "p̂ = x / n  |  q̂ = 1 − p̂  |  where x is the count of successes and n is the total sample size",
+      "field": {
+        "n": "Sample Size (n)",
+        "x": "Number of Successes (x)"
+      },
+      "placeholder": {
+        "n": "e.g. 1000",
+        "x": "e.g. 550"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter a positive integer for n and a non-negative integer for x that is ≤ n."
+      },
+      "result": {
+        "heading": "Results",
+        "pHatDecimal": "p̂ (decimal)",
+        "pHatPercent": "p̂ (percent)",
+        "qHatDecimal": "q̂ (decimal)",
+        "qHatPercent": "q̂ (percent)"
+      },
+      "about": {
+        "heading": "About the P-Hat Calculator",
+        "body": "In inferential statistics, the sample proportion p̂ (pronounced 'p-hat') is the fraction of individuals in a sample that possess a specific characteristic or meet a defined criterion. It is one of the most fundamental statistics in applied research, forming the basis for confidence intervals on proportions, hypothesis tests about proportions, and sample-size calculations for surveys and clinical trials.\n\nThe formula is straightforward: p̂ = x / n, where x is the number of 'successes' (observations with the characteristic of interest) and n is the total sample size. The complement q̂ = 1 − p̂ represents the proportion of the sample that does not have the characteristic. Together, p̂ and q̂ sum to exactly 1 and jointly describe the binary split of the sample.\n\nThe primary purpose of p̂ is to estimate the true population proportion p, which is usually unknown. Because a sample is only a subset of the population, p̂ is a random variable — its value will differ slightly from one sample to the next. The Central Limit Theorem guarantees that, for sufficiently large n (typically np̂ ≥ 5 and nq̂ ≥ 5), the sampling distribution of p̂ is approximately normal with mean p and standard error √(p(1−p)/n). This normal approximation underlies the most common proportion confidence intervals and z-tests for proportions.\n\nPractical applications of p̂ span every quantitative field. In political polling, survey organisations sample a few thousand likely voters and report p̂ as the estimated support for a candidate, usually with a margin of error (± 2–3%) derived from the standard error. In manufacturing quality control, a production engineer samples 200 units from a batch and calculates the defect proportion p̂ to decide whether the defect rate is within acceptable limits. In clinical trials, the primary endpoint is often the proportion of patients who respond to a treatment; p̂ in the treatment arm versus p̂ in the control arm forms the basis for the primary statistical comparison. In A/B testing for digital products, p̂ is the conversion rate for each variant.\n\nIt is important to distinguish p̂ from a mean. A mean summarises continuous numerical data (average height, average income), while p̂ summarises binary categorical data (success or failure, yes or no, defective or not defective). Both are point estimates, but they follow different sampling distributions and require different formulas for confidence intervals and hypothesis tests.\n\nWhen reporting p̂, always accompany it with a confidence interval and the sample size n. A p̂ of 0.6 is far more meaningful when stated as '0.6 (95% CI: 0.57 – 0.63, n = 1,000)' than when stated alone. The confidence interval communicates the precision of the estimate and lets readers judge whether the true proportion could plausibly be above or below any threshold they care about. Without n and the CI, p̂ is an incomplete finding."
+      },
+      "examples": {
+        "heading": "Worked Examples",
+        "intro": "Three real-world scenarios showing how p̂ is calculated and what the results mean in context.",
+        "colInput": "Input (n, x)",
+        "colOutput": "p̂",
+        "colNote": "Context",
+        "loadPoll": "Load poll example",
+        "loadQC": "Load quality control example",
+        "loadMedical": "Load medical trial example",
+        "items": [
+          {
+            "input": "n = 1000, x = 550",
+            "output": "p̂ = 0.55 (55%)",
+            "note": "Pre-election poll: 550 out of 1,000 voters support Candidate A. p̂ = 0.55, q̂ = 0.45."
+          },
+          {
+            "input": "n = 200, x = 15",
+            "output": "p̂ = 0.075 (7.5%)",
+            "note": "Quality control: 15 defective bulbs in a sample of 200. Defect rate p̂ = 7.5%, pass rate q̂ = 92.5%."
+          },
+          {
+            "input": "n = 120, x = 80",
+            "output": "p̂ = 0.6667 (66.67%)",
+            "note": "Clinical trial: 80 of 120 patients responded positively to a new drug. Response rate p̂ ≈ 0.667."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the P-Hat Calculator",
+        "steps": [
+          "Enter the total sample size (n) — a positive integer representing how many items, people, or observations you sampled.",
+          "Enter the number of successes (x) — a non-negative integer that is at most n, representing how many items in the sample have the characteristic of interest.",
+          "Click Calculate. The tool returns p̂ and q̂ as both a decimal and a percentage.",
+          "Use p̂ as a point estimate for the population proportion p. Remember that p̂ alone is incomplete; compute a confidence interval for fuller inference.",
+          "Click Reset to clear the fields and start a new calculation."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "What does p̂ stand for in statistics?",
+        "q1_a": "p̂ (read 'p-hat') is the sample proportion — the fraction of a sample that has a particular attribute. It is used to estimate the unknown population proportion p. The hat symbol (^) is standard statistical notation indicating a sample-based estimate of a population parameter.",
+        "q2": "What is q̂ and why is it reported?",
+        "q2_a": "q̂ = 1 − p̂ is the complement of p̂, representing the proportion of the sample that does not have the characteristic. It is always reported alongside p̂ because together they describe the complete binary split of the sample, and q̂ appears directly in the formula for the standard error of p̂: SE = √(p̂ × q̂ / n).",
+        "q3": "How large does n need to be for p̂ to be reliable?",
+        "q3_a": "A common rule of thumb for using the normal approximation for proportions is that both np̂ ≥ 5 and nq̂ ≥ 5. For more accurate confidence intervals when these conditions are not met, use the Wilson score interval or the Clopper-Pearson exact interval instead of the standard normal-approximation formula.",
+        "q4": "Can p̂ be used if x or n are not integers?",
+        "q4_a": "In the strict definition, p̂ is a count divided by a count, so both must be non-negative integers with x ≤ n. However, in some contexts (such as weighted surveys or meta-analyses with effective sample sizes) fractional inputs arise. This calculator enforces integer inputs to maintain mathematical integrity.",
+        "q5": "How is p̂ used in hypothesis testing?",
+        "q5_a": "For a one-sample test of H₀: p = p₀, the test statistic is Z = (p̂ − p₀) / √(p₀(1 − p₀) / n). If |Z| exceeds the critical value at your chosen significance level, you reject the null hypothesis. The p-value from this Z-score tells you the probability of observing a p̂ at least as extreme as the one you got if p really were p₀.",
+        "q6": "Is p̂ the same as a percentage?",
+        "q6_a": "p̂ is a decimal between 0 and 1; multiplying by 100 gives the equivalent percentage. They convey identical information — 0.55 and 55% are the same value expressed differently. Decimals are preferred in formulas and confidence interval calculations; percentages are preferred when communicating results to a general audience."
+      }
+    },
+    "p-value-calculator": {
+      "title": "P-Value Calculator - Z, T, F & Chi-Square Tests",
+      "tagline": "Find the p-value from any test statistic — Z, t, F, or Chi-square — with two-tailed, right-tailed, or left-tailed options for instant significance decisions.",
+      "intro": "Select your statistical test type and tail, enter the test statistic and degrees of freedom, and get the exact p-value and a significance verdict.",
+      "formula": "Z-test: p = 2Φ(−|Z|) (two-tailed)  |  t-test: p from t-distribution with df  |  F-test: p = 1 − F-CDF(F; df1, df2)  |  Chi-square: p = 1 − χ²-CDF(χ²; df)",
+      "field": {
+        "testType": "Test Type",
+        "tailType": "Tail Type",
+        "stat": "Test Statistic",
+        "alpha": "Significance Level (α)",
+        "df": "Degrees of Freedom (df)",
+        "df1": "Numerator df (df1)",
+        "df2": "Denominator df (df2)"
+      },
+      "placeholder": {
+        "stat": "e.g. 2.5",
+        "df": "e.g. 15"
+      },
+      "type": {
+        "z-test": "Z-Test",
+        "t-test": "T-Test",
+        "f-test": "F-Test (ANOVA)",
+        "chi-square": "Chi-Square Test"
+      },
+      "tail": {
+        "two-tailed": "Two-Tailed",
+        "right-tailed": "Right-Tailed",
+        "left-tailed": "Left-Tailed"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter a valid test statistic and, if required, positive integer degrees of freedom."
+      },
+      "result": {
+        "heading": "Results",
+        "pValue": "P-Value",
+        "significance": "Verdict",
+        "significant": "Significant (reject H₀)",
+        "notSignificant": "Not Significant (fail to reject H₀)",
+        "alphaLabel": "Significance Level α"
+      },
+      "about": {
+        "heading": "About the P-Value Calculator",
+        "body": "The p-value is the probability of obtaining a test statistic at least as extreme as the one actually observed, assuming the null hypothesis is true. It is the core output of almost every classical statistical test and serves as the primary criterion for deciding whether to reject the null hypothesis. A small p-value means the observed data are unlikely under the null hypothesis, which is evidence in favour of the alternative hypothesis.\n\nThe procedure begins with a null hypothesis H₀ (typically a statement of no effect, no difference, or no association) and an alternative hypothesis H₁. You collect data, compute a test statistic (Z, t, F, or χ²), and then use the probability distribution of that statistic under H₀ to find the p-value. If the p-value is less than or equal to your pre-specified significance level α (most commonly 0.05), you reject H₀ and declare the result statistically significant.\n\nDifferent test statistics follow different probability distributions. The Z-statistic follows a standard normal distribution and is used when the population standard deviation is known or the sample is very large. The t-statistic follows a Student's t-distribution with a specific number of degrees of freedom (df = n − 1 for a one-sample test) and is used for small-to-moderate samples when the population standard deviation is unknown. The F-statistic follows an F-distribution with numerator and denominator degrees of freedom and is the basis for ANOVA and the F-test for equality of variances. The Chi-square statistic follows a Chi-square distribution with df degrees of freedom and is used for tests of independence in contingency tables and goodness-of-fit tests.\n\nThe tail type determines which region of the distribution is used to compute the p-value. A two-tailed test is appropriate when the alternative hypothesis is non-directional (H₁: μ ≠ μ₀) and the p-value sums the probability in both extremes. A right-tailed test applies when H₁ specifies a positive direction (H₁: μ > μ₀), and a left-tailed test when H₁ specifies a negative direction (H₁: μ < μ₀). For the F-test and Chi-square test, which are inherently one-sided in practice (the test statistic cannot be negative), the right-tailed p-value is the standard reported value.\n\nA critical and common misconception is that the p-value is the probability that H₀ is true. It is not. The p-value is a conditional probability: P(data this extreme | H₀ is true). It says nothing about the probability that H₀ or H₁ is true; for that you need Bayesian inference with prior probabilities. Another misconception is that p < 0.05 means the effect is large or practically important. Statistical significance depends on sample size — with a large enough sample, even a trivially small and meaningless effect will yield p < 0.05. Always report effect sizes alongside p-values.\n\nThe significance level α should be decided before looking at the data and should reflect the tolerable risk of a false positive (Type I error). Different fields use different conventions: α = 0.05 is standard in most biomedical and social science research, α = 0.01 is common when false positives are costly, and α = 5 × 10⁻⁸ is used in genome-wide association studies to account for the large number of tests performed simultaneously. This calculator supports α values of 0.01, 0.05, and 0.10."
+      },
+      "examples": {
+        "heading": "Worked Examples",
+        "intro": "Four examples covering each supported test type, showing the input, p-value, and significance verdict.",
+        "colInput": "Test Configuration",
+        "colOutput": "P-Value",
+        "colNote": "Verdict at α = 0.05",
+        "loadZTest": "Load Z-test example",
+        "loadTTest": "Load T-test example",
+        "loadChiSq": "Load Chi-square example",
+        "items": [
+          {
+            "input": "Z-test, two-tailed, Z = 2.5, α = 0.05",
+            "output": "p = 0.0124",
+            "note": "p < 0.05 → significant. The probability of |Z| ≥ 2.5 under H₀ is about 1.24%."
+          },
+          {
+            "input": "T-test, right-tailed, t = 2.1, df = 15, α = 0.05",
+            "output": "p = 0.0267",
+            "note": "p < 0.05 → significant. A one-tailed t-test with 15 df at t = 2.1 yields p ≈ 0.027."
+          },
+          {
+            "input": "Chi-square, right-tailed, χ² = 18.3, df = 10, α = 0.01",
+            "output": "p = 0.0499",
+            "note": "p > 0.01 → not significant at α = 0.01. The same result is significant at α = 0.05."
+          },
+          {
+            "input": "F-test, right-tailed, F = 3.8, df1 = 2, df2 = 27, α = 0.05",
+            "output": "p = 0.0347",
+            "note": "p < 0.05 → significant. An ANOVA F-ratio of 3.8 with 2 and 27 degrees of freedom."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the P-Value Calculator",
+        "steps": [
+          "Select the statistical test type (Z-Test, T-Test, F-Test, or Chi-Square) that matches how your test statistic was computed.",
+          "Choose the tail type: Two-Tailed for H₁: ≠, Right-Tailed for H₁: >, or Left-Tailed for H₁: <.",
+          "Enter your test statistic in the 'Test Statistic' field. For the T-Test, F-Test, and Chi-Square test, also enter the degrees of freedom (two values for F-test).",
+          "Set the significance level α. Click Calculate to get the p-value and the significance verdict.",
+          "If p ≤ α, reject H₀ and report the result as statistically significant. If p > α, fail to reject H₀. Always supplement with an effect size."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "What does the p-value actually measure?",
+        "q1_a": "The p-value measures the probability of observing a test statistic as extreme as (or more extreme than) the one you calculated, assuming the null hypothesis is true. It quantifies how surprising your data are under H₀. It does not measure the probability that H₀ is true, the size of the effect, or the probability that you made an error.",
+        "q2": "Why is α = 0.05 the conventional threshold?",
+        "q2_a": "The 0.05 threshold was popularised by Ronald Fisher in the 1920s as a convenient convention, not a universal truth. It means you accept a 5% chance of a false positive (rejecting a true H₀). Different fields use different thresholds: particle physics requires p < 5×10⁻⁷, genomics typically uses p < 5×10⁻⁸, and clinical trials sometimes use α = 0.01. The right threshold depends on the costs of false positives and false negatives in your domain.",
+        "q3": "What is the difference between a one-tailed and two-tailed test?",
+        "q3_a": "A two-tailed test checks for a difference in either direction and divides α equally between both tails. A one-tailed test focuses the full α on one direction and provides more power to detect an effect in that direction, but it is only valid when the direction of the effect is specified before seeing the data. Using a one-tailed test to rescue a borderline two-tailed result is p-hacking.",
+        "q4": "How are degrees of freedom determined?",
+        "q4_a": "Degrees of freedom (df) reflect the number of independent pieces of information in the data. For a one-sample t-test, df = n − 1. For an independent-samples t-test, df = n₁ + n₂ − 2. For a Chi-square test of independence in an r × c table, df = (r − 1)(c − 1). For a one-way ANOVA F-test, the numerator df = k − 1 (groups minus 1) and denominator df = N − k (total observations minus groups).",
+        "q5": "What is p-hacking and why is it harmful?",
+        "q5_a": "P-hacking is the practice of running multiple tests, subgroups, or model specifications until a p < 0.05 result appears, then reporting only that result. It inflates the true Type I error rate far above α and produces false positives that fail to replicate. To avoid it, pre-register your analysis plan, correct for multiple comparisons (e.g., Bonferroni correction), and report all tests performed.",
+        "q6": "Can a very small p-value mean the result is unimportant?",
+        "q6_a": "Yes. With a large enough sample, even a trivially small effect (say, a drug that lowers blood pressure by 0.1 mmHg) will produce p < 0.001. Statistical significance and practical significance are not the same. Always compute and report an effect size measure (Cohen's d, odds ratio, R², etc.) alongside the p-value so readers can judge whether the effect is large enough to matter in practice."
+      }
+    },
+    "paired-samples-t-test-calculator": {
+      "title": "Paired Samples t-Test Calculator - Before & After Data",
+      "tagline": "Perform a paired samples t-test to compare two related groups — before/after measurements, matched pairs — and get t-statistic, p-value, and confidence interval.",
+      "intro": "Enter two comma-separated data groups of equal length, set the significance level and test type, and instantly get the full paired t-test output.",
+      "formula": "t = d̄ / (s_d / √n)  |  df = n − 1  |  d̄ = mean of differences  |  s_d = standard deviation of differences",
+      "field": {
+        "group1": "Group 1 Data (e.g. Before Treatment)",
+        "group2": "Group 2 Data (e.g. After Treatment)",
+        "alpha": "Significance Level (α)",
+        "mu": "Hypothesized Mean Difference (μ₀)",
+        "tail": "Test Type"
+      },
+      "placeholder": {
+        "data": "e.g. 140, 135, 150, 155, 130"
+      },
+      "tail": {
+        "two-tailed": "Two-Tailed",
+        "right-tailed": "Right-Tailed",
+        "left-tailed": "Left-Tailed"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least 2 matching values in each group. Both groups must have the same number of data points."
+      },
+      "result": {
+        "heading": "Results",
+        "tStat": "t-Statistic",
+        "df": "Degrees of Freedom",
+        "pValue": "P-Value",
+        "dBar": "Mean Difference (d̄)",
+        "sd": "Std Dev of Differences (s_d)",
+        "ci95": "95% Confidence Interval",
+        "reject": "Reject H₀ — statistically significant difference detected.",
+        "failReject": "Fail to reject H₀ — no statistically significant difference detected."
+      },
+      "about": {
+        "heading": "About the Paired Samples t-Test Calculator",
+        "body": "The paired samples t-test (also called the dependent t-test or matched-pairs t-test) is a parametric statistical procedure that determines whether the mean difference between two related sets of measurements is significantly different from zero (or from any other hypothesised value). It is called 'paired' because each observation in Group 1 corresponds to exactly one observation in Group 2 — the two measurements come from the same subject, matched participants, or the same location measured at two different times.\n\nThe most common application is a before-and-after study design: a researcher measures a characteristic (blood pressure, test score, weight, sales figures) in each subject before an intervention and then again after. Because the same individuals are measured twice, the two groups are not independent — they are correlated. Ignoring this correlation and using an independent-samples t-test would be incorrect; it would underestimate the precision of the comparison by failing to account for the natural between-subject variability that cancels out when you work with differences.\n\nThe computational trick that makes the paired t-test elegant is the reduction to a one-sample problem. For each pair i, compute the difference d_i = Group1_i − Group2_i. The paired t-test then asks: is the mean of these differences (d̄) significantly different from zero? This transforms the two-sample problem into a one-sample t-test on the differences. The test statistic is t = (d̄ − μ₀) / (s_d / √n), where μ₀ is the hypothesised mean difference (usually 0), s_d is the sample standard deviation of the differences, and n is the number of pairs. The statistic follows a Student's t-distribution with df = n − 1 degrees of freedom under the null hypothesis.\n\nThe p-value from this t-statistic tells you the probability of observing a mean difference as large as (or larger than) d̄ if the true population mean difference were μ₀. If the p-value is below your chosen significance level α, you reject the null hypothesis and conclude there is a statistically significant mean difference between the paired measurements. The confidence interval for d̄ provides an estimate of the plausible range for the true mean difference and is often more informative than the p-value alone.\n\nFor the paired t-test to be valid, the differences d_i must be approximately normally distributed. This assumption is checked by examining a histogram or normal Q-Q plot of the differences. With n ≥ 30, the Central Limit Theorem ensures approximate normality even if the individual differences are not normal. For small samples with clearly non-normal differences, the Wilcoxon signed-rank test is the non-parametric alternative.\n\nCommon applications include medical efficacy trials (before vs. after drug treatment), educational research (pre-test vs. post-test scores), nutrition and fitness studies (baseline vs. follow-up measurements), and business analytics (sales before vs. after an advertising campaign). In each case, the key requirement is that every pair of values must come from the same individual, entity, or matched unit — not from two independent groups."
+      },
+      "examples": {
+        "heading": "Worked Examples",
+        "intro": "Three before-and-after study scenarios with realistic data to illustrate the paired t-test output.",
+        "colInput": "Study Design",
+        "colOutput": "t-Statistic / p-Value",
+        "colNote": "Conclusion",
+        "loadBP": "Load blood pressure example",
+        "loadTutor": "Load tutoring example",
+        "loadSales": "Load sales campaign example",
+        "items": [
+          {
+            "input": "Blood pressure before: 140,135,150,155,130,142,138,147,152,133 / after: 132,130,145,148,125,135,130,140,145,128 (two-tailed, α=0.05, n=10)",
+            "output": "t ≈ 16.00, df = 9, p < 0.001",
+            "note": "Highly significant. The drug reduced systolic blood pressure by an average of 6.4 mmHg across 10 patients."
+          },
+          {
+            "input": "Test scores before: 75,80,82,70,88,65,90,78 / after: 85,85,88,78,92,75,95,85 (two-tailed, α=0.05, n=8)",
+            "output": "t ≈ −8.47, df = 7, p < 0.001",
+            "note": "Significant improvement. Students scored on average 6.9 points higher after the tutoring program."
+          },
+          {
+            "input": "Weekly sales before: 500,550,480,600,520,530 / after: 540,580,500,650,550,560 (two-tailed, α=0.05, n=6)",
+            "output": "t ≈ −7.91, df = 5, p < 0.001",
+            "note": "The advertising campaign significantly increased weekly sales by an average of 33.3 units per store."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use the Paired Samples t-Test Calculator",
+        "steps": [
+          "Enter Group 1 data (e.g. 'before' values) as a comma-separated list of numbers in the first field.",
+          "Enter Group 2 data (e.g. 'after' values) in the second field. Both groups must have the same number of values; the first number in Group 1 is paired with the first in Group 2, and so on.",
+          "Set the significance level α (0.01, 0.05, or 0.10) and the hypothesised mean difference μ₀ (usually 0). Select the test type (two-tailed, right-tailed, or left-tailed).",
+          "Click Calculate to see the t-statistic, degrees of freedom, p-value, mean difference, standard deviation of differences, and a 95% confidence interval.",
+          "Compare the p-value to α. If p ≤ α, reject H₀ and conclude there is a statistically significant mean difference. If p > α, fail to reject H₀."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "q1": "When should I use a paired t-test instead of an independent t-test?",
+        "q1_a": "Use a paired t-test when each observation in one group is naturally matched or linked to exactly one observation in the other group — for example, the same person measured before and after treatment, or two siblings assigned to two different diets. If the two groups are independent (different, unrelated individuals with no matching), use an independent-samples t-test instead.",
+        "q2": "What is the hypothesised mean difference μ₀?",
+        "q2_a": "μ₀ is the value you hypothesise the true mean difference equals under the null hypothesis. For most applications — testing whether an intervention has any effect — μ₀ = 0. For more specific hypotheses, such as testing whether a drug reduces blood pressure by at least 10 mmHg, you would set μ₀ = 10.",
+        "q3": "What if my differences are not normally distributed?",
+        "q3_a": "The paired t-test assumes the differences are approximately normally distributed. With n ≥ 30 pairs, the Central Limit Theorem makes this assumption less critical. For smaller samples with clearly non-normal differences (check a histogram), the Wilcoxon signed-rank test is a robust non-parametric alternative that does not assume normality.",
+        "q4": "How do I interpret the confidence interval?",
+        "q4_a": "The 95% confidence interval gives a range of plausible values for the true mean difference. If the interval does not include zero, the result is significant at α = 0.05. The interval is more informative than the p-value alone because it shows the magnitude and direction of the effect. For example, a CI of (2.3, 9.8) tells you both that the effect is significant and that it ranges from small to moderately large.",
+        "q5": "Can I run a one-tailed paired t-test?",
+        "q5_a": "Yes. Select 'Right-Tailed' if you predict Group 1 > Group 2 (positive mean difference), or 'Left-Tailed' if you predict Group 1 < Group 2 (negative mean difference). A one-tailed test is more powerful but is only valid when you specified the direction of the effect before collecting data. Using a one-tailed test purely because your two-tailed result is borderline is a form of p-hacking.",
+        "q6": "What does a significant result actually mean?",
+        "q6_a": "A significant result (p ≤ α) means the observed mean difference is unlikely to have occurred by chance if the null hypothesis were true. It does not prove the null is false, nor does it guarantee the effect is large or clinically important. Always report the mean difference d̄, its confidence interval, and an effect size (such as Cohen's d = d̄ / s_d) so readers can judge the practical significance of the finding."
+      }
     }
   }
 }
