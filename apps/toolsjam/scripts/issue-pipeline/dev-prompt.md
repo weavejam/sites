@@ -108,11 +108,31 @@ Wait for the sub-agent's result. Parse the JSON it returns. Schema:
 
 If `verdict === "PASS"`, write the full JSON to `{{REVIEW_OUT}}` and proceed to Phase 3.
 
-If `verdict !== "PASS"`, fix EVERY `BLOCKER` item in place (edit files directly).
-WARN items: fix if cheap, otherwise note in the report. Re-spawn the same
-reviewer sub-agent and repeat. Max 2 review rounds total. After round 2,
-write whatever JSON you have to `{{REVIEW_OUT}}` (BLOCKERs that remain will
-be visible to humans on the PR).
+If `verdict !== "PASS"`, handle items by severity:
+
+**BLOCKER items** — must be fixed before the PR can land. Fix EVERY BLOCKER
+in place, then re-spawn the same reviewer sub-agent. Repeat up to **2 review
+rounds total**. If any BLOCKER still remains after round 2:
+  - Write the final reviewer JSON to `{{REVIEW_OUT}}` (DO NOT delete it).
+  - Create a follow-up GitHub issue so a human can decide what to do:
+    `gh issue create --title "follow-up({{BATCH_ID}}): unresolved BLOCKERs" \
+      --label "toolsjam-followup,bug" \
+      --body "Batch {{BATCH_ID}} (PR for issue #{{ISSUE_NUMBER}}) shipped with unresolved BLOCKER findings:\n\n<paste the BLOCKER items from the final reviewer JSON here as a markdown list>"`
+  - **Do NOT exit non-zero just because BLOCKERs remain.** The outer worker
+    decides whether the build/tests will catch the issue; your job is to
+    record the finding and move on.
+
+**WARN / NIT items** — DO NOT fix them in this batch. Doing so widens the
+diff, increases the chance of a flaky round, and slows the pipeline.
+Instead, accumulate ALL WARN + NIT items from EVERY review round into a
+single follow-up issue at the very end:
+  `gh issue create --title "follow-up({{BATCH_ID}}): WARN/NIT findings" \
+    --label "toolsjam-followup,polish" \
+    --body "Batch {{BATCH_ID}} (PR for issue #{{ISSUE_NUMBER}}) — non-blocking review findings to address later:\n\n<paste the WARN/NIT items as a markdown list, grouped by file>"`
+Skip this `gh issue create` if there were zero WARN/NIT items across all rounds.
+
+Always write the FINAL reviewer JSON (last round's verdict + items) to
+`{{REVIEW_OUT}}`. The outer worker embeds it in the PR body.
 
 ## Reviewer prompt (pass verbatim to the sub-agent, with placeholders filled)
 

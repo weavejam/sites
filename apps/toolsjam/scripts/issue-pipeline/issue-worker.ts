@@ -260,7 +260,17 @@ async function main() {
     mkdirSync(path.dirname(reviewOut), { recursive: true });
     const prompt = renderDevPrompt(jobs, wt, issue.number, batchId, reviewOut);
     const portCode = await runCopilot(prompt, "claude-sonnet-4.6", wt, wid, [path.join(APP, ".scrape")]);
-    if (portCode !== 0) throw new Error(`dev copilot exit=${portCode}`);
+    if (portCode !== 0) {
+      // Dev copilot CLI crashed (commonly due to gateway throttling). If it
+      // managed to write the review report before dying, the port work is
+      // very likely on disk — let downstream test/build/e2e be the quality
+      // gate. Only throw if there is no evidence of progress.
+      if (existsSync(reviewOut)) {
+        log(wid, `WARN dev copilot exit=${portCode} but ${path.basename(reviewOut)} exists — continuing; downstream gates decide`);
+      } else {
+        throw new Error(`dev copilot exit=${portCode} and no review report at ${reviewOut}`);
+      }
+    }
 
     // 4. translate tool registry + messages into 9 non-en locales.
     //    HARD GATE: if translate fails after all backoff retries, fail the
