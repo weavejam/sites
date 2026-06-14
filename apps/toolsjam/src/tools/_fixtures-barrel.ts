@@ -24,7 +24,12 @@ import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures"
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
+import { fixtures as f_smp_x_distribution_calculator } from "@/tools/smp-x-distribution-calculator.fixtures";
+import { fixtures as f_spearmans_correlation_calculator } from "@/tools/spearmans-correlation-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
+import { fixtures as f_standard_deviation_index_calculator } from "@/tools/standard-deviation-index-calculator.fixtures";
+import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/tools/standard-deviation-of-sample-mean-calculator.fixtures";
+import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
 import { fixtures as f_tukey_hsd_calculator } from "@/tools/tukey-hsd-calculator.fixtures";
 import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-envelopes-paradox-calculator.fixtures";
 import { fixtures as f_uniform_distribution_calculator } from "@/tools/uniform-distribution-calculator.fixtures";
@@ -63,7 +68,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
+  "smp-x-distribution-calculator": f_smp_x_distribution_calculator,
+  "spearmans-correlation-calculator": f_spearmans_correlation_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
+  "standard-deviation-index-calculator": f_standard_deviation_index_calculator,
+  "standard-deviation-of-sample-mean-calculator": f_standard_deviation_of_sample_mean_calculator,
+  "standard-error-calculator": f_standard_error_calculator,
   "tukey-hsd-calculator": f_tukey_hsd_calculator,
   "two-envelopes-paradox-calculator": f_two_envelopes_paradox_calculator,
   "uniform-distribution-calculator": f_uniform_distribution_calculator,
