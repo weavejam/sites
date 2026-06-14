@@ -11902,6 +11902,544 @@
         "q6": "Can this calculator be used for indoor or urban propagation?",
         "q6_a": "The calculator models free-space propagation, which is accurate for line-of-sight outdoor links (satellite, point-to-point microwave). Indoor and urban environments experience additional losses from walls, furniture, buildings, and multipath fading — often modelled as extra path loss of 10–40 dB depending on the scenario. For those applications, add an indoor penetration loss or use an empirical model such as ITU-R P.1238 or the COST 231 Hata model."
       }
+    },
+    "thin-film-optical-coating-calculator": {
+      "title": "Thin Film Optical Coating Calculator",
+      "tagline": "Calculate reflectance and transmittance of single-layer optical coatings",
+      "intro": "Enter the refractive indices of the incident medium, thin film, and substrate together with wavelength, film thickness, and angle of incidence to compute reflectance and transmittance for s- and p-polarizations using the Fresnel thin-film equations.",
+      "field": {
+        "nIncident": "Refractive Index (Incident Medium)",
+        "nFilm": "Refractive Index (Thin Film)",
+        "nSubstrate": "Refractive Index (Substrate)",
+        "wavelength": "Wavelength of Light (nm)",
+        "thickness": "Film Thickness (nm)",
+        "angle": "Angle of Incidence (°)",
+        "placeholder": {
+          "nIncident": "1.0",
+          "nFilm": "1.38",
+          "nSubstrate": "1.52",
+          "wavelength": "550",
+          "thickness": "100",
+          "angle": "0"
+        }
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for all fields. Ensure the velocity (angle) does not cause total internal reflection."
+      },
+      "result": {
+        "heading": "Result",
+        "sPol": "s-Polarization",
+        "pPol": "p-Polarization",
+        "reflectance": "Reflectance",
+        "transmittance": "Transmittance",
+        "avgReflectance": "Average Reflectance",
+        "avgTransmittance": "Average Transmittance"
+      },
+      "examples": {
+        "heading": "Thin Film Coating Examples",
+        "intro": "These examples illustrate common single-layer optical coatings with realistic parameters.",
+        "colInput": "Coating Parameters",
+        "colOutput": "Reflectance",
+        "colNote": "Notes",
+        "loadAR": "AR Coating (MgF2)",
+        "loadHR": "HR Coating (ZnS)",
+        "loadSoap": "Soap Bubble",
+        "items": [
+          {
+            "input": "AR coating: n₀=1.0, n₁=1.38 (MgF2), n₂=1.52 (glass), λ=550 nm, d=99.64 nm, θ=0°",
+            "output": "R ≈ 1.28% (both polarizations at normal incidence)",
+            "note": "Quarter-wave MgF2 anti-reflection coating on glass reduces bare-glass reflection from 4.26% to 1.28% at 550 nm."
+          },
+          {
+            "input": "HR coating: n₀=1.0, n₁=2.35 (ZnS), n₂=1.52 (glass), λ=633 nm, d=67.34 nm, θ=0°",
+            "output": "R ≈ 36% (high-reflection single layer)",
+            "note": "A single quarter-wave ZnS layer significantly increases reflectance compared with bare glass."
+          },
+          {
+            "input": "Soap bubble: n₀=1.0, n₁=1.33 (water), n₂=1.0 (air), λ=600 nm, d=300 nm, θ=20°",
+            "output": "R varies with polarization due to angle",
+            "note": "Soap-bubble thin film of water in air. The 300 nm thickness produces constructive and destructive interference depending on wavelength."
+          },
+          {
+            "input": "AR at 45°: n₀=1.0, n₁=1.38, n₂=1.52, λ=550 nm, d=99.64 nm, θ=45°",
+            "output": "Rs and Rp differ due to polarization splitting",
+            "note": "At oblique incidence, s- and p-polarizations experience different reflectance; the average increases compared with normal incidence."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the thin film optical coating calculator",
+        "steps": [
+          "Enter the refractive index of the incident medium (e.g. 1.0 for air) in the first field.",
+          "Enter the refractive index of the thin film coating material (e.g. 1.38 for MgF₂, 2.35 for ZnS) in the second field.",
+          "Enter the refractive index of the substrate (e.g. 1.52 for optical glass) in the third field.",
+          "Set the wavelength of light in nanometres (e.g. 550 nm for green light), the film thickness in nanometres, and the angle of incidence in degrees.",
+          "Click Calculate to see reflectance and transmittance for s- and p-polarizations, plus the unpolarised average. Use the preset buttons to load common coating scenarios instantly."
+        ]
+      },
+      "faq": {
+        "heading": "Thin Film Optical Coating FAQ",
+        "items": [
+          {
+            "q": "What is a thin film optical coating?",
+            "a": "A thin film optical coating is a layer of material deposited onto an optical surface — such as glass or a lens — to modify how light interacts with that surface. By controlling the film's refractive index and thickness, engineers can increase reflectance (high-reflection coatings), reduce reflectance (anti-reflection coatings), or create wavelength-selective filters. The phenomenon relies on thin-film interference: light reflected from the top and bottom surfaces of the film combines constructively or destructively depending on the film's optical thickness relative to the wavelength."
+          },
+          {
+            "q": "What are the Fresnel equations used in this calculator?",
+            "a": "The Fresnel equations describe how light is reflected and transmitted at an interface between two media with different refractive indices. For a single thin film, the calculator uses the Airy summation formula, which accounts for multiple round-trip reflections inside the film. The phase thickness δ = (2π/λ) × n₁ × d × cos(θ₁) captures how the film's optical path length changes with angle and thickness. Separate equations are used for s-polarization (electric field perpendicular to the plane of incidence) and p-polarization (electric field parallel to the plane of incidence)."
+          },
+          {
+            "q": "What is the quarter-wave condition?",
+            "a": "An optical film has quarter-wave thickness when d = λ/(4n₁) at normal incidence, making the phase thickness δ = π/2. For an anti-reflection coating, this condition causes destructive interference between the two reflected beams, minimising reflectance. For a high-reflection coating with a suitable refractive index choice, the same condition causes constructive interference and maximises reflectance. The quarter-wave condition is the most commonly used design point in single-layer coating design."
+          },
+          {
+            "q": "Why do s- and p-polarizations give different results at oblique angles?",
+            "a": "At oblique incidence, the Fresnel reflection coefficients differ for the two polarisation states because the electric field interacts differently with the surface depending on its orientation relative to the plane of incidence. For p-polarization, reflectance drops to zero at Brewster's angle before rising again, while s-polarization reflectance increases monotonically with angle. This splitting is negligible at small angles but becomes significant above about 20–30 degrees."
+          },
+          {
+            "q": "Can this calculator handle absorbing thin films?",
+            "a": "No — this calculator is designed for non-absorbing dielectric films where the refractive index is a real positive number. Absorbing materials such as metals or doped semiconductors have complex refractive indices (n + ik), which require a different formulation that includes an extinction coefficient k. For absorbing films, you would need to extend the transfer-matrix method to complex quantities."
+          },
+          {
+            "q": "How accurate is the single-layer model for real coatings?",
+            "a": "For an ideal single-layer lossless dielectric film, the Airy formula used here is exact within the bounds of scalar wave optics. Real coatings deviate from the model due to surface roughness, film inhomogeneity, dispersion of the refractive index with wavelength, and absorption. Multi-layer coatings — such as broadband AR coatings or laser mirrors with many alternating layers — cannot be analysed with this single-layer tool and require the full transfer-matrix method applied layer by layer."
+          }
+        ]
+      },
+      "about": {
+        "heading": "About the Thin Film Optical Coating Calculator",
+        "body": "Thin film optical coatings are one of the most important technologies in modern photonics, appearing in camera lenses, eyeglasses, telescope mirrors, solar cells, laser cavities, and flat-panel displays. By depositing a layer of material whose thickness is comparable to the wavelength of visible light (roughly 100–700 nm), optical engineers can precisely tailor how much light is reflected, transmitted, or absorbed at a surface.\n\nThe physics underlying thin film coatings is wave interference. When light strikes a coated surface, a portion is reflected at the air–film interface and another portion is reflected at the film–substrate interface. These two reflected beams travel slightly different distances — determined by the film's optical thickness n₁d — and therefore arrive back at the surface with a phase difference. If that phase difference is exactly half a wavelength (π radians), the beams cancel by destructive interference, reducing reflectance to near zero: this is an anti-reflection (AR) coating. If the phase difference is a full wavelength (2π radians), the beams add by constructive interference, increasing reflectance: this is a high-reflection (HR) coating.\n\nThe calculator uses the Airy thin-film formula, which is equivalent to the transfer-matrix method for a single layer. Given the refractive indices of the incident medium (n₀), the film (n₁), and the substrate (n₂), together with the wavelength λ, the film thickness d, and the angle of incidence θ, the calculator first applies Snell's law to find the refracted angle inside the film, then computes the Fresnel reflection coefficients for both s- and p-polarisations at each interface, and finally evaluates the overall reflectance R using the phase term δ = (2π/λ) n₁ d cos(θ₁). Transmittance T is given by T = 1 − R for a lossless dielectric film.\n\nCommon coating materials include magnesium fluoride (MgF₂, n ≈ 1.38), which is widely used as a single-layer AR coating on glass because its refractive index is close to the geometric mean of air and glass; zinc sulfide (ZnS, n ≈ 2.35), which provides high reflectance; titanium dioxide (TiO₂, n ≈ 2.35), used in broadband HR stacks; and silicon dioxide (SiO₂, n ≈ 1.46), used in multi-layer stacks. Multi-layer designs extend the principles of single-layer coatings to achieve broadband, notch, or band-pass performance, but require iterative numerical optimisation rather than the closed-form formula used here.\n\nThis calculator is ideal for students and engineers who need to understand or quickly evaluate single-layer coating performance: checking whether a quarter-wave MgF₂ coating will meet a specification, exploring how reflectance changes with angle or wavelength, or modelling natural thin films such as soap bubbles or oil slicks."
+      }
+    },
+    "thin-lens-equation-calculator": {
+      "title": "Thin Lens Equation Calculator",
+      "tagline": "Solve the lens formula for focal length, object distance, or image distance",
+      "intro": "Select the variable to solve for, enter the other two known values, and the calculator will find the unknown using the thin lens equation 1/f = 1/dₒ + 1/dᵢ. Magnification and image characteristics are computed automatically.",
+      "field": {
+        "solveFor": "Solve For",
+        "objectDistance": "Object Distance (dₒ)",
+        "imageDistance": "Image Distance (dᵢ)",
+        "focalLength": "Focal Length (f)",
+        "placeholder": {
+          "objectDistance": "e.g. 30",
+          "imageDistance": "e.g. 15",
+          "focalLength": "e.g. 10"
+        }
+      },
+      "type": {
+        "di": "Solve for dᵢ",
+        "do": "Solve for dₒ",
+        "f": "Solve for f"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers for the two known fields. Ensure the object is not placed exactly at the focal point."
+      },
+      "result": {
+        "heading": "Result",
+        "magnification": "Magnification (m)",
+        "imageType": "Image",
+        "real": "Real",
+        "virtual": "Virtual",
+        "upright": "Upright",
+        "inverted": "Inverted",
+        "magnified": "Magnified",
+        "diminished": "Diminished"
+      },
+      "examples": {
+        "heading": "Thin Lens Equation Examples",
+        "intro": "These examples cover common optics scenarios involving converging and diverging lenses.",
+        "colInput": "Lens Setup",
+        "colOutput": "Result",
+        "colNote": "Notes",
+        "loadRealImage": "Real Image (Converging)",
+        "loadVirtualImage": "Virtual Image (Magnifying Glass)",
+        "loadFocalLength": "Find Focal Length",
+        "items": [
+          {
+            "input": "Solve for dᵢ: dₒ = 30 cm, f = 10 cm (converging lens)",
+            "output": "dᵢ = 15 cm, m = −0.5 (real, inverted, diminished)",
+            "note": "Object placed at 3F produces a real, inverted image at 1.5F on the opposite side of the lens."
+          },
+          {
+            "input": "Solve for dᵢ: dₒ = 5 cm, f = 10 cm (magnifying glass)",
+            "output": "dᵢ = −10 cm, m = 2 (virtual, upright, magnified)",
+            "note": "Object inside focal length of a converging lens yields a virtual, upright, and magnified image — the principle behind a magnifying glass."
+          },
+          {
+            "input": "Solve for dᵢ: dₒ = 30 cm, f = −10 cm (diverging lens)",
+            "output": "dᵢ = −7.5 cm, m = 0.25 (virtual, upright, diminished)",
+            "note": "A diverging (concave) lens always produces a virtual, upright, and diminished image regardless of object position."
+          },
+          {
+            "input": "Solve for f: dₒ = 20 cm, dᵢ = 20 cm",
+            "output": "f = 10 cm (object at 2F)",
+            "note": "When object and image distances are equal, the object is at 2F and the image is the same size as the object."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the thin lens equation calculator",
+        "steps": [
+          "Choose which quantity to solve for — image distance dᵢ, object distance dₒ, or focal length f — by clicking the corresponding button.",
+          "Enter the two known values in the enabled input fields. Use positive distances for real objects/images and negative distances for virtual objects/images or diverging lenses.",
+          "Click Calculate to instantly see the unknown value, the linear magnification m = −dᵢ/dₒ, and the image characteristics (real/virtual, upright/inverted, magnified/diminished).",
+          "Use the example preset buttons to load classic scenarios such as a magnifying glass, a camera lens, or determining focal length.",
+          "Click Reset to clear all fields and start a new calculation."
+        ]
+      },
+      "faq": {
+        "heading": "Thin Lens Equation FAQ",
+        "items": [
+          {
+            "q": "What is the thin lens equation?",
+            "a": "The thin lens equation is 1/f = 1/dₒ + 1/dᵢ, where f is the focal length of the lens, dₒ is the distance from the lens to the object, and dᵢ is the distance from the lens to the image. It applies to any ideal thin lens — converging (positive f) or diverging (negative f) — and assumes the lens thickness is negligible compared with the object and image distances."
+          },
+          {
+            "q": "What is magnification and how is it calculated?",
+            "a": "Linear magnification m = −dᵢ/dₒ describes how the image size compares with the object size. A magnitude greater than 1 means the image is magnified; less than 1 means diminished. A negative sign indicates the image is inverted relative to the object. For example, m = −2 means the image is twice the size of the object and upside-down, as seen in a camera or projector."
+          },
+          {
+            "q": "How do I identify a real versus virtual image?",
+            "a": "A real image forms where light rays actually converge on the opposite side of the lens from the object; dᵢ > 0 for a real image. A virtual image appears to diverge from a point on the same side as the object; dᵢ < 0. Real images can be projected onto a screen; virtual images cannot, but they can be seen by looking through the lens, as in a magnifying glass or a camera viewfinder."
+          },
+          {
+            "q": "What happens when the object is placed at the focal point?",
+            "a": "When dₒ = f, the lens equation gives 1/dᵢ = 0, meaning the image forms at infinity — the refracted rays are parallel and never converge or diverge. In practice, this means no well-defined image is formed. Flashlights and searchlights exploit this geometry to produce a parallel beam of light."
+          },
+          {
+            "q": "Can I use this calculator for mirrors?",
+            "a": "The same mirror equation 1/f = 1/dₒ + 1/dᵢ applies to concave and convex mirrors with a different sign convention. For mirrors, f = R/2 where R is the radius of curvature, f > 0 for concave mirrors and f < 0 for convex mirrors. You can use this calculator as a mirror equation calculator by entering the appropriate sign for f."
+          },
+          {
+            "q": "What is the sign convention used in this calculator?",
+            "a": "This calculator uses the real-is-positive convention (also called the Cartesian sign convention). Object distances dₒ are positive when the object is on the incoming-light side of the lens. Image distances dᵢ are positive when the image forms on the outgoing-light side (real image) and negative when on the same side as the object (virtual image). Focal lengths are positive for converging lenses and negative for diverging lenses."
+          }
+        ]
+      },
+      "about": {
+        "heading": "About the Thin Lens Equation Calculator",
+        "body": "The thin lens equation is one of the foundational results of geometric optics, linking the three key distances in any imaging system: the object distance dₒ, the image distance dᵢ, and the focal length f of the lens through the elegant relation 1/f = 1/dₒ + 1/dᵢ. This calculator solves that equation for any of the three unknowns given the other two, making it a practical tool for students, optometrists, camera designers, and anyone working with optical systems.\n\nA converging (convex) lens has a positive focal length and brings parallel light rays to a focus on the far side. When an object is placed farther from the lens than the focal point, a real, inverted image forms on the other side and can be projected onto a screen — the principle behind cameras, projectors, and the human eye. When the object is closer than the focal point, the lens acts as a magnifying glass, producing an enlarged virtual image on the same side as the object that appears upright to the observer.\n\nA diverging (concave) lens has a negative focal length and causes parallel rays to spread outward as if they originated from a virtual focal point on the same side as the incoming light. Such lenses always produce a virtual, upright, and diminished image regardless of where the object is placed. Diverging lenses are commonly used in combination with converging elements to correct myopia (short-sightedness) in eyeglasses and to reduce aberrations in compound optical systems.\n\nThe linear magnification m = −dᵢ/dₒ tells you both the size and orientation of the image. A negative magnification means an inverted image; a positive magnification means an upright image. The absolute value gives the size ratio: |m| = 2 means the image is twice as tall as the object.\n\nThis calculator uses the real-is-positive Cartesian sign convention, which is the most common convention in introductory physics and engineering optics courses. Object distances are positive for real objects on the incoming-light side of the lens. Image distances are positive for real images (formed on the outgoing side) and negative for virtual images (same side as object). Focal lengths are positive for converging lenses and negative for diverging lenses. Using the correct sign for f is essential — entering f = −10 cm instead of f = 10 cm completely changes the nature of the image.\n\nBeyond the thin lens formula itself, the calculator interprets the results: whether the image is real or virtual, upright or inverted, and magnified or diminished. These characteristics determine how the optical element can be used in a practical system and are essential knowledge for anyone designing telescopes, microscopes, cameras, or projectors."
+      }
+    },
+    "three-phase-calculator": {
+      "title": "Three Phase Power Calculator",
+      "tagline": "Calculate apparent, active, and reactive power in three-phase AC systems",
+      "intro": "Enter any three of the four values — line voltage (V), line current (A), active power (W), and power factor — to compute all remaining electrical quantities for a balanced three-phase system.",
+      "field": {
+        "voltage": "Line Voltage (V)",
+        "current": "Line Current (A)",
+        "activePower": "Active Power (W)",
+        "powerFactor": "Power Factor (cos φ)",
+        "hint": "Enter any 3 of the 4 fields to calculate all remaining quantities.",
+        "placeholder": {
+          "voltage": "e.g. 400",
+          "current": "e.g. 50",
+          "activePower": "e.g. 30000",
+          "powerFactor": "e.g. 0.85"
+        }
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter at least 3 valid positive values from: Voltage, Current, Active Power, and Power Factor (0–1)."
+      },
+      "result": {
+        "heading": "Results",
+        "apparentPower": "Apparent Power (S)",
+        "activePower": "Active Power (P)",
+        "reactivePower": "Reactive Power (Q)",
+        "powerFactor": "Power Factor (cos φ)",
+        "phaseAngle": "Phase Angle (φ)",
+        "lineVoltage": "Line Voltage (V)"
+      },
+      "examples": {
+        "heading": "Three Phase Power Examples",
+        "intro": "These examples show typical three-phase calculations for industrial and utility applications.",
+        "colInput": "System Parameters",
+        "colOutput": "Power Values",
+        "colNote": "Notes",
+        "loadIndustrial": "Industrial Motor 400 V",
+        "loadHighVoltage": "11 kV Feeder",
+        "loadMotor": "75 kW Motor",
+        "items": [
+          {
+            "input": "V = 400 V, I = 50 A, PF = 0.85",
+            "output": "S = 34 641 VA, P = 29 445 W, Q = 18 248 VAR",
+            "note": "Standard European 400 V three-phase supply with a typical industrial load power factor of 0.85."
+          },
+          {
+            "input": "V = 11 000 V, I = 100 A, PF = 0.90",
+            "output": "S = 1 905 255 VA (1.9 MVA), P = 1 714 730 W, Q = 827 567 VAR",
+            "note": "Medium-voltage feeder at 11 kV. Apparent power exceeds 1.9 MVA; active power is 1.71 MW."
+          },
+          {
+            "input": "V = 480 V, P = 75 000 W, PF = 0.95",
+            "output": "I = 94.9 A, S = 78 948 VA, Q = 24 641 VAR",
+            "note": "A 75 kW motor on a 480 V US industrial supply. Current draw and reactive power are calculated from voltage and active power."
+          },
+          {
+            "input": "V = 230 V, I = 10 A, P = 3 450 W",
+            "output": "S = 3 984 VA, PF = 0.866, Q = 1 992 VAR",
+            "note": "Low-voltage three-phase load where the power factor is derived from the measured active power and apparent power."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the three phase power calculator",
+        "steps": [
+          "Enter the line voltage (V_L) in volts — this is the voltage measured between any two line conductors in a three-phase system.",
+          "Enter the line current (I_L) in amperes, the active power (P) in watts, and/or the power factor (cos φ, between 0 and 1).",
+          "Provide at least three of the four inputs; the calculator will determine the missing quantity and compute apparent power S = √3 × V × I, reactive power Q = √(S² − P²), and the phase angle φ.",
+          "Click Calculate to display all results. Use the preset buttons to load common industrial scenarios.",
+          "Click Reset to clear all inputs and start a new calculation."
+        ]
+      },
+      "faq": {
+        "heading": "Three Phase Power FAQ",
+        "items": [
+          {
+            "q": "What is the formula for three-phase apparent power?",
+            "a": "For a balanced three-phase system, apparent power S = √3 × V_L × I_L, where V_L is the line-to-line voltage and I_L is the line current. This formula applies to both star (wye) and delta connections because the factor √3 accounts for the phase relationship. Apparent power is measured in volt-amperes (VA) and represents the total power drawn from the supply regardless of power factor."
+          },
+          {
+            "q": "What is the difference between apparent, active, and reactive power?",
+            "a": "Apparent power S (VA) is the total power supplied by the source. Active power P (W) is the real power that does useful work — heating, mechanical output, light. Reactive power Q (VAR) is the power stored and released by inductors and capacitors every cycle without doing net work. They are related by S² = P² + Q². The power factor PF = P/S indicates how efficiently the apparent power is converted to active work."
+          },
+          {
+            "q": "What is power factor and why does it matter?",
+            "a": "Power factor (cos φ) is the ratio of active power to apparent power, ranging from 0 to 1. A power factor of 1 means all the supplied current does useful work; a lower power factor means more current is drawn from the supply for the same useful output, increasing cable and transformer losses. Industrial customers often pay a power factor penalty if their PF falls below 0.9 or 0.95, so power factor correction capacitors are added to improve it."
+          },
+          {
+            "q": "What is the difference between wye and delta connections?",
+            "a": "In a wye (star) connection, each phase is connected between a line and a neutral point. The phase voltage equals V_L / √3 and the phase current equals the line current. In a delta connection, each phase is connected between two lines. The phase voltage equals V_L and the phase current equals I_L / √3. For balanced loads, both connections produce the same three-phase power, so this calculator uses line quantities (V_L, I_L) and applies correctly to either topology."
+          },
+          {
+            "q": "How do I calculate three-phase current from power and voltage?",
+            "a": "Rearranging S = √3 × V × I gives I = S / (√3 × V) = P / (√3 × V × PF). For example, a 30 kW load on a 400 V supply at PF = 0.85 draws I = 30 000 / (1.732 × 400 × 0.85) ≈ 51 A. This calculator automates that rearrangement when you provide voltage, active power, and power factor."
+          }
+        ]
+      },
+      "about": {
+        "heading": "About the Three Phase Power Calculator",
+        "body": "Three-phase alternating current (AC) power is the standard method of electricity generation, transmission, and distribution worldwide. Unlike single-phase power, which delivers energy in a single pulsating wave, three-phase power delivers energy in three overlapping sine waves separated by 120 degrees. This produces a smooth, constant power flow, allows motors to start and run more efficiently, and enables more economical use of conductors over long transmission distances.\n\nThe three fundamental quantities that characterise a three-phase system are apparent power S (measured in volt-amperes, VA), active power P (measured in watts, W), and reactive power Q (measured in volt-amperes reactive, VAR). Apparent power is the total rate at which energy is delivered to the load; active power is the portion that performs useful work such as heating, lighting, or driving a motor shaft; and reactive power is the energy that oscillates between the source and inductive or capacitive elements without doing net work over a full cycle.\n\nThe key formulas for a balanced three-phase system are S = √3 × V_L × I_L, P = S × cos(φ), and Q = S × sin(φ), where V_L is the line-to-line voltage, I_L is the line current, and φ is the phase angle between voltage and current. The power factor PF = cos(φ) = P/S quantifies how efficiently the supplied current is converted to useful work.\n\nThis calculator accepts any three of the four main inputs — line voltage, line current, active power, and power factor — and computes all remaining quantities. The results include apparent, active, and reactive power in both base units and kilounits, the power factor, and the phase angle in degrees. This makes the tool suitable for sizing electrical cables and switchgear, checking motor loads, calculating power factor correction requirements, and verifying utility billing data.\n\nThree-phase systems are characterised by two connection types: wye (star) and delta. In a wye connection the phase voltage is V_L/√3 and the phase current equals the line current; in a delta connection the phase voltage equals the line voltage and the phase current is I_L/√3. For balanced loads, the three-phase power formulas using line quantities apply to either topology, which is why this calculator uses V_L and I_L directly. Unbalanced loads require per-phase analysis and are outside the scope of this tool."
+      }
+    },
+    "thrust-to-weight-ratio-calculator": {
+      "title": "Thrust to Weight Ratio Calculator",
+      "tagline": "Calculate TWR, net force, and acceleration for rockets and aircraft",
+      "intro": "Enter the total thrust of the propulsion system, the vehicle mass, and the gravitational acceleration to calculate the thrust-to-weight ratio (TWR), net force, and net acceleration — the critical performance parameters for any rocket, aircraft, or drone.",
+      "field": {
+        "thrust": "Thrust (N)",
+        "mass": "Mass (kg)",
+        "gravity": "Gravitational Acceleration (m/s²)",
+        "placeholder": {
+          "thrust": "e.g. 1000000",
+          "mass": "e.g. 50000",
+          "gravity": "9.81"
+        }
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for thrust, mass, and gravitational acceleration."
+      },
+      "result": {
+        "heading": "Result",
+        "twr": "Thrust-to-Weight Ratio (TWR)",
+        "weight": "Weight (N)",
+        "netForce": "Net Force (N)",
+        "netAcceleration": "Net Acceleration",
+        "canLiftOff": "✓ Can lift off (TWR > 1)",
+        "cannotLiftOff": "✗ Cannot lift off (TWR ≤ 1)"
+      },
+      "examples": {
+        "heading": "Thrust-to-Weight Ratio Examples",
+        "intro": "These examples compare real-world propulsion systems with very different TWR values.",
+        "colInput": "Vehicle",
+        "colOutput": "TWR",
+        "colNote": "Notes",
+        "loadSaturnV": "Saturn V Rocket",
+        "loadF16": "F-16 Fighter Jet",
+        "loadDrone": "Quadcopter Drone",
+        "items": [
+          {
+            "input": "Saturn V first stage: Thrust = 34 500 000 N, Mass = 2 300 000 kg, g = 9.81 m/s²",
+            "output": "TWR = 1.53",
+            "note": "The Saturn V barely exceeds TWR = 1 at liftoff — a typical rocket design choice that balances lift capability with fuel efficiency."
+          },
+          {
+            "input": "F-16 Fighting Falcon: Thrust = 130 000 N, Mass = 16 000 kg, g = 9.81 m/s²",
+            "output": "TWR = 0.83 (clean, sea level)",
+            "note": "At a typical combat weight the F-16 has TWR slightly below 1, but with afterburner and reduced fuel load it exceeds 1 for supersonic climbing."
+          },
+          {
+            "input": "Quadcopter drone: Thrust = 40 N, Mass = 2 kg, g = 9.81 m/s²",
+            "output": "TWR = 2.04",
+            "note": "A racing drone with TWR ≈ 2 can accelerate upward at about 1 g net, giving it agile vertical performance."
+          },
+          {
+            "input": "SpaceX Falcon 9 first stage: Thrust = 7 607 000 N, Mass = 549 054 kg, g = 9.81 m/s²",
+            "output": "TWR = 1.41",
+            "note": "Falcon 9 achieves just enough TWR for liftoff with significant margin for gravity losses during ascent."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the thrust to weight ratio calculator",
+        "steps": [
+          "Enter the total thrust of the propulsion system in newtons (N) in the Thrust field. For multiple engines, enter the combined thrust.",
+          "Enter the total mass of the vehicle (including fuel, payload, and structure) in kilograms in the Mass field.",
+          "Enter the gravitational acceleration in m/s² — use 9.81 for Earth's surface, 3.72 for Mars, 1.62 for the Moon, or a custom value for other environments.",
+          "Click Calculate to see the thrust-to-weight ratio, whether the vehicle can lift off, the weight force, net force, and net vertical acceleration.",
+          "Use the preset buttons to load well-known aerospace examples including the Saturn V, F-16, and a quadcopter drone."
+        ]
+      },
+      "faq": {
+        "heading": "Thrust-to-Weight Ratio FAQ",
+        "items": [
+          {
+            "q": "What is thrust-to-weight ratio (TWR)?",
+            "a": "Thrust-to-weight ratio (TWR) is the dimensionless ratio of the thrust force produced by an engine or propulsion system to the gravitational force (weight) acting on the vehicle. It is calculated as TWR = F_thrust / (m × g). A TWR greater than 1 means the vehicle can accelerate vertically against gravity; a TWR less than 1 means the thrust is insufficient to overcome gravity and the vehicle cannot lift off in that gravitational field."
+          },
+          {
+            "q": "What TWR do rockets and aircraft need to fly?",
+            "a": "For vertical takeoff, a vehicle needs TWR > 1. Most orbital launch vehicles are designed with a liftoff TWR of 1.2–1.5 — high enough to accelerate off the pad without being so high that fuel is wasted. Fighter aircraft typically operate at TWR values from 0.7 to 1.1 depending on their load; only with full afterburner do many jets exceed TWR = 1. Drones and quadcopters often target TWR of 2–3 for agile manoeuvring."
+          },
+          {
+            "q": "How does gravitational acceleration affect the calculation?",
+            "a": "Weight depends on the local gravitational acceleration g, so the same vehicle will have different TWR values on different planets. On Earth g = 9.81 m/s²; on the Moon g = 1.62 m/s² (the Apollo LEM had a TWR < 1 on Earth but > 1 on the Moon); on Mars g = 3.72 m/s². The calculator lets you enter any value of g, which is useful for designing spacecraft that must operate in multiple gravitational environments."
+          },
+          {
+            "q": "What is net force and how does it relate to TWR?",
+            "a": "Net force is the difference between thrust and weight: F_net = F_thrust − m × g. When TWR > 1, net force is positive and the vehicle accelerates upward. The net acceleration equals F_net / m = g × (TWR − 1). For example, TWR = 1.5 on Earth gives a net upward acceleration of 0.5 × 9.81 = 4.9 m/s² — the vehicle accelerates at about half a g vertically."
+          },
+          {
+            "q": "Does TWR change during flight?",
+            "a": "Yes — TWR changes constantly during flight because fuel is consumed, reducing mass while thrust typically remains roughly constant (it may vary with throttle and atmospheric pressure). As mass decreases, TWR rises throughout a rocket burn. This is why rockets accelerate strongly near the end of a stage burn. Engineers account for this by calculating TWR at liftoff (worst case) and at burnout (best case) to define the acceleration envelope."
+          }
+        ]
+      },
+      "about": {
+        "heading": "About the Thrust to Weight Ratio Calculator",
+        "body": "The thrust-to-weight ratio (TWR) is the single most important performance metric for any vehicle that must overcome gravity using thrust. It appears in the design of rockets, fighter jets, commercial aircraft, drones, and even elevators with linear motors. A TWR greater than 1 means the propulsion system produces more force than gravity, allowing vertical acceleration; a TWR less than 1 means the vehicle either relies on aerodynamic lift (as conventional aircraft do) or cannot leave the ground at all.\n\nThe calculation is straightforward: TWR = F_thrust / W = F_thrust / (m × g), where F_thrust is the total thrust in newtons, m is the vehicle mass in kilograms, and g is the local gravitational acceleration in m/s². The weight W = m × g is the gravitational force the vehicle must overcome. The net force available for acceleration is F_net = F_thrust − W, and the resulting net vertical acceleration is a = F_net / m = g × (TWR − 1).\n\nFor orbital launch vehicles, the liftoff TWR is a critical design parameter. Typical values range from about 1.2 to 1.5. Too low a TWR results in slow, inefficient ascent with large gravity losses — the vehicle spends too long fighting gravity before it builds horizontal velocity. Too high a TWR burns more propellant than necessary in the early phase of flight and increases structural loads. The Saturn V first stage, for example, had a liftoff TWR of approximately 1.5, climbing to above 2 as fuel was consumed.\n\nFor atmospheric aircraft, TWR has a different meaning. A conventional fixed-wing aircraft does not need TWR > 1 because aerodynamic lift supports most of the weight; the engine only needs to overcome aerodynamic drag in level flight. However, fighter jets designed for rapid climbing or vertical manoeuvring often aim for TWR close to or above 1 to maximise instantaneous energy as measured in energy-maneuverability theory.\n\nThis calculator also computes the net force and net acceleration, which are useful for understanding dynamic performance. It includes a liftoff indicator: if TWR > 1, the vehicle can accelerate vertically; if TWR ≤ 1, it cannot lift off in the given gravitational field. The gravitational acceleration field allows you to evaluate performance on Earth, the Moon, Mars, or any other body by entering the appropriate value of g."
+      }
+    },
+    "time-dilation-calculator": {
+      "title": "Time Dilation Calculator",
+      "tagline": "Calculate relativistic time dilation using Einstein's special relativity",
+      "intro": "Enter the velocity of the moving frame, the proper time experienced by the moving observer, and the speed of light to calculate the dilated time observed from the stationary frame, the Lorentz factor γ, and the time difference.",
+      "field": {
+        "velocity": "Velocity (m/s)",
+        "referenceTime": "Proper Time t₀ (s)",
+        "speedOfLight": "Speed of Light c (m/s)",
+        "placeholder": {
+          "velocity": "e.g. 150000000",
+          "referenceTime": "e.g. 3600",
+          "speedOfLight": "299792458"
+        }
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "error": {
+        "invalid": "Please enter valid positive values. Velocity must be less than the speed of light (c = 299 792 458 m/s)."
+      },
+      "result": {
+        "heading": "Result",
+        "lorentzFactor": "Lorentz Factor (γ)",
+        "velocityRatio": "Velocity as Fraction of c (β)",
+        "properTime": "Proper Time (t₀)",
+        "dilatedTime": "Dilated Time (t′)",
+        "timeDifference": "Time Difference (t′ − t₀)"
+      },
+      "examples": {
+        "heading": "Time Dilation Examples",
+        "intro": "These examples illustrate time dilation at velocities ranging from satellite orbits to relativistic particles.",
+        "colInput": "Scenario",
+        "colOutput": "Dilated Time",
+        "colNote": "Notes",
+        "loadGPS": "GPS Satellite",
+        "loadSpaceship": "10% Light Speed",
+        "loadParticle": "Relativistic Particle (0.9c)",
+        "items": [
+          {
+            "input": "GPS satellite: v = 3 874 m/s, t₀ = 86 400 s (1 day)",
+            "output": "t′ ≈ 86 400.000 002 s (Δt ≈ 2 μs/day from special relativity only)",
+            "note": "GPS satellites orbit at ~3.87 km/s. Special-relativistic time dilation alone causes satellite clocks to lose about 7 μs/day. General-relativistic effects (altitude) add +45 μs/day, giving a net gain of ~38 μs/day that is pre-corrected in GPS firmware."
+          },
+          {
+            "input": "Spaceship at 10% c: v = 29 979 246 m/s, t₀ = 3 600 s",
+            "output": "t′ ≈ 3 618 s, γ ≈ 1.005",
+            "note": "At 10% the speed of light, the Lorentz factor is only 1.005, so time dilation is small but measurable — about 18 extra seconds in an hour."
+          },
+          {
+            "input": "Spaceship at 90% c: v = 269 813 212 m/s, t₀ = 1 s",
+            "output": "t′ ≈ 2.294 s, γ ≈ 2.294",
+            "note": "At 90% the speed of light the effect becomes dramatic — a proper second inside the ship appears as 2.29 seconds to a stationary observer."
+          },
+          {
+            "input": "Muon at 99.5% c: v = 298 344 295 m/s, t₀ = 2.2 μs",
+            "output": "t′ ≈ 22 μs, γ ≈ 10",
+            "note": "Cosmic-ray muons are created in the upper atmosphere and survive to sea level because their 2.2 μs half-life is dilated to ~22 μs in the Earth frame, letting them travel ~6.6 km."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to use the time dilation calculator",
+        "steps": [
+          "Enter the velocity of the moving object or frame in metres per second in the Velocity field. For a fraction of light speed, multiply the fraction by 299 792 458.",
+          "Enter the proper time t₀ — the time interval measured by a clock that travels with the moving object — in seconds.",
+          "The speed of light c defaults to 299 792 458 m/s (exact SI value). You can change it to explore hypothetical scenarios or use different units.",
+          "Click Calculate to see the Lorentz factor γ, the velocity as a fraction of c (β = v/c), the dilated time t′ = γ × t₀, and the time difference t′ − t₀.",
+          "Use the example buttons to load real-world scenarios including a GPS satellite, a spaceship at 10% light speed, and a relativistic particle."
+        ]
+      },
+      "faq": {
+        "heading": "Time Dilation FAQ",
+        "items": [
+          {
+            "q": "What is time dilation?",
+            "a": "Time dilation is a consequence of Einstein's special theory of relativity. It states that a clock moving relative to a stationary observer ticks more slowly than an identical clock at rest. The faster the moving clock travels, the more slowly it ticks. This is not a mechanical effect — it is a fundamental property of spacetime. From the moving clock's own perspective, time passes normally; the dilation is only apparent when comparing the two clocks after reuniting them."
+          },
+          {
+            "q": "What is the Lorentz factor and how does it work?",
+            "a": "The Lorentz factor γ = 1 / √(1 − v²/c²) quantifies the magnitude of relativistic effects. At low velocities γ ≈ 1 and relativistic effects are negligible. As v approaches c, γ increases rapidly and diverges to infinity at v = c — which is why massive objects cannot reach the speed of light. The dilated time is t′ = γ × t₀, where t₀ is the proper time (time in the moving frame) and t′ is the coordinate time (time in the stationary frame)."
+          },
+          {
+            "q": "Is time dilation experimentally confirmed?",
+            "a": "Yes — time dilation has been confirmed by numerous experiments. The Hafele–Keating experiment in 1971 flew atomic clocks on aircraft and measured time differences matching relativistic predictions. Muons created in the upper atmosphere by cosmic rays reach sea level despite their short half-life only because their lifetime is dilated in Earth's frame — a confirmation confirmed to high precision at particle accelerators. GPS satellites require both special- and general-relativistic corrections to maintain centimetre-level accuracy."
+          },
+          {
+            "q": "What is proper time versus coordinate time?",
+            "a": "Proper time (t₀) is the time measured by a clock that travels with the moving object — it is the 'natural' time experienced by the moving observer. Coordinate time (t′) is the time measured by a stationary observer watching the moving clock. Special relativity tells us t′ = γ × t₀, so the stationary observer always measures a longer time interval than the moving clock shows. This asymmetry is at the heart of the famous twin paradox."
+          },
+          {
+            "q": "What is the twin paradox?",
+            "a": "The twin paradox describes a scenario where one twin stays on Earth while the other travels at relativistic speed and returns. The travelling twin ages less because they experienced less proper time. The apparent paradox — 'but from the traveller's perspective, the Earth was moving, so shouldn't Earth twin be younger?' — is resolved by the fact that the traveller must decelerate and turn around, breaking the symmetry. Acceleration introduces a difference between the two frames, and the traveller is always the younger one when they reunite."
+          },
+          {
+            "q": "Does this calculator include gravitational time dilation?",
+            "a": "No — this calculator computes only special-relativistic (velocity-based) time dilation using the Lorentz factor. Gravitational time dilation, described by general relativity, occurs near massive objects: clocks closer to a gravity source tick more slowly. For GPS satellites, both effects apply: the satellites move fast (special relativity slows their clocks by ~7 μs/day) and they are farther from Earth (general relativity speeds their clocks by ~45 μs/day), giving a net gain of ~38 μs/day that must be corrected."
+          }
+        ]
+      },
+      "about": {
+        "heading": "About the Time Dilation Calculator",
+        "body": "Time dilation is one of the most counterintuitive and experimentally well-confirmed predictions of Einstein's special theory of relativity, published in 1905. It tells us that time is not absolute: the rate at which a clock ticks depends on how fast it is moving relative to an observer. A clock moving at velocity v relative to a stationary observer runs slow by the Lorentz factor γ = 1 / √(1 − v²/c²), where c is the speed of light in vacuum.\n\nThe key formula is t′ = γ × t₀, where t₀ is the proper time — the time recorded by the moving clock itself — and t′ is the coordinate time recorded by the stationary observer. Because γ ≥ 1 always, the stationary observer always measures a longer time interval than the moving clock. The time difference Δt = t′ − t₀ is zero at v = 0 and grows without bound as v approaches c.\n\nAt everyday velocities — even the 7.9 km/s of the International Space Station — the Lorentz factor differs from 1 only in the tenth decimal place, making the effect imperceptible in daily life. But in the world of precision metrology and satellite navigation, these tiny discrepancies matter enormously. GPS satellites orbit at about 3.87 km/s; special relativity causes their onboard clocks to lose approximately 7 microseconds per day relative to Earth-based clocks. Without correction, GPS position errors would accumulate at a rate of about 2 km per day.\n\nAt higher velocities, the effect becomes dramatic. At 86.6% of the speed of light, γ = 2 and the moving clock runs at half the rate of the stationary one. At 99% c, γ ≈ 7.1; at 99.9% c, γ ≈ 22.4. This dilation is directly observed in particle physics: muons created in the upper atmosphere by cosmic rays have a rest-frame half-life of only 2.2 microseconds, which would allow them to travel at most about 660 metres before decaying. Yet muons are routinely detected at sea level after travelling 15 km because their half-life, as observed from Earth, is dilated by a factor of γ ≈ 22 to about 48 microseconds.\n\nThis calculator allows you to explore time dilation across the full range of velocities from zero to near-c, making it a useful educational and engineering tool for physics students, aerospace engineers, and anyone curious about the nature of time and relativity."
+      }
     }
   }
 }
