@@ -1040,10 +1040,205 @@ export const tools: ToolEntry[] = [
       pt: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold.",
       ru: "Calculate AUC and plot ROC curves for binary classifiers. Input prediction scores and true labels to get sensitivity, specificity, and optimal threshold."
     }
+  },
+  {
+    id: "poisson-distribution-calculator",
+    category: "statistic",
+    slugs: {
+      en: "poisson-distribution-calculator",
+      "zh-CN": "poisson-distribution-calculator",
+      "zh-TW": "poisson-distribution-calculator",
+      ja: "poisson-distribution-calculator",
+      ko: "poisson-distribution-calculator",
+      es: "poisson-distribution-calculator",
+      fr: "poisson-distribution-calculator",
+      de: "poisson-distribution-calculator",
+      pt: "poisson-distribution-calculator",
+      ru: "poisson-distribution-calculator"
+    },
+    titles: {
+      en: "Poisson Distribution Calculator - Probability",
+      "zh-CN": "Poisson Distribution Calculator - Probability",
+      "zh-TW": "Poisson Distribution Calculator - Probability",
+      ja: "Poisson Distribution Calculator - Probability",
+      ko: "Poisson Distribution Calculator - Probability",
+      es: "Poisson Distribution Calculator - Probability",
+      fr: "Poisson Distribution Calculator - Probability",
+      de: "Poisson Distribution Calculator - Probability",
+      pt: "Poisson Distribution Calculator - Probability",
+      ru: "Poisson Distribution Calculator - Probability"
+    },
+    descriptions: {
+      en: "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool.",
+      "zh-CN": "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool.",
+      "zh-TW": "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool.",
+      ja: "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool.",
+      ko: "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool.",
+      es: "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool.",
+      fr: "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool.",
+      de: "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool.",
+      pt: "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool.",
+      ru: "Calculate exact and cumulative Poisson probabilities instantly. Find P(X=x), P(X≤x), P(X≥x) for any lambda and event count — free online statistics tool."
+    }
+  },
+  {
+    id: "polynomial-regression-calculator",
+    category: "statistic",
+    slugs: {
+      en: "polynomial-regression-calculator",
+      "zh-CN": "polynomial-regression-calculator",
+      "zh-TW": "polynomial-regression-calculator",
+      ja: "polynomial-regression-calculator",
+      ko: "polynomial-regression-calculator",
+      es: "polynomial-regression-calculator",
+      fr: "polynomial-regression-calculator",
+      de: "polynomial-regression-calculator",
+      pt: "polynomial-regression-calculator",
+      ru: "polynomial-regression-calculator"
+    },
+    titles: {
+      en: "Polynomial Regression Calculator - Curve Fitting",
+      "zh-CN": "Polynomial Regression Calculator - Curve Fitting",
+      "zh-TW": "Polynomial Regression Calculator - Curve Fitting",
+      ja: "Polynomial Regression Calculator - Curve Fitting",
+      ko: "Polynomial Regression Calculator - Curve Fitting",
+      es: "Polynomial Regression Calculator - Curve Fitting",
+      fr: "Polynomial Regression Calculator - Curve Fitting",
+      de: "Polynomial Regression Calculator - Curve Fitting",
+      pt: "Polynomial Regression Calculator - Curve Fitting",
+      ru: "Polynomial Regression Calculator - Curve Fitting"
+    },
+    descriptions: {
+      en: "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly.",
+      "zh-CN": "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly.",
+      "zh-TW": "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly.",
+      ja: "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly.",
+      ko: "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly.",
+      es: "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly.",
+      fr: "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly.",
+      de: "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly.",
+      pt: "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly.",
+      ru: "Fit data to a polynomial equation with this free curve fitting tool. Get the best-fit polynomial equation, R-squared value, and predict new values instantly."
+    }
+  },
+  {
+    id: "pooled-standard-deviation-calculator",
+    category: "statistic",
+    slugs: {
+      en: "pooled-standard-deviation-calculator",
+      "zh-CN": "pooled-standard-deviation-calculator",
+      "zh-TW": "pooled-standard-deviation-calculator",
+      ja: "pooled-standard-deviation-calculator",
+      ko: "pooled-standard-deviation-calculator",
+      es: "pooled-standard-deviation-calculator",
+      fr: "pooled-standard-deviation-calculator",
+      de: "pooled-standard-deviation-calculator",
+      pt: "pooled-standard-deviation-calculator",
+      ru: "pooled-standard-deviation-calculator"
+    },
+    titles: {
+      en: "Pooled Standard Deviation Calculator - Two Samples",
+      "zh-CN": "Pooled Standard Deviation Calculator - Two Samples",
+      "zh-TW": "Pooled Standard Deviation Calculator - Two Samples",
+      ja: "Pooled Standard Deviation Calculator - Two Samples",
+      ko: "Pooled Standard Deviation Calculator - Two Samples",
+      es: "Pooled Standard Deviation Calculator - Two Samples",
+      fr: "Pooled Standard Deviation Calculator - Two Samples",
+      de: "Pooled Standard Deviation Calculator - Two Samples",
+      pt: "Pooled Standard Deviation Calculator - Two Samples",
+      ru: "Pooled Standard Deviation Calculator - Two Samples"
+    },
+    descriptions: {
+      en: "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis.",
+      "zh-CN": "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis.",
+      "zh-TW": "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis.",
+      ja: "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis.",
+      ko: "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis.",
+      es: "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis.",
+      fr: "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis.",
+      de: "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis.",
+      pt: "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis.",
+      ru: "Calculate the pooled standard deviation for two samples using sizes, means, and standard deviations. Accurate results for t-tests and statistical analysis."
+    }
+  },
+  {
+    id: "population-variance-calculator",
+    category: "statistic",
+    slugs: {
+      en: "population-variance-calculator",
+      "zh-CN": "population-variance-calculator",
+      "zh-TW": "population-variance-calculator",
+      ja: "population-variance-calculator",
+      ko: "population-variance-calculator",
+      es: "population-variance-calculator",
+      fr: "population-variance-calculator",
+      de: "population-variance-calculator",
+      pt: "population-variance-calculator",
+      ru: "population-variance-calculator"
+    },
+    titles: {
+      en: "Population Variance Calculator - Dispersion Analysis",
+      "zh-CN": "Population Variance Calculator - Dispersion Analysis",
+      "zh-TW": "Population Variance Calculator - Dispersion Analysis",
+      ja: "Population Variance Calculator - Dispersion Analysis",
+      ko: "Population Variance Calculator - Dispersion Analysis",
+      es: "Population Variance Calculator - Dispersion Analysis",
+      fr: "Population Variance Calculator - Dispersion Analysis",
+      de: "Population Variance Calculator - Dispersion Analysis",
+      pt: "Population Variance Calculator - Dispersion Analysis",
+      ru: "Population Variance Calculator - Dispersion Analysis"
+    },
+    descriptions: {
+      en: "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
+      "zh-CN": "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
+      "zh-TW": "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
+      ja: "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
+      ko: "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
+      es: "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
+      fr: "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
+      de: "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
+      pt: "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly.",
+      ru: "Calculate population variance, standard deviation, and mean for any data set. Free online statistical dispersion tool — paste numbers and get results instantly."
+    }
+  },
+  {
+    id: "post-test-probability-calculator",
+    category: "statistic",
+    slugs: {
+      en: "post-test-probability-calculator",
+      "zh-CN": "post-test-probability-calculator",
+      "zh-TW": "post-test-probability-calculator",
+      ja: "post-test-probability-calculator",
+      ko: "post-test-probability-calculator",
+      es: "post-test-probability-calculator",
+      fr: "post-test-probability-calculator",
+      de: "post-test-probability-calculator",
+      pt: "post-test-probability-calculator",
+      ru: "post-test-probability-calculator"
+    },
+    titles: {
+      en: "Post-Test Probability Calculator - Bayes Theorem",
+      "zh-CN": "Post-Test Probability Calculator - Bayes Theorem",
+      "zh-TW": "Post-Test Probability Calculator - Bayes Theorem",
+      ja: "Post-Test Probability Calculator - Bayes Theorem",
+      ko: "Post-Test Probability Calculator - Bayes Theorem",
+      es: "Post-Test Probability Calculator - Bayes Theorem",
+      fr: "Post-Test Probability Calculator - Bayes Theorem",
+      de: "Post-Test Probability Calculator - Bayes Theorem",
+      pt: "Post-Test Probability Calculator - Bayes Theorem",
+      ru: "Post-Test Probability Calculator - Bayes Theorem"
+    },
+    descriptions: {
+      en: "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
+      "zh-CN": "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
+      "zh-TW": "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
+      ja: "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
+      ko: "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
+      es: "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
+      fr: "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
+      de: "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
+      pt: "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios.",
+      ru: "Calculate post-test probability using Bayes' theorem. Enter prior probability, sensitivity, and specificity to find PPV, NPV, and likelihood ratios."
+    }
   }
-
-
-
-
-
 ];

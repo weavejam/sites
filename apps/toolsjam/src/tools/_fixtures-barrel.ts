@@ -24,6 +24,11 @@ import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures"
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
+import { fixtures as f_poisson_distribution_calculator } from "@/tools/poisson-distribution-calculator.fixtures";
+import { fixtures as f_polynomial_regression_calculator } from "@/tools/polynomial-regression-calculator.fixtures";
+import { fixtures as f_pooled_standard_deviation_calculator } from "@/tools/pooled-standard-deviation-calculator.fixtures";
+import { fixtures as f_population_variance_calculator } from "@/tools/population-variance-calculator.fixtures";
+import { fixtures as f_post_test_probability_calculator } from "@/tools/post-test-probability-calculator.fixtures";
 import { fixtures as f_relative_standard_deviation_calculator } from "@/tools/relative-standard-deviation-calculator.fixtures";
 import { fixtures as f_repeated_measures_anova_calculator } from "@/tools/repeated-measures-anova-calculator.fixtures";
 import { fixtures as f_residual_calculator } from "@/tools/residual-calculator.fixtures";
@@ -73,6 +78,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
+  "poisson-distribution-calculator": f_poisson_distribution_calculator,
+  "polynomial-regression-calculator": f_polynomial_regression_calculator,
+  "pooled-standard-deviation-calculator": f_pooled_standard_deviation_calculator,
+  "population-variance-calculator": f_population_variance_calculator,
+  "post-test-probability-calculator": f_post_test_probability_calculator,
   "relative-standard-deviation-calculator": f_relative_standard_deviation_calculator,
   "repeated-measures-anova-calculator": f_repeated_measures_anova_calculator,
   "residual-calculator": f_residual_calculator,
