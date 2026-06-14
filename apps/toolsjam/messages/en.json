@@ -9903,6 +9903,551 @@
         "q6": "What is the difference between wing reference area and wetted area?",
         "q6_a": "Wing reference area (S) is the plan-view projection of the wing's outline, including the portion inside the fuselage. It is a conventional reference used for normalising aerodynamic coefficients and computing wing loading. Wetted area is the total surface area actually exposed to airflow (both top and bottom surfaces), which is roughly twice the reference area. Wing loading W/S uses the reference area; skin friction drag calculations use the wetted area."
       }
+    },
+    "water-viscosity-calculator": {
+      "title": "Water Viscosity Calculator",
+      "tagline": "Estimate water dynamic viscosity, kinematic viscosity, density, and Reynolds number from temperature, pressure, and optional pipe flow inputs.",
+      "intro": "Enter water temperature and pressure to calculate viscosity. Add flow velocity and pipe diameter when you also want the Reynolds number.",
+      "field": {
+        "temperature": "Temperature (°C)",
+        "pressure": "Pressure (bar)",
+        "flowVelocity": "Flow Velocity (m/s)",
+        "pipeDiameter": "Pipe Diameter (m)"
+      },
+      "placeholder": {
+        "temperature": "e.g. 20",
+        "pressure": "e.g. 1",
+        "flowVelocity": "e.g. 2",
+        "pipeDiameter": "e.g. 0.05"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Result",
+        "value": "Dynamic viscosity {dynamic} mPa·s • Kinematic viscosity {kinematic} mm²/s",
+        "dynamic": "Dynamic Viscosity",
+        "kinematic": "Kinematic Viscosity",
+        "density": "Estimated Density",
+        "reynolds": "Reynolds Number",
+        "unitDynamic": "mPa·s",
+        "unitKinematic": "mm²/s",
+        "unitDensity": "kg/m³",
+        "unitReynolds": "",
+        "reynoldsUnavailable": "—",
+        "pressureNote": "Pressure entered: {pressure} bar"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers. Temperature and pressure are required, and velocity and diameter must be supplied together if used."
+      },
+      "hint": "Pressure is accepted for context, while the viscosity model is primarily temperature-based for pure water in everyday engineering ranges.",
+      "formula": "μ = 2.414×10^-5 × 10^(247.8 / (T_K − 140)) Pa·s • ν = μ / ρ • Re = ρvD / μ",
+      "about": {
+        "heading": "About Water Viscosity",
+        "body": "Water viscosity describes how strongly liquid water resists flow and shear. In practical terms, it tells you how “thick” or “thin” water behaves when it moves through a pipe, around a pump impeller, across a heat exchanger surface, or through a process line. Engineers normally work with two related properties: dynamic viscosity, usually written as μ, and kinematic viscosity, written as ν. Dynamic viscosity measures the internal friction of the fluid itself, while kinematic viscosity divides that friction by density so you can compare flow behaviour more directly. This calculator reports dynamic viscosity in millipascal-seconds (mPa·s) and kinematic viscosity in square millimetres per second (mm²/s), also called centistokes.\n\nFor pure water, viscosity changes much more with temperature than with pressure in most everyday conditions. Cold water is noticeably more viscous than warm water because the molecules are less energetic and intermolecular attraction has a stronger relative effect on motion. As temperature rises, the internal resistance drops quickly. That is why water near room temperature has a dynamic viscosity of about 1.002 mPa·s, while near the boiling point it falls to around 0.282 mPa·s. This change has major consequences for pumping power, flow regime, pressure drop, and heat-transfer performance. Even a modest temperature increase can shift a system from sluggish laminar flow toward more turbulent behaviour.\n\nThe calculator uses an Andrade-type empirical equation for dynamic viscosity of pure water, which is a standard approximation for a wide span of liquid-water temperatures. It then estimates density with a simple quadratic expression around the well-known density maximum close to 4°C. Dividing dynamic viscosity by density gives kinematic viscosity. Although the density expression is simplified, it is appropriate for general design estimates, quick checks, coursework, and everyday process calculations. If you are working with saline water, glycol mixtures, dirty process water, or very high pressures, a dedicated property database is still the better choice.\n\nWhen you also enter flow velocity and pipe diameter, the calculator estimates the Reynolds number using Re = ρvD/μ. Reynolds number is one of the most useful dimensionless quantities in fluid mechanics because it helps classify flow behaviour. Low Reynolds numbers indicate viscous, orderly motion where laminar assumptions may apply. High Reynolds numbers indicate inertial effects dominate and turbulence becomes more likely. For internal pipe flow, laminar flow is commonly associated with Re below roughly 2,300, transitional flow occupies the middle range, and turbulent flow often appears above about 4,000. Since viscosity appears in the denominator, warmer water usually produces a higher Reynolds number than colder water in the same pipe.\n\nThis makes water viscosity a core design property across civil, mechanical, chemical, and environmental engineering. You use it to estimate friction losses, size pumps, compare heat-transfer conditions, understand laboratory measurements, and sanity-check simulation inputs. Students can use the calculator to see how strongly water properties vary with temperature, while practitioners can use it for fast front-end estimates before switching to more detailed software. In short, water viscosity connects temperature, flow resistance, and fluid regime in one compact physical property that influences nearly every liquid-water system."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples show how water viscosity changes with temperature and how optional flow inputs add a Reynolds-number estimate.",
+        "colInput": "Input",
+        "colOutput": "Output",
+        "colNote": "Notes",
+        "loadRoom": "Load 20°C water",
+        "loadBoiling": "Load 100°C water",
+        "loadFlow": "Load pipe-flow example",
+        "items": [
+          {
+            "input": "20°C, 1 bar",
+            "output": "Dynamic: 1.002 mPa·s • Kinematic: 1.003 mm²/s",
+            "note": "Room-temperature water sits near the familiar 1 mPa·s benchmark, making it a common reference point in lab and design work."
+          },
+          {
+            "input": "100°C, 1 bar",
+            "output": "Dynamic: 0.279 mPa·s • Kinematic: 0.287 mm²/s",
+            "note": "Hot water flows much more easily than cold water, so viscosity drops sharply and Reynolds number rises for the same pipe conditions."
+          },
+          {
+            "input": "4°C, 1 bar",
+            "output": "Dynamic: 1.547 mPa·s • Kinematic: 1.547 mm²/s",
+            "note": "Near 4°C, water is densest and relatively viscous, so momentum diffuses more slowly than at room temperature."
+          },
+          {
+            "input": "20°C, 1 bar, 2 m/s, 0.05 m pipe",
+            "output": "Re ≈ 99,749",
+            "note": "Adding velocity and diameter shows that ordinary water service often sits well inside the turbulent regime."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use",
+        "steps": [
+          "Enter the water temperature in degrees Celsius and the operating pressure in bar. These two fields are required for every calculation.",
+          "If you need a Reynolds number, also enter the average flow velocity and the internal pipe diameter. Leave both optional fields blank if you only want viscosity values.",
+          "Click Calculate to see dynamic viscosity, kinematic viscosity, estimated density, and Reynolds number when flow data is present.",
+          "Use the worked examples to compare cold, room-temperature, and hot water, then reset the form to try a new operating condition."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What is the difference between dynamic and kinematic viscosity?",
+            "a": "Dynamic viscosity measures the fluid's internal resistance to shear and is usually given in Pa·s or mPa·s. Kinematic viscosity divides dynamic viscosity by density, so it reflects how momentum diffuses through the fluid and is commonly reported in mm²/s or cSt."
+          },
+          {
+            "q": "Why does water viscosity drop as temperature rises?",
+            "a": "As water warms up, its molecules have more thermal energy and can move past one another more easily. That reduces internal friction, so hot water usually has a much lower viscosity than cold water."
+          },
+          {
+            "q": "Why is pressure included if the formula is temperature-based?",
+            "a": "Pressure is included because it is an important operating variable in real systems and helps document the condition you are evaluating. For ordinary liquid-water calculations over moderate ranges, temperature dominates the viscosity change, so a simple temperature-driven model is often sufficient for quick estimates."
+          },
+          {
+            "q": "What Reynolds number should I expect for pipe flow?",
+            "a": "For internal pipe flow, Reynolds numbers below roughly 2,300 are commonly treated as laminar, while values above about 4,000 are usually turbulent. The region in between is transitional, where disturbances and inlet conditions strongly influence the actual flow pattern."
+          },
+          {
+            "q": "Are these values good enough for engineering design?",
+            "a": "They are well suited for preliminary engineering calculations, coursework, and fast validation checks. For final design in critical systems, unusual water chemistry, or extreme temperature and pressure ranges, you should confirm against a higher-fidelity property source."
+          }
+        ]
+      }
+    },
+    "watt-calculator": {
+      "title": "Watt Calculator",
+      "tagline": "Solve volts, amps, ohms, watts, and optional watt-hours by entering any two core electrical values and letting the formulas fill in the rest.",
+      "intro": "Enter any two of voltage, current, resistance, or power. Add time if you also want energy use in watt-hours.",
+      "field": {
+        "voltage": "Voltage (V)",
+        "current": "Current (A)",
+        "resistance": "Resistance (Ω)",
+        "power": "Power (W)",
+        "time": "Time (hours)"
+      },
+      "placeholder": {
+        "voltage": "e.g. 120",
+        "current": "e.g. 5",
+        "resistance": "e.g. 24",
+        "power": "e.g. 600",
+        "time": "e.g. 3"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Result",
+        "value": "Solved power: {power} W",
+        "voltage": "Voltage",
+        "current": "Current",
+        "resistance": "Resistance",
+        "power": "Power",
+        "energy": "Energy",
+        "unitVoltage": "V",
+        "unitCurrent": "A",
+        "unitResistance": "Ω",
+        "unitPower": "W",
+        "unitEnergy": "Wh",
+        "energyUnavailable": "—"
+      },
+      "error": {
+        "invalid": "Please enter valid numbers and supply exactly two of voltage, current, resistance, or power. Time is optional and must be zero or greater."
+      },
+      "hint": "Use exactly two of the four electrical fields. Time does not count toward the pair and is only used for watt-hour energy.",
+      "formula": "P = V × I • V = I × R • E = P × t",
+      "about": {
+        "heading": "About the Watt Calculator",
+        "body": "A watt calculator combines the two most common electrical relationships used in everyday circuit analysis: Ohm's law and the basic power equation. Ohm's law states that voltage equals current multiplied by resistance, or V = I × R. Electrical power is the rate at which energy is delivered, transferred, or consumed, and in simple circuits it is given by P = V × I. Once you know any two of the core quantities voltage, current, resistance, and power, you can usually solve the remaining pair. This tool automates that algebra so you can move from a pair of known values to a complete quick-check of the circuit.\n\nThe watt is a unit of power, not energy. One watt means one joule of energy per second. That distinction matters because many people casually say a device “uses 1,500 watts per hour,” when what they really mean is a 1,500-watt device running for one hour consumes 1,500 watt-hours of energy. The calculator therefore includes an optional time field. If you enter a usage duration in hours, the tool multiplies solved power by time to return watt-hours, giving you a direct bridge from circuit values to energy consumption. This is useful when comparing appliances, chargers, battery loads, or estimating electricity usage before converting to kilowatt-hours for billing.\n\nDifferent input pairs tell different stories about the same circuit. Voltage and current immediately give power through P = V × I and resistance through R = V / I. Voltage and resistance tell you how much current will flow and what power will be dissipated. Current and resistance are common when you know the load and want to infer the supply requirements. Voltage and power are common for household or industrial equipment because many nameplates list a rated supply voltage and wattage. Resistance and power are helpful for heater elements, resistive loads, or lab exercises where current is not directly measured. By allowing any valid pair, the calculator mirrors the way electrical problems are actually posed in textbooks, bench work, and field troubleshooting.\n\nThis kind of calculation appears everywhere. A 120-volt circuit drawing 5 amps consumes 600 watts and implies a 24-ohm equivalent load. A 12-volt automotive accessory at 2 amps consumes 24 watts and has a 6-ohm resistance. A 240-volt heater rated at 1,500 watts draws 6.25 amps and has an effective resistance of 38.4 ohms. These are exactly the kinds of fast checks electricians, electronics hobbyists, students, and maintenance teams use when sizing wiring, selecting fuses, diagnosing loads, or estimating energy cost.\n\nThe calculator is meant for straightforward DC or single-value resistive-equivalent analysis. Real AC systems may involve phase angle, power factor, reactive power, harmonics, and inrush conditions that require a more advanced treatment. Even so, the solved values here are an excellent first-pass estimate and a strong teaching aid. If you need a quick, reliable way to move between volts, amps, ohms, watts, and watt-hours, this tool keeps the formulas visible and the arithmetic immediate."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These common electrical cases show how two known values determine the rest of the circuit and, when time is added, energy use as well.",
+        "colInput": "Input",
+        "colOutput": "Output",
+        "colNote": "Notes",
+        "loadOutlet": "Load 120V / 5A",
+        "loadBattery": "Load 12V / 2A",
+        "loadHeater": "Load 240V / 1500W",
+        "items": [
+          {
+            "input": "120 V, 5 A",
+            "output": "P = 600 W, R = 24 Ω",
+            "note": "A standard outlet and current draw example. Once voltage and current are known, both power and equivalent resistance follow immediately."
+          },
+          {
+            "input": "12 V, 2 A",
+            "output": "P = 24 W, R = 6 Ω",
+            "note": "Typical low-voltage battery load. This pair is useful for vehicles, portable electronics, and bench power supplies."
+          },
+          {
+            "input": "240 V, 1500 W",
+            "output": "I = 6.25 A, R = 38.4 Ω",
+            "note": "A common heater-style resistive load. Rated voltage and rated power are often the only values printed on a nameplate."
+          },
+          {
+            "input": "240 V, 1500 W, 3 h",
+            "output": "Energy = 4500 Wh",
+            "note": "Adding time turns a power calculation into an energy estimate, which is the starting point for cost calculations."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use",
+        "steps": [
+          "Enter exactly two of the four electrical values: voltage, current, resistance, or power. Leave the other two blank so the calculator can solve them.",
+          "Optionally enter a time in hours if you want the tool to convert solved power into watt-hours of energy use.",
+          "Click Calculate to display the complete set of voltage, current, resistance, and power values together with energy when time is provided.",
+          "Use the worked examples to load common household, low-voltage, and heater-style scenarios, then reset the form to try your own numbers."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What is a watt?",
+            "a": "A watt is a unit of power equal to one joule per second. It describes how quickly electrical energy is being transferred or consumed, not how much energy has been used over a long period."
+          },
+          {
+            "q": "Why do I need exactly two electrical inputs?",
+            "a": "The relationships among voltage, current, resistance, and power are constrained, so two independent values are usually enough to solve the other two. If you enter fewer than two values there is not enough information, and if you enter more than two values they may conflict with one another."
+          },
+          {
+            "q": "What is the difference between watts and watt-hours?",
+            "a": "Watts measure the rate of energy use at a moment in time. Watt-hours measure total energy over a duration, so they are found by multiplying watts by hours."
+          },
+          {
+            "q": "Can I use this for AC circuits?",
+            "a": "You can use it as a first-pass estimate for resistive or effective single-value loads. For real AC systems with power factor, reactive power, or phase angle, a dedicated AC power calculation is more appropriate."
+          },
+          {
+            "q": "Why does the calculator show resistance for appliances?",
+            "a": "Any steady-state electrical load can be expressed as an equivalent resistance at the operating point, even if the real device contains more complex components. That makes resistance a useful derived value for comparison, troubleshooting, and sanity checks."
+          }
+        ]
+      }
+    },
+    "watt-converter": {
+      "title": "Watt Converter",
+      "tagline": "Convert watts, horsepower, kilowatts, megawatts, BTU per hour, and other power units with fast factor-based calculations.",
+      "intro": "Enter a power value, choose the source unit, choose the target unit, and calculate the converted result instantly.",
+      "field": {
+        "powerValue": "Power Value",
+        "fromUnit": "From Unit",
+        "toUnit": "To Unit"
+      },
+      "placeholder": {
+        "powerValue": "e.g. 1000"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Result",
+        "value": "{input} {fromUnit} = {output} {toUnit}",
+        "inWatts": "Equivalent in watts",
+        "formula": "Method"
+      },
+      "error": {
+        "invalid": "Please enter a valid numeric power value."
+      },
+      "formula": "Convert to watts first, then divide by the target unit factor.",
+      "unit": {
+        "watt": "watt (W)",
+        "kilowatt": "kilowatt (kW)",
+        "megawatt": "megawatt (MW)",
+        "milliwatt": "milliwatt (mW)",
+        "horsepower_mech": "horsepower (mechanical) (hp)",
+        "horsepower_metric": "horsepower (metric) (hp m)",
+        "btu_per_hour": "BTU per hour (BTU/hr)",
+        "calorie_per_second": "calorie per second (cal/s)",
+        "erg_per_second": "erg per second (erg/s)",
+        "foot_pound_per_minute": "foot-pound per minute (ft·lb/min)"
+      },
+      "about": {
+        "heading": "About Watt Conversion",
+        "body": "Power unit conversion is all about expressing the same rate of energy transfer in different measurement systems. The watt is the SI unit of power and equals one joule per second. Because it belongs to the metric system and appears throughout electrical engineering, physics, HVAC, and industrial specifications, it makes an ideal reference unit. A watt converter works by translating the source value into watts first, then dividing by the factor for the target unit. Once the factors are defined, any conversion between two supported units becomes a straightforward ratio problem.\n\nMany of the units on this page come from very different technical traditions. Kilowatts and megawatts are metric multiples of the watt and are common in electrical supply, motors, and utility-scale generation. Milliwatts are used in electronics, sensors, optical devices, and low-power signaling. Mechanical and metric horsepower come from older engineering practice and are still widely used for engines, pumps, compressors, and industrial equipment. BTU per hour appears in heating and cooling, especially in HVAC sizing. Calories per second and ergs per second are less common today but still appear in older scientific references or niche contexts. Foot-pound per minute belongs to the imperial mechanical tradition and is useful when comparing older machine specifications.\n\nThe converter uses fixed factors to watts for each unit. One kilowatt is exactly 1,000 watts, one megawatt is 1,000,000 watts, and one milliwatt is 0.001 watt. Mechanical horsepower is approximately 745.69987 watts, while metric horsepower is approximately 735.49875 watts. BTU per hour converts at 0.29307107 watts, calorie per second at 4.1868 watts, erg per second at 1×10^-7 watts, and foot-pound per minute at 0.022597 watts. Because every conversion routes through watts, the result remains consistent no matter which starting and ending units you choose.\n\nThis matters in real work because equipment data sheets rarely agree on unit conventions. An electrical appliance may be rated in watts, a motor in horsepower, an HVAC unit in BTU per hour, and a power station in megawatts. If you need to compare them, estimate equivalent capacity, or move data from one report format to another, the first step is almost always unit conversion. Students also encounter these conversions in physics and thermodynamics problems where multiple traditions meet in a single question. Converting carefully prevents order-of-magnitude mistakes that can distort a design decision or exam answer.\n\nA good mental check helps. If you convert from kilowatts to watts, the number should get larger because a kilowatt is a larger unit. If you convert from watts to horsepower, the number should usually get smaller because one horsepower is several hundred watts. This converter keeps the process transparent by also showing the equivalent watt value, making it easy to verify that the answer scales in the expected direction. Whether you are comparing engines, checking appliance ratings, or translating an old engineering table, the watt converter provides a quick and consistent bridge across power units."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples highlight the most common power conversions across electrical, mechanical, and thermal contexts.",
+        "colInput": "Input",
+        "colOutput": "Output",
+        "colNote": "Notes",
+        "loadKilowatt": "Load 1 kW → W",
+        "loadHorsepower": "Load 1 hp → W",
+        "loadHalfKilowatt": "Load 500 W → kW",
+        "items": [
+          {
+            "input": "1 kilowatt (kW)",
+            "output": "1000 watt (W)",
+            "note": "Metric power multiples are exact, so one kilowatt always equals one thousand watts."
+          },
+          {
+            "input": "1 horsepower (mechanical) (hp)",
+            "output": "745.69987 watt (W)",
+            "note": "Mechanical horsepower is common for engines and motors, especially in North American equipment data."
+          },
+          {
+            "input": "1000 watt (W)",
+            "output": "1.34102 horsepower (mechanical) (hp)",
+            "note": "Converting back from watts to horsepower is useful when comparing electrical loads to motor or engine ratings."
+          },
+          {
+            "input": "500 watt (W)",
+            "output": "0.5 kilowatt (kW)",
+            "note": "Converting between watts and kilowatts is common in appliance energy labels and small-equipment specs."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use",
+        "steps": [
+          "Enter the numeric power value you want to convert. The calculator accepts whole numbers or decimals.",
+          "Choose the source unit from the From Unit list and the destination unit from the To Unit list.",
+          "Click Calculate to see the converted value and the equivalent power expressed in watts.",
+          "Use the worked examples to compare common kilowatt, horsepower, and watt conversions, then reset the form for a new case."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "Why does the converter use watts as the middle step?",
+            "a": "Watts are the SI base unit for power and provide a neutral reference across electrical, thermal, and mechanical systems. Converting everything to watts first ensures each pairwise conversion stays consistent and easy to verify."
+          },
+          {
+            "q": "What is the difference between mechanical and metric horsepower?",
+            "a": "They are two closely related but distinct historical definitions of horsepower. Mechanical horsepower is about 745.69987 watts, while metric horsepower is about 735.49875 watts, so the numerical difference is small but real."
+          },
+          {
+            "q": "When should I use BTU per hour instead of watts?",
+            "a": "BTU per hour is common in heating and cooling specifications, especially for HVAC capacity. Watts are more universal in physics and electrical work, so converting between the two helps compare thermal and electrical equipment on the same basis."
+          },
+          {
+            "q": "Why can the converted number get larger even though the power is the same?",
+            "a": "The physical power does not change, only the size of the unit you are using to describe it. Converting into a smaller unit produces a larger numerical value, while converting into a larger unit produces a smaller numerical value."
+          },
+          {
+            "q": "Are these factors accurate enough for engineering work?",
+            "a": "Yes, the listed factors are appropriate for general engineering, education, and specification comparisons. For contractual or regulatory documents, you should still use the exact unit convention required by the governing standard."
+          }
+        ]
+      }
+    },
+    "watt-hour-calculator": {
+      "title": "Watt Hour Calculator",
+      "tagline": "Calculate daily watt-hours, monthly kilowatt-hours, and electricity cost from appliance wattage, run time, monthly days, and utility rate.",
+      "intro": "Enter appliance power, daily usage time, days per month, and your electricity rate to estimate energy consumption and monthly cost.",
+      "field": {
+        "powerRating": "Power Rating (Watts)",
+        "usageTime": "Usage Time (Hours)",
+        "daysPerMonth": "Days per Month",
+        "electricityRate": "Electricity Rate ($/kWh)"
+      },
+      "placeholder": {
+        "powerRating": "e.g. 1500",
+        "usageTime": "e.g. 2",
+        "daysPerMonth": "e.g. 30",
+        "electricityRate": "e.g. 0.12"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Result",
+        "value": "Monthly energy {monthKwh} kWh • Monthly cost {cost}",
+        "energyPerDay": "Energy per day",
+        "energyPerMonth": "Energy per month",
+        "monthlyCost": "Monthly cost",
+        "unitWh": "Wh",
+        "unitKwh": "kWh",
+        "unitCurrency": "$"
+      },
+      "error": {
+        "invalid": "Please enter valid non-negative numbers in all four fields."
+      },
+      "formula": "Daily energy = Power × Hours • Monthly energy = Power × Hours × Days / 1000 • Monthly cost = Monthly energy × Rate",
+      "about": {
+        "heading": "About Watt-Hour Calculation",
+        "body": "A watt-hour calculator estimates energy consumption by combining the power rating of a device with the time it operates. Power tells you the rate at which energy is used, while energy tells you the total amount consumed over a period. If a device draws 100 watts and runs for 1 hour, it uses 100 watt-hours of energy. If it runs for 10 hours, it uses 1,000 watt-hours, which is also 1 kilowatt-hour (kWh). This distinction between power and energy is essential because utility bills charge for energy over time, not just for an instantaneous watt rating.\n\nThe four inputs in this tool mirror a typical household or small-business estimation problem. First, you enter the power rating in watts, usually taken from an appliance label or data sheet. Second, you enter daily usage time in hours. Third, you add the number of days in the billing month or in the period you want to estimate. Finally, you enter the electricity rate in dollars per kilowatt-hour. The calculator then reports daily energy in watt-hours, monthly energy in kilowatt-hours, and estimated monthly cost. This makes it easy to move from a nameplate value to a real budget estimate.\n\nThe formulas are straightforward but surprisingly useful. Daily energy equals power multiplied by daily hours. Monthly energy extends that by multiplying daily energy by the number of days and dividing by 1,000 to convert watt-hours to kilowatt-hours. Monthly cost then multiplies monthly kilowatt-hours by the local electricity tariff. These relationships are simple enough to do by hand, but when you compare many devices or test several usage scenarios, a dedicated calculator reduces mistakes and speeds up decision-making. It is especially handy when exploring the effect of longer runtime, higher power draw, or rising utility rates.\n\nThis kind of estimate appears everywhere in practical energy management. A 9-watt LED lamp used 4 hours per day for 30 days consumes only 1.08 kWh per month, which costs very little at common residential rates. A 1,500-watt electric heater run for 2 hours per day can consume 90 kWh per month, making it dramatically more expensive. A 200-watt television watched 5 hours each day uses 30 kWh per month, which sits somewhere in between. The calculator makes these comparisons immediate, helping you identify which appliances dominate energy use and where efficiency changes matter most.\n\nAlthough this is an estimate, it is highly useful for planning. Real devices can cycle on and off, draw different power in standby and active modes, or vary with thermostat settings and ambient conditions. Even so, nameplate-based calculations are an excellent starting point for budgeting, sustainability checks, classroom exercises, and simple audits. If you want to compare lighting upgrades, estimate the cost of space heating, understand the impact of entertainment electronics, or explain the difference between watts and kilowatt-hours, a watt-hour calculator turns basic inputs into actionable energy insight."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples compare low-power lighting, high-power heating, and everyday entertainment loads over a monthly period.",
+        "colInput": "Input",
+        "colOutput": "Output",
+        "colNote": "Notes",
+        "loadLed": "Load LED bulb",
+        "loadHeater": "Load heater",
+        "loadTv": "Load TV",
+        "items": [
+          {
+            "input": "9 W, 4 h/day, 30 days, $0.12/kWh",
+            "output": "1.08 kWh/month, $0.1296/month",
+            "note": "A modern LED bulb uses very little energy, so even daily use stays inexpensive."
+          },
+          {
+            "input": "1500 W, 2 h/day, 30 days, $0.12/kWh",
+            "output": "90 kWh/month, $10.8/month",
+            "note": "Resistance heating has a high wattage, so runtime quickly turns into noticeable monthly cost."
+          },
+          {
+            "input": "200 W, 5 h/day, 30 days, $0.15/kWh",
+            "output": "30 kWh/month, $4.5/month",
+            "note": "Televisions and entertainment devices often sit in the middle range where energy use is meaningful but manageable."
+          },
+          {
+            "input": "150 W, 24 h/day, 30 days, $0.12/kWh",
+            "output": "108 kWh/month, $12.96/month",
+            "note": "Appliances that run continuously can rival higher-wattage devices that operate only intermittently."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use",
+        "steps": [
+          "Enter the device power rating in watts exactly as listed on the label or specification sheet.",
+          "Enter the average number of hours the device runs each day, then add the number of days in the month or period you want to estimate.",
+          "Enter your electricity rate in dollars per kilowatt-hour and click Calculate to see daily watt-hours, monthly kilowatt-hours, and estimated cost.",
+          "Use the worked examples to compare a light bulb, heater, and TV, then reset the form to explore your own appliances."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What is the difference between watts and watt-hours?",
+            "a": "Watts measure the rate of power draw at a moment in time. Watt-hours measure total energy over time, so they are found by multiplying watts by hours of use."
+          },
+          {
+            "q": "Why does the calculator report monthly energy in kWh?",
+            "a": "Utility companies typically bill electricity in kilowatt-hours rather than watt-hours. Reporting monthly usage in kWh makes the result directly comparable to your electricity bill."
+          },
+          {
+            "q": "How accurate is a nameplate-based cost estimate?",
+            "a": "It is a solid first approximation for planning and comparison. Real consumption can differ because devices cycle on and off, draw standby power, or operate below their maximum rated wattage."
+          },
+          {
+            "q": "Can I use this for battery-powered devices too?",
+            "a": "Yes, as long as you know the average power draw and the operating time. The same energy relationships apply even if the source is a battery rather than the electrical grid."
+          },
+          {
+            "q": "Why can a lower-power appliance still cost a lot to run?",
+            "a": "Operating time matters just as much as wattage. A moderate-power device that runs all day can consume more energy over a month than a high-power device used only briefly."
+          }
+        ]
+      }
+    },
+    "watts-to-amps-calculator": {
+      "title": "Watts to Amps Calculator",
+      "tagline": "Convert watts to amps from power, voltage, and optional power factor for DC loads and single-value AC estimates.",
+      "intro": "Enter power and voltage to calculate current. Add a power factor when you want an AC estimate instead of the default resistive or DC case.",
+      "field": {
+        "power": "Power (Watts)",
+        "voltage": "Voltage (Volts)",
+        "powerFactor": "Power Factor"
+      },
+      "placeholder": {
+        "power": "e.g. 1200",
+        "voltage": "e.g. 120",
+        "powerFactor": "e.g. 0.95"
+      },
+      "button": {
+        "calculate": "Calculate",
+        "reset": "Reset"
+      },
+      "result": {
+        "heading": "Result",
+        "value": "Current = {current} A",
+        "current": "Current",
+        "powerFactor": "Power factor used",
+        "formula": "Formula used",
+        "unitCurrent": "A",
+        "powerFactorNote": "PF",
+        "formulaDc": "I = P ÷ V",
+        "formulaAc": "I = P ÷ (V × PF)"
+      },
+      "error": {
+        "invalid": "Please enter valid positive numbers for power and voltage, and use a power factor between 0 and 1."
+      },
+      "hint": "Leave power factor blank to use the default value of 1.0, which matches DC circuits and many purely resistive loads.",
+      "formula": {
+        "dc": "For DC or resistive loads: I = P / V",
+        "ac": "For AC loads with power factor: I = P / (V × PF)"
+      },
+      "about": {
+        "heading": "About Watts to Amps Conversion",
+        "body": "A watts to amps calculator converts electrical power into current draw by combining the power rating with the operating voltage. In the simplest DC case, the relationship is I = P / V. If a load consumes 500 watts at 12 volts, the current is 41.67 amps. This is one of the most useful quick calculations in electronics, automotive systems, solar installations, marine wiring, and appliance sizing because current determines conductor size, fuse selection, breaker limits, and voltage-drop concerns.\n\nThe reason the formula works is that electrical power equals voltage multiplied by current: P = V × I. Rearranging for current gives I = P / V. That is the correct relationship for DC circuits and for AC loads that behave like purely resistive devices. In real AC systems, however, not all of the apparent power becomes real power. Some of it can be tied up in the phase shift between voltage and current caused by inductive or capacitive components. That is where power factor comes in.\n\nPower factor, usually written as PF, measures how effectively current is being converted into useful real power in an AC circuit. A power factor of 1 means voltage and current are perfectly in phase, so the DC-style formula works directly. Lower power factors mean the circuit must draw more current to deliver the same number of watts. For single-value estimates, current becomes I = P / (V × PF). This is why a 1,200-watt load at 120 volts and a 0.95 power factor draws a bit more current than the same 1,200 watts at PF = 1. The difference matters when sizing branch circuits, inverters, generators, and protective devices.\n\nThis calculator is especially useful when you know the power rating but need to understand installation impact. A 2,000-watt heater on a 240-volt supply draws 8.33 amps if it is essentially resistive. A 500-watt 12-volt DC load draws 41.67 amps, which immediately tells you the wiring and fuse requirements will be much more demanding than the raw wattage alone might suggest. Household appliances, RV systems, battery banks, and workshop tools all become easier to compare once you express them in amps.\n\nLike any simplified calculator, this tool is best used as a practical estimate. Three-phase systems, motor starting currents, harmonic distortion, and detailed apparent-power calculations need more specialized treatment. Still, for routine design checks, educational examples, and everyday troubleshooting, converting watts to amps with voltage and optional power factor gives a fast, informative picture of real current demand. It helps translate a nameplate wattage into the quantity that most directly drives safe electrical sizing."
+      },
+      "examples": {
+        "heading": "Examples",
+        "intro": "These examples show how current changes with voltage level and how power factor affects AC current draw.",
+        "colInput": "Input",
+        "colOutput": "Output",
+        "colNote": "Notes",
+        "loadHousehold": "Load 1200W at 120V",
+        "loadResistive": "Load 2000W at 240V",
+        "loadDc": "Load 500W at 12V",
+        "items": [
+          {
+            "input": "1200 W, 120 V, PF = 0.95",
+            "output": "I = 10.53 A",
+            "note": "A near-unity AC load still draws slightly more current than the pure DC or resistive case because PF is below 1."
+          },
+          {
+            "input": "2000 W, 240 V, PF = 1.0",
+            "output": "I = 8.33 A",
+            "note": "This is the straightforward resistive or DC-style relationship where current equals watts divided by volts."
+          },
+          {
+            "input": "500 W, 12 V, PF = 1.0",
+            "output": "I = 41.67 A",
+            "note": "Low-voltage systems require high current for the same wattage, which is why cable sizing becomes critical in battery-based setups."
+          },
+          {
+            "input": "1500 W, 230 V, PF = 0.8",
+            "output": "I = 8.15 A",
+            "note": "A lower AC power factor raises current and can materially affect breaker and conductor selection."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "How to Use",
+        "steps": [
+          "Enter the real power in watts and the operating voltage in volts. Both fields are required for every calculation.",
+          "Leave power factor blank for DC or purely resistive loads, or enter a value between 0 and 1 for an AC estimate.",
+          "Click Calculate to see the current in amps and the formula used for the scenario.",
+          "Use the worked examples to compare household AC loads, resistive heaters, and low-voltage DC systems, then reset the form for a new case."
+        ]
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "Why does lower voltage mean higher current for the same power?",
+            "a": "Power is the product of voltage and current, so if the wattage stays fixed and voltage goes down, current must go up. That is why low-voltage systems often need thicker conductors and larger protective devices."
+          },
+          {
+            "q": "What is power factor?",
+            "a": "Power factor measures how effectively AC current is turned into useful real power. A power factor of 1 means ideal alignment between voltage and current, while lower values indicate more current is needed to deliver the same watts."
+          },
+          {
+            "q": "Should I leave power factor blank for DC circuits?",
+            "a": "Yes. DC circuits do not use AC phase relationships, so the effective power factor is treated as 1 and the formula simplifies to current equals power divided by voltage."
+          },
+          {
+            "q": "Can I use this for motors and compressors?",
+            "a": "You can use it for a steady-state estimate if you know the running watts and an approximate power factor. However, motors may have startup surge current and operating characteristics that require more detailed analysis."
+          },
+          {
+            "q": "Why is this useful for electrical sizing?",
+            "a": "Circuit protection and conductor sizing are based on current, not just on wattage. Converting watts to amps helps you assess breaker loading, fuse selection, voltage drop, and cable requirements before installation."
+          }
+        ]
+      }
     }
   }
 }

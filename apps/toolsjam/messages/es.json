@@ -7004,6 +7004,762 @@
         "q6": "¿Puedo usar esta calculadora con datos categóricos (no numéricos)?",
         "q6_a": "La calculadora requiere entrada numérica. Para usarla con datos categóricos, como colores, calificaciones (A/B/C) o respuestas sí/no, asigna a cada categoría un código numérico (p. ej. 1 = Red, 2 = Blue, 3 = Green) e ingresa los valores codificados. La salida mostrará correctamente la frecuencia y la frecuencia relativa de cada código numérico, que luego podrás volver a etiquetar en tu informe."
       }
+    },
+    "odds-ratio-calculator": {
+      "title": "Calculadora de razón de momios - OR, IC y valor P",
+      "tagline": "Calcula la razón de momios, el intervalo de confianza, el valor Z y el valor P a partir de una tabla de contingencia 2×2 para estudios caso-control y epidemiológicos.",
+      "intro": "Ingresa los cuatro conteos de celdas de tu tabla 2×2, elige un nivel de confianza y recibe al instante la razón de momios con inferencia estadística completa.",
+      "tableNote": "Completa los conteos de los grupos expuesto y no expuesto. Las celdas deben ser enteros no negativos. Cuando alguna celda es cero, se aplica automáticamente la corrección de Haldane-Anscombe (sumar 0.5 a cada celda).",
+      "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+      "group": {
+        "exposed": "Grupo expuesto",
+        "unexposed": "Grupo no expuesto"
+      },
+      "field": {
+        "a": "Resultado positivo – Casos (a)",
+        "b": "Resultado negativo – No casos (b)",
+        "c": "Resultado positivo – Casos (c)",
+        "d": "Resultado negativo – No casos (d)",
+        "confidenceLevel": "Nivel de confianza"
+      },
+      "placeholder": {
+        "cell": "Ingresa un conteo ≥ 0"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Ingresa números no negativos en las cuatro celdas."
+      },
+      "result": {
+        "heading": "Resultados",
+        "or": "Razón de momios (OR)",
+        "ciLabel": "Intervalo de confianza",
+        "z": "Z",
+        "pValue": "Valor P",
+        "lnOR": "ln(OR)",
+        "se": "Error estándar",
+        "correctionNote": "Se detectó una celda cero: se aplicó la corrección de Haldane-Anscombe (+ 0.5) a todas las celdas."
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de razón de momios",
+        "body": "La razón de momios (OR) es una de las medidas de asociación más usadas en la investigación biomédica, la epidemiología y las ciencias sociales. Cuantifica la fuerza de la relación entre una exposición y un resultado binario al comparar la probabilidad del resultado en un grupo expuesto con la del grupo no expuesto. Una OR de 1 indica ausencia de asociación; una OR mayor que 1 sugiere que la exposición aumenta la probabilidad del resultado; y una OR menor que 1 sugiere un efecto protector.\n\nLa razón de momios se calcula a partir de una tabla de contingencia 2×2, el formato estándar para presentar datos de estudios caso-control. La tabla tiene cuatro celdas: (a) expuestos con el resultado, (b) expuestos sin el resultado, (c) no expuestos con el resultado y (d) no expuestos sin el resultado. La fórmula es simplemente OR = (a × d) / (b × c), es decir, la razón de productos cruzados de la tabla.\n\nLa inferencia estadística para la OR se realiza sobre su logaritmo natural, porque la distribución muestral de ln(OR) es aproximadamente normal, incluso con tamaños de muestra moderados. El error estándar de ln(OR) es SE = √(1/a + 1/b + 1/c + 1/d). A partir de esto, se calcula un valor Z como Z = ln(OR) / SE, que sigue una distribución normal estándar bajo la hipótesis nula de ausencia de asociación (OR = 1). El valor P bilateral es p = 2 × Φ(−|Z|), donde Φ es la función de distribución acumulada normal estándar. Si el valor P está por debajo del nivel de significancia elegido (normalmente 0.05), la razón de momios difiere de 1 de forma estadísticamente significativa.\n\nEl intervalo de confianza (IC) de la OR se construye exponenciando el intervalo alrededor de ln(OR): CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. Para un IC del 95%, Z_α/2 = 1.96. Si el IC no incluye 1.0, el resultado es estadísticamente significativo al nivel del 5%. El ancho del IC refleja la precisión de la estimación; intervalos más amplios surgen de tamaños de muestra pequeños o celdas escasas.\n\nSurge una complicación práctica cuando alguna celda de la tabla 2×2 es cero, lo que hace que la fórmula estándar de la OR no esté definida (división por cero o logaritmo de cero). La solución habitual es la corrección de Haldane-Anscombe: agregar 0.5 a cada celda antes de calcular la OR y el SE. Esta calculadora aplica la corrección automáticamente y te avisa cuando la usa. La corrección introduce un sesgo pequeño, pero es mucho mejor que no devolver ningún resultado.\n\nLa OR es la medida natural en los estudios caso-control, donde el diseño fija el número de casos y controles en lugar de la prevalencia de la exposición. En estudios de cohorte y ensayos aleatorizados, suele preferirse el riesgo relativo (RR) porque es más intuitivo. Para resultados raros (prevalencia por debajo de aproximadamente 10%), OR ≈ RR, pero para resultados comunes la OR siempre estará más alejada de 1 que el RR correspondiente, y interpretarla como RR puede sobrestimar la magnitud de la asociación. Indica siempre qué medida estás usando y comprueba si tu datos cumplen el supuesto de enfermedad rara."
+      },
+      "examples": {
+        "heading": "Ejemplos resueltos",
+        "intro": "Tres escenarios clásicos de estudio que muestran cómo leer la salida de la razón de momios y juzgar la significancia estadística.",
+        "colInput": "Escenario del estudio",
+        "colOutput": "Razón de momios",
+        "colNote": "Interpretación",
+        "loadSmoking": "Cargar ejemplo de tabaquismo",
+        "loadDrug": "Cargar ejemplo de fármaco",
+        "loadVaccine": "Cargar ejemplo de vacuna",
+        "items": [
+          {
+            "input": "Tabaquismo y cáncer de pulmón: a=650, b=350, c=100, d=900 (95% CI)",
+            "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+            "note": "Los fumadores tienen aproximadamente 16.7 veces las probabilidades de cáncer de pulmón en comparación con los no fumadores. El IC excluye 1.0, por lo que la asociación es altamente significativa."
+          },
+          {
+            "input": "Nuevo fármaco vs. placebo: a=38, b=162, c=85, d=115 (95% CI)",
+            "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+            "note": "El fármaco reduce las probabilidades de enfermedad en aproximadamente 68%. OR < 1 indica un efecto protector; el IC está completamente por debajo de 1."
+          },
+          {
+            "input": "Estudio de vacunación: a=15, b=485, c=55, d=445 (95% CI)",
+            "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+            "note": "Las personas vacunadas tienen 75% menos probabilidades de infección. Una asociación protectora fuerte, con un intervalo de confianza estrecho y significativo."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de razón de momios",
+        "steps": [
+          "Organiza tus datos en una tabla 2×2: la celda (a) = casos expuestos, (b) = no casos expuestos, (c) = casos no expuestos, (d) = no casos no expuestos.",
+          "Ingresa los cuatro conteos no negativos en los campos correspondientes bajo 'Grupo expuesto' y 'Grupo no expuesto'.",
+          "Selecciona el nivel de confianza deseado (90%, 95% o 99%) en el menú desplegable. La mayoría de las investigaciones publicadas usan 95%.",
+          "Haz clic en Calcular. La herramienta devuelve la OR, el intervalo de confianza, el valor Z y el valor P. Si alguna celda fue cero, aparecerá una nota de corrección.",
+          "Interpreta el resultado: OR > 1 significa que la exposición aumenta las probabilidades; OR < 1 significa que las disminuye. Comprueba si el IC incluye 1 y si p ≤ α."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué es una razón de momios y en qué se diferencia del riesgo relativo?",
+        "q1_a": "La razón de momios compara las probabilidades de un resultado en dos grupos, mientras que el riesgo relativo (RR) compara las probabilidades. Para resultados raros (prevalencia < 10%), OR ≈ RR; para resultados comunes la OR se aleja más de 1.0 que el RR. Los estudios caso-control solo pueden estimar de forma válida la OR, no el RR, porque el muestreo se basa en el resultado.",
+        "q2": "¿Cómo interpreto OR = 2.5?",
+        "q2_a": "Una OR de 2.5 significa que las probabilidades del resultado en el grupo expuesto son 2.5 veces las del grupo no expuesto. No significa que el riesgo sea 2.5 veces mayor salvo que el resultado sea raro. Para resultados comunes, la razón de riesgos real será menor que 2.5.",
+        "q3": "¿Qué me dice el intervalo de confianza?",
+        "q3_a": "Un intervalo de confianza del 95% significa que, si repitieras el estudio muchas veces bajo las mismas condiciones, aproximadamente el 95% de los intervalos calculados contendrían la OR verdadera de la población. En la práctica, si el IC excluye 1.0, el resultado es estadísticamente significativo con α = 0.05. Un IC amplio indica baja precisión, normalmente por una muestra pequeña.",
+        "q4": "¿Cuándo se aplica la corrección de Haldane-Anscombe?",
+        "q4_a": "La corrección agrega 0.5 a cada celda cuando alguna celda es cero. Una celda cero hace que la fórmula estándar de la OR no esté definida (logaritmo de cero o división por cero). La corrección permite continuar la estimación y es el remedio más común, aunque introduce un pequeño sesgo. La calculadora lo destaca cuando se usa.",
+        "q5": "¿Puedo usar esta calculadora para un ensayo controlado aleatorizado?",
+        "q5_a": "Sí, pero considera reportar el riesgo relativo (RR) en lugar de la OR o junto con ella, porque el RR es más intuitivo para resultados comunes y es la medida que prefieren muchas guías clínicas. Para ECA con resultados raros o al combinar diseños de estudio en un metanálisis, la OR sigue siendo apropiada.",
+        "q6": "¿Por qué a veces parecen contradictorios los valores P y los intervalos de confianza?",
+        "q6_a": "No deberían ser contradictorios: un IC del 95% que excluye 1.0 siempre corresponde a p < 0.05 en una prueba bilateral. Las aparentes contradicciones suelen deberse al redondeo, a comparar valores P unilaterales con IC bilaterales o a usar distintos niveles de confianza y alfa para la prueba. Usa configuraciones consistentes en ambos."
+      }
+    },
+    "outlier-calculator": {
+      "title": "Calculadora de valores atípicos - Detecta atípicos con el método IQR",
+      "tagline": "Encuentra valores atípicos estadísticos en cualquier conjunto de datos con el método del rango intercuartílico: elige detección leve (1.5×IQR) o extrema (3×IQR) al instante.",
+      "intro": "Introduce una lista de números separada por comas, selecciona el método de detección de atípicos y obtén Q1, Q3, IQR, los valores de los límites y la lista de atípicos.",
+      "formula": "IQR = Q3 − Q1  |  Límite inferior = Q1 − k × IQR  |  Límite superior = Q3 + k × IQR  |  k = 1.5 (leve) o 3.0 (extremo)",
+      "field": {
+        "data": "Conjunto de datos (números separados por comas)",
+        "method": "Método de detección de atípicos"
+      },
+      "placeholder": {
+        "data": "p. ej. 10, 12, 14, 15, 16, 18, 20, 50"
+      },
+      "type": {
+        "mild": "Atípicos leves (1.5 × IQR)",
+        "extreme": "Atípicos extremos (3.0 × IQR)"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce al menos 4 números separados por comas."
+      },
+      "result": {
+        "heading": "Resultados",
+        "q1": "Q1 (primer cuartil)",
+        "q3": "Q3 (tercer cuartil)",
+        "iqr": "IQR",
+        "lowerBound": "Límite inferior",
+        "upperBound": "Límite superior",
+        "outlierCount": "Cantidad de atípicos",
+        "outliersLabel": "Atípicos detectados",
+        "noOutliers": "No se encontraron atípicos",
+        "cleanDataLabel": "Datos sin atípicos (ordenados)"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de atípicos",
+        "body": "Un valor atípico es un dato que se encuentra a una distancia anormal de los demás valores de un conjunto de datos. En el análisis estadístico, los atípicos pueden distorsionar medidas resumen como la media y la desviación estándar, inflar las estimaciones de varianza y violar los supuestos de las pruebas paramétricas. Identificarlos pronto es un paso clave en el análisis exploratorio de datos, el control de calidad y el preprocesamiento para aprendizaje automático.\n\nEl método más utilizado para detectar atípicos se basa en el rango intercuartílico (IQR), que es la diferencia entre el tercer cuartil (Q3) y el primer cuartil (Q1). Este método es robusto porque, a diferencia de la media y la desviación estándar, el IQR no se ve distorsionado por los valores extremos. La fórmula de los dos límites es: límite inferior = Q1 − k × IQR y límite superior = Q3 + k × IQR. Cualquier dato que quede fuera de estos límites se clasifica como atípico.\n\nEl multiplicador k determina cuán estricta es la detección. La opción más común es k = 1.5, el valor predeterminado en los diagramas de caja, que identifica lo que a veces se llama atípicos “leves”: valores que se apartan de forma notable del grueso de los datos, pero que aún pueden tener una explicación válida. Con k = 3.0, el criterio es más estricto; solo se marcan los atípicos “extremos”, valores tan alejados de la distribución principal que casi con certeza representan errores, anomalías o sucesos realmente raros.\n\nPara calcular los cuartiles, la calculadora primero ordena los datos de menor a mayor. Q1 es el percentil 25 y Q3 es el percentil 75 del conjunto ordenado. Cuando la posición del cuartil cae entre dos valores, la calculadora interpola linealmente para producir un resultado suave, coherente con la configuración predeterminada de Excel y con muchas convenciones de paquetes estadísticos.\n\nDetectar un atípico no significa borrarlo automáticamente. Antes de eliminar o transformar un valor detectado, conviene investigar su causa. Puede ser un error de entrada (un dígito mal escrito), un error de medición (una lectura defectuosa), un error de muestreo (un valor de otra población) o una observación extrema real que sea científicamente importante y deba conservarse. Por ejemplo, en la detección de fraude, el dato más importante puede ser precisamente el atípico. En investigación clínica, el paciente con la respuesta más extrema puede ser el más informativo. Documenta siempre tu decisión y, si tienes dudas, informa los resultados con y sin el atípico para mostrar sensibilidad.\n\nEl método IQR es no paramétrico, lo que significa que no asume una forma concreta para la distribución subyacente. Por eso es especialmente útil para distribuciones asimétricas, muestras pequeñas y datos con varios grupos. Para datos aproximadamente normales con muestras grandes, el método de la puntuación Z (marcar valores a más de 2 o 3 desviaciones estándar de la media) es una alternativa, pero la propia puntuación Z se ve inflada por los valores atípicos que intenta detectar, por lo que el enfoque IQR suele ser más fiable."
+      },
+      "examples": {
+        "heading": "Ejemplos resueltos",
+        "intro": "Tres conjuntos de datos que ilustran un atípico único, varios atípicos y un conjunto limpio sin atípicos.",
+        "colInput": "Conjunto de datos",
+        "colOutput": "Atípicos (1.5×IQR)",
+        "colNote": "Valores clave",
+        "loadBasic": "Cargar ejemplo básico",
+        "loadMultiple": "Cargar varios atípicos",
+        "loadNone": "Cargar ejemplo sin atípicos",
+        "items": [
+          {
+            "input": "10, 12, 14, 15, 16, 18, 20, 50",
+            "output": "50",
+            "note": "Q1=13.5, Q3=18.5, IQR=5, límite superior=26. El valor 50 supera 26 y se marca como atípico."
+          },
+          {
+            "input": "1, 25, 28, 30, 32, 35, 38, 100",
+            "output": "1, 100",
+            "note": "Q1=27.25, Q3=35.75, IQR=8.5, límites: 14.5 a 48.5. Tanto 1 como 100 quedan fuera de estos límites."
+          },
+          {
+            "input": "10, 20, 30, 40, 50, 60, 70, 80",
+            "output": "None",
+            "note": "El espaciado uniforme significa que ningún punto está a más de 1.5×IQR del límite. Todos los valores son limpios."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de atípicos",
+        "steps": [
+          "Escribe o pega tus datos en el campo de entrada como una lista de números separada por comas. Se aceptan enteros, decimales y números negativos.",
+          "Selecciona 'Atípicos leves (1.5 × IQR)' para el análisis estándar de los diagramas de caja, o 'Atípicos extremos (3.0 × IQR)' para marcar solo las anomalías más graves.",
+          "Haz clic en Calcular. La herramienta mostrará Q1, Q3, IQR, los límites inferior y superior, y la cantidad de atípicos.",
+          "Revisa la lista de 'Atípicos detectados'. Investiga cada valor marcado antes de decidir si lo eliminas o lo conservas.",
+          "El conjunto de datos depurado (ordenado y sin atípicos) se muestra debajo para copiarlo rápidamente en tu análisis."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué es el método IQR para detectar atípicos?",
+        "q1_a": "El método IQR (rango intercuartílico) calcula dos límites: Q1 − 1.5×IQR y Q3 + 1.5×IQR. Cualquier dato fuera de estos límites se marca como atípico. El método es robusto porque Q1, Q3 e IQR no se ven influidos por los propios atípicos, a diferencia de la media y la desviación estándar.",
+        "q2": "¿Debo eliminar siempre los atípicos?",
+        "q2_a": "No. Investiga antes de eliminar. Los atípicos pueden representar datos reales e importantes: una transacción fraudulenta, un hallazgo científico novedoso o un defecto de fabricación digno de estudio. Elimínalos solo si tienes una razón válida, como un error de entrada confirmado. Siempre indica las eliminaciones al informar tu análisis.",
+        "q3": "¿Cuál es la diferencia entre atípicos leves y extremos?",
+        "q3_a": "Los atípicos leves quedan entre 1.5×IQR y 3×IQR más allá de un cuartil. Los atípicos extremos quedan por encima de 3×IQR. Los diagramas de caja suelen mostrar los atípicos leves como círculos vacíos y los extremos como estrellas o círculos rellenos. Para la mayoría de los análisis exploratorios, el umbral de 1.5×IQR es el estándar.",
+        "q4": "¿Esta calculadora funciona con números negativos?",
+        "q4_a": "Sí. El método IQR es independiente de la escala y funciona correctamente con cualquier combinación de valores positivos, cero y negativos. Solo incluye los números negativos en tu lista separada por comas, por ejemplo: −20, 5, 8, 9, 10, 12, 15.",
+        "q5": "¿Cuál es el número mínimo de datos necesario?",
+        "q5_a": "La calculadora requiere al menos 4 datos para calcular cuartiles e IQR de forma significativa. En muestras muy pequeñas (menos de 10 a 15 valores), los límites pueden variar mucho y un atípico detectado debe interpretarse con cautela.",
+        "q6": "¿Cómo se compara este método con el enfoque Z-score?",
+        "q6_a": "El método Z-score marca valores a más de 2 o 3 desviaciones estándar de la media. Asume datos aproximadamente normales y es sensible a los propios atípicos que intenta detectar, porque los valores extremos inflan la media y la desviación estándar. El método IQR no asume normalidad y, por tanto, se prefiere para datos asimétricos, distribuciones de colas pesadas y muestras pequeñas o moderadas."
+      }
+    },
+    "p-hat-calculator": {
+      "title": "Calculadora p-hat - Proporción muestral p̂ y q̂",
+      "tagline": "Calcula la proporción muestral p̂ (p-hat) y su complemento q̂ a partir del tamaño de muestra y el número de éxitos en cualquier estudio estadístico.",
+      "intro": "Introduce el tamaño total de la muestra (n) y el número de éxitos (x) para obtener p̂ y q̂ como decimales y porcentajes al instante.",
+      "formula": "p̂ = x / n  |  q̂ = 1 − p̂  |  donde x es el recuento de éxitos y n es el tamaño total de la muestra",
+      "field": {
+        "n": "Tamaño de muestra (n)",
+        "x": "Número de éxitos (x)"
+      },
+      "placeholder": {
+        "n": "p. ej., 1000",
+        "x": "p. ej., 550"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce un entero positivo para n y un entero no negativo para x que sea ≤ n."
+      },
+      "result": {
+        "heading": "Resultados",
+        "pHatDecimal": "p̂ (decimal)",
+        "pHatPercent": "p̂ (porcentaje)",
+        "qHatDecimal": "q̂ (decimal)",
+        "qHatPercent": "q̂ (porcentaje)"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora p-hat",
+        "body": "En estadística inferencial, la proporción muestral p̂ (pronunciada “p-hat”) es la fracción de individuos de una muestra que poseen una característica específica o cumplen un criterio definido. Es uno de los estadísticos más fundamentales en la investigación aplicada y constituye la base de los intervalos de confianza para proporciones, las pruebas de hipótesis sobre proporciones y los cálculos de tamaño de muestra para encuestas y ensayos clínicos.\n\nLa fórmula es directa: p̂ = x / n, donde x es el número de “éxitos” (observaciones con la característica de interés) y n es el tamaño total de la muestra. El complemento q̂ = 1 − p̂ representa la proporción de la muestra que no tiene la característica. Juntas, p̂ y q̂ suman exactamente 1 y describen la división binaria de la muestra.\n\nEl propósito principal de p̂ es estimar la verdadera proporción poblacional p, que normalmente se desconoce. Como una muestra es solo un subconjunto de la población, p̂ es una variable aleatoria: su valor variará ligeramente de una muestra a otra. El teorema central del límite garantiza que, para n suficientemente grande (normalmente np̂ ≥ 5 y nq̂ ≥ 5), la distribución muestral de p̂ es aproximadamente normal con media p y error estándar √(p(1−p)/n). Esta aproximación normal sustenta los intervalos de confianza para proporciones y las pruebas z de proporciones más comunes.\n\nLas aplicaciones prácticas de p̂ abarcan todos los campos cuantitativos. En sondeos políticos, las organizaciones encuestadoras toman muestras de unos miles de votantes probables y reportan p̂ como el apoyo estimado a un candidato, normalmente con un margen de error (± 2–3%) derivado del error estándar. En control de calidad de manufactura, un ingeniero de producción toma 200 unidades de un lote y calcula la proporción de defectos p̂ para decidir si la tasa de defectos está dentro de límites aceptables. En ensayos clínicos, el criterio principal de valoración suele ser la proporción de pacientes que responden a un tratamiento; p̂ en el grupo de tratamiento frente a p̂ en el grupo de control constituye la base de la comparación estadística principal. En pruebas A/B para productos digitales, p̂ es la tasa de conversión de cada variante.\n\nEs importante distinguir p̂ de una media. Una media resume datos numéricos continuos (estatura promedio, ingreso promedio), mientras que p̂ resume datos categóricos binarios (éxito o fracaso, sí o no, defectuoso o no defectuoso). Ambos son estimaciones puntuales, pero siguen distribuciones muestrales diferentes y requieren fórmulas distintas para intervalos de confianza y pruebas de hipótesis.\n\nAl informar p̂, acompáñala siempre con un intervalo de confianza y el tamaño de muestra n. Un p̂ de 0.6 es mucho más significativo cuando se expresa como “0.6 (IC 95%: 0.57 – 0.63, n = 1,000)” que cuando se presenta solo. El intervalo de confianza comunica la precisión de la estimación y permite a los lectores juzgar si la proporción verdadera podría estar plausiblemente por encima o por debajo de cualquier umbral que les importe. Sin n y el IC, p̂ es un hallazgo incompleto."
+      },
+      "examples": {
+        "heading": "Ejemplos resueltos",
+        "intro": "Tres situaciones reales que muestran cómo se calcula p̂ y qué significan los resultados en contexto.",
+        "colInput": "Entrada (n, x)",
+        "colOutput": "p̂",
+        "colNote": "Contexto",
+        "loadPoll": "Cargar ejemplo de encuesta",
+        "loadQC": "Cargar ejemplo de control de calidad",
+        "loadMedical": "Cargar ejemplo de ensayo médico",
+        "items": [
+          {
+            "input": "n = 1000, x = 550",
+            "output": "p̂ = 0.55 (55%)",
+            "note": "Encuesta preelectoral: 550 de 1,000 votantes apoyan al candidato A. p̂ = 0.55, q̂ = 0.45."
+          },
+          {
+            "input": "n = 200, x = 15",
+            "output": "p̂ = 0.075 (7.5%)",
+            "note": "Control de calidad: 15 bombillas defectuosas en una muestra de 200. Tasa de defectos p̂ = 7.5%, tasa de aprobación q̂ = 92.5%."
+          },
+          {
+            "input": "n = 120, x = 80",
+            "output": "p̂ = 0.6667 (66.67%)",
+            "note": "Ensayo clínico: 80 de 120 pacientes respondieron positivamente a un nuevo fármaco. Tasa de respuesta p̂ ≈ 0.667."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora p-hat",
+        "steps": [
+          "Introduce el tamaño total de la muestra (n): un entero positivo que representa cuántos elementos, personas u observaciones muestreaste.",
+          "Introduce el número de éxitos (x): un entero no negativo como máximo igual a n, que representa cuántos elementos de la muestra tienen la característica de interés.",
+          "Haz clic en Calcular. La herramienta devuelve p̂ y q̂ tanto como decimal como porcentaje.",
+          "Usa p̂ como estimación puntual de la proporción poblacional p. Recuerda que p̂ por sí sola es incompleta; calcula un intervalo de confianza para una inferencia más completa.",
+          "Haz clic en Restablecer para borrar los campos e iniciar un nuevo cálculo."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué significa p̂ en estadística?",
+        "q1_a": "p̂ (leída “p-hat”) es la proporción muestral: la fracción de una muestra que tiene un atributo particular. Se usa para estimar la proporción poblacional desconocida p. El símbolo de sombrero (^) es una notación estadística estándar que indica una estimación basada en una muestra de un parámetro poblacional.",
+        "q2": "¿Qué es q̂ y por qué se informa?",
+        "q2_a": "q̂ = 1 − p̂ es el complemento de p̂ y representa la proporción de la muestra que no tiene la característica. Siempre se informa junto con p̂ porque juntas describen la división binaria completa de la muestra, y q̂ aparece directamente en la fórmula del error estándar de p̂: SE = √(p̂ × q̂ / n).",
+        "q3": "¿Qué tan grande debe ser n para que p̂ sea fiable?",
+        "q3_a": "Una regla general común para usar la aproximación normal para proporciones es que se cumplan tanto np̂ ≥ 5 como nq̂ ≥ 5. Para intervalos de confianza más precisos cuando estas condiciones no se cumplen, usa el intervalo de puntuación de Wilson o el intervalo exacto de Clopper-Pearson en lugar de la fórmula estándar de aproximación normal.",
+        "q4": "¿Puede usarse p̂ si x o n no son enteros?",
+        "q4_a": "En la definición estricta, p̂ es un recuento dividido por un recuento, por lo que ambos deben ser enteros no negativos con x ≤ n. Sin embargo, en algunos contextos (como encuestas ponderadas o metaanálisis con tamaños de muestra efectivos) aparecen entradas fraccionarias. Esta calculadora exige entradas enteras para mantener la integridad matemática.",
+        "q5": "¿Cómo se usa p̂ en pruebas de hipótesis?",
+        "q5_a": "Para una prueba de una muestra de H₀: p = p₀, el estadístico de prueba es Z = (p̂ − p₀) / √(p₀(1 − p₀) / n). Si |Z| supera el valor crítico en el nivel de significancia elegido, rechazas la hipótesis nula. El valor p de esta puntuación Z indica la probabilidad de observar un p̂ al menos tan extremo como el obtenido si p realmente fuera p₀.",
+        "q6": "¿p̂ es lo mismo que un porcentaje?",
+        "q6_a": "p̂ es un decimal entre 0 y 1; al multiplicarlo por 100 se obtiene el porcentaje equivalente. Transmiten la misma información: 0.55 y 55% son el mismo valor expresado de forma diferente. Los decimales se prefieren en fórmulas y cálculos de intervalos de confianza; los porcentajes se prefieren al comunicar resultados a una audiencia general."
+      }
+    },
+    "p-value-calculator": {
+      "title": "Calculadora de p-valor - pruebas Z, t, F y chi-cuadrado",
+      "tagline": "Obtén el p-valor de cualquier estadístico de prueba — Z, t, F o chi-cuadrado — con opciones de cola bilateral, derecha o izquierda para decidir la significancia al instante.",
+      "intro": "Selecciona el tipo de prueba estadística y la cola, introduce el estadístico de prueba y los grados de libertad, y obtén el p-valor exacto y un veredicto de significancia.",
+      "formula": "Prueba Z: p = 2Φ(−|Z|) (bilateral)  |  prueba t: p a partir de la distribución t con df  |  prueba F: p = 1 − F-CDF(F; df1, df2)  |  chi-cuadrado: p = 1 − χ²-CDF(χ²; df)",
+      "field": {
+        "testType": "Tipo de prueba",
+        "tailType": "Tipo de cola",
+        "stat": "Estadístico de prueba",
+        "alpha": "Nivel de significancia (α)",
+        "df": "Grados de libertad (df)",
+        "df1": "Grados de libertad del numerador (df1)",
+        "df2": "Grados de libertad del denominador (df2)"
+      },
+      "placeholder": {
+        "stat": "p. ej. 2.5",
+        "df": "p. ej. 15"
+      },
+      "type": {
+        "z-test": "Prueba Z",
+        "t-test": "Prueba t",
+        "f-test": "Prueba F (ANOVA)",
+        "chi-square": "Prueba chi-cuadrado"
+      },
+      "tail": {
+        "two-tailed": "Bilateral",
+        "right-tailed": "Cola derecha",
+        "left-tailed": "Cola izquierda"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce un estadístico de prueba válido y, si es necesario, grados de libertad enteros positivos."
+      },
+      "result": {
+        "heading": "Resultados",
+        "pValue": "P-valor",
+        "significance": "Veredicto",
+        "significant": "Significativo (rechazar H₀)",
+        "notSignificant": "No significativo (no rechazar H₀)",
+        "alphaLabel": "Nivel de significancia α"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de p-valor",
+        "body": "El p-valor es la probabilidad de obtener un estadístico de prueba al menos tan extremo como el observado, suponiendo que la hipótesis nula es verdadera. Es el resultado central de casi todas las pruebas estadísticas clásicas y sirve como criterio principal para decidir si se rechaza la hipótesis nula. Un p-valor pequeño significa que los datos observados son poco probables bajo la hipótesis nula, lo que constituye evidencia a favor de la hipótesis alternativa.\n\nEl procedimiento comienza con una hipótesis nula H₀ (normalmente una afirmación de ausencia de efecto, diferencia o asociación) y una hipótesis alternativa H₁. Luego se recogen los datos, se calcula un estadístico de prueba (Z, t, F o χ²) y se usa la distribución de probabilidad de ese estadístico bajo H₀ para encontrar el p-valor. Si el p-valor es menor o igual que el nivel de significancia α predefinido (habitualmente 0.05), se rechaza H₀ y se declara que el resultado es estadísticamente significativo.\n\nLos distintos estadísticos de prueba siguen distribuciones de probabilidad diferentes. El estadístico Z sigue una distribución normal estándar y se usa cuando la desviación estándar poblacional es conocida o la muestra es muy grande. El estadístico t sigue una distribución t de Student con un número específico de grados de libertad (df = n − 1 en una prueba de una muestra) y se usa para muestras pequeñas o moderadas cuando la desviación estándar poblacional es desconocida. El estadístico F sigue una distribución F con grados de libertad del numerador y del denominador, y es la base del ANOVA y de la prueba F de igualdad de varianzas. El estadístico de chi-cuadrado sigue una distribución chi-cuadrado con df grados de libertad y se usa para pruebas de independencia en tablas de contingencia y pruebas de bondad de ajuste.\n\nEl tipo de cola determina qué región de la distribución se usa para calcular el p-valor. Una prueba bilateral es apropiada cuando la hipótesis alternativa es no direccional (H₁: μ ≠ μ₀) y el p-valor suma la probabilidad de ambos extremos. Una prueba de cola derecha se aplica cuando H₁ especifica una dirección positiva (H₁: μ > μ₀), y una de cola izquierda cuando H₁ especifica una dirección negativa (H₁: μ < μ₀). En la práctica, la prueba F y la prueba chi-cuadrado son intrínsecamente unilaterales (el estadístico no puede ser negativo), por lo que el valor estándar que se reporta es el p-valor de cola derecha.\n\nUn error común y crítico es pensar que el p-valor es la probabilidad de que H₀ sea verdadera. No lo es. El p-valor es una probabilidad condicional: P(datos tan extremos | H₀ verdadera). No dice nada sobre la probabilidad de que H₀ o H₁ sean verdaderas; para eso se necesita inferencia bayesiana con probabilidades previas. Otro error es creer que p < 0.05 significa que el efecto es grande o importante en la práctica. La significancia estadística depende del tamaño de la muestra: con una muestra suficientemente grande, incluso un efecto diminuto e irrelevante dará p < 0.05. Siempre informa el tamaño del efecto junto con los p-valores.\n\nEl nivel de significancia α debe decidirse antes de ver los datos y debe reflejar el riesgo tolerable de un falso positivo (error de tipo I). Distintos campos usan distintos criterios: α = 0.05 es el estándar en la mayoría de la investigación biomédica y de ciencias sociales, α = 0.01 es común cuando los falsos positivos son costosos, y α = 5 × 10⁻⁸ se usa en estudios de asociación del genoma completo para ajustar la gran cantidad de pruebas simultáneas. Esta calculadora admite valores de α de 0.01, 0.05 y 0.10."
+      },
+      "examples": {
+        "heading": "Ejemplos resueltos",
+        "intro": "Cuatro ejemplos que cubren cada tipo de prueba compatible, mostrando la entrada, el p-valor y el veredicto de significancia.",
+        "colInput": "Configuración de la prueba",
+        "colOutput": "P-valor",
+        "colNote": "Veredicto con α = 0.05",
+        "loadZTest": "Cargar ejemplo de prueba Z",
+        "loadTTest": "Cargar ejemplo de prueba t",
+        "loadChiSq": "Cargar ejemplo de chi-cuadrado",
+        "items": [
+          {
+            "input": "Prueba Z, bilateral, Z = 2.5, α = 0.05",
+            "output": "p = 0.0124",
+            "note": "p < 0.05 → significativo. La probabilidad de |Z| ≥ 2.5 bajo H₀ es de aproximadamente 1.24%."
+          },
+          {
+            "input": "Prueba t, cola derecha, t = 2.1, df = 15, α = 0.05",
+            "output": "p = 0.0267",
+            "note": "p < 0.05 → significativo. Una prueba t unilateral con 15 df y t = 2.1 da p ≈ 0.027."
+          },
+          {
+            "input": "Chi-cuadrado, cola derecha, χ² = 18.3, df = 10, α = 0.01",
+            "output": "p = 0.0499",
+            "note": "p > 0.01 → no significativo con α = 0.01. El mismo resultado es significativo con α = 0.05."
+          },
+          {
+            "input": "Prueba F, cola derecha, F = 3.8, df1 = 2, df2 = 27, α = 0.05",
+            "output": "p = 0.0347",
+            "note": "p < 0.05 → significativo. Un cociente F de ANOVA de 3.8 con 2 y 27 grados de libertad."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de p-valor",
+        "steps": [
+          "Selecciona el tipo de prueba estadística (Z, t, F o chi-cuadrado) que corresponda a cómo se calculó tu estadístico.",
+          "Elige el tipo de cola: bilateral para H₁: ≠, cola derecha para H₁: >, o cola izquierda para H₁: <.",
+          "Introduce tu estadístico de prueba en el campo 'Estadístico de prueba'. Para la prueba t, F y chi-cuadrado, introduce también los grados de libertad (dos valores para la prueba F).",
+          "Configura el nivel de significancia α. Haz clic en Calcular para obtener el p-valor y el veredicto de significancia.",
+          "Si p ≤ α, rechaza H₀ y reporta el resultado como estadísticamente significativo. Si p > α, no rechaces H₀. Acompaña siempre con un tamaño del efecto."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué mide realmente el p-valor?",
+        "q1_a": "El p-valor mide la probabilidad de observar un estadístico de prueba tan extremo como (o más extremo que) el que calculaste, suponiendo que la hipótesis nula es verdadera. Cuantifica cuán sorprendentes son tus datos bajo H₀. No mide la probabilidad de que H₀ sea verdadera, el tamaño del efecto ni la probabilidad de haber cometido un error.",
+        "q2": "¿Por qué α = 0.05 es el umbral convencional?",
+        "q2_a": "El umbral de 0.05 fue popularizado por Ronald Fisher en la década de 1920 como una convención práctica, no como una verdad universal. Significa que aceptas una probabilidad del 5% de falso positivo (rechazar una H₀ verdadera). Distintos campos usan distintos umbrales: la física de partículas exige p < 5×10⁻⁷, la genómica suele usar p < 5×10⁻⁸ y los ensayos clínicos a veces emplean α = 0.01. El umbral adecuado depende del costo de los falsos positivos y falsos negativos en tu área.",
+        "q3": "¿Cuál es la diferencia entre una prueba unilateral y una bilateral?",
+        "q3_a": "Una prueba bilateral busca una diferencia en cualquier dirección y divide α por igual entre ambas colas. Una prueba unilateral concentra todo α en una sola dirección y ofrece más potencia para detectar un efecto en esa dirección, pero solo es válida cuando la dirección del efecto se especificó antes de ver los datos. Usar una prueba unilateral para rescatar un resultado bilateral borderline es p-hacking.",
+        "q4": "¿Cómo se determinan los grados de libertad?",
+        "q4_a": "Los grados de libertad (df) reflejan la cantidad de información independiente en los datos. En una prueba t de una muestra, df = n − 1. En una prueba t de muestras independientes, df = n₁ + n₂ − 2. En una prueba chi-cuadrado de independencia en una tabla r × c, df = (r − 1)(c − 1). En una prueba F de ANOVA de una vía, el numerador df = k − 1 (grupos menos 1) y el denominador df = N − k (observaciones totales menos grupos).",
+        "q5": "¿Qué es el p-hacking y por qué es perjudicial?",
+        "q5_a": "El p-hacking consiste en ejecutar múltiples pruebas, subgrupos o especificaciones de modelo hasta que aparezca un resultado con p < 0.05 y luego reportar solo ese resultado. Infla la tasa real de error de tipo I muy por encima de α y produce falsos positivos que no se replican. Para evitarlo, preregistra tu plan de análisis, corrige por comparaciones múltiples (por ejemplo, corrección de Bonferroni) y reporta todas las pruebas realizadas.",
+        "q6": "¿Un p-valor muy pequeño puede significar que el resultado es poco importante?",
+        "q6_a": "Sí. Con una muestra suficientemente grande, incluso un efecto trivial (por ejemplo, un fármaco que reduce la presión arterial solo 0.1 mmHg) puede producir p < 0.001. La significancia estadística y la significancia práctica no son lo mismo. Calcula y reporta siempre una medida del tamaño del efecto (d de Cohen, odds ratio, R², etc.) junto con el p-valor para que los lectores juzguen si el efecto es suficientemente grande en la práctica."
+      }
+    },
+    "paired-samples-t-test-calculator": {
+      "title": "Calculadora t de muestras pareadas - antes y después",
+      "tagline": "Realiza una prueba t de muestras pareadas para comparar dos grupos relacionados — mediciones antes/después, pares emparejados — y obtener el estadístico t, el valor p y el intervalo de confianza.",
+      "intro": "Introduce dos grupos de datos separados por comas y del mismo tamaño, define el nivel de significación y el tipo de prueba, y obtiene al instante el resultado completo de la prueba t pareada.",
+      "formula": "t = d̄ / (s_d / √n)  |  df = n − 1  |  d̄ = media de las diferencias  |  s_d = desviación estándar de las diferencias",
+      "field": {
+        "group1": "Datos del grupo 1 (p. ej., antes del tratamiento)",
+        "group2": "Datos del grupo 2 (p. ej., después del tratamiento)",
+        "alpha": "Nivel de significación (α)",
+        "mu": "Diferencia media hipotetizada (μ₀)",
+        "tail": "Tipo de prueba"
+      },
+      "placeholder": {
+        "data": "p. ej., 140, 135, 150, 155, 130"
+      },
+      "tail": {
+        "two-tailed": "Bilateral",
+        "right-tailed": "Unilateral derecha",
+        "left-tailed": "Unilateral izquierda"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce al menos 2 valores coincidentes en cada grupo. Ambos grupos deben tener el mismo número de datos."
+      },
+      "result": {
+        "heading": "Resultados",
+        "tStat": "Estadístico t",
+        "df": "Grados de libertad",
+        "pValue": "Valor p",
+        "dBar": "Diferencia media (d̄)",
+        "sd": "Desv. estándar de las diferencias (s_d)",
+        "ci95": "Intervalo de confianza del 95%",
+        "reject": "Rechazar H₀ — se detectó una diferencia estadísticamente significativa.",
+        "failReject": "No se rechaza H₀ — no se detectó una diferencia estadísticamente significativa."
+      },
+      "about": {
+        "heading": "Acerca de la calculadora t de muestras pareadas",
+        "body": "La prueba t de muestras pareadas (también llamada t de muestras dependientes o t de pares emparejados) es un procedimiento estadístico paramétrico que determina si la diferencia media entre dos conjuntos de mediciones relacionadas es significativamente distinta de cero (o de cualquier otro valor hipotetizado). Se llama “pareada” porque cada observación del grupo 1 corresponde exactamente a una observación del grupo 2: las dos mediciones proceden del mismo sujeto, de participantes emparejados o del mismo lugar medido en dos momentos distintos.\n\nLa aplicación más común es un diseño antes y después: un investigador mide una característica (presión arterial, nota, peso, ventas) antes de una intervención y luego otra vez después. Como se mide a las mismas personas dos veces, los dos grupos no son independientes, sino correlacionados. Ignorar esa correlación y usar una t de muestras independientes sería incorrecto; subestimaría la precisión de la comparación al no tener en cuenta la variabilidad natural entre sujetos que se cancela al trabajar con diferencias.\n\nEl truco computacional que hace elegante a la prueba t pareada es reducirla a un problema de una sola muestra. Para cada par i, calcula la diferencia d_i = Grupo1_i − Grupo2_i. Entonces la prueba pregunta: ¿la media de estas diferencias (d̄) es significativamente distinta de cero? Esto transforma el problema de dos muestras en una prueba t de una muestra sobre las diferencias. El estadístico es t = (d̄ − μ₀) / (s_d / √n), donde μ₀ es la diferencia media hipotetizada (normalmente 0), s_d es la desviación estándar muestral de las diferencias y n es el número de pares. Bajo la hipótesis nula, el estadístico sigue una distribución t de Student con df = n − 1 grados de libertad.\n\nEl valor p de este estadístico te dice la probabilidad de observar una diferencia media tan grande como d̄ (o mayor) si la diferencia media real de la población fuera μ₀. Si el valor p está por debajo del nivel de significación α que elegiste, rechazas la hipótesis nula y concluyes que existe una diferencia media estadísticamente significativa entre las mediciones pareadas. El intervalo de confianza de d̄ ofrece un rango plausible para la diferencia media real y, a menudo, es más informativo que el valor p por sí solo.\n\nPara que la prueba t pareada sea válida, las diferencias d_i deben distribuirse aproximadamente de forma normal. Este supuesto se comprueba examinando un histograma o un gráfico Q-Q normal de las diferencias. Con n ≥ 30, el Teorema Central del Límite hace que este supuesto sea menos crítico incluso si las diferencias individuales no son normales. Para muestras pequeñas con diferencias claramente no normales, la prueba de rangos con signo de Wilcoxon es la alternativa no paramétrica.\n\nLas aplicaciones más comunes incluyen ensayos médicos de eficacia (antes y después de un fármaco), investigación educativa (pretest frente a postest), estudios de nutrición y fitness (mediciones de línea base frente a seguimiento) y analítica de negocios (ventas antes y después de una campaña publicitaria). En cada caso, el requisito clave es que cada par de valores proceda de la misma persona, entidad o unidad emparejada, no de dos grupos independientes."
+      },
+      "examples": {
+        "heading": "Ejemplos resueltos",
+        "intro": "Tres escenarios de antes y después con datos realistas para ilustrar el resultado de la prueba t pareada.",
+        "colInput": "Diseño del estudio",
+        "colOutput": "Estadístico t / valor p",
+        "colNote": "Conclusión",
+        "loadBP": "Cargar ejemplo de presión arterial",
+        "loadTutor": "Cargar ejemplo de tutoría",
+        "loadSales": "Cargar ejemplo de campaña de ventas",
+        "items": [
+          {
+            "input": "Presión arterial antes: 140,135,150,155,130,142,138,147,152,133 / después: 132,130,145,148,125,135,130,140,145,128 (bilateral, α=0.05, n=10)",
+            "output": "t ≈ 16.00, df = 9, p < 0.001",
+            "note": "Muy significativa. El fármaco redujo la presión sistólica media en 6.4 mmHg en 10 pacientes."
+          },
+          {
+            "input": "Notas antes: 75,80,82,70,88,65,90,78 / después: 85,85,88,78,92,75,95,85 (bilateral, α=0.05, n=8)",
+            "output": "t ≈ −8.47, df = 7, p < 0.001",
+            "note": "Mejora significativa. El alumnado obtuvo una media de 6.9 puntos más tras el programa de tutoría."
+          },
+          {
+            "input": "Ventas semanales antes: 500,550,480,600,520,530 / después: 540,580,500,650,550,560 (bilateral, α=0.05, n=6)",
+            "output": "t ≈ −7.91, df = 5, p < 0.001",
+            "note": "La campaña publicitaria aumentó significativamente las ventas semanales en una media de 33.3 unidades por tienda."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora t de muestras pareadas",
+        "steps": [
+          "Introduce los datos del Grupo 1 (por ejemplo, valores “antes”) como una lista separada por comas en el primer campo.",
+          "Introduce los datos del Grupo 2 (por ejemplo, valores “después”) en el segundo campo. Ambos grupos deben tener el mismo número de valores; el primer dato del Grupo 1 se empareja con el primero del Grupo 2, y así sucesivamente.",
+          "Define el nivel de significación α (0.01, 0.05 o 0.10) y la diferencia media hipotetizada μ₀ (normalmente 0). Selecciona el tipo de prueba (bilateral, unilateral derecha o unilateral izquierda).",
+          "Haz clic en Calcular para ver el estadístico t, los grados de libertad, el valor p, la diferencia media, la desviación estándar de las diferencias y un intervalo de confianza del 95%.",
+          "Compara el valor p con α. Si p ≤ α, rechaza H₀ y concluye que existe una diferencia media estadísticamente significativa. Si p > α, no se rechaza H₀."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Cuándo debo usar una prueba t pareada en lugar de una t independiente?",
+        "q1_a": "Usa una prueba t pareada cuando cada observación de un grupo esté naturalmente emparejada o vinculada con exactamente una observación del otro grupo — por ejemplo, la misma persona medida antes y después de un tratamiento, o dos hermanos asignados a dietas distintas. Si los dos grupos son independientes (personas distintas, sin relación ni emparejamiento), usa una prueba t de muestras independientes.",
+        "q2": "¿Qué es la diferencia media hipotetizada μ₀?",
+        "q2_a": "μ₀ es el valor que se supone que tiene la diferencia media real bajo la hipótesis nula. En la mayoría de los casos — cuando se quiere saber si una intervención tiene algún efecto — μ₀ = 0. Para hipótesis más específicas, como comprobar si un fármaco reduce la presión arterial al menos 10 mmHg, se fijaría μ₀ = 10.",
+        "q3": "¿Qué pasa si mis diferencias no se distribuyen normalmente?",
+        "q3_a": "La prueba t pareada asume que las diferencias se distribuyen aproximadamente de forma normal. Con n ≥ 30 pares, el Teorema Central del Límite hace menos crítica esa suposición. Para muestras pequeñas con diferencias claramente no normales (comprueba un histograma), la prueba de rangos con signo de Wilcoxon es una alternativa no paramétrica robusta que no asume normalidad.",
+        "q4": "¿Cómo interpreto el intervalo de confianza?",
+        "q4_a": "El intervalo de confianza del 95% ofrece un rango de valores plausibles para la diferencia media real. Si el intervalo no incluye cero, el resultado es significativo con α = 0.05. El intervalo es más informativo que el valor p por sí solo porque muestra la magnitud y la dirección del efecto. Por ejemplo, un IC de (2.3, 9.8) indica que el efecto es significativo y que va de pequeño a moderadamente grande.",
+        "q5": "¿Puedo hacer una prueba t pareada unilateral?",
+        "q5_a": "Sí. Selecciona “Unilateral derecha” si predices que Grupo 1 > Grupo 2 (diferencia media positiva), o “Unilateral izquierda” si predices que Grupo 1 < Grupo 2 (diferencia media negativa). Una prueba unilateral tiene más potencia, pero solo es válida cuando la dirección del efecto se especificó antes de recoger los datos. Usar una prueba unilateral solo porque el resultado bilateral quedó cerca del umbral es una forma de p-hacking.",
+        "q6": "¿Qué significa realmente un resultado significativo?",
+        "q6_a": "Un resultado significativo (p ≤ α) significa que la diferencia media observada es poco probable que haya ocurrido por azar si la hipótesis nula fuera verdadera. No demuestra que la hipótesis nula sea falsa ni garantiza que el efecto sea grande o clínicamente importante. Informa siempre la diferencia media d̄, su intervalo de confianza y un tamaño del efecto (como d de Cohen = d̄ / s_d) para que se pueda valorar la importancia práctica."
+      }
+    },
+    "combination-calculator": {
+      "title": "Calculadora de combinaciones y permutaciones (nCr nPr)",
+      "tagline": "Calcula combinaciones (nCr) y permutaciones (nPr) para problemas de probabilidad y combinatoria",
+      "intro": "Introduce el número total de elementos (n) y la cantidad de elementos que deseas seleccionar (r) para calcular combinaciones y permutaciones. Esta herramienta ayuda a resolver problemas de probabilidad y matemáticas combinatorias.",
+      "field": {
+        "n": "Elementos totales (n)",
+        "r": "Elementos seleccionados (r)",
+        "type": "Tipo de cálculo"
+      },
+      "placeholder": {
+        "integer": "Introduce un número entero"
+      },
+      "type": {
+        "combinations": "Solo combinaciones (nCr)",
+        "permutations": "Solo permutaciones (nPr)",
+        "both": "Combinaciones y permutaciones"
+      },
+      "button": {
+        "calculate": "Calcular resultados",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce enteros no negativos válidos con r ≤ n."
+      },
+      "result": {
+        "heading": "Resultado",
+        "combLabel": "C(n,r)",
+        "permLabel": "P(n,r)",
+        "combFormula": "C({n},{r}) = {n}! / ({r}! × ({n}-{r})!)",
+        "permFormula": "P({n},{r}) = {n}! / ({n}-{r})!"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de combinaciones y permutaciones",
+        "body": "Las combinaciones y las permutaciones son dos de los conceptos más fundamentales de la combinatoria, una rama de las matemáticas dedicada al conteo, la disposición y la selección. Comprender la diferencia entre ambas es esencial para resolver una gran variedad de problemas en teoría de la probabilidad, estadística, informática y toma de decisiones cotidiana.\n\nUna combinación (indicada como C(n, r) o nCr) cuenta el número de formas de seleccionar r elementos de un conjunto de n elementos distintos cuando el orden de selección no importa. La fórmula es C(n, r) = n! / (r! × (n − r)!), donde n! (n factorial) es el producto de todos los enteros positivos hasta n. Por ejemplo, elegir 3 personas de un grupo de 10 para formar un comité da C(10, 3) = 120 comités posibles, porque no importa en qué orden se elijan sus miembros.\n\nUna permutación (indicada como P(n, r) o nPr) cuenta el número de formas de ordenar r elementos seleccionados de n elementos distintos cuando el orden sí importa. La fórmula es P(n, r) = n! / (n − r)!. Con el mismo grupo de 10 personas, si quieres asignar presidente, vicepresidente y tesorero, el orden es crucial, lo que da P(10, 3) = 720 asignaciones.\n\nLa distinción clave es el orden. Pregúntate: ¿intercambiar dos elementos seleccionados crea un resultado significativamente diferente? Si la respuesta es sí, necesitas permutaciones; si es no, se aplican combinaciones. Las manos de cartas son combinaciones (as-rey-reina es la misma mano sin importar el orden de robo), pero los códigos PIN son permutaciones (1-2-3-4 es distinto de 4-3-2-1).\n\nLas combinaciones y permutaciones aparecen en innumerables ámbitos reales. En probabilidad, definen el tamaño de los espacios muestrales necesarios para calcular la probabilidad de resultados específicos; por ejemplo, la probabilidad de ganar una lotería al elegir 6 números de 49 es 1 entre C(49, 6) = 13,983,816. En informática, se usan para analizar la complejidad algorítmica, generar casos de prueba y diseñar funciones hash. En genética, modelan cómo se combinan los alelos. En negocios, los gestores de cartera las usan para enumerar posibles asignaciones de activos.\n\nEsta calculadora admite tres modos: solo combinaciones, solo permutaciones o ambas simultáneamente. Solo introduce n (el total del conjunto) y r (el tamaño de la selección), elige el modo y haz clic en Calcular resultados. La herramienta realiza al instante toda la aritmética factorial, incluso para valores grandes de n en los que el cálculo manual sería poco práctico."
+      },
+      "examples": {
+        "heading": "Ejemplos",
+        "intro": "La tabla siguiente muestra problemas representativos de combinaciones y permutaciones con sus soluciones.",
+        "colInput": "Entrada (n, r)",
+        "colOutput": "Resultado",
+        "colNote": "Contexto",
+        "items": [
+          {
+            "input": "n=52, r=5 (combinaciones)",
+            "output": "C(52,5) = 2,598,960",
+            "note": "Manos de póker de 5 cartas de una baraja estándar"
+          },
+          {
+            "input": "n=10, r=3 (permutaciones)",
+            "output": "P(10,3) = 720",
+            "note": "Formas de asignar 1.º, 2.º y 3.º puesto a 10 corredores"
+          },
+          {
+            "input": "n=49, r=6 (combinaciones)",
+            "output": "C(49,6) = 13,983,816",
+            "note": "Lotería: elegir 6 de 49 números"
+          },
+          {
+            "input": "n=8, r=3 (ambas)",
+            "output": "C(8,3)=56, P(8,3)=336",
+            "note": "Comité frente a puestos con ranking entre 8 candidatos"
+          }
+        ],
+        "loadCards": "Combinaciones de cartas (52C5)",
+        "loadTeam": "Selección de equipo (10C3)",
+        "loadPassword": "Permutaciones de contraseña (10P4)"
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de combinaciones y permutaciones",
+        "steps": [
+          "Introduce el número total de elementos disponibles en el campo “Elementos totales (n)”. n debe ser un entero no negativo.",
+          "Introduce cuántos elementos quieres seleccionar en el campo “Elementos seleccionados (r)”. r debe cumplir 0 ≤ r ≤ n.",
+          "Elige el tipo de cálculo: “Solo combinaciones” si el orden no importa, “Solo permutaciones” si el orden importa, o “Combinaciones y permutaciones” para ver ambos resultados a la vez.",
+          "Haz clic en “Calcular resultados” para obtener la respuesta al instante con las fórmulas C(n,r) = n!/(r!(n−r)!) y P(n,r) = n!/(n−r)!.",
+          "Usa los botones de ejemplos rápidos debajo de la tabla para precargar escenarios reales y explorar los resultados de forma interactiva."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Cuál es la diferencia entre una combinación y una permutación?",
+        "q1_a": "Una combinación cuenta selecciones en las que el orden no importa, mientras que una permutación cuenta disposiciones en las que el orden sí importa. Por ejemplo, elegir 3 ingredientes para una pizza es una combinación (pepperoni-champiñón-aceituna es lo mismo que aceituna-champiñón-pepperoni), pero asignar medallas de oro, plata y bronce a 3 atletas es una permutación (cada orden diferente representa un resultado distinto).",
+        "q2": "¿Por qué C(n, 0) = 1 y P(n, 0) = 1?",
+        "q2_a": "Por convención matemática, hay exactamente una forma de no elegir nada de un conjunto —la selección vacía— y exactamente una forma de ordenar cero elementos —la disposición vacía—. Esto coincide con la definición factorial 0! = 1, que garantiza que las fórmulas funcionen correctamente para r = 0.",
+        "q3": "¿Puede r ser mayor que n?",
+        "q3_a": "No. No puedes seleccionar ni ordenar más elementos de los que existen en el conjunto. Si r > n, el resultado es matemáticamente indefinido (división por un factorial negativo), por lo que la calculadora mostrará un error. Asegúrate de que r ≤ n antes de calcular.",
+        "q4": "¿Cuál es la relación entre C(n, r) y C(n, n−r)?",
+        "q4_a": "C(n, r) = C(n, n−r) porque elegir r elementos para incluir equivale a elegir n−r elementos para excluir. Por ejemplo, C(10, 3) = C(10, 7) = 120. Esta simetría se llama propiedad complementaria de los coeficientes binomiales y puede simplificar los cálculos cuando r está cerca de n.",
+        "q5": "¿Cómo maneja esta calculadora los factoriales grandes?",
+        "q5_a": "Los números de punto flotante de JavaScript representan enteros exactamente hasta aproximadamente 2^53, y los factoriales crecen muy rápido (20! ≈ 2.4 × 10^18; 21! desborda un entero de 64 bits). La calculadora usa un enfoque de multiplicación iterativa para combinaciones con el fin de minimizar el desbordamiento, pero para n muy grandes (por encima de 170 aproximadamente) los resultados pueden expresarse en notación científica. Para enteros grandes exactos con solidez criptográfica, usa una biblioteca especializada de enteros grandes.",
+        "q6": "¿Dónde se usan las combinaciones y permutaciones en la vida real?",
+        "q6_a": "Aparecen en cálculos de probabilidad de lotería, probabilidades de juegos de cartas, análisis de cuadros deportivos, análisis de secuencias de ADN, seguridad de contraseñas (conteo de combinaciones posibles), optimización de horarios y rutas, y diseño de experimentos en estadística. Siempre que necesites contar formas de elegir u ordenar elementos sin listar todas las posibilidades una por una, las combinaciones o permutaciones proporcionan la respuesta."
+      }
+    },
+    "conditional-probability-calculator": {
+      "title": "Calculadora de probabilidad condicional P(A|B)",
+      "tagline": "Calcula P(A|B), la probabilidad conjunta y la marginal con precisión",
+      "intro": "Introduce valores de probabilidad para calcular la probabilidad condicional P(A|B), que representa la probabilidad de que ocurra el evento A dado que el evento B ya ha ocurrido.",
+      "field": {
+        "mode": "Tipo de cálculo",
+        "pAB": "P(A ∩ B) — Probabilidad conjunta",
+        "pB": "P(B) — Probabilidad del evento B",
+        "pAgivenB": "P(A|B) — Probabilidad condicional"
+      },
+      "placeholder": {
+        "prob": "Introduce un valor entre 0 y 1"
+      },
+      "type": {
+        "findConditional": "Calcular P(A|B)",
+        "findConditional_desc": "Calcula la probabilidad condicional de A dado B, usando P(A∩B) y P(B).",
+        "findJoint": "Calcular P(A∩B)",
+        "findJoint_desc": "Calcula la probabilidad conjunta de A y B, usando P(A|B) y P(B).",
+        "findMarginal": "Calcular P(B)",
+        "findMarginal_desc": "Calcula la probabilidad marginal de B, usando P(A|B) y P(A∩B)."
+      },
+      "button": {
+        "calculate": "Calcular probabilidad",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce valores de probabilidad válidos entre 0 y 1. Asegúrate de que P(B) ≠ 0 al calcular P(A|B)."
+      },
+      "result": {
+        "heading": "Resultado",
+        "warn": "Nota: el resultado supera 1, lo cual no es una probabilidad válida. Revisa tus datos."
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de probabilidad condicional",
+        "body": "La probabilidad condicional es uno de los pilares de la teoría de la probabilidad y la estadística. Describe la probabilidad de que ocurra un evento dado que otro ya ha ocurrido, y sustenta algunas de las herramientas de razonamiento más importantes en ciencia, medicina y aprendizaje automático.\n\nLa definición formal es: P(A|B) = P(A ∩ B) / P(B), siempre que P(B) > 0. Aquí, P(A|B) se lee como \"la probabilidad de A dado B\", P(A ∩ B) es la probabilidad conjunta de que ocurran A y B, y P(B) es la probabilidad marginal de B. Reordenando esta fórmula obtenemos la regla de multiplicación: P(A ∩ B) = P(A|B) × P(B), muy utilizada para calcular probabilidades conjuntas a partir de las condicionales.\n\nUn ejemplo clásico es el de las pruebas médicas. Supón que una enfermedad afecta al 1% de la población y que una prueba diagnóstica tiene un 5% de falsos positivos. La probabilidad de que una persona elegida al azar dé positivo es P(B). La probabilidad de que esa persona tenga la enfermedad y dé positivo es P(A ∩ B). Al dividir, obtenemos la probabilidad condicional de que realmente esté enferma dado un resultado positivo, que a menudo es mucho menor de lo que sugiere la intuición; esto se conoce como la falacia de la tasa base.\n\nLa probabilidad condicional también está en el corazón del teorema de Bayes: P(A|B) = P(B|A) × P(A) / P(B). El teorema de Bayes permite actualizar una creencia previa P(A) a la luz de nueva evidencia B para obtener una creencia posterior P(A|B). Este marco bayesiano se utiliza en filtros de spam, diagnóstico médico, evaluación de pruebas forenses y clasificadores modernos de aprendizaje automático.\n\nEsta calculadora admite tres modos. \"Calcular P(A|B)\" toma como entradas la probabilidad conjunta P(A ∩ B) y la marginal P(B) y devuelve la probabilidad condicional. \"Calcular P(A ∩ B)\" toma P(A|B) y P(B) y aplica la regla de multiplicación. \"Calcular P(B)\" resuelve la probabilidad marginal a partir de la condicional y la conjunta. Todas las entradas de probabilidad deben estar entre 0 y 1, y P(B) debe ser distinto de cero cuando aparezca en el denominador."
+      },
+      "examples": {
+        "heading": "Ejemplos",
+        "intro": "La tabla siguiente muestra cálculos de probabilidad condicional en escenarios reales comunes.",
+        "colInput": "Entradas",
+        "colOutput": "Resultado",
+        "colNote": "Escenario",
+        "items": [
+          {
+            "input": "P(A∩B)=0.005, P(B)=0.05",
+            "output": "P(A|B) = 0.1",
+            "note": "Medicina: P(enfermo | prueba positiva)"
+          },
+          {
+            "input": "P(A∩B)=0.18, P(B)=0.6",
+            "output": "P(A|B) = 0.3",
+            "note": "Clima: P(lluvia | nublado)"
+          },
+          {
+            "input": "P(A|B)=0.02, P(B)=0.15",
+            "output": "P(A∩B) = 0.003",
+            "note": "Calidad: probabilidad conjunta de defecto"
+          },
+          {
+            "input": "P(A|B)=0.4, P(A∩B)=0.12",
+            "output": "P(B) = 0.3",
+            "note": "Resolver la probabilidad marginal"
+          }
+        ],
+        "loadMedical": "Diagnóstico médico",
+        "loadWeather": "Pronóstico del tiempo",
+        "loadQuality": "Control de calidad"
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de probabilidad condicional",
+        "steps": [
+          "Selecciona el tipo de cálculo: \"Calcular P(A|B)\" si quieres la probabilidad condicional, \"Calcular P(A∩B)\" para la probabilidad conjunta, o \"Calcular P(B)\" para la probabilidad marginal.",
+          "Introduce los valores de probabilidad conocidos en los campos que aparecen. Todos deben estar entre 0 y 1, inclusive.",
+          "Al calcular P(A|B), asegúrate de que P(B) sea mayor que 0: la probabilidad condicional no está definida cuando el evento condicionante tiene probabilidad cero.",
+          "Haz clic en \"Calcular probabilidad\" para obtener el resultado. Se mostrará una advertencia si el resultado supera 1.",
+          "Usa los botones de carga rápida de ejemplos para rellenar los datos con escenarios reales y comprobar tu comprensión."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué significa P(A|B) en lenguaje sencillo?",
+        "q1_a": "P(A|B) es la probabilidad de que ocurra el evento A sabiendo que el evento B ya ha ocurrido o está garantizado que ocurrirá. Reduce el espacio muestral de todos los resultados posibles a solo aquellos en los que B es verdadero, y luego pregunta cuántos de ellos también incluyen A. Por ejemplo, P(lluvia | nublado) es la probabilidad de lluvia dado que ya está nublado.",
+        "q2": "¿Cuál es la diferencia entre P(A|B) y P(A∩B)?",
+        "q2_a": "P(A∩B) es la probabilidad de que ocurran tanto A como B en el espacio muestral completo, mientras que P(A|B) es la probabilidad de que ocurra A dentro del espacio muestral restringido donde B ya se sabe que ha ocurrido. Numéricamente, P(A|B) = P(A∩B) / P(B), así que P(A|B) ≥ P(A∩B) siempre que P(B) < 1.",
+        "q3": "¿Cuándo se consideran independientes dos eventos?",
+        "q3_a": "Los eventos A y B son independientes si P(A|B) = P(A), lo que significa que saber si ocurrió B no aporta información sobre si ocurre A. De forma equivalente, P(A∩B) = P(A) × P(B). La independencia es una suposición fuerte; en la mayoría de los problemas reales los eventos son dependientes y la probabilidad condicional ofrece el marco correcto.",
+        "q4": "¿Qué es el teorema de Bayes y cómo se relaciona con esta calculadora?",
+        "q4_a": "El teorema de Bayes establece P(A|B) = P(B|A) × P(A) / P(B). Permite invertir probabilidades condicionales: si sabes cuán probable es B dado A y conoces las tasas base P(A) y P(B), puedes calcular cuán probable es A dado B. Esta calculadora implementa directamente la fórmula fundamental P(A|B) = P(A∩B)/P(B), que es la misma relación que aprovecha Bayes.",
+        "q5": "¿Por qué una probabilidad condicional puede ser mayor que P(A) o P(B)?",
+        "q5_a": "Porque condicionar reduce el espacio muestral. Cuando B es un evento de baja probabilidad pero fuertemente asociado con A, dividir P(A∩B) por el valor pequeño de P(B) puede producir un resultado mucho mayor que P(A). No es una contradicción: simplemente refleja que, dentro del subconjunto de resultados en que ocurrió B, A es muy común.",
+        "q6": "¿Qué pasa si P(B) es cero?",
+        "q6_a": "P(A|B) está matemáticamente indefinida cuando P(B) = 0, porque estás condicionando sobre un evento imposible. En la teoría de la probabilidad estándar, condicionar sobre un evento de probabilidad cero requiere herramientas más avanzadas de teoría de la medida. En la práctica, si P(B) = 0, la fórmula de probabilidad condicional no puede aplicarse directamente y la calculadora mostrará un error pidiéndote un valor positivo para P(B)."
+      }
+    },
+    "confidence-interval-calculator": {
+      "title": "Calculadora de intervalo de confianza - media y proporción",
+      "tagline": "Calcula intervalos de confianza para una media poblacional a partir de estadísticas muestrales o datos crudos",
+      "intro": "Ingresa la media muestral, la desviación estándar y el tamaño de la muestra, o proporciona datos crudos, para calcular intervalos de confianza al 90%, 95% o 99%.",
+      "field": {
+        "dataType": "Tipo de datos",
+        "confLevel": "Nivel de confianza",
+        "sampleMean": "Media muestral (x̄)",
+        "sampleStd": "Desv. estándar muestral (s)",
+        "sampleSize": "Tamaño de muestra (n)",
+        "rawData": "Datos crudos (separados por comas)"
+      },
+      "placeholder": {
+        "number": "Ingresa un número",
+        "integer": "Ingresa un entero ≥ 2",
+        "rawData": "p. ej., 22, 25, 21, 24, 23"
+      },
+      "type": {
+        "summary": "Estadísticos resumidos",
+        "raw": "Datos crudos"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Ingresa valores numéricos válidos. El tamaño de muestra debe ser ≥ 2 y la desviación estándar debe ser ≥ 0."
+      },
+      "result": {
+        "heading": "Intervalo de confianza del {level}%",
+        "mean": "Media",
+        "moe": "Margen de error",
+        "se": "Error estándar",
+        "n": "n",
+        "formula": "CI = {mean} ± {z} × {se}"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de intervalo de confianza",
+        "body": "Un intervalo de confianza (IC) es un rango de valores que probablemente contenga el verdadero parámetro poblacional —por lo general, la media poblacional— con un nivel de confianza especificado. Los intervalos de confianza son una de las herramientas más usadas en la estadística inferencial, ya que permiten cuantificar la incertidumbre de las estimaciones y comunicar la precisión con claridad.\n\nLa fórmula para un intervalo de confianza de la media poblacional (cuando la desviación estándar poblacional es desconocida y el tamaño muestral es razonablemente grande) es: CI = x̄ ± z* × (s / √n), donde x̄ es la media muestral, s es la desviación estándar muestral, n es el tamaño de la muestra y z* es el valor crítico de la distribución normal estándar correspondiente al nivel de confianza elegido. Para un IC del 95%, z* = 1.96; para 90%, z* ≈ 1.645; para 99%, z* ≈ 2.576.\n\nEl término s / √n se llama error estándar de la media (EE). Mide cuánto se espera que varíe la media muestral de una muestra a otra. Un tamaño muestral mayor reduce el EE y produce un intervalo más estrecho y preciso. El margen de error (ME) es z* × EE; el límite inferior del IC es x̄ − ME y el superior es x̄ + ME.\n\nInterpretar correctamente un intervalo de confianza es importante. Un IC del 95% NO significa que exista un 95% de probabilidad de que la media verdadera esté dentro de este intervalo en particular. Más bien, significa que si repitieras muchas veces el mismo procedimiento de muestreo y calcularas un IC cada vez, aproximadamente el 95% de esos intervalos contendría la media verdadera. La confianza está en el procedimiento, no en un intervalo individual.\n\nLos intervalos de confianza se usan en ensayos clínicos para reportar efectos del tratamiento, en encuestas para informar márgenes de error, en control de calidad para vigilar medias de proceso y en cualquier estudio científico donde se requiera estimación a partir de una muestra. Esta calculadora usa la distribución z (aproximación normal), que es precisa para muestras grandes (n ≥ 30) o cuando la distribución poblacional es aproximadamente normal. Para muestras pequeñas con distribuciones desconocidas, sería más apropiado un intervalo basado en la distribución t."
+      },
+      "examples": {
+        "heading": "Ejemplos",
+        "intro": "La tabla siguiente muestra cálculos de intervalos de confianza para escenarios estadísticos típicos.",
+        "colInput": "Entradas",
+        "colOutput": "IC 95%",
+        "colNote": "Contexto",
+        "items": [
+          {
+            "input": "x̄=75, s=5, n=100, 95% CI",
+            "output": "(74.02, 75.98)",
+            "note": "Calificaciones de estudiantes — muestra grande"
+          },
+          {
+            "input": "x̄=250, s=10, n=50, 99% CI",
+            "output": "(246.36, 253.64)",
+            "note": "Peso de producto en gramos — alta confianza"
+          },
+          {
+            "input": "data: 22,25,21,24,23,26,20, 90% CI",
+            "output": "(21.66, 24.34)",
+            "note": "Temperaturas diarias — conjunto pequeño de datos crudos"
+          },
+          {
+            "input": "x̄=35, s=8, n=200, 95% CI",
+            "output": "(33.89, 36.11)",
+            "note": "Tiempo promedio de entrega en minutos"
+          }
+        ],
+        "loadTestScores": "Calificaciones (n=100)",
+        "loadProductWeight": "Peso del producto (n=50)",
+        "loadTemperatures": "Temperaturas (datos crudos)"
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de intervalo de confianza",
+        "steps": [
+          "Elige “Estadísticos resumidos” si ya tienes la media muestral, la desviación estándar y el tamaño de muestra; o “Datos crudos” para ingresar valores individuales.",
+          "Selecciona el nivel de confianza: 90% (z=1.645), 95% (z=1.96) o 99% (z=2.576). Un mayor nivel de confianza produce un intervalo más amplio.",
+          "Para estadísticos resumidos, ingresa la media muestral (x̄), la desviación estándar muestral (s ≥ 0) y el tamaño de muestra (n ≥ 2). Para datos crudos, ingresa números separados por comas o espacios.",
+          "Haz clic en “Calcular” para ver los límites del intervalo, el margen de error y el error estándar.",
+          "Interpreta el resultado: el intervalo (inferior, superior) es un rango que captura la media poblacional verdadera con el nivel de confianza elegido bajo muestreo repetido."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "q1": "¿Qué significa un intervalo de confianza del 95%?",
+        "q1_a": "Un IC del 95% significa que si repitieras muchas veces el mismo procedimiento de muestreo y calcularas un intervalo de confianza en cada ocasión, aproximadamente el 95% de esos intervalos contendría la media poblacional verdadera. No significa que exista un 95% de probabilidad de que la media verdadera esté en este intervalo específico; una vez calculado, el intervalo o contiene la media verdadera o no la contiene.",
+        "q2": "¿Qué es el margen de error?",
+        "q2_a": "El margen de error (ME) es la mitad del ancho del intervalo de confianza: ME = z* × (s / √n). Cuantifica la diferencia máxima esperada entre la media muestral y la media poblacional verdadera con el nivel de confianza elegido. Reducir el ME requiere un tamaño muestral mayor, una desviación estándar menor (menos variabilidad en los datos) o aceptar un nivel de confianza más bajo.",
+        "q3": "¿Debo usar una distribución z o t?",
+        "q3_a": "Usa la distribución z (como hace esta calculadora) cuando el tamaño de muestra es grande (n ≥ 30) o cuando se conoce la desviación estándar poblacional. Usa la distribución t cuando n < 30 y la desviación estándar poblacional es desconocida, porque la t tiene colas más pesadas y considera la incertidumbre adicional al estimar la desviación estándar con una muestra pequeña.",
+        "q4": "¿Cómo afecta el tamaño de muestra al intervalo de confianza?",
+        "q4_a": "Al aumentar el tamaño de muestra n, disminuye el error estándar (s / √n) y, por tanto, se estrecha el intervalo de confianza. Por ejemplo, duplicar el tamaño de muestra reduce el margen de error por un factor de √2 ≈ 1.41. Por eso las encuestas con grandes tamaños muestrales (p. ej., n=1000) tienen márgenes de error pequeños (~3% al 95%), mientras que los estudios piloto con n=20 pueden tener intervalos muy amplios.",
+        "q5": "¿Qué pasa si mis datos no están distribuidos normalmente?",
+        "q5_a": "El teorema del límite central garantiza que la distribución de las medias muestrales se aproxima a la normal a medida que aumenta n, independientemente de la distribución poblacional. Para n ≥ 30, el intervalo basado en z suele ser fiable. Para muestras pequeñas con distribuciones muy sesgadas o con colas pesadas, considera intervalos bootstrap o intervalos basados en t, ambos más robustos.",
+        "q6": "¿Puedo calcular un intervalo de confianza para una proporción?",
+        "q6_a": "Sí, pero la fórmula es distinta. Para una proporción muestral p̂ en n ensayos, el IC de Wald es p̂ ± z* × √(p̂(1−p̂)/n). Esta calculadora está diseñada para la media. Para proporciones —como estimar la fracción de votantes que apoyan a un candidato— usa una herramienta específica para intervalos de confianza de proporciones. El intervalo de Wilson suele preferirse al de Wald en muestras pequeñas o con proporciones cercanas a 0 o 1."
+      }
     }
   }
 }
