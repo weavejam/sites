@@ -85,6 +85,11 @@ import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-de
 import { fixtures as f_standard_deviation_index_calculator } from "@/tools/standard-deviation-index-calculator.fixtures";
 import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/tools/standard-deviation-of-sample-mean-calculator.fixtures";
 import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
+import { fixtures as f_torsional_stiffness_calculator } from "@/tools/torsional-stiffness-calculator.fixtures";
+import { fixtures as f_trajectory_calculator } from "@/tools/trajectory-calculator.fixtures";
+import { fixtures as f_transformer_sizing_calculator } from "@/tools/transformer-sizing-calculator.fixtures";
+import { fixtures as f_transistor_biasing_calculator } from "@/tools/transistor-biasing-calculator.fixtures";
+import { fixtures as f_transmission_calculator } from "@/tools/transmission-calculator.fixtures";
 import { fixtures as f_tukey_hsd_calculator } from "@/tools/tukey-hsd-calculator.fixtures";
 import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-envelopes-paradox-calculator.fixtures";
 import { fixtures as f_uniform_distribution_calculator } from "@/tools/uniform-distribution-calculator.fixtures";
@@ -194,6 +199,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "standard-deviation-index-calculator": f_standard_deviation_index_calculator,
   "standard-deviation-of-sample-mean-calculator": f_standard_deviation_of_sample_mean_calculator,
   "standard-error-calculator": f_standard_error_calculator,
+  "torsional-stiffness-calculator": f_torsional_stiffness_calculator,
+  "trajectory-calculator": f_trajectory_calculator,
+  "transformer-sizing-calculator": f_transformer_sizing_calculator,
+  "transistor-biasing-calculator": f_transistor_biasing_calculator,
+  "transmission-calculator": f_transmission_calculator,
   "tukey-hsd-calculator": f_tukey_hsd_calculator,
   "two-envelopes-paradox-calculator": f_two_envelopes_paradox_calculator,
   "uniform-distribution-calculator": f_uniform_distribution_calculator,
