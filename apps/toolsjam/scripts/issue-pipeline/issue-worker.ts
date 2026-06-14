@@ -251,6 +251,11 @@ async function main() {
     }
 
     // 2. install
+    // NB: pnpm's --frozen-lockfile validates the WHOLE workspace lockfile
+    // even with --filter, so an out-of-sync sibling app's package.json will
+    // still break us here.  The real defense is the dispatcher's pre-flight
+    // check (see run-workers.ts) which refuses to spawn workers when the
+    // main repo can't install with --frozen-lockfile.
     updateState(issue.number, { phase: "install" });
     const inst = run("pnpm", ["install", "--frozen-lockfile", "--prefer-offline"], wt, wid);
     if (inst.code !== 0) throw new Error("pnpm install failed");
