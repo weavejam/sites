@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_coefficient_of_variation_calculator } from "@/tools/coefficient-of-variation-calculator.fixtures";
+import { fixtures as f_cohens_d_calculator } from "@/tools/cohens-d-calculator.fixtures";
+import { fixtures as f_coin_flip_probability_calculator } from "@/tools/coin-flip-probability-calculator.fixtures";
+import { fixtures as f_coin_flipper } from "@/tools/coin-flipper.fixtures";
+import { fixtures as f_coin_toss_streak_calculator } from "@/tools/coin-toss-streak-calculator.fixtures";
 import { fixtures as f_combination_calculator } from "@/tools/combination-calculator.fixtures";
 import { fixtures as f_conditional_probability_calculator } from "@/tools/conditional-probability-calculator.fixtures";
 import { fixtures as f_confidence_interval_calculator } from "@/tools/confidence-interval-calculator.fixtures";
@@ -99,6 +104,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "coefficient-of-variation-calculator": f_coefficient_of_variation_calculator,
+  "cohens-d-calculator": f_cohens_d_calculator,
+  "coin-flip-probability-calculator": f_coin_flip_probability_calculator,
+  "coin-flipper": f_coin_flipper,
+  "coin-toss-streak-calculator": f_coin_toss_streak_calculator,
   "combination-calculator": f_combination_calculator,
   "conditional-probability-calculator": f_conditional_probability_calculator,
   "confidence-interval-calculator": f_confidence_interval_calculator,
