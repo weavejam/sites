@@ -144,9 +144,39 @@ function renderDevPrompt(jobs: PageJob[], worktree: string, issueNumber: number,
     .replace(/\{\{JOBS_BLOCK\}\}/g, renderJobsBlock(jobs));
 }
 
+// Random-account picker (load-balance across ~/.copilot/accounts/<name>).
+// Returns env overrides for the spawn; null = inherit parent env.
+type AccountChoice = { name: string; env: NodeJS.ProcessEnv };
+let _acctCache: { names: string[]; tokens: Record<string, string> } | null = null;
+function pickAccount(): AccountChoice | null {
+  if (!_acctCache) {
+    const home = process.env.USERPROFILE || process.env.HOME || "";
+    const tokensPath = path.join(home, ".copilot", "accounts", "tokens.json");
+    if (!existsSync(tokensPath)) { _acctCache = { names: [], tokens: {} }; }
+    else {
+      const tokens = JSON.parse(readFileSync(tokensPath, "utf8")) as Record<string, string>;
+      _acctCache = { names: Object.keys(tokens), tokens };
+    }
+  }
+  if (_acctCache.names.length === 0) return null;
+  const name = _acctCache.names[Math.floor(Math.random() * _acctCache.names.length)];
+  const home = process.env.USERPROFILE || process.env.HOME || "";
+  const profileDir = path.join(home, ".copilot", "accounts", name);
+  return {
+    name,
+    env: {
+      ...process.env,
+      USERPROFILE: profileDir,
+      HOME: profileDir,
+      COPILOT_GITHUB_TOKEN: _acctCache.tokens[name],
+    },
+  };
+}
+
 function runCopilot(prompt: string, model: string, cwd: string, workerId: string, extraDirs: string[]): Promise<number> {
   return new Promise((resolve, reject) => {
-    log(workerId, `→ copilot --model ${model} (cwd=${cwd}, prompt ${prompt.length} chars)`);
+    const acct = pickAccount();
+    log(workerId, `→ copilot --model ${model} account=${acct?.name ?? "(inherit)"} (cwd=${cwd}, prompt ${prompt.length} chars)`);
     const args = [
       "--allow-all",
       "--no-ask-user",
@@ -155,7 +185,7 @@ function runCopilot(prompt: string, model: string, cwd: string, workerId: string
       ...extraDirs.flatMap((d) => ["--add-dir", JSON.stringify(d)]),
       "--no-color",
     ];
-    const child = spawn("copilot", args, { cwd, stdio: ["pipe", "inherit", "pipe"], shell: true });
+    const child = spawn("copilot", args, { cwd, stdio: ["pipe", "inherit", "pipe"], shell: true, env: acct?.env ?? process.env });
     child.stderr.on("data", (b) => process.stderr.write(b));
     child.on("error", reject);
     child.on("close", (code) => resolve(code ?? -1));

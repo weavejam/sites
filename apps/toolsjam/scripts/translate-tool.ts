@@ -197,7 +197,54 @@ After writing the file, exit. Do not print the JSON to the terminal.
 `;
 }
 
+// --- Sub-account rotation -------------------------------------------------
+//
+// Every spawned copilot CLI gets a random profile from
+// `~/.copilot/accounts/tokens.json` to spread API load across separate GitHub
+// Copilot subscriptions.  This is what unblocked the overnight throttle
+// problem: with 5 accounts in rotation the per-account QPS drops 5×.
+//
+// Each profile lives at `~/.copilot/accounts/<name>` and supplies its own
+// PAT via tokens.json; we mirror that into the child env (USERPROFILE/HOME
+// + COPILOT_GITHUB_TOKEN) without touching this process's own env.
+type AccountChoice = { name: string; env: NodeJS.ProcessEnv };
+let _accountNames: string[] | null = null;
+let _accountTokens: Record<string, string> | null = null;
+
+function loadAccounts(): { names: string[]; tokens: Record<string, string> } {
+  if (_accountNames && _accountTokens) return { names: _accountNames, tokens: _accountTokens };
+  const home = process.env.USERPROFILE || process.env.HOME || "";
+  const tokensPath = path.join(home, ".copilot", "accounts", "tokens.json");
+  if (!existsSync(tokensPath)) {
+    // Caller is responsible — if not present, fall back to inheriting parent env.
+    _accountNames = [];
+    _accountTokens = {};
+    return { names: [], tokens: {} };
+  }
+  const raw = JSON.parse(readFileSync(tokensPath, "utf8")) as Record<string, string>;
+  _accountTokens = raw;
+  _accountNames = Object.keys(raw);
+  return { names: _accountNames, tokens: _accountTokens };
+}
+
+function pickAccount(): AccountChoice | null {
+  const { names, tokens } = loadAccounts();
+  if (names.length === 0) return null;
+  const name = names[Math.floor(Math.random() * names.length)];
+  const home = process.env.USERPROFILE || process.env.HOME || "";
+  const profileDir = path.join(home, ".copilot", "accounts", name);
+  const env: NodeJS.ProcessEnv = {
+    ...process.env,
+    USERPROFILE: profileDir,
+    HOME: profileDir,
+    COPILOT_GITHUB_TOKEN: tokens[name],
+  };
+  return { name, env };
+}
+
 async function runCopilot(prompt: string, model: string): Promise<{ code: number; stderr: string }> {
+  const acct = pickAccount();
+  if (acct) console.log(`  ↳ account=${acct.name}`);
   return await new Promise((resolve, reject) => {
     const child = spawn(
       "copilot",
@@ -208,7 +255,12 @@ async function runCopilot(prompt: string, model: string): Promise<{ code: number
         "--add-dir", JSON.stringify(REPO),
         "--no-color",
       ],
-      { cwd: REPO, stdio: ["pipe", "inherit", "pipe"], shell: true },
+      {
+        cwd: REPO,
+        stdio: ["pipe", "inherit", "pipe"],
+        shell: true,
+        env: acct?.env ?? process.env,
+      },
     );
     let stderr = "";
     child.stderr.on("data", (b) => { stderr += b.toString(); process.stderr.write(b); });
