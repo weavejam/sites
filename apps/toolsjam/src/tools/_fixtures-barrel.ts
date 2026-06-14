@@ -24,7 +24,12 @@ import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures"
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
+import { fixtures as f_smp_x_distribution_calculator } from "@/tools/smp-x-distribution-calculator.fixtures";
+import { fixtures as f_spearmans_correlation_calculator } from "@/tools/spearmans-correlation-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
+import { fixtures as f_standard_deviation_index_calculator } from "@/tools/standard-deviation-index-calculator.fixtures";
+import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/tools/standard-deviation-of-sample-mean-calculator.fixtures";
+import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
 import { fixtures as f_wilcoxon_rank_sum_test_calculator } from "@/tools/wilcoxon-rank-sum-test-calculator.fixtures";
 import { fixtures as f_wilcoxon_signed_rank_test_calculator } from "@/tools/wilcoxon-signed-rank-test-calculator.fixtures";
 import { fixtures as f_yates_correction_for_continuity_calculator } from "@/tools/yates-correction-for-continuity-calculator.fixtures";
@@ -53,7 +58,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "ohms-law-calculator": f_ohms_law_calculator,
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
+  "smp-x-distribution-calculator": f_smp_x_distribution_calculator,
+  "spearmans-correlation-calculator": f_spearmans_correlation_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
+  "standard-deviation-index-calculator": f_standard_deviation_index_calculator,
+  "standard-deviation-of-sample-mean-calculator": f_standard_deviation_of_sample_mean_calculator,
+  "standard-error-calculator": f_standard_error_calculator,
   "wilcoxon-rank-sum-test-calculator": f_wilcoxon_rank_sum_test_calculator,
   "wilcoxon-signed-rank-test-calculator": f_wilcoxon_signed_rank_test_calculator,
   "yates-correction-for-continuity-calculator": f_yates_correction_for_continuity_calculator,
