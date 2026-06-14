@@ -7760,6 +7760,526 @@
         "q6": "Puis-je calculer un intervalle de confiance pour une proportion ?",
         "q6_a": "Oui, mais la formule est différente. Pour une proportion d'échantillon p̂ sur n essais, l'IC de Wald est p̂ ± z* × √(p̂(1−p̂)/n). Ce calculateur est conçu pour les moyennes. Pour les proportions — par exemple estimer la fraction d'électeurs qui soutiennent un candidat — utilisez un outil dédié aux intervalles de confiance pour proportions. L'intervalle de Wilson est généralement préférable à la formule de Wald pour les petits échantillons ou les proportions proches de 0 ou 1."
       }
+    },
+    "confusion-matrix-calculator": {
+      "title": "Calculatrice de matrice de confusion - Métriques de classification",
+      "tagline": "Analysez les performances de classification avec accuracy, precision, recall, F1 et MCC",
+      "intro": "Saisissez les valeurs de votre matrice de confusion pour calculer accuracy, precision, recall, specificity, F1-score et d'autres métriques de performance pour l'analyse de classification binaire.",
+      "field": {
+        "tp": "Vrais positifs (TP)",
+        "fp": "Faux positifs (FP)",
+        "tn": "Vrais négatifs (TN)",
+        "fn": "Faux négatifs (FN)"
+      },
+      "button": {
+        "calculate": "Calculer les métriques",
+        "reset": "Réinitialiser la calculatrice"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des entiers non négatifs dans les quatre champs. Le total (TP+FP+TN+FN) doit être supérieur à 0."
+      },
+      "result": {
+        "heading": "Métriques de classification",
+        "accuracy": "Accuracy",
+        "precision": "Precision (PPV)",
+        "recall": "Recall (Sensitivity)",
+        "specificity": "Specificity (TNR)",
+        "f1": "F1-score",
+        "mcc": "MCC",
+        "npv": "NPV",
+        "fpr": "FPR",
+        "fnr": "FNR",
+        "total": "Total"
+      },
+      "about": {
+        "heading": "À propos de la calculatrice de matrice de confusion",
+        "body": "Une matrice de confusion est un tableau 2×2 qui résume les performances d'un modèle de classification binaire en répertoriant les quatre issues possibles : Vrais Positifs (TP), Faux Positifs (FP), Vrais Négatifs (TN) et Faux Négatifs (FN). À partir de ces quatre nombres, on peut dériver un ensemble riche de métriques de performance, chacune mesurant un aspect différent du comportement du classifieur.\n\nLes Vrais Positifs (TP) sont les cas où le modèle a correctement prédit la classe positive. Les Faux Positifs (FP) sont les cas où le modèle a prédit positif alors que la vraie étiquette était négative — aussi appelés erreurs de type I. Les Vrais Négatifs (TN) sont des prédictions négatives correctes. Les Faux Négatifs (FN) sont les cas où le modèle a manqué un positif — aussi appelés erreurs de type II.\n\nLes métriques clés dérivées de la matrice de confusion incluent :\n\n• Accuracy = (TP + TN) / Total — la fraction de l'ensemble des prédictions qui sont correctes. Simple à interpréter, mais trompeuse sur des jeux de données déséquilibrés.\n• Precision (Valeur prédictive positive) = TP / (TP + FP) — parmi toutes les prédictions positives, combien sont réellement positives. Une precision élevée signifie peu de fausses alertes.\n• Recall (Sensitivity, Taux de vrais positifs) = TP / (TP + FN) — parmi tous les positifs réels, combien ont été détectés. Un recall élevé signifie peu de positifs manqués.\n• Specificity (Taux de vrais négatifs) = TN / (TN + FP) — parmi tous les négatifs réels, combien ont été correctement identifiés. Important dans le dépistage médical.\n• F1-score = 2 × (Precision × Recall) / (Precision + Recall) — la moyenne harmonique de precision et recall, qui équilibre les deux métriques. Utile lorsque les classes sont déséquilibrées.\n• Coefficient de corrélation de Matthews (MCC) = (TP×TN − FP×FN) / √((TP+FP)(TP+FN)(TN+FP)(TN+FN)) — une métrique équilibrée qui prend en compte les quatre cellules de la matrice de confusion. Va de −1 (désaccord parfait) à +1 (accord parfait), avec 0 indiquant une performance aléatoire.\n\nLe choix de la bonne métrique dépend de votre problème. Pour la détection de fraude, le recall est critique (ne jamais manquer une fraude). Pour les filtres anti-spam, la precision est plus importante (ne pas bloquer les e-mails légitimes). Pour le dépistage de maladies rares, recall et specificity sont tous deux importants. Le MCC et le F1-score sont généralement plus informatifs que la seule accuracy lorsque les classes sont déséquilibrées."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Le tableau montre des entrées de matrice de confusion et leurs métriques de performance résultantes.",
+        "colInput": "TP, FP, TN, FN",
+        "colOutput": "Métriques clés",
+        "colNote": "Type de modèle",
+        "items": [
+          {
+            "input": "TP=92, FP=8, TN=88, FN=12",
+            "output": "Accuracy=90%, F1=0.9020, MCC=0.801",
+            "note": "Modèle bien équilibré et performant"
+          },
+          {
+            "input": "TP=45, FP=5, TN=95, FN=25",
+            "output": "Accuracy=82.35%, Precision=90%, Recall=64.29%",
+            "note": "Haute precision, prédictions conservatrices"
+          },
+          {
+            "input": "TP=85, FP=30, TN=70, FN=10",
+            "output": "Accuracy=79.5%, Recall=89.5%, Specificity=70%",
+            "note": "Recall élevé, modèle sensible"
+          },
+          {
+            "input": "TP=48, FP=12, TN=188, FN=2",
+            "output": "Accuracy=94%, Sensitivity=96%, Specificity=94%",
+            "note": "Test diagnostique médical — haute sensibilité"
+          }
+        ],
+        "loadBalanced": "Modèle équilibré",
+        "loadHighPrecision": "Modèle à haute precision",
+        "loadMedical": "Test diagnostique médical"
+      },
+      "howto": {
+        "heading": "Comment utiliser la calculatrice de matrice de confusion",
+        "steps": [
+          "Saisissez le nombre de Vrais Positifs (TP) : cas où le modèle a correctement prédit la classe positive.",
+          "Saisissez les Faux Positifs (FP) : le modèle a prédit positif alors que la vraie étiquette était négative (erreur de type I).",
+          "Saisissez les Vrais Négatifs (TN) et les Faux Négatifs (FN) : les faux négatifs sont des positifs manqués (erreur de type II).",
+          "Cliquez sur « Calculer les métriques » pour calculer instantanément accuracy, precision, recall, specificity, F1-score, MCC, NPV, FPR et FNR.",
+          "Utilisez les boutons d'exemples rapides pour explorer des scénarios préconfigurés comme les modèles équilibrés, à haute precision et les tests médicaux."
+        ]
+      },
+      "faq": {
+        "heading": "Foire aux questions",
+        "q1": "Quelle est la différence entre precision et recall ?",
+        "q1_a": "La precision répond à la question « parmi toutes les prédictions positives, combien étaient correctes ? », tandis que le recall répond à « parmi tous les positifs réels, combien le modèle a-t-il trouvés ? ». Une precision élevée signifie peu de faux positifs (le modèle est prudent lorsqu'il étiquette quelque chose comme positif). Un recall élevé signifie peu de faux négatifs (le modèle manque rarement un vrai positif). Il existe généralement un compromis entre les deux, contrôlé par le seuil de décision.",
+        "q2": "Pourquoi l'accuracy n'est-elle pas toujours la meilleure métrique ?",
+        "q2_a": "L'accuracy peut être trompeuse sur des jeux de données déséquilibrés. Par exemple, si seulement 1 % des transactions sont frauduleuses, un modèle qui prédit toujours « non frauduleux » obtient 99 % d'accuracy mais ne détecte aucun cas de fraude. Dans ce type de situation, precision, recall, F1-score ou MCC donnent une vision bien plus utile des performances du modèle.",
+        "q3": "Qu'est-ce que le coefficient de corrélation de Matthews (MCC) ?",
+        "q3_a": "Le MCC est une métrique unique et équilibrée qui prend en compte les quatre cellules de la matrice de confusion (TP, FP, TN, FN). Il varie de −1 à +1, où +1 correspond à une prédiction parfaite, 0 à une performance équivalente au hasard et −1 à un désaccord total. Le MCC est considéré comme l'une des métriques les plus informatives pour la classification binaire, surtout sur des jeux de données déséquilibrés, car il n'est pas gonflé par de forts déséquilibres de classes.",
+        "q4": "Que mesure la specificity et quand est-elle importante ?",
+        "q4_a": "La specificity (Taux de vrais négatifs) = TN / (TN + FP) mesure la capacité du modèle à éviter les faux positifs parmi les négatifs réels. Elle est particulièrement importante en dépistage médical : un test à forte specificity minimise le nombre de personnes saines incorrectement signalées comme malades, réduisant les examens de suivi inutiles et l'anxiété des patients. La sensibilité (recall) et la specificity définissent ensemble la courbe ROC.",
+        "q5": "Quel est le lien entre F1-score, precision et recall ?",
+        "q5_a": "Le F1-score est la moyenne harmonique de precision et recall : F1 = 2 × (P × R) / (P + R). L'utilisation de la moyenne harmonique garantit que le F1 est faible si precision ou recall est faible — vous ne pouvez pas obtenir un F1 élevé en sacrifiant l'un pour l'autre. Le F1 varie de 0 (pire) à 1 (meilleur) et c'est la métrique unique la plus courante lorsque vous devez équilibrer à la fois les faux positifs et les faux négatifs.",
+        "q6": "Quelle est la différence entre sensibilité et specificity dans les tests médicaux ?",
+        "q6_a": "La sensibilité (recall) est la probabilité que le test identifie correctement un patient malade : TP / (TP + FN). Un test très sensible manque très peu de patients malades, ce qui le rend utile pour exclure une maladie. La specificity est la probabilité que le test identifie correctement une personne en bonne santé : TN / (TN + FP). Un test très spécifique produit peu de faux positifs, ce qui le rend utile pour confirmer une maladie. La plupart des tests diagnostiques impliquent un compromis entre les deux, représenté par la courbe ROC."
+      }
+    },
+    "constant-of-proportionality-calculator": {
+      "title": "Constante de proportionnalité y = kx",
+      "tagline": "Trouver la constante de proportionnalité k dans une relation de proportionnalité directe y = kx",
+      "intro": "Cet outil vous aide à calculer la constante de proportionnalité (k) à partir d’un ou plusieurs couples de variables (x, y) en proportion directe (y = kx). Ajoutez plusieurs couples pour vérifier la cohérence.",
+      "field": {
+        "x": "Valeur de X {n}",
+        "y": "Valeur de Y {n}"
+      },
+      "placeholder": {
+        "number": "Entrez un nombre"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser",
+        "addPair": "Ajouter un couple",
+        "remove": "Supprimer"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins un couple (x, y) valide où x ≠ 0."
+      },
+      "result": {
+        "heading": "Résultat",
+        "equation": "y = {k} × x",
+        "consistent": "Tous les couples partagent la même constante : la proportionnalité est confirmée.",
+        "inconsistent": "Attention : les valeurs de k diffèrent d’un couple à l’autre ; la relation n’est peut-être pas directement proportionnelle.",
+        "perPair": "k par couple"
+      },
+      "about": {
+        "heading": "À propos du calculateur de constante de proportionnalité",
+        "body": "La constante de proportionnalité (k) décrit le rapport entre deux quantités en relation de proportion directe. Lorsque l’on dit que y est directement proportionnel à x, cela signifie y = k × x, où k est une valeur constante qui reste identique pour chaque couple correspondant (x, y). La constante k indique le rythme auquel y change pour chaque unité d’augmentation de x.\n\nPour trouver k, il suffit de diviser y par x : k = y / x. Si vous avez plusieurs couples de données, chacun doit produire la même valeur de k ; c’est le critère qui définit une proportion directe. Si les valeurs de k ne sont pas égales, la relation n’est pas directement proportionnelle, même s’il peut s’agir d’une autre relation comme une proportion inverse (y = k/x), une relation de puissance ou une relation linéaire avec ordonnée à l’origine non nulle (y = mx + b).\n\nLa constante de proportionnalité apparaît partout dans la science et la vie quotidienne. La loi d’Ohm stipule que la tension V = I × R, où R (la résistance) est la constante de proportionnalité entre courant et tension. En chimie, la densité ρ = m / V est la constante de proportionnalité entre masse et volume. En physique, F = m × a signifie que l’accélération et la force sont proportionnelles, la masse jouant le rôle de constante. En finance, si le taux de change est fixe, les montants dans deux devises sont proportionnels.\n\nGraphiquement, une proportion directe y = kx passe toujours par l’origine (0, 0), et k est la pente de cette droite. Une droite plus pentue a un k plus grand, ce qui signifie que y croît plus vite par rapport à x. Si k > 0, les deux variables augmentent ensemble (corrélation positive) ; si k < 0, l’une augmente tandis que l’autre diminue (relation linéaire inverse).\n\nCe calculateur accepte plusieurs couples (x, y) et calcule k = y/x pour chacun. Si tous les couples donnent le même k, l’outil confirme la relation de proportionnalité. Il affiche également l’équation y = k × x afin que vous puissiez utiliser la constante pour prévoir y pour une nouvelle valeur de x, ou x pour une nouvelle valeur de y."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Le tableau ci-dessous présente des calculs de constante de proportionnalité issus d’applications réelles.",
+        "colInput": "x, y",
+        "colOutput": "k = y/x",
+        "colNote": "Application",
+        "items": [
+          {
+            "input": "x=10, y=300",
+            "output": "k = 30",
+            "note": "Rendement énergétique : 30 miles par gallon"
+          },
+          {
+            "input": "x=3, y=12",
+            "output": "k = 4",
+            "note": "Loi d’Ohm : résistance de 4 ohms"
+          },
+          {
+            "input": "x=50, y=45",
+            "output": "k = 0.9",
+            "note": "Taux de change : 0,9 EUR par USD"
+          },
+          {
+            "input": "x=8, y=2",
+            "output": "k = 0.25",
+            "note": "Recette : 0,25 tasse de farine par portion"
+          }
+        ],
+        "loadFuel": "Consommation de carburant",
+        "loadOhm": "Loi d’Ohm",
+        "loadRecipe": "Ajustement de recette"
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de constante de proportionnalité",
+        "steps": [
+          "Saisissez la valeur X et la valeur Y du premier couple de données. X doit être différent de zéro (la division par zéro n’est pas définie).",
+          "Cliquez sur « Ajouter un couple » pour ajouter d’autres couples (x, y) si vous voulez vérifier que plusieurs points partagent la même constante.",
+          "Cliquez sur « Calculer » pour obtenir k = y/x pour chaque couple et afficher l’équation de proportionnalité y = k × x.",
+          "Vérifiez si toutes les valeurs de k sont cohérentes. Si elles correspondent, les données confirment une proportion directe. Sinon, la relation n’est peut-être pas y = kx.",
+          "Utilisez les boutons d’exemples rapides pour explorer des scénarios de proportionnalité réels en physique, en cuisine et en finance."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "q1": "Qu’est-ce que la constante de proportionnalité ?",
+        "q1_a": "La constante de proportionnalité k est le rapport fixe k = y/x dans la relation y = kx. Elle représente le taux de variation : pour chaque augmentation de 1 unité de x, y augmente de k unités. La valeur de k peut être n’importe quel nombre réel non nul — positif, négatif ou fractionnaire. Dans de nombreux contextes appliqués, on parle aussi de taux unitaire.",
+        "q2": "Comment savoir si deux variables sont directement proportionnelles ?",
+        "q2_a": "Deux variables sont directement proportionnelles si (1) leur rapport y/x est le même pour chaque point de données et (2) lorsque x = 0, y = 0. Vous pouvez le vérifier en calculant k = y/x pour chaque couple (x, y) ; si toutes les valeurs sont égales (ou presque égales selon l’arrondi), les variables sont directement proportionnelles. Graphiquement, les points doivent tous se situer sur une droite passant par l’origine.",
+        "q3": "Quelle est la différence entre proportion directe et proportion inverse ?",
+        "q3_a": "Dans une proportion directe (y = kx), quand x augmente, y augmente proportionnellement ; le rapport y/x est constant. Dans une proportion inverse (y = k/x), quand x augmente, y diminue ; le produit x × y est constant. Par exemple, la vitesse et le temps de trajet pour une distance donnée sont inversement proportionnels : si vous doublez la vitesse, vous divisez le temps par deux.",
+        "q4": "k peut-il être négatif ?",
+        "q4_a": "Oui. Un k négatif signifie que y et x évoluent dans des directions opposées. Par exemple, si une voiture perd 0,5 litre de carburant par kilomètre, alors le carburant restant F = F₀ − 0,5d. La partie proportionnelle (variation de carburant) = −0,5 × (distance), donc k = −0,5. C’est une constante de proportionnalité valide pour une relation incrémentale.",
+        "q5": "Pourquoi x ne doit-il pas être égal à zéro ?",
+        "q5_a": "La formule k = y/x nécessite de diviser par x. La division par zéro est mathématiquement indéfinie. Dans la relation y = kx, lorsque x = 0, y doit aussi être égal à 0 quel que soit k ; l’origine (0, 0) n’apporte donc aucune information sur k. Utilisez toujours des valeurs de x non nulles pour déterminer la constante.",
+        "q6": "Comment la constante de proportionnalité est-elle utilisée en science ?",
+        "q6_a": "Elle apparaît dans presque tous les domaines scientifiques : la loi d’Ohm (V = IR, R est la constante de proportionnalité), la loi de Hooke (F = kx, k est la raideur du ressort), la deuxième loi de Newton (F = ma, m est la constante entre force et accélération), la loi de Beer-Lambert en chimie (absorbance = ε × c × l) et la force gravitationnelle entre deux masses (F = G × m₁m₂/r²). Identifier la constante de proportionnalité est souvent la première étape pour modéliser un système physique."
+      }
+    },
+    "hypothesis-testing-calculator": {
+      "title": "Calculateur de test d'hypothèse - Z, T et p-valeur",
+      "tagline": "Réalisez des tests Z et T pour les moyennes et les proportions. Saisissez vos données d'échantillon pour calculer en quelques secondes la statistique de test, la p-valeur et la valeur critique.",
+      "intro": "Sélectionnez le type de test et l'hypothèse alternative, saisissez vos données, puis cliquez sur Calculer pour déterminer s'il faut rejeter l'hypothèse nulle.",
+      "field": {
+        "testType": "Type de test",
+        "alternative": "Hypothèse alternative (H₁)",
+        "nullValue": "Valeur de l'hypothèse nulle (μ₀ ou p₀)",
+        "alpha": "Niveau de signification (α)",
+        "sampleSize": "Taille de l'échantillon (n)",
+        "sampleMean": "Moyenne de l'échantillon (x̄)",
+        "sigma": "Écart-type de la population (σ)",
+        "sampleStdDev": "Écart-type de l'échantillon (s)",
+        "sampleProportion": "Proportion de l'échantillon (p̂)"
+      },
+      "placeholder": {
+        "number": "Entrez un nombre",
+        "integer": "Entrez un entier"
+      },
+      "type": {
+        "zTestMean": "Test Z (moyenne, σ connue)",
+        "tTestMean": "Test T (moyenne, σ inconnue)",
+        "zTestProportion": "Test Z (proportion)"
+      },
+      "tail": {
+        "twoTailed": "Bilatéral (≠)",
+        "leftTailed": "Queue gauche (<)",
+        "rightTailed": "Queue droite (>)"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Vérifiez vos données. Assurez-vous que la taille d'échantillon est ≥ 2, que α est compris entre 0 et 1 et que σ ou s est positif."
+      },
+      "result": {
+        "heading": "Résultats",
+        "statistic": "Statistique de test",
+        "df": "Degrés de liberté",
+        "pValue": "p-valeur",
+        "criticalValue": "Valeur critique (±)",
+        "reject": "Rejeter H₀ — statistiquement significatif au α choisi.",
+        "failReject": "Ne pas rejeter H₀ — non significatif au α choisi."
+      },
+      "about": {
+        "heading": "À propos du calculateur de test d'hypothèse",
+        "body": "Le test d'hypothèse est le pilier des statistiques inférentielles. Il fournit un cadre probabiliste et rigoureux pour décider si les données recueillies sont compatibles avec une affirmation théorique — l'hypothèse nulle — ou si les preuves sont suffisamment fortes pour la rejeter au profit d'une alternative. Chaque expérience en médecine, psychologie, économie, contrôle qualité en ingénierie et test A/B de sites web se ramène finalement à une forme de test d'hypothèse.\n\nL'hypothèse nulle (H₀) est l'hypothèse par défaut : rien ne s'est passé, le traitement n'a pas d'effet, le procédé est conforme à la cible, ou les proportions sont inchangées. L'hypothèse alternative (H₁) est ce que vous cherchez à détecter : la moyenne a changé, la proportion a évolué, ou un traitement est meilleur qu'un autre. Le niveau de signification α — généralement 0.05 ou 0.01 — est la probabilité de rejeter à tort H₀ alors qu'elle est vraie (erreur de type I). Si la p-valeur renvoyée par le test est inférieure à α, vous rejetez H₀.\n\nLe test Z pour les moyennes est approprié lorsque l'écart-type de population σ est connu et que l'échantillon est grand (n ≥ 30) ou que la population est normalement distribuée. La statistique est Z = (x̄ − μ₀) / (σ / √n). Comme σ est connu, la statistique suit exactement la loi normale centrée réduite, et la p-valeur se lit dans la table de la normale. Le test T pour les moyennes s'applique lorsque σ est inconnu, ce qui est la situation la plus réaliste dans la plupart des recherches. On utilise alors l'écart-type de l'échantillon s, et la statistique T = (x̄ − μ₀) / (s / √n) suit une loi t avec df = n − 1 degrés de liberté. Avec de petits échantillons, la loi t a des queues plus épaisses que la normale, ce qui rend la significativité plus difficile à atteindre — une pénalité raisonnable pour l'incertitude supplémentaire sur σ.\n\nLe test Z pour les proportions vérifie si une proportion d'échantillon observée p̂ est compatible avec une proportion de population hypothétisée p₀. L'erreur standard est √(p₀(1 − p₀) / n) et la statistique est Z = (p̂ − p₀) / SE. Ce test est largement utilisé dans les tests A/B, les critères principaux des essais cliniques et les cartes de contrôle des proportions de non-conformes.\n\nPour un test bilatéral, vous rejetez H₀ lorsque |statistique| > valeur critique, ce qui capture les écarts dans les deux directions. Pour un test unilatéral (gauche ou droite), vous spécifiez la direction à l'avance ; cela donne plus de puissance pour détecter une variation dans cette direction, mais ne peut pas signaler un changement inattendu dans l'autre sens. La valeur critique affichée correspond à la borne de queue droite ; pour un test de queue gauche, la borne pertinente est son opposé.\n\nLa p-valeur est la probabilité d'observer une statistique de test au moins aussi extrême que celle calculée, en supposant H₀ vraie. Une p-valeur de 0.03 ne signifie pas qu'il y a 3% de chances que l'hypothèse nulle soit vraie ; cela signifie que si H₀ était vraie, il n'y aurait que 3% de chances d'observer des données aussi extrêmes ou plus extrêmes par le seul effet de l'échantillonnage aléatoire. La significativité statistique n'est pas la même chose que la significativité pratique : un effet minime peut être hautement significatif avec un grand n, tandis qu'un effet important peut ne pas atteindre la significativité avec un petit n. Associez toujours la p-valeur à une taille d'effet et à un intervalle de confiance."
+      },
+      "examples": {
+        "heading": "Exemples de tests d'hypothèse",
+        "intro": "Scénarios réels illustrant chaque type de test et chaque direction de queue.",
+        "colInput": "Scénario",
+        "colOutput": "Résultat",
+        "colNote": "Interprétation",
+        "items": [
+          {
+            "input": "Contrôle qualité : x̄=10.01mm, μ₀=10mm, σ=0.03, n=50, α=0.05, test Z bilatéral",
+            "output": "Z=2.357, p=0.0184 → Rejeter H₀",
+            "note": "Le diamètre moyen des boulons s'est significativement déplacé par rapport à la cible de 10 mm ; le procédé doit être ajusté."
+          },
+          {
+            "input": "Essai médicamenteux : x̄=12 mmHg, μ₀=10, s=3, n=30, α=0.05, test T à droite",
+            "output": "T=3.651, df=29, p=0.0005 → Rejeter H₀",
+            "note": "Preuve solide que le médicament réduit en moyenne la pression artérielle de plus de 10 mmHg."
+          },
+          {
+            "input": "Test A/B : p̂=0.095, p₀=0.08, n=1000, α=0.05, test Z à droite (proportion)",
+            "output": "Z=1.750, p=0.0401 → Rejeter H₀",
+            "note": "Le nouveau design du bouton augmente significativement le taux de clics au-dessus de la base de 8%."
+          },
+          {
+            "input": "Consommation de carburant : x̄=29 mpg, μ₀=30, σ=2, n=40, α=0.01, test Z à gauche",
+            "output": "Z=−3.162, p=0.0008 → Rejeter H₀",
+            "note": "Preuve au niveau de 1% que la consommation du modèle est inférieure aux 30 mpg annoncés."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de test d'hypothèse",
+        "steps": [
+          "Choisissez le type de test : Z (moyenne) si σ est connu, T (moyenne) si σ est inconnu et que vous disposez d'un écart-type d'échantillon, ou Z (proportion) pour des résultats catégoriels.",
+          "Sélectionnez la direction de l'hypothèse alternative : bilatéral pour détecter tout changement, queue gauche pour une diminution, ou queue droite pour une augmentation.",
+          "Entrez la valeur de l'hypothèse nulle (μ₀ pour les tests de moyenne ou p₀ pour les tests de proportion), le niveau de signification α choisi (généralement 0.05) et la taille d'échantillon n.",
+          "Renseignez le champ restant : moyenne de l'échantillon x̄ et écart-type de la population σ pour Z (moyenne) ; moyenne de l'échantillon x̄ et écart-type de l'échantillon s pour T ; ou proportion de l'échantillon p̂ pour Z (proportion).",
+          "Cliquez sur Calculer. L'outil affiche la statistique de test, les degrés de liberté (T uniquement), la p-valeur, la valeur critique et la décision de rejet ou de non-rejet."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur le test d'hypothèse",
+        "items": [
+          {
+            "q": "Quelle est la différence entre un test Z et un test T ?",
+            "a": "Un test Z est utilisé lorsque l'écart-type de population σ est connu, ce qui permet d'utiliser la loi normale centrée réduite pour calculer des p-valeurs exactes. Un test T est utilisé lorsque σ est inconnu et doit être estimé à partir de l'écart-type d'échantillon s ; la statistique suit alors une loi t avec n−1 degrés de liberté, qui a des queues plus épaisses que la normale pour tenir compte de l'incertitude supplémentaire. À mesure que la taille d'échantillon augmente, la loi t converge vers la normale ; la distinction est donc surtout importante pour les petits échantillons (environ n < 30)."
+          },
+          {
+            "q": "Que signifie réellement la p-valeur ?",
+            "a": "La p-valeur est la probabilité d'obtenir une statistique de test au moins aussi extrême que celle observée, en supposant l'hypothèse nulle vraie. Ce n'est pas la probabilité que H₀ soit vraie, ni la probabilité que votre résultat soit dû au hasard. Une p-valeur inférieure à α (souvent 0.05) signifie que les données observées seraient surprenantes si H₀ était vraie, donc vous rejetez H₀. Une p-valeur supérieure à α signifie que les données sont compatibles avec H₀, donc vous ne la rejetez pas — mais cela ne prouve pas que H₀ est correcte."
+          },
+          {
+            "q": "Quand faut-il utiliser un test unilatéral plutôt qu'un test bilatéral ?",
+            "a": "Utilisez un test bilatéral lorsqu'une différence dans l'une ou l'autre direction est scientifiquement pertinente et que vous n'avez pas de raison forte d'attendre une direction précise. Utilisez un test unilatéral lorsque la théorie ou des preuves antérieures spécifient clairement la direction de l'effet avant la collecte des données. Passer à un test unilatéral après avoir vu les données pour obtenir la significativité est du p-hacking et invalide l'analyse. Un test unilatéral à α=0.05 équivaut à un test bilatéral à α=0.10."
+          },
+          {
+            "q": "Qu'est-ce que le niveau de signification α et comment le choisir ?",
+            "a": "Le niveau de signification α est la probabilité maximale acceptable d'une erreur de type I — rejeter à tort une hypothèse nulle vraie. Le choix conventionnel est 0.05 (5%), mais on utilise 0.01 lorsque les faux positifs sont particulièrement coûteux (diagnostic médical, systèmes critiques de sécurité). Certains domaines recommandent désormais de rapporter les p-valeurs exactes plutôt que de s'appuyer sur un seuil fixe, et de les combiner à des intervalles de confiance et à des tailles d'effet pour une vision plus complète."
+          },
+          {
+            "q": "Que sont les erreurs de type I et de type II ?",
+            "a": "Une erreur de type I (faux positif) se produit lorsque vous rejetez H₀ alors qu'elle est vraie ; sa probabilité est α. Une erreur de type II (faux négatif) se produit lorsque vous ne rejetez pas H₀ alors qu'elle est fausse ; sa probabilité est β, et la puissance statistique est 1−β. Réduire α resserre le critère de rejet, ce qui diminue les erreurs de type I mais augmente les erreurs de type II. Augmenter la taille d'échantillon est le moyen le plus propre de réduire les deux simultanément."
+          },
+          {
+            "q": "Puis-je utiliser ce calculateur pour des proportions d'enquête ?",
+            "a": "Oui — le mode Test Z pour proportion est conçu exactement pour cela. Entrez la proportion de population hypothétisée p₀ (votre valeur de référence ou théorique), votre taille d'échantillon n et la proportion d'échantillon observée p̂ (succès divisés par n). Le calculateur applique la formule standard Z = (p̂ − p₀) / √(p₀(1−p₀)/n). L'approximation normale est fiable lorsque n·p₀ et n·(1−p₀) dépassent tous deux 5 ou 10."
+          }
+        ]
+      }
+    },
+    "implied-probability-calculator": {
+      "title": "Calculateur de probabilité implicite - Convertir les cotes",
+      "tagline": "Convertissez instantanément les cotes américaines, décimales ou fractionnaires en pourcentage de probabilité implicite — l'outil essentiel pour l'analyse de valeur dans les paris sportifs.",
+      "intro": "Sélectionnez le format de cote, saisissez la cote, puis cliquez sur Calculer pour voir la probabilité implicite et les cotes équivalentes dans les trois formats.",
+      "field": {
+        "oddsFormat": "Format de cote",
+        "odds": "Cote",
+        "fractional": "Cote fractionnaire (numérateur / dénominateur)"
+      },
+      "placeholder": {
+        "american": "ex. -150 ou +250",
+        "decimal": "ex. 1.75",
+        "numerator": "ex. 5",
+        "denominator": "ex. 2"
+      },
+      "format": {
+        "american": "Américaine",
+        "american_desc": "Les cotes négatives (ex. -150) désignent le favori ; les cotes positives (ex. +250) désignent l'outsider. Principalement utilisées dans les paris sportifs nord-américains.",
+        "decimal": "Décimale",
+        "decimal_desc": "Les cotes décimales représentent le retour total par unité engagée, mise comprise. Elles doivent être supérieures à 1. Courantes en Europe, en Australie et en Asie.",
+        "fractional": "Fractionnaire",
+        "fractional_desc": "Les cotes fractionnaires expriment le bénéfice par rapport à la mise (par exemple 5/2 signifie 5 de bénéfice pour 2 misés). Format traditionnel des courses hippiques au Royaume-Uni."
+      },
+      "button": {
+        "calculate": "Calculer la probabilité",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des cotes valides. Les cotes décimales doivent être supérieures à 1 ; le numérateur et le dénominateur fractionnaires doivent être positifs."
+      },
+      "result": {
+        "heading": "Probabilité implicite",
+        "probability": "Probabilité implicite",
+        "decimalOdds": "Cotes décimales",
+        "americanOdds": "Cotes américaines",
+        "fractionalOdds": "Cotes fractionnaires"
+      },
+      "about": {
+        "heading": "À propos du calculateur de probabilité implicite",
+        "body": "La probabilité implicite est la conversion des cotes de pari en un pourcentage représentant l'estimation du bookmaker sur la probabilité qu'un résultat donné se produise. Lorsqu'un bookmaker fixe des cotes, il exprime en réalité une probabilité. Savoir convertir entre les formats de cote et la probabilité implicite est la compétence fondamentale du value betting — identifier les marchés où la probabilité réelle d'un résultat dépasse la probabilité implicite du bookmaker.\n\nLes cotes américaines, aussi appelées moneyline, sont le format dominant dans les paris sportifs nord-américains. Les cotes américaines négatives indiquent le favori et montrent combien vous devez miser pour gagner 100 dollars de bénéfice. Par exemple, -150 signifie risquer 150 dollars pour gagner 100 dollars, et la probabilité implicite est de 150 / (150 + 100) = 60%. Les cotes américaines positives indiquent l'outsider et montrent le bénéfice obtenu pour une mise de 100 dollars. +250 signifie qu'une mise de 100 dollars rapporte 250 dollars de bénéfice, et la probabilité implicite est de 100 / (250 + 100) = 28.57%. Idéalement, les deux côtés d'un marché à deux issues devraient totaliser 100%, mais les bookmakers intègrent un overround (ou vig) afin que la somme des probabilités implicites dépasse généralement 100%, garantissant une marge quelle que soit l'issue.\n\nLes cotes décimales, aussi appelées cotes européennes, expriment le retour total par unité misée, mise initiale comprise. Une cote de 1.75 signifie que pour chaque 1 dollar misé, vous recevez 1.75 dollar au total (soit 0.75 dollar de bénéfice). La probabilité implicite est simplement 1 / cote décimale = 1 / 1.75 ≈ 57.14%. Les cotes décimales supérieures à 2.00 correspondent à des cotes américaines positives (outsiders), et les cotes décimales comprises entre 1.00 et 2.00 correspondent à des cotes américaines négatives (favoris). Les cotes décimales inférieures à 1.00 ne sont pas proposées car elles impliqueraient une perte garantie — le bookmaker vous paierait moins que votre mise.\n\nLes cotes fractionnaires, format britannique traditionnel, expriment le rapport entre bénéfice et mise. Une cote de 5/2 signifie que vous gagnez 5 dollars pour chaque 2 misés, donc une mise de 2 dollars rapporte 7 dollars au total. La probabilité implicite est dénominateur / (numérateur + dénominateur) = 2 / (5 + 2) = 28.57%, soit la même chose que +250 en cotes américaines ou 3.50 en cotes décimales. 1/1 est appelé 'evens' et implique une probabilité de 50%.\n\nL'overround est la somme de toutes les probabilités implicites d'un marché moins 100%. Un marché typique à deux issues peut afficher des probabilités implicites de 52% et 52%, soit 104% au total — les 4% supplémentaires constituent l'avantage intégré du bookmaker. Retirer l'overround (en divisant chaque probabilité implicite par la somme puis en multipliant par 100%) donne la probabilité 'juste' attribuée à chaque issue par le marché. Le value betting consiste à trouver des issues dont votre estimation de la probabilité réelle dépasse la probabilité juste du bookmaker — ces paris ont une espérance positive à long terme.\n\nLe calculateur de probabilité implicite convertit dans les deux sens entre les trois principaux formats, afin que vous puissiez comparer instantanément les cotes de différents bookmakers exprimées dans des formats différents, identifier l'offre la plus intéressante et suivre si une ligne a évolué vers ou à l'écart de votre estimation de la probabilité réelle."
+      },
+      "examples": {
+        "heading": "Exemples de probabilité implicite",
+        "intro": "Cliquez sur un bouton d'exemple pour charger les valeurs dans le calculateur.",
+        "colInput": "Cote",
+        "colOutput": "Probabilité implicite",
+        "colNote": "Contexte",
+        "loadFavorite": "Charger le favori (-150)",
+        "loadUnderdog": "Charger l'outsider (+250)",
+        "loadDecimal": "Charger la décimale (1.75)",
+        "loadFractional": "Charger la fractionnaire (5/2)",
+        "items": [
+          {
+            "input": "Américaine -150 (favori)",
+            "output": "60.00%",
+            "note": "Le bookmaker implique une chance de 60% pour cet issue. Vous devez risquer 150 dollars pour gagner 100 dollars."
+          },
+          {
+            "input": "Américaine +250 (outsider)",
+            "output": "28.57%",
+            "note": "Seulement 28.57% de chances implicites de gagner, mais une mise de 100 dollars rapporte 250 dollars de bénéfice si elle est correcte."
+          },
+          {
+            "input": "Décimale 1.75",
+            "output": "57.14%",
+            "note": "Format européen standard. Une mise de 1 € rapporte 1.75 € au total. Équivalent à -133 en cotes américaines."
+          },
+          {
+            "input": "Fractionnaire 5/2",
+            "output": "28.57%",
+            "note": "Cote classique des courses hippiques britanniques. Gagnez 5 pour chaque 2 misés. Équivalent à +250 en cotes américaines ou 3.50 en décimales."
+          },
+          {
+            "input": "Décimale 2.00 (evens)",
+            "output": "50.00%",
+            "note": "Argent pair — le bookmaker implique une chance pile ou face. Équivalent à +100 en cotes américaines ou 1/1 en fractionnaire."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de probabilité implicite",
+        "steps": [
+          "Sélectionnez le format de cote utilisé par votre bookmaker : Américaine (moneyline), Décimale (européenne) ou Fractionnaire (britannique).",
+          "Saisissez la valeur de la cote. Pour les cotes américaines, entrez un nombre négatif pour les favoris (ex. -150) ou positif pour les outsiders (ex. +250). Pour les décimales, entrez le multiplicateur (ex. 1.75). Pour les fractionnaires, saisissez séparément le numérateur et le dénominateur (par exemple 5 et 2 pour 5/2).",
+          "Cliquez sur Calculer la probabilité. Le résultat affiche la probabilité implicite en pourcentage ainsi que les cotes équivalentes dans les trois formats.",
+          "Comparez la probabilité implicite à votre propre estimation de la probabilité réelle. Si votre estimation dépasse la probabilité implicite, le pari a une espérance positive.",
+          "Utilisez les boutons d'exemple pour charger rapidement des situations de cotes courantes et vérifier votre compréhension des formules de conversion."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la probabilité implicite",
+        "items": [
+          {
+            "q": "Qu'est-ce que la probabilité implicite dans les paris ?",
+            "a": "La probabilité implicite est la conversion des cotes du bookmaker en un pourcentage représentant la probabilité que le bookmaker attribue à un résultat. Pour une cote de -150, la probabilité implicite est de 60% — ce qui signifie que le modèle du bookmaker suggère que l'issue se produira 60% du temps. On dit 'implicite' parce qu'elle est dérivée des cotes, et non d'une estimation directe de probabilité."
+          },
+          {
+            "q": "Pourquoi les probabilités implicites de tous les résultats d'un marché dépassent-elles 100% ?",
+            "a": "Les bookmakers intègrent un 'overround' ou 'vig' — une marge qui leur assure un profit quel que soit le résultat. Dans un marché à deux issues avec des probabilités implicites de 55% et 52%, la somme est de 107% ; les 7% supplémentaires constituent l'avantage du bookmaker. Retirer l'overround en divisant chaque probabilité par le total et en la ramenant à 100% donne la probabilité 'sans vig' ou 'juste'. Trouver un pari dont la probabilité juste dépasse la probabilité sans vig est la définition d'un value bet."
+          },
+          {
+            "q": "Comment convertir les cotes américaines en cotes décimales ?",
+            "a": "Pour les cotes américaines positives : décimal = (Américaine / 100) + 1. Par exemple, +250 devient (250/100) + 1 = 3.50. Pour les cotes américaines négatives : décimal = (100 / |Américaine|) + 1. Par exemple, -150 devient (100/150) + 1 ≈ 1.667. Le calculateur effectue ces conversions automatiquement et affiche les trois formats simultanément."
+          },
+          {
+            "q": "Que sont les cotes 'evens' ?",
+            "a": "Evens signifie que le bénéfice est égal à la mise. En cotes américaines, cela correspond à +100 ; en cotes décimales, à 2.00 ; en cotes fractionnaires, à 1/1. La probabilité implicite d'evens est exactement de 50%. Une pièce équilibrée serait proposée à evens par un bookmaker sans marge."
+          },
+          {
+            "q": "Une probabilité implicite plus faible ou plus élevée est-elle meilleure pour un parieur ?",
+            "a": "Une probabilité implicite plus faible correspond à des cotes plus élevées, donc à un gain potentiel plus important par rapport à la mise. Cependant, 'meilleur' dépend entièrement de votre estimation de la probabilité réelle. Un pari à +500 (probabilité implicite ~16.7%) est un bon pari si vous pensez que la probabilité réelle est, par exemple, de 25%. Le même pari est mauvais si la probabilité réelle n'est que de 10%. Comparer votre estimation à la probabilité implicite est au cœur du value betting."
+          },
+          {
+            "q": "Les cotes décimales peuvent-elles être inférieures à 1.00 ?",
+            "a": "Non. Les cotes décimales représentent le retour total par unité misée, mise comprise, donc 1.00 vous rendrait exactement votre mise sans bénéfice — et en dessous de 1.00, vous recevriez moins que votre mise. En pratique, les cotes décimales les plus basses proposées sont généralement autour de 1.01, ce qui représente une probabilité implicite d'environ 99% pour un favori écrasant."
+          }
+        ]
+      }
+    },
+    "index-of-qualitative-variation-calculator": {
+      "title": "Calculateur d’indice de variation qualitative (IQV)",
+      "tagline": "Mesurez la diversité de données catégorielles avec l’indice de variation qualitative. Saisissez les fréquences des catégories pour calculer un IQV de 0 (aucune variation) à 1 (variation maximale).",
+      "intro": "Saisissez le nombre d’occurrences de chaque catégorie, séparé par des virgules, puis cliquez sur Calculer pour obtenir l’IQV et les métriques de dispersion associées.",
+      "field": {
+        "frequencies": "Fréquences des catégories",
+        "frequenciesHint": "Saisissez les effectifs de chaque catégorie séparés par des virgules, par exemple 48, 35, 12, 5"
+      },
+      "placeholder": {
+        "frequencies": "ex. 48, 35, 12, 5"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins deux fréquences non négatives séparées par des virgules."
+      },
+      "result": {
+        "heading": "IQV",
+        "n": "Observations totales (N)",
+        "k": "Nombre de catégories (K)",
+        "observedPairs": "Paires intercatégories observées",
+        "possiblePairs": "Paires intercatégories possibles",
+        "interpretation": {
+          "low": "Faible variation : la plupart des observations se concentrent dans une ou quelques catégories.",
+          "moderate": "Variation modérée : les observations sont réparties entre plusieurs catégories.",
+          "high": "Forte variation : les observations sont réparties presque uniformément entre toutes les catégories."
+        }
+      },
+      "about": {
+        "heading": "À propos du calculateur d’indice de variation qualitative",
+        "body": "L’indice de variation qualitative (IQV) est une mesure statistique de diversité ou de dispersion pour les données nominales (catégorielles) : des données qui appartiennent à des catégories nommées sans ordre numérique intrinsèque, comme l’affiliation politique, l’origine ethnique, la religion, la langue parlée ou la couleur des yeux. Comme les catégories nominales ne peuvent pas être soustraites ni classées, les mesures classiques de dispersion telles que la variance ou l’écart type ne s’appliquent pas. L’IQV comble cette lacune en mesurant dans quelle mesure les observations sont réparties uniformément entre les catégories, et produit un nombre unique compris entre 0 et 1.\n\nUn IQV de 0 signifie qu’il n’y a aucune variation : chaque observation appartient à la même catégorie. Un IQV de 1 signifie que la variation est maximale : chaque catégorie a exactement la même fréquence. Entre les deux, l’IQV augmente à mesure que la distribution devient plus uniforme. Un jeu de données à quatre catégories où une catégorie représente 90% des observations aurait un IQV proche de 0, tandis qu’un jeu de données à quatre catégories représentant chacune environ 25% se rapprocherait de 1.\n\nLa formule est : IQV = [K / (K − 1)] × [1 − Σpᵢ²], où K est le nombre de catégories et pᵢ la proportion d’observations dans la catégorie i. La quantité Σpᵢ² est l’indice de Herfindahl–Hirschman (également la somme des proportions au carré), qui est minimale lorsque toutes les proportions sont égales (1/K chacune, soit K × (1/K)² = 1/K) et maximale lorsque toutes les observations appartiennent à une seule catégorie (soit 1). La multiplication par K/(K−1) remet le résultat à l’échelle afin qu’une uniformité parfaite donne toujours IQV = 1, quel que soit le nombre de catégories.\n\nL’IQV peut aussi être dérivé du concept de paires : parmi toutes les paires possibles d’observations, quelle fraction provient de catégories différentes ? Le numérateur est le nombre de paires intercatégories (paires observées), et le dénominateur est le maximum possible de paires intercatégories, qui se produirait si les observations étaient réparties aussi uniformément que possible. Cette dérivation par comptage des paires donne le même nombre que la formule par proportions et fournit une intuition utile : l’IQV répond à la question « quelle fraction de toutes les paires aléatoires d’observations se compose de deux personnes issues de groupes différents ? »\n\nLes chercheurs en sciences sociales utilisent largement l’IQV pour mesurer la diversité raciale et ethnique des populations, l’hétérogénéité religieuse, la fragmentation des partis politiques et la diversité linguistique des pays. Les écologues utilisent une mesure équivalente appelée indice de diversité de Simpson. Les spécialistes des études de marché l’utilisent pour évaluer la concentration ou la fragmentation des parts de marché. Dans toutes ces applications, l’IQV fournit un nombre unique concis, normalisé et interprétable, comparable entre des populations de tailles et de nombres de catégories différents, ce qui le rend bien plus utile que de simples effectifs bruts par catégorie."
+      },
+      "examples": {
+        "heading": "Exemples d’IQV",
+        "intro": "Quatre scénarios montrant comment l’IQV varie selon la distribution des fréquences.",
+        "colInput": "Fréquences",
+        "colOutput": "IQV",
+        "colNote": "Interprétation",
+        "loadMaxVariation": "Charger la variation maximale (25, 25, 25, 25)",
+        "loadModerate": "Charger une distribution modérée (48, 35, 12, 5)",
+        "loadSkewed": "Charger une distribution asymétrique (80, 20)",
+        "items": [
+          {
+            "input": "25, 25, 25, 25 (quatre catégories égales)",
+            "output": "IQV = 1.0000",
+            "note": "Variation maximale parfaite. Chaque catégorie contient exactement 25% des observations : uniformité totale."
+          },
+          {
+            "input": "100, 0 (une catégorie dominante)",
+            "output": "IQV = 0.0000",
+            "note": "Aucune variation. Toutes les observations appartiennent à une seule catégorie ; la deuxième catégorie est vide."
+          },
+          {
+            "input": "48, 35, 12, 5 (enquête de sciences sociales)",
+            "output": "IQV ≈ 0.8403",
+            "note": "Variation modérée à forte. Distribution typique des réponses à une enquête à quatre options."
+          },
+          {
+            "input": "80, 20 (deux catégories, asymétrique)",
+            "output": "IQV = 0.6400",
+            "note": "Avec seulement deux catégories, IQV = 4×p×(1−p) = 4×0.8×0.2 = 0.64. Variation modérée."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur d’IQV",
+        "steps": [
+          "Comptez le nombre d’observations dans chaque catégorie. Par exemple, si 48 répondants ont choisi l’option A, 35 l’option B, 12 l’option C et 5 l’option D, vos fréquences sont 48, 35, 12, 5.",
+          "Saisissez ces fréquences dans le champ d’entrée, séparées par des virgules. L’ordre n’a pas d’importance : l’IQV dépend uniquement des valeurs de fréquence, et non d’un quelconque ordre des catégories.",
+          "Cliquez sur Calculer. L’outil affiche l’IQV (de 0 à 1), le total des observations N, le nombre de catégories K ainsi que les paires intercatégories observées et possibles.",
+          "Interprétez l’IQV : des valeurs proches de 0 indiquent que la plupart des observations se concentrent dans une catégorie (faible diversité), tandis que des valeurs proches de 1 indiquent que les observations sont réparties presque uniformément entre toutes les catégories (forte diversité).",
+          "Utilisez les boutons d’exemple pour charger des jeux de données prédéfinis et vérifier votre compréhension de l’indice avant de saisir vos propres données."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur l’IQV",
+        "items": [
+          {
+            "q": "Que signifie un IQV de 0.75 ?",
+            "a": "Un IQV de 0.75 signifie que 75% de toutes les paires possibles d’observations sélectionnées au hasard sont composées de deux individus appartenant à des catégories différentes. Il indique une diversité modérément élevée : les données ne sont pas concentrées dans une seule catégorie, mais les observations ne sont pas non plus parfaitement uniformes. Plus l’IQV est proche de 1, plus les catégories sont réparties uniformément."
+          },
+          {
+            "q": "Puis-je utiliser l’IQV pour des données ordinales ou numériques ?",
+            "a": "L’IQV est conçu pour les données nominales (catégorielles), où les catégories n’ont pas d’ordre ni de distance significatifs. Pour des données ordinales, où les catégories peuvent être classées mais les distances ne sont pas égales, ou pour des données numériques (intervalle/rapport), d’autres mesures comme la corrélation de rang, la variance ou l’écart type sont plus appropriées. Appliquer l’IQV à des catégories ordinales supprime l’information d’ordre et peut donner une image trompeuse de la dispersion des données."
+          },
+          {
+            "q": "Combien de catégories faut-il pour calculer l’IQV ?",
+            "a": "Il faut au moins deux catégories, car avec une seule catégorie chaque observation appartient au même groupe et il ne peut y avoir aucune variation. La formule de l’IQV divise par (K−1), donc K=1 est mathématiquement indéfini. Avec deux catégories et des fréquences p et (1−p), l’IQV se simplifie en 4×p×(1−p), qui atteint 1.0 lorsque p=0.5 (répartition égale) et vaut 0 lorsque p=0 ou p=1."
+          },
+          {
+            "q": "L’IQV est-il identique à l’indice de diversité de Simpson ?",
+            "a": "Ils sont très étroitement liés. L’indice de diversité de Simpson D = 1 − Σpᵢ² mesure la probabilité que deux individus sélectionnés au hasard appartiennent à des catégories différentes, et son complément vaut également 1 − Σpᵢ². L’IQV va plus loin en multipliant par K/(K−1) afin de normaliser le résultat, de sorte qu’une uniformité parfaite donne toujours exactement 1 quel que soit le nombre de catégories. Sans cette normalisation, la valeur maximale de 1 − Σpᵢ² dépend de K."
+          },
+          {
+            "q": "L’IQV change-t-il si je renomme ou réordonne mes catégories ?",
+            "a": "Non. La formule de l’IQV utilise uniquement les valeurs de fréquence (ou les proportions), pas les noms ni l’ordre des catégories. Vous pourriez renommer « Tout à fait d’accord » en « Catégorie 1 » ou inverser l’ordre dans la saisie, et l’IQV serait identique. Cela en fait une véritable mesure de dispersion pour les données nominales, où il n’existe aucun ordre naturel."
+          }
+        ]
+      }
     }
   }
 }

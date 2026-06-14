@@ -7760,6 +7760,526 @@
         "q6": "Kann ich ein Konfidenzintervall für einen Anteil berechnen?",
         "q6_a": "Ja, aber die Formel ist anders. Für einen Stichprobenanteil p̂ aus n Versuchen lautet das Wald-KI p̂ ± z* × √(p̂(1−p̂)/n). Dieser Rechner ist für Mittelwerte gedacht. Für Anteile — etwa den Anteil der Wähler, die einen Kandidaten unterstützen — verwenden Sie ein spezielles Werkzeug für Anteils-Konfidenzintervalle. Das Wilson-Score-Intervall wird bei kleinen Stichproben oder Anteilen nahe 0 oder 1 meist dem Wald-Verfahren vorgezogen."
       }
+    },
+    "confusion-matrix-calculator": {
+      "title": "Konfusionsmatrix-Rechner - Klassifikationsmetriken",
+      "tagline": "Klassifikationsleistung mit Accuracy, Precision, Recall, F1 und MCC analysieren",
+      "intro": "Geben Sie die Werte Ihrer Konfusionsmatrix ein, um Accuracy, Precision, Recall, Specificity, F1-Score und weitere Leistungsmetriken für die Analyse binärer Klassifikationen zu berechnen.",
+      "field": {
+        "tp": "Richtig Positive (TP)",
+        "fp": "Falsch Positive (FP)",
+        "tn": "Richtig Negative (TN)",
+        "fn": "Falsch Negative (FN)"
+      },
+      "button": {
+        "calculate": "Metriken berechnen",
+        "reset": "Rechner zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie in alle vier Felder nicht negative Ganzzahlen ein. Die Gesamtzahl (TP+FP+TN+FN) muss größer als 0 sein."
+      },
+      "result": {
+        "heading": "Klassifikationsmetriken",
+        "accuracy": "Accuracy",
+        "precision": "Precision (PPV)",
+        "recall": "Recall (Sensitivity)",
+        "specificity": "Specificity (TNR)",
+        "f1": "F1-Score",
+        "mcc": "MCC",
+        "npv": "NPV",
+        "fpr": "FPR",
+        "fnr": "FNR",
+        "total": "Gesamt"
+      },
+      "about": {
+        "heading": "Über den Konfusionsmatrix-Rechner",
+        "body": "Eine Konfusionsmatrix ist eine 2×2-Tabelle, die die Leistung eines binären Klassifikationsmodells zusammenfasst, indem sie die Häufigkeiten von vier Ergebnissen auflistet: Richtig Positive (TP), Falsch Positive (FP), Richtig Negative (TN) und Falsch Negative (FN). Aus diesen vier Zahlen lässt sich eine Vielzahl von Leistungsmetriken ableiten, von denen jede einen anderen Aspekt des Klassifikatorverhaltens misst.\n\nRichtig Positive (TP) sind Fälle, in denen das Modell die positive Klasse korrekt vorhergesagt hat. Falsch Positive (FP) sind Fälle, in denen das Modell positiv vorhersagte, das wahre Label aber negativ war — auch als Fehler 1. Art bezeichnet. Richtig Negative (TN) sind korrekte negative Vorhersagen. Falsch Negative (FN) sind Fälle, in denen das Modell eine positive Instanz übersehen hat — auch als Fehler 2. Art bezeichnet.\n\nWichtige aus der Konfusionsmatrix abgeleitete Metriken sind:\n\n• Accuracy = (TP + TN) / Gesamt — der Anteil aller Vorhersagen, die korrekt sind. Einfach zu interpretieren, aber bei unausgeglichenen Datensätzen irreführend.\n• Precision (Positive Predictive Value) = TP / (TP + FP) — von allen positiven Vorhersagen, wie viele tatsächlich positiv sind. Hohe Precision bedeutet wenige Fehlalarme.\n• Recall (Sensitivity, True Positive Rate) = TP / (TP + FN) — von allen tatsächlichen Positiven, wie viele erkannt wurden. Hoher Recall bedeutet wenige übersehene Positive.\n• Specificity (True Negative Rate) = TN / (TN + FP) — von allen tatsächlichen Negativen, wie viele korrekt identifiziert wurden. Wichtig beim medizinischen Screening.\n• F1-Score = 2 × (Precision × Recall) / (Precision + Recall) — das harmonische Mittel von Precision und Recall, das beide Metriken ausbalanciert. Nützlich bei unausgeglichenen Klassen.\n• Matthews Correlation Coefficient (MCC) = (TP×TN − FP×FN) / √((TP+FP)(TP+FN)(TN+FP)(TN+FN)) — eine ausbalancierte Metrik, die alle vier Felder der Konfusionsmatrix berücksichtigt. Sie reicht von −1 (vollständige Ablehnung) bis +1 (perfekte Übereinstimmung), wobei 0 eine zufällige Leistung anzeigt.\n\nDie Wahl der richtigen Metrik hängt von Ihrem Problem ab. Bei Betrugserkennung ist Recall entscheidend (niemals einen Betrug übersehen). Bei Spamfiltern ist Precision wichtiger (keine legitimen E-Mails blockieren). Bei der Früherkennung seltener Krankheiten sind sowohl Recall als auch Specificity wichtig. MCC und F1-Score sind bei unausgeglichenen Klassen meist aussagekräftiger als Accuracy allein."
+      },
+      "examples": {
+        "heading": "Beispiele",
+        "intro": "Die Tabelle zeigt Konfusionsmatrix-Eingaben und ihre resultierenden Leistungsmetriken.",
+        "colInput": "TP, FP, TN, FN",
+        "colOutput": "Wichtige Metriken",
+        "colNote": "Modelltyp",
+        "items": [
+          {
+            "input": "TP=92, FP=8, TN=88, FN=12",
+            "output": "Accuracy=90%, F1=0.9020, MCC=0.801",
+            "note": "Gut ausbalanciertes, leistungsstarkes Modell"
+          },
+          {
+            "input": "TP=45, FP=5, TN=95, FN=25",
+            "output": "Accuracy=82.35%, Precision=90%, Recall=64.29%",
+            "note": "Hohe Precision, konservative Vorhersagen"
+          },
+          {
+            "input": "TP=85, FP=30, TN=70, FN=10",
+            "output": "Accuracy=79.5%, Recall=89.5%, Specificity=70%",
+            "note": "Hoher Recall, sensibles Modell"
+          },
+          {
+            "input": "TP=48, FP=12, TN=188, FN=2",
+            "output": "Accuracy=94%, Sensitivity=96%, Specificity=94%",
+            "note": "Medizinischer Diagnosetest — hohe Sensitivität"
+          }
+        ],
+        "loadBalanced": "Ausgewogenes Modell",
+        "loadHighPrecision": "Modell mit hoher Precision",
+        "loadMedical": "Medizinischer Diagnosetest"
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Konfusionsmatrix-Rechner",
+        "steps": [
+          "Geben Sie die Anzahl der Richtig Positiven (TP) ein: Fälle, in denen das Modell die positive Klasse korrekt vorhergesagt hat.",
+          "Geben Sie Falsch Positive (FP) ein: Das Modell sagte positiv voraus, das wahre Label war jedoch negativ (Fehler 1. Art).",
+          "Geben Sie Richtig Negative (TN) ein und Falsch Negative (FN): übersehene Positive (Fehler 2. Art).",
+          "Klicken Sie auf „Metriken berechnen“, um Accuracy, Precision, Recall, Specificity, F1-Score, MCC, NPV, FPR und FNR sofort zu berechnen.",
+          "Nutzen Sie die Schnelllade-Beispielschaltflächen, um vorkonfigurierte Szenarien wie ausgewogene Modelle, Modelle mit hoher Precision und medizinische Tests zu erkunden."
+        ]
+      },
+      "faq": {
+        "heading": "Häufig gestellte Fragen",
+        "q1": "Was ist der Unterschied zwischen Precision und Recall?",
+        "q1_a": "Precision beantwortet die Frage „Von allen positiven Vorhersagen, wie viele waren korrekt?“, während Recall beantwortet „Von allen tatsächlichen Positiven, wie viele hat das Modell gefunden?“. Hohe Precision bedeutet wenige Falsch Positive (das Modell ist vorsichtig beim Labeln als positiv). Hoher Recall bedeutet wenige Falsch Negative (das Modell verpasst selten ein echtes Positiv). Normalerweise gibt es zwischen beiden einen Zielkonflikt, der durch den Entscheidungs-Schwellenwert gesteuert wird.",
+        "q2": "Warum ist Accuracy nicht immer die beste Metrik?",
+        "q2_a": "Accuracy kann bei unausgeglichenen Datensätzen irreführend sein. Wenn zum Beispiel nur 1 % der Transaktionen betrügerisch ist, erreicht ein Modell, das immer „kein Betrug“ vorhersagt, 99 % Accuracy, erkennt aber keinen einzigen Betrugsfall. In solchen Szenarien liefern Precision, Recall, F1-Score oder MCC ein wesentlich aussagekräftigeres Bild der Modellleistung.",
+        "q3": "Was ist der Matthews Correlation Coefficient (MCC)?",
+        "q3_a": "MCC ist eine einzelne, ausbalancierte Metrik, die alle vier Zellen der Konfusionsmatrix (TP, FP, TN, FN) berücksichtigt. Sie reicht von −1 bis +1, wobei +1 perfekte Vorhersage, 0 nicht besser als Zufall und −1 vollständige Ablehnung bedeutet. MCC gilt als eine der informativsten Metriken für binäre Klassifikation, besonders bei unausgeglichenen Datensätzen, da sie nicht durch große Klassenungleichgewichte aufgebläht wird.",
+        "q4": "Was misst Specificity und wann ist sie wichtig?",
+        "q4_a": "Specificity (True Negative Rate) = TN / (TN + FP) misst, wie gut das Modell Falsch Positive unter den tatsächlichen Negativen vermeidet. Sie ist besonders wichtig beim medizinischen Screening: Ein Test mit hoher Specificity minimiert die Zahl gesunder Menschen, die fälschlich als krank markiert werden, und reduziert unnötige Nachuntersuchungen sowie Patientenangst. Sensitivität (Recall) und Specificity definieren zusammen die ROC-Kurve.",
+        "q5": "Wie hängt der F1-Score mit Precision und Recall zusammen?",
+        "q5_a": "Der F1-Score ist das harmonische Mittel von Precision und Recall: F1 = 2 × (P × R) / (P + R). Das harmonische Mittel sorgt dafür, dass F1 niedrig ist, wenn entweder Precision oder Recall niedrig ist — man kann keinen hohen F1 erzielen, indem man eines zugunsten des anderen opfert. F1 reicht von 0 (schlecht) bis 1 (best) und ist die häufigste Einzelmetrik, wenn sowohl Falsch Positive als auch Falsch Negative ausbalanciert werden müssen.",
+        "q6": "Was ist der Unterschied zwischen Sensitivität und Specificity bei medizinischen Tests?",
+        "q6_a": "Sensitivität (Recall) ist die Wahrscheinlichkeit, dass der Test einen kranken Patienten korrekt erkennt: TP / (TP + FN). Ein sehr sensitiver Test übersieht nur wenige kranke Patienten und eignet sich daher zum Ausschluss einer Krankheit. Specificity ist die Wahrscheinlichkeit, dass der Test einen gesunden Patienten korrekt erkennt: TN / (TN + FP). Ein sehr spezifischer Test erzeugt wenige Falsch Positive und eignet sich daher zum Bestätigen einer Krankheit. Die meisten Diagnosetests sind ein Kompromiss zwischen beiden, dargestellt durch die ROC-Kurve."
+      }
+    },
+    "constant-of-proportionality-calculator": {
+      "title": "Proportionalitätskonstante y = kx",
+      "tagline": "Die Proportionalitätskonstante k in einer direkten Proportionalität y = kx finden",
+      "intro": "Dieses Tool hilft dir, die Proportionalitätskonstante (k) aus einem oder mehreren Wertepaaren (x, y) zu berechnen, die in einer direkten Proportionalität (y = kx) stehen. Füge mehrere Paare hinzu, um die Konsistenz zu prüfen.",
+      "field": {
+        "x": "X-Wert {n}",
+        "y": "Y-Wert {n}"
+      },
+      "placeholder": {
+        "number": "Eine Zahl eingeben"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen",
+        "addPair": "Paar hinzufügen",
+        "remove": "Entfernen"
+      },
+      "error": {
+        "invalid": "Bitte mindestens ein gültiges (x, y)-Paar eingeben, bei dem x ≠ 0 ist."
+      },
+      "result": {
+        "heading": "Ergebnis",
+        "equation": "y = {k} × x",
+        "consistent": "Alle Paare haben dieselbe Konstante — die Proportionalität ist bestätigt.",
+        "inconsistent": "Warnung: Die k-Werte unterscheiden sich zwischen den Paaren — die Beziehung ist möglicherweise nicht direkt proportional.",
+        "perPair": "k pro Paar"
+      },
+      "about": {
+        "heading": "Über den Rechner für die Proportionalitätskonstante",
+        "body": "Die Proportionalitätskonstante (k) beschreibt das Verhältnis zwischen zwei Größen, die in direkter Proportionalität stehen. Wenn wir sagen, dass y direkt proportional zu x ist, meinen wir y = k × x, wobei k ein konstanter Wert ist, der für jedes entsprechende Wertepaar (x, y) gleich bleibt. Die Konstante k gibt an, mit welcher Rate sich y pro Einheit Zuwachs in x verändert.\n\nUm k zu finden, teilst du einfach y durch x: k = y / x. Wenn du mehrere Datenpaare hast, sollte jedes Paar denselben k-Wert ergeben — das ist der definierende Test für direkte Proportionalität. Sind die k-Werte nicht gleich, ist die Beziehung nicht direkt proportional, auch wenn es sich um eine andere Beziehung handeln kann, etwa umgekehrte Proportionalität (y = k/x), eine Potenzbeziehung oder eine lineare Beziehung mit nicht-null Achsenabschnitt (y = mx + b).\n\nDie Proportionalitätskonstante begegnet uns in der Wissenschaft und im Alltag ständig. Das Ohmsche Gesetz besagt, dass die Spannung V = I × R ist, wobei R (der Widerstand) die Proportionalitätskonstante zwischen Strom und Spannung ist. In der Chemie ist die Dichte ρ = m / V die Proportionalitätskonstante zwischen Masse und Volumen. In der Physik bedeutet F = m × a, dass Beschleunigung und Kraft proportional sind, wobei die Masse die Konstante ist. In der Finanzwelt sind Beträge in zwei Währungen proportional, wenn der Wechselkurs fest ist.\n\nGrafisch verläuft eine direkte Proportionalität y = kx immer durch den Ursprung (0, 0), und k ist die Steigung dieser Geraden. Eine steilere Gerade hat ein größeres k, was bedeutet, dass y schneller relativ zu x wächst. Ist k > 0, steigen beide Variablen gemeinsam (positive Korrelation); ist k < 0, nimmt eine zu, während die andere abnimmt (inverse lineare Beziehung).\n\nDieser Rechner akzeptiert mehrere (x, y)-Paare und berechnet für jedes Paar k = y/x. Wenn alle Paare denselben k-Wert liefern, bestätigt das Tool die Proportionalität. Außerdem wird die Gleichung y = k × x angezeigt, damit du die Konstante nutzen kannst, um y für einen neuen x-Wert oder x für einen neuen y-Wert vorherzusagen."
+      },
+      "examples": {
+        "heading": "Beispiele",
+        "intro": "Die Tabelle unten zeigt Berechnungen der Proportionalitätskonstante aus realen Anwendungen.",
+        "colInput": "x, y",
+        "colOutput": "k = y/x",
+        "colNote": "Anwendung",
+        "items": [
+          {
+            "input": "x=10, y=300",
+            "output": "k = 30",
+            "note": "Kraftstoffeffizienz: 30 Meilen pro Gallone"
+          },
+          {
+            "input": "x=3, y=12",
+            "output": "k = 4",
+            "note": "Ohmsches Gesetz: 4 Ohm Widerstand"
+          },
+          {
+            "input": "x=50, y=45",
+            "output": "k = 0.9",
+            "note": "Wechselkurs: 0,9 EUR pro USD"
+          },
+          {
+            "input": "x=8, y=2",
+            "output": "k = 0.25",
+            "note": "Rezept: 0,25 Tassen Mehl pro Portion"
+          }
+        ],
+        "loadFuel": "Kraftstoffverbrauch",
+        "loadOhm": "Ohmsches Gesetz",
+        "loadRecipe": "Rezeptskalierung"
+      },
+      "howto": {
+        "heading": "So benutzt du den Rechner für die Proportionalitätskonstante",
+        "steps": [
+          "Gib zuerst den X-Wert und den Y-Wert des ersten Datenpaars ein. X muss ungleich 0 sein (Division durch Null ist nicht definiert).",
+          "Klicke auf 'Paar hinzufügen', um weitere (x, y)-Paare einzutragen, wenn du prüfen möchtest, ob mehrere Datenpunkte dieselbe Konstante teilen.",
+          "Klicke auf 'Berechnen', um für jedes Paar k = y/x zu berechnen und die Proportionalitätsgleichung y = k × x anzuzeigen.",
+          "Prüfe, ob alle k-Werte übereinstimmen. Wenn ja, bestätigen die Daten eine direkte Proportionalität. Wenn nicht, ist die Beziehung möglicherweise nicht y = kx.",
+          "Nutze die Schnelllade-Beispielschaltflächen, um reale Proportionalitätsszenarien aus Physik, Kochen und Finanzen zu erkunden."
+        ]
+      },
+      "faq": {
+        "heading": "Häufig gestellte Fragen",
+        "q1": "Was ist die Proportionalitätskonstante?",
+        "q1_a": "Die Proportionalitätskonstante k ist das feste Verhältnis k = y/x in der Beziehung y = kx. Sie beschreibt die Änderungsrate: Für jede Erhöhung von x um 1 Einheit steigt y um k Einheiten. Der Wert von k kann jede von null verschiedene reelle Zahl sein — positiv, negativ oder als Bruch. In vielen Anwendungsbereichen wird er auch als Einheitsrate bezeichnet.",
+        "q2": "Woran erkenne ich, ob zwei Variablen direkt proportional sind?",
+        "q2_a": "Zwei Variablen sind direkt proportional, wenn (1) ihr Verhältnis y/x für jeden Datenpunkt gleich ist und (2) bei x = 0 auch y = 0 gilt. Du kannst das prüfen, indem du für jedes (x, y)-Paar k = y/x berechnest — wenn alle Werte gleich sind (oder wegen Rundung fast gleich), sind die Variablen direkt proportional. Grafisch sollten alle Punkte auf einer Geraden durch den Ursprung liegen.",
+        "q3": "Was ist der Unterschied zwischen direkter und umgekehrter Proportionalität?",
+        "q3_a": "Bei direkter Proportionalität (y = kx) steigt y mit zunehmendem x proportional an, und das Verhältnis y/x bleibt konstant. Bei umgekehrter Proportionalität (y = k/x) sinkt y, wenn x steigt, und das Produkt x × y bleibt konstant. Beispiel: Geschwindigkeit und Reisezeit bei fester Strecke sind umgekehrt proportional — doppelte Geschwindigkeit halbiert die Zeit.",
+        "q4": "Kann k negativ sein?",
+        "q4_a": "Ja. Ein negatives k bedeutet, dass y und x sich in entgegengesetzte Richtungen verändern. Wenn ein Auto zum Beispiel pro Kilometer 0,5 Liter Kraftstoff verbraucht, dann gilt für den verbleibenden Kraftstoff F = F₀ − 0,5d. Der proportionale Teil (Kraftstoffänderung) = −0,5 × (Strecke), also ist k = −0,5. Das ist eine gültige Proportionalitätskonstante für die inkrementelle Beziehung.",
+        "q5": "Warum darf x nicht null sein?",
+        "q5_a": "Die Formel k = y/x erfordert die Division durch x. Division durch Null ist mathematisch nicht definiert. In der Beziehung y = kx muss bei x = 0 auch y = 0 sein, unabhängig von k — der Ursprung (0, 0) liefert also keine Information über k. Verwende zur Bestimmung der Konstante immer von null verschiedene x-Werte.",
+        "q6": "Wie wird die Proportionalitätskonstante in der Wissenschaft verwendet?",
+        "q6_a": "Sie taucht in nahezu allen Wissenschaftsbereichen auf: Ohmsches Gesetz (V = IR, R ist die Proportionalitätskonstante), Hookesches Gesetz (F = kx, k ist die Federsteifigkeit), Newtons zweites Gesetz (F = ma, m ist die Proportionalitätskonstante zwischen Kraft und Beschleunigung), das Beer-Lambert-Gesetz in der Chemie (Absorbanz = ε × c × l) und die Gravitationskraft zwischen zwei Massen (F = G × m₁m₂/r²). Die Proportionalitätskonstante zu identifizieren ist oft der erste Schritt bei der Modellierung eines physikalischen Systems."
+      }
+    },
+    "hypothesis-testing-calculator": {
+      "title": "Hypothesentest-Rechner - Z-, T-Test und p-Wert",
+      "tagline": "Führen Sie Z- und T-Tests für Mittelwerte und Anteilswerte durch. Geben Sie Ihre Stichprobendaten ein, um in Sekunden Teststatistik, p-Wert und kritischen Wert zu berechnen.",
+      "intro": "Wählen Sie den Testtyp und die Alternativhypothese, geben Sie Ihre Daten ein und klicken Sie auf Berechnen, um festzustellen, ob die Nullhypothese verworfen werden soll.",
+      "field": {
+        "testType": "Testtyp",
+        "alternative": "Alternativhypothese (H₁)",
+        "nullValue": "Wert der Nullhypothese (μ₀ oder p₀)",
+        "alpha": "Signifikanzniveau (α)",
+        "sampleSize": "Stichprobengröße (n)",
+        "sampleMean": "Stichprobenmittelwert (x̄)",
+        "sigma": "Populations-Standardabweichung (σ)",
+        "sampleStdDev": "Stichproben-Standardabweichung (s)",
+        "sampleProportion": "Stichprobenanteil (p̂)"
+      },
+      "placeholder": {
+        "number": "Eine Zahl eingeben",
+        "integer": "Eine ganze Zahl eingeben"
+      },
+      "type": {
+        "zTestMean": "Z-Test (Mittelwert, σ bekannt)",
+        "tTestMean": "T-Test (Mittelwert, σ unbekannt)",
+        "zTestProportion": "Z-Test (Anteil)"
+      },
+      "tail": {
+        "twoTailed": "Zweiseitig (≠)",
+        "leftTailed": "Linksseitig (<)",
+        "rightTailed": "Rechtsseitig (>)"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte prüfen Sie Ihre Eingaben. Stellen Sie sicher, dass die Stichprobengröße ≥ 2 ist, α zwischen 0 und 1 liegt und σ oder s positiv ist."
+      },
+      "result": {
+        "heading": "Ergebnisse",
+        "statistic": "Teststatistik",
+        "df": "Freiheitsgrade",
+        "pValue": "p-Wert",
+        "criticalValue": "Kritischer Wert (±)",
+        "reject": "H₀ verwerfen — beim gewählten α statistisch signifikant.",
+        "failReject": "H₀ nicht verwerfen — beim gewählten α nicht statistisch signifikant."
+      },
+      "about": {
+        "heading": "Über den Hypothesentest-Rechner",
+        "body": "Der Hypothesentest ist das Rückgrat der inferentiellen Statistik. Er bietet einen fundierten, probabilistischen Rahmen, um zu entscheiden, ob die gesammelten Daten mit einer theoretischen Behauptung — der Nullhypothese — vereinbar sind oder ob die Evidenz stark genug ist, diese Behauptung zugunsten einer Alternative zu verwerfen. Jedes Experiment in Medizin, Psychologie, Wirtschaft, technischer Qualitätskontrolle und A/B-Testing von Webseiten läuft am Ende auf irgendeine Form des Hypothesentests hinaus.\n\nDie Nullhypothese (H₀) ist die Standardannahme: Es ist nichts passiert, die Behandlung hat keinen Effekt, der Prozess liegt im Soll oder die Anteile haben sich nicht geändert. Die Alternativhypothese (H₁) ist das, was Sie erkennen möchten: Der Mittelwert hat sich verschoben, der Anteil hat sich geändert oder eine Behandlung ist besser als eine andere. Das Signifikanzniveau α — üblicherweise 0.05 oder 0.01 — ist die Wahrscheinlichkeit, H₀ fälschlich zu verwerfen, obwohl sie tatsächlich wahr ist (Fehler 1. Art). Ist der vom Test zurückgegebene p-Wert kleiner als α, verwerfen Sie H₀.\n\nDer Z-Test für Mittelwerte ist geeignet, wenn die Populations-Standardabweichung σ bekannt ist und entweder die Stichprobe groß ist (n ≥ 30) oder die Population normalverteilt ist. Die Teststatistik lautet Z = (x̄ − μ₀) / (σ / √n). Da σ bekannt ist, folgt die Statistik exakt der Standardnormalverteilung, und der p-Wert wird aus der Normalverteilung abgelesen. Der T-Test für Mittelwerte wird verwendet, wenn σ unbekannt ist, was in den meisten realen Studien die realistische Situation ist. Dann wird die Stichproben-Standardabweichung s verwendet, und die Teststatistik T = (x̄ − μ₀) / (s / √n) folgt einer t-Verteilung mit df = n − 1 Freiheitsgraden. Bei kleinen Stichproben hat die t-Verteilung schwerere Tails als die Normalverteilung, wodurch es schwieriger wird, Signifikanz zu erreichen — eine sinnvolle Strafe für die zusätzliche Unsicherheit über σ.\n\nDer Z-Test für Anteile prüft, ob ein beobachteter Stichprobenanteil p̂ mit einem angenommenen Populationsanteil p₀ vereinbar ist. Der Standardfehler ist √(p₀(1 − p₀) / n), und die Teststatistik lautet Z = (p̂ − p₀) / SE. Dieser Test wird häufig in A/B-Tests, primären Endpunkten klinischer Studien und Qualitätsregelkarten für Ausschussanteile verwendet.\n\nBei einem zweiseitigen Test verwerfen Sie H₀, wenn |Statistik| > kritischer Wert, womit Abweichungen in beide Richtungen erfasst werden. Bei einem einseitigen Test (links oder rechts) legen Sie die Richtung im Voraus fest; das erhöht die Power, eine Verschiebung in dieser Richtung zu erkennen, kann aber eine unerwartete Verschiebung in die andere Richtung nicht markieren. Der angezeigte kritische Wert ist die rechte Grenzmarke; bei einem linksseitigen Test ist die relevante Grenze ihr Negativwert.\n\nDer p-Wert ist die Wahrscheinlichkeit, unter der Annahme, dass H₀ wahr ist, eine Teststatistik zu beobachten, die mindestens so extrem ist wie die berechnete. Ein p-Wert von 0.03 bedeutet nicht, dass die Nullhypothese mit 3% Wahrscheinlichkeit wahr ist; er bedeutet, dass man bei wahrer H₀ nur mit 3% Wahrscheinlichkeit durch zufällige Stichproben derart extreme oder extremere Daten sehen würde. Statistische Signifikanz ist nicht dasselbe wie praktische Signifikanz: Ein kleiner Effekt kann bei großem n hochsignifikant sein, während ein großer Effekt bei kleinem n die Signifikanz verfehlen kann. Kombinieren Sie den p-Wert immer mit Effektgröße und Konfidenzintervall."
+      },
+      "examples": {
+        "heading": "Beispiele für Hypothesentests",
+        "intro": "Praxisnahe Szenarien, die jeden Testtyp und jede Tails-Richtung illustrieren.",
+        "colInput": "Szenario",
+        "colOutput": "Ergebnis",
+        "colNote": "Interpretation",
+        "items": [
+          {
+            "input": "Qualitätskontrolle: x̄=10.01mm, μ₀=10mm, σ=0.03, n=50, α=0.05, zweiseitiger Z-Test",
+            "output": "Z=2.357, p=0.0184 → H₀ verwerfen",
+            "note": "Der mittlere Bolzendurchmesser hat sich signifikant vom 10-mm-Ziel verschoben; der Prozess muss angepasst werden."
+          },
+          {
+            "input": "Arzneimittelstudie: x̄=12 mmHg, μ₀=10, s=3, n=30, α=0.05, rechtsseitiger T-Test",
+            "output": "T=3.651, df=29, p=0.0005 → H₀ verwerfen",
+            "note": "Starker Hinweis darauf, dass das Medikament den Blutdruck im Mittel um mehr als 10 mmHg senkt."
+          },
+          {
+            "input": "A/B-Test: p̂=0.095, p₀=0.08, n=1000, α=0.05, rechtsseitiger Z-Test (Anteil)",
+            "output": "Z=1.750, p=0.0401 → H₀ verwerfen",
+            "note": "Das neue Button-Design erhöht die Klickrate signifikant über die Basis von 8%."
+          },
+          {
+            "input": "Kraftstoffeffizienz: x̄=29 mpg, μ₀=30, σ=2, n=40, α=0.01, linksseitiger Z-Test",
+            "output": "Z=−3.162, p=0.0008 → H₀ verwerfen",
+            "note": "Auf dem 1%-Niveau gibt es Evidenz dafür, dass die Kraftstoffeffizienz des Modells unter den beworbenen 30 mpg liegt."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Hypothesentest-Rechner",
+        "steps": [
+          "Wählen Sie den Testtyp: Z-Test (Mittelwert), wenn σ bekannt ist; T-Test (Mittelwert), wenn σ unbekannt ist und Sie eine Stichproben-Standardabweichung haben; oder Z-Test (Anteil) für kategoriale Ergebnisse.",
+          "Wählen Sie die Richtung der Alternativhypothese — zweiseitig, um jede Änderung zu erkennen, linksseitig für eine Abnahme oder rechtsseitig für eine Zunahme.",
+          "Geben Sie den Wert der Nullhypothese ein (μ₀ für Mittelwerttests oder p₀ für Anteilstests), Ihr gewähltes Signifikanzniveau α (typischerweise 0.05) und die Stichprobengröße n.",
+          "Füllen Sie das verbleibende Feld aus: Stichprobenmittelwert x̄ und Populations-Standardabweichung σ für Z-Test (Mittelwert); Stichprobenmittelwert x̄ und Stichproben-Standardabweichung s für T-Test; oder Stichprobenanteil p̂ für Z-Test (Anteil).",
+          "Klicken Sie auf Berechnen. Das Tool zeigt die Teststatistik, die Freiheitsgrade (nur T-Test), den p-Wert, den kritischen Wert und die Entscheidung Verwerfen/Nicht verwerfen an."
+        ]
+      },
+      "faq": {
+        "heading": "Häufige Fragen zum Hypothesentest",
+        "items": [
+          {
+            "q": "Was ist der Unterschied zwischen einem Z-Test und einem T-Test?",
+            "a": "Ein Z-Test wird verwendet, wenn die Populations-Standardabweichung σ bekannt ist, wodurch sich exakte p-Werte mit der Standardnormalverteilung berechnen lassen. Ein T-Test wird verwendet, wenn σ unbekannt ist und aus der Stichproben-Standardabweichung s geschätzt werden muss; die resultierende Teststatistik folgt einer t-Verteilung mit n−1 Freiheitsgraden, die zur Berücksichtigung der zusätzlichen Unsicherheit schwerere Tails als die Normalverteilung hat. Mit wachsender Stichprobengröße konvergiert die t-Verteilung gegen die Normalverteilung, daher ist der Unterschied vor allem bei kleinen Stichproben relevant (etwa n < 30)."
+          },
+          {
+            "q": "Was bedeutet der p-Wert eigentlich?",
+            "a": "Der p-Wert ist die Wahrscheinlichkeit, unter der Annahme der wahren Nullhypothese eine Teststatistik zu erhalten, die mindestens so extrem ist wie die beobachtete. Er ist nicht die Wahrscheinlichkeit, dass H₀ wahr ist, und auch nicht die Wahrscheinlichkeit, dass Ihr Ergebnis zufällig entstanden ist. Ein p-Wert unter α (üblich 0.05) bedeutet, dass die beobachteten Daten überraschend wären, wenn H₀ wahr wäre, also verwerfen Sie H₀. Ein p-Wert über α bedeutet, dass die Daten mit H₀ vereinbar sind, also verwerfen Sie sie nicht — das beweist aber nicht, dass H₀ korrekt ist."
+          },
+          {
+            "q": "Wann sollte ich einen einseitigen statt einen zweiseitigen Test verwenden?",
+            "a": "Verwenden Sie einen zweiseitigen Test, wenn ein Unterschied in beide Richtungen wissenschaftlich relevant ist und Sie keinen starken Grund für eine bestimmte Richtung haben. Verwenden Sie einen einseitigen Test, wenn Theorie oder Vorwissen die Richtung des Effekts bereits vor der Datenerhebung klar festlegen. Nachträglich auf einen einseitigen Test umzuschalten, um Signifikanz zu erzielen, ist p-Hacking und ungültig. Ein einseitiger Test bei α=0.05 entspricht einem zweiseitigen Test bei α=0.10."
+          },
+          {
+            "q": "Was ist das Signifikanzniveau α und wie wähle ich es?",
+            "a": "Das Signifikanzniveau α ist die maximal akzeptable Wahrscheinlichkeit eines Fehlers 1. Art — also eine wahre Nullhypothese fälschlich zu verwerfen. Der übliche Wert ist 0.05 (5%), aber 0.01 wird verwendet, wenn Fehlalarme besonders teuer sind (medizinische Diagnostik, sicherheitskritische Systeme). In manchen Fachgebieten wird inzwischen empfohlen, exakte p-Werte statt eines festen Schwellenwerts zu berichten und sie mit Konfidenzintervallen und Effektgrößen zu kombinieren."
+          },
+          {
+            "q": "Was sind Fehler 1. und 2. Art?",
+            "a": "Ein Fehler 1. Art (falsch positiv) liegt vor, wenn Sie H₀ verwerfen, obwohl sie wahr ist; seine Wahrscheinlichkeit ist α. Ein Fehler 2. Art (falsch negativ) liegt vor, wenn Sie H₀ nicht verwerfen, obwohl sie falsch ist; seine Wahrscheinlichkeit ist β, und die Teststärke ist 1−β. Eine Senkung von α macht das Verwerfungs-Kriterium strenger, was Fehler 1. Art reduziert, aber Fehler 2. Art erhöht. Eine Erhöhung der Stichprobengröße ist der sauberste Weg, beide gleichzeitig zu verringern."
+          },
+          {
+            "q": "Kann ich diesen Rechner für Anteilswerte aus Umfragen verwenden?",
+            "a": "Ja — der Modus Z-Test für Anteile ist genau dafür gedacht. Geben Sie den hypothesisierten Populationsanteil p₀ (Ihren Basis- oder theoretischen Wert), Ihre Stichprobengröße n und den beobachteten Stichprobenanteil p̂ (Erfolge geteilt durch n) ein. Der Rechner verwendet die Standardformel Z = (p̂ − p₀) / √(p₀(1−p₀)/n). Die Normalapproximation ist zuverlässig, wenn sowohl n·p₀ als auch n·(1−p₀) größer als 5 oder 10 sind."
+          }
+        ]
+      }
+    },
+    "implied-probability-calculator": {
+      "title": "Rechner für implizite Wahrscheinlichkeit - Wettquoten umrechnen",
+      "tagline": "Wandeln Sie amerikanische, Dezimal- oder Bruchquoten sofort in eine implizite Wahrscheinlichkeitsprozentzahl um — das unverzichtbare Tool für die Value-Analyse im Sportwettenbereich.",
+      "intro": "Wählen Sie das Quotenformat, geben Sie die Quote ein und klicken Sie auf Berechnen, um die implizite Wahrscheinlichkeit und die äquivalenten Quoten in allen drei Formaten zu sehen.",
+      "field": {
+        "oddsFormat": "Quotenformat",
+        "odds": "Quote",
+        "fractional": "Bruchquote (Zähler / Nenner)"
+      },
+      "placeholder": {
+        "american": "z. B. -150 oder +250",
+        "decimal": "z. B. 1.75",
+        "numerator": "z. B. 5",
+        "denominator": "z. B. 2"
+      },
+      "format": {
+        "american": "Amerikanisch",
+        "american_desc": "Negative Quoten (z. B. -150) kennzeichnen den Favoriten; positive Quoten (z. B. +250) den Außenseiter. Wird vor allem im nordamerikanischen Sportwettenbereich verwendet.",
+        "decimal": "Dezimal",
+        "decimal_desc": "Dezimalquoten geben die Gesamtrückzahlung pro eingesetzter Einheit inklusive Einsatz an. Werte müssen größer als 1 sein. In Europa, Australien und Asien üblich.",
+        "fractional": "Bruch",
+        "fractional_desc": "Bruchquoten drücken den Gewinn im Verhältnis zum Einsatz aus (z. B. bedeutet 5/2: 5 Gewinn für je 2 Einsatz). Traditionelles Format beim britischen Pferderennen."
+      },
+      "button": {
+        "calculate": "Wahrscheinlichkeit berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte gültige Quoten eingeben. Dezimalquoten müssen größer als 1 sein; Zähler und Nenner bei Bruchquoten müssen positiv sein."
+      },
+      "result": {
+        "heading": "Implizite Wahrscheinlichkeit",
+        "probability": "Implizite Wahrscheinlichkeit",
+        "decimalOdds": "Dezimalquote",
+        "americanOdds": "Amerikanische Quote",
+        "fractionalOdds": "Bruchquote"
+      },
+      "about": {
+        "heading": "Über den Rechner für implizite Wahrscheinlichkeit",
+        "body": "Die implizite Wahrscheinlichkeit ist die Umrechnung von Wettquoten in einen Prozentsatz, der die Einschätzung des Buchmachers zur Eintrittswahrscheinlichkeit eines bestimmten Ergebnisses darstellt. Wenn ein Buchmacher Quoten setzt, drückt er damit effektiv eine Wahrscheinlichkeit aus. Zu verstehen, wie man zwischen Quotenformaten und impliziter Wahrscheinlichkeit umrechnet, ist die Grundlage des Value Betting — also Märkte zu identifizieren, bei denen die tatsächliche Wahrscheinlichkeit eines Ergebnisses höher ist als die implizite Wahrscheinlichkeit des Buchmachers.\n\nAmerikanische Quoten, auch Moneyline-Quoten genannt, sind das dominierende Format im nordamerikanischen Sportwettenbereich. Negative amerikanische Quoten kennzeichnen den Favoriten und zeigen, wie viel Sie setzen müssen, um 100 Dollar Gewinn zu erzielen. Zum Beispiel bedeuten -150, dass Sie 150 Dollar riskieren, um 100 Dollar zu gewinnen, und die implizite Wahrscheinlichkeit beträgt 150 / (150 + 100) = 60%. Positive amerikanische Quoten kennzeichnen den Außenseiter und zeigen, wie viel Gewinn ein Einsatz von 100 Dollar bringt. +250 bedeutet, dass ein Einsatz von 100 Dollar 250 Dollar Gewinn bringt, und die implizite Wahrscheinlichkeit beträgt 100 / (250 + 100) = 28.57%. Die beiden Seiten eines Marktes mit zwei Ausgängen sollten idealerweise zusammen 100% ergeben, doch Buchmacher bauen eine Überrunde (oder vig) ein, sodass die Summe der impliziten Wahrscheinlichkeiten typischerweise über 100% liegt und unabhängig vom Ausgang eine Marge sichert.\n\nDezimalquoten, auch europäische Quoten genannt, geben die Gesamtrückzahlung pro eingesetzter Einheit einschließlich des Einsatzes an. Eine Quote von 1.75 bedeutet, dass Sie für jeden 1 Dollar Einsatz 1.75 Dollar zurückerhalten (0.75 Dollar Gewinn). Die implizite Wahrscheinlichkeit ist einfach 1 / Dezimalquote = 1 / 1.75 ≈ 57.14%. Dezimalquoten über 2.00 entsprechen positiven amerikanischen Quoten (Außenseiter), und Dezimalquoten zwischen 1.00 und 2.00 entsprechen negativen amerikanischen Quoten (Favoriten). Dezimalquoten unter 1.00 werden nicht angeboten, weil sie einen garantierten Verlust bedeuten würden — der Buchmacher würde Ihnen weniger als Ihren Einsatz auszahlen.\n\nBruchquoten, das traditionelle britische Format, drücken das Verhältnis von Gewinn zu Einsatz aus. Eine Quote von 5/2 bedeutet 5 Gewinn für je 2 Einsatz, also bringt ein 2-Dollar-Einsatz insgesamt 7 Dollar zurück. Die implizite Wahrscheinlichkeit ist Nenner / (Zähler + Nenner) = 2 / (5 + 2) = 28.57%, also dasselbe wie +250 amerikanisch oder 3.50 dezimal. 1/1 wird als 'evens' bezeichnet und steht für eine Wahrscheinlichkeit von 50%.\n\nDie Überrunde ist die Summe aller impliziten Wahrscheinlichkeiten in einem Markt minus 100%. Ein typischer Zwei-Wege-Markt könnte implizite Wahrscheinlichkeiten von 52% und 52% haben, also 104% insgesamt — die zusätzlichen 4% sind der eingebaute Vorteil des Buchmachers. Wenn man die Überrunde entfernt, indem man jede implizite Wahrscheinlichkeit durch die Summe teilt und auf 100% skaliert, erhält man die 'faire' Wahrscheinlichkeit, die der Markt jedem Ausgang zuweist. Value Betting bedeutet, Ergebnisse zu finden, bei denen Ihre geschätzte tatsächliche Wahrscheinlichkeit die faire Wahrscheinlichkeit des Buchmachers übersteigt — solche Wetten haben langfristig einen positiven Erwartungswert.\n\nDer Rechner für implizite Wahrscheinlichkeit wandelt in beide Richtungen zwischen allen drei Hauptformaten um, sodass Sie Quoten verschiedener Buchmacher in unterschiedlichen Formaten sofort vergleichen, das beste Angebot identifizieren und verfolgen können, ob sich eine Linie in Richtung oder weg von Ihrer Schätzung der tatsächlichen Wahrscheinlichkeit bewegt."
+      },
+      "examples": {
+        "heading": "Beispiele für implizite Wahrscheinlichkeit",
+        "intro": "Klicken Sie auf eine Beispielschaltfläche, um die Werte in den Rechner zu laden.",
+        "colInput": "Quote",
+        "colOutput": "Implizite Wahrscheinlichkeit",
+        "colNote": "Kontext",
+        "loadFavorite": "Favorit laden (-150)",
+        "loadUnderdog": "Außenseiter laden (+250)",
+        "loadDecimal": "Dezimalquote laden (1.75)",
+        "loadFractional": "Bruchquote laden (5/2)",
+        "items": [
+          {
+            "input": "Amerikanisch -150 (Favorit)",
+            "output": "60.00%",
+            "note": "Der Buchmacher impliziert eine 60%ige Chance auf dieses Ergebnis. Sie müssen 150 Dollar riskieren, um 100 Dollar Gewinn zu erzielen."
+          },
+          {
+            "input": "Amerikanisch +250 (Außenseiter)",
+            "output": "28.57%",
+            "note": "Nur eine implizite Gewinnchance von 28.57%, aber ein Einsatz von 100 Dollar bringt 250 Dollar Gewinn, wenn er korrekt ist."
+          },
+          {
+            "input": "Dezimal 1.75",
+            "output": "57.14%",
+            "note": "Standard-Europäisches Format. Ein Einsatz von 1 € bringt insgesamt 1.75 € zurück. Entspricht -133 amerikanisch."
+          },
+          {
+            "input": "Bruch 5/2",
+            "output": "28.57%",
+            "note": "Klassische britische Pferderennquote. 5 Gewinn für je 2 Einsatz. Entspricht +250 amerikanisch oder 3.50 dezimal."
+          },
+          {
+            "input": "Dezimal 2.00 (evens)",
+            "output": "50.00%",
+            "note": "Even Money — der Buchmacher impliziert eine Münzwurf-Chance. Entspricht +100 amerikanisch oder 1/1 bruch."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Rechner für implizite Wahrscheinlichkeit",
+        "steps": [
+          "Wählen Sie das von Ihrem Buchmacher verwendete Quotenformat: Amerikanisch (Moneyline), Dezimal (europäisch) oder Bruch (UK).",
+          "Geben Sie den Quotenwert ein. Bei amerikanischen Quoten geben Sie für Favoriten eine negative Zahl ein (z. B. -150) und für Außenseiter eine positive Zahl (z. B. +250). Bei Dezimalquoten geben Sie den Multiplikator ein (z. B. 1.75). Bei Bruchquoten geben Sie Zähler und Nenner separat ein (z. B. 5 und 2 für 5/2).",
+          "Klicken Sie auf Wahrscheinlichkeit berechnen. Das Ergebnis zeigt die implizite Wahrscheinlichkeit als Prozentsatz sowie die äquivalenten Quoten in allen drei Formaten.",
+          "Vergleichen Sie die implizite Wahrscheinlichkeit mit Ihrer eigenen Schätzung der tatsächlichen Wahrscheinlichkeit. Wenn Ihre Schätzung die implizite Wahrscheinlichkeit übersteigt, hat die Wette einen positiven Erwartungswert.",
+          "Verwenden Sie die Beispielschaltflächen, um gängige Quotenszenarien schnell zu laden und Ihr Verständnis der Umrechnungsformeln zu überprüfen."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zur impliziten Wahrscheinlichkeit",
+        "items": [
+          {
+            "q": "Was ist die implizite Wahrscheinlichkeit beim Wetten?",
+            "a": "Die implizite Wahrscheinlichkeit ist die Umrechnung der Buchmacherquote in einen Prozentsatz, der die Wahrscheinlichkeit darstellt, die der Buchmacher einem Ergebnis zuweist. Bei einer Quote von -150 beträgt die implizite Wahrscheinlichkeit 60% — das bedeutet, dass das Modell des Buchmachers davon ausgeht, dass das Ergebnis in 60% der Fälle eintritt. Sie heißt 'implizit', weil sie aus der Quote abgeleitet wird und nicht aus einer direkten Wahrscheinlichkeitsschätzung."
+          },
+          {
+            "q": "Warum summieren sich die impliziten Wahrscheinlichkeiten aller Ergebnisse in einem Markt auf mehr als 100%?",
+            "a": "Buchmacher bauen eine 'Überrunde' oder 'vig' ein — eine Marge, die sicherstellt, dass sie unabhängig vom Ergebnis profitieren. In einem Zwei-Wege-Markt mit impliziten Wahrscheinlichkeiten von 55% und 52% ergibt die Summe 107%; die zusätzlichen 7% sind der Vorteil des Buchmachers. Wenn man die Überrunde entfernt, indem man jede Wahrscheinlichkeit durch die Summe teilt und auf 100% skaliert, erhält man die 'no-vig' oder 'faire' Wahrscheinlichkeit. Eine Wette zu finden, deren faire Wahrscheinlichkeit die no-vig-Wahrscheinlichkeit übersteigt, ist die Definition einer Value-Wette."
+          },
+          {
+            "q": "Wie konvertiere ich amerikanische Quoten in Dezimalquoten?",
+            "a": "Für positive amerikanische Quoten gilt: Dezimal = (Amerikanisch / 100) + 1. Zum Beispiel wird +250 zu (250/100) + 1 = 3.50. Für negative amerikanische Quoten gilt: Dezimal = (100 / |Amerikanisch|) + 1. Zum Beispiel wird -150 zu (100/150) + 1 ≈ 1.667. Der Rechner führt diese Umrechnungen automatisch durch und zeigt alle drei Formate gleichzeitig an."
+          },
+          {
+            "q": "Was sind 'Even Money'-Quoten?",
+            "a": "Even Money (auch 'evens') bedeutet, dass der Gewinn dem Einsatz entspricht. Bei amerikanischen Quoten ist das +100; bei Dezimalquoten 2.00; bei Bruchquoten 1/1. Die implizite Wahrscheinlichkeit von Evens beträgt genau 50%. Ein fairer Münzwurf würde von einem Buchmacher ohne Marge zu Evens angeboten."
+          },
+          {
+            "q": "Ist eine niedrigere oder höhere implizite Wahrscheinlichkeit besser für einen Wetter?",
+            "a": "Eine niedrigere implizite Wahrscheinlichkeit entspricht höheren Quoten, also einer größeren potenziellen Auszahlung im Verhältnis zum Einsatz. 'Besser' hängt jedoch vollständig von Ihrer Einschätzung der tatsächlichen Wahrscheinlichkeit ab. Eine Wette zu +500 (implizite Wahrscheinlichkeit ~16.7%) ist eine gute Wette, wenn Sie glauben, dass die tatsächliche Wahrscheinlichkeit beispielsweise 25% beträgt. Dieselbe Wette ist schlecht, wenn die tatsächliche Wahrscheinlichkeit nur 10% beträgt. Der Vergleich Ihrer geschätzten Wahrscheinlichkeit mit der impliziten Wahrscheinlichkeit ist das Herzstück des Value Betting."
+          },
+          {
+            "q": "Können Dezimalquoten unter 1.00 liegen?",
+            "a": "Nein. Dezimalquoten stellen die Gesamtrückzahlung pro eingesetzter Einheit einschließlich des Einsatzes dar, daher würde 1.00 genau Ihren Einsatz ohne Gewinn zurückzahlen — und unter 1.00 würde weniger als Ihr Einsatz zurückkommen. In der Praxis liegen die niedrigsten angebotenen Dezimalquoten meist bei etwa 1.01, was einer impliziten Wahrscheinlichkeit von rund 99% für einen überwältigenden Favoriten entspricht."
+          }
+        ]
+      }
+    },
+    "index-of-qualitative-variation-calculator": {
+      "title": "Rechner für den Index qualitativer Variation (IQV)",
+      "tagline": "Messen Sie die Vielfalt kategorialer Daten mit dem Index qualitativer Variation. Geben Sie Kategoriehäufigkeiten ein, um den IQV von 0 (keine Variation) bis 1 (maximale Variation) zu berechnen.",
+      "intro": "Geben Sie die Häufigkeit jeder Kategorie durch Kommas getrennt ein und klicken Sie auf Berechnen, um den IQV und zugehörige Streuungskennzahlen zu erhalten.",
+      "field": {
+        "frequencies": "Kategoriehäufigkeiten",
+        "frequenciesHint": "Geben Sie die Zählwerte jeder Kategorie durch Kommas getrennt ein, z. B. 48, 35, 12, 5"
+      },
+      "placeholder": {
+        "frequencies": "z. B. 48, 35, 12, 5"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie mindestens zwei nicht negative Häufigkeiten ein, getrennt durch Kommas."
+      },
+      "result": {
+        "heading": "IQV",
+        "n": "Gesamtzahl der Beobachtungen (N)",
+        "k": "Anzahl der Kategorien (K)",
+        "observedPairs": "Beobachtete kategorieübergreifende Paare",
+        "possiblePairs": "Mögliche kategorieübergreifende Paare",
+        "interpretation": {
+          "low": "Geringe Variation: Die meisten Beobachtungen konzentrieren sich auf eine oder wenige Kategorien.",
+          "moderate": "Mittlere Variation: Die Beobachtungen verteilen sich auf mehrere Kategorien.",
+          "high": "Hohe Variation: Die Beobachtungen sind nahezu gleichmäßig über alle Kategorien verteilt."
+        }
+      },
+      "about": {
+        "heading": "Über den Rechner für den Index qualitativer Variation",
+        "body": "Der Index qualitativer Variation (IQV) ist ein statistisches Maß für Vielfalt oder Streuung bei nominalen (kategorialen) Daten. Das sind Daten, die in benannte Kategorien ohne inhärente numerische Ordnung fallen, etwa politische Zugehörigkeit, Ethnie, Religion, gesprochene Sprache oder Augenfarbe. Da nominale Kategorien weder subtrahiert noch sinnvoll gerankt werden können, sind klassische Streuungsmaße wie Varianz oder Standardabweichung nicht anwendbar. Der IQV schließt diese Lücke, indem er misst, wie gleichmäßig Beobachtungen über Kategorien verteilt sind, und eine einzelne Zahl zwischen 0 und 1 liefert.\n\nEin IQV von 0 bedeutet, dass keinerlei Variation vorliegt: Jede einzelne Beobachtung fällt in dieselbe Kategorie. Ein IQV von 1 bedeutet maximale Variation: Jede Kategorie hat exakt dieselbe Häufigkeit. Dazwischen steigt der IQV, je gleichmäßiger die Verteilung wird. Ein Datensatz mit vier Kategorien, in dem eine Kategorie 90% der Beobachtungen ausmacht, hätte einen IQV nahe 0; ein Datensatz mit vier Kategorien, die jeweils ungefähr 25% erfassen, würde sich 1 annähern.\n\nDie Formel lautet: IQV = [K / (K − 1)] × [1 − Σpᵢ²], wobei K die Anzahl der Kategorien und pᵢ der Anteil der Beobachtungen in Kategorie i ist. Die Größe Σpᵢ² ist der Herfindahl–Hirschman-Index (zugleich die Summe der quadrierten Anteile). Sie ist minimal, wenn alle Anteile gleich sind (jeweils 1/K, also K × (1/K)² = 1/K), und maximal, wenn alle Beobachtungen in einer Kategorie liegen (ergibt 1). Die Multiplikation mit K/(K−1) skaliert das Ergebnis so, dass perfekte Gleichverteilung unabhängig von der Zahl der Kategorien immer IQV = 1 ergibt.\n\nDer IQV kann auch aus dem Konzept von Paaren hergeleitet werden: Welcher Anteil aller möglichen Beobachtungspaare stammt aus unterschiedlichen Kategorien? Der Zähler ist die Anzahl kategorieübergreifender Paare (beobachtete Paare), der Nenner die maximal mögliche Anzahl kategorieübergreifender Paare, die auftreten würde, wenn die Beobachtungen so gleichmäßig wie möglich verteilt wären. Diese Paarzählungs-Herleitung liefert denselben Wert wie die Anteilsformel und bietet eine nützliche Intuition: Der IQV beantwortet die Frage „Welcher Anteil aller zufälligen Beobachtungspaare besteht aus zwei Personen aus unterschiedlichen Gruppen?“\n\nSozialwissenschaftler verwenden den IQV häufig, um die rassische und ethnische Vielfalt von Bevölkerungen, religiöse Heterogenität, Fragmentierung politischer Parteien und sprachliche Vielfalt von Ländern zu messen. Ökologen verwenden ein äquivalentes Maß, den Simpson-Diversitätsindex. Marktforscher nutzen ihn, um Konzentration oder Fragmentierung von Marktanteilen zu beurteilen. In all diesen Anwendungen liefert der IQV eine knappe, normalisierte und interpretierbare Einzelzahl, die zwischen Populationen unterschiedlicher Größe und mit unterschiedlicher Kategorienzahl vergleichbar ist und damit deutlich nützlicher ist als bloße rohe Kategoriezählungen."
+      },
+      "examples": {
+        "heading": "IQV-Beispiele",
+        "intro": "Vier Szenarien zeigen, wie sich der IQV mit der Häufigkeitsverteilung verändert.",
+        "colInput": "Häufigkeiten",
+        "colOutput": "IQV",
+        "colNote": "Interpretation",
+        "loadMaxVariation": "Maximale Variation laden (25, 25, 25, 25)",
+        "loadModerate": "Mittlere Verteilung laden (48, 35, 12, 5)",
+        "loadSkewed": "Schiefe Verteilung laden (80, 20)",
+        "items": [
+          {
+            "input": "25, 25, 25, 25 (vier gleiche Kategorien)",
+            "output": "IQV = 1.0000",
+            "note": "Perfekte maximale Variation. Jede Kategorie enthält exakt 25% der Beobachtungen: vollständige Gleichverteilung."
+          },
+          {
+            "input": "100, 0 (eine dominante Kategorie)",
+            "output": "IQV = 0.0000",
+            "note": "Keine Variation. Alle Beobachtungen fallen in eine Kategorie; die zweite Kategorie ist leer."
+          },
+          {
+            "input": "48, 35, 12, 5 (sozialwissenschaftliche Umfrage)",
+            "output": "IQV ≈ 0.8403",
+            "note": "Mittlere bis hohe Variation. Eine typische Antwortverteilung einer Umfrage mit vier Optionen."
+          },
+          {
+            "input": "80, 20 (zwei Kategorien, schief)",
+            "output": "IQV = 0.6400",
+            "note": "Bei nur zwei Kategorien gilt IQV = 4×p×(1−p) = 4×0.8×0.2 = 0.64. Mittlere Variation."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den IQV-Rechner",
+        "steps": [
+          "Zählen Sie, wie viele Beobachtungen in jede Kategorie fallen. Wenn zum Beispiel 48 Befragte Option A, 35 Option B, 12 Option C und 5 Option D gewählt haben, lauten die Häufigkeiten 48, 35, 12, 5.",
+          "Geben Sie diese Häufigkeiten durch Kommas getrennt in das Eingabefeld ein. Die Reihenfolge spielt keine Rolle: Der IQV hängt nur von den Häufigkeitswerten ab, nicht von einer Ordnung der Kategorien.",
+          "Klicken Sie auf Berechnen. Das Tool zeigt den IQV (0 bis 1), die Gesamtzahl der Beobachtungen N, die Anzahl der Kategorien K sowie beobachtete und mögliche kategorieübergreifende Paare an.",
+          "Interpretieren Sie den IQV: Werte nahe 0 zeigen, dass sich die meisten Beobachtungen in einer Kategorie konzentrieren (geringe Vielfalt), während Werte nahe 1 anzeigen, dass die Beobachtungen nahezu gleichmäßig über alle Kategorien verteilt sind (hohe Vielfalt).",
+          "Nutzen Sie die Beispielschaltflächen, um voreingestellte Datensätze zu laden und Ihr Verständnis des Index zu prüfen, bevor Sie eigene Daten eingeben."
+        ]
+      },
+      "faq": {
+        "heading": "IQV-FAQ",
+        "items": [
+          {
+            "q": "Was bedeutet ein IQV von 0.75?",
+            "a": "Ein IQV von 0.75 bedeutet, dass 75% aller möglichen Paare zufällig ausgewählter Beobachtungen aus zwei Individuen unterschiedlicher Kategorien bestehen. Das weist auf mäßig hohe Vielfalt hin: Die Daten sind nicht in einer einzigen Kategorie konzentriert, aber die Beobachtungen sind auch nicht perfekt gleichmäßig verteilt. Je näher der IQV bei 1 liegt, desto gleichmäßiger sind die Kategorien verteilt."
+          },
+          {
+            "q": "Kann ich den IQV für ordinale oder numerische Daten verwenden?",
+            "a": "Der IQV ist für nominale (kategoriale) Daten gedacht, bei denen Kategorien keine sinnvolle Ordnung oder Distanz haben. Für ordinale Daten, bei denen Kategorien gerankt werden können, die Abstände aber nicht gleich sind, oder für numerische Daten (Intervall-/Verhältnisskala), sind andere Maße wie Rangkorrelation, Varianz oder Standardabweichung geeigneter. Die Anwendung des IQV auf ordinale Kategorien verwirft die Ordnungsinformation und kann ein irreführendes Bild der Streuung liefern."
+          },
+          {
+            "q": "Wie viele Kategorien brauche ich, um den IQV zu berechnen?",
+            "a": "Sie benötigen mindestens zwei Kategorien, denn bei nur einer Kategorie liegt jede Beobachtung in derselben Gruppe und Variation ist nicht möglich. Die IQV-Formel teilt durch (K−1), daher ist K=1 mathematisch undefiniert. Bei zwei Kategorien und Häufigkeiten p und (1−p) vereinfacht sich der IQV zu 4×p×(1−p), erreicht bei p=0.5 (gleiche Aufteilung) den Höchstwert 1.0 und ist bei p=0 oder p=1 gleich 0."
+          },
+          {
+            "q": "Ist der IQV dasselbe wie der Simpson-Diversitätsindex?",
+            "a": "Sie sind sehr eng verwandt. Der Simpson-Diversitätsindex D = 1 − Σpᵢ² misst die Wahrscheinlichkeit, dass zwei zufällig ausgewählte Individuen unterschiedlichen Kategorien angehören; sein Komplement entspricht ebenfalls 1 − Σpᵢ². Der IQV geht einen Schritt weiter und multipliziert mit K/(K−1), um das Ergebnis zu normalisieren, sodass perfekte Gleichverteilung unabhängig von der Zahl der Kategorien exakt 1 ergibt. Ohne diese Normalisierung hängt der Maximalwert von 1 − Σpᵢ² von K ab."
+          },
+          {
+            "q": "Ändert sich der IQV, wenn ich Kategorien umbenenne oder neu ordne?",
+            "a": "Nein. Die IQV-Formel verwendet nur Häufigkeitswerte (oder Anteile), nicht die Namen oder die Reihenfolge der Kategorien. Sie könnten „Stimme voll zu“ in „Kategorie 1“ umbenennen oder die Eingabereihenfolge vertauschen, und der IQV wäre identisch. Dadurch ist er ein echtes Streuungsmaß für nominale Daten, bei denen keine natürliche Ordnung existiert."
+          }
+        ]
+      }
     }
   }
 }
