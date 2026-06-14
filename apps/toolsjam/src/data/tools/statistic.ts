@@ -2040,5 +2040,205 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "hypothesis-testing-calculator",
+    category: "statistic",
+    slugs: {
+      en: "hypothesis-testing-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Hypothesis Testing Calculator - Z-Test, T-Test & P-Value",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Hypothesis testing calculator for Z-tests and T-tests. Compute test statistic, p-value, and critical value to determine statistical significance.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "implied-probability-calculator",
+    category: "statistic",
+    slugs: {
+      en: "implied-probability-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Implied Probability Calculator - Convert Betting Odds",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Implied probability calculator: convert American, Decimal, or Fractional betting odds to a winning probability percentage for sports betting value analysis.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "index-of-qualitative-variation-calculator",
+    category: "statistic",
+    slugs: {
+      en: "index-of-qualitative-variation-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Index of Qualitative Variation (IQV) Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Index of Qualitative Variation calculator: measure categorical data diversity from frequency counts. Compute IQV, observed and possible pairs instantly.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "inverse-normal-distribution-calculator",
+    category: "statistic",
+    slugs: {
+      en: "inverse-normal-distribution-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Inverse Normal Distribution Calculator - Find X from P",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Inverse normal distribution calculator: find the x-value for a given probability. Supports left-tailed, right-tailed, and two-tailed modes with custom μ and σ.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "iqr-calculator-interquartile-range",
+    category: "statistic",
+    slugs: {
+      en: "iqr-calculator-interquartile-range",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "IQR Calculator - Interquartile Range, Q1, Q3 & Outliers",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "IQR calculator: compute interquartile range, Q1, Q3, and identify outliers from any dataset. Enter comma-separated numbers and get instant quartile analysis.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
 ];
