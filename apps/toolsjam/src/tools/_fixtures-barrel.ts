@@ -92,6 +92,11 @@ import { fixtures as f_upper_and_lower_fence_calculator } from "@/tools/upper-an
 import { fixtures as f_upper_control_limit_calculator } from "@/tools/upper-control-limit-calculator.fixtures";
 import { fixtures as f_variance_calculator } from "@/tools/variance-calculator.fixtures";
 import { fixtures as f_venn_diagram_calculator } from "@/tools/venn-diagram-calculator.fixtures";
+import { fixtures as f_volt_to_electron_volt_calculator } from "@/tools/volt-to-electron-volt-calculator.fixtures";
+import { fixtures as f_voltage_divider_calculator } from "@/tools/voltage-divider-calculator.fixtures";
+import { fixtures as f_voltage_drop_calculator } from "@/tools/voltage-drop-calculator.fixtures";
+import { fixtures as f_voltage_regulation_calculator } from "@/tools/voltage-regulation-calculator.fixtures";
+import { fixtures as f_volume_to_mass_calculator } from "@/tools/volume-to-mass-calculator.fixtures";
 import { fixtures as f_wald_test_calculator } from "@/tools/wald-test-calculator.fixtures";
 import { fixtures as f_water_viscosity_calculator } from "@/tools/water-viscosity-calculator.fixtures";
 import { fixtures as f_watt_calculator } from "@/tools/watt-calculator.fixtures";
@@ -201,6 +206,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "upper-control-limit-calculator": f_upper_control_limit_calculator,
   "variance-calculator": f_variance_calculator,
   "venn-diagram-calculator": f_venn_diagram_calculator,
+  "volt-to-electron-volt-calculator": f_volt_to_electron_volt_calculator,
+  "voltage-divider-calculator": f_voltage_divider_calculator,
+  "voltage-drop-calculator": f_voltage_drop_calculator,
+  "voltage-regulation-calculator": f_voltage_regulation_calculator,
+  "volume-to-mass-calculator": f_volume_to_mass_calculator,
   "wald-test-calculator": f_wald_test_calculator,
   "water-viscosity-calculator": f_water_viscosity_calculator,
   "watt-calculator": f_watt_calculator,
