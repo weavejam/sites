@@ -147,10 +147,15 @@ import { fixtures as f_paired_samples_t_test_calculator } from "@/tools/paired-s
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
 import { fixtures as f_poisson_distribution_calculator } from "@/tools/poisson-distribution-calculator.fixtures";
+import { fixtures as f_poker_odds_calculator } from "@/tools/poker-odds-calculator.fixtures";
 import { fixtures as f_polynomial_regression_calculator } from "@/tools/polynomial-regression-calculator.fixtures";
 import { fixtures as f_pooled_standard_deviation_calculator } from "@/tools/pooled-standard-deviation-calculator.fixtures";
 import { fixtures as f_population_variance_calculator } from "@/tools/population-variance-calculator.fixtures";
+import { fixtures as f_port_length_calculator } from "@/tools/port-length-calculator.fixtures";
+import { fixtures as f_portrait_aspect_ratio_calculator } from "@/tools/portrait-aspect-ratio-calculator.fixtures";
 import { fixtures as f_post_test_probability_calculator } from "@/tools/post-test-probability-calculator.fixtures";
+import { fixtures as f_ppi_calculator_pixels_per_inch } from "@/tools/ppi-calculator-pixels-per-inch.fixtures";
+import { fixtures as f_projector_calculator } from "@/tools/projector-calculator.fixtures";
 import { fixtures as f_rayleigh_distribution_calculator } from "@/tools/rayleigh-distribution-calculator.fixtures";
 import { fixtures as f_relative_error_calculator } from "@/tools/relative-error-calculator.fixtures";
 import { fixtures as f_relative_frequency_calculator } from "@/tools/relative-frequency-calculator.fixtures";
@@ -381,10 +386,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
   "poisson-distribution-calculator": f_poisson_distribution_calculator,
+  "poker-odds-calculator": f_poker_odds_calculator,
   "polynomial-regression-calculator": f_polynomial_regression_calculator,
   "pooled-standard-deviation-calculator": f_pooled_standard_deviation_calculator,
   "population-variance-calculator": f_population_variance_calculator,
+  "port-length-calculator": f_port_length_calculator,
+  "portrait-aspect-ratio-calculator": f_portrait_aspect_ratio_calculator,
   "post-test-probability-calculator": f_post_test_probability_calculator,
+  "ppi-calculator-pixels-per-inch": f_ppi_calculator_pixels_per_inch,
+  "projector-calculator": f_projector_calculator,
   "rayleigh-distribution-calculator": f_rayleigh_distribution_calculator,
   "relative-error-calculator": f_relative_error_calculator,
   "relative-frequency-calculator": f_relative_frequency_calculator,
