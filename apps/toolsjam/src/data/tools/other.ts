@@ -1,43 +1,44 @@
 import type { ToolEntry } from "@/data/tools";
+
 export const tools: ToolEntry[] = [
   {
     id: "3d-render-calculator",
     category: "other",
     slugs: {
       en: "3d-render-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "3d-xuanran-shijian-jisuanqi",
+      "zh-TW": "3d-xuanran-shijian-jisuanqi",
+      ja: "3d-renda-jikan-keisanki",
+      ko: "3d-rendeo-sigan-gyesangi",
+      es: "calculadora-tiempo-render-3d",
+      fr: "calculateur-temps-rendu-3d",
+      de: "3d-renderzeit-rechner",
+      pt: "calculadora-tempo-renderizacao-3d",
+      ru: "kalkulyator-vremeni-3d-renderinga"
     },
     titles: {
       en: "3D Render Calculator - Estimate Render Times",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "3D 渲染时间计算器 - 估算渲染耗时",
+      "zh-TW": "3D 渲染時間計算器 - 估算渲染耗時",
+      ja: "3Dレンダー時間計算機 - レンダー時間を見積もり",
+      ko: "3D 렌더 시간 계산기 - 렌더링 시간 예측",
+      es: "Calculadora de render 3D - Estima tiempos",
+      fr: "Calculateur de rendu 3D - Estimer les temps",
+      de: "3D-Renderzeit-Rechner - Renderzeiten schätzen",
+      pt: "Calculadora de renderização 3D - Estime tempos",
+      ru: "Калькулятор 3D-рендера - оценка времени"
     },
     descriptions: {
       en: "Estimate 3D render times by polygon count, texture resolution, lighting, and hardware specs. Optimize scenes and plan project timelines efficiently.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "按多边形数量、纹理分辨率、灯光和硬件规格估算 3D 渲染时间，高效优化场景并规划项目进度。",
+      "zh-TW": "依多邊形數量、紋理解析度、燈光與硬體規格估算 3D 渲染時間，協助最佳化場景並高效規劃專案時程。",
+      ja: "ポリゴン数、テクスチャ解像度、ライティング、ハードウェア仕様から3Dレンダー時間を見積もり、シーン最適化と工程計画を効率化します。",
+      ko: "폴리곤 수, 텍스처 해상도, 조명, 하드웨어 사양으로 3D 렌더 시간을 예측하고 장면 최적화와 일정 계획을 효율화하세요.",
+      es: "Estima tiempos de render 3D por polígonos, resolución de texturas, luces y hardware. Optimiza escenas y planifica proyectos con eficiencia.",
+      fr: "Estimez les temps de rendu 3D selon polygones, textures, éclairage et matériel. Optimisez vos scènes et planifiez vos projets efficacement.",
+      de: "Schätze 3D-Renderzeiten nach Polygonen, Texturauflösung, Licht und Hardware. Optimiere Szenen und plane Projekte effizient.",
+      pt: "Estime tempos de renderização 3D por polígonos, texturas, luzes e hardware. Otimize cenas e planeje projetos com eficiência.",
+      ru: "Оценивайте время 3D-рендера по полигонам, текстурам, свету и железу. Оптимизируйте сцены и эффективно планируйте проекты."
     }
   },
   {
@@ -45,39 +46,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "4-3-aspect-ratio-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "4-3-bi-li-ji-suan-qi",
+      "zh-TW": "4-3-bi-li-ji-suan-qi",
+      ja: "4-3-hiritu-keisanki",
+      ko: "4-3-sangbi-gyesangi",
+      es: "calculadora-relacion-4-3",
+      fr: "calculateur-ratio-4-3",
+      de: "seitenverhaeltnis-rechner-4-3",
+      pt: "calculadora-proporcao-4-3",
+      ru: "kalkulyator-sootnosheniya-storon-4-3"
     },
     titles: {
       en: "4:3 Aspect Ratio Calculator - Traditional Display Dimensions",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "4:3比例计算器 - 传统显示尺寸",
+      "zh-TW": "4:3比例計算器 - 傳統顯示尺寸",
+      ja: "4:3アスペクト比計算機 - 伝統的な画面サイズ",
+      ko: "4:3 화면비 계산기 - 전통적 디스플레이 크기",
+      es: "Calculadora de relación 4:3",
+      fr: "Calculateur de ratio 4:3",
+      de: "4:3-Seitenverhältnis-Rechner",
+      pt: "Calculadora de proporção 4:3",
+      ru: "Калькулятор соотношения 4:3"
     },
     descriptions: {
       en: "Calculate width, height, diagonal, and pixel density for 4:3 displays. Convert pixels, inches, cm, and mm for classic monitors and legacy screen formats.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算 4:3 显示器的宽度、高度、对角线和像素密度，并在像素、英寸、厘米和毫米间换算。",
+      "zh-TW": "計算 4:3 顯示器的寬度、高度、對角線和像素密度，並在像素、英吋、公分與毫米間換算。",
+      ja: "4:3ディスプレイの幅、高さ、対角線、画素密度を計算し、ピクセル・インチ・cm・mmを換算します。",
+      ko: "4:3 디스플레이의 가로, 세로, 대각선, 픽셀 밀도를 계산하고 픽셀·인치·cm·mm를 변환합니다.",
+      es: "Calcula ancho, alto, diagonal y densidad de píxeles para pantallas 4:3. Convierte píxeles, pulgadas, cm y mm.",
+      fr: "Calculez largeur, hauteur, diagonale et densité de pixels pour les écrans 4:3. Convertissez pixels, pouces, cm et mm.",
+      de: "Berechnen Sie Breite, Höhe, Diagonale und Pixeldichte für 4:3-Displays. Konvertieren Sie Pixel, Zoll, cm und mm.",
+      pt: "Calcule largura, altura, diagonal e densidade de pixels para telas 4:3. Converta pixels, polegadas, cm e mm.",
+      ru: "Рассчитайте ширину, высоту, диагональ и плотность пикселей для 4:3. Переводите пиксели, дюймы, см и мм."
     }
   },
   {
@@ -85,39 +86,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "act-score-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "act-fenshu-jisuanqi-zonghe-fenxiang",
+      "zh-TW": "act-fenshu-jisuanqi-zonghe-fenxiang",
+      ja: "act-sukoa-keisan-ki-sogou-bubun-ten",
+      ko: "act-jeomsu-gyesangi-ongnyeog-bunyeol",
+      es: "calculadora-puntaje-act-global-parciales",
+      fr: "calculateur-score-act-global-sous-scores",
+      de: "act-punktrechner-gesamt-teilwerte",
+      pt: "calculadora-nota-act-geral-subscores",
+      ru: "kalkulyator-ballov-act-obshchiy-podbally"
     },
     titles: {
       en: "ACT Score Calculator - Composite & Subscores",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "ACT分数计算器 - 综合与分项",
+      "zh-TW": "ACT分數計算器 - 綜合與分項",
+      ja: "ACTスコア計算機 - 総合・分野別",
+      ko: "ACT 점수 계산기 - 종합 및 세부점수",
+      es: "Calculadora de puntaje ACT - Global y parciales",
+      fr: "Calculatrice ACT - Score global et sous-scores",
+      de: "ACT-Punktrechner - Gesamt- und Teilwerte",
+      pt: "Calculadora de nota ACT - Geral e subscores",
+      ru: "Калькулятор ACT - общий и подбаллы"
     },
     descriptions: {
       en: "Calculate your ACT composite, ELA, and STEM subscores from English, Math, Reading, Science, and Writing scores. See your approximate national percentile.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据英语、数学、阅读、科学和写作成绩计算ACT综合分、ELA和STEM分项，并查看大致全国百分位。",
+      "zh-TW": "依據英文、數學、閱讀、科學與寫作成績計算 ACT 綜合分、ELA 與 STEM 分項，並查看大致全國百分位。",
+      ja: "英語・数学・リーディング・理科・任意のライティング得点から、ACTの総合点、ELA、STEMを計算し、概算全国順位も確認できます。",
+      ko: "영어, 수학, 독해, 과학, 선택 작성 점수로 ACT 종합점수, ELA, STEM을 계산하고 대략적인 전국 백분위를 확인하세요.",
+      es: "Calcula tu puntaje global del ACT, ELA y STEM a partir de Inglés, Matemáticas, Lectura, Ciencias y Escritura opcional, y ve tu percentil nacional aproximado.",
+      fr: "Calculez instantanément votre score global ACT, vos scores ELA et STEM à partir des notes d’anglais, de maths, de lecture, de sciences et de rédaction optionnelle.",
+      de: "Berechnen Sie Ihren ACT-Gesamtwert, ELA- und STEM-Teilwert sofort aus Englisch, Mathematik, Lesen, Naturwissenschaften und optionalem Writing.",
+      pt: "Calcule instantaneamente sua nota geral do ACT, o ELA e o STEM a partir de Inglês, Matemática, Leitura, Ciências e Writing opcional.",
+      ru: "Мгновенно рассчитайте общий балл ACT, ELA и STEM по баллам за English, Math, Reading, Science и необязательный Writing."
     }
   },
   {
@@ -2203,37 +2204,202 @@ export const tools: ToolEntry[] = [
   {
     id: "mm-to-carat-conversion",
     category: "other",
-    slugs: { en: "mm-to-carat-conversion", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    titles: { en: "MM to Carat Conversion Calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    descriptions: { en: "Convert gemstone dimensions from millimeters to carat weight. Free calculator for jewelry makers, gemologists, and diamond buyers. Accurate weight estimation.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
+    slugs: {
+      en: "mm-to-carat-conversion",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "MM to Carat Conversion Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Convert gemstone dimensions from millimeters to carat weight. Free calculator for jewelry makers, gemologists, and diamond buyers. Accurate weight estimation.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
     id: "music-duration-calculator",
     category: "other",
-    slugs: { en: "music-duration-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    titles: { en: "Music Duration Calculator - Song Length from BPM", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    descriptions: { en: "Calculate music duration, song length, and track timing from BPM, tempo, and time signature. Free tool for musicians, DJs, and music producers.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
+    slugs: {
+      en: "music-duration-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Music Duration Calculator - Song Length from BPM",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate music duration, song length, and track timing from BPM, tempo, and time signature. Free tool for musicians, DJs, and music producers.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
     id: "music-interval-calculator",
     category: "other",
-    slugs: { en: "music-interval-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    titles: { en: "Music Interval Calculator - Note Distances", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    descriptions: { en: "Calculate musical intervals between two notes instantly. Learn interval names, semitone distances, and music theory concepts for composition and ear training.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
+    slugs: {
+      en: "music-interval-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Music Interval Calculator - Note Distances",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate musical intervals between two notes instantly. Learn interval names, semitone distances, and music theory concepts for composition and ear training.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
     id: "music-scale-calculator",
     category: "other",
-    slugs: { en: "music-scale-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    titles: { en: "Music Scale Calculator - Scales and Modes", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    descriptions: { en: "Calculate musical scales, modes, and intervals. Learn major, minor, pentatonic, blues scales for any root note. Free tool for composition and music theory.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
+    slugs: {
+      en: "music-scale-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Music Scale Calculator - Scales and Modes",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate musical scales, modes, and intervals. Learn major, minor, pentatonic, blues scales for any root note. Free tool for composition and music theory.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
     id: "music-transposition-calculator",
     category: "other",
-    slugs: { en: "music-transposition-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    titles: { en: "Music Transposition Calculator - Key Converter", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
-    descriptions: { en: "Transpose musical notes and keys instantly. Convert between different keys, calculate semitone differences, and learn music transposition for any instrument.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
+    slugs: {
+      en: "music-transposition-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Music Transposition Calculator - Key Converter",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Transpose musical notes and keys instantly. Convert between different keys, calculate semitone differences, and learn music transposition for any instrument.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
     id: "minecraft-stack-calculator",
@@ -2640,15 +2806,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "gpa-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "GPA Calculator - Calculate Grade Point Average",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate your GPA with the standard 4.0 scale. Enter courses, letter grades, and credit hours for an instant weighted Grade Point Average result.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2656,15 +2846,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "gpa-calculator-pakistan",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "GPA Calculator Pakistan - Convert Grades to 4.0 GPA",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Convert Pakistani university grades — percentage or letter — to GPA on the HEC 4.0 scale. Supports mixed input for accurate academic GPA calculation.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2672,15 +2886,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "grade-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Grade Calculator - Calculate Academic Grades and GPA",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate GPA from letter or numerical grades with credit-hour weighting. Supports mixed grading systems and shows per-course letter grade conversions.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2688,15 +2926,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "gsd-calculator-ground-sample-distance",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "GSD Calculator - Ground Sample Distance for Drone Mapping",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate Ground Sample Distance (GSD) in cm/pixel for aerial photography and drone mapping. Enter sensor width, altitude, and focal length for instant results.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -2704,15 +2966,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "guitar-string-tension-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Guitar String Tension Calculator - Calculate String Force",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate guitar string tension in pounds and Newtons. Enter scale length, string gauge, material, and target note or frequency for precise tension results.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -3040,15 +3326,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "angle-of-impact-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Angle of Impact Calculator - Collision & Trajectory Analysis",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate impact angles, exit velocity, and energy loss for any collision. Enter velocity, angles, coefficient of restitution, and mass for instant results.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -3056,15 +3366,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "antipode-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Antipode Calculator - Find Earth's Opposite Point",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Find the exact antipodal coordinates for any location on Earth. Enter latitude and longitude to get the diametrically opposite point and great-circle distance.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -3072,15 +3406,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "aquarium-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Aquarium Calculator - Volume, Fish Capacity & Maintenance",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate aquarium volume, safe fish capacity, required filtration flow, and weekly water change volume. Essential planning tool for aquarium hobbyists.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -3088,15 +3446,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "aquarium-glass-thickness-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Aquarium Glass Thickness Calculator - Safe Tank Design",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate the minimum safe glass thickness for any aquarium tank. Uses hydrostatic pressure and plate-bending formulas for float, tempered, and acrylic panels.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -3104,29 +3486,39 @@ export const tools: ToolEntry[] = [
     category: "other",
     slugs: {
       en: "aspect-ratio-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Aspect Ratio Calculator - Screen, Video & Image Ratios",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate the aspect ratio of any display, video, or image. Get simplified W:H ratio, decimal value, and nearest standard format name instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ];

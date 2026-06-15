@@ -1,0 +1,109 @@
+{
+  "title": "3D-Renderzeit-Rechner - Renderzeiten schätzen",
+  "tagline": "Schätze Renderzeiten für 3D-Szenen anhand von Polygonanzahl, Texturauflösung, Beleuchtung und Hardware-Spezifikationen, um Projekte effizient zu planen.",
+  "intro": "Gib unten die Szenenparameter und Hardware-Spezifikationen ein, um eine geschätzte Renderzeit für dein 3D-Projekt zu erhalten.",
+  "field": {
+    "polygonCount": "Polygonanzahl",
+    "textureResolution": "Texturauflösung (px)",
+    "numTextures": "Anzahl der Texturen",
+    "numLights": "Anzahl der Lichter",
+    "renderQuality": "Renderqualität",
+    "cpuCores": "CPU-Kerne",
+    "gpuMem": "GPU-Speicher (GB)",
+    "complexity": "Komplexitätsfaktor der Szene"
+  },
+  "quality": {
+    "Low": "Niedrig",
+    "Medium": "Mittel",
+    "High": "Hoch",
+    "Ultra": "Ultra"
+  },
+  "placeholder": {
+    "polygonCount": "z. B. 1000000",
+    "textureResolution": "z. B. 2048",
+    "numTextures": "z. B. 10",
+    "numLights": "z. B. 5",
+    "cpuCores": "z. B. 8",
+    "gpuMem": "z. B. 8",
+    "complexity": "1.0"
+  },
+  "button": {
+    "calculate": "Renderzeit berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "duration": {
+    "lessThanOneMin": "< 1 Min.",
+    "minutes": "{min} Min.",
+    "hours": "{hours} Std.",
+    "hoursMinutes": "{hours} Std. {min} Min."
+  },
+  "error": {
+    "invalid": "Bitte gib in allen Pflichtfeldern gültige positive Zahlen ein.",
+    "complexity": "Die Szenenkomplexität muss zwischen 0.1 und 10 liegen."
+  },
+  "result": {
+    "heading": "Geschätzte Renderzeit",
+    "value": "{time}",
+    "breakdown": "Aufschlüsselung: Polygone {poly}, Texturen {tex}, Lichter {light}"
+  },
+  "about": {
+    "heading": "Über den 3D-Renderzeit-Rechner",
+    "body": "3D-Rendering ist der Prozess, bei dem eine dreidimensionale Szenenbeschreibung in ein zweidimensionales Bild umgewandelt wird. Es gehört zu den rechenintensivsten Aufgaben in der Computergrafik und erfordert sorgfältige Planung, um Projektzeitpläne und Ressourcenkosten zu steuern. Der 3D-Renderzeit-Rechner hilft Artists, Animatoren und Technical Directors dabei, anhand der wichtigsten Faktoren für Renderkomplexität abzuschätzen, wie lange ein Render dauern wird.\n\nDer grundlegendste Treiber der Renderzeit ist die Polygonanzahl. Moderne Szenen können von wenigen tausend Polygonen für eine einfache Produktvisualisierung bis zu hunderten Millionen Polygonen in einem VFX-Shot für Spielfilme reichen. Jedes Polygon erfordert geometrische Verarbeitung, Schnittpunkttests für Schatten und Reflexionen sowie Shading-Berechnungen. Mit wachsender Polygonanzahl steigt die Renderzeit in gut optimierten Engines ungefähr mit der Quadratwurzel der Anzahl; schlecht optimierte Szenen können jedoch lineares oder überlineares Wachstum zeigen.\n\nTexturspeicher und Auflösung sind ebenso wichtig. Eine einzelne 4K-Textur (4096 × 4096 Pixel) belegt 64 MB unkomprimierter RGBA-Daten, und eine Produktionsszene kann Dutzende oder Hunderte von Texturen für Farb-, Normal-, Roughness-, Metallic- und Displacement-Kanäle nutzen. Das Sampling dieser Texturen während des Renderns benötigt sowohl GPU-Speicherbandbreite als auch effizientes Caching. Wenn Texturen den VRAM der GPU überschreiten, muss der Renderer Daten aus dem System-RAM nachladen, was das Rendering drastisch verlangsamen kann.\n\nBeleuchtungskomplexität erhöht den Zeitbedarf zusätzlich. Jede Lichtquelle in einer Szene erfordert zusätzliche Raycasts für Schattentests und trägt zur Global-Illumination-Lösung bei. Flächenlichter, HDRi-Umgebungskarten und physikalisch basierte Himmelsmodelle sind deutlich teurer als einfache Punktlichter, weil sie mehrere Samples pro Lichtberechnung benötigen, um glatte, rauschfreie Ergebnisse zu erzeugen.\n\nRenderqualitätseinstellungen steuern die Anzahl der Samples pro Pixel in Path-Tracing- oder Ray-Tracing-Engines. Niedrige Qualität nutzt wenige Samples und erzeugt schnell verrauschte Bilder; Ultra-Qualität nutzt viele Samples und erzeugt saubere Bilder langsamer. Die Beziehung ist ungefähr linear: Eine Verdopplung der Sample-Anzahl verdoppelt die Renderzeit und halbiert gleichzeitig das Rauschniveau.\n\nHardware-Spezifikationen bestimmen, wie schnell die zugrunde liegenden Berechnungen ausgeführt werden. Die CPU-Kernzahl beeinflusst, wie viele Strahlen oder Tiles parallel verarbeitet werden können. Der GPU-Speicher bestimmt, ob Texturen vollständig auf der Karte Platz finden oder langsamere Speicherübertragungen erfordern. Moderne Renderengines wie Arnold, V-Ray, Cycles und Octane sind darauf optimiert, Mehrkern-CPUs und GPU-Beschleunigung zu nutzen; ein Hardware-Upgrade hat daher einen direkten und messbaren Einfluss auf Renderzeiten.\n\nDer Komplexitätsfaktor der Szene in diesem Rechner erfasst alles, was nicht durch die anderen Parameter abgedeckt ist: Materialkomplexität, Ray-Bounce-Tiefe, Subsurface Scattering, volumetrische Effekte, Motion Blur und Tiefenschärfe. Eine Komplexität von 1.0 steht für eine Standardszene mit Solid-Surface-Materialien und ohne Volumetrik. Werte über 1.5 deuten auf Szenen mit teilnehmenden Medien, Path Tracing mit vielen Bounces oder komplexen prozeduralen Materialien hin.\n\nDieser Rechner liefert eine grobe Schätzung, keine exakte Vorhersage. Reale Renderzeiten hängen stark vom konkreten Renderer, dem Szenenlayout, Materialnetzwerken und dem Optimierungsgrad der Assets ab. Nutze die Schätzungen, um verschiedene Konfigurationen zu vergleichen und die größten Engpässe in deiner Szene zu identifizieren; optimiere dann zuerst diese Bereiche, um die Renderleistung am stärksten zu verbessern."
+  },
+  "examples": {
+    "heading": "Beispiele für 3D-Renderzeiten",
+    "intro": "Häufige Szenen über verschiedene Komplexitätsstufen hinweg zeigen, wie Hardware und Szenenparameter geschätzte Renderzeiten beeinflussen.",
+    "colInput": "Szene",
+    "colOutput": "Gesch. Zeit",
+    "colNote": "Schlüsselparameter",
+    "loadSimple": "Einfache Szene laden",
+    "loadComplex": "Komplexe Szene laden",
+    "items": [
+      {
+        "input": "Einfache Produktvisualisierung",
+        "output": "~11 Min.",
+        "note": "50K Polygone, 1024 px Texturen × 5, 3 Lichter, mittlere Qualität, 8 Kerne / 8 GB GPU"
+      },
+      {
+        "input": "Architektur-Innenraumrendering",
+        "output": "~3 Std.",
+        "note": "2M Polygone, 4096 px Texturen × 25, 12 Lichter, hohe Qualität, 16 Kerne / 16 GB GPU, Komplexität 1.8"
+      },
+      {
+        "input": "VFX-Shot für Spielfilm",
+        "output": "~10 Std.",
+        "note": "5M Polygone, 8192 px Texturen × 50, 20 Lichter, Ultra-Qualität, 32 Kerne / 32 GB GPU, Komplexität 2.5"
+      },
+      {
+        "input": "Optimierte Game-Cinematic",
+        "output": "~1 Std.",
+        "note": "1M Polygone, 2048 px Texturen × 15, 6 Lichter, hohe Qualität, 12 Kerne / 12 GB GPU, Komplexität 1.2"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den 3D-Renderzeit-Rechner",
+    "steps": [
+      "Gib die Polygonanzahl deiner Szene ein; du findest sie in den Szenenstatistiken oder im Renderlog deiner 3D-Anwendung.",
+      "Lege die Texturauflösung in Pixeln und die Anzahl einzelner Textur-Maps fest, die deine Szene über alle Materialien hinweg verwendet.",
+      "Gib die Anzahl aktiver Lichter in deiner Szene ein und wähle die Renderqualität, die deinen Ausgabeanforderungen entspricht.",
+      "Gib CPU-Kernzahl und GPU-Speicher (in GB) an und setze anschließend den Komplexitätsfaktor der Szene (1.0 für Standardszenen, höher für Volumen oder komplexe Materialien).",
+      "Klicke auf Renderzeit berechnen, um die geschätzte Renderdauer zu sehen. Passe Parameter an, um zu prüfen, wie Hardware-Upgrades oder Szenenoptimierungen die Gesamtzeit beeinflussen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum 3D-Renderzeit-Rechner",
+    "q1": "Wie genau sind diese Renderzeit-Schätzungen?",
+    "q1_a": "Die Schätzungen sind Näherungen auf Basis eines parametrischen Modells, das beschreibt, wie Renderkomplexität mit den wichtigsten Eingaben skaliert. Sie sind nützlich, um Konfigurationen zu vergleichen und Projektzeitpläne zu planen, aber tatsächliche Renderzeiten können je nach Renderer, Szenenlayout, Materialkomplexität und Optimierungsgrad um 50–300% variieren. Für präzises Timing solltest du deine reale Szene immer auf deiner Hardware benchmarken.",
+    "q2": "Warum hat eine Verdopplung der Texturauflösung so große Auswirkungen?",
+    "q2_a": "Texturauflösung skaliert quadratisch: Eine Verdopplung von 2K auf 4K erhöht die Pixelanzahl um 4×, nicht um 2×. Eine 4096 × 4096-Textur enthält 16 Millionen Pixel gegenüber 4 Millionen bei einer 2048 × 2048-Textur. Multipliziert mit Dutzenden Texturkanälen wachsen Speicher- und Sampling-Last schnell, weshalb die Texturauflösung einer der größten Hebel bei der Renderoptimierung ist.",
+    "q3": "Was bedeutet der Komplexitätsfaktor der Szene?",
+    "q3_a": "Der Komplexitätsfaktor erfasst Effekte, die nicht durch andere Parameter modelliert werden: Ray-Bounce-Tiefe, Subsurface Scattering, volumetrischer Nebel, Motion Blur, Tiefenschärfe und komplexe prozedurale Materialien. Ein Wert von 1.0 steht für eine saubere Szene mit Principled-BSDF-Materialien, ohne Volumetrik und mit Standard-Bounces. Szenen mit teilnehmenden Medien, GI mit vielen Bounces oder Hair-Shadern benötigen typischerweise Werte von 1.5–3.0.",
+    "q4": "Beschleunigt mehr GPU-Speicher das Rendering immer?",
+    "q4_a": "Mehr GPU-Speicher hilft vor allem dann, wenn Texturen und Geometrie den VRAM der Karte überschreiten und langsame Speicherübertragungen aus dem System-RAM verursachen. Wenn alle Assets in den VRAM passen, hat zusätzlicher Speicher keinen Einfluss auf die Rendergeschwindigkeit. Rendergeschwindigkeit skaliert direkter mit dem GPU-Rechendurchsatz (CUDA-Kerne, RT-Kerne oder Shader-Prozessoren) als allein mit der Speichergröße.",
+    "q5": "Wie kann ich Renderzeiten ohne neue Hardware reduzieren?",
+    "q5_a": "Die effektivsten Optimierungen sind: Polygonanzahl mit LOD-Techniken reduzieren, Texturen für entfernte Objekte in niedrigeren Auflösungen backen, komplexe Flächenlichter durch einfachere Beleuchtungs-Rigs ersetzen, Ray-Bounce-Zahlen für sekundäre Bounces senken, adaptives Sampling nutzen, um bereits konvergierte Pixel zu überspringen, und Renderings in mehrere Passes aufteilen. Jede dieser Maßnahmen kann die Renderzeit bei minimalem visuellen Einfluss um 20–60% reduzieren.",
+    "q6": "Was ist der Unterschied zwischen CPU- und GPU-Rendering?",
+    "q6_a": "CPU-Renderer wie Arnold CPU, V-Ray CPU und Cycles CPU nutzen Mehrkernprozessoren mit großen Caches, die komplexe Verzweigungen und hohe Speicherbandbreite gut bewältigen; ideal für Szenen mit komplexen Shadern und riesigen Datensätzen. GPU-Renderer wie Octane, Redshift und Cycles GPU nutzen Tausende Shader-Kerne für massiv parallele Ray-Verarbeitung und liefern deutlich schnellere Ergebnisse für Szenen, die in den VRAM passen. Hybrides CPU+GPU-Rendering kombiniert beide Ansätze für maximalen Durchsatz."
+  }
+}

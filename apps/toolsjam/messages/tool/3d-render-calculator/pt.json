@@ -1,0 +1,109 @@
+{
+  "title": "Calculadora de renderização 3D - Estime tempos",
+  "tagline": "Estime o tempo de renderização de cenas 3D com base em contagem de polígonos, resolução de texturas, iluminação e hardware para planejar seus projetos com eficiência.",
+  "intro": "Insira abaixo os parâmetros da cena e as especificações de hardware para obter uma estimativa do tempo de renderização do seu projeto 3D.",
+  "field": {
+    "polygonCount": "Contagem de polígonos",
+    "textureResolution": "Resolução da textura (px)",
+    "numTextures": "Número de texturas",
+    "numLights": "Número de luzes",
+    "renderQuality": "Qualidade de renderização",
+    "cpuCores": "Núcleos de CPU",
+    "gpuMem": "Memória da GPU (GB)",
+    "complexity": "Fator de complexidade da cena"
+  },
+  "quality": {
+    "Low": "Baixa",
+    "Medium": "Média",
+    "High": "Alta",
+    "Ultra": "Ultra"
+  },
+  "placeholder": {
+    "polygonCount": "ex.: 1000000",
+    "textureResolution": "ex.: 2048",
+    "numTextures": "ex.: 10",
+    "numLights": "ex.: 5",
+    "cpuCores": "ex.: 8",
+    "gpuMem": "ex.: 8",
+    "complexity": "1.0"
+  },
+  "button": {
+    "calculate": "Calcular tempo de renderização",
+    "reset": "Redefinir"
+  },
+  "duration": {
+    "lessThanOneMin": "< 1 min",
+    "minutes": "{min} min",
+    "hours": "{hours} h",
+    "hoursMinutes": "{hours} h {min} min"
+  },
+  "error": {
+    "invalid": "Insira números positivos válidos em todos os campos obrigatórios.",
+    "complexity": "A complexidade da cena deve estar entre 0.1 e 10."
+  },
+  "result": {
+    "heading": "Tempo de renderização estimado",
+    "value": "{time}",
+    "breakdown": "Detalhamento: polígonos {poly}, texturas {tex}, luzes {light}"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de renderização 3D",
+    "body": "Renderização 3D é o processo de converter a descrição de uma cena tridimensional em uma imagem bidimensional. É uma das tarefas mais exigentes computacionalmente em computação gráfica, exigindo planejamento cuidadoso para gerenciar cronogramas de projeto e custos de recursos. A calculadora de renderização 3D ajuda artistas, animadores e diretores técnicos a estimar quanto tempo uma renderização levará com base nos principais fatores que determinam sua complexidade.\n\nO fator mais fundamental do tempo de renderização é a contagem de polígonos. Cenas modernas podem conter desde alguns milhares de polígonos em uma visualização simples de produto até centenas de milhões de polígonos em uma tomada de efeitos visuais para cinema. Cada polígono requer processamento geométrico, testes de interseção para sombras e reflexos, além de cálculos de sombreamento. À medida que a contagem de polígonos cresce, o tempo de renderização aumenta aproximadamente com a raiz quadrada da contagem em motores bem otimizados, mas cenas mal otimizadas podem apresentar crescimento linear ou superlinear.\n\nA memória e a resolução das texturas são igualmente importantes. Uma única textura 4K (4096 × 4096 pixels) ocupa 64 MB de dados RGBA não compactados, e uma cena de produção pode usar dezenas ou centenas de texturas para canais de cor, normal, rugosidade, metálico e deslocamento. Amostrar essas texturas durante a renderização exige tanto largura de banda da memória da GPU quanto eficiência de cache. Quando as texturas excedem a VRAM da GPU, o renderizador precisa paginar dados da RAM do sistema, o que pode desacelerar drasticamente a renderização.\n\nA complexidade da iluminação adiciona mais tempo. Cada fonte de luz em uma cena requer lançamentos de raios adicionais para testes de sombra e contribui para a solução de iluminação global. Luzes de área, mapas de ambiente HDRi e modelos de céu fisicamente baseados são muito mais caros do que luzes pontuais simples, pois exigem várias amostras por cálculo de iluminação para produzir resultados suaves e sem ruído.\n\nAs configurações de qualidade de renderização controlam o número de amostras por pixel usadas em motores de path tracing ou ray tracing. Configurações de baixa qualidade usam poucas amostras e produzem imagens com ruído rapidamente; a qualidade Ultra usa muitas amostras e produz imagens limpas mais lentamente. A relação é aproximadamente linear: dobrar a contagem de amostras dobra o tempo de renderização e reduz pela metade o nível de ruído.\n\nAs especificações de hardware determinam a velocidade de execução dos cálculos subjacentes. A contagem de núcleos da CPU afeta quantos raios ou blocos podem ser processados em paralelo. A memória da GPU determina se as texturas cabem totalmente na placa ou exigem transferências de memória mais lentas. Motores modernos como Arnold, V-Ray, Cycles e Octane são otimizados para aproveitar CPUs multinúcleo e aceleração por GPU, portanto atualizar o hardware tem impacto direto e mensurável nos tempos de renderização.\n\nO fator de complexidade da cena nesta calculadora captura tudo que não é coberto pelos outros parâmetros: complexidade dos materiais, profundidade de rebote dos raios, espalhamento subsuperficial, efeitos volumétricos, desfoque de movimento e profundidade de campo. Uma complexidade de 1.0 representa uma cena padrão com materiais de superfície sólida e sem volumetria. Valores acima de 1.5 indicam cenas com meios participantes, path tracing com muitos rebotes ou materiais procedurais complexos.\n\nUsar esta calculadora fornece uma estimativa aproximada, não uma previsão exata. Tempos reais de renderização dependem muito do renderizador específico, do layout da cena, das redes de materiais e do nível de otimização dos ativos. Use as estimativas para comparar configurações diferentes e identificar os maiores gargalos da sua cena; depois otimize essas áreas primeiro para obter o maior ganho de desempenho de renderização."
+  },
+  "examples": {
+    "heading": "Exemplos de tempo de renderização 3D",
+    "intro": "Cenas comuns em diferentes níveis de complexidade mostrando como hardware e parâmetros da cena afetam os tempos estimados de renderização.",
+    "colInput": "Cena",
+    "colOutput": "Tempo est.",
+    "colNote": "Parâmetros principais",
+    "loadSimple": "Carregar cena simples",
+    "loadComplex": "Carregar cena complexa",
+    "items": [
+      {
+        "input": "Visualização simples de produto",
+        "output": "~11 min",
+        "note": "50K polígonos, texturas de 1024 px × 5, 3 luzes, qualidade média, 8 núcleos / GPU de 8 GB"
+      },
+      {
+        "input": "Renderização de interior arquitetônico",
+        "output": "~3 h",
+        "note": "2M polígonos, texturas de 4096 px × 25, 12 luzes, qualidade alta, 16 núcleos / GPU de 16 GB, complexidade 1.8"
+      },
+      {
+        "input": "Tomada VFX de longa-metragem",
+        "output": "~10 h",
+        "note": "5M polígonos, texturas de 8192 px × 50, 20 luzes, qualidade Ultra, 32 núcleos / GPU de 32 GB, complexidade 2.5"
+      },
+      {
+        "input": "Cinemática de jogo otimizada",
+        "output": "~1 h",
+        "note": "1M polígonos, texturas de 2048 px × 15, 6 luzes, qualidade alta, 12 núcleos / GPU de 12 GB, complexidade 1.2"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de renderização 3D",
+    "steps": [
+      "Insira a contagem de polígonos da sua cena; você pode encontrá-la nas estatísticas da cena ou no log de renderização do seu aplicativo 3D.",
+      "Defina a resolução da textura (em pixels) e o número de mapas de textura individuais que sua cena usa em todos os materiais.",
+      "Insira o número de luzes ativas na cena e escolha a configuração de qualidade de renderização que corresponda aos seus requisitos de saída.",
+      "Especifique a contagem de núcleos da CPU e a memória da GPU (em GB), depois defina o fator de complexidade da cena (1.0 para cenas padrão, maior para volumes ou materiais complexos).",
+      "Clique em Calcular tempo de renderização para ver a duração estimada. Ajuste os parâmetros para explorar como upgrades de hardware ou otimizações de cena afetam o tempo total."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ da calculadora de renderização 3D",
+    "q1": "Qual é a precisão dessas estimativas de tempo de renderização?",
+    "q1_a": "As estimativas são aproximações baseadas em um modelo paramétrico de como a complexidade de renderização escala com as entradas principais. Elas são úteis para comparar configurações e planejar cronogramas de projeto, mas os tempos reais podem variar de 50–300% dependendo do renderizador específico, do layout da cena, da complexidade dos materiais e do nível de otimização. Para tempos precisos, sempre faça benchmark da cena real no seu hardware.",
+    "q2": "Por que dobrar a resolução da textura tem um impacto tão grande?",
+    "q2_a": "A resolução da textura escala quadraticamente: dobrar de 2K para 4K aumenta a contagem de pixels em 4×, não 2×. Uma textura de 4096 × 4096 contém 16 milhões de pixels, contra 4 milhões em uma textura de 2048 × 2048. Multiplique isso por dezenas de canais de textura e a carga de memória e amostragem cresce rapidamente, por isso a resolução da textura é uma das maiores alavancas na otimização de renderização.",
+    "q3": "O que o fator de complexidade da cena representa?",
+    "q3_a": "O fator de complexidade captura efeitos não modelados pelos outros parâmetros: profundidade de rebote dos raios, espalhamento subsuperficial, neblina volumétrica, desfoque de movimento, profundidade de campo e materiais procedurais complexos. Um valor de 1.0 representa uma cena limpa com materiais Principled BSDF, sem volumetria e com rebotes padrão. Cenas com meios participantes, GI com muitos rebotes ou shaders de cabelo normalmente precisam de valores de 1.5–3.0.",
+    "q4": "Adicionar mais memória GPU sempre acelera a renderização?",
+    "q4_a": "Mais memória GPU ajuda principalmente quando suas texturas e geometrias excedem a VRAM da placa, causando transferências lentas a partir da RAM do sistema. Se todos os ativos cabem na VRAM, adicionar memória não afeta a velocidade de renderização. A velocidade de renderização escala de forma mais direta com a capacidade de computação da GPU (núcleos CUDA, núcleos RT ou processadores de shader) do que apenas com o tamanho da memória.",
+    "q5": "Como posso reduzir tempos de renderização sem comprar hardware novo?",
+    "q5_a": "As otimizações mais eficazes são: reduzir a contagem de polígonos com técnicas de LOD, assar texturas em resoluções menores para objetos distantes, substituir luzes de área complexas por rigs de iluminação mais simples, reduzir contagens de rebotes de raios para rebotes secundários, usar amostragem adaptativa para ignorar pixels já convergidos e dividir renderizações em múltiplos passes. Cada uma delas pode reduzir o tempo de renderização em 20–60% com impacto visual mínimo.",
+    "q6": "Qual é a diferença entre renderização por CPU e por GPU?",
+    "q6_a": "Renderizadores CPU (como Arnold CPU, V-Ray CPU e Cycles CPU) usam processadores multinúcleo com grandes caches, que lidam bem com ramificações complexas e alta largura de banda de memória, ideais para cenas com shaders complexos e conjuntos de dados enormes. Renderizadores GPU (como Octane, Redshift e Cycles GPU) exploram milhares de núcleos de shader para processamento de raios massivamente paralelo, entregando resultados muito mais rápidos para cenas que cabem na VRAM. A renderização híbrida CPU+GPU combina ambos para máxima taxa de processamento."
+  }
+}

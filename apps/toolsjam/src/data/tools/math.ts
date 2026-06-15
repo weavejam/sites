@@ -446,39 +446,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "xor-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "xor-ji-suan-qi",
+      "zh-TW": "xor-ji-suan-qi",
+      ja: "xor-keisanki",
+      ko: "xor-gyesangi",
+      es: "calculadora-xor",
+      fr: "calculatrice-xor",
+      de: "xor-rechner",
+      pt: "calculadora-xor",
+      ru: "kalkulyator-xor"
     },
     titles: {
       en: "XOR Calculator - Exclusive OR Logic & Bitwise Operations",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "XOR计算器：异或逻辑与位运算",
+      "zh-TW": "XOR計算器：異或邏輯與位元運算",
+      ja: "XOR計算機：排他的論理とビット演算",
+      ko: "XOR 계산기: 배타적 논리와 비트 연산",
+      es: "Calculadora XOR: lógica exclusiva y bit a bit",
+      fr: "Calculatrice XOR : logique exclusive et bits",
+      de: "XOR-Rechner: Exklusiv-ODER und Bitoperationen",
+      pt: "Calculadora XOR: lógica exclusiva e bits",
+      ru: "Калькулятор XOR: исключающее ИЛИ и биты"
     },
     descriptions: {
       en: "Calculate XOR (Exclusive OR) for boolean values, binary sequences, and decimal integers with step-by-step explanations and truth tables.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算布尔值、二进制序列和十进制整数的异或，并提供逐步说明与真值表。",
+      "zh-TW": "計算布林值、二進位序列與十進位整數的異或，並提供逐步說明與真值表。",
+      ja: "真偽値、2進数列、10進整数のXORを、真理値表と手順付きで計算します。",
+      ko: "불리언 값, 이진수열, 10진 정수의 XOR를 단계별 설명과 진리표로 계산합니다.",
+      es: "Calcula XOR para valores booleanos, secuencias binarias e enteros decimales con explicaciones paso a paso y tablas de verdad.",
+      fr: "Calculez le XOR de valeurs booléennes, de séquences binaires et d'entiers décimaux avec explications pas à pas et table de vérité.",
+      de: "Berechnen Sie XOR für boolesche Werte, Binärfolgen und Dezimalzahlen mit Schritt-für-Schritt-Erklärungen und Wahrheitstabelle.",
+      pt: "Calcule XOR para valores booleanos, sequências binárias e inteiros decimais com explicações passo a passo e tabela verdade.",
+      ru: "Вычисляйте XOR для булевых значений, двоичных последовательностей и десятичных целых с пошаговыми пояснениями и таблицей истинности."
     }
   },
   {
@@ -486,39 +486,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "y-intercept-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "y-jiejv-jisuanqi",
+      "zh-TW": "y-jieju-jisuanqi",
+      ja: "y-seppen-keisanki",
+      ko: "y-jeolpyeon-gyesangi",
+      es: "calculadora-interseccion-y",
+      fr: "calculateur-ordonnee-origine",
+      de: "y-achsenabschnitt-rechner",
+      pt: "calculadora-intercepto-y",
+      ru: "kalkulyator-y-peresecheniya"
     },
     titles: {
       en: "Y-Intercept Calculator - Find Y-Intercept of a Line",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "Y 截距计算器 - 求直线的 Y 截距",
+      "zh-TW": "Y 截距計算器 - 求直線的 Y 截距",
+      ja: "Y切片計算機 - 直線のY切片を求める",
+      ko: "Y절편 계산기 - 직선의 Y절편 구하기",
+      es: "Calculadora de intersección Y - hallar el corte",
+      fr: "Calculateur d’ordonnée à l’origine",
+      de: "Y-Achsenabschnitt-Rechner für Geraden",
+      pt: "Calculadora de intercepto em Y",
+      ru: "Калькулятор Y-пересечения прямой"
     },
     descriptions: {
       en: "Calculate the y-intercept and slope-intercept equation of a line from slope and point, or from two points. Instant results with the full equation.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据斜率和一点，或两点，计算直线的 y 截距和斜截式方程。即时得到完整方程。",
+      "zh-TW": "根據斜率和一點，或兩點，計算直線的 y 截距與斜截式方程式。即時取得完整方程式。",
+      ja: "傾きと1点、または2点から直線の y 切片と傾き切片形の方程式を計算。完全な方程式をすぐに表示します。",
+      ko: "기울기와 한 점 또는 두 점으로 직선의 y절편과 기울기-절편 방정식을 계산합니다. 전체 방정식을 즉시 확인하세요.",
+      es: "Calcula la intersección con el eje y y la ecuación pendiente-intersección de una recta desde pendiente y punto, o desde dos puntos.",
+      fr: "Calculez l’ordonnée à l’origine et l’équation réduite d’une droite à partir d’une pente et d’un point, ou de deux points.",
+      de: "Berechne den y-Achsenabschnitt und die Geradengleichung in Steigungsform aus Steigung und Punkt oder aus zwei Punkten.",
+      pt: "Calcule o intercepto em y e a equação da reta na forma inclinação-intercepto a partir de inclinação e ponto, ou de dois pontos.",
+      ru: "Рассчитайте y-пересечение и уравнение прямой в виде y = mx + b по наклону и точке или по двум точкам."
     }
   },
   {
@@ -1121,5 +1121,4 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   }
-
 ];
