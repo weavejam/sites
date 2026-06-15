@@ -24,6 +24,11 @@ import { fixtures as f_dice_probability_calculator } from "@/tools/dice-probabil
 import { fixtures as f_dice_roller_calculator } from "@/tools/dice-roller-calculator.fixtures";
 import { fixtures as f_dispersion_calculator } from "@/tools/dispersion-calculator.fixtures";
 import { fixtures as f_dot_plot_calculator } from "@/tools/dot-plot-calculator.fixtures";
+import { fixtures as f_effectiveness_ntu_calculator } from "@/tools/effectiveness-ntu-calculator.fixtures";
+import { fixtures as f_efficiency_calculator } from "@/tools/efficiency-calculator.fixtures";
+import { fixtures as f_eirp_calculator_effective_isotropic_radiated_power } from "@/tools/eirp-calculator-effective-isotropic-radiated-power.fixtures";
+import { fixtures as f_elastic_constants_calculator } from "@/tools/elastic-constants-calculator.fixtures";
+import { fixtures as f_elastic_potential_energy_calculator } from "@/tools/elastic-potential-energy-calculator.fixtures";
 import { fixtures as f_empirical_rule_calculator } from "@/tools/empirical-rule-calculator.fixtures";
 import { fixtures as f_error_propagation_calculator } from "@/tools/error-propagation-calculator.fixtures";
 import { fixtures as f_expanded_form_calculator } from "@/tools/expanded-form-calculator.fixtures";
@@ -163,6 +168,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "dice-roller-calculator": f_dice_roller_calculator,
   "dispersion-calculator": f_dispersion_calculator,
   "dot-plot-calculator": f_dot_plot_calculator,
+  "effectiveness-ntu-calculator": f_effectiveness_ntu_calculator,
+  "efficiency-calculator": f_efficiency_calculator,
+  "eirp-calculator-effective-isotropic-radiated-power": f_eirp_calculator_effective_isotropic_radiated_power,
+  "elastic-constants-calculator": f_elastic_constants_calculator,
+  "elastic-potential-energy-calculator": f_elastic_potential_energy_calculator,
   "empirical-rule-calculator": f_empirical_rule_calculator,
   "error-propagation-calculator": f_error_propagation_calculator,
   "expanded-form-calculator": f_expanded_form_calculator,
