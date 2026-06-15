@@ -440,5 +440,86 @@ export const tools: ToolEntry[] = [
       pt: "Calcule a função gama Γ(z) para qualquer número real com a aproximação de Lanczos. Resultados rápidos para fatoriais e integrais.",
       ru: "Вычисляйте гамма-функцию Γ(z) для любого действительного числа с помощью аппроксимации Ланцоша. Быстрые результаты для факториалов и интегралов."
     }
+  },
+  {
+    id: "xor-calculator",
+    category: "math",
+    slugs: {
+      en: "xor-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "XOR Calculator - Exclusive OR Logic & Bitwise Operations",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate XOR (Exclusive OR) for boolean values, binary sequences, and decimal integers with step-by-step explanations and truth tables.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "y-intercept-calculator",
+    category: "math",
+    slugs: {
+      en: "y-intercept-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Y-Intercept Calculator - Find Y-Intercept of a Line",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate the y-intercept and slope-intercept equation of a line from slope and point, or from two points. Instant results with the full equation.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
+
 ];
