@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_capacitive_reactance_calculator } from "@/tools/capacitive-reactance-calculator.fixtures";
+import { fixtures as f_capacitive_transformerless_power_supply_calculator } from "@/tools/capacitive-transformerless-power-supply-calculator.fixtures";
+import { fixtures as f_capacitor_calculator } from "@/tools/capacitor-calculator.fixtures";
+import { fixtures as f_capacitor_charge_time_calculator } from "@/tools/capacitor-charge-time-calculator.fixtures";
+import { fixtures as f_capacitor_energy_calculator } from "@/tools/capacitor-energy-calculator.fixtures";
 import { fixtures as f_coefficient_of_variation_calculator } from "@/tools/coefficient-of-variation-calculator.fixtures";
 import { fixtures as f_cohens_d_calculator } from "@/tools/cohens-d-calculator.fixtures";
 import { fixtures as f_coin_flip_probability_calculator } from "@/tools/coin-flip-probability-calculator.fixtures";
@@ -174,6 +179,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "capacitive-reactance-calculator": f_capacitive_reactance_calculator,
+  "capacitive-transformerless-power-supply-calculator": f_capacitive_transformerless_power_supply_calculator,
+  "capacitor-calculator": f_capacitor_calculator,
+  "capacitor-charge-time-calculator": f_capacitor_charge_time_calculator,
+  "capacitor-energy-calculator": f_capacitor_energy_calculator,
   "coefficient-of-variation-calculator": f_coefficient_of_variation_calculator,
   "cohens-d-calculator": f_cohens_d_calculator,
   "coin-flip-probability-calculator": f_coin_flip_probability_calculator,

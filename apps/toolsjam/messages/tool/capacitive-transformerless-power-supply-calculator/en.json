@@ -1,0 +1,105 @@
+{
+  "title": "Capacitive Transformerless Power Supply Calculator",
+  "tagline": "Design capacitive transformerless power supplies — calculate drop capacitor reactance, DC output current, and zener power dissipation.",
+  "intro": "Enter AC input voltage, frequency, drop capacitor value, load resistance, and zener voltage to design a compact transformerless AC-to-DC power supply.",
+  "field": {
+    "acVoltage": "AC Input Voltage (VAC)",
+    "frequency": "AC Frequency (Hz)",
+    "capacitor": "Capacitor Value (μF)",
+    "loadResistance": "Load Resistance (Ω)",
+    "zenerVoltage": "Zener Diode Voltage (V)"
+  },
+  "placeholder": {
+    "acVoltage": "e.g. 230",
+    "frequency": "e.g. 50",
+    "capacitor": "e.g. 1",
+    "loadResistance": "e.g. 1000",
+    "zenerVoltage": "e.g. 5"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "xc": "Capacitor Reactance (Xc)",
+    "peakVoltage": "Peak AC Voltage",
+    "capCurrent": "Capacitor Current (RMS)",
+    "dcOutput": "DC Output Voltage",
+    "loadCurrent": "DC Load Current",
+    "zenerCurrent": "Zener Current",
+    "zenerPower": "Zener Power Dissipation"
+  },
+  "formula": "Xc = 1/(2πfC)  |  Vout = Vzener  |  Iload = Vzener/Rload  |  Pzener = Vzener × Izener",
+  "error": {
+    "invalid": "Please enter valid positive values in all fields.",
+    "overload": "Warning: load current exceeds available current — reduce load or increase capacitor value."
+  },
+  "about": {
+    "heading": "About the Capacitive Transformerless Power Supply Calculator",
+    "body": "A capacitive transformerless power supply (also called a capacitor dropper circuit) is a compact, low-cost method of converting mains AC voltage to a lower DC voltage without using a transformer. It is widely used in low-power applications such as LED indicator lights, simple microcontroller supplies, and remote control circuits where the current requirement is typically below 50 mA and isolation from the mains is handled by other means (for example, an optocoupler or through careful PCB layout).\n\nThe circuit operates on a simple principle: a series capacitor (the \"drop capacitor\") acts as a reactive impedance that limits current without dissipating power. Because a capacitor's impedance is purely reactive (Xc = 1/(2πfC)), it drops a significant portion of the mains voltage with very little energy loss. The mains-connected capacitor is followed by a rectifier diode (or bridge) and a zener diode that clamps the output to the desired DC voltage, absorbing any excess current.\n\nThe drop capacitor reactance is calculated as Xc = 1 / (2π × f × C), where f is the mains frequency (50 or 60 Hz) and C is the capacitance in farads. The RMS current available from the supply is approximately Irms ≈ Vac / Xc (simplified, assuming the capacitor dominates the impedance). The available DC current after rectification is roughly Idc ≈ 0.9 × Irms for a bridge rectifier. The DC output voltage is clamped to the zener voltage (Vout = Vzener). The load current is Iload = Vout / Rload, and the zener must absorb any excess current Iz = Idc – Iload, dissipating power Pz = Vzener × Iz.\n\nSafety is paramount with transformerless power supplies: the output circuit is directly connected to the mains and is not isolated. Any point on the output side can be at mains potential relative to earth. Therefore, this topology should only be used inside fully insulated enclosures where no accessible metalwork is connected to the output, and the product must comply with relevant safety standards (IEC 60335, etc.). In applications requiring galvanic isolation — such as any circuit that will be touched by the user — a proper mains transformer or an isolated switch-mode supply is mandatory.\n\nThe capacitor itself must be rated for continuous AC mains voltage and must be a safety-rated type: a class X2 capacitor (275 VAC rating, for use across the mains) is the correct component. Electrolytic capacitors must never be used in this position. The voltage rating should be at least 400 V DC or 250 V AC for 230 V mains, or 250 V DC / 165 V AC for 120 V mains.\n\nTypical design steps: choose the required output voltage (= zener voltage), estimate the maximum load current, compute the required capacitance from C = Idc / (2π × f × Vac × 0.9), then select the nearest standard capacitor value. Always verify that the zener power dissipation Pz = Vzener × (Idc_max – Iload_min) is within the zener's rated power, with a comfortable derating margin of at least 50%."
+  },
+  "examples": {
+    "heading": "Worked Examples",
+    "intro": "Three design scenarios showing how capacitor value, load, and zener voltage interact in a transformerless supply.",
+    "colInput": "Design Parameters",
+    "colOutput": "Key Results",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Vac=230V, f=50Hz, C=1μF, Rload=1kΩ, Vzener=5V",
+        "output": "Xc≈3183Ω, Irms≈72mA, Vout=5V, Iload=5mA, Iz≈60mA",
+        "note": "Simple 5V LED supply on 230V/50Hz mains. Use X2-rated 1μF capacitor; zener must handle ~300mW."
+      },
+      {
+        "input": "Vac=120V, f=60Hz, C=2.2μF, Rload=470Ω, Vzener=12V",
+        "output": "Xc≈1208Ω, Irms≈99mA, Vout=12V, Iload≈26mA, Iz≈63mA",
+        "note": "12V supply on 120V/60Hz. Higher capacitor value provides more current; zener dissipates ~756mW."
+      },
+      {
+        "input": "Vac=230V, f=50Hz, C=0.47μF, Rload=4700Ω, Vzener=3.3V",
+        "output": "Xc≈6772Ω, Irms≈34mA, Vout=3.3V, Iload≈0.7mA, Iz≈30mA",
+        "note": "Low-current 3.3V microcontroller supply. Very small load current; zener absorbs most of the available current."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Calculator",
+    "steps": [
+      "Enter the AC mains voltage (RMS). Use 230 V for most European/Asian countries or 120 V for North America. Check your local mains standard.",
+      "Enter the AC frequency: 50 Hz (Europe, Asia, Africa, South America) or 60 Hz (North America, Japan).",
+      "Enter the drop capacitor value in microfarads (μF). This is the series capacitor connected directly to the mains — it must be an X2-rated safety capacitor rated for mains voltage.",
+      "Enter the load resistance in ohms (or compute it as Vout / Iload). Enter the zener diode voltage — this will be your regulated DC output voltage.",
+      "Click Calculate. Review the zener current and power dissipation. If zener current is negative, the load is too heavy for the chosen capacitor; increase the capacitor value. Always apply a 50% derating to the zener power rating."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "Is a capacitive transformerless power supply safe?",
+        "a": "The output circuit is directly connected to the mains and is not electrically isolated from it, so it is potentially lethal to touch. These circuits are only safe when fully enclosed in insulated housings with no accessible user contacts. For any application where the user might touch the output — including via USB or audio jacks — a transformer-based or isolated SMPS design is required."
+      },
+      {
+        "q": "What type of capacitor must be used on the mains side?",
+        "a": "Only a safety-rated class X2 metallised polypropylene capacitor is suitable for connection across the mains. X2 capacitors are designed to fail safely (open-circuit) rather than short-circuit. Electrolytic capacitors, standard ceramic capacitors, and non-safety-rated film capacitors must never be used in this position, as failure can cause fire or electrical shock."
+      },
+      {
+        "q": "Why is the available current so small?",
+        "a": "The drop capacitor's reactance Xc = 1/(2πfC) is very high at mains frequency for small capacitance values. For example, 1 μF at 50 Hz gives Xc ≈ 3183 Ω, limiting current to about 72 mA (RMS) from a 230 V supply. This is a fundamental limitation of the topology — it is only suitable for low-power applications below roughly 50–100 mA."
+      },
+      {
+        "q": "How do I select the correct zener diode?",
+        "a": "Choose a zener voltage equal to your desired output DC voltage. The zener must handle the worst-case power dissipation, which occurs at minimum load (maximum zener current): Pz_max = Vzener × (Idc_max – Iload_min). Select a zener rated at least twice this power for reliability. Common choices are 5.1 V, 5.6 V, 9.1 V, and 12 V zeners in 1 W or 500 mW packages."
+      },
+      {
+        "q": "What happens if the load draws more current than the capacitor can supply?",
+        "a": "If the load current exceeds the available DC current from the capacitor, the output voltage will drop below the zener voltage and become unregulated. The supply cannot provide more than Idc_max ≈ 0.9 × Vac / Xc. To increase the available current, use a larger capacitor (doubling C roughly doubles the current). The calculator warns you when the load current exceeds the supply's capacity."
+      },
+      {
+        "q": "Can I use a half-wave rectifier instead of a bridge rectifier?",
+        "a": "Yes. A half-wave rectifier uses a single diode instead of four, which reduces cost and component count. However, the available DC current is roughly half that of a bridge rectifier (Idc ≈ 0.45 × Irms for half-wave vs. 0.9 × Irms for full-wave bridge). This calculator models the bridge rectifier approximation; halve the current results if you are using a half-wave design."
+      }
+    ]
+  }
+}

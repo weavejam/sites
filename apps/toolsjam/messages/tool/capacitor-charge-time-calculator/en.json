@@ -1,0 +1,101 @@
+{
+  "title": "Capacitor Charge Time Calculator – RC Circuit",
+  "tagline": "Calculate the time for a capacitor to charge to a target voltage in an RC circuit using t = −RC × ln(1 − Vc/Vs).",
+  "intro": "Enter the capacitance, series resistance, supply voltage, and target voltage to find the charge time, RC time constant, and voltage milestones at 1τ through 5τ.",
+  "field": {
+    "capacitance": "Capacitance (F)",
+    "resistance": "Resistance (Ω)",
+    "supplyVoltage": "Supply Voltage (V)",
+    "targetVoltage": "Target Voltage (V)"
+  },
+  "placeholder": {
+    "capacitance": "e.g. 0.001",
+    "resistance": "e.g. 10000",
+    "supplyVoltage": "e.g. 12",
+    "targetVoltage": "e.g. 7.56"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "timeConstant": "RC Time Constant (τ)",
+    "chargeTime": "Charge Time (t)",
+    "tauMultiple": "Time in τ units",
+    "chargePercent": "Target as % of Vs",
+    "tauReference": "Voltage at standard τ multiples"
+  },
+  "formula": "t = −R × C × ln(1 − Vc/Vs)  |  τ = R × C  |  V(t) = Vs × (1 − e^(−t/τ))",
+  "error": {
+    "invalid": "Please enter valid positive values for all four fields.",
+    "targetExceedsSupply": "Target voltage must be less than the supply voltage — a capacitor can only charge asymptotically toward Vs."
+  },
+  "about": {
+    "heading": "About the Capacitor Charge Time Calculator",
+    "body": "When a capacitor is charged through a series resistor from a constant voltage supply, the voltage across the capacitor rises exponentially according to Vc(t) = Vs × (1 − e^(−t/τ)), where Vs is the supply voltage, t is the elapsed time, and τ = R × C is the RC time constant. The time constant τ (tau) is the time it takes for the capacitor voltage to rise to approximately 63.2% of the supply voltage (i.e., to 1 − 1/e ≈ 0.632 of Vs).\n\nRearranging the exponential charging equation to find the time required to reach a specific target voltage Vc gives: t = −τ × ln(1 − Vc/Vs) = −R × C × ln(1 − Vc/Vs). Because the exponential curve is asymptotic — the capacitor voltage approaches Vs but never exactly reaches it — there is no finite time to charge to exactly 100% of the supply voltage. In practice, 5 time constants (5τ) is considered fully charged because the voltage is then at 99.3% of Vs, and any further charging is negligible.\n\nThe RC time constant τ = R × C is the single most important parameter in timing circuits. For R in ohms and C in farads, τ is in seconds. Practical timing applications span an enormous range: from picoseconds (τ = 1 kΩ × 1 pF) in high-speed digital circuits to many minutes (τ = 1 MΩ × 1 mF) in delay timers. The voltage reached after each integer multiple of τ follows a predictable pattern: 1τ → 63.2%, 2τ → 86.5%, 3τ → 95.0%, 4τ → 98.2%, 5τ → 99.3% of Vs.\n\nRC circuits form the basis of many timing and filtering circuits. The 555 timer IC operates on RC charging: the output changes state when the capacitor voltage crosses 1/3 Vs or 2/3 Vs, and the RC time constant sets the period. Similarly, in RC low-pass and high-pass filters, the 3 dB cutoff frequency is f₃dB = 1 / (2π × R × C), showing the deep connection between RC time constants and frequency response.\n\nThe charging current also follows an exponential: I(t) = (Vs/R) × e^(−t/τ), starting at a maximum of Vs/R when the capacitor is uncharged and decaying toward zero as the capacitor approaches full charge. The total charge stored is Q = C × Vs coulombs, and the energy stored is E = ½ × C × Vs² joules. Of the energy supplied by the source during charging (E_source = C × Vs²), exactly half is dissipated as heat in the resistance and half is stored in the capacitor — regardless of the value of R. This result, sometimes called the RC energy paradox, is a fundamental result in circuit theory.\n\nDischarging follows a similar exponential: Vc(t) = V0 × e^(−t/τ), where V0 is the initial voltage. The same time constant governs both charging and discharging. For discharge to 1/e ≈ 36.8% of the initial voltage takes one time constant, and for practical purposes (< 1% of initial voltage) five time constants are required."
+  },
+  "examples": {
+    "heading": "Worked Examples",
+    "intro": "Three RC circuit scenarios showing how charge time scales with resistance, capacitance, and target voltage.",
+    "colInput": "Circuit Values",
+    "colOutput": "Charge Time Result",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "C = 1 mF = 0.001 F, R = 10 kΩ, Vs = 12 V, Vc = 7.56 V (63%)",
+        "output": "τ = 10 s, t ≈ 10.0 s (≈1τ)",
+        "note": "Charging to 63.2% of supply voltage always takes exactly 1τ. Classic timing circuit reference point."
+      },
+      {
+        "input": "C = 100 μF = 1×10⁻⁴ F, R = 47 kΩ, Vs = 5 V, Vc = 4.75 V (95%)",
+        "output": "τ = 4.7 s, t ≈ 14.1 s (≈3τ)",
+        "note": "Charging to 95% of supply voltage takes approximately 3τ — standard rule of thumb for 'practically charged'."
+      },
+      {
+        "input": "C = 10 nF = 1×10⁻⁸ F, R = 1 kΩ, Vs = 3.3 V, Vc = 2.0 V",
+        "output": "τ = 10 μs, t ≈ 9.32 μs",
+        "note": "High-speed digital timing: 10 nF / 1 kΩ gives 10 μs time constant for threshold detection circuits."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Capacitor Charge Time Calculator",
+    "steps": [
+      "Enter the capacitance in farads (F). Convert from common units first: 1 μF = 1×10⁻⁶ F, 1 nF = 1×10⁻⁹ F, 1 mF = 1×10⁻³ F.",
+      "Enter the series resistance in ohms (Ω). This is the total resistance in the charging path, including internal resistance of the supply and any intentional series resistor.",
+      "Enter the supply voltage in volts — the voltage the capacitor is charging toward. Enter the target voltage you want the capacitor to reach (must be less than the supply voltage).",
+      "Click Calculate. The tool shows the RC time constant τ, the charge time to your target, and voltage values at standard τ multiples (1τ, 2τ, 3τ, 5τ) for reference.",
+      "Use the τ-multiple result to verify your design: if charge time / τ > 3, you are near the 95% point; if > 5, the capacitor is practically fully charged."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "Why does the capacitor never fully charge to the supply voltage?",
+        "a": "The charging equation Vc(t) = Vs × (1 − e^(−t/τ)) is an exponential approach — the function only reaches Vs at t = ∞. Each time constant, the remaining voltage gap shrinks by 63.2%, so the gap becomes smaller and smaller but never reaches exactly zero. After 5τ the gap is only 0.67% of Vs, which is negligible in most applications and is considered 'fully charged'."
+      },
+      {
+        "q": "What is the RC time constant?",
+        "a": "The RC time constant τ = R × C (in seconds when R is in ohms and C in farads) characterises how quickly the circuit responds. It is the time for the capacitor voltage to rise from 0 to 63.2% of the supply voltage, or equivalently the time for an initial voltage to decay to 36.8% of its starting value. It equals 1/(2π × f₃dB), where f₃dB is the 3 dB frequency of the corresponding RC filter."
+      },
+      {
+        "q": "How does resistance affect charging time?",
+        "a": "Charging time is directly proportional to resistance: double the resistance and the time constant doubles, so it takes twice as long to reach any given voltage. This provides a simple design knob: use a larger resistor for slower charging (longer timing intervals) or a smaller resistor for faster charging. However, a smaller resistor draws more peak current (Ipeak = Vs/R), so the supply must be able to source that current."
+      },
+      {
+        "q": "What happens to the energy during charging?",
+        "a": "The energy supplied by the voltage source during charging is E_source = C × Vs². Exactly half of this (E = ½ × C × Vs²) is stored in the capacitor's electric field, and the other half is dissipated as heat in the series resistance — regardless of the resistance value. This 50% efficiency is an inescapable property of resistive RC charging, which is why switched-capacitor and resonant charging circuits are used when efficiency is critical."
+      },
+      {
+        "q": "Can I use this calculator for discharging as well?",
+        "a": "The discharge equation Vc(t) = V0 × e^(−t/τ) uses the same time constant τ = RC, but it is a decaying exponential rather than a rising one. To find the discharge time from V0 down to a target voltage Vt: t = −τ × ln(Vt/V0). While this calculator is designed for charging, you can adapt the result: the time to discharge to (Vs − Vc) from Vs follows the same mathematics by symmetry."
+      },
+      {
+        "q": "What are typical RC time constants in practical circuits?",
+        "a": "RC time constants span an enormous range: from picoseconds (1 kΩ × 1 pF = 1 ps) in high-speed digital circuits to many minutes (10 MΩ × 100 μF = 1000 s ≈ 17 min) in long-duration timers. Common applications include 555 timer circuits (ms to seconds), debounce circuits (1–10 ms), audio coupling capacitors (tens of ms to match low-frequency response), and power supply filter capacitors (designed for very small τ to minimise ripple)."
+      }
+    ]
+  }
+}
