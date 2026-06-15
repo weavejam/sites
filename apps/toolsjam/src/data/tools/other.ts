@@ -1199,7 +1199,211 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
-  }
+  },
+
+
+
+
+  {
+    id: "minecraft-stack-calculator",
+    category: "other",
+    slugs: {
+      en: "minecraft-stack-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Minecraft Stack Calculator - Item & Storage Planner",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate Minecraft item stacks, shulker box capacity, and inventory slots. Optimise storage for any resource quantity with precise stack counts.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "minecraft-end-portal-finder",
+    category: "other",
+    slugs: {
+      en: "minecraft-end-portal-finder",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Minecraft End Portal Finder - Locate Strongholds",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Find Minecraft Strongholds using Eye of Ender angle and distance calculations. Supports single-throw and optional second-throw estimation for better accuracy.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "minecraft-circle-generator",
+    category: "other",
+    slugs: {
+      en: "minecraft-circle-generator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Minecraft Circle Generator - Pixel Perfect Circles",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Generate pixel-perfect Minecraft circles with exact block coordinates. Supports Midpoint and Bresenham algorithms with outline or filled options.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "mayan-calendar-converter",
+    category: "other",
+    slugs: {
+      en: "mayan-calendar-converter",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Mayan Calendar Converter - Gregorian to Mayan Date",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Convert Gregorian dates to Mayan Long Count, Tzolkin, and Haab calendars. Includes Calendar Round output and reverse Mayan-to-Gregorian conversion.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "matched-betting-calculator",
+    category: "other",
+    slugs: {
+      en: "matched-betting-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Matched Betting Calculator - Risk-Free Profits",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate optimal lay stakes, qualifying losses, and guaranteed profits from matched betting and bookmaker bonuses. Free matched betting tool.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
 
 
 
