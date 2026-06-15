@@ -1,0 +1,120 @@
+{
+  "title": "Calculadora de ganho dB para potência e tensão",
+  "tagline": "Calcule o ganho em decibéis entre dois valores de potência ou tensão, ou encontre uma entrada ou saída desconhecida quando o ganho em dB é especificado.",
+  "intro": "Escolha se deseja calcular o ganho em dB, encontrar o valor de saída ou encontrar o valor de entrada. Selecione potência ou tensão, insira duas grandezas conhecidas e obtenha o resultado instantaneamente.",
+  "type": {
+    "calculateGain": "Calcular ganho em dB",
+    "calculateGain_desc": "Encontre o ganho (ou perda) em dB a partir dos valores de entrada e saída.",
+    "calculateOutput": "Calcular valor de saída",
+    "calculateOutput_desc": "Encontre o valor de saída a partir do valor de entrada e do ganho em dB.",
+    "calculateInput": "Calcular valor de entrada",
+    "calculateInput_desc": "Encontre o valor de entrada a partir do valor de saída e do ganho em dB."
+  },
+  "quantity": {
+    "label": "Tipo de grandeza",
+    "power": "Potência (W, mW, etc.)",
+    "voltage": "Tensão (V, mV, etc.)"
+  },
+  "field": {
+    "calcType": "Tipo de cálculo",
+    "quantityType": "Tipo de grandeza",
+    "inputValue": "Valor de entrada",
+    "outputValue": "Valor de saída",
+    "gainDb": "Ganho (dB)"
+  },
+  "placeholder": {
+    "inputValue": "ex.: 10",
+    "outputValue": "ex.: 20",
+    "gainDb": "ex.: 3"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultado",
+    "gainPower": "Ganho = {result} dB  (10 × log₁₀({output} / {input}))",
+    "gainVoltage": "Ganho = {result} dB  (20 × log₁₀({output} / {input}))",
+    "outputPower": "Saída = {result}  (entrada × 10^(ganho/10))",
+    "outputVoltage": "Saída = {result}  (entrada × 10^(ganho/20))",
+    "inputPower": "Entrada = {result}  (saída / 10^(ganho/10))",
+    "inputVoltage": "Entrada = {result}  (saída / 10^(ganho/20))"
+  },
+  "error": {
+    "invalid": "Insira números válidos em todos os campos habilitados.",
+    "zeroInput": "O valor de entrada deve ser maior que zero.",
+    "zeroOutput": "O valor de saída deve ser maior que zero."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de ganho dB",
+    "body": "Ganho é a razão entre um sinal de saída e um sinal de entrada, e expressá-lo em decibéis transforma essa razão em uma grandeza aditiva, que pode ser somada ao longo de uma cadeia de amplificadores, atenuadores e linhas de transmissão. A calculadora de ganho dB resolve os três problemas mais comuns de ganho: calcular o ganho em dB quando entrada e saída são conhecidas; calcular o nível de saída quando a entrada e o ganho são conhecidos; e calcular o nível de entrada necessário quando a meta de saída e a especificação de ganho são fornecidas.\n\nA fórmula depende da natureza física da grandeza medida. Para grandezas de potência — watts, milivatts, intensidade acústica — aplica-se a fórmula de ganho de potência: G(dB) = 10 × log₁₀(P_out / P_in). Para grandezas de amplitude (campo) — volts, milivolts, amperes, pressão sonora — aplica-se a fórmula de ganho de tensão: G(dB) = 20 × log₁₀(V_out / V_in). O fator 20 em vez de 10 existe porque a potência é proporcional ao quadrado de uma grandeza de campo (P ∝ V²), então usar 20 com razões de tensão produz o mesmo resultado em dB que usar 10 com a razão de potência correspondente. As duas fórmulas são consistentes por construção.\n\nInvertendo as fórmulas de ganho, obtemos os cálculos de saída e entrada. Para potência: P_out = P_in × 10^(G/10); para tensão: V_out = V_in × 10^(G/20). Um ganho positivo (G > 0) amplifica o sinal; um ganho negativo (G < 0) o atenua. Um ganho de -3 dB reduz a potência à metade; um ganho de -6 dB reduz a amplitude de tensão à metade; um ganho de +20 dB multiplica a tensão por 10 (ou a potência por 100).\n\nEm eletrônica, o modelo de ganho em dB é usado para especificar ganho de amplificadores, perda de inserção de filtros, atenuação de cabos, ganho de antenas e margens de orçamento de enlace. Em acústica, ele mostra quanto um amplificador de alto-falante ou um tratamento de sala altera o nível de pressão sonora. Em engenharia de RF e micro-ondas, cada componente da cadeia de recepção — antena, LNA, cabo, mixer, amplificador de FI — é caracterizado por seu ganho ou perda em dB, e o ganho total do sistema é a soma algébrica de todas as contribuições.\n\nValores negativos de ganho em dB são chamados de perda de inserção ou atenuação. Um cabo coaxial especificado em -2.5 dB por metro reduz a potência para 10^(−2.5/10) ≈ 0.562 da entrada por metro, ou reduz a tensão para 10^(−2.5/20) ≈ 0.750. Saber se você está trabalhando com potência ou tensão evita o erro comum de aplicar a fórmula errada e obter um resultado com diferença de um fator dois em termos de dB."
+  },
+  "examples": {
+    "heading": "Exemplos resolvidos",
+    "intro": "Quatro cenários práticos de ganho cobrindo cálculos de potência e tensão.",
+    "colInput": "Cenário",
+    "colOutput": "Resultado",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Ganho de potência do amplificador: Pin = 10 W, Pout = 20 W",
+        "output": "Ganho = 3.01 dB",
+        "note": "10 × log₁₀(2) = 3.01 dB. Dobrar a potência sempre corresponde a aproximadamente +3 dB."
+      },
+      {
+        "input": "Encontrar a tensão de saída: Vin = 1 V, Gain = 6 dB (Tensão)",
+        "output": "Vout = 2.00 V",
+        "note": "1 × 10^(6/20) ≈ 2.00 V. Um ganho de tensão de +6 dB duplica a amplitude."
+      },
+      {
+        "input": "Encontrar a potência de entrada: Pout = 100 W, Gain = 20 dB (Potência)",
+        "output": "Pin = 1.00 W",
+        "note": "100 / 10^(20/10) = 100/100 = 1.00 W. Um ganho de potência de 20 dB multiplica a potência por 100."
+      },
+      {
+        "input": "Atenuador: Vin = 5 V, Gain = −3 dB (Tensão)",
+        "output": "Vout ≈ 3.54 V",
+        "note": "5 × 10^(−3/20) ≈ 3.54 V. Uma atenuação de tensão de -3 dB reduz a amplitude para cerca de 70.7% da entrada."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de ganho dB",
+    "steps": [
+      "Selecione o tipo de cálculo: 'Calcular ganho em dB' para encontrar o ganho a partir de entrada/saída, 'Calcular valor de saída' para encontrar a saída a partir da entrada e do ganho, ou 'Calcular valor de entrada' para encontrar a entrada a partir da saída e do ganho.",
+      "Escolha o tipo de grandeza — Potência para watts/milivatts/intensidade, ou Tensão para volts/ampères/pressão. Isso define a fórmula correta (fator 10 ou fator 20).",
+      "Insira os dois valores conhecidos. O campo correspondente ao desconhecido ficará desativado — deixe-o em branco e a calculadora fará o cálculo.",
+      "Clique em Calcular. O resultado mostra o valor calculado junto com a fórmula para você conferir a matemática.",
+      "Clique em Redefinir para limpar todos os campos e iniciar um novo cenário. Você pode alternar o tipo de cálculo e o tipo de grandeza a qualquer momento."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "items": [
+      {
+        "q": "Qual é a diferença entre a fórmula de ganho de potência e a de ganho de tensão?",
+        "a": "O ganho de potência usa G = 10 × log₁₀(Pout/Pin) porque grandezas de potência já são proporcionais à intensidade do sinal. O ganho de tensão usa G = 20 × log₁₀(Vout/Vin) porque a potência é proporcional ao quadrado da tensão. O fator 20 garante que ambas as fórmulas deem o mesmo valor em dB para um ganho físico dado. Escolher a fórmula errada produz um resultado com desvio de um fator 2 em termos de dB."
+      },
+      {
+        "q": "O que significa um ganho negativo em dB?",
+        "a": "Ganho negativo em dB significa atenuação — a saída é menor que a entrada. Um ganho de -3 dB significa que a potência foi reduzida à metade; -6 dB significa que a amplitude de tensão foi reduzida à metade (a potência cai para um quarto). Componentes passivos como cabos, conectores e atenuadores sempre têm ganho negativo em dB. Amplificadores têm ganho positivo em dB. Filtros ativos podem ter ambos, dependendo da frequência."
+      },
+      {
+        "q": "Como somo ganhos de componentes em série?",
+        "a": "Basta somar os valores em dB de cada componente na cadeia. Por exemplo, um amplificador de +20 dB seguido por um cabo com perda de -3 dB resulta em ganho líquido de +17 dB. Essa propriedade aditiva é a principal razão pela qual engenheiros usam dB — ela transforma multiplicações em cascata em somas simples, facilitando a análise do orçamento de enlace."
+      },
+      {
+        "q": "O que é 0 dB de ganho?",
+        "a": "0 dB de ganho significa que a saída é igual à entrada (razão = 1) — sem amplificação e sem atenuação. Um amplificador buffer de ganho unitário, por exemplo, tem 0 dB de ganho. Em cálculos de orçamento de enlace, um componente com 0 dB de perda de inserção deixa o sinal inalterado."
+      },
+      {
+        "q": "Posso usar esta calculadora para ganho acústico?",
+        "a": "Sim. Para nível de pressão sonora (SPL), use a fórmula de Tensão, porque o SPL é medido em pressão, que é uma grandeza de amplitude. Insira a pressão de referência como X_in e a pressão medida como X_out. O resultado em dB corresponde diretamente à variação do SPL. Para intensidade acústica ou potência, use a fórmula de Potência."
+      },
+      {
+        "q": "Como converto ganho em dB para multiplicador linear?",
+        "a": "Para potência: razão linear = 10^(G/10). Para tensão: razão linear = 10^(G/20). Você também pode usar o modo 'Calcular valor de saída' com entrada 1 e o ganho desejado — o valor de saída é exatamente o multiplicador linear. Por exemplo, um ganho de potência de 20 dB → entrada = 1, saída = 100, então o multiplicador de potência é 100."
+      }
+    ]
+  }
+}

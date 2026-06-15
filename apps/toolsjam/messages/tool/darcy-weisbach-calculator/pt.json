@@ -1,0 +1,109 @@
+{
+  "title": "Calculadora de perda por atrito Darcy-Weisbach",
+  "tagline": "Calcule a perda de carga por atrito em tubulações usando a equação de Darcy-Weisbach — informe a geometria do tubo, a velocidade e as propriedades do fluido para obter resultados instantâneos.",
+  "intro": "Informe o diâmetro, o comprimento, a velocidade de escoamento, a viscosidade cinemática e a rugosidade da tubulação para calcular a perda de carga por atrito, o número de Reynolds e o fator de atrito.",
+  "field": {
+    "pipeDiameter": "Diâmetro da tubulação (m)",
+    "pipeLength": "Comprimento da tubulação (m)",
+    "velocity": "Velocidade de escoamento (m/s)",
+    "kinematicViscosity": "Viscosidade cinemática (m²/s)",
+    "roughness": "Rugosidade da tubulação (mm)"
+  },
+  "placeholder": {
+    "pipeDiameter": "ex.: 0.1",
+    "pipeLength": "ex.: 100",
+    "velocity": "ex.: 2.5",
+    "kinematicViscosity": "ex.: 1.006e-6",
+    "roughness": "ex.: 0.045"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultados",
+    "headLoss": "Perda de carga por atrito",
+    "reynolds": "Número de Reynolds",
+    "frictionFactor": "Fator de atrito de Darcy",
+    "flowRegime": "Regime de escoamento",
+    "laminar": "Laminar",
+    "turbulent": "Turbulento",
+    "transitional": "Transicional",
+    "unit": {
+      "headLoss": "m",
+      "dimensionless": "—"
+    }
+  },
+  "error": {
+    "invalid": "Digite números positivos válidos em todos os campos.",
+    "zeroDiameter": "O diâmetro da tubulação deve ser maior que zero.",
+    "zeroVelocity": "A velocidade de escoamento deve ser maior que zero."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de perda por atrito Darcy-Weisbach",
+    "body": "A equação de Darcy-Weisbach é o padrão de referência para calcular a perda de carga por atrito em escoamento em tubulações. Nomeada em homenagem a Henry Darcy e Julius Weisbach, ela relaciona a energia dissipada por atrito à geometria da tubulação, à velocidade de escoamento e às propriedades do fluido pela expressão elegante hf = f × (L/D) × (V²/2g), em que hf é a perda de carga por atrito em metros de coluna de fluido, f é o fator de atrito de Darcy adimensional, L é o comprimento da tubulação, D é o diâmetro interno, V é a velocidade média de escoamento e g é a aceleração da gravidade (9.81 m/s²).\n\nEntender o fator de atrito é o coração de qualquer cálculo Darcy-Weisbach. O número de Reynolds Re = V·D/ν (onde ν é a viscosidade cinemática) indica se o escoamento é laminar ou turbulento. Para escoamento laminar (Re < 2300), o fator de atrito é simplesmente f = 64/Re, resultado que pode ser derivado analiticamente das equações de Navier-Stokes para uma tubulação circular. Para escoamento turbulento (Re > 4000), f depende tanto de Re quanto da rugosidade relativa ε/D, em que ε é a rugosidade absoluta da tubulação. A equação de Colebrook-White, amplamente usada, captura essa relação de forma implícita, e a aproximação explícita de Swamee-Jain (precisa em até 3% para 10⁻⁶ ≤ ε/D ≤ 10⁻² e 5000 ≤ Re ≤ 10⁸) é usada nesta calculadora: f = 0.25 / [log₁₀(ε/(3.7D) + 5.74/Re⁰·⁹)]². Entre Re = 2300 e Re = 4000, o escoamento está em regime transicional, em que a previsão do fator de atrito é menos confiável.\n\nOs valores de rugosidade da tubulação variam bastante conforme o material e a idade. Tubos de cobre trefilado e vidro têm rugosidade tão baixa quanto 0.0015 mm, o aço comercial fica em torno de 0.045 mm, o ferro fundido cerca de 0.26 mm, e concreto áspero pode chegar a 1–3 mm ou mais. À medida que as tubulações envelhecem e incrustam, a rugosidade aumenta, por isso estimativas conservadoras costumam ser prudentes no projeto.\n\nO resultado da perda de carga pode ser convertido em queda de pressão por ΔP = ρ·g·hf, onde ρ é a densidade do fluido. Para água a 20°C isso é aproximadamente 9800 Pa por metro de carga. Engenheiros usam isso para dimensionar bombas, verificar se as alturas manométricas existentes são suficientes e balancear redes de tubulações em paralelo. A equação de Darcy-Weisbach é preferida em relação a fórmulas empíricas como Hazen-Williams porque é dimensionalmente consistente, se aplica a qualquer fluido newtoniano em todos os regimes de escoamento e tem base física clara.\n\nAplicações comuns incluem redes municipais de distribuição de água, circuitos de água gelada e aquecimento em HVAC, dutos de petróleo e gás, tubulações de processo em plantas químicas e sistemas de combate a incêndio. Ao informar o diâmetro interno real em vez do diâmetro nominal, considerar a rugosidade real da tubulação em vez das especificações do fabricante e usar a viscosidade do fluido na temperatura de operação, os engenheiros obtêm estimativas confiáveis de perda de carga para projeto e diagnóstico do sistema."
+  },
+  "examples": {
+    "heading": "Exemplos resolvidos",
+    "intro": "Três cenários representativos de escoamento em tubulações mostrando cálculos de perda de carga para diferentes materiais e fluidos.",
+    "colInput": "Cenário",
+    "colOutput": "Resultado",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Água em tubo de aço: D=0.1 m, L=100 m, V=2.5 m/s, ν=1.006×10⁻⁶ m²/s, ε=0.045 mm",
+        "output": "hf ≈ 5.83 m (f ≈ 0.0183, Re ≈ 248,500)",
+        "note": "Escoamento turbulento. Linha principal típica de abastecimento municipal. A perda de carga por atrito é de 5.83 m em 100 m de tubo de aço de 100 mm."
+      },
+      {
+        "input": "Óleo em regime quase transicional: D=0.15 m, L=200 m, V=1.2 m/s, ν=5×10⁻⁵ m²/s, ε=0.26 mm",
+        "output": "hf ≈ 4.29 m (f ≈ 0.0438, Re ≈ 3,600)",
+        "note": "Escoamento próximo do transicional. A alta viscosidade eleva o fator de atrito; há perda de carga significativa ao longo de 200 m."
+      },
+      {
+        "input": "Água em alta velocidade: D=0.05 m, L=50 m, V=8 m/s, ν=1.006×10⁻⁶ m²/s, ε=0.0015 mm",
+        "output": "hf ≈ 45.8 m (f ≈ 0.0141, Re ≈ 397,600)",
+        "note": "Escoamento industrial de alta velocidade em tubo de cobre liso. A perda de carga é grande porque a velocidade entra ao quadrado na fórmula."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora Darcy-Weisbach",
+    "steps": [
+      "Informe o diâmetro interno da tubulação em metros. Use o diâmetro interno real, não o diâmetro nominal, para obter resultados precisos.",
+      "Informe o comprimento da tubulação em metros — o trecho completo da entrada à saída para o qual você deseja calcular a perda de carga por atrito.",
+      "Informe a velocidade média de escoamento em m/s. Você pode derivá-la da vazão volumétrica Q por V = Q / (π D² / 4).",
+      "Informe a viscosidade cinemática do fluido em m²/s na temperatura de operação. A água a 20°C é 1.006×10⁻⁶ m²/s.",
+      "Informe a rugosidade da tubulação em milímetros para o material (por exemplo, 0.045 para aço comercial). Clique em Calcular para ver instantaneamente a perda de carga, o número de Reynolds e o fator de atrito."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "items": [
+      {
+        "q": "O que é perda de carga por atrito?",
+        "a": "A perda de carga por atrito (hf) é a energia dissipada por unidade de peso do fluido à medida que ele escoa por uma tubulação, expressa em metros de coluna de fluido. Ela representa a pressão que a bomba deve fornecer para vencer o atrito da tubulação. Quanto maior a velocidade, mais rugosa a tubulação ou maior o comprimento do trecho, maior a perda de carga."
+      },
+      {
+        "q": "Como o fator de atrito é calculado?",
+        "a": "Para escoamento laminar (Re < 2300), o fator de atrito é exatamente f = 64/Re. Para escoamento turbulento, a calculadora usa a aproximação explícita de Swamee-Jain da equação de Colebrook-White: f = 0.25 / [log₁₀(ε/(3.7D) + 5.74/Re⁰·⁹)]², que evita solução iterativa e permanece dentro de 3% do diagrama de Moody."
+      },
+      {
+        "q": "O que é o número de Reynolds e por que ele importa?",
+        "a": "O número de Reynolds Re = V·D/ν é uma razão adimensional entre forças inerciais e viscosas. Ele determina o regime de escoamento: Re < 2300 significa laminar (suave e previsível), Re > 4000 significa turbulento (caótico, com maior atrito), e 2300–4000 é transicional. Saber o regime é essencial porque a fórmula do fator de atrito muda entre escoamento laminar e turbulento."
+      },
+      {
+        "q": "Que valor de rugosidade da tubulação devo usar?",
+        "a": "Valores típicos de rugosidade em mm: cobre trefilado/vidro ≈ 0.0015, aço comercial ≈ 0.045, ferro fundido ≈ 0.26, concreto liso ≈ 0.3, concreto áspero ≈ 1–3, aço rebitado ≈ 0.9–9. Use valores mais altos para tubulações envelhecidas para levar em conta incrustações e corrosão, que sempre aumentam a rugosidade com o tempo."
+      },
+      {
+        "q": "Posso converter a perda de carga em queda de pressão?",
+        "a": "Sim. Multiplique a perda de carga em metros por ρ·g, onde ρ é a densidade do fluido (kg/m³) e g = 9.81 m/s². Para água a 20°C: ΔP (Pa) = 9789 × hf. Isso fornece a queda de pressão por atrito que a bomba precisa superar no trecho da tubulação."
+      },
+      {
+        "q": "A equação se aplica a gases e a fluidos que não são água?",
+        "a": "Sim. A equação de Darcy-Weisbach se aplica a qualquer fluido newtoniano — água, óleo, ar, vapor — desde que você use a viscosidade cinemática correta do fluido na sua temperatura de operação. Para gases compressíveis em altas velocidades ou com grandes quedas de pressão, podem ser necessárias correções para a variação de densidade ao longo da tubulação."
+      }
+    ]
+  }
+}

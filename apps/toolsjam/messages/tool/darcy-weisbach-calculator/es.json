@@ -1,0 +1,109 @@
+{
+  "title": "Calculadora de pérdida por fricción Darcy-Weisbach",
+  "tagline": "Calcula la pérdida de carga por fricción en tuberías usando la ecuación de Darcy-Weisbach: introduce la geometría, la velocidad y las propiedades del fluido para obtener resultados al instante.",
+  "intro": "Introduce el diámetro, la longitud, la velocidad de flujo, la viscosidad cinemática y la rugosidad de la tubería para calcular la pérdida de carga por fricción, el número de Reynolds y el factor de fricción.",
+  "field": {
+    "pipeDiameter": "Diámetro de la tubería (m)",
+    "pipeLength": "Longitud de la tubería (m)",
+    "velocity": "Velocidad de flujo (m/s)",
+    "kinematicViscosity": "Viscosidad cinemática (m²/s)",
+    "roughness": "Rugosidad de la tubería (mm)"
+  },
+  "placeholder": {
+    "pipeDiameter": "p. ej. 0.1",
+    "pipeLength": "p. ej. 100",
+    "velocity": "p. ej. 2.5",
+    "kinematicViscosity": "p. ej. 1.006e-6",
+    "roughness": "p. ej. 0.045"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultados",
+    "headLoss": "Pérdida de carga por fricción",
+    "reynolds": "Número de Reynolds",
+    "frictionFactor": "Factor de fricción de Darcy",
+    "flowRegime": "Régimen de flujo",
+    "laminar": "Laminar",
+    "turbulent": "Turbulento",
+    "transitional": "Transicional",
+    "unit": {
+      "headLoss": "m",
+      "dimensionless": "—"
+    }
+  },
+  "error": {
+    "invalid": "Introduce números positivos válidos en todos los campos.",
+    "zeroDiameter": "El diámetro de la tubería debe ser mayor que cero.",
+    "zeroVelocity": "La velocidad de flujo debe ser mayor que cero."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de pérdida por fricción Darcy-Weisbach",
+    "body": "La ecuación de Darcy-Weisbach es el estándar de referencia para calcular la pérdida de carga por fricción en flujo en tuberías. Lleva el nombre de Henry Darcy y Julius Weisbach, y relaciona la energía disipada por fricción con la geometría de la tubería, la velocidad de flujo y las propiedades del fluido mediante la expresión elegante hf = f × (L/D) × (V²/2g), donde hf es la pérdida de carga por fricción en metros de columna de fluido, f es el factor de fricción de Darcy adimensional, L es la longitud de la tubería, D es el diámetro interno, V es la velocidad media de flujo y g es la aceleración de la gravedad (9.81 m/s²).\n\nEntender el factor de fricción es el corazón de cualquier cálculo Darcy-Weisbach. El número de Reynolds Re = V·D/ν (donde ν es la viscosidad cinemática) indica si el flujo es laminar o turbulento. Para flujo laminar (Re < 2300), el factor de fricción es simplemente f = 64/Re, un resultado que puede derivarse analíticamente de las ecuaciones de Navier-Stokes para una tubería circular. Para flujo turbulento (Re > 4000), f depende tanto de Re como de la rugosidad relativa ε/D, donde ε es la rugosidad absoluta de la tubería. La ecuación de Colebrook-White, de uso generalizado, capta esta relación de forma implícita, y en esta calculadora se usa la aproximación explícita de Swamee-Jain (con precisión dentro del 3% para 10⁻⁶ ≤ ε/D ≤ 10⁻² y 5000 ≤ Re ≤ 10⁸): f = 0.25 / [log₁₀(ε/(3.7D) + 5.74/Re⁰·⁹)]². Entre Re = 2300 y Re = 4000, el flujo está en un régimen transicional en el que la predicción del factor de fricción es menos fiable.\n\nLos valores de rugosidad de las tuberías varían mucho según el material y la antigüedad. El cobre estirado y el vidrio pueden tener una rugosidad tan baja como 0.0015 mm, el acero comercial ronda 0.045 mm, la fundición unos 0.26 mm y el hormigón áspero puede alcanzar 1–3 mm o más. A medida que las tuberías envejecen y se incrustan, la rugosidad aumenta, por lo que en el diseño suelen preferirse estimaciones conservadoras.\n\nEl resultado de pérdida de carga puede convertirse en caída de presión mediante ΔP = ρ·g·hf, donde ρ es la densidad del fluido. Para el agua a 20°C esto equivale aproximadamente a 9800 Pa por metro de carga. Los ingenieros lo usan para dimensionar bombas, comprobar si la carga disponible de las bombas existentes es suficiente y equilibrar redes de tuberías en paralelo. La ecuación de Darcy-Weisbach se prefiere frente a fórmulas empíricas como Hazen-Williams porque es dimensionalmente consistente, se aplica a cualquier fluido newtoniano en todos los regímenes de flujo y tiene una base física clara.\n\nLas aplicaciones comunes incluyen redes municipales de distribución de agua, circuitos de agua helada y calefacción en climatización, tuberías de petróleo y gas, tuberías de proceso en plantas químicas y sistemas de extinción de incendios. Al introducir el diámetro interno en lugar del diámetro nominal, considerar la rugosidad real de la tubería en lugar de las especificaciones del fabricante y usar la viscosidad del fluido a la temperatura de operación, los ingenieros pueden obtener estimaciones fiables de la pérdida de carga para el diseño y la resolución de problemas del sistema."
+  },
+  "examples": {
+    "heading": "Ejemplos resueltos",
+    "intro": "Tres escenarios representativos de flujo en tuberías que muestran cálculos de pérdida de carga para distintos materiales y fluidos.",
+    "colInput": "Escenario",
+    "colOutput": "Resultado",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Agua en tubería de acero: D=0.1 m, L=100 m, V=2.5 m/s, ν=1.006×10⁻⁶ m²/s, ε=0.045 mm",
+        "output": "hf ≈ 5.83 m (f ≈ 0.0183, Re ≈ 248,500)",
+        "note": "Flujo turbulento. Tubería principal típica de suministro municipal. La pérdida de carga por fricción es de 5.83 m en 100 m de tubería de acero de 100 mm."
+      },
+      {
+        "input": "Aceite en régimen casi transicional: D=0.15 m, L=200 m, V=1.2 m/s, ν=5×10⁻⁵ m²/s, ε=0.26 mm",
+        "output": "hf ≈ 4.29 m (f ≈ 0.0438, Re ≈ 3,600)",
+        "note": "Flujo casi transicional. La alta viscosidad eleva el factor de fricción; hay una pérdida de carga considerable en 200 m."
+      },
+      {
+        "input": "Agua a alta velocidad: D=0.05 m, L=50 m, V=8 m/s, ν=1.006×10⁻⁶ m²/s, ε=0.0015 mm",
+        "output": "hf ≈ 45.8 m (f ≈ 0.0141, Re ≈ 397,600)",
+        "note": "Flujo industrial a alta velocidad en tubería de cobre lisa. La pérdida de carga es grande porque la velocidad entra al cuadrado en la fórmula."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora Darcy-Weisbach",
+    "steps": [
+      "Introduce el diámetro interno de la tubería en metros. Usa el diámetro interno real, no el tamaño nominal, para obtener resultados precisos.",
+      "Introduce la longitud de la tubería en metros: el tramo completo entre entrada y salida para el que deseas calcular la pérdida de carga por fricción.",
+      "Introduce la velocidad media de flujo en m/s. Puedes derivarla del caudal volumétrico Q mediante V = Q / (π D² / 4).",
+      "Introduce la viscosidad cinemática del fluido en m²/s a la temperatura de operación. El agua a 20°C es 1.006×10⁻⁶ m²/s.",
+      "Introduce la rugosidad de la tubería en milímetros para el material correspondiente (por ejemplo, 0.045 para acero comercial). Haz clic en Calcular para ver al instante la pérdida de carga, el número de Reynolds y el factor de fricción."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Qué es la pérdida de carga por fricción?",
+        "a": "La pérdida de carga por fricción (hf) es la energía disipada por unidad de peso del fluido a medida que fluye por una tubería, expresada en metros de columna de fluido. Representa la presión que la bomba debe suministrar para vencer la fricción de la tubería. Cuanto mayor sea la velocidad, más rugosa la tubería o más largo el tramo, mayor será la pérdida de carga."
+      },
+      {
+        "q": "¿Cómo se calcula el factor de fricción?",
+        "a": "Para flujo laminar (Re < 2300), el factor de fricción es exactamente f = 64/Re. Para flujo turbulento, la calculadora usa la aproximación explícita de Swamee-Jain de la ecuación de Colebrook-White: f = 0.25 / [log₁₀(ε/(3.7D) + 5.74/Re⁰·⁹)]², que evita resolver de forma iterativa y se mantiene dentro del 3% del diagrama de Moody."
+      },
+      {
+        "q": "¿Qué es el número de Reynolds y por qué importa?",
+        "a": "El número de Reynolds Re = V·D/ν es una relación adimensional entre fuerzas inerciales y viscosas. Determina el régimen de flujo: Re < 2300 significa laminar (suave y predecible), Re > 4000 significa turbulento (caótico y con mayor fricción), y 2300–4000 es transicional. Conocer el régimen es esencial porque la fórmula del factor de fricción cambia entre flujo laminar y turbulento."
+      },
+      {
+        "q": "¿Qué valor de rugosidad de tubería debo usar?",
+        "a": "Valores típicos de rugosidad en mm: cobre estirado/vidrio ≈ 0.0015, acero comercial ≈ 0.045, fundición ≈ 0.26, hormigón liso ≈ 0.3, hormigón áspero ≈ 1–3, acero remachado ≈ 0.9–9. Usa valores más altos para tuberías envejecidas para tener en cuenta incrustaciones y corrosión, que siempre aumentan la rugosidad con el tiempo."
+      },
+      {
+        "q": "¿Puedo convertir la pérdida de carga en caída de presión?",
+        "a": "Sí. Multiplica la pérdida de carga en metros por ρ·g, donde ρ es la densidad del fluido (kg/m³) y g = 9.81 m/s². Para agua a 20°C: ΔP (Pa) = 9789 × hf. Esto da la caída de presión por fricción que la bomba debe superar en el tramo de tubería."
+      },
+      {
+        "q": "¿La ecuación se aplica a gases y a fluidos que no son agua?",
+        "a": "Sí. La ecuación de Darcy-Weisbach se aplica a cualquier fluido newtoniano —agua, aceite, aire, vapor— siempre que uses la viscosidad cinemática correcta del fluido a su temperatura de operación. Para gases compresibles a altas velocidades o con grandes caídas de presión, puede ser necesario corregir la variación de densidad a lo largo de la tubería."
+      }
+    ]
+  }
+}

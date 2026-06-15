@@ -1,0 +1,120 @@
+{
+  "title": "Calculadora de ganancia dB para potencia y voltaje",
+  "tagline": "Calcula la ganancia en decibelios entre dos valores de potencia o voltaje, o encuentra una entrada o salida desconocida cuando se especifica la ganancia en dB.",
+  "intro": "Elige si quieres calcular la ganancia en dB, hallar el valor de salida o hallar el valor de entrada. Selecciona potencia o voltaje, introduce dos cantidades conocidas y obtén el resultado al instante.",
+  "type": {
+    "calculateGain": "Calcular ganancia en dB",
+    "calculateGain_desc": "Obtén la ganancia (o pérdida) en dB a partir de los valores de entrada y salida.",
+    "calculateOutput": "Calcular valor de salida",
+    "calculateOutput_desc": "Obtén el valor de salida a partir del valor de entrada y la ganancia en dB.",
+    "calculateInput": "Calcular valor de entrada",
+    "calculateInput_desc": "Obtén el valor de entrada a partir del valor de salida y la ganancia en dB."
+  },
+  "quantity": {
+    "label": "Tipo de magnitud",
+    "power": "Potencia (W, mW, etc.)",
+    "voltage": "Voltaje (V, mV, etc.)"
+  },
+  "field": {
+    "calcType": "Tipo de cálculo",
+    "quantityType": "Tipo de magnitud",
+    "inputValue": "Valor de entrada",
+    "outputValue": "Valor de salida",
+    "gainDb": "Ganancia (dB)"
+  },
+  "placeholder": {
+    "inputValue": "p. ej. 10",
+    "outputValue": "p. ej. 20",
+    "gainDb": "p. ej. 3"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultado",
+    "gainPower": "Ganancia = {result} dB  (10 × log₁₀({output} / {input}))",
+    "gainVoltage": "Ganancia = {result} dB  (20 × log₁₀({output} / {input}))",
+    "outputPower": "Salida = {result}  (entrada × 10^(ganancia/10))",
+    "outputVoltage": "Salida = {result}  (entrada × 10^(ganancia/20))",
+    "inputPower": "Entrada = {result}  (salida / 10^(ganancia/10))",
+    "inputVoltage": "Entrada = {result}  (salida / 10^(ganancia/20))"
+  },
+  "error": {
+    "invalid": "Introduce números válidos en todos los campos habilitados.",
+    "zeroInput": "El valor de entrada debe ser mayor que cero.",
+    "zeroOutput": "El valor de salida debe ser mayor que cero."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de ganancia dB",
+    "body": "La ganancia es la relación entre una señal de salida y una señal de entrada, y expresarla en decibelios convierte esa relación en una magnitud aditiva que puede sumarse a lo largo de una cadena de amplificadores, atenuadores y líneas de transmisión. La calculadora de ganancia dB resuelve los tres problemas más comunes: calcular la ganancia en dB cuando se conocen la entrada y la salida; calcular el nivel de salida cuando se conocen la entrada y la ganancia; y calcular el nivel de entrada requerido cuando se conoce el objetivo de salida y la especificación de ganancia.\n\nLa fórmula depende de la naturaleza física de la magnitud medida. Para magnitudes de potencia — vatios, milivatios, intensidad acústica — se aplica la fórmula de ganancia de potencia: G(dB) = 10 × log₁₀(P_out / P_in). Para magnitudes de amplitud (campo) — voltios, milivoltios, amperios, presión sonora — se aplica la fórmula de ganancia de voltaje: G(dB) = 20 × log₁₀(V_out / V_in). El factor 20 en lugar de 10 aparece porque la potencia es proporcional al cuadrado de una magnitud de campo (P ∝ V²), de modo que usar 20 con relaciones de voltaje produce el mismo resultado en dB que usar 10 con la relación de potencia correspondiente. Ambas fórmulas son coherentes por diseño.\n\nAl invertir las fórmulas de ganancia obtenemos los cálculos de salida y entrada. Para potencia: P_out = P_in × 10^(G/10); para voltaje: V_out = V_in × 10^(G/20). Una ganancia positiva (G > 0) amplifica la señal; una ganancia negativa (G < 0) la atenúa. Una ganancia de -3 dB reduce la potencia a la mitad; una ganancia de -6 dB reduce a la mitad la amplitud de voltaje; una ganancia de +20 dB multiplica el voltaje por 10 (o la potencia por 100).\n\nEn electrónica, el modelo de ganancia en dB se usa para especificar la ganancia de amplificadores, la pérdida de inserción de filtros, la atenuación de cables, la ganancia de antenas y los márgenes del presupuesto de enlace. En acústica, describe cuánto cambia el nivel de presión sonora un amplificador de altavoz o un tratamiento de sala. En ingeniería de RF y microondas, cada componente de la cadena de recepción — antena, LNA, cable, mezclador, amplificador de FI — se caracteriza por su ganancia o pérdida en dB, y la ganancia total del sistema es la suma algebraica de todas las contribuciones.\n\nLos valores negativos de ganancia en dB se llaman pérdida de inserción o atenuación. Un cable coaxial especificado con -2.5 dB por metro reduce la potencia a 10^(−2.5/10) ≈ 0.562 de la entrada por metro, o reduce el voltaje a 10^(−2.5/20) ≈ 0.750. Saber si trabajas con potencia o voltaje evita el error habitual de aplicar la fórmula incorrecta y obtener un resultado desviado por un factor de dos en términos de dB."
+  },
+  "examples": {
+    "heading": "Ejemplos resueltos",
+    "intro": "Cuatro escenarios prácticos de ganancia que cubren cálculos de potencia y voltaje.",
+    "colInput": "Escenario",
+    "colOutput": "Resultado",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Ganancia de potencia del amplificador: Pin = 10 W, Pout = 20 W",
+        "output": "Ganancia = 3.01 dB",
+        "note": "10 × log₁₀(2) = 3.01 dB. Duplicar la potencia siempre corresponde aproximadamente a +3 dB."
+      },
+      {
+        "input": "Hallar voltaje de salida: Vin = 1 V, Gain = 6 dB (Voltaje)",
+        "output": "Vout = 2.00 V",
+        "note": "1 × 10^(6/20) ≈ 2.00 V. Una ganancia de voltaje de +6 dB duplica la amplitud."
+      },
+      {
+        "input": "Hallar potencia de entrada: Pout = 100 W, Gain = 20 dB (Potencia)",
+        "output": "Pin = 1.00 W",
+        "note": "100 / 10^(20/10) = 100/100 = 1.00 W. Una ganancia de potencia de 20 dB multiplica la potencia por 100."
+      },
+      {
+        "input": "Atenuador: Vin = 5 V, Gain = −3 dB (Voltaje)",
+        "output": "Vout ≈ 3.54 V",
+        "note": "5 × 10^(−3/20) ≈ 3.54 V. Una atenuación de voltaje de -3 dB reduce la amplitud a alrededor del 70.7% de la entrada."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de ganancia dB",
+    "steps": [
+      "Selecciona el tipo de cálculo: 'Calcular ganancia en dB' para hallar la ganancia a partir de entrada/salida, 'Calcular valor de salida' para hallar la salida a partir de la entrada y la ganancia, o 'Calcular valor de entrada' para hallar la entrada a partir de la salida y la ganancia.",
+      "Elige el tipo de magnitud: Potencia para vatios/milivatios/intensidad, o Voltaje para voltios/amperios/presión. Esto fija la fórmula correcta (factor 10 frente a factor 20).",
+      "Introduce los dos valores conocidos. El campo correspondiente a la incógnita quedará deshabilitado: déjalo en blanco y la calculadora lo resolverá por ti.",
+      "Haz clic en Calcular. El resultado muestra el valor calculado junto con la fórmula para que puedas verificar las matemáticas.",
+      "Haz clic en Restablecer para borrar todos los campos y empezar un nuevo caso. Puedes cambiar el tipo de cálculo y el tipo de magnitud en cualquier momento."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Cuál es la diferencia entre la fórmula de ganancia de potencia y la de ganancia de voltaje?",
+        "a": "La ganancia de potencia usa G = 10 × log₁₀(Pout/Pin) porque las magnitudes de potencia ya son proporcionales a la intensidad de la señal. La ganancia de voltaje usa G = 20 × log₁₀(Vout/Vin) porque la potencia es proporcional al cuadrado del voltaje. El factor 20 garantiza que ambas fórmulas den el mismo valor en dB para una ganancia física dada. Elegir la fórmula incorrecta da un resultado desfasado por un factor de 2 en términos de dB."
+      },
+      {
+        "q": "¿Qué significa una ganancia negativa en dB?",
+        "a": "Una ganancia negativa en dB significa atenuación: la salida es menor que la entrada. Una ganancia de -3 dB significa que la potencia se reduce a la mitad; -6 dB significa que la amplitud de voltaje se reduce a la mitad (la potencia se reduce a una cuarta parte). Los componentes pasivos como cables, conectores y atenuadores siempre tienen ganancia negativa en dB. Los amplificadores tienen ganancia positiva en dB. Los filtros activos pueden tener cualquiera de las dos, según la frecuencia."
+      },
+      {
+        "q": "¿Cómo sumo las ganancias de componentes en serie?",
+        "a": "Simplemente suma los valores en dB de cada componente de la cadena. Por ejemplo, un amplificador de +20 dB seguido de un cable con -3 dB de pérdida da una ganancia neta de +17 dB. Esta propiedad aditiva es la principal razón por la que los ingenieros usan dB: convierte multiplicaciones en cascada en sumas simples y facilita el análisis del presupuesto de enlace."
+      },
+      {
+        "q": "¿Qué es una ganancia de 0 dB?",
+        "a": "Una ganancia de 0 dB significa que la salida es igual a la entrada (relación = 1): no hay amplificación ni atenuación. Por ejemplo, un amplificador buffer de ganancia unitaria tiene 0 dB de ganancia. En los cálculos de presupuesto de enlace, un componente con 0 dB de pérdida de inserción deja la señal sin cambios."
+      },
+      {
+        "q": "¿Puedo usar esta calculadora para ganancia acústica?",
+        "a": "Sí. Para el nivel de presión sonora (SPL) usa la fórmula de Voltaje, porque el SPL se mide en presión, que es una magnitud de amplitud. Introduce la presión de referencia como X_in y la presión medida como X_out. El resultado en dB corresponde directamente al cambio de SPL. Para intensidad acústica o potencia, usa la fórmula de Potencia."
+      },
+      {
+        "q": "¿Cómo convierto la ganancia en dB a un multiplicador lineal?",
+        "a": "Para potencia: relación lineal = 10^(G/10). Para voltaje: relación lineal = 10^(G/20). También puedes usar el modo 'Calcular valor de salida' con una entrada de 1 y la ganancia deseada; el valor de salida es exactamente el multiplicador lineal. Por ejemplo, una ganancia de potencia de 20 dB → entrada = 1, salida = 100, así que el multiplicador de potencia es 100."
+      }
+    ]
+  }
+}

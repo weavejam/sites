@@ -1,0 +1,109 @@
+{
+  "title": "Calculateur de perte de charge Darcy-Weisbach",
+  "tagline": "Calculez la perte de charge par frottement dans les conduites avec l’équation de Darcy-Weisbach : saisissez la géométrie, la vitesse et les propriétés du fluide pour obtenir des résultats instantanés.",
+  "intro": "Saisissez le diamètre, la longueur, la vitesse d’écoulement, la viscosité cinématique et la rugosité du conduit pour calculer la perte de charge par frottement, le nombre de Reynolds et le facteur de frottement.",
+  "field": {
+    "pipeDiameter": "Diamètre du tuyau (m)",
+    "pipeLength": "Longueur du tuyau (m)",
+    "velocity": "Vitesse d’écoulement (m/s)",
+    "kinematicViscosity": "Viscosité cinématique (m²/s)",
+    "roughness": "Rugosité du tuyau (mm)"
+  },
+  "placeholder": {
+    "pipeDiameter": "ex. 0.1",
+    "pipeLength": "ex. 100",
+    "velocity": "ex. 2.5",
+    "kinematicViscosity": "ex. 1.006e-6",
+    "roughness": "ex. 0.045"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats",
+    "headLoss": "Perte de charge par frottement",
+    "reynolds": "Nombre de Reynolds",
+    "frictionFactor": "Facteur de frottement de Darcy",
+    "flowRegime": "Régime d’écoulement",
+    "laminar": "Laminaire",
+    "turbulent": "Turbulent",
+    "transitional": "Transitionnel",
+    "unit": {
+      "headLoss": "m",
+      "dimensionless": "—"
+    }
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs.",
+    "zeroDiameter": "Le diamètre du tuyau doit être supérieur à zéro.",
+    "zeroVelocity": "La vitesse d’écoulement doit être supérieure à zéro."
+  },
+  "about": {
+    "heading": "À propos du calculateur de perte de charge Darcy-Weisbach",
+    "body": "L’équation de Darcy-Weisbach est la référence pour calculer la perte de charge par frottement en écoulement dans les conduites. Nommée d’après Henry Darcy et Julius Weisbach, elle relie l’énergie dissipée par frottement à la géométrie du tuyau, à la vitesse d’écoulement et aux propriétés du fluide par l’expression élégante hf = f × (L/D) × (V²/2g), où hf est la perte de charge par frottement en mètres de colonne de fluide, f le facteur de frottement de Darcy sans dimension, L la longueur du tuyau, D le diamètre intérieur, V la vitesse moyenne d’écoulement et g l’accélération de la pesanteur (9.81 m/s²).\n\nComprendre le facteur de frottement est au cœur de tout calcul Darcy-Weisbach. Le nombre de Reynolds Re = V·D/ν (où ν est la viscosité cinématique) indique si l’écoulement est laminaire ou turbulent. Pour un écoulement laminaire (Re < 2300), le facteur de frottement est simplement f = 64/Re, résultat qui peut être dérivé analytiquement des équations de Navier-Stokes pour une conduite circulaire. Pour un écoulement turbulent (Re > 4000), f dépend à la fois de Re et de la rugosité relative ε/D, où ε est la rugosité absolue du tuyau. L’équation de Colebrook-White, très utilisée, décrit cette relation de manière implicite, et l’approximation explicite de Swamee-Jain (précise à 3% près pour 10⁻⁶ ≤ ε/D ≤ 10⁻² et 5000 ≤ Re ≤ 10⁸) est utilisée dans ce calculateur : f = 0.25 / [log₁₀(ε/(3.7D) + 5.74/Re⁰·⁹)]². Entre Re = 2300 et Re = 4000, l’écoulement est en régime transitionnel, où la prédiction du facteur de frottement est moins fiable.\n\nLes valeurs de rugosité des tuyaux varient fortement selon le matériau et l’âge. Le cuivre étiré et les tubes en verre ont une rugosité aussi faible que 0.0015 mm, l’acier commercial se situe autour de 0.045 mm, la fonte autour de 0.26 mm, et un béton rugueux peut atteindre 1–3 mm ou plus. À mesure que les tuyaux vieillissent et s’entartrent, la rugosité augmente ; des estimations prudentes sont donc souvent recommandées en conception.\n\nLa perte de charge peut être convertie en chute de pression via ΔP = ρ·g·hf, où ρ est la densité du fluide. Pour l’eau à 20°C, cela correspond à environ 9800 Pa par mètre de charge. Les ingénieurs l’utilisent pour dimensionner les pompes, vérifier si la hauteur manométrique disponible est suffisante et équilibrer les réseaux de tuyauterie en parallèle. L’équation de Darcy-Weisbach est préférée aux formules empiriques comme Hazen-Williams parce qu’elle est dimensionnellement cohérente, s’applique à tout fluide newtonien dans tous les régimes d’écoulement et repose sur une base physique claire.\n\nLes applications courantes incluent les réseaux municipaux de distribution d’eau, les circuits d’eau glacée et de chauffage CVC, les pipelines pétroliers et gaziers, les tuyauteries de procédés en usine chimique et les systèmes de protection incendie. En saisissant le diamètre intérieur réel plutôt que le diamètre nominal, en tenant compte de la rugosité réelle du tuyau plutôt que des spécifications du fabricant, et en utilisant la viscosité du fluide à la température de service, les ingénieurs obtiennent des estimations fiables de perte de charge pour la conception et le dépannage des systèmes."
+  },
+  "examples": {
+    "heading": "Exemples résolus",
+    "intro": "Trois scénarios représentatifs d’écoulement en conduite montrant des calculs de perte de charge pour différents matériaux de tuyaux et fluides.",
+    "colInput": "Scénario",
+    "colOutput": "Résultat",
+    "colNote": "Remarques",
+    "items": [
+      {
+        "input": "Eau dans une conduite en acier : D=0.1 m, L=100 m, V=2.5 m/s, ν=1.006×10⁻⁶ m²/s, ε=0.045 mm",
+        "output": "hf ≈ 5.83 m (f ≈ 0.0183, Re ≈ 248,500)",
+        "note": "Écoulement turbulent. Conduite principale d’alimentation municipale typique. La perte de charge par frottement est de 5.83 m sur 100 m de conduite acier de 100 mm."
+      },
+      {
+        "input": "Huile en régime quasi transitionnel : D=0.15 m, L=200 m, V=1.2 m/s, ν=5×10⁻⁵ m²/s, ε=0.26 mm",
+        "output": "hf ≈ 4.29 m (f ≈ 0.0438, Re ≈ 3,600)",
+        "note": "Écoulement proche de la transition. La viscosité élevée augmente le facteur de frottement ; la perte de charge sur 200 m est importante."
+      },
+      {
+        "input": "Eau à grande vitesse : D=0.05 m, L=50 m, V=8 m/s, ν=1.006×10⁻⁶ m²/s, ε=0.0015 mm",
+        "output": "hf ≈ 45.8 m (f ≈ 0.0141, Re ≈ 397,600)",
+        "note": "Écoulement industriel à grande vitesse dans une conduite en cuivre lisse. La perte de charge est élevée car la vitesse intervient au carré dans la formule."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur Darcy-Weisbach",
+    "steps": [
+      "Saisissez le diamètre intérieur du tuyau en mètres. Utilisez le diamètre intérieur réel, et non le diamètre nominal, pour obtenir des résultats précis.",
+      "Saisissez la longueur du tuyau en mètres — le tronçon complet entre l’entrée et la sortie pour lequel vous souhaitez calculer la perte de charge par frottement.",
+      "Saisissez la vitesse moyenne d’écoulement en m/s. Vous pouvez la déduire du débit volumique Q via V = Q / (π D² / 4).",
+      "Saisissez la viscosité cinématique du fluide en m²/s à la température de service. L’eau à 20°C vaut 1.006×10⁻⁶ m²/s.",
+      "Saisissez la rugosité du tuyau en millimètres pour le matériau correspondant (par exemple 0.045 pour l’acier commercial). Cliquez sur Calculer pour voir instantanément la perte de charge, le nombre de Reynolds et le facteur de frottement."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Qu’est-ce que la perte de charge par frottement ?",
+        "a": "La perte de charge par frottement (hf) est l’énergie dissipée par unité de poids du fluide lorsqu’il s’écoule dans une conduite, exprimée en mètres de colonne de fluide. Elle représente la pression que la pompe doit fournir pour vaincre les frottements de la conduite. Plus la vitesse est élevée, la conduite rugueuse ou le tronçon long, plus la perte de charge est grande."
+      },
+      {
+        "q": "Comment le facteur de frottement est-il calculé ?",
+        "a": "Pour un écoulement laminaire (Re < 2300), le facteur de frottement est exactement f = 64/Re. Pour un écoulement turbulent, le calculateur utilise l’approximation explicite de Swamee-Jain de l’équation de Colebrook-White : f = 0.25 / [log₁₀(ε/(3.7D) + 5.74/Re⁰·⁹)]², ce qui évite une résolution itérative tout en restant à 3% près du diagramme de Moody."
+      },
+      {
+        "q": "Qu’est-ce que le nombre de Reynolds et pourquoi est-il important ?",
+        "a": "Le nombre de Reynolds Re = V·D/ν est un rapport sans dimension entre forces d’inertie et forces visqueuses. Il détermine le régime d’écoulement : Re < 2300 signifie laminaire (régulier, prévisible), Re > 4000 signifie turbulent (chaotique, avec plus de frottement), et 2300–4000 correspond au régime transitionnel. Connaître le régime est essentiel car la formule du facteur de frottement change entre laminaire et turbulent."
+      },
+      {
+        "q": "Quelle valeur de rugosité dois-je utiliser ?",
+        "a": "Valeurs de rugosité en mm : cuivre étiré/verre ≈ 0.0015, acier commercial ≈ 0.045, fonte ≈ 0.26, béton lisse ≈ 0.3, béton rugueux ≈ 1–3, acier riveté ≈ 0.9–9. Utilisez des valeurs plus élevées pour les tuyaux anciens afin de tenir compte de l’entartrage et de la corrosion, qui augmentent toujours la rugosité avec le temps."
+      },
+      {
+        "q": "Puis-je convertir la perte de charge en chute de pression ?",
+        "a": "Oui. Multipliez la perte de charge en mètres par ρ·g, où ρ est la densité du fluide (kg/m³) et g = 9.81 m/s². Pour l’eau à 20°C : ΔP (Pa) = 9789 × hf. Cela donne la chute de pression par frottement que la pompe doit surmonter sur la section de conduite."
+      },
+      {
+        "q": "L’équation s’applique-t-elle aux gaz et aux fluides autres que l’eau ?",
+        "a": "Oui. L’équation de Darcy-Weisbach s’applique à tout fluide newtonien — eau, huile, air, vapeur — à condition d’utiliser la bonne viscosité cinématique du fluide à sa température de service. Pour les gaz compressibles à grande vitesse ou avec de fortes chutes de pression, il peut être nécessaire d’appliquer des corrections pour la variation de densité le long de la conduite."
+      }
+    ]
+  }
+}

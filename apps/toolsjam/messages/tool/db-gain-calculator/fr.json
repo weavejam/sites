@@ -1,0 +1,120 @@
+{
+  "title": "Calculateur de gain dB pour puissance et tension",
+  "tagline": "Calculez le gain en décibels entre deux valeurs de puissance ou de tension, ou trouvez une entrée ou une sortie inconnue lorsque le gain en dB est donné.",
+  "intro": "Choisissez si vous voulez calculer le gain en dB, trouver la valeur de sortie ou trouver la valeur d’entrée. Sélectionnez puissance ou tension, saisissez deux valeurs connues et obtenez un résultat immédiat.",
+  "type": {
+    "calculateGain": "Calculer le gain en dB",
+    "calculateGain_desc": "Déterminez le gain (ou la perte) en dB à partir des valeurs d’entrée et de sortie.",
+    "calculateOutput": "Calculer la valeur de sortie",
+    "calculateOutput_desc": "Déterminez la valeur de sortie à partir de la valeur d’entrée et du gain en dB.",
+    "calculateInput": "Calculer la valeur d’entrée",
+    "calculateInput_desc": "Déterminez la valeur d’entrée à partir de la valeur de sortie et du gain en dB."
+  },
+  "quantity": {
+    "label": "Type de grandeur",
+    "power": "Puissance (W, mW, etc.)",
+    "voltage": "Tension (V, mV, etc.)"
+  },
+  "field": {
+    "calcType": "Type de calcul",
+    "quantityType": "Type de grandeur",
+    "inputValue": "Valeur d’entrée",
+    "outputValue": "Valeur de sortie",
+    "gainDb": "Gain (dB)"
+  },
+  "placeholder": {
+    "inputValue": "ex. 10",
+    "outputValue": "ex. 20",
+    "gainDb": "ex. 3"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultat",
+    "gainPower": "Gain = {result} dB  (10 × log₁₀({output} / {input}))",
+    "gainVoltage": "Gain = {result} dB  (20 × log₁₀({output} / {input}))",
+    "outputPower": "Sortie = {result}  (entrée × 10^(gain/10))",
+    "outputVoltage": "Sortie = {result}  (entrée × 10^(gain/20))",
+    "inputPower": "Entrée = {result}  (sortie / 10^(gain/10))",
+    "inputVoltage": "Entrée = {result}  (sortie / 10^(gain/20))"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres valides dans tous les champs activés.",
+    "zeroInput": "La valeur d’entrée doit être supérieure à zéro.",
+    "zeroOutput": "La valeur de sortie doit être supérieure à zéro."
+  },
+  "about": {
+    "heading": "À propos du calculateur de gain dB",
+    "body": "Le gain est le rapport entre un signal de sortie et un signal d’entrée, et l’exprimer en décibels transforme ce rapport en une grandeur additive que l’on peut sommer à travers une chaîne d’amplificateurs, d’atténuateurs et de lignes de transmission. Le calculateur de gain dB résout les trois problèmes de gain les plus courants : calculer le gain en dB lorsque l’entrée et la sortie sont connues ; calculer le niveau de sortie lorsque l’entrée et le gain sont connus ; et calculer le niveau d’entrée requis lorsque la cible de sortie et la spécification de gain sont données.\n\nLa formule dépend de la nature physique de la grandeur mesurée. Pour les grandeurs de puissance — watts, milliwatts, intensité acoustique — on applique la formule de gain de puissance : G(dB) = 10 × log₁₀(P_out / P_in). Pour les grandeurs d’amplitude (de champ) — volts, millivolts, ampères, pression acoustique — on applique la formule de gain en tension : G(dB) = 20 × log₁₀(V_out / V_in). Le facteur 20 au lieu de 10 vient du fait que la puissance est proportionnelle au carré d’une grandeur de champ (P ∝ V²) ; utiliser 20 avec des rapports de tension donne donc le même résultat en dB que 10 avec le rapport de puissance correspondant. Les deux formules sont cohérentes par conception.\n\nEn inversant les formules de gain, on obtient les calculs de sortie et d’entrée. Pour la puissance : P_out = P_in × 10^(G/10) ; pour la tension : V_out = V_in × 10^(G/20). Un gain positif (G > 0) amplifie le signal ; un gain négatif (G < 0) l’atténue. Un gain de -3 dB divise la puissance par deux ; un gain de -6 dB divise l’amplitude de tension par deux ; un gain de +20 dB multiplie la tension par 10 (ou la puissance par 100).\n\nEn électronique, le modèle de gain en dB sert à spécifier le gain des amplificateurs, la perte d’insertion des filtres, l’atténuation des câbles, le gain des antennes et les marges du budget de liaison. En acoustique, il décrit comment un amplificateur d’enceinte ou un traitement de salle modifie le niveau de pression sonore. En ingénierie RF et hyperfréquence, chaque composant de la chaîne de réception — antenne, LNA, câble, mélangeur, amplificateur FI — est caractérisé par son gain ou sa perte en dB, et le gain total du système est la somme algébrique de toutes les contributions.\n\nLes valeurs de gain négatives en dB s’appellent perte d’insertion ou atténuation. Un câble coaxial spécifié à -2.5 dB par mètre réduit la puissance à 10^(−2.5/10) ≈ 0.562 de l’entrée par mètre, ou réduit la tension à 10^(−2.5/20) ≈ 0.750. Savoir si vous travaillez en puissance ou en tension évite l’erreur courante qui consiste à appliquer la mauvaise formule et à obtenir un résultat décalé d’un facteur deux en termes de dB."
+  },
+  "examples": {
+    "heading": "Exemples détaillés",
+    "intro": "Quatre scénarios pratiques de gain couvrant les calculs de puissance et de tension.",
+    "colInput": "Scénario",
+    "colOutput": "Résultat",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Gain de puissance de l’amplificateur : Pin = 10 W, Pout = 20 W",
+        "output": "Gain = 3.01 dB",
+        "note": "10 × log₁₀(2) = 3.01 dB. Doubler la puissance correspond toujours à environ +3 dB."
+      },
+      {
+        "input": "Trouver la tension de sortie : Vin = 1 V, Gain = 6 dB (Tension)",
+        "output": "Vout = 2.00 V",
+        "note": "1 × 10^(6/20) ≈ 2.00 V. Un gain en tension de +6 dB double l’amplitude."
+      },
+      {
+        "input": "Trouver la puissance d’entrée : Pout = 100 W, Gain = 20 dB (Puissance)",
+        "output": "Pin = 1.00 W",
+        "note": "100 / 10^(20/10) = 100/100 = 1.00 W. Un gain de puissance de 20 dB multiplie la puissance par 100."
+      },
+      {
+        "input": "Atténuateur : Vin = 5 V, Gain = −3 dB (Tension)",
+        "output": "Vout ≈ 3.54 V",
+        "note": "5 × 10^(−3/20) ≈ 3.54 V. Une atténuation en tension de -3 dB réduit l’amplitude à environ 70.7 % de l’entrée."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de gain dB",
+    "steps": [
+      "Sélectionnez le type de calcul : 'Calculer le gain en dB' pour trouver le gain à partir de l’entrée/sortie, 'Calculer la valeur de sortie' pour trouver la sortie à partir de l’entrée et du gain, ou 'Calculer la valeur d’entrée' pour trouver l’entrée à partir de la sortie et du gain.",
+      "Choisissez le type de grandeur — Puissance pour watts/milliwatts/intensité, ou Tension pour volts/ampères/pression. Cela définit la bonne formule (facteur 10 ou facteur 20).",
+      "Saisissez les deux valeurs connues. Le champ correspondant à l’inconnue sera désactivé — laissez-le vide et le calculateur la déterminera pour vous.",
+      "Cliquez sur Calculer. Le résultat affiche la valeur calculée ainsi que la formule utilisée pour vérifier le calcul.",
+      "Cliquez sur Réinitialiser pour effacer tous les champs et lancer un nouveau cas. Vous pouvez changer de type de calcul et de type de grandeur à tout moment."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Quelle est la différence entre la formule de gain de puissance et la formule de gain en tension ?",
+        "a": "Le gain de puissance utilise G = 10 × log₁₀(Pout/Pin) car les grandeurs de puissance sont déjà proportionnelles à l’intensité du signal. Le gain en tension utilise G = 20 × log₁₀(Vout/Vin) car la puissance est proportionnelle au carré de la tension. Le facteur 20 garantit que les deux formules donnent la même valeur en dB pour un gain physique donné. Choisir la mauvaise formule donne un résultat décalé d’un facteur 2 en termes de dB."
+      },
+      {
+        "q": "Que signifie une valeur de gain négative en dB ?",
+        "a": "Un gain négatif en dB signifie une atténuation — la sortie est plus petite que l’entrée. Un gain de -3 dB signifie que la puissance est divisée par deux ; -6 dB signifie que l’amplitude de tension est divisée par deux (la puissance est divisée par quatre). Les composants passifs comme les câbles, les connecteurs et les atténuateurs ont toujours un gain négatif en dB. Les amplificateurs ont un gain positif en dB. Les filtres actifs peuvent avoir l’un ou l’autre selon la fréquence."
+      },
+      {
+        "q": "Comment additionner les gains des composants en série ?",
+        "a": "Il suffit d’additionner les valeurs en dB de chaque composant de la chaîne. Par exemple, un amplificateur de +20 dB suivi d’un câble avec -3 dB de perte donne un gain net de +17 dB. Cette propriété additive est la principale raison pour laquelle les ingénieurs utilisent les dB — elle transforme des multiplications en cascade en simples additions, ce qui simplifie l’analyse du budget de liaison."
+      },
+      {
+        "q": "Qu’est-ce qu’un gain de 0 dB ?",
+        "a": "Un gain de 0 dB signifie que la sortie est égale à l’entrée (rapport = 1) — ni amplification ni atténuation. Par exemple, un buffer à gain unitaire a un gain de 0 dB. Dans les calculs de budget de liaison, un composant avec 0 dB de perte d’insertion laisse le signal inchangé."
+      },
+      {
+        "q": "Puis-je utiliser ce calculateur pour le gain acoustique ?",
+        "a": "Oui. Pour le niveau de pression acoustique (SPL), utilisez la formule de tension, car le SPL est mesuré en pression, qui est une grandeur d’amplitude. Saisissez la pression de référence comme X_in et la pression mesurée comme X_out. Le résultat en dB correspond directement à la variation du SPL. Pour l’intensité acoustique ou la puissance, utilisez la formule de puissance."
+      },
+      {
+        "q": "Comment convertir un gain en dB en multiplicateur linéaire ?",
+        "a": "Pour la puissance : rapport linéaire = 10^(G/10). Pour la tension : rapport linéaire = 10^(G/20). Vous pouvez aussi utiliser le mode 'Calculer la valeur de sortie' avec une entrée de 1 et le gain souhaité — la valeur de sortie est alors exactement le multiplicateur linéaire. Par exemple, un gain de puissance de 20 dB → entrée = 1, sortie = 100, donc le multiplicateur de puissance est 100."
+      }
+    ]
+  }
+}

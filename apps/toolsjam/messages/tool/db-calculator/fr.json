@@ -1,0 +1,122 @@
+{
+  "title": "Calculateur de décibels (dB)",
+  "tagline": "Convertissez des rapports en décibels, revenez de dB au rapport ou combinez plusieurs sources de dB — l’outil en ligne essentiel pour l’acoustique, l’électronique et le traitement du signal.",
+  "intro": "Choisissez un type de calcul, sélectionnez une grandeur de puissance ou d’amplitude, saisissez vos valeurs et obtenez instantanément le résultat en décibels avec la formule affichée.",
+  "type": {
+    "ratioToDb": "Rapport vers dB",
+    "ratioToDb_desc": "Convertit un rapport entre deux valeurs (par exemple puissance ou tension de sortie/entrée) en son équivalent en décibels.",
+    "dbToRatio": "dB vers rapport",
+    "dbToRatio_desc": "Convertit une valeur en décibels en un rapport linéaire de puissance ou d’amplitude.",
+    "combineDb": "Combiner des valeurs dB",
+    "combineDb_desc": "Calcule le niveau total lorsque plusieurs sources indépendantes en décibels sont combinées (somme logarithmique)."
+  },
+  "quantity": {
+    "label": "Type de grandeur",
+    "power": "Puissance (p. ex. watts)",
+    "amplitude": "Amplitude (p. ex. volts)"
+  },
+  "field": {
+    "calcType": "Type de calcul",
+    "quantityType": "Type de grandeur",
+    "reference": "Valeur de référence (X1)",
+    "measured": "Valeur mesurée (X2)",
+    "dbValue": "Valeur en dB",
+    "combineValues": "Valeurs en dB (séparées par des virgules)"
+  },
+  "placeholder": {
+    "reference": "p. ex. 10",
+    "measured": "p. ex. 20",
+    "dbValue": "p. ex. 3",
+    "combineValues": "p. ex. 80, 85, 78"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultat",
+    "ratioToDbPower": "{result} dB  (10 × log₁₀({x2} / {x1}))",
+    "ratioToDbAmplitude": "{result} dB  (20 × log₁₀({x2} / {x1}))",
+    "dbToRatioPower": "Rapport linéaire = {result}  (10^({db}/10))",
+    "dbToRatioAmplitude": "Rapport linéaire = {result}  (10^({db}/20))",
+    "combineDb": "Niveau combiné = {result} dB"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres valides dans tous les champs obligatoires.",
+    "zeroReference": "La valeur de référence (X1) ne peut pas être nulle.",
+    "negativeRatio": "Les deux valeurs doivent être positives pour une conversion rapport vers dB.",
+    "invalidCombine": "Saisissez au moins deux valeurs de dB séparées par des virgules."
+  },
+  "about": {
+    "heading": "À propos du calculateur de décibels (dB)",
+    "body": "Le décibel (dB) est une unité logarithmique qui exprime le rapport entre deux valeurs d’une grandeur physique — le plus souvent une puissance ou une amplitude de champ. Comme l’échelle des décibels compresse d’énormes plages en nombres faciles à manipuler et reflète la manière dont les humains perçoivent le volume et la force d’un signal, elle est devenue le langage universel de l’acoustique, de l’ingénierie électrique, des télécommunications et des systèmes RF.\n\nL’idée fondamentale est simple : au lieu de dire 'la puissance de sortie est 100 fois la puissance d’entrée', les ingénieurs disent 'le gain est de 20 dB'. Le logarithme transforme la multiplication en addition, donc des étages en cascade peuvent être analysés en additionnant simplement leurs gains et pertes en dB. Une variation de +3 dB double à peu près la puissance ; +10 dB la multiplie par 10 ; +20 dB la multiplie par 100. Ces ordres de grandeur sont essentiels pour des calculs rapides de budget système.\n\nIl existe deux formules, et choisir la mauvaise est une source fréquente d’erreurs. Pour les grandeurs de puissance — watts, milliwatts, intensité, irradiance — utilisez la formule de puissance : dB = 10 × log₁₀(P₂/P₁). Pour les grandeurs d’amplitude (champ) — volts, ampères, pression acoustique, intensité de champ électrique — utilisez la formule d’amplitude : dB = 20 × log₁₀(A₂/A₁). La différence d’un facteur deux vient du fait que la puissance est proportionnelle au carré de l’amplitude (P ∝ A²) ; ainsi, doubler l’amplitude correspond à un quadruplement de la puissance, soit 6 dB avec la formule d’amplitude et aussi 6 dB avec la formule de puissance appliquée à un rapport de puissance de 4 — elles sont cohérentes.\n\nCombiner des sources de dB incohérentes (sources de bruit indépendantes, machines sonores séparées, plusieurs antennes) nécessite de revenir en puissance linéaire, de sommer, puis de reconvertir en dB : L_total = 10 × log₁₀(Σ 10^(Lᵢ/10)). Deux sources identiques de 60 dB donnent 63 dB, et non 120 dB. Ce résultat contre-intuitif surprend beaucoup d’étudiants ; le mode Combiner du calculateur le gère correctement.\n\nL’échelle des dB a engendré de nombreuses variantes absolues : dBm (référencé à 1 mW), dBW (référencé à 1 W), dBV (référencé à 1 V), dBu (référencé à 0,775 V), dBSPL (référencé à 20 μPa dans l’air). Ce calculateur travaille avec des rapports purs et renvoie une valeur en dB sans dimension. Pour obtenir un niveau absolu en dBm ou dBSPL, appliquez le résultat par rapport à votre niveau de référence choisi après la conversion."
+  },
+  "examples": {
+    "heading": "Exemples détaillés",
+    "intro": "Quatre scénarios réels montrant chaque mode de calcul avec des valeurs d’ingénierie typiques.",
+    "colInput": "Scénario",
+    "colOutput": "Résultat",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Gain de puissance d’un amplificateur : Pin = 10 W, Pout = 20 W (Puissance, Rapport vers dB)",
+        "output": "3.01 dB",
+        "note": "10 × log₁₀(20/10) = 3.01 dB. Doubler la puissance ajoute toujours environ 3 dB."
+      },
+      {
+        "input": "Gain en tension : Vin = 5 V, Vout = 10 V (Amplitude, Rapport vers dB)",
+        "output": "6.02 dB",
+        "note": "20 × log₁₀(10/5) = 6.02 dB. Doubler l’amplitude de tension donne 6 dB, pas 3 dB."
+      },
+      {
+        "input": "Atténuation du signal : −6 dB en amplitude (dB vers rapport, Amplitude)",
+        "output": "Rapport linéaire = 0.5012",
+        "note": "10^(−6/20) ≈ 0.501. Une perte de câble de −6 dB divise l’amplitude de tension par deux."
+      },
+      {
+        "input": "Deux sources sonores : 80 dB et 85 dB combinées",
+        "output": "86.19 dB",
+        "note": "10 × log₁₀(10^8 + 10^8.5) ≈ 86.2 dB. La source la plus forte domine ; ajouter une source plus faible n’augmente le total que de 1.2 dB."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de dB",
+    "steps": [
+      "Choisissez 'Rapport vers dB' pour convertir un rapport mesuré/référence en décibels, 'dB vers rapport' pour inverser la conversion, ou 'Combiner des valeurs dB' pour additionner logarithmiquement des sources indépendantes.",
+      "Pour Rapport vers dB ou dB vers rapport, sélectionnez si votre grandeur est une Puissance (watts, intensité) ou une Amplitude (volts, pression). Cela détermine si le calculateur utilise la formule avec facteur 10 ou facteur 20.",
+      "Saisissez la valeur de référence X1 et la valeur mesurée X2 pour les conversions de rapport, ou la valeur en dB pour la conversion dB vers rapport. En mode Combiner, saisissez toutes les valeurs en dB séparées par des virgules.",
+      "Cliquez sur Calculer. Le panneau de résultat affiche la valeur en dB ou le rapport linéaire ainsi que la formule exacte utilisée, afin de vérifier le calcul.",
+      "Cliquez sur Réinitialiser pour effacer tous les champs et lancer un nouveau calcul. Vous pouvez changer de mode à tout moment sans perdre les valeurs des autres champs."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Pourquoi doubler la puissance donne-t-il +3 dB, alors que doubler la tension donne +6 dB ?",
+        "a": "La puissance est proportionnelle au carré de la tension (P = V²/R). Doubler la tension quadruple la puissance, ce qui correspond à +6 dB sur l’échelle de puissance. Mais 20 × log₁₀(2) = 6.02 dB sur l’échelle d’amplitude. Les deux formules sont cohérentes : doubler la tension correspond à une variation de +6 dB, que vous utilisiez la formule de puissance avec un rapport de puissance de 4 ou la formule d’amplitude avec un rapport de tension de 2."
+      },
+      {
+        "q": "Puis-je additionner directement des valeurs en dB ?",
+        "a": "Vous pouvez additionner les gains et pertes en dB dans une chaîne de composants, car la multiplication des rapports linéaires correspond à l’addition des logarithmes. En revanche, vous ne pouvez pas additionner les niveaux en dB de sources indépendantes, car ils représentent des puissances à sommer linéairement. Utilisez le mode Combiner des valeurs dB : deux sources identiques de 60 dB donnent 63 dB, et non 120 dB."
+      },
+      {
+        "q": "Quelle est la différence entre dB et dBm ?",
+        "a": "Un dB simple est un rapport sans dimension entre deux grandeurs. Le dBm est un niveau de puissance absolu exprimé par rapport à 1 milliwatt : P(dBm) = 10 × log₁₀(P_mW / 1 mW). Pour convertir le résultat en rapport de ce calculateur en dBm, fixez d’abord X1 = 1 mW et X2 à votre puissance en mW, puis lancez le calcul Rapport vers dB en mode puissance."
+      },
+      {
+        "q": "Que signifie une valeur de dB négative ?",
+        "a": "Une valeur de dB négative signifie que la grandeur mesurée est inférieure à la référence — autrement dit, qu’il y a une atténuation ou une perte plutôt qu’un gain. Par exemple, −3 dB signifie que la puissance est divisée par deux ; −6 dB signifie que l’amplitude de tension est divisée par deux. Les câbles audio, les atténuateurs et les lignes de transmission avec pertes présentent tous une perte d’insertion négative en dB."
+      },
+      {
+        "q": "Comment combiner plus de deux sources en dB ?",
+        "a": "Saisissez toutes les valeurs séparées par des virgules dans le champ Combiner des valeurs dB, par exemple '75, 80, 82, 78'. Le calculateur convertit chaque valeur en équivalent linéaire de puissance, les additionne, puis reconvertit en dB. Vous pouvez combiner ainsi n’importe quel nombre de sources indépendantes."
+      },
+      {
+        "q": "Pourquoi combiner deux sources identiques n’ajoute-t-il que 3 dB ?",
+        "a": "Parce que le dB est une échelle logarithmique. Deux sources de puissance identiques de L dB chacune donnent une puissance combinée de 2×10^(L/10), et 10 × log₁₀(2×10^(L/10)) = L + 10 × log₁₀(2) ≈ L + 3.01 dB. Doubler le nombre de sources identiques ajoute toujours environ 3 dB, quel que soit le niveau de départ."
+      }
+    ]
+  }
+}
