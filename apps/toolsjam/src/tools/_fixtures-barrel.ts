@@ -15,6 +15,11 @@ import { fixtures as f_capacitive_transformerless_power_supply_calculator } from
 import { fixtures as f_capacitor_calculator } from "@/tools/capacitor-calculator.fixtures";
 import { fixtures as f_capacitor_charge_time_calculator } from "@/tools/capacitor-charge-time-calculator.fixtures";
 import { fixtures as f_capacitor_energy_calculator } from "@/tools/capacitor-energy-calculator.fixtures";
+import { fixtures as f_capacitor_size_calculator } from "@/tools/capacitor-size-calculator.fixtures";
+import { fixtures as f_capacitors_in_series_calculator } from "@/tools/capacitors-in-series-calculator.fixtures";
+import { fixtures as f_car_center_of_mass_calculator } from "@/tools/car-center-of-mass-calculator.fixtures";
+import { fixtures as f_car_crash_calculator } from "@/tools/car-crash-calculator.fixtures";
+import { fixtures as f_car_jump_distance_calculator } from "@/tools/car-jump-distance-calculator.fixtures";
 import { fixtures as f_carburetor_cfm_calculator } from "@/tools/carburetor-cfm-calculator.fixtures";
 import { fixtures as f_carnot_efficiency_calculator } from "@/tools/carnot-efficiency-calculator.fixtures";
 import { fixtures as f_centrifugal_force_calculator } from "@/tools/centrifugal-force-calculator.fixtures";
@@ -194,6 +199,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "capacitor-calculator": f_capacitor_calculator,
   "capacitor-charge-time-calculator": f_capacitor_charge_time_calculator,
   "capacitor-energy-calculator": f_capacitor_energy_calculator,
+  "capacitor-size-calculator": f_capacitor_size_calculator,
+  "capacitors-in-series-calculator": f_capacitors_in_series_calculator,
+  "car-center-of-mass-calculator": f_car_center_of_mass_calculator,
+  "car-crash-calculator": f_car_crash_calculator,
+  "car-jump-distance-calculator": f_car_jump_distance_calculator,
   "carburetor-cfm-calculator": f_carburetor_cfm_calculator,
   "carnot-efficiency-calculator": f_carnot_efficiency_calculator,
   "centrifugal-force-calculator": f_centrifugal_force_calculator,
