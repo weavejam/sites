@@ -1,0 +1,99 @@
+{
+  "title": "Buck Converter Calculator – DC-DC Step-Down Design",
+  "tagline": "Calculate duty cycle, inductor ripple current, output ripple voltage, and efficiency for DC-DC buck (step-down) converter circuits.",
+  "intro": "Enter input voltage, output voltage, switching frequency, inductor value, load current, and capacitor ESR to analyze your buck converter design.",
+  "field": {
+    "vin": "Input Voltage (Vin)",
+    "vout": "Output Voltage (Vout)",
+    "freq": "Switching Frequency (Hz)",
+    "inductance": "Inductor Value (H)",
+    "iout": "Load Current (A)",
+    "esr": "Output Capacitor ESR (Ω)"
+  },
+  "placeholder": {
+    "vin": "e.g., 24",
+    "vout": "e.g., 12",
+    "freq": "e.g., 100000",
+    "inductance": "e.g., 0.0001",
+    "iout": "e.g., 2",
+    "esr": "e.g., 0.01"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please fill in all fields with valid positive numbers.",
+    "voutExceedsVin": "Output voltage must be less than input voltage for a buck converter.",
+    "vinZero": "Input voltage must be greater than zero."
+  },
+  "result": {
+    "heading": "Buck Converter Results",
+    "dutyCycle": "Duty Cycle (D)",
+    "rippleCurrent": "Inductor Ripple Current (ΔIL)",
+    "peakCurrent": "Peak Inductor Current",
+    "outputRipple": "Output Voltage Ripple (ΔVout)",
+    "efficiency": "Estimated Efficiency"
+  },
+  "about": {
+    "heading": "About the Buck Converter Calculator",
+    "body": "A buck converter is a DC-DC switching power supply topology that steps down (reduces) voltage from a higher input to a lower output while maintaining high efficiency. It is one of the most fundamental building blocks in power electronics, found in virtually every electronic device from smartphones and laptops to automotive systems and industrial equipment.\n\nThe buck converter operates on the principle of pulse-width modulation (PWM). A switching transistor (usually a MOSFET) turns on and off at high frequency. When the switch is ON, current flows from the input through an inductor to the output, storing energy in the inductor's magnetic field. When the switch turns OFF, the inductor maintains current flow through a freewheeling diode (or a synchronous MOSFET in modern designs) to the load. The output capacitor smooths the resulting voltage waveform.\n\nThe fundamental relationship in continuous conduction mode (CCM) is: Vout = D × Vin, where D is the duty cycle — the fraction of each switching period that the main switch is ON. Rearranging gives D = Vout / Vin. A 50% duty cycle means the output is half the input, a 25% duty cycle means the output is one quarter the input, and so on.\n\nThe inductor is the central energy-storage element. The peak-to-peak inductor current ripple is: ΔIL = (Vin − Vout) × D / (f × L), where f is the switching frequency in Hz and L is the inductance in henries. This ripple current flows through the output capacitor and its equivalent series resistance (ESR), generating an output voltage ripple approximately equal to ΔIL × ESR. Keeping the ripple current to roughly 20–40% of the average output current is a common design guideline that balances inductor size against output noise.\n\nSwitching frequency is a key design trade-off. Higher frequencies allow smaller inductors and capacitors, reducing the physical size and cost of the converter. However, switching losses in the MOSFET and diode increase with frequency, reducing efficiency. A frequency between 100 kHz and 1 MHz is common for many applications. For very high efficiency or high-power designs, lower frequencies (50–100 kHz) with physically larger components may be preferable.\n\nEfficiency in a buck converter is primarily limited by conduction losses (I²R in the MOSFET and inductor), switching losses (energy lost each time the transistor turns on and off), and inductor core losses. Modern synchronous buck converters with low-RDS(on) MOSFETs can achieve efficiencies above 95%, sometimes approaching 99% in optimized designs. The duty cycle also affects efficiency: operating at duty cycles far from 50% (very high or very low) tends to reduce efficiency relative to the mid-range.\n\nCommon design pitfalls include: selecting an inductor without checking its saturation current (if the inductor saturates, the output voltage collapses), neglecting the RMS ripple current rating of the output capacitor (excessive ripple causes capacitor heating and early failure), and poor PCB layout that creates large high-frequency current loops (causing EMI and efficiency losses). The duty cycle should typically stay between 10% and 90% for practical, stable operation."
+  },
+  "examples": {
+    "heading": "Buck converter design examples",
+    "intro": "Representative designs showing typical input/output voltage pairs, switching frequencies, and the resulting duty cycles and ripple values.",
+    "colInput": "Design Parameters",
+    "colOutput": "Duty Cycle",
+    "colNote": "Application",
+    "loadAutomotive": "Load automotive 24V→12V example",
+    "loadBattery": "Load battery step-down example",
+    "loadIndustrial": "Load industrial example",
+    "items": [
+      {
+        "input": "Vin=24 V, Vout=12 V, f=100 kHz, L=100 μH, Iout=2 A, ESR=10 mΩ",
+        "output": "D = 50%",
+        "note": "Automotive 24V-to-12V conversion. Ripple current ≈ 0.6 A, output ripple ≈ 6 mV. Common for powering 12V electronics from a 24V truck electrical system."
+      },
+      {
+        "input": "Vin=48 V, Vout=5 V, f=500 kHz, L=47 μH, Iout=1 A, ESR=5 mΩ",
+        "output": "D ≈ 10.4%",
+        "note": "Battery step-down for microcontrollers and sensors. High switching frequency allows a compact 47 μH inductor while keeping output ripple under 10 mV."
+      },
+      {
+        "input": "Vin=400 V, Vout=24 V, f=50 kHz, L=1 mH, Iout=10 A, ESR=20 mΩ",
+        "output": "D = 6%",
+        "note": "Industrial off-line power supply. Low duty cycle requires careful MOSFET gate drive design to achieve reliable switching at the very short ON-time."
+      },
+      {
+        "input": "Vin=12 V, Vout=3.3 V, f=300 kHz, L=33 μH, Iout=0.5 A, ESR=8 mΩ",
+        "output": "D ≈ 27.5%",
+        "note": "Portable device power rail for a 3.3 V logic circuit powered from a single-cell Li-ion pack or a 12 V adapter."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the buck converter calculator",
+    "steps": [
+      "Enter the input voltage (Vin) — the DC supply voltage available to the converter — and the desired output voltage (Vout). Vout must be lower than Vin for a buck topology.",
+      "Enter the switching frequency in Hz (e.g., 100000 for 100 kHz). Higher frequencies allow smaller components but increase switching losses.",
+      "Enter the inductor value in henries (e.g., 0.0001 for 100 μH) and the load current in amperes. These determine the inductor ripple current.",
+      "Enter the output capacitor's ESR (equivalent series resistance) in ohms. This directly sets the output voltage ripple.",
+      "Click 'Calculate' to see the duty cycle, inductor ripple current, peak inductor current, output voltage ripple, and estimated efficiency. Adjust parameters until all values meet your design targets."
+    ]
+  },
+  "faq": {
+    "heading": "Buck converter FAQ",
+    "q1": "What is the duty cycle of a buck converter?",
+    "q1_a": "The duty cycle D is the fraction of each switching period that the main switch is closed (ON). In an ideal buck converter operating in continuous conduction mode (CCM), D = Vout / Vin. A 12 V output from a 24 V input therefore requires a 50% duty cycle. In practice, efficiency losses mean the actual duty cycle is slightly higher than the ideal value.",
+    "q2": "What happens if the duty cycle is too high or too low?",
+    "q2_a": "Extremely high duty cycles (above ~90%) leave very little OFF-time, making it difficult for the diode or synchronous MOSFET to conduct and reset the inductor. Very low duty cycles (below ~10%) require very short ON-times that are hard to drive reliably. Both extremes reduce efficiency and stability. Practical designs aim for duty cycles between 10% and 90%.",
+    "q3": "How does switching frequency affect the inductor size?",
+    "q3_a": "For a given ripple current specification, the required inductance L = (Vin − Vout) × D / (f × ΔIL). Doubling the switching frequency halves the required inductance, and vice versa. Higher frequencies thus allow smaller, lighter inductors — a major reason why modern power ICs operate at hundreds of kilohertz or even megahertz. The trade-off is increased switching losses.",
+    "q4": "What is the output voltage ripple and how do I reduce it?",
+    "q4_a": "Output voltage ripple is the small AC variation on top of the DC output. It is primarily caused by inductor ripple current flowing through the capacitor's ESR: ΔVout ≈ ΔIL × ESR. To reduce ripple, use a capacitor with lower ESR, increase the inductance (reduces ΔIL), or raise the switching frequency. Ceramic capacitors have very low ESR and are preferred for low-ripple designs.",
+    "q5": "What is continuous vs. discontinuous conduction mode?",
+    "q5_a": "In continuous conduction mode (CCM) the inductor current never reaches zero during the switching cycle. In discontinuous conduction mode (DCM) the inductor current reaches zero before the next switch turn-on. This calculator assumes CCM, which is the most common operating mode for well-designed converters under normal load. DCM occurs at light loads and alters the duty cycle / voltage relationship.",
+    "q6": "How efficient is a buck converter compared to a linear regulator?",
+    "q6_a": "A buck converter is far more efficient than a linear regulator (LDO) at large voltage differences. A linear regulator dissipates all the excess voltage as heat, giving efficiency of only Vout / Vin (e.g., 3.3 V from 12 V yields just 27.5% efficiency). A well-designed buck converter typically achieves 85–98% efficiency regardless of the voltage ratio, making it the preferred choice whenever heat dissipation or battery life matters."
+  }
+}
