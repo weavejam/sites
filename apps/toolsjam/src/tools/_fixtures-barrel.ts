@@ -100,6 +100,11 @@ import { fixtures as f_conductivity_to_resistivity_calculator } from "@/tools/co
 import { fixtures as f_confidence_interval_calculator } from "@/tools/confidence-interval-calculator.fixtures";
 import { fixtures as f_confusion_matrix_calculator } from "@/tools/confusion-matrix-calculator.fixtures";
 import { fixtures as f_constant_of_proportionality_calculator } from "@/tools/constant-of-proportionality-calculator.fixtures";
+import { fixtures as f_cosine_similarity_calculator } from "@/tools/cosine-similarity-calculator.fixtures";
+import { fixtures as f_cotangent_calculator } from "@/tools/cotangent-calculator.fixtures";
+import { fixtures as f_coterminal_angle_calculator } from "@/tools/coterminal-angle-calculator.fixtures";
+import { fixtures as f_cramers_rule_calculator } from "@/tools/cramers-rule-calculator.fixtures";
+import { fixtures as f_cross_multiplication_calculator } from "@/tools/cross-multiplication-calculator.fixtures";
 import { fixtures as f_darcy_weisbach_calculator } from "@/tools/darcy-weisbach-calculator.fixtures";
 import { fixtures as f_darcys_law_calculator } from "@/tools/darcys-law-calculator.fixtures";
 import { fixtures as f_db_calculator } from "@/tools/db-calculator.fixtures";
@@ -534,6 +539,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "confidence-interval-calculator": f_confidence_interval_calculator,
   "confusion-matrix-calculator": f_confusion_matrix_calculator,
   "constant-of-proportionality-calculator": f_constant_of_proportionality_calculator,
+  "cosine-similarity-calculator": f_cosine_similarity_calculator,
+  "cotangent-calculator": f_cotangent_calculator,
+  "coterminal-angle-calculator": f_coterminal_angle_calculator,
+  "cramers-rule-calculator": f_cramers_rule_calculator,
+  "cross-multiplication-calculator": f_cross_multiplication_calculator,
   "darcy-weisbach-calculator": f_darcy_weisbach_calculator,
   "darcys-law-calculator": f_darcys_law_calculator,
   "db-calculator": f_db_calculator,
