@@ -4,8 +4,13 @@
 
 import type { ToolFixture } from "@/tools/fixture";
 import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } from "@/tools/a1c-calculator-hemoglobin-a1c-to-average-blood-sugar.fixtures";
+import { fixtures as f_ac_wattage_calculator } from "@/tools/ac-wattage-calculator.fixtures";
+import { fixtures as f_acceleration_calculator } from "@/tools/acceleration-calculator.fixtures";
+import { fixtures as f_acceleration_in_the_electric_field_calculator } from "@/tools/acceleration-in-the-electric-field-calculator.fixtures";
+import { fixtures as f_acoustic_impedance_calculator } from "@/tools/acoustic-impedance-calculator.fixtures";
 import { fixtures as f_acres_per_hour_calculator } from "@/tools/acres-per-hour-calculator.fixtures";
 import { fixtures as f_acres_to_hectares_converter } from "@/tools/acres-to-hectares-converter.fixtures";
+import { fixtures as f_air_density_calculator } from "@/tools/air-density-calculator.fixtures";
 import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-frequency-calculator.fixtures";
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
@@ -213,8 +218,13 @@ import { fixtures as f_z_test_calculator } from "@/tools/z-test-calculator.fixtu
 
 export const fixturesByTool: Record<string, ToolFixture[]> = {
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
+  "ac-wattage-calculator": f_ac_wattage_calculator,
+  "acceleration-calculator": f_acceleration_calculator,
+  "acceleration-in-the-electric-field-calculator": f_acceleration_in_the_electric_field_calculator,
+  "acoustic-impedance-calculator": f_acoustic_impedance_calculator,
   "acres-per-hour-calculator": f_acres_per_hour_calculator,
   "acres-to-hectares-converter": f_acres_to_hectares_converter,
+  "air-density-calculator": f_air_density_calculator,
   "allele-frequency-calculator": f_allele_frequency_calculator,
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
