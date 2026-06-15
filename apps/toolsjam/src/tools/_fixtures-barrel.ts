@@ -20,6 +20,11 @@ import { fixtures as f_conditional_probability_calculator } from "@/tools/condit
 import { fixtures as f_confidence_interval_calculator } from "@/tools/confidence-interval-calculator.fixtures";
 import { fixtures as f_confusion_matrix_calculator } from "@/tools/confusion-matrix-calculator.fixtures";
 import { fixtures as f_constant_of_proportionality_calculator } from "@/tools/constant-of-proportionality-calculator.fixtures";
+import { fixtures as f_delta_to_wye_conversion } from "@/tools/delta-to-wye-conversion.fixtures";
+import { fixtures as f_delta_v_calculator } from "@/tools/delta-v-calculator.fixtures";
+import { fixtures as f_density_altitude_calculator } from "@/tools/density-altitude-calculator.fixtures";
+import { fixtures as f_density_calculator } from "@/tools/density-calculator.fixtures";
+import { fixtures as f_dew_point_calculator } from "@/tools/dew-point-calculator.fixtures";
 import { fixtures as f_dice_probability_calculator } from "@/tools/dice-probability-calculator.fixtures";
 import { fixtures as f_dice_roller_calculator } from "@/tools/dice-roller-calculator.fixtures";
 import { fixtures as f_differential_pressure_calculator } from "@/tools/differential-pressure-calculator.fixtures";
@@ -174,6 +179,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "confidence-interval-calculator": f_confidence_interval_calculator,
   "confusion-matrix-calculator": f_confusion_matrix_calculator,
   "constant-of-proportionality-calculator": f_constant_of_proportionality_calculator,
+  "delta-to-wye-conversion": f_delta_to_wye_conversion,
+  "delta-v-calculator": f_delta_v_calculator,
+  "density-altitude-calculator": f_density_altitude_calculator,
+  "density-calculator": f_density_calculator,
+  "dew-point-calculator": f_dew_point_calculator,
   "dice-probability-calculator": f_dice_probability_calculator,
   "dice-roller-calculator": f_dice_roller_calculator,
   "differential-pressure-calculator": f_differential_pressure_calculator,
