@@ -1,0 +1,114 @@
+{
+  "title": "NTU Effectiveness Calculator – Heat Exchanger Analysis",
+  "tagline": "Calculate NTU (Number of Transfer Units) and effectiveness for heat exchangers to analyze thermal performance and optimize heat transfer design.",
+  "intro": "Enter the temperature and flow-rate data for both fluid streams together with the heat-exchanger geometry to get NTU and effectiveness instantly.",
+  "field": {
+    "hotInletTemp": "Hot Fluid Inlet Temperature (°C)",
+    "hotOutletTemp": "Hot Fluid Outlet Temperature (°C)",
+    "coldInletTemp": "Cold Fluid Inlet Temperature (°C)",
+    "coldOutletTemp": "Cold Fluid Outlet Temperature (°C)",
+    "hotMassFlow": "Hot Fluid Mass Flow Rate (kg/s)",
+    "coldMassFlow": "Cold Fluid Mass Flow Rate (kg/s)",
+    "heatTransferCoeff": "Overall Heat Transfer Coefficient (W/m²K)",
+    "heatTransferArea": "Heat Transfer Area (m²)"
+  },
+  "placeholder": {
+    "hotInletTemp": "e.g., 80",
+    "hotOutletTemp": "e.g., 60",
+    "coldInletTemp": "e.g., 20",
+    "coldOutletTemp": "e.g., 40",
+    "hotMassFlow": "e.g., 2.5",
+    "coldMassFlow": "e.g., 3.0",
+    "heatTransferCoeff": "e.g., 500",
+    "heatTransferArea": "e.g., 10"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "ntu": "NTU (Number of Transfer Units)",
+    "effectiveness": "Effectiveness (ε)",
+    "heatTransferRate": "Heat Transfer Rate",
+    "capacityRateRatio": "Capacity Rate Ratio (Cr)",
+    "cmin": "Minimum Heat Capacity Rate (C_min)"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers in all fields.",
+    "tempRange": "Hot inlet temperature must be greater than cold inlet temperature.",
+    "energyBalance": "Temperature data is physically inconsistent — check that the hot fluid cools and the cold fluid heats."
+  },
+  "about": {
+    "heading": "About the NTU Effectiveness Calculator",
+    "body": "The NTU-effectiveness method is one of the two principal techniques for analysing heat exchanger performance, the other being the Log Mean Temperature Difference (LMTD) approach. Engineers reach for the NTU method whenever the outlet temperatures are known or specified as design targets, because it avoids the iterative solution that the LMTD method requires in those situations.\n\nNTU stands for Number of Transfer Units, a dimensionless measure of the thermal size of a heat exchanger. It is defined as NTU = UA / C_min, where U is the overall heat-transfer coefficient in W/m²K, A is the total heat-transfer area in m², and C_min is the smaller of the two heat-capacity rates (mass flow rate times specific heat capacity) in W/K. A compact plate heat exchanger with a high U and large surface area can achieve the same NTU as a large shell-and-tube unit with a modest U, because NTU captures the product UA rather than either quantity alone.\n\nEffectiveness (ε) is defined as the ratio of the actual heat-transfer rate to the thermodynamically maximum possible rate. The maximum rate would be achieved by an infinitely long counter-flow exchanger where the fluid with the smaller heat-capacity rate undergoes the full temperature span between the inlet temperatures of both streams: q_max = C_min × (T_h,in − T_c,in). Effectiveness therefore ranges from 0 (no heat transfer) to 1 (perfect transfer). In practice, well-designed industrial exchangers operate between ε = 0.6 and ε = 0.9.\n\nThe calculator derives effectiveness directly from the measured temperatures: the actual heat transferred equals C_hot × (T_h,in − T_h,out), and dividing by q_max gives ε. It simultaneously computes NTU = UA / C_min. The capacity-rate ratio Cr = C_min / C_max is also reported because it governs the shape of the ε–NTU curve; when Cr = 0 (one fluid is condensing or evaporating), the effectiveness is highest for a given NTU, while Cr = 1 (balanced capacity rates) gives the lowest effectiveness.\n\nPractical applications span virtually every industry that involves heat. Chemical plants use shell-and-tube and plate heat exchangers to recover energy between process streams. HVAC systems rely on air-to-water coils and heat-recovery ventilators whose sizing is dominated by NTU analysis. Power-generation facilities use steam condensers and feedwater heaters that engineers optimise by maximising NTU per unit cost. Automotive cooling systems, food-pasteurisation lines, pharmaceutical reactors, and data-centre liquid-cooling loops all depend on the same NTU framework.\n\nA recurring practical concern is fouling: deposits of scale, biofilm, or corrosion products on heat-transfer surfaces increase thermal resistance, reduce U, and therefore reduce NTU over time. Periodic monitoring of the calculated NTU against the clean-design value gives an early warning that cleaning is needed before throughput or product quality is compromised. Similarly, the energy balance implicit in the calculation (q_hot = q_cold at steady state) acts as a sanity check on instrumentation: if the two sides disagree significantly, a sensor or flow meter may be faulty.\n\nFor students and engineers new to heat-exchanger analysis, the NTU-effectiveness method provides an intuitive path from data to performance metrics without requiring a separate derivation of the LMTD. By entering four temperatures and two flow rates together with U and A, you obtain both the thermal size and the thermal performance of the exchanger in a single step."
+  },
+  "examples": {
+    "heading": "NTU Effectiveness Calculator Examples",
+    "intro": "Three realistic heat-exchanger scenarios illustrating how to read the inputs and interpret the outputs.",
+    "colInput": "Scenario",
+    "colOutput": "NTU / Effectiveness",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Shell-and-tube: hot 85→65 °C, cold 25→41 °C, flows 2.0/2.5 kg/s, U=450 W/m²K, A=15 m²",
+        "output": "NTU ≈ 0.807, ε ≈ 0.333",
+        "note": "C_hot=8372, C_cold=10465 W/K; Cmin=8372. q=8372×20=167 440 W. T_c,out=25+(2.0/2.5)×20=41 °C → q_cold=10465×16=167 440 W ✓. q_max=8372×60=502 320 W. ε=0.333, NTU=450×15/8372=0.807."
+      },
+      {
+        "input": "Plate heat exchanger: hot 90→70 °C, cold 20→35 °C, flows 1.5/2.0 kg/s, U=800 W/m²K, A=8 m²",
+        "output": "NTU ≈ 1.019, ε ≈ 0.286",
+        "note": "C_hot=6279, C_cold=8372 W/K; Cmin=6279. q=6279×20=125 580 W. T_c,out=20+(1.5/2.0)×20=35 °C → q_cold=8372×15=125 580 W ✓. q_max=6279×70=439 530 W. ε=0.286, NTU=800×8/6279=1.019."
+      },
+      {
+        "input": "Air-cooled exchanger: hot 110→80 °C, cold 25→40 °C, flows 1.5/3.0 kg/s, U=60 W/m²K, A=50 m²",
+        "output": "NTU ≈ 0.478, ε ≈ 0.353",
+        "note": "C_hot=6279, C_cold=12558 W/K; Cmin=6279. q=6279×30=188 370 W. T_c,out=25+(1.5/3.0)×30=40 °C → q_cold=12558×15=188 370 W ✓. q_max=6279×85=533 715 W. ε=0.353, NTU=60×50/6279=0.478."
+      },
+      {
+        "input": "Industrial cooler: hot 100→60 °C, cold 15→35 °C, flows 1.0/2.0 kg/s, U=300 W/m²K, A=5 m²",
+        "output": "NTU ≈ 0.358, ε ≈ 0.471",
+        "note": "C_hot=4186, C_cold=8372 W/K; Cmin=4186. q=4186×40=167 440 W. T_c,out=15+(1.0/2.0)×40=35 °C → q_cold=8372×20=167 440 W ✓. q_max=4186×85=355 810 W. ε=0.471, NTU=300×5/4186=0.358."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the NTU Effectiveness Calculator",
+    "steps": [
+      "Measure or obtain the inlet and outlet temperatures of both the hot and cold fluid streams in °C. Ensure that T_h,in > T_c,in and that the hot fluid cools while the cold fluid heats.",
+      "Enter the mass flow rates of both fluids in kg/s. If specific heat capacity differs significantly from water (4186 J/kg·K), note that the calculator assumes water—scale mass flow rates accordingly for other fluids.",
+      "Enter the overall heat-transfer coefficient U (W/m²K) from manufacturer data, design correlations, or a prior clean-performance test, and the heat-transfer area A (m²) from the exchanger geometry.",
+      "Click Calculate to see NTU, effectiveness (ε), actual heat-transfer rate (W), capacity-rate ratio (Cr), and C_min in one step.",
+      "Compare the computed NTU against the design value. A significant drop over time indicates fouling; schedule cleaning before efficiency losses affect your process."
+    ]
+  },
+  "faq": {
+    "heading": "NTU Effectiveness Calculator FAQ",
+    "items": [
+      {
+        "q": "What is NTU in a heat exchanger?",
+        "a": "NTU (Number of Transfer Units) is a dimensionless measure of a heat exchanger's thermal size, defined as NTU = UA/C_min. It combines the overall heat-transfer coefficient U, the heat-transfer area A, and the minimum heat-capacity rate C_min into a single figure that characterises how much heat-transfer capacity the exchanger has relative to the limiting fluid stream."
+      },
+      {
+        "q": "What does effectiveness mean and why does it matter?",
+        "a": "Effectiveness (ε) is the ratio of actual heat transferred to the thermodynamic maximum. A value of 1 would mean the stream with the smaller heat-capacity rate undergoes the full temperature difference between the two inlet temperatures—only achievable with an infinitely long counter-flow exchanger. In practice ε tells you how close your design comes to the theoretical best, which helps benchmark performance and identify degradation."
+      },
+      {
+        "q": "Why does the calculator assume water as the working fluid?",
+        "a": "The heat-capacity rate C = ṁ × Cp, but the form collects mass flow rate only. Using Cp = 4186 J/kg·K (water at ~20–80 °C) is the standard default. For other fluids (e.g. oil, glycol, air), you can enter an equivalent mass flow rate scaled by Cp/4186 to get correct results without changing the formula."
+      },
+      {
+        "q": "What is the capacity-rate ratio Cr and why does it affect effectiveness?",
+        "a": "Cr = C_min/C_max ranges from 0 to 1. When Cr → 0, one fluid changes temperature by a negligible amount (e.g. a condensing/evaporating stream), and ε = 1 − e^(−NTU) regardless of flow arrangement. When Cr = 1, both streams have equal heat capacity and a higher NTU is needed to achieve the same effectiveness, making counter-flow arrangements especially valuable."
+      },
+      {
+        "q": "How do I use NTU analysis to detect fouling?",
+        "a": "After a clean heat exchanger is commissioned, record its baseline NTU value at a fixed operating point. As deposits accumulate on the surfaces, the effective U decreases and NTU drops. Comparing the current NTU to the baseline at the same flow conditions quantifies the fouling factor and helps schedule maintenance before throughput or product quality suffers."
+      },
+      {
+        "q": "Is the NTU method valid for all heat exchanger configurations?",
+        "a": "Yes, but the exact ε–NTU relationship differs by flow configuration (counter-flow, parallel-flow, cross-flow, shell-and-tube with multiple passes). This calculator computes effectiveness directly from measured temperatures, so it correctly reflects whichever configuration is actually installed—no flow-arrangement correction factor is needed for the analysis mode."
+      }
+    ]
+  }
+}
