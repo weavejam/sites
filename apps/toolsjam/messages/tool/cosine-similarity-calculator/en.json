@@ -1,0 +1,89 @@
+{
+  "title": "Cosine Similarity Calculator - Vector Similarity Analysis",
+  "tagline": "Compute the cosine similarity between two vectors instantly. A value of 1 means identical direction, 0 means perpendicular, and −1 means opposite direction.",
+  "intro": "Enter two numeric vectors of equal length separated by commas or spaces, then click Calculate to see the cosine similarity and supporting metrics.",
+  "field": {
+    "vectorA": "First Vector (A)",
+    "vectorB": "Second Vector (B)",
+    "hint": "Enter comma-separated or space-separated numbers"
+  },
+  "placeholder": {
+    "vector": "e.g. 1, 2, 3"
+  },
+  "button": {
+    "calculate": "Calculate Similarity",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid numeric values in both vector fields.",
+    "dimensionMismatch": "Both vectors must have the same number of dimensions.",
+    "zeroVector": "Cosine similarity is undefined for a zero vector."
+  },
+  "result": {
+    "heading": "Cosine Similarity",
+    "dotProduct": "Dot product",
+    "magnitudeA": "|A|",
+    "magnitudeB": "|B|"
+  },
+  "about": {
+    "heading": "About the cosine similarity calculator",
+    "body": "Cosine similarity is one of the most widely used measures of similarity between two non-zero vectors in a multi-dimensional space. Unlike Euclidean distance, which measures how far apart two points are, cosine similarity focuses exclusively on the orientation of the vectors — specifically, the cosine of the angle between them. This makes it particularly useful when magnitude is irrelevant but direction matters, such as when comparing documents of different lengths or user preference profiles with different activity levels.\n\nThe formula is straightforward: cos(θ) = (A · B) / (‖A‖ × ‖B‖), where A · B is the dot product of the two vectors, and ‖A‖ and ‖B‖ are their respective Euclidean magnitudes (norms). The dot product is computed by multiplying corresponding elements and summing the results. The magnitude of a vector is the square root of the sum of its squared components.\n\nThe result always falls in the range [−1, 1]. A cosine similarity of 1 means the two vectors point in exactly the same direction — they are perfectly aligned. A value of 0 means they are perpendicular (orthogonal) — there is no correlation in their orientation. A value of −1 means they point in exactly opposite directions. In practice, many applications only consider non-negative features (such as word frequencies or rating counts), in which case the similarity is constrained to [0, 1].\n\nIn natural language processing and information retrieval, cosine similarity is the standard way to compare text documents represented as TF-IDF or bag-of-words vectors. Because long documents naturally have larger magnitude vectors, raw dot product comparisons would unfairly favor them. By normalizing through division by the product of magnitudes, cosine similarity eliminates this length bias and focuses purely on the proportional composition of terms.\n\nRecommendation systems use cosine similarity to match user preference vectors. If two users have rated similar items with similar relative enthusiasm — even if one user has rated far more items overall — their cosine similarity will be high, suggesting they share tastes. The same logic applies in image recognition, where feature descriptor vectors from neural networks are compared using cosine similarity to find visually similar images.\n\nFor this calculator, you can enter vectors of any length as long as both vectors have the same number of dimensions. Separate values with commas or spaces. The calculator reports the cosine similarity, the dot product, and the magnitude of each vector so you can verify the computation step by step."
+  },
+  "examples": {
+    "heading": "Cosine similarity examples",
+    "intro": "Three representative scenarios showing different levels of vector similarity.",
+    "colInput": "Vectors",
+    "colOutput": "Similarity",
+    "colNote": "Interpretation",
+    "loadIdentical": "Load identical-direction example",
+    "loadOrthogonal": "Load orthogonal example",
+    "loadParallel": "Load parallel-scaled example",
+    "items": [
+      {
+        "input": "A = [1, 2, 3], B = [2, 4, 6]",
+        "output": "1.000000",
+        "note": "B is a scalar multiple of A (same direction). Cosine similarity = 1 regardless of the scaling factor."
+      },
+      {
+        "input": "A = [1, 0, 0], B = [0, 1, 0]",
+        "output": "0.000000",
+        "note": "Standard basis vectors are perpendicular. Dot product = 0, so cosine similarity = 0."
+      },
+      {
+        "input": "A = [5, 3, 0, 2], B = [4, 2, 1, 3]",
+        "output": "0.947758",
+        "note": "High similarity typical in document or user-preference comparisons where most dimensions overlap. A·B=32, |A|=√38≈6.164, |B|=√30≈5.477."
+      },
+      {
+        "input": "A = [1, 0], B = [-1, 0]",
+        "output": "-1.000000",
+        "note": "Vectors pointing in exactly opposite directions yield cosine similarity = −1."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the cosine similarity calculator",
+    "steps": [
+      "Enter the first vector in the 'First Vector (A)' field using comma-separated or space-separated numbers, for example: 1, 2, 3.",
+      "Enter the second vector in the 'Second Vector (B)' field. It must have the same number of elements as the first vector.",
+      "Click 'Calculate Similarity'. The result panel shows the cosine similarity score, the dot product, and the magnitude of each vector.",
+      "Use the example buttons below the table to instantly load preset vector pairs and see how the calculation works.",
+      "Click 'Reset' to clear all fields and start a new calculation."
+    ]
+  },
+  "faq": {
+    "heading": "Cosine similarity FAQ",
+    "q1": "What does a cosine similarity of 0.85 mean?",
+    "q1_a": "It means the angle between the two vectors is approximately 31.8 degrees, indicating a high degree of directional similarity. In text analysis, this typically suggests the two documents share a substantial proportion of their key terms with similar relative frequencies. Values above 0.7 are generally considered highly similar in most applications.",
+    "q2": "Why is cosine similarity preferred over Euclidean distance for text?",
+    "q2_a": "Euclidean distance is sensitive to vector magnitude, so a long document and a short document that cover the same topics will appear very different simply because the longer one has larger term-count values. Cosine similarity normalizes out the magnitude and focuses purely on the angle, making documents comparable regardless of length. This length invariance is the primary reason cosine similarity dominates text-based applications.",
+    "q3": "Can cosine similarity be negative?",
+    "q3_a": "Yes, cosine similarity ranges from −1 to 1. A negative value means the angle between the vectors is greater than 90 degrees — the vectors point more away from each other than toward each other. In applications that only use non-negative features (word counts, ratings), all similarities fall in [0, 1], but with signed features such as mean-centered ratings or sentiment scores, negative similarities are possible and meaningful.",
+    "q4": "What happens when one vector is all zeros?",
+    "q4_a": "The cosine similarity is mathematically undefined when either vector is a zero vector, because division by zero occurs in the normalization step. This calculator reports an error in that case. In practice, a zero vector in text processing usually means a document contained none of the vocabulary terms, which is rarely useful for similarity comparison anyway.",
+    "q5": "How many dimensions can the vectors have?",
+    "q5_a": "This calculator supports vectors of any length, limited only by browser performance. In practice, real-world applications routinely use thousands or even millions of dimensions (e.g., word-embedding spaces). The mathematical formula is identical regardless of dimensionality. Both vectors must have exactly the same number of elements for the calculation to be valid.",
+    "q6": "Is cosine similarity the same as correlation?",
+    "q6_a": "Cosine similarity and Pearson correlation are closely related but not identical. Pearson correlation first mean-centers each vector (subtracts the mean of its elements) before computing the cosine similarity of the centered vectors. If your vectors are already mean-centered, the two measures give the same result. For raw feature vectors without mean-centering, cosine similarity and correlation will generally differ."
+  }
+}
