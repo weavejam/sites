@@ -1,0 +1,114 @@
+{
+  "title": "NTU-Wirkungsgrad-Rechner – Wärmetauscheranalyse",
+  "tagline": "Berechnen Sie NTU (Number of Transfer Units) und Wirkungsgrad von Wärmetauschern, um die thermische Leistung zu analysieren und die Wärmeübertragungs-Auslegung zu optimieren.",
+  "intro": "Geben Sie Temperatur- und Durchflussdaten beider Fluidströme sowie die Wärmetauschergeometrie ein, um NTU und Wirkungsgrad sofort zu erhalten.",
+  "field": {
+    "hotInletTemp": "Eintrittstemperatur des heißen Fluids (°C)",
+    "hotOutletTemp": "Austrittstemperatur des heißen Fluids (°C)",
+    "coldInletTemp": "Eintrittstemperatur des kalten Fluids (°C)",
+    "coldOutletTemp": "Austrittstemperatur des kalten Fluids (°C)",
+    "hotMassFlow": "Massenstrom des heißen Fluids (kg/s)",
+    "coldMassFlow": "Massenstrom des kalten Fluids (kg/s)",
+    "heatTransferCoeff": "Gesamtwärmeübergangskoeffizient (W/m²K)",
+    "heatTransferArea": "Wärmeübertragungsfläche (m²)"
+  },
+  "placeholder": {
+    "hotInletTemp": "z. B. 80",
+    "hotOutletTemp": "z. B. 60",
+    "coldInletTemp": "z. B. 20",
+    "coldOutletTemp": "z. B. 40",
+    "hotMassFlow": "z. B. 2.5",
+    "coldMassFlow": "z. B. 3.0",
+    "heatTransferCoeff": "z. B. 500",
+    "heatTransferArea": "z. B. 10"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "ntu": "NTU (Number of Transfer Units)",
+    "effectiveness": "Wirkungsgrad (ε)",
+    "heatTransferRate": "Wärmeübertragungsrate",
+    "capacityRateRatio": "Wärmekapazitätsstrom-Verhältnis (Cr)",
+    "cmin": "Minimaler Wärmekapazitätsstrom (C_min)"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie in allen Feldern gültige positive Zahlen ein.",
+    "tempRange": "Die Eintrittstemperatur des heißen Fluids muss höher sein als die des kalten Fluids.",
+    "energyBalance": "Die Temperaturdaten sind physikalisch inkonsistent – prüfen Sie, ob das heiße Fluid abkühlt und das kalte Fluid erwärmt wird."
+  },
+  "about": {
+    "heading": "Über den NTU-Wirkungsgrad-Rechner",
+    "body": "Die NTU-Wirkungsgrad-Methode ist eine der beiden wichtigsten Techniken zur Analyse der Leistung von Wärmetauschern; die andere ist die Methode der logarithmischen mittleren Temperaturdifferenz (LMTD). Ingenieure greifen zur NTU-Methode, wenn Austrittstemperaturen bekannt sind oder als Auslegungsziele vorgegeben werden, weil sie in diesen Fällen die iterative Lösung vermeidet, die die LMTD-Methode erfordert.\n\nNTU steht für Number of Transfer Units und ist ein dimensionsloses Maß für die thermische Größe eines Wärmetauschers. Es ist definiert als NTU = UA / C_min, wobei U der Gesamtwärmeübergangskoeffizient in W/m²K, A die gesamte Wärmeübertragungsfläche in m² und C_min der kleinere der beiden Wärmekapazitätsströme (Massenstrom mal spezifische Wärmekapazität) in W/K ist. Ein kompakter Plattenwärmetauscher mit hohem U und großer Oberfläche kann dieselbe NTU erreichen wie ein großer Rohrbündelwärmetauscher mit moderatem U, weil NTU das Produkt UA und nicht eine der Größen allein erfasst.\n\nDer Wirkungsgrad (ε) ist definiert als Verhältnis der tatsächlichen Wärmeübertragungsrate zur thermodynamisch maximal möglichen Rate. Die maximale Rate würde in einem unendlich langen Gegenstromwärmetauscher erreicht, in dem das Fluid mit dem kleineren Wärmekapazitätsstrom die volle Temperaturspanne zwischen den Eintrittstemperaturen beider Ströme durchläuft: q_max = C_min × (T_h,in − T_c,in). Der Wirkungsgrad reicht daher von 0 (keine Wärmeübertragung) bis 1 (perfekte Übertragung). In der Praxis arbeiten gut ausgelegte industrielle Wärmetauscher zwischen ε = 0.6 und ε = 0.9.\n\nDer Rechner leitet den Wirkungsgrad direkt aus den gemessenen Temperaturen ab: Die tatsächlich übertragene Wärme beträgt C_hot × (T_h,in − T_h,out), und die Division durch q_max ergibt ε. Gleichzeitig berechnet er NTU = UA / C_min. Außerdem wird das Kapazitätsstromverhältnis Cr = C_min / C_max ausgegeben, weil es die Form der ε–NTU-Kurve bestimmt; bei Cr = 0 (ein Fluid kondensiert oder verdampft) ist der Wirkungsgrad für eine gegebene NTU am höchsten, während Cr = 1 (ausgeglichene Kapazitätsströme) den niedrigsten Wirkungsgrad ergibt.\n\nPraktische Anwendungen finden sich in nahezu jeder Industrie, die mit Wärme arbeitet. Chemieanlagen nutzen Rohrbündel- und Plattenwärmetauscher, um Energie zwischen Prozessströmen zurückzugewinnen. HLK-Systeme setzen auf Luft-Wasser-Register und Wärmerückgewinnungslüfter, deren Dimensionierung stark von der NTU-Analyse geprägt ist. Kraftwerke verwenden Dampfkondensatoren und Speisewasservorwärmer, die Ingenieure durch Maximierung der NTU pro Kosteneinheit optimieren. Fahrzeugkühlsysteme, Lebensmittelpasteurisierungsanlagen, pharmazeutische Reaktoren und Flüssigkeitskühlkreisläufe in Rechenzentren beruhen alle auf demselben NTU-Rahmen.\n\nEin wiederkehrendes praktisches Problem ist Fouling: Ablagerungen von Kesselstein, Biofilm oder Korrosionsprodukten auf Wärmeübertragungsflächen erhöhen den thermischen Widerstand, senken U und damit über die Zeit die NTU. Die regelmäßige Überwachung der berechneten NTU im Vergleich zum sauberen Auslegungswert liefert eine frühe Warnung, dass eine Reinigung nötig ist, bevor Durchsatz oder Produktqualität beeinträchtigt werden. Ebenso dient die in der Berechnung enthaltene Energiebilanz (q_hot = q_cold im stationären Zustand) als Plausibilitätsprüfung der Instrumentierung: Stimmen die beiden Seiten deutlich nicht überein, kann ein Sensor oder Durchflussmesser fehlerhaft sein.\n\nFür Studierende und Ingenieure, die neu in der Wärmetauscheranalyse sind, bietet die NTU-Wirkungsgrad-Methode einen intuitiven Weg von Daten zu Leistungskennzahlen, ohne eine separate Herleitung der LMTD zu benötigen. Durch Eingabe von vier Temperaturen, zwei Durchflüssen sowie U und A erhalten Sie thermische Größe und thermische Leistung des Wärmetauschers in einem Schritt."
+  },
+  "examples": {
+    "heading": "Beispiele für den NTU-Wirkungsgrad-Rechner",
+    "intro": "Realistische Wärmetauscher-Szenarien, die zeigen, wie Eingaben gelesen und Ausgaben interpretiert werden.",
+    "colInput": "Szenario",
+    "colOutput": "NTU / Wirkungsgrad",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "Rohrbündel: heiß 85→65 °C, kalt 25→41 °C, Durchflüsse 2.0/2.5 kg/s, U=450 W/m²K, A=15 m²",
+        "output": "NTU ≈ 0.807, ε ≈ 0.333",
+        "note": "C_hot=8372, C_cold=10465 W/K; Cmin=8372. q=8372×20=167 440 W. T_c,out=25+(2.0/2.5)×20=41 °C → q_cold=10465×16=167 440 W ✓. q_max=8372×60=502 320 W. ε=0.333, NTU=450×15/8372=0.807."
+      },
+      {
+        "input": "Plattenwärmetauscher: heiß 90→70 °C, kalt 20→35 °C, Durchflüsse 1.5/2.0 kg/s, U=800 W/m²K, A=8 m²",
+        "output": "NTU ≈ 1.019, ε ≈ 0.286",
+        "note": "C_hot=6279, C_cold=8372 W/K; Cmin=6279. q=6279×20=125 580 W. T_c,out=20+(1.5/2.0)×20=35 °C → q_cold=8372×15=125 580 W ✓. q_max=6279×70=439 530 W. ε=0.286, NTU=800×8/6279=1.019."
+      },
+      {
+        "input": "Luftgekühlter Wärmetauscher: heiß 110→80 °C, kalt 25→40 °C, Durchflüsse 1.5/3.0 kg/s, U=60 W/m²K, A=50 m²",
+        "output": "NTU ≈ 0.478, ε ≈ 0.353",
+        "note": "C_hot=6279, C_cold=12558 W/K; Cmin=6279. q=6279×30=188 370 W. T_c,out=25+(1.5/3.0)×30=40 °C → q_cold=12558×15=188 370 W ✓. q_max=6279×85=533 715 W. ε=0.353, NTU=60×50/6279=0.478."
+      },
+      {
+        "input": "Industriekühler: heiß 100→60 °C, kalt 15→35 °C, Durchflüsse 1.0/2.0 kg/s, U=300 W/m²K, A=5 m²",
+        "output": "NTU ≈ 0.358, ε ≈ 0.471",
+        "note": "C_hot=4186, C_cold=8372 W/K; Cmin=4186. q=4186×40=167 440 W. T_c,out=15+(1.0/2.0)×40=35 °C → q_cold=8372×20=167 440 W ✓. q_max=4186×85=355 810 W. ε=0.471, NTU=300×5/4186=0.358."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den NTU-Wirkungsgrad-Rechner",
+    "steps": [
+      "Messen oder beschaffen Sie die Ein- und Austrittstemperaturen der heißen und kalten Fluidströme in °C. Stellen Sie sicher, dass T_h,in > T_c,in gilt und dass das heiße Fluid abkühlt, während sich das kalte Fluid erwärmt.",
+      "Geben Sie die Massenströme beider Fluide in kg/s ein. Wenn die spezifische Wärmekapazität deutlich von Wasser (4186 J/kg·K) abweicht, beachten Sie, dass der Rechner Wasser annimmt; skalieren Sie die Massenströme für andere Fluide entsprechend.",
+      "Geben Sie den Gesamtwärmeübergangskoeffizienten U (W/m²K) aus Herstellerdaten, Auslegungskorrelationen oder einem früheren Sauberleistungs-Test sowie die Wärmeübertragungsfläche A (m²) aus der Wärmetauschergeometrie ein.",
+      "Klicken Sie auf Berechnen, um NTU, Wirkungsgrad (ε), tatsächliche Wärmeübertragungsrate (W), Kapazitätsstromverhältnis (Cr) und C_min in einem Schritt zu sehen.",
+      "Vergleichen Sie die berechnete NTU mit dem Auslegungswert. Ein deutlicher Abfall über die Zeit weist auf Fouling hin; planen Sie eine Reinigung, bevor Effizienzverluste Ihren Prozess beeinträchtigen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum NTU-Wirkungsgrad-Rechner",
+    "items": [
+      {
+        "q": "Was ist NTU in einem Wärmetauscher?",
+        "a": "NTU (Number of Transfer Units) ist ein dimensionsloses Maß für die thermische Größe eines Wärmetauschers und ist definiert als NTU = UA/C_min. Es kombiniert den Gesamtwärmeübergangskoeffizienten U, die Wärmeübertragungsfläche A und den minimalen Wärmekapazitätsstrom C_min zu einer Kennzahl, die beschreibt, wie viel Wärmeübertragungskapazität der Wärmetauscher relativ zum begrenzenden Fluidstrom besitzt."
+      },
+      {
+        "q": "Was bedeutet Wirkungsgrad und warum ist er wichtig?",
+        "a": "Der Wirkungsgrad (ε) ist das Verhältnis der tatsächlich übertragenen Wärme zum thermodynamischen Maximum. Ein Wert von 1 würde bedeuten, dass der Strom mit dem kleineren Wärmekapazitätsstrom die volle Temperaturdifferenz zwischen den beiden Eintrittstemperaturen durchläuft – erreichbar nur mit einem unendlich langen Gegenstromwärmetauscher. In der Praxis zeigt ε, wie nah Ihre Auslegung am theoretischen Optimum liegt, und hilft, Leistung zu bewerten und Degradation zu erkennen."
+      },
+      {
+        "q": "Warum nimmt der Rechner Wasser als Arbeitsfluid an?",
+        "a": "Der Wärmekapazitätsstrom ist C = ṁ × Cp, aber das Formular erfasst nur den Massenstrom. Cp = 4186 J/kg·K (Wasser bei ca. 20–80 °C) ist der übliche Standardwert. Für andere Fluide wie Öl, Glykol oder Luft können Sie einen äquivalenten Massenstrom eingeben, der mit Cp/4186 skaliert ist, um korrekte Ergebnisse ohne Formeländerung zu erhalten."
+      },
+      {
+        "q": "Was ist das Kapazitätsstromverhältnis Cr und warum beeinflusst es den Wirkungsgrad?",
+        "a": "Cr = C_min/C_max liegt zwischen 0 und 1. Wenn Cr → 0, ändert ein Fluid seine Temperatur nur vernachlässigbar (z. B. ein kondensierender oder verdampfender Strom), und ε = 1 − e^(−NTU) unabhängig von der Strömungsanordnung. Bei Cr = 1 haben beide Ströme gleiche Wärmekapazität, und eine höhere NTU ist nötig, um denselben Wirkungsgrad zu erreichen; Gegenstromanordnungen sind dann besonders wertvoll."
+      },
+      {
+        "q": "Wie nutze ich NTU-Analyse zur Erkennung von Fouling?",
+        "a": "Nach der Inbetriebnahme eines sauberen Wärmetauschers zeichnen Sie seinen Basis-NTU-Wert an einem festen Betriebspunkt auf. Wenn sich Ablagerungen auf den Oberflächen sammeln, sinkt das effektive U und die NTU fällt. Der Vergleich der aktuellen NTU mit der Basis bei gleichen Durchflussbedingungen quantifiziert den Fouling-Faktor und hilft, Wartung zu planen, bevor Durchsatz oder Produktqualität leiden."
+      },
+      {
+        "q": "Ist die NTU-Methode für alle Wärmetauscherkonfigurationen gültig?",
+        "a": "Ja, aber die genaue ε–NTU-Beziehung unterscheidet sich je nach Strömungskonfiguration (Gegenstrom, Gleichstrom, Kreuzstrom, Rohrbündel mit mehreren Pässen). Dieser Rechner berechnet den Wirkungsgrad direkt aus gemessenen Temperaturen und bildet daher die tatsächlich installierte Konfiguration korrekt ab; im Analysemodus ist kein Korrekturfaktor für die Strömungsanordnung erforderlich."
+      }
+    ]
+  }
+}

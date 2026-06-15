@@ -1,0 +1,107 @@
+{
+  "title": "Calculadora EIRP - Potencia radiada isotrópica efectiva",
+  "tagline": "Calcula la potencia radiada isotrópica efectiva (EIRP) a partir de la potencia del transmisor, la pérdida de cable y la ganancia de antena en sistemas RF, Wi-Fi y satelitales.",
+  "intro": "Introduce la potencia de salida del transmisor, la pérdida total de cables y conectores, y la ganancia de antena en dBi para obtener la EIRP en dBm y vatios.",
+  "field": {
+    "power": "Potencia del transmisor",
+    "powerUnit": "Unidad de potencia",
+    "cableLoss": "Pérdida de cable y conectores (dB)",
+    "antennaGain": "Ganancia de antena (dBi)"
+  },
+  "placeholder": {
+    "power": "Introduce el valor de potencia",
+    "cableLoss": "Introduce la pérdida en dB",
+    "antennaGain": "Introduce la ganancia en dBi"
+  },
+  "powerUnit": {
+    "W": "W",
+    "dBm": "dBm"
+  },
+  "button": {
+    "calculate": "Calcular EIRP",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultado de EIRP",
+    "eirpDbm": "EIRP (dBm)",
+    "eirpW": "EIRP (W)",
+    "eirpDbW": "EIRP (dBW)",
+    "netGain": "Ganancia neta (ganancia de antena - pérdida de cable)"
+  },
+  "error": {
+    "invalid": "Introduce números válidos en todos los campos.",
+    "negativePower": "La potencia del transmisor en vatios debe ser mayor que cero."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora EIRP",
+    "body": "La potencia radiada isotrópica efectiva (EIRP) es la cifra de mérito más importante de un sistema de antena transmisora. Indica cuánta potencia tendría que radiar una antena isotrópica para producir la misma intensidad de señal en la dirección de máxima ganancia que tu sistema real. La EIRP es el producto de la potencia del transmisor entregada a la antena y la ganancia de la antena respecto de un radiador isotrópico, después de restar las pérdidas de cable, conectores y divisores entre el puerto de salida del transmisor y el puerto de entrada de la antena.\n\nLa fórmula en forma logarítmica (dB) es: EIRP (dBm) = P_tx (dBm) - L_cable (dB) + G_antenna (dBi). Convertir la potencia del transmisor de vatios a dBm es directo: P(dBm) = 10 × log₁₀(P_watts × 1000). Para convertir el resultado de EIRP de nuevo a vatios: P(W) = 10^(EIRP_dBm / 10) / 1000. La forma en dBW es simplemente EIRP(dBW) = EIRP(dBm) - 30.\n\nLa EIRP importa porque los organismos reguladores —la FCC en Estados Unidos, ETSI en Europa y sus equivalentes en todo el mundo— especifican límites máximos de EIRP para cada tipo de dispositivo inalámbrico. Los puntos de acceso Wi-Fi que operan en la banda de 2.4 GHz suelen estar limitados a 100 mW (20 dBm) de EIRP en Europa. Los terminales satelitales VSAT deben cumplir límites de densidad de flujo de EIRP para evitar interferir con satélites adyacentes. Las emisoras de FM se autorizan por potencia y altura de antena, que juntas determinan la EIRP y el área de cobertura.\n\nEn presupuestos de enlace inalámbrico, la EIRP es el punto de partida. Impulsa el cálculo de pérdida en espacio libre, el nivel de señal recibido en el extremo remoto y, en última instancia, el margen de enlace: el factor de seguridad frente a desvanecimiento e interferencias. Un aumento de 3 dB en EIRP duplica la potencia recibida o, de forma equivalente, extiende el alcance por un factor de √2 en condiciones de espacio libre. Los ingenieros que diseñan estaciones base celulares, enlaces de microondas punto a punto, lectores RFID y sistemas de radar usan la EIRP como moneda común para comparar el rendimiento del lado transmisor.\n\nLas antenas de alta ganancia son una forma especialmente rentable de aumentar la EIRP, porque su ganancia llega sin aumentar la potencia del transmisor, la disipación de calor ni el consumo de batería; una parábola de 20 dBi suma 20 dB a la EIRP. La pérdida de cable, en cambio, es puro desperdicio: cada dB de pérdida de inserción obliga al transmisor a trabajar más o reduce la cobertura. Minimizar la longitud del tendido de cable, usar cables de baja pérdida y asegurar que los conectores estén correctamente apretados y protegidos contra la intemperie son prácticas estándar para mantener una EIRP alta en despliegues de campo.\n\nEsta calculadora acepta la potencia del transmisor en vatios o dBm y devuelve simultáneamente la EIRP en dBm, dBW y vatios, lo que te permite trabajar con el sistema de unidades que requieran tu presentación regulatoria, hoja de datos o presupuesto de enlace."
+  },
+  "examples": {
+    "heading": "Ejemplos de la calculadora EIRP",
+    "intro": "Tres escenarios realistas de sistemas inalámbricos que muestran cómo se combinan la potencia del transmisor, la pérdida de cable y la ganancia de antena para obtener EIRP.",
+    "colInput": "Sistema",
+    "colOutput": "EIRP",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "AP Wi-Fi: P_tx = 100 mW (0.1 W), pérdida de cable = 3 dB, ganancia de antena = 3 dBi",
+        "output": "20.0 dBm = 100 mW",
+        "note": "P_tx = 20 dBm; EIRP = 20 - 3 + 3 = 20 dBm. Cumple exactamente el límite europeo de 20 dBm de EIRP en interiores para Wi-Fi de 2.4 GHz."
+      },
+      {
+        "input": "Transmisor FM: P_tx = 1000 W, pérdida de cable = 2 dB, ganancia de antena = 6 dBi",
+        "output": "64.0 dBm ≈ 2512 W",
+        "note": "P_tx = 10 × log₁₀(1 000 000) = 60 dBm exactos. EIRP = 60 - 2 + 6 = 64.0 dBm. Una estación FM comunitaria típica; radio de cobertura de ~20 km en terreno llano."
+      },
+      {
+        "input": "Terminal VSAT pequeño: P_tx = 1 W, pérdida de cable = 0.5 dB, ganancia de antena = 14 dBi (parábola de 0.3 m)",
+        "output": "43.5 dBm ≈ 22.4 W",
+        "note": "P_tx = 30 dBm; EIRP = 30 - 0.5 + 14 = 43.5 dBm. Terminal VSAT compacto con una antena pequeña que cumple límites típicos de densidad de flujo satelital."
+      },
+      {
+        "input": "Bluetooth LE: P_tx = 1 mW (0 dBm), pérdida de cable = 0 dB, ganancia de antena = 0 dBi (antena en chip)",
+        "output": "0 dBm = 1 mW",
+        "note": "Diseño BLE de mínima complejidad. Dispositivo Clase 3; alcance interior típico de 1–10 m."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora EIRP",
+    "steps": [
+      "Introduce la potencia de salida del transmisor y selecciona la unidad: vatios (W) para lecturas directas de potencia de una hoja de datos, o dBm para valores tomados de un analizador de espectro o una tabla de presupuesto de enlace.",
+      "Introduce la pérdida total de cable y conectores en dB. Incluye todas las fuentes entre el puerto de salida del transmisor y el punto de alimentación de la antena: cable coaxial, conectores, descargadores de rayos y divisores.",
+      "Introduce la ganancia de antena en dBi. Usa la ganancia nominal del fabricante a tu frecuencia de operación y al ángulo de polarización de tu enlace.",
+      "Haz clic en Calcular EIRP. La herramienta devuelve la EIRP en dBm, dBW y vatios. Compara el resultado con el límite regulatorio de EIRP aplicable a tu banda de frecuencia y país.",
+      "Para maximizar la EIRP dentro del límite regulatorio, aumenta la ganancia de antena o reduce la pérdida de cable; ambas opciones son más rentables que aumentar la potencia del transmisor, lo que eleva la disipación de calor y el consumo eléctrico."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre EIRP",
+    "items": [
+      {
+        "q": "¿Cuál es la diferencia entre EIRP y ERP?",
+        "a": "La EIRP (potencia radiada isotrópica efectiva) referencia la ganancia respecto de una antena isotrópica (dBi), mientras que la ERP (potencia radiada efectiva) referencia la ganancia respecto de un dipolo de media onda (dBd). Como un dipolo tiene 2.15 dBi de ganancia, la ERP siempre es 2.15 dB menor que la EIRP para el mismo sistema. Los reguladores de radiodifusión suelen usar ERP, mientras que los ingenieros de microondas y satélites usan EIRP."
+      },
+      {
+        "q": "¿Cómo convierto la potencia del transmisor de vatios a dBm?",
+        "a": "Usa P(dBm) = 10 × log₁₀(P_watts × 1000). Por ejemplo, 1 W = 10 × log₁₀(1000) = 30 dBm; 0.1 W = 20 dBm; 10 W = 40 dBm. A la inversa, P(W) = 10^(P_dBm/10) / 1000."
+      },
+      {
+        "q": "¿Por qué la pérdida de cable reduce la EIRP?",
+        "a": "Cualquier elemento pasivo entre la salida del transmisor y la antena absorbe parte de la potencia transmitida como calor. Cada 1 dB de pérdida de cable reduce la EIRP en 1 dB, equivalente a dividir la EIRP por dos por cada 3 dB de pérdida de cable. Usar cable de baja pérdida más corto y de mayor diámetro, y minimizar el número de conectores, mejora directamente la EIRP."
+      },
+      {
+        "q": "¿Qué límites de EIRP se aplican a equipos Wi-Fi?",
+        "a": "Los límites varían según el país y la banda. En la UE, bajo ETSI EN 300 328, el Wi-Fi interior de 2.4 GHz está limitado a 100 mW (20 dBm) de EIRP; los canales exteriores de 5 GHz están limitados a 200 mW (23 dBm). Las reglas FCC Part 15 de EE. UU. permiten hasta 1 W (30 dBm) de potencia de transmisión, pero limitan la EIRP a alrededor de 36 dBm para sistemas punto a multipunto."
+      },
+      {
+        "q": "¿Cómo se relaciona la EIRP con el presupuesto de enlace?",
+        "a": "La EIRP es el punto de partida de un presupuesto de enlace: Potencia recibida = EIRP - pérdida en espacio libre + ganancia de antena receptora - pérdidas del sistema receptor. Una EIRP mayor mejora directamente la intensidad de señal recibida o permite mantener el mismo margen de enlace a mayor distancia. Cada aumento de 6 dB en EIRP duplica el alcance de comunicación bajo condiciones de pérdida en espacio libre."
+      },
+      {
+        "q": "¿Puedo aumentar la EIRP usando una antena de mayor ganancia más allá del límite regulatorio?",
+        "a": "No. Los reguladores limitan la EIRP total, no solo la potencia del transmisor. Si una presentación regulatoria limita la EIRP a 36 dBm y cambias de una antena de 6 dBi a una de 10 dBi, debes reducir la potencia del transmisor en 4 dB para mantenerte dentro del límite. Usar una antena con más ganancia de la permitida sin reducir la potencia del transmisor es una modificación ilegal que puede provocar multas e incautación del equipo."
+      }
+    ]
+  }
+}

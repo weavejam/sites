@@ -1,0 +1,114 @@
+{
+  "title": "Calculateur NTU efficacité – Analyse d’échangeur thermique",
+  "tagline": "Calculez le NTU (nombre d’unités de transfert) et l’efficacité des échangeurs thermiques afin d’analyser les performances thermiques et d’optimiser la conception du transfert de chaleur.",
+  "intro": "Saisissez les températures et débits des deux courants de fluide ainsi que la géométrie de l’échangeur pour obtenir instantanément le NTU et l’efficacité.",
+  "field": {
+    "hotInletTemp": "Température d’entrée du fluide chaud (°C)",
+    "hotOutletTemp": "Température de sortie du fluide chaud (°C)",
+    "coldInletTemp": "Température d’entrée du fluide froid (°C)",
+    "coldOutletTemp": "Température de sortie du fluide froid (°C)",
+    "hotMassFlow": "Débit massique du fluide chaud (kg/s)",
+    "coldMassFlow": "Débit massique du fluide froid (kg/s)",
+    "heatTransferCoeff": "Coefficient global de transfert thermique (W/m²K)",
+    "heatTransferArea": "Surface d’échange thermique (m²)"
+  },
+  "placeholder": {
+    "hotInletTemp": "p. ex. 80",
+    "hotOutletTemp": "p. ex. 60",
+    "coldInletTemp": "p. ex. 20",
+    "coldOutletTemp": "p. ex. 40",
+    "hotMassFlow": "p. ex. 2.5",
+    "coldMassFlow": "p. ex. 3.0",
+    "heatTransferCoeff": "p. ex. 500",
+    "heatTransferArea": "p. ex. 10"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats",
+    "ntu": "NTU (nombre d’unités de transfert)",
+    "effectiveness": "Efficacité (ε)",
+    "heatTransferRate": "Puissance thermique transférée",
+    "capacityRateRatio": "Rapport des capacités thermiques (Cr)",
+    "cmin": "Débit de capacité thermique minimal (C_min)"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs.",
+    "tempRange": "La température d’entrée du fluide chaud doit être supérieure à celle du fluide froid.",
+    "energyBalance": "Les données de température sont physiquement incohérentes : vérifiez que le fluide chaud se refroidit et que le fluide froid se réchauffe."
+  },
+  "about": {
+    "heading": "À propos du calculateur NTU efficacité",
+    "body": "La méthode NTU-efficacité est l’une des deux techniques principales d’analyse des performances d’un échangeur thermique, l’autre étant l’approche par différence de température moyenne logarithmique (LMTD). Les ingénieurs utilisent la méthode NTU lorsque les températures de sortie sont connues ou spécifiées comme objectifs de conception, car elle évite la résolution itérative que la méthode LMTD impose dans ces situations.\n\nNTU signifie nombre d’unités de transfert, une mesure sans dimension de la taille thermique d’un échangeur. Il est défini par NTU = UA / C_min, où U est le coefficient global de transfert thermique en W/m²K, A la surface totale d’échange en m² et C_min le plus faible des deux débits de capacité thermique (débit massique multiplié par la capacité thermique massique) en W/K. Un échangeur compact à plaques avec un U élevé et une grande surface peut atteindre le même NTU qu’un grand échangeur à calandre et tubes doté d’un U modéré, car le NTU reflète le produit UA plutôt que l’une ou l’autre grandeur isolément.\n\nL’efficacité (ε) est définie comme le rapport entre la puissance thermique réellement transférée et la puissance maximale thermodynamiquement possible. Cette puissance maximale serait atteinte dans un échangeur à contre-courant infiniment long, où le fluide ayant le plus faible débit de capacité thermique parcourt tout l’écart de température entre les entrées des deux courants : q_max = C_min × (T_h,in − T_c,in). L’efficacité varie donc de 0 (aucun transfert thermique) à 1 (transfert parfait). En pratique, les échangeurs industriels bien conçus fonctionnent entre ε = 0.6 et ε = 0.9.\n\nLe calculateur déduit l’efficacité directement des températures mesurées : la chaleur réellement transférée vaut C_hot × (T_h,in − T_h,out), et sa division par q_max donne ε. Il calcule simultanément NTU = UA / C_min. Le rapport de capacités Cr = C_min / C_max est également indiqué, car il gouverne la forme de la courbe ε–NTU ; lorsque Cr = 0 (un fluide condense ou s’évapore), l’efficacité est maximale pour un NTU donné, tandis que Cr = 1 (capacités équilibrées) donne l’efficacité la plus faible.\n\nLes applications pratiques couvrent presque toutes les industries impliquant de la chaleur. Les usines chimiques utilisent des échangeurs à calandre et tubes et à plaques pour récupérer l’énergie entre les courants de procédé. Les systèmes CVC reposent sur des batteries air-eau et des ventilateurs récupérateurs de chaleur dont le dimensionnement est largement déterminé par l’analyse NTU. Les centrales électriques utilisent des condenseurs de vapeur et des réchauffeurs d’eau d’alimentation que les ingénieurs optimisent en maximisant le NTU par unité de coût. Les systèmes de refroidissement automobile, les lignes de pasteurisation alimentaire, les réacteurs pharmaceutiques et les boucles de refroidissement liquide de centres de données s’appuient tous sur le même cadre NTU.\n\nUne préoccupation pratique récurrente est l’encrassement : les dépôts de tartre, de biofilm ou de produits de corrosion sur les surfaces d’échange augmentent la résistance thermique, réduisent U et donc diminuent le NTU au fil du temps. Le suivi périodique du NTU calculé par rapport à la valeur de conception propre fournit un avertissement précoce indiquant qu’un nettoyage est nécessaire avant que le débit de production ou la qualité du produit ne soit compromis. De même, le bilan énergétique implicite dans le calcul (q_hot = q_cold à l’état stationnaire) sert de contrôle de cohérence de l’instrumentation : si les deux côtés diffèrent nettement, un capteur ou un débitmètre peut être défectueux.\n\nPour les étudiants et ingénieurs qui découvrent l’analyse des échangeurs thermiques, la méthode NTU-efficacité offre un chemin intuitif des données vers les indicateurs de performance sans nécessiter une dérivation séparée de la LMTD. En saisissant quatre températures et deux débits, ainsi que U et A, vous obtenez en une seule étape la taille thermique et la performance thermique de l’échangeur."
+  },
+  "examples": {
+    "heading": "Exemples de calculateur NTU efficacité",
+    "intro": "Scénarios réalistes d’échangeurs thermiques montrant comment lire les entrées et interpréter les sorties.",
+    "colInput": "Scénario",
+    "colOutput": "NTU / Efficacité",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Calandre et tubes : chaud 85→65 °C, froid 25→41 °C, débits 2.0/2.5 kg/s, U=450 W/m²K, A=15 m²",
+        "output": "NTU ≈ 0.807, ε ≈ 0.333",
+        "note": "C_hot=8372, C_cold=10465 W/K ; Cmin=8372. q=8372×20=167 440 W. T_c,out=25+(2.0/2.5)×20=41 °C → q_cold=10465×16=167 440 W ✓. q_max=8372×60=502 320 W. ε=0.333, NTU=450×15/8372=0.807."
+      },
+      {
+        "input": "Échangeur à plaques : chaud 90→70 °C, froid 20→35 °C, débits 1.5/2.0 kg/s, U=800 W/m²K, A=8 m²",
+        "output": "NTU ≈ 1.019, ε ≈ 0.286",
+        "note": "C_hot=6279, C_cold=8372 W/K ; Cmin=6279. q=6279×20=125 580 W. T_c,out=20+(1.5/2.0)×20=35 °C → q_cold=8372×15=125 580 W ✓. q_max=6279×70=439 530 W. ε=0.286, NTU=800×8/6279=1.019."
+      },
+      {
+        "input": "Échangeur refroidi par air : chaud 110→80 °C, froid 25→40 °C, débits 1.5/3.0 kg/s, U=60 W/m²K, A=50 m²",
+        "output": "NTU ≈ 0.478, ε ≈ 0.353",
+        "note": "C_hot=6279, C_cold=12558 W/K ; Cmin=6279. q=6279×30=188 370 W. T_c,out=25+(1.5/3.0)×30=40 °C → q_cold=12558×15=188 370 W ✓. q_max=6279×85=533 715 W. ε=0.353, NTU=60×50/6279=0.478."
+      },
+      {
+        "input": "Refroidisseur industriel : chaud 100→60 °C, froid 15→35 °C, débits 1.0/2.0 kg/s, U=300 W/m²K, A=5 m²",
+        "output": "NTU ≈ 0.358, ε ≈ 0.471",
+        "note": "C_hot=4186, C_cold=8372 W/K ; Cmin=4186. q=4186×40=167 440 W. T_c,out=15+(1.0/2.0)×40=35 °C → q_cold=8372×20=167 440 W ✓. q_max=4186×85=355 810 W. ε=0.471, NTU=300×5/4186=0.358."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur NTU efficacité",
+    "steps": [
+      "Mesurez ou obtenez les températures d’entrée et de sortie des courants chaud et froid en °C. Assurez-vous que T_h,in > T_c,in et que le fluide chaud se refroidit tandis que le fluide froid se réchauffe.",
+      "Saisissez les débits massiques des deux fluides en kg/s. Si la capacité thermique massique diffère fortement de celle de l’eau (4186 J/kg·K), notez que le calculateur suppose de l’eau : ajustez les débits massiques en conséquence pour les autres fluides.",
+      "Saisissez le coefficient global de transfert U (W/m²K) à partir des données fabricant, de corrélations de conception ou d’un essai préalable en condition propre, ainsi que la surface d’échange A (m²) issue de la géométrie de l’échangeur.",
+      "Cliquez sur Calculer pour afficher en une étape le NTU, l’efficacité (ε), la puissance thermique réelle (W), le rapport de capacités (Cr) et C_min.",
+      "Comparez le NTU calculé à la valeur de conception. Une baisse importante au fil du temps indique un encrassement ; planifiez le nettoyage avant que les pertes d’efficacité n’affectent votre procédé."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur NTU efficacité",
+    "items": [
+      {
+        "q": "Qu’est-ce que le NTU dans un échangeur thermique ?",
+        "a": "Le NTU (nombre d’unités de transfert) est une mesure sans dimension de la taille thermique d’un échangeur, définie par NTU = UA/C_min. Il combine le coefficient global U, la surface d’échange A et le débit de capacité thermique minimal C_min en un seul indicateur qui caractérise la capacité de transfert thermique de l’échangeur par rapport au courant limitant."
+      },
+      {
+        "q": "Que signifie l’efficacité et pourquoi est-elle importante ?",
+        "a": "L’efficacité (ε) est le rapport entre la chaleur réellement transférée et le maximum thermodynamique. Une valeur de 1 signifierait que le courant ayant le plus faible débit de capacité thermique parcourt toute la différence de température entre les deux entrées, ce qui n’est réalisable qu’avec un échangeur à contre-courant infiniment long. En pratique, ε indique la proximité de votre conception avec le meilleur cas théorique, ce qui aide à comparer les performances et à détecter la dégradation."
+      },
+      {
+        "q": "Pourquoi le calculateur suppose-t-il que le fluide de travail est l’eau ?",
+        "a": "Le débit de capacité thermique est C = ṁ × Cp, mais le formulaire ne collecte que le débit massique. Utiliser Cp = 4186 J/kg·K (eau à ~20–80 °C) est le choix par défaut standard. Pour d’autres fluides (huile, glycol, air), vous pouvez saisir un débit massique équivalent mis à l’échelle par Cp/4186 afin d’obtenir des résultats corrects sans modifier la formule."
+      },
+      {
+        "q": "Qu’est-ce que le rapport de capacités Cr et pourquoi affecte-t-il l’efficacité ?",
+        "a": "Cr = C_min/C_max varie de 0 à 1. Lorsque Cr → 0, un fluide change très peu de température (par exemple un courant en condensation ou évaporation), et ε = 1 − e^(−NTU) quelle que soit la configuration d’écoulement. Lorsque Cr = 1, les deux courants ont la même capacité thermique et un NTU plus élevé est nécessaire pour atteindre la même efficacité, ce qui rend les configurations à contre-courant particulièrement intéressantes."
+      },
+      {
+        "q": "Comment utiliser l’analyse NTU pour détecter l’encrassement ?",
+        "a": "Après la mise en service d’un échangeur propre, enregistrez sa valeur NTU de référence à un point de fonctionnement fixe. À mesure que les dépôts s’accumulent sur les surfaces, le U effectif diminue et le NTU baisse. Comparer le NTU actuel à la référence dans les mêmes conditions de débit quantifie le facteur d’encrassement et aide à planifier la maintenance avant que le débit ou la qualité du produit ne souffre."
+      },
+      {
+        "q": "La méthode NTU est-elle valable pour toutes les configurations d’échangeurs ?",
+        "a": "Oui, mais la relation ε–NTU exacte diffère selon la configuration d’écoulement (contre-courant, co-courant, écoulement croisé, calandre et tubes à passes multiples). Ce calculateur calcule l’efficacité directement à partir des températures mesurées ; il reflète donc correctement la configuration réellement installée, sans facteur de correction de configuration en mode analyse."
+      }
+    ]
+  }
+}
