@@ -1,0 +1,113 @@
+{
+  "title": "Parity Bit Calculator",
+  "tagline": "Calculate even or odd parity bits for binary data and validate received data for single-bit transmission errors.",
+  "intro": "Enter binary data, choose even or odd parity, and instantly get the parity bit, the complete transmission string, and optional received-data validation.",
+  "type": {
+    "even": "Even Parity",
+    "odd": "Odd Parity"
+  },
+  "field": {
+    "binaryData": "Binary Data",
+    "parityType": "Parity Type",
+    "receivedData": "Received Data (for validation)",
+    "placeholder": {
+      "binaryData": "e.g. 1010 or 11001100",
+      "receivedData": "e.g. 10100 (includes parity bit)"
+    }
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Result",
+    "onesCount": "Number of 1s in data",
+    "parityBit": "Parity bit",
+    "transmissionString": "Transmission string (data + parity bit)",
+    "validationHeading": "Validation Result",
+    "valid": "Valid — parity check passed, no error detected.",
+    "invalid": "Error detected — parity check failed, a bit flip likely occurred."
+  },
+  "error": {
+    "invalidBinary": "Binary Data must contain only 0s and 1s.",
+    "invalidReceived": "Received Data must contain only 0s and 1s.",
+    "emptyData": "Please enter binary data."
+  },
+  "about": {
+    "heading": "About the Parity Bit Calculator",
+    "body": "Error detection is a cornerstone of reliable digital communication. Whenever data is transmitted over a noisy channel — whether a USB cable, a Wi-Fi link, a hard-disk read head, or a long-distance satellite connection — there is some probability that a bit will be corrupted in transit. Parity checking is the simplest mechanism to catch such errors, and despite its age, it remains relevant in embedded systems, serial communication protocols, and computer science education.\n\nA parity bit is a single bit appended to a block of data. Its value is chosen so that the total number of 1 bits in the block (including the parity bit itself) meets a specific rule. Under even parity the rule is: the total count of 1s must be even. Under odd parity the rule is: the total count of 1s must be odd. The sender applies the rule, transmits the data plus the parity bit, and the receiver re-counts the 1s. If the count violates the rule, at least one bit was corrupted.\n\nCalculating the even parity bit: count the 1s in the original data. If the count is already even, the parity bit is 0 (no extra 1 needed). If the count is odd, the parity bit is 1 (to bring the total to even). For odd parity, the logic is reversed: if the count is already odd, the parity bit is 0; if the count is even, the parity bit is 1.\n\nExample with even parity: data = 1011. It contains three 1s — odd. To make the total even, the even parity bit = 1. Transmission string: 10111. The receiver counts four 1s — even — and declares the message valid. If a bit was flipped and the receiver got 10110, it counts three 1s — odd — and raises an error flag.\n\nExample with odd parity: data = 1011. Three 1s — already odd. To keep the total odd, the odd parity bit = 0. Transmission string: 10110. The receiver counts three 1s — odd — and declares valid. If a bit flipped and the receiver got 11110, it counts four 1s — even — and raises an error.\n\nBoth even and odd parity detect any single-bit error. They both miss two-bit errors, since flipping two bits preserves the parity. For multi-bit error detection, engineers use more powerful codes: Hamming codes can also correct one-bit errors; CRC (Cyclic Redundancy Check) detects burst errors; Reed-Solomon codes are used in storage media like CDs and QR codes.\n\nThis calculator supports both parity types in a single interface. It validates that the input is binary, computes the parity bit, generates the transmission string, and optionally validates a received string by checking whether the total 1-count matches the expected parity rule."
+  },
+  "examples": {
+    "heading": "Parity Bit Examples",
+    "intro": "Even and odd parity bit calculations for various binary inputs.",
+    "colInput": "Binary Data",
+    "colOutput": "Parity Bit (even / odd)",
+    "colNote": "Transmission String",
+    "items": [
+      {
+        "input": "1010",
+        "output": "0 (even) / 1 (odd)",
+        "note": "Two 1s: even → 0; needs odd total → 1"
+      },
+      {
+        "input": "1110",
+        "output": "1 (even) / 0 (odd)",
+        "note": "Three 1s: needs even total → 1; already odd → 0"
+      },
+      {
+        "input": "11001100",
+        "output": "0 (even) / 1 (odd)",
+        "note": "Four 1s (even): even parity = 0; odd parity = 1"
+      },
+      {
+        "input": "10110100",
+        "output": "0 (even) / 1 (odd)",
+        "note": "Four 1s (even): even parity = 0 (already even); odd parity = 1 (to make total odd)"
+      },
+      {
+        "input": "1111111",
+        "output": "1 (even) / 0 (odd)",
+        "note": "Seven 1s (odd): even parity = 1; odd parity = 0"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Parity Bit Calculator",
+    "steps": [
+      "Enter the binary data string in the Binary Data field — only 0s and 1s are accepted.",
+      "Choose Even Parity or Odd Parity from the Parity Type selector.",
+      "Click Calculate to see the parity bit, the total count of 1s, and the full transmission string.",
+      "Optionally paste a received string (data + parity bit) into Received Data to validate it against the selected parity rule.",
+      "Click Reset to clear all fields for a new calculation."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "What is a parity bit?",
+        "a": "A parity bit is a single additional bit appended to a block of binary data. Its value is set so that the total number of 1 bits in the combined sequence satisfies a parity rule — either even (total 1s is even) or odd (total 1s is odd). It allows the receiver to detect single-bit transmission errors."
+      },
+      {
+        "q": "What is the difference between even and odd parity?",
+        "a": "Even parity ensures the total count of 1 bits (data + parity bit) is even; odd parity ensures it is odd. Both detect any single-bit error equally well. Odd parity is sometimes preferred because it guarantees a non-zero parity bit when all data bits are zero, helping to detect stuck-at-zero faults."
+      },
+      {
+        "q": "Can parity detect multi-bit errors?",
+        "a": "Parity can detect any odd number of bit errors (1, 3, 5, ...) but misses any even number of simultaneous errors (2, 4, ...). In practice, two-bit errors are rare but possible. For stronger protection, use Hamming codes, CRC, or Reed-Solomon codes."
+      },
+      {
+        "q": "Where is parity checking used in real systems?",
+        "a": "Parity is used in DRAM memory (ECC memory uses extended parity/Hamming codes), serial communication (UART parity bit in RS-232 and RS-485), IDE and SCSI storage interfaces, and many embedded protocols. It is also a foundational concept taught in computer science and digital electronics courses."
+      },
+      {
+        "q": "Why is the parity bit placed at the end of the data?",
+        "a": "This calculator appends the parity bit at the end of the data string, which is the most common convention in simple framing formats. Some protocols (such as certain UART configurations) use the parity bit as a separate frame field. The bit position does not affect the error detection capability, only the protocol framing."
+      },
+      {
+        "q": "How does parity relate to Hamming codes?",
+        "a": "A Hamming code can be thought of as a set of multiple parity bits, each covering a different subset of the data bits. While a single parity bit can only detect errors, Hamming codes can both detect and correct a single-bit error by triangulating which bit position is faulty. This makes Hamming codes widely used in ECC memory and data storage applications."
+      }
+    ]
+  }
+}

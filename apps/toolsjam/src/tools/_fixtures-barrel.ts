@@ -138,12 +138,17 @@ import { fixtures as f_index_of_qualitative_variation_calculator } from "@/tools
 import { fixtures as f_inverse_normal_distribution_calculator } from "@/tools/inverse-normal-distribution-calculator.fixtures";
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
+import { fixtures as f_odd_parity_bit_calculator } from "@/tools/odd-parity-bit-calculator.fixtures";
 import { fixtures as f_odds_ratio_calculator } from "@/tools/odds-ratio-calculator.fixtures";
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
+import { fixtures as f_op_amp_gain_calculator } from "@/tools/op-amp-gain-calculator.fixtures";
 import { fixtures as f_outlier_calculator } from "@/tools/outlier-calculator.fixtures";
+import { fixtures as f_oxygen_tank_duration_calculator } from "@/tools/oxygen-tank-duration-calculator.fixtures";
 import { fixtures as f_p_hat_calculator } from "@/tools/p-hat-calculator.fixtures";
 import { fixtures as f_p_value_calculator } from "@/tools/p-value-calculator.fixtures";
 import { fixtures as f_paired_samples_t_test_calculator } from "@/tools/paired-samples-t-test-calculator.fixtures";
+import { fixtures as f_pallet_calculator } from "@/tools/pallet-calculator.fixtures";
+import { fixtures as f_parity_bit_calculator } from "@/tools/parity-bit-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
 import { fixtures as f_poisson_distribution_calculator } from "@/tools/poisson-distribution-calculator.fixtures";
@@ -382,12 +387,17 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "inverse-normal-distribution-calculator": f_inverse_normal_distribution_calculator,
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
   "loan-calculator": f_loan_calculator,
+  "odd-parity-bit-calculator": f_odd_parity_bit_calculator,
   "odds-ratio-calculator": f_odds_ratio_calculator,
   "ohms-law-calculator": f_ohms_law_calculator,
+  "op-amp-gain-calculator": f_op_amp_gain_calculator,
   "outlier-calculator": f_outlier_calculator,
+  "oxygen-tank-duration-calculator": f_oxygen_tank_duration_calculator,
   "p-hat-calculator": f_p_hat_calculator,
   "p-value-calculator": f_p_value_calculator,
   "paired-samples-t-test-calculator": f_paired_samples_t_test_calculator,
+  "pallet-calculator": f_pallet_calculator,
+  "parity-bit-calculator": f_parity_bit_calculator,
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
   "poisson-distribution-calculator": f_poisson_distribution_calculator,
