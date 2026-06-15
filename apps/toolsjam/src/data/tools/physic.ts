@@ -206,39 +206,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "wing-loading-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "yi-zai-he-ji-suan-qi",
+      "zh-TW": "yi-zai-he-ji-suan-qi",
+      ja: "yokumen-kaju-keisan",
+      ko: "yeokmyeon-hajung-gyesan",
+      es: "calculadora-carga-alar",
+      fr: "calculateur-charge-alaire",
+      de: "flaechenbelastung-rechner",
+      pt: "calculadora-carga-alar",
+      ru: "nagruzka-na-krylo-kalkulyator"
     },
     titles: {
       en: "Wing Loading Calculator – Stall Speed and Performance",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "翼载荷计算器：失速速度与性能",
+      "zh-TW": "翼載荷計算器：失速速度與性能",
+      ja: "翼面荷重計算機：失速速度と性能",
+      ko: "익면하중 계산기: 실속 속도와 성능",
+      es: "Calculadora de carga alar: pérdida y rendimiento",
+      fr: "Calculateur de charge alaire : décrochage et performance",
+      de: "Flächenbelastung-Rechner: Abriss und Leistung",
+      pt: "Calculadora de carga alar: estol e desempenho",
+      ru: "Калькулятор нагрузки на крыло: сваливание и характеристики"
     },
     descriptions: {
       en: "Calculate aircraft wing loading and stall speed from weight and wing area. Supports metric and imperial units for aircraft, gliders, and RC models.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据重量和翼面积计算飞机翼载荷与失速速度，支持公制和英制，适用于飞机、滑翔机和遥控模型。",
+      "zh-TW": "根據重量和翼面積計算飛機翼載荷與失速速度，支援公制與英制，適用於飛機、滑翔機和遙控模型。",
+      ja: "重量と翼面積から翼面荷重と失速速度を計算。航空機、グライダー、RC機に対応。",
+      ko: "중량과 날개 면적로 항공기 익면하중과 실속 속도를 계산합니다. 항공기, 글라이더, RC 모델을 지원합니다.",
+      es: "Calcula la carga alar y la velocidad de pérdida a partir del peso y el área alar. Compatible con unidades métricas e imperiales.",
+      fr: "Calculez la charge alaire et la vitesse de décrochage à partir du poids et de la surface alaire. Systèmes métrique et impérial pris en charge.",
+      de: "Berechne Flächenbelastung und Abrissgeschwindigkeit aus Gewicht und Flügelfläche. Für metrische und imperiale Einheiten.",
+      pt: "Calcule a carga alar e a velocidade de estol a partir do peso e da área da asa. Suporta unidades métricas e imperiais.",
+      ru: "Рассчитайте нагрузку на крыло и скорость сваливания по массе и площади крыла. Поддерживаются метрические и имперские единицы."
     }
   },
   {
@@ -246,39 +246,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "water-viscosity-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "shui-niandu-ji-suan-qi",
+      "zh-TW": "shui-niandu-ji-suan-qi",
+      ja: "sui-nendo-keisanki",
+      ko: "mul-jamdo-gyesangi",
+      es: "calculadora-viscosidad-agua",
+      fr: "calculateur-viscosite-eau",
+      de: "wasser-viskositaetsrechner",
+      pt: "calculadora-viscosidade-agua",
+      ru: "kalkulyator-vyazkosti-vody"
     },
     titles: {
       en: "Water Viscosity Calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "水粘度计算器",
+      "zh-TW": "水黏度計算機",
+      ja: "水の粘度計算機",
+      ko: "물 점도 계산기",
+      es: "Calculadora de viscosidad del agua",
+      fr: "Calculateur de viscosité de l’eau",
+      de: "Wasser-Viskositätsrechner",
+      pt: "Calculadora de viscosidade da água",
+      ru: "Калькулятор вязкости воды"
     },
     descriptions: {
       en: "Calculate water dynamic viscosity, kinematic viscosity, density, and Reynolds number from temperature, pressure, flow velocity, and pipe size fast.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据温度、压力、流速和管径，快速计算水的动力粘度、运动粘度、密度和雷诺数。",
+      "zh-TW": "依溫度、壓力、流速與管徑，快速計算水的動力黏度、運動黏度、密度與雷諾數。",
+      ja: "温度、圧力、流速、配管径から、水の動的粘度、動粘度、密度、レイノルズ数を素早く計算します。",
+      ko: "온도, 압력, 유속, 배관 직경으로 물의 동적 점도, 운동 점도, 밀도, 레이놀즈 수를 빠르게 계산합니다.",
+      es: "Calcula rápido la viscosidad dinámica y cinemática, la densidad y el número de Reynolds del agua según temperatura, presión y caudal.",
+      fr: "Calculez rapidement la viscosité dynamique et cinématique, la masse volumique et le nombre de Reynolds de l’eau selon la température, la pression et le débit.",
+      de: "Berechnen Sie dynamische und kinematische Viskosität, Dichte und Reynolds-Zahl von Wasser schnell aus Temperatur, Druck und Durchfluss.",
+      pt: "Calcule rápido a viscosidade dinâmica e cinemática, a densidade e o número de Reynolds da água com temperatura, pressão e vazão.",
+      ru: "Быстро рассчитывайте динамическую и кинематическую вязкость, плотность и число Рейнольдса воды по температуре, давлению и расходу."
     }
   },
   {
@@ -286,39 +286,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "watt-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "watt-gonglv-jisuanqi",
+      "zh-TW": "watt-gonglv-jisuanqi",
+      ja: "watt-keisan-ki",
+      ko: "wateu-gyeonsangi",
+      es: "calculadora-de-vatios",
+      fr: "calculateur-de-watts",
+      de: "watt-rechner",
+      pt: "calculadora-de-watt",
+      ru: "vatt-kalkulyator"
     },
     titles: {
       en: "Watt Calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "瓦特计算器",
+      "zh-TW": "瓦特計算器",
+      ja: "ワット計算機",
+      ko: "와트 계산기",
+      es: "Calculadora de vatios",
+      fr: "Calculateur de watts",
+      de: "Watt-Rechner",
+      pt: "Calculadora de watt",
+      ru: "Калькулятор ватт"
     },
     descriptions: {
       en: "Calculate volts, amps, ohms, watts, and optional watt-hours by entering any two electrical values, then solve the rest for quick circuit checks.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "输入任意两个电气值，即可计算电压、电流、电阻、功率和可选的瓦时。",
+      "zh-TW": "輸入任意兩個電氣值，即可計算電壓、電流、電阻、功率與可選的瓦時。",
+      ja: "2つの電気量を入力して、電圧・電流・抵抗・電力・ワット時を計算します。",
+      ko: "두 개의 전기 값을 입력해 전압, 전류, 저항, 전력, 선택적 와트시를 계산합니다.",
+      es: "Calcula voltios, amperios, ohmios, vatios y vatios-hora al introducir dos valores eléctricos.",
+      fr: "Calculez volts, ampères, ohms, watts et watt-heures en saisissant deux valeurs électriques.",
+      de: "Berechne Volt, Ampere, Ohm, Watt und optional Wattstunden aus zwei elektrischen Werten.",
+      pt: "Calcule volts, amperes, ohms, watts e watt-hora ao inserir dois valores elétricos.",
+      ru: "Рассчитывайте вольты, амперы, омы, ватты и ватт-часы по двум электрическим значениям."
     }
   },
   {
@@ -326,39 +326,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "watt-converter",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "wa-te-huan-suan-qi",
+      "zh-TW": "wa-te-huan-suan-qi",
+      ja: "watto-henkan",
+      ko: "wateu-byeonhwan",
+      es: "conversor-vatios",
+      fr: "convertisseur-watts",
+      de: "watt-umrechner",
+      pt: "conversor-watts",
+      ru: "konverter-vatt"
     },
     titles: {
       en: "Watt Converter",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "瓦特换算器",
+      "zh-TW": "瓦特換算器",
+      ja: "ワット変換",
+      ko: "와트 변환기",
+      es: "Conversor de vatios",
+      fr: "Convertisseur de watts",
+      de: "Watt-Umrechner",
+      pt: "Conversor de watts",
+      ru: "Конвертер ватт"
     },
     descriptions: {
       en: "Convert watts, kilowatts, megawatts, horsepower, BTU per hour, calories per second, and more with accurate power-unit factors.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "准确换算瓦特、千瓦、兆瓦、马力、BTU/小时、卡路里/秒等功率单位。",
+      "zh-TW": "準確換算瓦特、千瓦、兆瓦、馬力、BTU/小時、卡路里/秒等功率單位。",
+      ja: "ワット、キロワット、メガワット、馬力、BTU/時、カロリー/秒などの電力単位を正確に換算します。",
+      ko: "와트, 킬로와트, 메가와트, 마력, 시간당 BTU, 초당 칼로리 등 전력 단위를 정확하게 변환하세요.",
+      es: "Convierte vatios, kilovatios, megavatios, caballos de fuerza, BTU por hora, calorías por segundo y más con factores precisos.",
+      fr: "Convertissez watts, kilowatts, mégawatts, chevaux-vapeur, BTU par heure, calories par seconde et plus avec des facteurs précis.",
+      de: "Rechne Watt, Kilowatt, Megawatt, Pferdestärken, BTU pro Stunde, Kalorien pro Sekunde und mehr mit genauen Faktoren um.",
+      pt: "Converta watts, quilowatts, megawatts, cavalos-vapor, BTU por hora, calorias por segundo e mais com fatores precisos.",
+      ru: "Переводите ватты, киловатты, мегаватты, лошадиные силы, BTU в час, калории в секунду и другие единицы мощности."
     }
   },
   {
@@ -366,39 +366,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "watt-hour-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "washi-jisuanqi",
+      "zh-TW": "washi-jisuanqi",
+      ja: "wattoji-keisanki",
+      ko: "wateusi-gyesangi",
+      es: "calculadora-vatio-hora",
+      fr: "calculateur-wattheure",
+      de: "wattstunden-rechner",
+      pt: "calculadora-watt-hora",
+      ru: "vatt-chas-kalkulyator"
     },
     titles: {
       en: "Watt Hour Calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "瓦时计算器",
+      "zh-TW": "瓦時計算器",
+      ja: "ワット時計算機",
+      ko: "와트시 계산기",
+      es: "Calculadora de vatios-hora",
+      fr: "Calculateur wattheure",
+      de: "Wattstunden-Rechner",
+      pt: "Calculadora de watt-hora",
+      ru: "Калькулятор ватт-часов"
     },
     descriptions: {
       en: "Calculate daily watt-hours, monthly kilowatt-hours, and electricity cost from appliance wattage, usage time, monthly days, and utility rate.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据电器功率、运行时间、每月天数和电价，计算每日瓦时、每月千瓦时和用电成本。",
+      "zh-TW": "根據電器功率、運作時間、每月天數與電價，計算每日瓦時、每月千瓦時和用電成本。",
+      ja: "家電の消費電力、使用時間、月の日数、電気料金から、1日あたりのWh、月間kWh、電気代を計算します。",
+      ko: "가전의 소비전력, 사용 시간, 월별 일수, 전기 요금으로 일일 Wh, 월간 kWh, 전기 요금을 계산합니다.",
+      es: "Calcula vatios-hora diarios, kilovatios-hora mensuales y el costo eléctrico a partir de potencia, tiempo de uso y tarifa.",
+      fr: "Calcule les wattheures quotidiens, les kilowattheures mensuels et le coût de l’électricité à partir de la puissance, du temps d’usage et du tarif.",
+      de: "Berechnet tägliche Wattstunden, monatliche Kilowattstunden und Stromkosten aus Leistung, Nutzungsdauer und Tarif.",
+      pt: "Calcule watt-hora diários, quilowatt-hora mensais e custo de energia com base na potência, tempo de uso e tarifa.",
+      ru: "Рассчитывает суточные ватт-часы, месячные киловатт-часы и стоимость электроэнергии по мощности, времени работы и тарифу."
     }
   },
   {
@@ -1446,15 +1446,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "specific-gas-constant-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Specific Gas Constant Calculator – R Value for Any Gas",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate the specific gas constant (R) for any gas from its molar mass. Use the ideal gas law PV=mRT to solve for pressure, volume, temperature, or mass.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1462,15 +1486,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "specific-gravity-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Specific Gravity Calculator – Density Ratio & Buoyancy",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate specific gravity and density ratio relative to water. Enter substance mass and volume, or input density directly, to instantly find buoyancy force.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1478,15 +1526,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "specific-heat-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Specific Heat Calculator – Q = m × c × ΔT Formula",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate heat energy Q, specific heat capacity, or temperature change using Q = m × c × ΔT. Perfect for thermodynamics, engineering, and lab applications.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1494,15 +1566,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "specific-impulse-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Specific Impulse Calculator – Rocket Engine Efficiency",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate specific impulse (Isp) and effective exhaust velocity for rocket engines. Enter thrust and mass flow rate to measure propulsion efficiency in seconds.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -1510,15 +1606,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "speed-of-light-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Speed of Light Calculator – Time, Distance & Speed in Media",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate travel time, distance, or speed of light in any medium using refractive index. Supports vacuum, water, glass, and custom media for physics and optics.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   }
 ];

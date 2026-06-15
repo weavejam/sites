@@ -9157,6 +9157,536 @@
         "q6": "Ce calculateur convient-il à la conception structurelle professionnelle ?",
         "q6_a": "Ce calculateur fournit une estimation simplifiée de la charge de vent fondée sur les premiers principes et convient à des fins pédagogiques et à des vérifications préliminaires de faisabilité. La conception structurelle professionnelle exige l'application complète des normes de construction en vigueur (ASCE 7, Eurocode 1, AS/NZS 1170.2, etc.), qui incluent les facteurs de rafale, les effets topographiques, les facteurs directionnels, la pression interne et les charges sur les composants et le bardage. Consultez toujours un ingénieur structure qualifié pour la conception d'un bâtiment."
       }
+    },
+    "wing-loading-calculator": {
+      "title": "Calculateur de charge alaire : performance et vitesse de décrochage",
+      "tagline": "Calculez la charge alaire d’un aéronef et estimez la vitesse de décrochage à partir du poids et de la surface alaire.",
+      "intro": "Saisissez le poids de l’aéronef et la surface alaire en unités métriques ou impériales pour calculer la charge alaire et estimer la vitesse de décrochage au niveau de la mer.",
+      "field": {
+        "aircraftWeight": "Poids de l’aéronef",
+        "wingArea": "Surface alaire",
+        "unitSystem": "Système d’unités"
+      },
+      "placeholder": {
+        "aircraftWeight": "p. ex. 1111",
+        "wingArea": "p. ex. 16.2"
+      },
+      "type": {
+        "metric": "Métrique (kg / m²)",
+        "imperial": "Impérial (lb / ft²)"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres positifs valides pour le poids et la surface alaire."
+      },
+      "result": {
+        "heading": "Résultats de charge alaire",
+        "wingLoading": "Charge alaire = {value} {unit}",
+        "stallSpeed": "Vitesse de décrochage estimée ≈ {value} {unit}",
+        "clmaxNote": "La vitesse de décrochage suppose CLmax = {value} au niveau de la mer"
+      },
+      "formula": "Charge alaire = W / S | Vitesse de décrochage = √(2W / (ρ·S·CLmax))",
+      "about": {
+        "heading": "À propos du calculateur de charge alaire",
+        "body": "La charge alaire est l’un des paramètres de performance les plus fondamentaux en aéronautique. Elle se définit comme le rapport entre le poids total d’un aéronef et sa surface de référence alaire : W/S, exprimé en kg/m² (métrique) ou lb/ft² (impérial). La charge alaire détermine directement la vitesse de décrochage, les performances de croisière, la maniabilité, la qualité de vol et les distances de décollage et d’atterrissage.\n\nUne faible charge alaire signifie que les ailes sont grandes par rapport au poids de l’aéronef. Cela produit une faible vitesse de décrochage, une conduite douce et la capacité de voler dans de faibles ascendances thermiques — d’où les très faibles charges alaires des planeurs et vélivoles (20–40 kg/m²). L’inconvénient est que les appareils à faible charge alaire sont plus sensibles aux rafales et à la turbulence, ce qui explique pourquoi les planeurs sont inconfortables dans un air agité.\n\nUne charge alaire élevée signifie que les ailes sont petites par rapport au poids. Les chasseurs à réaction haute performance ont des charges alaires de 300–700 kg/m², ce qui leur permet de voler à grande vitesse et de virer serré en air calme. Le compromis est une vitesse de décrochage élevée, qui nécessite de longues pistes et des systèmes hypersustentateurs sophistiqués (becs de bord d’attaque, volets de bord de fuite) pour obtenir des vitesses d’atterrissage sûres. Le F-16 Fighting Falcon a une charge alaire d’environ 430 kg/m² en configuration propre.\n\nPour les avions de transport commercial, la charge alaire est un compromis entre efficacité en croisière et comportement à basse vitesse. Le Boeing 737 a une charge alaire d’environ 570 kg/m², tandis que l’Airbus A380 est autour de 650 kg/m². Les avions long-courriers ont tendance à avoir des charges alaires plus élevées parce qu’ils emportent beaucoup de carburant (ce qui augmente le poids) et qu’ils ont besoin d’ailes fines pour la croisière rapide.\n\nLa vitesse de décrochage est directement liée à la charge alaire via l’équation de portance : L = 0.5 × ρ × v² × S × CL. Au décrochage, L = W et CL = CLmax. En résolvant pour la vitesse de décrochage : Vs = √(2 × W / (ρ × S × CLmax)) = √(2 × (W/S) / (ρ × CLmax)). Pour un avion léger typique avec CLmax ≈ 1.5 et une densité de l’air au niveau de la mer de 1.225 kg/m³, une charge alaire de 70 kg/m² donne Vs ≈ 27 m/s (53 nœuds). L’ajout de volets augmente CLmax à 2.0–2.5, ce qui réduit la vitesse de décrochage.\n\nLes modèles réduits RC ont les charges alaires les plus faibles (5–20 kg/m²) afin de permettre un vol lent et doux, adapté aux débutants. Les avions RC acrobatiques haute performance et les drones de course ont des charges bien plus élevées pour gagner en vitesse et en agilité.\n\nLorsqu’ils choisissent la charge alaire pour une nouvelle conception, les ingénieurs doivent équilibrer des exigences concurrentes : vitesse de décrochage (sécurité), taux de montée, autonomie, maniabilité, réponse aux rafales et masse structurelle."
+      },
+      "examples": {
+        "heading": "Exemples de charge alaire",
+        "intro": "Aéronefs représentatifs montrant comment la charge alaire varie selon les types d’appareils.",
+        "colInput": "Aéronef / Poids / Surface alaire",
+        "colOutput": "Charge alaire",
+        "colNote": "Remarques sur les performances",
+        "loadCessna": "Charger Cessna 172",
+        "loadGlider": "Charger planeur haute performance",
+        "loadRC": "Charger modèle RC",
+        "items": [
+          {
+            "input": "Cessna 172: 1111 kg, 16.2 m²",
+            "output": "68.6 kg/m²",
+            "note": "Avion léger d’instruction et de voyage. La faible charge alaire offre un décrochage docile et de bonnes capacités sur pistes courtes."
+          },
+          {
+            "input": "Planeur haute performance: 600 kg, 12.5 m²",
+            "output": "48.0 kg/m²",
+            "note": "Planeur moderne en matériaux composites. Faible charge alaire pour une efficacité maximale en vol à voile ; finesse supérieure à 50:1."
+          },
+          {
+            "input": "Chasseur militaire: 15000 kg, 27.9 m²",
+            "output": "537.6 kg/m²",
+            "note": "La forte charge alaire permet le vol à grande vitesse et les virages serrés. Elle exige des moteurs puissants et des volets avancés."
+          },
+          {
+            "input": "Modèle RC: 2.5 kg, 0.8 m²",
+            "output": "3.1 kg/m²",
+            "note": "Charge alaire très faible typique des avions RC pour débutants. Décrochage lent et commandes douces pour un pilotage facile."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de charge alaire",
+        "steps": [
+          "Choisissez le système d’unités : métrique (kg et m²) ou impérial (lb et ft²).",
+          "Saisissez le poids total de l’aéronef — le poids maximal au décollage (MTOW) est généralement utilisé pour l’analyse au pire cas.",
+          "Saisissez la surface de référence alaire — la surface projetée totale de l’aile, y compris la partie située dans le fuselage.",
+          "Cliquez sur Calculer. La charge alaire (W/S) et la vitesse de décrochage estimée au niveau de la mer s’affichent.",
+          "Utilisez les boutons d’exemple pour charger des configurations courantes et comparer leurs charges alaires."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la charge alaire",
+        "q1": "Qu’est-ce que la charge alaire ?",
+        "q1_a": "La charge alaire est le rapport entre le poids total d’un aéronef et sa surface de référence alaire : W/S, mesuré en kg/m² (métrique) ou lb/ft² (impérial). C’est l’un des paramètres les plus importants de la conception aéronautique car il détermine la vitesse de décrochage, l’efficacité en croisière, la maniabilité et la sensibilité à la turbulence. Une charge alaire plus faible signifie généralement une vitesse de décrochage plus basse et des commandes plus douces ; une charge alaire plus élevée permet des vitesses supérieures et des manœuvres plus serrées.",
+        "q2": "Comment la charge alaire affecte-t-elle la vitesse de décrochage ?",
+        "q2_a": "La vitesse de décrochage augmente avec la racine carrée de la charge alaire : Vs = √(2 × (W/S) / (ρ × CLmax)). Doubler la charge alaire augmente la vitesse de décrochage d’un facteur √2 ≈ 1.41 (41% plus rapide). C’est pourquoi les grands aéronefs à forte charge alaire ont besoin de systèmes hypersustentateurs sophistiqués (becs de bord d’attaque et volets de bord de fuite) pour réduire la vitesse de décrochage au décollage et à l’atterrissage. Le CLmax d’une aile propre est généralement de 1.2–1.6 ; avec volets sortis, il peut atteindre 2.5–3.0.",
+        "q3": "Quelle est une charge alaire typique selon les types d’aéronefs ?",
+        "q3_a": "Charges alaires typiques : planeurs 20–50 kg/m², avions d’entraînement légers 50–100 kg/m², monomoteurs d’aviation générale 60–120 kg/m², turbopropulseurs régionaux 200–300 kg/m², avions de ligne à réaction 400–700 kg/m², chasseurs militaires 300–700 kg/m². Les avions RC vont de 5 kg/m² (park flyers pour débutants) à plus de 100 kg/m² (courses à réaction). Les charges alaires faibles favorisent le vol lent ; les charges élevées favorisent la croisière rapide.",
+        "q4": "Pourquoi les planeurs ont-ils une charge alaire plus faible que les chasseurs ?",
+        "q4_a": "Les planeurs doivent voler lentement dans des thermiques faibles et des ascendances de relief, tout en maintenant un vol contrôlé à très basse vitesse. Une faible charge alaire (20–40 kg/m²) donne une faible vitesse de décrochage et un meilleur rapport portance/traînée à basse vitesse, ce qui permet un vol à voile efficace. Les chasseurs doivent voler vite et manœuvrer agressivement ; leur forte charge alaire (300–700 kg/m²) signifie qu’il faut des vitesses plus élevées pour produire suffisamment de portance, mais la capacité à supporter de fortes charges et la vitesse élevée priment sur la faible vitesse de décrochage.",
+        "q5": "Comment l’altitude affecte-t-elle la vitesse de décrochage ?",
+        "q5_a": "La densité de l’air (ρ) diminue avec l’altitude, ce qui réduit la portance aérodynamique générée à une vitesse donnée. Comme Vs = √(2W / (ρ·S·CLmax)), une ρ plus faible en altitude entraîne une vitesse vraie de décrochage (TAS) plus élevée. À 10,000 ft, la densité de l’air est d’environ 74% de celle au niveau de la mer, donc la TAS de décrochage est environ 1/√0.74 ≈ 16% plus élevée. En revanche, la vitesse indiquée (IAS) au décrochage reste approximativement constante, car l’anémomètre mesure la pression dynamique.",
+        "q6": "Quelle est la différence entre surface de référence alaire et surface mouillée ?",
+        "q6_a": "La surface de référence alaire (S) est la projection en plan du contour de l’aile, y compris la partie située dans le fuselage. C’est la référence conventionnelle pour normaliser les coefficients aérodynamiques et calculer la charge alaire. La surface mouillée est la surface totale réellement exposée à l’écoulement (dessus et dessous), soit environ le double de la surface de référence. La charge alaire W/S utilise la surface de référence ; les calculs de traînée de frottement utilisent la surface mouillée."
+      }
+    },
+    "water-viscosity-calculator": {
+      "title": "Calculateur de viscosité de l’eau",
+      "tagline": "Estimez la viscosité dynamique, la viscosité cinématique, la masse volumique et le nombre de Reynolds de l’eau à partir de la température, de la pression et d’éventuelles données d’écoulement en conduite.",
+      "intro": "Entrez la température et la pression de l’eau pour calculer la viscosité. Ajoutez la vitesse d’écoulement et le diamètre du tube si vous souhaitez aussi le nombre de Reynolds.",
+      "field": {
+        "temperature": "Température (°C)",
+        "pressure": "Pression (bar)",
+        "flowVelocity": "Vitesse d’écoulement (m/s)",
+        "pipeDiameter": "Diamètre du tube (m)"
+      },
+      "placeholder": {
+        "temperature": "ex. 20",
+        "pressure": "ex. 1",
+        "flowVelocity": "ex. 2",
+        "pipeDiameter": "ex. 0.05"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "result": {
+        "heading": "Résultat",
+        "value": "Viscosité dynamique {dynamic} mPa·s • Viscosité cinématique {kinematic} mm²/s",
+        "dynamic": "Viscosité dynamique",
+        "kinematic": "Viscosité cinématique",
+        "density": "Masse volumique estimée",
+        "reynolds": "Nombre de Reynolds",
+        "unitDynamic": "mPa·s",
+        "unitKinematic": "mm²/s",
+        "unitDensity": "kg/m³",
+        "unitReynolds": "",
+        "reynoldsUnavailable": "—",
+        "pressureNote": "Pression saisie : {pressure} bar"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres valides. La température et la pression sont obligatoires, et la vitesse ainsi que le diamètre doivent être fournis ensemble si vous les utilisez."
+      },
+      "hint": "La pression est acceptée à titre indicatif, tandis que le modèle de viscosité repose surtout sur la température pour l’eau pure dans les plages courantes d’ingénierie.",
+      "formula": "μ = 2.414×10^-5 × 10^(247.8 / (T_K − 140)) Pa·s • ν = μ / ρ • Re = ρvD / μ",
+      "about": {
+        "heading": "À propos de la viscosité de l’eau",
+        "body": "La viscosité de l’eau décrit à quel point l’eau liquide résiste à l’écoulement et au cisaillement. En pratique, elle indique à quel point l’eau paraît “épaisse” ou “fluide” lorsqu’elle se déplace dans une conduite, autour d’une roue de pompe, sur la surface d’un échangeur thermique ou dans une ligne de procédé. Les ingénieurs utilisent généralement deux propriétés liées : la viscosité dynamique, notée μ, et la viscosité cinématique, notée ν. La viscosité dynamique mesure le frottement interne du fluide lui-même, tandis que la viscosité cinématique divise ce frottement par la masse volumique afin de comparer plus directement le comportement d’écoulement. Ce calculateur affiche la viscosité dynamique en millipascal-seconde (mPa·s) et la viscosité cinématique en millimètre carré par seconde (mm²/s), aussi appelés centistokes.\n\nPour l’eau pure, la viscosité varie beaucoup plus avec la température qu’avec la pression dans la plupart des conditions courantes. L’eau froide est nettement plus visqueuse que l’eau chaude, car les molécules ont moins d’énergie et l’attraction intermoléculaire influence davantage le mouvement. À mesure que la température augmente, la résistance interne chute rapidement. C’est pourquoi l’eau proche de la température ambiante a une viscosité dynamique d’environ 1.002 mPa·s, alors qu’elle tombe à environ 0.282 mPa·s près du point d’ébullition. Cette variation a de fortes conséquences sur la puissance de pompage, le régime d’écoulement, les pertes de charge et les performances de transfert thermique. Même une hausse modérée de température peut faire passer un système d’un écoulement laminaire lent à un comportement plus turbulent.\n\nLe calculateur utilise une équation empirique de type Andrade pour la viscosité dynamique de l’eau pure, une approximation standard sur une large plage de températures de l’eau liquide. Il estime ensuite la masse volumique à l’aide d’une expression quadratique simple autour du maximum de densité bien connu près de 4°C. En divisant la viscosité dynamique par la masse volumique, on obtient la viscosité cinématique. Bien que l’expression de densité soit simplifiée, elle convient pour des estimations de conception générales, des vérifications rapides, des exercices et des calculs de procédé courants. Si vous travaillez avec de l’eau salée, des mélanges de glycol, de l’eau de procédé encrassée ou des pressions très élevées, une base de données de propriétés dédiée reste le meilleur choix.\n\nLorsque vous saisissez aussi la vitesse d’écoulement et le diamètre du tube, le calculateur estime le nombre de Reynolds avec Re = ρvD/μ. Le nombre de Reynolds est l’une des grandeurs sans dimension les plus utiles en mécanique des fluides, car il aide à classer le comportement de l’écoulement. Des nombres de Reynolds faibles indiquent un mouvement visqueux et ordonné, où les hypothèses de régime laminaire peuvent s’appliquer. Des valeurs élevées indiquent que les effets inertiels dominent et que la turbulence devient plus probable. Pour un écoulement interne en conduite, un régime laminaire est généralement associé à Re inférieur à environ 2,300, le régime de transition occupe la zone intermédiaire, et l’écoulement turbulent apparaît souvent au-delà d’environ 4,000. Comme la viscosité figure au dénominateur, l’eau plus chaude produit en général un nombre de Reynolds plus élevé que l’eau plus froide dans la même conduite.\n\nLa viscosité de l’eau est donc une propriété de conception essentielle en génie civil, mécanique, chimique et environnemental. On l’utilise pour estimer les pertes par frottement, dimensionner les pompes, comparer les conditions d’échange thermique, interpréter des mesures de laboratoire et vérifier des entrées de simulation. Les étudiants peuvent l’utiliser pour voir à quel point les propriétés de l’eau varient avec la température, tandis que les praticiens peuvent s’en servir pour des estimations rapides avant de passer à des logiciels plus détaillés. En bref, la viscosité de l’eau relie la température, la résistance à l’écoulement et le régime d’écoulement dans une seule propriété physique compacte qui influence presque tous les systèmes d’eau liquide."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Ces exemples montrent comment la viscosité de l’eau varie avec la température et comment les entrées d’écoulement facultatives ajoutent une estimation du nombre de Reynolds.",
+        "colInput": "Entrée",
+        "colOutput": "Sortie",
+        "colNote": "Notes",
+        "loadRoom": "Charger l’eau à 20°C",
+        "loadBoiling": "Charger l’eau à 100°C",
+        "loadFlow": "Charger un exemple d’écoulement en conduite",
+        "items": [
+          {
+            "input": "20°C, 1 bar",
+            "output": "Dynamique : 1.002 mPa·s • Cinématique : 1.003 mm²/s",
+            "note": "L’eau à température ambiante se situe près de la référence familière de 1 mPa·s, ce qui en fait un point de repère courant en laboratoire et en conception."
+          },
+          {
+            "input": "100°C, 1 bar",
+            "output": "Dynamique : 0.279 mPa·s • Cinématique : 0.287 mm²/s",
+            "note": "L’eau chaude s’écoule beaucoup plus facilement que l’eau froide, donc la viscosité chute fortement et le nombre de Reynolds augmente pour les mêmes conditions de conduite."
+          },
+          {
+            "input": "4°C, 1 bar",
+            "output": "Dynamique : 1.547 mPa·s • Cinématique : 1.547 mm²/s",
+            "note": "Près de 4°C, l’eau est la plus dense et relativement plus visqueuse, donc la diffusion de quantité de mouvement est plus lente qu’à température ambiante."
+          },
+          {
+            "input": "20°C, 1 bar, 2 m/s, 0.05 m pipe",
+            "output": "Re ≈ 99,749",
+            "note": "L’ajout de la vitesse et du diamètre montre que les services d’eau courants se situent souvent bien dans le régime turbulent."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Mode d’emploi",
+        "steps": [
+          "Entrez la température de l’eau en degrés Celsius et la pression de service en bar. Ces deux champs sont obligatoires à chaque calcul.",
+          "Si vous avez besoin du nombre de Reynolds, indiquez aussi la vitesse moyenne d’écoulement et le diamètre intérieur du tube. Laissez les deux champs facultatifs vides si vous ne voulez que les valeurs de viscosité.",
+          "Cliquez sur Calculer pour voir la viscosité dynamique, la viscosité cinématique, la masse volumique estimée et, si les données d’écoulement sont fournies, le nombre de Reynolds.",
+          "Utilisez les exemples pour comparer l’eau froide, l’eau à température ambiante et l’eau chaude, puis réinitialisez le formulaire pour tester une nouvelle condition de service."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "items": [
+          {
+            "q": "Quelle est la différence entre viscosité dynamique et cinématique ?",
+            "a": "La viscosité dynamique mesure la résistance interne du fluide au cisaillement et s’exprime généralement en Pa·s ou mPa·s. La viscosité cinématique divise la viscosité dynamique par la masse volumique, ce qui reflète la façon dont la quantité de mouvement se diffuse dans le fluide, et s’exprime couramment en mm²/s ou cSt."
+          },
+          {
+            "q": "Pourquoi la viscosité de l’eau baisse-t-elle quand la température augmente ?",
+            "a": "Quand l’eau se réchauffe, ses molécules ont plus d’énergie thermique et peuvent se déplacer plus facilement les unes par rapport aux autres. Cela réduit le frottement interne, donc l’eau chaude a généralement une viscosité beaucoup plus faible que l’eau froide."
+          },
+          {
+            "q": "Pourquoi inclure la pression si la formule dépend de la température ?",
+            "a": "La pression est incluse parce qu’il s’agit d’une variable d’exploitation importante dans les systèmes réels et qu’elle aide à documenter la condition étudiée. Pour des calculs ordinaires sur de l’eau liquide dans des plages modérées, la température domine la variation de viscosité, donc un modèle simple fondé sur la température suffit souvent pour des estimations rapides."
+          },
+          {
+            "q": "Quel nombre de Reynolds faut-il attendre pour un écoulement en conduite ?",
+            "a": "Pour un écoulement interne, des nombres de Reynolds inférieurs à environ 2,300 sont généralement considérés comme laminaires, tandis que les valeurs supérieures à environ 4,000 sont souvent turbulentes. La zone entre les deux est transitoire, où les perturbations et les conditions d’entrée influencent fortement le profil réel d’écoulement."
+          },
+          {
+            "q": "Ces valeurs suffisent-elles pour une conception d’ingénierie ?",
+            "a": "Elles conviennent bien aux calculs préliminaires, aux travaux académiques et aux vérifications rapides. Pour la conception finale de systèmes critiques, une chimie de l’eau atypique ou des plages extrêmes de température et de pression, il faut confirmer avec une source de propriétés plus fidèle."
+          }
+        ]
+      }
+    },
+    "watt-calculator": {
+      "title": "Calculateur de watts",
+      "tagline": "Résolvez volts, ampères, ohms, watts et, si besoin, watt-heures en saisissant deux valeurs électriques de base.",
+      "intro": "Saisissez deux valeurs parmi la tension, le courant, la résistance ou la puissance. Ajoutez le temps si vous voulez aussi calculer l'énergie en watt-heures.",
+      "field": {
+        "voltage": "Tension (V)",
+        "current": "Courant (A)",
+        "resistance": "Résistance (Ω)",
+        "power": "Puissance (W)",
+        "time": "Temps (heures)"
+      },
+      "placeholder": {
+        "voltage": "p. ex. 120",
+        "current": "p. ex. 5",
+        "resistance": "p. ex. 24",
+        "power": "p. ex. 600",
+        "time": "p. ex. 3"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "result": {
+        "heading": "Résultat",
+        "value": "Puissance calculée : {power} W",
+        "voltage": "Tension",
+        "current": "Courant",
+        "resistance": "Résistance",
+        "power": "Puissance",
+        "energy": "Énergie",
+        "unitVoltage": "V",
+        "unitCurrent": "A",
+        "unitResistance": "Ω",
+        "unitPower": "W",
+        "unitEnergy": "Wh",
+        "energyUnavailable": "—"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres valides et fournir exactement deux valeurs parmi tension, courant, résistance ou puissance. Le temps est facultatif et doit être supérieur ou égal à zéro."
+      },
+      "hint": "Utilisez exactement deux des quatre champs électriques. Le temps ne compte pas dans la paire et sert uniquement au calcul de l'énergie en watt-heures.",
+      "formula": "P = V × I • V = I × R • E = P × t",
+      "about": {
+        "heading": "À propos du calculateur de watts",
+        "body": "Le calculateur de watts réunit deux relations électriques très courantes en analyse de circuits : la loi d'Ohm et l'équation de puissance de base. La loi d'Ohm dit que la tension est égale au courant multiplié par la résistance, soit V = I × R. La puissance électrique correspond au rythme auquel l'énergie est transférée, transformée ou consommée, et dans les circuits simples elle s'écrit P = V × I. Dès que vous connaissez deux des grandeurs de base — tension, courant, résistance et puissance — vous pouvez généralement retrouver les deux restantes. Cet outil automatise cette algèbre pour passer rapidement d'une paire de valeurs connues à une vérification complète du circuit.\n\nLe watt est une unité de puissance, pas d'énergie. Un watt correspond à un joule par seconde. La distinction est importante, car on entend souvent dire qu'un appareil “consomme 1 500 watts par heure”, alors qu'il faudrait dire qu'un appareil de 1 500 watts fonctionnant pendant une heure consomme 1 500 watt-heures d'énergie. C'est pourquoi le calculateur inclut un champ de temps facultatif. Si vous saisissez une durée d'utilisation en heures, l'outil multiplie la puissance calculée par le temps pour renvoyer des watt-heures, ce qui relie directement les valeurs du circuit à la consommation énergétique. C'est utile pour comparer des appareils, des chargeurs, des charges de batterie ou estimer une facture avant de convertir en kilowatt-heures.\n\nDes couples d'entrée différents racontent des choses différentes sur le même circuit. Tension et courant donnent immédiatement la puissance via P = V × I et la résistance via R = V / I. Tension et résistance indiquent le courant qui circulera et la puissance dissipée. Courant et résistance sont fréquents quand on connaît la charge et qu'on veut déduire les besoins d'alimentation. Tension et puissance sont courants pour les appareils domestiques ou industriels, car beaucoup de plaques signalétiques indiquent la tension nominale et la puissance. Résistance et puissance sont utiles pour les éléments chauffants, les charges résistives ou les exercices de laboratoire où le courant n'est pas mesuré directement. En autorisant n'importe quelle paire valide, le calculateur reflète la manière dont les problèmes électriques sont réellement posés dans les manuels, les essais sur banc et le dépannage terrain.\n\nCe type de calcul apparaît partout. Un circuit de 120 V tirant 5 A consomme 600 W et correspond à une charge équivalente de 24 Ω. Un accessoire automobile de 12 V à 2 A consomme 24 W et présente une résistance de 6 Ω. Un chauffage de 240 V et 1 500 W tire 6,25 A et possède une résistance effective de 38,4 Ω. Ce sont exactement ces vérifications rapides que les électriciens, les bricoleurs en électronique, les étudiants et les équipes de maintenance utilisent pour dimensionner les câbles, choisir les fusibles, diagnostiquer les charges ou estimer les coûts d'énergie.\n\nLe calculateur est pensé pour une analyse simple en courant continu ou pour une charge résistive équivalente à valeur unique. Les systèmes CA réels peuvent impliquer angle de phase, facteur de puissance, puissance réactive, harmoniques et courant d'appel, ce qui demande un traitement plus avancé. Malgré cela, les valeurs calculées ici constituent une excellente estimation de premier ordre et un bon support pédagogique. Si vous cherchez un moyen rapide et fiable de passer entre volts, ampères, ohms, watts et watt-heures, cet outil affiche les formules et effectue le calcul immédiatement."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Ces cas électriques courants montrent comment deux valeurs connues déterminent le reste du circuit et, quand on ajoute le temps, la consommation d'énergie aussi.",
+        "colInput": "Entrée",
+        "colOutput": "Sortie",
+        "colNote": "Remarques",
+        "loadOutlet": "Charge 120V / 5A",
+        "loadBattery": "Charge 12V / 2A",
+        "loadHeater": "Charge 240V / 1500W",
+        "items": [
+          {
+            "input": "120 V, 5 A",
+            "output": "P = 600 W, R = 24 Ω",
+            "note": "Exemple classique de prise secteur et de courant consommé. Une fois la tension et le courant connus, la puissance et la résistance équivalente suivent immédiatement."
+          },
+          {
+            "input": "12 V, 2 A",
+            "output": "P = 24 W, R = 6 Ω",
+            "note": "Charge de batterie basse tension typique. Cette paire est utile pour les véhicules, l'électronique portable et les alimentations de laboratoire."
+          },
+          {
+            "input": "240 V, 1500 W",
+            "output": "I = 6.25 A, R = 38.4 Ω",
+            "note": "Charge résistive de type chauffage courante. La tension nominale et la puissance nominale sont souvent les seules valeurs imprimées sur la plaque."
+          },
+          {
+            "input": "240 V, 1500 W, 3 h",
+            "output": "Energy = 4500 Wh",
+            "note": "Ajouter le temps transforme un calcul de puissance en estimation d'énergie, point de départ des calculs de coût."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Mode d'emploi",
+        "steps": [
+          "Saisissez exactement deux des quatre valeurs électriques : tension, courant, résistance ou puissance. Laissez les deux autres vides pour que le calculateur les déduise.",
+          "Si vous voulez aussi l'énergie en watt-heures, saisissez éventuellement le temps en heures.",
+          "Cliquez sur Calculer pour afficher l'ensemble complet tension, courant, résistance et puissance, ainsi que l'énergie si un temps est fourni.",
+          "Utilisez les exemples pour charger des cas courants domestiques, basse tension ou chauffage, puis réinitialisez le formulaire pour essayer vos propres valeurs."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "items": [
+          {
+            "q": "Qu'est-ce qu'un watt ?",
+            "a": "Un watt est une unité de puissance égale à un joule par seconde. Il décrit la vitesse à laquelle l'énergie électrique est transférée ou consommée, et non la quantité totale utilisée sur une longue période."
+          },
+          {
+            "q": "Pourquoi faut-il exactement deux entrées électriques ?",
+            "a": "Les relations entre tension, courant, résistance et puissance sont contraintes, donc deux valeurs indépendantes suffisent généralement pour retrouver les deux autres. Avec moins de deux valeurs, il n'y a pas assez d'information ; avec plus de deux, elles peuvent se contredire."
+          },
+          {
+            "q": "Quelle est la différence entre watts et watt-heures ?",
+            "a": "Les watts mesurent le rythme d'utilisation de l'énergie à un instant donné. Les watt-heures mesurent l'énergie totale sur une durée, donc ils s'obtiennent en multipliant les watts par les heures."
+          },
+          {
+            "q": "Puis-je l'utiliser pour des circuits CA ?",
+            "a": "Vous pouvez l'utiliser comme estimation de premier ordre pour des charges résistives ou équivalentes à valeur unique. Pour les vrais systèmes CA avec facteur de puissance, puissance réactive ou angle de phase, un calcul de puissance CA dédié est plus adapté."
+          },
+          {
+            "q": "Pourquoi le calculateur affiche-t-il une résistance pour les appareils ?",
+            "a": "Toute charge électrique en régime permanent peut être exprimée comme une résistance équivalente au point de fonctionnement, même si l'appareil réel est plus complexe. La résistance devient alors une valeur dérivée utile pour comparer, dépanner et vérifier rapidement."
+          }
+        ]
+      }
+    },
+    "watt-converter": {
+      "title": "Convertisseur de watts",
+      "tagline": "Convertissez watts, chevaux-vapeur, kilowatts, mégawatts, BTU par heure et autres unités de puissance avec des calculs rapides par facteur.",
+      "intro": "Saisissez une valeur de puissance, choisissez l’unité source, sélectionnez l’unité cible et calculez instantanément le résultat converti.",
+      "field": {
+        "powerValue": "Valeur de puissance",
+        "fromUnit": "Unité source",
+        "toUnit": "Unité cible"
+      },
+      "placeholder": {
+        "powerValue": "p. ex. 1000"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "result": {
+        "heading": "Résultat",
+        "value": "{input} {fromUnit} = {output} {toUnit}",
+        "inWatts": "Équivalent en watts",
+        "formula": "Méthode"
+      },
+      "error": {
+        "invalid": "Veuillez saisir une valeur numérique de puissance valide."
+      },
+      "formula": "Convertissez d’abord en watts, puis divisez par le facteur de l’unité cible.",
+      "unit": {
+        "watt": "watt (W)",
+        "kilowatt": "kilowatt (kW)",
+        "megawatt": "mégawatt (MW)",
+        "milliwatt": "milliwatt (mW)",
+        "horsepower_mech": "cheval-vapeur (mécanique) (hp)",
+        "horsepower_metric": "cheval-vapeur (métrique) (hp m)",
+        "btu_per_hour": "BTU par heure (BTU/hr)",
+        "calorie_per_second": "calorie par seconde (cal/s)",
+        "erg_per_second": "erg par seconde (erg/s)",
+        "foot_pound_per_minute": "pied-livre par minute (ft·lb/min)"
+      },
+      "about": {
+        "heading": "À propos de la conversion en watts",
+        "body": "La conversion des unités de puissance consiste à exprimer le même débit de transfert d’énergie dans différents systèmes de mesure. Le watt est l’unité SI de puissance et correspond à un joule par seconde. Comme il appartient au système métrique et apparaît dans l’ingénierie électrique, la physique, le CVC et les spécifications industrielles, il constitue une unité de référence idéale. Un convertisseur de watts fonctionne en traduisant d’abord la valeur source en watts, puis en la divisant par le facteur de l’unité cible. Une fois les facteurs définis, toute conversion entre deux unités prises en charge devient un simple problème de rapport.\n\nBon nombre des unités de cette page proviennent de traditions techniques très différentes. Les kilowatts et les mégawatts sont des multiples métriques du watt et sont courants dans l’alimentation électrique, les moteurs et la production à l’échelle des réseaux. Les milliwatts sont utilisés en électronique, dans les capteurs, les dispositifs optiques et la signalisation de faible puissance. Les chevaux-vapeur mécaniques et métriques viennent de pratiques d’ingénierie plus anciennes et restent largement utilisés pour les moteurs, pompes, compresseurs et équipements industriels. Le BTU par heure apparaît dans le chauffage et le refroidissement, en particulier pour le dimensionnement CVC. Les calories par seconde et les ergs par seconde sont moins courants aujourd’hui, mais figurent encore dans d’anciennes références scientifiques ou dans des contextes spécialisés. Le pied-livre par minute appartient à la tradition mécanique impériale et se révèle utile pour comparer d’anciennes spécifications de machines.\n\nLe convertisseur utilise des facteurs fixes vers les watts pour chaque unité. Un kilowatt vaut exactement 1,000 watts, un mégawatt vaut 1,000,000 watts et un milliwatt vaut 0.001 watt. Le cheval-vapeur mécanique vaut environ 745.69987 watts, tandis que le cheval-vapeur métrique vaut environ 735.49875 watts. Le BTU par heure se convertit à 0.29307107 watt, la calorie par seconde à 4.1868 watts, l’erg par seconde à 1×10^-7 watt et le pied-livre par minute à 0.022597 watt. Comme chaque conversion passe par les watts, le résultat reste cohérent quelles que soient les unités de départ et d’arrivée choisies.\n\nC’est important dans le travail réel, car les fiches techniques d’équipement n’emploient presque jamais les mêmes conventions d’unités. Un appareil électrique peut être donné en watts, un moteur en chevaux-vapeur, une unité CVC en BTU par heure et une centrale électrique en mégawatts. Si vous devez les comparer, estimer une capacité équivalente ou transférer des données d’un format de rapport à un autre, la première étape est presque toujours la conversion d’unités. Les étudiants rencontrent aussi ces conversions dans les problèmes de physique et de thermodynamique où plusieurs traditions se rejoignent dans une même question. Convertir avec soin évite les erreurs d’ordre de grandeur susceptibles de fausser une décision de conception ou une réponse d’examen.\n\nUn bon contrôle mental aide. Si vous convertissez des kilowatts en watts, le nombre doit augmenter, car le kilowatt est une unité plus grande. Si vous convertissez des watts en chevaux-vapeur, le nombre doit généralement diminuer, car un cheval-vapeur correspond à plusieurs centaines de watts. Ce convertisseur rend le processus transparent en affichant aussi la valeur équivalente en watts, ce qui permet de vérifier facilement que la réponse évolue dans le sens attendu. Que vous compariez des moteurs, vérifiiez la puissance nominale d’un appareil ou traduisiez un ancien tableau d’ingénierie, le convertisseur de watts offre un lien rapide et cohérent entre les unités de puissance."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Ces exemples présentent les conversions de puissance les plus courantes dans les contextes électriques, mécaniques et thermiques.",
+        "colInput": "Entrée",
+        "colOutput": "Sortie",
+        "colNote": "Notes",
+        "loadKilowatt": "Charger 1 kW → W",
+        "loadHorsepower": "Charger 1 hp → W",
+        "loadHalfKilowatt": "Charger 500 W → kW",
+        "items": [
+          {
+            "input": "1 kilowatt (kW)",
+            "output": "1000 watts (W)",
+            "note": "Les multiples métriques de puissance sont exacts, donc un kilowatt vaut toujours mille watts."
+          },
+          {
+            "input": "1 cheval-vapeur (mécanique) (hp)",
+            "output": "745.69987 watts (W)",
+            "note": "Le cheval-vapeur mécanique est courant pour les moteurs, surtout dans les données d’équipement nord-américaines."
+          },
+          {
+            "input": "1000 watts (W)",
+            "output": "1.34102 cheval-vapeur (mécanique) (hp)",
+            "note": "Reconvertir des watts en chevaux-vapeur est utile pour comparer des charges électriques à des puissances nominales de moteurs."
+          },
+          {
+            "input": "500 watts (W)",
+            "output": "0.5 kilowatt (kW)",
+            "note": "La conversion entre watts et kilowatts est courante dans les étiquettes énergétiques des appareils et les spécifications de petits équipements."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Mode d’emploi",
+        "steps": [
+          "Saisissez la valeur numérique de puissance à convertir. Le calculateur accepte les nombres entiers et les décimales.",
+          "Choisissez l’unité source dans la liste Unité source et l’unité de destination dans la liste Unité cible.",
+          "Cliquez sur Calculer pour voir la valeur convertie et la puissance équivalente exprimée en watts.",
+          "Utilisez les exemples détaillés pour comparer les conversions courantes entre kilowatts, chevaux-vapeur et watts, puis réinitialisez le formulaire pour un nouveau cas."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "items": [
+          {
+            "q": "Pourquoi le convertisseur utilise-t-il les watts comme étape intermédiaire ?",
+            "a": "Les watts sont l’unité SI de base pour la puissance et fournissent une référence neutre entre les systèmes électriques, thermiques et mécaniques. Tout convertir d’abord en watts garantit que chaque conversion paire reste cohérente et facile à vérifier."
+          },
+          {
+            "q": "Quelle est la différence entre cheval-vapeur mécanique et métrique ?",
+            "a": "Ce sont deux définitions historiques proches mais distinctes du cheval-vapeur. Le cheval-vapeur mécanique vaut environ 745.69987 watts, tandis que le cheval-vapeur métrique vaut environ 735.49875 watts ; l’écart numérique est donc faible, mais réel."
+          },
+          {
+            "q": "Quand utiliser le BTU par heure plutôt que les watts ?",
+            "a": "Le BTU par heure est courant dans les spécifications de chauffage et de refroidissement, surtout pour la capacité CVC. Les watts sont plus universels en physique et en électricité ; convertir entre les deux aide donc à comparer les équipements thermiques et électriques sur la même base."
+          },
+          {
+            "q": "Pourquoi le nombre converti peut-il augmenter alors que la puissance est la même ?",
+            "a": "La puissance physique ne change pas ; seule la taille de l’unité utilisée pour la décrire change. Convertir vers une unité plus petite produit une valeur numérique plus grande, tandis que convertir vers une unité plus grande produit une valeur plus petite."
+          },
+          {
+            "q": "Ces facteurs sont-ils assez précis pour l’ingénierie ?",
+            "a": "Oui, les facteurs indiqués conviennent à l’ingénierie générale, à l’enseignement et aux comparaisons de spécifications. Pour les documents contractuels ou réglementaires, vous devez toutefois utiliser la convention d’unité exacte exigée par la norme applicable."
+          }
+        ]
+      }
+    },
+    "watt-hour-calculator": {
+      "title": "Calculateur wattheure",
+      "tagline": "Calcule les wattheures quotidiens, les kilowattheures mensuels et le coût de l’électricité à partir de la puissance, du temps d’usage et du tarif.",
+      "intro": "Saisissez la puissance de l’appareil, le temps d’utilisation quotidien, le nombre de jours par mois et votre tarif d’électricité pour estimer la consommation et le coût mensuel.",
+      "field": {
+        "powerRating": "Puissance (watts)",
+        "usageTime": "Temps d’utilisation (heures)",
+        "daysPerMonth": "Jours par mois",
+        "electricityRate": "Tarif d’électricité ($/kWh)"
+      },
+      "placeholder": {
+        "powerRating": "ex. 1500",
+        "usageTime": "ex. 2",
+        "daysPerMonth": "ex. 30",
+        "electricityRate": "ex. 0.12"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "result": {
+        "heading": "Résultat",
+        "value": "Énergie mensuelle {monthKwh} kWh • Coût mensuel {cost}",
+        "energyPerDay": "Énergie par jour",
+        "energyPerMonth": "Énergie par mois",
+        "monthlyCost": "Coût mensuel",
+        "unitWh": "Wh",
+        "unitKwh": "kWh",
+        "unitCurrency": "$"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres valides et non négatifs dans les quatre champs."
+      },
+      "formula": "Énergie quotidienne = Puissance × Heures • Énergie mensuelle = Puissance × Heures × Jours / 1000 • Coût mensuel = Énergie mensuelle × Tarif",
+      "about": {
+        "heading": "À propos du calcul des wattheures",
+        "body": "Un calculateur de wattheures estime la consommation d’énergie en combinant la puissance nominale d’un appareil et la durée pendant laquelle il fonctionne. La puissance indique la vitesse à laquelle l’énergie est utilisée, tandis que l’énergie indique la quantité totale consommée sur une période. Si un appareil consomme 100 watts et fonctionne pendant 1 heure, il utilise 100 wattheures d’énergie. S’il fonctionne pendant 10 heures, il utilise 1 000 wattheures, soit aussi 1 kilowattheure (kWh). Cette distinction entre puissance et énergie est essentielle, car les factures d’électricité portent sur l’énergie consommée dans le temps, et non sur une puissance instantanée.\n\nLes quatre entrées de cet outil correspondent à un problème d’estimation courant pour un foyer ou une petite entreprise. D’abord, saisissez la puissance en watts, généralement indiquée sur l’étiquette ou la fiche technique de l’appareil. Ensuite, saisissez le temps d’utilisation quotidien en heures. Puis indiquez le nombre de jours du mois de facturation ou de la période que vous souhaitez estimer. Enfin, saisissez le tarif de l’électricité en dollars par kilowattheure. Le calculateur affiche alors l’énergie quotidienne en wattheures, l’énergie mensuelle en kilowattheures et le coût mensuel estimé. Cela permet de passer facilement d’une valeur nominale à une estimation budgétaire réaliste.\n\nLes formules sont simples, mais étonnamment utiles. L’énergie quotidienne est égale à la puissance multipliée par les heures d’utilisation quotidiennes. L’énergie mensuelle prolonge ce calcul en multipliant l’énergie quotidienne par le nombre de jours, puis en divisant par 1 000 pour convertir les wattheures en kilowattheures. Le coût mensuel multiplie ensuite les kilowattheures mensuels par le tarif local de l’électricité. Ces relations sont assez simples à faire à la main, mais lorsque vous comparez de nombreux appareils ou testez plusieurs scénarios d’usage, un calculateur dédié réduit les erreurs et accélère la prise de décision. Il est particulièrement utile pour étudier l’effet d’une durée d’utilisation plus longue, d’une puissance plus élevée ou d’une hausse du tarif.\n\nCe type d’estimation est présent partout dans la gestion énergétique pratique. Une ampoule LED de 9 watts utilisée 4 heures par jour pendant 30 jours ne consomme que 1.08 kWh par mois, ce qui coûte très peu aux tarifs résidentiels courants. Un radiateur électrique de 1 500 watts utilisé 2 heures par jour peut consommer 90 kWh par mois, ce qui le rend nettement plus coûteux. Un téléviseur de 200 watts regardé 5 heures par jour consomme 30 kWh par mois, soit une valeur intermédiaire. Le calculateur rend ces comparaisons immédiates et aide à repérer les appareils les plus énergivores ainsi que les gains d’efficacité les plus pertinents.\n\nMême s’il s’agit d’une estimation, elle est très utile pour la planification. Les appareils réels peuvent s’allumer et s’éteindre par cycles, consommer une puissance différente en veille et en fonctionnement, ou varier selon les réglages du thermostat et les conditions ambiantes. Malgré cela, les calculs basés sur la plaque signalétique sont un excellent point de départ pour les budgets, les vérifications de sobriété énergétique, les exercices pédagogiques et les audits simples. Si vous voulez comparer une mise à niveau de l’éclairage, estimer le coût du chauffage, comprendre l’impact des appareils multimédias ou expliquer la différence entre watts et kilowattheures, un calculateur wattheure transforme des données de base en information énergétique exploitable."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Ces exemples comparent l’éclairage basse consommation, le chauffage puissant et les usages quotidiens de divertissement sur une période mensuelle.",
+        "colInput": "Entrée",
+        "colOutput": "Sortie",
+        "colNote": "Remarques",
+        "loadLed": "Charger une ampoule LED",
+        "loadHeater": "Charger un radiateur",
+        "loadTv": "Charger une TV",
+        "items": [
+          {
+            "input": "9 W, 4 h/day, 30 days, $0.12/kWh",
+            "output": "1.08 kWh/month, $0.1296/month",
+            "note": "Une ampoule LED moderne consomme très peu d’énergie, donc même utilisée chaque jour elle reste peu coûteuse."
+          },
+          {
+            "input": "1500 W, 2 h/day, 30 days, $0.12/kWh",
+            "output": "90 kWh/month, $10.8/month",
+            "note": "Le chauffage résistif a une puissance élevée, donc le temps de fonctionnement se traduit vite par un coût mensuel notable."
+          },
+          {
+            "input": "200 W, 5 h/day, 30 days, $0.15/kWh",
+            "output": "30 kWh/month, $4.5/month",
+            "note": "Les téléviseurs et appareils de divertissement se situent souvent dans une zone intermédiaire, où la consommation est réelle mais maîtrisable."
+          },
+          {
+            "input": "150 W, 24 h/day, 30 days, $0.12/kWh",
+            "output": "108 kWh/month, $12.96/month",
+            "note": "Les appareils qui fonctionnent en continu peuvent rivaliser avec des appareils plus puissants mais utilisés seulement par intermittence."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Mode d’emploi",
+        "steps": [
+          "Saisissez la puissance de l’appareil en watts exactement comme elle apparaît sur l’étiquette ou la fiche technique.",
+          "Saisissez le nombre moyen d’heures de fonctionnement quotidien, puis ajoutez le nombre de jours du mois ou de la période que vous souhaitez estimer.",
+          "Saisissez votre tarif d’électricité en dollars par kilowattheure et cliquez sur Calculer pour afficher les wattheures quotidiens, les kilowattheures mensuels et le coût estimé.",
+          "Utilisez les exemples pour comparer une ampoule, un radiateur et une TV, puis réinitialisez le formulaire pour explorer vos propres appareils."
+        ]
+      },
+      "faq": {
+        "heading": "Foire aux questions",
+        "items": [
+          {
+            "q": "Quelle est la différence entre watts et wattheures ?",
+            "a": "Les watts mesurent la vitesse de consommation de puissance à un instant donné. Les wattheures mesurent l’énergie totale sur la durée, donc on les obtient en multipliant les watts par les heures d’utilisation."
+          },
+          {
+            "q": "Pourquoi le calculateur affiche-t-il l’énergie mensuelle en kWh ?",
+            "a": "Les fournisseurs d’électricité facturent généralement en kilowattheures plutôt qu’en wattheures. Présenter la consommation mensuelle en kWh la rend directement comparable à votre facture."
+          },
+          {
+            "q": "Quelle est la précision d’une estimation basée sur la plaque signalétique ?",
+            "a": "C’est une bonne première approximation pour planifier et comparer. La consommation réelle peut varier si l’appareil fonctionne par cycles, consomme en veille ou fonctionne en dessous de sa puissance nominale."
+          },
+          {
+            "q": "Puis-je l’utiliser aussi pour des appareils à batterie ?",
+            "a": "Oui, tant que vous connaissez la puissance moyenne consommée et la durée de fonctionnement. Les mêmes relations d’énergie s’appliquent, même si la source est une batterie plutôt que le réseau."
+          },
+          {
+            "q": "Pourquoi un appareil moins puissant peut-il quand même coûter cher à utiliser ?",
+            "a": "Le temps de fonctionnement compte autant que la puissance. Un appareil de puissance moyenne qui tourne toute la journée peut consommer plus d’énergie sur un mois qu’un appareil plus puissant utilisé seulement brièvement."
+          }
+        ]
+      }
     }
   }
 }

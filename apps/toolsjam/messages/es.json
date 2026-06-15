@@ -9157,6 +9157,536 @@
         "q6": "¿Es adecuada esta calculadora para diseño estructural profesional?",
         "q6_a": "Esta calculadora proporciona una estimación simplificada de la carga de viento a partir de primeros principios y es adecuada para fines educativos y comprobaciones preliminares de viabilidad. El diseño estructural profesional requiere usar todas las disposiciones de los códigos de edificación aplicables (ASCE 7, Eurocódigo 1, AS/NZS 1170.2, etc.), que incluyen factores de ráfaga, efectos topográficos, factores direccionales, presión interna y cargas de componentes y revestimientos. Consulta siempre a un ingeniero estructural colegiado para el diseño de edificios."
       }
+    },
+    "wing-loading-calculator": {
+      "title": "Calculadora de carga alar: rendimiento y velocidad de pérdida",
+      "tagline": "Calcula la carga alar de una aeronave y estima la velocidad de pérdida a partir del peso y el área alar.",
+      "intro": "Introduce el peso de la aeronave y el área alar en unidades métricas o imperiales para calcular la carga alar y estimar la velocidad de pérdida al nivel del mar.",
+      "field": {
+        "aircraftWeight": "Peso de la aeronave",
+        "wingArea": "Área alar",
+        "unitSystem": "Sistema de unidades"
+      },
+      "placeholder": {
+        "aircraftWeight": "p. ej. 1111",
+        "wingArea": "p. ej. 16.2"
+      },
+      "type": {
+        "metric": "Métrico (kg / m²)",
+        "imperial": "Imperial (lb / ft²)"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce números positivos válidos para el peso y el área alar."
+      },
+      "result": {
+        "heading": "Resultados de carga alar",
+        "wingLoading": "Carga alar = {value} {unit}",
+        "stallSpeed": "Velocidad de pérdida estimada ≈ {value} {unit}",
+        "clmaxNote": "La velocidad de pérdida supone CLmax = {value} al nivel del mar"
+      },
+      "formula": "Carga alar = W / S | Velocidad de pérdida = √(2W / (ρ·S·CLmax))",
+      "about": {
+        "heading": "Acerca de la calculadora de carga alar",
+        "body": "La carga alar es uno de los parámetros de rendimiento más fundamentales en aeronáutica. Se define como la relación entre el peso total de una aeronave y su área de referencia alar: W/S, expresada en kg/m² (métrico) o lb/ft² (imperial). La carga alar determina directamente la velocidad de pérdida, el rendimiento en crucero, la maniobrabilidad, la calidad de vuelo y las distancias de despegue y aterrizaje.\n\nUna carga alar baja significa que las alas son grandes en relación con el peso de la aeronave. Esto produce una baja velocidad de pérdida, un comportamiento suave y la capacidad de volar en térmicas débiles; por eso los planeadores tienen cargas alares muy bajas (20–40 kg/m²). La desventaja es que los aviones con poca carga alar son más sensibles a ráfagas y turbulencia, lo que explica por qué resultan incómodos en aire agitado.\n\nUna carga alar alta significa que las alas son pequeñas en relación con el peso. Los cazas de alto rendimiento tienen cargas alares de 300–700 kg/m², lo que les permite volar rápido y girar con mucha agilidad en aire tranquilo. La contrapartida es una velocidad de pérdida alta, que exige pistas largas y sistemas de alta sustentación sofisticados (slats de borde de ataque, flaps de borde de fuga) para lograr velocidades de aterrizaje seguras. El F-16 Fighting Falcon tiene una carga alar de unos 430 kg/m² en configuración limpia.\n\nEn los aviones de transporte comercial, la carga alar es un compromiso entre eficiencia de crucero y manejo a baja velocidad. El Boeing 737 tiene una carga alar de aproximadamente 570 kg/m², mientras que el Airbus A380 ronda los 650 kg/m². Los aviones de largo alcance tienden a tener cargas alares más altas porque transportan mucho combustible (lo que aumenta el peso) y necesitan alas delgadas para el crucero a alta velocidad.\n\nLa velocidad de pérdida está directamente relacionada con la carga alar mediante la ecuación de sustentación: L = 0.5 × ρ × v² × S × CL. En pérdida, L = W y CL = CLmax. Despejando la velocidad de pérdida: Vs = √(2 × W / (ρ × S × CLmax)) = √(2 × (W/S) / (ρ × CLmax)). Para una aeronave típica de aviación general con CLmax ≈ 1.5 y densidad del aire a nivel del mar de 1.225 kg/m³, una carga alar de 70 kg/m² da Vs ≈ 27 m/s (53 nudos). Al desplegar flaps, CLmax aumenta a 2.0–2.5 y la velocidad de pérdida disminuye.\n\nLos modelos RC tienen las cargas alares más bajas (5–20 kg/m²) para permitir vuelos lentos y suaves, adecuados para principiantes. Los aviones RC acrobáticos de alto rendimiento y los drones de carreras tienen cargas mucho mayores para ganar velocidad y agilidad.\n\nAl elegir la carga alar de un nuevo diseño, los ingenieros deben equilibrar requisitos que compiten entre sí: velocidad de pérdida (seguridad), régimen de ascenso, alcance, maniobrabilidad, respuesta a ráfagas y peso estructural."
+      },
+      "examples": {
+        "heading": "Ejemplos de carga alar",
+        "intro": "Aviones representativos que muestran cómo varía la carga alar entre distintos tipos de aeronaves.",
+        "colInput": "Aeronave / Peso / Área alar",
+        "colOutput": "Carga alar",
+        "colNote": "Notas de rendimiento",
+        "loadCessna": "Cargar Cessna 172",
+        "loadGlider": "Cargar planeador de alto rendimiento",
+        "loadRC": "Cargar modelo RC",
+        "items": [
+          {
+            "input": "Cessna 172: 1111 kg, 16.2 m²",
+            "output": "68.6 kg/m²",
+            "note": "Avión ligero de instrucción y turismo. La baja carga alar ofrece una pérdida dócil y capacidad para pistas cortas."
+          },
+          {
+            "input": "Planeador de alto rendimiento: 600 kg, 12.5 m²",
+            "output": "48.0 kg/m²",
+            "note": "Planeador moderno de materiales compuestos. Baja carga alar para máxima eficiencia de planeo; relación de planeo superior a 50:1."
+          },
+          {
+            "input": "Caza militar: 15000 kg, 27.9 m²",
+            "output": "537.6 kg/m²",
+            "note": "La alta carga alar permite vuelo a gran velocidad y giros cerrados. Requiere motores potentes y flaps avanzados."
+          },
+          {
+            "input": "Modelo RC: 2.5 kg, 0.8 m²",
+            "output": "3.1 kg/m²",
+            "note": "Carga alar muy baja típica de aeronaves RC para principiantes. Velocidad de pérdida lenta y manejo suave para facilitar el control."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de carga alar",
+        "steps": [
+          "Selecciona el sistema de unidades: Métrico (kg y m²) o Imperial (lb y ft²).",
+          "Introduce el peso total de la aeronave; normalmente se usa el peso máximo al despegue (MTOW) para el peor caso.",
+          "Introduce el área de referencia alar: el área total proyectada de la ala, incluida la parte dentro del fuselaje.",
+          "Haz clic en Calcular. Se mostrarán la carga alar (W/S) y la velocidad de pérdida estimada al nivel del mar.",
+          "Usa los botones de ejemplo para cargar configuraciones comunes y comparar sus cargas alares."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre carga alar",
+        "q1": "¿Qué es la carga alar?",
+        "q1_a": "La carga alar es la relación entre el peso total de una aeronave y su área de referencia alar: W/S, medida en kg/m² (métrico) o lb/ft² (imperial). Es uno de los parámetros más importantes del diseño aeronáutico porque determina la velocidad de pérdida, la eficiencia en crucero, la maniobrabilidad y la sensibilidad a la turbulencia. En general, una carga alar menor implica una velocidad de pérdida más baja y un manejo más suave; una carga alar mayor permite velocidades más altas y maniobras más cerradas.",
+        "q2": "¿Cómo afecta la carga alar a la velocidad de pérdida?",
+        "q2_a": "La velocidad de pérdida aumenta con la raíz cuadrada de la carga alar: Vs = √(2 × (W/S) / (ρ × CLmax)). Duplicar la carga alar incrementa la velocidad de pérdida en un factor de √2 ≈ 1.41 (41% más rápida). Por eso los aviones grandes con cargas alares altas necesitan sistemas de alta sustentación sofisticados (slats de borde de ataque y flaps de borde de fuga) para reducir la velocidad de pérdida en despegue y aterrizaje. El CLmax de un ala limpia suele ser 1.2–1.6; con flaps completos puede llegar a 2.5–3.0.",
+        "q3": "¿Cuál es una carga alar típica para distintos tipos de aeronave?",
+        "q3_a": "Cargas alares típicas: planeadores 20–50 kg/m², entrenadores ligeros 50–100 kg/m², aviones monomotor de aviación general 60–120 kg/m², turbohélices regionales 200–300 kg/m², reactores comerciales 400–700 kg/m², cazas militares 300–700 kg/m². Los aviones RC van desde 5 kg/m² (park flyers para principiantes) hasta más de 100 kg/m² (racer a reacción). Las cargas alares bajas favorecen el vuelo lento; las altas favorecen el crucero rápido.",
+        "q4": "¿Por qué los planeadores tienen menos carga alar que los cazas?",
+        "q4_a": "Los planeadores necesitan volar despacio en térmicas débiles y corrientes ascendentes de ladera, manteniendo un vuelo controlado a velocidades muy bajas. Una carga alar baja (20–40 kg/m²) proporciona una velocidad de pérdida reducida y una mayor relación sustentación-resistencia a baja velocidad, lo que permite planear con eficiencia. Los cazas deben volar rápido y maniobrar con agresividad; su alta carga alar (300–700 kg/m²) hace que necesiten velocidades mayores para generar suficiente sustentación, pero la capacidad de soportar mayores cargas y la alta velocidad son más importantes que una baja velocidad de pérdida.",
+        "q5": "¿Cómo afecta la altitud a la velocidad de pérdida?",
+        "q5_a": "La densidad del aire (ρ) disminuye con la altitud, reduciendo la sustentación aerodinámica generada a una velocidad dada. Como Vs = √(2W / (ρ·S·CLmax)), una menor ρ en altitud implica una mayor velocidad verdadera (TAS) en pérdida. A 10,000 pies, la densidad del aire es aproximadamente el 74% de la densidad al nivel del mar, por lo que la TAS de pérdida es alrededor de 1/√0.74 ≈ 16% mayor. Sin embargo, la velocidad indicada (IAS) en pérdida permanece aproximadamente constante porque el indicador de velocidad mide la presión dinámica.",
+        "q6": "¿Cuál es la diferencia entre área de referencia alar y área mojada?",
+        "q6_a": "El área de referencia alar (S) es la proyección en planta del contorno del ala, incluida la parte dentro del fuselaje. Es la referencia convencional para normalizar coeficientes aerodinámicos y calcular la carga alar. El área mojada es la superficie total realmente expuesta al flujo (ambas caras), aproximadamente el doble del área de referencia. La carga alar W/S usa el área de referencia; los cálculos de resistencia por fricción usan el área mojada."
+      }
+    },
+    "water-viscosity-calculator": {
+      "title": "Calculadora de viscosidad del agua",
+      "tagline": "Estima la viscosidad dinámica, la viscosidad cinemática, la densidad y el número de Reynolds del agua a partir de temperatura, presión y caudal opcional en tubería.",
+      "intro": "Introduce la temperatura y la presión del agua para calcular la viscosidad. Añade la velocidad del flujo y el diámetro de la tubería si también quieres el número de Reynolds.",
+      "field": {
+        "temperature": "Temperatura (°C)",
+        "pressure": "Presión (bar)",
+        "flowVelocity": "Velocidad del flujo (m/s)",
+        "pipeDiameter": "Diámetro de la tubería (m)"
+      },
+      "placeholder": {
+        "temperature": "p. ej. 20",
+        "pressure": "p. ej. 1",
+        "flowVelocity": "p. ej. 2",
+        "pipeDiameter": "p. ej. 0.05"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "result": {
+        "heading": "Resultado",
+        "value": "Viscosidad dinámica {dynamic} mPa·s • Viscosidad cinemática {kinematic} mm²/s",
+        "dynamic": "Viscosidad dinámica",
+        "kinematic": "Viscosidad cinemática",
+        "density": "Densidad estimada",
+        "reynolds": "Número de Reynolds",
+        "unitDynamic": "mPa·s",
+        "unitKinematic": "mm²/s",
+        "unitDensity": "kg/m³",
+        "unitReynolds": "",
+        "reynoldsUnavailable": "—",
+        "pressureNote": "Presión introducida: {pressure} bar"
+      },
+      "error": {
+        "invalid": "Introduce números válidos. La temperatura y la presión son obligatorias, y la velocidad y el diámetro deben indicarse juntos si se usan."
+      },
+      "hint": "La presión se acepta como contexto, aunque el modelo de viscosidad se basa principalmente en la temperatura para agua pura en rangos de ingeniería habituales.",
+      "formula": "μ = 2.414×10^-5 × 10^(247.8 / (T_K − 140)) Pa·s • ν = μ / ρ • Re = ρvD / μ",
+      "about": {
+        "heading": "Acerca de la viscosidad del agua",
+        "body": "La viscosidad del agua describe con qué fuerza resiste el agua líquida el flujo y el esfuerzo cortante. En términos prácticos, te indica si el agua se comporta como un fluido “espeso” o “ligero” cuando se mueve por una tubería, alrededor de un impulsor de bomba, sobre la superficie de un intercambiador de calor o a través de una línea de proceso. Los ingenieros suelen trabajar con dos propiedades relacionadas: la viscosidad dinámica, normalmente escrita como μ, y la viscosidad cinemática, escrita como ν. La viscosidad dinámica mide la fricción interna del propio fluido, mientras que la viscosidad cinemática divide esa fricción por la densidad para comparar el comportamiento del flujo de forma más directa. Esta calculadora muestra la viscosidad dinámica en milipascal-segundo (mPa·s) y la viscosidad cinemática en milímetros cuadrados por segundo (mm²/s), también llamados centistokes.\n\nEn el agua pura, la viscosidad cambia mucho más con la temperatura que con la presión en la mayoría de las condiciones cotidianas. El agua fría es notablemente más viscosa que el agua caliente porque las moléculas tienen menos energía y la atracción intermolecular afecta más al movimiento. A medida que aumenta la temperatura, la resistencia interna cae con rapidez. Por eso, el agua cerca de temperatura ambiente tiene una viscosidad dinámica de aproximadamente 1.002 mPa·s, mientras que cerca del punto de ebullición baja a alrededor de 0.282 mPa·s. Este cambio tiene consecuencias importantes para la potencia de bombeo, el régimen de flujo, la pérdida de carga y el rendimiento de transferencia de calor. Incluso un aumento moderado de temperatura puede llevar un sistema de flujo laminar lento hacia un comportamiento más turbulento.\n\nLa calculadora usa una ecuación empírica tipo Andrade para la viscosidad dinámica del agua pura, una aproximación estándar para un amplio rango de temperaturas del agua líquida. Después estima la densidad con una expresión cuadrática sencilla alrededor del máximo de densidad bien conocido cerca de 4°C. Dividir la viscosidad dinámica entre la densidad da la viscosidad cinemática. Aunque la expresión de densidad está simplificada, es adecuada para estimaciones de diseño general, comprobaciones rápidas, tareas académicas y cálculos rutinarios de proceso. Si trabajas con agua salina, mezclas de glicol, agua de proceso sucia o presiones muy altas, sigue siendo mejor usar una base de datos de propiedades dedicada.\n\nCuando también introduces la velocidad del flujo y el diámetro de la tubería, la calculadora estima el número de Reynolds usando Re = ρvD/μ. El número de Reynolds es una de las magnitudes adimensionales más útiles en mecánica de fluidos porque ayuda a clasificar el comportamiento del flujo. Los números de Reynolds bajos indican un movimiento viscoso y ordenado, donde pueden aplicarse supuestos de flujo laminar. Los números altos indican que los efectos inerciales dominan y la turbulencia es más probable. Para flujo interno en tuberías, el flujo laminar suele asociarse con Re por debajo de unos 2,300, el flujo de transición ocupa el rango medio y el flujo turbulento suele aparecer por encima de unos 4,000. Como la viscosidad aparece en el denominador, el agua más caliente suele producir un número de Reynolds mayor que el agua más fría en la misma tubería.\n\nEsto hace de la viscosidad del agua una propiedad central de diseño en ingeniería civil, mecánica, química y ambiental. Se usa para estimar pérdidas por fricción, dimensionar bombas, comparar condiciones de transferencia de calor, entender mediciones de laboratorio y comprobar entradas de simulación. Los estudiantes pueden usar la calculadora para ver cuánto varían las propiedades del agua con la temperatura, mientras que los profesionales pueden emplearla para estimaciones rápidas antes de pasar a software más detallado. En resumen, la viscosidad del agua conecta temperatura, resistencia al flujo y régimen del fluido en una sola propiedad física compacta que influye en casi cualquier sistema de agua líquida."
+      },
+      "examples": {
+        "heading": "Ejemplos",
+        "intro": "Estos ejemplos muestran cómo cambia la viscosidad del agua con la temperatura y cómo las entradas opcionales de flujo añaden una estimación del número de Reynolds.",
+        "colInput": "Entrada",
+        "colOutput": "Salida",
+        "colNote": "Notas",
+        "loadRoom": "Cargar agua a 20°C",
+        "loadBoiling": "Cargar agua a 100°C",
+        "loadFlow": "Cargar ejemplo de flujo en tubería",
+        "items": [
+          {
+            "input": "20°C, 1 bar",
+            "output": "Dinámica: 1.002 mPa·s • Cinemática: 1.003 mm²/s",
+            "note": "El agua a temperatura ambiente está cerca del conocido punto de referencia de 1 mPa·s, por lo que suele usarse como valor de referencia en laboratorio y diseño."
+          },
+          {
+            "input": "100°C, 1 bar",
+            "output": "Dinámica: 0.279 mPa·s • Cinemática: 0.287 mm²/s",
+            "note": "El agua caliente fluye mucho más fácilmente que el agua fría, así que la viscosidad cae con fuerza y el número de Reynolds sube para las mismas condiciones de tubería."
+          },
+          {
+            "input": "4°C, 1 bar",
+            "output": "Dinámica: 1.547 mPa·s • Cinemática: 1.547 mm²/s",
+            "note": "Cerca de 4°C, el agua es más densa y relativamente más viscosa, así que el momento se difunde más lentamente que a temperatura ambiente."
+          },
+          {
+            "input": "20°C, 1 bar, 2 m/s, 0.05 m pipe",
+            "output": "Re ≈ 99,749",
+            "note": "Al añadir velocidad y diámetro se ve que el servicio de agua corriente suele estar muy dentro del régimen turbulento."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usarla",
+        "steps": [
+          "Introduce la temperatura del agua en grados Celsius y la presión de operación en bar. Estos dos campos son obligatorios en cada cálculo.",
+          "Si necesitas un número de Reynolds, introduce también la velocidad media del flujo y el diámetro interior de la tubería. Si solo quieres la viscosidad, deja en blanco los dos campos opcionales.",
+          "Haz clic en Calcular para ver la viscosidad dinámica, la viscosidad cinemática, la densidad estimada y, si hay datos de flujo, el número de Reynolds.",
+          "Usa los ejemplos para comparar agua fría, a temperatura ambiente y caliente, y luego restablece el formulario para probar una nueva condición de operación."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "items": [
+          {
+            "q": "¿Cuál es la diferencia entre viscosidad dinámica y cinemática?",
+            "a": "La viscosidad dinámica mide la resistencia interna del fluido al esfuerzo cortante y suele expresarse en Pa·s o mPa·s. La viscosidad cinemática divide la viscosidad dinámica por la densidad, así que refleja cómo se difunde el momento en el fluido y normalmente se informa en mm²/s o cSt."
+          },
+          {
+            "q": "¿Por qué baja la viscosidad del agua cuando sube la temperatura?",
+            "a": "Al calentarse, las moléculas de agua tienen más energía térmica y pueden moverse unas respecto de otras con mayor facilidad. Eso reduce la fricción interna, así que el agua caliente suele tener una viscosidad mucho menor que el agua fría."
+          },
+          {
+            "q": "¿Por qué se incluye la presión si la fórmula depende de la temperatura?",
+            "a": "La presión se incluye porque es una variable de operación importante en sistemas reales y ayuda a documentar la condición que estás evaluando. Para cálculos ordinarios de agua líquida en rangos moderados, la temperatura domina el cambio de viscosidad, así que un modelo sencillo basado en temperatura suele bastar para estimaciones rápidas."
+          },
+          {
+            "q": "¿Qué número de Reynolds debo esperar en flujo por tubería?",
+            "a": "Para flujo interno, los números de Reynolds por debajo de unos 2,300 suelen tratarse como laminares, mientras que los valores por encima de unos 4,000 suelen ser turbulentos. La zona intermedia es de transición, donde las perturbaciones y las condiciones de entrada influyen mucho en el patrón real de flujo."
+          },
+          {
+            "q": "¿Estos valores sirven para diseño de ingeniería?",
+            "a": "Son adecuados para cálculos preliminares, tareas y comprobaciones rápidas. Para el diseño final de sistemas críticos, química del agua inusual o rangos extremos de temperatura y presión, conviene confirmar con una fuente de propiedades de mayor fidelidad."
+          }
+        ]
+      }
+    },
+    "watt-calculator": {
+      "title": "Calculadora de vatios",
+      "tagline": "Resuelve voltios, amperios, ohmios, vatios y, si quieres, vatios-hora introduciendo dos valores eléctricos clave.",
+      "intro": "Introduce dos de estos cuatro valores: voltaje, corriente, resistencia o potencia. Añade tiempo si también quieres calcular el consumo en vatios-hora.",
+      "field": {
+        "voltage": "Voltaje (V)",
+        "current": "Corriente (A)",
+        "resistance": "Resistencia (Ω)",
+        "power": "Potencia (W)",
+        "time": "Tiempo (horas)"
+      },
+      "placeholder": {
+        "voltage": "p. ej. 120",
+        "current": "p. ej. 5",
+        "resistance": "p. ej. 24",
+        "power": "p. ej. 600",
+        "time": "p. ej. 3"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "result": {
+        "heading": "Resultado",
+        "value": "Potencia calculada: {power} W",
+        "voltage": "Voltaje",
+        "current": "Corriente",
+        "resistance": "Resistencia",
+        "power": "Potencia",
+        "energy": "Energía",
+        "unitVoltage": "V",
+        "unitCurrent": "A",
+        "unitResistance": "Ω",
+        "unitPower": "W",
+        "unitEnergy": "Wh",
+        "energyUnavailable": "—"
+      },
+      "error": {
+        "invalid": "Introduce números válidos y proporciona exactamente dos de estos valores: voltaje, corriente, resistencia o potencia. El tiempo es opcional y debe ser mayor o igual que cero."
+      },
+      "hint": "Usa exactamente dos de los cuatro campos eléctricos. El tiempo no cuenta como pareja y solo se usa para calcular la energía en vatios-hora.",
+      "formula": "P = V × I • V = I × R • E = P × t",
+      "about": {
+        "heading": "Acerca de la calculadora de vatios",
+        "body": "La calculadora de vatios combina dos relaciones eléctricas muy comunes en el análisis cotidiano de circuitos: la ley de Ohm y la ecuación básica de potencia. La ley de Ohm establece que el voltaje es igual a la corriente multiplicada por la resistencia, es decir, V = I × R. La potencia eléctrica es la tasa a la que la energía se entrega, se transfiere o se consume, y en circuitos simples se expresa como P = V × I. Cuando conoces dos de las magnitudes básicas —voltaje, corriente, resistencia y potencia— normalmente puedes resolver las dos restantes. Esta herramienta automatiza esa álgebra para que pases de dos valores conocidos a una comprobación rápida y completa del circuito.\n\nEl vatio es una unidad de potencia, no de energía. Un vatio equivale a un julio por segundo. Esa diferencia importa porque mucha gente dice que un aparato “consume 1.500 vatios por hora” cuando en realidad quiere decir que un equipo de 1.500 vatios funcionando durante una hora consume 1.500 vatios-hora de energía. Por eso la calculadora incluye un campo opcional de tiempo. Si introduces una duración de uso en horas, la herramienta multiplica la potencia calculada por el tiempo para devolver vatios-hora, tendiendo un puente directo entre los valores del circuito y el consumo energético. Es útil para comparar electrodomésticos, cargadores, cargas de batería o para estimar el gasto eléctrico antes de convertirlo a kilovatios-hora.\n\nLas distintas combinaciones de entrada cuentan historias diferentes del mismo circuito. El voltaje y la corriente dan potencia de inmediato mediante P = V × I y también resistencia mediante R = V / I. El voltaje y la resistencia te dicen cuánta corriente circulará y cuánta potencia se disipará. La corriente y la resistencia son comunes cuando ya conoces la carga y quieres inferir los requisitos de la fuente. El voltaje y la potencia aparecen mucho en equipos domésticos o industriales porque muchas placas de características indican el voltaje nominal y la potencia. La resistencia y la potencia son muy útiles en elementos calefactores, cargas resistivas o ejercicios de laboratorio donde la corriente no se mide directamente. Al permitir cualquier pareja válida, la calculadora refleja cómo se plantean realmente los problemas eléctricos en libros, bancos de prueba y tareas de diagnóstico.\n\nEste tipo de cálculo aparece por todas partes. Un circuito de 120 V que consume 5 A usa 600 W e implica una carga equivalente de 24 Ω. Un accesorio automotriz de 12 V a 2 A consume 24 W y tiene una resistencia de 6 Ω. Un calefactor de 240 V y 1.500 W toma 6,25 A y tiene una resistencia efectiva de 38,4 Ω. Son exactamente este tipo de comprobaciones rápidas las que usan electricistas, aficionados a la electrónica, estudiantes y equipos de mantenimiento para dimensionar cableado, seleccionar fusibles, diagnosticar cargas o estimar costes energéticos.\n\nLa calculadora está pensada para análisis sencillos de corriente continua o de una sola carga resistiva equivalente. Los sistemas de CA reales pueden incluir ángulo de fase, factor de potencia, potencia reactiva, armónicos y corrientes de arranque que requieren un tratamiento más avanzado. Aun así, los valores calculados aquí son una excelente primera aproximación y una buena ayuda didáctica. Si necesitas una forma rápida y fiable de moverte entre voltios, amperios, ohmios, vatios y vatios-hora, esta herramienta mantiene visibles las fórmulas y hace el cálculo al instante."
+      },
+      "examples": {
+        "heading": "Ejemplos",
+        "intro": "Estos casos eléctricos comunes muestran cómo dos valores conocidos determinan el resto del circuito y, si añades tiempo, también el consumo energético.",
+        "colInput": "Entrada",
+        "colOutput": "Salida",
+        "colNote": "Notas",
+        "loadOutlet": "Carga 120V / 5A",
+        "loadBattery": "Carga 12V / 2A",
+        "loadHeater": "Carga 240V / 1500W",
+        "items": [
+          {
+            "input": "120 V, 5 A",
+            "output": "P = 600 W, R = 24 Ω",
+            "note": "Ejemplo de toma de corriente y consumo de corriente. En cuanto conoces voltaje y corriente, la potencia y la resistencia equivalente salen de inmediato."
+          },
+          {
+            "input": "12 V, 2 A",
+            "output": "P = 24 W, R = 6 Ω",
+            "note": "Carga típica de batería de bajo voltaje. Esta pareja es útil en vehículos, electrónica portátil y fuentes de laboratorio."
+          },
+          {
+            "input": "240 V, 1500 W",
+            "output": "I = 6.25 A, R = 38.4 Ω",
+            "note": "Carga resistiva típica de un calefactor. A menudo solo aparecen el voltaje nominal y la potencia nominal en la placa."
+          },
+          {
+            "input": "240 V, 1500 W, 3 h",
+            "output": "Energy = 4500 Wh",
+            "note": "Añadir tiempo convierte un cálculo de potencia en una estimación de energía, que es el punto de partida para calcular costes."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usarla",
+        "steps": [
+          "Introduce exactamente dos de los cuatro valores eléctricos: voltaje, corriente, resistencia o potencia. Deja los otros dos en blanco para que la calculadora los resuelva.",
+          "Si también quieres el consumo en vatios-hora, introduce opcionalmente el tiempo en horas.",
+          "Pulsa Calcular para ver el conjunto completo de voltaje, corriente, resistencia y potencia, junto con la energía si has introducido tiempo.",
+          "Usa los ejemplos resueltos para cargar escenarios comunes de hogar, bajo voltaje y calefacción, y luego restablece el formulario para probar tus propios números."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "items": [
+          {
+            "q": "¿Qué es un vatio?",
+            "a": "Un vatio es una unidad de potencia equivalente a un julio por segundo. Describe la rapidez con la que se transfiere o consume la energía eléctrica, no la cantidad total usada durante mucho tiempo."
+          },
+          {
+            "q": "¿Por qué necesito exactamente dos entradas eléctricas?",
+            "a": "Las relaciones entre voltaje, corriente, resistencia y potencia están ligadas, así que dos valores independientes suelen bastar para resolver los otros dos. Si introduces menos de dos, no hay suficiente información; si introduces más de dos, pueden entrar en conflicto."
+          },
+          {
+            "q": "¿Cuál es la diferencia entre vatios y vatios-hora?",
+            "a": "Los vatios miden la tasa de uso de energía en un momento dado. Los vatios-hora miden la energía total a lo largo de un periodo, así que se obtienen multiplicando vatios por horas."
+          },
+          {
+            "q": "¿Puedo usarla para circuitos de CA?",
+            "a": "Puedes usarla como una estimación inicial para cargas resistivas o de valor único equivalente. Para sistemas de CA reales con factor de potencia, potencia reactiva o ángulo de fase, conviene un cálculo de potencia de CA dedicado."
+          },
+          {
+            "q": "¿Por qué la calculadora muestra resistencia para los aparatos?",
+            "a": "Cualquier carga eléctrica en régimen estable puede expresarse como una resistencia equivalente en su punto de funcionamiento, aunque el dispositivo real sea más complejo. Eso hace que la resistencia sea un valor derivado útil para comparar, diagnosticar y comprobar rápidamente."
+          }
+        ]
+      }
+    },
+    "watt-converter": {
+      "title": "Conversor de vatios",
+      "tagline": "Convierte vatios, caballos de fuerza, kilovatios, megavatios, BTU por hora y otras unidades de potencia con cálculos rápidos basados en factores.",
+      "intro": "Introduce un valor de potencia, elige la unidad de origen, selecciona la unidad de destino y calcula al instante el resultado convertido.",
+      "field": {
+        "powerValue": "Valor de potencia",
+        "fromUnit": "Unidad de origen",
+        "toUnit": "Unidad de destino"
+      },
+      "placeholder": {
+        "powerValue": "p. ej., 1000"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "result": {
+        "heading": "Resultado",
+        "value": "{input} {fromUnit} = {output} {toUnit}",
+        "inWatts": "Equivalente en vatios",
+        "formula": "Método"
+      },
+      "error": {
+        "invalid": "Introduce un valor numérico de potencia válido."
+      },
+      "formula": "Convierte primero a vatios y luego divide por el factor de la unidad de destino.",
+      "unit": {
+        "watt": "vatio (W)",
+        "kilowatt": "kilovatio (kW)",
+        "megawatt": "megavatio (MW)",
+        "milliwatt": "milivatio (mW)",
+        "horsepower_mech": "caballo de fuerza (mecánico) (hp)",
+        "horsepower_metric": "caballo de vapor (métrico) (hp m)",
+        "btu_per_hour": "BTU por hora (BTU/hr)",
+        "calorie_per_second": "caloría por segundo (cal/s)",
+        "erg_per_second": "ergio por segundo (erg/s)",
+        "foot_pound_per_minute": "pie-libra por minuto (ft·lb/min)"
+      },
+      "about": {
+        "heading": "Acerca de la conversión de vatios",
+        "body": "La conversión de unidades de potencia consiste en expresar la misma tasa de transferencia de energía en distintos sistemas de medida. El vatio es la unidad SI de potencia y equivale a un julio por segundo. Como pertenece al sistema métrico y aparece en ingeniería eléctrica, física, HVAC y especificaciones industriales, funciona como una unidad de referencia ideal. Un conversor de vatios traduce primero el valor de origen a vatios y después lo divide por el factor de la unidad de destino. Una vez definidos los factores, cualquier conversión entre dos unidades admitidas se convierte en un sencillo problema de proporciones.\n\nMuchas de las unidades de esta página proceden de tradiciones técnicas muy distintas. Los kilovatios y megavatios son múltiplos métricos del vatio y son comunes en el suministro eléctrico, motores y generación a escala de red. Los milivatios se usan en electrónica, sensores, dispositivos ópticos y señalización de baja potencia. Los caballos de fuerza mecánicos y métricos provienen de prácticas de ingeniería más antiguas y todavía se usan ampliamente en motores, bombas, compresores y equipos industriales. El BTU por hora aparece en calefacción y refrigeración, especialmente en el dimensionamiento de HVAC. Las calorías por segundo y los ergios por segundo son menos comunes hoy, pero aún aparecen en referencias científicas antiguas o contextos especializados. El pie-libra por minuto pertenece a la tradición mecánica imperial y resulta útil al comparar especificaciones de máquinas antiguas.\n\nEl conversor utiliza factores fijos a vatios para cada unidad. Un kilovatio es exactamente 1,000 vatios, un megavatio es 1,000,000 vatios y un milivatio es 0.001 vatio. El caballo de fuerza mecánico equivale aproximadamente a 745.69987 vatios, mientras que el caballo de vapor métrico equivale aproximadamente a 735.49875 vatios. El BTU por hora se convierte a 0.29307107 vatios, la caloría por segundo a 4.1868 vatios, el ergio por segundo a 1×10^-7 vatios y el pie-libra por minuto a 0.022597 vatios. Como toda conversión pasa por vatios, el resultado se mantiene coherente sin importar qué unidades inicial y final elijas.\n\nEsto importa en el trabajo real porque las hojas de datos de equipos rara vez coinciden en sus convenciones de unidades. Un aparato eléctrico puede estar nominalizado en vatios, un motor en caballos de fuerza, una unidad HVAC en BTU por hora y una central eléctrica en megavatios. Si necesitas compararlos, estimar capacidad equivalente o mover datos de un formato de informe a otro, el primer paso casi siempre es la conversión de unidades. Los estudiantes también encuentran estas conversiones en problemas de física y termodinámica donde varias tradiciones se mezclan en una sola pregunta. Convertir con cuidado evita errores de orden de magnitud que pueden distorsionar una decisión de diseño o una respuesta de examen.\n\nUna buena comprobación mental ayuda. Si conviertes de kilovatios a vatios, el número debe aumentar porque el kilovatio es una unidad mayor. Si conviertes de vatios a caballos de fuerza, el número normalmente debe disminuir porque un caballo de fuerza equivale a varios cientos de vatios. Este conversor mantiene el proceso transparente al mostrar también el valor equivalente en vatios, lo que facilita comprobar que la respuesta escala en la dirección esperada. Ya sea que compares motores, revises potencias nominales de electrodomésticos o traduzcas una tabla de ingeniería antigua, el conversor de vatios ofrece un puente rápido y coherente entre unidades de potencia."
+      },
+      "examples": {
+        "heading": "Ejemplos",
+        "intro": "Estos ejemplos destacan las conversiones de potencia más comunes en contextos eléctricos, mecánicos y térmicos.",
+        "colInput": "Entrada",
+        "colOutput": "Salida",
+        "colNote": "Notas",
+        "loadKilowatt": "Cargar 1 kW → W",
+        "loadHorsepower": "Cargar 1 hp → W",
+        "loadHalfKilowatt": "Cargar 500 W → kW",
+        "items": [
+          {
+            "input": "1 kilovatio (kW)",
+            "output": "1000 vatios (W)",
+            "note": "Los múltiplos métricos de potencia son exactos, por lo que un kilovatio siempre equivale a mil vatios."
+          },
+          {
+            "input": "1 caballo de fuerza (mecánico) (hp)",
+            "output": "745.69987 vatios (W)",
+            "note": "El caballo de fuerza mecánico es común para motores, especialmente en datos de equipos de Norteamérica."
+          },
+          {
+            "input": "1000 vatios (W)",
+            "output": "1.34102 caballos de fuerza (mecánicos) (hp)",
+            "note": "Convertir de vatios a caballos de fuerza es útil al comparar cargas eléctricas con potencias nominales de motores."
+          },
+          {
+            "input": "500 vatios (W)",
+            "output": "0.5 kilovatios (kW)",
+            "note": "La conversión entre vatios y kilovatios es común en etiquetas energéticas de electrodomésticos y especificaciones de equipos pequeños."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usarlo",
+        "steps": [
+          "Introduce el valor numérico de potencia que quieres convertir. La calculadora acepta números enteros o decimales.",
+          "Elige la unidad de origen en la lista Unidad de origen y la unidad de destino en la lista Unidad de destino.",
+          "Haz clic en Calcular para ver el valor convertido y la potencia equivalente expresada en vatios.",
+          "Usa los ejemplos resueltos para comparar conversiones comunes entre kilovatios, caballos de fuerza y vatios, y luego restablece el formulario para un nuevo caso."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "items": [
+          {
+            "q": "¿Por qué el conversor usa vatios como paso intermedio?",
+            "a": "Los vatios son la unidad base SI de potencia y ofrecen una referencia neutral entre sistemas eléctricos, térmicos y mecánicos. Convertir todo primero a vatios garantiza que cada conversión entre pares sea coherente y fácil de verificar."
+          },
+          {
+            "q": "¿Cuál es la diferencia entre caballo de fuerza mecánico y métrico?",
+            "a": "Son dos definiciones históricas de potencia estrechamente relacionadas pero distintas. El caballo de fuerza mecánico equivale a unos 745.69987 vatios, mientras que el caballo de vapor métrico equivale a unos 735.49875 vatios, así que la diferencia numérica es pequeña pero real."
+          },
+          {
+            "q": "¿Cuándo debería usar BTU por hora en lugar de vatios?",
+            "a": "El BTU por hora es común en especificaciones de calefacción y refrigeración, especialmente para capacidad HVAC. Los vatios son más universales en física y trabajos eléctricos, por lo que convertir entre ambos ayuda a comparar equipos térmicos y eléctricos sobre la misma base."
+          },
+          {
+            "q": "¿Por qué el número convertido puede aumentar aunque la potencia sea la misma?",
+            "a": "La potencia física no cambia; solo cambia el tamaño de la unidad que usas para describirla. Convertir a una unidad más pequeña produce un valor numérico mayor, mientras que convertir a una unidad más grande produce un valor numérico menor."
+          },
+          {
+            "q": "¿Estos factores son suficientemente precisos para ingeniería?",
+            "a": "Sí, los factores indicados son adecuados para ingeniería general, educación y comparación de especificaciones. Para documentos contractuales o regulatorios, aun así debes usar la convención exacta de unidades exigida por la norma aplicable."
+          }
+        ]
+      }
+    },
+    "watt-hour-calculator": {
+      "title": "Calculadora de vatios-hora",
+      "tagline": "Calcula vatios-hora diarios, kilovatios-hora mensuales y el costo eléctrico a partir de la potencia, el tiempo de uso y la tarifa.",
+      "intro": "Ingresa la potencia del aparato, el tiempo de uso diario, los días del mes y tu tarifa eléctrica para estimar el consumo y el costo mensual.",
+      "field": {
+        "powerRating": "Potencia (vatios)",
+        "usageTime": "Tiempo de uso (horas)",
+        "daysPerMonth": "Días por mes",
+        "electricityRate": "Tarifa eléctrica ($/kWh)"
+      },
+      "placeholder": {
+        "powerRating": "p. ej. 1500",
+        "usageTime": "p. ej. 2",
+        "daysPerMonth": "p. ej. 30",
+        "electricityRate": "p. ej. 0.12"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "result": {
+        "heading": "Resultado",
+        "value": "Energía mensual {monthKwh} kWh • Costo mensual {cost}",
+        "energyPerDay": "Energía por día",
+        "energyPerMonth": "Energía por mes",
+        "monthlyCost": "Costo mensual",
+        "unitWh": "Wh",
+        "unitKwh": "kWh",
+        "unitCurrency": "$"
+      },
+      "error": {
+        "invalid": "Ingresa números válidos y no negativos en los cuatro campos."
+      },
+      "formula": "Energía diaria = Potencia × Horas • Energía mensual = Potencia × Horas × Días / 1000 • Costo mensual = Energía mensual × Tarifa",
+      "about": {
+        "heading": "Acerca del cálculo de vatios-hora",
+        "body": "Una calculadora de vatios-hora estima el consumo de energía combinando la potencia nominal de un dispositivo con el tiempo que funciona. La potencia indica la velocidad a la que se usa la energía, mientras que la energía indica la cantidad total consumida durante un periodo. Si un dispositivo consume 100 vatios y funciona durante 1 hora, usa 100 vatios-hora de energía. Si funciona durante 10 horas, usa 1,000 vatios-hora, que también equivalen a 1 kilovatio-hora (kWh). Esta diferencia entre potencia y energía es esencial porque las compañías eléctricas cobran por energía a lo largo del tiempo, no solo por una potencia instantánea.\n\nLas cuatro entradas de esta herramienta reflejan un problema típico de estimación en hogares o pequeños negocios. Primero, introduces la potencia en vatios, normalmente tomada de la etiqueta o de la ficha técnica del aparato. Segundo, ingresas el tiempo de uso diario en horas. Tercero, añades el número de días del mes de facturación o del periodo que quieres estimar. Por último, introduces la tarifa eléctrica en dólares por kilovatio-hora. La calculadora muestra entonces la energía diaria en vatios-hora, la energía mensual en kilovatios-hora y el costo mensual estimado. Así es fácil pasar de un valor de placa a una estimación realista del presupuesto.\n\nLas fórmulas son sencillas, pero sorprendentemente útiles. La energía diaria es igual a la potencia multiplicada por las horas diarias. La energía mensual amplía eso multiplicando la energía diaria por el número de días y dividiendo entre 1,000 para convertir vatios-hora a kilovatios-hora. Luego, el costo mensual multiplica los kilovatios-hora mensuales por la tarifa eléctrica local. Estas relaciones son fáciles de hacer a mano, pero cuando comparas muchos dispositivos o pruebas varios escenarios de uso, una calculadora dedicada reduce errores y acelera la toma de decisiones. Es especialmente útil al explorar el efecto de más horas de uso, mayor consumo o tarifas más altas.\n\nEste tipo de estimación aparece en todas partes en la gestión práctica de energía. Una bombilla LED de 9 vatios usada 4 horas al día durante 30 días consume solo 1.08 kWh al mes, lo que cuesta muy poco a tarifas residenciales comunes. Un calefactor eléctrico de 1,500 vatios usado 2 horas al día puede consumir 90 kWh al mes, por lo que resulta mucho más caro. Un televisor de 200 vatios visto 5 horas al día consume 30 kWh al mes, en un punto intermedio. La calculadora hace estas comparaciones al instante y ayuda a identificar qué aparatos dominan el consumo y dónde importan más las mejoras de eficiencia.\n\nAunque es una estimación, es muy útil para planificar. Los dispositivos reales pueden encenderse y apagarse, consumir distinta potencia en modo de espera y en modo activo, o variar según el termostato y las condiciones ambientales. Aun así, los cálculos basados en la potencia nominal son un excelente punto de partida para presupuestos, revisiones de sostenibilidad, ejercicios de clase y auditorías sencillas. Si quieres comparar mejoras en iluminación, estimar el costo de la calefacción, entender el impacto de la electrónica de entretenimiento o explicar la diferencia entre vatios y kilovatios-hora, una calculadora de vatios-hora convierte datos básicos en información energética accionable."
+      },
+      "examples": {
+        "heading": "Ejemplos",
+        "intro": "Estos ejemplos comparan iluminación de bajo consumo, calefacción de alta potencia y cargas de entretenimiento cotidianas en un periodo mensual.",
+        "colInput": "Entrada",
+        "colOutput": "Salida",
+        "colNote": "Notas",
+        "loadLed": "Cargar bombilla LED",
+        "loadHeater": "Cargar calefactor",
+        "loadTv": "Cargar TV",
+        "items": [
+          {
+            "input": "9 W, 4 h/day, 30 days, $0.12/kWh",
+            "output": "1.08 kWh/month, $0.1296/month",
+            "note": "Una bombilla LED moderna usa muy poca energía, así que incluso con uso diario sigue siendo barata."
+          },
+          {
+            "input": "1500 W, 2 h/day, 30 days, $0.12/kWh",
+            "output": "90 kWh/month, $10.8/month",
+            "note": "La calefacción resistiva tiene una potencia alta, por lo que el tiempo de uso se traduce rápidamente en un costo mensual notable."
+          },
+          {
+            "input": "200 W, 5 h/day, 30 days, $0.15/kWh",
+            "output": "30 kWh/month, $4.5/month",
+            "note": "Los televisores y equipos de entretenimiento suelen quedar en un rango intermedio: el consumo importa, pero sigue siendo manejable."
+          },
+          {
+            "input": "150 W, 24 h/day, 30 days, $0.12/kWh",
+            "output": "108 kWh/month, $12.96/month",
+            "note": "Los aparatos que funcionan de forma continua pueden igualar a dispositivos de mayor potencia que solo operan de vez en cuando."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usarlo",
+        "steps": [
+          "Ingresa la potencia del dispositivo en vatios exactamente como aparece en la etiqueta o la ficha técnica.",
+          "Ingresa el promedio de horas que el dispositivo funciona cada día y luego añade los días del mes o del periodo que quieras estimar.",
+          "Ingresa tu tarifa eléctrica en dólares por kilovatio-hora y haz clic en Calcular para ver los vatios-hora diarios, los kilovatios-hora mensuales y el costo estimado.",
+          "Usa los ejemplos para comparar una bombilla, un calefactor y una TV, y luego restablece el formulario para explorar tus propios aparatos."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes",
+        "items": [
+          {
+            "q": "¿Cuál es la diferencia entre vatios y vatios-hora?",
+            "a": "Los vatios miden la potencia que se usa en un momento dado. Los vatios-hora miden la energía total a lo largo del tiempo, así que se obtienen multiplicando los vatios por las horas de uso."
+          },
+          {
+            "q": "¿Por qué la calculadora muestra la energía mensual en kWh?",
+            "a": "Las compañías eléctricas suelen facturar la electricidad en kilovatios-hora y no en vatios-hora. Mostrar el uso mensual en kWh permite compararlo directamente con la factura."
+          },
+          {
+            "q": "¿Qué tan precisa es una estimación de costo basada en la placa nominal?",
+            "a": "Es una buena primera aproximación para planificar y comparar. El consumo real puede variar porque los dispositivos se encienden y se apagan, consumen energía en espera o funcionan por debajo de su potencia nominal."
+          },
+          {
+            "q": "¿Puedo usarla también para dispositivos con batería?",
+            "a": "Sí, siempre que conozcas el consumo promedio y el tiempo de funcionamiento. Las mismas relaciones de energía aplican aunque la fuente sea una batería en lugar de la red eléctrica."
+          },
+          {
+            "q": "¿Por qué un aparato de menor potencia puede costar mucho en funcionamiento?",
+            "a": "El tiempo de uso importa tanto como la potencia. Un dispositivo de potencia moderada que funciona todo el día puede consumir más energía en un mes que uno de mayor potencia usado solo por poco tiempo."
+          }
+        ]
+      }
     }
   }
 }

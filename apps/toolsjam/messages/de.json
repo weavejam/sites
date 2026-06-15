@@ -9157,6 +9157,536 @@
         "q6": "Ist dieser Rechner für die professionelle Tragwerksplanung geeignet?",
         "q6_a": "Dieser Rechner liefert eine vereinfachte Abschätzung von Windlasten auf Grundlage der Grundprinzipien und eignet sich für Bildungszwecke und erste Machbarkeitsprüfungen. Die professionelle Tragwerksplanung erfordert die vollständige Anwendung der einschlägigen Bauvorschriften (ASCE 7, Eurocode 1, AS/NZS 1170.2 usw.), einschließlich Böenfaktoren, topografischer Einflüsse, Richtungsfaktoren, Innendruck sowie Lasten auf Bauteile und Bekleidungen. Ziehen Sie für die Gebäudeplanung stets eine zugelassene Tragwerksingenieurin oder einen zugelassenen Tragwerksingenieur hinzu."
       }
+    },
+    "wing-loading-calculator": {
+      "title": "Flächenbelastung-Rechner: Flugleistung und Abrissgeschwindigkeit",
+      "tagline": "Berechne die Flächenbelastung eines Flugzeugs und schätze die Abrissgeschwindigkeit aus Gewicht und Flügelfläche.",
+      "intro": "Gib das Flugzeuggewicht und die Flügelfläche in metrischen oder imperialen Einheiten ein, um die Flächenbelastung zu berechnen und die Abrissgeschwindigkeit auf Meereshöhe zu schätzen.",
+      "field": {
+        "aircraftWeight": "Flugzeuggewicht",
+        "wingArea": "Flügelfläche",
+        "unitSystem": "Einheitensystem"
+      },
+      "placeholder": {
+        "aircraftWeight": "z. B. 1111",
+        "wingArea": "z. B. 16.2"
+      },
+      "type": {
+        "metric": "Metrisch (kg / m²)",
+        "imperial": "Imperial (lb / ft²)"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte gültige positive Zahlen für Gewicht und Flügelfläche eingeben."
+      },
+      "result": {
+        "heading": "Ergebnisse der Flächenbelastung",
+        "wingLoading": "Flächenbelastung = {value} {unit}",
+        "stallSpeed": "Geschätzte Abrissgeschwindigkeit ≈ {value} {unit}",
+        "clmaxNote": "Die Abrissgeschwindigkeit setzt CLmax = {value} auf Meereshöhe voraus"
+      },
+      "formula": "Flächenbelastung = W / S | Abrissgeschwindigkeit = √(2W / (ρ·S·CLmax))",
+      "about": {
+        "heading": "Über den Flächenbelastung-Rechner",
+        "body": "Die Flächenbelastung ist einer der grundlegendsten Leistungsparameter in der Luftfahrt. Sie ist das Verhältnis aus dem Gesamtgewicht eines Flugzeugs und seiner Bezugsflügelfläche: W/S, angegeben in kg/m² (metrisch) oder lb/ft² (imperial). Die Flächenbelastung bestimmt direkt die Abrissgeschwindigkeit, die Reiseleistung, die Wendigkeit, das Fluggefühl sowie Start- und Landestrecken.\n\nEine niedrige Flächenbelastung bedeutet, dass die Tragflächen im Verhältnis zum Gewicht groß sind. Das führt zu einer niedrigen Abrissgeschwindigkeit, gutmütigem Verhalten und der Fähigkeit, in schwachen Thermiken zu kreisen — deshalb haben Segelflugzeuge sehr geringe Flächenbelastungen (20–40 kg/m²). Der Nachteil ist, dass Flugzeuge mit niedriger Flächenbelastung empfindlicher auf Böen und Turbulenz reagieren, weshalb Segler in rauer Luft unangenehm sein können.\n\nEine hohe Flächenbelastung bedeutet, dass die Flügel im Verhältnis zum Gewicht klein sind. Hochleistungs-Jagdflugzeuge erreichen 300–700 kg/m² und ermöglichen damit hohe Geschwindigkeiten und enge Kurven in ruhiger Luft. Der Kompromiss ist eine hohe Abrissgeschwindigkeit, die lange Startbahnen und ausgefeilte Auftriebshilfen (Vorderkantenklappen, Hinterkantenklappen) für sichere Landegeschwindigkeiten erfordert. Die F-16 Fighting Falcon hat in sauberer Konfiguration eine Flächenbelastung von etwa 430 kg/m².\n\nBei Verkehrsflugzeugen ist die Flächenbelastung ein Kompromiss zwischen Reiseflugeffizienz und Langsamflugverhalten. Die Boeing 737 liegt bei ungefähr 570 kg/m², der Airbus A380 bei rund 650 kg/m². Langstreckenflugzeuge haben oft höhere Flächenbelastungen, weil sie große Mengen Treibstoff mitführen (was das Gewicht erhöht) und dünne Flügel für den schnellen Reiseflug benötigen.\n\nDie Abrissgeschwindigkeit hängt direkt über die Auftriebsgleichung mit der Flächenbelastung zusammen: L = 0.5 × ρ × v² × S × CL. Im Abriss gilt L = W und CL = CLmax. Umgestellt ergibt sich: Vs = √(2 × W / (ρ × S × CLmax)) = √(2 × (W/S) / (ρ × CLmax)). Für ein typisches Flugzeug der Allgemeinen Luftfahrt mit CLmax ≈ 1.5 und einer Luftdichte auf Meereshöhe von 1.225 kg/m³ ergibt eine Flächenbelastung von 70 kg/m² eine Vs von etwa 27 m/s (53 Knoten). Mit ausgefahrenen Klappen steigt CLmax auf 2.0–2.5, wodurch die Abrissgeschwindigkeit sinkt.\n\nRC-Modelle haben die niedrigsten Flächenbelastungen (5–20 kg/m²), damit langsamer, sanfter Flug für Einsteiger möglich ist. Hochleistungs-Kunstflugmodelle und Racing-Drohnen haben deutlich höhere Belastungen für mehr Geschwindigkeit und Agilität.\n\nBei der Wahl der Flächenbelastung für ein neues Design müssen Ingenieure mehrere konkurrierende Anforderungen ausbalancieren: Abrissgeschwindigkeit (Sicherheit), Steigrate, Reichweite, Wendigkeit, Böenverhalten und strukturelles Gewicht."
+      },
+      "examples": {
+        "heading": "Beispiele für Flächenbelastung",
+        "intro": "Repräsentative Flugzeuge zeigen, wie sich die Flächenbelastung zwischen verschiedenen Luftfahrzeugtypen unterscheidet.",
+        "colInput": "Flugzeug / Gewicht / Flügelfläche",
+        "colOutput": "Flächenbelastung",
+        "colNote": "Leistungsnotizen",
+        "loadCessna": "Cessna 172 laden",
+        "loadGlider": "Hochleistungssegler laden",
+        "loadRC": "RC-Modell laden",
+        "items": [
+          {
+            "input": "Cessna 172: 1111 kg, 16.2 m²",
+            "output": "68.6 kg/m²",
+            "note": "Leichtes Schul- und Reiseflugzeug. Die geringe Flächenbelastung sorgt für gutmütiges Abrissverhalten und kurze Start- und Landestrecken."
+          },
+          {
+            "input": "Hochleistungssegler: 600 kg, 12.5 m²",
+            "output": "48.0 kg/m²",
+            "note": "Moderner Segler aus Verbundwerkstoffen. Niedrige Flächenbelastung für maximale Gleitleistung; Gleitzahl über 50:1."
+          },
+          {
+            "input": "Militärjäger: 15000 kg, 27.9 m²",
+            "output": "537.6 kg/m²",
+            "note": "Hohe Flächenbelastung ermöglicht hohe Geschwindigkeit und enge Kurven. Erfordert leistungsstarke Triebwerke und fortschrittliche Klappen."
+          },
+          {
+            "input": "RC-Modell: 2.5 kg, 0.8 m²",
+            "output": "3.1 kg/m²",
+            "note": "Sehr geringe Flächenbelastung, typisch für Einsteiger-Modelle. Langsame Abrissgeschwindigkeit und gutmütiges Handling für einfache Kontrolle."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So benutzt du den Flächenbelastung-Rechner",
+        "steps": [
+          "Wähle das Einheitensystem: Metrisch (kg und m²) oder Imperial (lb und ft²).",
+          "Gib das Gesamtgewicht des Flugzeugs ein — für den Worst Case wird normalerweise das maximale Startgewicht (MTOW) verwendet.",
+          "Gib die Bezugsflügelfläche ein — die gesamte projizierte Flügelfläche inklusive des Teils im Rumpf.",
+          "Klicke auf Berechnen. Flächenbelastung (W/S) und geschätzte Abrissgeschwindigkeit auf Meereshöhe werden angezeigt.",
+          "Mit den Beispiel-Buttons kannst du typische Konfigurationen laden und ihre Flächenbelastungen vergleichen."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zur Flächenbelastung",
+        "q1": "Was ist Flächenbelastung?",
+        "q1_a": "Die Flächenbelastung ist das Verhältnis aus dem Gesamtgewicht eines Flugzeugs und seiner Bezugsflügelfläche: W/S, gemessen in kg/m² (metrisch) oder lb/ft² (imperial). Sie ist einer der wichtigsten Parameter im Flugzeugbau, weil sie Abrissgeschwindigkeit, Reiseflug-Effizienz, Wendigkeit und Turbulenzempfindlichkeit bestimmt. Eine niedrigere Flächenbelastung bedeutet in der Regel eine geringere Abrissgeschwindigkeit und gutmütigeres Handling; eine höhere Flächenbelastung ermöglicht höhere Geschwindigkeiten und engere Manöver.",
+        "q2": "Wie beeinflusst Flächenbelastung die Abrissgeschwindigkeit?",
+        "q2_a": "Die Abrissgeschwindigkeit steigt mit der Quadratwurzel der Flächenbelastung: Vs = √(2 × (W/S) / (ρ × CLmax)). Eine Verdopplung der Flächenbelastung erhöht die Abrissgeschwindigkeit um den Faktor √2 ≈ 1.41 (41 % schneller). Deshalb benötigen große Flugzeuge mit hoher Flächenbelastung ausgefeilte Auftriebshilfen (Vorderkantenklappen und Hinterkantenklappen), um die Abrissgeschwindigkeit für Start und Landung zu senken. CLmax eines sauberen Flügels liegt typischerweise bei 1.2–1.6; mit voller Klappenstellung kann er 2.5–3.0 erreichen.",
+        "q3": "Was ist eine typische Flächenbelastung für verschiedene Flugzeugtypen?",
+        "q3_a": "Typische Flächenbelastungen: Segler 20–50 kg/m², leichte Schulflugzeuge 50–100 kg/m², einmotorige Flugzeuge der Allgemeinen Luftfahrt 60–120 kg/m², Regionalturboprops 200–300 kg/m², Verkehrsflugzeuge 400–700 kg/m², Militärjäger 300–700 kg/m². RC-Flugzeuge reichen von 5 kg/m² (Einsteiger-Parkflieger) bis über 100 kg/m² (jetgetriebene Racer). Niedrige Flächenbelastungen begünstigen langsamen Flug; hohe Flächenbelastungen begünstigen schnellen Reiseflug.",
+        "q4": "Warum haben Segler eine geringere Flächenbelastung als Jäger?",
+        "q4_a": "Segler müssen langsam in schwachen Thermiken und an Hangaufwinden fliegen und dabei kontrolliert bei sehr niedrigen Geschwindigkeiten bleiben. Eine niedrige Flächenbelastung (20–40 kg/m²) sorgt für eine geringe Abrissgeschwindigkeit und ein hohes Auftriebs-Widerstands-Verhältnis bei niedrigen Geschwindigkeiten, was effizientes Gleiten ermöglicht. Jäger müssen schnell fliegen und aggressiv manövrieren; ihre hohe Flächenbelastung (300–700 kg/m²) bedeutet, dass höhere Geschwindigkeiten für genügend Auftrieb nötig sind, aber große Lastvielfache und hohe Geschwindigkeit sind wichtiger als eine niedrige Abrissgeschwindigkeit.",
+        "q5": "Wie wirkt sich die Höhe auf die Abrissgeschwindigkeit aus?",
+        "q5_a": "Die Luftdichte (ρ) nimmt mit der Höhe ab und verringert den bei gegebener Geschwindigkeit erzeugten aerodynamischen Auftrieb. Da Vs = √(2W / (ρ·S·CLmax)) gilt, bedeutet eine geringere ρ in der Höhe eine höhere wahre Fluggeschwindigkeit (TAS) beim Abriss. In 10,000 ft beträgt die Luftdichte etwa 74 % des Meeresspiegels, daher ist die TAS beim Abriss ungefähr 1/√0.74 ≈ 16 % höher. Die angezeigte Geschwindigkeit (IAS) bleibt beim Abriss jedoch ungefähr konstant, weil das Fahrtmessgerät den dynamischen Druck misst.",
+        "q6": "Was ist der Unterschied zwischen Bezugsflügelfläche und benetzter Fläche?",
+        "q6_a": "Die Bezugsflügelfläche (S) ist die Draufsicht-Projektion der Flügelkontur, einschließlich des im Rumpf liegenden Teils. Sie ist die konventionelle Referenz zur Normierung aerodynamischer Koeffizienten und zur Berechnung der Flächenbelastung. Die benetzte Fläche ist die gesamte tatsächlich vom Luftstrom umspülte Oberfläche (Ober- und Unterseite) und etwa doppelt so groß wie die Bezugsfläche. Für die Flächenbelastung W/S wird die Bezugsfläche verwendet; für Reibungswiderstandsberechnungen die benetzte Fläche."
+      }
+    },
+    "water-viscosity-calculator": {
+      "title": "Wasser-Viskositätsrechner",
+      "tagline": "Schätzen Sie dynamische Viskosität, kinematische Viskosität, Dichte und Reynolds-Zahl von Wasser aus Temperatur, Druck und optionalen Rohrströmungsdaten.",
+      "intro": "Geben Sie Wassertemperatur und Druck ein, um die Viskosität zu berechnen. Ergänzen Sie Strömungsgeschwindigkeit und Rohrdurchmesser, wenn Sie auch die Reynolds-Zahl benötigen.",
+      "field": {
+        "temperature": "Temperatur (°C)",
+        "pressure": "Druck (bar)",
+        "flowVelocity": "Strömungsgeschwindigkeit (m/s)",
+        "pipeDiameter": "Rohrdurchmesser (m)"
+      },
+      "placeholder": {
+        "temperature": "z. B. 20",
+        "pressure": "z. B. 1",
+        "flowVelocity": "z. B. 2",
+        "pipeDiameter": "z. B. 0.05"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "result": {
+        "heading": "Ergebnis",
+        "value": "Dynamische Viskosität {dynamic} mPa·s • Kinematische Viskosität {kinematic} mm²/s",
+        "dynamic": "Dynamische Viskosität",
+        "kinematic": "Kinematische Viskosität",
+        "density": "Geschätzte Dichte",
+        "reynolds": "Reynolds-Zahl",
+        "unitDynamic": "mPa·s",
+        "unitKinematic": "mm²/s",
+        "unitDensity": "kg/m³",
+        "unitReynolds": "",
+        "reynoldsUnavailable": "—",
+        "pressureNote": "Eingegebener Druck: {pressure} bar"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie gültige Zahlen ein. Temperatur und Druck sind erforderlich, und Geschwindigkeit und Durchmesser müssen bei Verwendung gemeinsam angegeben werden."
+      },
+      "hint": "Druck wird als Kontext akzeptiert, während das Viskositätsmodell für reines Wasser in üblichen ingenieurtechnischen Bereichen vor allem temperaturabhängig ist.",
+      "formula": "μ = 2.414×10^-5 × 10^(247.8 / (T_K − 140)) Pa·s • ν = μ / ρ • Re = ρvD / μ",
+      "about": {
+        "heading": "Über die Viskosität von Wasser",
+        "body": "Die Viskosität von Wasser beschreibt, wie stark flüssiges Wasser Strömung und Scherung widersteht. Praktisch sagt sie aus, wie „zäh“ oder „dünn“ sich Wasser verhält, wenn es sich in einem Rohr, um ein Pumpenlaufrad, über eine Wärmetauscherfläche oder durch eine Prozessleitung bewegt. Ingenieure arbeiten meist mit zwei verwandten Eigenschaften: der dynamischen Viskosität, meist mit μ bezeichnet, und der kinematischen Viskosität, mit ν bezeichnet. Die dynamische Viskosität misst die innere Reibung der Flüssigkeit selbst, während die kinematische Viskosität diese Reibung durch die Dichte teilt, sodass sich das Strömungsverhalten direkter vergleichen lässt. Dieser Rechner gibt die dynamische Viskosität in Millipascalsekunden (mPa·s) und die kinematische Viskosität in Quadratmillimetern pro Sekunde (mm²/s) aus, auch Zentistokes genannt.\n\nBei reinem Wasser ändert sich die Viskosität unter den meisten Alltagsbedingungen viel stärker mit der Temperatur als mit dem Druck. Kaltes Wasser ist deutlich viskoser als warmes Wasser, weil die Moleküle weniger Energie haben und die zwischenmolekulare Anziehung ihre Bewegung stärker beeinflusst. Mit steigender Temperatur sinkt der innere Widerstand schnell. Deshalb liegt die dynamische Viskosität von Wasser in der Nähe der Raumtemperatur bei etwa 1.002 mPa·s, während sie nahe dem Siedepunkt auf etwa 0.282 mPa·s fällt. Diese Änderung hat große Auswirkungen auf Pumpenleistung, Strömungsregime, Druckverlust und Wärmeübertragung. Schon ein mäßiger Temperaturanstieg kann ein System von träger laminarer Strömung in stärker turbulentes Verhalten verschieben.\n\nDer Rechner verwendet eine empirische Andrade-artige Gleichung für die dynamische Viskosität von reinem Wasser, eine gängige Näherung über einen breiten Temperaturbereich von flüssigem Wasser. Anschließend wird die Dichte mit einer einfachen quadratischen Beziehung um das bekannte Dichtemaximum nahe 4°C geschätzt. Teilt man die dynamische Viskosität durch die Dichte, erhält man die kinematische Viskosität. Obwohl die Dichtegleichung vereinfacht ist, eignet sie sich für allgemeine Entwurfsabschätzungen, schnelle Prüfungen, Übungsaufgaben und alltägliche Prozessrechnungen. Wenn Sie mit Salzwasser, Glykolmischungen, verschmutztem Prozesswasser oder sehr hohen Drücken arbeiten, ist eine spezialisierte Stoffdatenbank die bessere Wahl.\n\nWenn Sie außerdem Strömungsgeschwindigkeit und Rohrdurchmesser eingeben, schätzt der Rechner die Reynolds-Zahl mit Re = ρvD/μ. Die Reynolds-Zahl ist eine der nützlichsten dimensionslosen Größen in der Strömungsmechanik, weil sie hilft, das Strömungsverhalten einzuordnen. Niedrige Reynolds-Zahlen deuten auf viskose, geordnete Bewegung hin, bei der laminare Annahmen gelten können. Hohe Reynolds-Zahlen zeigen, dass Trägheitseffekte dominieren und Turbulenz wahrscheinlicher wird. Für Rohrinnenströmungen gilt oft: laminar bei Re unter etwa 2,300, Übergangsbereich dazwischen und turbulent oberhalb von etwa 4,000. Da die Viskosität im Nenner steht, führt wärmeres Wasser im selben Rohr meist zu einer höheren Reynolds-Zahl als kaltes Wasser.\n\nDamit ist die Wasser-Viskosität eine zentrale Auslegungsgröße im Bau-, Maschinen-, Chemie- und Umweltingenieurwesen. Sie wird verwendet, um Reibungsverluste abzuschätzen, Pumpen auszulegen, Wärmeübertragungsbedingungen zu vergleichen, Messungen zu interpretieren und Simulationseingaben zu prüfen. Studierende können mit dem Rechner sehen, wie stark sich Wassereigenschaften mit der Temperatur ändern, während Praktiker ihn für schnelle Vorabschätzungen vor dem Wechsel zu detaillierterer Software nutzen können. Kurz gesagt verbindet die Wasser-Viskosität Temperatur, Strömungswiderstand und Strömungsregime in einer kompakten physikalischen Größe, die fast jedes System mit flüssigem Wasser beeinflusst."
+      },
+      "examples": {
+        "heading": "Beispiele",
+        "intro": "Diese Beispiele zeigen, wie sich die Wasser-Viskosität mit der Temperatur ändert und wie optionale Strömungsdaten eine Reynolds-Zahl ergänzen.",
+        "colInput": "Eingabe",
+        "colOutput": "Ausgabe",
+        "colNote": "Hinweise",
+        "loadRoom": "Wasser bei 20°C laden",
+        "loadBoiling": "Wasser bei 100°C laden",
+        "loadFlow": "Rohrströmungsbeispiel laden",
+        "items": [
+          {
+            "input": "20°C, 1 bar",
+            "output": "Dynamisch: 1.002 mPa·s • Kinematisch: 1.003 mm²/s",
+            "note": "Wasser bei Raumtemperatur liegt nahe dem vertrauten Richtwert von 1 mPa·s und ist daher ein häufiger Bezugspunkt in Labor und Konstruktion."
+          },
+          {
+            "input": "100°C, 1 bar",
+            "output": "Dynamisch: 0.279 mPa·s • Kinematisch: 0.287 mm²/s",
+            "note": "Heißes Wasser fließt viel leichter als kaltes Wasser, daher sinkt die Viskosität stark und die Reynolds-Zahl steigt bei gleichen Rohrbedingungen."
+          },
+          {
+            "input": "4°C, 1 bar",
+            "output": "Dynamisch: 1.547 mPa·s • Kinematisch: 1.547 mm²/s",
+            "note": "Nahe 4°C ist Wasser am dichtesten und vergleichsweise viskos, sodass sich der Impuls langsamer ausbreitet als bei Raumtemperatur."
+          },
+          {
+            "input": "20°C, 1 bar, 2 m/s, 0.05 m pipe",
+            "output": "Re ≈ 99,749",
+            "note": "Mit Geschwindigkeit und Durchmesser zeigt sich, dass gewöhnliche Wasserversorgung oft weit im turbulenten Bereich liegt."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Anwendung",
+        "steps": [
+          "Geben Sie die Wassertemperatur in Grad Celsius und den Betriebsdruck in bar ein. Diese beiden Felder sind für jede Berechnung erforderlich.",
+          "Wenn Sie eine Reynolds-Zahl benötigen, tragen Sie zusätzlich die mittlere Strömungsgeschwindigkeit und den Innendurchmesser des Rohrs ein. Lassen Sie die beiden optionalen Felder leer, wenn Sie nur Viskositätswerte möchten.",
+          "Klicken Sie auf Berechnen, um dynamische Viskosität, kinematische Viskosität, geschätzte Dichte und bei vorhandenen Strömungsdaten die Reynolds-Zahl anzuzeigen.",
+          "Nutzen Sie die Beispiele, um kaltes, Raumtemperatur- und heißes Wasser zu vergleichen, und setzen Sie danach das Formular zurück, um eine neue Betriebsbedingung zu testen."
+        ]
+      },
+      "faq": {
+        "heading": "Häufig gestellte Fragen",
+        "items": [
+          {
+            "q": "Was ist der Unterschied zwischen dynamischer und kinematischer Viskosität?",
+            "a": "Die dynamische Viskosität misst den inneren Widerstand eines Fluids gegen Scherung und wird meist in Pa·s oder mPa·s angegeben. Die kinematische Viskosität teilt die dynamische Viskosität durch die Dichte und beschreibt damit, wie sich Impuls im Fluid ausbreitet; üblich sind mm²/s oder cSt."
+          },
+          {
+            "q": "Warum sinkt die Viskosität von Wasser mit steigender Temperatur?",
+            "a": "Wenn Wasser wärmer wird, besitzen die Moleküle mehr thermische Energie und können sich leichter aneinander vorbeibewegen. Dadurch nimmt die innere Reibung ab, sodass warmes Wasser meist eine deutlich geringere Viskosität hat als kaltes Wasser."
+          },
+          {
+            "q": "Warum wird Druck angegeben, wenn die Formel temperaturbasiert ist?",
+            "a": "Druck ist enthalten, weil er in realen Anlagen eine wichtige Betriebsgröße ist und hilft, den betrachteten Zustand zu dokumentieren. Für gewöhnliche Wasserberechnungen in moderaten Bereichen dominiert die Temperatur die Viskositätsänderung, daher reicht ein einfaches temperaturgetriebenes Modell oft für schnelle Abschätzungen aus."
+          },
+          {
+            "q": "Welche Reynolds-Zahl sollte ich bei Rohrströmung erwarten?",
+            "a": "Für Rohrinnenströmungen gelten Werte unter etwa 2,300 meist als laminar, während Werte über etwa 4,000 normalerweise turbulent sind. Der Bereich dazwischen ist Übergang, in dem Störungen und Eintrittsbedingungen das tatsächliche Strömungsbild stark beeinflussen."
+          },
+          {
+            "q": "Sind diese Werte für die technische Auslegung ausreichend?",
+            "a": "Sie eignen sich sehr gut für Vorabschätzungen, Übungsaufgaben und schnelle Plausibilitätsprüfungen. Für die Endauslegung kritischer Systeme, ungewöhnliche Wasserchemie oder extreme Temperatur- und Druckbereiche sollten Sie eine höherwertige Stoffdatenquelle heranziehen."
+          }
+        ]
+      }
+    },
+    "watt-calculator": {
+      "title": "Watt-Rechner",
+      "tagline": "Berechne Volt, Ampere, Ohm, Watt und optional Wattstunden, indem du zwei grundlegende elektrische Werte eingibst.",
+      "intro": "Gib zwei Werte aus Spannung, Strom, Widerstand oder Leistung ein. Ergänze die Zeit, wenn du auch den Energieverbrauch in Wattstunden berechnen möchtest.",
+      "field": {
+        "voltage": "Spannung (V)",
+        "current": "Strom (A)",
+        "resistance": "Widerstand (Ω)",
+        "power": "Leistung (W)",
+        "time": "Zeit (Stunden)"
+      },
+      "placeholder": {
+        "voltage": "z. B. 120",
+        "current": "z. B. 5",
+        "resistance": "z. B. 24",
+        "power": "z. B. 600",
+        "time": "z. B. 3"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "result": {
+        "heading": "Ergebnis",
+        "value": "Berechnete Leistung: {power} W",
+        "voltage": "Spannung",
+        "current": "Strom",
+        "resistance": "Widerstand",
+        "power": "Leistung",
+        "energy": "Energie",
+        "unitVoltage": "V",
+        "unitCurrent": "A",
+        "unitResistance": "Ω",
+        "unitPower": "W",
+        "unitEnergy": "Wh",
+        "energyUnavailable": "—"
+      },
+      "error": {
+        "invalid": "Bitte gib gültige Zahlen ein und liefere genau zwei Werte aus Spannung, Strom, Widerstand oder Leistung. Die Zeit ist optional und muss größer oder gleich null sein."
+      },
+      "hint": "Verwende genau zwei der vier elektrischen Felder. Die Zeit zählt nicht als Paar und wird nur für die Wattstunden berechnet.",
+      "formula": "P = V × I • V = I × R • E = P × t",
+      "about": {
+        "heading": "Über den Watt-Rechner",
+        "body": "Der Watt-Rechner verbindet die zwei in der elektrischen Praxis wichtigsten Beziehungen: das Ohmsche Gesetz und die grundlegende Leistungsformel. Das Ohmsche Gesetz besagt, dass die Spannung gleich Strom mal Widerstand ist, also V = I × R. Elektrische Leistung ist die Rate, mit der Energie übertragen, umgewandelt oder verbraucht wird, und in einfachen Schaltungen gilt P = V × I. Sobald du zwei der vier Grundgrößen Spannung, Strom, Widerstand und Leistung kennst, kannst du die beiden anderen meist bestimmen. Dieses Tool automatisiert diese Algebra, damit du aus zwei bekannten Werten schnell einen vollständigen Plausibilitätscheck der Schaltung erhältst.\n\nDas Watt ist eine Einheit der Leistung, nicht der Energie. Ein Watt entspricht einem Joule pro Sekunde. Diese Unterscheidung ist wichtig, weil viele umgangssprachlich sagen, ein Gerät „verbraucht 1.500 Watt pro Stunde“, obwohl sie meinen, dass ein 1.500-Watt-Gerät, das eine Stunde läuft, 1.500 Wattstunden Energie verbraucht. Deshalb enthält der Rechner ein optionales Zeitfeld. Wenn du eine Nutzungsdauer in Stunden eingibst, multipliziert das Tool die berechnete Leistung mit der Zeit und gibt Wattstunden aus. So gelangst du direkt von Schaltungswerten zu Energieverbrauch. Das ist nützlich, wenn du Geräte, Ladegeräte oder Batterielasten vergleichen oder den Stromverbrauch vor der Umrechnung in Kilowattstunden abschätzen willst.\n\nUnterschiedliche Eingabekombinationen erzählen unterschiedliche Geschichten über dieselbe Schaltung. Spannung und Strom liefern sofort die Leistung über P = V × I und den Widerstand über R = V / I. Spannung und Widerstand sagen dir, wie viel Strom fließt und wie viel Leistung umgesetzt wird. Strom und Widerstand sind üblich, wenn du die Last kennst und die Versorgungsanforderungen ableiten willst. Spannung und Leistung sind bei Haushalts- oder Industriegeräten häufig, weil viele Typenschilder Nennspannung und Wattzahl angeben. Widerstand und Leistung sind hilfreich bei Heizelementen, ohmschen Lasten oder Laborübungen, in denen der Strom nicht direkt gemessen wird. Indem der Rechner jede gültige Paarung zulässt, spiegelt er wider, wie elektrische Aufgaben in Lehrbüchern, am Prüftisch und bei der Fehlersuche tatsächlich gestellt werden.\n\nSolche Berechnungen tauchen überall auf. Ein 120-Volt-Kreis mit 5 Ampere verbraucht 600 Watt und entspricht einer äquivalenten Last von 24 Ohm. Ein 12-Volt-Autoteil mit 2 Ampere verbraucht 24 Watt und hat 6 Ohm Widerstand. Ein 240-Volt-Heizer mit 1.500 Watt zieht 6,25 Ampere und hat einen effektiven Widerstand von 38,4 Ohm. Genau solche schnellen Prüfungen nutzen Elektriker, Elektronikbastler, Studierende und Wartungsteams, um Leitungen zu dimensionieren, Sicherungen auszuwählen, Lasten zu diagnostizieren oder Energiekosten zu schätzen.\n\nDer Rechner ist für einfache Gleichstrom- oder Einwert-Äquivalentanalysen gedacht. Reale Wechselstromsysteme können Phasenwinkel, Leistungsfaktor, Blindleistung, Oberschwingungen und Einschaltströme beinhalten und erfordern eine deutlich komplexere Behandlung. Dennoch sind die hier berechneten Werte eine hervorragende erste Näherung und eine gute Lernhilfe. Wenn du einen schnellen und zuverlässigen Weg brauchst, zwischen Volt, Ampere, Ohm, Watt und Wattstunden zu wechseln, hält dieses Tool die Formeln sichtbar und erledigt die Rechnung sofort."
+      },
+      "examples": {
+        "heading": "Beispiele",
+        "intro": "Diese typischen elektrischen Fälle zeigen, wie zwei bekannte Werte den Rest der Schaltung bestimmen und wie mit Zeit auch der Energieverbrauch berechnet wird.",
+        "colInput": "Eingabe",
+        "colOutput": "Ausgabe",
+        "colNote": "Hinweise",
+        "loadOutlet": "Last 120V / 5A",
+        "loadBattery": "Last 12V / 2A",
+        "loadHeater": "Last 240V / 1500W",
+        "items": [
+          {
+            "input": "120 V, 5 A",
+            "output": "P = 600 W, R = 24 Ω",
+            "note": "Ein Standard-Steckdosenbeispiel. Sobald Spannung und Strom bekannt sind, folgen Leistung und Ersatzwiderstand sofort."
+          },
+          {
+            "input": "12 V, 2 A",
+            "output": "P = 24 W, R = 6 Ω",
+            "note": "Typische Niederspannungs-Batterielast. Dieses Paar ist nützlich für Fahrzeuge, tragbare Elektronik und Labornetzteile."
+          },
+          {
+            "input": "240 V, 1500 W",
+            "output": "I = 6.25 A, R = 38.4 Ω",
+            "note": "Eine typische heizungsartige ohmsche Last. Nennspannung und Nennleistung stehen oft als einzige Werte auf dem Typenschild."
+          },
+          {
+            "input": "240 V, 1500 W, 3 h",
+            "output": "Energy = 4500 Wh",
+            "note": "Mit Zeit wird aus einer Leistungsrechnung eine Energieabschätzung, die der Ausgangspunkt für Kostenberechnungen ist."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwendest du den Rechner",
+        "steps": [
+          "Gib genau zwei der vier elektrischen Werte ein: Spannung, Strom, Widerstand oder Leistung. Lass die anderen beiden leer, damit der Rechner sie bestimmen kann.",
+          "Trage optional die Zeit in Stunden ein, wenn du die berechnete Leistung in Wattstunden umrechnen möchtest.",
+          "Klicke auf Berechnen, um die vollständigen Werte für Spannung, Strom, Widerstand und Leistung sowie bei vorhandener Zeit die Energie anzuzeigen.",
+          "Nutze die Beispiele für typische Haushalts-, Niederspannungs- und Heizerszenarien und setze das Formular anschließend zurück, um eigene Werte zu testen."
+        ]
+      },
+      "faq": {
+        "heading": "Häufige Fragen",
+        "items": [
+          {
+            "q": "Was ist ein Watt?",
+            "a": "Ein Watt ist eine Einheit der Leistung und entspricht einem Joule pro Sekunde. Es beschreibt, wie schnell elektrische Energie übertragen oder verbraucht wird, nicht wie viel Energie über längere Zeit genutzt wurde."
+          },
+          {
+            "q": "Warum brauche ich genau zwei elektrische Eingaben?",
+            "a": "Die Beziehungen zwischen Spannung, Strom, Widerstand und Leistung sind gekoppelt, daher reichen zwei unabhängige Werte meist aus, um die anderen beiden zu bestimmen. Bei weniger als zwei Angaben fehlt die Information, bei mehr als zwei können sich die Werte widersprechen."
+          },
+          {
+            "q": "Worin liegt der Unterschied zwischen Watt und Wattstunden?",
+            "a": "Watt misst die Leistungsrate zu einem bestimmten Zeitpunkt. Wattstunden messen die gesamte Energie über einen Zeitraum und ergeben sich aus Watt mal Stunden."
+          },
+          {
+            "q": "Kann ich das für Wechselstromkreise verwenden?",
+            "a": "Als erste Näherung für ohmsche oder einfache Ersatzlasten ja. Für echte Wechselstromsysteme mit Leistungsfaktor, Blindleistung oder Phasenwinkel ist eine spezielle AC-Leistungsberechnung sinnvoller."
+          },
+          {
+            "q": "Warum zeigt der Rechner bei Geräten einen Widerstand an?",
+            "a": "Jede stationäre elektrische Last lässt sich am Betriebspunkt als Ersatzwiderstand darstellen, selbst wenn das reale Gerät komplexer aufgebaut ist. Dadurch ist der Widerstand ein nützlicher abgeleiteter Wert für Vergleich, Fehlersuche und Plausibilitätsprüfungen."
+          }
+        ]
+      }
+    },
+    "watt-converter": {
+      "title": "Watt-Umrechner",
+      "tagline": "Rechne Watt, Pferdestärken, Kilowatt, Megawatt, BTU pro Stunde und andere Leistungseinheiten schnell mit faktorbasierter Berechnung um.",
+      "intro": "Gib einen Leistungswert ein, wähle Ausgangs- und Zieleinheit aus und berechne das umgerechnete Ergebnis sofort.",
+      "field": {
+        "powerValue": "Leistungswert",
+        "fromUnit": "Ausgangseinheit",
+        "toUnit": "Zieleinheit"
+      },
+      "placeholder": {
+        "powerValue": "z. B. 1000"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "result": {
+        "heading": "Ergebnis",
+        "value": "{input} {fromUnit} = {output} {toUnit}",
+        "inWatts": "Entspricht in Watt",
+        "formula": "Methode"
+      },
+      "error": {
+        "invalid": "Bitte gib einen gültigen numerischen Leistungswert ein."
+      },
+      "formula": "Zuerst in Watt umrechnen, dann durch den Faktor der Zieleinheit teilen.",
+      "unit": {
+        "watt": "Watt (W)",
+        "kilowatt": "Kilowatt (kW)",
+        "megawatt": "Megawatt (MW)",
+        "milliwatt": "Milliwatt (mW)",
+        "horsepower_mech": "Pferdestärke (mechanisch) (hp)",
+        "horsepower_metric": "Pferdestärke (metrisch) (hp m)",
+        "btu_per_hour": "BTU pro Stunde (BTU/hr)",
+        "calorie_per_second": "Kalorie pro Sekunde (cal/s)",
+        "erg_per_second": "Erg pro Sekunde (erg/s)",
+        "foot_pound_per_minute": "Foot-Pound pro Minute (ft·lb/min)"
+      },
+      "about": {
+        "heading": "Über die Watt-Umrechnung",
+        "body": "Bei der Umrechnung von Leistungseinheiten geht es darum, dieselbe Rate der Energieübertragung in verschiedenen Messsystemen auszudrücken. Das Watt ist die SI-Einheit der Leistung und entspricht einem Joule pro Sekunde. Da es zum metrischen System gehört und in Elektrotechnik, Physik, HLK-Technik und industriellen Spezifikationen überall vorkommt, eignet es sich ideal als Referenzeinheit. Ein Watt-Umrechner übersetzt den Ausgangswert zuerst in Watt und teilt ihn dann durch den Faktor der Zieleinheit. Sobald die Faktoren definiert sind, wird jede Umrechnung zwischen zwei unterstützten Einheiten zu einer einfachen Verhältnisrechnung.\n\nViele Einheiten auf dieser Seite stammen aus sehr unterschiedlichen technischen Traditionen. Kilowatt und Megawatt sind metrische Vielfache des Watts und üblich bei Stromversorgung, Motoren und Erzeugung im Versorgungsmaßstab. Milliwatt werden in Elektronik, Sensoren, optischen Geräten und Niedrigleistungssignalen verwendet. Mechanische und metrische Pferdestärken stammen aus älterer Ingenieurpraxis und werden noch immer häufig für Motoren, Pumpen, Kompressoren und Industrieanlagen genutzt. BTU pro Stunde erscheint bei Heizung und Kühlung, besonders bei der Auslegung von HLK-Anlagen. Kalorien pro Sekunde und Erg pro Sekunde sind heute weniger verbreitet, tauchen aber noch in älteren wissenschaftlichen Quellen oder Nischenkontexten auf. Foot-Pound pro Minute gehört zur imperialen mechanischen Tradition und ist nützlich, wenn ältere Maschinenspezifikationen verglichen werden.\n\nDer Umrechner verwendet für jede Einheit feste Faktoren nach Watt. Ein Kilowatt entspricht exakt 1,000 Watt, ein Megawatt 1,000,000 Watt und ein Milliwatt 0.001 Watt. Eine mechanische Pferdestärke entspricht etwa 745.69987 Watt, eine metrische Pferdestärke etwa 735.49875 Watt. BTU pro Stunde werden mit 0.29307107 Watt umgerechnet, Kalorien pro Sekunde mit 4.1868 Watt, Erg pro Sekunde mit 1×10^-7 Watt und Foot-Pound pro Minute mit 0.022597 Watt. Da jede Umrechnung über Watt läuft, bleibt das Ergebnis unabhängig von den gewählten Start- und Zieleinheiten konsistent.\n\nDas ist in der Praxis wichtig, weil Datenblätter von Geräten selten dieselben Einheitenkonventionen verwenden. Ein Elektrogerät kann in Watt angegeben sein, ein Motor in Pferdestärken, ein HLK-Gerät in BTU pro Stunde und ein Kraftwerk in Megawatt. Wenn du sie vergleichen, eine gleichwertige Kapazität schätzen oder Daten von einem Berichtsformat in ein anderes übertragen musst, ist die Einheitenumrechnung fast immer der erste Schritt. Auch Studierende begegnen diesen Umrechnungen in Physik- und Thermodynamikaufgaben, in denen mehrere Traditionen in einer einzigen Frage zusammentreffen. Sorgfältiges Umrechnen verhindert Größenordnungsfehler, die eine Konstruktionsentscheidung oder Prüfungsantwort verfälschen können.\n\nEine gute Plausibilitätsprüfung hilft. Wenn du von Kilowatt in Watt umrechnest, sollte die Zahl größer werden, weil ein Kilowatt eine größere Einheit ist. Wenn du von Watt in Pferdestärken umrechnest, sollte die Zahl normalerweise kleiner werden, weil eine Pferdestärke mehrere hundert Watt umfasst. Dieser Umrechner hält den Vorgang transparent, indem er auch den entsprechenden Wattwert anzeigt. So lässt sich leicht prüfen, ob das Ergebnis in die erwartete Richtung skaliert. Ob du Motoren vergleichst, Geräteleistungen prüfst oder eine alte Ingenieurtabelle überträgst: Der Watt-Umrechner bietet eine schnelle und konsistente Brücke zwischen Leistungseinheiten."
+      },
+      "examples": {
+        "heading": "Beispiele",
+        "intro": "Diese Beispiele zeigen die häufigsten Leistungsumrechnungen in elektrischen, mechanischen und thermischen Zusammenhängen.",
+        "colInput": "Eingabe",
+        "colOutput": "Ausgabe",
+        "colNote": "Hinweise",
+        "loadKilowatt": "1 kW → W laden",
+        "loadHorsepower": "1 hp → W laden",
+        "loadHalfKilowatt": "500 W → kW laden",
+        "items": [
+          {
+            "input": "1 Kilowatt (kW)",
+            "output": "1000 Watt (W)",
+            "note": "Metrische Leistungsvielfache sind exakt, daher entspricht ein Kilowatt immer tausend Watt."
+          },
+          {
+            "input": "1 Pferdestärke (mechanisch) (hp)",
+            "output": "745.69987 Watt (W)",
+            "note": "Mechanische Pferdestärken sind bei Verbrennungsmotoren und Elektromotoren üblich, besonders in nordamerikanischen Gerätedaten."
+          },
+          {
+            "input": "1000 Watt (W)",
+            "output": "1.34102 Pferdestärken (mechanisch) (hp)",
+            "note": "Die Rückrechnung von Watt in Pferdestärken ist nützlich, wenn elektrische Lasten mit Motorleistungen verglichen werden."
+          },
+          {
+            "input": "500 Watt (W)",
+            "output": "0.5 Kilowatt (kW)",
+            "note": "Die Umrechnung zwischen Watt und Kilowatt ist bei Energieetiketten von Geräten und Spezifikationen kleiner Ausrüstung üblich."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwendest du den Rechner",
+        "steps": [
+          "Gib den numerischen Leistungswert ein, den du umrechnen möchtest. Der Rechner akzeptiert ganze Zahlen und Dezimalzahlen.",
+          "Wähle die Ausgangseinheit aus der Liste Ausgangseinheit und die Zieleinheit aus der Liste Zieleinheit.",
+          "Klicke auf Berechnen, um den umgerechneten Wert und die entsprechende Leistung in Watt zu sehen.",
+          "Nutze die durchgerechneten Beispiele, um gängige Umrechnungen zwischen Kilowatt, Pferdestärken und Watt zu vergleichen, und setze das Formular für einen neuen Fall zurück."
+        ]
+      },
+      "faq": {
+        "heading": "Häufig gestellte Fragen",
+        "items": [
+          {
+            "q": "Warum verwendet der Umrechner Watt als Zwischenschritt?",
+            "a": "Watt ist die SI-Basiseinheit für Leistung und bietet eine neutrale Referenz über elektrische, thermische und mechanische Systeme hinweg. Wenn alles zuerst in Watt umgerechnet wird, bleibt jede paarweise Umrechnung konsistent und leicht überprüfbar."
+          },
+          {
+            "q": "Was ist der Unterschied zwischen mechanischer und metrischer Pferdestärke?",
+            "a": "Es sind zwei eng verwandte, aber unterschiedliche historische Definitionen der Pferdestärke. Die mechanische Pferdestärke beträgt etwa 745.69987 Watt, während die metrische Pferdestärke etwa 735.49875 Watt beträgt. Der Zahlenunterschied ist klein, aber real."
+          },
+          {
+            "q": "Wann sollte ich BTU pro Stunde statt Watt verwenden?",
+            "a": "BTU pro Stunde ist bei Heiz- und Kühlspezifikationen üblich, besonders für HLK-Leistung. Watt ist in Physik und Elektrotechnik universeller; die Umrechnung zwischen beiden hilft, thermische und elektrische Geräte auf derselben Grundlage zu vergleichen."
+          },
+          {
+            "q": "Warum kann die umgerechnete Zahl größer werden, obwohl die Leistung gleich bleibt?",
+            "a": "Die physikalische Leistung ändert sich nicht, nur die Größe der Einheit, mit der du sie beschreibst. Die Umrechnung in eine kleinere Einheit ergibt einen größeren Zahlenwert, während die Umrechnung in eine größere Einheit einen kleineren Zahlenwert ergibt."
+          },
+          {
+            "q": "Sind diese Faktoren genau genug für technische Arbeit?",
+            "a": "Ja, die aufgeführten Faktoren eignen sich für allgemeine Ingenieurarbeit, Ausbildung und Spezifikationsvergleiche. Für vertragliche oder regulatorische Dokumente solltest du dennoch die exakte Einheitenkonvention verwenden, die der maßgebliche Standard verlangt."
+          }
+        ]
+      }
+    },
+    "watt-hour-calculator": {
+      "title": "Wattstunden-Rechner",
+      "tagline": "Berechnet tägliche Wattstunden, monatliche Kilowattstunden und Stromkosten aus Leistung, Nutzungsdauer und Tarif.",
+      "intro": "Gib die Leistung des Geräts, die tägliche Nutzungsdauer, die Tage pro Monat und deinen Stromtarif ein, um Verbrauch und Monatskosten zu schätzen.",
+      "field": {
+        "powerRating": "Leistung (Watt)",
+        "usageTime": "Nutzungsdauer (Stunden)",
+        "daysPerMonth": "Tage pro Monat",
+        "electricityRate": "Stromtarif ($/kWh)"
+      },
+      "placeholder": {
+        "powerRating": "z. B. 1500",
+        "usageTime": "z. B. 2",
+        "daysPerMonth": "z. B. 30",
+        "electricityRate": "z. B. 0.12"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "result": {
+        "heading": "Ergebnis",
+        "value": "Monatsenergie {monthKwh} kWh • Monatliche Kosten {cost}",
+        "energyPerDay": "Energie pro Tag",
+        "energyPerMonth": "Energie pro Monat",
+        "monthlyCost": "Monatliche Kosten",
+        "unitWh": "Wh",
+        "unitKwh": "kWh",
+        "unitCurrency": "$"
+      },
+      "error": {
+        "invalid": "Bitte gib in allen vier Feldern gültige nicht-negative Zahlen ein."
+      },
+      "formula": "Tagesenergie = Leistung × Stunden • Monatsenergie = Leistung × Stunden × Tage / 1000 • Monatliche Kosten = Monatsenergie × Tarif",
+      "about": {
+        "heading": "Über die Wattstunden-Berechnung",
+        "body": "Ein Wattstunden-Rechner schätzt den Energieverbrauch, indem er die Nennleistung eines Geräts mit der Laufzeit kombiniert. Leistung beschreibt die Rate, mit der Energie verbraucht wird, während Energie die insgesamt über einen Zeitraum verbrauchte Menge angibt. Wenn ein Gerät 100 Watt zieht und 1 Stunde läuft, verbraucht es 100 Wattstunden Energie. Läuft es 10 Stunden, verbraucht es 1.000 Wattstunden, also 1 Kilowattstunde (kWh). Dieser Unterschied zwischen Leistung und Energie ist entscheidend, weil Stromrechnungen nach verbrauchter Energie über die Zeit abgerechnet werden und nicht nur nach einem momentanen Wattwert.\n\nDie vier Eingaben dieses Werkzeugs entsprechen einer typischen Schätzaufgabe für Haushalt oder Kleinunternehmen. Zuerst gibst du die Leistung in Watt ein, meist vom Typenschild oder Datenblatt des Geräts. Dann trägst du die tägliche Nutzungsdauer in Stunden ein. Anschließend ergänzt du die Anzahl der Tage im Abrechnungsmonat oder im gewünschten Zeitraum. Zum Schluss gibst du den Strompreis in Dollar pro Kilowattstunde ein. Der Rechner zeigt dann die Tagesenergie in Wattstunden, die Monatsenergie in Kilowattstunden und die geschätzten monatlichen Kosten an. So lässt sich ein Typenschildwert leicht in eine realistische Budgetschätzung umwandeln.\n\nDie Formeln sind einfach, aber erstaunlich nützlich. Die Tagesenergie entspricht der Leistung multipliziert mit den täglichen Stunden. Die Monatsenergie erweitert das, indem die Tagesenergie mit der Anzahl der Tage multipliziert und anschließend durch 1.000 geteilt wird, um Wattstunden in Kilowattstunden umzuwandeln. Die monatlichen Kosten ergeben sich dann aus der Monatsenergie multipliziert mit dem lokalen Stromtarif. Diese Beziehungen sind zwar von Hand gut berechenbar, aber wenn man viele Geräte vergleicht oder verschiedene Nutzungsszenarien testet, reduziert ein spezieller Rechner Fehler und beschleunigt Entscheidungen. Besonders hilfreich ist er beim Vergleichen längerer Laufzeiten, höherer Lasten oder steigender Strompreise.\n\nSolche Schätzungen sind in der praktischen Energiesteuerung überall relevant. Eine 9-Watt-LED-Lampe, die täglich 4 Stunden lang 30 Tage genutzt wird, verbraucht nur 1.08 kWh im Monat und kostet bei üblichen Haushaltsstrompreisen wenig. Ein 1.500-Watt-Heizgerät, das 2 Stunden pro Tag läuft, kann 90 kWh pro Monat verbrauchen und deutlich teurer sein. Ein 200-Watt-Fernseher, der täglich 5 Stunden läuft, liegt bei 30 kWh pro Monat und damit im Mittelfeld. Der Rechner macht diese Vergleiche sofort sichtbar und hilft zu erkennen, welche Geräte den Verbrauch dominieren und wo Effizienzmaßnahmen am meisten bringen.\n\nAuch wenn es sich nur um eine Schätzung handelt, ist sie für die Planung sehr nützlich. Reale Geräte können takten, im Standby und im Betrieb unterschiedliche Leistungen ziehen oder je nach Thermostateinstellung und Umgebung variieren. Trotzdem sind Berechnungen auf Basis des Typenschilds ein hervorragender Ausgangspunkt für Budgetplanung, Nachhaltigkeitsprüfungen, Unterrichtsaufgaben und einfache Audits. Wenn du Beleuchtungs-Upgrades vergleichen, Heizkosten schätzen, den Einfluss von Unterhaltungselektronik verstehen oder den Unterschied zwischen Watt und Kilowattstunden erklären willst, macht ein Wattstunden-Rechner aus grundlegenden Eingaben verwertbare Energieeinsichten."
+      },
+      "examples": {
+        "heading": "Beispiele",
+        "intro": "Diese Beispiele vergleichen energiearme Beleuchtung, leistungsstarke Heizung und alltägliche Unterhaltungslasten über einen Monatszeitraum.",
+        "colInput": "Eingabe",
+        "colOutput": "Ausgabe",
+        "colNote": "Hinweise",
+        "loadLed": "LED-Lampe laden",
+        "loadHeater": "Heizgerät laden",
+        "loadTv": "Fernseher laden",
+        "items": [
+          {
+            "input": "9 W, 4 h/day, 30 days, $0.12/kWh",
+            "output": "1.08 kWh/month, $0.1296/month",
+            "note": "Eine moderne LED-Lampe verbraucht sehr wenig Energie, daher bleibt selbst der tägliche Einsatz günstig."
+          },
+          {
+            "input": "1500 W, 2 h/day, 30 days, $0.12/kWh",
+            "output": "90 kWh/month, $10.8/month",
+            "note": "Widerstandsheizungen haben eine hohe Leistung, sodass sich Laufzeit schnell in spürbare monatliche Kosten verwandelt."
+          },
+          {
+            "input": "200 W, 5 h/day, 30 days, $0.15/kWh",
+            "output": "30 kWh/month, $4.5/month",
+            "note": "Fernseher und Unterhaltungsgeräte liegen oft im mittleren Bereich, wo der Verbrauch relevant, aber noch gut beherrschbar ist."
+          },
+          {
+            "input": "150 W, 24 h/day, 30 days, $0.12/kWh",
+            "output": "108 kWh/month, $12.96/month",
+            "note": "Geräte mit Dauerbetrieb können mit höher leistungsstarken Geräten mithalten, die nur zeitweise laufen."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwendest du es",
+        "steps": [
+          "Gib die Leistung des Geräts in Watt genau so ein, wie sie auf dem Typenschild oder Datenblatt steht.",
+          "Gib die durchschnittliche tägliche Laufzeit in Stunden ein und ergänze dann die Tage des Monats oder des gewünschten Zeitraums.",
+          "Gib deinen Stromtarif in Dollar pro Kilowattstunde ein und klicke auf Berechnen, um tägliche Wattstunden, monatliche Kilowattstunden und geschätzte Kosten zu sehen.",
+          "Nutze die Beispiele, um Lampe, Heizgerät und Fernseher zu vergleichen, und setze das Formular dann zurück, um deine eigenen Geräte zu prüfen."
+        ]
+      },
+      "faq": {
+        "heading": "Häufig gestellte Fragen",
+        "items": [
+          {
+            "q": "Was ist der Unterschied zwischen Watt und Wattstunden?",
+            "a": "Watt messen die Leistung zu einem bestimmten Zeitpunkt. Wattstunden messen die gesamte Energie über die Zeit, also Leistung mal Nutzungsdauer."
+          },
+          {
+            "q": "Warum wird die Monatsenergie in kWh angezeigt?",
+            "a": "Stromversorger rechnen Strom meist in Kilowattstunden statt in Wattstunden ab. Die Anzeige in kWh macht den Monatsverbrauch direkt mit der Stromrechnung vergleichbar."
+          },
+          {
+            "q": "Wie genau ist eine Kostenabschätzung auf Basis des Typenschilds?",
+            "a": "Sie ist eine solide erste Näherung für Planung und Vergleiche. Der tatsächliche Verbrauch kann abweichen, wenn Geräte takten, Standby-Leistung ziehen oder unter ihrer Nennleistung laufen."
+          },
+          {
+            "q": "Kann ich das auch für batteriebetriebene Geräte verwenden?",
+            "a": "Ja, solange du die durchschnittliche Leistungsaufnahme und die Laufzeit kennst. Dieselben Energiebeziehungen gelten auch dann, wenn die Quelle eine Batterie statt das Stromnetz ist."
+          },
+          {
+            "q": "Warum kann ein Gerät mit geringerer Leistung trotzdem teuer im Betrieb sein?",
+            "a": "Die Laufzeit ist genauso wichtig wie die Leistung. Ein Gerät mit mittlerer Leistung, das den ganzen Tag läuft, kann über einen Monat mehr Energie verbrauchen als ein höher leistungsstarkes Gerät, das nur kurz genutzt wird."
+          }
+        ]
+      }
     }
   }
 }
