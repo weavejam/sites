@@ -265,6 +265,10 @@ import { fixtures as f_supplementary_angles_calculator } from "@/tools/supplemen
 import { fixtures as f_surface_area_calculator } from "@/tools/surface-area-calculator.fixtures";
 import { fixtures as f_surface_area_of_a_hemisphere_calculator } from "@/tools/surface-area-of-a-hemisphere-calculator.fixtures";
 import { fixtures as f_surface_area_of_a_triangular_prism_calculator } from "@/tools/surface-area-of-a-triangular-prism-calculator.fixtures";
+import { fixtures as f_tangent_of_a_circle_calculator } from "@/tools/tangent-of-a-circle-calculator.fixtures";
+import { fixtures as f_tensor_product_calculator } from "@/tools/tensor-product-calculator.fixtures";
+import { fixtures as f_terminating_decimals_calculator } from "@/tools/terminating-decimals-calculator.fixtures";
+import { fixtures as f_tetrahedron_volume_calculator } from "@/tools/tetrahedron-volume-calculator.fixtures";
 import { fixtures as f_thermal_energy_calculator } from "@/tools/thermal-energy-calculator.fixtures";
 import { fixtures as f_thermal_equilibrium_calculator } from "@/tools/thermal-equilibrium-calculator.fixtures";
 import { fixtures as f_thermal_expansion_calculator } from "@/tools/thermal-expansion-calculator.fixtures";
@@ -272,6 +276,7 @@ import { fixtures as f_thermal_resistance_calculator } from "@/tools/thermal-res
 import { fixtures as f_thermal_stress_calculator } from "@/tools/thermal-stress-calculator.fixtures";
 import { fixtures as f_thin_film_optical_coating_calculator } from "@/tools/thin-film-optical-coating-calculator.fixtures";
 import { fixtures as f_thin_lens_equation_calculator } from "@/tools/thin-lens-equation-calculator.fixtures";
+import { fixtures as f_three_dimensional_distance_calculator } from "@/tools/three-dimensional-distance-calculator.fixtures";
 import { fixtures as f_three_phase_calculator } from "@/tools/three-phase-calculator.fixtures";
 import { fixtures as f_thrust_to_weight_ratio_calculator } from "@/tools/thrust-to-weight-ratio-calculator.fixtures";
 import { fixtures as f_time_dilation_calculator } from "@/tools/time-dilation-calculator.fixtures";
@@ -599,6 +604,10 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "surface-area-calculator": f_surface_area_calculator,
   "surface-area-of-a-hemisphere-calculator": f_surface_area_of_a_hemisphere_calculator,
   "surface-area-of-a-triangular-prism-calculator": f_surface_area_of_a_triangular_prism_calculator,
+  "tangent-of-a-circle-calculator": f_tangent_of_a_circle_calculator,
+  "tensor-product-calculator": f_tensor_product_calculator,
+  "terminating-decimals-calculator": f_terminating_decimals_calculator,
+  "tetrahedron-volume-calculator": f_tetrahedron_volume_calculator,
   "thermal-energy-calculator": f_thermal_energy_calculator,
   "thermal-equilibrium-calculator": f_thermal_equilibrium_calculator,
   "thermal-expansion-calculator": f_thermal_expansion_calculator,
@@ -606,6 +615,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "thermal-stress-calculator": f_thermal_stress_calculator,
   "thin-film-optical-coating-calculator": f_thin_film_optical_coating_calculator,
   "thin-lens-equation-calculator": f_thin_lens_equation_calculator,
+  "three-dimensional-distance-calculator": f_three_dimensional_distance_calculator,
   "three-phase-calculator": f_three_phase_calculator,
   "thrust-to-weight-ratio-calculator": f_thrust_to_weight_ratio_calculator,
   "time-dilation-calculator": f_time_dilation_calculator,
