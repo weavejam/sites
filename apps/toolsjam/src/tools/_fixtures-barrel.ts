@@ -208,6 +208,11 @@ import { fixtures as f_pay_gap_calculator } from "@/tools/pay-gap-calculator.fix
 import { fixtures as f_pcb_impedance_calculator } from "@/tools/pcb-impedance-calculator.fixtures";
 import { fixtures as f_pcb_trace_current_calculator } from "@/tools/pcb-trace-current-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
+import { fixtures as f_percentage_increase_calculator } from "@/tools/percentage-increase-calculator.fixtures";
+import { fixtures as f_percentage_of_a_percentage_calculator } from "@/tools/percentage-of-a-percentage-calculator.fixtures";
+import { fixtures as f_percentage_point_calculator } from "@/tools/percentage-point-calculator.fixtures";
+import { fixtures as f_perfect_cube_calculator } from "@/tools/perfect-cube-calculator.fixtures";
+import { fixtures as f_perfect_square_calculator } from "@/tools/perfect-square-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
 import { fixtures as f_poisson_distribution_calculator } from "@/tools/poisson-distribution-calculator.fixtures";
 import { fixtures as f_poker_odds_calculator } from "@/tools/poker-odds-calculator.fixtures";
@@ -572,6 +577,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "pcb-impedance-calculator": f_pcb_impedance_calculator,
   "pcb-trace-current-calculator": f_pcb_trace_current_calculator,
   "percentage-calculator": f_percentage_calculator,
+  "percentage-increase-calculator": f_percentage_increase_calculator,
+  "percentage-of-a-percentage-calculator": f_percentage_of_a_percentage_calculator,
+  "percentage-point-calculator": f_percentage_point_calculator,
+  "perfect-cube-calculator": f_perfect_cube_calculator,
+  "perfect-square-calculator": f_perfect_square_calculator,
   "ph-calculator": f_ph_calculator,
   "poisson-distribution-calculator": f_poisson_distribution_calculator,
   "poker-odds-calculator": f_poker_odds_calculator,
