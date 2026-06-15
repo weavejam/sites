@@ -1,0 +1,115 @@
+{
+  "title": "PCB Impedance Calculator - Microstrip & Stripline",
+  "tagline": "Calculate PCB trace impedance for microstrip and stripline designs using standard IPC formulas to achieve accurate impedance matching in RF and high-speed PCB layouts.",
+  "intro": "Select the trace geometry, enter the physical dimensions and dielectric properties, then click Calculate to get the characteristic impedance in ohms.",
+  "field": {
+    "traceType": "Trace Geometry",
+    "traceWidth": "Trace Width (W)",
+    "traceThickness": "Trace Thickness (T)",
+    "dielectricHeight": "Dielectric Height (H)",
+    "dielectricConstant": "Dielectric Constant (εr)",
+    "planeSpacing": "Plane-to-Plane Spacing (B)"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "er": "e.g. 4.5"
+  },
+  "type": {
+    "microstrip": "Microstrip",
+    "stripline": "Stripline"
+  },
+  "unit": {
+    "mils": "mils",
+    "ohm": "Ω"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter positive values for all required dimensions.",
+    "zero": "All dimension fields must be greater than zero."
+  },
+  "result": {
+    "heading": "Impedance Result",
+    "impedance": "Characteristic Impedance",
+    "effectiveEr": "Effective Dielectric Constant",
+    "formula": "Formula Used"
+  },
+  "formula": {
+    "microstrip": "Microstrip: Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T))",
+    "stripline": "Stripline: Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T)))"
+  },
+  "about": {
+    "heading": "About the PCB impedance calculator",
+    "body": "Controlled impedance is a fundamental requirement in high-speed digital design, RF circuits, and any PCB where signal integrity matters. When a transmission line's characteristic impedance does not match the source and load impedances, a portion of the signal energy is reflected back toward the source. These reflections cause ringing, overshoot, data errors, and increased electromagnetic emissions. The standard target is 50 Ω for single-ended traces and 100 Ω differential for most high-speed digital standards, though 75 Ω is common in video and cable television applications.\n\nA microstrip is a trace on the outer copper layer of a PCB, with the dielectric substrate below and air above. Because part of the field extends into air (εr = 1) and part into the dielectric (εr > 1), the effective dielectric constant is between the two. The commonly used closed-form approximation is Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T)), where W is trace width, T is trace thickness, and H is the height of the dielectric between the trace and the nearest reference plane. All dimensions must be in the same unit — this calculator uses mils (thousandths of an inch), the standard in North American PCB design.\n\nA stripline is a trace embedded inside the PCB stackup, with reference planes above and below. The surrounding dielectric is uniform, so there is no air contribution and the effective dielectric constant equals the material's εr. The impedance formula is Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T))), where B is the total distance between the two reference planes. Stripline traces have better EMI shielding but are harder to inspect and modify.\n\nCommon dielectric materials and their approximate εr values: FR-4 standard 4.2–4.8 (most of the industry uses 4.5 as the nominal); Rogers RO4003C: 3.55; Rogers RO4350B: 3.66; Rogers RT/duroid 5880: 2.20; polyimide: 3.5; PTFE: 2.1. Lower εr values increase the propagation speed of signals and increase impedance for a given geometry.\n\nTrace thickness is related to copper weight. One ounce per square foot (1 oz) copper is approximately 1.378 mils thick. Two-ounce copper is approximately 2.756 mils. Most signal traces are 1 oz copper; power planes often use 2 oz. PCB manufacturers control impedance by adjusting trace width during fabrication and typically guarantee impedance within ±10% on impedance-controlled layers."
+  },
+  "examples": {
+    "heading": "PCB impedance examples",
+    "intro": "Standard configurations targeting 50 Ω on common PCB stackups.",
+    "colInput": "Configuration",
+    "colOutput": "Impedance",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Microstrip: W=5.7mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Typical single-ended 50 Ω microstrip on standard FR-4 with 4 mil dielectric. This is the most common target impedance in commercial PCB design."
+      },
+      {
+        "input": "Microstrip: W=5mil, T=1.378mil, H=3.3mil, εr=3.66",
+        "output": "≈ 50 Ω",
+        "note": "50 Ω microstrip on Rogers RO4350B. Lower εr requires a narrower trace to maintain 50 Ω for the same dielectric height."
+      },
+      {
+        "input": "Stripline: W=6.4mil, T=1.378mil, B=20mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Embedded 50 Ω stripline in FR-4. The plane-to-plane spacing B must be specified; reducing B requires widening W to maintain 50 Ω."
+      },
+      {
+        "input": "Microstrip: W=14mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 23 Ω",
+        "note": "Wider trace lowers impedance significantly. Doubling the trace width from ~5.7 mil to 14 mil drops impedance from 50 Ω to ~23 Ω — useful as a design reference for low-impedance power traces."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the PCB impedance calculator",
+    "steps": [
+      "Select the Trace Geometry: Microstrip for outer-layer traces with air above the trace, or Stripline for buried traces with reference planes on both sides.",
+      "Enter the Trace Width (W) and Trace Thickness (T) in mils. Trace thickness depends on copper weight: 1 oz ≈ 1.378 mils, 2 oz ≈ 2.756 mils.",
+      "Enter the Dielectric Height (H) for microstrip — the distance from the trace bottom to the reference plane — or Plane-to-Plane Spacing (B) for stripline.",
+      "Enter the Dielectric Constant (εr) for your PCB material: ~4.5 for standard FR-4, ~3.66 for Rogers RO4350B, ~2.2 for Rogers RT/duroid 5880.",
+      "Click Calculate. Adjust trace width until the calculator returns your target impedance, then pass that width to your PCB manufacturer as a controlled-impedance specification."
+    ]
+  },
+  "faq": {
+    "heading": "PCB impedance calculator FAQ",
+    "items": [
+      {
+        "q": "Why is 50 Ω the standard impedance for most PCB traces?",
+        "a": "50 Ω is a historical compromise between minimum attenuation (around 77 Ω in air-filled coaxial cable) and maximum power handling (around 30 Ω). It was standardised by the military and RF industries in the mid-20th century and has since propagated to virtually all RF and high-speed digital standards including USB, PCIe, HDMI, and Ethernet. 75 Ω is used where low attenuation matters more than power, such as in cable television and broadcast video."
+      },
+      {
+        "q": "How accurate are the closed-form impedance formulas?",
+        "a": "The Wadell-style formulas used in this calculator are accurate to within about 2–3% for typical PCB dimensions. PCB manufacturers use 2D field solvers (such as Polar Si9000 or Saturn PCB Design Toolkit) that achieve better than 1% accuracy by numerically solving Maxwell's equations for the actual geometry. For a quick design estimate, the analytical formulas are entirely adequate; for a production board requiring ±5% impedance, use the manufacturer's field solver."
+      },
+      {
+        "q": "What is the dielectric constant of FR-4?",
+        "a": "FR-4 is a woven glass-reinforced epoxy laminate. Its dielectric constant varies with frequency and moisture content, typically falling between 4.2 and 4.8 at 1 MHz. The industry standard nominal value is 4.5 at low frequencies. At 10 GHz, Dk drops to roughly 4.0–4.2. For designs above a few GHz, consider a low-Dk, low-loss material such as Rogers RO4350B (Dk 3.66) or RT/duroid 5880 (Dk 2.20)."
+      },
+      {
+        "q": "How does copper weight affect trace impedance?",
+        "a": "Thicker copper (higher T) lowers impedance slightly because the fringing electric fields around the trace increase the effective width. For a 1 oz (1.378 mil) versus 2 oz (2.756 mil) trace on the same dielectric, you need to narrow the trace width by about 1–2 mils to maintain the same target impedance. The calculator includes T as an input to account for this effect."
+      },
+      {
+        "q": "What is effective dielectric constant in microstrip?",
+        "a": "In a microstrip, the electric field lines pass partly through the substrate and partly through air above the trace. The effective dielectric constant εeff is the weighted average of these two media and is always between 1 and εr. It determines the propagation velocity of signals on the trace: v = c / √εeff. Stripline is fully embedded in the dielectric, so εeff = εr."
+      },
+      {
+        "q": "What tolerance should I specify for controlled-impedance PCB manufacturing?",
+        "a": "Most commercial PCB manufacturers guarantee ±10% impedance tolerance on controlled-impedance layers at no significant premium. Premium vendors can achieve ±5% or ±7% with additional process control. Tighter tolerances require more frequent coupon testing and higher cost. For most digital designs, ±10% is adequate; RF designs above a few GHz may require ±5%."
+      }
+    ]
+  }
+}

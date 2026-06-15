@@ -1,0 +1,124 @@
+{
+  "title": "PCB Trace Current Calculator - IPC-2221 Current Capacity",
+  "tagline": "Calculate PCB trace current capacity, cross-sectional area, and power loss using IPC-2221 standards for external and internal copper conductors with adjustable temperature rise.",
+  "intro": "Enter the trace width, copper weight, temperature rise, and whether the trace is on an outer or inner layer. The calculator applies the IPC-2221 formula to determine safe current-carrying capacity.",
+  "field": {
+    "traceWidth": "Trace Width",
+    "copperWeight": "Copper Weight",
+    "tempRise": "Temperature Rise (ΔT)",
+    "ambientTemp": "Ambient Temperature",
+    "traceLocation": "Trace Location"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "celsius": "°C",
+    "oz": "oz"
+  },
+  "type": {
+    "external": "External (Outer Layer)",
+    "internal": "Internal (Inner Layer)"
+  },
+  "unit": {
+    "mils": "mils",
+    "celsius": "°C",
+    "amps": "A",
+    "mils2": "mils²",
+    "ohmPerIn": "Ω/in",
+    "wPerIn": "W/in"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive values for all fields.",
+    "zero": "Trace width, copper weight, and temperature rise must all be greater than zero."
+  },
+  "result": {
+    "heading": "Current Capacity Result",
+    "maxCurrent": "Maximum Current",
+    "crossSection": "Cross-Sectional Area",
+    "resistance": "Resistance per Inch",
+    "powerLoss": "Power Loss per Inch",
+    "formula": "IPC-2221 Formula"
+  },
+  "copperWeightOptions": {
+    "0.5": "0.5 oz (0.689 mil)",
+    "1": "1 oz (1.378 mil)",
+    "2": "2 oz (2.756 mil)",
+    "3": "3 oz (4.134 mil)",
+    "4": "4 oz (5.512 mil)"
+  },
+  "about": {
+    "heading": "About the PCB trace current calculator",
+    "body": "Every copper trace on a PCB has a maximum safe current capacity. When current flows through a trace, the trace resistance converts electrical energy to heat according to P = I²R. If the trace cannot dissipate that heat fast enough, the temperature rises until either the trace melts or the surrounding PCB material is damaged. The IPC-2221 standard (Generic Standard on Printed Board Design) provides empirically derived formulas that balance trace cross-sectional area, temperature rise, and the trace location (outer vs inner layer).\n\nThe IPC-2221 current capacity formula is: I = k × ΔT^0.44 × A^0.725, where I is the maximum current in amperes, ΔT is the allowable temperature rise above ambient in degrees Celsius, A is the cross-sectional area of the trace in mils², and k is a constant that depends on trace location. The IPC-2221 standard specifies k = 0.048 for external (outer-layer) traces and k = 0.024 for internal (inner-layer) traces. Inner-layer traces have a lower k because they are surrounded by dielectric material with lower thermal conductivity than the air that surrounds outer-layer traces.\n\nCross-sectional area A is the product of trace width (in mils) and copper thickness (in mils). Copper thickness is determined by the copper weight. One ounce per square foot (1 oz) corresponds to approximately 1.378 mils (35 μm). Two-ounce copper is 2.756 mils (70 μm). Heavier copper weights are used for power traces carrying large currents or requiring lower resistance.\n\nResistance per unit length is: R/in = ρ / A, where ρ for copper at 20°C is approximately 0.679 Ω·mils²/inch. This resistance increases with temperature: R(T) ≈ R₂₀ × (1 + 0.00393 × (T − 20)). Power dissipation per inch is P/in = I² × R/in, which is the self-heating load the trace must manage.\n\nThe 10°C temperature rise commonly used as a design rule of thumb corresponds to a conservative, thermally stable trace. A 20°C rise is acceptable for most commercial electronics. Above 30°C, PCB materials begin to experience accelerated ageing, and solder joint reliability is reduced. For high-reliability and aerospace applications, the IPC-2221 class 3 recommendation limits trace temperature to 30°C above ambient maximum."
+  },
+  "examples": {
+    "heading": "PCB trace current examples",
+    "intro": "Standard design scenarios using the IPC-2221 formula for common copper weights and temperature rises.",
+    "colInput": "Trace Configuration",
+    "colOutput": "Max Current",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "External, W=10mil, 1oz Cu, ΔT=10°C",
+        "output": "≈ 0.9 A",
+        "note": "A 10-mil wide, 1-oz external trace with only 10°C rise — a conservative design suitable for sensitive analog circuits where noise from self-heating is a concern."
+      },
+      {
+        "input": "External, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 3.9 A",
+        "note": "Wider trace for a moderate power supply rail. 20°C rise is the most common design target for commercial electronics."
+      },
+      {
+        "input": "External, W=200mil, 2oz Cu, ΔT=30°C",
+        "output": "≈ 20.8 A",
+        "note": "A power bus trace using heavy copper. Using 2 oz copper roughly doubles the cross-sectional area, significantly increasing current capacity over a 1 oz trace of the same width."
+      },
+      {
+        "input": "Internal, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 1.9 A",
+        "note": "Internal trace with the same dimensions as the external example above. The k = 0.024 coefficient for inner layers gives approximately 50% less current capacity than an equivalent outer-layer trace."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the PCB trace current calculator",
+    "steps": [
+      "Enter the Trace Width in mils. A mil is one thousandth of an inch; 10 mils = 0.254 mm. Typical signal traces are 4–10 mils; power traces are 20–200 mils or wider.",
+      "Select the Copper Weight. Most PCBs use 1 oz copper (1.378 mils thick) for signal layers. Power layers often use 2 oz or heavier copper.",
+      "Enter the Temperature Rise (ΔT). This is the maximum acceptable rise above ambient — 10°C is conservative, 20°C is standard for commercial electronics, 30°C is the upper limit for reliable operation.",
+      "Select External for an outer-layer trace (k = 0.048) or Internal for an inner-layer trace (k = 0.024). Inner-layer traces dissipate heat less efficiently.",
+      "Click Calculate. Review the maximum current, cross-sectional area, resistance per inch, and power loss. Widen the trace if the current rating is insufficient."
+    ]
+  },
+  "faq": {
+    "heading": "PCB trace current calculator FAQ",
+    "items": [
+      {
+        "q": "What temperature rise should I use for my design?",
+        "a": "The most common design rule is 10°C for analog and precision circuits, 20°C for general commercial electronics, and up to 30°C for power circuits in equipment with adequate thermal management. Higher temperature rise allows narrower traces but accelerates PCB material ageing and increases solder joint fatigue. IPC-2221 class 3 (military and life-critical applications) typically requires limiting the rise to 10°C."
+      },
+      {
+        "q": "Why do internal traces carry less current than external traces?",
+        "a": "Internal traces are surrounded on all sides by FR-4 or similar dielectric material, which has much lower thermal conductivity than air. The IPC-2221 formula accounts for this by using k = 0.024 for internal traces versus k = 0.048 for external traces — meaning an internal trace of identical dimensions carries approximately 50% of the current an external trace can safely carry."
+      },
+      {
+        "q": "How do I convert trace width from mm to mils?",
+        "a": "Multiply millimetres by 39.37 to get mils (thousandths of an inch). For example, 0.254 mm = 10 mils, 0.5 mm = 19.7 mils ≈ 20 mils, and 1 mm = 39.37 mils ≈ 40 mils. Most PCB design tools display dimensions in both units; this calculator uses mils to match the IPC-2221 formula coefficients."
+      },
+      {
+        "q": "How does copper weight relate to trace thickness?",
+        "a": "Copper weight is specified in ounces per square foot. One ounce (1 oz) of copper rolled to cover one square foot has a thickness of approximately 1.378 mils (35 μm). Two-ounce copper is 2.756 mils (70 μm). Heavier copper provides lower resistance and higher current capacity but is harder to etch fine features and costs more."
+      },
+      {
+        "q": "What is the resistance of a PCB trace?",
+        "a": "The resistance per inch is R/in = 0.679 / A, where A is the cross-sectional area in mils² and 0.679 is the resistivity of copper in Ω·mils²/inch at 20°C. At higher temperatures, resistance increases by about 0.393% per degree Celsius above 20°C. For a 1-oz, 10-mil trace (A = 13.78 mils²), R/in ≈ 0.049 Ω/inch — causing a 0.147 V drop over a 3-inch trace at 1 A."
+      },
+      {
+        "q": "Are IPC-2221 values conservative?",
+        "a": "Yes. The IPC-2221 charts and formulas were derived from empirical measurements in still air with no forced convection and include a safety margin. In practice, traces with good airflow, copper pours nearby, or thermal vias connecting to internal planes can safely carry more current than the IPC formula suggests. For safety-critical designs, stick to the IPC values; for commercial applications with adequate testing, a modest derating of ±20% is acceptable."
+      }
+    ]
+  }
+}
