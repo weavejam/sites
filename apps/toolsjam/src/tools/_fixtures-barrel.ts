@@ -270,11 +270,16 @@ import { fixtures as f_thin_lens_equation_calculator } from "@/tools/thin-lens-e
 import { fixtures as f_three_phase_calculator } from "@/tools/three-phase-calculator.fixtures";
 import { fixtures as f_thrust_to_weight_ratio_calculator } from "@/tools/thrust-to-weight-ratio-calculator.fixtures";
 import { fixtures as f_time_dilation_calculator } from "@/tools/time-dilation-calculator.fixtures";
+import { fixtures as f_time_percentage_calculator } from "@/tools/time-percentage-calculator.fixtures";
 import { fixtures as f_torsional_stiffness_calculator } from "@/tools/torsional-stiffness-calculator.fixtures";
+import { fixtures as f_torus_surface_area_calculator } from "@/tools/torus-surface-area-calculator.fixtures";
+import { fixtures as f_torus_volume_calculator } from "@/tools/torus-volume-calculator.fixtures";
 import { fixtures as f_trajectory_calculator } from "@/tools/trajectory-calculator.fixtures";
 import { fixtures as f_transformer_sizing_calculator } from "@/tools/transformer-sizing-calculator.fixtures";
 import { fixtures as f_transistor_biasing_calculator } from "@/tools/transistor-biasing-calculator.fixtures";
 import { fixtures as f_transmission_calculator } from "@/tools/transmission-calculator.fixtures";
+import { fixtures as f_trapezoid_calculator } from "@/tools/trapezoid-calculator.fixtures";
+import { fixtures as f_triangle_angle_calculator } from "@/tools/triangle-angle-calculator.fixtures";
 import { fixtures as f_triangle_area_calculator } from "@/tools/triangle-area-calculator.fixtures";
 import { fixtures as f_triangle_height_calculator } from "@/tools/triangle-height-calculator.fixtures";
 import { fixtures as f_triangle_inequality_theorem_calculator } from "@/tools/triangle-inequality-theorem-calculator.fixtures";
@@ -594,11 +599,16 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "three-phase-calculator": f_three_phase_calculator,
   "thrust-to-weight-ratio-calculator": f_thrust_to_weight_ratio_calculator,
   "time-dilation-calculator": f_time_dilation_calculator,
+  "time-percentage-calculator": f_time_percentage_calculator,
   "torsional-stiffness-calculator": f_torsional_stiffness_calculator,
+  "torus-surface-area-calculator": f_torus_surface_area_calculator,
+  "torus-volume-calculator": f_torus_volume_calculator,
   "trajectory-calculator": f_trajectory_calculator,
   "transformer-sizing-calculator": f_transformer_sizing_calculator,
   "transistor-biasing-calculator": f_transistor_biasing_calculator,
   "transmission-calculator": f_transmission_calculator,
+  "trapezoid-calculator": f_trapezoid_calculator,
+  "triangle-angle-calculator": f_triangle_angle_calculator,
   "triangle-area-calculator": f_triangle_area_calculator,
   "triangle-height-calculator": f_triangle_height_calculator,
   "triangle-inequality-theorem-calculator": f_triangle_inequality_theorem_calculator,
