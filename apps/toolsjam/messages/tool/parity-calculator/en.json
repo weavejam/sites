@@ -1,0 +1,110 @@
+{
+  "title": "Parity Calculator - Even/Odd Number Detector",
+  "tagline": "Determine whether a number is even or odd, compute parity bits for binary data, and perform error detection across decimal, binary, and hexadecimal number systems.",
+  "intro": "Enter a number in any base — decimal, binary (0b prefix), or hexadecimal (0x prefix) — select the number system and parity type, then click Calculate.",
+  "field": {
+    "numberInput": "Number Input",
+    "numberSystem": "Number System",
+    "parityType": "Parity Type"
+  },
+  "placeholder": {
+    "number": "e.g. 42, 0b101010, 0x2A"
+  },
+  "type": {
+    "auto": "Auto-detect",
+    "decimal": "Decimal",
+    "binary": "Binary",
+    "hexadecimal": "Hexadecimal",
+    "parity_even": "Even Parity",
+    "parity_odd": "Odd Parity"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter a valid non-negative integer in the selected number system."
+  },
+  "result": {
+    "heading": "Result",
+    "parity": "Parity",
+    "even": "Even",
+    "odd": "Odd",
+    "parityBit": "Parity Bit",
+    "binary": "Binary Representation",
+    "hex": "Hexadecimal",
+    "onesCount": "Number of 1-bits: {count}"
+  },
+  "about": {
+    "heading": "About the parity calculator",
+    "body": "Parity is one of the simplest and most widely used concepts in number theory and digital electronics. A number has even parity if it is divisible by two without a remainder, and odd parity if it is not. Every integer falls into exactly one of these two categories, and the classification holds regardless of which number base you use to express it: decimal 42, binary 0b101010, and hexadecimal 0x2A all refer to the same even number.\n\nThe parity bit is a single bit appended to a binary data word to make the total number of 1-bits either even (even parity) or odd (odd parity). It is the foundation of the simplest error-detection scheme in digital communication. When a transmitter appends an even-parity bit to an eight-bit data byte and the receiver checks whether the total count of 1-bits is still even, any single-bit error in transit will flip the check result and be caught immediately. Parity checking is used in serial communication ports, DRAM memory chips, RAID disk arrays, and early telecommunications protocols.\n\nThe parity calculator supports three number bases. Decimal is the familiar base-10 system that humans use in everyday life. Binary is the base-2 system native to all digital hardware. Hexadecimal is the compact base-16 notation preferred by engineers when reading memory dumps or register values. In auto-detect mode, the calculator recognises the 0b prefix for binary and the 0x prefix for hexadecimal, treating unprefixed input as decimal. You can also lock the number system explicitly with the selector.\n\nBeyond even and odd parity, the results panel shows the full binary expansion of the number and the count of 1-bits — also called the Hamming weight or popcount. These two values together fully characterise the parity of any non-negative integer. For large numbers used in data integrity checks, the Hamming weight is computed by iterating only over the set bits rather than scanning every bit position, making it efficient even for large values.\n\nParity is also central to combinatorics, number theory, and abstract algebra. In permutation theory, the sign of a permutation is defined by its parity. In modular arithmetic, even and odd form the simplest non-trivial quotient ring of the integers. Understanding parity is therefore a gateway concept that connects elementary arithmetic to computer architecture, digital communication, and advanced mathematics. This tool handles all standard cases and supports automatic base detection for a smooth workflow."
+  },
+  "examples": {
+    "heading": "Parity calculator examples",
+    "intro": "Representative examples showing even/odd detection and parity-bit calculation across different number systems.",
+    "colInput": "Input",
+    "colOutput": "Result",
+    "colNote": "Explanation",
+    "items": [
+      {
+        "input": "42 (decimal, auto-detect)",
+        "output": "Even; even parity bit = 1",
+        "note": "Binary of 42 is 101010 with three 1-bits (odd count), so even-parity bit = 1. The value 42 itself is even (42 ÷ 2 = 21 with no remainder). Note: parity of the value vs. the parity bit are different concepts."
+      },
+      {
+        "input": "0b1011 (binary 11)",
+        "output": "Odd; even parity bit = 1",
+        "note": "Decimal value is 11. Binary 1011 has three 1-bits (odd count), so the even-parity bit is 1. The value 11 itself is odd (not divisible by 2)."
+      },
+      {
+        "input": "0xFF (hexadecimal 255)",
+        "output": "Odd; even parity bit = 0",
+        "note": "Binary of 0xFF is 11111111 with eight 1-bits (even count), so even parity bit = 0. The decimal value 255 is odd."
+      },
+      {
+        "input": "0 (decimal zero)",
+        "output": "Even; even parity bit = 0",
+        "note": "Zero has no 1-bits (count = 0, which is even), so the even parity bit is 0. Zero is universally defined as an even number."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the parity calculator",
+    "steps": [
+      "Type your number in the Number Input field. Use a plain integer for decimal, add the 0b prefix for binary (e.g. 0b1010), or use the 0x prefix for hexadecimal (e.g. 0xFF).",
+      "Select the Number System if you want to force a specific base, or leave it on Auto-detect to let the calculator recognise the prefix automatically.",
+      "Choose Even Parity or Odd Parity depending on the error-detection scheme you are working with — even parity is more common in serial communication.",
+      "Click Calculate. The panel shows the parity of the number, the computed parity bit, the binary representation, and the hexadecimal equivalent.",
+      "Click Reset to clear all inputs, or change the number and click Calculate again to compare different values."
+    ]
+  },
+  "faq": {
+    "heading": "Parity calculator FAQ",
+    "items": [
+      {
+        "q": "What is the difference between the parity of a number and a parity bit?",
+        "a": "The parity of a number simply means whether it is even or odd — whether it is divisible by two. A parity bit is a single extra bit appended to a binary data word so that the total count of 1-bits satisfies a chosen convention. The two concepts are related but distinct: parity of a number describes the value itself, while a parity bit is an error-detection artefact added to a stream of bits."
+      },
+      {
+        "q": "How is a parity bit calculated?",
+        "a": "Count all the 1-bits in the data word (this count is called the Hamming weight). For even parity, the parity bit is 1 if the count is odd (making the total even) and 0 if the count is already even. For odd parity, the logic is reversed. The receiver recalculates the parity over the received bits including the parity bit; any mismatch signals a transmission error."
+      },
+      {
+        "q": "Can single-bit parity detect all errors?",
+        "a": "Single-bit parity can only detect an odd number of bit errors. If exactly two bits are flipped, the parity check passes even though the data is corrupted. For higher reliability, engineers use more powerful techniques such as CRC (cyclic redundancy check), Hamming codes that can also correct single-bit errors, or Reed-Solomon coding used in storage and broadcast systems."
+      },
+      {
+        "q": "What does it mean that zero is an even number?",
+        "a": "Zero is divisible by two because 0 ÷ 2 = 0 with no remainder, satisfying the mathematical definition of even. This is consistent with the pattern …, −4, −2, 0, 2, 4, … In binary, zero has zero 1-bits, which is an even count, so its even parity bit is also 0."
+      },
+      {
+        "q": "Why do engineers use hexadecimal instead of binary?",
+        "a": "Binary strings grow long quickly — a 32-bit number needs 32 digits. Hexadecimal is a compact shorthand where each hex digit represents exactly four binary bits, reducing a 32-bit number to eight hex digits. Engineers switch between the two freely because each group of four bits maps to a single hex character."
+      },
+      {
+        "q": "Where is parity checking used in practice?",
+        "a": "Even parity is the default on most serial UART communication links. DRAM modules use an extra parity bit per byte to detect single-bit memory errors. RAID-4 and RAID-5 disk arrays store XOR parity across multiple drives so that any single failed disk can be reconstructed. IPv4 headers carry a 16-bit checksum that generalises the same parity idea."
+      }
+    ]
+  }
+}

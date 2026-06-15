@@ -144,6 +144,11 @@ import { fixtures as f_outlier_calculator } from "@/tools/outlier-calculator.fix
 import { fixtures as f_p_hat_calculator } from "@/tools/p-hat-calculator.fixtures";
 import { fixtures as f_p_value_calculator } from "@/tools/p-value-calculator.fixtures";
 import { fixtures as f_paired_samples_t_test_calculator } from "@/tools/paired-samples-t-test-calculator.fixtures";
+import { fixtures as f_parity_calculator } from "@/tools/parity-calculator.fixtures";
+import { fixtures as f_password_entropy_calculator } from "@/tools/password-entropy-calculator.fixtures";
+import { fixtures as f_pay_gap_calculator } from "@/tools/pay-gap-calculator.fixtures";
+import { fixtures as f_pcb_impedance_calculator } from "@/tools/pcb-impedance-calculator.fixtures";
+import { fixtures as f_pcb_trace_current_calculator } from "@/tools/pcb-trace-current-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
 import { fixtures as f_poisson_distribution_calculator } from "@/tools/poisson-distribution-calculator.fixtures";
@@ -383,6 +388,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "p-hat-calculator": f_p_hat_calculator,
   "p-value-calculator": f_p_value_calculator,
   "paired-samples-t-test-calculator": f_paired_samples_t_test_calculator,
+  "parity-calculator": f_parity_calculator,
+  "password-entropy-calculator": f_password_entropy_calculator,
+  "pay-gap-calculator": f_pay_gap_calculator,
+  "pcb-impedance-calculator": f_pcb_impedance_calculator,
+  "pcb-trace-current-calculator": f_pcb_trace_current_calculator,
   "percentage-calculator": f_percentage_calculator,
   "ph-calculator": f_ph_calculator,
   "poisson-distribution-calculator": f_poisson_distribution_calculator,
