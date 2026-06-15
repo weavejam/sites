@@ -182,6 +182,11 @@ import { fixtures as f_minecraft_circle_generator } from "@/tools/minecraft-circ
 import { fixtures as f_minecraft_end_portal_finder } from "@/tools/minecraft-end-portal-finder.fixtures";
 import { fixtures as f_minecraft_stack_calculator } from "@/tools/minecraft-stack-calculator.fixtures";
 import { fixtures as f_mm_to_carat_conversion } from "@/tools/mm-to-carat-conversion.fixtures";
+import { fixtures as f_multiplying_binomials_calculator } from "@/tools/multiplying-binomials-calculator.fixtures";
+import { fixtures as f_multiplying_exponents_calculator } from "@/tools/multiplying-exponents-calculator.fixtures";
+import { fixtures as f_multiplying_fractions_calculator } from "@/tools/multiplying-fractions-calculator.fixtures";
+import { fixtures as f_multiplying_polynomials_calculator } from "@/tools/multiplying-polynomials-calculator.fixtures";
+import { fixtures as f_multiplying_radicals_calculator } from "@/tools/multiplying-radicals-calculator.fixtures";
 import { fixtures as f_music_duration_calculator } from "@/tools/music-duration-calculator.fixtures";
 import { fixtures as f_music_interval_calculator } from "@/tools/music-interval-calculator.fixtures";
 import { fixtures as f_music_scale_calculator } from "@/tools/music-scale-calculator.fixtures";
@@ -556,6 +561,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "minecraft-end-portal-finder": f_minecraft_end_portal_finder,
   "minecraft-stack-calculator": f_minecraft_stack_calculator,
   "mm-to-carat-conversion": f_mm_to_carat_conversion,
+  "multiplying-binomials-calculator": f_multiplying_binomials_calculator,
+  "multiplying-exponents-calculator": f_multiplying_exponents_calculator,
+  "multiplying-fractions-calculator": f_multiplying_fractions_calculator,
+  "multiplying-polynomials-calculator": f_multiplying_polynomials_calculator,
+  "multiplying-radicals-calculator": f_multiplying_radicals_calculator,
   "music-duration-calculator": f_music_duration_calculator,
   "music-interval-calculator": f_music_interval_calculator,
   "music-scale-calculator": f_music_scale_calculator,
