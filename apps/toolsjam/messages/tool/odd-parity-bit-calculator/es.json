@@ -1,0 +1,106 @@
+{
+  "title": "Calculadora de bit de paridad impar",
+  "tagline": "Genera bits de paridad impar para datos binarios y valida la integridad con detección de errores de un solo bit.",
+  "intro": "Introduce datos binarios para calcular su bit de paridad impar, generar la cadena de transmisión completa y, opcionalmente, validar una cadena binaria recibida.",
+  "field": {
+    "binaryData": "Datos binarios",
+    "receivedData": "Datos recibidos (para validación)",
+    "binaryDataPlaceholder": "p. ej. 1010 o 11001100",
+    "receivedDataPlaceholder": "p. ej. 11011 (incluye el bit de paridad)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultado",
+    "onesCount": "Número de 1 en los datos",
+    "parityBit": "Bit de paridad impar",
+    "transmissionString": "Cadena de transmisión (datos + bit de paridad)",
+    "validationHeading": "Resultado de la validación",
+    "valid": "Válido — el número total de 1 es impar, no se detectó ningún error.",
+    "invalid": "Error detectado — el número total de 1 es par, se produjo un cambio de bit."
+  },
+  "error": {
+    "invalidBinary": "Los datos binarios solo deben contener 0 y 1.",
+    "invalidReceived": "Los datos recibidos solo deben contener 0 y 1.",
+    "emptyData": "Introduce datos binarios."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de bit de paridad impar",
+    "body": "La verificación de paridad es una de las técnicas más antiguas y utilizadas para detectar errores de transmisión de un solo bit en datos digitales. Un bit de paridad es un bit adicional que se añade a un bloque de datos binarios. El emisor calcula el bit de paridad según los datos, transmite el mensaje ampliado y el receptor vuelve a calcular la paridad para comprobar si hay discrepancias.\n\nLa paridad impar es la variante en la que el número total de bits 1 de la secuencia combinada —datos más bit de paridad— debe ser siempre impar. Si los datos originales ya contienen un número impar de 1, el bit de paridad se fija en 0 (no hace falta cambiar nada). Si los datos contienen un número par de 1, el bit de paridad se fija en 1 (para pasar el total de par a impar). La regla es simple: cuenta los 1 de los datos y elige el bit de paridad para que el total sea impar.\n\nPara verlo con un ejemplo concreto: supón que quieres transmitir el byte 1010. Este byte contiene exactamente dos 1, una cantidad par. Con paridad impar, el bit de paridad debe ser 1, de modo que la cadena completa de transmisión sea 10101. El receptor cuenta los 1 en 10101: hay tres, un número impar, así que declara el mensaje libre de errores. Si un solo bit cambiara en tránsito, por ejemplo si la cadena llegara como 11101, el receptor contaría cuatro 1 —un número par— y señalaría de inmediato que se produjo un error.\n\nLa paridad impar se diferencia de la paridad par en un solo aspecto: el total objetivo es impar en lugar de par. Ambos esquemas pueden detectar cualquier error de un solo bit, porque cambiar un bit altera la paridad de impar a par o de par a impar. Sin embargo, ambos fallan en silencio cuando dos bits cambian simultáneamente, ya que eso conserva la paridad. Para aplicaciones que requieren detección o corrección de errores de varios bits, los ingenieros recurren a códigos más sofisticados como Hamming, CRC o Reed-Solomon.\n\nA pesar de sus limitaciones, la paridad impar sigue apareciendo en estándares heredados de comunicación serie (incluidas configuraciones antiguas de RS-232), en ciertos subsistemas de memoria y en contextos educativos donde se introduce el concepto de detección de errores. A veces se prefiere la paridad impar frente a la par par porque garantiza que una palabra de datos compuesta solo por ceros siempre tenga un bit de paridad distinto de cero, lo que facilita detectar fallos de línea atascada en cero.\n\nEsta calculadora automatiza cada paso: elimina espacios en blanco, valida que la entrada sea puramente binaria, cuenta los bits 1, determina el bit de paridad impar correcto y muestra la cadena de transmisión completa lista para copiar en tu sistema. El campo opcional de validación te permite pegar una cadena recibida (datos más su bit de paridad) y ver al instante si el total de 1 es impar (correcto) o par (fallo, lo que indica un error de un solo bit)."
+  },
+  "examples": {
+    "heading": "Ejemplos de bit de paridad impar",
+    "intro": "La tabla siguiente muestra cómo se calcula el bit de paridad impar para varias entradas binarias.",
+    "colInput": "Datos binarios",
+    "colOutput": "Bit de paridad",
+    "colNote": "Cadena de transmisión",
+    "items": [
+      {
+        "input": "1010",
+        "output": "1",
+        "note": "Dos 1 (par) → bit de paridad = 1. Transmisión: 10101"
+      },
+      {
+        "input": "1110",
+        "output": "0",
+        "note": "Tres 1 (impar) → bit de paridad = 0. Transmisión: 11100"
+      },
+      {
+        "input": "11001100",
+        "output": "1",
+        "note": "Cuatro 1 (par) → bit de paridad = 1. Transmisión: 110011001"
+      },
+      {
+        "input": "10110100",
+        "output": "1",
+        "note": "Cuatro 1 (par) → bit de paridad = 1. Transmisión: 101101001"
+      },
+      {
+        "input": "11111111",
+        "output": "1",
+        "note": "Ocho 1 (par) → bit de paridad = 1. Transmisión: 111111111"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de bit de paridad impar",
+    "steps": [
+      "Introduce la cadena binaria que quieres transmitir en el campo Datos binarios (solo 0 y 1).",
+      "Haz clic en Calcular para ver al instante el número de 1, el bit de paridad impar necesario y la cadena de transmisión completa.",
+      "Copia la cadena de transmisión (datos + bit de paridad) y envíala al receptor.",
+      "Para validar una cadena recibida, pégala en el campo Datos recibidos y haz clic en Calcular: la herramienta comprobará si el total de 1 es impar.",
+      "Haz clic en Restablecer para limpiar todos los campos y empezar un nuevo cálculo."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Qué es la paridad impar?",
+        "a": "La paridad impar es un esquema de detección de errores en el que se añade un bit de paridad a los datos binarios para que el número total de bits 1 de la secuencia combinada (datos + bit de paridad) sea siempre impar. Si los datos tienen un número impar de 1, el bit de paridad es 0; si tienen un número par de 1, el bit de paridad es 1."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre paridad impar y paridad par?",
+        "a": "La paridad par garantiza que el total de bits 1 sea par; la paridad impar garantiza que sea impar. Ambas detectan cualquier error de un solo bit. La paridad impar tiene la ventaja de que un mensaje compuesto solo por ceros siempre tendrá un bit de paridad de 1, lo que ayuda a detectar fallos de línea atascada en cero."
+      },
+      {
+        "q": "¿La comprobación de paridad detecta todos los errores?",
+        "a": "No. La comprobación de paridad detecta de forma fiable los errores de un solo bit. Si dos bits cambian simultáneamente, la paridad permanece igual y el error no se detecta. Para una detección más robusta, usa CRC o códigos de Hamming."
+      },
+      {
+        "q": "¿Dónde se sigue usando hoy la paridad impar?",
+        "a": "La paridad impar se usa en algunos estándares heredados de comunicación serie (RS-232), configuraciones antiguas de UART y ciertos módulos de memoria. También se utiliza mucho en entornos educativos para enseñar los fundamentos de la detección de errores."
+      },
+      {
+        "q": "¿Cómo se determina la posición del bit de paridad?",
+        "a": "En muchos protocolos, el bit de paridad se añade como el último bit de la trama de transmisión. Sin embargo, otros estándares lo anteponen o usan una posición específica. Esta calculadora añade el bit de paridad al final de la cadena de datos, que es la convención más común."
+      },
+      {
+        "q": "¿Cuál es el bit de paridad impar para datos con solo ceros?",
+        "a": "Para datos compuestos totalmente por 0, el número de bits 1 es cero (par), así que el bit de paridad impar siempre es 1. Esta es una de las razones por las que a veces se prefiere la paridad impar: garantiza que una palabra de datos toda en cero nunca se transmita como todo ceros, lo que ayuda a detectar una pérdida completa de señal."
+      }
+    ]
+  }
+}

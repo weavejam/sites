@@ -1,0 +1,115 @@
+{
+  "title": "Calculadora de impedancia PCB - Microstrip y stripline",
+  "tagline": "Calcula la impedancia de pistas PCB en diseños microstrip y stripline usando fórmulas IPC estándar para lograr un ajuste preciso en layouts RF y de alta velocidad.",
+  "intro": "Selecciona la geometría de la pista, introduce las dimensiones físicas y las propiedades dieléctricas, y luego haz clic en Calcular para obtener la impedancia característica en ohmios.",
+  "field": {
+    "traceType": "Geometría de pista",
+    "traceWidth": "Ancho de pista (W)",
+    "traceThickness": "Espesor de pista (T)",
+    "dielectricHeight": "Altura dieléctrica (H)",
+    "dielectricConstant": "Constante dieléctrica (εr)",
+    "planeSpacing": "Separación entre planos (B)"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "er": "p. ej. 4.5"
+  },
+  "type": {
+    "microstrip": "Microstrip",
+    "stripline": "Stripline"
+  },
+  "unit": {
+    "mils": "mils",
+    "ohm": "Ω"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce valores positivos para todas las dimensiones requeridas.",
+    "zero": "Todos los campos de dimensión deben ser mayores que cero."
+  },
+  "result": {
+    "heading": "Resultado de impedancia",
+    "impedance": "Impedancia característica",
+    "effectiveEr": "Constante dieléctrica efectiva",
+    "formula": "Fórmula utilizada"
+  },
+  "formula": {
+    "microstrip": "Microstrip: Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T))",
+    "stripline": "Stripline: Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T)))"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de impedancia PCB",
+    "body": "La impedancia controlada es un requisito fundamental en el diseño digital de alta velocidad, los circuitos RF y cualquier PCB donde la integridad de señal importe. Cuando la impedancia característica de una línea de transmisión no coincide con la impedancia de la fuente y la carga, parte de la energía de la señal se refleja hacia la fuente. Estas reflexiones provocan ringing, overshoot, errores de datos y mayores emisiones electromagnéticas. El objetivo estándar es 50 Ω para pistas de un solo extremo y 100 Ω diferencial para la mayoría de los estándares digitales de alta velocidad, aunque 75 Ω es común en aplicaciones de vídeo y televisión por cable.\n\nUn microstrip es una pista en la capa externa de cobre de una PCB, con el sustrato dieléctrico debajo y aire encima. Como parte del campo se extiende al aire (εr = 1) y parte al dieléctrico (εr > 1), la constante dieléctrica efectiva queda entre ambas. La aproximación cerrada más usada es Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T)), donde W es el ancho de pista, T es el espesor de pista y H es la altura del dieléctrico entre la pista y el plano de referencia más cercano. Todas las dimensiones deben usar la misma unidad; esta calculadora usa mils (milésimas de pulgada), el estándar en el diseño PCB de Norteamérica.\n\nUn stripline es una pista incrustada dentro del stackup de la PCB, con planos de referencia arriba y abajo. El dieléctrico que la rodea es uniforme, así que no hay contribución del aire y la constante dieléctrica efectiva es igual a la εr del material. La fórmula de impedancia es Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T))), donde B es la distancia total entre los dos planos de referencia. Las pistas stripline tienen mejor blindaje EMI, pero son más difíciles de inspeccionar y modificar.\n\nMateriales dieléctricos comunes y sus valores aproximados de εr: FR-4 estándar 4.2–4.8 (la mayoría de la industria usa 4.5 como nominal); Rogers RO4003C: 3.55; Rogers RO4350B: 3.66; Rogers RT/duroid 5880: 2.20; polimida: 3.5; PTFE: 2.1. Los valores más bajos de εr aumentan la velocidad de propagación de las señales y elevan la impedancia para una geometría dada.\n\nEl espesor de la pista está relacionado con el peso del cobre. Una onza por pie cuadrado (1 oz) de cobre tiene aproximadamente 1.378 mils de espesor. El cobre de dos onzas tiene aproximadamente 2.756 mils. La mayoría de las pistas de señal usan cobre de 1 oz; los planos de potencia suelen usar 2 oz. Los fabricantes de PCB controlan la impedancia ajustando el ancho de pista durante la fabricación y normalmente garantizan la impedancia dentro de ±10% en las capas de impedancia controlada."
+  },
+  "examples": {
+    "heading": "Ejemplos de impedancia PCB",
+    "intro": "Configuraciones estándar que apuntan a 50 Ω en stackups PCB comunes.",
+    "colInput": "Configuración",
+    "colOutput": "Impedancia",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Microstrip: W=5.7mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Microstrip típico de 50 Ω de un solo extremo sobre FR-4 estándar con dieléctrico de 4 mil. Es la impedancia objetivo más común en diseño PCB comercial."
+      },
+      {
+        "input": "Microstrip: W=5mil, T=1.378mil, H=3.3mil, εr=3.66",
+        "output": "≈ 50 Ω",
+        "note": "Microstrip de 50 Ω sobre Rogers RO4350B. Un εr más bajo requiere una pista más estrecha para mantener 50 Ω con la misma altura dieléctrica."
+      },
+      {
+        "input": "Stripline: W=6.4mil, T=1.378mil, B=20mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Stripline embebido de 50 Ω en FR-4. Debe especificarse la separación entre planos B; al reducir B, hay que ensanchar W para mantener 50 Ω."
+      },
+      {
+        "input": "Microstrip: W=14mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 23 Ω",
+        "note": "Una pista más ancha reduce mucho la impedancia. Duplicar el ancho de pista de ~5.7 mil a 14 mil baja la impedancia de 50 Ω a ~23 Ω, útil como referencia de diseño para pistas de alimentación de baja impedancia."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de impedancia PCB",
+    "steps": [
+      "Selecciona la geometría de la pista: Microstrip para pistas de capa externa con aire sobre la pista, o Stripline para pistas enterradas con planos de referencia en ambos lados.",
+      "Introduce el Ancho de pista (W) y el Espesor de pista (T) en mils. El espesor depende del peso del cobre: 1 oz ≈ 1.378 mils, 2 oz ≈ 2.756 mils.",
+      "Introduce la Altura dieléctrica (H) para microstrip — la distancia desde la base de la pista hasta el plano de referencia — o la Separación entre planos (B) para stripline.",
+      "Introduce la Constante dieléctrica (εr) de tu material PCB: ~4.5 para FR-4 estándar, ~3.66 para Rogers RO4350B, ~2.2 para Rogers RT/duroid 5880.",
+      "Haz clic en Calcular. Ajusta el ancho de pista hasta que la calculadora devuelva tu impedancia objetivo y luego entrega ese ancho a tu fabricante de PCB como especificación de impedancia controlada."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de impedancia PCB",
+    "items": [
+      {
+        "q": "¿Por qué 50 Ω es la impedancia estándar para la mayoría de las pistas PCB?",
+        "a": "50 Ω es un compromiso histórico entre la mínima atenuación (alrededor de 77 Ω en cable coaxial lleno de aire) y la máxima capacidad de manejo de potencia (alrededor de 30 Ω). Fue estandarizada por la industria militar y RF a mediados del siglo XX y desde entonces se ha extendido a prácticamente todos los estándares RF y digitales de alta velocidad, incluidos USB, PCIe, HDMI y Ethernet. Se usa 75 Ω donde la baja atenuación importa más que la potencia, como en televisión por cable y vídeo de difusión."
+      },
+      {
+        "q": "¿Qué precisión tienen las fórmulas cerradas de impedancia?",
+        "a": "Las fórmulas de estilo Wadell usadas en esta calculadora tienen una precisión de alrededor del 2–3% para dimensiones PCB típicas. Los fabricantes de PCB usan solucionadores de campo 2D (como Polar Si9000 o Saturn PCB Design Toolkit) que alcanzan una precisión mejor del 1% al resolver numéricamente las ecuaciones de Maxwell para la geometría real. Para una estimación rápida de diseño, las fórmulas analíticas son totalmente adecuadas; para una placa de producción que requiera ±5% de impedancia, usa el solucionador de campo del fabricante."
+      },
+      {
+        "q": "¿Cuál es la constante dieléctrica de FR-4?",
+        "a": "FR-4 es un laminado de epoxi reforzado con fibra de vidrio. Su constante dieléctrica varía con la frecuencia y el contenido de humedad, y normalmente se sitúa entre 4.2 y 4.8 a 1 MHz. El valor nominal estándar de la industria es 4.5 a bajas frecuencias. A 10 GHz, el Dk baja aproximadamente a 4.0–4.2. Para diseños por encima de unos pocos GHz, considera un material de bajo Dk y baja pérdida como Rogers RO4350B (Dk 3.66) o RT/duroid 5880 (Dk 2.20)."
+      },
+      {
+        "q": "¿Cómo afecta el peso del cobre a la impedancia de la pista?",
+        "a": "Un cobre más grueso (mayor T) reduce ligeramente la impedancia porque los campos eléctricos de borde alrededor de la pista aumentan el ancho efectivo. Para una misma dieléctrica, al pasar de 1 oz (1.378 mils) a 2 oz (2.756 mils) normalmente hay que estrechar el ancho de pista unos 1–2 mils para mantener la misma impedancia objetivo. La calculadora incluye T como entrada para tener en cuenta este efecto."
+      },
+      {
+        "q": "¿Qué es la constante dieléctrica efectiva en un microstrip?",
+        "a": "En un microstrip, las líneas de campo eléctrico pasan en parte por el sustrato y en parte por el aire sobre la pista. La constante dieléctrica efectiva εeff es el promedio ponderado de esos dos medios y siempre está entre 1 y εr. Determina la velocidad de propagación de la señal en la pista: v = c / √εeff. El stripline está completamente embebido en el dieléctrico, así que εeff = εr."
+      },
+      {
+        "q": "¿Qué tolerancia debería especificar para fabricación PCB de impedancia controlada?",
+        "a": "La mayoría de los fabricantes comerciales de PCB garantizan una tolerancia de impedancia de ±10% en capas de impedancia controlada sin un recargo significativo. Los proveedores premium pueden lograr ±5% o ±7% con mayor control de proceso. Las tolerancias más ajustadas requieren cupones de prueba más frecuentes y mayor coste. Para la mayoría de los diseños digitales, ±10% es suficiente; los diseños RF por encima de unos pocos GHz pueden requerir ±5%."
+      }
+    ]
+  }
+}

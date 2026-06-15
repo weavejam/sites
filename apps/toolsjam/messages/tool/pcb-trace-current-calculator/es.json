@@ -1,0 +1,124 @@
+{
+  "title": "Calculadora de corriente de pistas PCB IPC-2221",
+  "tagline": "Calcula la capacidad de corriente, el área transversal y la pérdida de potencia de pistas PCB con el estándar IPC-2221 para conductores de cobre externos e internos con aumento de temperatura ajustable.",
+  "intro": "Introduce el ancho de pista, el peso del cobre, el aumento de temperatura y si la pista está en una capa externa o interna. La calculadora aplica la fórmula IPC-2221 para determinar la capacidad segura de conducción de corriente.",
+  "field": {
+    "traceWidth": "Ancho de pista",
+    "copperWeight": "Peso del cobre",
+    "tempRise": "Aumento de temperatura (ΔT)",
+    "ambientTemp": "Temperatura ambiente",
+    "traceLocation": "Ubicación de la pista"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "celsius": "°C",
+    "oz": "oz"
+  },
+  "type": {
+    "external": "Externa (capa exterior)",
+    "internal": "Interna (capa interior)"
+  },
+  "unit": {
+    "mils": "mils",
+    "celsius": "°C",
+    "amps": "A",
+    "mils2": "mils²",
+    "ohmPerIn": "Ω/in",
+    "wPerIn": "W/in"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce valores positivos válidos en todos los campos.",
+    "zero": "El ancho de pista, el peso del cobre y el aumento de temperatura deben ser mayores que cero."
+  },
+  "result": {
+    "heading": "Resultado de capacidad de corriente",
+    "maxCurrent": "Corriente máxima",
+    "crossSection": "Área transversal",
+    "resistance": "Resistencia por pulgada",
+    "powerLoss": "Pérdida de potencia por pulgada",
+    "formula": "Fórmula IPC-2221"
+  },
+  "copperWeightOptions": {
+    "1": "1 oz (1.378 mil)",
+    "2": "2 oz (2.756 mil)",
+    "3": "3 oz (4.134 mil)",
+    "4": "4 oz (5.512 mil)",
+    "0.5": "0.5 oz (0.689 mil)"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de corriente de pistas PCB",
+    "body": "Toda pista de cobre en una PCB tiene una capacidad máxima segura de corriente. Cuando la corriente fluye por una pista, la resistencia de la pista convierte energía eléctrica en calor según P = I²R. Si la pista no puede disipar ese calor con suficiente rapidez, la temperatura sube hasta que la pista se funde o el material de la PCB circundante se daña. El estándar IPC-2221 (estándar genérico para diseño de placas impresas) proporciona fórmulas empíricas que equilibran el área transversal de la pista, el aumento de temperatura y la ubicación de la pista (capa externa o interna).\n\nLa fórmula de capacidad de corriente IPC-2221 es: I = k × ΔT^0.44 × A^0.725, donde I es la corriente máxima en amperios, ΔT es el aumento permitido sobre la temperatura ambiente en grados Celsius, A es el área transversal de la pista en mils² y k es una constante que depende de la ubicación de la pista. IPC-2221 especifica k = 0.048 para pistas externas (capa exterior) y k = 0.024 para pistas internas (capa interior). Las pistas internas tienen un k menor porque están rodeadas de material dieléctrico con menor conductividad térmica que el aire que rodea las pistas externas.\n\nEl área transversal A es el producto del ancho de la pista (en mils) y el espesor del cobre (en mils). El espesor del cobre lo determina el peso del cobre. Una onza por pie cuadrado (1 oz) corresponde aproximadamente a 1.378 mils (35 μm). El cobre de 2 onzas equivale a 2.756 mils (70 μm). Los pesos de cobre mayores se usan en pistas de potencia que transportan corrientes altas o requieren menor resistencia.\n\nLa resistencia por unidad de longitud es: R/in = ρ / A, donde ρ para el cobre a 20°C es aproximadamente 0.679 Ω·mils²/in. Esta resistencia aumenta con la temperatura: R(T) ≈ R₂₀ × (1 + 0.00393 × (T − 20)). La disipación por pulgada es P/in = I² × R/in, que es la carga de auto calentamiento que debe gestionar la pista.\n\nEl aumento de 10°C, usado habitualmente como regla práctica de diseño, corresponde a una pista conservadora y térmicamente estable. Un aumento de 20°C es aceptable para la mayoría de la electrónica comercial. Por encima de 30°C, los materiales de PCB empiezan a envejecer más rápido y disminuye la fiabilidad de las uniones de soldadura. Para aplicaciones de alta fiabilidad y aeroespaciales, la recomendación IPC-2221 clase 3 limita la temperatura de la pista a 30°C sobre el máximo ambiente."
+  },
+  "examples": {
+    "heading": "Ejemplos de corriente en pistas PCB",
+    "intro": "Escenarios de diseño estándar con la fórmula IPC-2221 para pesos de cobre y aumentos de temperatura habituales.",
+    "colInput": "Configuración de la pista",
+    "colOutput": "Corriente máx.",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Externa, W=10mil, 1oz Cu, ΔT=10°C",
+        "output": "≈ 0.9 A",
+        "note": "Una pista externa de 10 mil de ancho y 1 oz con solo 10°C de aumento: un diseño conservador adecuado para circuitos analógicos sensibles donde preocupa el ruido por auto calentamiento."
+      },
+      {
+        "input": "Externa, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 3.9 A",
+        "note": "Pista más ancha para un riel de alimentación de potencia moderada. Un aumento de 20°C es el objetivo de diseño más común en electrónica comercial."
+      },
+      {
+        "input": "Externa, W=200mil, 2oz Cu, ΔT=30°C",
+        "output": "≈ 20.8 A",
+        "note": "Una pista de bus de potencia con cobre pesado. Usar cobre de 2 oz casi duplica el área transversal y aumenta mucho la capacidad de corriente frente a una pista de 1 oz del mismo ancho."
+      },
+      {
+        "input": "Interna, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 1.9 A",
+        "note": "Pista interna con las mismas dimensiones que el ejemplo externo anterior. El coeficiente k = 0.024 para capas internas da aproximadamente un 50% menos de capacidad de corriente que una pista externa equivalente."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de corriente de pistas PCB",
+    "steps": [
+      "Introduce el ancho de pista en mils. Un mil es una milésima de pulgada; 10 mils = 0.254 mm. Las pistas de señal típicas son de 4–10 mils; las de potencia son de 20–200 mils o más.",
+      "Selecciona el peso del cobre. La mayoría de las PCB usan cobre de 1 oz (1.378 mils de espesor) en capas de señal. Las capas de potencia suelen usar 2 oz o cobre más pesado.",
+      "Introduce el aumento de temperatura (ΔT). Es el aumento máximo aceptable sobre ambiente: 10°C es conservador, 20°C es estándar para electrónica comercial y 30°C es el límite superior para operación fiable.",
+      "Selecciona Externa para una pista de capa exterior (k = 0.048) o Interna para una pista de capa interior (k = 0.024). Las pistas internas disipan el calor con menor eficiencia.",
+      "Haz clic en Calcular. Revisa la corriente máxima, el área transversal, la resistencia por pulgada y la pérdida de potencia. Ensancha la pista si la corriente nominal no es suficiente."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ de la calculadora de corriente de pistas PCB",
+    "items": [
+      {
+        "q": "¿Qué aumento de temperatura debo usar en mi diseño?",
+        "a": "La regla de diseño más común es 10°C para circuitos analógicos y de precisión, 20°C para electrónica comercial general y hasta 30°C para circuitos de potencia en equipos con gestión térmica adecuada. Un mayor aumento permite pistas más estrechas, pero acelera el envejecimiento del material de la PCB y aumenta la fatiga de las uniones de soldadura. IPC-2221 clase 3 (aplicaciones militares y críticas para la vida) suele exigir limitar el aumento a 10°C."
+      },
+      {
+        "q": "¿Por qué las pistas internas transportan menos corriente que las externas?",
+        "a": "Las pistas internas están rodeadas por todos los lados de FR-4 o un dieléctrico similar, con una conductividad térmica mucho menor que la del aire. La fórmula IPC-2221 lo contempla usando k = 0.024 para pistas internas frente a k = 0.048 para externas; por eso una pista interna de dimensiones idénticas transporta aproximadamente el 50% de la corriente que una pista externa puede llevar con seguridad."
+      },
+      {
+        "q": "¿Cómo convierto el ancho de pista de mm a mils?",
+        "a": "Multiplica los milímetros por 39.37 para obtener mils (milésimas de pulgada). Por ejemplo, 0.254 mm = 10 mils, 0.5 mm = 19.7 mils ≈ 20 mils y 1 mm = 39.37 mils ≈ 40 mils. La mayoría de herramientas de diseño PCB muestran ambas unidades; esta calculadora usa mils para coincidir con los coeficientes de la fórmula IPC-2221."
+      },
+      {
+        "q": "¿Cómo se relaciona el peso del cobre con el espesor de la pista?",
+        "a": "El peso del cobre se especifica en onzas por pie cuadrado. Una onza (1 oz) de cobre extendida para cubrir un pie cuadrado tiene un espesor aproximado de 1.378 mils (35 μm). El cobre de dos onzas es 2.756 mils (70 μm). El cobre más pesado ofrece menor resistencia y mayor capacidad de corriente, pero dificulta el grabado de detalles finos y cuesta más."
+      },
+      {
+        "q": "¿Cuál es la resistencia de una pista PCB?",
+        "a": "La resistencia por pulgada es R/in = 0.679 / A, donde A es el área transversal en mils² y 0.679 es la resistividad del cobre en Ω·mils²/in a 20°C. A temperaturas más altas, la resistencia aumenta alrededor de 0.393% por cada grado Celsius sobre 20°C. Para una pista de 1 oz y 10 mil (A = 13.78 mils²), R/in ≈ 0.049 Ω/inch, lo que causa una caída de 0.147 V en una pista de 3 pulgadas a 1 A."
+      },
+      {
+        "q": "¿Los valores de IPC-2221 son conservadores?",
+        "a": "Sí. Las tablas y fórmulas IPC-2221 se derivaron de mediciones empíricas en aire quieto sin convección forzada e incluyen margen de seguridad. En la práctica, las pistas con buen flujo de aire, planos de cobre cercanos o vías térmicas conectadas a planos internos pueden transportar con seguridad más corriente de la que sugiere la fórmula IPC. En diseños críticos para la seguridad, usa los valores IPC; en aplicaciones comerciales con pruebas adecuadas, es aceptable una reducción moderada de ±20%."
+      }
+    ]
+  }
+}

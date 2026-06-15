@@ -1,0 +1,124 @@
+{
+  "title": "Calculadora de corrente de trilha PCB IPC-2221",
+  "tagline": "Calcule a capacidade de corrente, área transversal e perda de potência de trilhas PCB usando os padrões IPC-2221 para condutores de cobre externos e internos com elevação de temperatura ajustável.",
+  "intro": "Informe a largura da trilha, o peso do cobre, a elevação de temperatura e se a trilha está em uma camada externa ou interna. A calculadora aplica a fórmula IPC-2221 para determinar a capacidade segura de condução de corrente.",
+  "field": {
+    "traceWidth": "Largura da trilha",
+    "copperWeight": "Peso do cobre",
+    "tempRise": "Elevação de temperatura (ΔT)",
+    "ambientTemp": "Temperatura ambiente",
+    "traceLocation": "Local da trilha"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "celsius": "°C",
+    "oz": "oz"
+  },
+  "type": {
+    "external": "Externa (camada externa)",
+    "internal": "Interna (camada interna)"
+  },
+  "unit": {
+    "mils": "mils",
+    "celsius": "°C",
+    "amps": "A",
+    "mils2": "mils²",
+    "ohmPerIn": "Ω/in",
+    "wPerIn": "W/in"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira valores positivos válidos em todos os campos.",
+    "zero": "A largura da trilha, o peso do cobre e a elevação de temperatura devem ser maiores que zero."
+  },
+  "result": {
+    "heading": "Resultado da capacidade de corrente",
+    "maxCurrent": "Corrente máxima",
+    "crossSection": "Área transversal",
+    "resistance": "Resistência por polegada",
+    "powerLoss": "Perda de potência por polegada",
+    "formula": "Fórmula IPC-2221"
+  },
+  "copperWeightOptions": {
+    "1": "1 oz (1.378 mil)",
+    "2": "2 oz (2.756 mil)",
+    "3": "3 oz (4.134 mil)",
+    "4": "4 oz (5.512 mil)",
+    "0.5": "0.5 oz (0.689 mil)"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de corrente de trilha PCB",
+    "body": "Toda trilha de cobre em uma PCB tem uma capacidade máxima segura de corrente. Quando a corrente passa por uma trilha, a resistência da trilha converte energia elétrica em calor de acordo com P = I²R. Se a trilha não conseguir dissipar esse calor rápido o suficiente, a temperatura sobe até a trilha derreter ou o material da PCB ao redor ser danificado. O padrão IPC-2221 (padrão genérico para projeto de placas impressas) fornece fórmulas empíricas que equilibram a área transversal da trilha, a elevação de temperatura e a posição da trilha (camada externa ou interna).\n\nA fórmula IPC-2221 de capacidade de corrente é: I = k × ΔT^0.44 × A^0.725, em que I é a corrente máxima em amperes, ΔT é a elevação permitida acima da temperatura ambiente em graus Celsius, A é a área transversal da trilha em mils² e k é uma constante que depende da posição da trilha. A IPC-2221 especifica k = 0.048 para trilhas externas (camada externa) e k = 0.024 para trilhas internas (camada interna). Trilhas internas têm k menor porque são cercadas por material dielétrico com condutividade térmica menor que a do ar ao redor das trilhas externas.\n\nA área transversal A é o produto da largura da trilha (em mils) pela espessura do cobre (em mils). A espessura do cobre é determinada pelo peso do cobre. Uma onça por pé quadrado (1 oz) corresponde a aproximadamente 1.378 mils (35 μm). Cobre de duas onças tem 2.756 mils (70 μm). Pesos de cobre maiores são usados em trilhas de potência que transportam correntes altas ou exigem menor resistência.\n\nA resistência por unidade de comprimento é: R/in = ρ / A, em que ρ para cobre a 20°C é aproximadamente 0.679 Ω·mils²/in. Essa resistência aumenta com a temperatura: R(T) ≈ R₂₀ × (1 + 0.00393 × (T − 20)). A dissipação de potência por polegada é P/in = I² × R/in, que é a carga de autoaquecimento que a trilha precisa gerenciar.\n\nA elevação de 10°C, comumente usada como regra prática de projeto, corresponde a uma trilha conservadora e termicamente estável. Uma elevação de 20°C é aceitável para a maioria dos eletrônicos comerciais. Acima de 30°C, os materiais da PCB começam a sofrer envelhecimento acelerado e a confiabilidade das juntas de solda diminui. Para aplicações de alta confiabilidade e aeroespaciais, a recomendação IPC-2221 classe 3 limita a temperatura da trilha a 30°C acima da temperatura ambiente máxima."
+  },
+  "examples": {
+    "heading": "Exemplos de corrente em trilhas PCB",
+    "intro": "Cenários de projeto padrão usando a fórmula IPC-2221 para pesos de cobre e elevações de temperatura comuns.",
+    "colInput": "Configuração da trilha",
+    "colOutput": "Corrente máx.",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Externa, W=10mil, 1oz Cu, ΔT=10°C",
+        "output": "≈ 0.9 A",
+        "note": "Uma trilha externa de 10 mil de largura e 1 oz com apenas 10°C de elevação: um projeto conservador adequado para circuitos analógicos sensíveis, onde ruído por autoaquecimento é uma preocupação."
+      },
+      {
+        "input": "Externa, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 3.9 A",
+        "note": "Trilha mais larga para um barramento de alimentação de potência moderada. A elevação de 20°C é a meta de projeto mais comum em eletrônicos comerciais."
+      },
+      {
+        "input": "Externa, W=200mil, 2oz Cu, ΔT=30°C",
+        "output": "≈ 20.8 A",
+        "note": "Uma trilha de barramento de potência usando cobre pesado. Usar cobre de 2 oz praticamente dobra a área transversal, aumentando bastante a capacidade de corrente em relação a uma trilha de 1 oz da mesma largura."
+      },
+      {
+        "input": "Interna, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 1.9 A",
+        "note": "Trilha interna com as mesmas dimensões do exemplo externo acima. O coeficiente k = 0.024 para camadas internas fornece cerca de 50% menos capacidade de corrente que uma trilha externa equivalente."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de corrente de trilha PCB",
+    "steps": [
+      "Informe a largura da trilha em mils. Um mil é um milésimo de polegada; 10 mils = 0.254 mm. Trilhas de sinal típicas têm 4–10 mils; trilhas de potência têm 20–200 mils ou mais.",
+      "Selecione o peso do cobre. A maioria das PCBs usa cobre de 1 oz (1.378 mils de espessura) em camadas de sinal. Camadas de potência geralmente usam 2 oz ou cobre mais pesado.",
+      "Informe a elevação de temperatura (ΔT). Esta é a elevação máxima aceitável acima do ambiente: 10°C é conservadora, 20°C é padrão para eletrônicos comerciais e 30°C é o limite superior para operação confiável.",
+      "Selecione Externa para uma trilha de camada externa (k = 0.048) ou Interna para uma trilha de camada interna (k = 0.024). Trilhas internas dissipam calor com menor eficiência.",
+      "Clique em Calcular. Revise a corrente máxima, a área transversal, a resistência por polegada e a perda de potência. Aumente a largura da trilha se a corrente nominal for insuficiente."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ da calculadora de corrente de trilha PCB",
+    "items": [
+      {
+        "q": "Qual elevação de temperatura devo usar no meu projeto?",
+        "a": "A regra de projeto mais comum é 10°C para circuitos analógicos e de precisão, 20°C para eletrônicos comerciais em geral e até 30°C para circuitos de potência em equipamentos com gerenciamento térmico adequado. Uma elevação maior permite trilhas mais estreitas, mas acelera o envelhecimento do material da PCB e aumenta a fadiga das juntas de solda. A IPC-2221 classe 3 (aplicações militares e críticas à vida) normalmente exige limitar a elevação a 10°C."
+      },
+      {
+        "q": "Por que trilhas internas conduzem menos corrente que trilhas externas?",
+        "a": "Trilhas internas são cercadas por todos os lados por FR-4 ou material dielétrico semelhante, que tem condutividade térmica muito menor que a do ar. A fórmula IPC-2221 considera isso usando k = 0.024 para trilhas internas contra k = 0.048 para trilhas externas, ou seja, uma trilha interna de dimensões idênticas conduz aproximadamente 50% da corrente que uma trilha externa pode conduzir com segurança."
+      },
+      {
+        "q": "Como converter a largura da trilha de mm para mils?",
+        "a": "Multiplique milímetros por 39.37 para obter mils (milésimos de polegada). Por exemplo, 0.254 mm = 10 mils, 0.5 mm = 19.7 mils ≈ 20 mils e 1 mm = 39.37 mils ≈ 40 mils. A maioria das ferramentas de projeto PCB exibe as duas unidades; esta calculadora usa mils para corresponder aos coeficientes da fórmula IPC-2221."
+      },
+      {
+        "q": "Como o peso do cobre se relaciona com a espessura da trilha?",
+        "a": "O peso do cobre é especificado em onças por pé quadrado. Uma onça (1 oz) de cobre laminada para cobrir um pé quadrado tem espessura aproximada de 1.378 mils (35 μm). Cobre de duas onças tem 2.756 mils (70 μm). Cobre mais pesado oferece menor resistência e maior capacidade de corrente, mas dificulta a corrosão de detalhes finos e custa mais."
+      },
+      {
+        "q": "Qual é a resistência de uma trilha PCB?",
+        "a": "A resistência por polegada é R/in = 0.679 / A, em que A é a área transversal em mils² e 0.679 é a resistividade do cobre em Ω·mils²/in a 20°C. Em temperaturas mais altas, a resistência aumenta cerca de 0.393% por grau Celsius acima de 20°C. Para uma trilha de 1 oz e 10 mil (A = 13.78 mils²), R/in ≈ 0.049 Ω/inch, causando queda de 0.147 V em uma trilha de 3 polegadas a 1 A."
+      },
+      {
+        "q": "Os valores IPC-2221 são conservadores?",
+        "a": "Sim. Os gráficos e fórmulas IPC-2221 foram derivados de medições empíricas em ar parado, sem convecção forçada, e incluem margem de segurança. Na prática, trilhas com bom fluxo de ar, planos de cobre próximos ou vias térmicas conectadas a planos internos podem conduzir com segurança mais corrente do que a fórmula IPC sugere. Para projetos críticos de segurança, use os valores IPC; para aplicações comerciais com testes adequados, uma redução moderada de ±20% é aceitável."
+      }
+    ]
+  }
+}

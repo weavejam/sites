@@ -1,0 +1,115 @@
+{
+  "title": "Calculateur d’impédance PCB - Microstrip et stripline",
+  "tagline": "Calculez l’impédance des pistes PCB en microstrip et stripline à l’aide des formules IPC standard pour obtenir une adaptation précise en RF et en conception PCB haut débit.",
+  "intro": "Sélectionnez la géométrie de la piste, saisissez les dimensions physiques et les propriétés diélectriques, puis cliquez sur Calculer pour obtenir l’impédance caractéristique en ohms.",
+  "field": {
+    "traceType": "Géométrie de piste",
+    "traceWidth": "Largeur de piste (W)",
+    "traceThickness": "Épaisseur de piste (T)",
+    "dielectricHeight": "Hauteur diélectrique (H)",
+    "dielectricConstant": "Constante diélectrique (εr)",
+    "planeSpacing": "Espacement entre plans (B)"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "er": "p. ex. 4.5"
+  },
+  "type": {
+    "microstrip": "Microstrip",
+    "stripline": "Stripline"
+  },
+  "unit": {
+    "mils": "mils",
+    "ohm": "Ω"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs positives pour toutes les dimensions requises.",
+    "zero": "Tous les champs de dimension doivent être supérieurs à zéro."
+  },
+  "result": {
+    "heading": "Résultat d’impédance",
+    "impedance": "Impédance caractéristique",
+    "effectiveEr": "Constante diélectrique effective",
+    "formula": "Formule utilisée"
+  },
+  "formula": {
+    "microstrip": "Microstrip : Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T))",
+    "stripline": "Stripline : Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T)))"
+  },
+  "about": {
+    "heading": "À propos du calculateur d’impédance PCB",
+    "body": "L’impédance contrôlée est une exigence fondamentale en conception numérique haut débit, en circuits RF et dans toute PCB où l’intégrité du signal compte. Lorsque l’impédance caractéristique d’une ligne de transmission ne correspond pas aux impédances de la source et de la charge, une partie de l’énergie du signal est renvoyée vers la source. Ces réflexions provoquent du ringing, de l’overshoot, des erreurs de données et une augmentation des émissions électromagnétiques. La cible standard est 50 Ω pour les pistes asymétriques et 100 Ω différentiel pour la plupart des standards numériques haut débit, même si 75 Ω est courant dans la vidéo et la télévision par câble.\n\nUn microstrip est une piste située sur la couche cuivre externe d’une PCB, avec le substrat diélectrique en dessous et l’air au-dessus. Comme une partie du champ s’étend dans l’air (εr = 1) et une autre dans le diélectrique (εr > 1), la constante diélectrique effective se situe entre les deux. L’approximation fermée couramment utilisée est Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T)), où W est la largeur de piste, T l’épaisseur de piste et H la hauteur du diélectrique entre la piste et le plan de référence le plus proche. Toutes les dimensions doivent utiliser la même unité — ce calculateur utilise les mils (millièmes de pouce), la norme en conception PCB nord-américaine.\n\nUn stripline est une piste intégrée à l’intérieur du stackup PCB, avec des plans de référence au-dessus et en dessous. Le diélectrique environnant est uniforme, il n’y a donc pas de contribution de l’air et la constante diélectrique effective est égale à la εr du matériau. La formule d’impédance est Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T))), où B est la distance totale entre les deux plans de référence. Les pistes stripline offrent un meilleur blindage EMI, mais sont plus difficiles à inspecter et à modifier.\n\nMatériaux diélectriques courants et leurs valeurs approximatives de εr : FR-4 standard 4.2–4.8 (la plupart de l’industrie utilise 4.5 comme valeur nominale) ; Rogers RO4003C : 3.55 ; Rogers RO4350B : 3.66 ; Rogers RT/duroid 5880 : 2.20 ; polyimide : 3.5 ; PTFE : 2.1. Des valeurs de εr plus faibles augmentent la vitesse de propagation des signaux et l’impédance pour une géométrie donnée.\n\nL’épaisseur de la piste est liée au poids du cuivre. Une once par pied carré (1 oz) de cuivre correspond à environ 1.378 mils d’épaisseur. Le cuivre 2 oz correspond à environ 2.756 mils. La plupart des pistes de signal utilisent du cuivre 1 oz ; les plans d’alimentation utilisent souvent 2 oz. Les fabricants de PCB contrôlent l’impédance en ajustant la largeur de piste pendant la fabrication et garantissent généralement une impédance dans une tolérance de ±10% sur les couches à impédance contrôlée."
+  },
+  "examples": {
+    "heading": "Exemples d’impédance PCB",
+    "intro": "Configurations standard visant 50 Ω sur des stackups PCB courants.",
+    "colInput": "Configuration",
+    "colOutput": "Impédance",
+    "colNote": "Remarques",
+    "items": [
+      {
+        "input": "Microstrip : W=5.7mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Microstrip asymétrique 50 Ω typique sur FR-4 standard avec diélectrique de 4 mil. C’est la cible d’impédance la plus courante en conception PCB commerciale."
+      },
+      {
+        "input": "Microstrip : W=5mil, T=1.378mil, H=3.3mil, εr=3.66",
+        "output": "≈ 50 Ω",
+        "note": "Microstrip 50 Ω sur Rogers RO4350B. Un εr plus faible impose une piste plus étroite pour conserver 50 Ω à hauteur diélectrique identique."
+      },
+      {
+        "input": "Stripline : W=6.4mil, T=1.378mil, B=20mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Stripline 50 Ω intégré dans du FR-4. L’espacement entre plans B doit être spécifié ; si B diminue, il faut élargir W pour conserver 50 Ω."
+      },
+      {
+        "input": "Microstrip : W=14mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 23 Ω",
+        "note": "Une piste plus large réduit fortement l’impédance. Doubler la largeur de piste d’environ 5.7 mil à 14 mil fait passer l’impédance de 50 Ω à environ 23 Ω — utile comme référence de conception pour les pistes d’alimentation à faible impédance."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur d’impédance PCB",
+    "steps": [
+      "Sélectionnez la géométrie de piste : Microstrip pour les pistes en couche externe avec de l’air au-dessus, ou Stripline pour les pistes enterrées avec des plans de référence des deux côtés.",
+      "Saisissez la Largeur de piste (W) et l’Épaisseur de piste (T) en mils. L’épaisseur dépend du poids du cuivre : 1 oz ≈ 1.378 mils, 2 oz ≈ 2.756 mils.",
+      "Saisissez la Hauteur diélectrique (H) pour un microstrip — la distance entre le dessous de la piste et le plan de référence — ou l’Espacement entre plans (B) pour un stripline.",
+      "Saisissez la Constante diélectrique (εr) de votre matériau PCB : ~4.5 pour du FR-4 standard, ~3.66 pour du Rogers RO4350B, ~2.2 pour du Rogers RT/duroid 5880.",
+      "Cliquez sur Calculer. Ajustez la largeur de piste jusqu’à ce que le calculateur renvoie votre impédance cible, puis transmettez cette largeur à votre fabricant de PCB comme spécification d’impédance contrôlée."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur d’impédance PCB",
+    "items": [
+      {
+        "q": "Pourquoi 50 Ω est-il l’impédance standard de la plupart des pistes PCB ?",
+        "a": "50 Ω est un compromis historique entre l’atténuation minimale (environ 77 Ω pour un câble coaxial rempli d’air) et la puissance maximale admissible (environ 30 Ω). Cette valeur a été normalisée par les secteurs militaire et RF au milieu du XXe siècle, puis s’est propagée à pratiquement tous les standards RF et numériques haut débit, notamment USB, PCIe, HDMI et Ethernet. 75 Ω est utilisé lorsque la faible atténuation compte davantage que la puissance, comme dans la télévision par câble et la vidéo de diffusion."
+      },
+      {
+        "q": "Quelle est la précision des formules d’impédance fermées ?",
+        "a": "Les formules de type Wadell utilisées dans ce calculateur sont précises à environ 2–3% pour des dimensions PCB typiques. Les fabricants de PCB utilisent des solveurs de champ 2D (comme Polar Si9000 ou Saturn PCB Design Toolkit) qui atteignent une précision supérieure à 1% en résolvant numériquement les équations de Maxwell pour la géométrie réelle. Pour une estimation rapide de conception, les formules analytiques sont largement suffisantes ; pour une carte de production nécessitant ±5% d’impédance, utilisez le solveur de champ du fabricant."
+      },
+      {
+        "q": "Quelle est la constante diélectrique du FR-4 ?",
+        "a": "Le FR-4 est un stratifié époxy renforcé de fibres de verre. Sa constante diélectrique varie avec la fréquence et l’humidité, et se situe généralement entre 4.2 et 4.8 à 1 MHz. La valeur nominale standard de l’industrie est 4.5 à basse fréquence. À 10 GHz, le Dk descend vers 4.0–4.2. Pour des conceptions au-dessus de quelques GHz, envisagez un matériau à faible Dk et faibles pertes comme Rogers RO4350B (Dk 3.66) ou RT/duroid 5880 (Dk 2.20)."
+      },
+      {
+        "q": "Comment le poids du cuivre affecte-t-il l’impédance de piste ?",
+        "a": "Un cuivre plus épais (T plus élevé) réduit légèrement l’impédance, car les champs électriques de bord autour de la piste augmentent la largeur effective. Pour un même diélectrique, entre une piste 1 oz (1.378 mils) et 2 oz (2.756 mils), il faut généralement réduire la largeur d’environ 1 à 2 mils pour conserver la même impédance cible. Le calculateur inclut T en entrée pour tenir compte de cet effet."
+      },
+      {
+        "q": "Qu’est-ce que la constante diélectrique effective dans un microstrip ?",
+        "a": "Dans un microstrip, les lignes de champ électrique passent en partie dans le substrat et en partie dans l’air au-dessus de la piste. La constante diélectrique effective εeff est la moyenne pondérée de ces deux milieux et se situe toujours entre 1 et εr. Elle détermine la vitesse de propagation des signaux sur la piste : v = c / √εeff. Le stripline étant entièrement intégré dans le diélectrique, εeff = εr."
+      },
+      {
+        "q": "Quelle tolérance faut-il spécifier pour une fabrication PCB à impédance contrôlée ?",
+        "a": "La plupart des fabricants de PCB garantissent une tolérance d’impédance de ±10% sur les couches à impédance contrôlée sans surcoût significatif. Les fournisseurs premium peuvent atteindre ±5% ou ±7% avec un contrôle de process supplémentaire. Des tolérances plus serrées exigent des coupons de test plus fréquents et un coût plus élevé. Pour la plupart des conceptions numériques, ±10% suffit ; les conceptions RF au-dessus de quelques GHz peuvent nécessiter ±5%."
+      }
+    ]
+  }
+}

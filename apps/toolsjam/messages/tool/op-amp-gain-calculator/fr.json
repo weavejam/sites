@@ -1,0 +1,117 @@
+{
+  "title": "Calculateur de gain d’ampli op",
+  "tagline": "Calculez le gain en tension, la tension de sortie et le gain en dB pour les circuits à amplificateur opérationnel inverseurs et non inverseurs.",
+  "intro": "Choisissez la configuration de l’amplificateur, saisissez les valeurs des résistances et la tension d’entrée, puis obtenez instantanément le calcul du gain et de la sortie pour votre circuit op amp.",
+  "type": {
+    "inverting": "Amplificateur inverseur",
+    "noninverting": "Amplificateur non inverseur"
+  },
+  "field": {
+    "amplifierType": "Type d’amplificateur",
+    "rf": "Résistance de rétroaction (Rf)",
+    "rin": "Résistance d’entrée (Rin)",
+    "vin": "Tension d’entrée (Vin) (V)",
+    "rfUnit": "Ω",
+    "placeholder": {
+      "rf": "ex. 10000",
+      "rin": "ex. 1000",
+      "vin": "ex. 1.0"
+    }
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultat",
+    "voltageGain": "Gain en tension (Av)",
+    "outputVoltage": "Tension de sortie (Vout)",
+    "voltUnit": "V",
+    "dbGain": "Gain en dB",
+    "dbUnit": "dB",
+    "formula": "Formule",
+    "invertingFormula": "Av = –Rf / Rin",
+    "noninvertingFormula": "Av = 1 + Rf / Rin"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides pour Rf et Rin.",
+    "zeroResistance": "Les valeurs de résistance doivent être supérieures à zéro."
+  },
+  "about": {
+    "heading": "À propos du calculateur de gain d’ampli op",
+    "body": "Un amplificateur opérationnel — couramment appelé ampli op — est un amplificateur électronique de tension à fort gain avec une entrée différentielle et, en général, une sortie asymétrique. Les amplis op sont les briques de base d’innombrables circuits analogiques : amplificateurs audio, filtres actifs, conditionneurs de signal, intégrateurs, dérivateurs, comparateurs et références de tension de précision, pour n’en citer que quelques-uns. Comprendre et calculer leur gain est une compétence essentielle en conception électronique analogique.\n\nLe gain d’un circuit à ampli op est défini par des résistances de rétroaction externes, et non par le gain en boucle ouverte de l’ampli op lui-même (qui est généralement énorme, de plusieurs dizaines de milliers à plusieurs millions). Deux configurations fondamentales dominent la conception pratique des circuits.\n\nDans la configuration inverseuse, le signal d’entrée est appliqué à la borne inverseuse (moins) via une résistance Rin, et une résistance de rétroaction Rf relie la sortie à cette même borne inverseuse. La borne non inverseuse (plus) est reliée à la masse. Dans les hypothèses d’un ampli op idéal — gain en boucle ouverte infini, impédance d’entrée infinie, impédance de sortie nulle — le gain en tension est Av = –Rf / Rin. Le signe négatif signifie que la sortie est déphasée de 180 degrés par rapport à l’entrée. Si Rf = 10 kΩ et Rin = 1 kΩ, le gain vaut –10, ce qui signifie qu’une entrée de 1 V produit une sortie de –10 V.\n\nDans la configuration non inverseuse, le signal d’entrée est appliqué directement à la borne non inverseuse (plus), et le réseau de rétroaction (Rf de la sortie vers la borne inverseuse, et Rin de la borne inverseuse à la masse) fixe le gain sans inverser la phase. Le gain en tension idéal est Av = 1 + Rf / Rin. Avec les mêmes résistances (Rf = 10 kΩ, Rin = 1 kΩ), le gain devient +11 — non inverseur et légèrement plus élevé que le cas inverseur, car l’entrée est directement tamponnée par l’ampli op avant l’application de la rétroaction.\n\nLe gain s’exprime aussi couramment en décibels : dB = 20 × log₁₀(|Av|). Un gain de 10 correspond à 20 dB ; un gain de 100 correspond à 40 dB. L’échelle en dB est logarithmique, ce qui facilite l’addition des gains lorsque plusieurs étages d’amplification sont en cascade : 20 dB + 20 dB = 40 dB.\n\nCe calculateur gère les deux configurations. Saisissez Rf, Rin et éventuellement la tension d’entrée, choisissez inverseur ou non inverseur, et l’outil renvoie instantanément le gain en tension, la tension de sortie et la valeur en dB. Il est utile pour la conception initiale, la vérification de circuits et l’exploration pédagogique du comportement des amplis op."
+  },
+  "examples": {
+    "heading": "Exemples de gain d’ampli op",
+    "intro": "Configurations courantes inverseuses et non inverseuses avec gains calculés.",
+    "colInput": "Configuration",
+    "colOutput": "Gain en tension",
+    "colNote": "Gain en dB",
+    "items": [
+      {
+        "input": "Inverseur : Rf = 10 kΩ, Rin = 1 kΩ",
+        "output": "Av = –10",
+        "note": "20 dB (amplitude)"
+      },
+      {
+        "input": "Non inverseur : Rf = 10 kΩ, Rin = 1 kΩ",
+        "output": "Av = +11",
+        "note": "20.83 dB"
+      },
+      {
+        "input": "Inverseur : Rf = 47 kΩ, Rin = 4.7 kΩ",
+        "output": "Av = –10",
+        "note": "20 dB (amplitude)"
+      },
+      {
+        "input": "Tampon unitaire non inverseur : Rf = 0, Rin = ∞",
+        "output": "Av = +1",
+        "note": "0 dB (suiveur de tension)"
+      },
+      {
+        "input": "Inverseur : Rf = 100 kΩ, Rin = 1 kΩ, Vin = 0.05 V",
+        "output": "Av = –100, Vout = –5 V",
+        "note": "40 dB"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de gain d’ampli op",
+    "steps": [
+      "Sélectionnez Amplificateur inverseur ou Amplificateur non inverseur dans la liste déroulante Type d’amplificateur.",
+      "Saisissez la résistance de rétroaction Rf en ohms (par exemple 10000 pour 10 kΩ).",
+      "Saisissez la résistance d’entrée Rin en ohms (par exemple 1000 pour 1 kΩ).",
+      "Saisissez éventuellement la tension d’entrée Vin pour calculer la tension de sortie réelle.",
+      "Cliquez sur Calculer pour voir le gain en tension (Av), la tension de sortie, le gain en dB et la formule utilisée."
+    ]
+  },
+  "faq": {
+    "heading": "Foire aux questions",
+    "items": [
+      {
+        "q": "Que signifie un gain négatif pour un amplificateur inverseur ?",
+        "a": "Un gain négatif signifie que le signal de sortie est inversé — il est déphasé de 180° par rapport à l’entrée. La valeur absolue du gain indique toujours combien le signal est amplifié. Un Av de –10 amplifie le signal 10 fois tout en inversant sa polarité."
+      },
+      {
+        "q": "Comment choisir entre les configurations inverseuse et non inverseuse ?",
+        "a": "Utilisez la configuration inverseuse lorsque vous avez besoin d’inverser le signal ou lorsque vous souhaitez sommer plusieurs signaux d’entrée (sommateur à masse virtuelle). Utilisez la configuration non inverseuse lorsque vous avez besoin d’une forte impédance d’entrée ou devez conserver la phase du signal."
+      },
+      {
+        "q": "Qu’est-ce que le gain en dB et pourquoi est-il utile ?",
+        "a": "Le gain en décibels (dB = 20 × log₁₀|Av|) utilise une échelle logarithmique qui facilite le travail avec des étages d’amplification en cascade. Au lieu de multiplier les gains, il suffit d’additionner leurs valeurs en dB. Cela correspond aussi à la façon dont l’oreille humaine perçoit la sensation de volume."
+      },
+      {
+        "q": "Ces formules supposent-elles un ampli op idéal ?",
+        "a": "Oui. Les formules Av = –Rf/Rin (inverseur) et Av = 1 + Rf/Rin (non inverseur) supposent un ampli op idéal avec un gain en boucle ouverte infini, une impédance d’entrée infinie et une impédance de sortie nulle. Les amplis op réels introduisent de petits écarts, surtout près des limites de bande passante, mais les formules idéales restent précises pour la plupart des conceptions pratiques."
+      },
+      {
+        "q": "Qu’est-ce que le produit gain-bande passante ?",
+        "a": "Le produit gain-bande passante (GBW) est une constante propre à un ampli op qui relie le gain en boucle fermée à la plage de fréquences utilisable. Si un ampli op a un GBW de 1 MHz et que vous réglez le gain à 10, la bande passante utilisable tombe à environ 100 kHz. Ce calculateur ne tient pas compte du GBW ; consultez la fiche technique de l’ampli op pour les conceptions haute fréquence."
+      },
+      {
+        "q": "Comment obtenir un gain exactement égal à 1 (tampon unitaire / suiveur de tension) ?",
+        "a": "Dans la configuration non inverseuse, reliez directement la sortie à l’entrée inverseuse sans résistances (Rf = 0 et Rin = ∞, ce qui donne Av = 1 + 0 = 1). Cette configuration présente une impédance d’entrée extrêmement élevée et une impédance de sortie très faible, ce qui la rend idéale pour bufferiser un signal sans charger la source."
+      }
+    ]
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "title": "Calculateur de courant de piste PCB IPC-2221",
+  "tagline": "Calculez la capacité de courant, la section et la perte de puissance d'une piste PCB selon IPC-2221 pour conducteurs cuivre externes et internes avec élévation de température réglable.",
+  "intro": "Saisissez la largeur de piste, le poids de cuivre, l'élévation de température et indiquez si la piste se trouve sur une couche externe ou interne. Le calculateur applique la formule IPC-2221 pour déterminer le courant admissible sûr.",
+  "field": {
+    "traceWidth": "Largeur de piste",
+    "copperWeight": "Poids de cuivre",
+    "tempRise": "Élévation de température (ΔT)",
+    "ambientTemp": "Température ambiante",
+    "traceLocation": "Emplacement de la piste"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "celsius": "°C",
+    "oz": "oz"
+  },
+  "type": {
+    "external": "Externe (couche extérieure)",
+    "internal": "Interne (couche intérieure)"
+  },
+  "unit": {
+    "mils": "mils",
+    "celsius": "°C",
+    "amps": "A",
+    "mils2": "mils²",
+    "ohmPerIn": "Ω/in",
+    "wPerIn": "W/in"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs positives valides pour tous les champs.",
+    "zero": "La largeur de piste, le poids de cuivre et l'élévation de température doivent tous être supérieurs à zéro."
+  },
+  "result": {
+    "heading": "Résultat de capacité de courant",
+    "maxCurrent": "Courant maximal",
+    "crossSection": "Section",
+    "resistance": "Résistance par pouce",
+    "powerLoss": "Perte de puissance par pouce",
+    "formula": "Formule IPC-2221"
+  },
+  "copperWeightOptions": {
+    "1": "1 oz (1.378 mil)",
+    "2": "2 oz (2.756 mil)",
+    "3": "3 oz (4.134 mil)",
+    "4": "4 oz (5.512 mil)",
+    "0.5": "0.5 oz (0.689 mil)"
+  },
+  "about": {
+    "heading": "À propos du calculateur de courant de piste PCB",
+    "body": "Chaque piste de cuivre sur un PCB possède une capacité de courant maximale sûre. Quand le courant circule dans une piste, sa résistance convertit l'énergie électrique en chaleur selon P = I²R. Si la piste ne dissipe pas cette chaleur assez vite, la température augmente jusqu'à faire fondre la piste ou endommager le matériau PCB environnant. La norme IPC-2221 (norme générique de conception des cartes imprimées) fournit des formules empiriques qui équilibrent la section de piste, l'élévation de température et l'emplacement de la piste (couche externe ou interne).\n\nLa formule IPC-2221 de capacité de courant est : I = k × ΔT^0.44 × A^0.725, où I est le courant maximal en ampères, ΔT l'élévation admissible au-dessus de l'ambiante en degrés Celsius, A la section de la piste en mils² et k une constante dépendant de l'emplacement de la piste. IPC-2221 indique k = 0.048 pour les pistes externes (couche extérieure) et k = 0.024 pour les pistes internes (couche intérieure). Les pistes internes ont un k plus faible car elles sont entourées d'un matériau diélectrique dont la conductivité thermique est inférieure à celle de l'air entourant les pistes externes.\n\nLa section A est le produit de la largeur de piste (en mils) et de l'épaisseur de cuivre (en mils). L'épaisseur de cuivre est déterminée par le poids de cuivre. Une once par pied carré (1 oz) correspond à environ 1.378 mils (35 μm). Le cuivre 2 oz vaut 2.756 mils (70 μm). Les poids de cuivre plus élevés sont utilisés pour les pistes de puissance transportant de forts courants ou nécessitant une résistance plus faible.\n\nLa résistance par unité de longueur est : R/in = ρ / A, où ρ pour le cuivre à 20°C vaut environ 0.679 Ω·mils²/in. Cette résistance augmente avec la température : R(T) ≈ R₂₀ × (1 + 0.00393 × (T − 20)). La dissipation par pouce est P/in = I² × R/in, c'est la charge d'auto-échauffement que la piste doit gérer.\n\nL'élévation de 10°C couramment utilisée comme règle de conception correspond à une piste conservatrice et thermiquement stable. Une élévation de 20°C est acceptable pour la plupart des produits électroniques commerciaux. Au-delà de 30°C, les matériaux PCB commencent à vieillir plus vite et la fiabilité des joints de soudure diminue. Pour les applications haute fiabilité et aérospatiales, la recommandation IPC-2221 classe 3 limite la température de piste à 30°C au-dessus de la température ambiante maximale."
+  },
+  "examples": {
+    "heading": "Exemples de courant de piste PCB",
+    "intro": "Scénarios de conception standard utilisant la formule IPC-2221 pour des poids de cuivre et élévations de température courants.",
+    "colInput": "Configuration de piste",
+    "colOutput": "Courant max.",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Externe, W=10mil, 1oz Cu, ΔT=10°C",
+        "output": "≈ 0.9 A",
+        "note": "Une piste externe de 10 mil de large en cuivre 1 oz avec seulement 10°C d'élévation : une conception conservatrice adaptée aux circuits analogiques sensibles où le bruit dû à l'auto-échauffement est préoccupant."
+      },
+      {
+        "input": "Externe, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 3.9 A",
+        "note": "Piste plus large pour un rail d'alimentation de puissance modérée. Une élévation de 20°C est la cible de conception la plus courante pour l'électronique commerciale."
+      },
+      {
+        "input": "Externe, W=200mil, 2oz Cu, ΔT=30°C",
+        "output": "≈ 20.8 A",
+        "note": "Piste de bus de puissance utilisant du cuivre épais. Le cuivre 2 oz double approximativement la section, augmentant nettement la capacité de courant par rapport à une piste 1 oz de même largeur."
+      },
+      {
+        "input": "Interne, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 1.9 A",
+        "note": "Piste interne aux mêmes dimensions que l'exemple externe ci-dessus. Le coefficient k = 0.024 des couches internes donne environ 50% de capacité de courant en moins qu'une piste externe équivalente."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de courant de piste PCB",
+    "steps": [
+      "Saisissez la largeur de piste en mils. Un mil est un millième de pouce ; 10 mils = 0.254 mm. Les pistes de signal typiques font 4–10 mils ; les pistes de puissance 20–200 mils ou plus.",
+      "Sélectionnez le poids de cuivre. La plupart des PCB utilisent du cuivre 1 oz (1.378 mils d'épaisseur) pour les couches de signal. Les couches de puissance utilisent souvent du 2 oz ou plus.",
+      "Saisissez l'élévation de température (ΔT). C'est l'élévation maximale acceptable au-dessus de l'ambiante : 10°C est conservateur, 20°C standard pour l'électronique commerciale, 30°C la limite supérieure d'un fonctionnement fiable.",
+      "Choisissez Externe pour une piste de couche extérieure (k = 0.048) ou Interne pour une piste de couche intérieure (k = 0.024). Les pistes internes dissipent moins efficacement la chaleur.",
+      "Cliquez sur Calculer. Vérifiez le courant maximal, la section, la résistance par pouce et la perte de puissance. Élargissez la piste si le courant admissible est insuffisant."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de courant de piste PCB",
+    "items": [
+      {
+        "q": "Quelle élévation de température utiliser pour ma conception ?",
+        "a": "La règle de conception la plus courante est 10°C pour les circuits analogiques et de précision, 20°C pour l'électronique commerciale générale et jusqu'à 30°C pour les circuits de puissance avec une gestion thermique adéquate. Une élévation plus élevée permet des pistes plus étroites, mais accélère le vieillissement des matériaux PCB et augmente la fatigue des joints de soudure. IPC-2221 classe 3 (applications militaires et critiques pour la vie) exige généralement de limiter l'élévation à 10°C."
+      },
+      {
+        "q": "Pourquoi les pistes internes transportent-elles moins de courant que les pistes externes ?",
+        "a": "Les pistes internes sont entourées de tous côtés par du FR-4 ou un matériau diélectrique similaire, dont la conductivité thermique est bien plus faible que celle de l'air. La formule IPC-2221 en tient compte avec k = 0.024 pour les pistes internes contre k = 0.048 pour les externes : une piste interne de dimensions identiques transporte donc environ 50% du courant qu'une piste externe peut porter en sécurité."
+      },
+      {
+        "q": "Comment convertir une largeur de piste de mm en mils ?",
+        "a": "Multipliez les millimètres par 39.37 pour obtenir des mils (millièmes de pouce). Par exemple, 0.254 mm = 10 mils, 0.5 mm = 19.7 mils ≈ 20 mils et 1 mm = 39.37 mils ≈ 40 mils. La plupart des outils de conception PCB affichent les deux unités ; ce calculateur utilise les mils pour correspondre aux coefficients de la formule IPC-2221."
+      },
+      {
+        "q": "Quel est le lien entre poids de cuivre et épaisseur de piste ?",
+        "a": "Le poids de cuivre est spécifié en onces par pied carré. Une once (1 oz) de cuivre laminée pour couvrir un pied carré a une épaisseur d'environ 1.378 mils (35 μm). Le cuivre 2 oz fait 2.756 mils (70 μm). Un cuivre plus lourd offre une résistance plus faible et une capacité de courant plus élevée, mais il rend la gravure des détails fins plus difficile et coûte plus cher."
+      },
+      {
+        "q": "Quelle est la résistance d'une piste PCB ?",
+        "a": "La résistance par pouce est R/in = 0.679 / A, où A est la section en mils² et 0.679 la résistivité du cuivre en Ω·mils²/in à 20°C. À température plus élevée, la résistance augmente d'environ 0.393% par degré Celsius au-dessus de 20°C. Pour une piste 1 oz de 10 mil (A = 13.78 mils²), R/in ≈ 0.049 Ω/inch, soit une chute de 0.147 V sur une piste de 3 pouces à 1 A."
+      },
+      {
+        "q": "Les valeurs IPC-2221 sont-elles conservatrices ?",
+        "a": "Oui. Les courbes et formules IPC-2221 proviennent de mesures empiriques en air immobile sans convection forcée et incluent une marge de sécurité. En pratique, des pistes avec bon flux d'air, plans de cuivre proches ou vias thermiques reliés à des plans internes peuvent transporter plus de courant que ne le suggère la formule IPC. Pour les conceptions critiques, respectez les valeurs IPC ; pour les applications commerciales correctement testées, un déclassement modéré de ±20% est acceptable."
+      }
+    ]
+  }
+}

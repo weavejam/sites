@@ -1,0 +1,106 @@
+{
+  "title": "Rechner für ungerade Paritätsbits",
+  "tagline": "Erzeugen Sie ungerade Paritätsbits für Binärdaten und prüfen Sie die Datenintegrität mit Ein-Bit-Fehlererkennung.",
+  "intro": "Geben Sie Binärdaten ein, um das ungerade Paritätsbit zu berechnen, die vollständige Übertragungszeichenfolge zu erzeugen und optional eine empfangene Binärzeichenfolge zu validieren.",
+  "field": {
+    "binaryData": "Binärdaten",
+    "receivedData": "Empfangene Daten (zur Validierung)",
+    "binaryDataPlaceholder": "z. B. 1010 oder 11001100",
+    "receivedDataPlaceholder": "z. B. 11011 (enthält Paritätsbit)"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "onesCount": "Anzahl der 1en in den Daten",
+    "parityBit": "Ungerades Paritätsbit",
+    "transmissionString": "Übertragungszeichenfolge (Daten + Paritätsbit)",
+    "validationHeading": "Validierungsergebnis",
+    "valid": "Gültig — die Gesamtzahl der 1en ist ungerade, kein Fehler erkannt.",
+    "invalid": "Fehler erkannt — die Gesamtzahl der 1en ist gerade, ein Bit-Flip ist aufgetreten."
+  },
+  "error": {
+    "invalidBinary": "Binärdaten dürfen nur 0 und 1 enthalten.",
+    "invalidReceived": "Empfangene Daten dürfen nur 0 und 1 enthalten.",
+    "emptyData": "Bitte Binärdaten eingeben."
+  },
+  "about": {
+    "heading": "Über den Rechner für ungerade Paritätsbits",
+    "body": "Die Paritätsprüfung ist eine der ältesten und am weitesten verbreiteten Methoden zur Erkennung von Übertragungsfehlern bei digitalen Daten. Ein Paritätsbit ist ein zusätzliches Bit, das an einen Block von Binärdaten angehängt wird. Der Sender berechnet das Paritätsbit anhand der Daten, überträgt die erweiterte Nachricht und der Empfänger berechnet die Parität erneut, um Unterschiede festzustellen.\n\nUngerade Parität bedeutet, dass die Gesamtzahl der 1-Bits in der kombinierten Folge — Datenbits plus Paritätsbit — immer ungerade sein muss. Enthalten die ursprünglichen Daten bereits eine ungerade Anzahl an 1en, wird das Paritätsbit auf 0 gesetzt (keine Änderung nötig). Enthalten die Daten eine gerade Anzahl an 1en, wird das Paritätsbit auf 1 gesetzt (um die Gesamtzahl von gerade auf ungerade zu drehen). Die Regel ist einfach: Zählen Sie die 1en in den Daten und wählen Sie das Paritätsbit so, dass die Gesamtsumme ungerade wird.\n\nEin konkretes Beispiel: Angenommen, Sie möchten das Byte 1010 übertragen. Dieses Byte enthält genau zwei 1en, also eine gerade Anzahl. Bei ungerader Parität muss das Paritätsbit daher 1 sein, sodass die vollständige Übertragungszeichenfolge 10101 lautet. Der Empfänger zählt die 1en in 10101 — es sind drei — also eine ungerade Zahl, und stuft die Nachricht als fehlerfrei ein. Würde unterwegs ein Bit kippen, etwa wenn die Zeichenfolge als 11101 ankommt, würde der Empfänger vier 1en zählen — eine gerade Zahl — und sofort einen Fehler melden.\n\nDer Unterschied zwischen ungerader und gerader Parität besteht nur darin, dass das Ziel eine ungerade statt gerade Gesamtzahl ist. Beide Verfahren können jeden Ein-Bit-Fehler erkennen, weil das Kippen eines Bits die Parität von ungerade zu gerade oder umgekehrt verändert. Wenn jedoch zwei Bits gleichzeitig kippen, versagen beide unbemerkt, da die Parität erhalten bleibt. Für Anwendungen, die Mehrbitfehler erkennen oder korrigieren müssen, verwenden Ingenieure komplexere Codes wie Hamming-Code, CRC oder Reed-Solomon.\n\nTrotz ihrer Grenzen findet man ungerade Parität noch in älteren seriellen Kommunikationsstandards (einschließlich älterer RS-232-Konfigurationen), in bestimmten Speicher-Subsystemen und in Lehrkontexten, in denen das Konzept der Fehlererkennung vermittelt wird. Ungerade Parität wird manchmal gegenüber gerader Parität bevorzugt, weil ein Datenwort aus lauter Nullen immer ein nicht null Paritätsbit erhält und sich dadurch fest auf Null hängende Busfehler etwas leichter erkennen lassen.\n\nDieser Rechner automatisiert jeden Schritt: Er entfernt Leerzeichen, prüft, ob die Eingabe rein binär ist, zählt die 1en, bestimmt das richtige ungerade Paritätsbit und gibt die vollständige Übertragungszeichenfolge aus, die Sie direkt in Ihr System kopieren können. Das optionale Validierungsfeld ermöglicht es Ihnen, eine empfangene Zeichenfolge (Daten plus angehängtes Paritätsbit) einzufügen und sofort zu sehen, ob die Gesamtzahl der 1en ungerade (bestanden) oder gerade (fehlgeschlagen, Hinweis auf einen Ein-Bit-Fehler) ist."
+  },
+  "examples": {
+    "heading": "Beispiele für ungerade Paritätsbits",
+    "intro": "Die folgende Tabelle zeigt, wie das ungerade Paritätsbit für mehrere Binäreingaben berechnet wird.",
+    "colInput": "Binärdaten",
+    "colOutput": "Paritätsbit",
+    "colNote": "Übertragungszeichenfolge",
+    "items": [
+      {
+        "input": "1010",
+        "output": "1",
+        "note": "Zwei 1en (gerade) → Paritätsbit = 1. Übertragung: 10101"
+      },
+      {
+        "input": "1110",
+        "output": "0",
+        "note": "Drei 1en (ungerade) → Paritätsbit = 0. Übertragung: 11100"
+      },
+      {
+        "input": "11001100",
+        "output": "1",
+        "note": "Vier 1en (gerade) → Paritätsbit = 1. Übertragung: 110011001"
+      },
+      {
+        "input": "10110100",
+        "output": "1",
+        "note": "Vier 1en (gerade) → Paritätsbit = 1. Übertragung: 101101001"
+      },
+      {
+        "input": "11111111",
+        "output": "1",
+        "note": "Acht 1en (gerade) → Paritätsbit = 1. Übertragung: 111111111"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Rechner für ungerade Paritätsbits",
+    "steps": [
+      "Geben Sie die Binärzeichenfolge, die Sie übertragen möchten, in das Feld Binärdaten ein (nur 0 und 1).",
+      "Klicken Sie auf Berechnen, um sofort die Anzahl der 1en, das benötigte ungerade Paritätsbit und die vollständige Übertragungszeichenfolge zu sehen.",
+      "Kopieren Sie die Übertragungszeichenfolge (Daten + Paritätsbit) und senden Sie sie an den Empfänger.",
+      "Um eine empfangene Zeichenfolge zu validieren, fügen Sie sie in das Feld Empfangene Daten ein und klicken Sie auf Berechnen — das Tool prüft, ob die Gesamtzahl der 1en ungerade ist.",
+      "Klicken Sie auf Zurücksetzen, um alle Felder zu leeren und eine neue Berechnung zu starten."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Was ist ungerade Parität?",
+        "a": "Ungerade Parität ist ein Fehlererkennungsverfahren, bei dem Binärdaten ein Paritätsbit hinzugefügt wird, sodass die Gesamtzahl der 1en in der kombinierten Folge (Daten + Paritätsbit) immer ungerade ist. Hat die Datenfolge eine ungerade Anzahl von 1en, ist das Paritätsbit 0; hat sie eine gerade Anzahl, ist das Paritätsbit 1."
+      },
+      {
+        "q": "Worin besteht der Unterschied zwischen ungerader und gerader Parität?",
+        "a": "Gerade Parität sorgt dafür, dass die Gesamtzahl der 1en gerade ist; ungerade Parität sorgt dafür, dass sie ungerade ist. Beide erkennen jeden Ein-Bit-Fehler. Ungerade Parität hat den Vorteil, dass eine Nachricht nur aus Nullen immer ein Paritätsbit von 1 erhält, was bei fest auf Null hängenden Busfehlern hilfreich ist."
+      },
+      {
+        "q": "Kann die Paritätsprüfung alle Fehler erkennen?",
+        "a": "Nein. Die Paritätsprüfung erkennt zuverlässig Ein-Bit-Fehler. Wenn zwei Bits gleichzeitig kippen, bleibt die Parität unverändert und der Fehler bleibt unentdeckt. Für robustere Fehlererkennung verwenden Sie CRC oder Hamming-Codes."
+      },
+      {
+        "q": "Wo wird ungerade Parität heute noch verwendet?",
+        "a": "Ungerade Parität wird in einigen älteren seriellen Kommunikationsstandards (RS-232), älteren UART-Konfigurationen und bestimmten Speichermodulen verwendet. Außerdem wird sie in Lehrumgebungen häufig genutzt, um die Grundlagen der Fehlererkennung zu vermitteln."
+      },
+      {
+        "q": "Wie wird die Position des Paritätsbits bestimmt?",
+        "a": "In vielen Protokollen wird das Paritätsbit als letztes Bit des Übertragungsrahmens angehängt. Andere Standards setzen es jedoch an den Anfang oder an eine feste Position. Dieser Rechner hängt das Paritätsbit am Ende der Datenzeichenfolge an, was die gängigste Konvention ist."
+      },
+      {
+        "q": "Wie lautet das ungerade Paritätsbit für Daten nur mit Nullen?",
+        "a": "Bei Daten, die ausschließlich aus 0 bestehen, ist die Anzahl der 1en null (also gerade), daher ist das ungerade Paritätsbit immer 1. Das ist einer der Gründe, warum ungerade Parität manchmal bevorzugt wird — sie stellt sicher, dass ein Datenwort nur aus Nullen nie als lauter Nullen übertragen wird, was hilft, einen vollständigen Signalverlust zu erkennen."
+      }
+    ]
+  }
+}

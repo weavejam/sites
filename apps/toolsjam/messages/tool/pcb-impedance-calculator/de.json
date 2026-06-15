@@ -1,0 +1,115 @@
+{
+  "title": "PCB-Impedanzrechner - Microstrip & Stripline",
+  "tagline": "Berechnen Sie die PCB-Leiterbahnimpedanz für Microstrip- und Stripline-Designs mit standardisierten IPC-Formeln, um eine präzise Impedanzanpassung in RF- und High-Speed-Layouts zu erreichen.",
+  "intro": "Wählen Sie die Leiterbahngeometrie, geben Sie die physikalischen Abmessungen und die Dielektrikumsdaten ein und klicken Sie dann auf Berechnen, um die charakteristische Impedanz in Ohm zu erhalten.",
+  "field": {
+    "traceType": "Leiterbahngeometrie",
+    "traceWidth": "Leiterbahnbreite (W)",
+    "traceThickness": "Leiterbahndicke (T)",
+    "dielectricHeight": "Dielektrikums-Höhe (H)",
+    "dielectricConstant": "Dielektrizitätszahl (εr)",
+    "planeSpacing": "Abstand zwischen den Ebenen (B)"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "er": "z. B. 4.5"
+  },
+  "type": {
+    "microstrip": "Microstrip",
+    "stripline": "Stripline"
+  },
+  "unit": {
+    "mils": "mils",
+    "ohm": "Ω"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie für alle erforderlichen Abmessungen positive Werte ein.",
+    "zero": "Alle Dimensionsfelder müssen größer als null sein."
+  },
+  "result": {
+    "heading": "Impedanz-Ergebnis",
+    "impedance": "Charakteristische Impedanz",
+    "effectiveEr": "Effektive Dielektrizitätszahl",
+    "formula": "Verwendete Formel"
+  },
+  "formula": {
+    "microstrip": "Microstrip: Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T))",
+    "stripline": "Stripline: Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T)))"
+  },
+  "about": {
+    "heading": "Über den PCB-Impedanzrechner",
+    "body": "Kontrollierte Impedanz ist eine grundlegende Anforderung im High-Speed-Design, in RF-Schaltungen und in jeder PCB, bei der Signalintegrität wichtig ist. Wenn die charakteristische Impedanz einer Übertragungsleitung nicht zu den Impedanzen von Quelle und Last passt, wird ein Teil der Signalenergie zur Quelle zurück reflektiert. Diese Reflexionen verursachen Klingeln, Überschwingen, Datenfehler und erhöhte elektromagnetische Emissionen. Das Standardziel sind 50 Ω für einseitige Leiterbahnen und 100 Ω differentiell für die meisten High-Speed-Digitalstandards, obwohl 75 Ω bei Video- und Kabel-TV-Anwendungen üblich ist.\n\nEin Microstrip ist eine Leiterbahn auf der äußeren Kupferschicht einer PCB, mit dem Dielektrikum darunter und Luft darüber. Da sich ein Teil des Feldes in Luft (εr = 1) und ein Teil im Dielektrikum (εr > 1) ausbreitet, liegt die effektive Dielektrizitätszahl dazwischen. Die gebräuchliche geschlossene Näherung lautet Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T)), wobei W die Leiterbahnbreite, T die Leiterbahndicke und H die Höhe des Dielektrikums zwischen Leiterbahn und nächster Referenzebene ist. Alle Abmessungen müssen dieselbe Einheit haben — dieser Rechner verwendet mils (Tausendstel Zoll), den Standard im nordamerikanischen PCB-Design.\n\nEine Stripline ist eine in das PCB-Stackup eingebettete Leiterbahn mit Referenzebenen ober- und unterhalb. Das umgebende Dielektrikum ist homogen, daher gibt es keinen Luftanteil und die effektive Dielektrizitätszahl entspricht der Material-εr. Die Impedanzformel lautet Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T))), wobei B der Gesamtabstand zwischen den beiden Referenzebenen ist. Stripline-Leiterbahnen bieten besseren EMI-Schutz, sind aber schwerer zu prüfen und zu ändern.\n\nGängige Dielektrikumsmaterialien und ihre ungefähren εr-Werte: FR-4 Standard 4.2–4.8 (die meisten in der Branche verwenden 4.5 als Nennwert); Rogers RO4003C: 3.55; Rogers RO4350B: 3.66; Rogers RT/duroid 5880: 2.20; Polyimid: 3.5; PTFE: 2.1. Niedrigere εr-Werte erhöhen die Ausbreitungsgeschwindigkeit von Signalen und erhöhen die Impedanz bei gleicher Geometrie.\n\nDie Leiterbahndicke hängt vom Kupfergewicht ab. Eine Unze pro Quadratfuß (1 oz) Kupfer entspricht ungefähr 1.378 mils Dicke. Zwei-Unzen-Kupfer entspricht ungefähr 2.756 mils. Die meisten Signalspuren verwenden 1 oz Kupfer; Stromebenen oft 2 oz. PCB-Hersteller steuern die Impedanz, indem sie die Leiterbahnbreite während der Fertigung anpassen, und garantieren auf impedanzkontrollierten Lagen typischerweise eine Toleranz von ±10%."
+  },
+  "examples": {
+    "heading": "PCB-Impedanzbeispiele",
+    "intro": "Standardkonfigurationen mit Zielwert 50 Ω für gängige PCB-Stackups.",
+    "colInput": "Konfiguration",
+    "colOutput": "Impedanz",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "Microstrip: W=5.7mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Typischer einseitiger 50-Ω-Microstrip auf Standard-FR-4 mit 4-mil-Dielektrikum. Das ist das häufigste Ziel für die Impedanz im kommerziellen PCB-Design."
+      },
+      {
+        "input": "Microstrip: W=5mil, T=1.378mil, H=3.3mil, εr=3.66",
+        "output": "≈ 50 Ω",
+        "note": "50-Ω-Microstrip auf Rogers RO4350B. Ein niedrigeres εr erfordert eine schmalere Leiterbahn, um bei gleicher Dielektrikumshöhe 50 Ω zu halten."
+      },
+      {
+        "input": "Stripline: W=6.4mil, T=1.378mil, B=20mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Eingebettete 50-Ω-Stripline in FR-4. Der Abstand zwischen den Ebenen B muss angegeben werden; wenn B kleiner wird, muss W verbreitert werden, um 50 Ω zu halten."
+      },
+      {
+        "input": "Microstrip: W=14mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 23 Ω",
+        "note": "Eine breitere Leiterbahn senkt die Impedanz deutlich. Eine Verdopplung der Leiterbahnbreite von rund 5.7 mil auf 14 mil senkt die Impedanz von 50 Ω auf etwa 23 Ω — nützlich als Designreferenz für niederohmige Versorgungsleiterbahnen."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den PCB-Impedanzrechner",
+    "steps": [
+      "Wählen Sie die Leiterbahngeometrie: Microstrip für Außenlagen mit Luft oberhalb der Leiterbahn oder Stripline für eingebettete Leiterbahnen mit Referenzebenen auf beiden Seiten.",
+      "Geben Sie Leiterbahnbreite (W) und Leiterbahndicke (T) in mils ein. Die Dicke hängt vom Kupfergewicht ab: 1 oz ≈ 1.378 mils, 2 oz ≈ 2.756 mils.",
+      "Geben Sie beim Microstrip die Dielektrikums-Höhe (H) ein — den Abstand von der Unterseite der Leiterbahn zur Referenzebene — oder beim Stripline den Abstand zwischen den Ebenen (B).",
+      "Geben Sie die Dielektrizitätszahl (εr) Ihres PCB-Materials ein: ca. 4.5 für Standard-FR-4, ca. 3.66 für Rogers RO4350B, ca. 2.2 für Rogers RT/duroid 5880.",
+      "Klicken Sie auf Berechnen. Passen Sie die Leiterbahnbreite an, bis der Rechner Ihre Zielimpedanz liefert, und geben Sie diese Breite dann als kontrollierte-Impedanz-Spezifikation an Ihren PCB-Hersteller weiter."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum PCB-Impedanzrechner",
+    "items": [
+      {
+        "q": "Warum sind 50 Ω der Standardwert für die meisten PCB-Leiterbahnen?",
+        "a": "50 Ω sind ein historischer Kompromiss zwischen minimaler Dämpfung (etwa 77 Ω bei luftgefülltem Koaxialkabel) und maximaler Leistungsübertragung (etwa 30 Ω). Der Wert wurde Mitte des 20. Jahrhunderts von Militär- und RF-Industrie standardisiert und hat sich seitdem auf praktisch alle RF- und High-Speed-Digitalstandards wie USB, PCIe, HDMI und Ethernet ausgebreitet. 75 Ω werden dort verwendet, wo geringe Dämpfung wichtiger ist als Leistung, etwa bei Kabelfernsehen und Broadcast-Video."
+      },
+      {
+        "q": "Wie genau sind die geschlossenen Impedanzformeln?",
+        "a": "Die in diesem Rechner verwendeten Wadell-Formeln erreichen bei typischen PCB-Abmessungen eine Genauigkeit von etwa 2–3%. PCB-Hersteller verwenden 2D-Feldlöser (wie Polar Si9000 oder Saturn PCB Design Toolkit), die durch numerische Lösung der Maxwell-Gleichungen für die reale Geometrie eine Genauigkeit von besser als 1% erreichen. Für eine schnelle Designabschätzung sind die analytischen Formeln völlig ausreichend; für eine Produktionsplatine mit ±5% Impedanzvorgabe sollte der Feldlöser des Herstellers verwendet werden."
+      },
+      {
+        "q": "Wie hoch ist die Dielektrizitätszahl von FR-4?",
+        "a": "FR-4 ist ein glasfaserverstärktes Epoxidlaminat. Seine Dielektrizitätszahl variiert mit Frequenz und Feuchtigkeitsgehalt und liegt typischerweise zwischen 4.2 und 4.8 bei 1 MHz. Der branchenübliche Nennwert ist 4.5 bei niedrigen Frequenzen. Bei 10 GHz sinkt Dk auf etwa 4.0–4.2. Für Designs oberhalb weniger GHz sollten Sie ein Material mit niedrigem Dk und geringen Verlusten wie Rogers RO4350B (Dk 3.66) oder RT/duroid 5880 (Dk 2.20) in Betracht ziehen."
+      },
+      {
+        "q": "Wie beeinflusst das Kupfergewicht die Leiterbahnimpedanz?",
+        "a": "Dickeres Kupfer (höheres T) senkt die Impedanz leicht, weil die Randfelder um die Leiterbahn die effektive Breite erhöhen. Bei gleichem Dielektrikum müssen Sie bei 1 oz (1.378 mil) gegenüber 2 oz (2.756 mil) die Leiterbahnbreite typischerweise um etwa 1–2 mil verringern, um dieselbe Zielimpedanz zu halten. Der Rechner berücksichtigt diesen Effekt durch den Eingabewert T."
+      },
+      {
+        "q": "Was ist die effektive Dielektrizitätszahl bei Microstrip?",
+        "a": "Bei einem Microstrip verlaufen die elektrischen Feldlinien teilweise durch das Substrat und teilweise durch die Luft oberhalb der Leiterbahn. Die effektive Dielektrizitätszahl εeff ist der gewichtete Mittelwert dieser beiden Medien und liegt immer zwischen 1 und εr. Sie bestimmt die Ausbreitungsgeschwindigkeit des Signals auf der Leiterbahn: v = c / √εeff. Eine Stripline ist vollständig im Dielektrikum eingebettet, daher gilt εeff = εr."
+      },
+      {
+        "q": "Welche Toleranz sollte ich für die Fertigung von PCB mit kontrollierter Impedanz angeben?",
+        "a": "Die meisten kommerziellen PCB-Hersteller garantieren auf impedanzkontrollierten Lagen eine Toleranz von ±10% ohne nennenswerten Aufpreis. Premium-Anbieter können mit zusätzlicher Prozesskontrolle ±5% oder ±7% erreichen. Engere Toleranzen erfordern häufigere Testcoupon-Prüfungen und höhere Kosten. Für die meisten digitalen Designs sind ±10% ausreichend; RF-Designs oberhalb weniger GHz können ±5% erfordern."
+      }
+    ]
+  }
+}

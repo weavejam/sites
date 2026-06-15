@@ -1,0 +1,117 @@
+{
+  "title": "Calculadora de ganancia de op amp",
+  "tagline": "Calcula la ganancia de voltaje, el voltaje de salida y la ganancia en dB para circuitos operacionales inversores y no inversores.",
+  "intro": "Elige la configuración del amplificador, introduce los valores de las resistencias y el voltaje de entrada, y obtén al instante el cálculo de ganancia y salida de tu circuito op amp.",
+  "type": {
+    "inverting": "Amplificador inversor",
+    "noninverting": "Amplificador no inversor"
+  },
+  "field": {
+    "amplifierType": "Tipo de amplificador",
+    "rf": "Resistencia de realimentación (Rf)",
+    "rin": "Resistencia de entrada (Rin)",
+    "vin": "Voltaje de entrada (Vin) (V)",
+    "rfUnit": "Ω",
+    "placeholder": {
+      "rf": "p. ej. 10000",
+      "rin": "p. ej. 1000",
+      "vin": "p. ej. 1.0"
+    }
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultado",
+    "voltageGain": "Ganancia de voltaje (Av)",
+    "outputVoltage": "Voltaje de salida (Vout)",
+    "voltUnit": "V",
+    "dbGain": "Ganancia en dB",
+    "dbUnit": "dB",
+    "formula": "Fórmula",
+    "invertingFormula": "Av = –Rf / Rin",
+    "noninvertingFormula": "Av = 1 + Rf / Rin"
+  },
+  "error": {
+    "invalid": "Introduce números positivos válidos para Rf y Rin.",
+    "zeroResistance": "Los valores de resistencia deben ser mayores que cero."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de ganancia de op amp",
+    "body": "Un amplificador operacional — comúnmente llamado op amp — es un amplificador electrónico de voltaje de alta ganancia con una entrada diferencial y, por lo general, una salida de un solo extremo. Los op amps son los bloques fundamentales de innumerables circuitos analógicos: amplificadores de audio, filtros activos, acondicionadores de señal, integradores, diferenciadores, comparadores y referencias de voltaje de precisión, por nombrar solo algunos. Entender y calcular su ganancia es una habilidad esencial en el diseño de electrónica analógica.\n\nLa ganancia de un circuito op amp la establecen resistencias externas de realimentación, no la propia ganancia de lazo abierto del op amp (que normalmente es enorme, desde decenas de miles hasta millones). Dos configuraciones fundamentales dominan el diseño práctico de circuitos.\n\nEn la configuración inversora, la señal de entrada se aplica al terminal inversor (menos) a través de una resistencia Rin, y una resistencia de realimentación Rf conecta la salida de vuelta al mismo terminal inversor. El terminal no inversor (más) se conecta a tierra. Bajo supuestos ideales de op amp — ganancia de lazo abierto infinita, impedancia de entrada infinita e impedancia de salida cero — la ganancia de voltaje es Av = –Rf / Rin. El signo negativo significa que la salida está 180 grados desfasada respecto a la entrada. Si Rf = 10 kΩ y Rin = 1 kΩ, la ganancia es –10, lo que significa que una entrada de 1 V produce una salida de –10 V.\n\nEn la configuración no inversora, la señal de entrada se aplica directamente al terminal no inversor (más), y la red de realimentación (Rf de la salida al terminal inversor, y Rin del terminal inversor a tierra) establece la ganancia sin invertir la fase. La ganancia ideal de voltaje es Av = 1 + Rf / Rin. Con las mismas resistencias (Rf = 10 kΩ, Rin = 1 kΩ), la ganancia pasa a ser +11: no inversora y ligeramente mayor que el caso inversor porque la entrada queda directamente tamponada por el op amp antes de que actúe la realimentación.\n\nLa ganancia también suele expresarse en decibelios: dB = 20 × log₁₀(|Av|). Una ganancia de 10 equivale a 20 dB; una ganancia de 100 equivale a 40 dB. La escala dB es logarítmica, lo que facilita sumar ganancias cuando se encadenan etapas de amplificación: 20 dB + 20 dB = 40 dB.\n\nEsta calculadora maneja ambas configuraciones. Introduce Rf, Rin y, opcionalmente, el voltaje de entrada, elige inversora o no inversora, y la herramienta devuelve al instante la ganancia de voltaje, el voltaje de salida y el valor en dB. Es útil para diseño inicial, verificación de circuitos y exploración educativa del comportamiento de los op amp."
+  },
+  "examples": {
+    "heading": "Ejemplos de ganancia de op amp",
+    "intro": "Configuraciones comunes inversoras y no inversoras con ganancias calculadas.",
+    "colInput": "Configuración",
+    "colOutput": "Ganancia de voltaje",
+    "colNote": "Ganancia en dB",
+    "items": [
+      {
+        "input": "Inversora: Rf = 10 kΩ, Rin = 1 kΩ",
+        "output": "Av = –10",
+        "note": "20 dB (magnitud)"
+      },
+      {
+        "input": "No inversora: Rf = 10 kΩ, Rin = 1 kΩ",
+        "output": "Av = +11",
+        "note": "20.83 dB"
+      },
+      {
+        "input": "Inversora: Rf = 47 kΩ, Rin = 4.7 kΩ",
+        "output": "Av = –10",
+        "note": "20 dB (magnitud)"
+      },
+      {
+        "input": "Buffer unitario no inversor: Rf = 0, Rin = ∞",
+        "output": "Av = +1",
+        "note": "0 dB (seguidor de voltaje)"
+      },
+      {
+        "input": "Inversora: Rf = 100 kΩ, Rin = 1 kΩ, Vin = 0.05 V",
+        "output": "Av = –100, Vout = –5 V",
+        "note": "40 dB"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de ganancia de op amp",
+    "steps": [
+      "Selecciona Amplificador inversor o Amplificador no inversor en el menú desplegable Tipo de amplificador.",
+      "Introduce la resistencia de realimentación Rf en ohmios (por ejemplo, 10000 para 10 kΩ).",
+      "Introduce la resistencia de entrada Rin en ohmios (por ejemplo, 1000 para 1 kΩ).",
+      "Opcionalmente introduce el Voltaje de entrada Vin para calcular el voltaje de salida real.",
+      "Haz clic en Calcular para ver la ganancia de voltaje (Av), el voltaje de salida, la ganancia en dB y la fórmula utilizada."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Qué significa una ganancia negativa en un amplificador inversor?",
+        "a": "Una ganancia negativa significa que la señal de salida está invertida: está desfasada 180° respecto a la entrada. La magnitud de la ganancia sigue indicando cuánto se amplifica la señal. Un Av de –10 amplifica la señal 10 veces y además invierte su polaridad."
+      },
+      {
+        "q": "¿Cómo elijo entre configuraciones inversora y no inversora?",
+        "a": "Usa la configuración inversora cuando necesites invertir la señal o cuando quieras sumar varias señales de entrada (nodo de suma con tierra virtual). Usa la configuración no inversora cuando necesites alta impedancia de entrada o debas conservar la fase de la señal."
+      },
+      {
+        "q": "¿Qué es la ganancia en dB y por qué es útil?",
+        "a": "La ganancia en decibelios (dB = 20 × log₁₀|Av|) usa una escala logarítmica que facilita trabajar con etapas de amplificación en cascada. En lugar de multiplicar ganancias, basta con sumar sus valores en dB. Además, se ajusta a la forma en que el oído humano percibe la intensidad sonora."
+      },
+      {
+        "q": "¿Estas fórmulas asumen un op amp ideal?",
+        "a": "Sí. Las fórmulas Av = –Rf/Rin (inversora) y Av = 1 + Rf/Rin (no inversora) asumen un op amp ideal con ganancia de lazo abierto infinita, impedancia de entrada infinita e impedancia de salida cero. Los op amp reales introducen pequeñas desviaciones, especialmente cerca de sus límites de ancho de banda, pero las fórmulas ideales son precisas para la mayoría de los diseños prácticos."
+      },
+      {
+        "q": "¿Qué es el producto ganancia-ancho de banda?",
+        "a": "El producto ganancia-ancho de banda (GBW) es una constante de un op amp que relaciona la ganancia en lazo cerrado con el rango de frecuencia utilizable. Si un op amp tiene un GBW de 1 MHz y ajustas la ganancia a 10, el ancho de banda utilizable baja aproximadamente a 100 kHz. Esta calculadora no considera el GBW; consulta la hoja de datos del op amp para diseños de alta frecuencia."
+      },
+      {
+        "q": "¿Cómo logro una ganancia exacta de 1 (buffer unitario / seguidor de voltaje)?",
+        "a": "En la configuración no inversora, conecta directamente la salida a la entrada inversora sin resistencias (Rf = 0 y Rin = ∞, dando Av = 1 + 0 = 1). Esta configuración tiene una impedancia de entrada extremadamente alta y una impedancia de salida muy baja, lo que la hace ideal para bufferizar una señal sin cargar la fuente."
+      }
+    ]
+  }
+}

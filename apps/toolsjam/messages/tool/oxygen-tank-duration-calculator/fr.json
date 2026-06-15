@@ -1,0 +1,113 @@
+{
+  "title": "Calculateur de durée de bouteille d’oxygène",
+  "tagline": "Estimez combien de temps durera votre bouteille d’oxygène selon sa capacité, sa pression actuelle et son débit.",
+  "intro": "Saisissez les caractéristiques de votre bouteille d’oxygène et le débit pour calculer la durée restante en usage médical ou en plongée.",
+  "field": {
+    "tankCapacity": "Capacité de la bouteille (L)",
+    "currentPressure": "Pression actuelle (PSI)",
+    "ratedPressure": "Pression nominale / pleine (PSI)",
+    "flowRate": "Débit (L/min)",
+    "placeholder": {
+      "tankCapacity": "ex. 680",
+      "currentPressure": "ex. 1500",
+      "ratedPressure": "ex. 2000",
+      "flowRate": "ex. 2"
+    }
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultat",
+    "availableVolume": "Volume d’oxygène disponible",
+    "durationMinutes": "Durée",
+    "durationFormatted": "Durée (h:mm)",
+    "hourUnit": "h",
+    "volumeUnit": "L",
+    "minuteUnit": "min",
+    "formula": "Formule : Durée = (Capacité × Pression actuelle / Pression nominale) / Débit"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs.",
+    "zeroFlow": "Le débit doit être supérieur à zéro.",
+    "zeroPressure": "La pression nominale doit être supérieure à zéro."
+  },
+  "about": {
+    "heading": "À propos du calculateur de durée de bouteille d’oxygène",
+    "body": "Savoir combien de temps durera une réserve d’oxygène est essentiel en soins médicaux, en intervention d’urgence et en plongée sous-marine. Une panne d’oxygène inattendue peut avoir des conséquences graves, voire mortelles. Les professionnels de santé, les secouristes, les patients à domicile et les plongeurs ont donc besoin d’un moyen fiable d’estimer la durée d’une bouteille avant chaque utilisation.\n\nLe calcul repose sur deux faits physiques. Premièrement, une bouteille d’oxygène stocke le gaz sous haute pression ; le volume de gaz utilisable (à pression atmosphérique) est proportionnel au volume interne en eau de la bouteille et à sa pression manométrique. Deuxièmement, un détendeur ou un débitmètre délivre le gaz à un débit fixe, mesuré en litres par minute en usage médical ou en litres de surface par minute en plongée. En divisant le volume disponible par le débit, on obtient la durée en minutes.\n\nCe calculateur utilise l’approche suivante. La pression nominale (pleine) est la spécification du fabricant pour une bouteille complètement chargée : généralement 2000 PSI pour les bouteilles E américaines, 2015 PSI pour de nombreuses bouteilles de gaz comprimé, ou 200 bar dans les systèmes métriques. La pression actuelle est la lecture du manomètre au moment où vous vérifiez la bouteille. La fraction Current_Pressure / Rated_Pressure indique la proportion de gaz nominal restant. Multipliez cette fraction par la capacité totale de gaz en litres pour obtenir le volume de gaz disponible à pression atmosphérique, puis divisez par le débit.\n\nDans un cas médical typique, une bouteille E contient 680 litres d’oxygène à sa pression nominale de 2000 PSI. Si le manomètre indique 1500 PSI, le volume disponible est 680 × (1500 / 2000) = 510 litres. Avec un débit de 2 L/min, la durée est 510 / 2 = 255 minutes, soit 4 heures 15 minutes. Ajouter une marge de sécurité d’au moins 30 minutes relève de la pratique clinique standard : ne laissez jamais l’alimentation en oxygène d’un patient descendre à zéro.\n\nPour les plongeurs, le même principe s’applique, même si les unités et les pressions nominales diffèrent (les blocs métriques sont souvent nominalement à 200 ou 232 bar, et la consommation augmente avec la profondeur en raison de la pression ambiante plus élevée). Tenez toujours compte de votre consommation réelle en profondeur, pas seulement du débit en surface.\n\nLes tailles courantes de bouteilles aux États-Unis incluent : bouteille D (~340 L), bouteille E (~680 L), bouteille M (~3000 L) et bouteille H/K (~6900 L). Dans les pays métriques, les bouteilles sont décrites par leur volume en eau en litres (par ex. 10 L, 40 L) et leur pression en bar. Cet outil accepte toute combinaison cohérente d’unités, tant que vous utilisez la même unité de pression pour les champs de pression actuelle et de pression nominale.\n\nSuivez toujours les recommandations d’un professionnel de santé agréé ou d’un moniteur de plongée pour gérer les réserves d’oxygène. Ce calculateur fournit des estimations à des fins de planification et doit être utilisé avec des marges de sécurité appropriées et des protocoles professionnels."
+  },
+  "examples": {
+    "heading": "Exemples de durée de bouteille d’oxygène",
+    "intro": "Exemples montrant la durée d’une bouteille dans des situations courantes d’oxygène médical et récréatif.",
+    "colInput": "Scénario",
+    "colOutput": "Durée",
+    "colNote": "Volume disponible",
+    "items": [
+      {
+        "input": "Bouteille E (680 L), 1500 PSI / 2000 PSI nominale, 2 L/min",
+        "output": "255 min (4 h 15 min)",
+        "note": "510 L disponibles"
+      },
+      {
+        "input": "Bouteille E (680 L), 2000 PSI / 2000 PSI nominale, 4 L/min",
+        "output": "170 min (2 h 50 min)",
+        "note": "680 L disponibles (pleine)"
+      },
+      {
+        "input": "Bouteille D (340 L), 1000 PSI / 2000 PSI nominale, 1 L/min",
+        "output": "170 min (2 h 50 min)",
+        "note": "170 L disponibles"
+      },
+      {
+        "input": "Grande bouteille (3000 L), 1800 PSI / 2000 PSI nominale, 6 L/min",
+        "output": "450 min (7 h 30 min)",
+        "note": "2700 L disponibles"
+      },
+      {
+        "input": "Bouteille portable (180 L), 2000 PSI / 2000 PSI nominale, 3 L/min",
+        "output": "60 min (1 h 0 min)",
+        "note": "180 L disponibles (pleine)"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de durée de bouteille d’oxygène",
+    "steps": [
+      "Saisissez la capacité de la bouteille en litres : c’est le volume total de gaz à la pression nominale (pleine), généralement imprimé sur l’étiquette de la bouteille.",
+      "Saisissez la pression actuelle (PSI) indiquée maintenant par le manomètre de votre bouteille.",
+      "Saisissez la pression nominale / pleine (PSI) : la pression de charge complète indiquée par le fabricant, souvent 2000 PSI pour les bouteilles E américaines.",
+      "Saisissez le débit en L/min réglé sur votre détendeur ou débitmètre.",
+      "Cliquez sur Calculer pour voir le volume d’oxygène disponible et sa durée ; ajoutez toujours une marge de sécurité d’au moins 30 minutes avant de planifier les recharges."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Quelle est la formule de durée d’une bouteille d’oxygène ?",
+        "a": "Durée (min) = (Capacité × Pression actuelle / Pression nominale) / Débit. Cela donne le nombre de minutes pendant lesquelles la bouteille durera. La fraction (Pression actuelle / Pression nominale) représente le niveau de remplissage de la bouteille. Multipliez par la capacité totale pour obtenir les litres disponibles, puis divisez par le débit."
+      },
+      {
+        "q": "Quelle est la pression nominale d’une bouteille d’oxygène médicale standard ?",
+        "a": "Aux États-Unis, les bouteilles médicales standard (taille E) sont nominalement à 2015 PSI, même si 2000 PSI est souvent utilisé comme valeur arrondie. Dans les pays métriques, les bouteilles sont généralement nominalement à 200 bar ou 232 bar. Vérifiez toujours l’étiquette de votre bouteille."
+      },
+      {
+        "q": "Quelle marge de sécurité dois-je ajouter ?",
+        "a": "Les recommandations cliniques préconisent généralement une marge minimale de sécurité de 30 minutes pour l’oxygénothérapie à domicile, et des marges plus longues pour le transport ou les situations d’urgence. De nombreux établissements remplacent les bouteilles lorsque le manomètre indique 500 PSI (environ un quart plein) au lieu d’attendre qu’il atteigne zéro."
+      },
+      {
+        "q": "La profondeur affecte-t-elle la durée de l’oxygène en plongée ?",
+        "a": "Oui. En descendant, vous respirez un air plus dense ; votre consommation réelle de gaz augmente donc proportionnellement à la pression absolue (profondeur en mètres / 10 + 1 atmosphère). Un plongeur consommant 15 L/min en surface consommera environ 30 L/min à 10 mètres de profondeur. Calculez toujours le temps au fond avec votre consommation réelle en profondeur."
+      },
+      {
+        "q": "Puis-je utiliser des bar au lieu des PSI ?",
+        "a": "Oui. Tant que vous saisissez la pression actuelle et la pression nominale dans la même unité, le calcul est correct. Le calculateur utilise le rapport Current / Rated, donc l’unité s’annule. Saisissez les deux valeurs en PSI ou les deux en bar ; ne mélangez pas les unités."
+      },
+      {
+        "q": "Que signifie la capacité d’une bouteille en litres ?",
+        "a": "Pour les bouteilles médicales d’oxygène, la capacité en litres désigne la quantité d’oxygène gazeux stockée à pression standard lorsque la bouteille est entièrement chargée. Par exemple, une bouteille E contient environ 680 litres d’oxygène à sa pression nominale. C’est différent du volume en eau de l’enveloppe de la bouteille, qui est d’environ 4,7 litres."
+      }
+    ]
+  }
+}

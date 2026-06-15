@@ -1,0 +1,117 @@
+{
+  "title": "Calculadora de ganho de op amp",
+  "tagline": "Calcule o ganho de tensão, a tensão de saída e o ganho em dB para circuitos com amplificador operacional inversor e não inversor.",
+  "intro": "Selecione a configuração do amplificador, informe os valores dos resistores e a tensão de entrada, e obtenha instantaneamente o cálculo de ganho e saída do seu circuito op amp.",
+  "type": {
+    "inverting": "Amplificador inversor",
+    "noninverting": "Amplificador não inversor"
+  },
+  "field": {
+    "amplifierType": "Tipo de amplificador",
+    "rf": "Resistência de realimentação (Rf)",
+    "rin": "Resistência de entrada (Rin)",
+    "vin": "Tensão de entrada (Vin) (V)",
+    "rfUnit": "Ω",
+    "placeholder": {
+      "rf": "ex.: 10000",
+      "rin": "ex.: 1000",
+      "vin": "ex.: 1.0"
+    }
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultado",
+    "voltageGain": "Ganho de tensão (Av)",
+    "outputVoltage": "Tensão de saída (Vout)",
+    "voltUnit": "V",
+    "dbGain": "Ganho em dB",
+    "dbUnit": "dB",
+    "formula": "Fórmula",
+    "invertingFormula": "Av = –Rf / Rin",
+    "noninvertingFormula": "Av = 1 + Rf / Rin"
+  },
+  "error": {
+    "invalid": "Informe números positivos válidos para Rf e Rin.",
+    "zeroResistance": "Os valores de resistência devem ser maiores que zero."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de ganho de op amp",
+    "body": "Um amplificador operacional — comumente chamado de op amp — é um amplificador eletrônico de tensão de alto ganho com entrada diferencial e, normalmente, saída single-ended. Os op amps são os blocos de construção de inúmeros circuitos analógicos: amplificadores de áudio, filtros ativos, condicionadores de sinal, integradores, diferenciadores, comparadores e referências de tensão de precisão, para citar apenas alguns. Entender e calcular seu ganho é uma habilidade central no projeto de eletrônica analógica.\n\nO ganho de um circuito op amp é definido por resistores de realimentação externos, e não pelo ganho em malha aberta do próprio op amp (que normalmente é enorme, de dezenas de milhares a milhões). Duas configurações fundamentais dominam o projeto prático de circuitos.\n\nNa configuração inversora, o sinal de entrada é aplicado ao terminal inversor (menos) por meio de um resistor Rin, e um resistor de realimentação Rf conecta a saída de volta ao mesmo terminal inversor. O terminal não inversor (mais) é ligado ao terra. Sob as suposições de um op amp ideal — ganho em malha aberta infinito, impedância de entrada infinita, impedância de saída zero — o ganho de tensão é Av = –Rf / Rin. O sinal negativo significa que a saída está 180 graus fora de fase em relação à entrada. Se Rf = 10 kΩ e Rin = 1 kΩ, o ganho é –10, ou seja, uma entrada de 1 V produz uma saída de –10 V.\n\nNa configuração não inversora, o sinal de entrada é aplicado diretamente ao terminal não inversor (mais), e a rede de realimentação (Rf da saída ao terminal inversor, e Rin do terminal inversor ao terra) define o ganho sem inverter a fase. O ganho de tensão ideal é Av = 1 + Rf / Rin. Com os mesmos resistores (Rf = 10 kΩ, Rin = 1 kΩ), o ganho passa a ser +11 — não inversor e ligeiramente maior que o caso inversor, porque a entrada é diretamente tamponada pelo op amp antes da aplicação da realimentação.\n\nO ganho também é comumente expresso em decibéis: dB = 20 × log₁₀(|Av|). Um ganho de 10 equivale a 20 dB; um ganho de 100 equivale a 40 dB. A escala em dB é logarítmica, o que facilita somar ganhos quando estágios de amplificação são em cascata: 20 dB + 20 dB = 40 dB.\n\nEsta calculadora cobre ambas as configurações. Informe Rf, Rin e, opcionalmente, a tensão de entrada, escolha inversora ou não inversora, e a ferramenta retorna instantaneamente o ganho de tensão, a tensão de saída e o valor em dB. É útil para projeto inicial, verificação de circuitos e exploração educacional do comportamento de op amps."
+  },
+  "examples": {
+    "heading": "Exemplos de ganho de op amp",
+    "intro": "Configurações comuns inversoras e não inversoras com ganhos calculados.",
+    "colInput": "Configuração",
+    "colOutput": "Ganho de tensão",
+    "colNote": "Ganho em dB",
+    "items": [
+      {
+        "input": "Inversora: Rf = 10 kΩ, Rin = 1 kΩ",
+        "output": "Av = –10",
+        "note": "20 dB (magnitude)"
+      },
+      {
+        "input": "Não inversora: Rf = 10 kΩ, Rin = 1 kΩ",
+        "output": "Av = +11",
+        "note": "20.83 dB"
+      },
+      {
+        "input": "Inversora: Rf = 47 kΩ, Rin = 4.7 kΩ",
+        "output": "Av = –10",
+        "note": "20 dB (magnitude)"
+      },
+      {
+        "input": "Buffer unitário não inversor: Rf = 0, Rin = ∞",
+        "output": "Av = +1",
+        "note": "0 dB (seguidor de tensão)"
+      },
+      {
+        "input": "Inversora: Rf = 100 kΩ, Rin = 1 kΩ, Vin = 0.05 V",
+        "output": "Av = –100, Vout = –5 V",
+        "note": "40 dB"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de ganho de op amp",
+    "steps": [
+      "Selecione Amplificador inversor ou Amplificador não inversor no menu suspenso Tipo de amplificador.",
+      "Digite a resistência de realimentação Rf em ohms (por exemplo, 10000 para 10 kΩ).",
+      "Digite a resistência de entrada Rin em ohms (por exemplo, 1000 para 1 kΩ).",
+      "Opcionalmente, informe a Tensão de entrada Vin para calcular a tensão de saída real.",
+      "Clique em Calcular para ver o ganho de tensão (Av), a tensão de saída, o ganho em dB e a fórmula usada."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "items": [
+      {
+        "q": "O que significa um ganho negativo em um amplificador inversor?",
+        "a": "Um ganho negativo significa que o sinal de saída está invertido — ele está 180° fora de fase em relação à entrada. O valor absoluto do ganho ainda indica quanto o sinal foi amplificado. Um Av de –10 amplifica o sinal 10 vezes e também inverte sua polaridade."
+      },
+      {
+        "q": "Como escolher entre as configurações inversora e não inversora?",
+        "a": "Use a configuração inversora quando precisar inverter o sinal ou somar vários sinais de entrada (nó somador com terra virtual). Use a configuração não inversora quando precisar de alta impedância de entrada ou preservar a fase do sinal."
+      },
+      {
+        "q": "O que é ganho em dB e por que ele é útil?",
+        "a": "O ganho em decibéis (dB = 20 × log₁₀|Av|) usa uma escala logarítmica que facilita trabalhar com estágios de amplificação em cascata. Em vez de multiplicar ganhos, você apenas soma seus valores em dB. Isso também se alinha à forma como a audição humana percebe a intensidade sonora."
+      },
+      {
+        "q": "Essas fórmulas assumem um op amp ideal?",
+        "a": "Sim. As fórmulas Av = –Rf/Rin (inversora) e Av = 1 + Rf/Rin (não inversora) assumem um op amp ideal com ganho em malha aberta infinito, impedância de entrada infinita e impedância de saída zero. Op amps reais introduzem pequenas diferenças, especialmente perto de seus limites de largura de banda, mas as fórmulas ideais são precisas para a maioria dos projetos práticos."
+      },
+      {
+        "q": "O que é o produto ganho-largura de banda?",
+        "a": "O produto ganho-largura de banda (GBW) é uma constante de um op amp que relaciona o ganho em malha fechada com a faixa de frequência utilizável. Se um op amp tem GBW de 1 MHz e você ajusta o ganho para 10, a largura de banda utilizável cai para cerca de 100 kHz. Esta calculadora não considera GBW; consulte o datasheet do op amp para projetos de alta frequência."
+      },
+      {
+        "q": "Como obter ganho exatamente 1 (buffer unitário / seguidor de tensão)?",
+        "a": "Na configuração não inversora, conecte a saída diretamente à entrada inversora sem resistores (Rf = 0 e Rin = ∞, resultando em Av = 1 + 0 = 1). Essa configuração tem impedância de entrada extremamente alta e impedância de saída muito baixa, sendo ideal para bufferizar um sinal sem sobrecarregar a fonte."
+      }
+    ]
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "title": "PCB-Leiterbahn-Stromrechner nach IPC-2221",
+  "tagline": "Berechnen Sie Strombelastbarkeit, Querschnittsfläche und Leistungsverlust von PCB-Leiterbahnen nach IPC-2221 für äußere und innere Kupferleiter mit einstellbarem Temperaturanstieg.",
+  "intro": "Geben Sie Leiterbahnbreite, Kupfergewicht, Temperaturanstieg und die Lage der Leiterbahn ein. Der Rechner verwendet die IPC-2221-Formel zur Bestimmung der sicheren Stromtragfähigkeit.",
+  "field": {
+    "traceWidth": "Leiterbahnbreite",
+    "copperWeight": "Kupfergewicht",
+    "tempRise": "Temperaturanstieg (ΔT)",
+    "ambientTemp": "Umgebungstemperatur",
+    "traceLocation": "Leiterbahnlage"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "celsius": "°C",
+    "oz": "oz"
+  },
+  "type": {
+    "external": "Extern (Außenlage)",
+    "internal": "Intern (Innenlage)"
+  },
+  "unit": {
+    "mils": "mils",
+    "celsius": "°C",
+    "amps": "A",
+    "mils2": "mils²",
+    "ohmPerIn": "Ω/in",
+    "wPerIn": "W/in"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie für alle Felder gültige positive Werte ein.",
+    "zero": "Leiterbahnbreite, Kupfergewicht und Temperaturanstieg müssen größer als null sein."
+  },
+  "result": {
+    "heading": "Ergebnis der Strombelastbarkeit",
+    "maxCurrent": "Maximalstrom",
+    "crossSection": "Querschnittsfläche",
+    "resistance": "Widerstand pro Zoll",
+    "powerLoss": "Leistungsverlust pro Zoll",
+    "formula": "IPC-2221-Formel"
+  },
+  "copperWeightOptions": {
+    "1": "1 oz (1.378 mil)",
+    "2": "2 oz (2.756 mil)",
+    "3": "3 oz (4.134 mil)",
+    "4": "4 oz (5.512 mil)",
+    "0.5": "0.5 oz (0.689 mil)"
+  },
+  "about": {
+    "heading": "Über den PCB-Leiterbahn-Stromrechner",
+    "body": "Jede Kupferleiterbahn auf einer PCB hat eine sichere maximale Strombelastbarkeit. Fließt Strom durch eine Leiterbahn, wandelt ihr Widerstand elektrische Energie gemäß P = I²R in Wärme um. Kann die Leiterbahn diese Wärme nicht schnell genug abführen, steigt die Temperatur, bis entweder die Leiterbahn schmilzt oder das umgebende PCB-Material beschädigt wird. Die Norm IPC-2221 (Generic Standard on Printed Board Design) stellt empirisch abgeleitete Formeln bereit, die Leiterbahnquerschnitt, Temperaturanstieg und Leiterbahnlage (Außen- oder Innenlage) ausbalancieren.\n\nDie IPC-2221-Formel für die Strombelastbarkeit lautet: I = k × ΔT^0.44 × A^0.725. Dabei ist I der Maximalstrom in Ampere, ΔT der zulässige Temperaturanstieg über Umgebung in Grad Celsius, A die Querschnittsfläche der Leiterbahn in mils² und k eine Konstante abhängig von der Leiterbahnlage. IPC-2221 gibt k = 0.048 für externe Leiterbahnen (Außenlagen) und k = 0.024 für interne Leiterbahnen (Innenlagen) an. Innenlagen haben ein niedrigeres k, weil sie von Dielektrikum umgeben sind, dessen Wärmeleitfähigkeit geringer ist als die der Luft um Außenlagen.\n\nDie Querschnittsfläche A ist das Produkt aus Leiterbahnbreite (in mils) und Kupferdicke (in mils). Die Kupferdicke wird durch das Kupfergewicht bestimmt. Eine Unze pro Quadratfuß (1 oz) entspricht ungefähr 1.378 mils (35 μm). Zwei-Unzen-Kupfer entspricht 2.756 mils (70 μm). Höhere Kupfergewichte werden für Leistungsleiterbahnen mit hohen Strömen oder geringerem Widerstand eingesetzt.\n\nDer Widerstand pro Längeneinheit ist: R/in = ρ / A, wobei ρ für Kupfer bei 20°C etwa 0.679 Ω·mils²/in beträgt. Dieser Widerstand steigt mit der Temperatur: R(T) ≈ R₂₀ × (1 + 0.00393 × (T − 20)). Die Verlustleistung pro Zoll beträgt P/in = I² × R/in und ist die Eigenerwärmungslast, die die Leiterbahn beherrschen muss.\n\nDer häufig als Daumenregel verwendete Temperaturanstieg von 10°C entspricht einer konservativen, thermisch stabilen Leiterbahn. Ein Anstieg von 20°C ist für die meisten kommerziellen Elektronikprodukte akzeptabel. Oberhalb von 30°C beginnen PCB-Materialien schneller zu altern, und die Zuverlässigkeit von Lötstellen sinkt. Für Hochzuverlässigkeits- und Luft- und Raumfahrtanwendungen empfiehlt IPC-2221 Klasse 3, die Leiterbahntemperatur auf 30°C über der maximalen Umgebungstemperatur zu begrenzen."
+  },
+  "examples": {
+    "heading": "Beispiele für PCB-Leiterbahnströme",
+    "intro": "Typische Entwurfsszenarien mit der IPC-2221-Formel für gängige Kupfergewichte und Temperaturanstiege.",
+    "colInput": "Leiterbahnkonfiguration",
+    "colOutput": "Max. Strom",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "Außenlage, W=10mil, 1oz Cu, ΔT=10°C",
+        "output": "≈ 0.9 A",
+        "note": "Eine 10 mil breite externe Leiterbahn mit 1 oz Kupfer und nur 10°C Anstieg: ein konservativer Entwurf für empfindliche Analogschaltungen, bei denen Rauschen durch Eigenerwärmung kritisch ist."
+      },
+      {
+        "input": "Außenlage, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 3.9 A",
+        "note": "Breitere Leiterbahn für eine Stromversorgungsschiene mittlerer Leistung. 20°C Anstieg ist das häufigste Entwurfsziel in kommerzieller Elektronik."
+      },
+      {
+        "input": "Außenlage, W=200mil, 2oz Cu, ΔT=30°C",
+        "output": "≈ 20.8 A",
+        "note": "Eine Leistungsbus-Leiterbahn mit dickem Kupfer. 2 oz Kupfer verdoppelt ungefähr die Querschnittsfläche und erhöht die Strombelastbarkeit gegenüber einer 1-oz-Leiterbahn gleicher Breite deutlich."
+      },
+      {
+        "input": "Innenlage, W=50mil, 1oz Cu, ΔT=20°C",
+        "output": "≈ 1.9 A",
+        "note": "Interne Leiterbahn mit denselben Abmessungen wie das externe Beispiel oben. Der Koeffizient k = 0.024 für Innenlagen ergibt etwa 50% weniger Strombelastbarkeit als bei einer gleichwertigen Außenlagenleiterbahn."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den PCB-Leiterbahn-Stromrechner",
+    "steps": [
+      "Geben Sie die Leiterbahnbreite in mils ein. Ein mil ist ein Tausendstel Zoll; 10 mils = 0.254 mm. Typische Signalleiterbahnen sind 4–10 mils breit, Leistungsleiterbahnen 20–200 mils oder mehr.",
+      "Wählen Sie das Kupfergewicht. Die meisten PCBs verwenden 1 oz Kupfer (1.378 mils dick) für Signallagen. Leistungslagen verwenden oft 2 oz oder schwereres Kupfer.",
+      "Geben Sie den Temperaturanstieg (ΔT) ein. Das ist der maximal akzeptable Anstieg über Umgebung: 10°C ist konservativ, 20°C ist Standard für kommerzielle Elektronik, 30°C ist die Obergrenze für zuverlässigen Betrieb.",
+      "Wählen Sie Extern für eine Außenlagenleiterbahn (k = 0.048) oder Intern für eine Innenlagenleiterbahn (k = 0.024). Innenlagen leiten Wärme weniger effizient ab.",
+      "Klicken Sie auf Berechnen. Prüfen Sie Maximalstrom, Querschnittsfläche, Widerstand pro Zoll und Leistungsverlust. Verbreitern Sie die Leiterbahn, wenn die Strombelastbarkeit nicht ausreicht."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum PCB-Leiterbahn-Stromrechner",
+    "items": [
+      {
+        "q": "Welchen Temperaturanstieg sollte ich für meinen Entwurf verwenden?",
+        "a": "Die häufigste Entwurfsregel ist 10°C für Analog- und Präzisionsschaltungen, 20°C für allgemeine kommerzielle Elektronik und bis zu 30°C für Leistungsschaltungen in Geräten mit ausreichendem Wärmemanagement. Höhere Temperaturanstiege erlauben schmalere Leiterbahnen, beschleunigen aber die Alterung von PCB-Materialien und erhöhen die Ermüdung von Lötstellen. IPC-2221 Klasse 3 (militärische und lebenswichtige Anwendungen) verlangt normalerweise eine Begrenzung des Anstiegs auf 10°C."
+      },
+      {
+        "q": "Warum tragen interne Leiterbahnen weniger Strom als externe?",
+        "a": "Interne Leiterbahnen sind allseitig von FR-4 oder ähnlichem Dielektrikum umgeben, das eine deutlich geringere Wärmeleitfähigkeit als Luft besitzt. Die IPC-2221-Formel berücksichtigt dies mit k = 0.024 für interne Leiterbahnen gegenüber k = 0.048 für externe. Eine interne Leiterbahn gleicher Abmessungen trägt daher ungefähr 50% des Stroms, den eine externe Leiterbahn sicher tragen kann."
+      },
+      {
+        "q": "Wie rechne ich Leiterbahnbreite von mm in mils um?",
+        "a": "Multiplizieren Sie Millimeter mit 39.37, um mils (Tausendstel Zoll) zu erhalten. Beispiele: 0.254 mm = 10 mils, 0.5 mm = 19.7 mils ≈ 20 mils und 1 mm = 39.37 mils ≈ 40 mils. Die meisten PCB-Designwerkzeuge zeigen beide Einheiten an; dieser Rechner verwendet mils passend zu den Koeffizienten der IPC-2221-Formel."
+      },
+      {
+        "q": "Wie hängt Kupfergewicht mit Leiterbahndicke zusammen?",
+        "a": "Kupfergewicht wird in Unzen pro Quadratfuß angegeben. Eine Unze (1 oz) Kupfer, auf einen Quadratfuß ausgewalzt, hat eine Dicke von etwa 1.378 mils (35 μm). Zwei-Unzen-Kupfer hat 2.756 mils (70 μm). Schwereres Kupfer bietet niedrigeren Widerstand und höhere Strombelastbarkeit, erschwert aber das Ätzen feiner Strukturen und kostet mehr."
+      },
+      {
+        "q": "Wie groß ist der Widerstand einer PCB-Leiterbahn?",
+        "a": "Der Widerstand pro Zoll ist R/in = 0.679 / A, wobei A die Querschnittsfläche in mils² ist und 0.679 der spezifische Widerstand von Kupfer in Ω·mils²/in bei 20°C. Bei höheren Temperaturen steigt der Widerstand um etwa 0.393% pro Grad Celsius über 20°C. Für eine 1-oz-, 10-mil-Leiterbahn (A = 13.78 mils²) gilt R/in ≈ 0.049 Ω/inch, was bei 1 A über 3 Zoll einen Spannungsabfall von 0.147 V verursacht."
+      },
+      {
+        "q": "Sind IPC-2221-Werte konservativ?",
+        "a": "Ja. Die IPC-2221-Diagramme und Formeln wurden aus empirischen Messungen in ruhender Luft ohne erzwungene Konvektion abgeleitet und enthalten eine Sicherheitsmarge. In der Praxis können Leiterbahnen mit guter Luftströmung, nahen Kupferflächen oder thermischen Vias zu Innenlagen sicher mehr Strom tragen, als die IPC-Formel nahelegt. Für sicherheitskritische Entwürfe sollten Sie bei den IPC-Werten bleiben; für kommerzielle Anwendungen mit ausreichenden Tests ist eine moderate Derating-Abweichung von ±20% akzeptabel."
+      }
+    ]
+  }
+}

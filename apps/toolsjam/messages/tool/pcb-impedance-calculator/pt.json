@@ -1,0 +1,115 @@
+{
+  "title": "Calculadora de impedância PCB - Microstrip e stripline",
+  "tagline": "Calcule a impedância de trilhas PCB em projetos microstrip e stripline usando fórmulas IPC padrão para obter casamento de impedância preciso em layouts RF e de alta velocidade.",
+  "intro": "Selecione a geometria da trilha, insira as dimensões físicas e as propriedades dielétricas e clique em Calcular para obter a impedância característica em ohms.",
+  "field": {
+    "traceType": "Geometria da trilha",
+    "traceWidth": "Largura da trilha (W)",
+    "traceThickness": "Espessura da trilha (T)",
+    "dielectricHeight": "Altura dielétrica (H)",
+    "dielectricConstant": "Constante dielétrica (εr)",
+    "planeSpacing": "Espaçamento entre planos (B)"
+  },
+  "placeholder": {
+    "mils": "mils",
+    "er": "ex.: 4.5"
+  },
+  "type": {
+    "microstrip": "Microstrip",
+    "stripline": "Stripline"
+  },
+  "unit": {
+    "mils": "mils",
+    "ohm": "Ω"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira valores positivos para todas as dimensões obrigatórias.",
+    "zero": "Todos os campos de dimensão devem ser maiores que zero."
+  },
+  "result": {
+    "heading": "Resultado da impedância",
+    "impedance": "Impedância característica",
+    "effectiveEr": "Constante dielétrica efetiva",
+    "formula": "Fórmula usada"
+  },
+  "formula": {
+    "microstrip": "Microstrip: Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T))",
+    "stripline": "Stripline: Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T)))"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de impedância PCB",
+    "body": "A impedância controlada é um requisito fundamental em projetos digitais de alta velocidade, circuitos RF e qualquer PCB em que a integridade do sinal importe. Quando a impedância característica de uma linha de transmissão não corresponde às impedâncias da fonte e da carga, parte da energia do sinal é refletida de volta para a fonte. Essas reflexões causam ringing, overshoot, erros de dados e aumento das emissões eletromagnéticas. O alvo padrão é 50 Ω para trilhas single-ended e 100 Ω diferenciais para a maioria dos padrões digitais de alta velocidade, embora 75 Ω seja comum em vídeo e TV a cabo.\n\nUm microstrip é uma trilha na camada externa de cobre de uma PCB, com o substrato dielétrico abaixo e ar acima. Como parte do campo se estende pelo ar (εr = 1) e parte pelo dielétrico (εr > 1), a constante dielétrica efetiva fica entre as duas. A aproximação de forma fechada mais usada é Z₀ = (87 / √(εr + 1.41)) × ln(5.98H / (0.8W + T)), onde W é a largura da trilha, T é a espessura da trilha e H é a altura do dielétrico entre a trilha e o plano de referência mais próximo. Todas as dimensões devem usar a mesma unidade — esta calculadora usa mils (milésimos de polegada), o padrão no design de PCB da América do Norte.\n\nUm stripline é uma trilha embutida dentro do stackup da PCB, com planos de referência acima e abaixo. O dielétrico ao redor é uniforme, então não há contribuição do ar e a constante dielétrica efetiva é igual à εr do material. A fórmula de impedância é Z₀ = (60 / √εr) × ln(4B / (0.67π(0.8W + T))), onde B é a distância total entre os dois planos de referência. Trilhas stripline têm melhor blindagem EMI, mas são mais difíceis de inspecionar e alterar.\n\nMateriais dielétricos comuns e seus valores aproximados de εr: FR-4 padrão 4.2–4.8 (a maior parte da indústria usa 4.5 como nominal); Rogers RO4003C: 3.55; Rogers RO4350B: 3.66; Rogers RT/duroid 5880: 2.20; poliimida: 3.5; PTFE: 2.1. Valores mais baixos de εr aumentam a velocidade de propagação dos sinais e elevam a impedância para uma geometria dada.\n\nA espessura da trilha está relacionada ao peso do cobre. Uma onça por pé quadrado (1 oz) de cobre tem aproximadamente 1.378 mils de espessura. Cobre de duas onças tem aproximadamente 2.756 mils. A maioria das trilhas de sinal usa cobre de 1 oz; planos de alimentação costumam usar 2 oz. Fabricantes de PCB controlam a impedância ajustando a largura da trilha durante a fabricação e normalmente garantem a impedância dentro de ±10% nas camadas de impedância controlada."
+  },
+  "examples": {
+    "heading": "Exemplos de impedância PCB",
+    "intro": "Configurações padrão visando 50 Ω em stackups de PCB comuns.",
+    "colInput": "Configuração",
+    "colOutput": "Impedância",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Microstrip: W=5.7mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Microstrip típico de 50 Ω single-ended em FR-4 padrão com dielétrico de 4 mil. É a impedância-alvo mais comum em design de PCB comercial."
+      },
+      {
+        "input": "Microstrip: W=5mil, T=1.378mil, H=3.3mil, εr=3.66",
+        "output": "≈ 50 Ω",
+        "note": "Microstrip de 50 Ω em Rogers RO4350B. Um εr mais baixo exige uma trilha mais estreita para manter 50 Ω com a mesma altura dielétrica."
+      },
+      {
+        "input": "Stripline: W=6.4mil, T=1.378mil, B=20mil, εr=4.5",
+        "output": "≈ 50 Ω",
+        "note": "Stripline embutida de 50 Ω em FR-4. O espaçamento entre planos B deve ser especificado; reduzir B exige aumentar W para manter 50 Ω."
+      },
+      {
+        "input": "Microstrip: W=14mil, T=1.378mil, H=4mil, εr=4.5",
+        "output": "≈ 23 Ω",
+        "note": "Uma trilha mais larga reduz bastante a impedância. Dobrar a largura da trilha de ~5.7 mil para 14 mil reduz a impedância de 50 Ω para ~23 Ω — útil como referência de projeto para trilhas de alimentação de baixa impedância."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de impedância PCB",
+    "steps": [
+      "Selecione a geometria da trilha: Microstrip para trilhas na camada externa com ar acima da trilha, ou Stripline para trilhas enterradas com planos de referência em ambos os lados.",
+      "Insira a Largura da trilha (W) e a Espessura da trilha (T) em mils. A espessura depende do peso do cobre: 1 oz ≈ 1.378 mils, 2 oz ≈ 2.756 mils.",
+      "Insira a Altura dielétrica (H) para microstrip — a distância da base da trilha até o plano de referência — ou o Espaçamento entre planos (B) para stripline.",
+      "Insira a Constante dielétrica (εr) do seu material PCB: ~4.5 para FR-4 padrão, ~3.66 para Rogers RO4350B, ~2.2 para Rogers RT/duroid 5880.",
+      "Clique em Calcular. Ajuste a largura da trilha até a calculadora retornar a impedância desejada e então passe essa largura ao fabricante da PCB como especificação de impedância controlada."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ da calculadora de impedância PCB",
+    "items": [
+      {
+        "q": "Por que 50 Ω é a impedância padrão para a maioria das trilhas PCB?",
+        "a": "50 Ω é um compromisso histórico entre a menor atenuação (cerca de 77 Ω em cabo coaxial preenchido com ar) e a máxima capacidade de potência (cerca de 30 Ω). Foi padronizado pelas indústrias militar e de RF em meados do século XX e desde então se espalhou para praticamente todos os padrões RF e digitais de alta velocidade, incluindo USB, PCIe, HDMI e Ethernet. 75 Ω é usado onde a baixa atenuação importa mais do que a potência, como em TV a cabo e vídeo de transmissão."
+      },
+      {
+        "q": "Quão precisas são as fórmulas fechadas de impedância?",
+        "a": "As fórmulas no estilo Wadell usadas nesta calculadora têm precisão de cerca de 2–3% para dimensões típicas de PCB. Fabricantes de PCB usam solucionadores de campo 2D (como Polar Si9000 ou Saturn PCB Design Toolkit) que atingem precisão melhor que 1% ao resolver numericamente as equações de Maxwell para a geometria real. Para uma estimativa rápida de projeto, as fórmulas analíticas são totalmente adequadas; para uma placa de produção que exija ±5% de impedância, use o solucionador de campo do fabricante."
+      },
+      {
+        "q": "Qual é a constante dielétrica do FR-4?",
+        "a": "FR-4 é um laminado epóxi reforçado com fibra de vidro. Sua constante dielétrica varia com a frequência e o teor de umidade, normalmente ficando entre 4.2 e 4.8 em 1 MHz. O valor nominal padrão da indústria é 4.5 em baixas frequências. Em 10 GHz, o Dk cai para cerca de 4.0–4.2. Para projetos acima de alguns GHz, considere um material de baixo Dk e baixa perda, como Rogers RO4350B (Dk 3.66) ou RT/duroid 5880 (Dk 2.20)."
+      },
+      {
+        "q": "Como o peso do cobre afeta a impedância da trilha?",
+        "a": "Cobre mais espesso (T maior) reduz levemente a impedância porque os campos elétricos de borda ao redor da trilha aumentam a largura efetiva. Para o mesmo dielétrico, ao comparar 1 oz (1.378 mils) com 2 oz (2.756 mils), normalmente é preciso reduzir a largura da trilha em cerca de 1–2 mils para manter a mesma impedância alvo. A calculadora inclui T como entrada para considerar esse efeito."
+      },
+      {
+        "q": "O que é a constante dielétrica efetiva em um microstrip?",
+        "a": "Em um microstrip, as linhas de campo elétrico passam parcialmente pelo substrato e parcialmente pelo ar acima da trilha. A constante dielétrica efetiva εeff é a média ponderada desses dois meios e fica sempre entre 1 e εr. Ela determina a velocidade de propagação do sinal na trilha: v = c / √εeff. O stripline é totalmente embutido no dielétrico, então εeff = εr."
+      },
+      {
+        "q": "Que tolerância devo especificar para fabricação de PCB com impedância controlada?",
+        "a": "A maioria dos fabricantes comerciais de PCB garante tolerância de impedância de ±10% em camadas de impedância controlada sem custo adicional significativo. Fornecedores premium podem atingir ±5% ou ±7% com maior controle de processo. Tolerâncias mais apertadas exigem cupons de teste mais frequentes e maior custo. Para a maioria dos projetos digitais, ±10% é suficiente; projetos RF acima de alguns GHz podem exigir ±5%."
+      }
+    ]
+  }
+}

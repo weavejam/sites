@@ -1,0 +1,106 @@
+{
+  "title": "Calculateur de bit de parité impaire",
+  "tagline": "Générez des bits de parité impaire pour des données binaires et vérifiez l’intégrité des données grâce à la détection d’erreurs d’un seul bit.",
+  "intro": "Saisissez des données binaires pour calculer leur bit de parité impaire, générer la chaîne de transmission complète et, en option, valider une chaîne binaire reçue.",
+  "field": {
+    "binaryData": "Données binaires",
+    "receivedData": "Données reçues (pour validation)",
+    "binaryDataPlaceholder": "ex. 1010 ou 11001100",
+    "receivedDataPlaceholder": "ex. 11011 (inclut le bit de parité)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultat",
+    "onesCount": "Nombre de 1 dans les données",
+    "parityBit": "Bit de parité impaire",
+    "transmissionString": "Chaîne de transmission (données + bit de parité)",
+    "validationHeading": "Résultat de validation",
+    "valid": "Valide — le nombre total de 1 est impair, aucune erreur détectée.",
+    "invalid": "Erreur détectée — le nombre total de 1 est pair, un bit a été inversé."
+  },
+  "error": {
+    "invalidBinary": "Les données binaires doivent contenir uniquement des 0 et des 1.",
+    "invalidReceived": "Les données reçues doivent contenir uniquement des 0 et des 1.",
+    "emptyData": "Veuillez saisir des données binaires."
+  },
+  "about": {
+    "heading": "À propos du calculateur de bit de parité impaire",
+    "body": "Le contrôle de parité est l’une des techniques les plus anciennes et les plus utilisées pour détecter les erreurs de transmission d’un seul bit dans les données numériques. Un bit de parité est un bit supplémentaire ajouté à un bloc de données binaires. L’émetteur calcule le bit de parité à partir des données, transmet le message enrichi, puis le récepteur recalcule la parité afin de vérifier s’il existe une divergence.\n\nLa parité impaire est la variante dans laquelle le nombre total de bits 1 de la séquence combinée — bits de données plus bit de parité — doit toujours être impair. Si les données d’origine contiennent déjà un nombre impair de 1, le bit de parité est réglé sur 0 (aucun changement nécessaire). Si les données contiennent un nombre pair de 1, le bit de parité est réglé sur 1 (pour faire passer le total de pair à impair). La règle est simple : comptez les 1 dans les données et choisissez le bit de parité afin que le total devienne impair.\n\nPour illustrer avec un exemple concret : supposons que vous vouliez transmettre l’octet 1010. Cet octet contient exactement deux 1, soit un nombre pair. En parité impaire, le bit de parité doit donc être 1, ce qui donne la chaîne de transmission complète 10101. Le récepteur compte les 1 dans 10101 — il y en a trois — un nombre impair, et déclare donc le message sans erreur. Si un seul bit était inversé pendant la transmission, par exemple si la chaîne arrivait sous la forme 11101, le récepteur compterait quatre 1 — un nombre pair — et signalerait immédiatement qu’une erreur s’est produite.\n\nLa parité impaire diffère de la parité paire sur un seul point : la cible est un total impair plutôt que pair. Les deux schémas détectent toute erreur d’un seul bit, car inverser un bit fait passer la parité d’impair à pair ou de pair à impair. En revanche, ils échouent silencieusement lorsque deux bits sont inversés simultanément, car cela préserve la parité. Pour les applications nécessitant la détection ou la correction d’erreurs multi-bits, les ingénieurs se tournent vers des codes plus sophistiqués comme Hamming, CRC ou Reed-Solomon.\n\nMalgré ses limites, la parité impaire se rencontre encore dans certains standards de communication série hérités (y compris d’anciennes configurations RS-232), dans certains sous-systèmes mémoire et dans des contextes pédagogiques où l’on introduit la notion de détection d’erreurs. La parité impaire est parfois préférée à la parité paire car elle garantit qu’un mot de données composé uniquement de zéros aura toujours un bit de parité non nul, ce qui facilite un peu la détection des défauts de ligne bloquée à zéro.\n\nCe calculateur automatise chaque étape : il supprime les espaces, vérifie que l’entrée est bien binaire, compte les 1, détermine le bon bit de parité impaire et affiche la chaîne de transmission complète prête à être copiée dans votre système. Le champ de validation facultatif vous permet de coller une chaîne reçue (les données plus leur bit de parité ajouté) et de voir immédiatement si le total de 1 est impair (réussi) ou pair (échec, indiquant une erreur d’un seul bit)."
+  },
+  "examples": {
+    "heading": "Exemples de bit de parité impaire",
+    "intro": "Le tableau ci-dessous montre comment le bit de parité impaire est calculé pour plusieurs entrées binaires.",
+    "colInput": "Données binaires",
+    "colOutput": "Bit de parité",
+    "colNote": "Chaîne de transmission",
+    "items": [
+      {
+        "input": "1010",
+        "output": "1",
+        "note": "Deux 1 (pair) → bit de parité = 1. Transmission : 10101"
+      },
+      {
+        "input": "1110",
+        "output": "0",
+        "note": "Trois 1 (impair) → bit de parité = 0. Transmission : 11100"
+      },
+      {
+        "input": "11001100",
+        "output": "1",
+        "note": "Quatre 1 (pair) → bit de parité = 1. Transmission : 110011001"
+      },
+      {
+        "input": "10110100",
+        "output": "1",
+        "note": "Quatre 1 (pair) → bit de parité = 1. Transmission : 101101001"
+      },
+      {
+        "input": "11111111",
+        "output": "1",
+        "note": "Huit 1 (pair) → bit de parité = 1. Transmission : 111111111"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de bit de parité impaire",
+    "steps": [
+      "Saisissez la chaîne binaire que vous souhaitez transmettre dans le champ Données binaires (0 et 1 uniquement).",
+      "Cliquez sur Calculer pour voir instantanément le nombre de 1, le bit de parité impaire requis et la chaîne de transmission complète.",
+      "Copiez la chaîne de transmission (données + bit de parité) et envoyez-la au destinataire.",
+      "Pour valider une chaîne reçue, collez-la dans le champ Données reçues puis cliquez sur Calculer : l’outil vérifiera si le total de 1 est impair.",
+      "Cliquez sur Réinitialiser pour effacer tous les champs et recommencer un nouveau calcul."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Qu’est-ce que la parité impaire ?",
+        "a": "La parité impaire est un schéma de détection d’erreurs dans lequel un bit de parité est ajouté aux données binaires de sorte que le nombre total de bits 1 de la séquence combinée (données + bit de parité) soit toujours impair. Si les données contiennent un nombre impair de 1, le bit de parité est 0 ; si elles contiennent un nombre pair de 1, le bit de parité est 1."
+      },
+      {
+        "q": "Quelle est la différence entre parité impaire et parité paire ?",
+        "a": "La parité paire garantit que le total des bits 1 est pair ; la parité impaire garantit qu’il est impair. Les deux détectent toute erreur d’un seul bit. La parité impaire a l’avantage qu’un message composé uniquement de zéros aura toujours un bit de parité égal à 1, ce qui aide à détecter les défauts de bus bloqués à zéro."
+      },
+      {
+        "q": "Le contrôle de parité peut-il détecter toutes les erreurs ?",
+        "a": "Non. Le contrôle de parité détecte de manière fiable les erreurs d’un seul bit. Si deux bits sont inversés simultanément, la parité reste inchangée et l’erreur passe inaperçue. Pour une détection plus robuste, utilisez CRC ou les codes de Hamming."
+      },
+      {
+        "q": "Où la parité impaire est-elle encore utilisée aujourd’hui ?",
+        "a": "La parité impaire est utilisée dans certains standards de communication série hérités (RS-232), d’anciennes configurations UART et certains modules mémoire. Elle est aussi largement employée dans l’enseignement pour présenter les bases de la détection d’erreurs."
+      },
+      {
+        "q": "Comment la position du bit de parité est-elle déterminée ?",
+        "a": "Dans de nombreux protocoles, le bit de parité est ajouté en dernier bit de la trame de transmission. Cependant, d’autres standards le placent au début ou à une position spécifique. Ce calculateur ajoute le bit de parité à la fin de la chaîne de données, ce qui est la convention la plus courante."
+      },
+      {
+        "q": "Quel est le bit de parité impaire pour des données toutes à zéro ?",
+        "a": "Pour des données entièrement composées de 0, le nombre de bits 1 est nul (pair), donc le bit de parité impaire est toujours 1. C’est l’une des raisons pour lesquelles la parité impaire est parfois préférée : elle garantit qu’un mot de données tout à zéro n’est jamais transmis comme tel, ce qui aide à détecter une perte totale de signal."
+      }
+    ]
+  }
+}
