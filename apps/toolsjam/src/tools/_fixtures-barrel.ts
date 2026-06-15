@@ -100,11 +100,16 @@ import { fixtures as f_conductivity_to_resistivity_calculator } from "@/tools/co
 import { fixtures as f_confidence_interval_calculator } from "@/tools/confidence-interval-calculator.fixtures";
 import { fixtures as f_confusion_matrix_calculator } from "@/tools/confusion-matrix-calculator.fixtures";
 import { fixtures as f_constant_of_proportionality_calculator } from "@/tools/constant-of-proportionality-calculator.fixtures";
+import { fixtures as f_cycloid_calculator } from "@/tools/cycloid-calculator.fixtures";
+import { fixtures as f_cyclomatic_complexity_calculator } from "@/tools/cyclomatic-complexity-calculator.fixtures";
+import { fixtures as f_cylindrical_coordinates_calculator } from "@/tools/cylindrical-coordinates-calculator.fixtures";
 import { fixtures as f_darcy_weisbach_calculator } from "@/tools/darcy-weisbach-calculator.fixtures";
 import { fixtures as f_darcys_law_calculator } from "@/tools/darcys-law-calculator.fixtures";
 import { fixtures as f_db_calculator } from "@/tools/db-calculator.fixtures";
 import { fixtures as f_db_gain_calculator } from "@/tools/db-gain-calculator.fixtures";
 import { fixtures as f_de_broglie_wavelength_calculator } from "@/tools/de-broglie-wavelength-calculator.fixtures";
+import { fixtures as f_decimal_calculator } from "@/tools/decimal-calculator.fixtures";
+import { fixtures as f_decimal_to_fraction_calculator } from "@/tools/decimal-to-fraction-calculator.fixtures";
 import { fixtures as f_delta_to_wye_conversion } from "@/tools/delta-to-wye-conversion.fixtures";
 import { fixtures as f_delta_v_calculator } from "@/tools/delta-v-calculator.fixtures";
 import { fixtures as f_density_altitude_calculator } from "@/tools/density-altitude-calculator.fixtures";
@@ -524,11 +529,16 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "confidence-interval-calculator": f_confidence_interval_calculator,
   "confusion-matrix-calculator": f_confusion_matrix_calculator,
   "constant-of-proportionality-calculator": f_constant_of_proportionality_calculator,
+  "cycloid-calculator": f_cycloid_calculator,
+  "cyclomatic-complexity-calculator": f_cyclomatic_complexity_calculator,
+  "cylindrical-coordinates-calculator": f_cylindrical_coordinates_calculator,
   "darcy-weisbach-calculator": f_darcy_weisbach_calculator,
   "darcys-law-calculator": f_darcys_law_calculator,
   "db-calculator": f_db_calculator,
   "db-gain-calculator": f_db_gain_calculator,
   "de-broglie-wavelength-calculator": f_de_broglie_wavelength_calculator,
+  "decimal-calculator": f_decimal_calculator,
+  "decimal-to-fraction-calculator": f_decimal_to_fraction_calculator,
   "delta-to-wye-conversion": f_delta_to_wye_conversion,
   "delta-v-calculator": f_delta_v_calculator,
   "density-altitude-calculator": f_density_altitude_calculator,
