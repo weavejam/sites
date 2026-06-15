@@ -175,6 +175,11 @@ import { fixtures as f_inverse_normal_distribution_calculator } from "@/tools/in
 import { fixtures as f_ip_subnet_calculator } from "@/tools/ip-subnet-calculator.fixtures";
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
 import { fixtures as f_kd_calculator_kill_death_ratio } from "@/tools/kd-calculator-kill-death-ratio.fixtures";
+import { fixtures as f_lcd_calculator } from "@/tools/lcd-calculator.fixtures";
+import { fixtures as f_lcm_calculator_least_common_multiple } from "@/tools/lcm-calculator-least-common-multiple.fixtures";
+import { fixtures as f_least_squares_regression_line_calculator } from "@/tools/least-squares-regression-line-calculator.fixtures";
+import { fixtures as f_lfsr_calculator } from "@/tools/lfsr-calculator.fixtures";
+import { fixtures as f_line_equation_from_two_points_calculator } from "@/tools/line-equation-from-two-points-calculator.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
 import { fixtures as f_matched_betting_calculator } from "@/tools/matched-betting-calculator.fixtures";
 import { fixtures as f_mayan_calendar_converter } from "@/tools/mayan-calendar-converter.fixtures";
@@ -564,6 +569,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "ip-subnet-calculator": f_ip_subnet_calculator,
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
   "kd-calculator-kill-death-ratio": f_kd_calculator_kill_death_ratio,
+  "lcd-calculator": f_lcd_calculator,
+  "lcm-calculator-least-common-multiple": f_lcm_calculator_least_common_multiple,
+  "least-squares-regression-line-calculator": f_least_squares_regression_line_calculator,
+  "lfsr-calculator": f_lfsr_calculator,
+  "line-equation-from-two-points-calculator": f_line_equation_from_two_points_calculator,
   "loan-calculator": f_loan_calculator,
   "matched-betting-calculator": f_matched_betting_calculator,
   "mayan-calendar-converter": f_mayan_calendar_converter,
