@@ -117,7 +117,12 @@ import { fixtures as f_diffraction_grating_calculator } from "@/tools/diffractio
 import { fixtures as f_diopter_calculator } from "@/tools/diopter-calculator.fixtures";
 import { fixtures as f_dipole_calculator } from "@/tools/dipole-calculator.fixtures";
 import { fixtures as f_dipole_moment_calculator } from "@/tools/dipole-moment-calculator.fixtures";
+import { fixtures as f_direct_variation_calculator } from "@/tools/direct-variation-calculator.fixtures";
+import { fixtures as f_direction_of_the_vector_calculator } from "@/tools/direction-of-the-vector-calculator.fixtures";
+import { fixtures as f_discriminant_calculator } from "@/tools/discriminant-calculator.fixtures";
 import { fixtures as f_dispersion_calculator } from "@/tools/dispersion-calculator.fixtures";
+import { fixtures as f_distance_formula_calculator } from "@/tools/distance-formula-calculator.fixtures";
+import { fixtures as f_distance_from_point_to_plane_calculator } from "@/tools/distance-from-point-to-plane-calculator.fixtures";
 import { fixtures as f_distributive_property_calculator } from "@/tools/distributive-property-calculator.fixtures";
 import { fixtures as f_dividing_exponents_calculator } from "@/tools/dividing-exponents-calculator.fixtures";
 import { fixtures as f_dividing_fractions_calculator } from "@/tools/dividing-fractions-calculator.fixtures";
@@ -551,7 +556,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "diopter-calculator": f_diopter_calculator,
   "dipole-calculator": f_dipole_calculator,
   "dipole-moment-calculator": f_dipole_moment_calculator,
+  "direct-variation-calculator": f_direct_variation_calculator,
+  "direction-of-the-vector-calculator": f_direction_of_the_vector_calculator,
+  "discriminant-calculator": f_discriminant_calculator,
   "dispersion-calculator": f_dispersion_calculator,
+  "distance-formula-calculator": f_distance_formula_calculator,
+  "distance-from-point-to-plane-calculator": f_distance_from_point_to_plane_calculator,
   "distributive-property-calculator": f_distributive_property_calculator,
   "dividing-exponents-calculator": f_dividing_exponents_calculator,
   "dividing-fractions-calculator": f_dividing_fractions_calculator,
