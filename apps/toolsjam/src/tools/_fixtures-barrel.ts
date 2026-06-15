@@ -3,6 +3,8 @@
 // (Playwright/esbuild, Vitest/Vite) can statically resolve everything.
 
 import type { ToolFixture } from "@/tools/fixture";
+import { fixtures as f_3d_render_calculator } from "@/tools/3d-render-calculator.fixtures";
+import { fixtures as f_4_3_aspect_ratio_calculator } from "@/tools/4-3-aspect-ratio-calculator.fixtures";
 import { fixtures as f_555_timer_calculator } from "@/tools/555-timer-calculator.fixtures";
 import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } from "@/tools/a1c-calculator-hemoglobin-a1c-to-average-blood-sugar.fixtures";
 import { fixtures as f_absolute_humidity_calculator } from "@/tools/absolute-humidity-calculator.fixtures";
@@ -12,11 +14,14 @@ import { fixtures as f_acceleration_in_the_electric_field_calculator } from "@/t
 import { fixtures as f_acoustic_impedance_calculator } from "@/tools/acoustic-impedance-calculator.fixtures";
 import { fixtures as f_acres_per_hour_calculator } from "@/tools/acres-per-hour-calculator.fixtures";
 import { fixtures as f_acres_to_hectares_converter } from "@/tools/acres-to-hectares-converter.fixtures";
+import { fixtures as f_act_score_calculator } from "@/tools/act-score-calculator.fixtures";
+import { fixtures as f_age_on_other_planets_calculator } from "@/tools/age-on-other-planets-calculator.fixtures";
 import { fixtures as f_air_density_calculator } from "@/tools/air-density-calculator.fixtures";
 import { fixtures as f_air_pressure_at_altitude_calculator } from "@/tools/air-pressure-at-altitude-calculator.fixtures";
 import { fixtures as f_alfven_velocity_calculator } from "@/tools/alfven-velocity-calculator.fixtures";
 import { fixtures as f_alien_civilization_calculator } from "@/tools/alien-civilization-calculator.fixtures";
 import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-frequency-calculator.fixtures";
+import { fixtures as f_amdahls_law_calculator } from "@/tools/amdahls-law-calculator.fixtures";
 import { fixtures as f_angle_of_banking_calculator } from "@/tools/angle-of-banking-calculator.fixtures";
 import { fixtures as f_angle_of_repose_calculator } from "@/tools/angle-of-repose-calculator.fixtures";
 import { fixtures as f_angle_of_twist_calculator } from "@/tools/angle-of-twist-calculator.fixtures";
@@ -307,6 +312,8 @@ import { fixtures as f_z_test_calculator } from "@/tools/z-test-calculator.fixtu
 import { fixtures as f_zombie_invasion_calculator } from "@/tools/zombie-invasion-calculator.fixtures";
 
 export const fixturesByTool: Record<string, ToolFixture[]> = {
+  "3d-render-calculator": f_3d_render_calculator,
+  "4-3-aspect-ratio-calculator": f_4_3_aspect_ratio_calculator,
   "555-timer-calculator": f_555_timer_calculator,
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
   "absolute-humidity-calculator": f_absolute_humidity_calculator,
@@ -316,11 +323,14 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "acoustic-impedance-calculator": f_acoustic_impedance_calculator,
   "acres-per-hour-calculator": f_acres_per_hour_calculator,
   "acres-to-hectares-converter": f_acres_to_hectares_converter,
+  "act-score-calculator": f_act_score_calculator,
+  "age-on-other-planets-calculator": f_age_on_other_planets_calculator,
   "air-density-calculator": f_air_density_calculator,
   "air-pressure-at-altitude-calculator": f_air_pressure_at_altitude_calculator,
   "alfven-velocity-calculator": f_alfven_velocity_calculator,
   "alien-civilization-calculator": f_alien_civilization_calculator,
   "allele-frequency-calculator": f_allele_frequency_calculator,
+  "amdahls-law-calculator": f_amdahls_law_calculator,
   "angle-of-banking-calculator": f_angle_of_banking_calculator,
   "angle-of-repose-calculator": f_angle_of_repose_calculator,
   "angle-of-twist-calculator": f_angle_of_twist_calculator,
