@@ -24,6 +24,7 @@ import {
   mkdirSync,
   readFileSync,
   rmSync,
+  statSync,
   writeFileSync,
 } from "node:fs";
 import path from "node:path";
@@ -152,6 +153,8 @@ async function acquireMergeLock(id: string): Promise<void> {
 }
 function releaseMergeLock() { try { rmSync(MERGE_LOCK); } catch {} }
 
+const LOCK_STALE_MS = 5 * 60 * 1000;
+
 async function acquireLock(file: string, id: string, label: string): Promise<void> {
   mkdirSync(path.dirname(file), { recursive: true });
   while (true) {
@@ -160,7 +163,26 @@ async function acquireLock(file: string, id: string, label: string): Promise<voi
       log(id, `${label} acquired`);
       return;
     } catch {
-      log(id, `waiting for ${label} (held by ${existsSync(file) ? readFileSync(file, "utf8") : "?"})...`);
+      const existing = existsSync(file) ? readFileSync(file, "utf8").trim() : "?";
+      let stale = false;
+      let staleReason = "";
+      try {
+        const st = statSync(file);
+        const ageMs = Date.now() - st.mtimeMs;
+        if (existing === id) {
+          stale = true;
+          staleReason = `self-owned (id=${id}); prior process killed without release`;
+        } else if (ageMs > LOCK_STALE_MS) {
+          stale = true;
+          staleReason = `mtime age ${(ageMs / 1000).toFixed(0)}s > ${LOCK_STALE_MS / 1000}s threshold`;
+        }
+      } catch { /* file vanished */ }
+      if (stale) {
+        log(id, `breaking stale ${label} (held by ${existing}): ${staleReason}`);
+        try { rmSync(file); } catch { /* race with another breaker */ }
+        continue;
+      }
+      log(id, `waiting for ${label} (held by ${existing})...`);
       await new Promise((r) => setTimeout(r, 3000));
     }
   }

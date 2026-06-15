@@ -19,6 +19,7 @@ import {
   mkdirSync,
   readFileSync,
   rmSync,
+  statSync,
   writeFileSync,
 } from "node:fs";
 import path from "node:path";
@@ -72,6 +73,8 @@ function ghJson<T = unknown>(args: string[], workerId: string): T {
   return JSON.parse(r.stdout) as T;
 }
 
+const LOCK_STALE_MS = 5 * 60 * 1000;
+
 async function acquireLock(file: string, holder: string, workerId: string, label: string): Promise<void> {
   mkdirSync(path.dirname(file), { recursive: true });
   while (true) {
@@ -79,7 +82,26 @@ async function acquireLock(file: string, holder: string, workerId: string, label
       writeFileSync(file, holder, { flag: "wx" });
       return;
     } catch {
-      log(workerId, `waiting for ${label} (held by ${existsSync(file) ? readFileSync(file, "utf8") : "?"})...`);
+      const existing = existsSync(file) ? readFileSync(file, "utf8").trim() : "?";
+      let stale = false;
+      let staleReason = "";
+      try {
+        const st = statSync(file);
+        const ageMs = Date.now() - st.mtimeMs;
+        if (existing === holder) {
+          stale = true;
+          staleReason = `self-owned (workerId=${holder}); prior process killed without release`;
+        } else if (ageMs > LOCK_STALE_MS) {
+          stale = true;
+          staleReason = `mtime age ${(ageMs / 1000).toFixed(0)}s > ${LOCK_STALE_MS / 1000}s threshold`;
+        }
+      } catch { /* file vanished between exists and stat */ }
+      if (stale) {
+        log(workerId, `breaking stale ${label} (held by ${existing}): ${staleReason}`);
+        try { rmSync(file); } catch { /* another worker may have just removed it */ }
+        continue;
+      }
+      log(workerId, `waiting for ${label} (held by ${existing})...`);
       await new Promise((r) => setTimeout(r, 2000 + Math.random() * 1000));
     }
   }
