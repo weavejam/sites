@@ -175,6 +175,11 @@ import { fixtures as f_inverse_normal_distribution_calculator } from "@/tools/in
 import { fixtures as f_ip_subnet_calculator } from "@/tools/ip-subnet-calculator.fixtures";
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
 import { fixtures as f_kd_calculator_kill_death_ratio } from "@/tools/kd-calculator-kill-death-ratio.fixtures";
+import { fixtures as f_lagrange_error_bound_calculator } from "@/tools/lagrange-error-bound-calculator.fixtures";
+import { fixtures as f_lateral_area_trapezoidal_prism_calculator } from "@/tools/lateral-area-trapezoidal-prism-calculator.fixtures";
+import { fixtures as f_latus_rectum_calculator } from "@/tools/latus-rectum-calculator.fixtures";
+import { fixtures as f_law_of_cosines_calculator } from "@/tools/law-of-cosines-calculator.fixtures";
+import { fixtures as f_law_of_sines_calculator } from "@/tools/law-of-sines-calculator.fixtures";
 import { fixtures as f_lcd_calculator } from "@/tools/lcd-calculator.fixtures";
 import { fixtures as f_lcm_calculator_least_common_multiple } from "@/tools/lcm-calculator-least-common-multiple.fixtures";
 import { fixtures as f_least_squares_regression_line_calculator } from "@/tools/least-squares-regression-line-calculator.fixtures";
@@ -579,6 +584,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "ip-subnet-calculator": f_ip_subnet_calculator,
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
   "kd-calculator-kill-death-ratio": f_kd_calculator_kill_death_ratio,
+  "lagrange-error-bound-calculator": f_lagrange_error_bound_calculator,
+  "lateral-area-trapezoidal-prism-calculator": f_lateral_area_trapezoidal_prism_calculator,
+  "latus-rectum-calculator": f_latus_rectum_calculator,
+  "law-of-cosines-calculator": f_law_of_cosines_calculator,
+  "law-of-sines-calculator": f_law_of_sines_calculator,
   "lcd-calculator": f_lcd_calculator,
   "lcm-calculator-least-common-multiple": f_lcm_calculator_least_common_multiple,
   "least-squares-regression-line-calculator": f_least_squares_regression_line_calculator,
