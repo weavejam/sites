@@ -122,10 +122,15 @@ import { fixtures as f_exponential_form_calculator } from "@/tools/exponential-f
 import { fixtures as f_exponential_function_calculator } from "@/tools/exponential-function-calculator.fixtures";
 import { fixtures as f_exponential_growth_prediction_calculator } from "@/tools/exponential-growth-prediction-calculator.fixtures";
 import { fixtures as f_exponential_regression_calculator } from "@/tools/exponential-regression-calculator.fixtures";
+import { fixtures as f_exposure_calculator } from "@/tools/exposure-calculator.fixtures";
 import { fixtures as f_f_statistic_calculator } from "@/tools/f-statistic-calculator.fixtures";
 import { fixtures as f_f_test_for_equality_of_two_variances_calculator } from "@/tools/f-test-for-equality-of-two-variances-calculator.fixtures";
 import { fixtures as f_false_positive_paradox_calculator } from "@/tools/false-positive-paradox-calculator.fixtures";
+import { fixtures as f_film_calculator } from "@/tools/film-calculator.fixtures";
+import { fixtures as f_final_grade_calculator } from "@/tools/final-grade-calculator.fixtures";
 import { fixtures as f_fishers_exact_test_calculator } from "@/tools/fishers-exact-test-calculator.fixtures";
+import { fixtures as f_flag_calculator_usa } from "@/tools/flag-calculator-usa.fixtures";
+import { fixtures as f_floating_point_calculator } from "@/tools/floating-point-calculator.fixtures";
 import { fixtures as f_frequency_distribution_calculator } from "@/tools/frequency-distribution-calculator.fixtures";
 import { fixtures as f_gamma_function_calculator } from "@/tools/gamma-function-calculator.fixtures";
 import { fixtures as f_gauss_jordan_elimination_calculator } from "@/tools/gauss-jordan-elimination-calculator.fixtures";
@@ -406,10 +411,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "exponential-function-calculator": f_exponential_function_calculator,
   "exponential-growth-prediction-calculator": f_exponential_growth_prediction_calculator,
   "exponential-regression-calculator": f_exponential_regression_calculator,
+  "exposure-calculator": f_exposure_calculator,
   "f-statistic-calculator": f_f_statistic_calculator,
   "f-test-for-equality-of-two-variances-calculator": f_f_test_for_equality_of_two_variances_calculator,
   "false-positive-paradox-calculator": f_false_positive_paradox_calculator,
+  "film-calculator": f_film_calculator,
+  "final-grade-calculator": f_final_grade_calculator,
   "fishers-exact-test-calculator": f_fishers_exact_test_calculator,
+  "flag-calculator-usa": f_flag_calculator_usa,
+  "floating-point-calculator": f_floating_point_calculator,
   "frequency-distribution-calculator": f_frequency_distribution_calculator,
   "gamma-function-calculator": f_gamma_function_calculator,
   "gauss-jordan-elimination-calculator": f_gauss_jordan_elimination_calculator,
