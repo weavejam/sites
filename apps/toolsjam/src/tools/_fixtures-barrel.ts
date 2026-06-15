@@ -21,7 +21,12 @@ import { fixtures as f_coin_flip_probability_calculator } from "@/tools/coin-fli
 import { fixtures as f_coin_flipper } from "@/tools/coin-flipper.fixtures";
 import { fixtures as f_coin_toss_streak_calculator } from "@/tools/coin-toss-streak-calculator.fixtures";
 import { fixtures as f_combination_calculator } from "@/tools/combination-calculator.fixtures";
+import { fixtures as f_combined_gas_law_calculator } from "@/tools/combined-gas-law-calculator.fixtures";
+import { fixtures as f_compressibility_factor_calculator } from "@/tools/compressibility-factor-calculator.fixtures";
+import { fixtures as f_compton_scattering_calculator } from "@/tools/compton-scattering-calculator.fixtures";
+import { fixtures as f_compton_wavelength_calculator } from "@/tools/compton-wavelength-calculator.fixtures";
 import { fixtures as f_conditional_probability_calculator } from "@/tools/conditional-probability-calculator.fixtures";
+import { fixtures as f_conductivity_to_resistivity_calculator } from "@/tools/conductivity-to-resistivity-calculator.fixtures";
 import { fixtures as f_confidence_interval_calculator } from "@/tools/confidence-interval-calculator.fixtures";
 import { fixtures as f_confusion_matrix_calculator } from "@/tools/confusion-matrix-calculator.fixtures";
 import { fixtures as f_constant_of_proportionality_calculator } from "@/tools/constant-of-proportionality-calculator.fixtures";
@@ -190,7 +195,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "coin-flipper": f_coin_flipper,
   "coin-toss-streak-calculator": f_coin_toss_streak_calculator,
   "combination-calculator": f_combination_calculator,
+  "combined-gas-law-calculator": f_combined_gas_law_calculator,
+  "compressibility-factor-calculator": f_compressibility_factor_calculator,
+  "compton-scattering-calculator": f_compton_scattering_calculator,
+  "compton-wavelength-calculator": f_compton_wavelength_calculator,
   "conditional-probability-calculator": f_conditional_probability_calculator,
+  "conductivity-to-resistivity-calculator": f_conductivity_to_resistivity_calculator,
   "confidence-interval-calculator": f_confidence_interval_calculator,
   "confusion-matrix-calculator": f_confusion_matrix_calculator,
   "constant-of-proportionality-calculator": f_constant_of_proportionality_calculator,
