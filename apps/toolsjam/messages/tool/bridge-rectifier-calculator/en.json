@@ -1,0 +1,92 @@
+{
+  "title": "Bridge Rectifier Calculator – AC to DC Conversion",
+  "tagline": "Calculate DC output voltage, ripple voltage, efficiency, and peak inverse voltage for a full-wave bridge rectifier circuit.",
+  "intro": "Enter the AC input parameters and circuit values to analyze bridge rectifier performance including ripple factor and DC output.",
+  "field": {
+    "acVoltage": "AC Input Voltage (RMS)",
+    "resistance": "Load Resistance (Ω)",
+    "diodeDrop": "Diode Voltage Drop (V)",
+    "frequency": "AC Frequency (Hz)",
+    "capacitance": "Filter Capacitance (μF)"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers for all fields."
+  },
+  "result": {
+    "heading": "Results",
+    "peakVoltage": "Peak Input Voltage",
+    "dcOutput": "DC Output Voltage",
+    "rippleVoltage": "Ripple Voltage (p-p)",
+    "rippleFactor": "Ripple Factor",
+    "piv": "Peak Inverse Voltage (PIV)",
+    "efficiency": "Rectifier Efficiency",
+    "loadCurrent": "DC Load Current",
+    "unit": {
+      "volts": "V",
+      "amps": "A",
+      "percent": "%"
+    }
+  },
+  "about": {
+    "heading": "About the Bridge Rectifier Calculator",
+    "body": "A bridge rectifier is an arrangement of four diodes connected in a bridge configuration that converts alternating current (AC) into direct current (DC). Unlike a half-wave rectifier that uses only one diode and wastes half of the input cycle, or a center-tap full-wave rectifier that requires a transformer with a center tap, the bridge rectifier uses both halves of the AC cycle with a simple four-diode network and any ordinary transformer secondary. It is the most common rectifier topology found in power supplies, battery chargers, and AC-to-DC converters.\n\nThe rectification process starts with the AC input voltage, which oscillates sinusoidally around zero. The peak value of this voltage is V_peak = V_rms × √2, where V_rms is the root-mean-square value printed on equipment nameplates and measured by standard AC voltmeters. During the positive half-cycle two of the four bridge diodes conduct, and during the negative half-cycle the other two conduct. In both cases the current flows through the load in the same direction, producing a pulsating DC waveform that reaches its peak twice per AC cycle.\n\nEvery diode has a small forward voltage drop, typically 0.6–0.7 V for silicon p-n junction diodes and 0.2–0.4 V for Schottky diodes. Because two diodes conduct in series at any given moment, the effective peak output voltage is V_peak_out = V_peak - 2 × V_diode_drop. The average (DC) output voltage of a bridge rectifier is V_DC = (2/π) × V_peak_out ≈ 0.6366 × V_peak_out.\n\nA capacitor placed in parallel with the load filters the pulsating DC by charging to near the peak voltage and then slowly discharging into the load between peaks. The residual voltage variation is called the ripple voltage. For a bridge rectifier operating at frequency f, with load resistance R and capacitance C, the approximate peak-to-peak ripple voltage is V_r ≈ V_DC / (2 × f × R × C). The ripple factor, defined as the ratio of ripple voltage to DC output voltage, quantifies how smooth the output is; a lower ripple factor means a cleaner supply.\n\nThe peak inverse voltage (PIV) is the maximum reverse voltage that appears across a non-conducting diode during circuit operation. For a bridge rectifier, PIV = V_peak - V_diode_drop (one diode drop less than the peak, since another diode shares the reverse voltage). Diodes must be rated above the PIV to avoid breakdown.\n\nRectifier efficiency measures how effectively AC input power is converted to useful DC output power. The theoretical maximum efficiency of a bridge rectifier is approximately 81.2%, compared to 40.6% for a half-wave design. Real efficiency is slightly lower due to diode conduction losses and transformer resistance. This calculator provides the key performance metrics so engineers can evaluate whether the chosen components will meet their power supply specifications."
+  },
+  "examples": {
+    "heading": "Bridge Rectifier Examples",
+    "intro": "Practical power supply designs showing DC output, ripple, and PIV for different input voltages and filter capacitors.",
+    "colInput": "Input Parameters",
+    "colOutput": "DC Output / Ripple",
+    "colNote": "Application",
+    "items": [
+      {
+        "input": "12 V RMS, 100 Ω, 0.7 V diode, 50 Hz, 1000 μF",
+        "output": "V_DC ≈ 15.6 V, Ripple ≈ 1.56 V",
+        "note": "Standard 12 V AC-to-DC converter. Peak voltage 16.97 V; two diode drops reduce output; 1000 μF provides moderate filtering at 50 Hz."
+      },
+      {
+        "input": "5 V RMS, 50 Ω, 0.3 V diode, 60 Hz, 2200 μF",
+        "output": "V_DC ≈ 6.5 V, Ripple ≈ 0.49 V",
+        "note": "5 V Schottky-diode supply with low forward drop. Higher capacitance and 60 Hz frequency combine to reduce ripple significantly."
+      },
+      {
+        "input": "24 V RMS, 200 Ω, 0.7 V diode, 50 Hz, 4700 μF",
+        "output": "V_DC ≈ 32.4 V, Ripple ≈ 0.69 V",
+        "note": "High-power 24 V bench supply. Large capacitance produces very low ripple factor, suitable for sensitive analog circuits."
+      },
+      {
+        "input": "120 V RMS, 1000 Ω, 0.7 V diode, 60 Hz, 100 μF",
+        "output": "V_DC ≈ 168.6 V, Ripple ≈ 14.0 V",
+        "note": "High-voltage rectifier with minimal filtering. Large ripple factor demonstrates why more capacitance or a voltage regulator is needed for clean DC."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Bridge Rectifier Calculator",
+    "steps": [
+      "Enter the AC input voltage in RMS volts (the value shown on your transformer secondary or AC supply label).",
+      "Enter the load resistance in ohms, which determines the DC current draw. If using a known load current, calculate R = V_DC / I.",
+      "Enter the diode forward voltage drop: use 0.6–0.7 V for standard silicon diodes or 0.2–0.4 V for Schottky diodes.",
+      "Enter the AC supply frequency (50 Hz in Europe/Asia, 60 Hz in North America) and the filter capacitance in microfarads.",
+      "Click Calculate to see DC output voltage, ripple voltage, ripple factor, PIV, efficiency, and DC load current. Adjust the capacitance to meet your ripple specification."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "Why does a bridge rectifier use two diode voltage drops instead of one?",
+    "q1_a": "In a bridge rectifier, two diodes are always in series with the load during conduction — one on the input side and one on the return side. Each diode has a forward voltage drop, so the total drop subtracted from the peak voltage is 2 × V_diode. A half-wave rectifier uses only one diode and loses just one drop, but it wastes half the input cycle. The two-drop penalty of the bridge is the cost of full-wave rectification without a center-tap transformer.",
+    "q2": "What is ripple factor and what value is acceptable?",
+    "q2_a": "Ripple factor is the ratio of the RMS ripple voltage to the DC output voltage. A value of 0.05 (5%) or below is generally acceptable for general-purpose DC supplies. Audio amplifiers and precision instruments often require less than 1% ripple, achieved with larger capacitors or a linear voltage regulator stage after the rectifier. The bridge rectifier's theoretical unfiltered ripple factor is approximately 0.48.",
+    "q3": "How do I choose the filter capacitor size?",
+    "q3_a": "Start with the ripple voltage specification for your circuit. Rearrange the ripple formula to C = V_DC / (2 × f × R × V_r_max). For example, to keep ripple below 1 V for a 15 V output at 50 Hz with a 100 Ω load, you need C ≥ 15 / (2 × 50 × 100 × 1) = 1500 μF. Choose the next standard capacitor size above your calculated value and ensure its voltage rating exceeds the peak output voltage.",
+    "q4": "What is peak inverse voltage and why does it matter?",
+    "q4_a": "Peak inverse voltage (PIV) is the maximum reverse voltage a diode must withstand when it is not conducting. If the PIV rating of the diodes is exceeded, they can break down, become short-circuited, and destroy the entire supply. Select diodes with a PIV rating at least 20% above the calculated PIV value to provide a safety margin for transients and component tolerances.",
+    "q5": "How does frequency affect the DC output and ripple?",
+    "q5_a": "The AC frequency does not change the average DC output voltage directly, but it greatly affects filtering. At 60 Hz the capacitor is recharged more frequently than at 50 Hz, so it discharges less between peaks and produces less ripple for the same capacitor value. Switching power supplies operate at tens to hundreds of kilohertz, which is why they can use tiny filter capacitors and still achieve very low ripple.",
+    "q6": "Can this calculator be used for three-phase bridge rectifiers?",
+    "q6_a": "No, this calculator is designed for single-phase full-wave bridge rectifiers. A three-phase bridge rectifier uses six diodes and produces a smoother output with an inherently lower ripple factor (about 4.2% without filtering). The three-phase DC output is V_DC = (3√3/π) × V_peak_line for an ideal circuit. A separate three-phase calculator would be needed for those designs."
+  }
+}

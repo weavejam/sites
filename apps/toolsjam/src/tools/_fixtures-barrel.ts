@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_breaker_size_calculator } from "@/tools/breaker-size-calculator.fixtures";
+import { fixtures as f_brewsters_angle_calculator } from "@/tools/brewsters-angle-calculator.fixtures";
+import { fixtures as f_bridge_rectifier_calculator } from "@/tools/bridge-rectifier-calculator.fixtures";
+import { fixtures as f_brinell_hardness_number_calculator } from "@/tools/brinell-hardness-number-calculator.fixtures";
+import { fixtures as f_broad_crested_weir_calculator } from "@/tools/broad-crested-weir-calculator.fixtures";
 import { fixtures as f_btu_to_tons_converter } from "@/tools/btu-to-tons-converter.fixtures";
 import { fixtures as f_buck_converter_calculator } from "@/tools/buck-converter-calculator.fixtures";
 import { fixtures as f_buckling_calculator } from "@/tools/buckling-calculator.fixtures";
@@ -204,6 +209,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "breaker-size-calculator": f_breaker_size_calculator,
+  "brewsters-angle-calculator": f_brewsters_angle_calculator,
+  "bridge-rectifier-calculator": f_bridge_rectifier_calculator,
+  "brinell-hardness-number-calculator": f_brinell_hardness_number_calculator,
+  "broad-crested-weir-calculator": f_broad_crested_weir_calculator,
   "btu-to-tons-converter": f_btu_to_tons_converter,
   "buck-converter-calculator": f_buck_converter_calculator,
   "buckling-calculator": f_buckling_calculator,
