@@ -5120,7 +5120,208 @@ export const tools: ToolEntry[] = [
      pt: "",
      ru: ""
    }
+  },
+  {
+       id: "direct-variation-calculator",
+       category: "math",
+       slugs: {
+         en: "direct-variation-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Direct Variation Calculator - Solve y = kx Problems",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Calculate the constant of variation k, find unknown x or y values in direct variation equations y = kx, and explore proportional relationships.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
+  },
+  {
+       id: "direction-of-the-vector-calculator",
+       category: "math",
+       slugs: {
+         en: "direction-of-the-vector-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Direction of a Vector Calculator - Angles & Cosines",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Calculate direction angles, direction cosines, and unit vectors for 2D and 3D vectors. Find the angle a vector makes with each coordinate axis instantly.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
+  },
+  {
+       id: "discriminant-calculator",
+       category: "math",
+       slugs: {
+         en: "discriminant-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Discriminant Calculator - Quadratic Root Analysis",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Calculate the discriminant b² − 4ac of any quadratic equation ax² + bx + c = 0. Determine root nature — real, repeated, or complex — instantly.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
+  },
+  {
+       id: "distance-formula-calculator",
+       category: "math",
+       slugs: {
+         en: "distance-formula-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Distance Formula Calculator - 2D and 3D Distance",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Calculate Euclidean distance between two points in 2D or 3D space using the distance formula. Fast, accurate results with the formula shown.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
+  },
+  {
+       id: "distance-from-point-to-plane-calculator",
+       category: "math",
+       slugs: {
+         en: "distance-from-point-to-plane-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Distance from Point to Plane Calculator - 3D Geometry",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Calculate the perpendicular distance from a point to a plane in 3D space using the formula |ax₀+by₀+cz₀+d|/√(a²+b²+c²). Step-by-step results.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
   }
+
 
 
 
