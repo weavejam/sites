@@ -222,10 +222,15 @@ import { fixtures as f_projector_calculator } from "@/tools/projector-calculator
 import { fixtures as f_propagation_delay_calculator } from "@/tools/propagation-delay-calculator.fixtures";
 import { fixtures as f_pte_score_calculator } from "@/tools/pte-score-calculator.fixtures";
 import { fixtures as f_pyramid_block_calculator } from "@/tools/pyramid-block-calculator.fixtures";
+import { fixtures as f_quaternion_calculator } from "@/tools/quaternion-calculator.fixtures";
+import { fixtures as f_queueing_theory_calculator } from "@/tools/queueing-theory-calculator.fixtures";
+import { fixtures as f_quotient_calculator } from "@/tools/quotient-calculator.fixtures";
+import { fixtures as f_radical_calculator } from "@/tools/radical-calculator.fixtures";
 import { fixtures as f_raid_calculator } from "@/tools/raid-calculator.fixtures";
 import { fixtures as f_rain_to_snow_calculator } from "@/tools/rain-to-snow-calculator.fixtures";
 import { fixtures as f_rainfall_calculator } from "@/tools/rainfall-calculator.fixtures";
 import { fixtures as f_ram_latency_calculator } from "@/tools/ram-latency-calculator.fixtures";
+import { fixtures as f_ratio_calculator } from "@/tools/ratio-calculator.fixtures";
 import { fixtures as f_rayleigh_distribution_calculator } from "@/tools/rayleigh-distribution-calculator.fixtures";
 import { fixtures as f_recruitment_process_duration_calculator } from "@/tools/recruitment-process-duration-calculator.fixtures";
 import { fixtures as f_relative_error_calculator } from "@/tools/relative-error-calculator.fixtures";
@@ -571,10 +576,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "propagation-delay-calculator": f_propagation_delay_calculator,
   "pte-score-calculator": f_pte_score_calculator,
   "pyramid-block-calculator": f_pyramid_block_calculator,
+  "quaternion-calculator": f_quaternion_calculator,
+  "queueing-theory-calculator": f_queueing_theory_calculator,
+  "quotient-calculator": f_quotient_calculator,
+  "radical-calculator": f_radical_calculator,
   "raid-calculator": f_raid_calculator,
   "rain-to-snow-calculator": f_rain_to_snow_calculator,
   "rainfall-calculator": f_rainfall_calculator,
   "ram-latency-calculator": f_ram_latency_calculator,
+  "ratio-calculator": f_ratio_calculator,
   "rayleigh-distribution-calculator": f_rayleigh_distribution_calculator,
   "recruitment-process-duration-calculator": f_recruitment_process_duration_calculator,
   "relative-error-calculator": f_relative_error_calculator,
