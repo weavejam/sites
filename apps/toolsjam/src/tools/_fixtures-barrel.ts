@@ -92,13 +92,18 @@ import { fixtures as f_coin_flipper } from "@/tools/coin-flipper.fixtures";
 import { fixtures as f_coin_toss_streak_calculator } from "@/tools/coin-toss-streak-calculator.fixtures";
 import { fixtures as f_combination_calculator } from "@/tools/combination-calculator.fixtures";
 import { fixtures as f_combined_gas_law_calculator } from "@/tools/combined-gas-law-calculator.fixtures";
+import { fixtures as f_complex_root_calculator } from "@/tools/complex-root-calculator.fixtures";
 import { fixtures as f_compressibility_factor_calculator } from "@/tools/compressibility-factor-calculator.fixtures";
 import { fixtures as f_compton_scattering_calculator } from "@/tools/compton-scattering-calculator.fixtures";
 import { fixtures as f_compton_wavelength_calculator } from "@/tools/compton-wavelength-calculator.fixtures";
+import { fixtures as f_condense_logarithms_calculator } from "@/tools/condense-logarithms-calculator.fixtures";
+import { fixtures as f_condition_number_calculator } from "@/tools/condition-number-calculator.fixtures";
 import { fixtures as f_conditional_probability_calculator } from "@/tools/conditional-probability-calculator.fixtures";
 import { fixtures as f_conductivity_to_resistivity_calculator } from "@/tools/conductivity-to-resistivity-calculator.fixtures";
 import { fixtures as f_confidence_interval_calculator } from "@/tools/confidence-interval-calculator.fixtures";
 import { fixtures as f_confusion_matrix_calculator } from "@/tools/confusion-matrix-calculator.fixtures";
+import { fixtures as f_conic_sections_calculator } from "@/tools/conic-sections-calculator.fixtures";
+import { fixtures as f_consecutive_integers_calculator } from "@/tools/consecutive-integers-calculator.fixtures";
 import { fixtures as f_constant_of_proportionality_calculator } from "@/tools/constant-of-proportionality-calculator.fixtures";
 import { fixtures as f_darcy_weisbach_calculator } from "@/tools/darcy-weisbach-calculator.fixtures";
 import { fixtures as f_darcys_law_calculator } from "@/tools/darcys-law-calculator.fixtures";
@@ -536,13 +541,18 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "coin-toss-streak-calculator": f_coin_toss_streak_calculator,
   "combination-calculator": f_combination_calculator,
   "combined-gas-law-calculator": f_combined_gas_law_calculator,
+  "complex-root-calculator": f_complex_root_calculator,
   "compressibility-factor-calculator": f_compressibility_factor_calculator,
   "compton-scattering-calculator": f_compton_scattering_calculator,
   "compton-wavelength-calculator": f_compton_wavelength_calculator,
+  "condense-logarithms-calculator": f_condense_logarithms_calculator,
+  "condition-number-calculator": f_condition_number_calculator,
   "conditional-probability-calculator": f_conditional_probability_calculator,
   "conductivity-to-resistivity-calculator": f_conductivity_to_resistivity_calculator,
   "confidence-interval-calculator": f_confidence_interval_calculator,
   "confusion-matrix-calculator": f_confusion_matrix_calculator,
+  "conic-sections-calculator": f_conic_sections_calculator,
+  "consecutive-integers-calculator": f_consecutive_integers_calculator,
   "constant-of-proportionality-calculator": f_constant_of_proportionality_calculator,
   "darcy-weisbach-calculator": f_darcy_weisbach_calculator,
   "darcys-law-calculator": f_darcys_law_calculator,
