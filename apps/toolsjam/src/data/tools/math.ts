@@ -4320,5 +4320,205 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+       id: "equation-of-a-circle-calculator",
+       category: "math",
+       slugs: {
+         en: "equation-of-a-circle-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Equation of a Circle Calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Generate circle equations in standard and general forms from center and radius. Calculate area and circumference instantly.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
+  },
+  {
+       id: "equation-of-a-sphere-calculator",
+       category: "math",
+       slugs: {
+         en: "equation-of-a-sphere-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Equation of a Sphere Calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Generate 3D sphere equations in standard form from center coordinates and radius with correct sign handling and expanded form.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
+  },
+  {
+       id: "equilateral-triangle-calculator",
+       category: "math",
+       slugs: {
+         en: "equilateral-triangle-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Equilateral Triangle Calculator - Area, Perimeter & Height",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Calculate area, perimeter, height, inradius, and circumradius of any equilateral triangle from side length using exact formulas.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
+  },
+  {
+       id: "equivalent-fractions-calculator",
+       category: "math",
+       slugs: {
+         en: "equivalent-fractions-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Equivalent Fractions Calculator - Find Equal Fractions",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Find equivalent fractions, simplified form, and decimal value for any fraction. Supports target denominator for specific conversions.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
+  },
+  {
+       id: "error-function-calculator",
+       category: "math",
+       slugs: {
+         en: "error-function-calculator",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       titles: {
+         en: "Error Function Calculator - Compute erf(x) & erfc(x)",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       },
+       descriptions: {
+         en: "Calculate erf(x), erfc(x), and inverse error functions with high precision for statistics, physics, and engineering applications.",
+         "zh-CN": "",
+         "zh-TW": "",
+         ja: "",
+         ko: "",
+         es: "",
+         fr: "",
+         de: "",
+         pt: "",
+         ru: ""
+       }
   }
 ];
