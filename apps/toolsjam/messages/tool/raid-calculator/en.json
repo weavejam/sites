@@ -1,0 +1,117 @@
+{
+  "title": "RAID Storage Calculator - Capacity & Fault Tolerance",
+  "tagline": "Calculate usable storage capacity, fault tolerance, and estimated performance for RAID 0, 1, 5, 6, and 10 configurations.",
+  "intro": "Select a RAID level, enter the number of disks and their size, then click Calculate to see usable capacity, efficiency, and fault tolerance.",
+  "field": {
+    "raidLevel": "RAID Level",
+    "numDisks": "Number of Disks",
+    "diskSize": "Disk Size (GB)",
+    "diskSpeed": "Disk Speed (RPM)",
+    "interfaceSpeed": "Interface Speed (Gbps)"
+  },
+  "raidLevel": {
+    "RAID 0": "RAID 0 — Striping",
+    "RAID 1": "RAID 1 — Mirroring",
+    "RAID 5": "RAID 5 — Distributed Parity",
+    "RAID 6": "RAID 6 — Double Parity",
+    "RAID 10": "RAID 10 — Mirror + Stripe"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers for all fields.",
+    "minDisks": "This RAID level requires a minimum number of disks.",
+    "minDisksRAID1": "RAID 1 requires at least 2 disks.",
+    "minDisksRAID5": "RAID 5 requires at least 3 disks.",
+    "minDisksRAID6": "RAID 6 requires at least 4 disks.",
+    "minDisksRAID10": "RAID 10 requires at least 4 disks (even number).",
+    "oddRAID10": "RAID 10 requires an even number of disks."
+  },
+  "result": {
+    "heading": "RAID Configuration Results",
+    "usableCapacity": "Usable Capacity",
+    "rawCapacity": "Raw Capacity",
+    "efficiency": "Storage Efficiency",
+    "faultTolerance": "Fault Tolerance",
+    "readSpeed": "Estimated Read Speed",
+    "writeSpeed": "Estimated Write Speed",
+    "drives": "drive(s)",
+    "tb": "TB",
+    "gb": "GB",
+    "mbs": "MB/s"
+  },
+  "about": {
+    "heading": "About the RAID Storage Calculator",
+    "body": "RAID stands for Redundant Array of Independent Disks. Originally introduced in 1988, it is a storage technology that combines multiple physical drives into a single logical unit to improve performance, reliability, or both — depending on the RAID level chosen. A RAID calculator helps system administrators and IT planners determine exactly how much usable space a given configuration will deliver and how many disk failures the array can survive before data is lost.\n\nRAID 0 uses striping: data is split across all drives in parallel, so read and write speeds scale linearly with disk count. However, a single disk failure destroys the entire array. RAID 0 is appropriate only for non-critical data where speed is the sole priority — scratch volumes for video editing, for example.\n\nRAID 1 mirrors data across pairs of disks. Every write is duplicated to two or more drives, so the array can survive the failure of all but one disk. Usable capacity equals the size of a single disk, giving 50 % efficiency in a two-disk setup. Read performance can be improved by reading from multiple mirrors simultaneously, making RAID 1 excellent for operating-system and boot volumes.\n\nRAID 5 distributes parity information across all disks, allowing a single disk failure to be tolerated. Usable capacity is (n − 1) × disk_size, giving good efficiency. The minimum configuration requires three disks. Read performance is high — nearly equivalent to RAID 0 — but write performance suffers because each write requires reading old data and parity, computing new parity, and writing both. RAID 5 is a popular general-purpose solution for NAS and file server workloads.\n\nRAID 6 extends RAID 5 by adding a second independent parity block, allowing two simultaneous disk failures. Usable capacity is (n − 2) × disk_size and requires a minimum of four disks. RAID 6 is recommended when using large-capacity drives where a rebuild after one failure could take many hours during which a second failure is statistically significant.\n\nRAID 10 (also written RAID 1+0) combines mirroring and striping. Pairs of disks are mirrored first, then the mirrors are striped together. Usable capacity is 50 % of raw capacity. It provides excellent read and write performance while tolerating one disk failure per mirror pair. RAID 10 is the preferred choice for high-transaction databases, mail servers, and any application requiring both high throughput and strong redundancy.\n\nThis calculator computes usable capacity, storage efficiency, fault tolerance (number of drives that can fail without data loss), and estimated sequential read/write speeds based on disk RPM and interface bandwidth. Throughput estimates are approximate — real-world performance depends on controller cache, queue depth, filesystem overhead, and workload pattern. Use the results for planning and budgeting rather than benchmarking."
+  },
+  "examples": {
+    "heading": "RAID configuration examples",
+    "intro": "Four common deployment scenarios showing capacity and fault tolerance outcomes.",
+    "colInput": "Configuration",
+    "colOutput": "Usable Capacity",
+    "colNote": "Fault tolerance",
+    "items": [
+      {
+        "input": "RAID 1, 2 × 2 TB",
+        "output": "2 TB",
+        "note": "50 % efficiency. Survives 1 disk failure. Ideal for home server OS/data drives."
+      },
+      {
+        "input": "RAID 0, 2 × 1 TB",
+        "output": "2 TB",
+        "note": "100 % efficiency. No fault tolerance. Best for high-speed scratch storage only."
+      },
+      {
+        "input": "RAID 5, 4 × 2 TB",
+        "output": "6 TB",
+        "note": "75 % efficiency. Survives 1 disk failure. Good balance for small business NAS."
+      },
+      {
+        "input": "RAID 10, 6 × 4 TB",
+        "output": "12 TB",
+        "note": "50 % efficiency. Guaranteed 1 drive failure per mirror pair without data loss. Best for database workloads."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the RAID storage calculator",
+    "steps": [
+      "Select the RAID level from the dropdown. RAID 0 and 1 are the simplest; RAID 5 and 6 offer parity protection; RAID 10 combines both approaches.",
+      "Enter the number of disks you plan to use. RAID 5 requires at least 3, RAID 6 at least 4, and RAID 10 at least 4 (must be even).",
+      "Enter the individual disk size in GB. For mixed-size arrays, use the size of the smallest disk — larger disks will only be used up to that size.",
+      "Optionally enter disk speed in RPM and interface speed in Gbps to get estimated read/write throughput figures.",
+      "Click Calculate to see usable capacity, storage efficiency, fault tolerance, and speed estimates. Click Reset to start over with a different configuration."
+    ]
+  },
+  "faq": {
+    "heading": "RAID storage calculator FAQ",
+    "items": [
+      {
+        "q": "What is the usable capacity of RAID 5 with four 2 TB drives?",
+        "a": "RAID 5 usable capacity = (n − 1) × disk_size = 3 × 2 TB = 6 TB. One drive's worth of space is used for distributed parity. Storage efficiency is 75 %. The array can survive exactly one disk failure before data is at risk."
+      },
+      {
+        "q": "How many disk failures can different RAID levels survive?",
+        "a": "RAID 0 survives zero failures. RAID 1 survives n − 1 failures (all but one drive can fail). RAID 5 survives exactly one failure. RAID 6 survives exactly two simultaneous failures. RAID 10 survives one failure per mirror pair — in a four-disk RAID 10, this means one disk from each pair can fail simultaneously."
+      },
+      {
+        "q": "Is RAID a substitute for backups?",
+        "a": "No. RAID protects against disk hardware failure only. It does not protect against accidental deletion, ransomware, file corruption, controller failure, or physical disasters affecting the entire server. RAID and backups serve different purposes and should always be used together. A common guideline is the 3-2-1 rule: three copies of data, on two different media types, with one copy offsite."
+      },
+      {
+        "q": "Why does RAID 5 have a write performance penalty?",
+        "a": "Each RAID 5 write requires four I/O operations: read the old data, read the old parity, write the new data, write the new parity. This 'read-modify-write' cycle limits write throughput, especially for small random writes. Hardware RAID controllers with non-volatile write-back cache mitigate this significantly, which is why server-grade RAID 5 arrays with battery-backed cache can still deliver strong write performance."
+      },
+      {
+        "q": "What is the difference between RAID 5 and RAID 6?",
+        "a": "Both distribute parity across disks, but RAID 6 uses two independent parity calculations (P and Q), allowing two simultaneous disk failures. RAID 6 requires a minimum of four disks and uses (n − 2) × disk_size of usable space. The double-parity protection is especially valuable on large arrays of high-capacity drives where a rebuild after the first failure can take 24 hours or more."
+      },
+      {
+        "q": "How does RAID 10 compare to RAID 5 for databases?",
+        "a": "RAID 10 is generally preferred for database workloads because it has no write penalty — writes go to mirrored pairs in parallel. RAID 5 introduces the read-modify-write overhead on every small write, which is the dominant I/O pattern in transactional databases. RAID 10 uses 50 % of raw capacity versus 75 % for RAID 5, so the extra cost is the trade-off for better write throughput and faster rebuild times."
+      }
+    ]
+  }
+}

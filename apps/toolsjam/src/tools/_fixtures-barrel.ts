@@ -151,6 +151,11 @@ import { fixtures as f_polynomial_regression_calculator } from "@/tools/polynomi
 import { fixtures as f_pooled_standard_deviation_calculator } from "@/tools/pooled-standard-deviation-calculator.fixtures";
 import { fixtures as f_population_variance_calculator } from "@/tools/population-variance-calculator.fixtures";
 import { fixtures as f_post_test_probability_calculator } from "@/tools/post-test-probability-calculator.fixtures";
+import { fixtures as f_propagation_delay_calculator } from "@/tools/propagation-delay-calculator.fixtures";
+import { fixtures as f_pte_score_calculator } from "@/tools/pte-score-calculator.fixtures";
+import { fixtures as f_pyramid_block_calculator } from "@/tools/pyramid-block-calculator.fixtures";
+import { fixtures as f_raid_calculator } from "@/tools/raid-calculator.fixtures";
+import { fixtures as f_rain_to_snow_calculator } from "@/tools/rain-to-snow-calculator.fixtures";
 import { fixtures as f_rayleigh_distribution_calculator } from "@/tools/rayleigh-distribution-calculator.fixtures";
 import { fixtures as f_relative_error_calculator } from "@/tools/relative-error-calculator.fixtures";
 import { fixtures as f_relative_frequency_calculator } from "@/tools/relative-frequency-calculator.fixtures";
@@ -385,6 +390,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "pooled-standard-deviation-calculator": f_pooled_standard_deviation_calculator,
   "population-variance-calculator": f_population_variance_calculator,
   "post-test-probability-calculator": f_post_test_probability_calculator,
+  "propagation-delay-calculator": f_propagation_delay_calculator,
+  "pte-score-calculator": f_pte_score_calculator,
+  "pyramid-block-calculator": f_pyramid_block_calculator,
+  "raid-calculator": f_raid_calculator,
+  "rain-to-snow-calculator": f_rain_to_snow_calculator,
   "rayleigh-distribution-calculator": f_rayleigh_distribution_calculator,
   "relative-error-calculator": f_relative_error_calculator,
   "relative-frequency-calculator": f_relative_frequency_calculator,
