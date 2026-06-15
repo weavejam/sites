@@ -1,0 +1,100 @@
+{
+  "title": "Calculateur de taille d'image vidéo - Résolution et stockage",
+  "tagline": "Calculez la taille exacte d'une seule image vidéo en octets selon la résolution, la profondeur de bits, les canaux de couleur et le taux de compression.",
+  "intro": "Saisissez les dimensions de l'image, la profondeur de bits, le nombre de canaux et le taux de compression pour obtenir les tailles non compressée et compressée.",
+  "field": {
+    "width": "Largeur de l'image (pixels)",
+    "height": "Hauteur de l'image (pixels)",
+    "bitDepth": "Profondeur de bits",
+    "channels": "Canaux de couleur",
+    "compressionRatio": "Taux de compression"
+  },
+  "button": {
+    "calculate": "Calculer la taille de l'image",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs.",
+    "zeroCompression": "Le taux de compression doit être supérieur à zéro."
+  },
+  "result": {
+    "heading": "Résultats de taille d'image",
+    "resolution": "Résolution",
+    "totalPixels": "Nombre total de pixels",
+    "uncompressedSize": "Taille non compressée",
+    "compressedSize": "Taille compressée",
+    "compressionNote": "à une compression de {ratio}:1"
+  },
+  "about": {
+    "heading": "À propos du calcul de la taille d'une image vidéo",
+    "body": "Une vidéo est composée d'une suite d'images individuelles appelées images. La taille de chaque image — mesurée en octets — détermine l'espace de stockage nécessaire à une vidéo, la bande passante requise pour la diffusion et la puissance de calcul nécessaire pour l'encodage ou le décodage. Comprendre la taille d'une image est donc fondamental dans tout flux de production, de diffusion ou d'archivage vidéo.\n\nLa formule de taille non compressée est simple : Taille de l'image (octets) = Largeur × Hauteur × Profondeur de bits × Canaux de couleur ÷ 8. La division par 8 convertit les bits en octets. Pour une image Full HD standard (1920×1080) en 8 bits et trois canaux RGB, la taille non compressée est 1920 × 1080 × 8 × 3 ÷ 8 = 6,220,800 octets, soit environ 5,93 MB par image. À 30 images par seconde, cela représente environ 178 MB/s de vidéo brute — un débit énorme qui rend le stockage non compressé impraticable dans la plupart des cas.\n\nLa compression rend la vidéo numérique gérable. Les codecs vidéo exploitent deux types de redondance. La redondance spatiale désigne les informations répétitives à l'intérieur d'une même image : fonds uniformes, dégradés progressifs et zones de texture homogène peuvent être représentés bien plus compactement que des matrices de pixels brutes. La redondance temporelle désigne la similarité entre images adjacentes : si la caméra est fixe et qu'un petit objet seulement se déplace, la majeure partie de chaque image est identique à la précédente et seules les différences doivent être encodées.\n\nLe champ taux de compression de ce calculateur indique combien de fois l'image compressée est plus petite que la version brute non compressée. Un taux de 10 signifie que l'image compressée représente un dixième de la taille d'origine. Les taux usuels varient fortement : les codecs sans perte atteignent 2:1 à 4:1 ; H.264 en qualité web courante atteint 50:1 à 100:1 ; HEVC (H.265) obtient une qualité similaire à 100:1 à 200:1 ; les codecs professionnels ProRes visent 5:1 à 20:1 afin de préserver de la marge pour l'étalonnage.\n\nLa profondeur de bits détermine le nombre de niveaux de luminance distincts que chaque canal peut représenter. Un canal 8 bits stocke 256 niveaux, un canal 10 bits 1,024 niveaux et un canal 12 bits 4,096 niveaux. Plus la profondeur de bits est élevée, plus les dégradés sont fluides et meilleure est la tenue des images lors de l'étalonnage et de la composition. Les caméras cinéma capturent souvent en RAW 10 ou 12 bits, tandis que les caméras grand public et les contenus web utilisent généralement 8 bits.\n\nLes canaux de couleur déterminent le nombre de composantes de couleur indépendantes par pixel. La vidéo RGB standard utilise trois canaux (rouge, vert, bleu). Les contenus avec transparence — comme les motion graphics avec canal alpha pour la composition — utilisent quatre canaux (rouge, vert, bleu, alpha). Certains formats spécialisés comme le CMYK ou l'imagerie multispectrale utilisent davantage de canaux, mais trois et quatre restent de loin les plus courants en production vidéo.\n\nEn comprenant la relation entre ces paramètres, vous pouvez choisir en connaissance de cause le codec et les réglages de qualité adaptés à chaque projet, en équilibrant coût de stockage, temps d'encodage et qualité visuelle selon vos besoins de production et de livraison."
+  },
+  "examples": {
+    "heading": "Exemples de taille d'image vidéo",
+    "intro": "Résolutions courantes et leur taille non compressée aux profondeurs de bits usuelles.",
+    "colInput": "Résolution et réglages",
+    "colOutput": "Taille non compressée",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "1920×1080, 8-bit, 3 channels (RGB)",
+        "output": "≈ 5.93 MB",
+        "note": "Image Full HD standard. À 30 fps non compressé, cela représente ~178 MB/s ; la compression H.264 ramène cela à ~1–4 MB/s."
+      },
+      {
+        "input": "3840×2160, 10-bit, 3 channels (RGB)",
+        "output": "≈ 29.6 MB",
+        "note": "Image 4K HDR. ProRes 4444 avec une compression de 10:1 donne environ 3 MB par image, typique du montage cinéma 4K."
+      },
+      {
+        "input": "1280×720, 8-bit, 3 channels (RGB)",
+        "output": "≈ 2.64 MB",
+        "note": "Image HD 720p. Très utilisée pour le web et le mobile ; en non compressé, elle reste gérable pour les contenus courts."
+      },
+      {
+        "input": "3840×2160, 12-bit, 4 channels (RGBA)",
+        "output": "≈ 47.3 MB",
+        "note": "Image 4K avec canal alpha en 12 bits. Utilisée dans les pipelines de compositing VFX professionnels où la transparence et la profondeur de couleur comptent toutes deux."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de taille d'image vidéo",
+    "steps": [
+      "Saisissez la largeur et la hauteur de l'image en pixels : ce sont les dimensions d'une seule image vidéo.",
+      "Saisissez la profondeur de bits : 8 pour le contenu standard, 10 pour le HDR et les séquences étalonnées, 12 pour le RAW cinéma.",
+      "Saisissez le nombre de canaux de couleur : 3 pour la vidéo RGB, 4 si votre contenu inclut un canal alpha de transparence.",
+      "Saisissez le taux de compression : 1 pour du non compressé, des valeurs plus élevées pour les formats compressés (par exemple 10 pour ProRes, 100 pour H.264).",
+      "Cliquez sur Calculer la taille de l'image pour voir les tailles non compressée et compressée en octets, KB ou MB."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de taille d'image vidéo",
+    "items": [
+      {
+        "q": "Qu'est-ce qu'une taille d'image non compressée ?",
+        "a": "La taille d'image non compressée correspond au nombre d'octets nécessaires pour stocker une seule image vidéo sans aucune compression — chaque valeur de couleur de chaque pixel est conservée intégralement. Elle représente la taille de fichier théorique maximale et est rarement utilisée en pratique en raison de besoins de stockage énormes."
+      },
+      {
+        "q": "Comment la profondeur de bits influence-t-elle la taille d'image ?",
+        "a": "La profondeur de bits multiplie directement la taille d'image. Une image 10 bits est 25 % plus grande qu'une image 8 bits (10 bits contre 8 bits), et une image 12 bits est 50 % plus grande qu'une image 8 bits. Le bénéfice perceptif — dégradés plus fluides, meilleure marge d'étalonnage — est surtout visible dans les plans très contrastés ou en faible lumière."
+      },
+      {
+        "q": "Quel est un taux de compression typique pour H.264 ?",
+        "a": "H.264 atteint généralement des taux de compression d'environ 50:1 à 200:1 selon la complexité du contenu, les réglages de qualité et la résolution. Les scènes rapides et détaillées nécessitent plus de bits (donc un taux plus faible), tandis que les scènes lentes ou statiques se compressent bien plus efficacement."
+      },
+      {
+        "q": "Pourquoi utiliser 4 canaux de couleur au lieu de 3 ?",
+        "a": "Quatre canaux ajoutent un canal alpha, qui stocke les informations de transparence pixel par pixel. C'est essentiel pour le motion design et la composition VFX, où les éléments doivent être superposés sur différents arrière-plans. La vidéo de diffusion et de streaming standard n'utilise que 3 canaux RGB."
+      },
+      {
+        "q": "Quel est le lien entre taille d'image et débit vidéo ?",
+        "a": "Le débit vidéo (en bits par seconde) est égal à la taille compressée d'une image en bits multipliée par la cadence d'images. Par exemple, si une image H.264 1080p compressée pèse 30 KB à 30 fps, le débit est 30,000 × 8 × 30 = 7.2 Mbps — une valeur typique pour une vidéo 1080p de qualité web."
+      },
+      {
+        "q": "Quel taux de compression choisir pour ProRes ?",
+        "a": "Apple ProRes 422 HQ atteint environ 5:1, ProRes 422 environ 8:1 et ProRes LT environ 12:1. ProRes 4444 avec alpha tourne autour de 3:1. Ces taux modérés préservent la qualité nécessaire à l'étalonnage tout en réduisant nettement la taille des fichiers par rapport à une vidéo réellement non compressée."
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de tamanho de quadro de vídeo - Resolução e armazenamento",
+  "tagline": "Calcule o tamanho exato de um único quadro de vídeo em bytes com base na resolução, profundidade de bits, canais de cor e taxa de compressão.",
+  "intro": "Insira as dimensões do quadro, a profundidade de bits, a quantidade de canais e a taxa de compressão para determinar os tamanhos sem compressão e comprimidos.",
+  "field": {
+    "width": "Largura do quadro (pixels)",
+    "height": "Altura do quadro (pixels)",
+    "bitDepth": "Profundidade de bits",
+    "channels": "Canais de cor",
+    "compressionRatio": "Taxa de compressão"
+  },
+  "button": {
+    "calculate": "Calcular tamanho do quadro",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira números positivos válidos em todos os campos.",
+    "zeroCompression": "A taxa de compressão deve ser maior que zero."
+  },
+  "result": {
+    "heading": "Resultados do tamanho do quadro",
+    "resolution": "Resolução",
+    "totalPixels": "Total de pixels",
+    "uncompressedSize": "Tamanho sem compressão",
+    "compressedSize": "Tamanho comprimido",
+    "compressionNote": "com compressão de {ratio}:1"
+  },
+  "about": {
+    "heading": "Sobre o cálculo do tamanho de quadros de vídeo",
+    "body": "Todo vídeo é composto por uma sequência de imagens individuais chamadas quadros. O tamanho de cada quadro — medido em bytes — determina quanto armazenamento um vídeo exige, quanta largura de banda é necessária para transmiti-lo e quanta capacidade de processamento é necessária para codificá-lo ou decodificá-lo. Entender o tamanho de quadro é, portanto, fundamental em qualquer fluxo de produção, distribuição ou arquivamento de vídeo.\n\nA fórmula do tamanho sem compressão é simples: Tamanho do quadro (bytes) = Largura × Altura × Profundidade de bits × Canais de cor ÷ 8. A divisão por 8 converte bits em bytes. Para um quadro Full HD padrão (1920×1080), com profundidade de 8 bits e três canais RGB, o tamanho sem compressão é 1920 × 1080 × 8 × 3 ÷ 8 = 6,220,800 bytes, ou aproximadamente 5.93 MB por quadro. A 30 quadros por segundo, isso equivale a cerca de 178 MB por segundo de vídeo bruto — uma taxa enorme que torna o armazenamento sem compressão impraticável na maioria dos casos.\n\nA compressão é o que torna o vídeo digital viável. Os codecs de vídeo exploram dois tipos de redundância. A redundância espacial refere-se a informações repetitivas dentro de um único quadro: fundos suaves, gradientes de cor e áreas com textura uniforme podem ser representados de forma muito mais compacta do que matrizes de pixels brutos. A redundância temporal refere-se à semelhança entre quadros adjacentes: se a câmera está parada e apenas um pequeno objeto está se movendo, a maior parte de cada quadro é idêntica ao anterior e apenas as diferenças precisam ser codificadas.\n\nO campo de taxa de compressão nesta calculadora representa quantas vezes o quadro comprimido é menor que a versão bruta sem compressão. Uma taxa de 10 significa que o quadro comprimido tem um décimo do tamanho do original. As taxas típicas variam bastante: codecs sem perdas alcançam 2:1 a 4:1; H.264 em qualidade web comum chega a 50:1 a 100:1; HEVC (H.265) obtém qualidade semelhante em 100:1 a 200:1; codecs profissionais ProRes visam 5:1 a 20:1 para preservar margem para correção de cor.\n\nA profundidade de bits afeta quantos níveis discretos de brilho cada canal pode representar. Um canal de 8 bits armazena 256 níveis, um de 10 bits armazena 1.024 níveis e um de 12 bits armazena 4.096 níveis. Quanto maior a profundidade, mais suaves ficam as gradações tonais e melhor o material se comporta em correção de cor e composição. Câmeras de cinema normalmente capturam em RAW de 10 ou 12 bits, enquanto câmeras de consumo e conteúdo para a web usam geralmente 8 bits.\n\nOs canais de cor determinam quantos componentes de cor independentes cada pixel contém. O vídeo RGB padrão usa três canais (vermelho, verde, azul). Conteúdos com transparência — como motion graphics com canal alfa para composição — usam quatro canais (vermelho, verde, azul, alfa). Alguns formatos especializados, como CMYK ou imagem multiespectral, usam mais canais, mas três e quatro são de longe os mais comuns na produção de vídeo.\n\nAo entender a relação entre esses parâmetros, você pode tomar decisões mais informadas sobre qual codec e quais configurações de qualidade usar em cada projeto, equilibrando custos de armazenamento, tempo de codificação e qualidade visual com as necessidades de produção e entrega."
+  },
+  "examples": {
+    "heading": "Exemplos de tamanho de quadro de vídeo",
+    "intro": "Resoluções padrão e seus tamanhos sem compressão em profundidades de bits comuns.",
+    "colInput": "Resolução e configurações",
+    "colOutput": "Tamanho sem compressão",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "1920×1080, 8-bit, 3 channels (RGB)",
+        "output": "≈ 5.93 MB",
+        "note": "Quadro Full HD padrão. A 30 fps sem compressão isso equivale a ~178 MB/s; a compressão H.264 reduz para ~1–4 MB/s."
+      },
+      {
+        "input": "3840×2160, 10-bit, 3 channels (RGB)",
+        "output": "≈ 29.6 MB",
+        "note": "Quadro 4K HDR. ProRes 4444 com compressão de 10:1 gera cerca de 3 MB por quadro, comum na edição cinematográfica em 4K."
+      },
+      {
+        "input": "1280×720, 8-bit, 3 channels (RGB)",
+        "output": "≈ 2.64 MB",
+        "note": "Quadro HD 720p. Muito usado para web e mobile; sem compressão é administrável em conteúdos curtos."
+      },
+      {
+        "input": "3840×2160, 12-bit, 4 channels (RGBA)",
+        "output": "≈ 47.3 MB",
+        "note": "Quadro 4K com canal alfa em 12 bits. Usado em pipelines profissionais de composição VFX onde transparência e profundidade de cor importam."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de tamanho de quadro de vídeo",
+    "steps": [
+      "Digite a largura e a altura do quadro em pixels — essas são as dimensões de um único quadro de vídeo.",
+      "Digite a profundidade de bits: 8 para conteúdo padrão, 10 para HDR e material com correção, 12 para RAW de cinema.",
+      "Digite a quantidade de canais de cor: 3 para vídeo RGB, 4 se o conteúdo incluir um canal alfa de transparência.",
+      "Digite a taxa de compressão: 1 para sem compressão, números maiores para formatos comprimidos (por exemplo, 10 para ProRes, 100 para H.264).",
+      "Clique em Calcular tamanho do quadro para ver os tamanhos sem compressão e comprimidos em bytes, KB ou MB."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre a calculadora de tamanho de quadro de vídeo",
+    "items": [
+      {
+        "q": "O que é tamanho de quadro sem compressão?",
+        "a": "O tamanho de quadro sem compressão é a quantidade de bytes necessária para armazenar um único quadro de vídeo sem aplicar compressão — cada valor de cor de cada pixel é preservado por completo. Ele representa o tamanho máximo teórico do arquivo e raramente é usado na prática devido às enormes necessidades de armazenamento."
+      },
+      {
+        "q": "Como a profundidade de bits afeta o tamanho do quadro?",
+        "a": "A profundidade de bits multiplica diretamente o tamanho do quadro. Um quadro de 10 bits é 25% maior que um de 8 bits (10 bits vs 8 bits), e um quadro de 12 bits é 50% maior que um de 8 bits. O benefício perceptível — gradientes mais suaves e mais margem para correção de cor — aparece mais em cenas de alto contraste e baixa luz."
+      },
+      {
+        "q": "Qual é uma taxa de compressão típica para H.264?",
+        "a": "O H.264 alcança relações de compressão em torno de 50:1 a 200:1, dependendo da complexidade do conteúdo, das configurações de qualidade e da resolução. Cenas rápidas e cheias de detalhes exigem mais bits (taxa de compressão menor), enquanto cenas lentas ou estáticas comprimem muito melhor."
+      },
+      {
+        "q": "Por que usar 4 canais de cor em vez de 3?",
+        "a": "Quatro canais adicionam um canal alfa, que armazena informações de transparência por pixel. Isso é essencial em motion graphics e composição VFX, onde elementos precisam ser sobrepostos a diferentes fundos. O vídeo padrão de broadcast e streaming usa apenas 3 canais RGB."
+      },
+      {
+        "q": "Como o tamanho do quadro se relaciona com a taxa de bits do vídeo?",
+        "a": "A taxa de bits do vídeo (em bits por segundo) é igual ao tamanho comprimido de um quadro em bits multiplicado pela taxa de quadros. Por exemplo, se um quadro H.264 1080p comprimido tiver 30 KB a 30 fps, a taxa de bits será 30,000 × 8 × 30 = 7.2 Mbps — um valor típico para vídeo 1080p em qualidade web."
+      },
+      {
+        "q": "Que taxa de compressão devo usar para ProRes?",
+        "a": "Apple ProRes 422 HQ fica em aproximadamente 5:1, ProRes 422 em cerca de 8:1 e ProRes LT em cerca de 12:1. ProRes 4444 com alfa fica em torno de 3:1. Essas taxas moderadas preservam a qualidade necessária para correção de cor e ainda reduzem bastante o tamanho dos arquivos em comparação com vídeo realmente sem compressão."
+      }
+    ]
+  }
+}

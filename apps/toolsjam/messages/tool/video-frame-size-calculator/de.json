@@ -1,0 +1,100 @@
+{
+  "title": "Video-Bildgrößenrechner - Auflösung und Speicher",
+  "tagline": "Berechnen Sie die exakte Größe eines einzelnen Videobilds in Bytes anhand von Auflösung, Bittiefe, Farbkanälen und Komprimierungsfaktor.",
+  "intro": "Geben Sie Bildabmessungen, Bittiefe, Kanalanzahl und Komprimierungsfaktor ein, um unkomprimierte und komprimierte Bildgrößen zu bestimmen.",
+  "field": {
+    "width": "Bildbreite (Pixel)",
+    "height": "Bildhöhe (Pixel)",
+    "bitDepth": "Bittiefe",
+    "channels": "Farbkanäle",
+    "compressionRatio": "Komprimierungsverhältnis"
+  },
+  "button": {
+    "calculate": "Bildgröße berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie in allen Feldern gültige positive Zahlen ein.",
+    "zeroCompression": "Das Komprimierungsverhältnis muss größer als null sein."
+  },
+  "result": {
+    "heading": "Ergebnisse der Bildgröße",
+    "resolution": "Auflösung",
+    "totalPixels": "Gesamtpixel",
+    "uncompressedSize": "Unkomprimierte Bildgröße",
+    "compressedSize": "Komprimierte Bildgröße",
+    "compressionNote": "bei {ratio}:1 Komprimierung"
+  },
+  "about": {
+    "heading": "Über die Berechnung der Videobildgröße",
+    "body": "Jedes Video besteht aus einer Folge einzelner Bilder, den sogenannten Frames. Die Größe jedes Frames — gemessen in Bytes — bestimmt, wie viel Speicher ein Video benötigt, wie viel Bandbreite für das Streaming erforderlich ist und wie viel Rechenleistung zum Kodieren oder Dekodieren nötig ist. Das Verständnis der Bildgröße ist daher grundlegend für jeden Video-Produktions-, Verteilungs- oder Archivierungsworkflow.\n\nDie Formel für die unkomprimierte Bildgröße ist einfach: Bildgröße (Bytes) = Breite × Höhe × Bittiefe × Farbkanäle ÷ 8. Die Division durch 8 wandelt Bits in Bytes um. Für ein Standard-Full-HD-Bild (1920×1080) mit 8-Bit-Farbtiefe und drei RGB-Kanälen beträgt die unkomprimierte Größe 1920 × 1080 × 8 × 3 ÷ 8 = 6.220.800 Bytes, also etwa 5,93 MB pro Bild. Bei 30 Bildern pro Sekunde entspricht das rund 178 MB pro Sekunde Rohvideo — eine enorme Datenrate, die unkomprimierten Speicher für die meisten Anwendungen unpraktisch macht.\n\nKomprimierung macht digitales Video beherrschbar. Videocodecs nutzen zwei Arten von Redundanz. Räumliche Redundanz bezeichnet sich wiederholende Informationen innerhalb eines einzelnen Bildes: weiche Hintergründe, langsame Farbverläufe und Bereiche mit einheitlicher Struktur lassen sich deutlich kompakter darstellen als rohe Pixelarrays. Temporale Redundanz bezeichnet die Ähnlichkeit zwischen aufeinanderfolgenden Bildern: Wenn die Kamera stillsteht und sich nur ein kleines Objekt bewegt, ist der Großteil jedes Bildes identisch zum vorherigen und es müssen nur die Unterschiede kodiert werden.\n\nDas Feld Komprimierungsverhältnis in diesem Rechner gibt an, um wie viel kleiner das komprimierte Bild im Vergleich zur rohen unkomprimierten Version ist. Ein Verhältnis von 10 bedeutet, dass das komprimierte Bild ein Zehntel der ursprünglichen Größe hat. Typische Verhältnisse variieren stark: verlustfreie Codecs erreichen 2:1 bis 4:1; H.264 erreicht bei üblicher Web-Qualität 50:1 bis 100:1; HEVC (H.265) erzielt bei ähnlicher Qualität 100:1 bis 200:1; professionelle ProRes-Codecs zielen auf 5:1 bis 20:1, um Spielraum für das Grading zu erhalten.\n\nDie Bittiefe bestimmt die Anzahl der diskreten Helligkeitsstufen, die jeder Kanal darstellen kann. Ein 8-Bit-Kanal speichert 256 Stufen, ein 10-Bit-Kanal 1.024 Stufen und ein 12-Bit-Kanal 4.096 Stufen. Je höher die Bittiefe, desto weicher sind die Tonwertverläufe und desto besser eignet sich das Material für Farbkorrektur und Compositing. Kinokameras zeichnen meist in 10-Bit oder 12-Bit RAW auf, während Verbrauchergeräte und Webinhalte typischerweise 8-Bit verwenden.\n\nFarbkanäle bestimmen, wie viele unabhängige Farbkomponenten ein Pixel enthält. Standard-RGB-Video nutzt drei Kanäle (Rot, Grün, Blau). Inhalte mit Transparenz — etwa Motion Graphics mit Alpha-Kanal für das Compositing — verwenden vier Kanäle (Rot, Grün, Blau, Alpha). Einige Spezialformate wie CMYK oder multispektrale Bildgebung nutzen mehr Kanäle, aber drei und vier sind in der Videoproduktion mit Abstand am häufigsten.\n\nWenn Sie die Beziehung zwischen diesen Parametern verstehen, können Sie fundierte Entscheidungen treffen, welchen Codec und welche Qualitätseinstellungen Sie für ein Projekt verwenden, und dabei Speicherkosten, Kodierzeit und visuelle Qualität gegen Produktions- und Auslieferungsanforderungen abwägen."
+  },
+  "examples": {
+    "heading": "Beispiele für Videobildgrößen",
+    "intro": "Standardauflösungen und ihre unkomprimierten Bildgrößen bei gängigen Bittiefen.",
+    "colInput": "Auflösung & Einstellungen",
+    "colOutput": "Unkomprimierte Größe",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "1920×1080, 8-bit, 3 channels (RGB)",
+        "output": "≈ 5.93 MB",
+        "note": "Standard-Full-HD-Bild. Bei 30 fps unkomprimiert sind das ~178 MB/s; H.264-Komprimierung reduziert das auf ~1–4 MB/s."
+      },
+      {
+        "input": "3840×2160, 10-bit, 3 channels (RGB)",
+        "output": "≈ 29.6 MB",
+        "note": "4K-HDR-Bild. ProRes 4444 bei 10:1 Komprimierung ergibt etwa 3 MB pro Bild, typisch für 4K-Cinema-Editing."
+      },
+      {
+        "input": "1280×720, 8-bit, 3 channels (RGB)",
+        "output": "≈ 2.64 MB",
+        "note": "HD-720p-Bild. Weit verbreitet für Web und Mobile; unkomprimiert ist es für Kurzformate gut handhabbar."
+      },
+      {
+        "input": "3840×2160, 12-bit, 4 channels (RGBA)",
+        "output": "≈ 47.3 MB",
+        "note": "4K-Bild mit Alphakanal bei 12 Bit. Wird in professionellen VFX-Compositing-Pipelines genutzt, in denen Transparenz und Farbtiefe wichtig sind."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Video-Bildgrößenrechner",
+    "steps": [
+      "Geben Sie Breite und Höhe des Bildes in Pixeln ein — das sind die Abmessungen eines einzelnen Videobilds.",
+      "Geben Sie die Bittiefe ein: 8 für Standardinhalte, 10 für HDR und gradierte Aufnahmen, 12 für RAW-Cinema-Material.",
+      "Geben Sie die Anzahl der Farbkanäle ein: 3 für RGB-Video, 4 wenn Ihr Inhalt einen Alpha-Transparenzkanal enthält.",
+      "Geben Sie das Komprimierungsverhältnis ein: 1 für unkomprimiert, höhere Zahlen für komprimierte Formate (z. B. 10 für ProRes, 100 für H.264).",
+      "Klicken Sie auf Bildgröße berechnen, um unkomprimierte und komprimierte Bildgrößen in Bytes, KB oder MB anzuzeigen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Video-Bildgrößenrechner",
+    "items": [
+      {
+        "q": "Was ist eine unkomprimierte Bildgröße?",
+        "a": "Eine unkomprimierte Bildgröße ist die Anzahl der Bytes, die benötigt wird, um ein einzelnes Videobild ohne Komprimierung zu speichern — jeder Farbwert jedes Pixels wird vollständig abgelegt. Das ist die theoretisch maximale Dateigröße und wird wegen des enormen Speicherbedarfs in der Praxis selten verwendet."
+      },
+      {
+        "q": "Wie wirkt sich die Bittiefe auf die Bildgröße aus?",
+        "a": "Die Bittiefe vergrößert die Bildgröße direkt. Ein 10-Bit-Bild ist 25 % größer als ein 8-Bit-Bild (10 Bit vs. 8 Bit), und ein 12-Bit-Bild ist 50 % größer als ein 8-Bit-Bild. Der sichtbare Vorteil — weichere Verläufe und mehr Spielraum beim Grading — zeigt sich besonders bei kontrastreichen und dunklen Aufnahmen."
+      },
+      {
+        "q": "Welches Komprimierungsverhältnis ist für H.264 typisch?",
+        "a": "H.264 erreicht je nach Inhaltskomplexität, Qualitätseinstellung und Auflösung typischerweise etwa 50:1 bis 200:1. Schnelle, detailreiche Szenen benötigen mehr Bits (also ein geringeres Komprimierungsverhältnis), während langsame oder statische Szenen deutlich effizienter komprimiert werden."
+      },
+      {
+        "q": "Warum 4 Farbkanäle statt 3?",
+        "a": "Vier Kanäle fügen einen Alpha-Kanal hinzu, der Transparenzinformationen pro Pixel speichert. Das ist in Motion Graphics und VFX-Compositing unverzichtbar, wenn Elemente über unterschiedliche Hintergründe gelegt werden müssen. Standard-Broadcast- und Streaming-Video verwendet nur 3 RGB-Kanäle."
+      },
+      {
+        "q": "Wie hängt Bildgröße mit der Video-Bitrate zusammen?",
+        "a": "Die Video-Bitrate (in Bits pro Sekunde) entspricht der komprimierten Bildgröße in Bits multipliziert mit der Bildrate. Wenn ein komprimiertes 1080p-H.264-Bild 30 KB groß ist und mit 30 fps läuft, beträgt die Bitrate 30,000 × 8 × 30 = 7.2 Mbps — ein typischer Wert für 1080p-Webvideo."
+      },
+      {
+        "q": "Welches Komprimierungsverhältnis sollte ich für ProRes verwenden?",
+        "a": "Apple ProRes 422 HQ liegt bei etwa 5:1, ProRes 422 bei etwa 8:1 und ProRes LT bei etwa 12:1. ProRes 4444 mit Alpha liegt bei rund 3:1. Diese moderaten Verhältnisse erhalten die Bildqualität für das Grading und reduzieren die Dateigröße dennoch deutlich gegenüber wirklich unkomprimiertem Video."
+      }
+    ]
+  }
+}

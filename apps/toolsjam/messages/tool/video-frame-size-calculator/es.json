@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de tamaño de fotograma de video - Resolución y almacenamiento",
+  "tagline": "Calcula el tamaño exacto de un solo fotograma de video en bytes según la resolución, la profundidad de bits, los canales de color y la relación de compresión.",
+  "intro": "Ingresa las dimensiones del fotograma, la profundidad de bits, la cantidad de canales y la relación de compresión para determinar los tamaños sin compresión y comprimidos.",
+  "field": {
+    "width": "Ancho del fotograma (píxeles)",
+    "height": "Alto del fotograma (píxeles)",
+    "bitDepth": "Profundidad de bits",
+    "channels": "Canales de color",
+    "compressionRatio": "Relación de compresión"
+  },
+  "button": {
+    "calculate": "Calcular tamaño del fotograma",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Ingresa números positivos válidos en todos los campos.",
+    "zeroCompression": "La relación de compresión debe ser mayor que cero."
+  },
+  "result": {
+    "heading": "Resultados del tamaño del fotograma",
+    "resolution": "Resolución",
+    "totalPixels": "Píxeles totales",
+    "uncompressedSize": "Tamaño sin compresión",
+    "compressedSize": "Tamaño comprimido",
+    "compressionNote": "con compresión {ratio}:1"
+  },
+  "about": {
+    "heading": "Acerca del cálculo del tamaño de fotogramas de video",
+    "body": "Todo video está compuesto por una secuencia de imágenes individuales llamadas fotogramas. El tamaño de cada fotograma —medido en bytes— determina cuánto almacenamiento requiere un video, cuánto ancho de banda se necesita para transmitirlo y cuánta capacidad de procesamiento se necesita para codificarlo o decodificarlo. Por eso, entender el tamaño de fotograma es fundamental en cualquier flujo de trabajo de producción, distribución o archivo de video.\n\nLa fórmula del tamaño sin compresión es sencilla: Tamaño del fotograma (bytes) = Ancho × Alto × Profundidad de bits × Canales de color ÷ 8. La división entre 8 convierte de bits a bytes. Para un fotograma Full HD estándar (1920×1080) con color de 8 bits y tres canales RGB, el tamaño sin compresión es 1920 × 1080 × 8 × 3 ÷ 8 = 6,220,800 bytes, o aproximadamente 5.93 MB por fotograma. A 30 fotogramas por segundo, eso equivale a unos 178 MB por segundo de video sin procesar, una tasa de datos enorme que hace que el almacenamiento sin compresión sea poco práctico en la mayoría de los casos.\n\nLa compresión es lo que hace manejable el video digital. Los códecs de video aprovechan dos tipos de redundancia. La redundancia espacial se refiere a información repetitiva dentro de un mismo fotograma: fondos suaves, degradados de color graduales y áreas de textura uniforme pueden representarse de forma mucho más compacta que las matrices de píxeles sin procesar. La redundancia temporal se refiere a la similitud entre fotogramas adyacentes: si la cámara está fija y solo se mueve un objeto pequeño, la mayor parte de cada fotograma es idéntica al anterior y solo hay que codificar las diferencias.\n\nEl campo de relación de compresión de esta calculadora representa cuántas veces más pequeño es el fotograma comprimido en comparación con la versión sin procesar. Una relación de 10 significa que el fotograma comprimido mide una décima parte del original. Las relaciones típicas varían mucho: los códecs sin pérdida logran de 2:1 a 4:1; H.264 en calidad web habitual alcanza de 50:1 a 100:1; HEVC (H.265) obtiene una calidad similar con 100:1 a 200:1; los códecs profesionales ProRes apuntan a 5:1 a 20:1 para conservar margen de etalonaje.\n\nLa profundidad de bits afecta la cantidad de niveles de brillo discretos que puede representar cada canal. Un canal de 8 bits almacena 256 niveles, uno de 10 bits almacena 1,024 niveles y uno de 12 bits almacena 4,096 niveles. Cuanto mayor es la profundidad de bits, más suaves son las gradaciones tonales y mejor resiste el material el etalonaje y la composición. Las cámaras de cine suelen capturar en RAW de 10 o 12 bits, mientras que las cámaras de consumo y el contenido web suelen usar 8 bits.\n\nLos canales de color determinan cuántos componentes de color independientes contiene cada píxel. El video RGB estándar usa tres canales (rojo, verde, azul). El contenido con transparencia —como gráficos en movimiento con canal alfa para composición— usa cuatro canales (rojo, verde, azul, alfa). Algunos formatos especializados, como CMYK o la imagen multiespectral, usan más canales, pero tres y cuatro son con diferencia los más comunes en producción de video.\n\nAl entender la relación entre estos parámetros, puedes tomar decisiones informadas sobre qué códec y qué ajustes de calidad usar en cada proyecto, equilibrando costos de almacenamiento, tiempo de codificación y calidad visual frente a tus necesidades de producción y entrega."
+  },
+  "examples": {
+    "heading": "Ejemplos de tamaño de fotograma de video",
+    "intro": "Resoluciones estándar y sus tamaños sin compresión a profundidades de bits comunes.",
+    "colInput": "Resolución y ajustes",
+    "colOutput": "Tamaño sin compresión",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "1920×1080, 8-bit, 3 channels (RGB)",
+        "output": "≈ 5.93 MB",
+        "note": "Fotograma Full HD estándar. A 30 fps sin compresión son ~178 MB/s; con compresión H.264 baja a ~1–4 MB/s."
+      },
+      {
+        "input": "3840×2160, 10-bit, 3 channels (RGB)",
+        "output": "≈ 29.6 MB",
+        "note": "Fotograma 4K HDR. ProRes 4444 con compresión 10:1 da unos 3 MB por fotograma, típico en edición cinematográfica 4K."
+      },
+      {
+        "input": "1280×720, 8-bit, 3 channels (RGB)",
+        "output": "≈ 2.64 MB",
+        "note": "Fotograma HD 720p. Muy usado para web y móviles; sin compresión es manejable en contenidos cortos."
+      },
+      {
+        "input": "3840×2160, 12-bit, 4 channels (RGBA)",
+        "output": "≈ 47.3 MB",
+        "note": "Fotograma 4K con canal alfa a 12 bits. Se usa en flujos profesionales de composición VFX donde importan la transparencia y la profundidad de color."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de tamaño de fotogramas de video",
+    "steps": [
+      "Ingresa el ancho y el alto del fotograma en píxeles; estas son las dimensiones de un solo fotograma de video.",
+      "Ingresa la profundidad de bits: 8 para contenido estándar, 10 para HDR y material etalonado, 12 para RAW cinematográfico.",
+      "Ingresa la cantidad de canales de color: 3 para video RGB, 4 si tu contenido incluye un canal alfa de transparencia.",
+      "Ingresa la relación de compresión: 1 para sin compresión, números mayores para formatos comprimidos (por ejemplo, 10 para ProRes, 100 para H.264).",
+      "Haz clic en Calcular tamaño del fotograma para ver los tamaños sin compresión y comprimidos en bytes, KB o MB."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de tamaño de fotogramas de video",
+    "items": [
+      {
+        "q": "¿Qué es el tamaño de un fotograma sin compresión?",
+        "a": "El tamaño de un fotograma sin compresión es la cantidad de bytes necesaria para almacenar un solo fotograma de video sin aplicar compresión: cada valor de color de cada píxel se guarda completo. Representa el tamaño máximo teórico del archivo y casi nunca se usa en la práctica debido a sus enormes requerimientos de almacenamiento."
+      },
+      {
+        "q": "¿Cómo afecta la profundidad de bits al tamaño del fotograma?",
+        "a": "La profundidad de bits multiplica directamente el tamaño del fotograma. Un fotograma de 10 bits es 25% más grande que uno de 8 bits (10 bits vs 8 bits), y uno de 12 bits es 50% más grande que uno de 8 bits. El beneficio perceptual —gradientes más suaves y mejor margen para etalonaje— se nota más en tomas de alto contraste y con poca luz."
+      },
+      {
+        "q": "¿Cuál es una relación de compresión típica para H.264?",
+        "a": "H.264 logra relaciones de compresión de entre 50:1 y 200:1 aproximadamente, según la complejidad del contenido, los ajustes de calidad y la resolución. Las escenas con mucho movimiento y detalle requieren más bits (una relación de compresión menor), mientras que las escenas lentas o estáticas se comprimen con mucha mayor eficiencia."
+      },
+      {
+        "q": "¿Por qué usar 4 canales de color en lugar de 3?",
+        "a": "Cuatro canales añaden un canal alfa, que almacena información de transparencia por píxel. Esto es esencial en motion graphics y composición VFX, donde los elementos deben superponerse sobre diferentes fondos. El video estándar de transmisión y streaming usa solo 3 canales RGB."
+      },
+      {
+        "q": "¿Cómo se relaciona el tamaño del fotograma con el bitrate del video?",
+        "a": "El bitrate de video (en bits por segundo) es igual al tamaño comprimido de un fotograma en bits multiplicado por la velocidad de fotogramas. Por ejemplo, si un fotograma H.264 comprimido de 1080p pesa 30 KB a 30 fps, el bitrate es 30,000 × 8 × 30 = 7.2 Mbps, un valor típico para video 1080p de calidad web."
+      },
+      {
+        "q": "¿Qué relación de compresión debo usar para ProRes?",
+        "a": "Apple ProRes 422 HQ logra aproximadamente 5:1, ProRes 422 alrededor de 8:1 y ProRes LT cerca de 12:1. ProRes 4444 con alfa ronda 3:1. Estas relaciones moderadas conservan la calidad necesaria para etalonaje y reducen de forma considerable el tamaño frente a video realmente sin compresión."
+      }
+    ]
+  }
+}
