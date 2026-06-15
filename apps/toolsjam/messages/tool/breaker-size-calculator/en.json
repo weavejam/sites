@@ -1,0 +1,99 @@
+{
+  "title": "Breaker Size Calculator – Wire Gauge & Circuit Breaker",
+  "tagline": "Calculate the correct circuit breaker size and wire gauge for any electrical load based on voltage, power, power factor, and wiring conditions.",
+  "intro": "Enter the electrical load parameters to determine the required breaker amperage and recommended wire gauge following NEC guidelines.",
+  "field": {
+    "voltage": "Voltage (V)",
+    "power": "Power (W)",
+    "powerFactor": "Power Factor",
+    "loadType": "Load Type",
+    "ambientTemp": "Ambient Temperature (°C)",
+    "phaseType": "Phase Type"
+  },
+  "loadType": {
+    "continuous": "Continuous",
+    "nonContinuous": "Non-Continuous"
+  },
+  "phaseType": {
+    "single": "Single Phase",
+    "three": "Three Phase"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers for all fields.",
+    "powerFactor": "Power factor must be between 0 and 1."
+  },
+  "result": {
+    "heading": "Results",
+    "loadCurrent": "Load Current",
+    "designCurrent": "Design Current",
+    "breakerSize": "Required Breaker Size",
+    "wireGauge": "Recommended Wire Gauge",
+    "tempCorrFactor": "Temperature Correction Factor",
+    "unit": {
+      "amps": "A",
+      "awg": "AWG"
+    }
+  },
+  "about": {
+    "heading": "About the Circuit Breaker Size Calculator",
+    "body": "A circuit breaker is a safety device that automatically interrupts an electrical circuit when the current exceeds a safe level, protecting wiring and equipment from overheating and fire. Selecting the correct breaker size is one of the most fundamental tasks in electrical system design, whether you are wiring a residential kitchen, sizing a commercial motor circuit, or planning an industrial power distribution panel.\n\nThe calculation begins with determining the load current, which is the actual current drawn by the connected equipment. For a single-phase circuit, load current I equals power P divided by the product of voltage V and power factor PF: I = P / (V × PF). For a three-phase circuit, the formula accounts for the three conductors: I = P / (√3 × V × PF). The power factor, a dimensionless value between 0 and 1, represents how efficiently the load converts electrical power into useful work. Resistive loads such as heaters have PF ≈ 1.0, while motors and electronic equipment typically range from 0.7 to 0.95.\n\nOnce the load current is known, the National Electrical Code (NEC) in the United States requires that continuous loads — those expected to run for 3 hours or more — be protected by a breaker rated at no less than 125% of the load current. This derating accounts for the thermal stress on conductors and breaker contacts during prolonged operation. Non-continuous loads are protected at 100% of the load current. This calculator applies the 125% multiplier automatically when you select the Continuous load type.\n\nAmbient temperature also affects the current-carrying capacity of conductors. The NEC provides correction factors based on the temperature rating of the insulation (typically 75°C for standard THHN wire). As ambient temperature rises above the standard reference of 30°C, conductors must be derated to avoid exceeding their insulation's thermal limit. This calculator applies the appropriate NEC 310.15 correction factor for the ambient temperature you specify.\n\nThe required design current after applying the continuous-load and temperature factors determines the minimum breaker size. Standard breaker ratings follow a fixed series: 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200, 225, 250, 300, 350, and 400 amperes. The calculator selects the smallest standard size that is at or above the design current.\n\nWire gauge selection follows directly from the chosen breaker rating. Under the NEC, the conductor ampacity at 75°C must equal or exceed the breaker rating. This calculator returns the minimum American Wire Gauge (AWG) or kcmil size required. Common pairings include 14 AWG with a 15 A breaker, 12 AWG with 20 A, 10 AWG with 30 A, 8 AWG with 40–50 A, 6 AWG with 60 A, 4 AWG with 85 A, and 2 AWG with 115 A. Always verify your final design with a licensed electrician and local code requirements, as conduit fill, distance, and specific installation conditions may require additional derating."
+  },
+  "examples": {
+    "heading": "Circuit Breaker Size Examples",
+    "intro": "Real-world breaker sizing scenarios showing the effect of load type, power factor, and temperature on the required breaker and wire size.",
+    "colInput": "Input",
+    "colOutput": "Result",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "120 V, 1800 W, PF 0.95, Non-Continuous, 25 °C, Single Phase",
+        "output": "20 A breaker, 12 AWG wire",
+        "note": "Typical kitchen circuit. Load current = 1800/(120×0.95) ≈ 15.8 A; non-continuous design current = 15.8 A → 20 A standard breaker, 12 AWG conductor."
+      },
+      {
+        "input": "480 V, 15000 W, PF 0.85, Continuous, 35 °C, Three Phase",
+        "output": "30 A breaker, 10 AWG wire",
+        "note": "Three-phase motor. I = 15000/(√3×480×0.85) ≈ 21.2 A; continuous design current = 21.2×1.25 ≈ 26.5 A → 30 A standard breaker, 10 AWG."
+      },
+      {
+        "input": "240 V, 3000 W, PF 1.0, Continuous, 30 °C, Single Phase",
+        "output": "20 A breaker, 12 AWG wire",
+        "note": "Resistive heater. I = 3000/(240×1.0) = 12.5 A; continuous design current = 12.5×1.25 = 15.6 A → 20 A standard breaker, 12 AWG conductor."
+      },
+      {
+        "input": "120 V, 2400 W, PF 0.9, Continuous, 40 °C, Single Phase",
+        "output": "30 A breaker, 10 AWG wire",
+        "note": "High-load continuous circuit. Load current ≈ 22.2 A; design current = 22.2×1.25 = 27.8 A → 30 A standard breaker, 10 AWG. Temp factor (0.82) is informational for conductor derating."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Breaker Size Calculator",
+    "steps": [
+      "Enter the circuit voltage in volts (V). Common values are 120 V or 240 V for residential single-phase circuits, and 208 V or 480 V for commercial three-phase systems.",
+      "Enter the total connected load power in watts (W). For multiple appliances on the same circuit, sum their wattage ratings.",
+      "Enter the power factor of the load (0.01–1.0). Use 1.0 for purely resistive loads like heaters; use 0.85–0.95 for motors and electronic equipment.",
+      "Select the load type (Continuous or Non-Continuous), the ambient temperature, and the phase configuration, then click Calculate.",
+      "Read the required breaker size and recommended wire gauge from the results. Verify with a licensed electrician before proceeding with installation."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "What is a continuous load and why does it need a larger breaker?",
+    "q1_a": "A continuous load is one that operates at maximum current for 3 hours or more. The NEC requires the breaker to be rated at 125% of the continuous load current because sustained current causes more heat buildup in breaker contacts and conductors than intermittent current does. This extra margin prevents nuisance tripping and reduces fire risk.",
+    "q2": "Why does ambient temperature affect the breaker size?",
+    "q2_a": "Conductors carry heat away by convection. When ambient temperature is high, the conductor cannot dissipate heat as effectively, so its safe current-carrying capacity (ampacity) decreases. The NEC provides correction factors for temperatures above 30°C. If you do not account for high ambient temperature, the wire can overheat even if the breaker never trips.",
+    "q3": "What is a power factor and how does it affect breaker sizing?",
+    "q3_a": "Power factor is the ratio of real power (watts) to apparent power (volt-amperes). A low power factor means the circuit draws more current than the true power alone would suggest. Because breakers and wires respond to current, not watts, a load with a power factor of 0.7 draws about 43% more current than an identical wattage load with PF = 1.0, requiring a larger breaker.",
+    "q4": "Can I use a breaker smaller than the next standard size above my design current?",
+    "q4_a": "No. The breaker must be rated at or above the design current to avoid nuisance tripping under normal load. Always round up to the next standard breaker size. Installing an undersized breaker is a code violation and creates a fire hazard. Installing an oversized breaker without a correspondingly larger conductor is equally dangerous.",
+    "q5": "How does three-phase power change the calculation?",
+    "q5_a": "In a balanced three-phase system, power is distributed across three conductors, so each conductor carries less current than in an equivalent single-phase circuit. The formula I = P / (√3 × V × PF) divides the power by √3 (approximately 1.732) times the line-to-line voltage. This typically results in smaller breakers and thinner wires compared to single-phase at the same total power.",
+    "q6": "Does this calculator account for conduit fill and voltage drop?",
+    "q6_a": "No. This calculator applies the basic NEC 310.15 temperature correction and continuous-load derating. Long cable runs can require a larger gauge wire to limit voltage drop to 3–5%, and multiple conductors bundled in a conduit require additional derating. Always consult the full NEC tables or a licensed electrician for final wire and breaker selection."
+  }
+}
