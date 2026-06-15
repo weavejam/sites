@@ -143,6 +143,11 @@ import { fixtures as f_ip_subnet_calculator } from "@/tools/ip-subnet-calculator
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
 import { fixtures as f_kd_calculator_kill_death_ratio } from "@/tools/kd-calculator-kill-death-ratio.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
+import { fixtures as f_matched_betting_calculator } from "@/tools/matched-betting-calculator.fixtures";
+import { fixtures as f_mayan_calendar_converter } from "@/tools/mayan-calendar-converter.fixtures";
+import { fixtures as f_minecraft_circle_generator } from "@/tools/minecraft-circle-generator.fixtures";
+import { fixtures as f_minecraft_end_portal_finder } from "@/tools/minecraft-end-portal-finder.fixtures";
+import { fixtures as f_minecraft_stack_calculator } from "@/tools/minecraft-stack-calculator.fixtures";
 import { fixtures as f_mm_to_carat_conversion } from "@/tools/mm-to-carat-conversion.fixtures";
 import { fixtures as f_music_duration_calculator } from "@/tools/music-duration-calculator.fixtures";
 import { fixtures as f_music_interval_calculator } from "@/tools/music-interval-calculator.fixtures";
@@ -422,6 +427,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
   "kd-calculator-kill-death-ratio": f_kd_calculator_kill_death_ratio,
   "loan-calculator": f_loan_calculator,
+  "matched-betting-calculator": f_matched_betting_calculator,
+  "mayan-calendar-converter": f_mayan_calendar_converter,
+  "minecraft-circle-generator": f_minecraft_circle_generator,
+  "minecraft-end-portal-finder": f_minecraft_end_portal_finder,
+  "minecraft-stack-calculator": f_minecraft_stack_calculator,
   "mm-to-carat-conversion": f_mm_to_carat_conversion,
   "music-duration-calculator": f_music_duration_calculator,
   "music-interval-calculator": f_music_interval_calculator,
