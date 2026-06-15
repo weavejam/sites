@@ -138,6 +138,11 @@ import { fixtures as f_index_of_qualitative_variation_calculator } from "@/tools
 import { fixtures as f_inverse_normal_distribution_calculator } from "@/tools/inverse-normal-distribution-calculator.fixtures";
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
+import { fixtures as f_nanowrimo_calculator } from "@/tools/nanowrimo-calculator.fixtures";
+import { fixtures as f_nether_portal_calculator } from "@/tools/nether-portal-calculator.fixtures";
+import { fixtures as f_new_year_countdown_calculator } from "@/tools/new-year-countdown-calculator.fixtures";
+import { fixtures as f_new_years_resolutions_calculator } from "@/tools/new-years-resolutions-calculator.fixtures";
+import { fixtures as f_note_frequency_calculator } from "@/tools/note-frequency-calculator.fixtures";
 import { fixtures as f_odd_parity_bit_calculator } from "@/tools/odd-parity-bit-calculator.fixtures";
 import { fixtures as f_odds_ratio_calculator } from "@/tools/odds-ratio-calculator.fixtures";
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
@@ -402,6 +407,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "inverse-normal-distribution-calculator": f_inverse_normal_distribution_calculator,
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
   "loan-calculator": f_loan_calculator,
+  "nanowrimo-calculator": f_nanowrimo_calculator,
+  "nether-portal-calculator": f_nether_portal_calculator,
+  "new-year-countdown-calculator": f_new_year_countdown_calculator,
+  "new-years-resolutions-calculator": f_new_years_resolutions_calculator,
+  "note-frequency-calculator": f_note_frequency_calculator,
   "odd-parity-bit-calculator": f_odd_parity_bit_calculator,
   "odds-ratio-calculator": f_odds_ratio_calculator,
   "ohms-law-calculator": f_ohms_law_calculator,
