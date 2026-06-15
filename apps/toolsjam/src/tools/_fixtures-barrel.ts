@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_capacitor_size_calculator } from "@/tools/capacitor-size-calculator.fixtures";
+import { fixtures as f_capacitors_in_series_calculator } from "@/tools/capacitors-in-series-calculator.fixtures";
+import { fixtures as f_car_center_of_mass_calculator } from "@/tools/car-center-of-mass-calculator.fixtures";
+import { fixtures as f_car_crash_calculator } from "@/tools/car-crash-calculator.fixtures";
+import { fixtures as f_car_jump_distance_calculator } from "@/tools/car-jump-distance-calculator.fixtures";
 import { fixtures as f_coefficient_of_variation_calculator } from "@/tools/coefficient-of-variation-calculator.fixtures";
 import { fixtures as f_cohens_d_calculator } from "@/tools/cohens-d-calculator.fixtures";
 import { fixtures as f_coin_flip_probability_calculator } from "@/tools/coin-flip-probability-calculator.fixtures";
@@ -174,6 +179,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "capacitor-size-calculator": f_capacitor_size_calculator,
+  "capacitors-in-series-calculator": f_capacitors_in_series_calculator,
+  "car-center-of-mass-calculator": f_car_center_of_mass_calculator,
+  "car-crash-calculator": f_car_crash_calculator,
+  "car-jump-distance-calculator": f_car_jump_distance_calculator,
   "coefficient-of-variation-calculator": f_coefficient_of_variation_calculator,
   "cohens-d-calculator": f_cohens_d_calculator,
   "coin-flip-probability-calculator": f_coin_flip_probability_calculator,
