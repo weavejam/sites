@@ -1,0 +1,90 @@
+{
+  "title": "Polynomial Regression Calculator",
+  "tagline": "Fit data to a polynomial curve and predict new values",
+  "intro": "Enter your data points (one x,y pair per line) and the desired polynomial degree to compute the best-fit equation, R-squared, and predictions.",
+  "field": {
+    "dataPoints": "Data Points (x, y)",
+    "degree": "Polynomial Degree",
+    "predictX": "Predict Y for X ="
+  },
+  "placeholder": {
+    "dataPoints": "e.g.:\n1, 2\n2, 5\n3, 10",
+    "degree": "e.g., 2",
+    "predictX": "e.g., 5"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "equation": "Regression Equation",
+    "rSquared": "R² (Coefficient of Determination)",
+    "predictedY": "Predicted Y"
+  },
+  "error": {
+    "invalid": "Please enter at least degree+1 valid (x,y) pairs and a positive integer degree."
+  },
+  "about": {
+    "heading": "About the Polynomial Regression Calculator",
+    "body": "Polynomial regression is a powerful extension of linear regression that models the relationship between an independent variable x and a dependent variable y as a polynomial of degree n. Unlike simple linear regression, which fits a straight line, polynomial regression can capture curves, bends, and more complex patterns in data — making it useful when real-world relationships are clearly non-linear.\n\nThe mathematical model takes the form: y = β₀ + β₁x + β₂x² + … + βₙxⁿ, where the coefficients β₀ through βₙ are estimated from the data using the method of least squares. Despite fitting a curve rather than a line, polynomial regression is still classified as a linear model because it is linear in its coefficients.\n\nThe least squares method minimizes the sum of squared residuals — the differences between observed y values and the values predicted by the polynomial. This is accomplished by solving the normal equations: (XᵀX)β = Xᵀy, where X is the Vandermonde matrix constructed from the x values. This calculator solves those equations using Gaussian elimination, a robust numerical method suitable for polynomials up to degree 10.\n\nR-squared (R²), the coefficient of determination, measures how well the fitted polynomial explains the total variability in y. An R² of 1.0 means the curve passes through all data points exactly; 0.0 means the model explains none of the variance. While R² always increases with polynomial degree, a very high R² with a high-degree polynomial may indicate overfitting — the model memorizes the training data rather than capturing the true underlying trend.\n\nChoosing the right degree is critical. Degree 1 gives a straight line (equivalent to simple linear regression). Degree 2 (quadratic) captures U-shaped or inverted U-shaped patterns. Degree 3 (cubic) can model S-shaped trends or more complex growth curves. For most practical data sets, degrees 2 or 3 are sufficient, and going beyond degree 5 or 6 often introduces numerical instability and overfitting.\n\nApplications of polynomial regression span many fields. Engineers use quadratic models for stress-strain relationships and projectile motion. Economists fit cubic curves to cost functions and production models. Biologists apply polynomial regression to growth curves and dose-response studies. Data scientists use it as a preprocessing step in machine learning pipelines.\n\nWhen using this calculator, be aware of extrapolation risk — polynomial curves can behave wildly outside the range of the observed data. Always verify predictions against domain knowledge, and consider simpler models first before increasing polynomial degree."
+  },
+  "examples": {
+    "heading": "Examples",
+    "intro": "These examples illustrate polynomial regression for common data patterns.",
+    "quickLoad": "Quick Load Examples",
+    "loadQuadratic": "Quadratic (degree 2)",
+    "loadCubic": "Cubic (degree 3)",
+    "loadLinear": "Linear (degree 1)",
+    "colInput": "Data & Degree",
+    "colOutput": "Equation / R²",
+    "colNote": "Use Case",
+    "items": [
+      {
+        "input": "Points: (0,1),(1,2.5),(2,5),(3,8.5),(4,13) Degree: 2",
+        "output": "y ≈ 0.5x² + x + 1, R²≈1.00",
+        "note": "Quadratic projectile-like growth"
+      },
+      {
+        "input": "Points: (1,2),(2,4.1),(3,5.9),(4,8.2),(5,10) Degree: 1",
+        "output": "y ≈ 2x, R²≈0.9997",
+        "note": "Linear trend, near-perfect fit"
+      },
+      {
+        "input": "Points: (-2,-10),(-1,0),(0,2),(1,4),(2,18) Degree: 3",
+        "output": "y ≈ 3x³−2x²+x+2, R²≈1.00",
+        "note": "Cubic stress-strain model"
+      },
+      {
+        "input": "Points: (1,3),(2,5),(3,4),(4,6),(5,8),(6,7) Degree: 4",
+        "output": "High-degree fit, R²>0.99",
+        "note": "Volatile data, high-degree smoothing"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use This Calculator",
+    "steps": [
+      "Enter your data points in the text area, one pair per line in the format 'x, y' (comma or space separated).",
+      "Set the Polynomial Degree — enter 1 for linear, 2 for quadratic, 3 for cubic, and so on.",
+      "Optionally enter an X value in the 'Predict Y' field to forecast the output at that point.",
+      "Click 'Calculate' to see the regression equation, R-squared value, and predicted Y.",
+      "Use the Quick Load buttons to explore pre-built examples, or click 'Reset' to clear all fields."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "What is polynomial regression?",
+    "q1_a": "Polynomial regression is a form of regression analysis that models the relationship between a dependent variable y and an independent variable x as an nth-degree polynomial. Unlike simple linear regression, it can fit curved relationships. The model is still linear in its coefficients and is solved using the least-squares method.",
+    "q2": "How do I choose the polynomial degree?",
+    "q2_a": "Start with a low degree (1 or 2) and increase it only if the fit is poor. A higher degree can overfit the data, producing a curve that passes through all points but predicts poorly for new values. The R-squared value improves with higher degrees, but check whether the improvement is meaningful or a sign of overfitting.",
+    "q3": "What does R-squared mean?",
+    "q3_a": "R-squared (coefficient of determination) measures how well the regression curve explains the variability in your data. A value of 1.0 means a perfect fit; 0.0 means the model explains none of the variance. Values above 0.9 generally indicate a strong fit, but always consider the context and the number of data points.",
+    "q4": "Why does the calculator require more points than the degree?",
+    "q4_a": "A polynomial of degree d has d+1 coefficients to estimate. You need at least d+1 data points to solve the normal equations. With exactly d+1 points, the curve passes through all of them exactly (R²=1), but that may represent overfitting rather than a true relationship in the data.",
+    "q5": "Can I use this for time-series forecasting?",
+    "q5_a": "Polynomial regression can be applied to time-series data by treating time as the x variable. However, polynomial models can extrapolate poorly beyond the range of observed data — especially high-degree polynomials. For robust time-series forecasting, consider exponential smoothing or ARIMA models in addition to polynomial regression.",
+    "q6": "What is the difference between polynomial regression and other curve-fitting methods?",
+    "q6_a": "Polynomial regression fits a specific algebraic form (a polynomial) to the data. Other curve-fitting methods include exponential regression (y = ae^bx), logarithmic regression (y = a + b ln x), and power regression (y = ax^b). Choose the method based on the underlying pattern in your data and the theory explaining the relationship."
+  }
+}

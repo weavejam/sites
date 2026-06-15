@@ -1,0 +1,92 @@
+{
+  "title": "Calculadora de erro amostral - Margem de erro",
+  "tagline": "Calcule o erro amostral e a margem de erro para proporções e médias. Suporta correção para população finita e vários níveis de confiança.",
+  "intro": "Escolha se você está trabalhando com proporções ou médias, informe os dados da amostra, selecione um nível de confiança e clique em Calcular para obter o erro padrão e a margem de erro.",
+  "formula": "Proporção: SE = √[p(1–p)/n]  •  Média: SE = s/√n  •  Com FPC: SE_adj = SE × √[(N–n)/(N–1)]  •  Margem de erro = Z × SE",
+  "type": {
+    "proportion": "Proporção",
+    "proportion_desc": "Use para resultados categóricos, como respostas sim/não, taxas de aprovação/reprovação ou o percentual de respondentes que preferem uma opção específica.",
+    "mean": "Média",
+    "mean_desc": "Use para dados numéricos contínuos, como alturas, pesos, notas de testes, temperaturas ou tempos de resposta."
+  },
+  "field": {
+    "calcType": "Tipo de cálculo",
+    "sampleProportion": "Proporção amostral (p)",
+    "sampleMean": "Média amostral (x̄)",
+    "sampleSD": "Desvio padrão amostral (s)",
+    "sampleSize": "Tamanho da amostra (n)",
+    "populationSize": "Tamanho da população (opcional)",
+    "confidenceLevel": "Nível de confiança"
+  },
+  "placeholder": {
+    "proportion": "ex.: 0.55",
+    "number": "Digite um número",
+    "integer": "ex.: 500",
+    "optional": "Deixe em branco para população infinita"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Verifique suas entradas. A proporção deve estar entre 0 e 1, o tamanho da amostra deve ser um inteiro positivo e o desvio padrão (no modo média) deve ser não negativo."
+  },
+  "result": {
+    "heading": "Resultado",
+    "standardError": "Erro padrão",
+    "marginOfError": "Margem de erro"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de erro amostral",
+    "body": "O erro amostral é uma consequência inevitável de estudar um subconjunto (uma amostra) em vez de toda a população. Como cada amostra é apenas uma fração do todo, as estatísticas calculadas a partir dela — como a média ou a proporção — diferem ligeiramente dos valores reais da população. O erro amostral quantifica essa incerteza.\n\nEsta calculadora calcula duas grandezas intimamente relacionadas: o erro padrão (SE) e a margem de erro (MoE). O erro padrão é o desvio padrão da distribuição amostral, medindo quanto as estatísticas amostrais variam de uma amostra para outra. A margem de erro amplia isso ao multiplicar o SE pelo escore Z correspondente ao nível de confiança escolhido, fornecendo um intervalo que provavelmente contém o verdadeiro parâmetro populacional.\n\nPara proporções, o erro padrão é SE = √[p(1–p)/n], em que p é a proporção amostral observada e n é o tamanho da amostra. Para médias, o erro padrão é SE = s/√n, em que s é o desvio padrão amostral e n é o tamanho da amostra. Em ambos os casos, o SE diminui à medida que o tamanho da amostra aumenta, refletindo o fato de que amostras maiores produzem estimativas mais precisas.\n\nQuando o tamanho da amostra excede 5% do tamanho total da população N, deve-se aplicar o fator de Correção para População Finita (FPC): SE_adj = SE × √[(N–n)/(N–1)]. Essa correção reduz o SE porque uma grande fração da população é medida diretamente. Se a população for muito grande ou desconhecida, o efeito da FPC é desprezível e pode ser ignorado com segurança.\n\nA margem de erro (MoE) = Z × SE_adj, em que Z é o escore Z do nível de confiança escolhido (1.282 para 80%, 1.645 para 90%, 1.960 para 95%, 2.576 para 99%). A MoE fornece a semilargura do intervalo de confiança: se sua proporção amostral é 55% e a MoE é ±3%, você pode ter confiança (no nível especificado) de que a verdadeira proporção populacional está entre 52% e 58%.\n\nO erro amostral é diferente de erros não amostrais, como erro de medição, viés de resposta, viés de cobertura e erros de entrada de dados. Erros não amostrais surgem de falhas na forma como os dados são coletados ou processados, e não da natureza aleatória da seleção de uma amostra. Embora o erro amostral possa ser reduzido aumentando o tamanho da amostra, erros não amostrais exigem melhorias no desenho do estudo, na redação das perguntas e nos procedimentos de qualidade dos dados.\n\nEsta calculadora é útil para pesquisadores de surveys, profissionais de pesquisa de opinião, engenheiros de controle de qualidade e qualquer pessoa que precise comunicar a incerteza de estimativas baseadas em amostras de forma clara e quantitativa."
+  },
+  "examples": {
+    "heading": "Exemplos de cálculo de erro amostral",
+    "intro": "Três cenários que ilustram cálculos de proporção e média com e sem correção para população finita.",
+    "colInput": "Parâmetros",
+    "colOutput": "SE / Margem de erro",
+    "colNote": "Observações",
+    "items": [
+      {
+        "input": "Proporção: p=0.55, n=400, 95% NC, população infinita",
+        "output": "SE=0.0249, MoE=±0.0488",
+        "note": "Uma pesquisa que encontra 55% de apoio tem margem de erro de cerca de ±4.9%, portanto a proporção real está entre 50.1% e 59.9% com 95% de confiança."
+      },
+      {
+        "input": "Média: x̄=82, s=15, n=100, 95% NC, população infinita",
+        "output": "SE=1.500, MoE=±2.940",
+        "note": "Nota média de 82 com SD=15 em 100 estudantes. A média real da turma está entre 79.06 e 84.94 com 95% de confiança."
+      },
+      {
+        "input": "Proporção: p=0.3, n=200, 95% NC, N=500",
+        "output": "SE≈0.0287, MoE≈±0.0562",
+        "note": "A FPC reduz o SE porque n/N=40%, acima do limite de 5%. Sem correção, o SE seria 0.0324."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de erro amostral",
+    "steps": [
+      "Selecione o tipo de cálculo: Proporção para dados categóricos (ex.: pesquisas sim/não) ou Média para dados numéricos contínuos (ex.: notas de teste, medições).",
+      "Informe as entradas necessárias para seu modo: Proporção amostral no modo proporção, ou Média amostral e Desvio padrão amostral no modo média.",
+      "Informe o Tamanho da amostra (n). Uma amostra maior produz um erro padrão menor e uma margem de erro mais estreita.",
+      "Opcionalmente, informe o Tamanho da população se sua população for finita e sua amostra representar mais de 5% do total. Deixe em branco para assumir população infinita.",
+      "Selecione o Nível de confiança e clique em Calcular. Os resultados mostram o Erro padrão e a Margem de erro. Clique em Redefinir para limpar todos os campos."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre a calculadora de erro amostral",
+    "q1": "Qual é a diferença entre erro amostral e margem de erro?",
+    "q1_a": "O erro padrão (erro amostral) mede o desvio típico das estatísticas amostrais em relação ao valor real da população, expresso nas unidades originais. A margem de erro multiplica isso por um escore Z para criar um intervalo de confiança — uma faixa que provavelmente contém o valor real da população em um nível de probabilidade especificado.",
+    "q2": "Como o tamanho da amostra afeta a margem de erro?",
+    "q2_a": "A margem de erro é proporcional a 1/√n, portanto quadruplicar o tamanho da amostra reduz a margem de erro pela metade. Por exemplo, aumentar uma amostra de 100 para 400 reduz o erro padrão de 0.05 para 0.025, cortando a margem de erro pela metade. Essa é a forma mais direta de melhorar a precisão da estimativa.",
+    "q3": "Quando devo aplicar a correção para população finita?",
+    "q3_a": "Aplique a FPC quando o tamanho da amostra exceder aproximadamente 5% da população total. Por exemplo, se você pesquisar 200 de 800 funcionários (25% da população), a FPC reduz significativamente o erro padrão e produz um intervalo de confiança mais preciso e mais estreito.",
+    "q4": "Qual é a diferença entre erro amostral e erro não amostral?",
+    "q4_a": "O erro amostral surge do acaso na seleção dos indivíduos e pode ser quantificado e reduzido aumentando o tamanho da amostra. Erros não amostrais (ex.: perguntas enviesadas, erros de medição, viés de não resposta) surgem de falhas na coleta ou no processamento dos dados, são mais difíceis de detectar e não podem ser corrigidos simplesmente com uma amostra maior.",
+    "q5": "Por que esta calculadora usa escores Z diferentes para cada nível de confiança?",
+    "q5_a": "O escore Z traduz um nível de confiança no número de erros padrão necessários para capturar essa fração de uma distribuição normal. Um nível de confiança de 95% usa Z=1.96 porque 95% de uma distribuição normal padrão fica dentro de ±1.96 desvios padrão da média. Níveis de confiança maiores exigem escores Z maiores, produzindo intervalos de confiança mais largos.",
+    "q6": "Posso usar esta calculadora para resultados de testes A/B?",
+    "q6_a": "Sim, para uma interpretação básica da margem de erro. Se seu teste A/B mede uma proporção (ex.: taxa de conversão), informe a proporção observada, o número de observações nesse grupo e o nível de confiança desejado. A margem de erro indica a incerteza em torno da taxa observada. Para um teste de significância completo comparando dois grupos, use uma calculadora dedicada de teste z para duas proporções."
+  }
+}

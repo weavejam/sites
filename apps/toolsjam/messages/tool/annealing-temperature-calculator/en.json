@@ -1,0 +1,107 @@
+{
+  "title": "Annealing Temperature Calculator - PCR Primer Tool",
+  "tagline": "Calculate optimal PCR annealing temperature from primer DNA sequences using the Wallace rule, GC content formula, or nearest-neighbor thermodynamic method.",
+  "intro": "Enter your forward primer sequence (and optionally the reverse), set salt and DNA concentrations, choose a calculation method, and get the recommended annealing temperature instantly.",
+  "field": {
+    "forwardPrimer": "Forward Primer Sequence",
+    "reversePrimer": "Reverse Primer Sequence (Optional)",
+    "salt": "Salt Concentration (mM)",
+    "dna": "DNA Concentration (nM)",
+    "method": "Calculation Method"
+  },
+  "type": {
+    "wallaceRule": "Wallace Rule",
+    "gcContent": "GC Content",
+    "nearestNeighbor": "Nearest Neighbor"
+  },
+  "placeholder": {
+    "primerSeq": "e.g. ATGGAGCTGAAGCAGCAGATCC",
+    "optional": "optional"
+  },
+  "button": {
+    "calculate": "Calculate Temperature",
+    "reset": "Reset Values"
+  },
+  "error": {
+    "invalid": "Please enter a valid primer sequence of at least 10 bases, and valid positive salt and DNA concentrations."
+  },
+  "result": {
+    "heading": "Temperature Results",
+    "annealingTemp": "Recommended Annealing Temperature (Ta)",
+    "tmForward": "Tm — Forward Primer",
+    "tmReverse": "Tm — Reverse Primer",
+    "formula": "Ta = lowest Tm − 5°C. Nearest-neighbor method uses SantaLucia 1998 parameters with salt correction."
+  },
+  "about": {
+    "heading": "About the Annealing Temperature Calculator",
+    "body": "The annealing temperature calculator predicts the optimal PCR annealing temperature (Ta) for a pair of oligonucleotide primers based on their DNA sequences and reaction conditions. Setting the correct annealing temperature is one of the most important decisions in PCR experimental design: too low and non-specific products appear; too high and the primers fail to bind efficiently, reducing yield or eliminating amplification entirely. The calculator removes this guesswork by applying established thermodynamic models to give you a reliable starting point before you touch a thermocycler.\n\nThe melting temperature (Tm) of a primer is the temperature at which half the primer-template duplexes are dissociated into single strands. The annealing temperature is typically set 5°C below the lower Tm of the primer pair, giving: Ta = min(Tm_forward, Tm_reverse) − 5°C. This rule balances specific binding against efficient extension and is the convention used by most molecular biology laboratories worldwide.\n\nThe calculator offers three Tm prediction methods with different accuracy and applicability. The Wallace Rule (Tm = 2°C × (A+T) + 4°C × (G+C)) is the simplest and fastest estimate. It is reasonably accurate for primers shorter than about 20 bases and is still useful for a quick sanity check, but it ignores nearest-neighbor stacking interactions and is not salt-corrected. Use it when you need a rapid rough estimate.\n\nThe GC Content method (Tm = 69.3 + 41 × GC_fraction − 650/n) is the Marmur-Doty-Schildkraut formula adapted for short oligonucleotides. It incorporates primer length (n) and GC fraction, giving a better estimate than the Wallace rule across the typical primer length range of 18–30 bases. It is still an approximation because it treats all base pairs of the same type as thermodynamically equivalent.\n\nThe Nearest-Neighbor method (SantaLucia 1998) is the most accurate approach and is the one used by commercial primer design tools such as Primer3 and OligoCalc. It computes ΔH and ΔS by summing the enthalpy and entropy contributions of each consecutive dinucleotide pair along the primer, then applies the thermodynamic formula Tm = ΔH / (ΔS + R × ln(CT)) − 273.15, where R is the gas constant and CT is the total strand concentration. A salt correction is then applied using the formula: Tm_corrected = Tm + 16.6 × log10([Na+]/1000). This method is the gold standard for primers of any length and GC content, especially GC-rich or AT-rich sequences that deviate significantly from average composition.\n\nSalt concentration matters because monovalent cations stabilise the DNA duplex by neutralising the repulsion between negatively charged phosphate groups. Higher salt concentrations raise Tm; lower concentrations lower it. The default salt value of 50 mM Na⁺ is appropriate for standard PCR buffers. DNA (primer) concentration affects Tm through the ln(CT) term in the nearest-neighbor formula; the default of 250 nM is typical for PCR reactions. Adjusting these values for your actual reaction conditions will improve the accuracy of the prediction."
+  },
+  "examples": {
+    "heading": "PCR Annealing Temperature Examples",
+    "intro": "Sample primer sequences illustrating different GC compositions and length ranges across all three calculation methods.",
+    "colInput": "Primer sequence",
+    "colOutput": "Ta (°C)",
+    "colNote": "Details",
+    "items": [
+      {
+        "input": "ATGGAGCTGAAGCAGCAGATCC (22 bp, 54.5% GC)",
+        "output": "Ta ≈ 58°C",
+        "note": "Standard gene-amplification primer. Nearest-neighbor method. Salt 50 mM, 250 nM primer."
+      },
+      {
+        "input": "GCGCGCGGATCCATGAAGCTG (21 bp, 71.4% GC)",
+        "output": "Ta ≈ 67°C",
+        "note": "High-GC primer; requires elevated annealing temperature. GC Content method. Salt 75 mM."
+      },
+      {
+        "input": "ATCGATCGATCG (12 bp, 50% GC)",
+        "output": "Ta ≈ 31°C",
+        "note": "Short primer, Wallace Rule. Ta = 2(6) + 4(6) − 5 = 31°C. Short primers require lower Ta."
+      },
+      {
+        "input": "TTGACGATCATGAGCTTGGC (20 bp, 50% GC)",
+        "output": "Ta ≈ 52°C",
+        "note": "Low-salt condition (25 mM). Lower salt reduces Tm compared with 50 mM standard conditions."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the Annealing Temperature Calculator",
+    "steps": [
+      "Enter the forward primer DNA sequence in the first field (5’ to 3’ direction). Only ATGC bases are used; ambiguous bases and spaces are ignored.",
+      "Optionally enter the reverse primer sequence. If provided, Ta is based on the lower of the two Tm values for a matched primer pair.",
+      "Set the salt concentration (default 50 mM NaCl) and DNA/primer concentration (default 250 nM). Use your actual reaction conditions for best accuracy.",
+      "Choose a calculation method: Wallace Rule for a quick rough estimate, GC Content for moderate accuracy, or Nearest Neighbor (SantaLucia 1998) for the most accurate result.",
+      "Click Calculate Temperature. The result panel shows the recommended annealing temperature (Ta) and individual Tm values for each primer with base composition statistics."
+    ]
+  },
+  "faq": {
+    "heading": "Annealing Temperature Calculator FAQ",
+    "items": [
+      {
+        "q": "What is the difference between Tm and Ta?",
+        "a": "Tm (melting temperature) is the temperature at which 50% of primer-template duplexes are dissociated into single strands — it is a property of the primer itself and the reaction conditions. Ta (annealing temperature) is the temperature used in the PCR thermocycler during the annealing step. Ta is typically set 5°C below the lower Tm of the primer pair to ensure efficient and specific primer binding."
+      },
+      {
+        "q": "Which calculation method should I use?",
+        "a": "For most laboratory PCR work, the Nearest-Neighbor (SantaLucia 1998) method is the most accurate and is the one recommended by NCBI Primer-BLAST and Primer3. Use the Wallace Rule only for very short primers (less than 14 bases) or for a quick back-of-envelope check. Use the GC Content method when you want something slightly more accurate than Wallace but still faster than NN, for example during initial primer screening."
+      },
+      {
+        "q": "Why does my PCR fail even when I use the calculated annealing temperature?",
+        "a": "The calculated Ta is a starting point, not a guarantee. Real PCR performance also depends on primer specificity (check with BLAST), primer dimers and hairpins (check with OligoAnalyzer), template secondary structure, Mg2⁺ concentration, polymerase processivity, and thermocycler ramp rates. If the calculated temperature doesn’t work, try a gradient PCR spanning ±2–10°C around Ta, or reduce the annealing temperature in 2°C increments."
+      },
+      {
+        "q": "How does salt concentration affect annealing temperature?",
+        "a": "Higher monovalent salt (Na⁺, K⁺) concentrations stabilise the DNA double helix by shielding the negatively charged phosphate backbone, raising the Tm. Going from 25 mM to 100 mM NaCl typically raises Tm by 2–3°C. Standard PCR buffers contain 50–75 mM KCl plus Mg2⁺; enter the Na⁺-equivalent concentration for best results with the nearest-neighbor salt correction."
+      },
+      {
+        "q": "What should I do for primers with very different Tm values?",
+        "a": "When the two primers in a pair differ in Tm by more than 5°C, consider redesigning the lower-Tm primer to be longer or more GC-rich to bring the values closer together. A large Tm mismatch causes one primer to bind less efficiently at the chosen Ta, which can reduce yield and promote one-sided products. As a compromise, you can sometimes use a touch-down PCR protocol that starts above the higher Tm and steps down across the annealing temperature range."
+      },
+      {
+        "q": "Does primer Tm change in the presence of DMSO or other additives?",
+        "a": "Yes. DMSO destabilises the double helix and lowers Tm by approximately 0.5–1.0°C per percent DMSO added. Betaine, glycerol, and formamide similarly lower Tm. These additives are used to amplify GC-rich or structured templates; when they are present, reduce your Ta by approximately the same amount. The calculator does not model additive effects, so adjust Ta manually if your reaction includes co-solvents."
+      }
+    ]
+  }
+}

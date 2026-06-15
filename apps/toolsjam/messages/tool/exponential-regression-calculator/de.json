@@ -1,0 +1,89 @@
+{
+  "title": "Exponentialregression-Rechner",
+  "tagline": "Passe deinen Daten ein exponentielles Modell y = ab^x an und prognostiziere zukünftige Werte.",
+  "intro": "Gib gepaarte (x, y)-Datenpunkte ein, um die Exponentialregressionsgleichung, R² und Vorhersagen zu berechnen.",
+  "field": {
+    "dataPoints": "Datenpunkte (x, y)",
+    "dataPointsPlaceholder": "1 1.6\n2 2.5\n3 3.8\n4 5.9\n5 9.1",
+    "dataPointsHint": "Gib ein Paar pro Zeile ein, getrennt durch Leerzeichen oder Komma. Beispiel: 1 2.5",
+    "predictX": "Y für ein gegebenes X vorhersagen",
+    "predictXPlaceholder": "z. B. 6"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gib mindestens 3 gültige Datenpunkte mit positiven y-Werten ein. Jede Zeile sollte zwei Zahlen enthalten, getrennt durch Leerzeichen oder Komma."
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "equation": "Regressionsgleichung",
+    "a": "Koeffizient 'a'",
+    "b": "Koeffizient 'b'",
+    "rSquared": "R² (Bestimmtheitsmaß)",
+    "correlation": "Korrelationskoeffizient (R)",
+    "predictedY": "Prognostiziertes Y"
+  },
+  "about": {
+    "heading": "Über den Exponentialregression-Rechner",
+    "body": "Exponentialregression ist eine Kurvenanpassungstechnik, mit der die am besten passende Exponentialfunktion y = ab^x für eine gegebene Menge von Datenpunkten gefunden wird. Sie wird verwendet, wenn die Daten exponentielles Wachstum oder exponentiellen Zerfall vermuten lassen — beim Plotten scheinen die Punkte einer J-förmigen Kurve (Wachstum) oder einer fallenden konkaven Kurve (Zerfall) zu folgen. Das Exponentialmodell ist im Logarithmus linear: Nimmt man auf beiden Seiten den natürlichen Logarithmus, erhält man ln(y) = ln(a) + x·ln(b), also eine lineare Gleichung in ln(y) und x.\n\nDas Anpassungsverfahren verwendet die Methode der kleinsten Quadrate auf die linearisierte Gleichung. Konkret minimieren wir die Summe der quadrierten Residuen im ln(y)-Raum. Daraus folgen die Formeln: ln(b) = [n·Σ(x·ln y) − Σx·Σ(ln y)] / [n·Σx² − (Σx)²] und ln(a) = [Σ(ln y) − ln(b)·Σx] / n, woraus a = e^(ln a) und b = e^(ln b) zurückgewonnen werden.\n\nDas Modell y = ab^x lässt sich so interpretieren: Der Koeffizient a ist der y-Achsenabschnitt und entspricht dem Wert von y bei x = 0. Die Basis b steuert die Änderungsrate: Wenn b > 1, zeigt das Modell Wachstum mit einem Faktor von b pro Einheit (z. B. bedeutet b = 1.05 5% Wachstum pro x-Einheit). Wenn 0 < b < 1, zeigt das Modell Zerfall. Die Wachstumsrate in Prozent ist (b − 1) × 100%.\n\nDas Bestimmtheitsmaß R² misst auf einer Skala von 0 bis 1, wie gut das Modell zu den Daten passt. Ein R² von 0.95 bedeutet, dass 95% der Varianz in y durch das Exponentialmodell erklärt werden. Bei wissenschaftlichen Daten gelten R²-Werte über 0.90 im Allgemeinen als gute Anpassung. Der Korrelationskoeffizient R = √R² × sign(ln b) gibt Richtung und Stärke des exponentiellen Zusammenhangs an.\n\nWichtige Einschränkung: Alle y-Werte müssen für die Exponentialregression positiv sein, da der Logarithmus von Null oder einer negativen Zahl nicht definiert ist. Enthält deine Datenreihe nicht-positive y-Werte, musst du die Daten möglicherweise transformieren oder verschieben, oder ein anderes Regressionsmodell wie die Polynomregression verwenden."
+  },
+  "examples": {
+    "heading": "Beispiele",
+    "intro": "Diese Beispiele zeigen die Anwendung der Exponentialregression auf biologische, finanzielle und physikalische Daten.",
+    "colInput": "Datenpunkte",
+    "colOutput": "Gleichung",
+    "colNote": "Szenario",
+    "items": [
+      {
+        "input": "(1,2), (2,4.1), (3,7.9), (4,16.2), (5,33.0)",
+        "output": "y ≈ 0.98 × 2.01^x, R² ≈ 0.999",
+        "note": "Bakterienkolonie verdoppelt sich ungefähr jede Stunde"
+      },
+      {
+        "input": "(0,1000), (1,1050), (2,1102.5), (3,1157.6), (4,1215.5)",
+        "output": "y = 1000 × 1.05^x, R² = 1.000",
+        "note": "Perfektes 5% Zinseszins-Wachstum; R² = 1"
+      },
+      {
+        "input": "(0,100), (10,82), (20,67), (30,55), (40,45)",
+        "output": "y ≈ 100 × 0.981^x, R² ≈ 0.999",
+        "note": "Radioaktiver Zerfall; b < 1 weist auf exponentiellen Zerfall hin"
+      },
+      {
+        "input": "(1971,2300), (1982,134000), (1993,3.1M), (2000,42M), (2011,2.6B)",
+        "output": "y passt exponentiell, R² ≈ 0.97",
+        "note": "Mooresches Gesetz: Die Transistoranzahl verdoppelt sich ungefähr alle 2 Jahre"
+      }
+    ],
+    "loadBacteria": "Laden: Bakterienwachstum",
+    "loadCompoundInterest": "Laden: Zinseszins",
+    "loadRadioactive": "Laden: radioaktiver Zerfall"
+  },
+  "howto": {
+    "heading": "So verwendest du diesen Rechner",
+    "steps": [
+      "Gib deine Datenpunkte in das Textfeld ein — ein Paar pro Zeile, mit durch Leerzeichen oder Komma getrennten x- und y-Werten (z. B. '1 2.5' oder '1,2.5'). Du benötigst mindestens 3 Datenpunkte.",
+      "Stelle sicher, dass alle y-Werte strikt positiv sind — der Exponentialregressions-Algorithmus benötigt den Logarithmus von y.",
+      "Optional kannst du im Feld 'Y vorhersagen' einen x-Wert eingeben, um eine Vorhersage aus dem angepassten Modell zu erhalten.",
+      "Klicke auf Berechnen, um die Regressionsgleichung y = ab^x, die Koeffizienten a und b, R², den Korrelationskoeffizienten R und jede angeforderte Vorhersage zu sehen.",
+      "Mit den Schnelllade-Schaltflächen kannst du vorgefertigte Beispiele laden und sehen, wie die Regressionsgleichung hergeleitet wird."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "q1": "Was ist Exponentialregression?",
+    "q1_a": "Exponentialregression passt eine Kurve der Form y = ab^x an eine Menge von Datenpunkten an, wobei a der Anfangswert und b der Wachstums-/Zerfallsfaktor pro x-Einheit ist. Sie wird verwendet, wenn die Daten mit einer Rate wachsen oder zerfallen, die proportional zu ihrem aktuellen Wert ist. Die Anpassung erfolgt, indem das Modell mithilfe von Logarithmen linearisiert und dann auf die transformierten Daten die gewöhnliche Kleinste-Quadrate-Methode angewendet wird.",
+    "q2": "Was bedeuten die Koeffizienten a und b?",
+    "q2_a": "Der Koeffizient a ist der y-Achsenabschnitt — der prognostizierte y-Wert bei x = 0. Die Basis b bestimmt die multiplikative Änderung von y pro zusätzlicher x-Einheit. Wenn b = 1.1, steigt der Wert von y pro Einheit um 10%. Wenn b = 0.9, sinkt er pro Einheit um 10%. Die Wachstumsrate in Prozent ist (b − 1) × 100%.",
+    "q3": "Was misst R² und was ist ein guter Wert?",
+    "q3_a": "R² (das Bestimmtheitsmaß) misst den Anteil der Varianz der ursprünglichen y-Werte, der durch das angepasste Exponentialmodell erklärt wird. Es liegt zwischen 0 und 1, wobei 1 eine perfekte Anpassung bedeutet. Für wissenschaftliche Daten gilt R² > 0.95 als ausgezeichnet, 0.80–0.95 als gut, und unter 0.80 spricht dafür, dass das Exponentialmodell möglicherweise nicht geeignet ist und ein anderes Modell ausprobiert werden sollte.",
+    "q4": "Warum müssen y-Werte positiv sein?",
+    "q4_a": "Der Exponentialregressions-Algorithmus linearisiert das Modell durch ln(y). Der natürliche Logarithmus ist nur für strikt positive Zahlen definiert — ln(0) ist negativ unendlich und der Logarithmus einer negativen Zahl ist in der reellen Arithmetik nicht definiert. Wenn deine Daten nicht-positive y-Werte enthalten, musst du sie möglicherweise verschieben (allen y-Werten eine Konstante hinzufügen), ein anderes Modell verwenden (Polynom, Potenzgesetz) oder prüfen, ob die Daten überhaupt exponentielles Wachstum folgen.",
+    "q5": "Worin unterscheidet sich das von linearer Regression?",
+    "q5_a": "Lineare Regression passt eine Gerade y = mx + b an die Daten an und nimmt eine konstante Änderungsrate an. Exponentialregression passt y = ab^x an und nimmt eine konstante proportionale Änderungsrate an. Zur Wahl zwischen beiden kannst du deine Daten auf linearer Skala (linear, wenn sie eine Gerade bilden) und auf halblogarithmischer Skala (exponentiell, wenn sie auf der Semilog-Skala eine Gerade bilden) darstellen. Du kannst auch R²-Werte vergleichen, wobei R² aus den beiden Modellen nicht direkt vergleichbar ist, da die Exponentialregression Residuen im Log-Raum minimiert.",
+    "q6": "Kann ich diesen Rechner für exponentiellen Zerfall verwenden?",
+    "q6_a": "Ja. Exponentieller Zerfall ist ein Sonderfall mit 0 < b < 1. Wenn b = 0.95 ist, nimmt die Menge pro x-Einheit um 5% ab. Der Rechner behandelt Wachstum und Zerfall automatisch — du musst keine Einstellungen ändern. Gib einfach deine Datenpunkte ein, und der Algorithmus bestimmt den korrekten b-Wert. Radioaktiver Zerfall, Medikamentenkonzentration im Blut und die Abkühlung von Temperaturen folgen diesem Muster."
+  }
+}

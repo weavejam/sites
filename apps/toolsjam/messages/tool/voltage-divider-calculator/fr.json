@@ -1,0 +1,97 @@
+{
+  "title": "Calculateur de diviseur de tension",
+  "tagline": "Calcule la tension de sortie, le courant et la dissipation de puissance des diviseurs résistifs.",
+  "intro": "Saisissez la tension d'entrée et deux valeurs de résistances pour obtenir la tension de sortie, le courant du circuit et la puissance dissipée dans chaque résistance.",
+  "formula": "Formule : Vout = Vin × R2 / (R1 + R2)  •  I = Vin / (R1 + R2)  •  P = I² × R",
+  "field": {
+    "vin": "Tension d'entrée (Vin)",
+    "r1": "Résistance R1 (Ω)",
+    "r2": "Résistance R2 (Ω)"
+  },
+  "placeholder": {
+    "vin": "ex. : 12",
+    "r1": "ex. : 1000",
+    "r2": "ex. : 2000"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides pour la tension et les deux résistances."
+  },
+  "result": {
+    "heading": "Résultat",
+    "labelVout": "Tension de sortie (Vout)",
+    "labelCurrent": "Courant du circuit",
+    "labelPowerTotal": "Puissance totale",
+    "labelPowerR1": "Puissance dans R1",
+    "labelPowerR2": "Puissance dans R2"
+  },
+  "about": {
+    "heading": "À propos du calculateur de diviseur de tension",
+    "body": "Le diviseur de tension est l’un des circuits les plus fondamentaux de l’électronique. Il se compose de deux résistances montées en série entre une alimentation et la masse, la tension de sortie étant prélevée au nœud entre les deux résistances. Le circuit divise la tension d’entrée en une tension de sortie plus faible, en proportion directe des valeurs de résistance, conformément à la loi d’Ohm et aux règles des résistances en série.\n\nLa formule de base est Vout = Vin × R2 / (R1 + R2). Cette expression se dérive en deux étapes : le courant total dans l’ensemble en série est I = Vin / (R1 + R2) d’après la loi d’Ohm, et la tension aux bornes de R2 vaut I × R2. En remplaçant, on obtient la formule du diviseur. Comme R2 apparaît à la fois au numérateur et au dénominateur, la tension de sortie est toujours inférieure à la tension d’entrée (pour des résistances positives). Deux résistances égales donnent exactement la moitié de la tension d’alimentation, tandis que des valeurs différentes déplacent la sortie proportionnellement.\n\nLes diviseurs de tension sont utilisés partout en électronique. Pour l’interface capteurs, une sortie de capteur 0–5 V est souvent ramenée à 0–3.3 V pour l’ADC d’un microcontrôleur en choisissant R1 = 2.2 kΩ et R2 = 3.3 kΩ. Dans les circuits de polarisation de transistors, un diviseur établit la tension de base qui fixe le point de repos d’un transistor bipolaire. En audio, les potentiomètres sont des diviseurs de tension réglables en continu qui contrôlent le volume. Le décalage de niveau logique numérique utilise souvent un diviseur à deux résistances pour traduire une sortie logique de 5 V vers le seuil de 3.3 V d’un appareil récepteur.\n\nLa dissipation de puissance est un point de conception essentiel. Chaque résistance dissipe P = I² × R watts, et la dissipation totale vaut Vin² / (R1 + R2). Choisir des résistances de faible valeur améliore la résistance aux courants de charge, mais gaspille davantage de puissance. Vérifiez toujours que la dissipation calculée est largement inférieure à la puissance nominale de la résistance — une règle de sécurité courante consiste à appliquer une marge d’au moins 50 %, donc une résistance de 250 mW ne devrait pas dépasser 125 mW en usage continu.\n\nLa formule du diviseur sans charge est exacte pour une source de tension idéale et des résistances idéales. En pratique, toute charge connectée aux bornes de R2 se retrouve en parallèle et réduit la résistance effective inférieure, ce qui abaisse Vout par rapport à la valeur à vide. Pour un fonctionnement chargé précis, assurez-vous que la résistance de charge soit au moins dix fois plus grande que R2, ou prenez en compte l’association parallèle dans votre conception."
+  },
+  "examples": {
+    "heading": "Exemples de diviseur de tension",
+    "intro": "Trois circuits pratiques montrant la formule en action.",
+    "colInput": "Vin / R1 / R2",
+    "colOutput": "Vout",
+    "colNote": "Note",
+    "loadHalf": "Charger l’exemple de demi-tension",
+    "loadSensor": "Charger l’exemple d’interface capteur",
+    "loadReference": "Charger l’exemple de tension de référence",
+    "items": [
+      {
+        "input": "10 V, R1 = 1 kΩ, R2 = 1 kΩ",
+        "output": "5 V",
+        "note": "Des résistances égales produisent toujours exactement la moitié de la tension d’entrée. Courant = 5 mA, puissance totale = 50 mW."
+      },
+      {
+        "input": "5 V, R1 = 2.2 kΩ, R2 = 3.3 kΩ",
+        "output": "3 V",
+        "note": "Décalage classique de 5 V vers 3 V utilisé lors du raccordement de capteurs 5 V à des entrées ADC de microcontrôleurs 3.3 V."
+      },
+      {
+        "input": "12 V, R1 = 10 kΩ, R2 = 5 kΩ",
+        "output": "4 V",
+        "note": "R2 / (R1 + R2) = 5/15 = 1/3, donc Vout = 12 × 1/3 = 4 V. Puissance totale = 9.6 mW à 0.8 mA."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de diviseur de tension",
+    "steps": [
+      "Saisissez la tension d’alimentation (Vin) — la tension appliquée à l’ensemble de la série R1 + R2.",
+      "Saisissez la valeur de R1, la résistance du haut connectée entre l’alimentation et le nœud de sortie.",
+      "Saisissez la valeur de R2, la résistance du bas connectée entre le nœud de sortie et la masse.",
+      "Cliquez sur Calculer pour voir la tension de sortie, le courant du circuit et la dissipation de puissance de chaque résistance.",
+      "Utilisez les boutons d’exemple pour charger des configurations courantes, ou cliquez sur Réinitialiser pour recommencer."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de diviseur de tension",
+    "items": [
+      {
+        "q": "Quelle est la formule du diviseur de tension ?",
+        "a": "La formule est Vout = Vin × R2 / (R1 + R2). Elle découle directement de la loi d’Ohm : le même courant traverse les deux résistances en série, donc la tension aux bornes de chacune est proportionnelle à sa résistance. R2 au numérateur et le total (R1 + R2) au dénominateur donnent la fraction de l’alimentation présente en sortie."
+      },
+      {
+        "q": "Pourquoi le branchement d’une charge modifie-t-il la tension de sortie ?",
+        "a": "Toute résistance de charge Rload placée aux bornes de R2 forme un parallèle avec R2, ce qui réduit la résistance inférieure effective en dessous de R2. Cela abaisse le rapport R2_eff / (R1 + R2_eff) et donc Vout. Pour minimiser l’erreur de charge, choisissez Rload ≥ 10 × R2, ou utilisez un buffer à amplificateur opérationnel pour présenter une impédance d’entrée quasi infinie à la sortie du diviseur."
+      },
+      {
+        "q": "Comment choisir R1 et R2 pour une tension de sortie donnée ?",
+        "a": "Commencez par le rapport Vout / Vin = R2 / (R1 + R2). Choisissez R2 selon le courant acceptable, puis calculez R1 = R2 × (Vin / Vout − 1). Par exemple, pour obtenir 3.3 V à partir de 5 V, Vout/Vin = 0.66, donc R1 = R2 × (1/0.66 − 1) ≈ 0.515 × R2. Avec R2 = 10 kΩ, on obtient R1 ≈ 5.15 kΩ — à arrondir à la valeur normalisée la plus proche."
+      },
+      {
+        "q": "Quelle puissance nominale de résistance faut-il ?",
+        "a": "Chaque résistance dissipe P = I² × R, avec I = Vin / (R1 + R2). Choisissez une résistance dont la puissance nominale est au moins deux fois la dissipation calculée. Par exemple, si le calcul donne 80 mW, utilisez une résistance de 1/4 W (250 mW) pour une marge de sécurité suffisante."
+      },
+      {
+        "q": "Un diviseur de tension peut-il fournir un courant important à une charge ?",
+        "a": "Pas sans affecter la précision. Un diviseur de tension est conçu pour la signalisation et la polarisation, pas pour alimenter une charge. Si le courant de charge devient comparable au courant de repos du diviseur (I = Vin / (R1 + R2)), la tension de sortie s’affaisse. Pour des courants de charge plus élevés, utilisez plutôt un régulateur de tension ou un buffer à amplificateur opérationnel."
+      }
+    ]
+  }
+}

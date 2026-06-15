@@ -1,0 +1,87 @@
+{
+  "title": "Calculateur de distribution d’échantillonnage d’une proportion",
+  "tagline": "Trouvez la moyenne, l’erreur standard, la condition de normalité, le score Z et les probabilités cumulées pour la distribution d’échantillonnage de toute proportion d’échantillon.",
+  "intro": "Saisissez la proportion de population (p) et la taille de l’échantillon (n). Vous pouvez aussi saisir une proportion d’échantillon spécifique (p̂) pour obtenir le score Z et la probabilité cumulée associés.",
+  "formula": "Formule : μ(p̂) = p  •  σ(p̂) = √[p(1–p)/n]  •  Z = (p̂ – p) / σ(p̂)  •  Normalité : np ≥ 10 et n(1–p) ≥ 10",
+  "field": {
+    "populationProportion": "Proportion de population (p)",
+    "sampleSize": "Taille de l’échantillon (n)",
+    "sampleProportion": "Proportion d’échantillon (p̂) — facultatif"
+  },
+  "placeholder": {
+    "proportion": "p. ex. 0.65",
+    "integer": "p. ex. 100",
+    "optional": "Laissez vide pour ignorer le calcul de probabilité"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "La proportion de population doit être comprise entre 0 et 1 (exclus), la taille de l’échantillon doit être un entier positif et la proportion d’échantillon (si saisie) doit être comprise entre 0 et 1."
+  },
+  "result": {
+    "heading": "Résultat",
+    "mean": "Moyenne (μp̂)",
+    "standardError": "Erreur standard (σp̂)",
+    "normalityCheck": "Vérification de normalité",
+    "normalityPassed": "Réussie",
+    "normalityFailed": "Échouée",
+    "zScore": "Score Z",
+    "probLess": "P(p̂ < x)",
+    "probGreater": "P(p̂ > x)"
+  },
+  "about": {
+    "heading": "À propos de la distribution d’échantillonnage de la proportion",
+    "body": "La distribution d’échantillonnage de la proportion est une distribution théorique décrivant les valeurs possibles de la proportion d’échantillon (p̂) dans tous les échantillons aléatoires de taille fixe n tirés d’une population dont la proportion vraie est p. C’est un concept central de la statistique inférentielle, des sondages, des tests d’hypothèses et des intervalles de confiance.\n\nSa moyenne est égale à la proportion de population p, ce qui traduit l’absence de biais. Son écart-type, appelé erreur standard de la proportion, vaut σ(p̂) = √[p(1–p)/n]. Quand n augmente, l’erreur standard diminue et les proportions d’échantillon se concentrent davantage autour de p.\n\nD’après le théorème central limite, la distribution est approximativement normale si np ≥ 10 et n(1–p) ≥ 10. Ces conditions assurent assez de succès et d’échecs pour une approximation fiable. Si elles échouent, notamment avec de petits échantillons ou des proportions proches de 0 ou 1, il faut utiliser la distribution binomiale.\n\nSi une proportion observée p̂ est fournie, le calculateur calcule Z = (p̂ – p) / σ(p̂), soit le nombre d’erreurs standards séparant p̂ de la moyenne. Un grand score Z en valeur absolue suggère un résultat peu probable par hasard sous la proportion supposée, base des tests d’hypothèses.\n\nP(p̂ < x) donne la probabilité d’observer une proportion inférieure ou égale à x, tandis que P(p̂ > x) donne la probabilité d’observer une proportion supérieure à x. Ces valeurs indiquent le caractère extrême de la proportion observée par rapport à la distribution théorique.\n\nCe concept sert dans les sondages, le contrôle qualité et la recherche médicale, par exemple pour estimer un soutien au-dessus d’un seuil, détecter un taux de défauts excessif ou comparer une réponse thérapeutique à un repère historique."
+  },
+  "examples": {
+    "heading": "Exemples de distribution d’échantillonnage",
+    "intro": "Trois scénarios illustrant les calculs de moyenne, d’erreur standard, de normalité et de score Z.",
+    "colInput": "Paramètres",
+    "colOutput": "Résultats clés",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "p=0.60, n=100, p̂=0.65",
+        "output": "μ=0.60, σ=0.049, Z=1.02, P(<0.65)≈0.846",
+        "note": "Les conditions de normalité sont remplies (np=60, n(1-p)=40). Les 65 % observés sont environ 1 erreur standard au-dessus de la proportion de population."
+      },
+      {
+        "input": "p=0.50, n=400, p̂=0.53",
+        "output": "μ=0.50, σ=0.025, Z=1.20, P(<0.53)≈0.885",
+        "note": "Un grand échantillon améliore la précision. L’erreur standard est divisée par deux lorsque la taille de l’échantillon est quadruplée, ce qui facilite la détection des écarts par rapport à 0.50."
+      },
+      {
+        "input": "p=0.05, n=50",
+        "output": "μ=0.05, σ=0.031, Normalité échouée",
+        "note": "np=2.5 < 10, donc la condition de normalité échoue. Pour de petites proportions et de petits échantillons, utilisez plutôt la distribution binomiale exacte."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de distribution d’échantillonnage",
+    "steps": [
+      "Saisissez la proportion de population (p) sous forme décimale entre 0 et 1 (exclus). Il s’agit de la proportion vraie connue ou supposée dans la population.",
+      "Saisissez la taille de l’échantillon (n) comme un nombre entier positif. Cela détermine l’erreur standard et le respect de la condition de normalité.",
+      "Saisissez éventuellement une proportion d’échantillon (p̂) pour calculer le score Z et les probabilités cumulées P(p̂ < x) et P(p̂ > x).",
+      "Cliquez sur Calculer pour afficher la moyenne, l’erreur standard, le résultat de la vérification de normalité et, si p̂ a été fourni, le score Z et les probabilités.",
+      "Cliquez sur Réinitialiser pour effacer tous les champs et lancer un nouveau calcul."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la distribution d’échantillonnage d’une proportion",
+    "q1": "Qu’est-ce que l’erreur standard de la proportion d’échantillon ?",
+    "q1_a": "L’erreur standard est l’écart-type de la distribution d’échantillonnage et mesure la variation des proportions d’échantillon d’un échantillon à l’autre. Elle vaut √[p(1–p)/n]. Une erreur standard plus petite signifie que les proportions sont plus regroupées autour de la vraie proportion p.",
+    "q2": "Quand la distribution d’échantillonnage est-elle approximativement normale ?",
+    "q2_a": "L’approximation normale est valide lorsque np ≥ 10 et n(1–p) ≥ 10. Si l’une des conditions échoue, la distribution est asymétrique et les calculs fondés sur l’approximation normale seront inexacts. Utilisez alors la distribution binomiale exacte.",
+    "q3": "Comment l’augmentation de la taille d’échantillon affecte-t-elle la distribution ?",
+    "q3_a": "Augmenter n réduit l’erreur standard proportionnellement à 1/√n, ce qui resserre la distribution. La moyenne reste égale à p. Une distribution plus étroite rend l’estimation et l’inférence plus précises.",
+    "q4": "Que signifie un score Z de 2 pour une proportion d’échantillon ?",
+    "q4_a": "Un score Z de 2 signifie que la proportion observée p̂ est 2 erreurs standards au-dessus de p. Sous l’approximation normale, la probabilité d’observer par hasard un score aussi grand ou plus grand est d’environ 2,3 % (unilatéral). C’est une preuve forte mais non concluante.",
+    "q5": "Ce calculateur peut-il traiter des proportions proches de 0 ou de 1 ?",
+    "q5_a": "Le calculateur produira les résultats, mais signalera l’échec de la condition de normalité lorsque np < 10 ou n(1–p) < 10. Pour des proportions extrêmes, comme p = 0.02 ou p = 0.98, utilisez la distribution binomiale.",
+    "q6": "Quelle est la différence entre l’écart-type et l’erreur standard de la proportion ?",
+    "q6_a": "L’écart-type de population d’une variable binaire mesure la variabilité des observations individuelles : σ = √[p(1–p)]. L’erreur standard de la proportion mesure la variabilité des proportions d’échantillon entre échantillons répétés : σ(p̂) = √[p(1–p)/n]. Elle est plus petite d’un facteur 1/√n."
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "title": "Repeated Measures ANOVA Calculator - F-statistic & Effect Size",
+  "tagline": "Advanced Statistical Tests",
+  "intro": "Enter your data below. Each row represents a single subject and each column a different condition or time point. Values can be separated by commas, spaces, or tabs.",
+  "field": {
+    "dataInput": "Data Input",
+    "dataInputHint": "Each row = one subject; each column = one condition. Example: 8,9,7 on one row."
+  },
+  "placeholder": {
+    "dataInput": "8, 9, 7\n10, 11, 9\n6, 8, 5"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Invalid input. Please enter at least 2 subjects and 2 conditions with equal numbers of values per row."
+  },
+  "result": {
+    "heading": "ANOVA Results",
+    "source": "Source",
+    "colSS": "SS",
+    "colDf": "df",
+    "colMS": "MS",
+    "colF": "F",
+    "betweenConditions": "Between Conditions",
+    "error": "Error (Residual)",
+    "total": "Total",
+    "subjects": "Subjects (n)",
+    "conditions": "Conditions (k)",
+    "etaSquared": "η² (Eta Squared)"
+  },
+  "about": {
+    "heading": "About the Repeated Measures ANOVA Calculator",
+    "body": "Repeated measures ANOVA (Analysis of Variance) is a statistical technique used when the same subjects are measured under multiple conditions or at different time points. Unlike a between-subjects ANOVA, the repeated measures design controls for individual differences among participants by treating each subject as their own control, which substantially increases statistical power.\n\nThis calculator performs a one-way repeated measures ANOVA. The design involves a single within-subjects factor (the condition or time) with k levels, measured on n subjects. The total variance in the data is partitioned into three components: variance attributable to differences between conditions (the factor of interest), variance attributable to individual differences between subjects, and residual error variance.\n\nThe F-statistic is calculated as the ratio of the mean square between conditions (MSbetween) to the mean square error (MSerror). A large F value relative to the critical value from the F-distribution (with dfbetween = k−1 and dferror = (n−1)(k−1) degrees of freedom) indicates that at least one condition mean differs significantly from the others.\n\nEffect size is quantified using eta squared (η²), which equals SS_between divided by SS_total. A value of η² = 0.01 is considered small, 0.06 is medium, and 0.14 or above is large, following Cohen's conventions. Partial eta squared is commonly reported in published research as it focuses on the proportion of variance explained by the factor of interest.\n\nThe calculator assumes sphericity — that the variances of the differences between all pairs of conditions are equal. When this assumption is violated (as detected by Mauchly's test), researchers typically apply the Greenhouse-Geisser or Huynh-Feldt correction to adjust the degrees of freedom. For exploratory analysis and quick checks, the uncorrected F and η² values computed here are a useful starting point.\n\nThis tool is designed for educational and preliminary analysis purposes. For publication-quality results, especially with complex designs or suspected sphericity violations, use dedicated statistical software such as SPSS, R (with the ez package), or Python (with pingouin)."
+  },
+  "examples": {
+    "heading": "Repeated Measures ANOVA Examples",
+    "intro": "These examples illustrate how to interpret repeated measures ANOVA results.",
+    "colInput": "Data (rows=subjects)",
+    "colOutput": "F-statistic",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "8,9,7 / 10,11,9 / 6,8,5 (3 subjects × 3 conditions)",
+        "output": "F ≈ 37.4, η² ≈ 0.28",
+        "note": "Strong condition effect"
+      },
+      {
+        "input": "4,7,6,9 / 3,5,4,8 / 6,8,9,11 / 2,5,3,7 (4 × 4)",
+        "output": "F ≈ 50.7, η² ≈ 0.53",
+        "note": "Large effect size"
+      },
+      {
+        "input": "3,5,4,7 / 2,4,6,5 / 5,7,3,9 (3 × 4, irregular pattern)",
+        "output": "F ≈ 2.84, η² ≈ 0.50",
+        "note": "Non-significant F, moderate η²"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use This Calculator",
+    "steps": [
+      "Enter data so that each row represents one subject and each column represents one condition or time point.",
+      "Separate values within a row using commas, spaces, or tabs; use a new line for each subject.",
+      "Click 'Calculate' to run the one-way repeated measures ANOVA.",
+      "Review the ANOVA table showing SS, df, MS, and F-statistic for each source of variance.",
+      "Check the eta squared (η²) value to assess the practical significance of the condition effect."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "When should I use repeated measures ANOVA instead of one-way ANOVA?",
+    "q1_a": "Use repeated measures ANOVA when the same subjects are measured across all conditions. It is more powerful than between-subjects ANOVA because it removes individual difference variance from the error term, making it easier to detect true condition effects with fewer participants.",
+    "q2": "What is the sphericity assumption?",
+    "q2_a": "Sphericity requires that the variances of the differences between all pairs of conditions are equal. Violation inflates the Type I error rate. Mauchly's test checks this assumption. If violated, apply the Greenhouse-Geisser or Huynh-Feldt correction to the degrees of freedom.",
+    "q3": "What does eta squared (η²) tell me?",
+    "q3_a": "Eta squared indicates the proportion of total variance explained by the within-subjects factor. Values of 0.01, 0.06, and 0.14 are conventionally considered small, medium, and large effects respectively. It is an easily interpretable effect size for ANOVA.",
+    "q4": "How many subjects do I need for repeated measures ANOVA?",
+    "q4_a": "A minimum of 5–10 subjects is typically recommended for adequate statistical power, though formal power analysis based on expected effect size and desired power level (usually 0.80) is the proper approach. More subjects are needed when the expected effect is small.",
+    "q5": "What if my data violates sphericity?",
+    "q5_a": "Apply the Greenhouse-Geisser correction (ε) to adjust the degrees of freedom, making the F-test more conservative. When ε is close to 1, sphericity is approximately met. For severely violated sphericity (ε < 0.75), the Greenhouse-Geisser correction is preferred.",
+    "q6": "Can I use this calculator for a two-way repeated measures design?",
+    "q6_a": "No, this calculator handles only one-way repeated measures ANOVA (one within-subjects factor). For two-way designs with two within-subjects factors or mixed designs with both within- and between-subjects factors, you need specialized software such as R, SPSS, or Python's pingouin library."
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "title": "Calculadora de regulación de voltaje",
+  "tagline": "Calcula la regulación de carga y de línea de fuentes de alimentación a partir de voltajes medidos en vacío y a plena carga.",
+  "intro": "Introduce los voltajes en vacío y a plena carga para calcular la regulación de carga. Opcionalmente, añade el rango de tensión de entrada, la corriente de carga y la impedancia de salida para calcular la regulación de línea.",
+  "formula": "Fórmula: Regulación de carga (%) = (V_NL − V_FL) / V_FL × 100  •  Regulación de línea (%) = (Rout × I) / ΔVin × 100",
+  "section": {
+    "loadReg": "Regulación de carga (obligatoria)",
+    "lineReg": "Regulación de línea (opcional)"
+  },
+  "field": {
+    "noLoadVoltage": "Voltaje en vacío (V)",
+    "fullLoadVoltage": "Voltaje a plena carga (V)",
+    "nominalVoltage": "Voltaje nominal (V)",
+    "minLineVoltage": "Voltaje mínimo de línea (V)",
+    "maxLineVoltage": "Voltaje máximo de línea (V)",
+    "loadCurrent": "Corriente de carga (A)",
+    "outputImpedance": "Impedancia de salida (Ω)"
+  },
+  "placeholder": {
+    "noLoadVoltage": "p. ej., 12.5",
+    "fullLoadVoltage": "p. ej., 11.8",
+    "nominalVoltage": "p. ej., 12",
+    "minLineVoltage": "p. ej., 10.8",
+    "maxLineVoltage": "p. ej., 13.2",
+    "loadCurrent": "p. ej., 5",
+    "outputImpedance": "p. ej., 0.1"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce al menos los voltajes en vacío y a plena carga con valores positivos válidos."
+  },
+  "result": {
+    "heading": "Resultado",
+    "labelLoadReg": "Regulación de carga",
+    "labelVoltageChange": "Cambio de voltaje (V_NL − V_FL)",
+    "labelLineReg": "Regulación de línea",
+    "labelDeltaVout": "Cambio de voltaje de salida (ΔVout)"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de regulación de voltaje",
+    "body": "La regulación de voltaje mide cuánto cambia el voltaje de salida de una fuente de alimentación en respuesta a variaciones de la corriente de carga o del voltaje de entrada. Es una de las especificaciones más importantes de cualquier fuente de alimentación: una regulación deficiente significa que el equipo recibe voltajes distintos según la corriente que consume, lo que puede provocar fallos, errores de datos y menor vida útil de los componentes.\n\nLa regulación de carga describe el cambio del voltaje de salida cuando la corriente de carga varía desde cero (sin carga) hasta la corriente nominal máxima (plena carga). Se calcula como: Regulación de carga (%) = (V_NL − V_FL) / V_FL × 100. Un regulador ideal tendría 0 % de regulación de carga, es decir, el voltaje de salida sería idéntico sin carga y a plena carga. En la práctica, los reguladores lineales alcanzan 0.1–1 %, mientras que las fuentes conmutadas de alta calidad alcanzan 0.5–2 %. Los diseños económicos pueden mostrar 5 % o más.\n\nLa regulación de línea describe el cambio del voltaje de salida cuando varía el voltaje de entrada mientras la carga permanece constante. Se expresa como el cambio porcentual del voltaje de salida por cada cambio porcentual del voltaje de entrada, o como el cambio de voltaje de salida por voltio de variación de entrada. Una fuente con buena regulación de línea mantiene una salida estable pese a las fluctuaciones de la red eléctrica, algo importante en países donde el voltaje de la red varía mucho.\n\nLa impedancia de salida es el parámetro clave que relaciona la corriente de carga con el cambio de voltaje. Una fuente de alimentación se comporta como una fuente de voltaje ideal en serie con una pequeña resistencia Rout. Cuando la corriente de carga aumenta en ΔI, el voltaje de salida cae en ΔV = Rout × ΔI. Cuanto menor sea la impedancia de salida, mejor será la regulación. Una fuente de laboratorio puede tener un Rout de unos pocos miliohmios, mientras que un diseño simple de transformador y rectificador puede tener varios ohmios.\n\nLas cifras de regulación de voltaje aparecen de forma destacada en las hojas de datos de fuentes de alimentación y se prueban bajo condiciones específicas. Las fuentes de alimentación de grado médico suelen requerir una regulación de carga mejor que 1 % y una regulación de línea mejor que 0.5 %, porque los circuitos de seguridad del paciente dependen de voltajes de funcionamiento estables. Las fuentes para electrónica de consumo suelen especificar 3–5 %. Las fuentes para variadores de motor industriales y PLC suelen requerir 1–3 % para garantizar el funcionamiento fiable de circuitos de control sensibles.\n\nUna mala regulación de voltaje desperdicia energía y genera calor. Una fuente con alta impedancia de salida disipa el exceso de voltaje en la resistencia interna como calor cuando la carga demanda corriente. Mejorar la regulación, mediante mejor bobinado del transformador, reguladores lineales de baja caída o topologías conmutadas controladas por realimentación, reduce las pérdidas térmicas y mejora la eficiencia del sistema."
+  },
+  "examples": {
+    "heading": "Ejemplos de regulación de voltaje",
+    "intro": "Mediciones prácticas de fuentes de alimentación que muestran el cálculo de la regulación de carga.",
+    "colInput": "Voltaje en vacío / plena carga",
+    "colOutput": "Regulación de carga",
+    "colNote": "Evaluación",
+    "loadPSU12V": "Ejemplo de fuente de 12 V",
+    "loadPSU5V": "Ejemplo de fuente de 5 V",
+    "items": [
+      {
+        "input": "V_NL = 12.5 V, V_FL = 11.8 V",
+        "output": "5.93 %",
+        "note": "Aceptable para una fuente de 12 V de uso general; por debajo de 5 % es bueno, y por debajo de 1 % es excelente."
+      },
+      {
+        "input": "V_NL = 5.1 V, V_FL = 4.85 V",
+        "output": "5.15 %",
+        "note": "En el límite para lógica digital. Un microcontrolador de 5 V tolera ±5 %, pero con menos margen frente a transitorios."
+      },
+      {
+        "input": "V_NL = 3.32 V, V_FL = 3.28 V",
+        "output": "1.22 %",
+        "note": "Buena regulación para una fuente conmutada de 3.3 V. Los circuitos lógicos ven un voltaje de suministro muy estable."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de regulación de voltaje",
+    "steps": [
+      "Mide u obtén el voltaje de salida en vacío (V_NL): el voltaje de salida cuando no se consume corriente de la fuente.",
+      "Mide u obtén el voltaje de salida a plena carga (V_FL): el voltaje de salida a la corriente nominal máxima.",
+      "Introduce ambos valores en la sección de regulación de carga y haz clic en Calcular para ver el porcentaje de regulación y el cambio de voltaje.",
+      "Para la regulación de línea, introduce además el voltaje nominal de entrada, los voltajes mínimo y máximo de entrada, la corriente de carga y la impedancia de salida, y luego haz clic en Calcular.",
+      "Compara el resultado de regulación de carga con la tolerancia de tu aplicación: por debajo de 1 % es excelente, 1–3 % es bueno, y por encima de 5 % puede causar problemas en circuitos sensibles."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de regulación de voltaje",
+    "items": [
+      {
+        "q": "¿Qué porcentaje de regulación de voltaje es bueno?",
+        "a": "Por debajo de 1 % es excelente y es típico de fuentes de laboratorio de precisión y reguladores conmutados de alta calidad. Entre 1–3 % es bueno y adecuado para la mayoría de los circuitos digitales y analógicos. Entre 3–5 % es aceptable para equipos de uso general. Por encima de 5 % indica una regulación deficiente que puede causar problemas en circuitos lógicos sensibles, ADC o módulos de comunicación."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre regulación de carga y regulación de línea?",
+        "a": "La regulación de carga mide cuánto cambia el voltaje de salida cuando la corriente consumida por la carga varía de cero al máximo. La regulación de línea mide cuánto cambia el voltaje de salida cuando varía el voltaje de entrada mientras la carga permanece constante. Ambas especificaciones importan: la regulación de carga prueba la capacidad de la fuente para mantener el voltaje ante una demanda variable, mientras que la regulación de línea prueba su inmunidad a las fluctuaciones de la red."
+      },
+      {
+        "q": "¿Por qué el voltaje en vacío suele ser mayor que el voltaje a plena carga?",
+        "a": "La resistencia interna (impedancia de salida) provoca una caída de voltaje cuando circula corriente. En vacío no circula corriente, así que no hay caída y la salida alcanza su valor máximo. A plena carga, I × Rout se pierde internamente, reduciendo el voltaje en los terminales. Los reguladores lineales y las fuentes con respaldo de batería muestran este efecto con claridad; las fuentes conmutadas controladas por realimentación lo minimizan."
+      },
+      {
+        "q": "¿Cómo afecta la temperatura a la regulación de voltaje?",
+        "a": "Tanto la referencia de voltaje dentro de una fuente como las resistencias de los conductores cambian con la temperatura. Una referencia con un coeficiente térmico alto hará que el voltaje de salida derive a medida que la unidad se calienta, empeorando la regulación efectiva con el tiempo. Las fuentes de precisión usan referencias bandgap compensadas en temperatura que mantienen una deriva inferior a 10 ppm/°C."
+      },
+      {
+        "q": "¿Puedo mejorar la regulación de voltaje sin reemplazar la fuente?",
+        "a": "Sí. Añadir un condensador electrolítico de reserva en la carga suaviza las caídas de voltaje transitorias causadas por demandas bruscas de corriente. Para circuitos críticos, un regulador de baja caída (LDO) colocado cerca de la carga puede volver a regular el riel con una impedancia de salida muy baja. La resistencia del cable también contribuye a una mala regulación en la carga; usar cable más grueso o conexiones Kelvin hasta el punto de uso elimina ese componente."
+      }
+    ]
+  }
+}

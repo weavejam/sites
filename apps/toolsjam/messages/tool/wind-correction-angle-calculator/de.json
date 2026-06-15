@@ -1,0 +1,93 @@
+{
+  "title": "Windkorrekturwinkel-Rechner – Luftfahrtnavigation",
+  "tagline": "Berechnen Sie Windkorrekturwinkel, wahre Peilung und Bodengeschwindigkeit für präzise Navigation.",
+  "intro": "Geben Sie wahre Strecke, Windrichtung, Windgeschwindigkeit und wahre Fluggeschwindigkeit ein, um die nötige Kurskorrektur zur Einhaltung der gewünschten Bodenroute zu bestimmen.",
+  "field": {
+    "trueCourse": "Wahre Strecke (°)",
+    "windDirection": "Windrichtung (°)",
+    "windSpeed": "Windgeschwindigkeit (kts)",
+    "trueAirspeed": "Wahre Fluggeschwindigkeit (kts)"
+  },
+  "placeholder": {
+    "trueCourse": "z. B. 090",
+    "windDirection": "z. B. 270",
+    "windSpeed": "z. B. 15",
+    "trueAirspeed": "z. B. 120"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gültige Werte eingeben. Die wahre Fluggeschwindigkeit muss positiv sein.",
+    "windTooStrong": "Die Windgeschwindigkeit übersteigt die Fluggeschwindigkeit — es gibt keinen gültigen Windkorrekturwinkel."
+  },
+  "result": {
+    "heading": "Navigationsergebnisse",
+    "wca": "Windkorrekturwinkel (WCA) = {value}°",
+    "trueHeading": "Wahre Peilung (TH) = {value}°",
+    "groundSpeed": "Bodengeschwindigkeit (GS) = {value} kts"
+  },
+  "formula": "WCA = arcsin(WS × sin(WD − TC) / TAS) | GS aus dem Kosinussatz",
+  "about": {
+    "heading": "Über den Windkorrekturwinkel-Rechner",
+    "body": "Der Windkorrekturwinkel (WCA), auch Drifwinkel oder Crab Angle genannt, ist der Winkelunterschied zwischen der Richtung, in die ein Flugzeug zeigen muss (wahre Peilung), und der Richtung, in der es sich tatsächlich über Grund bewegen soll (wahre Strecke). Ohne Windkorrektur driftet ein Flugzeug mit festem Kurs vom geplanten Weg ab und kann so das Ziel verfehlen oder in gesperrten Luftraum geraten.\n\nDiese Berechnung gehört zu den grundlegendsten Fähigkeiten der Luftfahrtnavigation und wird in jeder Theorieausbildung zum Privatpiloten gelehrt. Die zugrunde liegende Mathematik stammt aus der Vektoraddition: Die Geschwindigkeit des Flugzeugs durch die Luft (dargestellt durch wahre Fluggeschwindigkeit und wahre Peilung) plus der Windvektor ergibt die Geschwindigkeit über Grund (dargestellt durch Bodengeschwindigkeit und Bodenroute).\n\nDie Formel für den Windkorrekturwinkel lautet: WCA = arcsin(WS × sin(WD − TC) / TAS), wobei WS die Windgeschwindigkeit, WD die Windrichtung (die Richtung, AUS der der Wind weht, nach Luftfahrtkonvention), TC die gewünschte wahre Strecke und TAS die wahre Fluggeschwindigkeit ist. Das Ergebnis gibt den Winkel an, den der Pilot zur wahren Strecke addieren oder subtrahieren muss, um die wahre Peilung zu erhalten.\n\nDie Bodengeschwindigkeit wird dann mit dem Kosinussatz berechnet: GS² = TAS² + WS² − 2 × TAS × WS × cos(TH − WD + 180°). Die Bodengeschwindigkeit bestimmt Flugzeit und Treibstoffbedarf. Gegenwind verringert die Bodengeschwindigkeit; Rückenwind erhöht sie. Seitenwind verringert die Bodengeschwindigkeit leicht und erfordert eine Kurskorrektur.\n\nIm E6B-Flugrechner wird die Windkorrektur durch Auftragen des Windvektors und grafisches Ablesen von Korrekturwinkel und Bodengeschwindigkeit durchgeführt. Moderne EFBs und GPS-Flugmanagementsysteme berechnen das automatisch, aber Piloten werden weiterhin im manuellen Verfahren als Backup geschult.\n\nDie Grenze der Formel liegt dort, wo die Windgeschwindigkeit die wahre Fluggeschwindigkeit übersteigt (das Flugzeug kann die gewünschte Strecke dann nicht mehr halten). Deshalb prüft dieser Rechner genau diesen Fall.\n\nÜber die VFR-Navigation hinaus ist Windkorrektur auch für IFR-Betrieb entscheidend, besonders im Endanflug, wo das präzise Halten der Pistenmittellinie eine genaue Crab-Calculation und das Aufheben des Crab kurz vor der Landung erfordert."
+  },
+  "examples": {
+    "heading": "Beispiele für Windkorrekturwinkel",
+    "intro": "Typische Flugszenarien mit Windkorrekturberechnungen.",
+    "colInput": "Flugparameter",
+    "colOutput": "WCA / Wahre Peilung / GS",
+    "colNote": "Szenario",
+    "loadCrosswind": "Seitenwindszenario laden",
+    "loadHeadwind": "Gegenwindszenario laden",
+    "loadTailwind": "Rückenwindszenario laden",
+    "items": [
+      {
+        "input": "TC=090°, WD=000°, WS=15 kts, TAS=80 kts",
+        "output": "WCA ≈ −10.8°, TH ≈ 79.2°, GS ≈ 78.6 kts",
+        "note": "Linker Seitenwind aus Norden. 10.8° nach links in den Wind krebsen; die Bodengeschwindigkeit sinkt leicht auf 78.6 kts."
+      },
+      {
+        "input": "TC=180°, WD=180°, WS=20 kts, TAS=120 kts",
+        "output": "WCA = 0°, TH = 180°, GS = 100 kts",
+        "note": "Reiner Gegenwind — kein Korrekturwinkel nötig, aber die Bodengeschwindigkeit sinkt um die volle Windgeschwindigkeit."
+      },
+      {
+        "input": "TC=270°, WD=090°, WS=25 kts, TAS=150 kts",
+        "output": "WCA = 0°, TH = 270°, GS = 175 kts",
+        "note": "Reiner Rückenwind — keine Korrektur nötig, und die Bodengeschwindigkeit steigt um die volle Windgeschwindigkeit."
+      },
+      {
+        "input": "TC=045°, WD=315°, WS=10 kts, TAS=100 kts",
+        "output": "WCA ≈ −7.2°, TH ≈ 37.8°, GS ≈ 99.4 kts",
+        "note": "Linker Frontseitenwind. Es genügt ein kleiner Crab-Winkel; die Bodengeschwindigkeit liegt fast bei der TAS."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Windkorrekturwinkel-Rechner",
+    "steps": [
+      "Geben Sie die Wahre Strecke (TC) ein — die magnetische oder wahre Strecke, die Sie fliegen möchten, in Grad (0–360).",
+      "Geben Sie die Windrichtung (WD) ein — die Richtung, AUS der der Wind weht, in Grad. In der Luftfahrt wird Wind immer nach Herkunft gemeldet.",
+      "Geben Sie Windgeschwindigkeit (WS) und wahre Fluggeschwindigkeit (TAS) in konsistenten Einheiten ein (Knoten empfohlen).",
+      "Klicken Sie auf Berechnen. Der Rechner gibt Windkorrekturwinkel, wahre Peilung und Bodengeschwindigkeit aus.",
+      "Wenden Sie den Windkorrekturwinkel auf Ihre wahre Strecke an, um die wahre Peilung zu erhalten. Wandeln Sie bei Bedarf mit der Missweisung in die magnetische Peilung um."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Windkorrekturwinkel",
+    "q1": "Was ist ein Windkorrekturwinkel in der Luftfahrt?",
+    "q1_a": "Der Windkorrekturwinkel (WCA) ist der Winkel, um den ein Pilot den Kurs gegenüber der gewünschten Route versetzen muss, um Winddrift auszugleichen. Fliegen Sie bei Seitenwind geradeaus mit festem Kurs, driften Sie von der Route ab. Durch das „Crabben“ in den Wind — also leicht gegen den Wind zu zeigen — drückt der Wind das Flugzeug seitlich genau so, dass es auf der gewünschten Route bleibt. Der WCA ist die Differenz zwischen Ihrer wahren Peilung (wohin die Nase zeigt) und Ihrer wahren Strecke (wohin Sie sich tatsächlich bewegen).",
+    "q2": "Wie wird die Windrichtung in der Luftfahrt gemeldet?",
+    "q2_a": "In der Luftfahrt wird die Windrichtung immer als Richtung gemeldet, AUS der der Wind weht, gemessen in Grad wahr oder magnetisch. Ein Wind aus 270° bedeutet zum Beispiel, dass er aus Westen kommt. Das ist das Gegenteil der meteorologischen Konvention in manchen anderen Bereichen, wo Windrichtung die Richtung meinen kann, in die der Wind weht. ATIS- und METAR-Meldungen verwenden ebenfalls diese „aus“-Konvention, ebenso wie dieser Rechner.",
+    "q3": "Was ist der Unterschied zwischen wahrer Strecke und wahrer Peilung?",
+    "q3_a": "Die wahre Strecke (TC) ist die Richtung, in die Sie über Grund fliegen wollen — die Linie zwischen Abflug und Ziel. Die wahre Peilung (TH) ist die Richtung, in die die Flugzeugnase tatsächlich zeigt. In ruhiger Luft gilt TC = TH. Bei Seitenwind unterscheidet sich TH um den Windkorrekturwinkel von TC. Wenden Sie WCA auf TC an, erhalten Sie TH; anschließend wenden Sie die Missweisung an, um die magnetische Peilung (MH) zu erhalten, und dann die Kompassabweichung für die Kompasspeilung (CH).",
+    "q4": "Was passiert, wenn die Windgeschwindigkeit größer als die Fluggeschwindigkeit ist?",
+    "q4_a": "Wenn die Windgeschwindigkeit die wahre Fluggeschwindigkeit übersteigt, hat die Windkorrekturformel keine Lösung — sin(WCA) = WS/TAS × sin(Winkel) würde einen Sinuswert größer als 1 erfordern, was unmöglich ist. Das bedeutet, dass das Flugzeug auf dieser Strecke schlicht nicht gegen den Wind ankommen kann. Der Pilot muss die Fluggeschwindigkeit erhöhen, auf nachlassenden Wind warten oder eine andere Route wählen, um den ungünstigen Windanteil zu vermeiden.",
+    "q5": "Wie wirkt sich Seitenwind auf die Landung aus?",
+    "q5_a": "Im Anflug muss der Pilot in den Wind crabben, um die Pistenmittellinie zu halten. Kurz vor dem Aufsetzen wird der Crab-Winkel mit dem Seitenruder entfernt, damit das Flugzeug auf die Pistenrichtung ausgerichtet ist — andernfalls würde es seitlich rollend aufsetzen und das Fahrwerk belasten. Der maximal nachgewiesene Seitenwindanteil eines Flugzeugs ist im Flughandbuch angegeben und darf für einen sicheren Betrieb nicht überschritten werden.",
+    "q6": "Was ist Bodengeschwindigkeit und warum ist sie wichtig?",
+    "q6_a": "Die Bodengeschwindigkeit (GS) ist die tatsächliche Geschwindigkeit des Flugzeugs über Grund und kombiniert den Einfluss von Fluggeschwindigkeit und Wind. Gegenwind verringert die GS unter die TAS; Rückenwind erhöht sie. Die Bodengeschwindigkeit bestimmt Flugzeit (Strecke ÷ GS = Zeit) und Treibstoffbedarf. In der Flugplanung wird GS zur Berechnung der voraussichtlichen Flugzeit (ETE), des Verbrauchs und der nötigen Reserven verwendet. GPS zeigt GS direkt an; vor GPS wurde sie aus Fluggeschwindigkeit und Winddreieck berechnet."
+  }
+}

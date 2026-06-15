@@ -1,0 +1,93 @@
+{
+  "title": "Calculadora de ángulo de corrección del viento – Navegación aérea",
+  "tagline": "Calcula el ángulo de corrección del viento, el rumbo verdadero y la velocidad sobre el suelo para navegar con precisión.",
+  "intro": "Introduce la ruta verdadera, la dirección del viento, la velocidad del viento y la velocidad aerodinámica verdadera para determinar la corrección de rumbo necesaria y mantener la trayectoria deseada sobre el suelo.",
+  "field": {
+    "trueCourse": "Ruta verdadera (°)",
+    "windDirection": "Dirección del viento (°)",
+    "windSpeed": "Velocidad del viento (kts)",
+    "trueAirspeed": "Velocidad aerodinámica verdadera (kts)"
+  },
+  "placeholder": {
+    "trueCourse": "p. ej. 090",
+    "windDirection": "p. ej. 270",
+    "windSpeed": "p. ej. 15",
+    "trueAirspeed": "p. ej. 120"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce valores válidos. La velocidad aerodinámica verdadera debe ser positiva.",
+    "windTooStrong": "La velocidad del viento supera la velocidad aerodinámica; no existe un ángulo de corrección válido."
+  },
+  "result": {
+    "heading": "Resultados de navegación",
+    "wca": "Ángulo de corrección del viento (WCA) = {value}°",
+    "trueHeading": "Rumbo verdadero (TH) = {value}°",
+    "groundSpeed": "Velocidad sobre el suelo (GS) = {value} kts"
+  },
+  "formula": "WCA = arcsin(WS × sin(WD − TC) / TAS) | GS a partir de la ley de cosenos",
+  "about": {
+    "heading": "Acerca de la calculadora de ángulo de corrección del viento",
+    "body": "El ángulo de corrección del viento (WCA), también llamado ángulo de deriva o crab angle, es la diferencia angular entre la dirección hacia la que debe apuntar un avión (rumbo verdadero) y la dirección que realmente necesita seguir sobre el suelo (ruta verdadera). Sin compensar el viento, un avión que vuele con un rumbo fijo se desviará de su trayectoria prevista, pudiendo perder el destino o entrar en espacio aéreo restringido.\n\nEste cálculo es una de las habilidades más básicas de la navegación aérea y se enseña en todas las escuelas teóricas de piloto privado. La matemática subyacente procede de la suma vectorial: la velocidad de la aeronave a través del aire (representada por la velocidad aerodinámica verdadera y el rumbo verdadero) más el vector de viento equivale a la velocidad sobre el suelo de la aeronave (representada por la velocidad sobre el suelo y la trayectoria sobre el terreno).\n\nLa fórmula del ángulo de corrección del viento es: WCA = arcsin(WS × sin(WD − TC) / TAS), donde WS es la velocidad del viento, WD es la dirección del viento (la dirección DESDE la que sopla, según la convención aeronáutica), TC es la ruta verdadera deseada y TAS es la velocidad aerodinámica verdadera. El resultado indica el ángulo que el piloto debe sumar o restar a la ruta verdadera para obtener el rumbo verdadero.\n\nLa velocidad sobre el suelo se calcula entonces con la ley de cosenos: GS² = TAS² + WS² − 2 × TAS × WS × cos(TH − WD + 180°). La velocidad sobre el suelo determina el tiempo de vuelo y los requerimientos de combustible. Un viento de frente reduce la velocidad sobre el suelo; un viento de cola la aumenta. Los vientos cruzados reducen ligeramente la velocidad sobre el suelo y requieren una corrección de rumbo.\n\nEn la computadora de vuelo E6B, la corrección se realiza trazando el vector del viento y leyendo gráficamente el ángulo de corrección y la velocidad sobre el suelo. Los modernos EFB y los sistemas de gestión de vuelo por GPS lo calculan automáticamente, pero los pilotos siguen entrenándose para hacerlo manualmente como respaldo.\n\nLa limitación de la fórmula aparece cuando la velocidad del viento supera la velocidad aerodinámica verdadera (el avión no puede mantener la ruta deseada en absoluto), por eso la calculadora comprueba esa condición.\n\nMás allá de la navegación VFR, la corrección del viento es crítica en operaciones IFR, especialmente en la aproximación final, donde mantener exactamente la línea central de la pista requiere calcular con precisión el crab angle y eliminarlo justo antes del aterrizaje."
+  },
+  "examples": {
+    "heading": "Ejemplos de ángulo de corrección del viento",
+    "intro": "Escenarios de vuelo comunes que muestran cálculos de corrección del viento.",
+    "colInput": "Parámetros de vuelo",
+    "colOutput": "WCA / Rumbo verdadero / GS",
+    "colNote": "Escenario",
+    "loadCrosswind": "Cargar escenario de viento cruzado",
+    "loadHeadwind": "Cargar escenario de viento de frente",
+    "loadTailwind": "Cargar escenario de viento de cola",
+    "items": [
+      {
+        "input": "TC=090°, WD=000°, WS=15 kts, TAS=80 kts",
+        "output": "WCA ≈ −10.8°, TH ≈ 79.2°, GS ≈ 78.6 kts",
+        "note": "Viento cruzado izquierdo desde el norte. Hay que crabar 10.8° a la izquierda contra el viento; la velocidad sobre el suelo baja ligeramente a 78.6 kts."
+      },
+      {
+        "input": "TC=180°, WD=180°, WS=20 kts, TAS=120 kts",
+        "output": "WCA = 0°, TH = 180°, GS = 100 kts",
+        "note": "Viento de frente puro: no hace falta corrección, pero la velocidad sobre el suelo se reduce en toda la velocidad del viento."
+      },
+      {
+        "input": "TC=270°, WD=090°, WS=25 kts, TAS=150 kts",
+        "output": "WCA = 0°, TH = 270°, GS = 175 kts",
+        "note": "Viento de cola puro: no hace falta corrección y la velocidad sobre el suelo aumenta en toda la velocidad del viento."
+      },
+      {
+        "input": "TC=045°, WD=315°, WS=10 kts, TAS=100 kts",
+        "output": "WCA ≈ −7.2°, TH ≈ 37.8°, GS ≈ 99.4 kts",
+        "note": "Viento cruzado delantero izquierdo. Solo se necesita un pequeño crab angle; la velocidad sobre el suelo casi iguala la TAS."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de ángulo de corrección del viento",
+    "steps": [
+      "Introduce la Ruta verdadera (TC): la ruta magnética o verdadera que deseas volar, en grados (0–360).",
+      "Introduce la Dirección del viento (WD): la dirección DESDE la que sopla el viento, en grados. En aviación, el viento siempre se reporta por la dirección de procedencia.",
+      "Introduce la Velocidad del viento (WS) y la Velocidad aerodinámica verdadera (TAS) en unidades coherentes (se recomiendan nudos).",
+      "Haz clic en Calcular. La calculadora devuelve el ángulo de corrección del viento, el rumbo verdadero y la velocidad sobre el suelo.",
+      "Aplica el ángulo de corrección del viento a tu ruta verdadera para obtener el rumbo verdadero. Luego, convierte a rumbo magnético aplicando la variación si es necesario."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre el ángulo de corrección del viento",
+    "q1": "¿Qué es el ángulo de corrección del viento en aviación?",
+    "q1_a": "El ángulo de corrección del viento (WCA) es el ángulo que un piloto debe desviar su rumbo respecto a la trayectoria deseada para compensar la deriva por viento. Si vuelas recto con un rumbo fijo en un viento cruzado, te saldrás de la ruta. Al crabar contra el viento, apuntando ligeramente hacia barlovento, el viento empuja al avión lateralmente lo justo para mantener la trayectoria deseada. El WCA es la diferencia entre el rumbo verdadero (hacia dónde apunta la nariz) y la ruta verdadera (hacia dónde realmente se desplaza).",
+    "q2": "¿Cómo se reporta la dirección del viento en aviación?",
+    "q2_a": "En aviación, la dirección del viento siempre se reporta como la dirección DESDE la que sopla, medida en grados verdaderos o magnéticos. Por ejemplo, un viento de 270° significa que viene del oeste. Esto es lo contrario de la convención meteorológica usada en otros campos, donde la dirección del viento puede significar hacia dónde va. Los informes ATIS y METAR usan esta convención de procedencia, igual que esta calculadora.",
+    "q3": "¿Cuál es la diferencia entre ruta verdadera y rumbo verdadero?",
+    "q3_a": "La ruta verdadera (TC) es la dirección que quieres seguir sobre el suelo: la línea entre tu salida y tu destino. El rumbo verdadero (TH) es la dirección hacia la que apunta realmente la nariz del avión. En aire en calma, TC y TH son iguales. Con viento cruzado, TH difiere de TC por el ángulo de corrección del viento. Al aplicar el WCA a TC obtienes TH; luego, aplicas la variación magnética para obtener el rumbo magnético (MH) y la desviación para obtener el rumbo de brújula (CH).",
+    "q4": "¿Qué ocurre cuando la velocidad del viento es mayor que la velocidad aerodinámica?",
+    "q4_a": "Si la velocidad del viento supera la velocidad aerodinámica verdadera, no hay solución para la fórmula del ángulo de corrección del viento: sin(WCA) = WS/TAS × sin(ángulo) requeriría un seno mayor que 1, lo cual es imposible. Eso significa que la aeronave no puede avanzar contra el viento en esa ruta. El piloto debe aumentar la velocidad aerodinámica, esperar a que baje el viento o elegir una ruta distinta para evitar el componente desfavorable.",
+    "q5": "¿Cómo afecta un viento cruzado al aterrizaje?",
+    "q5_a": "En aproximación, el piloto debe crabar contra el viento para mantener la línea central de la pista. Justo antes del toque, se elimina el crab angle con timón para alinear el avión con la pista; de lo contrario, tocaría mientras se mueve lateralmente, cargando el tren de aterrizaje. El componente máximo de viento cruzado demostrado para cada aeronave figura en el Manual de Operaciones del Piloto y no debe superarse para operar con seguridad.",
+    "q6": "¿Qué es la velocidad sobre el suelo y por qué importa?",
+    "q6_a": "La velocidad sobre el suelo (GS) es la velocidad real del avión respecto al terreno, combinando el efecto de la velocidad aerodinámica y el viento. Un viento de frente reduce la GS por debajo de la TAS; un viento de cola la aumenta. La GS determina el tiempo de vuelo (distancia ÷ GS = tiempo) y el combustible necesario. La planificación de vuelo usa la GS para calcular el tiempo estimado en ruta (ETE), el consumo de combustible y las reservas requeridas. El GPS muestra la GS directamente; antes del GPS se calculaba con velocidad aerodinámica y triángulo del viento."
+  }
+}

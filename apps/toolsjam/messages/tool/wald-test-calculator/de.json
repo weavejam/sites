@@ -1,0 +1,104 @@
+{
+  "title": "Wald-Test-Rechner - Statistische Signifikanz",
+  "tagline": "Führen Sie einen Wald-Test durch, um zu bestimmen, ob eine Parameterschätzung statistisch signifikant ist: β̂, β₀, SE und α eingeben und sofort Ergebnisse erhalten.",
+  "intro": "Geben Sie die Parameterschätzung, den hypothetischen Wert, den Standardfehler und das Signifikanzniveau ein. Der Rechner liefert die Wald-Statistik, den z-Wert, den p-Wert und die Entscheidung.",
+  "formula": "Wald-Statistik W = ((β̂ − β₀) / SE)²  •  z-Wert = (β̂ − β₀) / SE  •  p-Wert = 2 · (1 − Φ(|z|))",
+  "field": {
+    "betaHat": "Parameterschätzung (β̂)",
+    "beta0": "Hypothetischer Wert (β₀)",
+    "se": "Standardfehler (SE)",
+    "alpha": "Signifikanzniveau (α)"
+  },
+  "placeholder": {
+    "betaHat": "z. B. 2.5",
+    "beta0": "z. B. 0",
+    "se": "z. B. 1.1",
+    "alpha": "z. B. 0.05"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie gültige Zahlen ein. Der Standardfehler muss positiv sein und das Signifikanzniveau muss zwischen 0 und 1 liegen."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "waldStat": "Wald-Statistik (W)",
+    "zScore": "z-Wert",
+    "pValue": "p-Wert",
+    "decision": "Entscheidung",
+    "reject": "H₀ verwerfen",
+    "failToReject": "H₀ nicht verwerfen"
+  },
+  "about": {
+    "heading": "Über den Wald-Test-Rechner",
+    "body": "Der Wald-Test ist ein parametrischer statistischer Test, benannt nach dem Statistiker Abraham Wald. Er gehört zu den drei klassischen Hypothesentests in der Maximum-Likelihood-Schätzung, neben dem Likelihood-Ratio-Test und dem Score-Test (Lagrange-Multiplikator-Test). Der Wald-Test ist mit Abstand am häufigsten anzutreffen, weil er nur die Schätzung selbst und ihren Standardfehler benötigt. Beide werden von Statistiksoftware routinemäßig ausgegeben, ohne dass die vollständige Likelihood-Funktion erforderlich ist.\n\nDie Idee hinter dem Wald-Test ist einfach. Wenn eine Parameterschätzung β̂ im Verhältnis zu ihrer Präzision (gemessen durch den Standardfehler SE) weit vom hypothetischen Wert β₀ entfernt ist, ist die Nullhypothese H₀: β = β₀ wahrscheinlich nicht wahr. Die Wald-Statistik lautet W = ((β̂ − β₀) / SE)² und ist der quadrierte z-Wert. Unter der Nullhypothese und bei ausreichend großer Stichprobe folgt W einer Chi-Quadrat-Verteilung mit einem Freiheitsgrad. Äquivalent dazu folgt der vorzeichenbehaftete z-Wert z = (β̂ − β₀) / SE einer Standardnormalverteilung, sodass der zweiseitige p-Wert 2 · (1 − Φ(|z|)) beträgt, wobei Φ die Verteilungsfunktion der Standardnormalverteilung ist.\n\nDer p-Wert beantwortet die Frage: Wenn die Nullhypothese wahr wäre, wie wahrscheinlich wäre es, eine Teststatistik zu beobachten, die mindestens so extrem ist wie die tatsächlich berechnete? Ein kleiner p-Wert (typischerweise unterhalb des Signifikanzniveaus α, häufig 0.05 oder 0.01) liefert Evidenz gegen H₀. Wenn p < α, gilt das Ergebnis als statistisch signifikant und wir verwerfen die Nullhypothese. Wenn p ≥ α, verwerfen wir sie nicht. Das bedeutet, dass nicht genügend Evidenz vorliegt, um zu schließen, dass sich der Parameter von β₀ unterscheidet; es bedeutet jedoch nicht, dass H₀ wahr ist.\n\nDer Wald-Test ist in der angewandten Statistik allgegenwärtig. In der linearen und logistischen Regression sind die für jeden Koeffizienten berichteten t-Statistiken im Wesentlichen Wald-z-Werte, und die zugehörigen p-Werte testen, ob jeder Koeffizient signifikant von null verschieden ist. In der Ökonometrie wird der Wald-Test verwendet, um gemeinsame Hypothesen über mehrere Koeffizienten gleichzeitig zu testen (mithilfe von Erweiterungen der Matrizenalgebra). In der Überlebenszeitanalyse prüft er, ob eine Kovariate die Hazardrate signifikant vorhersagt. In der Genetik verwenden genomweite Assoziationsstudien Wald-artige Statistiken, um Millionen einzelner Nukleotid-Polymorphismen zu testen.\n\nEine bekannte Einschränkung des Wald-Tests besteht darin, dass er je nach Parametrisierung eines Parameters unterschiedliche Ergebnisse liefern kann, da der Test auf einer lokalen quadratischen Approximation der Likelihood beruht. Bei kleinen Stichproben wird häufig der Likelihood-Ratio-Test bevorzugt, weil er genauer ist. Der Wald-Test ist am zuverlässigsten, wenn die Stichprobengröße groß ist, die Schätzung näherungsweise normalverteilt ist (das heißt, asymptotische Bedingungen gelten) und der Standardfehler gut geschätzt wurde."
+  },
+  "examples": {
+    "heading": "Beispiele für den Wald-Test",
+    "intro": "Drei realistische Szenarien aus Ökonomie, Medizin und allgemeiner Statistik zeigen den Wald-Test in der Praxis.",
+    "colInput": "Eingabe",
+    "colOutput": "Entscheidung",
+    "colNote": "Details",
+    "loadBasic": "Basisbeispiel laden",
+    "loadEducation": "Bildungsbeispiel laden",
+    "loadDrug": "Arzneimittelstudie laden",
+    "items": [
+      {
+        "input": "β̂=2.5, β₀=0, SE=1.1, α=0.05",
+        "output": "H₀ verwerfen",
+        "note": "z = 2.27, W = 5.17, p ≈ 0.023. Die Schätzung liegt mehr als 2 Standardfehler von null entfernt, daher verwerfen wir die Nullhypothese bei α = 0.05."
+      },
+      {
+        "input": "β̂=0.08, β₀=0, SE=0.02, α=0.05",
+        "output": "H₀ verwerfen",
+        "note": "Bildungskoeffizient: z = 4.0, p < 0.001. Ein zusätzliches Bildungsjahr hat einen hochsignifikanten von null verschiedenen Effekt auf Löhne."
+      },
+      {
+        "input": "β̂=−0.5, β₀=0, SE=0.2, α=0.01",
+        "output": "H₀ nicht verwerfen",
+        "note": "Arzneimittelwirksamkeit bei strengem α=0.01: z = −2.5, p ≈ 0.012. Der Effekt ist bei α=0.05 signifikant, nicht aber beim strengeren 1%-Schwellenwert."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Wald-Test-Rechner",
+    "steps": [
+      "Geben Sie die Parameterschätzung β̂ aus Ihrer Regressionsausgabe oder Ihrem statistischen Modell ein.",
+      "Geben Sie den hypothetischen Wert β₀ ein, typischerweise 0, wenn getestet wird, ob ein Koeffizient ungleich null ist.",
+      "Geben Sie den Standardfehler SE der Schätzung ein, der in derselben statistischen Ausgabe berichtet wird.",
+      "Legen Sie das Signifikanzniveau α fest: Verwenden Sie 0.05 für die übliche 5%-Schwelle oder 0.01 für eine strengere 1%-Schwelle.",
+      "Klicken Sie auf Berechnen, um die Wald-Statistik, den z-Wert, den zweiseitigen p-Wert und die Entscheidung zum Verwerfen oder Nichtverwerfen zu erhalten."
+    ]
+  },
+  "faq": {
+    "heading": "Wald-Test FAQ",
+    "items": [
+      {
+        "q": "Was misst der Wald-Test?",
+        "a": "Der Wald-Test misst, wie weit eine Parameterschätzung von einem hypothetischen Wert entfernt ist, ausgedrückt in Einheiten des Standardfehlers. Er prüft, ob dieser Abstand bei einem gegebenen Signifikanzniveau groß genug ist, um zu schließen, dass der wahre Parameter vom hypothetischen Wert abweicht."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen Wald-Test und t-Test?",
+        "a": "In großen Stichproben sind sie im Wesentlichen äquivalent: Beide vergleichen eine Schätzung mit einem Nullwert in Einheiten des Standardfehlers. Der Hauptunterschied besteht darin, dass der t-Test eine t-Verteilung verwendet und damit die Unsicherheit der Varianzschätzung berücksichtigt, während der Wald-Test die Normalverteilung verwendet und daher ein asymptotischer Test ist, der sich am besten für große Stichproben eignet."
+      },
+      {
+        "q": "Warum lautet die Nullhypothese meist β₀ = 0?",
+        "a": "Ein Test gegen null fragt, ob ein Prädiktor überhaupt einen Effekt hat. In der Regression bedeutet ein Koeffizient von null, dass die Variable irrelevant ist. β₀ = 0 ist die häufigste Anwendung, aber Sie können gegen jeden Wert testen, zum Beispiel um zu prüfen, ob ein Parameter einem theoretisch vorhergesagten Wert wie 1 oder −0.5 entspricht."
+      },
+      {
+        "q": "Was bedeutet es, H₀ nicht zu verwerfen?",
+        "a": "H₀ nicht zu verwerfen bedeutet, dass die Daten keine ausreichende Evidenz liefern, um zu schließen, dass sich der Parameter vom hypothetischen Wert unterscheidet. Es beweist nicht, dass H₀ wahr ist. Das Ergebnis kann einen tatsächlich nullen Effekt widerspiegeln oder eine unzureichende statistische Power aufgrund einer kleinen Stichprobe oder eines großen Standardfehlers."
+      },
+      {
+        "q": "Wann sollte ich stattdessen den Likelihood-Ratio-Test verwenden?",
+        "a": "Der Likelihood-Ratio-Test wird bevorzugt, wenn Stichprobengrößen klein sind, der Parameter nahe an der Grenze seines zulässigen Bereichs liegt oder die Ergebnisse des Wald-Tests stark von der gewählten Parametrisierung abhängen. Bei großen Stichproben und glatt verteilten Schätzungen liefern Wald-Test und Likelihood-Ratio-Test nahezu identische p-Werte."
+      },
+      {
+        "q": "Welches Signifikanzniveau sollte ich verwenden?",
+        "a": "Die übliche Schwelle ist α = 0.05 (5%), was bedeutet, dass Sie eine 5%-Chance akzeptieren, eine wahre Nullhypothese fälschlich zu verwerfen. Für strengere Anforderungen, etwa bei der Zulassung medizinischer Geräte, in der Genomik oder Physik, wird α = 0.01 oder sogar 0.001 verwendet. In explorativer Forschung wird manchmal α = 0.10 akzeptiert. Die Wahl sollte vor dem Betrachten der Daten getroffen werden."
+      }
+    ]
+  }
+}

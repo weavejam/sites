@@ -1,0 +1,95 @@
+{
+  "title": "Paired Samples t-Test Calculator - Before & After Data",
+  "tagline": "Perform a paired samples t-test to compare two related groups — before/after measurements, matched pairs — and get t-statistic, p-value, and confidence interval.",
+  "intro": "Enter two comma-separated data groups of equal length, set the significance level and test type, and instantly get the full paired t-test output.",
+  "formula": "t = d̄ / (s_d / √n)  |  df = n − 1  |  d̄ = mean of differences  |  s_d = standard deviation of differences",
+  "field": {
+    "group1": "Group 1 Data (e.g. Before Treatment)",
+    "group2": "Group 2 Data (e.g. After Treatment)",
+    "alpha": "Significance Level (α)",
+    "mu": "Hypothesized Mean Difference (μ₀)",
+    "tail": "Test Type"
+  },
+  "placeholder": {
+    "data": "e.g. 140, 135, 150, 155, 130"
+  },
+  "tail": {
+    "two-tailed": "Two-Tailed",
+    "right-tailed": "Right-Tailed",
+    "left-tailed": "Left-Tailed"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter at least 2 matching values in each group. Both groups must have the same number of data points."
+  },
+  "result": {
+    "heading": "Results",
+    "tStat": "t-Statistic",
+    "df": "Degrees of Freedom",
+    "pValue": "P-Value",
+    "dBar": "Mean Difference (d̄)",
+    "sd": "Std Dev of Differences (s_d)",
+    "ci95": "95% Confidence Interval",
+    "reject": "Reject H₀ — statistically significant difference detected.",
+    "failReject": "Fail to reject H₀ — no statistically significant difference detected."
+  },
+  "about": {
+    "heading": "About the Paired Samples t-Test Calculator",
+    "body": "The paired samples t-test (also called the dependent t-test or matched-pairs t-test) is a parametric statistical procedure that determines whether the mean difference between two related sets of measurements is significantly different from zero (or from any other hypothesised value). It is called 'paired' because each observation in Group 1 corresponds to exactly one observation in Group 2 — the two measurements come from the same subject, matched participants, or the same location measured at two different times.\n\nThe most common application is a before-and-after study design: a researcher measures a characteristic (blood pressure, test score, weight, sales figures) in each subject before an intervention and then again after. Because the same individuals are measured twice, the two groups are not independent — they are correlated. Ignoring this correlation and using an independent-samples t-test would be incorrect; it would underestimate the precision of the comparison by failing to account for the natural between-subject variability that cancels out when you work with differences.\n\nThe computational trick that makes the paired t-test elegant is the reduction to a one-sample problem. For each pair i, compute the difference d_i = Group1_i − Group2_i. The paired t-test then asks: is the mean of these differences (d̄) significantly different from zero? This transforms the two-sample problem into a one-sample t-test on the differences. The test statistic is t = (d̄ − μ₀) / (s_d / √n), where μ₀ is the hypothesised mean difference (usually 0), s_d is the sample standard deviation of the differences, and n is the number of pairs. The statistic follows a Student's t-distribution with df = n − 1 degrees of freedom under the null hypothesis.\n\nThe p-value from this t-statistic tells you the probability of observing a mean difference as large as (or larger than) d̄ if the true population mean difference were μ₀. If the p-value is below your chosen significance level α, you reject the null hypothesis and conclude there is a statistically significant mean difference between the paired measurements. The confidence interval for d̄ provides an estimate of the plausible range for the true mean difference and is often more informative than the p-value alone.\n\nFor the paired t-test to be valid, the differences d_i must be approximately normally distributed. This assumption is checked by examining a histogram or normal Q-Q plot of the differences. With n ≥ 30, the Central Limit Theorem ensures approximate normality even if the individual differences are not normal. For small samples with clearly non-normal differences, the Wilcoxon signed-rank test is the non-parametric alternative.\n\nCommon applications include medical efficacy trials (before vs. after drug treatment), educational research (pre-test vs. post-test scores), nutrition and fitness studies (baseline vs. follow-up measurements), and business analytics (sales before vs. after an advertising campaign). In each case, the key requirement is that every pair of values must come from the same individual, entity, or matched unit — not from two independent groups."
+  },
+  "examples": {
+    "heading": "Worked Examples",
+    "intro": "Three before-and-after study scenarios with realistic data to illustrate the paired t-test output.",
+    "colInput": "Study Design",
+    "colOutput": "t-Statistic / p-Value",
+    "colNote": "Conclusion",
+    "loadBP": "Load blood pressure example",
+    "loadTutor": "Load tutoring example",
+    "loadSales": "Load sales campaign example",
+    "items": [
+      {
+        "input": "Blood pressure before: 140,135,150,155,130,142,138,147,152,133 / after: 132,130,145,148,125,135,130,140,145,128 (two-tailed, α=0.05, n=10)",
+        "output": "t ≈ 16.00, df = 9, p < 0.001",
+        "note": "Highly significant. The drug reduced systolic blood pressure by an average of 6.4 mmHg across 10 patients."
+      },
+      {
+        "input": "Test scores before: 75,80,82,70,88,65,90,78 / after: 85,85,88,78,92,75,95,85 (two-tailed, α=0.05, n=8)",
+        "output": "t ≈ −8.47, df = 7, p < 0.001",
+        "note": "Significant improvement. Students scored on average 6.9 points higher after the tutoring program."
+      },
+      {
+        "input": "Weekly sales before: 500,550,480,600,520,530 / after: 540,580,500,650,550,560 (two-tailed, α=0.05, n=6)",
+        "output": "t ≈ −7.91, df = 5, p < 0.001",
+        "note": "The advertising campaign significantly increased weekly sales by an average of 33.3 units per store."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Paired Samples t-Test Calculator",
+    "steps": [
+      "Enter Group 1 data (e.g. 'before' values) as a comma-separated list of numbers in the first field.",
+      "Enter Group 2 data (e.g. 'after' values) in the second field. Both groups must have the same number of values; the first number in Group 1 is paired with the first in Group 2, and so on.",
+      "Set the significance level α (0.01, 0.05, or 0.10) and the hypothesised mean difference μ₀ (usually 0). Select the test type (two-tailed, right-tailed, or left-tailed).",
+      "Click Calculate to see the t-statistic, degrees of freedom, p-value, mean difference, standard deviation of differences, and a 95% confidence interval.",
+      "Compare the p-value to α. If p ≤ α, reject H₀ and conclude there is a statistically significant mean difference. If p > α, fail to reject H₀."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "When should I use a paired t-test instead of an independent t-test?",
+    "q1_a": "Use a paired t-test when each observation in one group is naturally matched or linked to exactly one observation in the other group — for example, the same person measured before and after treatment, or two siblings assigned to two different diets. If the two groups are independent (different, unrelated individuals with no matching), use an independent-samples t-test instead.",
+    "q2": "What is the hypothesised mean difference μ₀?",
+    "q2_a": "μ₀ is the value you hypothesise the true mean difference equals under the null hypothesis. For most applications — testing whether an intervention has any effect — μ₀ = 0. For more specific hypotheses, such as testing whether a drug reduces blood pressure by at least 10 mmHg, you would set μ₀ = 10.",
+    "q3": "What if my differences are not normally distributed?",
+    "q3_a": "The paired t-test assumes the differences are approximately normally distributed. With n ≥ 30 pairs, the Central Limit Theorem makes this assumption less critical. For smaller samples with clearly non-normal differences (check a histogram), the Wilcoxon signed-rank test is a robust non-parametric alternative that does not assume normality.",
+    "q4": "How do I interpret the confidence interval?",
+    "q4_a": "The 95% confidence interval gives a range of plausible values for the true mean difference. If the interval does not include zero, the result is significant at α = 0.05. The interval is more informative than the p-value alone because it shows the magnitude and direction of the effect. For example, a CI of (2.3, 9.8) tells you both that the effect is significant and that it ranges from small to moderately large.",
+    "q5": "Can I run a one-tailed paired t-test?",
+    "q5_a": "Yes. Select 'Right-Tailed' if you predict Group 1 > Group 2 (positive mean difference), or 'Left-Tailed' if you predict Group 1 < Group 2 (negative mean difference). A one-tailed test is more powerful but is only valid when you specified the direction of the effect before collecting data. Using a one-tailed test purely because your two-tailed result is borderline is a form of p-hacking.",
+    "q6": "What does a significant result actually mean?",
+    "q6_a": "A significant result (p ≤ α) means the observed mean difference is unlikely to have occurred by chance if the null hypothesis were true. It does not prove the null is false, nor does it guarantee the effect is large or clinically important. Always report the mean difference d̄, its confidence interval, and an effect size (such as Cohen's d = d̄ / s_d) so readers can judge the practical significance of the finding."
+  }
+}

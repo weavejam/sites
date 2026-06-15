@@ -1,0 +1,94 @@
+{
+  "title": "Calculadora de transmisión – Potencia de señal y tasa de datos",
+  "tagline": "Calcula la pérdida en espacio libre, potencia recibida, SNR, capacidad de canal de Shannon y eficiencia de banda para enlaces inalámbricos.",
+  "intro": "Introduce potencia del transmisor, distancia, frecuencia, ancho de banda, tasa de datos y ganancia de antena para analizar la propagación de la señal en cualquier sistema inalámbrico.",
+  "formula": "FSPL = 20·log(d) + 20·log(f) − 147.55 dB | Pr = Pt + 2·Ga − FSPL (dBm) | C = B·log₂(1 + SNR)",
+  "field": {
+    "txPower": "Potencia de transmisión (W)",
+    "distance": "Distancia (m)",
+    "frequency": "Frecuencia (Hz)",
+    "bandwidth": "Ancho de banda (Hz)",
+    "dataRate": "Tasa de datos (bps)",
+    "antennaGain": "Ganancia de antena (dB)"
+  },
+  "placeholder": {
+    "txPower": "p. ej. 0.1",
+    "distance": "p. ej. 10",
+    "frequency": "p. ej. 2400000000",
+    "bandwidth": "p. ej. 20000000",
+    "dataRate": "p. ej. 54000000",
+    "antennaGain": "p. ej. 2"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce valores positivos en todos los campos. La frecuencia, el ancho de banda y la tasa de datos deben ser mayores que cero."
+  },
+  "result": {
+    "heading": "Resultados de transmisión",
+    "pathLoss": "Pérdida en espacio libre: {value} dB",
+    "rxPower": "Potencia recibida: {value} dBm",
+    "snr": "Relación señal/ruido: {value} dB",
+    "shannonCapacity": "Capacidad de Shannon: {value} Mbit/s",
+    "spectralEfficiency": "Eficiencia espectral (Shannon): {value} bit/s/Hz",
+    "bwEfficiency": "Eficiencia de banda (real): {value} bit/s/Hz"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de transmisión",
+    "body": "El análisis de la transmisión de señales es una piedra angular de la ingeniería de telecomunicaciones. Cada vez que la energía electromagnética se emite desde una antena, se expande en tres dimensiones y su densidad de potencia disminuye con el cuadrado de la distancia a la fuente. Entender este comportamiento —y los límites que impone al diseño de sistemas de comunicación— es esencial para ingenieros que diseñan redes WiFi, estaciones base celulares, enlaces satelitales, radio de difusión y sistemas de radar.\n\nLa métrica individual más importante en un presupuesto de enlace es la pérdida de trayecto en espacio libre (FSPL). Para una señal que viaja a distancia d y frecuencia f en un entorno sin obstrucciones, FSPL (en decibelios) = 20·log₁₀(d) + 20·log₁₀(f) − 147.55, donde d está en metros y f en hercios. La pérdida de trayecto no es una pérdida disipativa; es simplemente la consecuencia de que el frente de onda en expansión esférica diluye la energía transmitida sobre un área cada vez mayor. Las señales de frecuencia más alta pierden proporcionalmente más potencia que las de frecuencia más baja a la misma distancia porque su longitud de onda es menor: la apertura de la antena abarca una fracción menor de la esfera en expansión.\n\nLa potencia recibida es entonces: Pr (dBm) = Pt (dBm) + Gt (dB) + Gr (dB) − FSPL (dB), donde Pt es la potencia transmitida, Gt la ganancia de la antena transmisora y Gr la ganancia de la antena receptora. Esta calculadora asume que se usa la misma antena en ambos extremos por simplicidad. La ganancia de antena no crea potencia; la concentra en una dirección concreta. Una antena de 15 dB de ganancia enfoca la potencia como un reflector, en comparación con la referencia isotrópica, lo que equivale a multiplicar la potencia del transmisor por un factor de unos 31.\n\nLa relación señal/ruido (SNR) se calcula comparando la potencia recibida con la potencia de ruido térmico N = k·T·B, donde k es la constante de Boltzmann (1.38 × 10⁻²³ J/K), T es la temperatura de ruido (290 K estándar) y B es el ancho de banda. Un mayor ancho de banda captura más ruido, lo que explica por qué los sistemas de gran ancho de banda requieren mucha más potencia de señal que los sistemas de banda estrecha para obtener la misma SNR.\n\nEl teorema de Shannon-Hartley establece un límite superior fundamental para la tasa de información que puede transmitirse de forma fiable por cualquier canal: C = B·log₂(1 + SNR). Este máximo teórico, llamado capacidad de Shannon, nunca puede superarse, sin importar lo ingenioso que sea el esquema de modulación y codificación. Los sistemas modernos como 5G NR y Wi‑Fi 6 usan modulación y codificación adaptativas que se acercan a este límite hasta unas pocas décimas de dB en buenas condiciones de canal. La relación entre la capacidad de Shannon y el ancho de banda, llamada eficiencia espectral, indica cuántos bits por segundo por hercio puede entregar teóricamente el canal. Compararla con la eficiencia real de la tasa de datos revela con qué eficacia el sistema aprovecha su espectro disponible."
+  },
+  "examples": {
+    "heading": "Ejemplos de la calculadora de transmisión",
+    "intro": "Tres escenarios de comunicación, desde WiFi en interiores hasta un satélite geoestacionario, que muestran cómo la escala afecta a la pérdida de trayecto y la capacidad.",
+    "colInput": "Parámetros del escenario",
+    "colOutput": "Pérdida de trayecto / Potencia recibida",
+    "colNote": "Notas",
+    "loadWifi": "Cargar ejemplo WiFi",
+    "loadCellular": "Cargar ejemplo celular",
+    "loadSatellite": "Cargar ejemplo satelital",
+    "items": [
+      {
+        "input": "WiFi: 0.1 W, 10 m, 2.4 GHz, 20 MHz BW, 54 Mbit/s, ganancia de 2 dBi",
+        "output": "FSPL ≈ 60.1 dB, Pr ≈ −36.1 dBm",
+        "note": "Router doméstico típico a 10 m. Con un piso de ruido térmico de alrededor de −101 dBm, SNR ≈ 65 dB: más que suficiente para 54 Mbit/s en 802.11g."
+      },
+      {
+        "input": "Celular: 50 W, 1 km, 900 MHz, 5 MHz BW, 10 Mbit/s, ganancia de 15 dBi",
+        "output": "FSPL ≈ 91.5 dB, Pr ≈ −14.5 dBm",
+        "note": "Estación base GSM/LTE. La alta ganancia de antena compensa la pérdida de trayecto de 1 km; la SNR está muy por encima del umbral para voz y datos básicos."
+      },
+      {
+        "input": "Satelital: 100 W, 35,786 km, 12 GHz, 50 MHz BW, 100 Mbit/s, ganancia de 40 dBi",
+        "output": "FSPL ≈ 205.1 dB, Pr ≈ −75.1 dBm",
+        "note": "Enlace satelital GEO. La enorme pérdida de trayecto se compensa con ganancias de antena muy altas (antenas parabólicas) tanto en subida como en bajada."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de transmisión",
+    "steps": [
+      "Introduce la potencia de salida del transmisor en vatios. Es la potencia entregada a la antena, no la potencia de entrada de CC del transmisor.",
+      "Introduce la distancia entre transmisor y receptor en metros. Para enlaces satelitales, usa el alcance oblicuo (no la altitud) en metros.",
+      "Introduce la frecuencia portadora en hercios. Por ejemplo, 2.4 GHz = 2,400,000,000 Hz. Cuanto mayor es la frecuencia, mayor es la pérdida en espacio libre.",
+      "Introduce el ancho de banda del canal en hercios, la tasa nominal de datos en bits por segundo y la ganancia de antena en dBi (decibelios respecto a un radiador isotrópico). La calculadora aplica la misma ganancia en transmisor y receptor.",
+      "Haz clic en Calcular. Revisa la pérdida de trayecto, la potencia recibida, la SNR y la capacidad de Shannon. Si la potencia recibida está por debajo del piso de ruido del sistema, el enlace no funcionará al alcance especificado."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes de la calculadora de transmisión",
+    "q1": "¿Qué es la pérdida en espacio libre y por qué aumenta con la frecuencia?",
+    "q1_a": "La pérdida en espacio libre es la atenuación de la potencia de la señal debida a la expansión esférica de la onda electromagnética a medida que se aleja de la fuente. Aumenta con la frecuencia porque una señal de frecuencia más alta tiene una longitud de onda menor, y una antena receptora de tamaño físico fijo capta una fracción menor de la potencia incidente a longitudes de onda más cortas. Dicho de otro modo, una antena de ganancia fija tiene una apertura efectiva menor a frecuencias más altas.",
+    "q2": "¿Por qué duplicar la distancia solo aumenta la pérdida en 6 dB?",
+    "q2_a": "La pérdida de trayecto sigue la ley del inverso del cuadrado: la potencia recibida es proporcional a 1/d². En decibelios, esto significa que la pérdida aumenta en 20·log₁₀(2) ≈ 6 dB cuando la distancia se duplica. Así, duplicar la distancia reduce la potencia recibida a una cuarta parte, no a la mitad. Esto suele malinterpretarse cuando se espera una relación lineal entre distancia y fuerza de la señal.",
+    "q3": "¿Qué es la capacidad de Shannon y cuánto se acercan los sistemas reales?",
+    "q3_a": "La capacidad de Shannon C = B·log₂(1 + SNR) es la tasa máxima teórica de datos que puede transmitirse de forma fiable por un canal con un ancho de banda y una SNR dados, independientemente del esquema de modulación o codificación. Los sistemas modernos que usan códigos LDPC o turbo junto con modulación adaptativa (256-QAM o 1024-QAM) pueden acercarse a 1–2 dB del límite de Shannon, lo que significa que transmiten entre el 70% y el 90% del máximo teórico.",
+    "q4": "¿Qué es la ganancia de antena y cómo afecta al presupuesto de enlace?",
+    "q4_a": "La ganancia de antena mide cuánta más potencia irradia (o recibe) una antena en su dirección preferida en comparación con un radiador isotrópico. Una antena de 15 dBi concentra la potencia por un factor de unos 31× en su haz. En la ecuación del presupuesto de enlace, las ganancias de antena de transmisión y recepción se suman directamente al nivel de la señal recibida, multiplicando de forma efectiva la potencia útil de la señal sin aumentar la potencia del transmisor.",
+    "q5": "¿Cómo afecta el ancho de banda al ruido y a la capacidad de datos?",
+    "q5_a": "La potencia de ruido térmico es proporcional al ancho de banda: N = kTB. Duplicar el ancho de banda duplica la potencia de ruido (añade 3 dB de ruido), lo que reduce la SNR en 3 dB. Sin embargo, duplicar el ancho de banda también puede duplicar la tasa de datos alcanzable por unidad de SNR según la fórmula de Shannon. El equilibrio se gestiona mediante el orden de modulación y la tasa de codificación en sistemas adaptativos.",
+    "q6": "¿Se puede usar esta calculadora para propagación interior o urbana?",
+    "q6_a": "La calculadora modela propagación en espacio libre, lo cual es preciso para enlaces exteriores con línea de vista (satélite, microondas punto a punto). Los entornos interiores y urbanos presentan pérdidas adicionales por paredes, muebles, edificios y desvanecimiento por multitrayecto, que a menudo se modelan como 10–40 dB extra de pérdida de trayecto según el escenario. Para esas aplicaciones, añade una pérdida de penetración interior o usa un modelo empírico como ITU-R P.1238 o COST 231 Hata."
+  }
+}

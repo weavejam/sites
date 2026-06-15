@@ -1,0 +1,100 @@
+{
+  "title": "Calculateur de polarisation du transistor – point DC",
+  "tagline": "Calculez le point de fonctionnement DC, le courant collecteur, le gain en tension et le facteur de stabilité des circuits à polarisation par pont diviseur.",
+  "intro": "Saisissez la tension d'alimentation, les valeurs des résistances, le gain en courant β et la tension base-émetteur pour analyser un amplificateur à émetteur commun avec polarisation par pont diviseur.",
+  "formula": "Vb = Vcc·R2/(R1+R2) | Ic = β·Ib | Vc = Vcc − Ic·Rc | Vce = Vc − Ve | Av = −(Rc‖RL)/(Re + re) où re = 26 mV/Ic",
+  "field": {
+    "vcc": "Tension d'alimentation Vcc (V)",
+    "r1": "Résistance de base R1 (Ω)",
+    "r2": "Résistance de base R2 (Ω)",
+    "rc": "Résistance de collecteur Rc (Ω)",
+    "re": "Résistance d'émetteur Re (Ω)",
+    "rl": "Résistance de charge RL (Ω)",
+    "beta": "Gain en courant β (hFE)",
+    "vbe": "Tension base-émetteur Vbe (V)"
+  },
+  "placeholder": {
+    "vcc": "ex. 12",
+    "r1": "ex. 22000",
+    "r2": "ex. 4700",
+    "rc": "ex. 2200",
+    "re": "ex. 1000",
+    "rl": "ex. 10000",
+    "beta": "ex. 100",
+    "vbe": "ex. 0.7"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs positives valides pour tous les champs. Vbe est généralement de 0,6 à 0,7 V pour les transistors au silicium."
+  },
+  "result": {
+    "heading": "Point de fonctionnement DC",
+    "vb": "Tension de base Vb : {value} V",
+    "ve": "Tension d'émetteur Ve : {value} V",
+    "vc": "Tension de collecteur Vc : {value} V",
+    "vce": "Tension collecteur-émetteur Vce : {value} V",
+    "ic": "Courant collecteur Ic : {value} mA",
+    "ib": "Courant de base Ib : {value} μA",
+    "voltageGain": "Gain en tension |Av| : {value}",
+    "stabilityFactor": "Facteur de stabilité S : {value}"
+  },
+  "about": {
+    "heading": "À propos du calculateur de polarisation du transistor",
+    "body": "La polarisation d'un transistor consiste à établir un point de fonctionnement DC stable — le point de repos, ou point Q — pour un amplificateur à transistor bipolaire (BJT). Sans polarisation correcte, le transistor fonctionne en coupure (aucun courant) ou en saturation (courant maximal), rendant l'amplification linéaire impossible. Une polarisation adéquate place le point Q près du centre de la région active, ce qui permet au signal de sortie de swinguer symétriquement au-dessus et au-dessous du niveau de repos sans distorsion.\n\nCe calculateur implémente la configuration à pont diviseur, la méthode de polarisation la plus utilisée dans les circuits pratiques. Deux résistances, R1 et R2, forment un diviseur résistif entre l'alimentation Vcc et la masse. Le nœud entre R1 et R2 fixe la tension de base : Vb = Vcc × R2/(R1+R2), en supposant que le diviseur est rigide (c'est-à-dire que le courant du diviseur est bien supérieur au courant de base). La tension d'émetteur suit avec Ve = Vb − Vbe, où Vbe ≈ 0,7 V pour les transistors NPN au silicium à température ambiante.\n\nLe courant d'émetteur traverse la résistance d'émetteur Re, établissant Ve = Ie × Re. Comme Ic ≈ Ie pour un β élevé, le courant collecteur est approximativement Ic = Ve/Re. La tension de collecteur est Vc = Vcc − Ic×Rc, et la tension collecteur-émetteur est Vce = Vc − Ve. Pour que le transistor reste dans la région active, Vce doit être positif et supérieur à la tension de saturation (généralement 0,2 à 0,3 V).\n\nLe gain en tension de l'étage à émetteur commun est déterminé par le rapport entre la charge collecteur en AC et l'impédance d'émetteur effective. La charge collecteur en AC est Rc en parallèle avec RL (la résistance de charge externe). L'impédance d'émetteur effective est Re plus la résistance intrinsèque d'émetteur re = VT/Ic, avec VT ≈ 26 mV à température ambiante. Le gain en valeur absolue est |Av| = (Rc‖RL)/(Re + re).\n\nLe facteur de stabilité S mesure dans quelle mesure le réseau de polarisation stabilise le point de fonctionnement face aux variations des paramètres du transistor, principalement les changements de β liés à la température ou aux différences entre composants. Plus le facteur de stabilité est faible (idéalement inférieur à 10), plus la conception est stable. La polarisation par pont diviseur avec une grande résistance d'émetteur obtient un faible S grâce à la contre-réaction négative : toute tendance à augmenter Ic fait monter Ve, ce qui réduit Vbe et donc Ib, compensant en partie l'augmentation initiale de Ic.\n\nConseils de conception pratiques : choisissez Ic dans la plage 1 à 10 mA pour les amplificateurs petit signal ; placez Vc à environ la moitié de Vcc pour obtenir la plus grande excursion de sortie sans distorsion ; maintenez le facteur de stabilité sous 10 ; et vérifiez que Vce reste au-dessus de la tension de saturation dans les pires conditions de β maximal et de température maximale."
+  },
+  "examples": {
+    "heading": "Exemples de polarisation du transistor",
+    "intro": "Trois configurations d'amplificateur à émetteur commun montrant les calculs du point de fonctionnement et du gain.",
+    "colInput": "Paramètres du circuit",
+    "colOutput": "Résultats clés",
+    "colNote": "Application",
+    "loadStandard": "Charge de polarisation standard",
+    "loadHighGain": "Charge de polarisation à fort gain",
+    "loadAudio": "Charge d'étage audio",
+    "items": [
+      {
+        "input": "Vcc=12V, R1=22kΩ, R2=4.7kΩ, Rc=2.2kΩ, Re=1kΩ, RL=10kΩ, β=100, Vbe=0.7V",
+        "output": "Ic≈1.35 mA, Vc≈9.04V, Vce≈7.68V, |Av|≈1.77",
+        "note": "Polarisation standard par pont diviseur. Le point Q est proche du milieu de l'alimentation, avec un gain modéré. Convient comme étage d'amplification petit signal polyvalent."
+      },
+      {
+        "input": "Vcc=15V, R1=15kΩ, R2=3kΩ, Rc=3.3kΩ, Re=500Ω, RL=15kΩ, β=150, Vbe=0.7V",
+        "output": "Ic≈3.46 mA, Vc≈3.58V, Vce≈1.84V, |Av|≈5.33",
+        "note": "Configuration à fort gain. Le Vce faible s'approche de la saturation — envisagez de réduire Rc ou d'augmenter Vcc pour une excursion de sortie plus large."
+      },
+      {
+        "input": "Vcc=18V, R1=18kΩ, R2=3.9kΩ, Rc=1.8kΩ, Re=820Ω, RL=8.2kΩ, β=120, Vbe=0.7V",
+        "output": "Ic≈2.94 mA, Vc≈12.72V, Vce≈10.29V, |Av|≈1.78",
+        "note": "Étape de sortie pour amplificateur audio. Une Vcc plus élevée offre une excursion de sortie plus large ; RL correspond à l'impédance typique d'un haut-parleur."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de polarisation du transistor",
+    "steps": [
+      "Saisissez la tension d'alimentation Vcc en volts. Il s'agit du rail positif qui alimente le circuit ; pour les étages BJT petit signal, elle est généralement comprise entre 5 et 24 V.",
+      "Saisissez les quatre valeurs de résistance en ohms : R1 et R2 forment le diviseur de base ; Rc est la résistance de collecteur qui définit le gain en tension et l'impédance de sortie ; Re est la résistance d'émetteur qui stabilise le point de polarisation.",
+      "Saisissez la résistance de charge RL en ohms. Elle représente l'impédance que l'amplificateur pilote — par exemple l'impédance d'entrée de l'étage suivant ou une charge de haut-parleur.",
+      "Saisissez le gain en courant β du transistor (hFE, issu de la fiche technique) et la tension base-émetteur Vbe (0,6 à 0,7 V pour le silicium, 0,2 à 0,3 V pour le germanium).",
+      "Cliquez sur Calculer. Vérifiez que Vce est positif et supérieur à la saturation, que Ic se situe dans une plage pratique (1 à 10 mA pour les étages petit signal), et que le facteur de stabilité S est inférieur à 10 pour une bonne stabilité thermique."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la polarisation du transistor",
+    "q1": "Qu'est-ce que le point Q et pourquoi est-il important ?",
+    "q1_a": "Le point Q (point de repos) est l'état de fonctionnement DC du transistor lorsqu'aucun signal AC n'est appliqué. Il est défini par le couple (Ic, Vce). Placer le point Q près du centre de la région active maximise l'excursion de sortie sans distorsion. Un point Q trop proche de la coupure ou de la saturation provoque un écrêtage — la forme d'onde de sortie est aplatie à un ou aux deux pics.",
+    "q2": "Pourquoi la polarisation par pont diviseur est-elle préférée à la polarisation fixe ?",
+    "q2_a": "La polarisation fixe règle le courant de base directement depuis l'alimentation via une seule résistance, ce qui rend Ic proportionnel à β. Comme β varie fortement avec la température et d'un transistor à l'autre (souvent 2:1 ou plus), le point Q dérive de manière imprévisible. La polarisation par pont diviseur ajoute une résistance d'émetteur qui fournit une contre-réaction négative, maintenant Ic à peu près constant indépendamment des variations de β, à condition que le diviseur soit suffisamment rigide.",
+    "q3": "Qu'est-ce que la résistance intrinsèque d'émetteur re ?",
+    "q3_a": "La résistance intrinsèque d'émetteur re = VT/Ic ≈ 26 mV / Ic (avec Ic en ampères) provient de la physique de la jonction base-émetteur polarisée en direct. C'est la petite résistance signal vue en regardant dans la borne émetteur. À Ic = 1 mA, re ≈ 26 Ω. Quand le courant collecteur augmente, re diminue, ce qui accroît le gain en tension. Elle doit être prise en compte dans les calculs de gain lorsque Re est faible par rapport à re.",
+    "q4": "Comment choisir R1 et R2 pour une tension de base donnée ?",
+    "q4_a": "Commencez par déterminer la tension de base souhaitée Vb = Ve + Vbe, où Ve est généralement fixé à 10 à 20 % de Vcc pour une bonne stabilité. Choisissez ensuite un courant de pont au moins 10 fois supérieur au courant de base Ib = Ic/β, afin que le diviseur soit suffisamment rigide. À partir du courant de pont et de Vb, calculez R2 = Vb/I_div et R1 = (Vcc − Vb)/I_div. Arrondissez aux valeurs normalisées les plus proches.",
+    "q5": "Que m'indique le facteur de stabilité S ?",
+    "q5_a": "Le facteur de stabilité S approxime le rapport entre la variation du courant collecteur et la variation du courant de saturation inverse du transistor (ou, en pratique, sa sensibilité aux variations de β). Plus S est faible, meilleure est la stabilité. Une polarisation par pont diviseur avec une dégénérescence d'émetteur suffisante atteint généralement S < 5, contre S = β + 1 pour une polarisation fixe, qui peut dépasser 100.",
+    "q6": "Comment augmenter le gain en tension sans changer sensiblement le point Q ?",
+    "q6_a": "Contournez la résistance d'émetteur Re avec un gros condensateur. Aux fréquences du signal AC, le condensateur court-circuite Re, donc le gain petit signal monte à Av ≈ Rc‖RL / re, bien plus élevé. La polarisation DC reste définie par la valeur totale de Re, ce qui préserve la stabilité, tandis que le gain AC profite du chemin à faible impédance contourné. C'est la technique standard des étages de préamplification audio."
+  }
+}

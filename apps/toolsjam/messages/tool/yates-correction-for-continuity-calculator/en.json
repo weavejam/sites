@@ -1,0 +1,105 @@
+{
+  "title": "Yates Correction for Continuity Calculator - Chi-Square",
+  "tagline": "Calculate the Yates-corrected chi-square statistic for 2×2 contingency tables. Reduce Type I error when expected cell frequencies are small.",
+  "intro": "Enter the four cell counts (a, b, c, d) from your 2×2 contingency table to compute the Yates-corrected χ² value and p-value.",
+  "table": {
+    "label": "Enter counts for your 2×2 contingency table: Group A in rows, Outcome 1/2 in columns."
+  },
+  "field": {
+    "a": "Group A, Outcome 1 (a)",
+    "b": "Group A, Outcome 2 (b)",
+    "c": "Group B, Outcome 1 (c)",
+    "d": "Group B, Outcome 2 (d)"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter non-negative integers for all four cells, with at least one non-zero row and column."
+  },
+  "result": {
+    "heading": "Results",
+    "chi2": "Yates χ² Statistic",
+    "pValue": "p-Value",
+    "df": "Degrees of Freedom",
+    "N": "Total N",
+    "significant": "Significant association detected (p < 0.05).",
+    "notSignificant": "No significant association detected (p ≥ 0.05)."
+  },
+  "about": {
+    "heading": "About Yates' Correction for Continuity",
+    "body": "Yates' correction for continuity is an adjustment applied to the chi-square (χ²) test when used with a 2×2 contingency table. The chi-square distribution is continuous, but the observed cell frequencies in a contingency table are discrete counts. This discrepancy causes the chi-square approximation to overestimate the test statistic, leading to p-values that are too small and an increased risk of Type I error — especially when sample sizes or expected cell counts are small.\n\nFrank Yates proposed the correction in 1934. The idea is simple: subtract 0.5 from the absolute difference between each observed and expected frequency before squaring. The corrected formula is χ² = Σ (|O − E| − 0.5)² / E summed over all four cells. This small adjustment reduces the overall chi-square value, producing a more conservative (larger) p-value that better reflects the true probability of the observed or more extreme results.\n\nThe correction is particularly important when any expected cell frequency falls below 10, and especially when any expected frequency is below 5. Under those conditions, the standard chi-square test is known to be unreliable, and Yates' correction helps compensate. For larger samples where all expected frequencies exceed 10, the correction has minimal impact and the standard chi-square test is adequate.\n\nTo use the calculator, you need to structure your data as a 2×2 contingency table. The two rows represent the two groups (for example, Treatment vs. Control), and the two columns represent the two possible outcomes (for example, Success vs. Failure). Cell a is the count of Group A subjects with Outcome 1, cell b is Group A with Outcome 2, cell c is Group B with Outcome 1, and cell d is Group B with Outcome 2.\n\nThe degrees of freedom for a 2×2 table are always 1. The p-value is calculated from the chi-square distribution with 1 degree of freedom. A p-value below 0.05 is conventionally interpreted as evidence of a statistically significant association between group membership and outcome.\n\nThere is ongoing debate in the statistical community about when to use Yates' correction. Some statisticians argue it over-corrects and reduces statistical power. The alternative preferred by many modern statisticians for very small expected frequencies is Fisher's Exact Test, which calculates the exact probability without relying on the chi-square approximation at all. However, Yates' correction remains widely taught and accepted in many disciplines and is the appropriate choice when you want a quick, conservative result for a 2×2 table."
+  },
+  "examples": {
+    "heading": "Practical Examples",
+    "intro": "Explore various scenarios to understand how the calculator works.",
+    "colInput": "Input (a, b, c, d)",
+    "colOutput": "χ² / p-Value",
+    "colNote": "Note",
+    "items": [
+      {
+        "input": "a=3, b=22, c=11, d=14",
+        "output": "χ²≈4.86, p≈0.027",
+        "note": "Vaccine trial — significant; vaccine reduces infection rate."
+      },
+      {
+        "input": "a=15, b=5, c=8, d=12",
+        "output": "χ²≈3.68, p≈0.055",
+        "note": "Teaching method — borderline, not significant at α=0.05."
+      },
+      {
+        "input": "a=25, b=975, c=15, d=985",
+        "output": "χ²≈2.07, p≈0.151",
+        "note": "A/B ad test — no significant difference in click-through rate."
+      },
+      {
+        "input": "a=1, b=49, c=6, d=44",
+        "output": "χ²≈2.48, p≈0.115",
+        "note": "Rare side effect study — Yates correction is essential here due to low cell counts."
+      }
+    ],
+    "loadVaccine": "Vaccine Trial",
+    "loadTeaching": "Teaching Method",
+    "loadAB": "A/B Ad Test"
+  },
+  "howto": {
+    "heading": "How to use the calculator",
+    "steps": [
+      "Arrange your data in a 2×2 table: Group A in the first row, Group B in the second row, Outcome 1 in the first column, and Outcome 2 in the second column.",
+      "Enter the count for cell a (Group A, Outcome 1) in the first field, and b (Group A, Outcome 2) in the second field.",
+      "Enter the count for cell c (Group B, Outcome 1) and d (Group B, Outcome 2) in the remaining fields. All values must be non-negative integers.",
+      "Click Calculate to see the Yates-corrected χ² value, degrees of freedom (always 1), p-value, and the significance decision.",
+      "Use the example buttons to load preset data and verify results or explore common use cases."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ",
+    "items": [
+      {
+        "q": "What is Yates' correction for continuity?",
+        "a": "Yates' correction is an adjustment to the standard chi-square formula for 2×2 tables. It subtracts 0.5 from the absolute difference between observed and expected frequencies before squaring. This makes the test more conservative, reducing the risk of a false positive (Type I error) when sample sizes or expected cell counts are small."
+      },
+      {
+        "q": "When should I use Yates' correction versus the standard chi-square test?",
+        "a": "Use Yates' correction when any expected cell frequency falls below 10. The standard chi-square test is adequate when all expected frequencies are 10 or more. For very small samples where any expected frequency is below 5, consider Fisher's Exact Test instead, as it is even more reliable in that scenario."
+      },
+      {
+        "q": "What do the cells a, b, c, and d represent?",
+        "a": "Cell a is the number of subjects in Group A who experienced Outcome 1. Cell b is the number in Group A with Outcome 2. Cell c is the number in Group B with Outcome 1. Cell d is the number in Group B with Outcome 2. For a vaccine study, Group A might be vaccinated, Group B unvaccinated, Outcome 1 infected, and Outcome 2 not infected."
+      },
+      {
+        "q": "Why is the degree of freedom always 1 for a 2×2 table?",
+        "a": "The degrees of freedom for a chi-square test of independence equal (rows − 1) × (columns − 1). For a 2×2 table, that is (2−1) × (2−1) = 1. This means that once you know the marginal totals and one cell value, all other cell values are fully determined, leaving only one free parameter."
+      },
+      {
+        "q": "Does Yates' correction reduce statistical power?",
+        "a": "Yes, making the test more conservative means it requires stronger evidence to reject the null hypothesis. Critics argue that Yates' correction can over-correct, increasing the risk of a Type II error (missing a real effect). For larger samples with high expected counts, the correction is negligible. Many modern statisticians prefer Fisher's Exact Test for small sample 2×2 analyses."
+      },
+      {
+        "q": "Can I use this calculator for tables larger than 2×2?",
+        "a": "No. Yates' correction is specifically designed for 2×2 contingency tables. For larger tables (such as 3×2 or 3×3), use the standard Pearson chi-square test without continuity correction. The formula and degrees of freedom are different for larger tables."
+      }
+    ]
+  }
+}

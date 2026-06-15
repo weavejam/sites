@@ -1,0 +1,79 @@
+{
+  "title": "Two Envelopes Paradox Calculator - Decision Theory",
+  "tagline": "Explore the famous Two Envelopes Paradox interactively. Enter the amount in your envelope to analyze the expected values and understand the mathematical puzzle.",
+  "intro": "Enter the amount you see in your chosen envelope and click Analyze to see the expected value for switching versus keeping, along with the paradox explanation.",
+  "field": {
+    "amount": "Amount in Your Envelope (X)"
+  },
+  "placeholder": {
+    "amount": "e.g., 100"
+  },
+  "button": {
+    "analyze": "Analyze",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter a positive number for the amount in the envelope."
+  },
+  "result": {
+    "heading": "Expected Value Analysis",
+    "evKeepLabel": "Expected value if you keep",
+    "evKeepDesc": "The value in your envelope is certain.",
+    "evSwitchLabel": "Expected value if you switch",
+    "evSwitchDesc": "Based on E[other] = 0.5×(2X) + 0.5×(X/2) = 1.25X",
+    "paradoxNote": "Paradox: The same reasoning applied to the other envelope also yields 1.25× its value, creating an apparent infinite loop. The flaw is that X cannot simultaneously be both the larger and the smaller amount."
+  },
+  "about": {
+    "heading": "About the Two Envelopes Paradox",
+    "body": "The Two Envelopes Paradox is one of the most celebrated puzzles in probability theory and decision theory. It was popularized in the 1980s and 1990s and continues to generate lively debate among mathematicians, philosophers, and statisticians. The setup is deceptively simple: two envelopes each contain some amount of money. One envelope holds exactly twice what the other holds. You pick one envelope at random, peek at the amount X inside, and must then decide whether to switch to the other envelope.\n\nThe naive probabilistic argument goes like this: the other envelope contains either 2X (if you happened to pick the smaller) or X/2 (if you picked the larger). Each case is equally likely with probability 0.5. Therefore, the expected value of the other envelope is 0.5 × 2X + 0.5 × X/2 = X + X/4 = 1.25X. Since 1.25X is greater than X, you should always switch. But here lies the paradox: if you switched and now hold the other envelope with amount Y = 1.25X, the same logic tells you to switch back, and so on ad infinitum.\n\nThis calculator computes both expected values using the naive argument, making the paradox tangible with real numbers. When you enter X = 100, it shows that the naive analysis predicts an EV of 125 by switching and only 100 by keeping. The calculation is arithmetically correct, so why is the conclusion flawed?\n\nThe resolution hinges on probability theory. The naive argument implicitly assumes that after seeing X, it is equally likely that the other envelope contains 2X or X/2 — that is, it treats X as if it could be either the smaller or the larger amount with equal probability. But in any concrete setup, X is either the smaller amount (in which case the other envelope definitely has 2X) or X is the larger amount (in which case the other envelope definitely has X/2). The correct analysis requires a prior distribution over the possible amounts hidden in the envelopes. For most natural priors — including any distribution with a finite expected value — the correct expected value of switching is exactly X, providing no advantage.\n\nMore formally, let the two amounts be m and 2m drawn from some distribution. If you observe X, the conditional expectation of the other envelope given the prior is not 1.25X in general. The naive formula mixes two reference amounts (m and 2m) as if they share the same base, which is the algebraic sleight of hand that creates the illusion of gain.\n\nThe Two Envelopes Paradox beautifully illustrates how informal probabilistic reasoning can lead to contradictions when applied carelessly, and why rigorous Bayesian conditioning on the correct prior is essential. It has spurred research into improper priors, exchangeability, and decision theory under ambiguity, making it a staple example in advanced probability courses."
+  },
+  "examples": {
+    "heading": "Two envelopes paradox examples",
+    "intro": "Concrete amounts showing the naive expected-value calculation and the paradox it creates.",
+    "colInput": "Amount seen (X)",
+    "colOutput": "EV if switch (naive)",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "X = $100",
+        "output": "$125",
+        "note": "Naive EV = 0.5×$200 + 0.5×$50 = $125. Looks like switching gains $25, but the same logic applied to the other side yields the same conclusion."
+      },
+      {
+        "input": "X = $40",
+        "output": "$50",
+        "note": "EV = 0.5×$80 + 0.5×$20 = $50. The naive argument always inflates the expected gain by 25% of the observed amount."
+      },
+      {
+        "input": "X = $500",
+        "output": "$625",
+        "note": "EV = 0.5×$1000 + 0.5×$250 = $625. For any X the formula gives 1.25X, illustrating why the paradox persists regardless of the observed amount."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the Two Envelopes calculator",
+    "steps": [
+      "Enter the amount you observe in your chosen envelope in the input field labeled Amount in Your Envelope (X).",
+      "Click Analyze to compute the naive expected values for both keeping and switching.",
+      "Read the Expected value if you keep panel — it simply shows your observed amount X as the certain value.",
+      "Read the Expected value if you switch panel — it shows 1.25X, the result of the naive probability argument.",
+      "Review the Paradox note below the results to understand why the 1.25X figure is misleading and what the correct resolution is."
+    ]
+  },
+  "faq": {
+    "heading": "Two envelopes paradox FAQ",
+    "q1": "Why does the naive argument give 1.25X?",
+    "q1_a": "The naive formula computes 0.5×(2X) + 0.5×(X/2) = 1.25X by treating both possibilities as equally likely given the observed value. This is algebraically correct but probabilistically flawed because it mixes two different reference amounts as if they shared the same base.",
+    "q2": "Is it ever correct to switch envelopes?",
+    "q2_a": "Without additional information, switching and keeping are equally good choices. The expected value of both envelopes is the same when computed correctly using a proper prior distribution over the amounts. Switching never provides a guaranteed advantage.",
+    "q3": "What is the flaw in the switching argument?",
+    "q3_a": "The flaw is that after seeing X, you do not know whether X is the smaller or larger amount. The naive argument treats X as simultaneously possibly equal to m and 2m, but these are mutually exclusive. A rigorous Bayesian analysis shows that the correct expected gain from switching is zero for any proper prior.",
+    "q4": "Does the paradox change if I peek at the envelope?",
+    "q4_a": "Peeking and seeing X provides information, but without knowing the distribution of amounts it cannot help you decide. If you know the prior distribution (e.g., amounts are drawn from a uniform distribution up to some maximum), you can sometimes gain by switching, but the naive 1.25X rule is still wrong in general.",
+    "q5": "Is this the same as the Monty Hall problem?",
+    "q5_a": "They are related but different. In the Monty Hall problem, the host's action after your choice provides genuine new information that changes the probabilities, so switching is genuinely beneficial. In the Two Envelopes Paradox, no new information is revealed after you see X, so switching has zero expected benefit over keeping.",
+    "q6": "What does this paradox teach us about probability?",
+    "q6_a": "The paradox highlights the importance of specifying the prior distribution before applying probability arguments. Informal reasoning about equally likely events must be grounded in a well-defined probability space. It is a cautionary tale about the dangers of using expected value formulas without checking the underlying assumptions."
+  }
+}

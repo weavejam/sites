@@ -1,0 +1,100 @@
+{
+  "title": "Transistor-Bias-Rechner – DC-Arbeitspunkt",
+  "tagline": "Berechnen Sie den DC-Arbeitspunkt, den Kollektorstrom, die Spannungsverstärkung und den Stabilitätsfaktor von Transistorschaltungen mit Spannungsteiler-Bias.",
+  "intro": "Geben Sie Versorgungsspannung, Widerstandswerte, Stromverstärkung β und Basis-Emitter-Spannung ein, um einen Gegentakt-Verstärker mit Spannungsteiler-Bias zu analysieren.",
+  "formula": "Vb = Vcc·R2/(R1+R2) | Ic = β·Ib | Vc = Vcc − Ic·Rc | Vce = Vc − Ve | Av = −(Rc‖RL)/(Re + re) wobei re = 26 mV/Ic",
+  "field": {
+    "vcc": "Versorgungsspannung Vcc (V)",
+    "r1": "Basiswiderstand R1 (Ω)",
+    "r2": "Basiswiderstand R2 (Ω)",
+    "rc": "Kollektorwiderstand Rc (Ω)",
+    "re": "Emitterwiderstand Re (Ω)",
+    "rl": "Lastwiderstand RL (Ω)",
+    "beta": "Stromverstärkung β (hFE)",
+    "vbe": "Basis-Emitter-Spannung Vbe (V)"
+  },
+  "placeholder": {
+    "vcc": "z. B. 12",
+    "r1": "z. B. 22000",
+    "r2": "z. B. 4700",
+    "rc": "z. B. 2200",
+    "re": "z. B. 1000",
+    "rl": "z. B. 10000",
+    "beta": "z. B. 100",
+    "vbe": "z. B. 0.7"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie für alle Felder gültige positive Werte ein. Vbe liegt bei Siliziumtransistoren typischerweise bei 0,6–0,7 V."
+  },
+  "result": {
+    "heading": "DC-Arbeitspunkt",
+    "vb": "Basis-Spannung Vb: {value} V",
+    "ve": "Emitter-Spannung Ve: {value} V",
+    "vc": "Kollektor-Spannung Vc: {value} V",
+    "vce": "Kollektor-Emitter-Spannung Vce: {value} V",
+    "ic": "Kollektorstrom Ic: {value} mA",
+    "ib": "Basisstrom Ib: {value} μA",
+    "voltageGain": "Spannungsverstärkung |Av|: {value}",
+    "stabilityFactor": "Stabilitätsfaktor S: {value}"
+  },
+  "about": {
+    "heading": "Über den Transistor-Bias-Rechner",
+    "body": "Transistor-Biasing ist der Prozess, einen stabilen DC-Arbeitspunkt — den Ruhestrom- oder Q-Punkt — für einen Bipolartransistor-Verstärker (BJT) festzulegen. Ohne korrekte Biasierung arbeitet der Transistor im Sperrbereich (kein Stromfluss) oder in Sättigung (Maximalstrom), wodurch lineare Verstärkung unmöglich wird. Eine korrekte Biasierung legt den Q-Punkt nahe der Mitte des aktiven Bereichs, sodass das Ausgangssignal symmetrisch ober- und unterhalb des Ruheniveaus ohne Verzerrung schwingen kann.\n\nDieser Rechner verwendet die Spannungsteiler-Bias-Schaltung, die in Praxis die am weitesten verbreitete Bias-Methode ist. Zwei Widerstände, R1 und R2, bilden einen resistiven Spannungsteiler von der Versorgungsschiene Vcc nach Masse. Der Knoten zwischen R1 und R2 legt die Basisspannung fest: Vb = Vcc × R2/(R1+R2), vorausgesetzt, der Spannungsteiler ist steif (d. h. der Teilerstrom ist viel größer als der Basisstrom). Die Emitterspsnnung ergibt sich zu Ve = Vb − Vbe, wobei Vbe bei Silizium-NPN-Transistoren bei Raumtemperatur etwa 0,7 V beträgt.\n\nDer Emitterstrom fließt durch den Emitterwiderstand Re und stellt Ve = Ie × Re ein. Da Ic ≈ Ie bei großem β ist, gilt näherungsweise Ic = Ve/Re für den Kollektorstrom. Die Kollektorspannung ist Vc = Vcc − Ic×Rc, und die Kollektor-Emitter-Spannung ist Vce = Vc − Ve. Damit der Transistor im aktiven Bereich bleibt, muss Vce positiv und größer als die Sättigungsspannung sein (typisch 0,2–0,3 V).\n\nDie Spannungsverstärkung der Emitterschaltung wird durch das Verhältnis zwischen der AC-Kollektorlast und der effektiven Emitterimpedanz bestimmt. Die AC-Kollektorlast ist Rc parallel zu RL (dem externen Lastwiderstand). Die effektive Emitterimpedanz ist Re plus der intrinsische Emitterwiderstand re = VT/Ic, wobei VT bei Raumtemperatur etwa 26 mV beträgt. Der Betrag der Verstärkung lautet |Av| = (Rc‖RL)/(Re + re).\n\nDer Stabilitätsfaktor S quantifiziert, wie gut das Bias-Netzwerk den Arbeitspunkt gegenüber Transistorparameter-Änderungen stabilisiert, vor allem gegenüber β-Änderungen durch Temperatur oder Streuung zwischen Bauteilen. Niedrigere Stabilitätsfaktoren (idealerweise unter 10) bedeuten eine stabilere Schaltung. Spannungsteiler-Bias mit großem Emitterwiderstand erreicht durch negative Rückkopplung einen niedrigen S: Jede Tendenz zu steigendem Ic erhöht Ve, senkt dadurch Vbe und somit Ib und wirkt so dem ursprünglichen Anstieg von Ic teilweise entgegen.\n\nPraktische Designregeln: Wählen Sie Ic für Kleinverstärker im Bereich von 1–10 mA; setzen Sie Vc etwa auf die Hälfte von Vcc, um maximalen unverzerrten Ausgangshub zu erhalten; halten Sie den Stabilitätsfaktor unter 10; und prüfen Sie, dass Vce unter Worst-Case-Bedingungen mit maximalem β und maximaler Temperatur über der Sättigungsspannung bleibt."
+  },
+  "examples": {
+    "heading": "Transistor-Bias-Beispiele",
+    "intro": "Drei Emitterschaltungs-Konfigurationen mit Arbeitspunkt- und Verstärkungsberechnung.",
+    "colInput": "Schaltungsparameter",
+    "colOutput": "Wichtige Ergebnisse",
+    "colNote": "Anwendung",
+    "loadStandard": "Standard-Bias-Last",
+    "loadHighGain": "Hochverstärkende Bias-Last",
+    "loadAudio": "Audio-Stufen-Last",
+    "items": [
+      {
+        "input": "Vcc=12V, R1=22kΩ, R2=4.7kΩ, Rc=2.2kΩ, Re=1kΩ, RL=10kΩ, β=100, Vbe=0.7V",
+        "output": "Ic≈1.35 mA, Vc≈9.04V, Vce≈7.68V, |Av|≈1.77",
+        "note": "Klassische Spannungsteiler-Bias-Schaltung. Der Q-Punkt liegt nahe der halben Versorgung, mit mittlerer Verstärkung. Geeignet als universelle Kleinverstärkerstufe."
+      },
+      {
+        "input": "Vcc=15V, R1=15kΩ, R2=3kΩ, Rc=3.3kΩ, Re=500Ω, RL=15kΩ, β=150, Vbe=0.7V",
+        "output": "Ic≈3.46 mA, Vc≈3.58V, Vce≈1.84V, |Av|≈5.33",
+        "note": "Hochverstärkende Konfiguration. Das niedrige Vce nähert sich der Sättigung — erwägen Sie, Rc zu verringern oder Vcc zu erhöhen, um mehr Ausgangshub zu erhalten."
+      },
+      {
+        "input": "Vcc=18V, R1=18kΩ, R2=3.9kΩ, Rc=1.8kΩ, Re=820Ω, RL=8.2kΩ, β=120, Vbe=0.7V",
+        "output": "Ic≈2.94 mA, Vc≈12.72V, Vce≈10.29V, |Av|≈1.78",
+        "note": "Ausgangsstufe eines Audioverstärkers. Die höhere Vcc sorgt für größeren Ausgangshub; RL ist auf typische Lautsprecherimpedanzen abgestimmt."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Transistor-Bias-Rechner",
+    "steps": [
+      "Geben Sie die Versorgungsspannung Vcc in Volt ein. Das ist die positive Versorgungsschiene, die die Schaltung speist; bei Kleinverstärker-BJT-Stufen liegt sie typischerweise bei 5–24 V.",
+      "Geben Sie die vier Widerstandswerte in Ohm ein: R1 und R2 bilden den Basisspannungsteiler; Rc ist der Kollektorwiderstand, der Spannungsverstärkung und Ausgangsimpedanz bestimmt; Re ist der Emitterwiderstand, der den Arbeitspunkt stabilisiert.",
+      "Geben Sie den Lastwiderstand RL in Ohm ein. Er stellt die Impedanz dar, die der Verstärker antreibt — z. B. die Eingangsimpedanz der nächsten Stufe oder eine Lautsprecherlast.",
+      "Geben Sie die Stromverstärkung β des Transistors (hFE, aus dem Datenblatt) und die Basis-Emitter-Spannung Vbe ein (0,6–0,7 V für Silizium, 0,2–0,3 V für Germanium).",
+      "Klicken Sie auf Berechnen. Prüfen Sie, dass Vce positiv und über der Sättigung ist, dass Ic in einem praktischen Bereich liegt (1–10 mA für Kleinverstärkerstufen) und dass der Stabilitätsfaktor S unter 10 liegt, um eine gute Temperaturstabilität zu erhalten."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zur Transistor-Biasierung",
+    "q1": "Was ist der Q-Punkt und warum ist er wichtig?",
+    "q1_a": "Der Q-Punkt (Ruhepunkt) ist der DC-Arbeitszustand des Transistors ohne angelegtes AC-Signal. Er wird durch das Paar (Ic, Vce) definiert. Ein Q-Punkt nahe der Mitte des aktiven Bereichs maximiert den unverzerrten Ausgangshub. Liegt der Q-Punkt zu nahe an Sperrung oder Sättigung, kommt es zu Clipping — die Ausgangswellenform wird an einem oder beiden Spitzenwerten abgeflacht.",
+    "q2": "Warum wird Spannungsteiler-Bias gegenüber Fixed Bias bevorzugt?",
+    "q2_a": "Fixed Bias legt den Basisstrom direkt über einen einzelnen Widerstand aus der Versorgung fest, sodass Ic proportional zu β ist. Da β stark mit Temperatur und von Transistor zu Transistor variiert (oft 2:1 oder mehr), driftet der Q-Punkt unvorhersehbar. Spannungsteiler-Bias fügt einen Emitterwiderstand hinzu, der negative Rückkopplung liefert und Ic nahezu konstant hält, unabhängig von β-Änderungen — sofern der Spannungsteiler ausreichend steif ist.",
+    "q3": "Was ist der intrinsische Emitterwiderstand re?",
+    "q3_a": "Der intrinsische Emitterwiderstand re = VT/Ic ≈ 26 mV / Ic (mit Ic in Ampere) entsteht aus der Physik der vorwärtsgepolten Basis-Emitter-Strecke. Er ist der Kleinsignalwiderstand, den man vom Emitteranschluss aus sieht. Bei Ic = 1 mA beträgt re ≈ 26 Ω. Bei höheren Kollektorströmen sinkt re, wodurch die Spannungsverstärkung steigt. Er muss in Verstärkungsberechnungen berücksichtigt werden, wenn Re im Verhältnis zu re klein ist.",
+    "q4": "Wie wähle ich R1 und R2 für eine gegebene Basisspannung?",
+    "q4_a": "Bestimmen Sie zuerst die gewünschte Basisspannung Vb = Ve + Vbe, wobei Ve zur guten Stabilität typischerweise auf 10–20 % von Vcc gesetzt wird. Wählen Sie dann den Teilerstrom so, dass er mindestens 10-mal größer als der Basisstrom Ib = Ic/β ist, damit der Teiler steif genug ist. Berechnen Sie aus Teilerstrom und Vb R2 = Vb/I_div und R1 = (Vcc − Vb)/I_div. Runden Sie auf die nächstliegenden Normwerte.",
+    "q5": "Was sagt mir der Stabilitätsfaktor S?",
+    "q5_a": "Der Stabilitätsfaktor S ist ein Maß für die Änderung des Kollektorstroms in Bezug auf Änderungen des Sperrsättigungsstroms des Transistors (bzw. die Empfindlichkeit gegenüber β-Änderungen). Ein niedrigerer S bedeutet bessere Stabilität. Spannungsteiler-Bias mit ausreichender Emittergegenkopplung erreicht typischerweise S < 5, während Fixed Bias S = β + 1 hat und damit 100 oder mehr betragen kann.",
+    "q6": "Wie erhöhe ich die Spannungsverstärkung, ohne den Q-Punkt wesentlich zu verändern?",
+    "q6_a": "Überbrücken Sie den Emitterwiderstand Re mit einem großen Kondensator. Bei AC-Signalfrequenzen kurzschließt der Kondensator Re, sodass die Kleinsignalverstärkung auf Av ≈ Rc‖RL / re steigt und deutlich höher wird. Die DC-Biasierung wird weiterhin durch den vollen Re-Wert bestimmt, wodurch die Stabilität erhalten bleibt, während die AC-Verstärkung vom überbrückten niederohmigen Pfad profitiert. Das ist Standard in Audio-Vorstufen."
+  }
+}

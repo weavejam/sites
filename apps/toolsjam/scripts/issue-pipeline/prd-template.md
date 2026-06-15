@@ -13,15 +13,15 @@ Part of the full tooldone.com → apps/toolsjam migration (~568 batches × 5 pag
 ## Requirements
 1. For each page, create `src/tools/<id>.tsx` as a `"use client"` component using `useTranslations("tool.<id>")` for **every** user-visible string (no hard-coded English in JSX).
 2. Append a new `ToolEntry` to `src/data/tools/<category>.ts`. Fill only the `en` field for `slugs`, `titles`, `descriptions`; leave other locales as `""` (translate phase will fill them).
-3. Add a `tool.<id>` block to `messages/en.json` with all keys the component references (see `port-batch-prompt.md` for the full key list).
+3. Add a `tool.<id>` block as a brand-new per-tool English i18n file at `messages/tool/<id>/en.json`. The file's top-level JSON object IS the value of `tool.<id>` (no `{"tool": ...}` wrapper). Include all keys the component references — see `dev-prompt.md` for the full key list.
 4. Create `src/tools/<id>.fixtures.ts` exporting `fixtures: ToolFixture[]` with ≥ 2 happy-path cases.
 5. Each page renders correctly at `/en/<category>/<id>` with: calculator card → `about` (≥ 300-word SEO body) → `examples` (≥ 3 in a table) → `howto` (3–5 steps) → `faq` (4–6 Q&A) → JSON-LD `WebApplication` + `FAQPage` script tags.
-6. After implementation, worker invokes `pnpm translate-tool <ids...>` which fills the 9 non-en locales in `src/data/tools/<category>.ts` and `messages/<locale>.json#tool.<id>`. Must produce valid JSON / TS that builds cleanly.
+6. After implementation, worker invokes `pnpm translate-tool <ids...>` which fills the 9 non-en locales in `src/data/tools/<category>.ts` and writes `messages/tool/<id>/<locale>.json` per non-English locale. Must produce valid JSON / TS that builds cleanly.
 
 ## Acceptance Criteria
 - [ ] All {{N_PAGES}} `.tsx` files exist and use i18n correctly
 - [ ] `pnpm fixtures:barrel` regenerates without error
-- [ ] `pnpm translate-tool <ids>` completes; all 10 locales have non-empty `slug`/`title`/`description` and a `tool.<id>` namespace in each `messages/<locale>.json`
+- [ ] `pnpm translate-tool <ids>` completes; all 10 locales have non-empty `slug`/`title`/`description` and a `messages/tool/<id>/<locale>.json` file
 - [ ] `pnpm test` passes (vitest covers new fixtures)
 - [ ] `pnpm build` succeeds (static export of all 10 × {{N_PAGES}} routes)
 - [ ] `pnpm test:e2e` passes for the {{N_PAGES}} new English routes
@@ -29,8 +29,8 @@ Part of the full tooldone.com → apps/toolsjam migration (~568 batches × 5 pag
 - [ ] PR body contains `Closes #{{ISSUE_NUMBER}}` and has auto-merge enabled (squash)
 
 ## Technical Approach
-- Conventions: `apps/toolsjam/scripts/port-batch-prompt.md` (authoritative)
-- Reference impl: `src/tools/percentage-calculator.tsx` + its fixtures + `messages/en.json#tool.percentage-calculator`
+- Conventions: `apps/toolsjam/scripts/issue-pipeline/dev-prompt.md` (authoritative)
+- Reference impl: `src/tools/percentage-calculator.tsx` + its fixtures + `messages/tool/percentage-calculator/en.json`
 - Stack: Next.js 15 (App Router, `output: 'export'`), React 19, Tailwind v4, shadcn-style UI in `src/components/ui/`, next-intl 3
 - HTML snapshots: `D:\shudu\shudu\apps\toolsjam\.scrape\html\<category>\<slug>.html` (already added to trusted dirs by worker)
 - Dev model: `claude-sonnet-4.6`

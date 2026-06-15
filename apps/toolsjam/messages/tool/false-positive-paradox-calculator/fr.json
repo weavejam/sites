@@ -1,0 +1,96 @@
+{
+  "title": "Calculateur de paradoxe du faux positif - Théorème de Bayes",
+  "tagline": "Calculez la probabilité réelle d’avoir une condition après un test positif. Entrez la prévalence, la sensibilité et la spécificité pour voir comment de faibles taux de base créent des paradoxes de faux positifs.",
+  "intro": "Entrez la prévalence de la condition dans la population ainsi que la sensibilité et la spécificité du test, puis cliquez pour voir la vraie probabilité qu’un résultat positif soit authentique.",
+  "card": {
+    "title": "Calculateur de paradoxe du faux positif",
+    "description": "Trouver la probabilité réelle d’une condition à partir d’un résultat de test positif"
+  },
+  "field": {
+    "prevalence": "Prévalence de la condition (%)",
+    "sensitivity": "Sensibilité du test (%)",
+    "specificity": "Spécificité du test (%)"
+  },
+  "placeholder": {
+    "percent": "ex. 1.5"
+  },
+  "button": {
+    "calculate": "Calculer la probabilité",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des pourcentages valides. La prévalence doit être comprise entre 0 et 100, et la sensibilité ainsi que la spécificité doivent être > 0 et ≤ 100."
+  },
+  "result": {
+    "heading": "Résultat",
+    "ppv": "Probabilité d’avoir la condition (PPV)",
+    "npv": "Probabilité de ne pas avoir la condition (NPV)",
+    "breakdownHeading": "Répartition de la population (pour 100 000 personnes)",
+    "truePositive": "Vrais positifs",
+    "falsePositive": "Faux positifs",
+    "trueNegative": "Vrais négatifs",
+    "falseNegative": "Faux négatifs",
+    "breakdownNote": "Estimations pour une population hypothétique de 100 000 personnes."
+  },
+  "about": {
+    "heading": "À propos du calculateur de paradoxe du faux positif",
+    "body": "Le paradoxe du faux positif — aussi appelé biais du taux de base — est un phénomène statistique contre-intuitif où le nombre de faux positifs générés par un test dépasse celui des vrais positifs, même lorsque le test est très précis. Le paradoxe apparaît dès que la condition recherchée est rare : le petit groupe de personnes réellement touchées produit beaucoup moins de vrais positifs que le vaste groupe de personnes saines ne produit de fausses alertes, même avec un faible taux de faux positifs.\n\nLes mathématiques derrière ce paradoxe reposent sur le théorème de Bayes. Étant donnée la prévalence P(D) de la condition, la sensibilité du test (taux de vrais positifs) Se et sa spécificité (taux de vrais négatifs) Sp, la valeur prédictive positive (PPV) — c’est-à-dire la probabilité qu’une personne testée positive ait réellement la condition — est : PPV = (Se × P(D)) / (Se × P(D) + (1 − Sp) × (1 − P(D))). Lorsque P(D) est très faible, le dénominateur est dominé par le terme de faux positifs (1 − Sp) × (1 − P(D)), et même un taux minuscule de faux positifs appliqué à une grande population saine écrase le petit nombre de vrais positifs.\n\nExemple classique : supposons qu’une maladie touche 0,1 % de la population (1 sur 1 000), et qu’un test ait 99 % de sensibilité et 99 % de spécificité. Sur 100 000 personnes, environ 100 ont la maladie (0,1 %) et 99 900 ne l’ont pas. Le test identifie correctement 99 des 100 personnes malades (vrais positifs), mais signale aussi à tort 1 % des 99 900 personnes saines — soit environ 999 faux positifs. Ainsi, parmi les 1 098 personnes testées positives, seulement 99 sont réellement malades : une PPV de 9 % seulement. Un test exact à 99 % produit 91 % de fausses alertes parce que la prévalence est si faible.\n\nCe principe a des implications majeures en médecine, en sécurité et en technologie. Dans les programmes de dépistage médical, le test de masse pour des maladies rares — même avec des tests très précis — peut produire un grand nombre de patients anxieux qui sont en réalité sains, gaspillant des ressources et causant du tort. Les recommandations de santé publique limitent donc souvent le dépistage de masse aux sous-populations à plus forte prévalence où la PPV est cliniquement acceptable. Dans le contrôle de sécurité, des systèmes de reconnaissance faciale très précis peuvent malgré tout produire des milliers de faux positifs lorsqu’ils analysent des millions de voyageurs innocents pour détecter quelques suspects. Dans le filtrage des spams, des taux élevés de faux positifs sapent la confiance même si le système bloque presque tous les spams.\n\nLa solution, en médecine comme en politique publique, consiste à appliquer le théorème de Bayes et à intégrer la probabilité a priori (prévalence) avant d’interpréter un résultat. Un résultat positif à un test de dépistage ne signifie pas que vous êtes malade — il signifie que votre probabilité d’être malade est passée de la prévalence de population à la PPV, qui peut encore être très faible. Un second test de confirmation, plus spécifique, met ensuite à jour la probabilité, généralement vers une valeur bien plus élevée justifiant une action clinique. Ce calculateur rend ce raisonnement transparent et interactif, permettant aux cliniciens, chercheurs et décideurs d’explorer comment les variations de prévalence, de sensibilité et de spécificité modifient la PPV et la répartition de la population."
+  },
+  "examples": {
+    "heading": "Paradoxe du faux positif — Exemples",
+    "intro": "Quatre scénarios illustrant comment la prévalence domine la précision du test dans la valeur prédictive réelle.",
+    "colInput": "Entrée",
+    "colOutput": "PPV",
+    "colNote": "Contexte",
+    "loadRare": "Charger l’exemple de maladie rare",
+    "loadCommon": "Charger l’exemple de condition courante",
+    "loadSpam": "Charger l’exemple de filtre antispam",
+    "items": [
+      {
+        "input": "Prévalence 0,1 %, Sensibilité 99 %, Spécificité 99 %",
+        "output": "PPV ≈ 9,0 %",
+        "note": "Dépistage d’une maladie rare. Malgré un test précis à 99 %, 91 résultats positifs sur 100 sont des fausses alertes — le paradoxe classique du faux positif."
+      },
+      {
+        "input": "Prévalence 10 %, Sensibilité 95 %, Spécificité 90 %",
+        "output": "PPV ≈ 51,4 %",
+        "note": "Une condition plus courante. Une prévalence plus élevée améliore fortement la PPV ; environ la moitié des résultats positifs sont authentiques."
+      },
+      {
+        "input": "Prévalence 1 %, Sensibilité 99,9 %, Spécificité 98 %",
+        "output": "PPV ≈ 33,5 %",
+        "note": "Analogie du filtre antispam. Même un excellent filtre génère encore de nombreux faux positifs lorsque le spam ne représente que 1 % des e-mails."
+      },
+      {
+        "input": "Prévalence 0,01 %, Sensibilité 99,5 %, Spécificité 99 %",
+        "output": "PPV ≈ 0,99 %",
+        "note": "Scanner de sécurité aéroportuaire pour une menace très rare. 99 alertes sur 100 sont des fausses alertes, illustrant le problème de l’aiguille dans une botte de foin."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de paradoxe du faux positif",
+    "steps": [
+      "Entrez la prévalence de la condition — le pourcentage de la population qui l’a. Par exemple, si 1 personne sur 200 est concernée, saisissez 0,5.",
+      "Entrez la sensibilité du test (taux de vrais positifs) : le pourcentage de personnes réellement concernées que le test identifie correctement comme positives.",
+      "Entrez la spécificité du test (taux de vrais négatifs) : le pourcentage de personnes réellement saines que le test identifie correctement comme négatives.",
+      "Cliquez sur « Calculer la probabilité ». Le calculateur applique le théorème de Bayes pour afficher la PPV (probabilité d’avoir la condition étant donné un test positif) et la NPV (probabilité de ne pas l’avoir étant donné un test négatif), ainsi qu’une répartition des vrais/faux positifs et négatifs pour 100 000 personnes.",
+      "Ajustez les valeurs pour voir comment la prévalence, la sensibilité et la spécificité font évoluer la PPV — vous constaterez que la prévalence a l’impact le plus fort sur la signification d’un test positif."
+    ]
+  },
+  "faq": {
+    "heading": "Paradoxe du faux positif — FAQ",
+    "q1": "Qu’est-ce que le paradoxe du faux positif ?",
+    "q1_a": "Le paradoxe du faux positif se produit lorsque le nombre de faux positifs d’un test dépasse celui des vrais positifs, même si le test est précis. Cela arrive parce qu’une faible prévalence signifie que la grande population saine produit beaucoup de fausses alertes — plus que la petite population malade ne produit de vraies alertes — même avec un faible taux de faux positifs.",
+    "q2": "Qu’est-ce que la sensibilité et la spécificité ?",
+    "q2_a": "La sensibilité (taux de vrais positifs) est la probabilité qu’une personne atteinte obtienne un test positif. La spécificité (taux de vrais négatifs) est la probabilité qu’une personne non atteinte obtienne un test négatif. Un test sensible à 95 % détecte 95 cas sur 100 ; un test spécifique à 90 % écarte correctement 90 personnes saines sur 100.",
+    "q3": "Qu’est-ce que la PPV et pourquoi est-elle différente de l’exactitude ?",
+    "q3_a": "La PPV (valeur prédictive positive) est la probabilité qu’un résultat positif corresponde à un vrai positif — autrement dit, que la personne ait réellement la condition. L’exactitude mesure à quelle fréquence le test est correct au total. La PPV dépend fortement de la prévalence, contrairement à l’exactitude. Un test peut être exact à 99 % tout en ayant une PPV inférieure à 10 % lorsque la condition est rare.",
+    "q4": "Comment améliorer la PPV d’un test ?",
+    "q4_a": "Les moyens les plus efficaces d’augmenter la PPV sont d’améliorer la spécificité du test (réduire le taux de faux positifs), de limiter les tests aux sous-populations à plus forte prévalence où la probabilité a priori est déjà élevée, et d’appliquer des tests de confirmation séquentiels. Dans ce cas, le premier résultat positif devient la nouvelle entrée de « prévalence » pour un second test de confirmation plus spécifique, qui met à jour la probabilité vers une valeur bien plus élevée et plus utile cliniquement.",
+    "q5": "Que m’indique la NPV ?",
+    "q5_a": "La NPV (valeur prédictive négative) est la probabilité qu’une personne testée négative ne soit réellement pas atteinte. Pour les maladies rares, la NPV est généralement très élevée : lorsque la prévalence est de 0,1 %, presque tous les résultats négatifs sont de vrais négatifs. Une NPV élevée signifie qu’un résultat négatif est très rassurant. La NPV diminue quand la prévalence augmente.",
+    "q6": "Pourquoi la prévalence compte-t-elle plus que l’exactitude du test ?",
+    "q6_a": "À très faible prévalence, même un minuscule taux de faux positifs appliqué à une immense population saine dépasse les vrais positifs issus de la petite population malade. Doubler la spécificité de 95 % à 97,5 % ne fait que diviser par deux les faux positifs par personne, alors que doubler la prévalence double le nombre de vrais positifs — la prévalence influence donc bien plus fortement la PPV que l’exactitude."
+  }
+}

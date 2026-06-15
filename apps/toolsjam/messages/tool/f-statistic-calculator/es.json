@@ -1,0 +1,102 @@
+{
+  "title": "Calculadora de estadístico F - ANOVA y prueba de razón de varianzas",
+  "tagline": "Calcula el estadístico F, los grados de libertad, el valor p y el valor F crítico para comparar dos varianzas muestrales en una ANOVA o prueba de razón F.",
+  "intro": "Introduce la varianza muestral y el tamaño de cada grupo, elige un nivel de significación y obtén el estadístico F con una decisión clara de rechazar o no rechazar.",
+  "card": {
+    "title": "Calculadora de estadístico F",
+    "description": "Compara varianzas de dos grupos con la prueba de razón F"
+  },
+  "field": {
+    "group1": "Datos del grupo 1",
+    "group2": "Datos del grupo 2",
+    "variance": "Varianza muestral (s²)",
+    "variance1": "Varianza muestral del grupo 1 (s²)",
+    "variance2": "Varianza muestral del grupo 2 (s²)",
+    "sampleSize": "Tamaño de muestra (n)",
+    "sampleSize1": "Tamaño de muestra del grupo 1 (n)",
+    "sampleSize2": "Tamaño de muestra del grupo 2 (n)",
+    "alpha": "Nivel de significación (α)"
+  },
+  "placeholder": {
+    "variance": "p. ej., 0.34",
+    "sampleSize": "p. ej., 25"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce valores válidos. Las varianzas deben ser ≥ 0 y los tamaños de muestra deben ser enteros ≥ 2."
+  },
+  "result": {
+    "heading": "Resultado",
+    "fStatistic": "Estadístico F",
+    "df1": "df₁ (numerador)",
+    "df2": "df₂ (denominador)",
+    "pValue": "Valor p (bilateral)",
+    "criticalF": "Valor F crítico",
+    "reject": "Rechazar H₀ — las varianzas son significativamente diferentes.",
+    "failReject": "No rechazar H₀ — no hay diferencia significativa entre las varianzas."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de estadístico F",
+    "body": "El estadístico F es una razón de dos varianzas que se utiliza para determinar si las diferencias entre medias de grupos o varianzas de grupos son estadísticamente significativas. Nombrado en honor a Sir Ronald A. Fisher, constituye la base del análisis de varianza (ANOVA) y también es la magnitud clave en la prueba F de igualdad de dos varianzas. Siempre que necesites decidir si la dispersión de los valores de un grupo difiere de forma significativa de la de otro, el estadístico F ofrece una respuesta rigurosa basada en probabilidades.\n\nEn esencia, el estadístico F es simplemente F = s₁² / s₂², donde s₁² y s₂² son las varianzas muestrales de dos grupos independientes. Por convención, la varianza mayor se coloca en el numerador para que F sea siempre ≥ 1, lo que concentra toda la masa de probabilidad de interés en la cola derecha de la distribución F. El valor resultante se compara con una distribución F teórica parametrizada por dos valores de grados de libertad: df₁ = n₁ − 1 (numerador) y df₂ = n₂ − 1 (denominador). Un valor F grande indica que las varianzas son muy distintas; un F cercano a 1 indica que son similares.\n\nLa distribución F es asimétrica a la derecha y solo toma valores no negativos. Su forma exacta depende de df₁ y df₂. Para una prueba bilateral —el tipo más común, que comprueba cualquier diferencia sin importar la dirección— el valor p se calcula como 2 × P(F > F_obs), donde P(F > F_obs) es el área de la cola derecha de la distribución F más allá del estadístico observado. Si este valor p es menor o igual que el nivel de significación α elegido, se rechaza la hipótesis nula H₀: σ₁² = σ₂² y se concluye que las varianzas difieren significativamente.\n\nEn ANOVA, el estadístico F adopta una forma ligeramente distinta: es la razón entre la varianza entre grupos (cuadrados medios entre grupos, o MSB) y la varianza dentro de los grupos (cuadrados medios dentro de los grupos, o MSW). Si todas las medias de los grupos son idénticas, MSB y MSW deberían ser aproximadamente iguales, dando F ≈ 1. A medida que las medias de los grupos divergen, MSB crece con respecto a MSW y F aumenta, hasta superar finalmente el umbral crítico.\n\nEntre las aplicaciones habituales del estadístico F se incluyen el control de calidad en fabricación (¿dos máquinas producen piezas con la misma variabilidad?), la investigación educativa (¿dos métodos de enseñanza generan puntuaciones de prueba igual de consistentes?), el análisis financiero (¿dos acciones tienen una volatilidad similar?) y la ciencia agrícola (¿dos fertilizantes producen cultivos con la misma consistencia?). Antes de realizar una prueba t de dos muestras, muchos analistas usan primero la prueba F para verificar el supuesto de varianzas iguales; si la prueba F rechaza H₀, es más adecuada una prueba t de Welch (varianzas desiguales).\n\nEsta calculadora automatiza el cálculo de la CDF de la distribución F mediante la función beta incompleta regularizada, proporcionando valores p precisos para cualquier grado de libertad positivo sin necesidad de tablas estadísticas. El valor F crítico se obtiene invirtiendo numéricamente la CDF. Ambos resultados son coherentes con los valores producidos por R, Python (scipy) y SPSS."
+  },
+  "examples": {
+    "heading": "Ejemplos de la calculadora de estadístico F",
+    "intro": "Tres escenarios reales que muestran cómo aplicar la prueba F para comparar varianzas.",
+    "colInput": "Entrada",
+    "colOutput": "Resultado",
+    "colNote": "Contexto",
+    "loadMfg": "Cargar ejemplo de fabricación",
+    "loadTeaching": "Cargar ejemplo de métodos de enseñanza",
+    "loadStock": "Cargar ejemplo de volatilidad bursátil",
+    "items": [
+      {
+        "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+        "output": "F = 1.1724, p ≈ 0.6767 — no rechazar H₀",
+        "note": "Dos máquinas que producen pernos. La varianza del diámetro no es significativamente diferente al nivel del 5%."
+      },
+      {
+        "input": "s₁² = 110, n₁ = 41; s₂² = 135, n₂ = 31; α = 0.05",
+        "output": "F = 1.2273, p ≈ 0.5061 — no rechazar H₀",
+        "note": "Dos métodos de enseñanza. Las varianzas de las puntuaciones no son significativamente diferentes; ambos métodos producen una consistencia similar."
+      },
+      {
+        "input": "s₁² = 1.5, n₁ = 30; s₂² = 1.2, n₂ = 30; α = 0.01",
+        "output": "F = 1.25, p ≈ 0.5717 — no rechazar H₀",
+        "note": "Varianzas de rendimientos diarios de acciones. Al nivel de significación del 1% no hay evidencia de volatilidad diferente."
+      },
+      {
+        "input": "s₁² = 550, n₁ = 50; s₂² = 620, n₂ = 50; α = 0.10",
+        "output": "F = 1.1273, p ≈ 0.5659 — no rechazar H₀",
+        "note": "Rendimiento de cultivos con dos fertilizantes. La varianza de la producción es estadísticamente similar al nivel del 10%."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de estadístico F",
+    "steps": [
+      "Introduce la varianza muestral (s²) y el tamaño de muestra (n) del grupo 1 en la sección \"Datos del grupo 1\". Ambos valores deben ser números ≥ 0 (varianza) y ≥ 2 (tamaño de muestra).",
+      "Introduce la varianza y el tamaño de muestra correspondientes para el grupo 2 en la sección \"Datos del grupo 2\".",
+      "Selecciona el nivel de significación α deseado en el menú desplegable: 0.01, 0.05 o 0.10 son las tres opciones estándar.",
+      "Haz clic en \"Calcular\". La calculadora coloca la varianza mayor en el numerador, calcula F = s_max² / s_min², deriva los grados de libertad (df₁ = n_max − 1, df₂ = n_min − 1) y evalúa el valor p bilateral y el valor F crítico.",
+      "Compara el valor p con α. Si p ≤ α, rechaza H₀ y concluye que las varianzas difieren significativamente. En caso contrario, no rechaces H₀. Haz clic en \"Restablecer\" para borrar todos los campos y empezar de nuevo."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de estadístico F",
+    "q1": "¿Qué es el estadístico F?",
+    "q1_a": "El estadístico F es la razón de dos varianzas muestrales: F = s₁² / s₂². Por convención, la varianza mayor va en el numerador, por lo que F ≥ 1. Bajo la hipótesis nula de que ambas varianzas poblacionales son iguales, sigue una distribución F con df₁ = n₁ − 1 y df₂ = n₂ − 1 grados de libertad.",
+    "q2": "¿Qué representa el valor p en una prueba F?",
+    "q2_a": "El valor p es la probabilidad de observar un estadístico F tan extremo como —o más extremo que— el calculado, suponiendo que H₀ (varianzas iguales) es verdadera. Un valor p pequeño (≤ α) significa que una razón tan grande es improbable bajo H₀, por lo que se rechaza H₀. Un valor p grande significa que los datos son compatibles con varianzas iguales.",
+    "q3": "¿Cuándo debo usar una prueba F unilateral o bilateral?",
+    "q3_a": "Usa una prueba bilateral (la predeterminada aquí) cuando quieras detectar cualquier diferencia entre las varianzas, sin importar la dirección. Usa una prueba unilateral solo si tienes una hipótesis direccional previa, por ejemplo, que σ₁² > σ₂². Para obtener un valor p unilateral, divide entre dos el valor p bilateral de esta calculadora.",
+    "q4": "¿Cuáles son los supuestos de la prueba F?",
+    "q4_a": "La prueba F de igualdad de varianzas requiere que ambas muestras procedan de poblaciones con distribución normal y que las muestras sean independientes. Si la normalidad es dudosa, considera la prueba de Levene o la prueba de Brown–Forsythe, que son más robustas ante la no normalidad.",
+    "q5": "¿Cómo se usa el valor F crítico?",
+    "q5_a": "El valor F crítico F_crit es el umbral a partir del cual se rechaza H₀ con el α elegido. Si F_obs > F_crit, se rechaza H₀. El valor crítico es equivalente al enfoque del valor p: F_obs > F_crit si y solo si valor p < α. Ambos métodos siempre dan la misma decisión.",
+    "q6": "¿Cuál es la diferencia entre una prueba F y una prueba t?",
+    "q6_a": "Una prueba t compara las medias de dos grupos, mientras que una prueba F (en el contexto de dos muestras) compara sus varianzas. En ANOVA, el estadístico F compara la varianza entre medias de grupos con la varianza dentro de los grupos, probando en la práctica si todas las medias de los grupos son iguales. La prueba t de dos muestras puede verse como un caso especial en el que el valor F es igual a t²."
+  }
+}

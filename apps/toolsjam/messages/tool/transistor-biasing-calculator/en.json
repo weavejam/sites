@@ -1,0 +1,100 @@
+{
+  "title": "Transistor Biasing Calculator – DC Operating Point",
+  "tagline": "Calculate the DC operating point, collector current, voltage gain, and stability factor for voltage divider bias transistor circuits.",
+  "intro": "Enter supply voltage, resistor values, current gain β, and base-emitter voltage to analyse a common-emitter amplifier with voltage divider bias.",
+  "formula": "Vb = Vcc·R2/(R1+R2) | Ic = β·Ib | Vc = Vcc − Ic·Rc | Vce = Vc − Ve | Av = −(Rc‖RL)/(Re + re) where re = 26 mV/Ic",
+  "field": {
+    "vcc": "Supply Voltage Vcc (V)",
+    "r1": "Base Resistor R1 (Ω)",
+    "r2": "Base Resistor R2 (Ω)",
+    "rc": "Collector Resistor Rc (Ω)",
+    "re": "Emitter Resistor Re (Ω)",
+    "rl": "Load Resistor RL (Ω)",
+    "beta": "Current Gain β (hFE)",
+    "vbe": "Base-Emitter Voltage Vbe (V)"
+  },
+  "placeholder": {
+    "vcc": "e.g. 12",
+    "r1": "e.g. 22000",
+    "r2": "e.g. 4700",
+    "rc": "e.g. 2200",
+    "re": "e.g. 1000",
+    "rl": "e.g. 10000",
+    "beta": "e.g. 100",
+    "vbe": "e.g. 0.7"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive values for all fields. Vbe is typically 0.6–0.7 V for silicon transistors."
+  },
+  "result": {
+    "heading": "DC Operating Point",
+    "vb": "Base Voltage Vb: {value} V",
+    "ve": "Emitter Voltage Ve: {value} V",
+    "vc": "Collector Voltage Vc: {value} V",
+    "vce": "Collector-Emitter Voltage Vce: {value} V",
+    "ic": "Collector Current Ic: {value} mA",
+    "ib": "Base Current Ib: {value} μA",
+    "voltageGain": "Voltage Gain |Av|: {value}",
+    "stabilityFactor": "Stability Factor S: {value}"
+  },
+  "about": {
+    "heading": "About the transistor biasing calculator",
+    "body": "Transistor biasing is the process of establishing a stable DC operating point — the quiescent or Q-point — for a bipolar junction transistor (BJT) amplifier. Without correct biasing, the transistor operates in cutoff (no current flow) or saturation (maximum current), making linear amplification impossible. Proper biasing places the Q-point near the centre of the transistor's active region, allowing the output signal to swing symmetrically above and below the quiescent level without distortion.\n\nThis calculator implements the voltage divider bias configuration, the most widely used biasing method in practical circuits. Two resistors, R1 and R2, form a resistive voltage divider from the supply rail Vcc to ground. The junction of R1 and R2 sets the base voltage: Vb = Vcc × R2/(R1+R2), assuming the voltage divider is stiff (i.e., the divider current is much larger than the base current). The emitter voltage follows as Ve = Vb − Vbe, where Vbe ≈ 0.7 V for silicon NPN transistors at room temperature.\n\nThe emitter current flows through the emitter resistor Re, establishing Ve = Ie × Re. Since Ic ≈ Ie for large β, the collector current is approximately Ic = Ve/Re. The collector voltage is Vc = Vcc − Ic×Rc, and the collector-emitter voltage is Vce = Vc − Ve. For the transistor to remain in the active region, Vce must be positive and greater than the saturation voltage (typically 0.2–0.3 V).\n\nThe voltage gain of the common-emitter stage is determined by the ratio of the AC collector load to the effective emitter impedance. The AC collector load is Rc in parallel with RL (the external load resistor). The effective emitter impedance is Re plus the intrinsic emitter resistance re = VT/Ic, where VT ≈ 26 mV at room temperature. The gain magnitude is |Av| = (Rc‖RL)/(Re + re).\n\nThe stability factor S quantifies how well the biasing network stabilises the operating point against transistor parameter variations, primarily changes in β with temperature or between units. Lower stability factors (ideally below 10) indicate a more stable design. Voltage divider bias with a large emitter resistor achieves low S by applying negative feedback: any tendency for Ic to increase raises Ve, which reduces Vbe and hence Ib, partially counteracting the original increase in Ic.\n\nPractical design guidelines: choose Ic in the range 1–10 mA for small-signal amplifiers; position Vc at about half Vcc for maximum undistorted output swing; keep the stability factor below 10; and verify that Vce exceeds the saturation voltage under worst-case conditions of maximum β and maximum temperature."
+  },
+  "examples": {
+    "heading": "Transistor biasing examples",
+    "intro": "Three common-emitter amplifier configurations showing operating-point and gain calculations.",
+    "colInput": "Circuit Parameters",
+    "colOutput": "Key Results",
+    "colNote": "Application",
+    "loadStandard": "Load standard bias",
+    "loadHighGain": "Load high-gain bias",
+    "loadAudio": "Load audio stage",
+    "items": [
+      {
+        "input": "Vcc=12V, R1=22kΩ, R2=4.7kΩ, Rc=2.2kΩ, Re=1kΩ, RL=10kΩ, β=100, Vbe=0.7V",
+        "output": "Ic≈1.35 mA, Vc≈9.04V, Vce≈7.68V, |Av|≈1.77",
+        "note": "Standard voltage-divider bias. Q-point near mid-rail, moderate gain. Suitable as a general-purpose small-signal amplifier stage."
+      },
+      {
+        "input": "Vcc=15V, R1=15kΩ, R2=3kΩ, Rc=3.3kΩ, Re=500Ω, RL=15kΩ, β=150, Vbe=0.7V",
+        "output": "Ic≈3.46 mA, Vc≈3.58V, Vce≈1.84V, |Av|≈5.33",
+        "note": "High-gain configuration. Low Vce approaches saturation — consider reducing Rc or increasing Vcc for wider output swing."
+      },
+      {
+        "input": "Vcc=18V, R1=18kΩ, R2=3.9kΩ, Rc=1.8kΩ, Re=820Ω, RL=8.2kΩ, β=120, Vbe=0.7V",
+        "output": "Ic≈2.94 mA, Vc≈12.72V, Vce≈10.29V, |Av|≈1.78",
+        "note": "Audio amplifier output stage. Higher Vcc provides wider output swing; RL matched to typical loudspeaker impedance."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the transistor biasing calculator",
+    "steps": [
+      "Enter the supply voltage Vcc in volts. This is the positive rail voltage powering the circuit, typically 5–24 V for small-signal BJT stages.",
+      "Enter the four resistor values in ohms: R1 and R2 form the base voltage divider; Rc is the collector resistor that sets voltage gain and output impedance; Re is the emitter resistor that stabilises the bias point.",
+      "Enter the load resistor RL in ohms. This represents the impedance the amplifier drives — for example, the input impedance of the next stage or a speaker load.",
+      "Enter the transistor current gain β (hFE) from the datasheet and the base-emitter voltage Vbe (0.6–0.7 V for silicon, 0.2–0.3 V for germanium).",
+      "Click Calculate. Check that Vce is positive and above saturation, Ic is in a practical range (1–10 mA for small-signal stages), and the stability factor S is below 10 for good temperature stability."
+    ]
+  },
+  "faq": {
+    "heading": "Transistor biasing FAQ",
+    "q1": "What is the Q-point and why does it matter?",
+    "q1_a": "The Q-point (quiescent point) is the transistor's DC operating condition when no AC signal is applied. It is defined by the pair (Ic, Vce). Placing the Q-point near the centre of the active region maximises the undistorted output voltage swing. A Q-point too close to cutoff or saturation causes clipping — the output waveform is flattened at one or both peaks.",
+    "q2": "Why is the voltage divider bias method preferred over fixed bias?",
+    "q2_a": "Fixed bias sets the base current directly from the supply via a single resistor, making Ic proportional to β. Because β varies significantly with temperature and from transistor to transistor (often 2:1 or more), the Q-point drifts unpredictably. Voltage divider bias adds an emitter resistor that provides negative feedback, holding Ic approximately constant regardless of β variations — provided the voltage divider is sufficiently stiff.",
+    "q3": "What is the intrinsic emitter resistance re?",
+    "q3_a": "The intrinsic emitter resistance re = VT/Ic ≈ 26 mV / Ic (with Ic in amps) arises from the physics of the forward-biased base-emitter junction. It is the small-signal resistance seen looking into the emitter terminal. At Ic = 1 mA, re ≈ 26 Ω. At higher collector currents re decreases, which increases voltage gain. It must be included in gain calculations when Re is small relative to re.",
+    "q4": "How do I choose R1 and R2 for a given base voltage?",
+    "q4_a": "First decide the desired base voltage Vb = Ve + Vbe, where Ve is typically set to 10–20% of Vcc for good stability. Then choose the divider current to be at least 10× the base current Ib = Ic/β, which ensures the divider is stiff. From the divider current and Vb, calculate R2 = Vb/I_div and R1 = (Vcc − Vb)/I_div. Round to the nearest standard resistor values.",
+    "q5": "What does the stability factor S tell me?",
+    "q5_a": "The stability factor S approximates the ratio of change in collector current to change in the transistor's reverse saturation current (or equivalently, it indicates sensitivity to β variation). A lower S means better stability. Voltage divider bias with adequate emitter degeneration typically achieves S < 5, compared to S = β + 1 for fixed bias, which can be 100 or more.",
+    "q6": "How do I increase the voltage gain without changing the Q-point significantly?",
+    "q6_a": "Bypass the emitter resistor Re with a large capacitor. At AC signal frequencies, the capacitor short-circuits Re, so the small-signal gain rises to Av ≈ Rc‖RL / re, which is much higher. The DC bias is set by the full Re value, preserving stability, while AC gain benefits from the bypassed low-impedance path. This technique is standard in audio preamplifier stages."
+  }
+}

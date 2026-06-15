@@ -1,0 +1,82 @@
+{
+  "title": "Upper and Lower Fence Calculator - IQR Outliers",
+  "tagline": "Identify statistical outliers in your dataset using the interquartile range (IQR) fence method. Enter comma-separated numbers to instantly find Q1, Q3, IQR, and both fences.",
+  "intro": "Enter your data values separated by commas, click Calculate, and see the upper fence, lower fence, and any outliers in your dataset.",
+  "field": {
+    "data": "Data Set"
+  },
+  "placeholder": {
+    "data": "e.g., 4, 8, 15, 16, 23, 42"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter at least 4 comma-separated numbers to compute the fences."
+  },
+  "result": {
+    "heading": "Results",
+    "n": "Count (n)",
+    "q1": "Q1 (25th percentile)",
+    "q3": "Q3 (75th percentile)",
+    "iqr": "IQR (Q3 − Q1)",
+    "lowerFence": "Lower Fence (Q1 − 1.5 × IQR)",
+    "upperFence": "Upper Fence (Q3 + 1.5 × IQR)",
+    "outliersHeading": "Outliers",
+    "noOutliers": "No outliers detected."
+  },
+  "about": {
+    "heading": "About the upper and lower fence calculator",
+    "body": "The upper and lower fence method is the standard technique for identifying outliers in a dataset using the interquartile range (IQR). Developed as part of John Tukey's exploratory data analysis framework in 1977, it provides a robust, non-parametric way to flag unusual observations without assuming the data follows any particular distribution. The method is widely taught in introductory statistics courses and is the default outlier detection approach in box-and-whisker plots.\n\nThe calculation begins by sorting the dataset and finding the first and third quartiles. Q1 (the 25th percentile) is the value below which 25% of the data falls, while Q3 (the 75th percentile) is the value below which 75% falls. The IQR is simply Q3 minus Q1, representing the spread of the middle half of the data. Because the IQR ignores the extreme values at both ends of the distribution, it is resistant to the very outliers it is trying to detect — a property that makes the fence method more reliable than range-based methods.\n\nOnce the IQR is computed, the fences are set at 1.5 × IQR below Q1 (lower fence) and 1.5 × IQR above Q3 (upper fence). Any data point below the lower fence or above the upper fence is classified as an outlier. The 1.5 multiplier was chosen empirically by Tukey because it works well for roughly normal data: in a normal distribution, this rule flags about 0.7% of observations as outliers, which corresponds to values more than about 2.7 standard deviations from the mean.\n\nFor more extreme outliers, some applications use a multiplier of 3 instead of 1.5, labeling such points as far outliers or extreme outliers. Points outside the 1.5 × IQR fence but inside the 3 × IQR fence are sometimes called mild outliers. This calculator uses the standard 1.5 × IQR rule, which is appropriate for most exploratory analyses.\n\nOutlier detection is a critical step in data cleaning, quality control, and statistical modeling. In manufacturing, a process measurement outside the fence might indicate a defective unit or a measurement error. In finance, extreme returns might signal data errors, market anomalies, or genuine events requiring investigation. In clinical research, physiologically impossible values are identified and reviewed. In machine learning, outliers can distort model training if not addressed.\n\nIt is important to remember that statistical outliers are not necessarily erroneous values. An outlier is simply an observation that is unusually far from the bulk of the data according to the IQR rule. Investigation is needed to determine whether the value represents a genuine extreme event, a measurement error, or a data entry mistake."
+  },
+  "examples": {
+    "heading": "Upper and lower fence examples",
+    "intro": "Step-by-step worked examples showing how the fence method identifies outliers in typical datasets.",
+    "colInput": "Dataset",
+    "colOutput": "Fences & outliers",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "10, 12, 14, 16, 18, 20, 100",
+        "output": "Lower: 4 | Upper: 28 | Outlier: 100",
+        "note": "Q1=13, Q3=19, IQR=6. Lower fence = 13 − 9 = 4. Upper fence = 19 + 9 = 28. Value 100 exceeds the upper fence and is flagged as an outlier."
+      },
+      {
+        "input": "5, 7, 8, 9, 10, 11, 12, 14",
+        "output": "Lower: 2.5 | Upper: 16.5 | No outliers",
+        "note": "Q1=7.75, Q3=11.25, IQR=3.5. Fences are 2.5 and 16.5. All values (5 to 14) fall within the fences, so there are no outliers."
+      },
+      {
+        "input": "2, 3, 5, 7, 8, 9, 10, 11, 12, 50",
+        "output": "Lower: −2.375 | Upper: 18.625 | Outlier: 50",
+        "note": "Q1=5.5, Q3=10.75, IQR=5.25. Upper fence = 10.75 + 7.875 = 18.625. Value 50 is well above the upper fence and is a clear outlier."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the fence calculator",
+    "steps": [
+      "Type your data values in the input field, separated by commas or spaces. You need at least 4 values to compute meaningful quartiles.",
+      "Click Calculate to compute Q1, Q3, the IQR, the lower fence (Q1 − 1.5 × IQR), and the upper fence (Q3 + 1.5 × IQR).",
+      "Review the highlighted fence values — any data point below the lower fence or above the upper fence is an outlier.",
+      "Check the Outliers section to see the specific flagged values listed explicitly.",
+      "Click Reset to clear the input and start fresh with a new dataset."
+    ]
+  },
+  "faq": {
+    "heading": "Upper and lower fence FAQ",
+    "q1": "What are the upper and lower fences?",
+    "q1_a": "The upper fence is Q3 + 1.5 × IQR and the lower fence is Q1 − 1.5 × IQR. Any data point outside these fences is considered an outlier. The fences create a range that encloses the expected spread of a roughly bell-shaped distribution.",
+    "q2": "Why use 1.5 times the IQR?",
+    "q2_a": "The 1.5 multiplier was chosen by John Tukey because it is approximately optimal for detecting outliers in normal data while keeping the false-positive rate low. In a normal distribution it flags roughly 0.7% of observations. Doubling the multiplier to 3 catches only extreme outliers.",
+    "q3": "What is the IQR and how is it calculated?",
+    "q3_a": "The IQR (interquartile range) is Q3 minus Q1, representing the spread of the middle 50% of the data. It is computed by sorting the data, finding the 25th percentile (Q1) and 75th percentile (Q3), then subtracting. The IQR is resistant to outliers because it ignores the top and bottom 25% of values.",
+    "q4": "Does an outlier mean the data is wrong?",
+    "q4_a": "Not necessarily. An outlier is simply an unusually extreme observation relative to the bulk of the data. It could be a genuine extreme event, a measurement error, or a data entry mistake. Each flagged value should be investigated in context before being removed or corrected.",
+    "q5": "How do the fences relate to box plots?",
+    "q5_a": "The upper and lower fences define the whiskers in a standard Tukey box plot. The box covers the IQR (Q1 to Q3), the line in the box is the median, and the whiskers extend to the most extreme data points that are still within the fences. Points beyond the whiskers are plotted individually as outlier dots.",
+    "q6": "Is the fence method appropriate for small datasets?",
+    "q6_a": "The method works best with at least 10 to 20 observations. With fewer values, the quartile estimates are imprecise and the fences can be unreliable. For very small datasets consider examining all values visually rather than relying solely on the automatic fence rule."
+  }
+}

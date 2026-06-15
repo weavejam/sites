@@ -1,0 +1,94 @@
+{
+  "title": "Odds-Ratio-Rechner - OR, KI und p-Wert",
+  "tagline": "Berechnen Sie die Odds Ratio, das Konfidenzintervall, den Z-Wert und den p-Wert aus einer 2×2-Kontingenztafel für Fall-Kontroll- und epidemiologische Studien.",
+  "intro": "Geben Sie die vier Zellzahlen Ihrer 2×2-Tafel ein, wählen Sie ein Konfidenzniveau und erhalten Sie sofort die Odds Ratio mit vollständiger statistischer Inferenz.",
+  "tableNote": "Füllen Sie die Zählwerte für exponierte und nicht exponierte Gruppen ein. Die Zellen müssen nichtnegative ganze Zahlen sein. Wenn eine Zelle null ist, wird automatisch die Haldane-Anscombe-Korrektur (0,5 zu jeder Zelle addieren) angewendet.",
+  "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+  "group": {
+    "exposed": "Exponierte Gruppe",
+    "unexposed": "Nicht exponierte Gruppe"
+  },
+  "field": {
+    "a": "Ergebnis positiv – Fälle (a)",
+    "b": "Ergebnis negativ – Keine Fälle (b)",
+    "c": "Ergebnis positiv – Fälle (c)",
+    "d": "Ergebnis negativ – Keine Fälle (d)",
+    "confidenceLevel": "Konfidenzniveau"
+  },
+  "placeholder": {
+    "cell": "Zahl ≥ 0 eingeben"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie in alle vier Zellen nichtnegative Zahlen ein."
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "or": "Odds Ratio (OR)",
+    "ciLabel": "Konfidenzintervall",
+    "z": "Z-Wert",
+    "pValue": "p-Wert",
+    "lnOR": "ln(OR)",
+    "se": "Standardfehler",
+    "correctionNote": "Nullzelle erkannt — Haldane-Anscombe-Korrektur (+ 0,5) auf alle Zellen angewendet."
+  },
+  "about": {
+    "heading": "Über den Odds-Ratio-Rechner",
+    "body": "Die Odds Ratio (OR) ist eines der am häufigsten verwendeten Assoziationsmaße in der biomedizinischen Forschung, Epidemiologie und den Sozialwissenschaften. Sie quantifiziert die Stärke des Zusammenhangs zwischen einer Exposition und einem binären Ergebnis, indem die Chancen des Ereignisses in einer exponierten Gruppe mit denen in einer nicht exponierten Gruppe verglichen werden. Eine OR von 1 bedeutet keine Assoziation; eine OR größer als 1 deutet darauf hin, dass die Exposition die Chancen des Ergebnisses erhöht; eine OR kleiner als 1 spricht für einen protektiven Effekt.\n\nDie Odds Ratio wird aus einer 2×2-Kontingenztafel berechnet, dem Standardformat zur Darstellung von Fall-Kontroll-Studien. Die Tafel hat vier Zellen: (a) exponierte Personen mit Ereignis, (b) exponierte Personen ohne Ereignis, (c) nicht exponierte Personen mit Ereignis und (d) nicht exponierte Personen ohne Ereignis. Die Formel lautet einfach OR = (a × d) / (b × c), also das Kreuzproduktverhältnis der Tabelle.\n\nDie statistische Inferenz für die OR erfolgt auf ihrem natürlichen Logarithmus, da die Stichprobenverteilung von ln(OR) näherungsweise normal ist, selbst bei moderaten Stichprobengrößen. Der Standardfehler von ln(OR) ist SE = √(1/a + 1/b + 1/c + 1/d). Daraus wird ein Z-Wert berechnet als Z = ln(OR) / SE, der unter der Nullhypothese keiner Assoziation (OR = 1) einer Standardnormalverteilung folgt. Der zweiseitige p-Wert ist p = 2 × Φ(−|Z|), wobei Φ die kumulative Verteilungsfunktion der Standardnormalverteilung ist. Liegt der p-Wert unter Ihrem gewählten Signifikanzniveau (typischerweise 0,05), unterscheidet sich die Odds Ratio statistisch signifikant von 1.\n\nDas Konfidenzintervall (KI) für die OR wird durch Exponentiation des Intervalls um ln(OR) gebildet: CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. Für ein 95%-KI ist Z_α/2 = 1,96. Enthält das KI nicht 1,0, ist das Ergebnis auf dem 5%-Niveau statistisch signifikant. Die Breite des KI spiegelt die Präzision der Schätzung wider; breitere Intervalle entstehen bei kleineren Stichproben oder spärlich besetzten Zellen.\n\nEine praktische Schwierigkeit entsteht, wenn eine Zelle in der 2×2-Tafel null ist, was die Standard-OR-Formel undefiniert macht (Division durch null oder Logarithmus von null). Die übliche Lösung ist die Haldane-Anscombe-Korrektur: Vor der Berechnung von OR und SE wird zu jeder Zelle 0,5 addiert. Dieser Rechner wendet die Korrektur automatisch an und weist Sie darauf hin, wenn sie verwendet wurde. Die Korrektur führt zu einer kleinen Verzerrung, ist aber weitaus besser, als gar kein Ergebnis zu liefern.\n\nDie OR ist das natürliche Maß in Fall-Kontroll-Studien, in denen das Stichprobendesign die Zahl der Fälle und Kontrollen festlegt und nicht die Expositionsprävalenz. In Kohortenstudien und randomisierten Studien wird oft das relative Risiko (RR) bevorzugt, weil es direkter interpretierbar ist. Bei seltenen Endpunkten (Prävalenz unter etwa 10 %) gilt OR ≈ RR; bei häufigen Endpunkten liegt die OR jedoch immer weiter von 1 entfernt als das entsprechende RR, und eine Interpretation der OR als RR kann das Ausmaß der Assoziation überschätzen. Geben Sie immer an, welches Maß Sie verwenden, und prüfen Sie, ob die Annahme einer seltenen Erkrankung für Ihre Daten gilt."
+  },
+  "examples": {
+    "heading": "Durchgerechnete Beispiele",
+    "intro": "Drei klassische Studienszenarien zeigen, wie man die Odds-Ratio-Ausgabe liest und die statistische Signifikanz beurteilt.",
+    "colInput": "Studienszenario",
+    "colOutput": "Odds Ratio",
+    "colNote": "Interpretation",
+    "loadSmoking": "Raucherbeispiel laden",
+    "loadDrug": "Arzneimittelbeispiel laden",
+    "loadVaccine": "Impfbeispiel laden",
+    "items": [
+      {
+        "input": "Rauchen & Lungenkrebs: a=650, b=350, c=100, d=900 (95% CI)",
+        "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+        "note": "Raucher haben etwa 16,7-mal höhere Chancen auf Lungenkrebs als Nichtraucher. Das KI schließt 1,0 aus, daher ist der Zusammenhang hochsignifikant."
+      },
+      {
+        "input": "Neues Medikament vs. Placebo: a=38, b=162, c=85, d=115 (95% CI)",
+        "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+        "note": "Das Medikament senkt die Chancen für die Erkrankung um etwa 68 %. OR < 1 bedeutet einen protektiven Effekt; das KI liegt vollständig unter 1."
+      },
+      {
+        "input": "Impfstudie: a=15, b=485, c=55, d=445 (95% CI)",
+        "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+        "note": "Geimpfte haben 75 % geringere Infektionschancen. Ein starker protektiver Zusammenhang mit engem, signifikantem Konfidenzintervall."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Odds-Ratio-Rechner",
+    "steps": [
+      "Ordnen Sie Ihre Daten in einer 2×2-Tafel an: Zelle (a) = exponierte Fälle, (b) = exponierte Nicht-Fälle, (c) = nicht exponierte Fälle, (d) = nicht exponierte Nicht-Fälle.",
+      "Geben Sie die vier nichtnegativen Zählwerte in die entsprechenden Eingabefelder unter 'Exponierte Gruppe' und 'Nicht exponierte Gruppe' ein.",
+      "Wählen Sie das gewünschte Konfidenzniveau (90 %, 95 % oder 99 %) aus dem Dropdown. Die meisten veröffentlichten Studien verwenden 95 %.",
+      "Klicken Sie auf Berechnen. Das Tool gibt OR, Konfidenzintervall, Z-Wert und p-Wert zurück. Wenn eine Zelle null war, erscheint ein Korrekturhinweis.",
+      "Interpretieren Sie das Ergebnis: OR > 1 bedeutet, dass die Exposition die Chancen erhöht; OR < 1 bedeutet, dass sie die Chancen senkt. Prüfen Sie, ob das KI 1 enthält und ob p ≤ α ist."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "q1": "Was ist eine Odds Ratio und wie unterscheidet sie sich vom relativen Risiko?",
+    "q1_a": "Die Odds Ratio vergleicht die Chancen eines Ergebnisses in zwei Gruppen, während das relative Risiko (RR) die Wahrscheinlichkeiten vergleicht. Bei seltenen Endpunkten (Prävalenz < 10 %) gilt OR ≈ RR; bei häufigen Endpunkten entfernt sich die OR weiter von 1,0 als das RR. Fall-Kontroll-Studien können nur die OR valide schätzen, nicht das RR, da die Stichprobe ereignisabhängig gezogen wird.",
+    "q2": "Wie interpretiere ich OR = 2,5?",
+    "q2_a": "Eine OR von 2,5 bedeutet, dass die Chancen des Ergebnisses in der exponierten Gruppe 2,5-mal so hoch sind wie in der nicht exponierten Gruppe. Das heißt nicht, dass das Risiko 2,5-mal höher ist, außer bei seltenen Endpunkten. Bei häufigen Endpunkten ist das tatsächliche Risikoverhältnis kleiner als 2,5.",
+    "q3": "Was sagt mir das Konfidenzintervall?",
+    "q3_a": "Ein 95%-Konfidenzintervall bedeutet, dass bei wiederholter Durchführung der Studie unter denselben Bedingungen etwa 95 % der berechneten Intervalle die wahre Populations-OR enthalten würden. Praktisch gilt: Enthält das KI nicht 1,0, ist das Ergebnis bei α = 0,05 statistisch signifikant. Ein breites KI weist auf geringe Präzision hin, meist wegen kleiner Stichprobe.",
+    "q4": "Wann wird die Haldane-Anscombe-Korrektur angewendet?",
+    "q4_a": "Die Korrektur addiert 0,5 zu jeder Zelle, wenn eine Zelle null ist. Eine Nullzelle macht die Standard-OR-Formel undefiniert (Logarithmus von null oder Division durch null). Die Korrektur ermöglicht die Schätzung und ist die gängigste Lösung, führt aber zu einer leichten Verzerrung. Der Rechner hebt hervor, wenn sie verwendet wurde.",
+    "q5": "Kann ich diesen Rechner für eine randomisierte kontrollierte Studie verwenden?",
+    "q5_a": "Ja, aber erwägen Sie, das relative Risiko (RR) zusätzlich zur OR oder statt der OR zu berichten, da RR für häufige Endpunkte intuitiver ist und von klinischen Leitlinien oft bevorzugt wird. Bei RCTs mit seltenen Endpunkten oder beim Pooling verschiedener Studiendesigns in einer Metaanalyse ist die OR weiterhin angemessen.",
+    "q6": "Warum wirken p-Werte und Konfidenzintervalle manchmal widersprüchlich?",
+    "q6_a": "Sie sollten nicht widersprüchlich sein: Ein 95%-KI, das 1,0 ausschließt, entspricht immer p < 0,05 bei einem zweiseitigen Test. Scheinbare Widersprüche entstehen meist durch Rundung, durch den Vergleich einseitiger p-Werte mit zweiseitigen KIs oder durch unterschiedliche Konfidenzniveaus und Alpha-Werte. Verwenden Sie für beides konsistente Einstellungen."
+  }
+}

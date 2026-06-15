@@ -1,0 +1,105 @@
+{
+  "title": "Chi-Quadrat-Rechner mit Yates-Korrektur",
+  "tagline": "Berechnen Sie die Yates-korrigierte Chi-Quadrat-Statistik für 2×2-Kontingenztafeln. Reduzieren Sie den Fehler 1. Art bei kleinen erwarteten Häufigkeiten.",
+  "intro": "Geben Sie die vier Zellenhäufigkeiten (a, b, c, d) Ihrer 2×2-Kontingenztafel ein, um den Yates-korrigierten χ²-Wert und den p-Wert zu berechnen.",
+  "table": {
+    "label": "Geben Sie die Häufigkeiten für Ihre 2×2-Kontingenztafel ein: Gruppe A in den Zeilen, Ergebnis 1/2 in den Spalten."
+  },
+  "field": {
+    "a": "Gruppe A, Ergebnis 1 (a)",
+    "b": "Gruppe A, Ergebnis 2 (b)",
+    "c": "Gruppe B, Ergebnis 1 (c)",
+    "d": "Gruppe B, Ergebnis 2 (d)"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie für alle vier Felder nichtnegative ganze Zahlen ein, und mindestens eine Zeile und eine Spalte dürfen nicht nur aus Nullen bestehen."
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "chi2": "Yates χ²-Statistik",
+    "pValue": "p-Wert",
+    "df": "Freiheitsgrade",
+    "N": "Gesamt-N",
+    "significant": "Signifikanter Zusammenhang erkannt (p < 0.05).",
+    "notSignificant": "Kein signifikanter Zusammenhang erkannt (p ≥ 0.05)."
+  },
+  "about": {
+    "heading": "Über die Yates-Kontinuitätskorrektur",
+    "body": "Die Yates-Kontinuitätskorrektur ist eine Anpassung des Chi-Quadrat- (χ²-) Tests für 2×2-Kontingenztafeln. Die Chi-Quadrat-Verteilung ist stetig, die beobachteten Häufigkeiten in einer Kontingenztafel sind jedoch diskrete Zählwerte. Dadurch überschätzt die Chi-Quadrat-Approximation die Teststatistik, was zu zu kleinen p-Werten und einem erhöhten Risiko für Fehler 1. Art führt — besonders bei kleinen Stichproben oder kleinen erwarteten Häufigkeiten.\n\nFrank Yates schlug die Korrektur 1934 vor. Die Idee ist einfach: Vor dem Quadrieren wird von der absoluten Differenz zwischen beobachteter und erwarteter Häufigkeit 0,5 subtrahiert. Die korrigierte Formel lautet χ² = Σ (|O − E| − 0,5)² / E, aufsummiert über alle vier Zellen. Diese kleine Anpassung reduziert den gesamten Chi-Quadrat-Wert und liefert einen konservativeren (größeren) p-Wert, der die wahre Wahrscheinlichkeit der beobachteten oder extremeren Ergebnisse besser widerspiegelt.\n\nDie Korrektur ist besonders wichtig, wenn eine erwartete Häufigkeit unter 10 liegt, insbesondere unter 5. Unter diesen Bedingungen ist der standardmäßige Chi-Quadrat-Test bekanntlich unzuverlässig, und die Yates-Korrektur hilft beim Ausgleich. Bei größeren Stichproben, bei denen alle erwarteten Häufigkeiten über 10 liegen, hat die Korrektur nur minimale Auswirkungen und der Standardtest ist ausreichend.\n\nUm den Rechner zu verwenden, müssen Sie Ihre Daten als 2×2-Kontingenztafel strukturieren. Die beiden Zeilen stehen für die zwei Gruppen (z. B. Behandlung vs. Kontrolle), die beiden Spalten für die zwei möglichen Ergebnisse (z. B. Erfolg vs. Misserfolg). Zelle a ist die Anzahl der Personen in Gruppe A mit Ergebnis 1, Zelle b ist Gruppe A mit Ergebnis 2, Zelle c ist Gruppe B mit Ergebnis 1 und Zelle d ist Gruppe B mit Ergebnis 2.\n\nDie Freiheitsgrade für eine 2×2-Tafel betragen immer 1. Der p-Wert wird aus der Chi-Quadrat-Verteilung mit 1 Freiheitsgrad berechnet. Ein p-Wert unter 0,05 wird konventionell als Hinweis auf einen statistisch signifikanten Zusammenhang zwischen Gruppenmitgliedschaft und Ergebnis interpretiert.\n\nIn der Statistik wird weiterhin darüber diskutiert, wann die Yates-Korrektur sinnvoll ist. Einige Statistiker argumentieren, dass sie zu stark korrigiert und die Teststärke verringert. Die von vielen modernen Statistikern bevorzugte Alternative bei sehr kleinen erwarteten Häufigkeiten ist der exakte Fisher-Test, der die exakte Wahrscheinlichkeit berechnet, ohne sich überhaupt auf die Chi-Quadrat-Approximation zu stützen. Dennoch wird die Yates-Korrektur in vielen Fachgebieten weiterhin breit gelehrt und akzeptiert und ist die passende Wahl, wenn Sie ein schnelles, konservatives Ergebnis für eine 2×2-Tafel wünschen."
+  },
+  "examples": {
+    "heading": "Praxisbeispiele",
+    "intro": "Untersuchen Sie verschiedene Szenarien, um zu verstehen, wie der Rechner arbeitet.",
+    "colInput": "Eingabe (a, b, c, d)",
+    "colOutput": "χ² / p-Wert",
+    "colNote": "Hinweis",
+    "items": [
+      {
+        "input": "a=3, b=22, c=11, d=14",
+        "output": "χ²≈4.86, p≈0.027",
+        "note": "Impfstoffstudie — signifikant; der Impfstoff senkt die Infektionsrate."
+      },
+      {
+        "input": "a=15, b=5, c=8, d=12",
+        "output": "χ²≈3.68, p≈0.055",
+        "note": "Lehrmethode — grenzwertig, bei α=0.05 nicht signifikant."
+      },
+      {
+        "input": "a=25, b=975, c=15, d=985",
+        "output": "χ²≈2.07, p≈0.151",
+        "note": "A/B-Werbetest — kein signifikanter Unterschied in der Klickrate."
+      },
+      {
+        "input": "a=1, b=49, c=6, d=44",
+        "output": "χ²≈2.48, p≈0.115",
+        "note": "Studie zu seltenen Nebenwirkungen — wegen der niedrigen Zellzahlen ist hier die Yates-Korrektur entscheidend."
+      }
+    ],
+    "loadVaccine": "Impfstoffstudie",
+    "loadTeaching": "Lehrmethode",
+    "loadAB": "A/B-Werbetest"
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Rechner",
+    "steps": [
+      "Ordnen Sie Ihre Daten in einer 2×2-Tafel an: Gruppe A in der ersten Zeile, Gruppe B in der zweiten Zeile, Ergebnis 1 in der ersten Spalte und Ergebnis 2 in der zweiten Spalte.",
+      "Geben Sie die Häufigkeit für Zelle a (Gruppe A, Ergebnis 1) im ersten Feld und für Zelle b (Gruppe A, Ergebnis 2) im zweiten Feld ein.",
+      "Geben Sie die Häufigkeiten für Zelle c (Gruppe B, Ergebnis 1) und d (Gruppe B, Ergebnis 2) in die verbleibenden Felder ein. Alle Werte müssen nichtnegative ganze Zahlen sein.",
+      "Klicken Sie auf Berechnen, um den Yates-korrigierten χ²-Wert, die Freiheitsgrade (immer 1), den p-Wert und die Signifikanzentscheidung anzuzeigen.",
+      "Nutzen Sie die Beispiel-Schaltflächen, um vordefinierte Daten zu laden und Ergebnisse zu prüfen oder gängige Anwendungsfälle zu erkunden."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ",
+    "items": [
+      {
+        "q": "Was ist die Yates-Kontinuitätskorrektur?",
+        "a": "Die Yates-Korrektur ist eine Anpassung der Standard-Chi-Quadrat-Formel für 2×2-Tafeln. Sie subtrahiert 0,5 von der absoluten Differenz zwischen beobachteten und erwarteten Häufigkeiten, bevor quadriert wird. Dadurch wird der Test konservativer und das Risiko eines falsch-positiven Ergebnisses (Fehler 1. Art) bei kleinen Stichproben oder kleinen erwarteten Zellzahlen reduziert."
+      },
+      {
+        "q": "Wann sollte ich die Yates-Korrektur statt des Standard-Chi-Quadrat-Tests verwenden?",
+        "a": "Verwenden Sie die Yates-Korrektur, wenn eine erwartete Zellenhäufigkeit unter 10 liegt. Der Standard-Chi-Quadrat-Test ist ausreichend, wenn alle erwarteten Häufigkeiten 10 oder mehr betragen. Bei sehr kleinen Stichproben, bei denen eine erwartete Häufigkeit unter 5 liegt, sollten Sie stattdessen den exakten Fisher-Test in Betracht ziehen, da er in diesem Szenario noch zuverlässiger ist."
+      },
+      {
+        "q": "Wofür stehen die Zellen a, b, c und d?",
+        "a": "Zelle a ist die Anzahl der Personen in Gruppe A mit Ergebnis 1. Zelle b ist die Anzahl in Gruppe A mit Ergebnis 2. Zelle c ist die Anzahl in Gruppe B mit Ergebnis 1. Zelle d ist die Anzahl in Gruppe B mit Ergebnis 2. In einer Impfstoffstudie könnte Gruppe A geimpft, Gruppe B ungeimpft, Ergebnis 1 infiziert und Ergebnis 2 nicht infiziert sein."
+      },
+      {
+        "q": "Warum ist der Freiheitsgrad bei einer 2×2-Tafel immer 1?",
+        "a": "Die Freiheitsgrade eines Chi-Quadrat-Tests auf Unabhängigkeit betragen (Zeilen − 1) × (Spalten − 1). Für eine 2×2-Tafel ist das (2−1) × (2−1) = 1. Das bedeutet, dass nach Kenntnis der Randtotalen und eines Zellwerts alle anderen Zellwerte vollständig festgelegt sind und nur ein freier Parameter bleibt."
+      },
+      {
+        "q": "Verringert die Yates-Korrektur die statistische Teststärke?",
+        "a": "Ja, ein konservativerer Test erfordert stärkere Evidenz, um die Nullhypothese zu verwerfen. Kritiker argumentieren, dass die Yates-Korrektur überkorrigieren und das Risiko eines Fehlers 2. Art (ein echtes Signal zu übersehen) erhöhen kann. Bei großen Stichproben mit hohen erwarteten Häufigkeiten ist der Effekt vernachlässigbar. Viele moderne Statistiker bevorzugen für kleine 2×2-Stichproben den exakten Fisher-Test."
+      },
+      {
+        "q": "Kann ich diesen Rechner für Tafeln größer als 2×2 verwenden?",
+        "a": "Nein. Die Yates-Korrektur ist speziell für 2×2-Kontingenztafeln gedacht. Für größere Tafeln (z. B. 3×2 oder 3×3) verwenden Sie den standardmäßigen Pearson-Chi-Quadrat-Test ohne Kontinuitätskorrektur. Formel und Freiheitsgrade unterscheiden sich bei größeren Tafeln."
+      }
+    ]
+  }
+}

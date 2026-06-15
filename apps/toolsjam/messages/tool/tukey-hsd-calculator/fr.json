@@ -1,0 +1,94 @@
+{
+  "title": "Calculateur Tukey HSD - Test post hoc ANOVA",
+  "tagline": "Lancez le test de différence honnêtement significative de Tukey après l’ANOVA pour identifier quelles moyennes de groupes diffèrent significativement.",
+  "intro": "Saisissez des données séparées par des virgules pour chaque groupe, choisissez le nombre de groupes et le seuil de signification, puis cliquez sur Calculer pour afficher le tableau ANOVA et toutes les comparaisons par paires.",
+  "field": {
+    "group": "Groupe",
+    "numGroups": "Nombre de groupes",
+    "alpha": "Seuil de signification (α)"
+  },
+  "placeholder": {
+    "group": "ex. : 23, 25, 28, 30"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Saisissez au moins 2 valeurs dans chacun des 2 groupes ou plus, puis cliquez sur Calculer."
+  },
+  "result": {
+    "anovaHeading": "Tableau ANOVA",
+    "source": "Source",
+    "ss": "SS",
+    "df": "df",
+    "ms": "MS",
+    "f": "F",
+    "between": "Entre les groupes",
+    "within": "Au sein des groupes",
+    "hsdValue": "Seuil HSD",
+    "qCritical": "q critique",
+    "pairHeading": "Comparaisons par paires (Tukey HSD)",
+    "pair": "Paire",
+    "meanI": "Moyenne i",
+    "meanJ": "Moyenne j",
+    "diff": "|Diff.|",
+    "significance": "Résultat",
+    "significant": "Significatif",
+    "notSignificant": "Non significatif",
+    "vsLabel": "vs"
+  },
+  "about": {
+    "heading": "À propos du test HSD de Tukey",
+    "body": "Le test de différence honnêtement significative (HSD) de Tukey est une procédure post hoc très utilisée, réalisée après qu’une ANOVA à un facteur renvoie une statistique F significative. Quand l’ANOVA montre qu’au moins une moyenne de groupe diffère des autres, Tukey HSD identifie précisément quelles paires de moyennes sont responsables de cette différence, tout en contrôlant le taux d’erreur familial au niveau α choisi sur l’ensemble des comparaisons.\n\nCe test a été développé par le statisticien John Tukey en 1949 et reste la référence lorsque toutes les comparaisons par paires sont pertinentes. Contrairement à la correction de Bonferroni, qui peut être trop conservatrice, la méthode de Tukey assure un contrôle exact du taux d’erreur expérimental lorsque les tailles d’échantillon sont égales, et un contrôle approximatif lorsqu’elles sont inégales. Cet équilibre entre puissance statistique et contrôle de l’erreur en fait le choix par défaut pour comparer trois groupes de traitement ou plus dans des domaines allant de l’agriculture à la psychologie, en passant par les essais cliniques et l’industrie.\n\nLe calcul commence par une ANOVA à un facteur : la moyenne générale est calculée à partir de toutes les observations, puis la somme des carrés est répartie entre la variation inter-groupes (à quel point les moyennes de groupe diffèrent de la moyenne générale) et la variation intra-groupes (à quel point les valeurs individuelles se dispersent autour de leur moyenne de groupe). En divisant chaque somme des carrés par ses degrés de liberté, on obtient les carrés moyens. La statistique F est le rapport du carré moyen inter-groupes au carré moyen intra-groupes ; une grande valeur de F suggère que les groupes ont des moyennes réellement différentes.\n\nPour l’étape HSD, la valeur critique q est lue dans la table de la distribution de l’étendue studentisée en fonction du nombre de groupes k et des degrés de liberté intra-groupes. Le seuil HSD est ensuite q × √(MS_within / n_harmonic), où n_harmonic est la moyenne harmonique des tailles d’échantillon des groupes. Toute paire de moyennes dont la différence absolue dépasse ce seuil est déclarée significativement différente.\n\nCe calculateur gère entre 2 et 6 groupes avec des tailles d’échantillon inégales, en utilisant la moyenne harmonique comme taille d’échantillon effective. Les résultats incluent le tableau ANOVA complet et une matrice complète des comparaisons par paires. Utilisez α = 0.05 pour le niveau de confiance standard de 95 % ou α = 0.01 pour le niveau plus strict de 99 %."
+  },
+  "examples": {
+    "heading": "Exemples de Tukey HSD",
+    "intro": "Jeux de données représentatifs montrant comment le test détecte ou non des différences significatives entre groupes.",
+    "colInput": "Groupes",
+    "colOutput": "Verdict",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "G1: 23,25,28,30 | G2: 22,24,26,28 | G3: 35,38,40,42",
+        "output": "G1 vs G3 : Significatif ; G2 vs G3 : Significatif",
+        "note": "La moyenne du groupe 3 (~38.75) est bien au-dessus des groupes 1 et 2 (~26.5 et ~25). Les paires impliquant G3 dépassent le seuil HSD."
+      },
+      {
+        "input": "G1: 10,11,12 | G2: 10,12,11 | G3: 11,13,12",
+        "output": "Aucune différence significative",
+        "note": "Les moyennes sont 11, 11 et 12. Les écarts sont faibles par rapport à la variabilité intra-groupe, donc toutes les paires restent sous le seuil HSD."
+      },
+      {
+        "input": "G1: 5,6,7,8 | G2: 12,14,13,15 | G3: 20,21,22,23 | G4: 30,31,29,32",
+        "output": "Toutes les paires significatives",
+        "note": "Quatre groupes régulièrement espacés avec une faible dispersion interne. Chaque paire de moyennes dépasse le seuil HSD à alpha=0.05."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur Tukey HSD",
+    "steps": [
+      "Sélectionnez le nombre de groupes (2-6) à l’aide des boutons de sélection en haut du calculateur.",
+      "Saisissez les valeurs séparées par des virgules pour chaque groupe dans le champ correspondant.",
+      "Choisissez votre seuil de signification : alpha=0.05 pour le seuil classique de 5 %, ou alpha=0.01 pour un seuil plus strict de 1 %.",
+      "Cliquez sur Calculer pour afficher le tableau ANOVA (SS, df, MS, F) et le tableau complet des comparaisons par paires.",
+      "Vérifiez la colonne Résultat du tableau par paires : les paires marquées Significatif ont des différences de moyennes qui dépassent le seuil HSD."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ Tukey HSD",
+    "q1": "Quand dois-je utiliser le test HSD de Tukey ?",
+    "q1_a": "Utilisez Tukey HSD après un résultat significatif d’ANOVA à un facteur lorsque vous voulez savoir quelles moyennes de groupes diffèrent. C’est idéal lorsque toutes les comparaisons par paires sont prévues et que vous souhaitez un contrôle strict du taux d’erreur familial.",
+    "q2": "Que signifie le seuil HSD ?",
+    "q2_a": "Le seuil HSD est la différence absolue minimale entre deux moyennes de groupe jugée statistiquement significative au niveau alpha choisi. Toute paire dont la différence de moyennes dépasse cette valeur est signalée comme significativement différente.",
+    "q3": "En quoi Tukey HSD diffère-t-il du test t ?",
+    "q3_a": "Un test t par paires ne corrige pas les comparaisons multiples, donc en enchaîner plusieurs augmente le risque de faux positif. Tukey HSD contrôle simultanément le taux d’erreur familial sur toutes les comparaisons, ce qui le rend plus adapté pour trois groupes ou plus.",
+    "q4": "Tukey HSD exige-t-il des tailles d’échantillon égales ?",
+    "q4_a": "Des tailles d’échantillon égales donnent un contrôle exact du taux d’erreur familial. Pour des tailles inégales, ce calculateur utilise la moyenne harmonique des tailles de groupe, ce qui fournit une bonne approximation connue sous le nom de méthode Tukey-Kramer.",
+    "q5": "Qu’est-ce que la statistique de l’étendue studentisée q ?",
+    "q5_a": "La statistique q est le rapport entre l’étendue des moyennes de groupe et l’erreur standard. Les valeurs critiques sont lues dans la distribution de l’étendue studentisée, qui tient compte du nombre de groupes k et des degrés de liberté de l’erreur.",
+    "q6": "Que faire si l’ANOVA n’est pas significative ?",
+    "q6_a": "Si le test F global de l’ANOVA n’est pas significatif, on ne réalise généralement pas de tests post hoc comme Tukey HSD, car il n’existe pas de preuve statistique qu’une moyenne diffère. La pratique standard consiste à rapporter le F non significatif et à s’arrêter là."
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "title": "Rechner für Post-Test-Wahrscheinlichkeit",
+  "tagline": "Berechnen Sie die Post-Test-Wahrscheinlichkeit mit dem Satz von Bayes",
+  "intro": "Geben Sie die Vortestwahrscheinlichkeit, die Testsensitivität und die Testspezifität (alle in Prozent) ein, um Post-Test-Wahrscheinlichkeiten, PPV, NPV und Likelihood-Ratios zu berechnen.",
+  "field": {
+    "priorProbability": "Vortestwahrscheinlichkeit (%)",
+    "sensitivity": "Testsensitivität (True-Positive-Rate) (%)",
+    "specificity": "Testspezifität (True-Negative-Rate) (%)"
+  },
+  "placeholder": {
+    "percent": "z. B. 20"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "postTestPositive": "Post-Test-Wahrscheinlichkeit (positiver Test)",
+    "postTestNegative": "Post-Test-Wahrscheinlichkeit (negativer Test)",
+    "ppv": "PPV (positiver Vorhersagewert)",
+    "npv": "NPV (negativer Vorhersagewert)",
+    "lrPos": "LR+ (positives Likelihood Ratio)",
+    "lrNeg": "LR− (negatives Likelihood Ratio)"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie für alle drei Felder gültige Prozentwerte zwischen 0 und 100 ein."
+  },
+  "about": {
+    "heading": "Über den Rechner für Post-Test-Wahrscheinlichkeit",
+    "body": "Die Post-Test-Wahrscheinlichkeit ist die aktualisierte Wahrscheinlichkeit, dass ein Patient nach einem diagnostischen Testergebnis eine bestimmte Erkrankung hat. Sie wird mit dem Satz von Bayes berechnet, der Überzeugungen angesichts neuer Evidenz formal aktualisiert. Dieser Rechner implementiert das zentrale Rahmenwerk der diagnostischen Genauigkeit, das in der evidenzbasierten Medizin, der klinischen Entscheidungsunterstützung und der medizinischen Ausbildung verwendet wird.\n\nDie drei erforderlichen Eingaben sind: (1) Vortestwahrscheinlichkeit — die Prätestwahrscheinlichkeit bzw. Krankheitsprävalenz vor dem Test; (2) Sensitivität — die True-Positive-Rate, also die Wahrscheinlichkeit, dass der Test positiv ist, wenn die Erkrankung vorliegt; und (3) Spezifität — die True-Negative-Rate, also die Wahrscheinlichkeit, dass der Test negativ ist, wenn die Erkrankung nicht vorliegt.\n\nBei einem positiven Testergebnis entspricht die Post-Test-Wahrscheinlichkeit dem positiven Vorhersagewert (PPV), berechnet als: PPV = (sensitivity × prior) / (sensitivity × prior + (1−specificity) × (1−prior)). Bei einem negativen Ergebnis beträgt die Krankheitswahrscheinlichkeit 1 − NPV, wobei NPV = (specificity × (1−prior)) / (specificity × (1−prior) + (1−sensitivity) × prior) ist.\n\nLikelihood-Ratios (LRs) bieten eine weitere Möglichkeit, Wahrscheinlichkeiten zu aktualisieren. LR+ = sensitivity / (1−specificity) zeigt, wie stark ein positives Ergebnis die Krankheitsodds erhöht. LR− = (1−sensitivity) / specificity zeigt, wie stark ein negatives Ergebnis die Odds senkt. Als Faustregel gilt: Ein LR+ über 10 oder ein LR− unter 0.1 weist auf einen diagnostisch sehr starken Test hin.\n\nEines der kontraintuitivsten Ergebnisse in der medizinischen Statistik ist der Basisraten-Effekt: Selbst ein sehr genauer Test hat einen niedrigen PPV, wenn die Krankheit selten ist. Beispielsweise hat ein Test mit 99% Sensitivität und 99% Spezifität bei einer Krankheit mit 0.1% Prävalenz nur einen PPV von etwa 9%. Das bedeutet, dass 91% der positiven Tests falsch positiv sind — ein entscheidender Aspekt bei Bevölkerungs-Screeningprogrammen.\n\nDieser Rechner ist nützlich für Kliniker, die diagnostische Testergebnisse interpretieren, für Forscher, die Screening-Protokolle entwickeln, für Medizinstudierende, die bayesches Denken lernen, und für Epidemiologen, die die Testleistung bei unterschiedlichen Prävalenzen bewerten.\n\nDenken Sie immer daran, dass die Vortestwahrscheinlichkeit anhand der besten verfügbaren Evidenz geschätzt werden sollte: veröffentlichte Prävalenzdaten, Anamnese, körperliche Untersuchungsbefunde und Risikofaktoren des Patienten. Die Qualität Ihrer Post-Test-Schätzung hängt direkt von der Genauigkeit Ihrer Vortest-Schätzung und von der Validität der veröffentlichten Sensitivitäts- und Spezifitätswerte des Tests ab."
+  },
+  "examples": {
+    "heading": "Beispiele",
+    "intro": "Diese Beispiele zeigen, wie Krankheitsprävalenz und Testgenauigkeit die Post-Test-Wahrscheinlichkeit beeinflussen.",
+    "loadCommon": "Häufige Krankheit (20%)",
+    "loadRare": "Seltene Krankheit (0.1%)",
+    "colInput": "Vortest, Sensitivität, Spezifität",
+    "colOutput": "Post-Test Pr. (+)",
+    "colNote": "Szenario",
+    "items": [
+      {
+        "input": "Prior=20%, Sens=85%, Spec=80%",
+        "output": "PPV ≈ 51.5%",
+        "note": "Screening einer häufigen Erkrankung"
+      },
+      {
+        "input": "Prior=0.1%, Sens=99%, Spec=99%",
+        "output": "PPV ≈ 9.0%",
+        "note": "Seltene Krankheit — Basisratenfehler"
+      },
+      {
+        "input": "Prior=5%, Sens=99.5%, Spec=85%",
+        "output": "PPV ≈ 25.8%",
+        "note": "Hochsensitiver Screeningtest"
+      },
+      {
+        "input": "Prior=15%, Sens=80%, Spec=99.8%",
+        "output": "PPV ≈ 98.8%",
+        "note": "Hochspezifischer Bestätigungstest"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie diesen Rechner",
+    "steps": [
+      "Geben Sie die Vortestwahrscheinlichkeit als Prozentwert ein — das ist die Prävalenz oder Ihre erste Schätzung der Krankheitswahrscheinlichkeit vor dem Test.",
+      "Geben Sie die Testsensitivität (True-Positive-Rate) als Prozentwert ein — wie oft der Test positiv ist, wenn die Erkrankung vorliegt.",
+      "Geben Sie die Testspezifität (True-Negative-Rate) als Prozentwert ein — wie oft der Test negativ ist, wenn die Erkrankung nicht vorliegt.",
+      "Klicken Sie auf „Berechnen“, um die Post-Test-Wahrscheinlichkeiten nach positivem und negativem Ergebnis sowie PPV, NPV und Likelihood-Ratios anzuzeigen.",
+      "Nutzen Sie die Schnelllade-Schaltflächen, um realistische klinische Szenarien zu erkunden und zu sehen, wie die Prävalenz die Testinterpretation beeinflusst."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "q1": "Was ist die Post-Test-Wahrscheinlichkeit?",
+    "q1_a": "Die Post-Test-Wahrscheinlichkeit ist die Wahrscheinlichkeit, dass eine Erkrankung vorliegt, gegeben das Ergebnis eines diagnostischen Tests. Sie wird aus dem Satz von Bayes abgeleitet, indem Vortestwahrscheinlichkeit (Prävalenz oder Prätestwahrscheinlichkeit) mit Sensitivität und Spezifität des Tests kombiniert wird. Ein positiver Test erhöht die Wahrscheinlichkeit über die Vortestwahrscheinlichkeit; ein negativer Test senkt sie.",
+    "q2": "Was ist der Unterschied zwischen Sensitivität und Spezifität?",
+    "q2_a": "Die Sensitivität (True-Positive-Rate) misst den Anteil der Personen mit Erkrankung, deren Test positiv ist: TP / (TP + FN). Die Spezifität (True-Negative-Rate) misst den Anteil der Personen ohne Erkrankung, deren Test negativ ist: TN / (TN + FP). Hohe Sensitivität minimiert übersehene Fälle; hohe Spezifität minimiert Fehlalarme.",
+    "q3": "Was ist PPV und warum hängt er von der Prävalenz ab?",
+    "q3_a": "Der positive Vorhersagewert (PPV) ist die Wahrscheinlichkeit, dass eine Person mit positivem Test tatsächlich die Erkrankung hat. Er hängt sowohl von der Testgenauigkeit als auch von der Krankheitsprävalenz ab. Selbst bei einem 99% genauen Test kann der PPV bei seltenen Krankheiten niedrig sein — ein Phänomen, das als False-Positive-Paradox oder Basisratenfehler bekannt ist. Deshalb ist das Verständnis der Vortestwahrscheinlichkeit in der Diagnostik entscheidend.",
+    "q4": "Was sind Likelihood-Ratios und wie nutze ich sie?",
+    "q4_a": "Das positive Likelihood Ratio (LR+) = sensitivity / (1−specificity) zeigt, wie stark ein positives Ergebnis die Krankheitsodds erhöht. LR− = (1−sensitivity) / specificity zeigt, wie stark ein negatives Ergebnis sie senkt. Als Faustregel führen LR+ > 10 oder LR− < 0.1 zu großen, klinisch bedeutsamen Wahrscheinlichkeitsänderungen.",
+    "q5": "Warum kann ein sehr genauer Test eine niedrige Post-Test-Wahrscheinlichkeit liefern?",
+    "q5_a": "Wenn die Krankheitsprävalenz (Vortestwahrscheinlichkeit) sehr niedrig ist, erzeugt selbst ein sehr genauer Test im Verhältnis zu den wahren Positiven viele falsch Positive. Beispielsweise hat ein 99% genauer Test für eine Krankheit mit 0.1% Prävalenz nur einen PPV von etwa 9% — 91% der positiven Tests sind falsch positiv. Deshalb muss Massenscreening für seltene Krankheiten sorgfältig geplant werden.",
+    "q6": "Was ist der Unterschied zwischen PPV und Post-Test-Wahrscheinlichkeit nach einem positiven Ergebnis?",
+    "q6_a": "Bei einem einfachen Zwei-Klassen-Test (positiv/negativ) sind PPV und die Post-Test-Wahrscheinlichkeit nach einem positiven Ergebnis derselbe Wert. Beide beschreiben P(Krankheit | positiver Test). Der Begriff 'Post-Test-Wahrscheinlichkeit' ist die allgemeinere bayesische Sprache in der klinischen Entscheidung, während PPV der epidemiologische Begriff aus Validierungsstudien ist."
+  }
+}

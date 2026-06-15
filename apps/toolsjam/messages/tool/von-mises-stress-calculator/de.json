@@ -1,0 +1,87 @@
+{
+  "title": "Von-Mises-Spannungsrechner: Fließ- und Sicherheitsanalyse",
+  "tagline": "Berechnen Sie die von-Mises-Vergleichsspannung und den Sicherheitsfaktor aus Normal- und Schubspannungen.",
+  "intro": "Geben Sie die sechs Spannungsanteile (σx, σy, σz, τxy, τyz, τzx) und optional die Streckgrenze ein, um die Materialsicherheit zu bewerten.",
+  "field": {
+    "sigmaX": "Normalspannung σx (MPa)",
+    "sigmaY": "Normalspannung σy (MPa)",
+    "sigmaZ": "Normalspannung σz (MPa)",
+    "tauXY": "Schubspannung τxy (MPa)",
+    "tauYZ": "Schubspannung τyz (MPa)",
+    "tauZX": "Schubspannung τzx (MPa)",
+    "yieldStrength": "Streckgrenze (MPa)"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "von-Mises-Spannungsergebnisse",
+    "vonMises": "von-Mises-Spannung: {value} MPa",
+    "factorOfSafety": "Sicherheitsfaktor: {value}",
+    "safe": "Sicher (kein Fließen)",
+    "yielding": "Fließen"
+  },
+  "error": {
+    "invalid": "Bitte gültige Zahlen für die Spannungsanteile eingeben."
+  },
+  "formula": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)])",
+  "about": {
+    "heading": "Über den Von-Mises-Spannungsrechner",
+    "body": "Die von-Mises-Spannung, auch Vergleichsspannung oder effektive Spannung genannt, ist eine skalare Größe zur Vorhersage des Fließens duktiler Werkstoffe unter komplexer Belastung. Sie fasst alle sechs Spannungsanteile — drei Normalspannungen (σx, σy, σz) und drei Schubspannungen (τxy, τyz, τzx) — zu einem einzigen Vergleichswert zusammen, der direkt mit der einachsigen Streckgrenze des Werkstoffs verglichen werden kann.\n\nDas von Mises-Fließkriterium, 1913 von Richard von Mises vorgeschlagen, besagt, dass ein duktiles Material zu fließen beginnt, wenn die Verzerrungsenergie pro Volumeneinheit die Verzerrungsenergie bei Fließen unter einaxialem Zug erreicht. Mathematisch wird dies so ausgedrückt: σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). Wenn σ_vm der Streckgrenze σ_y entspricht oder sie überschreitet, wird ein Fließen vorhergesagt.\n\nIn der Finite-Elemente-Analyse (FEA) ist die von-Mises-Spannung eines der am häufigsten ausgegebenen Ergebnisse, weil sie mit einer einzigen Zahl die Schwere des Spannungszustands an einem Punkt zusammenfasst. Ingenieure nutzen sie, um kritische Bereiche zu identifizieren, die Materialausnutzung zu bewerten und Sicherheitsfaktoren zu berechnen. Der Sicherheitsfaktor (FoS) ist definiert als das Verhältnis von Streckgrenze zu von-Mises-Spannung: FoS = σ_y / σ_vm. Ein FoS größer als 1 bedeutet, dass das Bauteil sicher ist; Werte unter 1 deuten auf Fließen hin.\n\nBei einaxialer Belastung (nur σx, alle anderen null) ist die von-Mises-Spannung gleich σx und entspricht damit der direkten Definition des Fließens im Zugversuch. Bei reiner Scherbelastung (nur τxy) gilt σ_vm = √3 × τxy, was zeigt, dass das Fließen in Scherung bei τ_y = σ_y/√3 ≈ 0.577σ_y einsetzt. Dieser Zusammenhang ist ein zentrales Ergebnis der Plastizitätstheorie und wird bei der Vorhersage von Scherbruch in Schrauben, Schweißnähten und Verbindungen verwendet.\n\nDas von-Mises-Kriterium wird in den meisten ingenieurtechnischen Anwendungen gegenüber dem Tresca-Kriterium (maximale Schubspannung) bevorzugt, weil es glatt und differenzierbar ist, experimentelle Daten für die meisten duktilen Metalle wie Stahl, Aluminium und Kupfer besser beschreibt und sich numerisch einfacher handhaben lässt. Das Tresca-Kriterium ist etwas konservativer (es sagt Fließen bei geringeren Spannungen voraus) und wird manchmal in Druckbehälterregelwerken verwendet.\n\nIn der Praxis wird die von-Mises-Spannung in der Bauteilauslegung, Schweißnahtanalyse, Bewertung von Schraubverbindungen, in Regelwerken für Druckbehälter und Rohrleitungen (ASME, EN), bei der Zertifizierung von Luft- und Raumfahrtstrukturen sowie in Crash-Simulationen der Automobilindustrie eingesetzt. Das Verständnis des vollständigen Spannungstensors und die Anwendung des von-Mises-Kriteriums ermöglichen zuverlässige und materialeffiziente Konstruktionen."
+  },
+  "examples": {
+    "heading": "Von-Mises-Spannungsbeispiele",
+    "intro": "Repräsentative Belastungsszenarien mit von-Mises-Spannung, Sicherheitsfaktor und Sicherheitsstatus.",
+    "colInput": "Belastungsszenario",
+    "colOutput": "von-Mises-Spannung / FoS",
+    "colNote": "Sicherheitsstatus",
+    "items": [
+      {
+        "input": "Einachsige Zugbelastung: σx=150 MPa, alle anderen=0, yield=300 MPa",
+        "output": "σ_vm = 150 MPa, FoS = 2.0",
+        "note": "Sicher (kein Fließen). Bei einachsiger Belastung entspricht die von-Mises-Spannung der aufgebrachten Normalspannung."
+      },
+      {
+        "input": "Reine Scherung: τxy=60 MPa, alle Normalspannungen=0, yield=200 MPa",
+        "output": "σ_vm ≈ 103.9 MPa, FoS ≈ 1.92",
+        "note": "Sicher (kein Fließen). Für reine Scherung gilt σ_vm = √3 × τxy; Fließen tritt bei τ = σ_y/√3 auf."
+      },
+      {
+        "input": "Biaxial: σx=100, σy=80, τxy=30 MPa, yield=250 MPa",
+        "output": "σ_vm ≈ 105.4 MPa, FoS ≈ 2.37",
+        "note": "Sicher (kein Fließen). Kombinierte Normal- und Schubspannungen erzeugen eine moderate Vergleichsspannung."
+      },
+      {
+        "input": "Komplex: σx=120, σy=−40, σz=20, τxy=45, τyz=15, τzx=25 MPa, yield=350 MPa",
+        "output": "σ_vm ≈ 168.0 MPa, FoS ≈ 2.08",
+        "note": "Sicher (kein Fließen). Vollständiger 3D-Spannungszustand mit deutlichen Schubanteilen."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Von-Mises-Spannungsrechner",
+    "steps": [
+      "Geben Sie die drei Normalspannungsanteile σx, σy, σz in MPa ein. Für 2D-Ebenenspannung setzen Sie σz = 0.",
+      "Geben Sie die drei Schubspannungsanteile τxy, τyz, τzx in MPa ein. Für 2D-Probleme setzen Sie τyz = τzx = 0.",
+      "Optional können Sie die Streckgrenze des Werkstoffs in MPa eingeben, um Sicherheitsfaktor und Sicherheitsstatus zu berechnen.",
+      "Klicken Sie auf Berechnen. Die von-Mises-Vergleichsspannung wird zusammen mit FoS und Sicherheitsstatus angezeigt, falls eine Streckgrenze angegeben wurde.",
+      "Verwenden Sie für druckende Normalspannungen negative Werte. Das von-Mises-Kriterium ist bei Kombination mit Schub unabhängig vom Vorzeichen der Normalspannungen."
+    ]
+  },
+  "faq": {
+    "heading": "Von-Mises-Spannungs-FAQ",
+    "q1": "Was ist die von-Mises-Spannung?",
+    "q1_a": "Die von-Mises-Spannung ist eine skalare Vergleichsspannung, die alle sechs Spannungsanteile zu einem einzigen Wert zusammenfasst. Sie repräsentiert den Verzerrungsenergieanteil des Spannungszustands und wird zur Vorhersage des Fließens duktiler Werkstoffe verwendet. Wenn σ_vm ≥ σ_yield gilt, wird ein Fließen vorhergesagt.",
+    "q2": "Wie lautet die von-Mises-Formel?",
+    "q2_a": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). Sie ist aus der Verzerrungsenergietheorie abgeleitet und kann auch über die Hauptspannungen σ1, σ2, σ3 als σ_vm = √(0.5 × [(σ1−σ2)² + (σ2−σ3)² + (σ3−σ1)²]) geschrieben werden.",
+    "q3": "Wie wird der Sicherheitsfaktor berechnet?",
+    "q3_a": "Der Sicherheitsfaktor (FoS) ist das Verhältnis von Streckgrenze zu von-Mises-Spannung: FoS = σ_yield / σ_vm. Ein FoS > 1 bedeutet, dass das Bauteil sicher ist; FoS = 1 bedeutet, dass der Werkstoff die Streckgrenze erreicht; FoS < 1 zeigt Fließen an (plastische Verformung). Ingenieurvorschriften verlangen je nach Anwendung typischerweise FoS-Werte von 1.5 bis 4.",
+    "q4": "Was ist der Unterschied zwischen Von-Mises- und Tresca-Kriterium?",
+    "q4_a": "Beide sagen das Fließen duktiler Werkstoffe voraus. Das von-Mises-Kriterium basiert auf der Verzerrungsenergie und ergibt σ_y = √3 × τ_y. Das Tresca-Kriterium basiert auf der maximalen Schubspannung und ergibt σ_y = 2 × τ_y. Tresca ist etwas konservativer (es sagt Fließen bei geringeren Lasten voraus) und wird in einigen Druckbehälterregelwerken verwendet. Von Mises passt experimentelle Daten für die meisten Metalle besser an.",
+    "q5": "Kann die von-Mises-Spannung für spröde Werkstoffe verwendet werden?",
+    "q5_a": "Nein — das von-Mises-Kriterium gilt speziell für duktilen Werkstoffe, die vor dem Bruch fließen (Metalle wie Stahl, Aluminium, Kupfer). Für spröde Werkstoffe (Gusseisen, Keramik, Beton) sind die maximale Hauptspannung oder das Mohr-Coulomb-Kriterium geeigneter, da spröder Bruch durch Zugrissbildung und nicht durch schubgetriebene plastische Verformung bestimmt wird.",
+    "q6": "Was bedeutet eine negative von-Mises-Spannung?",
+    "q6_a": "Die von-Mises-Spannung ist immer nichtnegativ (sie ist eine Quadratwurzel aus einer Summe von Quadraten). Sie hat kein Vorzeichen. Eine von-Mises-Spannung von null bedeutet, dass an diesem Punkt keine Spannung vorliegt. Die Belastungsrichtung (Zug oder Druck) steckt in den einzelnen Spannungsanteilen, aber die äquivalente von-Mises-Skalargröße unterscheidet nicht zwischen Zug und Druck."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "title": "Calculateur de probabilité de dés - exact et au moins",
+  "tagline": "Calculez la probabilité exacte de n’importe quel résultat de lancer de dés — somme exacte, au moins ou au plus — pour jusqu’à 10 dés avec n’importe quel nombre de faces.",
+  "intro": "Saisissez le nombre de dés, le nombre de faces par dé et votre somme cible, puis choisissez si vous voulez la probabilité exacte, au moins ou au plus.",
+  "type": {
+    "exact": "Somme exacte",
+    "atLeast": "Au moins",
+    "atMost": "Au plus"
+  },
+  "field": {
+    "calcType": "Type de calcul",
+    "numberOfDice": "Nombre de dés",
+    "sidesPerDie": "Faces par dé",
+    "targetSum": "Somme cible"
+  },
+  "placeholder": {
+    "dice": "1–10",
+    "targetSum": "Saisir la somme cible"
+  },
+  "button": {
+    "calculate": "Calculer la probabilité",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs valides : 1–10 dés, au moins 2 faces et une somme cible positive.",
+    "range": "La somme cible doit être comprise entre {min} (minimum) et {max} (maximum) pour cette configuration de dés."
+  },
+  "result": {
+    "heading": "Probabilité",
+    "fraction": "{favorable} issues favorables sur {total} au total ({fraction})",
+    "summary": "{n} dés × d{s}, {type} {target}"
+  },
+  "about": {
+    "heading": "À propos du calculateur de probabilité de dés",
+    "body": "La probabilité des dés est un sujet fondamental à la fois en mathématiques récréatives et en théorie formelle des probabilités. Chaque fois que vous lancez un dé équilibré, chaque face a la même probabilité de se retrouver au-dessus : pour un dé standard à six faces, elle est de 1/6 pour chaque résultat. Lorsque vous lancez plusieurs dés et additionnez les résultats, le nombre de façons d’atteindre chaque total possible suit une distribution caractéristique, nettement non uniforme et fortement en forme de cloche avec trois dés ou plus.\n\nLe calculateur de probabilité de dés utilise une approche de convolution par programmation dynamique pour compter le nombre exact de façons d’obtenir chaque somme possible. En partant d’un seul résultat de 0 avec 1 façon, il itère sur chaque dé et étend la distribution en considérant chaque valeur de face possible. Cela produit un décompte exact des issues favorables pour toute somme cible. En divisant par le nombre total d’issues — simplement (faces par dé) élevé à la puissance (nombre de dés) — on obtient la probabilité sous forme de fraction décimale entre 0 et 1.\n\nLe calculateur prend en charge trois types de requêtes de probabilité. La probabilité exacte répond à « Quelle est la probabilité que le total des dés soit exactement T ? » — utile lorsqu’une règle de jeu de société exige d’obtenir un nombre précis. La probabilité au moins répond à « Quelle est la probabilité que le total des dés soit T ou plus ? » — pertinente dans les jeux de rôle où il faut un score minimum pour réussir. La probabilité au plus répond à « Quelle est la probabilité que le total des dés soit T ou moins ? » — utile pour les évaluations de risque et les calculs de seuil.\n\nConnaître la probabilité théorique d’un résultat de dés est précieux pour la conception de jeux, la stratégie, l’éducation et l’analyse des jeux d’argent. Par exemple, en lançant deux dés standard à six faces, la somme 7 a la probabilité la plus élevée (6 sur 36, soit 16,67 %), car six combinaisons la produisent : (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Les sommes aux extrêmes — 2 (snake eyes) ou 12 (boxcars) — n’ont qu’une combinaison chacune, ce qui leur donne une probabilité de seulement 1/36 (≈ 2,78 %). Comprendre cette distribution est au cœur de nombreuses stratégies de jeux de société et de casino.\n\nAu-delà des dés à six faces, le calculateur gère les dés polyédriques courants dans les jeux de rôle sur table : d4, d8, d10, d12 et d20. La distribution des sommes change fortement avec le nombre de faces. Un seul d20 produit une distribution uniforme ; deux dés d20 produisent une distribution triangulaire ; trois ou plus produisent une courbe de plus en plus en cloche. Cette convergence vers une distribution normale illustre concrètement le théorème central limite en action."
+  },
+  "examples": {
+    "heading": "Exemples de probabilité de dés",
+    "intro": "Trois scénarios illustrant les calculs de probabilité exacte, au moins et au plus.",
+    "colInput": "Scénario",
+    "colOutput": "Probabilité",
+    "colNote": "Explication",
+    "loadSingle": "Un d6 — obtenir un 4",
+    "loadLucky7": "Deux d6 — somme = 7",
+    "loadHighRoll": "Trois d6 — somme ≥ 16",
+    "items": [
+      {
+        "input": "1 dé, d6, somme exacte = 4",
+        "output": "16.6667%",
+        "note": "Une issue favorable (face affichant 4) sur 6 au total. P = 1/6."
+      },
+      {
+        "input": "2 dés, d6, somme exacte = 7",
+        "output": "16.6667%",
+        "note": "Six combinaisons produisent une somme de 7 sur 36 au total : (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). P = 6/36 = 1/6."
+      },
+      {
+        "input": "3 dés, d6, somme au moins = 16",
+        "output": "4.6296%",
+        "note": "10 combinaisons sur 216 au total produisent une somme de 16 ou plus. P = 10/216 ≈ 4.63%."
+      },
+      {
+        "input": "2 dés, d6, somme au plus = 4",
+        "output": "16.6667%",
+        "note": "Les sommes de 2 (1 façon), 3 (2 façons) et 4 (3 façons) donnent 6 issues favorables sur 36. P = 6/36 = 1/6."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de probabilité de dés",
+    "steps": [
+      "Choisissez le type de calcul : Somme exacte pour un total précis, Au moins pour un seuil minimal ou Au plus pour un seuil maximal.",
+      "Saisissez le nombre de dés (1–10) dans le premier champ. Plus il y a de dés, plus la distribution se rapproche d’une courbe en cloche.",
+      "Sélectionnez le nombre de faces par dé dans la liste déroulante (d4, d6, d8, d10, d12 ou d20).",
+      "Saisissez la somme cible qui vous intéresse. La plage valide s’affiche si vous entrez une valeur hors plage.",
+      "Cliquez sur Calculer la probabilité. Le résultat affiche la probabilité en pourcentage, la fraction des issues favorables sur les issues totales et la fraction simplifiée."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la probabilité des dés",
+    "q1": "Pourquoi 7 est-il la somme la plus courante avec deux dés à six faces ?",
+    "q1_a": "Il existe 6 combinaisons qui produisent une somme de 7 sur 36 issues totales, ce qui lui donne la probabilité la plus élevée : 1/6 ≈ 16,67 %. Les sommes 6 et 8 sont les suivantes les plus fréquentes (5/36 chacune), tandis que 2 et 12 sont les plus rares, à 1/36 chacune. Cette distribution asymétrique explique pourquoi le craps, Monopoly et de nombreux autres jeux de dés tournent autour du nombre 7.",
+    "q2": "Quelle est la différence entre probabilité « exacte », « au moins » et « au plus » ?",
+    "q2_a": "La probabilité exacte donne la chance que le total soit précisément égal au nombre cible. La probabilité au moins donne la chance que le total soit supérieur ou égal à la cible — utile lorsqu’il faut un lancer minimum pour réussir. La probabilité au plus donne la chance que le total soit inférieur ou égal à la cible — utile lorsque vous voulez rester sous un seuil.",
+    "q3": "Comment le nombre de dés affecte-t-il la forme de la distribution ?",
+    "q3_a": "Avec un seul dé, la distribution est parfaitement uniforme : chaque face est également probable. Avec deux dés, la distribution devient triangulaire et atteint un pic au milieu. Avec trois dés ou plus, elle devient en forme de cloche et ressemble de plus en plus à une distribution normale, conséquence directe du théorème central limite. Cela signifie que les sommes extrêmes deviennent exponentiellement plus rares à mesure que vous ajoutez des dés.",
+    "q4": "Puis-je utiliser ce calculateur pour des dés non standard ?",
+    "q4_a": "Le calculateur prend en charge d4, d6, d8, d10, d12 et d20 — les dés polyédriques standard utilisés dans la plupart des jeux sur table. Ils couvrent la grande majorité des dés réels. Si vous avez besoin de probabilités pour un dé ayant un nombre de faces différent, utilisez les formules standard : issues totales = sides^n, et comptez les issues favorables avec la même logique de convolution que celle appliquée en interne par le calculateur.",
+    "q5": "Le calcul de probabilité est-il exact ou approximatif ?",
+    "q5_a": "Le calcul est exact et utilise l’arithmétique entière. Le calculateur compte chaque combinaison possible par programmation dynamique (convolution de fonctions génératrices), puis divise par le nombre total d’issues. Il n’y a ni échantillonnage, ni simulation, ni approximation. Le pourcentage affiché est arrondi à quatre décimales pour la lisibilité, mais la fraction sous-jacente est exacte.",
+    "q6": "Comment utiliser la probabilité des dés dans une stratégie de jeu ?",
+    "q6_a": "Connaître la probabilité de chaque résultat vous permet de prendre des décisions éclairées. Dans Les Colons de Catane, placer des colonies sur des hexagones marqués 6 et 8 donne la fréquence de production de ressources la plus élevée, car chacun correspond à une chance de 5/36 avec deux d6. Dans les combats de Donjons & Dragons, connaître la probabilité d’obtenir 15 ou plus sur un d20 (P = 6/20 = 30 %) vous aide à évaluer le risque avant de tenter une action risquée."
+  }
+}

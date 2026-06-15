@@ -1,0 +1,87 @@
+{
+  "title": "Von Mises Stress Calculator – Yield & Safety Analysis",
+  "tagline": "Compute von Mises equivalent stress and factor of safety from normal and shear stress components.",
+  "intro": "Enter the six stress components (σx, σy, σz, τxy, τyz, τzx) and optional yield strength to evaluate material safety.",
+  "field": {
+    "sigmaX": "Normal Stress σx (MPa)",
+    "sigmaY": "Normal Stress σy (MPa)",
+    "sigmaZ": "Normal Stress σz (MPa)",
+    "tauXY": "Shear Stress τxy (MPa)",
+    "tauYZ": "Shear Stress τyz (MPa)",
+    "tauZX": "Shear Stress τzx (MPa)",
+    "yieldStrength": "Yield Strength (MPa)"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Von Mises Stress Results",
+    "vonMises": "Von Mises Stress: {value} MPa",
+    "factorOfSafety": "Factor of Safety: {value}",
+    "safe": "Safe (No Yield)",
+    "yielding": "Yielding"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers for the stress components."
+  },
+  "formula": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)])",
+  "about": {
+    "heading": "About the Von Mises Stress Calculator",
+    "body": "The von Mises stress, also called the equivalent stress or effective stress, is a scalar measure used to predict yielding of ductile materials under complex loading conditions. It combines all six stress components — three normal stresses (σx, σy, σz) and three shear stresses (τxy, τyz, τzx) — into a single equivalent value that can be directly compared to the uniaxial yield strength of the material.\n\nThe von Mises yield criterion, proposed by Richard von Mises in 1913, states that a ductile material begins to yield when the distortion energy per unit volume reaches the distortion energy at yield under uniaxial tension. This is mathematically expressed as: σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). When σ_vm equals or exceeds the yield strength σ_y, the material is predicted to yield.\n\nIn finite element analysis (FEA), von Mises stress is one of the most commonly reported results because it provides a convenient single number summarizing the severity of the stress state at any point. Engineers use it to identify critical regions, assess material utilization, and calculate factors of safety. The factor of safety (FoS) is defined as the ratio of yield strength to von Mises stress: FoS = σ_y / σ_vm. A FoS greater than 1 means the component is safe; values below 1 indicate yielding.\n\nFor uniaxial loading (σx only, all others zero), the von Mises stress equals σx, consistent with the direct definition of yielding in a simple tensile test. For pure shear loading (τxy only), σ_vm = √3 × τxy, showing that yielding in shear occurs at τ_y = σ_y/√3 ≈ 0.577σ_y. This relationship is a key result of plasticity theory and is used in shear failure predictions for bolts, welds, and structural connections.\n\nThe von Mises criterion is preferred over the Tresca (maximum shear stress) criterion for most engineering applications because it is smooth and differentiable, matches experimental data better for most ductile metals including steel, aluminum, and copper, and is more convenient in numerical computations. The Tresca criterion is slightly more conservative (predicts yielding at lower stress levels) and is sometimes used in pressure vessel codes.\n\nIn practice, von Mises stress is used in component design, weld analysis, bolted joint evaluation, pressure vessel and piping codes (ASME, EN), aerospace structural certification, and automotive crash simulation. Understanding the full stress tensor and applying the von Mises criterion allows engineers to make reliable and material-efficient designs."
+  },
+  "examples": {
+    "heading": "Von Mises Stress Examples",
+    "intro": "Representative loading scenarios showing von Mises stress, factor of safety, and safety status.",
+    "colInput": "Loading Scenario",
+    "colOutput": "Von Mises Stress / FoS",
+    "colNote": "Safety Status",
+    "items": [
+      {
+        "input": "Uniaxial Tension: σx=150 MPa, all others=0, yield=300 MPa",
+        "output": "σ_vm = 150 MPa, FoS = 2.0",
+        "note": "Safe (No Yield). Von Mises stress equals applied normal stress for uniaxial loading."
+      },
+      {
+        "input": "Pure Shear: τxy=60 MPa, all normal stresses=0, yield=200 MPa",
+        "output": "σ_vm ≈ 103.9 MPa, FoS ≈ 1.92",
+        "note": "Safe (No Yield). σ_vm = √3 × τxy for pure shear; yield occurs at τ = σ_y/√3."
+      },
+      {
+        "input": "Biaxial: σx=100, σy=80, τxy=30 MPa, yield=250 MPa",
+        "output": "σ_vm ≈ 105.4 MPa, FoS ≈ 2.37",
+        "note": "Safe (No Yield). Combined normal and shear stresses produce moderate equivalent stress."
+      },
+      {
+        "input": "Complex: σx=120, σy=−40, σz=20, τxy=45, τyz=15, τzx=25 MPa, yield=350 MPa",
+        "output": "σ_vm ≈ 168.0 MPa, FoS ≈ 2.08",
+        "note": "Safe (No Yield). Full 3D stress state with significant shear contributions."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Von Mises Stress Calculator",
+    "steps": [
+      "Enter the three normal stress components σx, σy, σz in MPa. For 2D plane stress, set σz = 0.",
+      "Enter the three shear stress components τxy, τyz, τzx in MPa. For 2D problems, set τyz = τzx = 0.",
+      "Optionally enter the material yield strength in MPa to calculate factor of safety and safety status.",
+      "Click Calculate. The von Mises equivalent stress is displayed along with FoS and safety status if yield strength was provided.",
+      "Use negative values for compressive normal stresses. The von Mises criterion is independent of sign for normal stresses when combined with shear."
+    ]
+  },
+  "faq": {
+    "heading": "Von Mises Stress FAQ",
+    "q1": "What is von Mises stress?",
+    "q1_a": "Von Mises stress is a scalar equivalent stress measure that combines all six stress tensor components into a single value. It represents the distortional energy component of the stress state and is used to predict yielding in ductile materials. When σ_vm ≥ σ_yield, the material is predicted to yield.",
+    "q2": "What is the von Mises stress formula?",
+    "q2_a": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). This is derived from the distortion energy theory and can also be expressed in terms of the principal stresses σ1, σ2, σ3 as σ_vm = √(0.5 × [(σ1−σ2)² + (σ2−σ3)² + (σ3−σ1)²]).",
+    "q3": "How is factor of safety calculated?",
+    "q3_a": "The factor of safety (FoS) is the ratio of material yield strength to von Mises stress: FoS = σ_yield / σ_vm. An FoS > 1 means the component is safe; FoS = 1 means the material is at the yield point; FoS < 1 indicates yielding (plastic deformation). Engineering codes typically require FoS of 1.5 to 4 depending on application.",
+    "q4": "What is the difference between von Mises and Tresca criteria?",
+    "q4_a": "Both predict yielding in ductile materials. The von Mises criterion is based on distortion energy and gives σ_y = √3 × τ_y. The Tresca criterion is based on maximum shear stress and gives σ_y = 2 × τ_y. Tresca is slightly more conservative (predicts yielding at lower loads) and is used in some pressure vessel codes. Von Mises fits experimental data better for most metals.",
+    "q5": "Can von Mises stress be used for brittle materials?",
+    "q5_a": "No — the von Mises criterion applies specifically to ductile materials that yield before fracture (metals like steel, aluminum, copper). For brittle materials (cast iron, ceramics, concrete), maximum principal stress or Mohr-Coulomb criteria are more appropriate because brittle fracture is governed by tensile cracking rather than shear-driven plastic flow.",
+    "q6": "What does a negative von Mises stress mean?",
+    "q6_a": "Von Mises stress is always non-negative (it is a square root of a sum of squares). It does not have a sign. A von Mises stress of zero means there is no stress at that point. The direction of loading (tension vs. compression) is captured in the individual stress components, but the equivalent von Mises scalar does not differentiate between tensile and compressive loading."
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "title": "Calculateur de séries de pièces : faces et piles",
+  "tagline": "Calculez la probabilité d’obtenir des faces ou des piles consécutifs au lancer d’une pièce, ou le nombre attendu de lancers pour toute longueur de série.",
+  "intro": "Saisissez une longueur et un type de série, puis choisissez entre le calcul de la probabilité exacte sur un nombre donné de lancers ou du nombre attendu de lancers nécessaires pour atteindre la série.",
+  "formula": "Formule (probabilité exacte) : programmation dynamique sur les séquences de lancers  •  Lancers attendus pour k faces : 2(2^k − 1)  •  Lancers attendus pour k d’un même côté : 2^k − 1",
+  "field": {
+    "streakLen": "Longueur de la série",
+    "streakType": "Type de série",
+    "calcType": "Type de calcul",
+    "maxTosses": "Lancers max. (facultatif)",
+    "maxTossesHint": "Laissez vide pour utiliser une fenêtre par défaut d’environ 2k² lancers."
+  },
+  "placeholder": {
+    "streakLen": "ex. 3",
+    "maxTosses": "ex. 50"
+  },
+  "streakType": {
+    "heads": "Faces uniquement",
+    "tails": "Piles uniquement",
+    "either": "L’un ou l’autre (faces ou piles)"
+  },
+  "calcType": {
+    "exactProb": "Probabilité exacte",
+    "exactProb_desc": "Calcule la probabilité d’obtenir la série au moins une fois dans le nombre de lancers indiqué (ou par défaut).",
+    "expectedTosses": "Nombre attendu de lancers",
+    "expectedTosses_desc": "Calcule le nombre moyen de lancers nécessaires avant l’obtention de la série pour la première fois."
+  },
+  "button": {
+    "calculate": "Calculer la série",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir une longueur de série valide (1–100). Si vous indiquez un nombre maximal de lancers, il doit être ≥ à la longueur de la série et ≤ 100 000."
+  },
+  "result": {
+    "heading": "Résultat",
+    "inNTosses": "Probabilité d’obtenir la série en {n} lancers",
+    "tosses": "lancers (attendus)",
+    "expectedDesc": "En moyenne, il faut autant de lancers avant d’obtenir la série pour la première fois."
+  },
+  "about": {
+    "heading": "À propos du calculateur de séries de pièces",
+    "body": "Une série — aussi appelée run — est une suite de résultats identiques consécutifs. L’exemple le plus élémentaire est une suite de k faces d’affilée lors du lancer d’une pièce équilibrée. Bien que cela paraisse simple, les mathématiques des séries mobilisent des résultats étonnamment profonds de la théorie des probabilités et s’appliquent à des domaines allant de l’analyse sportive à la modélisation du risque financier.\n\nLa probabilité d’obtenir au moins une série de k faces consécutives quelque part dans n lancers ne peut pas être calculée avec une simple formule binomiale. Il faut suivre à chaque étape votre progression vers la série, une tâche parfaitement adaptée à la programmation dynamique. C’est précisément l’approche utilisée ici : le calculateur maintient une distribution de probabilité sur le nombre de faces consécutives déjà accumulées, la met à jour à chaque nouveau lancer et additionne la probabilité absorbée dans l’état 'série terminée' après n lancers.\n\nLe nombre attendu de lancers jusqu’à la première série de k faces consécutives admet une forme fermée élégante pour une pièce équilibrée (p = 0.5) : E_k = 2(2^k − 1). Pour k = 1, on s’attend à 2 lancers en moyenne avant la première face, ce qui est correct puisque E[géométrique(0.5)] = 1/0.5 = 2. Pour 3 faces d’affilée, le nombre attendu est 2(2^3 − 1) = 14. Pour k = 10, l’espérance atteint déjà 2 046 lancers, montrant que les longues séries sont bien plus rares que l’intuition ne le suggère.\n\nPour les séries 'l’un ou l’autre' (k résultats consécutifs du même type, faces ou piles), le nombre attendu de lancers est 2^k − 1. C’est plus court, car tout premier lancer peut lancer une série potentielle dans l’une ou l’autre direction. Pour k = 3, l’attente moyenne n’est que de 7 lancers contre 14 pour une série spécifiquement de faces. Intuitivement, la série peut se former dans les deux sens, ce qui double pratiquement les occasions.\n\nLes calculs de séries interviennent dans de nombreux contextes pratiques. En sport, on dit qu’un joueur de basket qui a réussi ses 5 derniers tirs 'est en feu'. La recherche statistique sur ce phénomène de 'hot hand' montre que, s’il existe une vraie corrélation, une grande partie de ce que les fans perçoivent comme une série n’est que le regroupement naturel attendu dans des processus aléatoires. En finance, un fonds qui bat le marché 5 ans de suite paraît impressionnant, mais avec des milliers de fonds, cela est statistiquement inévitable sous l’hypothèse nulle d’absence de compétence. Le calculateur de séries aide à juger si une suite de succès observée est surprenante compte tenu du nombre d’occasions.\n\nAu jeu, comprendre les probabilités de séries aide à fixer des attentes réalistes. La probabilité d’obtenir 10 faces d’affilée en 100 lancers est d’environ 4.4 %, bien plus faible que ce que beaucoup de joueurs imaginent en considérant les nombreux points de départ possibles. La probabilité d’obtenir 20 faces d’affilée en 1 000 lancers n’est que d’environ 0.05 %, ce qui est vraiment rare malgré le grand nombre d’essais.\n\nCe calculateur prend en charge des longueurs de série de 1 à 100 et jusqu’à 100 000 lancers en mode probabilité, couvrant tous les cas pratiques, des exercices de classe aux grandes études de simulation."
+  },
+  "examples": {
+    "heading": "Exemples de séries de pièces",
+    "intro": "Quatre exemples détaillés, des bases de la probabilité au jeu et aux statistiques sportives.",
+    "colInput": "Série / Type / Mode",
+    "colOutput": "Résultat",
+    "colNote": "Interprétation",
+    "loadThreeHeads": "Charger l’exemple 3 faces",
+    "loadLong": "Charger la série longue",
+    "loadGambling": "Charger l’exemple de jeu",
+    "items": [
+      {
+        "input": "Série = 3, faces uniquement, lancers attendus",
+        "output": "14 lancers",
+        "note": "En moyenne, il faut lancer une pièce équilibrée 14 fois avant d’obtenir 3 faces d’affilée. Formule : 2(2³ − 1) = 14."
+      },
+      {
+        "input": "Série = 5, faces uniquement, probabilité en 50 lancers",
+        "output": "≈ 55.19 %",
+        "note": "Plus de la moitié des suites de 50 lancers équilibrés contiennent au moins une série de 5 faces consécutives."
+      },
+      {
+        "input": "Série = 7, l’un ou l’autre, lancers attendus",
+        "output": "127 lancers",
+        "note": "Pour 7 résultats consécutifs du même type (faces ou piles), l’attente moyenne est de 2⁷ − 1 = 127 lancers."
+      },
+      {
+        "input": "Série = 4, faces uniquement, lancers attendus",
+        "output": "30 lancers",
+        "note": "Un joueur qui parie sur 4 faces d’affilée doit s’attendre à attendre environ 30 lancers. Formule : 2(2⁴ − 1) = 30."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de séries de pièces",
+    "steps": [
+      "Saisissez la longueur de série — le nombre de résultats identiques consécutifs qui vous intéresse (par exemple 3 pour trois faces d’affilée).",
+      "Choisissez le type de série : Faces uniquement, Piles uniquement ou L’un ou l’autre (n’importe quels k résultats identiques consécutifs).",
+      "Sélectionnez le mode de calcul : Probabilité exacte (sur un nombre donné de lancers) ou Nombre attendu de lancers.",
+      "En mode Probabilité exacte, vous pouvez éventuellement saisir un nombre maximal de lancers. Laissez vide pour utiliser la fenêtre par défaut.",
+      "Cliquez sur Calculer la série. Le résultat affichera soit la probabilité en pourcentage, soit le nombre attendu de lancers nécessaires."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur les séries de pièces",
+    "q1": "Comment la probabilité de série est-elle calculée ?",
+    "q1_a": "Le calculateur utilise la programmation dynamique. Il suit la probabilité d’être dans chaque état possible de 'série partielle' (0, 1, 2, ... k-1 faces consécutives pour l’instant) à mesure que chaque nouveau lancer est simulé. Lorsque la série partielle atteint k, la probabilité est absorbée. Après n lancers, la probabilité totale absorbée correspond à la probabilité d’avoir obtenu la série au moins une fois.",
+    "q2": "Pourquoi le nombre attendu augmente-t-il si vite avec la longueur de la série ?",
+    "q2_a": "Chaque élément supplémentaire dans la série multiplie le temps d’attente attendu par environ 2. Pour les séries de faces d’une pièce équilibrée, E_k = 2(2^k − 1), ce qui double à chaque augmentation de k de 1. C’est parce que chaque fois que vous êtes proche de terminer la série mais échouez, vous devez repartir de zéro, et la probabilité de réussir la tentative suivante est divisée par deux pour chaque étape supplémentaire requise.",
+    "q3": "Quelle est la probabilité d’une série de 10 faces en 100 lancers ?",
+    "q3_a": "Avec une longueur de série de 10, le type Faces uniquement et 100 lancers max, on obtient environ 4.4 %. Malgré le fait qu’une séquence spécifique de 10 résultats ait une probabilité (0.5)^10 ≈ 0.1 % pour un point de départ donné, les nombreux points de départ possibles et les fenêtres qui se chevauchent se combinent pour donner une probabilité d’environ 1 sur 23.",
+    "q4": "Une série de 5 victoires d’une équipe sportive est-elle un signe de talent ou de chance ?",
+    "q4_a": "Cela dépend de la probabilité de base de victoire. Pour une équipe avec 50 % de chances de gagner (niveau équilibré), une série de 5 victoires a une probabilité de (0.5)^5 ≈ 3.1 %. Sur une saison de 30+ matchs, la probabilité d’observer au moins une telle série à un moment donné est bien plus élevée — souvent supérieure à 50 %. Une série de 5 victoires n’est pas, à elle seule, une preuve solide d’un changement de niveau ou d’un 'hot hand', sauf si le taux de victoire de base de l’équipe est nettement inférieur à 50 %.",
+    "q5": "En quoi le mode 'l’un ou l’autre' diffère-t-il du mode faces uniquement ?",
+    "q5_a": "En mode 'l’un ou l’autre', la série compte n’importe quels k résultats consécutifs du même type — que ce soit toutes des faces ou toutes des piles. Le nombre attendu de lancers pour une série 'l’un ou l’autre' de longueur k est 2^k − 1, soit environ la moitié de l’attente pour une série d’un côté précis de même longueur (2(2^k − 1)). C’est parce que n’importe quel lancer peut lancer une série dans l’une ou l’autre direction, doublant les occasions de commencer une série valide.",
+    "q6": "Puis-je l’utiliser pour des événements binaires aléatoires autres que les pièces ?",
+    "q6_a": "Oui, tant que chaque essai est indépendant et que la probabilité de succès est de 50 %. Exemples : la probabilité qu’une équipe de basket à 50 % de victoires enchaîne 5 victoires, la probabilité qu’un capteur binaire lise la même valeur k fois d’affilée, ou le nombre attendu de décisions de type pièce avant qu’une marche aléatoire atteigne un côté k fois consécutives. Les mathématiques sont identiques pour tous les processus binaires indépendants 50/50."
+  }
+}

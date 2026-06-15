@@ -1,0 +1,95 @@
+{
+  "title": "Calculatrice t d'échantillons appariés - avant/après",
+  "tagline": "Réalisez un test t d'échantillons appariés pour comparer deux groupes liés — mesures avant/après, paires appariées — et obtenir la statistique t, la valeur p et l'intervalle de confiance.",
+  "intro": "Saisissez deux groupes de données séparés par des virgules et de même longueur, réglez le seuil de signification et le type de test, puis obtenez instantanément le résultat complet du test t apparié.",
+  "formula": "t = d̄ / (s_d / √n)  |  df = n − 1  |  d̄ = moyenne des différences  |  s_d = écart-type des différences",
+  "field": {
+    "group1": "Données du groupe 1 (p. ex. avant traitement)",
+    "group2": "Données du groupe 2 (p. ex. après traitement)",
+    "alpha": "Seuil de signification (α)",
+    "mu": "Différence moyenne hypothétique (μ₀)",
+    "tail": "Type de test"
+  },
+  "placeholder": {
+    "data": "p. ex. 140, 135, 150, 155, 130"
+  },
+  "tail": {
+    "two-tailed": "Bilatéral",
+    "right-tailed": "Unilatéral à droite",
+    "left-tailed": "Unilatéral à gauche"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir au moins 2 valeurs appariées dans chaque groupe. Les deux groupes doivent contenir le même nombre de données."
+  },
+  "result": {
+    "heading": "Résultats",
+    "tStat": "Statistique t",
+    "df": "Degrés de liberté",
+    "pValue": "Valeur p",
+    "dBar": "Différence moyenne (d̄)",
+    "sd": "Écart-type des différences (s_d)",
+    "ci95": "Intervalle de confiance à 95 %",
+    "reject": "Rejeter H₀ — une différence statistiquement significative a été détectée.",
+    "failReject": "Ne pas rejeter H₀ — aucune différence statistiquement significative n'a été détectée."
+  },
+  "about": {
+    "heading": "À propos de la calculatrice t d'échantillons appariés",
+    "body": "Le test t d'échantillons appariés (aussi appelé test t dépendant ou test t de paires appariées) est une procédure statistique paramétrique qui détermine si la différence moyenne entre deux ensembles de mesures liées est significativement différente de zéro (ou de toute autre valeur hypothétique). On parle de test « apparié » parce que chaque observation du groupe 1 correspond exactement à une observation du groupe 2 : les deux mesures proviennent du même sujet, de participants appariés ou du même lieu mesuré à deux moments différents.\n\nL'application la plus courante est une étude avant/après : un chercheur mesure une caractéristique (pression artérielle, score d'examen, poids, ventes) avant une intervention, puis à nouveau après. Comme les mêmes individus sont mesurés deux fois, les deux groupes ne sont pas indépendants — ils sont corrélés. Ignorer cette corrélation et utiliser un test t pour échantillons indépendants serait incorrect ; cela sous-estimerait la précision de la comparaison en ne tenant pas compte de la variabilité naturelle entre sujets qui s'annule lorsque l'on travaille sur les différences.\n\nL'astuce de calcul qui rend le test t apparié élégant consiste à le réduire à un problème à un seul échantillon. Pour chaque paire i, calculez la différence d_i = Groupe1_i − Groupe2_i. Le test demande alors : la moyenne de ces différences (d̄) est-elle significativement différente de zéro ? Cela transforme le problème à deux échantillons en un test t à un échantillon sur les différences. La statistique de test est t = (d̄ − μ₀) / (s_d / √n), où μ₀ est la différence moyenne hypothétique (généralement 0), s_d l'écart-type empirique des différences et n le nombre de paires. Sous l'hypothèse nulle, la statistique suit une loi t de Student avec df = n − 1 degrés de liberté.\n\nLa valeur p issue de cette statistique t indique la probabilité d'observer une différence moyenne aussi grande que d̄ (ou plus grande) si la vraie différence moyenne de la population était μ₀. Si la valeur p est inférieure au seuil de signification α choisi, vous rejetez l'hypothèse nulle et concluez qu'il existe une différence moyenne statistiquement significative entre les mesures appariées. L'intervalle de confiance de d̄ fournit une estimation de la plage plausible pour la vraie différence moyenne et est souvent plus informatif que la seule valeur p.\n\nPour que le test t apparié soit valide, les différences d_i doivent être approximativement distribuées normalement. Cette hypothèse se vérifie en examinant un histogramme ou un graphique Q-Q normal des différences. Avec n ≥ 30, le théorème central limite rend cette hypothèse moins critique même si les différences individuelles ne sont pas normales. Pour les petits échantillons présentant des différences clairement non normales, le test des rangs signés de Wilcoxon est l'alternative non paramétrique adaptée.\n\nLes applications courantes incluent les essais d'efficacité médicale (avant vs après traitement médicamenteux), la recherche en éducation (pré-test vs post-test), les études de nutrition et de fitness (mesures de base vs suivi) et l'analyse commerciale (ventes avant vs après une campagne publicitaire). Dans chaque cas, l'exigence clé est que chaque paire de valeurs provienne du même individu, de la même entité ou d'une unité appariée — et non de deux groupes indépendants."
+  },
+  "examples": {
+    "heading": "Exemples résolus",
+    "intro": "Trois scénarios d'étude avant/après avec des données réalistes pour illustrer la sortie du test t apparié.",
+    "colInput": "Plan d'étude",
+    "colOutput": "Statistique t / valeur p",
+    "colNote": "Conclusion",
+    "loadBP": "Charger l'exemple de pression artérielle",
+    "loadTutor": "Charger l'exemple de soutien scolaire",
+    "loadSales": "Charger l'exemple de campagne commerciale",
+    "items": [
+      {
+        "input": "Pression artérielle avant : 140,135,150,155,130,142,138,147,152,133 / après : 132,130,145,148,125,135,130,140,145,128 (bilatéral, α=0.05, n=10)",
+        "output": "t ≈ 16.00, df = 9, p < 0.001",
+        "note": "Très significatif. Le médicament a réduit la pression systolique moyenne de 6.4 mmHg chez 10 patients."
+      },
+      {
+        "input": "Notes avant : 75,80,82,70,88,65,90,78 / après : 85,85,88,78,92,75,95,85 (bilatéral, α=0.05, n=8)",
+        "output": "t ≈ −8.47, df = 7, p < 0.001",
+        "note": "Amélioration significative. Les élèves ont obtenu en moyenne 6.9 points de plus après le programme de tutorat."
+      },
+      {
+        "input": "Ventes hebdomadaires avant : 500,550,480,600,520,530 / après : 540,580,500,650,550,560 (bilatéral, α=0.05, n=6)",
+        "output": "t ≈ −7.91, df = 5, p < 0.001",
+        "note": "La campagne publicitaire a augmenté significativement les ventes hebdomadaires de 33.3 unités en moyenne par magasin."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice t d'échantillons appariés",
+    "steps": [
+      "Saisissez les données du groupe 1 (par exemple les valeurs « avant ») dans le premier champ, sous forme de liste séparée par des virgules.",
+      "Saisissez les données du groupe 2 (par exemple les valeurs « après ») dans le deuxième champ. Les deux groupes doivent avoir le même nombre de valeurs ; le premier chiffre du groupe 1 est apparié au premier du groupe 2, et ainsi de suite.",
+      "Réglez le seuil de signification α (0.01, 0.05 ou 0.10) et la différence moyenne hypothétique μ₀ (généralement 0). Choisissez le type de test (bilatéral, unilatéral à droite ou unilatéral à gauche).",
+      "Cliquez sur Calculer pour afficher la statistique t, les degrés de liberté, la valeur p, la différence moyenne, l'écart-type des différences et un intervalle de confiance à 95 %.",
+      "Comparez la valeur p à α. Si p ≤ α, rejetez H₀ et concluez à une différence moyenne statistiquement significative. Si p > α, ne rejetez pas H₀."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "q1": "Quand dois-je utiliser un test t apparié plutôt qu'un test t indépendant ?",
+    "q1_a": "Utilisez un test t apparié lorsque chaque observation d'un groupe est naturellement appariée ou liée à exactement une observation de l'autre groupe — par exemple, la même personne mesurée avant et après un traitement, ou deux frères et sœurs soumis à deux régimes alimentaires différents. Si les deux groupes sont indépendants (personnes différentes, sans relation ni appariement), utilisez un test t pour échantillons indépendants.",
+    "q2": "Qu'est-ce que la différence moyenne hypothétique μ₀ ?",
+    "q2_a": "μ₀ est la valeur que vous supposez pour la vraie différence moyenne sous l'hypothèse nulle. Pour la plupart des applications — tester si une intervention a un effet quelconque — μ₀ = 0. Pour des hypothèses plus précises, comme vérifier si un médicament réduit la pression artérielle d'au moins 10 mmHg, vous fixeriez μ₀ = 10.",
+    "q3": "Que faire si mes différences ne sont pas normalement distribuées ?",
+    "q3_a": "Le test t apparié suppose que les différences sont approximativement normales. Avec n ≥ 30 paires, le théorème central limite rend cette hypothèse moins critique. Pour de petits échantillons avec des différences clairement non normales (vérifiez un histogramme), le test des rangs signés de Wilcoxon est une alternative non paramétrique robuste qui n'exige pas la normalité.",
+    "q4": "Comment interpréter l'intervalle de confiance ?",
+    "q4_a": "L'intervalle de confiance à 95 % donne une plage de valeurs plausibles pour la vraie différence moyenne. Si l'intervalle n'inclut pas zéro, le résultat est significatif au seuil α = 0.05. L'intervalle est plus informatif que la seule valeur p car il montre l'amplitude et le sens de l'effet. Par exemple, un IC de (2.3, 9.8) indique que l'effet est significatif et qu'il va de faible à modérément important.",
+    "q5": "Puis-je faire un test t apparié unilatéral ?",
+    "q5_a": "Oui. Choisissez « Unilatéral à droite » si vous prédisez que le groupe 1 > groupe 2 (différence moyenne positive), ou « Unilatéral à gauche » si vous prédisez que le groupe 1 < groupe 2 (différence moyenne négative). Un test unilatéral est plus puissant, mais il n'est valide que si vous avez spécifié le sens de l'effet avant de collecter les données. Utiliser un test unilatéral uniquement parce que le résultat bilatéral est limite relève du p-hacking.",
+    "q6": "Que signifie réellement un résultat significatif ?",
+    "q6_a": "Un résultat significatif (p ≤ α) signifie que la différence moyenne observée est peu susceptible de s'être produite par hasard si l'hypothèse nulle était vraie. Cela ne prouve pas que l'hypothèse nulle est fausse, ni ne garantit que l'effet est grand ou cliniquement important. Indiquez toujours la différence moyenne d̄, son intervalle de confiance et une taille d'effet (comme d de Cohen = d̄ / s_d) afin que les lecteurs puissent juger de l'importance pratique."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "title": "Transmission Calculator – Signal Power and Data Rate",
+  "tagline": "Calculate free-space path loss, received power, SNR, Shannon channel capacity, and bandwidth efficiency for wireless communication links.",
+  "intro": "Enter transmitter power, distance, frequency, bandwidth, data rate, and antenna gain to analyse signal propagation in any wireless system.",
+  "formula": "FSPL = 20·log(d) + 20·log(f) − 147.55 dB | Pr = Pt + 2·Ga − FSPL (dBm) | C = B·log₂(1 + SNR)",
+  "field": {
+    "txPower": "Transmission Power (W)",
+    "distance": "Distance (m)",
+    "frequency": "Frequency (Hz)",
+    "bandwidth": "Bandwidth (Hz)",
+    "dataRate": "Data Rate (bps)",
+    "antennaGain": "Antenna Gain (dB)"
+  },
+  "placeholder": {
+    "txPower": "e.g. 0.1",
+    "distance": "e.g. 10",
+    "frequency": "e.g. 2400000000",
+    "bandwidth": "e.g. 20000000",
+    "dataRate": "e.g. 54000000",
+    "antennaGain": "e.g. 2"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter positive values for all fields. Frequency, bandwidth, and data rate must be greater than zero."
+  },
+  "result": {
+    "heading": "Transmission Results",
+    "pathLoss": "Free-Space Path Loss: {value} dB",
+    "rxPower": "Received Power: {value} dBm",
+    "snr": "Signal-to-Noise Ratio: {value} dB",
+    "shannonCapacity": "Shannon Capacity: {value} Mbit/s",
+    "spectralEfficiency": "Spectral Efficiency (Shannon): {value} bit/s/Hz",
+    "bwEfficiency": "Bandwidth Efficiency (actual): {value} bit/s/Hz"
+  },
+  "about": {
+    "heading": "About the transmission calculator",
+    "body": "Signal transmission analysis is a cornerstone of telecommunications engineering. Whenever electromagnetic energy is broadcast from an antenna, it spreads outward in three dimensions and its power density decreases with the square of the distance from the source. Understanding this behaviour — and the limits it places on communication system design — is essential for engineers designing WiFi networks, cellular base stations, satellite links, broadcast radio, and radar systems.\n\nThe most important single metric in a link budget is free-space path loss (FSPL). For a signal travelling distance d at frequency f in an unobstructed environment, FSPL (in decibels) = 20·log₁₀(d) + 20·log₁₀(f) − 147.55, where d is in metres and f is in hertz. Path loss is not a dissipative loss; it is simply the consequence of the spherically expanding wavefront diluting the transmitted energy over a growing surface area. Higher frequency signals lose proportionally more power than lower frequency signals at the same distance because their wavelength is shorter — the antenna aperture subtends a smaller fraction of the expanding sphere.\n\nThe received power is then: Pr (dBm) = Pt (dBm) + Gt (dB) + Gr (dB) − FSPL (dB), where Pt is the transmitted power, Gt is the transmitting antenna gain, and Gr is the receiving antenna gain. This calculator assumes the same antenna is used at both ends for simplicity. Antenna gain does not create power; it concentrates it in a particular direction. A 15 dB gain antenna focuses power like a searchlight compared to the isotropic reference, making it equivalent to multiplying transmitter power by a factor of about 31.\n\nSignal-to-noise ratio (SNR) is computed by comparing the received power to the thermal noise power N = k·T·B, where k is Boltzmann's constant (1.38 × 10⁻²³ J/K), T is the noise temperature (290 K standard), and B is the bandwidth. Higher bandwidth captures more noise, which is one reason that broad-bandwidth systems require much higher signal power than narrow-band systems for the same SNR.\n\nThe Shannon–Hartley theorem places a fundamental upper bound on the information rate that can be reliably transmitted over any channel: C = B·log₂(1 + SNR). This theoretical maximum, called the Shannon capacity, can never be exceeded regardless of the cleverness of the modulation and coding scheme. Modern systems such as 5G NR and Wi-Fi 6 use adaptive modulation and coding that approaches this limit to within a few tenths of a dB in good channel conditions. The ratio of the Shannon capacity to bandwidth, called spectral efficiency, tells you how many bits per second per hertz the channel can theoretically deliver. Comparing this with the actual data rate efficiency reveals how efficiently the system exploits its available spectrum."
+  },
+  "examples": {
+    "heading": "Transmission calculator examples",
+    "intro": "Three communication scenarios from indoor WiFi to geostationary satellite, illustrating how scale affects path loss and capacity.",
+    "colInput": "Scenario Parameters",
+    "colOutput": "Path Loss / Rx Power",
+    "colNote": "Notes",
+    "loadWifi": "Load WiFi example",
+    "loadCellular": "Load cellular example",
+    "loadSatellite": "Load satellite example",
+    "items": [
+      {
+        "input": "WiFi: 0.1 W, 10 m, 2.4 GHz, 20 MHz BW, 54 Mbit/s, 2 dBi gain",
+        "output": "FSPL ≈ 60.1 dB, Pr ≈ −36.1 dBm",
+        "note": "Typical home router at 10 m. With thermal noise floor around −101 dBm, SNR ≈ 65 dB — more than enough for 54 Mbit/s 802.11g."
+      },
+      {
+        "input": "Cellular: 50 W, 1 km, 900 MHz, 5 MHz BW, 10 Mbit/s, 15 dBi gain",
+        "output": "FSPL ≈ 91.5 dB, Pr ≈ −14.5 dBm",
+        "note": "GSM/LTE base station. High antenna gain compensates for the 1 km path loss; SNR well above threshold for voice and basic data."
+      },
+      {
+        "input": "Satellite: 100 W, 35,786 km, 12 GHz, 50 MHz BW, 100 Mbit/s, 40 dBi gain",
+        "output": "FSPL ≈ 205.1 dB, Pr ≈ −75.1 dBm",
+        "note": "GEO satellite link. Enormous path loss is compensated by very high antenna gains (dish antennas) on both uplink and downlink sides."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the transmission calculator",
+    "steps": [
+      "Enter the transmitter output power in watts. This is the power delivered to the antenna — not the DC input power to the transmitter.",
+      "Enter the distance between transmitter and receiver in metres. For satellite links, use the slant range (not the altitude) in metres.",
+      "Enter the carrier frequency in hertz. For example, 2.4 GHz = 2,400,000,000 Hz. Higher frequencies experience greater free-space path loss.",
+      "Enter the channel bandwidth in hertz, the nominal data rate in bits per second, and the antenna gain in dBi (decibels relative to an isotropic radiator). The calculator applies the same gain at both transmitter and receiver.",
+      "Click Calculate. Review path loss, received power, SNR, and Shannon capacity. If received power is below the system's noise floor, the link will not work at the specified range."
+    ]
+  },
+  "faq": {
+    "heading": "Transmission calculator FAQ",
+    "q1": "What is free-space path loss and why does it increase with frequency?",
+    "q1_a": "Free-space path loss is the attenuation of signal power due to the spherical spreading of the electromagnetic wave as it propagates away from the source. It increases with frequency because a higher-frequency signal has a shorter wavelength — and a receiving antenna of fixed physical size captures a smaller fraction of the incident power at shorter wavelengths. Alternatively, a fixed-gain antenna has a smaller effective aperture at higher frequencies.",
+    "q2": "Why does doubling the distance increase path loss by only 6 dB?",
+    "q2_a": "Path loss follows the inverse square law: received power is proportional to 1/d². In decibels, this means path loss increases by 20·log₁₀(2) ≈ 6 dB when distance doubles. So doubling the distance reduces received power by a factor of 4, not a factor of 2. This is often misunderstood by people who expect a linear relationship between distance and signal strength.",
+    "q3": "What is the Shannon capacity and how close do real systems get to it?",
+    "q3_a": "Shannon capacity C = B·log₂(1 + SNR) is the theoretical maximum data rate that can be transmitted reliably over a channel with a given bandwidth and SNR, regardless of modulation or coding scheme. Modern systems using LDPC codes or turbo codes in conjunction with adaptive modulation (256-QAM or 1024-QAM) can reach within 1–2 dB of the Shannon limit, meaning they transmit at 70–90% of the theoretical maximum.",
+    "q4": "What is antenna gain and how does it affect link budget?",
+    "q4_a": "Antenna gain measures how much more power an antenna radiates (or receives) in its preferred direction compared to an isotropic radiator. A 15 dBi antenna concentrates power by a factor of about 31× in its beam. In the link budget equation, transmit and receive antenna gains directly add to the received signal level in dB, effectively multiplying the useful signal power without increasing transmitter power.",
+    "q5": "How does bandwidth affect noise and data capacity?",
+    "q5_a": "Thermal noise power is proportional to bandwidth: N = kTB. Doubling the bandwidth doubles noise power (adds 3 dB of noise), which reduces SNR by 3 dB. However, double the bandwidth also potentially doubles the achievable data rate per unit SNR according to Shannon's formula. The trade-off is managed by modulation order and coding rate in adaptive systems.",
+    "q6": "Can this calculator be used for indoor or urban propagation?",
+    "q6_a": "The calculator models free-space propagation, which is accurate for line-of-sight outdoor links (satellite, point-to-point microwave). Indoor and urban environments experience additional losses from walls, furniture, buildings, and multipath fading — often modelled as extra path loss of 10–40 dB depending on the scenario. For those applications, add an indoor penetration loss or use an empirical model such as ITU-R P.1238 or the COST 231 Hata model."
+  }
+}

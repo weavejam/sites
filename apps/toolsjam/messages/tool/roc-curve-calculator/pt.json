@@ -1,0 +1,85 @@
+{
+  "title": "Calculadora de curva ROC e AUC - Avaliação de classificador binário",
+  "tagline": "Testes estatísticos avançados",
+  "intro": "Insira abaixo as pontuações de previsão do seu modelo e os rótulos verdadeiros para gerar uma curva ROC e calcular a área sob a curva (AUC).",
+  "field": {
+    "dataInput": "Dados (Pontuação, Rótulo)",
+    "dataInputHint": "Insira uma observação por linha no formato 'score,label'. Os rótulos devem ser 0 ou 1. Exemplo: 0.9,1"
+  },
+  "placeholder": {
+    "dataInput": "Insira os dados como 'score,label' em cada linha.\nExemplo:\n0.9,1\n0.8,1\n0.7,0\n0.4,0"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Entrada inválida. Cada linha deve conter uma pontuação numérica e um rótulo binário (0 ou 1), e ambas as classes devem estar presentes."
+  },
+  "result": {
+    "auc": "AUC",
+    "aucExcellent": "Discriminação excelente",
+    "aucGood": "Discriminação boa",
+    "aucFair": "Discriminação razoável",
+    "aucPoor": "Discriminação fraca",
+    "optimalThreshold": "Limiar ideal",
+    "sensitivity": "Sensibilidade (TPR)",
+    "specificity": "Especificidade (1−FPR)",
+    "threshold": "Limiar",
+    "fpr": "FPR",
+    "tpr": "TPR"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de curva ROC e AUC",
+    "body": "A curva ROC (Receiver Operating Characteristic) é uma ferramenta gráfica para avaliar a capacidade de discriminação de um modelo de classificação binária em todos os possíveis limiares de decisão. Ela plota a taxa de verdadeiros positivos (TPR, ou sensibilidade) no eixo y em relação à taxa de falsos positivos (FPR, ou 1 − especificidade) no eixo x, à medida que o limiar de decisão varia de alto para baixo.\n\nSensibilidade (TPR) é a proporção de positivos reais corretamente identificados: TPR = TP / (TP + FN). Especificidade é a proporção de negativos reais corretamente identificados: Specificity = TN / (TN + FP). FPR = 1 − Specificity = FP / (TN + FP). Um classificador perfeito passaria pelo canto superior esquerdo (FPR = 0, TPR = 1), enquanto a curva ROC de um classificador aleatório fica na diagonal de (0,0) a (1,1).\n\nA área sob a curva ROC (AUC) resume o desempenho geral da classificação em um único escalar. Uma AUC de 1.0 representa discriminação perfeita; 0.5 representa nenhuma discriminação (equivalente a chute aleatório). Convencionalmente, AUC ≥ 0.9 é excelente, 0.8–0.9 é boa, 0.7–0.8 é razoável e abaixo de 0.7 é fraca.\n\nEsta calculadora calcula a AUC usando a regra do trapézio, que integra a área sob a curva ROC em degraus. Ela também identifica o limiar de decisão ideal usando a estatística J de Youden (J = sensitivity + specificity − 1), que maximiza a soma de sensibilidade e especificidade e fornece um ponto de operação equilibrado.\n\nCurvas ROC e AUC são métricas padrão de avaliação em diagnósticos médicos (quando classificadores separam pacientes doentes de saudáveis), aprendizado de máquina (avaliação de modelos de classificação binária) e credit scoring. Diferentemente da acurácia, a AUC é insensível ao desbalanceamento de classes, o que a torna especialmente valiosa quando os casos positivos são raros.\n\nEsta ferramenta aceita qualquer lista de pares pontuação-rótulo. As pontuações podem ser probabilidades, valores de logit ou qualquer classificação contínua. Os rótulos devem ser 0 (classe negativa) ou 1 (classe positiva). A tabela de resultados mostra todos os pontos de operação da ROC, com a linha do limiar ideal destacada para fácil consulta."
+  },
+  "examples": {
+    "heading": "Exemplos de curva ROC",
+    "intro": "Estes exemplos mostram como os valores de AUC correspondem a diferentes níveis de desempenho do classificador.",
+    "colInput": "Pares de pontuação, rótulo",
+    "colOutput": "AUC",
+    "colNote": "Interpretação",
+    "items": [
+      {
+        "input": "0.9,1 / 0.8,1 / 0.3,0 / 0.2,0",
+        "output": "AUC = 1.0",
+        "note": "Classificador perfeito"
+      },
+      {
+        "input": "0.9,1 / 0.8,1 / 0.75,1 / 0.6,0 / 0.55,1 / 0.45,0 / 0.4,0 / 0.35,0",
+        "output": "AUC ≈ 0.9375",
+        "note": "Discriminação excelente"
+      },
+      {
+        "input": "0.9,0 / 0.8,1 / 0.7,0 / 0.6,1 / 0.5,0 / 0.4,1",
+        "output": "AUC ≈ 0.33",
+        "note": "Ranking invertido — pior que o acaso"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar esta calculadora",
+    "steps": [
+      "Insira uma observação por linha no formato 'score,label', onde score é uma previsão numérica e label é 0 ou 1.",
+      "Certifique-se de que seus dados contenham exemplos positivos (label=1) e negativos (label=0).",
+      "Clique em 'Calcular' para obter a AUC e gerar os pontos da curva ROC.",
+      "Revise o valor da AUC e sua interpretação qualitativa (excelente, boa, razoável ou fraca).",
+      "Encontre a linha do limiar ideal (destacada na tabela) para o melhor equilíbrio entre sensibilidade e especificidade."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "q1": "O que é AUC e por que ela é importante?",
+    "q1_a": "A AUC (Área Sob a Curva ROC) mede a capacidade de um classificador de classificar instâncias positivas acima das negativas em todos os limiares. Ela é independente de limiar e robusta ao desbalanceamento de classes, sendo um padrão de referência para modelos de classificação binária em medicina, aprendizado de máquina e finanças.",
+    "q2": "O que significa uma AUC de 0.5?",
+    "q2_a": "Uma AUC de 0.5 significa que o classificador não faz melhor do que adivinhar ao acaso — ele ordena positivos e negativos aleatoriamente. Qualquer AUC abaixo de 0.5 sugere que o classificador está sistematicamente errado, e inverter suas previsões produziria desempenho acima do acaso.",
+    "q3": "Como o limiar ideal é selecionado?",
+    "q3_a": "Esta calculadora usa a estatística J de Youden (J = sensitivity + specificity − 1) para selecionar o limiar ideal. Ela maximiza a soma de sensibilidade e especificidade, fornecendo um ponto de operação equilibrado. Critérios alternativos, como minimizar custo ou maximizar o F1-score, podem gerar limiares ideais diferentes dependendo da aplicação.",
+    "q4": "AUC pode ser usada em classificação multiclasse?",
+    "q4_a": "A AUC padrão é definida para classificação binária. Para problemas multiclasse, pode-se calcular AUC one-vs-rest para cada classe separadamente, ou relatar AUC macro ou ponderada. Esta calculadora suporta apenas classificação binária (rótulos 0 e 1).",
+    "q5": "Qual é a diferença entre sensibilidade e especificidade?",
+    "q5_a": "Sensibilidade (recall ou TPR) mede o quão bem o classificador detecta verdadeiros positivos: TP / (TP + FN). Especificidade mede o quão bem ele evita falsos alarmes: TN / (TN + FP). Alta sensibilidade é crucial quando perder um caso positivo é caro (por exemplo, triagem de doenças). Alta especificidade é importante quando falsos positivos são caros (por exemplo, testes confirmatórios).",
+    "q6": "A AUC é sempre a melhor métrica para avaliação de modelo?",
+    "q6_a": "A AUC é excelente para comparar modelos em diferentes limiares e para conjuntos de dados desbalanceados, mas nem sempre é a melhor escolha. Para dados altamente desbalanceados, a PR-AUC (Área Sob a Curva Precisão-Revocação) costuma ser mais informativa. Para um limiar de decisão específico, métricas como F1-score, acurácia ou coeficiente de correlação de Matthews podem ser mais relevantes."
+  }
+}

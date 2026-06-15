@@ -1,0 +1,94 @@
+{
+  "title": "Tukey's HSD Calculator - Post-Hoc ANOVA Test",
+  "tagline": "Run Tukey's Honestly Significant Difference test after ANOVA to identify which group means differ significantly from each other.",
+  "intro": "Enter comma-separated data for each group, select the number of groups and significance level, then click Calculate to see the ANOVA table and all pairwise comparisons.",
+  "field": {
+    "group": "Group",
+    "numGroups": "Number of groups",
+    "alpha": "Significance level (α)"
+  },
+  "placeholder": {
+    "group": "e.g., 23, 25, 28, 30"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Enter at least 2 values in each of the 2 or more groups, then click Calculate."
+  },
+  "result": {
+    "anovaHeading": "ANOVA Table",
+    "source": "Source",
+    "ss": "SS",
+    "df": "df",
+    "ms": "MS",
+    "f": "F",
+    "between": "Between groups",
+    "within": "Within groups",
+    "hsdValue": "HSD threshold",
+    "qCritical": "q critical",
+    "pairHeading": "Pairwise Comparisons (Tukey HSD)",
+    "pair": "Pair",
+    "meanI": "Mean i",
+    "meanJ": "Mean j",
+    "diff": "|Diff|",
+    "significance": "Result",
+    "significant": "Significant",
+    "notSignificant": "Not significant",
+    "vsLabel": "vs"
+  },
+  "about": {
+    "heading": "About Tukey's HSD test",
+    "body": "Tukey's Honestly Significant Difference (HSD) test is a widely used post-hoc procedure performed after a one-way ANOVA returns a significant F-statistic. When ANOVA tells you that at least one group mean differs from the others, Tukey's HSD pinpoints exactly which pairs of means are responsible for that difference while controlling the family-wise error rate at the chosen α level across all comparisons simultaneously.\n\nThe test was developed by statistician John Tukey in 1949 and remains the gold standard when all pairwise comparisons are of interest. Unlike the Bonferroni correction, which can be overly conservative, Tukey's method achieves an exact control of the experiment-wise error rate when sample sizes are equal, and an approximate control for unequal sizes. This balance between statistical power and error control makes it the default choice for comparing three or more treatment groups in fields ranging from agriculture and psychology to clinical trials and manufacturing.\n\nThe calculation begins with a one-way ANOVA: the grand mean is computed from all observations, then the sum of squares is partitioned into between-group variation (how much the group means differ from the grand mean) and within-group variation (how much individual values scatter around their group means). Dividing each sum of squares by its degrees of freedom gives the mean squares. The F-statistic is the ratio of the between-group mean square to the within-group mean square; a large F value suggests the groups have genuinely different means.\n\nFor the HSD step, the critical value q is looked up from the studentized range distribution table using the number of groups k and the within-group degrees of freedom. The HSD threshold is then q × √(MS_within / n_harmonic), where n_harmonic is the harmonic mean of the group sample sizes. Any pair of means whose absolute difference exceeds this threshold is declared significantly different.\n\nThis calculator handles between 2 and 6 groups with unequal sample sizes, using the harmonic mean for the effective sample size. Results include the full ANOVA table and a complete pairwise comparison matrix. Use α = 0.05 for the standard 95% confidence level or α = 0.01 for the more stringent 99% level."
+  },
+  "examples": {
+    "heading": "Tukey HSD examples",
+    "intro": "Representative data sets showing how the test detects or fails to detect significant group differences.",
+    "colInput": "Groups",
+    "colOutput": "Verdict",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "G1: 23,25,28,30 | G2: 22,24,26,28 | G3: 35,38,40,42",
+        "output": "G1 vs G3: Significant; G2 vs G3: Significant",
+        "note": "Group 3 mean (~38.75) is far above groups 1 and 2 (~26.5 and ~25). Pairs involving G3 exceed the HSD threshold."
+      },
+      {
+        "input": "G1: 10,11,12 | G2: 10,12,11 | G3: 11,13,12",
+        "output": "No significant differences",
+        "note": "Means are 11, 11, and 12. Small differences relative to within-group variability keep all pairs below the HSD threshold."
+      },
+      {
+        "input": "G1: 5,6,7,8 | G2: 12,14,13,15 | G3: 20,21,22,23 | G4: 30,31,29,32",
+        "output": "All pairs significant",
+        "note": "Four equally-spaced groups with tight within-group spread. Every pair of means differs by more than the HSD threshold at alpha=0.05."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the Tukey HSD calculator",
+    "steps": [
+      "Select the number of groups (2-6) using the group selector buttons at the top of the calculator.",
+      "Type the comma-separated data values for each group into the corresponding input field.",
+      "Choose your significance level: alpha=0.05 for the conventional 5% threshold, or alpha=0.01 for a stricter 1% threshold.",
+      "Click Calculate to see the ANOVA table (SS, df, MS, F) and the full pairwise comparison table.",
+      "Check the Result column in the pairwise table — pairs marked Significant have mean differences that exceed the HSD threshold."
+    ]
+  },
+  "faq": {
+    "heading": "Tukey HSD FAQ",
+    "q1": "When should I use Tukey's HSD test?",
+    "q1_a": "Use Tukey's HSD after you obtain a significant one-way ANOVA result and you want to find which specific group means differ. It is ideal when all pairwise comparisons are planned and you want strict control of the experiment-wise error rate.",
+    "q2": "What does the HSD threshold mean?",
+    "q2_a": "The HSD threshold is the minimum absolute difference between two group means that is deemed statistically significant at the chosen alpha level. Any pair whose mean difference exceeds this value is flagged as significantly different.",
+    "q3": "How does Tukey HSD differ from the t-test?",
+    "q3_a": "A pairwise t-test does not correct for multiple comparisons, so running several t-tests inflates the chance of a false positive. Tukey's HSD controls the family-wise error rate across all comparisons simultaneously, making it more appropriate when testing three or more groups.",
+    "q4": "Does Tukey's HSD require equal sample sizes?",
+    "q4_a": "Equal sample sizes give the exact family-wise error rate. For unequal sizes, this calculator uses the harmonic mean of the group sizes, which provides a good approximation known as the Tukey-Kramer method.",
+    "q5": "What is the studentized range statistic q?",
+    "q5_a": "The q statistic is the ratio of the range of the group means to the standard error. Critical values are looked up from the studentized range distribution, which accounts for the number of groups k and the error degrees of freedom.",
+    "q6": "What do I do if ANOVA is not significant?",
+    "q6_a": "If the overall ANOVA F-test is not significant, post-hoc tests like Tukey's HSD are generally not performed because there is no statistical evidence that any means differ. Reporting the non-significant F and stopping there is the standard practice."
+  }
+}

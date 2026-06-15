@@ -1,0 +1,104 @@
+{
+  "title": "Calculadora de prueba de Wald - Significancia estadística",
+  "tagline": "Realiza una prueba de Wald para determinar si una estimación de parámetro es estadísticamente significativa: introduce β̂, β₀, SE y α para obtener resultados al instante.",
+  "intro": "Introduce la estimación del parámetro, el valor hipotético, el error estándar y el nivel de significancia. La calculadora devuelve el estadístico de Wald, la puntuación z, el valor p y la decisión.",
+  "formula": "Estadístico de Wald W = ((β̂ − β₀) / SE)²  •  puntuación z = (β̂ − β₀) / SE  •  valor p = 2 · (1 − Φ(|z|))",
+  "field": {
+    "betaHat": "Estimación del parámetro (β̂)",
+    "beta0": "Valor hipotético (β₀)",
+    "se": "Error estándar (SE)",
+    "alpha": "Nivel de significancia (α)"
+  },
+  "placeholder": {
+    "betaHat": "p. ej., 2.5",
+    "beta0": "p. ej., 0",
+    "se": "p. ej., 1.1",
+    "alpha": "p. ej., 0.05"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce números válidos. El error estándar debe ser positivo y el nivel de significancia debe estar entre 0 y 1."
+  },
+  "result": {
+    "heading": "Resultado",
+    "waldStat": "Estadístico de Wald (W)",
+    "zScore": "Puntuación z",
+    "pValue": "Valor p",
+    "decision": "Decisión",
+    "reject": "Rechazar H₀",
+    "failToReject": "No rechazar H₀"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de prueba de Wald",
+    "body": "La prueba de Wald es una prueba estadística paramétrica llamada así por el estadístico Abraham Wald. Es una de las tres pruebas clásicas de hipótesis en la estimación de máxima verosimilitud, junto con la prueba de razón de verosimilitudes y la prueba de puntuación (multiplicador de Lagrange). La prueba de Wald es, con diferencia, la más habitual porque solo requiere la estimación y su error estándar, ambos reportados rutinariamente por el software estadístico, sin necesitar la función de verosimilitud completa.\n\nLa idea detrás de la prueba de Wald es directa. Si una estimación de parámetro β̂ está lejos del valor hipotético β₀ en relación con su precisión (medida por el error estándar SE), entonces es poco probable que la hipótesis nula H₀: β = β₀ sea verdadera. El estadístico de Wald es W = ((β̂ − β₀) / SE)², que es la puntuación z al cuadrado. Bajo la hipótesis nula y con una muestra suficientemente grande, W sigue una distribución chi-cuadrado con un grado de libertad. De forma equivalente, la puntuación z con signo z = (β̂ − β₀) / SE sigue una distribución normal estándar, por lo que el valor p bilateral es 2 · (1 − Φ(|z|)), donde Φ es la CDF normal estándar.\n\nEl valor p responde a la pregunta: si la hipótesis nula fuera verdadera, ¿cuál es la probabilidad de observar un estadístico de prueba al menos tan extremo como el calculado? Un valor p pequeño (normalmente por debajo del nivel de significancia α, a menudo fijado en 0.05 o 0.01) aporta evidencia contra H₀. Cuando p < α, el resultado se considera estadísticamente significativo y rechazamos la hipótesis nula. Cuando p ≥ α, no la rechazamos: no tenemos evidencia suficiente para concluir que el parámetro difiere de β₀, aunque esto no significa que H₀ sea verdadera.\n\nLa prueba de Wald es omnipresente en la estadística aplicada. En regresión lineal y logística, los estadísticos t reportados para cada coeficiente son esencialmente puntuaciones z de Wald, y los valores p asociados prueban si cada coeficiente es significativamente diferente de cero. En econometría, la prueba de Wald se usa para probar hipótesis conjuntas sobre varios coeficientes simultáneamente (mediante extensiones de álgebra matricial). En análisis de supervivencia, prueba si una covariable predice significativamente la tasa de riesgo. En genética, los estudios de asociación de genoma completo usan estadísticos de tipo Wald para probar millones de polimorfismos de un solo nucleótido.\n\nUna limitación conocida de la prueba de Wald es que puede producir resultados diferentes según cómo se parametrice un parámetro, porque la prueba se basa en una aproximación cuadrática local a la verosimilitud. Para muestras pequeñas, suele preferirse la prueba de razón de verosimilitudes porque es más precisa. La prueba de Wald es más fiable cuando el tamaño muestral es grande, la estimación se distribuye aproximadamente de forma normal (es decir, se cumplen las condiciones asintóticas) y el error estándar está bien estimado."
+  },
+  "examples": {
+    "heading": "Ejemplos de prueba de Wald",
+    "intro": "Tres escenarios realistas de economía, medicina y estadística general que muestran la prueba de Wald en acción.",
+    "colInput": "Entrada",
+    "colOutput": "Decisión",
+    "colNote": "Detalles",
+    "loadBasic": "Cargar ejemplo básico",
+    "loadEducation": "Cargar ejemplo de educación",
+    "loadDrug": "Cargar ejemplo de ensayo farmacológico",
+    "items": [
+      {
+        "input": "β̂=2.5, β₀=0, SE=1.1, α=0.05",
+        "output": "Rechazar H₀",
+        "note": "z = 2.27, W = 5.17, p ≈ 0.023. La estimación está a más de 2 errores estándar de cero, por lo que rechazamos la nula con α = 0.05."
+      },
+      {
+        "input": "β̂=0.08, β₀=0, SE=0.02, α=0.05",
+        "output": "Rechazar H₀",
+        "note": "Coeficiente de educación: z = 4.0, p < 0.001. Un año adicional de educación tiene un efecto distinto de cero altamente significativo sobre los salarios."
+      },
+      {
+        "input": "β̂=−0.5, β₀=0, SE=0.2, α=0.01",
+        "output": "No rechazar H₀",
+        "note": "Eficacia del fármaco con α=0.01 estricto: z = −2.5, p ≈ 0.012. El efecto es significativo con α=0.05, pero no con el umbral más estricto del 1%."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de prueba de Wald",
+    "steps": [
+      "Introduce la estimación del parámetro β̂ de tu salida de regresión o modelo estadístico.",
+      "Introduce el valor hipotético β₀, normalmente 0 cuando se prueba si un coeficiente es distinto de cero.",
+      "Introduce el error estándar SE de la estimación, reportado en la misma salida estadística.",
+      "Define el nivel de significancia α: usa 0.05 para el umbral convencional del 5% o 0.01 para un umbral más estricto del 1%.",
+      "Haz clic en Calcular para obtener el estadístico de Wald, la puntuación z, el valor p bilateral y la decisión de rechazar o no rechazar."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la prueba de Wald",
+    "items": [
+      {
+        "q": "¿Qué mide la prueba de Wald?",
+        "a": "La prueba de Wald mide qué tan lejos está una estimación de parámetro de un valor hipotético, expresado en unidades de error estándar. Prueba si esa distancia es lo bastante grande para concluir, con un nivel de significancia dado, que el parámetro verdadero difiere del valor hipotético."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre la prueba de Wald y la prueba t?",
+        "a": "En muestras grandes son esencialmente equivalentes: ambas comparan una estimación con un valor nulo en unidades de error estándar. La diferencia principal es que la prueba t usa una distribución t (que tiene en cuenta la incertidumbre en la estimación de la varianza), mientras que la prueba de Wald usa la distribución normal y por tanto es una prueba asintótica más adecuada para muestras grandes."
+      },
+      {
+        "q": "¿Por qué la hipótesis nula suele ser β₀ = 0?",
+        "a": "Probar contra cero pregunta si un predictor tiene algún efecto. En regresión, un coeficiente de cero significa que la variable es irrelevante. Establecer β₀ = 0 es el uso más común, pero puedes probar contra cualquier valor; por ejemplo, para comprobar si un parámetro coincide con un valor predicho teóricamente, como 1 o −0.5."
+      },
+      {
+        "q": "¿Qué significa no rechazar H₀?",
+        "a": "No rechazar H₀ significa que los datos no proporcionan evidencia suficiente para concluir que el parámetro difiere del valor hipotético. No demuestra que H₀ sea verdadera. El resultado puede reflejar un efecto realmente nulo, o puede reflejar potencia estadística insuficiente por una muestra pequeña o un error estándar grande."
+      },
+      {
+        "q": "¿Cuándo debería usar la prueba de razón de verosimilitudes?",
+        "a": "La prueba de razón de verosimilitudes se prefiere cuando los tamaños muestrales son pequeños, cuando el parámetro está cerca del límite de su rango permitido o cuando los resultados de la prueba de Wald dependen mucho de la parametrización elegida. Para muestras grandes y estimaciones distribuidas suavemente, la prueba de Wald y la prueba de razón de verosimilitudes dan valores p casi idénticos."
+      },
+      {
+        "q": "¿Qué nivel de significancia debo usar?",
+        "a": "El umbral convencional es α = 0.05 (5%), lo que significa que aceptas un 5% de probabilidad de rechazar falsamente una hipótesis nula verdadera. Para requisitos más estrictos, como aprobación de dispositivos médicos, genómica o física, se usa α = 0.01 o incluso 0.001. En investigación exploratoria a veces se acepta α = 0.10. La elección debe hacerse antes de ver los datos."
+      }
+    ]
+  }
+}

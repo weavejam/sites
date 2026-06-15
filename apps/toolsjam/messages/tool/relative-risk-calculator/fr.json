@@ -1,0 +1,100 @@
+{
+  "title": "Risque relatif : calculatrice pour cohortes",
+  "tagline": "Calculez le risque relatif (rapport de risques), l’intervalle de confiance à 95 % et le risque attribuable à partir d’un tableau de contingence 2×2 pour les groupes exposés et non exposés.",
+  "intro": "Saisissez les quatre effectifs (a, b, c, d) de votre tableau de contingence de cohorte pour calculer instantanément le rapport de risques et son intervalle de confiance.",
+  "formula": "RR = (a/(a+b)) / (c/(c+d)) | 95% CI: exp(ln(RR) ± 1.96 × SE) where SE = √(b/(a·nE) + d/(c·nU))",
+  "tableNote": "Saisissez les quatre valeurs de votre tableau 2×2 : a = exposés avec issue, b = exposés sans issue, c = non exposés avec issue, d = non exposés sans issue.",
+  "group": {
+    "exposed": "Groupe exposé",
+    "unexposed": "Groupe non exposé"
+  },
+  "field": {
+    "a": "Exposés : issue positive (a)",
+    "b": "Exposés : issue négative (b)",
+    "c": "Non exposés : issue positive (c)",
+    "d": "Non exposés : issue négative (d)"
+  },
+  "placeholder": {
+    "a": "p. ex. 70",
+    "b": "p. ex. 6930",
+    "c": "p. ex. 3",
+    "d": "p. ex. 2997"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des effectifs valides non négatifs pour les quatre cases. Le nombre d’issues positives du groupe non exposé ne peut pas être nul."
+  },
+  "result": {
+    "heading": "Résultats",
+    "riskExposed": "Risque (exposés)",
+    "riskUnexposed": "Risque (non exposés)",
+    "relativeRisk": "Risque relatif (RR)",
+    "ci95": "IC à 95 % du RR",
+    "ciUnavailable": "Indisponible (case nulle)",
+    "attributableRisk": "Risque attribuable"
+  },
+  "about": {
+    "heading": "À propos de la calculatrice de risque relatif",
+    "body": "Le risque relatif (RR), aussi appelé rapport de risques, est une mesure d’association utilisée dans les études de cohorte et les essais contrôlés randomisés. Il répond à la question suivante : à quel point un groupe exposé a-t-il plus de chances de développer le critère de jugement qu’un groupe non exposé ? Un RR de 1,0 signifie que les deux groupes ont le même risque ; un RR supérieur à 1,0 indique qu’une exposition est associée à un risque accru ; un RR inférieur à 1,0 indique qu’elle est protectrice.\n\nLe calcul repose sur un tableau de contingence 2×2 qui croise le statut d’exposition (oui/non) et le statut du critère (oui/non). Les quatre cases sont classiquement notées a (exposé, critère présent), b (exposé, critère absent), c (non exposé, critère présent) et d (non exposé, critère absent). Le risque dans le groupe exposé est a/(a+b) et le risque dans le groupe non exposé est c/(c+d). Le risque relatif est simplement le rapport de ces deux proportions d’incidence.\n\nL’intervalle de confiance (IC) à 95 % du RR quantifie l’incertitude de l’estimation due à la variabilité d’échantillonnage. La méthode standard utilise l’approximation log-normale : on calcule l’erreur standard du log-RR comme √(b/(a·nE) + d/(c·nU)), puis on exponentie l’intervalle [ln(RR) ± 1.96 × SE]. Si l’IC à 95 % n’inclut pas 1,0, l’association est statistiquement significative au niveau α = 0,05. Un IC étroit indique une estimation précise ; un IC large indique une incertitude importante, généralement liée à un petit effectif.\n\nLe risque attribuable (aussi appelé différence de risques ou augmentation/diminution absolue du risque) est la différence arithmétique entre les deux proportions d’incidence : AR = riskExposed − riskUnexposed. Contrairement au risque relatif, qui est un rapport, le risque attribuable exprime l’excès de risque en termes absolus. Un RR de 3,0 peut sembler spectaculaire, mais si le risque de base est de 0,1 %, un AR de 0,2 % peut être cliniquement négligeable. À l’inverse, un AR de 10 points de pourcentage est cliniquement important quel que soit le RR. Les deux mesures sont nécessaires pour interpréter pleinement une association épidémiologique.\n\nLe risque relatif est adapté aux études de cohorte et aux essais cliniques où l’incidence du critère peut être directement mesurée dans les groupes exposé et non exposé sur une période de suivi définie. Il n’est pas adapté aux études cas-témoins, où les participants sont sélectionnés en fonction du statut de l’issue et non de l’exposition ; dans ce design, on utilise l’odds ratio. Différence pratique clé : lorsque le critère est rare (incidence < 10 %), l’odds ratio approxime numériquement le risque relatif, ce qui permet de comparer les deux mesures entre designs. Lorsque le critère est fréquent, elles divergent et ne sont pas interchangeables.\n\nEn médecine clinique, le RR sert à évaluer l’efficacité des traitements, des vaccins et des interventions préventives. Un vaccin qui réduit le risque d’infection de 4 % à 1 % a un RR de 0,25, ce qui signifie que les personnes vaccinées ont 75 % de risque en moins d’être infectées. En santé au travail, le RR quantifie à quel point des travailleurs exposés à un danger chimique ou physique sont plus susceptibles de développer une maladie spécifique que des travailleurs non exposés. En épidémiologie nutritionnelle, le RR relie les habitudes alimentaires et les facteurs de mode de vie aux issues de santé dans de grandes cohortes prospectives."
+  },
+  "examples": {
+    "heading": "Exemples de risque relatif",
+    "intro": "Scénarios épidémiologiques classiques montrant comment structurer le tableau de contingence et interpréter le rapport de risques obtenu.",
+    "colInput": "Tableau de contingence",
+    "colOutput": "Indicateurs clés",
+    "colNote": "Interprétation",
+    "loadSmoking": "Charger l’exemple tabac",
+    "loadVaccine": "Charger l’exemple vaccin",
+    "loadDiet": "Charger l’exemple alimentation",
+    "items": [
+      {
+        "input": "Tabac/cancer du poumon : a=70, b=6930, c=3, d=2997",
+        "output": "RR = 10.0; Risque exposés ≈ 1.0 %, risque non exposés ≈ 0.1 %",
+        "note": "Les fumeurs ont exactement 10 fois plus de risque de développer un cancer du poumon que les non-fumeurs sur 20 ans. Le risque attribuable est d’environ 0,9 point de pourcentage."
+      },
+      {
+        "input": "Essai du vaccin antigrippal : a=25, b=4975, c=80, d=4920",
+        "output": "RR ≈ 0.3125; Risque vaccinés ≈ 0.5 %, risque placebo ≈ 1.6 %",
+        "note": "Les personnes vaccinées ont environ 69 % de risque en moins d’attraper la grippe. Un RR de 0,31 est bien inférieur à 1,0 et confirme un fort effet protecteur."
+      },
+      {
+        "input": "Régime riche en graisses : a=150, b=1850, c=100, d=2900",
+        "output": "RR = 2.25; Risque exposés ≈ 7.5 %, risque non exposés ≈ 3.3 %",
+        "note": "Les personnes suivant un régime riche en graisses ont 2,25 fois plus de risque de développer une maladie cardiaque. Le risque attribuable est d’environ 4,2 points de pourcentage."
+      },
+      {
+        "input": "Effet secondaire d’un médicament : a=60, b=940, c=20, d=980",
+        "output": "RR = 3.0; Risque médicament ≈ 6 %, risque placebo ≈ 2 %",
+        "note": "Les patients sous ce médicament ont exactement 3 fois plus de risque de ressentir des nausées. Vérifiez l’IC à 95 % pour évaluer la significativité statistique."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice de risque relatif",
+    "steps": [
+      "Identifiez les quatre effectifs du tableau 2×2 : a = nombre de personnes exposées ayant développé l’issue ; b = exposées n’ayant pas développé l’issue ; c = non exposées ayant développé l’issue ; d = non exposées n’ayant pas développé l’issue.",
+      "Saisissez a et b dans les champs du groupe exposé, et c et d dans les champs du groupe non exposé.",
+      "Cliquez sur Calculer. L’outil renvoie le risque dans chaque groupe, le risque relatif, l’intervalle de confiance à 95 % et le risque attribuable.",
+      "Interprétez le risque relatif : RR > 1 signifie qu’une exposition est associée à un risque accru ; RR < 1 signifie qu’elle est protectrice ; RR = 1 signifie qu’il n’y a pas d’association.",
+      "Vérifiez si l’IC à 95 % inclut 1,0 : si ce n’est pas le cas, l’association est statistiquement significative au seuil de 5 %. Un IC étroit indique une estimation plus précise."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur le risque relatif",
+    "q1": "Qu’est-ce que le risque relatif et en quoi diffère-t-il de l’odds ratio ?",
+    "q1_a": "Le risque relatif (RR) est le rapport entre l’incidence du critère dans le groupe exposé et celle dans le groupe non exposé. L’odds ratio (OR) est le rapport des cotes du critère dans chaque groupe. Les deux mesurent une association, mais le RR est plus intuitif et s’interprète directement comme un multiplicateur de risque. L’OR est utilisé dans les études cas-témoins où l’incidence ne peut pas être mesurée ; pour des issues rares (<10 %), OR ≈ RR. Pour des issues fréquentes, l’OR surestime le RR.",
+    "q2": "Le risque relatif peut-il être inférieur à 1 ? Que signifie-t-il ?",
+    "q2_a": "Oui. Un RR inférieur à 1,0 signifie que le groupe exposé a un risque plus faible que le groupe non exposé — autrement dit, l’exposition est protectrice. Par exemple, un essai vaccinal pourrait trouver RR = 0,25, ce qui signifie que les personnes vaccinées ont 75 % de risque en moins de développer la maladie. La réduction du risque (1 − RR) est parfois appelée réduction relative du risque (RRR).",
+    "q3": "Comment interpréter l’intervalle de confiance à 95 % ?",
+    "q3_a": "L’IC à 95 % donne une plage de valeurs plausibles pour le vrai RR de la population à partir de votre échantillon. Si l’étude était répétée de nombreuses fois, environ 95 % des IC obtenus contiendraient le vrai RR. En pratique : si l’IC exclut 1,0 (par exemple 1,5–3,2), l’association est statistiquement significative à α = 0,05. Un IC qui inclut 1,0 (par exemple 0,8–2,5) n’est pas statistiquement significatif.",
+    "q4": "Qu’est-ce que le risque attribuable et quand est-il utile ?",
+    "q4_a": "Le risque attribuable (AR) est la différence absolue de risque entre les groupes exposé et non exposé : AR = riskExposed − riskUnexposed. Il indique combien de cas supplémentaires par personne sont causés par l’exposition. L’AR est particulièrement utile pour la santé publique car il quantifie le bénéfice potentiel de l’élimination de l’exposition. Un RR élevé avec un risque de base très faible (AR faible) peut justifier une intervention moins urgente qu’un RR modéré avec un risque de base élevé (AR élevé).",
+    "q5": "Pourquoi la calculatrice exige-t-elle que le nombre d’issues positives du groupe non exposé (c) soit non nul ?",
+    "q5_a": "Le risque relatif est défini comme le rapport de deux incidences. Si c = 0, l’incidence du groupe non exposé est nulle et le dénominateur n’est pas défini, donc le RR non plus. En pratique, un c nul signifie souvent soit que le groupe non exposé est complètement protégé, soit que l’échantillon est trop petit pour observer des événements dans ce groupe. Dans les deux cas, une autre méthode d’analyse, comme les méthodes exactes, est nécessaire.",
+    "q6": "Le risque relatif est-il valable pour les études cas-témoins ?",
+    "q6_a": "Non. Le risque relatif nécessite de pouvoir mesurer l’incidence du critère dans chaque groupe, ce qui n’est possible que lorsque l’étude recrute selon l’exposition (cohorte) ou attribue aléatoirement les participants (essai randomisé). Dans une étude cas-témoins, les participants sont sélectionnés selon le statut de l’issue, donc la proportion d’incidence ne peut pas être calculée à partir de l’échantillon. Il faut utiliser l’odds ratio pour les études cas-témoins, et il approxime le RR lorsque l’issue est rare."
+  }
+}

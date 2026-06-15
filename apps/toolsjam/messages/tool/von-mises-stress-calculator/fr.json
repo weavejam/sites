@@ -1,0 +1,87 @@
+{
+  "title": "Calculateur de contrainte de Von Mises : limite d'élasticité et sécurité",
+  "tagline": "Calculez la contrainte équivalente de Von Mises et le coefficient de sécurité à partir des composantes normales et de cisaillement.",
+  "intro": "Saisissez les six composantes de contrainte (σx, σy, σz, τxy, τyz, τzx) et, en option, la limite d'élasticité pour évaluer la sécurité du matériau.",
+  "field": {
+    "sigmaX": "Contrainte normale σx (MPa)",
+    "sigmaY": "Contrainte normale σy (MPa)",
+    "sigmaZ": "Contrainte normale σz (MPa)",
+    "tauXY": "Contrainte de cisaillement τxy (MPa)",
+    "tauYZ": "Contrainte de cisaillement τyz (MPa)",
+    "tauZX": "Contrainte de cisaillement τzx (MPa)",
+    "yieldStrength": "Limite d'élasticité (MPa)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats de contrainte de Von Mises",
+    "vonMises": "Contrainte de Von Mises : {value} MPa",
+    "factorOfSafety": "Coefficient de sécurité : {value}",
+    "safe": "Sûr (pas de limite d'élasticité atteinte)",
+    "yielding": "Écoulement"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres valides pour les composantes de contrainte."
+  },
+  "formula": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)])",
+  "about": {
+    "heading": "À propos du calculateur de contrainte de Von Mises",
+    "body": "La contrainte de Von Mises, aussi appelée contrainte équivalente ou contrainte effective, est une mesure scalaire utilisée pour prédire la plastification des matériaux ductiles sous des charges complexes. Elle regroupe les six composantes de contrainte — trois contraintes normales (σx, σy, σz) et trois contraintes de cisaillement (τxy, τyz, τzx) — en une seule valeur équivalente directement comparable à la limite d'élasticité uniaxiale du matériau.\n\nLe critère de Von Mises, proposé par Richard von Mises en 1913, stipule qu'un matériau ductile commence à se plastifier lorsque l'énergie de distorsion par unité de volume atteint l'énergie de distorsion à la limite d'élasticité en traction uniaxiale. Cela s'écrit mathématiquement : σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). Lorsque σ_vm est égal ou supérieur à la limite d'élasticité σ_y, le matériau est censé plastifier.\n\nEn analyse par éléments finis (FEA), la contrainte de Von Mises est l'un des résultats les plus couramment rapportés, car elle fournit un nombre unique pratique résumant la sévérité de l'état de contrainte en un point donné. Les ingénieurs l'utilisent pour repérer les zones critiques, évaluer l'utilisation du matériau et calculer les coefficients de sécurité. Le coefficient de sécurité (FoS) est défini comme le rapport entre la limite d'élasticité et la contrainte de Von Mises : FoS = σ_y / σ_vm. Un FoS supérieur à 1 signifie que le composant est sûr ; une valeur inférieure à 1 indique une plastification.\n\nPour un chargement uniaxial (σx seul, tous les autres nuls), la contrainte de Von Mises est égale à σx, ce qui est cohérent avec la définition directe de la plastification lors d'un essai de traction simple. Pour un cisaillement pur (τxy seul), σ_vm = √3 × τxy, ce qui montre que la plastification en cisaillement se produit à τ_y = σ_y/√3 ≈ 0.577σ_y. Cette relation est un résultat clé de la théorie de la plasticité et sert à prédire les ruptures en cisaillement des boulons, soudures et assemblages structuraux.\n\nLe critère de Von Mises est généralement préféré au critère de Tresca (contrainte de cisaillement maximale) dans la plupart des applications d'ingénierie, car il est lisse et différentiable, correspond mieux aux données expérimentales pour la plupart des métaux ductiles, notamment l'acier, l'aluminium et le cuivre, et est plus pratique pour les calculs numériques. Le critère de Tresca est légèrement plus conservateur (il prédit la plastification à des niveaux de contrainte plus faibles) et est parfois utilisé dans les codes des appareils à pression.\n\nEn pratique, la contrainte de Von Mises est utilisée dans la conception de composants, l'analyse des soudures, l'évaluation des assemblages boulonnés, les codes des appareils à pression et des tuyauteries (ASME, EN), la certification des structures aéronautiques et les simulations de crash automobile. Comprendre le tenseur de contrainte complet et appliquer le critère de Von Mises permet aux ingénieurs de concevoir des structures fiables et plus économes en matériau."
+  },
+  "examples": {
+    "heading": "Exemples de contrainte de Von Mises",
+    "intro": "Scénarios de chargement représentatifs montrant la contrainte de Von Mises, le coefficient de sécurité et l'état de sécurité.",
+    "colInput": "Scénario de chargement",
+    "colOutput": "Contrainte de Von Mises / FoS",
+    "colNote": "État de sécurité",
+    "items": [
+      {
+        "input": "Traction uniaxiale : σx=150 MPa, tout le reste=0, yield=300 MPa",
+        "output": "σ_vm = 150 MPa, FoS = 2.0",
+        "note": "Sûr (pas de limite d'élasticité atteinte). En chargement uniaxial, la contrainte de Von Mises est égale à la contrainte normale appliquée."
+      },
+      {
+        "input": "Cisaillement pur : τxy=60 MPa, toutes les contraintes normales=0, yield=200 MPa",
+        "output": "σ_vm ≈ 103.9 MPa, FoS ≈ 1.92",
+        "note": "Sûr (pas de limite d'élasticité atteinte). Pour un cisaillement pur, σ_vm = √3 × τxy ; la limite est atteinte à τ = σ_y/√3."
+      },
+      {
+        "input": "Bi-axial : σx=100, σy=80, τxy=30 MPa, yield=250 MPa",
+        "output": "σ_vm ≈ 105.4 MPa, FoS ≈ 2.37",
+        "note": "Sûr (pas de limite d'élasticité atteinte). Les contraintes normales et de cisaillement combinées produisent une contrainte équivalente modérée."
+      },
+      {
+        "input": "Complexe : σx=120, σy=−40, σz=20, τxy=45, τyz=15, τzx=25 MPa, yield=350 MPa",
+        "output": "σ_vm ≈ 168.0 MPa, FoS ≈ 2.08",
+        "note": "Sûr (pas de limite d'élasticité atteinte). État de contrainte 3D complet avec une contribution importante du cisaillement."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de contrainte de Von Mises",
+    "steps": [
+      "Saisissez les trois composantes de contrainte normale σx, σy, σz en MPa. Pour une contrainte plane 2D, réglez σz = 0.",
+      "Saisissez les trois composantes de contrainte de cisaillement τxy, τyz, τzx en MPa. Pour les problèmes 2D, réglez τyz = τzx = 0.",
+      "Entrez éventuellement la limite d'élasticité du matériau en MPa pour calculer le coefficient de sécurité et l'état de sécurité.",
+      "Cliquez sur Calculer. La contrainte équivalente de Von Mises s'affiche avec le FoS et l'état de sécurité si la limite d'élasticité a été fournie.",
+      "Utilisez des valeurs négatives pour les contraintes normales de compression. Le critère de Von Mises est indépendant du signe des contraintes normales lorsqu'elles sont combinées au cisaillement."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la contrainte de Von Mises",
+    "q1": "Qu'est-ce que la contrainte de Von Mises ?",
+    "q1_a": "La contrainte de Von Mises est une mesure scalaire de contrainte équivalente qui combine les six composantes du tenseur de contrainte en une seule valeur. Elle représente la composante d'énergie de distorsion de l'état de contrainte et sert à prédire la plastification des matériaux ductiles. Lorsque σ_vm ≥ σ_yield, le matériau est censé plastifier.",
+    "q2": "Quelle est la formule de la contrainte de Von Mises ?",
+    "q2_a": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). Elle est dérivée de la théorie de l'énergie de distorsion et peut aussi s'exprimer à l'aide des contraintes principales σ1, σ2, σ3 sous la forme σ_vm = √(0.5 × [(σ1−σ2)² + (σ2−σ3)² + (σ3−σ1)²]).",
+    "q3": "Comment le coefficient de sécurité est-il calculé ?",
+    "q3_a": "Le coefficient de sécurité (FoS) est le rapport entre la limite d'élasticité du matériau et la contrainte de Von Mises : FoS = σ_yield / σ_vm. Un FoS > 1 signifie que le composant est sûr ; FoS = 1 signifie que le matériau est au point d'élasticité ; FoS < 1 indique une plastification (déformation plastique). Les codes de calcul exigent généralement un FoS de 1.5 à 4 selon l'application.",
+    "q4": "Quelle est la différence entre les critères de Von Mises et de Tresca ?",
+    "q4_a": "Les deux prédisent la plastification des matériaux ductiles. Le critère de Von Mises est basé sur l'énergie de distorsion et donne σ_y = √3 × τ_y. Le critère de Tresca est basé sur la contrainte de cisaillement maximale et donne σ_y = 2 × τ_y. Tresca est légèrement plus conservateur (il prédit la plastification à des charges plus faibles) et est utilisé dans certains codes des appareils à pression. Von Mises correspond mieux aux données expérimentales pour la plupart des métaux.",
+    "q5": "La contrainte de Von Mises peut-elle être utilisée pour les matériaux fragiles ?",
+    "q5_a": "Non — le critère de Von Mises s'applique spécifiquement aux matériaux ductiles qui plastifient avant de rompre (métaux comme l'acier, l'aluminium, le cuivre). Pour les matériaux fragiles (fonte, céramiques, béton), la contrainte principale maximale ou le critère de Mohr-Coulomb sont plus appropriés, car la rupture fragile est gouvernée par la fissuration en traction plutôt que par un écoulement plastique induit par le cisaillement.",
+    "q6": "Que signifie une contrainte de Von Mises négative ?",
+    "q6_a": "La contrainte de Von Mises est toujours non négative (c'est une racine carrée d'une somme de carrés). Elle n'a pas de signe. Une contrainte de Von Mises nulle signifie qu'il n'y a aucune contrainte en ce point. Le sens du chargement (traction ou compression) est porté par les composantes individuelles de contrainte, mais le scalaire équivalent de Von Mises ne distingue pas la traction de la compression."
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "title": "Calculateur d'angle de correction du vent – Navigation aérienne",
+  "tagline": "Calculez l'angle de correction du vent, le cap vrai et la vitesse-sol pour une navigation précise.",
+  "intro": "Saisissez la route vraie, la direction du vent, la vitesse du vent et la vitesse propre pour déterminer la correction de cap nécessaire afin de conserver la trajectoire sol souhaitée.",
+  "field": {
+    "trueCourse": "Route vraie (°)",
+    "windDirection": "Direction du vent (°)",
+    "windSpeed": "Vitesse du vent (kts)",
+    "trueAirspeed": "Vitesse propre (kts)"
+  },
+  "placeholder": {
+    "trueCourse": "ex. 090",
+    "windDirection": "ex. 270",
+    "windSpeed": "ex. 15",
+    "trueAirspeed": "ex. 120"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs valides. La vitesse propre doit être positive.",
+    "windTooStrong": "La vitesse du vent dépasse la vitesse propre — aucun angle de correction valide n'existe."
+  },
+  "result": {
+    "heading": "Résultats de navigation",
+    "wca": "Angle de correction du vent (WCA) = {value}°",
+    "trueHeading": "Cap vrai (TH) = {value}°",
+    "groundSpeed": "Vitesse-sol (GS) = {value} kts"
+  },
+  "formula": "WCA = arcsin(WS × sin(WD − TC) / TAS) | GS issue de la loi des cosinus",
+  "about": {
+    "heading": "À propos du calculateur d'angle de correction du vent",
+    "body": "L'angle de correction du vent (WCA), aussi appelé angle de dérive ou crab angle, est la différence angulaire entre la direction vers laquelle un avion doit pointer (cap vrai) et la direction qu'il doit réellement suivre au sol (route vraie). Sans correction du vent, un avion volant à cap fixe dérivera de sa trajectoire prévue, risquant de manquer sa destination ou d'entrer dans un espace aérien restreint.\n\nCe calcul est l'une des compétences les plus fondamentales de la navigation aérienne et est enseigné dans toutes les formations théoriques de pilote privé. Les mathématiques sous-jacentes proviennent de l'addition vectorielle : la vitesse de l'aéronef dans l'air (représentée par la vitesse propre et le cap vrai) plus le vecteur vent donnent la vitesse de l'aéronef par rapport au sol (représentée par la vitesse-sol et la trajectoire sol).\n\nLa formule de l'angle de correction du vent est : WCA = arcsin(WS × sin(WD − TC) / TAS), où WS est la vitesse du vent, WD la direction du vent (la direction D'OÙ il souffle, selon la convention aéronautique), TC la route vraie souhaitée et TAS la vitesse propre. Le résultat donne l'angle que le pilote doit ajouter ou retrancher à la route vraie pour obtenir le cap vrai.\n\nLa vitesse-sol est ensuite calculée par la loi des cosinus : GS² = TAS² + WS² − 2 × TAS × WS × cos(TH − WD + 180°). La vitesse-sol détermine le temps de vol et les besoins en carburant. Un vent de face réduit la vitesse-sol ; un vent arrière l'augmente. Les vents de travers réduisent légèrement la vitesse-sol et nécessitent une correction de cap.\n\nSur le calculateur de vol E6B, la correction du vent se fait en reportant le vecteur vent et en lisant graphiquement l'angle de correction et la vitesse-sol. Les EFB modernes et les systèmes de gestion de vol GPS le calculent automatiquement, mais les pilotes s'entraînent encore à le faire manuellement en secours.\n\nLa limite de la formule apparaît lorsque la vitesse du vent dépasse la vitesse propre (l'avion ne peut alors plus maintenir la route souhaitée), d'où la vérification effectuée par ce calculateur.\n\nAu-delà de la navigation VFR, la correction du vent est essentielle en IFR, surtout en approche finale, où le maintien exact de l'axe de piste exige un calcul précis de l'angle de crabe et son annulation juste avant le toucher des roues."
+  },
+  "examples": {
+    "heading": "Exemples d'angle de correction du vent",
+    "intro": "Scénarios de vol courants illustrant les calculs de correction du vent.",
+    "colInput": "Paramètres de vol",
+    "colOutput": "WCA / Cap vrai / GS",
+    "colNote": "Scénario",
+    "loadCrosswind": "Charger le scénario de vent de travers",
+    "loadHeadwind": "Charger le scénario de vent de face",
+    "loadTailwind": "Charger le scénario de vent arrière",
+    "items": [
+      {
+        "input": "TC=090°, WD=000°, WS=15 kts, TAS=80 kts",
+        "output": "WCA ≈ −10.8°, TH ≈ 79.2°, GS ≈ 78.6 kts",
+        "note": "Vent de travers venant du nord par la gauche. Il faut crabber 10.8° à gauche dans le vent ; la vitesse-sol tombe légèrement à 78.6 kts."
+      },
+      {
+        "input": "TC=180°, WD=180°, WS=20 kts, TAS=120 kts",
+        "output": "WCA = 0°, TH = 180°, GS = 100 kts",
+        "note": "Vent de face pur : aucun angle de correction n'est nécessaire, mais la vitesse-sol est réduite de toute la vitesse du vent."
+      },
+      {
+        "input": "TC=270°, WD=090°, WS=25 kts, TAS=150 kts",
+        "output": "WCA = 0°, TH = 270°, GS = 175 kts",
+        "note": "Vent arrière pur : aucune correction n'est nécessaire et la vitesse-sol augmente de toute la vitesse du vent."
+      },
+      {
+        "input": "TC=045°, WD=315°, WS=10 kts, TAS=100 kts",
+        "output": "WCA ≈ −7.2°, TH ≈ 37.8°, GS ≈ 99.4 kts",
+        "note": "Vent de travers avant gauche. Un faible angle de crabe suffit ; la vitesse-sol est presque égale à la TAS."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur d'angle de correction du vent",
+    "steps": [
+      "Saisissez la Route vraie (TC) — la route magnétique ou vraie que vous souhaitez suivre, en degrés (0–360).",
+      "Saisissez la Direction du vent (WD) — la direction D'OÙ le vent souffle, en degrés. En aviation, le vent est toujours reporté selon sa provenance.",
+      "Saisissez la Vitesse du vent (WS) et la Vitesse propre (TAS) dans des unités cohérentes (les nœuds sont recommandés).",
+      "Cliquez sur Calculer. Le calculateur renvoie l'angle de correction du vent, le cap vrai et la vitesse-sol.",
+      "Appliquez l'angle de correction du vent à votre route vraie pour obtenir le cap vrai. Convertissez ensuite en cap magnétique en appliquant la variation si nécessaire."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur l'angle de correction du vent",
+    "q1": "Qu'est-ce que l'angle de correction du vent en aviation ?",
+    "q1_a": "L'angle de correction du vent (WCA) est l'angle que le pilote doit décaler par rapport à la trajectoire désirée pour compenser la dérive due au vent. Si vous volez tout droit avec un cap fixe dans un vent de travers, vous sortirez de votre route. En crabant dans le vent — en pointant légèrement vers le vent —, le vent pousse l'avion latéralement juste assez pour rester sur la trajectoire souhaitée. Le WCA est la différence entre votre cap vrai (la direction vers laquelle le nez pointe) et votre route vraie (la direction réellement suivie).",
+    "q2": "Comment la direction du vent est-elle reportée en aviation ?",
+    "q2_a": "En aviation, la direction du vent est toujours donnée comme la direction D'OÙ il souffle, en degrés vrais ou magnétiques. Par exemple, un vent de 270° signifie qu'il vient de l'ouest. C'est l'inverse de la convention météorologique utilisée dans d'autres domaines, où la direction du vent peut désigner la direction vers laquelle il se déplace. Les messages ATIS et METAR utilisent aussi cette convention de provenance, tout comme ce calculateur.",
+    "q3": "Quelle est la différence entre route vraie et cap vrai ?",
+    "q3_a": "La route vraie (TC) est la direction que vous voulez suivre au sol — la ligne entre votre départ et votre destination. Le cap vrai (TH) est la direction dans laquelle le nez de l'appareil pointe réellement. En air calme, TC = TH. Avec un vent de travers, TH diffère de TC de l'angle de correction du vent. En appliquant le WCA à TC, vous obtenez TH ; puis vous appliquez la variation magnétique pour obtenir le cap magnétique (MH), et la déviation compas pour obtenir le cap compas (CH).",
+    "q4": "Que se passe-t-il quand la vitesse du vent est supérieure à la vitesse propre ?",
+    "q4_a": "Si la vitesse du vent dépasse la vitesse propre, la formule de l'angle de correction du vent n'a pas de solution — sin(WCA) = WS/TAS × sin(angle) exigerait un sinus supérieur à 1, ce qui est impossible. Cela signifie que l'aéronef ne peut tout simplement pas progresser face au vent sur cette route. Le pilote doit augmenter la vitesse propre, attendre que le vent baisse, ou choisir une autre trajectoire pour éviter le composant de vent défavorable.",
+    "q5": "Comment un vent de travers affecte-t-il l'atterrissage ?",
+    "q5_a": "En approche, le pilote doit crabber dans le vent pour maintenir l'axe de piste. Juste avant le toucher, l'angle de crabe est supprimé au palonnier afin d'aligner l'appareil avec l'axe de la piste — sinon l'avion toucherait en se déplaçant latéralement, ce qui solliciterait le train d'atterrissage. Le composant de vent de travers maximal démontré pour un aéronef figure dans le manuel d'utilisation pilote et ne doit pas être dépassé pour voler en sécurité.",
+    "q6": "Qu'est-ce que la vitesse-sol et pourquoi est-elle importante ?",
+    "q6_a": "La vitesse-sol (GS) est la vitesse réelle de l'avion par rapport au sol, combinant l'effet de la vitesse propre et du vent. Un vent de face réduit la GS en dessous de la TAS ; un vent arrière l'augmente. La vitesse-sol détermine le temps de vol (distance ÷ GS = temps) et le carburant nécessaire. La préparation de vol utilise la GS pour calculer le temps estimé en route (ETE), la consommation de carburant et les réserves requises. Le GPS affiche directement la GS ; avant le GPS, elle était calculée à partir de la vitesse propre et du triangle du vent."
+  }
+}

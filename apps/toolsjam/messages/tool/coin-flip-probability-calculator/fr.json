@@ -1,0 +1,95 @@
+{
+  "title": "Calculateur de probabilité pile ou face - Loi binomiale",
+  "tagline": "Calculez la probabilité exacte de n’importe quel résultat de pile ou face avec la loi binomiale — trouvez la probabilité d’avoir exactement, au moins ou au plus N faces.",
+  "intro": "Saisissez le nombre de lancers, le nombre de faces qui vous intéresse et choisissez le type de calcul pour obtenir une probabilité instantanée.",
+  "formula": "Formule : P(X=k) = C(n,k) × (0.5)^n  •  au moins : Σ P(X=i) pour i=k..n  •  au plus : Σ P(X=i) pour i=0..k",
+  "field": {
+    "flips": "Nombre de lancers",
+    "heads": "Nombre de faces",
+    "calcType": "Type de calcul"
+  },
+  "placeholder": {
+    "flips": "ex. 10",
+    "heads": "ex. 5"
+  },
+  "type": {
+    "exactly": "Exactement",
+    "exactly_desc": "Calcule la probabilité d’obtenir exactement le nombre de faces indiqué.",
+    "atLeast": "Au moins",
+    "atLeast_desc": "Calcule la probabilité d’obtenir le nombre de faces indiqué ou plus.",
+    "atMost": "Au plus",
+    "atMost_desc": "Calcule la probabilité d’obtenir le nombre de faces indiqué ou moins."
+  },
+  "button": {
+    "calculate": "Calculer la probabilité",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir un nombre valide de lancers (1–10000) et un nombre de faces compris entre 0 et le nombre de lancers."
+  },
+  "result": {
+    "heading": "Probabilité",
+    "decimal": "Décimal"
+  },
+  "about": {
+    "heading": "À propos du calculateur de probabilité pile ou face",
+    "body": "Une pièce équilibrée n’a que deux résultats possibles — pile et face — et chacun a une probabilité de 0.5. Lorsque vous lancez la même pièce plusieurs fois, les résultats des lancers individuels sont indépendants : la pièce n’a pas de mémoire, donc le résultat d’un lancer ne peut pas influencer le suivant. Cette combinaison de probabilité fixe et d’indépendance est la caractéristique définissant une expérience binomiale, et la loi binomiale est donc le modèle mathématique exact des suites de lancers de pièce.\n\nLa probabilité d’obtenir exactement k faces en n lancers est donnée par la fonction de masse binomiale : P(X = k) = C(n, k) × (0.5)^n, où C(n, k) est le coefficient binomial n! / (k! × (n − k)!). Le facteur C(n, k) compte le nombre de séquences distinctes de n lancers contenant exactement k faces. Le facteur (0.5)^n est la probabilité d’une séquence précise de longueur n. En les multipliant, on obtient la probabilité totale de k faces pour tous les ordres possibles.\n\nPour les questions cumulées — « au moins k faces » ou « au plus k faces » — le calculateur additionne les probabilités ponctuelles de l’intervalle pertinent. « Au moins k » signifie la somme de i = k à i = n ; « au plus k » signifie la somme de i = 0 à i = k. Pour de grandes valeurs de n, ces sommes peuvent comporter des milliers de termes, ce qui rend un outil de calcul bien plus pratique qu’un calcul manuel.\n\nCertains résultats sont immédiatement intuitifs. Pour une pièce équilibrée lancée 10 fois, obtenir exactement 5 faces a une probabilité d’environ 24.61%. Obtenir au moins 5 faces a une probabilité exactement de 50% par symétrie. Obtenir 10 faces d’affilée a une probabilité de (0.5)^10 ≈ 0.098%, ce qui semble surprenant jusqu’à ce qu’on réalise qu’il ne s’agit que d’une des 1,024 séquences équiprobables. Aucune séquence individuelle n’est plus ou moins probable qu’une autre — seuls les ensembles de séquences partageant une propriété commune (comme exactement 5 faces) ont des totaux différents.\n\nLa probabilité pile ou face intervient dans de nombreux contextes pratiques au-delà du jeu. Dans les essais cliniques, un schéma de randomisation à deux bras basé sur une répartition 50/50 est mathématiquement identique au lancer d’une pièce équilibrée. En cryptographie, les suites de bits générées par un générateur matériel de nombres aléatoires devraient suivre une distribution indiscernable de celle d’une pièce équilibrée. En contrôle qualité, la proportion d’articles défectueux sur une ligne de production peut être modélisée par une proportion binomiale, et décider si le taux de défauts s’écarte de la cible utilise exactement les mêmes calculs de probabilité. En analyse sportive, les séries de victoires d’une équipe équilibrée suivent un modèle de pile ou face, et comprendre la loi binomiale aide à distinguer la vraie compétence de la variation due au hasard.\n\nCe calculateur utilise en interne une arithmétique logarithmique pour gérer de grandes valeurs de n sans dépassement, ce qui permet de calculer avec précision jusqu’à 10,000 lancers. Pour des n très grands et des k modérés, la loi binomiale peut aussi être approximée par une loi normale de moyenne np et d’écart type √(np(1−p)), mais le calculateur utilise toujours la formule exacte pour une précision maximale."
+  },
+  "examples": {
+    "heading": "Exemples de probabilité pile ou face",
+    "intro": "Quatre exemples détaillés couvrant des cas courants, des exercices scolaires aux paris et au contrôle qualité.",
+    "colInput": "Lancers / Faces / Type",
+    "colOutput": "Probabilité",
+    "colNote": "Explication",
+    "loadFair": "Charger l’exemple pièce équilibrée",
+    "loadGambling": "Charger l’exemple de pari",
+    "loadConservative": "Charger l’exemple conservateur",
+    "items": [
+      {
+        "input": "10 lancers, exactement 5 faces",
+        "output": "≈ 24.61%",
+        "note": "Résultat individuel le plus probable sur 10 lancers d’une pièce équilibrée. Utilise P(X=5) = C(10,5) × (0.5)^10."
+      },
+      {
+        "input": "10 lancers, au moins 7 faces",
+        "output": "≈ 17.19%",
+        "note": "Somme de P(X=7) + P(X=8) + P(X=9) + P(X=10). Utile pour les paris sur une majorité de faces."
+      },
+      {
+        "input": "8 lancers, au plus 3 faces",
+        "output": "≈ 36.33%",
+        "note": "Somme de P(X=0) à P(X=3). Utile pour les estimations prudentes et l’analyse de la queue basse."
+      },
+      {
+        "input": "100 lancers, exactement 50 faces",
+        "output": "≈ 7.96%",
+        "note": "Bien que ce soit le résultat individuel le plus probable, il représente moins de 8% car il existe énormément de résultats possibles."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de probabilité pile ou face",
+    "steps": [
+      "Entrez le nombre total de lancers dans le champ Nombre de lancers (1 à 10,000).",
+      "Entrez le nombre de faces qui vous intéresse — il doit être compris entre 0 et le nombre de lancers.",
+      "Choisissez le type de calcul : Exactement (probabilité ponctuelle), Au moins (cumul supérieur) ou Au plus (cumul inférieur).",
+      "Cliquez sur Calculer la probabilité. La probabilité s’affiche en pourcentage et en décimal.",
+      "Utilisez les boutons d’exemple pour charger immédiatement des scénarios courants et vérifier votre compréhension du résultat."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la probabilité pile ou face",
+    "q1": "Pourquoi obtenir exactement 5 faces en 10 lancers n’a-t-il qu’environ 24.6% de chances ?",
+    "q1_a": "Même si 5 sur 10 est le résultat individuel le plus probable, il existe 11 résultats possibles (de 0 à 10 faces) et leurs probabilités totalisent 100%. Les 75.4% restants se répartissent sur les 10 autres résultats. Même si chaque résultat isolé proche des extrêmes est peu probable, ensemble ils représentent une part importante de la probabilité totale.",
+    "q2": "L’ordre des faces et des piles compte-t-il ?",
+    "q2_a": "Non. Le calculateur compte la probabilité d’obtenir k faces dans n’importe quel ordre. Le coefficient binomial C(n,k) prend automatiquement en compte tous les ordres possibles. Si vous vouliez la probabilité d’une séquence précise — par exemple exactement HTHTHTHTHT — ce serait simplement (0.5)^10 ≈ 0.098% et ce calculateur n’est pas nécessaire.",
+    "q3": "Quel est le nombre attendu de faces en n lancers ?",
+    "q3_a": "L’espérance (moyenne) d’une loi binomiale avec n essais et une probabilité p est E[X] = n × p. Pour une pièce équilibrée, p = 0.5, donc on s’attend en moyenne à n/2 faces. Pour 10 lancers, on attend 5 faces ; pour 100 lancers, 50 faces. L’espérance n’est pas une garantie, mais une moyenne à long terme sur de nombreuses répétitions de l’expérience.",
+    "q4": "Comment calculer la probabilité d’obtenir au moins une face en n lancers ?",
+    "q4_a": "Utilisez la règle du complément : P(au moins 1 face) = 1 − P(0 face) = 1 − (0.5)^n. Pour 5 lancers, cela donne 1 − (0.5)^5 = 1 − 0.03125 = 96.875%. Vous pouvez le vérifier dans ce calculateur avec le mode Au moins et Faces = 1.",
+    "q5": "Une longue série de piles signifie-t-elle que le prochain lancer a plus de chances d’être face ?",
+    "q5_a": "Non. C’est le sophisme du joueur. Comme chaque lancer est indépendant, la probabilité d’obtenir face au prochain lancer reste exactement 0.5, quel que soit ce qui s’est passé avant. La pièce n’a pas de mémoire. Même si de longues séries sont peu probables avant qu’elles ne commencent, une fois que vous êtes dedans, les lancers restants sont tout aussi aléatoires que n’importe quelle autre séquence.",
+    "q6": "Ce calculateur peut-il gérer des pièces biaisées ?",
+    "q6_a": "Ce calculateur suppose une pièce équilibrée avec p = 0.5. Pour une pièce biaisée avec une probabilité p de face, la formule est P(X=k) = C(n,k) × p^k × (1−p)^(n−k). Pour calculer des probabilités de pièce biaisée, il faut remplacer p par la bonne valeur. Les sommes cumulées Au moins et Au plus fonctionnent de la même manière — seul 0.5 est remplacé par la probabilité biaisée."
+  }
+}

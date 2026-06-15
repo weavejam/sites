@@ -1,0 +1,102 @@
+{
+  "title": "Calculadora de prueba F para igualdad de dos varianzas",
+  "tagline": "Determina si dos varianzas poblacionales son iguales con la prueba F. Obtén el estadístico F, el p-valor, los grados de libertad y una decisión clara.",
+  "intro": "Introduce la varianza muestral y el tamaño de muestra de cada grupo, define el nivel de significación y ve al instante si las dos varianzas son estadísticamente iguales.",
+  "card": {
+    "title": "Prueba F para igualdad de dos varianzas",
+    "description": "Contrasta si dos muestras independientes tienen varianzas poblacionales iguales"
+  },
+  "field": {
+    "group1": "Grupo 1",
+    "group2": "Grupo 2",
+    "variance": "Varianza (s²)",
+    "variance1": "Varianza del grupo 1 (s²)",
+    "variance2": "Varianza del grupo 2 (s²)",
+    "sampleSize": "Tamaño de muestra (n)",
+    "sampleSize1": "Tamaño de muestra del grupo 1 (n)",
+    "sampleSize2": "Tamaño de muestra del grupo 2 (n)",
+    "alpha": "Nivel de significación (α)"
+  },
+  "placeholder": {
+    "variance": "p. ej., 5.2",
+    "sampleSize": "p. ej., 30"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce valores válidos. Las varianzas deben ser ≥ 0 y los tamaños de muestra deben ser enteros ≥ 2."
+  },
+  "result": {
+    "heading": "Resultado",
+    "fStatistic": "Estadístico F",
+    "df1": "df₁ (numerador)",
+    "df2": "df₂ (denominador)",
+    "pValue": "p-valor (bilateral)",
+    "criticalF": "Valor F crítico",
+    "reject": "Rechazar H₀ — las dos varianzas son significativamente diferentes.",
+    "failReject": "No rechazar H₀ — no hay diferencia significativa entre las varianzas."
+  },
+  "about": {
+    "heading": "Acerca de la prueba F para igualdad de dos varianzas",
+    "body": "La prueba F para igualdad de dos varianzas es un procedimiento estadístico clásico usado para determinar si dos poblaciones independientes tienen la misma varianza. Nombrada en honor a Sir Ronald A. Fisher, se usa ampliamente como comprobación diagnóstica antes de aplicar una prueba t de dos muestras, que asume que los dos grupos tienen varianzas poblacionales iguales. Si la prueba F rechaza ese supuesto, debe usarse en su lugar la prueba t de Welch, que no requiere varianzas iguales.\n\nEl estadístico de prueba es la razón de las dos varianzas muestrales: F = s₁² / s₂². Por convención, la varianza muestral mayor se coloca en el numerador para que F ≥ 1, lo que concentra toda la masa crítica en la cola superior de la distribución F y simplifica la interpretación. La hipótesis nula H₀ afirma que las varianzas poblacionales son iguales (σ₁² = σ₂²), mientras que la hipótesis alternativa H₁ afirma que difieren (σ₁² ≠ σ₂²). Los grados de libertad son df₁ = n₁ − 1 (numerador) y df₂ = n₂ − 1 (denominador), donde n₁ y n₂ son los tamaños de muestra respectivos.\n\nPara evaluar la significación, el valor F calculado se compara con la distribución F con (df₁, df₂) grados de libertad. En una prueba bilateral, el p-valor es igual a 2 × P(F > F_obs). Si el p-valor es menor o igual que el nivel de significación α elegido (normalmente 0.05 o 0.01), se rechaza H₀ y se declaran las varianzas significativamente diferentes. El valor F crítico para el α elegido proporciona una frontera de decisión equivalente: si F_obs > F_crit, se rechaza H₀.\n\nLa prueba F tiene amplias aplicaciones prácticas. En manufactura, verifica si dos líneas de producción fabrican piezas con igual variabilidad dimensional, un requisito previo para procedimientos de control de calidad que asumen procesos uniformes. En investigación clínica, comprueba si dos grupos de tratamiento tienen una variabilidad de respuesta similar, lo que afecta tanto el diseño del estudio como la interpretación. En finanzas, compara la volatilidad de dos activos o carteras, informando la evaluación de riesgos y las estrategias de diversificación. En agricultura, evalúa si dos fertilizantes producen cultivos con igual consistencia de rendimiento.\n\nA pesar de su potencia, la prueba F tiene una limitación importante: es muy sensible a las desviaciones de la normalidad. Ambas muestras deben provenir de poblaciones normalmente distribuidas para que la prueba sea válida. Cuando la normalidad es incierta, los analistas suelen preferir la prueba de Levene o la prueba de Brown–Forsythe, más robustas, que sustituyen las desviaciones brutas respecto de la media por desviaciones absolutas o desviaciones respecto de la mediana. Esta calculadora usa la CDF exacta de la distribución F mediante la función beta incompleta regularizada, produciendo p-valores coherentes con R (var.test), Python (scipy.stats.levene) y SPSS."
+  },
+  "examples": {
+    "heading": "Prueba F para igualdad de varianzas — ejemplos",
+    "intro": "Tres ejemplos resueltos de manufactura, educación y finanzas.",
+    "colInput": "Entrada",
+    "colOutput": "Resultado",
+    "colNote": "Contexto",
+    "loadMfg": "Cargar ejemplo de manufactura",
+    "loadTeaching": "Cargar ejemplo de métodos de enseñanza",
+    "loadStock": "Cargar ejemplo de volatilidad bursátil",
+    "items": [
+      {
+        "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+        "output": "F = 1.1724, p ≈ 0.6767 — no rechazar H₀",
+        "note": "Dos máquinas producen pernos. Las varianzas del diámetro de los pernos no son significativamente diferentes; ambas máquinas son igual de consistentes."
+      },
+      {
+        "input": "s₁² = 110, n₁ = 41; s₂² = 125, n₂ = 31; α = 0.05",
+        "output": "F = 1.1364, p ≈ 0.6679 — no rechazar H₀",
+        "note": "Dos métodos de enseñanza. Las varianzas de las puntuaciones son estadísticamente iguales; ambos métodos producen una consistencia similar en los resultados."
+      },
+      {
+        "input": "s₁² = 5.2, n₁ = 100; s₂² = 4.8, n₂ = 100; α = 0.01",
+        "output": "F = 1.0833, p ≈ 0.6366 — no rechazar H₀",
+        "note": "Dos acciones comparadas por volatilidad de rendimientos diarios. Al nivel del 1%, no hay evidencia de perfiles de riesgo diferentes."
+      },
+      {
+        "input": "s₁² = 18, n₁ = 16; s₂² = 12, n₂ = 16; α = 0.10",
+        "output": "F = 1.5, p ≈ 0.3952 — no rechazar H₀",
+        "note": "Altura de plantas con dos fertilizantes. La varianza del crecimiento no es estadísticamente diferente al nivel del 10%."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de prueba F para igualdad de varianzas",
+    "steps": [
+      "Introduce la varianza muestral (s²) del Grupo 1 —la desviación cuadrática media respecto de la media del grupo— junto con el número de observaciones (n) de ese grupo.",
+      "Introduce la varianza y el tamaño de muestra correspondientes del Grupo 2 en sus campos.",
+      "Elige un nivel de significación α en el menú desplegable: 0.01 (1%), 0.05 (5%) o 0.10 (10%). La opción más común en investigaciones publicadas es 0.05.",
+      "Haz clic en “Calcular”. La calculadora coloca automáticamente la varianza mayor en el numerador, calcula F = s_max²/s_min², obtiene el p-valor bilateral con la distribución F y muestra el valor F crítico.",
+      "Interpreta el resultado: si p-valor ≤ α, las varianzas son significativamente diferentes y deberías usar una prueba t de Welch en lugar de una prueba t estándar con varianzas iguales. En caso contrario, se pueden asumir varianzas iguales."
+    ]
+  },
+  "faq": {
+    "heading": "Prueba F para igualdad de varianzas — preguntas frecuentes",
+    "q1": "¿Qué evalúa la prueba F para igualdad de varianzas?",
+    "q1_a": "Evalúa la hipótesis nula H₀: σ₁² = σ₂² frente a la alternativa H₁: σ₁² ≠ σ₂². Un resultado significativo (p ≤ α) significa que las dos varianzas poblacionales son estadísticamente diferentes. Un resultado no significativo significa que los datos son compatibles con varianzas iguales, pero no prueba que sean iguales.",
+    "q2": "¿Por qué se usa la prueba F antes de una prueba t de dos muestras?",
+    "q2_a": "La prueba t de dos muestras con varianza combinada asume que ambos grupos tienen la misma varianza poblacional. Si este supuesto se viola, la prueba puede producir p-valores incorrectos. Ejecutar primero una prueba F comprueba este supuesto: si la prueba F es significativa, usa la prueba t de Welch, que no asume varianzas iguales.",
+    "q3": "¿Cuáles son los supuestos de la prueba F para igualdad de varianzas?",
+    "q3_a": "Ambas muestras deben extraerse de poblaciones con distribución normal, y las muestras deben ser independientes entre sí. La prueba F es bastante sensible a la no normalidad; incluso desviaciones moderadas pueden distorsionar el p-valor. Si la normalidad es dudosa, usa la prueba de Levene o la prueba de Brown–Forsythe.",
+    "q4": "¿Por qué la varianza mayor siempre se coloca en el numerador?",
+    "q4_a": "Colocar la varianza mayor en el numerador garantiza F ≥ 1, lo que confina la región crítica a la cola superior de la distribución F y evita consultar una tabla de cola inferior. Para una prueba bilateral, el p-valor es simplemente 2 × P(F > F_obs), lo que es directo de calcular.",
+    "q5": "¿Cómo interpreto el valor F crítico?",
+    "q5_a": "El valor F crítico (F_crit) es el valor que recorta el α/2 superior de la distribución F. Si tu F calculado supera F_crit, rechazas H₀ al nivel de significación α. Usar el p-valor y usar el valor crítico siempre llevan a la misma decisión: son dos formas equivalentes de resumir la misma comparación.",
+    "q6": "¿Cuándo debería usar la prueba de Levene en lugar de la prueba F?",
+    "q6_a": "La prueba de Levene es preferible cuando tus datos podrían no seguir una distribución normal, porque es robusta frente a la no normalidad. La prueba F para igualdad de varianzas es óptima cuando se cumple la normalidad, pero su tasa de error de tipo I puede distorsionarse gravemente con datos sesgados o de colas pesadas. En la práctica, muchos estadísticos usan la prueba de Levene por defecto para evitar este riesgo."
+  }
+}

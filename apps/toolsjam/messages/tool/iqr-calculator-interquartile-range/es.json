@@ -1,0 +1,104 @@
+{
+  "title": "Calculadora IQR - rango intercuartílico y atípicos",
+  "tagline": "Calcula el rango intercuartílico (IQR), los cuartiles Q1 y Q3, la mediana e identifica valores atípicos con la regla 1.5×IQR en cualquier conjunto de datos separado por comas.",
+  "intro": "Introduce tus datos como números separados por comas y haz clic en Calcular para obtener el resumen de cinco números, el IQR, los valores de las vallas y los valores atípicos.",
+  "field": {
+    "data": "Conjunto de datos (números separados por comas)",
+    "dataHint": "Introduce números separados por comas o espacios, p. ej. 2, 4, 4, 5, 6, 7, 8, 9"
+  },
+  "placeholder": {
+    "data": "p. ej. 2, 4, 4, 5, 6, 7, 8, 9"
+  },
+  "button": {
+    "calculate": "Calcular IQR",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce al menos dos números válidos separados por comas."
+  },
+  "result": {
+    "heading": "Resultados",
+    "n": "Conteo (n)",
+    "min": "Mínimo",
+    "max": "Máximo",
+    "q1": "Q1 (percentil 25)",
+    "median": "Mediana (Q2)",
+    "q3": "Q3 (percentil 75)",
+    "iqr": "IQR (Q3 − Q1)",
+    "lowerFence": "Valla inferior (Q1 − 1.5×IQR)",
+    "upperFence": "Valla superior (Q3 + 1.5×IQR)",
+    "outliersLabel": "Valores atípicos",
+    "noOutliers": "No se detectaron valores atípicos."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora IQR",
+    "body": "El rango intercuartílico (IQR) es el rango del 50% central de un conjunto de datos: la distancia entre el percentil 25 (Q1) y el percentil 75 (Q3). Es una de las medidas de dispersión estadística más robustas y utilizadas porque, a diferencia del rango total o la desviación estándar, no se ve afectada por valores extremos ni por valores atípicos. Ya sea que analices calificaciones de exámenes, lecturas de presión arterial, precios de viviendas, tolerancias de fabricación o cualquier otro conjunto de datos del mundo real, el IQR ofrece una imagen fiable de la dispersión central.\n\nPara calcular el IQR, la calculadora primero ordena los datos de menor a mayor y luego localiza Q1 y Q3 mediante interpolación lineal sobre los estadísticos de orden. Q1 es el valor en el percentil 25, el punto por debajo del cual cae el 25% de los datos. Q3 es el valor en el percentil 75, el punto por debajo del cual cae el 75% de los datos. El IQR es simplemente Q3 − Q1. También se muestran la mediana (Q2), el mínimo y el máximo para darte el resumen completo de cinco números, base de un diagrama de caja y bigotes.\n\nLa regla 1.5×IQR, introducida por John Tukey, es el método estándar para identificar posibles valores atípicos. Cualquier dato por debajo de la valla inferior (Q1 − 1.5×IQR) o por encima de la valla superior (Q3 + 1.5×IQR) se considera un valor atípico sospechoso. Estas vallas definen los bigotes en un diagrama de caja de Tukey. Un punto a más de 3×IQR del cuartil más cercano (la valla interna extendida a una valla externa) se considera un valor atípico extremo. La calculadora marca todos los valores fuera de las vallas de 1.5×IQR.\n\nEs importante señalar que la regla 1.5×IQR identifica valores atípicos estadísticos —valores inusualmente alejados del bloque central de los datos—, pero no necesariamente errores de datos. Un punto marcado como atípico puede ser un error de medición, un error de captura, una señal de fraude o simplemente una observación genuinamente rara pero válida. Siempre se necesita conocimiento del dominio para decidir qué hacer con los puntos marcados.\n\nEl IQR es la medida de dispersión preferida cuando los datos están sesgados o se esperan valores atípicos, como en distribuciones de ingresos, tiempos de reacción o precios de viviendas en mercados mixtos. Para datos simétricos, normalmente distribuidos y sin valores atípicos, la desviación estándar es ligeramente más eficiente. Pero cuando la robustez importa —en el análisis exploratorio de datos, en estadística no paramétrica o siempre que no puedas asumir normalidad—, el IQR es la herramienta de referencia para caracterizar cuán dispersa está la parte central de tus datos."
+  },
+  "examples": {
+    "heading": "Ejemplos de IQR",
+    "intro": "Cuatro conjuntos de datos que muestran cómo funcionan el IQR y la detección de valores atípicos en la práctica.",
+    "colInput": "Conjunto de datos",
+    "colOutput": "IQR",
+    "colNote": "Notas",
+    "loadBasic": "Cargar conjunto básico",
+    "loadOutliers": "Cargar conjunto con atípicos",
+    "loadScores": "Cargar calificaciones",
+    "items": [
+      {
+        "input": "2, 4, 4, 5, 6, 7, 8, 9",
+        "output": "IQR = 3.25 (Q1=4, Q3=7.25)",
+        "note": "Número par de valores. Q1=4, mediana=5.5, Q3=7.25. No se detectan valores atípicos."
+      },
+      {
+        "input": "10, 20, 30, 40, 50, 60, 70",
+        "output": "IQR = 30 (Q1=25, Q3=55)",
+        "note": "Conteo impar: Q1=25, mediana=40, Q3=55, IQR=30. Valla inferior=−20, valla superior=100. Sin valores atípicos."
+      },
+      {
+        "input": "6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49, 78, 108",
+        "output": "IQR = 11 (Q1=36, Q3=47)",
+        "note": "Valla inferior=19.5, valla superior=63.5. Los valores 6, 7, 15, 78 y 108 se marcan como atípicos."
+      },
+      {
+        "input": "88, 92, 80, 78, 95, 84, 76, 90, 81, 85, 93",
+        "output": "IQR = 10.5 (Q1=80.5, Q3=91)",
+        "note": "Calificaciones entre 76 y 95. Sin valores atípicos: desempeño de la clase muy agrupado."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora IQR",
+    "steps": [
+      "Introduce tu conjunto de datos en el campo de entrada como números separados por comas. También puedes usar espacios como separadores. El orden de los valores no importa: la calculadora los ordena automáticamente.",
+      "Haz clic en Calcular IQR. La herramienta muestra n (conteo), mínimo, máximo, Q1, mediana, Q3, IQR, las vallas inferior y superior, y cualquier valor atípico.",
+      "Examina el IQR para entender qué tan disperso está el 50% central de tus datos. Un IQR mayor significa más variabilidad en la parte central de los datos.",
+      "Revisa los valores de las vallas. Cualquier dato por debajo de Q1 − 1.5×IQR o por encima de Q3 + 1.5×IQR aparece como posible valor atípico. Investiga cada punto marcado para determinar si es un error de datos o un valor extremo genuino.",
+      "Usa los botones de ejemplo para cargar conjuntos de datos predefinidos y ver cómo se comportan el IQR y la detección de atípicos con distintas distribuciones."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre IQR",
+    "items": [
+      {
+        "q": "¿Qué es el rango intercuartílico (IQR)?",
+        "a": "El rango intercuartílico es la diferencia entre el tercer cuartil (Q3, percentil 75) y el primer cuartil (Q1, percentil 25): IQR = Q3 − Q1. Representa la dispersión del 50% central de los datos. Como ignora el 25% superior y el 25% inferior de los valores, el IQR no se ve afectado por valores extremos, lo que lo convierte en una medida de dispersión más robusta que el rango total o la desviación estándar cuando los datos están sesgados o contienen anomalías."
+      },
+      {
+        "q": "¿Cómo se calculan Q1 y Q3?",
+        "a": "La calculadora usa interpolación lineal sobre los datos ordenados. Para Q1, la posición es 0.25 × (n−1) en una matriz ordenada con índice inicial cero. Si esa posición no es un entero, el valor se interpola entre los dos puntos de datos adyacentes. El mismo método se usa para Q3 en la posición 0.75 × (n−1). Es el mismo método utilizado por software estadístico como R (type 7) y la función QUARTILE.INC de Excel."
+      },
+      {
+        "q": "¿Cómo identifica valores atípicos la regla 1.5×IQR?",
+        "a": "La regla 1.5×IQR de John Tukey define valla inferior = Q1 − 1.5×IQR y valla superior = Q3 + 1.5×IQR. Cualquier punto de datos fuera de estas vallas es un posible valor atípico. El multiplicador 1.5 se eligió porque, en una distribución perfectamente normal, solo alrededor del 0.7% de los valores caen fuera de estas vallas, por lo que es muy poco probable que ocurran por azar. Una regla más estricta usa un multiplicador de 3.0 y marca solo los puntos más extremos como atípicos lejanos."
+      },
+      {
+        "q": "¿Es el IQR mejor que la desviación estándar para medir dispersión?",
+        "a": "Cada medida se adapta a situaciones distintas. La desviación estándar usa todos los valores y es óptima para datos simétricos, normalmente distribuidos y sin valores atípicos. El IQR usa solo el 50% central de los valores y es mucho más resistente al sesgo y a los atípicos. Si tus datos son aproximadamente normales, la desviación estándar ofrece más información. Si están sesgados (ingresos, precios de viviendas, tiempos de supervivencia) o contienen valores atípicos, el IQR es la mejor medida de la dispersión típica."
+      },
+      {
+        "q": "¿Puedo usar IQR con un conjunto de datos de solo dos o tres valores?",
+        "a": "Técnicamente sí, pero el resultado tiene utilidad limitada. Con muestras muy pequeñas (n < 4 o 5), las estimaciones de cuartiles son muy inestables y el IQR no representa de forma fiable la dispersión de la población. La regla de valores atípicos 1.5×IQR también funciona mal con muestras diminutas: puede no marcar valores atípicos aunque haya errores, o producir vallas que excluyan valores legítimos. Un análisis IQR significativo generalmente requiere al menos 5–10 observaciones."
+      }
+    ]
+  }
+}

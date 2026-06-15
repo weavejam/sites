@@ -1,0 +1,89 @@
+{
+  "title": "Calculadora de probabilidade pós-teste",
+  "tagline": "Calcule a probabilidade pós-teste com o teorema de Bayes",
+  "intro": "Informe a probabilidade pré-teste, a sensibilidade e a especificidade do teste (todas em porcentagem) para calcular as probabilidades pós-teste, VPP, VPN e razões de verossimilhança.",
+  "field": {
+    "priorProbability": "Probabilidade pré-teste (%)",
+    "sensitivity": "Sensibilidade do teste (taxa de verdadeiros positivos) (%)",
+    "specificity": "Especificidade do teste (taxa de verdadeiros negativos) (%)"
+  },
+  "placeholder": {
+    "percent": "ex.: 20"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultados",
+    "postTestPositive": "Probabilidade pós-teste (teste positivo)",
+    "postTestNegative": "Probabilidade pós-teste (teste negativo)",
+    "ppv": "VPP (valor preditivo positivo)",
+    "npv": "VPN (valor preditivo negativo)",
+    "lrPos": "LR+ (razão de verossimilhança positiva)",
+    "lrNeg": "LR− (razão de verossimilhança negativa)"
+  },
+  "error": {
+    "invalid": "Digite porcentagens válidas entre 0 e 100 para os três campos."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de probabilidade pós-teste",
+    "body": "A probabilidade pós-teste é a probabilidade revisada de que um paciente tenha uma condição depois que o resultado de um teste diagnóstico é conhecido. Ela é calculada usando o teorema de Bayes, que atualiza formalmente as crenças à luz de novas evidências. Esta calculadora implementa o arcabouço central de acurácia diagnóstica usado na medicina baseada em evidências, no suporte à decisão clínica e na educação médica.\n\nAs três entradas necessárias são: (1) probabilidade pré-teste — a probabilidade pré-teste ou prevalência da doença antes do teste; (2) sensibilidade — a taxa de verdadeiros positivos, ou a probabilidade de o teste ser positivo quando a condição está presente; e (3) especificidade — a taxa de verdadeiros negativos, ou a probabilidade de o teste ser negativo quando a condição está ausente.\n\nPara um resultado positivo, a probabilidade pós-teste é igual ao valor preditivo positivo (VPP), calculado como: VPP = (sensitivity × prior) / (sensitivity × prior + (1−specificity) × (1−prior)). Para um resultado negativo, a probabilidade da doença é 1 − VPN, onde VPN = (specificity × (1−prior)) / (specificity × (1−prior) + (1−sensitivity) × prior).\n\nAs razões de verossimilhança (LRs) oferecem outra forma de atualizar probabilidades. LR+ = sensitivity / (1−specificity) indica quanto um resultado positivo aumenta as odds da doença. LR− = (1−sensitivity) / specificity indica quanto um resultado negativo reduz as odds. Como regra prática, LR+ acima de 10 ou LR− abaixo de 0.1 indica um teste com grande poder diagnóstico.\n\nUm dos resultados mais contraintuitivos na estatística médica é o efeito da taxa basal: mesmo um teste muito preciso tem VPP baixa quando a doença é rara. Por exemplo, um teste com 99% de sensibilidade e 99% de especificidade aplicado a uma doença com prevalência de 0.1% tem VPP de apenas cerca de 9%. Isso significa que 91% dos testes positivos são falsos positivos — uma consideração crítica em programas de rastreamento populacional.\n\nEsta calculadora é útil para clínicos que interpretam testes diagnósticos, pesquisadores que projetam protocolos de rastreamento, estudantes de medicina aprendendo raciocínio bayesiano e epidemiologistas avaliando o desempenho do teste em diferentes níveis de prevalência.\n\nLembre-se sempre de que a probabilidade pré-teste deve ser estimada com base na melhor evidência disponível: dados publicados de prevalência, histórico clínico, achados do exame físico e fatores de risco do paciente. A qualidade da sua estimativa pós-teste depende diretamente da precisão da sua estimativa prévia e da validade dos valores publicados de sensibilidade e especificidade do teste."
+  },
+  "examples": {
+    "heading": "Exemplos",
+    "intro": "Estes exemplos mostram como a prevalência da doença e a precisão do teste afetam a probabilidade pós-teste.",
+    "loadCommon": "Doença comum (20%)",
+    "loadRare": "Doença rara (0.1%)",
+    "colInput": "Pré-teste, Sensibilidade, Especificidade",
+    "colOutput": "Prob pós-teste (+)",
+    "colNote": "Cenário",
+    "items": [
+      {
+        "input": "Prior=20%, Sens=85%, Spec=80%",
+        "output": "VPP ≈ 51.5%",
+        "note": "Rastreamento de condição comum"
+      },
+      {
+        "input": "Prior=0.1%, Sens=99%, Spec=99%",
+        "output": "VPP ≈ 9.0%",
+        "note": "Doença rara — negligência da taxa basal"
+      },
+      {
+        "input": "Prior=5%, Sens=99.5%, Spec=85%",
+        "output": "VPP ≈ 25.8%",
+        "note": "Teste de rastreamento muito sensível"
+      },
+      {
+        "input": "Prior=15%, Sens=80%, Spec=99.8%",
+        "output": "VPP ≈ 98.8%",
+        "note": "Teste confirmatório muito específico"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar esta calculadora",
+    "steps": [
+      "Informe a probabilidade pré-teste como porcentagem — pode ser a prevalência ou sua estimativa inicial da probabilidade da doença antes do teste.",
+      "Informe a sensibilidade do teste (taxa de verdadeiros positivos) como porcentagem — com que frequência o teste é positivo quando a condição está presente.",
+      "Informe a especificidade do teste (taxa de verdadeiros negativos) como porcentagem — com que frequência o teste é negativo quando a condição está ausente.",
+      "Clique em 'Calcular' para ver as probabilidades pós-teste após resultados positivo e negativo, além de VPP, VPN e razões de verossimilhança.",
+      "Use os botões de carregamento rápido para explorar cenários clínicos realistas e observar como a prevalência afeta a interpretação do teste."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "q1": "O que é probabilidade pós-teste?",
+    "q1_a": "A probabilidade pós-teste é a probabilidade de uma condição estar presente dado o resultado de um teste diagnóstico. Ela é derivada do teorema de Bayes, combinando a probabilidade pré-teste (prevalência ou probabilidade pré-teste) com a sensibilidade e a especificidade do teste. Um teste positivo aumenta a probabilidade acima da pré-teste; um negativo a reduz.",
+    "q2": "Qual é a diferença entre sensibilidade e especificidade?",
+    "q2_a": "A sensibilidade (taxa de verdadeiros positivos) mede a proporção de pessoas com a condição que testam positivo: TP / (TP + FN). A especificidade (taxa de verdadeiros negativos) mede a proporção de pessoas sem a condição que testam negativo: TN / (TN + FP). Alta sensibilidade minimiza casos perdidos; alta especificidade minimiza falsos alarmes.",
+    "q3": "O que é VPP e por que ela depende da prevalência?",
+    "q3_a": "O valor preditivo positivo (VPP) é a probabilidade de uma pessoa com teste positivo realmente ter a condição. Ele depende tanto da acurácia do teste quanto da prevalência da doença. Mesmo com um teste 99% preciso, a VPP pode ser baixa em doenças raras — um fenômeno conhecido como paradoxo dos falsos positivos ou negligência da taxa basal. Por isso, entender a probabilidade pré-teste é crítico na medicina diagnóstica.",
+    "q4": "O que são razões de verossimilhança e como usá-las?",
+    "q4_a": "A razão de verossimilhança positiva (LR+) = sensitivity / (1−specificity) indica quanto um resultado positivo aumenta as odds da doença. LR− = (1−sensitivity) / specificity indica quanto um resultado negativo as reduz. Como regra prática, LR+ > 10 ou LR− < 0.1 produzem mudanças grandes e clinicamente significativas na probabilidade.",
+    "q5": "Por que um teste muito preciso pode dar uma probabilidade pós-teste baixa?",
+    "q5_a": "Quando a prevalência da doença (probabilidade pré-teste) é muito baixa, mesmo um teste muito preciso produz muitos falsos positivos em relação aos verdadeiros positivos. Por exemplo, um teste 99% preciso para uma doença com prevalência de 0.1% tem VPP de apenas cerca de 9% — 91% dos positivos são falsos positivos. É por isso que o rastreamento em massa de doenças raras deve ser cuidadosamente projetado.",
+    "q6": "Qual é a diferença entre VPP e probabilidade pós-teste após um resultado positivo?",
+    "q6_a": "Para um teste simples de dois resultados (positivo/negativo), VPP e a probabilidade pós-teste após um resultado positivo são o mesmo valor. Ambos representam P(doença | teste positivo). O termo 'probabilidade pós-teste' é a linguagem bayesiana mais geral usada na tomada de decisão clínica, enquanto VPP é o termo epidemiológico usado em estudos de validação de testes."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "title": "Calculateur de limite de contrôle supérieure (UCL) - Cartes SPC",
+  "tagline": "Calculez la limite de contrôle supérieure (UCL) et la limite de contrôle inférieure (LCL) des cartes de contrôle statistique des processus à partir de données brutes ou de statistiques résumées.",
+  "intro": "Choisissez un mode de calcul (À partir des données ou À partir d’un résumé), saisissez vos valeurs, puis cliquez sur Calculer pour obtenir instantanément l’UCL, la LCL, la moyenne et l’écart-type.",
+  "field": {
+    "mode": "Mode de calcul",
+    "data": "Données (séparées par des virgules)",
+    "mean": "Moyenne du processus (x̅)",
+    "stdDev": "Écart-type (σ)",
+    "sigmaK": "Multiplicateur sigma (k)",
+    "sigmaKHint": "Valeurs courantes : 3 (99,73 %), 2 (95,45 %). La valeur par défaut est 3."
+  },
+  "type": {
+    "data": "À partir des données",
+    "summary": "À partir d’un résumé"
+  },
+  "placeholder": {
+    "data": "p. ex. 10, 11, 9, 12, 10, 11",
+    "mean": "p. ex. 50",
+    "stdDev": "p. ex. 5"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Saisissez au moins 2 points de données, ou des valeurs valides de moyenne et d’écart-type."
+  },
+  "result": {
+    "heading": "Limites de contrôle",
+    "mean": "Moyenne du processus (x̅)",
+    "stdDev": "Écart-type (σ)",
+    "n": "Taille de l’échantillon (n)",
+    "ucl": "Limite de contrôle supérieure (UCL)",
+    "lcl": "Limite de contrôle inférieure (LCL)",
+    "formula": "Formules : UCL = x̅ + {k}σ | LCL = x̅ − {k}σ"
+  },
+  "about": {
+    "heading": "À propos de la limite de contrôle supérieure (UCL)",
+    "body": "La limite de contrôle supérieure (UCL) est un élément clé du contrôle statistique des processus (SPC), la méthodologie développée par Walter Shewhart aux Bell Laboratories dans les années 1920 pour distinguer la variation normale du processus des signaux qui justifient une investigation. Les cartes de contrôle tracent les mesures du processus au fil du temps et utilisent l’UCL (ainsi que son équivalent, la limite de contrôle inférieure, LCL) pour définir les frontières de la variation acceptable. Un processus est dit sous contrôle statistique lorsque toutes les mesures se situent dans les limites de contrôle et ne montrent aucun schéma non aléatoire.\n\nL’UCL est calculée comme la moyenne du processus plus k fois l’écart-type du processus : UCL = x̄ + kσ. La LCL correspondante est x̄ − kσ. La valeur de k est généralement fixée à 3, ce qui, pour une distribution normale, signifie que 99,73 % des observations devraient se situer dans les limites de contrôle lorsque le processus est stable. Un point qui dépasse l’UCL (ou passe sous la LCL) signale que le processus a peut-être dérivé ou qu’une cause inhabituelle est à l’œuvre. Certaines applications utilisent k = 2 (95,45 %) pour une détection plus sensible, au prix de fausses alertes plus fréquentes.\n\nLes cartes de contrôle SPC existent en plusieurs variantes. La carte X-bar surveille la moyenne des échantillons de sous-groupes. La carte individuelle (I) surveille les mesures uniques. Les cartes R et S surveillent la variabilité à l’intérieur des sous-groupes. Ce calculateur calcule l’UCL pour des mesures individuelles ou des moyennes de sous-groupes à partir de données brutes (pour estimer directement la moyenne et l’écart-type) ou de statistiques résumées déjà calculées (moyenne et écart-type fournis par l’utilisateur).\n\nLorsque des données brutes sont fournies, le calculateur estime la moyenne du processus par la moyenne de l’échantillon et l’écart-type au moyen de la formule d’échantillon (division par n − 1, correction de Bessel). Cela donne une estimation non biaisée de l’écart-type de la population, adaptée à l’estimation de la variation du processus à long terme. L’UCL et la LCL obtenues définissent la plage attendue des observations futures si le processus reste stable.\n\nLes limites de contrôle ne sont pas des limites de spécification. Les limites de spécification définissent ce qui est acceptable pour le client (tolérances d’ingénierie, exigences réglementaires). Les limites de contrôle définissent ce que le processus est naturellement capable de produire. Un processus peut être sous contrôle statistique tout en produisant encore des résultats hors des limites de spécification ; dans ce cas, il faut améliorer la capabilité du processus, et pas seulement le surveiller.\n\nL’UCL et la LCL sont utilisées dans la fabrication, la santé, le développement logiciel, les centres d’appels et tout contexte où la qualité de sortie doit être suivie dans le temps. Comprendre et calculer ces limites est une compétence essentielle en ingénierie qualité et en amélioration des processus."
+  },
+  "examples": {
+    "heading": "Exemples d’UCL",
+    "intro": "Calculs détaillés montrant comment l’UCL est calculée à partir de données et de statistiques résumées.",
+    "colInput": "Entrées",
+    "colOutput": "UCL / LCL",
+    "colNote": "Contexte",
+    "items": [
+      {
+        "input": "Données : 10,11,9,12,10,11,10,9,12,11 | k=3",
+        "output": "UCL ≈ 13.74 | LCL ≈ 7.26",
+        "note": "Moyenne = 10.5, écart-type d’échantillon ≈ 1.080. UCL = 10.5 + 3×1.080 ≈ 13.74, LCL = 10.5 − 3×1.080 ≈ 7.26. Toute mesure en dehors de ces limites est un signal de hors contrôle."
+      },
+      {
+        "input": "Moyenne = 50, écart-type = 5 | k=3",
+        "output": "UCL = 65 | LCL = 35",
+        "note": "UCL = 50 + 3×5 = 65. Règle classique des 3 sigma. Une pièce fabriquée mesurée au-dessus de 65 déclenche une revue du processus de production."
+      },
+      {
+        "input": "Moyenne = 100, écart-type = 8 | k=2",
+        "output": "UCL = 116 | LCL = 84",
+        "note": "Avec k=2 (limites à 2 sigma), on couvre 95,45 % de la variation normale. C’est plus sensible que 3 sigma, mais cela génère davantage de fausses alertes."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur d’UCL",
+    "steps": [
+      "Choisissez À partir des données si vous avez des mesures brutes, ou À partir d’un résumé si vous connaissez déjà la moyenne et l’écart-type.",
+      "En mode À partir des données, saisissez vos mesures séparées par des virgules dans le champ de données. En mode À partir d’un résumé, saisissez la moyenne du processus et l’écart-type.",
+      "Définissez le multiplicateur sigma k (3 par défaut). Utilisez 3 pour les limites de contrôle standard à 3 sigma ou 2 pour des limites plus serrées à 2 sigma.",
+      "Cliquez sur Calculer pour voir l’UCL, la LCL, la moyenne et l’écart-type.",
+      "Toute mesure future du processus au-dessus de l’UCL ou au-dessous de la LCL est un signal de hors contrôle qui nécessite une investigation."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur d’UCL",
+    "q1": "Qu’est-ce que la limite de contrôle supérieure (UCL) ?",
+    "q1_a": "L’UCL est la frontière supérieure d’une carte de contrôle, fixée à k écarts-types au-dessus de la moyenne du processus (généralement k=3). Les mesures qui dépassent l’UCL sont statistiquement peu probables dans des conditions de processus stables et signalent que le processus a peut-être changé ou qu’une cause inhabituelle est présente.",
+    "q2": "Quelle est la différence entre l’UCL et une limite supérieure de spécification ?",
+    "q2_a": "Une limite de spécification est fixée par le client ou par les exigences de conception et définit la qualité acceptable du produit. L’UCL est calculée à partir des données du processus et reflète la variation naturelle du processus. Un processus peut être sous contrôle (dans l’UCL) tout en produisant des défauts (hors des limites de spécification) si sa dispersion est trop large.",
+    "q3": "Pourquoi k=3 est-il le choix standard ?",
+    "q3_a": "Pour un processus normalement distribué, fixer k=3 signifie que 99,73 % des observations se situent dans les limites de contrôle lorsque le processus est stable. Cela limite les fausses alertes (signaler à tort un processus stable) à environ 0,27 %, ce qui équilibre la sensibilité de détection et le coût des investigations inutiles.",
+    "q4": "Que signifie le dépassement de l’UCL par un point ?",
+    "q4_a": "Un point au-dessus de l’UCL est appelé signal de hors contrôle. Il indique que l’observation a peu de chances de s’être produite uniquement par hasard, ce qui suggère qu’une cause spéciale (événement inhabituel, changement de processus, erreur de mesure) a pu survenir. Le processus doit être examiné afin de trouver et d’éliminer la cause.",
+    "q5": "Puis-je utiliser ce calculateur pour des moyennes de sous-groupes ?",
+    "q5_a": "Oui. Si vous fournissez la moyenne de vos moyennes de sous-groupes et l’écart-type des moyennes de sous-groupes (aussi appelé erreur standard), le calculateur calculera directement l’UCL et la LCL de la carte X-bar. Les entrées sont les mêmes, que les valeurs représentent des mesures individuelles ou des moyennes de sous-groupes.",
+    "q6": "Comment estimer l’écart-type à partir des données ?",
+    "q6_a": "Le calculateur utilise la formule de l’écart-type d’échantillon, en divisant par n−1 (correction de Bessel), ce qui donne une estimation non biaisée de l’écart-type de la population. En pratique, les cartes SPC utilisent parfois l’étendue moyenne divisée par d2 pour les données de sous-groupes, mais pour des mesures individuelles, l’écart-type d’échantillon est l’estimation appropriée."
+  }
+}

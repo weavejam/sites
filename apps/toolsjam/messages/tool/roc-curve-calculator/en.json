@@ -1,0 +1,85 @@
+{
+  "title": "ROC Curve & AUC Calculator - Binary Classifier Evaluation",
+  "tagline": "Advanced Statistical Tests",
+  "intro": "Input your model's prediction scores and true labels below to generate an ROC curve and calculate the Area Under the Curve (AUC).",
+  "field": {
+    "dataInput": "Data (Score, Label)",
+    "dataInputHint": "Enter one observation per line as 'score,label'. Labels must be 0 or 1. Example: 0.9,1"
+  },
+  "placeholder": {
+    "dataInput": "Enter data as 'score,label' on each line.\nExample:\n0.9,1\n0.8,1\n0.7,0\n0.4,0"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Invalid input. Each line must contain a numeric score and a binary label (0 or 1), and both classes must be present."
+  },
+  "result": {
+    "auc": "AUC",
+    "aucExcellent": "Excellent discrimination",
+    "aucGood": "Good discrimination",
+    "aucFair": "Fair discrimination",
+    "aucPoor": "Poor discrimination",
+    "optimalThreshold": "Optimal Threshold",
+    "sensitivity": "Sensitivity (TPR)",
+    "specificity": "Specificity (1−FPR)",
+    "threshold": "Threshold",
+    "fpr": "FPR",
+    "tpr": "TPR"
+  },
+  "about": {
+    "heading": "About the ROC Curve & AUC Calculator",
+    "body": "A Receiver Operating Characteristic (ROC) curve is a graphical tool for evaluating the discrimination ability of a binary classification model across all possible decision thresholds. It plots the True Positive Rate (TPR, or sensitivity) on the y-axis against the False Positive Rate (FPR, or 1 − specificity) on the x-axis as the decision threshold varies from high to low.\n\nSensitivity (TPR) is the proportion of actual positives correctly identified: TPR = TP / (TP + FN). Specificity is the proportion of actual negatives correctly identified: Specificity = TN / (TN + FP). The FPR = 1 − Specificity = FP / (TN + FP). A perfect classifier would pass through the top-left corner (FPR = 0, TPR = 1), while a random classifier's ROC curve lies along the diagonal from (0,0) to (1,1).\n\nThe Area Under the ROC Curve (AUC) summarizes the overall classification performance as a single scalar. An AUC of 1.0 represents perfect discrimination; 0.5 represents no discrimination (equivalent to random guessing). Conventionally: AUC ≥ 0.9 is excellent, 0.8–0.9 is good, 0.7–0.8 is fair, and below 0.7 is poor.\n\nThis calculator computes the AUC using the trapezoidal rule, which integrates the area under the step-function ROC curve. It also identifies the optimal decision threshold using Youden's J statistic (J = sensitivity + specificity − 1), which maximizes the sum of sensitivity and specificity and provides a balanced operating point.\n\nROC curves and AUC are standard evaluation metrics in medical diagnostics (where classifiers separate diseased from healthy patients), machine learning (evaluating binary classification models), and credit scoring. Unlike accuracy, AUC is insensitive to class imbalance, making it particularly valuable when positive cases are rare.\n\nThis tool accepts any list of score-label pairs. Scores can be probabilities, logit values, or any continuous ranking. Labels must be 0 (negative class) or 1 (positive class). The results table shows all ROC operating points, with the optimal threshold row highlighted for easy reference."
+  },
+  "examples": {
+    "heading": "ROC Curve Examples",
+    "intro": "These examples show how AUC values correspond to different levels of classifier performance.",
+    "colInput": "Score, Label pairs",
+    "colOutput": "AUC",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "0.9,1 / 0.8,1 / 0.3,0 / 0.2,0",
+        "output": "AUC = 1.0",
+        "note": "Perfect classifier"
+      },
+      {
+        "input": "0.9,1 / 0.8,1 / 0.75,1 / 0.6,0 / 0.55,1 / 0.45,0 / 0.4,0 / 0.35,0",
+        "output": "AUC ≈ 0.9375",
+        "note": "Excellent discrimination"
+      },
+      {
+        "input": "0.9,0 / 0.8,1 / 0.7,0 / 0.6,1 / 0.5,0 / 0.4,1",
+        "output": "AUC ≈ 0.33",
+        "note": "Inverse ranking — worse than random"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use This Calculator",
+    "steps": [
+      "Enter one observation per line in the format 'score,label' where score is a numeric prediction and label is 0 or 1.",
+      "Ensure both positive (label=1) and negative (label=0) examples are present in your data.",
+      "Click 'Calculate' to compute the AUC and generate the ROC curve points.",
+      "Review the AUC value and its qualitative interpretation (excellent, good, fair, or poor).",
+      "Find the optimal threshold row (highlighted in the table) for the best balanced sensitivity/specificity trade-off."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "What is AUC and why is it important?",
+    "q1_a": "AUC (Area Under the ROC Curve) measures a classifier's ability to rank positive instances higher than negative instances across all thresholds. It is threshold-independent and robust to class imbalance, making it a standard benchmark for binary classification models in medicine, machine learning, and finance.",
+    "q2": "What does an AUC of 0.5 mean?",
+    "q2_a": "An AUC of 0.5 means the classifier performs no better than random guessing — it ranks positive and negative instances randomly. Any AUC below 0.5 suggests the classifier is systematically wrong, and inverting its predictions would yield above-chance performance.",
+    "q3": "How is the optimal threshold selected?",
+    "q3_a": "This calculator uses Youden's J statistic (J = sensitivity + specificity − 1) to select the optimal threshold. It maximizes the sum of sensitivity and specificity, providing a balanced operating point. Alternative criteria such as minimizing cost or maximizing F1-score may yield different optimal thresholds depending on the application.",
+    "q4": "Can AUC be used for multi-class classification?",
+    "q4_a": "The standard AUC is defined for binary classification. For multi-class problems, the one-vs-rest AUC can be computed for each class separately, or the macro-average or weighted-average AUC can be reported. This calculator supports only binary classification (labels 0 and 1).",
+    "q5": "What is the difference between sensitivity and specificity?",
+    "q5_a": "Sensitivity (recall or TPR) measures how well the classifier detects true positives: TP / (TP + FN). Specificity measures how well it avoids false alarms: TN / (TN + FP). High sensitivity is crucial when missing a positive case is costly (e.g., disease screening). High specificity is important when false positives are costly (e.g., confirmatory tests).",
+    "q6": "Is AUC always the best metric for model evaluation?",
+    "q6_a": "AUC is excellent for comparing models across thresholds and for imbalanced datasets, but it is not always the best choice. For highly imbalanced data, the Precision-Recall AUC (PR-AUC) is often more informative. For a specific decision threshold, metrics such as F1-score, accuracy, or Matthews correlation coefficient may be more relevant."
+  }
+}

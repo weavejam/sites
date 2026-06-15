@@ -1,0 +1,102 @@
+{
+  "title": "F-Test for Equality of Two Variances Calculator",
+  "tagline": "Determine whether two population variances are equal using the F-test. Get the F-statistic, p-value, degrees of freedom, and a clear statistical decision.",
+  "intro": "Input the sample variance and sample size for each group, set the significance level, and instantly see whether the two variances are statistically equal.",
+  "card": {
+    "title": "F-Test for Equality of Two Variances",
+    "description": "Test whether two independent samples have equal population variances"
+  },
+  "field": {
+    "group1": "Group 1",
+    "group2": "Group 2",
+    "variance": "Variance (s²)",
+    "variance1": "Group 1 Variance (s²)",
+    "variance2": "Group 2 Variance (s²)",
+    "sampleSize": "Sample Size (n)",
+    "sampleSize1": "Group 1 Sample Size (n)",
+    "sampleSize2": "Group 2 Sample Size (n)",
+    "alpha": "Significance Level (α)"
+  },
+  "placeholder": {
+    "variance": "e.g. 5.2",
+    "sampleSize": "e.g. 30"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid values. Variances must be ≥ 0 and sample sizes must be integers ≥ 2."
+  },
+  "result": {
+    "heading": "Result",
+    "fStatistic": "F-Statistic",
+    "df1": "df₁ (numerator)",
+    "df2": "df₂ (denominator)",
+    "pValue": "p-Value (two-tailed)",
+    "criticalF": "Critical F-Value",
+    "reject": "Reject H₀ — the two variances are significantly different.",
+    "failReject": "Fail to reject H₀ — no significant difference between the variances."
+  },
+  "about": {
+    "heading": "About the F-Test for Equality of Two Variances",
+    "body": "The F-test for equality of two variances is a classical statistical procedure used to determine whether two independent populations have the same variance. Named after Sir Ronald A. Fisher, the test is widely used as a diagnostic check before applying a two-sample t-test, which assumes that the two groups have equal population variances. If the F-test rejects that assumption, the Welch t-test — which does not require equal variances — should be used instead.\n\nThe test statistic is the ratio of the two sample variances: F = s₁² / s₂². By convention, the larger sample variance is placed in the numerator so that F ≥ 1, which restricts all critical mass to the upper tail of the F-distribution and simplifies interpretation. The null hypothesis H₀ states that the population variances are equal (σ₁² = σ₂²), while the alternative hypothesis H₁ states that they differ (σ₁² ≠ σ₂²). The degrees of freedom are df₁ = n₁ − 1 (numerator) and df₂ = n₂ − 1 (denominator), where n₁ and n₂ are the respective sample sizes.\n\nTo evaluate significance, the calculated F-value is compared to the F-distribution with (df₁, df₂) degrees of freedom. For a two-tailed test, the p-value equals 2 × P(F > F_obs). If the p-value is less than or equal to the chosen significance level α (typically 0.05 or 0.01), H₀ is rejected and the variances are declared significantly different. The critical F-value at the chosen α provides an equivalent decision boundary: if F_obs > F_crit, reject H₀.\n\nThe F-test has broad practical applications. In manufacturing, it verifies whether two production lines produce parts with equal dimensional variability — a prerequisite for quality-control procedures that assume uniform processes. In clinical research, it checks whether two treatment groups have similar response variability, which affects both study design and interpretation. In finance, it compares the volatility of two assets or portfolios, informing risk assessment and diversification strategies. In agriculture, it evaluates whether two fertilisers produce crops with equal yield consistency.\n\nDespite its power, the F-test has an important limitation: it is highly sensitive to departures from normality. Both samples must come from normally distributed populations for the test to be valid. When normality is uncertain, analysts often prefer the more robust Levene's test or the Brown–Forsythe test, which replace raw deviations from the mean with absolute deviations or median deviations. This calculator uses the exact F-distribution CDF via the regularised incomplete beta function, producing p-values consistent with R (var.test), Python (scipy.stats.levene), and SPSS."
+  },
+  "examples": {
+    "heading": "F-Test for Equality of Variances — Examples",
+    "intro": "Three worked examples from manufacturing, education, and finance.",
+    "colInput": "Input",
+    "colOutput": "Result",
+    "colNote": "Context",
+    "loadMfg": "Load manufacturing example",
+    "loadTeaching": "Load teaching-methods example",
+    "loadStock": "Load stock-volatility example",
+    "items": [
+      {
+        "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+        "output": "F = 1.1724, p ≈ 0.6767 — fail to reject H₀",
+        "note": "Two machines produce bolts. Bolt-diameter variances are not significantly different; both machines are equally consistent."
+      },
+      {
+        "input": "s₁² = 110, n₁ = 41; s₂² = 125, n₂ = 31; α = 0.05",
+        "output": "F = 1.1364, p ≈ 0.6679 — fail to reject H₀",
+        "note": "Two teaching methods. Test-score variances are statistically equal; both methods produce similar consistency of outcomes."
+      },
+      {
+        "input": "s₁² = 5.2, n₁ = 100; s₂² = 4.8, n₂ = 100; α = 0.01",
+        "output": "F = 1.0833, p ≈ 0.6366 — fail to reject H₀",
+        "note": "Two stocks compared for daily-return volatility. At the 1% level there is no evidence of different risk profiles."
+      },
+      {
+        "input": "s₁² = 18, n₁ = 16; s₂² = 12, n₂ = 16; α = 0.10",
+        "output": "F = 1.5, p ≈ 0.3952 — fail to reject H₀",
+        "note": "Plant height under two fertilisers. Variance in plant growth is not statistically different at the 10% level."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the F-Test for Equality of Variances Calculator",
+    "steps": [
+      "Enter the sample variance (s²) for Group 1 — this is the mean squared deviation from the group mean — along with the number of observations (n) in that group.",
+      "Enter the corresponding variance and sample size for Group 2 in the Group 2 fields.",
+      "Choose a significance level α from the dropdown: 0.01 (1%), 0.05 (5%), or 0.10 (10%). The most common choice in published research is 0.05.",
+      "Click 'Calculate'. The calculator automatically places the larger variance in the numerator, computes F = s_max²/s_min², calculates the two-tailed p-value using the F-distribution, and displays the critical F-value.",
+      "Interpret the result: if p-value ≤ α, the variances are significantly different and you should use a Welch t-test instead of a standard equal-variance t-test. Otherwise, equal variances can be assumed."
+    ]
+  },
+  "faq": {
+    "heading": "F-Test for Equality of Variances — FAQ",
+    "q1": "What does the F-test for equality of variances test?",
+    "q1_a": "It tests the null hypothesis H₀: σ₁² = σ₂² against the alternative H₁: σ₁² ≠ σ₂². A significant result (p ≤ α) means the two population variances are statistically different. A non-significant result means the data are consistent with equal variances, but does not prove they are equal.",
+    "q2": "Why is the F-test used before a two-sample t-test?",
+    "q2_a": "The pooled two-sample t-test assumes that both groups have the same population variance. If this assumption is violated, the test can produce incorrect p-values. Running an F-test first checks this assumption: if the F-test is significant, use the Welch t-test instead, which does not assume equal variances.",
+    "q3": "What are the assumptions of the F-test for equality of variances?",
+    "q3_a": "Both samples must be drawn from normally distributed populations, and the samples must be independent of each other. The F-test is quite sensitive to non-normality — even moderate departures can distort the p-value. If normality is doubtful, use Levene's test or the Brown–Forsythe test instead.",
+    "q4": "Why is the larger variance always placed in the numerator?",
+    "q4_a": "Placing the larger variance in the numerator ensures F ≥ 1, which confines the critical region to the upper tail of the F-distribution and avoids the need to consult a lower-tail table. For a two-tailed test, the p-value is then simply 2 × P(F > F_obs), which is straightforward to compute.",
+    "q5": "How do I interpret the critical F-value?",
+    "q5_a": "The critical F-value (F_crit) is the value that cuts off the top α/2 of the F-distribution. If your calculated F exceeds F_crit, you reject H₀ at significance level α. Using the p-value and using the critical value always lead to the same decision — they are two equivalent ways of summarising the same comparison.",
+    "q6": "When should I use Levene's test instead of the F-test?",
+    "q6_a": "Levene's test is preferable when your data may not follow a normal distribution, because it is robust to non-normality. The F-test for equality of variances is the optimal test when normality holds, but its Type I error rate can be severely distorted by skewed or heavy-tailed data. In practice, many statisticians use Levene's test by default to avoid this risk."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Rechner für das Zwei-Umschläge-Paradoxon",
+  "tagline": "Erkunden Sie das berühmte Zwei-Umschläge-Paradoxon interaktiv. Geben Sie den Betrag in Ihrem Umschlag ein, um die Erwartungswerte zu analysieren und das mathematische Rätsel zu verstehen.",
+  "intro": "Geben Sie den Betrag ein, den Sie in Ihrem gewählten Umschlag sehen, und klicken Sie auf Analysieren, um den Erwartungswert für Wechseln vs. Behalten sowie die Paradoxon-Erklärung zu sehen.",
+  "field": {
+    "amount": "Betrag in Ihrem Umschlag (X)"
+  },
+  "placeholder": {
+    "amount": "z. B. 100"
+  },
+  "button": {
+    "analyze": "Analysieren",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie für den Betrag im Umschlag eine positive Zahl ein."
+  },
+  "result": {
+    "heading": "Erwartungswert-Analyse",
+    "evKeepLabel": "Erwartungswert beim Behalten",
+    "evKeepDesc": "Der Wert in Ihrem Umschlag ist sicher.",
+    "evSwitchLabel": "Erwartungswert beim Wechseln",
+    "evSwitchDesc": "Basierend auf E[anderer] = 0.5×(2X) + 0.5×(X/2) = 1.25X",
+    "paradoxNote": "Paradox: Die gleiche Argumentation für den anderen Umschlag ergibt ebenfalls 1.25× seines Werts, wodurch eine scheinbar endlose Schleife entsteht. Der Fehler ist, dass X nicht gleichzeitig der größere und der kleinere Betrag sein kann."
+  },
+  "about": {
+    "heading": "Über das Zwei-Umschläge-Paradoxon",
+    "body": "Das Zwei-Umschläge-Paradoxon ist eines der bekanntesten Rätsel der Wahrscheinlichkeits- und Entscheidungstheorie. Es wurde in den 1980er- und 1990er-Jahren populär und sorgt bis heute für lebhafte Debatten unter Mathematikern, Philosophen und Statistikern. Die Ausgangslage ist täuschend einfach: Zwei Umschläge enthalten jeweils einen Geldbetrag. Einer enthält genau das Doppelte des anderen. Sie wählen zufällig einen Umschlag, schauen den Betrag X darin an und müssen dann entscheiden, ob Sie zum anderen Umschlag wechseln.\n\nDas naive probabilistische Argument lautet: Der andere Umschlag enthält entweder 2X (wenn Sie zufällig den kleineren gewählt haben) oder X/2 (wenn Sie den größeren gewählt haben). Beide Fälle werden mit einer Wahrscheinlichkeit von 0.5 als gleich wahrscheinlich angenommen. Also beträgt der Erwartungswert des anderen Umschlags 0.5 × 2X + 0.5 × X/2 = X + X/4 = 1.25X. Da 1.25X größer als X ist, sollten Sie immer wechseln. Doch hier liegt das Paradoxon: Wenn Sie wechseln und nun den anderen Umschlag mit dem Betrag Y = 1.25X halten, sagt dieselbe Logik, dass Sie wieder zurückwechseln sollten, und so weiter ad infinitum.\n\nDieser Rechner berechnet beide Erwartungswerte mit der naiven Argumentation und macht das Paradoxon mit echten Zahlen greifbar. Wenn Sie X = 100 eingeben, zeigt er, dass die naive Analyse beim Wechseln einen EV von 125 und beim Behalten nur 100 vorhersagt. Die Rechnung ist arithmetisch korrekt — warum ist die Schlussfolgerung dann falsch?\n\nDie Auflösung hängt von der Wahrscheinlichkeitstheorie ab. Das naive Argument nimmt implizit an, dass es nach dem Blick auf X gleich wahrscheinlich ist, ob der andere Umschlag 2X oder X/2 enthält — also behandelt es X so, als könne es mit gleicher Wahrscheinlichkeit sowohl der kleinere als auch der größere Betrag sein. In jeder konkreten Situation ist X jedoch entweder der kleinere Betrag (dann enthält der andere Umschlag sicher 2X) oder der größere Betrag (dann enthält der andere Umschlag sicher X/2). Eine korrekte Analyse benötigt eine Priorverteilung über die möglichen Beträge in den Umschlägen. Für die meisten natürlichen Priors — einschließlich jeder Verteilung mit endlichem Erwartungswert — ist der korrekte Erwartungswert des Wechselns exakt X, also ohne Vorteil.\n\nFormaler gesagt seien die beiden Beträge m und 2m, gezogen aus einer bestimmten Verteilung. Wenn Sie X beobachten, ist der bedingte Erwartungswert des anderen Umschlags gegeben dem Prior im Allgemeinen nicht 1.25X. Die naive Formel vermischt zwei Bezugsbeträge (m und 2m), als hätten sie dieselbe Basis — genau dieser algebraische Trick erzeugt die Illusion eines Gewinns.\n\nDas Zwei-Umschläge-Paradoxon zeigt eindrucksvoll, wie informelles probabilistisches Denken bei unvorsichtiger Anwendung zu Widersprüchen führt, und warum eine rigorose bayessche Konditionierung auf den richtigen Prior unverzichtbar ist. Es hat Forschung zu impropers Priors, Austauschbarkeit und Entscheidungstheorie unter Ambiguität angestoßen und ist ein Standardbeispiel in fortgeschrittenen Wahrscheinlichkeitkursen."
+  },
+  "examples": {
+    "heading": "Beispiele zum Zwei-Umschläge-Paradoxon",
+    "intro": "Konkrete Beträge, die die naive Erwartungswertrechnung und das dadurch entstehende Paradoxon zeigen.",
+    "colInput": "Gesehener Betrag (X)",
+    "colOutput": "EV beim Wechseln (naiv)",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "X = $100",
+        "output": "$125",
+        "note": "Naiver EV = 0.5×$200 + 0.5×$50 = $125. Es sieht so aus, als würde Wechseln $25 Gewinn bringen, aber dieselbe Logik auf die andere Seite angewendet führt zur gleichen Schlussfolgerung."
+      },
+      {
+        "input": "X = $40",
+        "output": "$50",
+        "note": "EV = 0.5×$80 + 0.5×$20 = $50. Das naive Argument bläht den erwarteten Gewinn immer um 25 % des beobachteten Betrags auf."
+      },
+      {
+        "input": "X = $500",
+        "output": "$625",
+        "note": "EV = 0.5×$1000 + 0.5×$250 = $625. Für jedes X liefert die Formel 1.25X und zeigt damit, warum das Paradoxon unabhängig vom beobachteten Betrag bestehen bleibt."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Zwei-Umschläge-Rechner",
+    "steps": [
+      "Geben Sie in das Feld mit der Beschriftung Betrag in Ihrem Umschlag (X) den Betrag ein, den Sie in Ihrem gewählten Umschlag sehen.",
+      "Klicken Sie auf Analysieren, um die naiven Erwartungswerte für Behalten und Wechseln zu berechnen.",
+      "Lesen Sie das Feld Erwartungswert beim Behalten — es zeigt einfach Ihren beobachteten Betrag X als sicheren Wert.",
+      "Lesen Sie das Feld Erwartungswert beim Wechseln — es zeigt 1.25X, das Ergebnis des naiven Wahrscheinlichkeitsarguments.",
+      "Lesen Sie den Paradoxon-Hinweis unter den Ergebnissen, um zu verstehen, warum die 1.25X-Zahl irreführend ist und was die korrekte Auflösung ist."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Zwei-Umschläge-Paradoxon",
+    "q1": "Warum ergibt das naive Argument 1.25X?",
+    "q1_a": "Die naive Formel berechnet 0.5×(2X) + 0.5×(X/2) = 1.25X, indem sie beide Möglichkeiten als gleich wahrscheinlich behandelt, gegeben den beobachteten Wert. Das ist algebraisch korrekt, aber probabilistisch falsch, weil zwei unterschiedliche Bezugsbeträge so behandelt werden, als hätten sie dieselbe Basis.",
+    "q2": "Ist es jemals sinnvoll, die Umschläge zu wechseln?",
+    "q2_a": "Ohne zusätzliche Informationen sind Wechseln und Behalten gleich gute Entscheidungen. Der Erwartungswert beider Umschläge ist bei korrekter Berechnung mit einer geeigneten Priorverteilung über die Beträge gleich. Wechseln bietet niemals einen garantierten Vorteil.",
+    "q3": "Was ist der Fehler im Wechsel-Argument?",
+    "q3_a": "Der Fehler ist, dass Sie nach dem Sehen von X nicht wissen, ob X der kleinere oder der größere Betrag ist. Das naive Argument behandelt X so, als könne es zugleich m und 2m sein, aber diese Fälle schließen sich gegenseitig aus. Eine rigorose bayessche Analyse zeigt, dass der korrekte erwartete Gewinn durch Wechseln für jeden geeigneten Prior null ist.",
+    "q4": "Ändert sich das Paradoxon, wenn ich in den Umschlag schaue?",
+    "q4_a": "Ein Blick auf X liefert zwar Information, aber ohne Kenntnis der Betragsverteilung hilft er Ihnen nicht bei der Entscheidung. Wenn Sie die Priorverteilung kennen (z. B. Beträge aus einer Gleichverteilung bis zu einem Maximum), kann Wechseln manchmal vorteilhaft sein, aber die naive 1.25X-Regel ist im Allgemeinen weiterhin falsch.",
+    "q5": "Ist das dasselbe wie das Monty-Hall-Problem?",
+    "q5_a": "Sie sind verwandt, aber verschieden. Beim Monty-Hall-Problem liefert die Aktion des Moderators nach Ihrer Wahl echte neue Information, die die Wahrscheinlichkeiten verändert, sodass Wechseln tatsächlich vorteilhaft ist. Beim Zwei-Umschläge-Paradoxon wird nach dem Sehen von X keine neue Information offengelegt, daher hat Wechseln keinen erwarteten Vorteil gegenüber Behalten.",
+    "q6": "Was lehrt uns dieses Paradoxon über Wahrscheinlichkeit?",
+    "q6_a": "Es zeigt, wie wichtig es ist, die Priorverteilung vor der Anwendung probabilistischer Argumente festzulegen. Informelles Denken über gleich wahrscheinliche Ereignisse muss auf einem sauber definierten Wahrscheinlichkeitsraum beruhen. Es ist eine Warnung vor den Gefahren, Erwartungswertformeln ohne Prüfung der zugrunde liegenden Annahmen zu verwenden."
+  }
+}

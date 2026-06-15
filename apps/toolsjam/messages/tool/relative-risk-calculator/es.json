@@ -1,0 +1,100 @@
+{
+  "title": "Riesgo relativo: calculadora para cohortes",
+  "tagline": "Calcula el riesgo relativo (razón de riesgos), el intervalo de confianza del 95% y el riesgo atribuible a partir de una tabla de contingencia 2×2 para grupos expuestos y no expuestos.",
+  "intro": "Introduce los cuatro conteos de celda (a, b, c, d) de tu tabla de contingencia de cohorte para calcular al instante la razón de riesgos y su intervalo de confianza.",
+  "formula": "RR = (a/(a+b)) / (c/(c+d)) | 95% CI: exp(ln(RR) ± 1.96 × SE) where SE = √(b/(a·nE) + d/(c·nU))",
+  "tableNote": "Introduce los cuatro valores de tu tabla 2×2: a = expuestos con resultado, b = expuestos sin resultado, c = no expuestos con resultado, d = no expuestos sin resultado.",
+  "group": {
+    "exposed": "Grupo expuesto",
+    "unexposed": "Grupo no expuesto"
+  },
+  "field": {
+    "a": "Expuestos: resultado positivo (a)",
+    "b": "Expuestos: resultado negativo (b)",
+    "c": "No expuestos: resultado positivo (c)",
+    "d": "No expuestos: resultado negativo (d)"
+  },
+  "placeholder": {
+    "a": "p. ej. 70",
+    "b": "p. ej. 6930",
+    "c": "p. ej. 3",
+    "d": "p. ej. 2997"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce conteos válidos no negativos para las cuatro celdas. El conteo de resultado positivo en el grupo no expuesto no puede ser cero."
+  },
+  "result": {
+    "heading": "Resultados",
+    "riskExposed": "Riesgo (expuestos)",
+    "riskUnexposed": "Riesgo (no expuestos)",
+    "relativeRisk": "Riesgo relativo (RR)",
+    "ci95": "IC del 95% para RR",
+    "ciUnavailable": "No disponible (celda cero)",
+    "attributableRisk": "Riesgo atribuible"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de riesgo relativo",
+    "body": "El riesgo relativo (RR), también llamado razón de riesgos, es una medida de asociación usada en estudios de cohortes y ensayos clínicos aleatorizados. Responde a la pregunta: ¿cuántas veces más probable es que un grupo expuesto desarrolle el desenlace que un grupo no expuesto? Un RR de 1.0 significa que ambos grupos tienen el mismo riesgo; un RR mayor que 1.0 indica que la exposición se asocia con mayor riesgo; un RR menor que 1.0 indica que la exposición es protectora.\n\nEl cálculo se basa en una tabla de contingencia 2×2 que cruza el estado de exposición (sí/no) con el estado del desenlace (sí/no). Las cuatro celdas se etiquetan convencionalmente como a (expuesto, con desenlace), b (expuesto, sin desenlace), c (no expuesto, con desenlace) y d (no expuesto, sin desenlace). El riesgo en el grupo expuesto es a/(a+b) y el riesgo en el grupo no expuesto es c/(c+d). El riesgo relativo es simplemente el cociente de estas dos proporciones de incidencia.\n\nEl intervalo de confianza (IC) del 95% para el RR cuantifica la incertidumbre de la estimación causada por la variabilidad muestral. El método estándar usa la aproximación log-normal: calcula el error estándar del log-RR como √(b/(a·nE) + d/(c·nU)), y luego exponentia el intervalo [ln(RR) ± 1.96 × SE]. Si el IC del 95% no incluye 1.0, la asociación es estadísticamente significativa al nivel α = 0.05. Un IC estrecho indica una estimación precisa; un IC amplio indica una incertidumbre considerable, normalmente debida a un tamaño muestral pequeño.\n\nEl riesgo atribuible (también llamado diferencia de riesgos o aumento/reducción absoluta del riesgo) es la diferencia aritmética entre las dos proporciones de incidencia: AR = riskExposed − riskUnexposed. A diferencia del riesgo relativo, que es un cociente, el riesgo atribuible expresa el exceso de riesgo en términos absolutos. Un RR de 3.0 suena dramático, pero si el riesgo basal es 0.1%, un AR de 0.2% puede ser clínicamente trivial. Por el contrario, un AR de 10 puntos porcentuales es clínicamente importante independientemente del RR. Ambos indicadores son necesarios para interpretar por completo una asociación epidemiológica.\n\nEl riesgo relativo es adecuado para estudios de cohortes y ensayos clínicos en los que la incidencia del desenlace puede medirse directamente en los grupos expuesto y no expuesto durante un período de seguimiento definido. No es adecuado para estudios de casos y controles, en los que los participantes se seleccionan según el estado del desenlace, no según la exposición; en ese diseño se usa la razón de momios (odds ratio). Una diferencia práctica clave: cuando el desenlace es raro (incidencia < 10%), la odds ratio aproxima numéricamente al riesgo relativo, por lo que ambas medidas pueden compararse entre diseños. Cuando el desenlace es común, se separan y no pueden usarse indistintamente.\n\nEn medicina clínica, el RR se usa para evaluar la eficacia de tratamientos, vacunas e intervenciones preventivas. Una vacuna que reduce el riesgo de infección del 4% al 1% tiene un RR de 0.25, lo que significa que las personas vacunadas tienen un 75% menos de probabilidad de infectarse. En salud ocupacional, el RR cuantifica cuánto más probable es que los trabajadores expuestos a un peligro químico o físico desarrollen una enfermedad específica que los trabajadores no expuestos. En epidemiología nutricional, el RR relaciona patrones dietéticos y factores de estilo de vida con desenlaces de enfermedad en grandes cohortes prospectivas."
+  },
+  "examples": {
+    "heading": "Ejemplos de riesgo relativo",
+    "intro": "Escenarios epidemiológicos clásicos que muestran cómo configurar la tabla de contingencia e interpretar la razón de riesgos resultante.",
+    "colInput": "Tabla de contingencia",
+    "colOutput": "Métricas clave",
+    "colNote": "Interpretación",
+    "loadSmoking": "Cargar ejemplo de tabaco",
+    "loadVaccine": "Cargar ejemplo de vacuna",
+    "loadDiet": "Cargar ejemplo de dieta",
+    "items": [
+      {
+        "input": "Tabaco/cáncer de pulmón: a=70, b=6930, c=3, d=2997",
+        "output": "RR = 10.0; Riesgo expuesto ≈ 1.0%, riesgo no expuesto ≈ 0.1%",
+        "note": "Los fumadores tienen exactamente 10 veces más probabilidad de desarrollar cáncer de pulmón que los no fumadores en 20 años. El riesgo atribuible es de ~0.9 puntos porcentuales."
+      },
+      {
+        "input": "Ensayo de vacuna contra la gripe: a=25, b=4975, c=80, d=4920",
+        "output": "RR ≈ 0.3125; Riesgo vacunados ≈ 0.5%, riesgo placebo ≈ 1.6%",
+        "note": "Las personas vacunadas tienen alrededor de un 69% menos de probabilidad de contraer la gripe. Un RR de 0.31 está muy por debajo de 1.0 y confirma un fuerte efecto protector."
+      },
+      {
+        "input": "Dieta rica en grasas: a=150, b=1850, c=100, d=2900",
+        "output": "RR = 2.25; Riesgo expuesto ≈ 7.5%, riesgo no expuesto ≈ 3.3%",
+        "note": "Las personas con dieta alta en grasas tienen 2.25 veces más probabilidad de desarrollar enfermedad cardíaca. El riesgo atribuible es de ~4.2 puntos porcentuales."
+      },
+      {
+        "input": "Efecto secundario de fármaco: a=60, b=940, c=20, d=980",
+        "output": "RR = 3.0; Riesgo del fármaco ≈ 6%, riesgo placebo ≈ 2%",
+        "note": "Los pacientes que toman el fármaco tienen exactamente 3 veces más probabilidad de experimentar náuseas. Conviene revisar el IC del 95% para evaluar la significación estadística."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de riesgo relativo",
+    "steps": [
+      "Identifica los cuatro conteos de la tabla 2×2: a = número de personas expuestas que desarrollaron el desenlace; b = expuestas que no lo desarrollaron; c = no expuestas que desarrollaron el desenlace; d = no expuestas que no lo desarrollaron.",
+      "Introduce a y b en los campos del grupo expuesto, y c y d en los campos del grupo no expuesto.",
+      "Haz clic en Calcular. La herramienta devuelve el riesgo en cada grupo, el riesgo relativo, el intervalo de confianza del 95% y el riesgo atribuible.",
+      "Interpreta el riesgo relativo: RR > 1 significa que la exposición se asocia con mayor riesgo; RR < 1 significa que la exposición es protectora; RR = 1 significa que no hay asociación.",
+      "Comprueba si el IC del 95% incluye 1.0: si no lo incluye, la asociación es estadísticamente significativa al 5%. Un IC estrecho indica una estimación más precisa."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre riesgo relativo",
+    "q1": "¿Qué es el riesgo relativo y en qué se diferencia de la razón de momios?",
+    "q1_a": "El riesgo relativo (RR) es la razón entre la incidencia del desenlace en el grupo expuesto y la incidencia en el grupo no expuesto. La razón de momios (OR) es la razón de las probabilidades (odds) del desenlace en cada grupo. Ambas miden asociación, pero el RR es más intuitivo y se interpreta directamente como multiplicador del riesgo. La OR se usa en estudios de casos y controles, donde no puede medirse la incidencia; para desenlaces raros (<10%), OR ≈ RR. Para desenlaces comunes, la OR sobrestima el RR.",
+    "q2": "¿Puede el riesgo relativo ser menor que 1? ¿Qué significa?",
+    "q2_a": "Sí. Un RR menor que 1.0 significa que el grupo expuesto tiene menor riesgo del desenlace que el grupo no expuesto; en otras palabras, la exposición es protectora. Por ejemplo, un ensayo de vacuna podría encontrar RR = 0.25, lo que significa que los vacunados tienen un 75% menos de probabilidad de desarrollar la enfermedad. La reducción del riesgo (1 − RR) a veces se llama reducción relativa del riesgo (RRR).",
+    "q3": "¿Cómo interpreto el intervalo de confianza del 95%?",
+    "q3_a": "El IC del 95% ofrece un rango de valores plausibles para el RR verdadero de la población a partir de tu muestra. Si repitieras el estudio muchas veces, alrededor del 95% de los IC resultantes contendrían el RR verdadero. En la práctica: si el IC excluye 1.0 (por ejemplo, 1.5–3.2), la asociación es estadísticamente significativa con α = 0.05. Un IC que incluye 1.0 (por ejemplo, 0.8–2.5) no es estadísticamente significativo.",
+    "q4": "¿Qué es el riesgo atribuible y cuándo es útil?",
+    "q4_a": "El riesgo atribuible (AR) es la diferencia absoluta de riesgo entre los grupos expuesto y no expuesto: AR = riskExposed − riskUnexposed. Indica cuántos casos extra por persona son causados por la exposición. El AR es especialmente útil para la salud pública porque cuantifica el beneficio potencial de eliminar la exposición. Un RR alto con un riesgo basal muy bajo (AR bajo) puede justificar una intervención menos urgente que un RR moderado con un riesgo basal alto (AR alto).",
+    "q5": "¿Por qué la calculadora exige que el conteo de resultado positivo en el grupo no expuesto (c) no sea cero?",
+    "q5_a": "El riesgo relativo se define como el cociente de dos incidencias. Si c = 0, la incidencia en el grupo no expuesto es cero y el denominador no está definido, así que el RR tampoco lo está. En la práctica, un c de cero suele significar que el grupo no expuesto está completamente protegido del desenlace (algo muy inusual) o que la muestra es demasiado pequeña para observar eventos en ese grupo. En ambos casos, hace falta un análisis distinto, como métodos exactos.",
+    "q6": "¿Es válido el riesgo relativo para estudios de casos y controles?",
+    "q6_a": "No. El riesgo relativo requiere poder medir la incidencia del desenlace en cada grupo, algo que solo es posible cuando el estudio recluta participantes según la exposición (diseño de cohorte) o los asigna aleatoriamente (ensayo clínico). En un estudio de casos y controles, los participantes se seleccionan según el estado del desenlace, por lo que no puede calcularse la proporción de incidencia a partir de la muestra. En ese caso se usa la razón de momios, que aproxima al RR cuando el desenlace es raro."
+  }
+}

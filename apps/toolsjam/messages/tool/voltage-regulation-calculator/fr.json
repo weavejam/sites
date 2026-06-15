@@ -1,0 +1,107 @@
+{
+  "title": "Calculateur de régulation de tension",
+  "tagline": "Calculez la régulation de charge et la régulation de ligne des alimentations à partir des tensions mesurées à vide et en pleine charge.",
+  "intro": "Saisissez les tensions à vide et en pleine charge pour calculer la régulation de charge. Vous pouvez aussi ajouter la plage de tension d'entrée, le courant de charge et l'impédance de sortie pour calculer la régulation de ligne.",
+  "formula": "Formule : Régulation de charge (%) = (V_NL − V_FL) / V_FL × 100  •  Régulation de ligne (%) = (Rout × I) / ΔVin × 100",
+  "section": {
+    "loadReg": "Régulation de charge (obligatoire)",
+    "lineReg": "Régulation de ligne (facultative)"
+  },
+  "field": {
+    "noLoadVoltage": "Tension à vide (V)",
+    "fullLoadVoltage": "Tension en pleine charge (V)",
+    "nominalVoltage": "Tension nominale (V)",
+    "minLineVoltage": "Tension minimale d'entrée (V)",
+    "maxLineVoltage": "Tension maximale d'entrée (V)",
+    "loadCurrent": "Courant de charge (A)",
+    "outputImpedance": "Impédance de sortie (Ω)"
+  },
+  "placeholder": {
+    "noLoadVoltage": "ex. 12.5",
+    "fullLoadVoltage": "ex. 11.8",
+    "nominalVoltage": "ex. 12",
+    "minLineVoltage": "ex. 10.8",
+    "maxLineVoltage": "ex. 13.2",
+    "loadCurrent": "ex. 5",
+    "outputImpedance": "ex. 0.1"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir au moins les tensions à vide et en pleine charge avec des valeurs positives valides."
+  },
+  "result": {
+    "heading": "Résultat",
+    "labelLoadReg": "Régulation de charge",
+    "labelVoltageChange": "Variation de tension (V_NL − V_FL)",
+    "labelLineReg": "Régulation de ligne",
+    "labelDeltaVout": "Variation de la tension de sortie (ΔVout)"
+  },
+  "about": {
+    "heading": "À propos du calculateur de régulation de tension",
+    "body": "La régulation de tension mesure à quel point la tension de sortie d'une alimentation varie en réponse aux changements de courant de charge ou de tension d'entrée. C'est l'une des spécifications les plus importantes de toute source d'alimentation : une mauvaise régulation signifie que l'équipement reçoit des tensions différentes selon le courant qu'il consomme, ce qui peut entraîner des dysfonctionnements, des erreurs de données et une réduction de la durée de vie des composants.\n\nLa régulation de charge décrit la variation de la tension de sortie lorsque le courant de charge passe de zéro (à vide) au courant nominal maximal (pleine charge). Elle se calcule ainsi : Régulation de charge (%) = (V_NL − V_FL) / V_FL × 100. Un régulateur parfait aurait une régulation de charge de 0 %, ce qui signifie que la tension de sortie est identique à vide et en pleine charge. En pratique, les régulateurs linéaires atteignent 0.1–1 %, tandis que les alimentations à découpage de haute qualité atteignent 0.5–2 %. Les conceptions économiques peuvent afficher 5 % ou plus.\n\nLa régulation de ligne décrit la variation de la tension de sortie lorsque la tension d'entrée varie, tandis que la charge reste constante. Elle s'exprime comme la variation en pourcentage de la tension de sortie par variation en pourcentage de la tension d'entrée, ou comme la variation de la tension de sortie par volt d'entrée. Une alimentation avec une bonne régulation de ligne maintient une sortie stable malgré les fluctuations du secteur — un point important dans les pays où la tension du réseau varie fortement.\n\nL'impédance de sortie est le paramètre clé qui relie le courant de charge à la variation de tension. Une alimentation se comporte comme une source de tension idéale en série avec une faible résistance Rout. Lorsque le courant de charge augmente de ΔI, la tension de sortie chute de ΔV = Rout × ΔI. Plus l'impédance de sortie est faible, meilleure est la régulation. Une alimentation de laboratoire peut avoir un Rout de quelques milliohms, tandis qu'une simple conception transformateur-redresseur peut en avoir plusieurs ohms.\n\nLes chiffres de régulation de tension figurent en bonne place dans les fiches techniques des alimentations et sont testés dans des conditions spécifiques. Les alimentations de qualité médicale exigent généralement une régulation de charge meilleure que 1 % et une régulation de ligne meilleure que 0.5 %, car les circuits de sécurité des patients dépendent de tensions de fonctionnement stables. Les alimentations grand public spécifient couramment 3–5 %. Les alimentations pour variateurs industriels et API exigent généralement 1–3 % pour garantir le bon fonctionnement des circuits de commande sensibles.\n\nUne mauvaise régulation de tension gaspille de l'énergie et génère de la chaleur. Une alimentation à forte impédance de sortie dissipe l'excès de tension en chaleur dans sa résistance interne lorsque la charge consomme du courant. Améliorer la régulation — grâce à un meilleur bobinage du transformateur, à des régulateurs linéaires à faible chute ou à des topologies à découpage pilotées par rétroaction — réduit les pertes thermiques et améliore l'efficacité du système."
+  },
+  "examples": {
+    "heading": "Exemples de régulation de tension",
+    "intro": "Mesures pratiques d'alimentations montrant le calcul de la régulation de charge.",
+    "colInput": "Tension à vide / pleine charge",
+    "colOutput": "Régulation de charge",
+    "colNote": "Évaluation",
+    "loadPSU12V": "Exemple d'alimentation 12 V",
+    "loadPSU5V": "Exemple d'alimentation 5 V",
+    "items": [
+      {
+        "input": "V_NL = 12.5 V, V_FL = 11.8 V",
+        "output": "5.93 %",
+        "note": "Acceptable pour une alimentation 12 V polyvalente ; en dessous de 5 %, c'est bien, et en dessous de 1 %, c'est excellent."
+      },
+      {
+        "input": "V_NL = 5.1 V, V_FL = 4.85 V",
+        "output": "5.15 %",
+        "note": "Limite pour la logique numérique. Un microcontrôleur 5 V tolère ±5 %, mais avec moins de marge pour les transitoires."
+      },
+      {
+        "input": "V_NL = 3.32 V, V_FL = 3.28 V",
+        "output": "1.22 %",
+        "note": "Bonne régulation pour une alimentation à découpage 3.3 V. Les circuits logiques voient une tension d'alimentation très stable."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de régulation de tension",
+    "steps": [
+      "Mesurez ou récupérez la tension de sortie à vide (V_NL) — la tension de sortie lorsque l'alimentation ne fournit aucun courant.",
+      "Mesurez ou récupérez la tension de sortie en pleine charge (V_FL) — la tension de sortie au courant nominal maximal.",
+      "Saisissez ces deux valeurs dans la section de régulation de charge et cliquez sur Calculer pour voir le pourcentage de régulation et la variation de tension.",
+      "Pour la régulation de ligne, saisissez aussi la tension d'entrée nominale, les tensions d'entrée minimale et maximale, le courant de charge et l'impédance de sortie, puis cliquez sur Calculer.",
+      "Comparez le résultat de régulation de charge à la tolérance de votre application : en dessous de 1 %, c'est excellent, 1–3 %, c'est bien, et au-dessus de 5 %, cela peut poser problème pour des circuits sensibles."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de régulation de tension",
+    "items": [
+      {
+        "q": "Quel pourcentage de régulation de tension est bon ?",
+        "a": "En dessous de 1 %, c'est excellent et typique des alimentations de laboratoire de précision et des régulateurs à découpage de haute qualité. 1–3 % est bien et convient à la plupart des circuits numériques et analogiques. 3–5 % est acceptable pour du matériel polyvalent. Au-delà de 5 %, la régulation est mauvaise et peut poser des problèmes aux circuits logiques sensibles, aux ADC ou aux modules de communication."
+      },
+      {
+        "q": "Quelle est la différence entre régulation de charge et régulation de ligne ?",
+        "a": "La régulation de charge mesure de combien la tension de sortie varie lorsque le courant consommé par la charge passe de zéro au maximum. La régulation de ligne mesure de combien la tension de sortie varie lorsque la tension d'entrée change alors que la charge reste constante. Les deux spécifications sont importantes : la régulation de charge évalue la capacité de l'alimentation à maintenir la tension sous demande variable, tandis que la régulation de ligne évalue sa résistance aux fluctuations du secteur."
+      },
+      {
+        "q": "Pourquoi la tension à vide est-elle souvent plus élevée que la tension en pleine charge ?",
+        "a": "La résistance interne (impédance de sortie) provoque une chute de tension quand le courant circule. À vide, aucun courant ne circule, donc il n'y a pas de chute et la sortie atteint son maximum. En pleine charge, I × Rout est dissipé en interne, ce qui réduit la tension aux bornes. Les régulateurs linéaires et les alimentations à batterie montrent clairement cet effet ; les alimentations à découpage à rétroaction le minimisent."
+      },
+      {
+        "q": "Comment la température affecte-t-elle la régulation de tension ?",
+        "a": "La référence de tension interne d'une alimentation et la résistance des conducteurs changent toutes deux avec la température. Une référence à coefficient thermique élevé fera dériver la tension de sortie lorsque l'unité chauffe, ce qui dégrade la régulation effective au fil du temps. Les alimentations de précision utilisent des références bandgap compensées en température qui maintiennent une dérive inférieure à 10 ppm/°C."
+      },
+      {
+        "q": "Puis-je améliorer la régulation de tension sans remplacer l'alimentation ?",
+        "a": "Oui. Ajouter un condensateur électrolytique de forte capacité à la charge atténue les baisses de tension transitoires dues aux appels de courant soudains. Pour les circuits critiques, un régulateur à faible chute de tension (LDO) placé près de la charge peut réguler à nouveau le rail avec une très faible impédance de sortie. La résistance du câble contribue aussi à une mauvaise régulation côté charge ; utiliser un câble plus épais ou des connexions Kelvin jusqu'au point d'utilisation supprime cette composante."
+      }
+    ]
+  }
+}

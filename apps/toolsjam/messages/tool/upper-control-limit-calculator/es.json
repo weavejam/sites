@@ -1,0 +1,91 @@
+{
+  "title": "Calculadora de límite de control superior (UCL) - Gráficos SPC",
+  "tagline": "Calcula el límite de control superior (UCL) y el límite de control inferior (LCL) para gráficos de control estadístico de procesos usando datos sin procesar o estadísticas resumidas.",
+  "intro": "Selecciona un modo de cálculo (Desde datos o Desde resumen), introduce tus valores y haz clic en Calcular para obtener al instante el UCL, el LCL, la media y la desviación estándar.",
+  "field": {
+    "mode": "Modo de cálculo",
+    "data": "Datos (separados por comas)",
+    "mean": "Media del proceso (x̅)",
+    "stdDev": "Desviación estándar (σ)",
+    "sigmaK": "Multiplicador sigma (k)",
+    "sigmaKHint": "Valores típicos: 3 (99,73%), 2 (95,45%). El valor predeterminado es 3."
+  },
+  "type": {
+    "data": "Desde datos",
+    "summary": "Desde resumen"
+  },
+  "placeholder": {
+    "data": "p. ej., 10, 11, 9, 12, 10, 11",
+    "mean": "p. ej., 50",
+    "stdDev": "p. ej., 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce al menos 2 puntos de datos, o valores válidos de media y desviación estándar."
+  },
+  "result": {
+    "heading": "Límites de control",
+    "mean": "Media del proceso (x̅)",
+    "stdDev": "Desviación estándar (σ)",
+    "n": "Tamaño de muestra (n)",
+    "ucl": "Límite de control superior (UCL)",
+    "lcl": "Límite de control inferior (LCL)",
+    "formula": "Fórmulas: UCL = x̅ + {k}σ | LCL = x̅ − {k}σ"
+  },
+  "about": {
+    "heading": "Acerca del límite de control superior (UCL)",
+    "body": "El límite de control superior (UCL) es un elemento clave del control estadístico de procesos (SPC), la metodología desarrollada por Walter Shewhart en los Laboratorios Bell en la década de 1920 para distinguir la variación normal del proceso de las señales que requieren investigación. Los gráficos de control trazan las mediciones del proceso a lo largo del tiempo y usan el UCL (y su contraparte, el límite de control inferior, LCL) para definir los límites de la variación aceptable. Se dice que un proceso está bajo control estadístico cuando todas las mediciones caen dentro de los límites de control y no muestran patrones no aleatorios.\n\nEl UCL se calcula como la media del proceso más k veces la desviación estándar del proceso: UCL = x̄ + kσ. El LCL correspondiente es x̄ − kσ. El valor de k suele fijarse en 3, lo que para una distribución normal significa que el 99,73% de las observaciones debería caer dentro de los límites de control cuando el proceso es estable. Un punto que supera el UCL (o cae por debajo del LCL) es una señal de que el proceso puede haberse desplazado o de que está actuando una causa inusual. Algunas aplicaciones usan k = 2 (95,45%) para una detección más sensible, a costa de falsas alarmas más frecuentes.\n\nLos gráficos de control SPC existen en varias variedades. El gráfico X-bar monitorea el promedio de muestras de subgrupos. El gráfico individual (I) monitorea mediciones únicas. Los gráficos R y S monitorean la variabilidad dentro de los subgrupos. Esta calculadora calcula el UCL para mediciones individuales o medias de subgrupos usando datos sin procesar (para estimar directamente la media y la desviación estándar) o estadísticas resumidas ya calculadas (media y desviación estándar proporcionadas por el usuario).\n\nCuando se proporcionan datos sin procesar, la calculadora estima la media del proceso como el promedio muestral y la desviación estándar mediante la fórmula muestral (dividiendo por n − 1, corrección de Bessel). Esto ofrece una estimación insesgada de la desviación estándar poblacional, adecuada para estimar la variación del proceso a largo plazo. El UCL y el LCL resultantes definen el rango esperado de observaciones futuras si el proceso permanece estable.\n\nLos límites de control no son límites de especificación. Los límites de especificación definen lo que es aceptable para el cliente (tolerancias de ingeniería, requisitos regulatorios). Los límites de control definen lo que el proceso es naturalmente capaz de producir. Un proceso puede estar bajo control estadístico y aun así producir resultados fuera de los límites de especificación; en ese caso debe mejorarse la capacidad del proceso, no solo monitorearse.\n\nEl UCL y el LCL se usan en manufactura, salud, desarrollo de software, centros de llamadas y cualquier contexto donde la calidad de salida deba seguirse a lo largo del tiempo. Comprender y calcular estos límites es una habilidad esencial en ingeniería de calidad y mejora de procesos."
+  },
+  "examples": {
+    "heading": "Ejemplos de UCL",
+    "intro": "Cálculos resueltos que muestran cómo se calcula el UCL a partir de datos y de estadísticas resumidas.",
+    "colInput": "Entradas",
+    "colOutput": "UCL / LCL",
+    "colNote": "Contexto",
+    "items": [
+      {
+        "input": "Datos: 10,11,9,12,10,11,10,9,12,11 | k=3",
+        "output": "UCL ≈ 13.74 | LCL ≈ 7.26",
+        "note": "Media = 10.5, desviación estándar muestral ≈ 1.080. UCL = 10.5 + 3×1.080 ≈ 13.74, LCL = 10.5 − 3×1.080 ≈ 7.26. Cualquier medición fuera de estos límites es una señal de fuera de control."
+      },
+      {
+        "input": "Media = 50, desviación estándar = 5 | k=3",
+        "output": "UCL = 65 | LCL = 35",
+        "note": "UCL = 50 + 3×5 = 65. Regla clásica de 3 sigma. Una pieza manufacturada medida por encima de 65 activa una revisión del proceso de producción."
+      },
+      {
+        "input": "Media = 100, desviación estándar = 8 | k=2",
+        "output": "UCL = 116 | LCL = 84",
+        "note": "Usar k=2 (límites de 2 sigma) captura el 95,45% de la variación normal. Es más sensible que 3 sigma, pero genera más falsas alarmas."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de UCL",
+    "steps": [
+      "Elige Desde datos si tienes mediciones sin procesar, o Desde resumen si ya conoces la media y la desviación estándar.",
+      "En el modo Desde datos, introduce tus mediciones separadas por comas en el campo de datos. En el modo Desde resumen, introduce la media del proceso y la desviación estándar.",
+      "Define el multiplicador sigma k (predeterminado 3). Usa 3 para límites de control estándar de 3 sigma o 2 para límites más ajustados de 2 sigma.",
+      "Haz clic en Calcular para ver el UCL, el LCL, la media y la desviación estándar.",
+      "Cualquier medición futura del proceso por encima del UCL o por debajo del LCL es una señal de fuera de control que requiere investigación."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de UCL",
+    "q1": "¿Qué es el límite de control superior (UCL)?",
+    "q1_a": "El UCL es el límite superior en un gráfico de control, establecido a k desviaciones estándar por encima de la media del proceso (normalmente k=3). Las mediciones que superan el UCL son estadísticamente poco probables bajo condiciones de proceso estables y señalan que el proceso puede haber cambiado o que existe una causa inusual.",
+    "q2": "¿Cuál es la diferencia entre UCL y un límite superior de especificación?",
+    "q2_a": "Un límite de especificación lo fijan el cliente o los requisitos de diseño y define la calidad aceptable del producto. El UCL se calcula a partir de los datos del proceso y refleja la variación natural del proceso. Un proceso puede estar bajo control (dentro del UCL) y aun así producir defectos (fuera de los límites de especificación) si la dispersión del proceso es demasiado amplia.",
+    "q3": "¿Por qué k=3 es la elección estándar?",
+    "q3_a": "Para un proceso con distribución normal, fijar k=3 significa que el 99,73% de las observaciones cae dentro de los límites de control cuando el proceso es estable. Esto limita las falsas alarmas (marcar incorrectamente un proceso estable) a aproximadamente 0,27%, equilibrando la sensibilidad de detección con el costo de investigaciones innecesarias.",
+    "q4": "¿Qué significa que un punto supere el UCL?",
+    "q4_a": "Un punto por encima del UCL se denomina señal de fuera de control. Indica que es poco probable que la observación haya ocurrido solo por azar, lo que sugiere que puede haberse producido una causa especial (un evento inusual, un cambio de proceso o un error de medición). Debe investigarse el proceso para encontrar y eliminar la causa.",
+    "q5": "¿Puedo usar esta calculadora para medias de subgrupos?",
+    "q5_a": "Sí. Si proporcionas la media de tus medias de subgrupos y la desviación estándar de las medias de subgrupos (también llamada error estándar), la calculadora calculará directamente el UCL y el LCL para el gráfico X-bar. Las entradas son las mismas tanto si los valores representan mediciones individuales como promedios de subgrupos.",
+    "q6": "¿Cómo estimo la desviación estándar a partir de datos?",
+    "q6_a": "La calculadora usa la fórmula de desviación estándar muestral, dividiendo por n−1 (corrección de Bessel), lo que da una estimación insesgada de la desviación estándar poblacional. En la práctica, los gráficos SPC a veces usan el rango promedio dividido por d2 para datos de subgrupos, pero para mediciones individuales la desviación estándar muestral es la estimación adecuada."
+  }
+}

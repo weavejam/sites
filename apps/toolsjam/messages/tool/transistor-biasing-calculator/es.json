@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de polarización de transistores – punto DC",
+  "tagline": "Calcula el punto de operación DC, la corriente de colector, la ganancia de voltaje y el factor de estabilidad de circuitos con polarización por divisor de tensión.",
+  "intro": "Ingresa el voltaje de alimentación, los valores de las resistencias, la ganancia de corriente β y el voltaje base-emisor para analizar un amplificador emisor común con polarización por divisor de tensión.",
+  "formula": "Vb = Vcc·R2/(R1+R2) | Ic = β·Ib | Vc = Vcc − Ic·Rc | Vce = Vc − Ve | Av = −(Rc‖RL)/(Re + re) donde re = 26 mV/Ic",
+  "field": {
+    "vcc": "Voltaje de alimentación Vcc (V)",
+    "r1": "Resistencia de base R1 (Ω)",
+    "r2": "Resistencia de base R2 (Ω)",
+    "rc": "Resistencia de colector Rc (Ω)",
+    "re": "Resistencia de emisor Re (Ω)",
+    "rl": "Resistencia de carga RL (Ω)",
+    "beta": "Ganancia de corriente β (hFE)",
+    "vbe": "Voltaje base-emisor Vbe (V)"
+  },
+  "placeholder": {
+    "vcc": "p. ej. 12",
+    "r1": "p. ej. 22000",
+    "r2": "p. ej. 4700",
+    "rc": "p. ej. 2200",
+    "re": "p. ej. 1000",
+    "rl": "p. ej. 10000",
+    "beta": "p. ej. 100",
+    "vbe": "p. ej. 0.7"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Ingresa valores positivos válidos para todos los campos. Vbe suele ser de 0.6–0.7 V en transistores de silicio."
+  },
+  "result": {
+    "heading": "Punto de operación DC",
+    "vb": "Voltaje de base Vb: {value} V",
+    "ve": "Voltaje de emisor Ve: {value} V",
+    "vc": "Voltaje de colector Vc: {value} V",
+    "vce": "Voltaje colector-emisor Vce: {value} V",
+    "ic": "Corriente de colector Ic: {value} mA",
+    "ib": "Corriente de base Ib: {value} μA",
+    "voltageGain": "Ganancia de voltaje |Av|: {value}",
+    "stabilityFactor": "Factor de estabilidad S: {value}"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de polarización de transistores",
+    "body": "La polarización de transistores es el proceso de establecer un punto de operación DC estable —el punto Q o quiescente— para un amplificador con transistor bipolar de unión (BJT). Sin una polarización correcta, el transistor trabaja en corte (sin corriente) o en saturación (corriente máxima), lo que impide la amplificación lineal. Una buena polarización coloca el punto Q cerca del centro de la región activa, permitiendo que la señal de salida oscile de forma simétrica por encima y por debajo del nivel de reposo sin distorsión.\n\nEsta calculadora implementa la configuración de polarización por divisor de tensión, el método más usado en circuitos prácticos. Dos resistencias, R1 y R2, forman un divisor resistivo desde la alimentación Vcc hasta tierra. La unión de R1 y R2 fija el voltaje de base: Vb = Vcc × R2/(R1+R2), suponiendo que el divisor es rígido (es decir, que la corriente del divisor es mucho mayor que la corriente de base). El voltaje de emisor queda como Ve = Vb − Vbe, donde Vbe ≈ 0.7 V para transistores NPN de silicio a temperatura ambiente.\n\nLa corriente de emisor circula por la resistencia Re, estableciendo Ve = Ie × Re. Como Ic ≈ Ie para β grande, la corriente de colector es aproximadamente Ic = Ve/Re. El voltaje de colector es Vc = Vcc − Ic×Rc, y el voltaje colector-emisor es Vce = Vc − Ve. Para que el transistor permanezca en la región activa, Vce debe ser positivo y mayor que el voltaje de saturación (normalmente 0.2–0.3 V).\n\nLa ganancia de voltaje de la etapa emisor común viene dada por la relación entre la carga de colector de CA y la impedancia efectiva del emisor. La carga de colector de CA es Rc en paralelo con RL (la resistencia de carga externa). La impedancia efectiva del emisor es Re más la resistencia intrínseca del emisor re = VT/Ic, donde VT ≈ 26 mV a temperatura ambiente. La magnitud de la ganancia es |Av| = (Rc‖RL)/(Re + re).\n\nEl factor de estabilidad S cuantifica qué tan bien la red de polarización estabiliza el punto de operación frente a variaciones en los parámetros del transistor, principalmente cambios en β por temperatura o entre dispositivos. Factores de estabilidad más bajos (idealmente por debajo de 10) indican un diseño más estable. La polarización por divisor de tensión con una resistencia de emisor grande logra un S bajo mediante realimentación negativa: cualquier tendencia de Ic a aumentar eleva Ve, lo que reduce Vbe y por tanto Ib, contrarrestando parcialmente el aumento original de Ic.\n\nPautas prácticas de diseño: elige Ic en el rango de 1–10 mA para amplificadores de pequeña señal; sitúa Vc en aproximadamente la mitad de Vcc para obtener el máximo margen de salida sin distorsión; mantén el factor de estabilidad por debajo de 10; y verifica que Vce supere el voltaje de saturación en las peores condiciones de β máximo y temperatura máxima."
+  },
+  "examples": {
+    "heading": "Ejemplos de polarización de transistores",
+    "intro": "Tres configuraciones de amplificador emisor común que muestran cálculos de punto de operación y ganancia.",
+    "colInput": "Parámetros del circuito",
+    "colOutput": "Resultados clave",
+    "colNote": "Aplicación",
+    "loadStandard": "Carga de polarización estándar",
+    "loadHighGain": "Carga de polarización de alta ganancia",
+    "loadAudio": "Carga de etapa de audio",
+    "items": [
+      {
+        "input": "Vcc=12V, R1=22kΩ, R2=4.7kΩ, Rc=2.2kΩ, Re=1kΩ, RL=10kΩ, β=100, Vbe=0.7V",
+        "output": "Ic≈1.35 mA, Vc≈9.04V, Vce≈7.68V, |Av|≈1.77",
+        "note": "Polarización estándar por divisor de tensión. El punto Q queda cerca de la mitad de la alimentación y la ganancia es moderada. Adecuado como etapa de amplificación de pequeña señal de uso general."
+      },
+      {
+        "input": "Vcc=15V, R1=15kΩ, R2=3kΩ, Rc=3.3kΩ, Re=500Ω, RL=15kΩ, β=150, Vbe=0.7V",
+        "output": "Ic≈3.46 mA, Vc≈3.58V, Vce≈1.84V, |Av|≈5.33",
+        "note": "Configuración de alta ganancia. El Vce bajo se acerca a saturación; considera reducir Rc o aumentar Vcc para obtener un mayor margen de salida."
+      },
+      {
+        "input": "Vcc=18V, R1=18kΩ, R2=3.9kΩ, Rc=1.8kΩ, Re=820Ω, RL=8.2kΩ, β=120, Vbe=0.7V",
+        "output": "Ic≈2.94 mA, Vc≈12.72V, Vce≈10.29V, |Av|≈1.78",
+        "note": "Etapa de salida para amplificador de audio. Un Vcc mayor proporciona un margen de salida más amplio; RL coincide con la impedancia típica de un altavoz."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de polarización de transistores",
+    "steps": [
+      "Ingresa el voltaje de alimentación Vcc en voltios. Es el riel positivo que alimenta el circuito; en etapas BJT de pequeña señal suele estar entre 5 y 24 V.",
+      "Ingresa los cuatro valores de resistencia en ohmios: R1 y R2 forman el divisor de base; Rc es la resistencia de colector que define la ganancia de voltaje y la impedancia de salida; Re es la resistencia de emisor que estabiliza el punto de polarización.",
+      "Ingresa la resistencia de carga RL en ohmios. Representa la impedancia que conduce el amplificador, por ejemplo, la impedancia de entrada de la siguiente etapa o una carga de altavoz.",
+      "Ingresa la ganancia de corriente del transistor β (hFE, de la hoja de datos) y el voltaje base-emisor Vbe (0.6–0.7 V para silicio, 0.2–0.3 V para germanio).",
+      "Haz clic en Calcular. Verifica que Vce sea positivo y superior a saturación, que Ic esté en un rango práctico (1–10 mA para etapas de pequeña señal) y que el factor de estabilidad S sea menor que 10 para una buena estabilidad térmica."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre polarización de transistores",
+    "q1": "¿Qué es el punto Q y por qué importa?",
+    "q1_a": "El punto Q (punto quiescente) es la condición de operación DC del transistor cuando no se aplica señal de CA. Se define por el par (Ic, Vce). Colocar el punto Q cerca del centro de la región activa maximiza el margen de salida sin distorsión. Si el punto Q está demasiado cerca del corte o de la saturación, aparece recorte: la forma de onda de salida se aplana en uno o ambos picos.",
+    "q2": "¿Por qué se prefiere la polarización por divisor de tensión frente a la polarización fija?",
+    "q2_a": "La polarización fija establece la corriente de base directamente desde la alimentación mediante una sola resistencia, haciendo que Ic sea proporcional a β. Como β varía mucho con la temperatura y de un transistor a otro (a menudo 2:1 o más), el punto Q deriva de forma impredecible. La polarización por divisor de tensión añade una resistencia de emisor que proporciona realimentación negativa, manteniendo Ic aproximadamente constante independientemente de las variaciones de β, siempre que el divisor sea lo suficientemente rígido.",
+    "q3": "¿Qué es la resistencia intrínseca de emisor re?",
+    "q3_a": "La resistencia intrínseca de emisor re = VT/Ic ≈ 26 mV / Ic (con Ic en amperios) surge de la física de la unión base-emisor polarizada en directa. Es la resistencia de pequeña señal que se ve al mirar hacia el terminal de emisor. Con Ic = 1 mA, re ≈ 26 Ω. A corrientes de colector más altas, re disminuye, lo que aumenta la ganancia de voltaje. Debe incluirse en los cálculos de ganancia cuando Re es pequeña en relación con re.",
+    "q4": "¿Cómo elijo R1 y R2 para un voltaje de base dado?",
+    "q4_a": "Primero decide el voltaje de base deseado Vb = Ve + Vbe, donde Ve normalmente se fija al 10–20% de Vcc para lograr buena estabilidad. Luego elige una corriente del divisor al menos 10 veces mayor que la corriente de base Ib = Ic/β, lo que asegura que el divisor sea rígido. A partir de la corriente del divisor y de Vb, calcula R2 = Vb/I_div y R1 = (Vcc − Vb)/I_div. Redondea a los valores comerciales más cercanos.",
+    "q5": "¿Qué me dice el factor de estabilidad S?",
+    "q5_a": "El factor de estabilidad S aproxima la relación entre el cambio en la corriente de colector y el cambio en la corriente de saturación inversa del transistor (o, equivalentemente, indica la sensibilidad a la variación de β). Un S más bajo significa mejor estabilidad. La polarización por divisor de tensión con degeneración de emisor adecuada suele lograr S < 5, frente a S = β + 1 en la polarización fija, que puede ser 100 o más.",
+    "q6": "¿Cómo aumento la ganancia de voltaje sin cambiar mucho el punto Q?",
+    "q6_a": "Deriva la resistencia de emisor Re con un capacitor grande. A frecuencias de señal de CA, el capacitor cortocircuita Re, así que la ganancia de pequeña señal sube a Av ≈ Rc‖RL / re, mucho mayor. La polarización DC queda fijada por el valor completo de Re, conservando la estabilidad, mientras que la ganancia de CA se beneficia de la ruta de baja impedancia derivada. Esta técnica es estándar en etapas de preamplificación de audio."
+  }
+}

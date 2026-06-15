@@ -1,0 +1,82 @@
+{
+  "title": "IQR-Ausreißer-Grenzen Rechner",
+  "tagline": "Erkennen Sie statistische Ausreißer in Ihrem Datensatz mit der Grenzwertmethode auf Basis des Interquartilsabstands (IQR). Geben Sie kommaseparierte Zahlen ein, um Q1, Q3, IQR und beide Grenzen sofort zu finden.",
+  "intro": "Geben Sie Ihre Datenwerte durch Kommas getrennt ein, klicken Sie auf Berechnen und sehen Sie obere Grenze, untere Grenze und eventuelle Ausreißer in Ihrem Datensatz.",
+  "field": {
+    "data": "Datensatz"
+  },
+  "placeholder": {
+    "data": "z. B. 4, 8, 15, 16, 23, 42"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie mindestens 4 durch Kommas getrennte Zahlen ein, um die Grenzen zu berechnen."
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "n": "Anzahl (n)",
+    "q1": "Q1 (25. Perzentil)",
+    "q3": "Q3 (75. Perzentil)",
+    "iqr": "IQR (Q3 − Q1)",
+    "lowerFence": "Untere Grenze (Q1 − 1.5 × IQR)",
+    "upperFence": "Obere Grenze (Q3 + 1.5 × IQR)",
+    "outliersHeading": "Ausreißer",
+    "noOutliers": "Keine Ausreißer erkannt."
+  },
+  "about": {
+    "heading": "Über den Rechner für obere und untere Grenzen",
+    "body": "Die Methode der oberen und unteren Grenze ist die Standardtechnik, um Ausreißer in einem Datensatz mithilfe des Interquartilsabstands (IQR) zu identifizieren. Entwickelt als Teil von John Tukeys Framework der explorativen Datenanalyse im Jahr 1977, bietet sie eine robuste, nichtparametrische Möglichkeit, ungewöhnliche Beobachtungen zu markieren, ohne eine bestimmte Verteilung anzunehmen. Die Methode wird in einführenden Statistikvorlesungen breit gelehrt und ist der Standardansatz zur Ausreißererkennung in Boxplots.\n\nDie Berechnung beginnt damit, den Datensatz zu sortieren und das erste und dritte Quartil zu bestimmen. Q1 (25. Perzentil) ist der Wert, unter dem 25 % der Daten liegen, während Q3 (75. Perzentil) der Wert ist, unter dem 75 % liegen. Der IQR ist einfach Q3 minus Q1 und beschreibt die Streuung der mittleren 50 % der Daten. Weil der IQR die Extremwerte an beiden Enden der Verteilung ignoriert, ist er robust gegenüber genau den Ausreißern, die er erkennen soll — ein Merkmal, das die Grenzwertmethode zuverlässiger macht als Bereiche-basierte Verfahren.\n\nSobald der IQR berechnet ist, werden die Grenzen auf 1.5 × IQR unterhalb von Q1 (untere Grenze) und 1.5 × IQR oberhalb von Q3 (obere Grenze) gesetzt. Jeder Datenpunkt unterhalb der unteren Grenze oder oberhalb der oberen Grenze wird als Ausreißer eingestuft. Der Faktor 1.5 wurde von Tukey empirisch gewählt, weil er für ungefähr normalverteilte Daten gut funktioniert: In einer Normalverteilung kennzeichnet diese Regel etwa 0.7 % der Beobachtungen als Ausreißer, was Werten von mehr als etwa 2.7 Standardabweichungen vom Mittelwert entspricht.\n\nFür extremere Ausreißer verwenden manche Anwendungen statt 1.5 den Faktor 3 und bezeichnen solche Punkte als weit entfernte oder extreme Ausreißer. Punkte außerhalb der 1.5 × IQR-Grenze, aber innerhalb der 3 × IQR-Grenze, werden manchmal als leichte Ausreißer bezeichnet. Dieser Rechner verwendet die Standardregel 1.5 × IQR, die für die meisten explorativen Analysen geeignet ist.\n\nDie Ausreißererkennung ist ein entscheidender Schritt bei Datenbereinigung, Qualitätskontrolle und statistischer Modellierung. In der Fertigung kann ein Messwert außerhalb der Grenze auf ein defektes Teil oder einen Messfehler hinweisen. Im Finanzbereich können extreme Renditen auf Datenfehler, Marktanomalien oder echte Ereignisse hindeuten, die untersucht werden müssen. In der klinischen Forschung werden physiologisch unmögliche Werte identifiziert und geprüft. Im maschinellen Lernen können Ausreißer das Modelltraining verzerren, wenn sie nicht behandelt werden.\n\nWichtig ist: Statistische Ausreißer sind nicht automatisch fehlerhafte Werte. Ein Ausreißer ist lediglich eine Beobachtung, die nach der IQR-Regel ungewöhnlich weit von der Masse der Daten entfernt liegt. Es muss geprüft werden, ob der Wert ein echtes Extremereignis, ein Messfehler oder ein Eingabefehler ist."
+  },
+  "examples": {
+    "heading": "Beispiele für obere und untere Grenze",
+    "intro": "Schrittweise durchgerechnete Beispiele zeigen, wie die Grenzwertmethode in typischen Datensätzen Ausreißer erkennt.",
+    "colInput": "Datensatz",
+    "colOutput": "Grenzen & Ausreißer",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "10, 12, 14, 16, 18, 20, 100",
+        "output": "Untere: 4 | Obere: 28 | Ausreißer: 100",
+        "note": "Q1=13, Q3=19, IQR=6. Untere Grenze = 13 − 9 = 4. Obere Grenze = 19 + 9 = 28. Der Wert 100 überschreitet die obere Grenze und wird als Ausreißer markiert."
+      },
+      {
+        "input": "5, 7, 8, 9, 10, 11, 12, 14",
+        "output": "Untere: 2.5 | Obere: 16.5 | Keine Ausreißer",
+        "note": "Q1=7.75, Q3=11.25, IQR=3.5. Die Grenzen sind 2.5 und 16.5. Alle Werte (5 bis 14) liegen innerhalb der Grenzen, daher gibt es keine Ausreißer."
+      },
+      {
+        "input": "2, 3, 5, 7, 8, 9, 10, 11, 12, 50",
+        "output": "Untere: −2.375 | Obere: 18.625 | Ausreißer: 50",
+        "note": "Q1=5.5, Q3=10.75, IQR=5.25. Obere Grenze = 10.75 + 7.875 = 18.625. Der Wert 50 liegt deutlich über der oberen Grenze und ist ein klarer Ausreißer."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Grenzwert-Rechner",
+    "steps": [
+      "Geben Sie Ihre Datenwerte im Eingabefeld ein, getrennt durch Kommas oder Leerzeichen. Sie brauchen mindestens 4 Werte, um sinnvolle Quartile zu berechnen.",
+      "Klicken Sie auf Berechnen, um Q1, Q3, den IQR, die untere Grenze (Q1 − 1.5 × IQR) und die obere Grenze (Q3 + 1.5 × IQR) zu berechnen.",
+      "Prüfen Sie die hervorgehobenen Grenzwerte — jeder Datenpunkt unter der unteren oder über der oberen Grenze ist ein Ausreißer.",
+      "Sehen Sie im Bereich Ausreißer die konkret markierten Werte an.",
+      "Klicken Sie auf Zurücksetzen, um die Eingabe zu löschen und mit einem neuen Datensatz neu zu beginnen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zu oberen und unteren Grenzen",
+    "q1": "Was sind obere und untere Grenzen?",
+    "q1_a": "Die obere Grenze ist Q3 + 1.5 × IQR, die untere Grenze ist Q1 − 1.5 × IQR. Jeder Datenpunkt außerhalb dieser Grenzen gilt als Ausreißer. Die Grenzen bilden einen Bereich, der die erwartete Streuung einer ungefähr glockenförmigen Verteilung einschließt.",
+    "q2": "Warum verwendet man das 1.5-Fache des IQR?",
+    "q2_a": "Der Faktor 1.5 wurde von John Tukey gewählt, weil er für die Erkennung von Ausreißern in normalverteilten Daten ungefähr optimal ist und zugleich die Zahl der Fehlalarme niedrig hält. In einer Normalverteilung kennzeichnet er etwa 0.7 % der Beobachtungen. Verdoppelt man den Faktor auf 3, werden nur extreme Ausreißer erfasst.",
+    "q3": "Was ist der IQR und wie wird er berechnet?",
+    "q3_a": "Der IQR (Interquartilsabstand) ist Q3 minus Q1 und beschreibt die Streuung der mittleren 50 % der Daten. Er wird berechnet, indem man die Daten sortiert, das 25. Perzentil (Q1) und das 75. Perzentil (Q3) bestimmt und dann subtrahiert. Der IQR ist robust gegenüber Ausreißern, weil er die oberen und unteren 25 % der Werte ignoriert.",
+    "q4": "Bedeutet ein Ausreißer, dass die Daten falsch sind?",
+    "q4_a": "Nicht unbedingt. Ein Ausreißer ist einfach eine ungewöhnlich extreme Beobachtung im Verhältnis zur Masse der Daten. Es könnte ein echtes Extremereignis, ein Messfehler oder ein Eingabefehler sein. Jeder markierte Wert sollte im Kontext geprüft werden, bevor er entfernt oder korrigiert wird.",
+    "q5": "Wie hängen die Grenzen mit Boxplots zusammen?",
+    "q5_a": "Die obere und untere Grenze definieren die Whisker in einem Standard-Tukey-Boxplot. Die Box umfasst den IQR (Q1 bis Q3), die Linie in der Box ist der Median, und die Whisker reichen bis zu den extremsten Datenpunkten, die noch innerhalb der Grenzen liegen. Punkte außerhalb der Whisker werden einzeln als Ausreißer dargestellt.",
+    "q6": "Ist die Grenzwertmethode für kleine Datensätze geeignet?",
+    "q6_a": "Die Methode funktioniert am besten mit mindestens 10 bis 20 Beobachtungen. Bei weniger Werten sind die Quartilschätzungen ungenau und die Grenzen können unzuverlässig sein. Bei sehr kleinen Datensätzen sollten Sie alle Werte visuell prüfen, statt sich nur auf die automatische Grenzwertregel zu verlassen."
+  }
+}

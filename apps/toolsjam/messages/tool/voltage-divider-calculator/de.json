@@ -1,0 +1,97 @@
+{
+  "title": "Spannungsteiler-Rechner",
+  "tagline": "Berechnet Ausgangsspannung, Strom und Verlustleistung für Widerstands-Spannungsteiler.",
+  "intro": "Gib die Eingangsspannung und zwei Widerstandswerte ein, um die Ausgangsspannung, den Strom im Stromkreis und die in jedem Widerstand umgesetzte Leistung zu berechnen.",
+  "formula": "Formel: Vout = Vin × R2 / (R1 + R2)  •  I = Vin / (R1 + R2)  •  P = I² × R",
+  "field": {
+    "vin": "Eingangsspannung (Vin)",
+    "r1": "R1-Widerstand (Ω)",
+    "r2": "R2-Widerstand (Ω)"
+  },
+  "placeholder": {
+    "vin": "z. B. 12",
+    "r1": "z. B. 1000",
+    "r2": "z. B. 2000"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gültige positive Zahlen für die Spannung und beide Widerstände eingeben."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "labelVout": "Ausgangsspannung (Vout)",
+    "labelCurrent": "Strom im Stromkreis",
+    "labelPowerTotal": "Gesamtleistung",
+    "labelPowerR1": "Leistung in R1",
+    "labelPowerR2": "Leistung in R2"
+  },
+  "about": {
+    "heading": "Über den Spannungsteiler-Rechner",
+    "body": "Der Spannungsteiler ist eine der grundlegendsten Schaltungen der Elektronik. Er besteht aus zwei in Reihe geschalteten Widerständen zwischen Versorgungsspannung und Masse, wobei die Ausgangsspannung am Knoten zwischen den beiden Widerständen abgegriffen wird. Die Schaltung teilt die Eingangsspannung proportional zu den Widerstandswerten in eine kleinere Ausgangsspannung auf und folgt dabei dem Ohmschen Gesetz sowie den Regeln für Reihenschaltungen.\n\nDie Kernformel lautet Vout = Vin × R2 / (R1 + R2). Dieser Ausdruck lässt sich in zwei Schritten herleiten: Der Gesamtstrom durch die Reihenschaltung ist I = Vin / (R1 + R2) nach dem Ohmschen Gesetz, und die Spannung über R2 ist I × R2. Einsetzen ergibt die Spannungsteilerformel. Da R2 sowohl im Zähler als auch im Nenner vorkommt, ist die Ausgangsspannung bei positiven Widerständen immer kleiner als die Eingangsspannung. Gleiche Widerstände ergeben exakt die halbe Versorgungsspannung, unterschiedliche Werte verschieben den Ausgang proportional.\n\nSpannungsteiler werden in der gesamten Elektronik verwendet. Bei Sensorschnittstellen wird ein 0–5-V-Sensorsignal häufig mit R1 = 2.2 kΩ und R2 = 3.3 kΩ auf 0–3.3 V für einen Mikrocontroller-ADC skaliert. In Transistor-Bias-Schaltungen legt ein Spannungsteiler die Basisspannung fest und bestimmt damit den Arbeitspunkt eines bipolaren Transistors. In Audiogeräten sind Potentiometer stufenlos einstellbare Spannungsteiler zur Lautstärkeregelung. Auch beim Verschieben digitaler Pegel wird oft ein Zweiwiderstands-Teiler verwendet, um ein 5-V-Logiksignal auf die 3.3-V-Schwelle eines Empfängers anzupassen.\n\nDie Verlustleistung ist ein entscheidender Entwurfsfaktor. Jeder Widerstand setzt P = I² × R Watt um, und die Gesamtverlustleistung beträgt Vin² / (R1 + R2). Niedrigere Widerstandswerte verbessern die Unempfindlichkeit gegenüber Lastströmen, verbrauchen aber mehr Leistung. Stelle immer sicher, dass die berechnete Verlustleistung deutlich unter der Nennleistung des Widerstands liegt — als gängige Sicherheitsregel gilt eine Derating von mindestens 50 %, sodass ein 250-mW-Widerstand im Dauerbetrieb 125 mW nicht überschreiten sollte.\n\nDie Spannungsteilerformel ohne Last ist für eine ideale Spannungsquelle und ideale Widerstände exakt. In der Praxis erscheint jede an R2 angeschlossene Last parallel und verringert den effektiven unteren Widerstand, wodurch Vout unter den unbelasteten Wert fällt. Für einen genauen Betrieb unter Last sollte der Lastwiderstand mindestens zehnmal größer als R2 sein, oder die Parallelschaltung muss im Design berücksichtigt werden."
+  },
+  "examples": {
+    "heading": "Beispiele für Spannungsteiler",
+    "intro": "Drei praktische Spannungsteiler-Schaltungen, die die Formel in Aktion zeigen.",
+    "colInput": "Vin / R1 / R2",
+    "colOutput": "Vout",
+    "colNote": "Hinweis",
+    "loadHalf": "Halbspannungs-Beispiel laden",
+    "loadSensor": "Sensor-Schnittstellen-Beispiel laden",
+    "loadReference": "Referenzspannungs-Beispiel laden",
+    "items": [
+      {
+        "input": "10 V, R1 = 1 kΩ, R2 = 1 kΩ",
+        "output": "5 V",
+        "note": "Gleiche Widerstände liefern immer genau die Hälfte der Eingangsspannung. Strom = 5 mA, Gesamtleistung = 50 mW."
+      },
+      {
+        "input": "5 V, R1 = 2.2 kΩ, R2 = 3.3 kΩ",
+        "output": "3 V",
+        "note": "Klassische 5-V-auf-3-V-Pegelverschiebung beim Anschluss von 5-V-Sensoren an 3.3-V-Mikrocontroller-ADC-Eingänge."
+      },
+      {
+        "input": "12 V, R1 = 10 kΩ, R2 = 5 kΩ",
+        "output": "4 V",
+        "note": "R2 / (R1 + R2) = 5/15 = 1/3, also Vout = 12 × 1/3 = 4 V. Gesamtleistung = 9.6 mW bei 0.8 mA."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Spannungsteiler-Rechner",
+    "steps": [
+      "Gib die Versorgungsspannung (Vin) ein — die Spannung über der gesamten Reihenschaltung aus R1 + R2.",
+      "Gib den Wert von R1 ein, dem oberen Widerstand zwischen Versorgung und Ausgangsknoten.",
+      "Gib den Wert von R2 ein, dem unteren Widerstand zwischen Ausgangsknoten und Masse.",
+      "Klicke auf Berechnen, um Ausgangsspannung, Strom im Stromkreis und die Verlustleistung jedes Widerstands anzuzeigen.",
+      "Nutze die Beispielschaltflächen für häufige Spannungsteiler-Konfigurationen oder klicke auf Zurücksetzen, um neu zu beginnen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Spannungsteiler-Rechner",
+    "items": [
+      {
+        "q": "Was ist die Spannungsteilerformel?",
+        "a": "Die Formel lautet Vout = Vin × R2 / (R1 + R2). Sie folgt direkt aus dem Ohmschen Gesetz: Durch beide in Reihe geschalteten Widerstände fließt derselbe Strom, daher ist die Spannung über jedem Widerstand proportional zu seinem Widerstandswert. R2 im Zähler und die Summe (R1 + R2) im Nenner ergeben den Anteil der Versorgungsspannung am Ausgang."
+      },
+      {
+        "q": "Warum ändert sich die Ausgangsspannung bei angeschlossener Last?",
+        "a": "Jeder Lastwiderstand Rload, der über R2 liegt, bildet eine Parallelschaltung mit R2 und verringert den effektiven unteren Widerstand unter R2. Dadurch sinkt das Verhältnis R2_eff / (R1 + R2_eff) und Vout wird kleiner. Um Lastfehler zu minimieren, sollte Rload ≥ 10 × R2 sein, oder ein Op-Amp-Puffer stellt dem Ausgang des Teilers eine praktisch unendliche Eingangsimpedanz bereit."
+      },
+      {
+        "q": "Wie wähle ich R1 und R2 für eine bestimmte Ausgangsspannung?",
+        "a": "Gehe von dem Verhältnis Vout / Vin = R2 / (R1 + R2) aus. Wähle R2 basierend auf dem zulässigen Strombedarf und löse dann R1 = R2 × (Vin / Vout − 1). Beispiel: Für 3.3 V aus 5 V ist Vout/Vin = 0.66, also R1 = R2 × (1/0.66 − 1) ≈ 0.515 × R2. Mit R2 = 10 kΩ ergibt sich R1 ≈ 5.15 kΩ — auf den nächsten Normwert gerundet."
+      },
+      {
+        "q": "Welche Belastbarkeit brauche ich für die Widerstände?",
+        "a": "Jeder Widerstand setzt P = I² × R um, wobei I = Vin / (R1 + R2) gilt. Wähle einen Widerstand mit mindestens der doppelten Nennleistung der berechneten Verlustleistung. Wenn die Berechnung zum Beispiel 80 mW ergibt, verwende einen 1/4-W-(250-mW-)Widerstand als ausreichende Sicherheitsreserve."
+      },
+      {
+        "q": "Kann ein Spannungsteiler einen nennenswerten Laststrom liefern?",
+        "a": "Nicht, ohne die Genauigkeit zu beeinträchtigen. Ein Spannungsteiler ist für Signal- und Bias-Zwecke gedacht, nicht für die Leistungsversorgung. Wenn der Laststrom in die Nähe des Ruhestroms des Teilers kommt (I = Vin / (R1 + R2)), sackt die Ausgangsspannung ab. Für mittlere Lastströme solltest du stattdessen einen Spannungsregler oder einen Op-Amp-Puffer verwenden."
+      }
+    ]
+  }
+}

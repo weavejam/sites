@@ -1,0 +1,93 @@
+{
+  "title": "Calculadora de Ângulo de Correção do Vento – Navegação aérea",
+  "tagline": "Calcule o ângulo de correção do vento, o rumo verdadeiro e a velocidade sobre o solo para navegar com precisão.",
+  "intro": "Digite a rota verdadeira, a direção do vento, a velocidade do vento e a velocidade aerodinâmica verdadeira para determinar a correção de rumo necessária para manter a trajetória desejada no solo.",
+  "field": {
+    "trueCourse": "Rota verdadeira (°)",
+    "windDirection": "Direção do vento (°)",
+    "windSpeed": "Velocidade do vento (kts)",
+    "trueAirspeed": "Velocidade aerodinâmica verdadeira (kts)"
+  },
+  "placeholder": {
+    "trueCourse": "ex.: 090",
+    "windDirection": "ex.: 270",
+    "windSpeed": "ex.: 15",
+    "trueAirspeed": "ex.: 120"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Informe valores válidos. A velocidade aerodinâmica verdadeira deve ser positiva.",
+    "windTooStrong": "A velocidade do vento supera a velocidade aerodinâmica — não existe um ângulo de correção válido."
+  },
+  "result": {
+    "heading": "Resultados de navegação",
+    "wca": "Ângulo de correção do vento (WCA) = {value}°",
+    "trueHeading": "Rumo verdadeiro (TH) = {value}°",
+    "groundSpeed": "Velocidade sobre o solo (GS) = {value} kts"
+  },
+  "formula": "WCA = arcsin(WS × sin(WD − TC) / TAS) | GS pela lei dos cossenos",
+  "about": {
+    "heading": "Sobre a Calculadora de Ângulo de Correção do Vento",
+    "body": "O ângulo de correção do vento (WCA), também chamado de crab angle, é a diferença angular entre a direção para a qual a aeronave deve apontar (rumo verdadeiro) e a direção que ela realmente precisa seguir sobre o solo (rota verdadeira). Sem corrigir o vento, uma aeronave voando com rumo fixo deriva da trajetória pretendida, podendo perder o destino ou entrar em espaço aéreo restrito.\n\nEsse cálculo é uma das habilidades mais fundamentais da navegação aérea e é ensinado em toda escola teórica de piloto privado. A matemática por trás vem da soma vetorial: a velocidade da aeronave no ar (representada pela velocidade aerodinâmica verdadeira e pelo rumo verdadeiro) somada ao vetor do vento resulta na velocidade da aeronave em relação ao solo (representada pela velocidade sobre o solo e pela trajetória no solo).\n\nA fórmula do ângulo de correção do vento é: WCA = arcsin(WS × sin(WD − TC) / TAS), onde WS é a velocidade do vento, WD é a direção do vento (a direção DE ONDE o vento sopra, pela convenção aeronáutica), TC é a rota verdadeira desejada e TAS é a velocidade aerodinâmica verdadeira. O resultado mostra o ângulo que o piloto deve somar ou subtrair da rota verdadeira para obter o rumo verdadeiro.\n\nA velocidade sobre o solo é então calculada pela lei dos cossenos: GS² = TAS² + WS² − 2 × TAS × WS × cos(TH − WD + 180°). A velocidade sobre o solo determina o tempo de voo e as necessidades de combustível. Vento de proa reduz a velocidade sobre o solo; vento de cauda a aumenta. Ventos cruzados reduzem ligeiramente a velocidade sobre o solo e exigem correção de rumo.\n\nNa calculadora de voo E6B, a correção é feita desenhando o vetor do vento e lendo graficamente o ângulo de correção e a velocidade sobre o solo. Os modernos EFBs e sistemas de gestão de voo por GPS fazem isso automaticamente, mas os pilotos ainda são treinados para calcular manualmente como backup.\n\nA limitação da fórmula ocorre quando a velocidade do vento excede a velocidade aerodinâmica verdadeira (a aeronave não consegue manter a rota desejada de forma alguma), por isso a calculadora verifica essa condição.\n\nAlém da navegação VFR, a correção do vento é crítica em operações IFR, especialmente na aproximação final, onde manter exatamente a linha central da pista exige cálculo preciso do crab angle e sua eliminação pouco antes do pouso."
+  },
+  "examples": {
+    "heading": "Exemplos de ângulo de correção do vento",
+    "intro": "Cenários comuns de voo mostrando cálculos de correção do vento.",
+    "colInput": "Parâmetros de voo",
+    "colOutput": "WCA / Rumo verdadeiro / GS",
+    "colNote": "Cenário",
+    "loadCrosswind": "Carregar cenário de vento cruzado",
+    "loadHeadwind": "Carregar cenário de vento de proa",
+    "loadTailwind": "Carregar cenário de vento de cauda",
+    "items": [
+      {
+        "input": "TC=090°, WD=000°, WS=15 kts, TAS=80 kts",
+        "output": "WCA ≈ −10.8°, TH ≈ 79.2°, GS ≈ 78.6 kts",
+        "note": "Vento cruzado pela esquerda vindo do norte. É preciso crabar 10.8° à esquerda contra o vento; a velocidade sobre o solo cai levemente para 78.6 kts."
+      },
+      {
+        "input": "TC=180°, WD=180°, WS=20 kts, TAS=120 kts",
+        "output": "WCA = 0°, TH = 180°, GS = 100 kts",
+        "note": "Vento de proa puro — não há necessidade de correção, mas a velocidade sobre o solo é reduzida pela velocidade total do vento."
+      },
+      {
+        "input": "TC=270°, WD=090°, WS=25 kts, TAS=150 kts",
+        "output": "WCA = 0°, TH = 270°, GS = 175 kts",
+        "note": "Vento de cauda puro — sem correção, e a velocidade sobre o solo aumenta pela velocidade total do vento."
+      },
+      {
+        "input": "TC=045°, WD=315°, WS=10 kts, TAS=100 kts",
+        "output": "WCA ≈ −7.2°, TH ≈ 37.8°, GS ≈ 99.4 kts",
+        "note": "Vento cruzado pela frente à esquerda. Um pequeno crab angle é suficiente; a velocidade sobre o solo fica quase igual à TAS."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a Calculadora de Ângulo de Correção do Vento",
+    "steps": [
+      "Digite a Rota verdadeira (TC) — a rota magnética ou verdadeira que você deseja voar, em graus (0–360).",
+      "Digite a Direção do vento (WD) — a direção DE ONDE o vento sopra, em graus. Na aviação, o vento é sempre informado pela direção de origem.",
+      "Digite a Velocidade do vento (WS) e a Velocidade aerodinâmica verdadeira (TAS) em unidades consistentes (recomenda-se nós).",
+      "Clique em Calcular. A calculadora retorna o ângulo de correção do vento, o rumo verdadeiro e a velocidade sobre o solo.",
+      "Aplique o ângulo de correção do vento à sua rota verdadeira para obter o rumo verdadeiro. Depois, converta para rumo magnético aplicando a variação, se necessário."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre o ângulo de correção do vento",
+    "q1": "O que é ângulo de correção do vento na aviação?",
+    "q1_a": "O ângulo de correção do vento (WCA) é o ângulo que o piloto precisa desviar o rumo da trajetória desejada para compensar a deriva causada pelo vento. Se você voar reto com um rumo fixo em vento cruzado, vai sair da rota. Ao “crabrar” contra o vento — apontando ligeiramente para barlavento — o vento empurra a aeronave lateralmente na medida certa para mantê-la na trajetória desejada. O WCA é a diferença entre o seu rumo verdadeiro (para onde o nariz aponta) e a sua rota verdadeira (para onde você realmente se desloca).",
+    "q2": "Como a direção do vento é informada na aviação?",
+    "q2_a": "Na aviação, a direção do vento é sempre informada como a direção DE ONDE o vento sopra, em graus verdadeiros ou magnéticos. Por exemplo, um vento de 270° significa que ele vem do oeste. Isso é o oposto da convenção meteorológica usada em outras áreas, onde direção do vento pode significar a direção para a qual o vento vai. Relatórios ATIS e METAR usam essa convenção de origem, assim como esta calculadora.",
+    "q3": "Qual é a diferença entre rota verdadeira e rumo verdadeiro?",
+    "q3_a": "A rota verdadeira (TC) é a direção que você quer seguir sobre o solo — a linha entre a decolagem e o destino. O rumo verdadeiro (TH) é a direção para a qual o nariz da aeronave realmente aponta. Em ar calmo, TC = TH. Com vento cruzado, TH difere de TC pelo ângulo de correção do vento. Aplicando o WCA a TC você obtém TH; depois, aplica a variação magnética para obter o rumo magnético (MH) e a correção da bússola para obter o rumo da bússola (CH).",
+    "q4": "O que acontece quando a velocidade do vento é maior que a velocidade aerodinâmica?",
+    "q4_a": "Se a velocidade do vento excede a velocidade aerodinâmica verdadeira, não há solução para a fórmula do ângulo de correção do vento — sin(WCA) = WS/TAS × sin(ângulo) exigiria um seno maior que 1, o que é impossível. Isso significa que a aeronave simplesmente não consegue avançar contra o vento naquela rota. O piloto precisa aumentar a velocidade aerodinâmica, esperar o vento diminuir ou escolher outra rota para evitar o componente adverso.",
+    "q5": "Como o vento cruzado afeta o pouso?",
+    "q5_a": "Na aproximação, o piloto precisa crabrar contra o vento para manter a linha central da pista. Pouco antes do toque, o crab angle é removido com o leme para alinhar a aeronave com a direção da pista — caso contrário, ela tocaria deslocando-se lateralmente, sobrecarregando o trem de pouso. O componente máximo de vento cruzado demonstrado para uma aeronave é listado no Manual de Operação do Piloto e não deve ser excedido para operações seguras.",
+    "q6": "O que é velocidade sobre o solo e por que ela importa?",
+    "q6_a": "A velocidade sobre o solo (GS) é a velocidade real da aeronave em relação ao solo, combinando os efeitos da velocidade aerodinâmica e do vento. Vento de proa reduz a GS abaixo da TAS; vento de cauda aumenta. A GS determina o tempo de voo (distância ÷ GS = tempo) e o combustível necessário. O planejamento de voo usa a GS para calcular o tempo estimado enroute (ETE), o consumo de combustível e as reservas necessárias. O GPS mostra a GS diretamente; antes do GPS, ela era calculada a partir da velocidade aerodinâmica e do triângulo do vento."
+  }
+}

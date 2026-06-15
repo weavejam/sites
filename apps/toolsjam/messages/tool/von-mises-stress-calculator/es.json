@@ -1,0 +1,87 @@
+{
+  "title": "Calculadora de esfuerzo de Von Mises: análisis de fluencia y seguridad",
+  "tagline": "Calcula el esfuerzo equivalente de Von Mises y el factor de seguridad a partir de componentes de esfuerzo normal y cortante.",
+  "intro": "Introduce los seis componentes de esfuerzo (σx, σy, σz, τxy, τyz, τzx) y, opcionalmente, la resistencia a la fluencia para evaluar la seguridad del material.",
+  "field": {
+    "sigmaX": "Esfuerzo normal σx (MPa)",
+    "sigmaY": "Esfuerzo normal σy (MPa)",
+    "sigmaZ": "Esfuerzo normal σz (MPa)",
+    "tauXY": "Esfuerzo cortante τxy (MPa)",
+    "tauYZ": "Esfuerzo cortante τyz (MPa)",
+    "tauZX": "Esfuerzo cortante τzx (MPa)",
+    "yieldStrength": "Resistencia a la fluencia (MPa)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultados de esfuerzo de Von Mises",
+    "vonMises": "Esfuerzo de Von Mises: {value} MPa",
+    "factorOfSafety": "Factor de seguridad: {value}",
+    "safe": "Seguro (sin fluencia)",
+    "yielding": "Fluencia"
+  },
+  "error": {
+    "invalid": "Introduce números válidos para los componentes de esfuerzo."
+  },
+  "formula": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)])",
+  "about": {
+    "heading": "Acerca de la calculadora de esfuerzo de Von Mises",
+    "body": "El esfuerzo de Von Mises, también llamado esfuerzo equivalente o esfuerzo efectivo, es una medida escalar que se utiliza para predecir la fluencia de materiales dúctiles bajo cargas complejas. Combina los seis componentes de esfuerzo —tres esfuerzos normales (σx, σy, σz) y tres cortantes (τxy, τyz, τzx)— en un único valor equivalente que puede compararse directamente con la resistencia a la fluencia uniaxial del material.\n\nEl criterio de fluencia de Von Mises, propuesto por Richard von Mises en 1913, establece que un material dúctil comienza a fluir cuando la energía de distorsión por unidad de volumen alcanza la energía de distorsión en fluencia bajo tracción uniaxial. Esto se expresa matemáticamente como: σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). Cuando σ_vm es igual o superior a la resistencia a la fluencia σ_y, se predice que el material fluye.\n\nEn el análisis por elementos finitos (FEA), el esfuerzo de Von Mises es uno de los resultados más reportados porque ofrece un número único y práctico que resume la severidad del estado de tensiones en cualquier punto. Los ingenieros lo usan para identificar regiones críticas, evaluar el aprovechamiento del material y calcular factores de seguridad. El factor de seguridad (FoS) se define como la relación entre la resistencia a la fluencia y el esfuerzo de Von Mises: FoS = σ_y / σ_vm. Un FoS mayor que 1 significa que el componente es seguro; valores inferiores a 1 indican fluencia.\n\nPara carga uniaxial (solo σx, todo lo demás en cero), el esfuerzo de Von Mises es igual a σx, lo que coincide con la definición directa de fluencia en un ensayo de tracción simple. Para carga de corte puro (solo τxy), σ_vm = √3 × τxy, lo que muestra que la fluencia en corte ocurre a τ_y = σ_y/√3 ≈ 0.577σ_y. Esta relación es un resultado clave de la teoría de la plasticidad y se usa en predicciones de fallo por corte en pernos, soldaduras y uniones estructurales.\n\nEl criterio de Von Mises suele preferirse frente al criterio de Tresca (máximo esfuerzo cortante) en la mayoría de las aplicaciones de ingeniería porque es suave y diferenciable, se ajusta mejor a los datos experimentales de la mayoría de los metales dúctiles, incluidos acero, aluminio y cobre, y es más cómodo en cálculos numéricos. El criterio de Tresca es algo más conservador (predice fluencia a niveles de esfuerzo más bajos) y a veces se usa en códigos de recipientes a presión.\n\nEn la práctica, el esfuerzo de Von Mises se utiliza en el diseño de componentes, análisis de soldaduras, evaluación de uniones atornilladas, códigos de recipientes a presión y tuberías (ASME, EN), certificación estructural aeroespacial y simulación de impactos automovilísticos. Comprender el tensor de tensiones completo y aplicar el criterio de Von Mises permite a los ingenieros realizar diseños fiables y más eficientes en material."
+  },
+  "examples": {
+    "heading": "Ejemplos de esfuerzo de Von Mises",
+    "intro": "Escenarios de carga representativos que muestran el esfuerzo de Von Mises, el factor de seguridad y el estado de seguridad.",
+    "colInput": "Escenario de carga",
+    "colOutput": "Esfuerzo de Von Mises / FoS",
+    "colNote": "Estado de seguridad",
+    "items": [
+      {
+        "input": "Tracción uniaxial: σx=150 MPa, todo lo demás=0, yield=300 MPa",
+        "output": "σ_vm = 150 MPa, FoS = 2.0",
+        "note": "Seguro (sin fluencia). El esfuerzo de Von Mises es igual al esfuerzo normal aplicado en carga uniaxial."
+      },
+      {
+        "input": "Corte puro: τxy=60 MPa, todos los esfuerzos normales=0, yield=200 MPa",
+        "output": "σ_vm ≈ 103.9 MPa, FoS ≈ 1.92",
+        "note": "Seguro (sin fluencia). σ_vm = √3 × τxy para corte puro; la fluencia ocurre a τ = σ_y/√3."
+      },
+      {
+        "input": "Biaxial: σx=100, σy=80, τxy=30 MPa, yield=250 MPa",
+        "output": "σ_vm ≈ 105.4 MPa, FoS ≈ 2.37",
+        "note": "Seguro (sin fluencia). La combinación de esfuerzos normales y cortantes produce un esfuerzo equivalente moderado."
+      },
+      {
+        "input": "Complejo: σx=120, σy=−40, σz=20, τxy=45, τyz=15, τzx=25 MPa, yield=350 MPa",
+        "output": "σ_vm ≈ 168.0 MPa, FoS ≈ 2.08",
+        "note": "Seguro (sin fluencia). Estado de tensiones 3D completo con contribuciones importantes de corte."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de esfuerzo de Von Mises",
+    "steps": [
+      "Introduce los tres componentes de esfuerzo normal σx, σy, σz en MPa. Para esfuerzo plano 2D, establece σz = 0.",
+      "Introduce los tres componentes de esfuerzo cortante τxy, τyz, τzx en MPa. Para problemas 2D, establece τyz = τzx = 0.",
+      "Opcionalmente, introduce la resistencia a la fluencia del material en MPa para calcular el factor de seguridad y el estado de seguridad.",
+      "Haz clic en Calcular. El esfuerzo equivalente de Von Mises se mostrará junto con FoS y el estado de seguridad si se proporcionó la resistencia a la fluencia.",
+      "Usa valores negativos para los esfuerzos normales de compresión. El criterio de Von Mises es independiente del signo de los esfuerzos normales cuando se combina con el corte."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre el esfuerzo de Von Mises",
+    "q1": "¿Qué es el esfuerzo de Von Mises?",
+    "q1_a": "El esfuerzo de Von Mises es una medida escalar de esfuerzo equivalente que combina los seis componentes del tensor de tensiones en un único valor. Representa la componente de energía de distorsión del estado de tensiones y se usa para predecir la fluencia en materiales dúctiles. Cuando σ_vm ≥ σ_yield, se predice que el material fluye.",
+    "q2": "¿Cuál es la fórmula del esfuerzo de Von Mises?",
+    "q2_a": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). Se deriva de la teoría de la energía de distorsión y también puede expresarse en términos de los esfuerzos principales σ1, σ2, σ3 como σ_vm = √(0.5 × [(σ1−σ2)² + (σ2−σ3)² + (σ3−σ1)²]).",
+    "q3": "¿Cómo se calcula el factor de seguridad?",
+    "q3_a": "El factor de seguridad (FoS) es la relación entre la resistencia a la fluencia del material y el esfuerzo de Von Mises: FoS = σ_yield / σ_vm. Un FoS > 1 significa que el componente es seguro; FoS = 1 significa que el material está en el punto de fluencia; FoS < 1 indica fluencia (deformación plástica). Los códigos de ingeniería suelen exigir FoS de 1.5 a 4 según la aplicación.",
+    "q4": "¿Cuál es la diferencia entre los criterios de Von Mises y Tresca?",
+    "q4_a": "Ambos predicen la fluencia en materiales dúctiles. El criterio de Von Mises se basa en la energía de distorsión y da σ_y = √3 × τ_y. El criterio de Tresca se basa en el máximo esfuerzo cortante y da σ_y = 2 × τ_y. Tresca es algo más conservador (predice fluencia a cargas menores) y se usa en algunos códigos de recipientes a presión. Von Mises se ajusta mejor a los datos experimentales de la mayoría de los metales.",
+    "q5": "¿Se puede usar el esfuerzo de Von Mises para materiales frágiles?",
+    "q5_a": "No — el criterio de Von Mises se aplica específicamente a materiales dúctiles que fluyen antes de fracturarse (metales como acero, aluminio y cobre). Para materiales frágiles (hierro fundido, cerámicas, hormigón), son más apropiados el esfuerzo principal máximo o el criterio de Mohr-Coulomb, porque la fractura frágil está gobernada por la fisuración por tracción y no por el flujo plástico inducido por corte.",
+    "q6": "¿Qué significa un esfuerzo de Von Mises negativo?",
+    "q6_a": "El esfuerzo de Von Mises siempre es no negativo (es una raíz cuadrada de una suma de cuadrados). No tiene signo. Un esfuerzo de Von Mises de cero significa que no hay esfuerzo en ese punto. La dirección de carga (tracción o compresión) queda recogida en los componentes individuales de esfuerzo, pero el escalar equivalente de Von Mises no distingue entre carga a tracción y a compresión."
+  }
+}

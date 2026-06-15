@@ -1,0 +1,85 @@
+{
+  "title": "ROC-Kurve- und AUC-Rechner - Bewertung binärer Klassifikatoren",
+  "tagline": "Fortgeschrittene statistische Tests",
+  "intro": "Geben Sie unten die Vorhersagescores und wahren Labels Ihres Modells ein, um eine ROC-Kurve zu erzeugen und die Fläche unter der Kurve (AUC) zu berechnen.",
+  "field": {
+    "dataInput": "Daten (Score, Label)",
+    "dataInputHint": "Geben Sie eine Beobachtung pro Zeile im Format 'score,label' ein. Labels müssen 0 oder 1 sein. Beispiel: 0.9,1"
+  },
+  "placeholder": {
+    "dataInput": "Geben Sie die Daten zeilenweise als 'score,label' ein.\nBeispiel:\n0.9,1\n0.8,1\n0.7,0\n0.4,0"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Ungültige Eingabe. Jede Zeile muss einen numerischen Score und ein binäres Label (0 oder 1) enthalten, und beide Klassen müssen vorhanden sein."
+  },
+  "result": {
+    "auc": "AUC",
+    "aucExcellent": "Hervorragende Trennschärfe",
+    "aucGood": "Gute Trennschärfe",
+    "aucFair": "Mäßige Trennschärfe",
+    "aucPoor": "Schwache Trennschärfe",
+    "optimalThreshold": "Optimaler Schwellenwert",
+    "sensitivity": "Sensitivität (TPR)",
+    "specificity": "Spezifität (1−FPR)",
+    "threshold": "Schwellenwert",
+    "fpr": "FPR",
+    "tpr": "TPR"
+  },
+  "about": {
+    "heading": "Über den ROC-Kurve- und AUC-Rechner",
+    "body": "Die Receiver Operating Characteristic (ROC)-Kurve ist ein grafisches Werkzeug zur Bewertung der Trennfähigkeit eines binären Klassifikationsmodells über alle möglichen Entscheidungsschwellen hinweg. Sie trägt die True-Positive-Rate (TPR, bzw. Sensitivität) auf der y-Achse gegen die False-Positive-Rate (FPR, bzw. 1 − Spezifität) auf der x-Achse auf, während sich die Entscheidungsschwelle von hoch nach niedrig verändert.\n\nSensitivität (TPR) ist der Anteil der tatsächlich positiven Fälle, die korrekt identifiziert werden: TPR = TP / (TP + FN). Spezifität ist der Anteil der tatsächlich negativen Fälle, die korrekt identifiziert werden: Specificity = TN / (TN + FP). FPR = 1 − Specificity = FP / (TN + FP). Ein perfekter Klassifikator würde durch die linke obere Ecke gehen (FPR = 0, TPR = 1), während die ROC-Kurve eines Zufallsklassifikators auf der Diagonalen von (0,0) nach (1,1) liegt.\n\nDie Fläche unter der ROC-Kurve (AUC) fasst die Gesamtleistung der Klassifikation in einem einzigen Skalar zusammen. Eine AUC von 1.0 steht für perfekte Trennschärfe; 0.5 steht für keine Trennschärfe (entspricht Zufallsraten). Üblicherweise gilt: AUC ≥ 0.9 ist hervorragend, 0.8–0.9 ist gut, 0.7–0.8 ist mäßig und unter 0.7 ist schwach.\n\nDieser Rechner berechnet die AUC mit der Trapezregel, die die Fläche unter der stufenförmigen ROC-Kurve integriert. Er bestimmt außerdem den optimalen Entscheidungsschwellenwert mithilfe von Youdens J-Statistik (J = sensitivity + specificity − 1), die die Summe aus Sensitivität und Spezifität maximiert und einen ausgewogenen Betriebspunkt liefert.\n\nROC-Kurven und AUC sind Standardmetriken in der medizinischen Diagnostik (wenn Klassifikatoren Kranke von Gesunden trennen), im Machine Learning (Bewertung binärer Klassifikationsmodelle) und im Kredit-Scoring. Im Gegensatz zur Accuracy ist AUC unempfindlich gegenüber Klassenungleichgewicht und daher besonders wertvoll, wenn positive Fälle selten sind.\n\nDieses Tool akzeptiert jede Liste von Score-Label-Paaren. Scores können Wahrscheinlichkeiten, Logit-Werte oder andere kontinuierliche Rangwerte sein. Labels müssen 0 (negative Klasse) oder 1 (positive Klasse) sein. Die Ergebnistabelle zeigt alle ROC-Betriebspunkte, wobei die Zeile mit dem optimalen Schwellenwert zur besseren Orientierung hervorgehoben wird."
+  },
+  "examples": {
+    "heading": "ROC-Kurve Beispiele",
+    "intro": "Diese Beispiele zeigen, wie AUC-Werte verschiedenen Leistungsniveaus des Klassifikators entsprechen.",
+    "colInput": "Score-Label-Paare",
+    "colOutput": "AUC",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "0.9,1 / 0.8,1 / 0.3,0 / 0.2,0",
+        "output": "AUC = 1.0",
+        "note": "Perfekter Klassifikator"
+      },
+      {
+        "input": "0.9,1 / 0.8,1 / 0.75,1 / 0.6,0 / 0.55,1 / 0.45,0 / 0.4,0 / 0.35,0",
+        "output": "AUC ≈ 0.9375",
+        "note": "Hervorragende Trennschärfe"
+      },
+      {
+        "input": "0.9,0 / 0.8,1 / 0.7,0 / 0.6,1 / 0.5,0 / 0.4,1",
+        "output": "AUC ≈ 0.33",
+        "note": "Umgekehrte Rangfolge — schlechter als Zufall"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie diesen Rechner",
+    "steps": [
+      "Geben Sie eine Beobachtung pro Zeile im Format 'score,label' ein, wobei score eine numerische Vorhersage und label 0 oder 1 ist.",
+      "Stellen Sie sicher, dass Ihre Daten sowohl positive (label=1) als auch negative (label=0) Beispiele enthalten.",
+      "Klicken Sie auf 'Berechnen', um die AUC zu berechnen und die ROC-Kurvenpunkte zu erzeugen.",
+      "Prüfen Sie den AUC-Wert und seine qualitative Einordnung (hervorragend, gut, mäßig oder schwach).",
+      "Suchen Sie die hervorgehobene Zeile mit dem optimalen Schwellenwert, um den besten Kompromiss zwischen Sensitivität und Spezifität zu finden."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "q1": "Was ist AUC und warum ist sie wichtig?",
+    "q1_a": "AUC (Area Under the ROC Curve) misst die Fähigkeit eines Klassifikators, positive Instanzen über alle Schwellen hinweg höher als negative zu ranken. Sie ist schwellenunabhängig und robust gegenüber Klassenungleichgewicht, weshalb sie ein Standard-Benchmark für binäre Klassifikationsmodelle in Medizin, Machine Learning und Finanzwesen ist.",
+    "q2": "Was bedeutet eine AUC von 0.5?",
+    "q2_a": "Eine AUC von 0.5 bedeutet, dass der Klassifikator nicht besser ist als Zufallsraten — er ordnet positive und negative Instanzen zufällig ein. Jede AUC unter 0.5 deutet darauf hin, dass der Klassifikator systematisch falsch liegt, und eine Umkehr seiner Vorhersagen würde eine überzufällige Leistung ergeben.",
+    "q3": "Wie wird der optimale Schwellenwert ausgewählt?",
+    "q3_a": "Dieser Rechner verwendet Youdens J-Statistik (J = sensitivity + specificity − 1), um den optimalen Schwellenwert zu wählen. Sie maximiert die Summe aus Sensitivität und Spezifität und liefert einen ausgewogenen Betriebspunkt. Andere Kriterien wie Kostenminimierung oder Maximierung des F1-Scores können je nach Anwendung andere optimale Schwellenwerte ergeben.",
+    "q4": "Kann AUC für Multi-Class-Klassifikation verwendet werden?",
+    "q4_a": "Die Standard-AUC ist für binäre Klassifikation definiert. Für Multi-Class-Probleme kann für jede Klasse separat eine One-vs-Rest-AUC berechnet oder eine Makro- bzw. gewichtete Durchschnitts-AUC berichtet werden. Dieser Rechner unterstützt nur binäre Klassifikation (Labels 0 und 1).",
+    "q5": "Was ist der Unterschied zwischen Sensitivität und Spezifität?",
+    "q5_a": "Sensitivität (Recall oder TPR) misst, wie gut der Klassifikator echte Positive erkennt: TP / (TP + FN). Spezifität misst, wie gut er Fehlalarme vermeidet: TN / (TN + FP). Hohe Sensitivität ist entscheidend, wenn das Übersehen eines positiven Falls teuer ist (z. B. bei Krankheitsscreenings). Hohe Spezifität ist wichtig, wenn False Positives teuer sind (z. B. bei Bestätigungstests).",
+    "q6": "Ist AUC immer die beste Kennzahl für die Modellevaluation?",
+    "q6_a": "AUC ist hervorragend für den Vergleich von Modellen über Schwellen hinweg und für unausgewogene Datensätze, aber nicht immer die beste Wahl. Bei stark unausgeglichenen Daten ist die Precision-Recall-AUC (PR-AUC) oft aussagekräftiger. Für einen bestimmten Entscheidungsschwellenwert können Kennzahlen wie F1-Score, Accuracy oder Matthews-Korrelationskoeffizient relevanter sein."
+  }
+}

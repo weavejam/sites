@@ -1,0 +1,82 @@
+{
+  "title": "Calculadora de limites IQR para outliers",
+  "tagline": "Identifique outliers estatísticos no seu conjunto de dados usando o método dos limites pelo intervalo interquartil (IQR). Insira números separados por vírgulas para encontrar instantaneamente Q1, Q3, IQR e ambos os limites.",
+  "intro": "Digite seus dados separados por vírgulas, clique em Calcular e veja o limite superior, o limite inferior e quaisquer outliers no seu conjunto de dados.",
+  "field": {
+    "data": "Conjunto de dados"
+  },
+  "placeholder": {
+    "data": "ex.: 4, 8, 15, 16, 23, 42"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira pelo menos 4 números separados por vírgulas para calcular os limites."
+  },
+  "result": {
+    "heading": "Resultados",
+    "n": "Contagem (n)",
+    "q1": "Q1 (percentil 25)",
+    "q3": "Q3 (percentil 75)",
+    "iqr": "IQR (Q3 − Q1)",
+    "lowerFence": "Limite inferior (Q1 − 1.5 × IQR)",
+    "upperFence": "Limite superior (Q3 + 1.5 × IQR)",
+    "outliersHeading": "Outliers",
+    "noOutliers": "Nenhum outlier detectado."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de limites superior e inferior",
+    "body": "O método dos limites superior e inferior é a técnica padrão para identificar outliers em um conjunto de dados usando o intervalo interquartil (IQR). Desenvolvido como parte da estrutura de análise exploratória de dados de John Tukey em 1977, ele oferece uma forma robusta e não paramétrica de sinalizar observações incomuns sem assumir que os dados sigam qualquer distribuição específica. O método é amplamente ensinado em cursos introdutórios de estatística e é a abordagem padrão de detecção de outliers em boxplots.\n\nO cálculo começa classificando o conjunto de dados e encontrando o primeiro e o terceiro quartis. Q1 (percentil 25) é o valor abaixo do qual 25% dos dados se encontram, enquanto Q3 (percentil 75) é o valor abaixo do qual 75% se encontram. O IQR é simplesmente Q3 menos Q1, representando a dispersão da metade central dos dados. Como o IQR ignora os valores extremos nas duas pontas da distribuição, ele é resistente aos próprios outliers que tenta detectar — uma propriedade que torna o método dos limites mais confiável do que métodos baseados em amplitude.\n\nDepois que o IQR é calculado, os limites são definidos em 1.5 × IQR abaixo de Q1 (limite inferior) e 1.5 × IQR acima de Q3 (limite superior). Qualquer ponto de dados abaixo do limite inferior ou acima do limite superior é classificado como outlier. O multiplicador 1.5 foi escolhido empiricamente por Tukey porque funciona bem para dados aproximadamente normais: em uma distribuição normal, essa regra marca cerca de 0.7% das observações como outliers, o que corresponde a valores a mais de aproximadamente 2.7 desvios padrão da média.\n\nPara outliers mais extremos, algumas aplicações usam um multiplicador de 3 em vez de 1.5, chamando esses pontos de outliers distantes ou extremos. Pontos fora do limite de 1.5 × IQR, mas dentro do de 3 × IQR, às vezes são chamados de outliers leves. Esta calculadora usa a regra padrão de 1.5 × IQR, adequada para a maioria das análises exploratórias.\n\nA detecção de outliers é uma etapa crítica em limpeza de dados, controle de qualidade e modelagem estatística. Na manufatura, uma medição de processo fora do limite pode indicar uma unidade defeituosa ou um erro de medição. Em finanças, retornos extremos podem sinalizar erros de dados, anomalias de mercado ou eventos reais que exigem investigação. Em pesquisa clínica, valores fisiologicamente impossíveis são identificados e revisados. Em aprendizado de máquina, outliers podem distorcer o treinamento do modelo se não forem tratados.\n\nÉ importante lembrar que outliers estatísticos não são necessariamente valores errados. Um outlier é apenas uma observação inusitadamente distante do conjunto principal dos dados segundo a regra do IQR. É preciso investigar se o valor representa um evento extremo real, um erro de medição ou um erro de digitação."
+  },
+  "examples": {
+    "heading": "Exemplos de limites superior e inferior",
+    "intro": "Exemplos resolvidos passo a passo mostrando como o método dos limites identifica outliers em conjuntos de dados típicos.",
+    "colInput": "Conjunto de dados",
+    "colOutput": "Limites e outliers",
+    "colNote": "Interpretação",
+    "items": [
+      {
+        "input": "10, 12, 14, 16, 18, 20, 100",
+        "output": "Inferior: 4 | Superior: 28 | Outlier: 100",
+        "note": "Q1=13, Q3=19, IQR=6. Limite inferior = 13 − 9 = 4. Limite superior = 19 + 9 = 28. O valor 100 excede o limite superior e é sinalizado como outlier."
+      },
+      {
+        "input": "5, 7, 8, 9, 10, 11, 12, 14",
+        "output": "Inferior: 2.5 | Superior: 16.5 | Sem outliers",
+        "note": "Q1=7.75, Q3=11.25, IQR=3.5. Os limites são 2.5 e 16.5. Todos os valores (5 a 14) ficam dentro dos limites, então não há outliers."
+      },
+      {
+        "input": "2, 3, 5, 7, 8, 9, 10, 11, 12, 50",
+        "output": "Inferior: −2.375 | Superior: 18.625 | Outlier: 50",
+        "note": "Q1=5.5, Q3=10.75, IQR=5.25. Limite superior = 10.75 + 7.875 = 18.625. O valor 50 está bem acima do limite superior e é um outlier claro."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de limites",
+    "steps": [
+      "Digite seus dados no campo de entrada, separados por vírgulas ou espaços. Você precisa de pelo menos 4 valores para calcular quartis significativos.",
+      "Clique em Calcular para obter Q1, Q3, o IQR, o limite inferior (Q1 − 1.5 × IQR) e o limite superior (Q3 + 1.5 × IQR).",
+      "Revise os valores de limite destacados — qualquer ponto abaixo do limite inferior ou acima do limite superior é um outlier.",
+      "Confira a seção de outliers para ver os valores sinalizados explicitamente.",
+      "Clique em Redefinir para limpar a entrada e começar de novo com um novo conjunto de dados."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre limites superior e inferior",
+    "q1": "O que são os limites superior e inferior?",
+    "q1_a": "O limite superior é Q3 + 1.5 × IQR e o limite inferior é Q1 − 1.5 × IQR. Qualquer ponto de dados fora desses limites é considerado outlier. Os limites criam uma faixa que envolve a dispersão esperada de uma distribuição aproximadamente em formato de sino.",
+    "q2": "Por que usar 1,5 vezes o IQR?",
+    "q2_a": "O multiplicador 1.5 foi escolhido por John Tukey porque é aproximadamente ideal para detectar outliers em dados normais, mantendo baixa a taxa de falsos positivos. Em uma distribuição normal, ele sinaliza cerca de 0.7% das observações. Dobrar o multiplicador para 3 captura apenas outliers extremos.",
+    "q3": "O que é o IQR e como ele é calculado?",
+    "q3_a": "O IQR (intervalo interquartil) é Q3 menos Q1 e representa a dispersão dos 50% centrais dos dados. Ele é calculado ordenando os dados, encontrando o percentil 25 (Q1) e o percentil 75 (Q3) e então subtraindo. O IQR é resistente a outliers porque ignora os 25% superiores e inferiores dos valores.",
+    "q4": "Um outlier significa que os dados estão errados?",
+    "q4_a": "Não necessariamente. Um outlier é apenas uma observação inusitadamente extrema em relação ao conjunto principal dos dados. Pode ser um evento extremo real, um erro de medição ou um erro de digitação. Cada valor sinalizado deve ser investigado no contexto antes de ser removido ou corrigido.",
+    "q5": "Como os limites se relacionam com boxplots?",
+    "q5_a": "Os limites superior e inferior definem as hastes em um boxplot de Tukey padrão. A caixa cobre o IQR (de Q1 a Q3), a linha dentro da caixa é a mediana, e as hastes se estendem até os pontos de dados mais extremos que ainda estão dentro dos limites. Os pontos além das hastes são plotados individualmente como outliers.",
+    "q6": "O método dos limites é adequado para conjuntos pequenos?",
+    "q6_a": "O método funciona melhor com pelo menos 10 a 20 observações. Com menos valores, as estimativas dos quartis ficam imprecisas e os limites podem ser pouco confiáveis. Para conjuntos muito pequenos, considere examinar visualmente todos os valores em vez de depender apenas da regra automática de limites."
+  }
+}

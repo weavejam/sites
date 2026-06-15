@@ -1,0 +1,97 @@
+{
+  "title": "Wilcoxon Signed-Rank Test Calculator - Paired Samples",
+  "tagline": "Compare two related samples or repeated measurements using the non-parametric Wilcoxon Signed-Rank Test. Get W statistic, Z-score, and p-value without assuming normality.",
+  "intro": "Enter your paired before/after measurements as comma-separated numbers. Both samples must have the same number of values.",
+  "field": {
+    "sample1": "Sample 1 Data (e.g., Before Treatment)",
+    "sample2": "Sample 2 Data (e.g., After Treatment)"
+  },
+  "placeholder": {
+    "sample": "e.g., 10, 12, 15, 11, 20"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter at least one valid number in each sample.",
+    "mismatch": "Both samples must have the same number of values."
+  },
+  "result": {
+    "heading": "Results",
+    "W": "W Statistic",
+    "Z": "Z-Score",
+    "pValue": "p-Value (two-tailed)",
+    "n": "n (non-zero differences)",
+    "Wplus": "W⁺ (positive ranks sum)",
+    "Wminus": "W⁻ (negative ranks sum)",
+    "reject": "Reject H₀ — significant difference between paired samples (α = 0.05).",
+    "failReject": "Fail to reject H₀ — no significant difference detected (α = 0.05)."
+  },
+  "about": {
+    "heading": "About the Wilcoxon Signed-Rank Test",
+    "body": "The Wilcoxon Signed-Rank Test is a non-parametric statistical hypothesis test used to compare two related samples or repeated measurements on a single group. It is the non-parametric counterpart of the paired t-test, applied when the assumption of normality for the differences between pairs cannot be justified.\n\nIntroduced by Frank Wilcoxon in 1945, the test is especially valuable in clinical trials and behavioral science, where the same individuals are measured before and after an intervention. Instead of using raw data values, the test ranks the absolute differences between paired observations and sums the ranks associated with positive and negative differences separately.\n\nThe test procedure works as follows. For each pair, the difference d = (after − before) is computed. Pairs with a difference of zero are excluded. The absolute differences are ranked from smallest to largest, with ties receiving average ranks. The sum of ranks for positive differences is W⁺, and the sum for negative differences is W⁻. The test statistic W is the smaller of W⁺ and W⁻.\n\nFor larger samples (typically n ≥ 10), the distribution of W is approximated by a normal distribution. The Z-score is calculated using the mean and standard deviation of W under the null hypothesis. The mean is n(n+1)/4 and the standard deviation is √[n(n+1)(2n+1)/24], where n is the count of non-zero differences.\n\nThe null hypothesis states that the median difference between paired observations is zero — the treatment has no effect. The alternative hypothesis is that the median difference is not zero (two-tailed), or that it is positive or negative (one-tailed). This calculator reports the two-tailed p-value, which is the most conservative choice.\n\nA p-value below 0.05 is conventionally interpreted as evidence that the paired measurements differ significantly. In a blood pressure study, this might indicate that a medication significantly lowered systolic pressure. In a psychology study, it might show that a therapy program significantly reduced anxiety scores.\n\nThe test requires that the observations be paired — each observation in Sample 1 must correspond to a specific observation in Sample 2 (the same subject at a different time, or matched subjects). The pairs must be independent of each other, and the differences must come from a symmetric distribution, though not necessarily a normal one.\n\nCompared to the paired t-test, the Wilcoxon Signed-Rank Test is more robust to outliers and non-normal distributions, but slightly less powerful when the normality assumption holds. It is the recommended choice for small samples, ordinal outcomes, or when extreme values are present in the data."
+  },
+  "examples": {
+    "heading": "Practical Examples",
+    "intro": "Use these examples to see how the calculator works with different paired datasets.",
+    "colInput": "Input",
+    "colOutput": "Output",
+    "colNote": "Note",
+    "items": [
+      {
+        "input": "Before: 140,135,150,160,130,145,155,138,148,152 — After: 132,130,142,151,125,137,145,130,140,148",
+        "output": "W=0, Z≈−2.80, p≈0.005",
+        "note": "Blood pressure medication — all differences negative, significant reduction."
+      },
+      {
+        "input": "Before: 8,7,6,9,8,7,8,9 — After: 6,5,5,7,6,6,7,7",
+        "output": "W=0, Z≈−2.52, p≈0.012",
+        "note": "Anxiety scores after therapy — significant improvement at α = 0.05."
+      },
+      {
+        "input": "Before: 75,80,82,79,88,90,76,85,89,92,78,84 — After: 80,85,85,83,90,94,81,88,92,95,81,89",
+        "output": "W=0, Z≈+3.06, p≈0.002",
+        "note": "Student test scores pre/post new teaching method — highly significant gain."
+      }
+    ],
+    "loadBP": "Blood Pressure",
+    "loadAnxiety": "Anxiety Scores",
+    "loadScores": "Student Scores"
+  },
+  "howto": {
+    "heading": "How to use the calculator",
+    "steps": [
+      "Enter the before-treatment (or baseline) measurements in the Sample 1 field, separated by commas.",
+      "Enter the corresponding after-treatment measurements in the Sample 2 field. Both samples must have exactly the same number of values.",
+      "Click Calculate to compute the differences, rank them, and produce the W statistic, Z-score, and p-value.",
+      "A p-value below 0.05 (shown in red) indicates a statistically significant difference between the two conditions.",
+      "Use the example buttons to quickly load real-world datasets and verify the calculator with known results."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ",
+    "items": [
+      {
+        "q": "What is the difference between the Wilcoxon Signed-Rank Test and the paired t-test?",
+        "a": "Both tests compare paired measurements, but the paired t-test assumes the differences are normally distributed. The Wilcoxon Signed-Rank Test makes no such assumption and is therefore preferred for small samples, ordinal data, or data with significant outliers. When normality holds, the t-test has slightly more power."
+      },
+      {
+        "q": "What happens to pairs with a difference of zero?",
+        "a": "Pairs where the before and after values are identical (difference = 0) are excluded from the analysis. The effective sample size n used for computing the test statistic and p-value only counts the non-zero differences. This is the standard procedure recommended in most statistical textbooks."
+      },
+      {
+        "q": "How are tied differences handled?",
+        "a": "When multiple pairs produce the same absolute difference, those values receive the average of the ranks they would occupy. For example, three pairs with |d| = 5 competing for ranks 4, 5, and 6 each receive rank 5. This midrank correction preserves the validity of the Z approximation."
+      },
+      {
+        "q": "Why does this calculator only report a two-tailed p-value?",
+        "a": "The two-tailed test is the most conservative and the default for most exploratory studies. It tests whether the median difference is zero in either direction. For directional hypotheses (e.g., treatment always improves outcomes), you can halve the reported two-tailed p-value to get the one-tailed p-value."
+      },
+      {
+        "q": "How large does the sample need to be for the Z approximation to be valid?",
+        "a": "The normal approximation for the W statistic is generally reliable when n ≥ 10 (after removing zero differences). For smaller samples, exact critical values from the Wilcoxon table should be consulted. This calculator uses the normal approximation, so be cautious with n < 10."
+      }
+    ]
+  }
+}

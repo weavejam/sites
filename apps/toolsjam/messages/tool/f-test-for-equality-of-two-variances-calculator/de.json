@@ -1,0 +1,102 @@
+{
+  "title": "F-Test-Rechner für Gleichheit zweier Varianzen",
+  "tagline": "Bestimmen Sie mit dem F-Test, ob zwei Populationsvarianzen gleich sind. Erhalten Sie F-Statistik, p-Wert, Freiheitsgrade und eine klare statistische Entscheidung.",
+  "intro": "Geben Sie für jede Gruppe Stichprobenvarianz und Stichprobengröße ein, wählen Sie das Signifikanzniveau und sehen Sie sofort, ob die beiden Varianzen statistisch gleich sind.",
+  "card": {
+    "title": "F-Test auf Gleichheit zweier Varianzen",
+    "description": "Testet, ob zwei unabhängige Stichproben gleiche Populationsvarianzen haben"
+  },
+  "field": {
+    "group1": "Gruppe 1",
+    "group2": "Gruppe 2",
+    "variance": "Varianz (s²)",
+    "variance1": "Varianz Gruppe 1 (s²)",
+    "variance2": "Varianz Gruppe 2 (s²)",
+    "sampleSize": "Stichprobengröße (n)",
+    "sampleSize1": "Stichprobengröße Gruppe 1 (n)",
+    "sampleSize2": "Stichprobengröße Gruppe 2 (n)",
+    "alpha": "Signifikanzniveau (α)"
+  },
+  "placeholder": {
+    "variance": "z. B. 5.2",
+    "sampleSize": "z. B. 30"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie gültige Werte ein. Varianzen müssen ≥ 0 sein und Stichprobengrößen ganze Zahlen ≥ 2."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "fStatistic": "F-Statistik",
+    "df1": "df₁ (Zähler)",
+    "df2": "df₂ (Nenner)",
+    "pValue": "p-Wert (zweiseitig)",
+    "criticalF": "Kritischer F-Wert",
+    "reject": "H₀ verwerfen — die beiden Varianzen unterscheiden sich signifikant.",
+    "failReject": "H₀ nicht verwerfen — kein signifikanter Unterschied zwischen den Varianzen."
+  },
+  "about": {
+    "heading": "Über den F-Test auf Gleichheit zweier Varianzen",
+    "body": "Der F-Test auf Gleichheit zweier Varianzen ist ein klassisches statistisches Verfahren, mit dem geprüft wird, ob zwei unabhängige Populationen dieselbe Varianz haben. Benannt nach Sir Ronald A. Fisher, wird der Test häufig als diagnostische Prüfung vor einem Zwei-Stichproben-t-Test verwendet, der gleiche Populationsvarianzen in beiden Gruppen voraussetzt. Wenn der F-Test diese Annahme verwirft, sollte stattdessen der Welch-t-Test verwendet werden, der keine gleichen Varianzen erfordert.\n\nDie Teststatistik ist das Verhältnis der beiden Stichprobenvarianzen: F = s₁² / s₂². Üblicherweise wird die größere Stichprobenvarianz in den Zähler gesetzt, sodass F ≥ 1 gilt. Dadurch liegt die gesamte kritische Masse im oberen Rand der F-Verteilung, was die Interpretation vereinfacht. Die Nullhypothese H₀ besagt, dass die Populationsvarianzen gleich sind (σ₁² = σ₂²), während die Alternativhypothese H₁ besagt, dass sie sich unterscheiden (σ₁² ≠ σ₂²). Die Freiheitsgrade sind df₁ = n₁ − 1 (Zähler) und df₂ = n₂ − 1 (Nenner), wobei n₁ und n₂ die jeweiligen Stichprobengrößen sind.\n\nZur Bewertung der Signifikanz wird der berechnete F-Wert mit der F-Verteilung mit (df₁, df₂) Freiheitsgraden verglichen. Bei einem zweiseitigen Test entspricht der p-Wert 2 × P(F > F_obs). Ist der p-Wert kleiner oder gleich dem gewählten Signifikanzniveau α (typischerweise 0.05 oder 0.01), wird H₀ verworfen und die Varianzen werden als signifikant unterschiedlich erklärt. Der kritische F-Wert beim gewählten α liefert eine äquivalente Entscheidungsgrenze: Wenn F_obs > F_crit, wird H₀ verworfen.\n\nDer F-Test hat breite praktische Anwendungen. In der Fertigung prüft er, ob zwei Produktionslinien Teile mit gleicher dimensionaler Variabilität herstellen — eine Voraussetzung für Qualitätskontrollverfahren, die einheitliche Prozesse annehmen. In der klinischen Forschung prüft er, ob zwei Behandlungsgruppen eine ähnliche Antwortvariabilität haben, was sowohl Studiendesign als auch Interpretation beeinflusst. In der Finanzwelt vergleicht er die Volatilität zweier Vermögenswerte oder Portfolios und unterstützt Risikobewertung sowie Diversifikationsstrategien. In der Landwirtschaft bewertet er, ob zwei Düngemittel Ernten mit gleicher Ertragskonstanz hervorbringen.\n\nTrotz seiner Stärke hat der F-Test eine wichtige Einschränkung: Er ist sehr empfindlich gegenüber Abweichungen von der Normalverteilung. Beide Stichproben müssen aus normalverteilten Populationen stammen, damit der Test gültig ist. Wenn Normalität unsicher ist, bevorzugen Analysten häufig den robusteren Levene-Test oder den Brown–Forsythe-Test, die rohe Abweichungen vom Mittelwert durch absolute Abweichungen oder Medianabweichungen ersetzen. Dieser Rechner verwendet die exakte CDF der F-Verteilung über die regularisierte unvollständige Betafunktion und erzeugt p-Werte, die mit R (var.test), Python (scipy.stats.levene) und SPSS konsistent sind."
+  },
+  "examples": {
+    "heading": "F-Test auf Gleichheit von Varianzen — Beispiele",
+    "intro": "Drei durchgerechnete Beispiele aus Fertigung, Bildung und Finanzen.",
+    "colInput": "Eingabe",
+    "colOutput": "Ergebnis",
+    "colNote": "Kontext",
+    "loadMfg": "Fertigungsbeispiel laden",
+    "loadTeaching": "Beispiel zu Lehrmethoden laden",
+    "loadStock": "Beispiel zur Aktienvolatilität laden",
+    "items": [
+      {
+        "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+        "output": "F = 1.1724, p ≈ 0.6767 — H₀ nicht verwerfen",
+        "note": "Zwei Maschinen produzieren Schrauben. Die Varianzen der Schraubendurchmesser unterscheiden sich nicht signifikant; beide Maschinen sind gleich konsistent."
+      },
+      {
+        "input": "s₁² = 110, n₁ = 41; s₂² = 125, n₂ = 31; α = 0.05",
+        "output": "F = 1.1364, p ≈ 0.6679 — H₀ nicht verwerfen",
+        "note": "Zwei Lehrmethoden. Die Varianzen der Testergebnisse sind statistisch gleich; beide Methoden erzeugen eine ähnliche Ergebnisstabilität."
+      },
+      {
+        "input": "s₁² = 5.2, n₁ = 100; s₂² = 4.8, n₂ = 100; α = 0.01",
+        "output": "F = 1.0833, p ≈ 0.6366 — H₀ nicht verwerfen",
+        "note": "Zwei Aktien werden hinsichtlich der Volatilität täglicher Renditen verglichen. Auf dem 1%-Niveau gibt es keinen Hinweis auf unterschiedliche Risikoprofile."
+      },
+      {
+        "input": "s₁² = 18, n₁ = 16; s₂² = 12, n₂ = 16; α = 0.10",
+        "output": "F = 1.5, p ≈ 0.3952 — H₀ nicht verwerfen",
+        "note": "Pflanzenhöhe unter zwei Düngemitteln. Die Varianz des Pflanzenwachstums ist auf dem 10%-Niveau statistisch nicht unterschiedlich."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den F-Test-Rechner für Gleichheit von Varianzen",
+    "steps": [
+      "Geben Sie die Stichprobenvarianz (s²) für Gruppe 1 ein — die mittlere quadrierte Abweichung vom Gruppenmittelwert — zusammen mit der Anzahl der Beobachtungen (n) in dieser Gruppe.",
+      "Geben Sie die entsprechende Varianz und Stichprobengröße für Gruppe 2 in die Felder für Gruppe 2 ein.",
+      "Wählen Sie ein Signifikanzniveau α aus der Dropdown-Liste: 0.01 (1%), 0.05 (5%) oder 0.10 (10%). In veröffentlichten Studien ist 0.05 die häufigste Wahl.",
+      "Klicken Sie auf „Berechnen“. Der Rechner setzt automatisch die größere Varianz in den Zähler, berechnet F = s_max²/s_min², ermittelt den zweiseitigen p-Wert mit der F-Verteilung und zeigt den kritischen F-Wert an.",
+      "Interpretieren Sie das Ergebnis: Wenn p-Wert ≤ α, unterscheiden sich die Varianzen signifikant und Sie sollten einen Welch-t-Test statt eines standardmäßigen t-Tests mit gleichen Varianzen verwenden. Andernfalls können gleiche Varianzen angenommen werden."
+    ]
+  },
+  "faq": {
+    "heading": "F-Test auf Gleichheit von Varianzen — FAQ",
+    "q1": "Was prüft der F-Test auf Gleichheit von Varianzen?",
+    "q1_a": "Er prüft die Nullhypothese H₀: σ₁² = σ₂² gegen die Alternative H₁: σ₁² ≠ σ₂². Ein signifikantes Ergebnis (p ≤ α) bedeutet, dass die beiden Populationsvarianzen statistisch unterschiedlich sind. Ein nicht signifikantes Ergebnis bedeutet, dass die Daten mit gleichen Varianzen vereinbar sind, beweist aber nicht, dass sie gleich sind.",
+    "q2": "Warum wird der F-Test vor einem Zwei-Stichproben-t-Test verwendet?",
+    "q2_a": "Der gepoolte Zwei-Stichproben-t-Test setzt voraus, dass beide Gruppen dieselbe Populationsvarianz haben. Wird diese Annahme verletzt, kann der Test falsche p-Werte erzeugen. Ein vorgeschalteter F-Test prüft diese Annahme: Ist der F-Test signifikant, verwenden Sie stattdessen den Welch-t-Test, der keine gleichen Varianzen annimmt.",
+    "q3": "Welche Annahmen gelten für den F-Test auf Gleichheit von Varianzen?",
+    "q3_a": "Beide Stichproben müssen aus normalverteilten Populationen gezogen werden, und die Stichproben müssen voneinander unabhängig sein. Der F-Test ist recht empfindlich gegenüber Nicht-Normalität; selbst moderate Abweichungen können den p-Wert verzerren. Wenn Normalität zweifelhaft ist, verwenden Sie stattdessen den Levene-Test oder den Brown–Forsythe-Test.",
+    "q4": "Warum wird die größere Varianz immer in den Zähler gesetzt?",
+    "q4_a": "Die größere Varianz im Zähler stellt sicher, dass F ≥ 1 ist. Dadurch liegt der kritische Bereich im oberen Rand der F-Verteilung, und eine Tabelle für den unteren Rand wird nicht benötigt. Bei einem zweiseitigen Test ist der p-Wert dann einfach 2 × P(F > F_obs), was leicht zu berechnen ist.",
+    "q5": "Wie interpretiere ich den kritischen F-Wert?",
+    "q5_a": "Der kritische F-Wert (F_crit) ist der Wert, der die oberen α/2 der F-Verteilung abschneidet. Wenn Ihr berechneter F-Wert F_crit übersteigt, verwerfen Sie H₀ beim Signifikanzniveau α. Die Verwendung des p-Werts und die Verwendung des kritischen Werts führen immer zur gleichen Entscheidung — es sind zwei äquivalente Arten, denselben Vergleich zusammenzufassen.",
+    "q6": "Wann sollte ich den Levene-Test statt des F-Tests verwenden?",
+    "q6_a": "Der Levene-Test ist vorzuziehen, wenn Ihre Daten möglicherweise keiner Normalverteilung folgen, da er robust gegenüber Nicht-Normalität ist. Der F-Test auf Gleichheit von Varianzen ist optimal, wenn Normalität gilt, aber seine Fehlerquote 1. Art kann durch schiefe oder heavy-tailed Daten stark verzerrt werden. In der Praxis verwenden viele Statistiker standardmäßig den Levene-Test, um dieses Risiko zu vermeiden."
+  }
+}

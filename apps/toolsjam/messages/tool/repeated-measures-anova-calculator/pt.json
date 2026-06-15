@@ -1,0 +1,86 @@
+{
+  "title": "Calculadora de ANOVA de medidas repetidas - Estatística F e tamanho de efeito",
+  "tagline": "Testes estatísticos avançados",
+  "intro": "Digite seus dados abaixo. Cada linha representa um sujeito e cada coluna uma condição ou ponto no tempo diferente. Os valores podem ser separados por vírgulas, espaços ou tabulações.",
+  "field": {
+    "dataInput": "Entrada de dados",
+    "dataInputHint": "Cada linha = um sujeito; cada coluna = uma condição. Exemplo: 8,9,7 em uma linha."
+  },
+  "placeholder": {
+    "dataInput": "8, 9, 7\n10, 11, 9\n6, 8, 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Entrada inválida. Digite pelo menos 2 sujeitos e 2 condições com o mesmo número de valores por linha."
+  },
+  "result": {
+    "heading": "Resultados da ANOVA",
+    "source": "Fonte",
+    "colSS": "SS",
+    "colDf": "gl",
+    "colMS": "MS",
+    "colF": "F",
+    "betweenConditions": "Entre condições",
+    "error": "Erro (resíduo)",
+    "total": "Total",
+    "subjects": "Sujeitos (n)",
+    "conditions": "Condições (k)",
+    "etaSquared": "η² (eta quadrado)"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de ANOVA de medidas repetidas",
+    "body": "A ANOVA de medidas repetidas (análise de variância) é uma técnica estatística usada quando os mesmos sujeitos são medidos sob várias condições ou em diferentes momentos. Diferentemente de uma ANOVA entre sujeitos, o desenho de medidas repetidas controla as diferenças individuais tratando cada sujeito como seu próprio controle, o que aumenta bastante o poder estatístico.\n\nEsta calculadora realiza uma ANOVA de medidas repetidas de um fator. O desenho envolve um único fator intra-sujeitos (a condição ou o tempo) com k níveis, medido em n sujeitos. A variância total dos dados é dividida em três componentes: variância atribuída às diferenças entre condições (o fator de interesse), variância atribuída às diferenças individuais entre sujeitos e variância residual de erro.\n\nA estatística F é calculada como a razão entre o quadrado médio entre condições (MSbetween) e o quadrado médio do erro (MSerror). Um valor de F alto em relação ao valor crítico da distribuição F (com dfbetween = k−1 e dferror = (n−1)(k−1) graus de liberdade) indica que pelo menos uma média de condição difere significativamente das demais.\n\nO tamanho de efeito é quantificado por eta quadrado (η²), que é SS_between dividido por SS_total. Um valor de η² = 0.01 é considerado pequeno, 0.06 médio e 0.14 ou mais grande, seguindo as convenções de Cohen. Em pesquisas publicadas, o eta quadrado parcial costuma ser relatado por focar na proporção de variância explicada pelo fator de interesse.\n\nA calculadora assume esfericidade — isto é, que as variâncias das diferenças entre todos os pares de condições são iguais. Quando esse pressuposto é violado (como detectado pelo teste de Mauchly), os pesquisadores normalmente aplicam a correção de Greenhouse-Geisser ou Huynh-Feldt para ajustar os graus de liberdade. Para análises exploratórias e verificações rápidas, os valores não corrigidos de F e η² calculados aqui são um ponto de partida útil.\n\nEsta ferramenta foi projetada para fins educacionais e de análise preliminar. Para resultados com qualidade de publicação, especialmente com desenhos complexos ou suspeita de violação da esfericidade, use software estatístico dedicado, como SPSS, R (com o pacote ez) ou Python (com pingouin)."
+  },
+  "examples": {
+    "heading": "Exemplos de ANOVA de medidas repetidas",
+    "intro": "Estes exemplos mostram como interpretar resultados de ANOVA de medidas repetidas.",
+    "colInput": "Dados (linhas=sujeitos)",
+    "colOutput": "Estatística F",
+    "colNote": "Interpretação",
+    "items": [
+      {
+        "input": "8,9,7 / 10,11,9 / 6,8,5 (3 sujeitos × 3 condições)",
+        "output": "F ≈ 37.4, η² ≈ 0.28",
+        "note": "Efeito forte da condição"
+      },
+      {
+        "input": "4,7,6,9 / 3,5,4,8 / 6,8,9,11 / 2,5,3,7 (4 × 4)",
+        "output": "F ≈ 50.7, η² ≈ 0.53",
+        "note": "Tamanho de efeito grande"
+      },
+      {
+        "input": "3,5,4,7 / 2,4,6,5 / 5,7,3,9 (3 × 4, padrão irregular)",
+        "output": "F ≈ 2.84, η² ≈ 0.50",
+        "note": "F não significativo, η² moderado"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar esta calculadora",
+    "steps": [
+      "Digite os dados de modo que cada linha represente um sujeito e cada coluna uma condição ou ponto no tempo.",
+      "Separe os valores de uma linha com vírgulas, espaços ou tabulações; use uma nova linha para cada sujeito.",
+      "Clique em 'Calcular' para executar a ANOVA de medidas repetidas de um fator.",
+      "Revise a tabela ANOVA com SS, gl, MS e a estatística F para cada fonte de variação.",
+      "Verifique o valor de eta quadrado (η²) para avaliar a significância prática do efeito da condição."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "q1": "Quando devo usar ANOVA de medidas repetidas em vez de ANOVA de um fator?",
+    "q1_a": "Use ANOVA de medidas repetidas quando os mesmos sujeitos forem medidos em todas as condições. Ela tem mais poder do que a ANOVA entre sujeitos porque remove a variância das diferenças individuais do termo de erro, facilitando detectar efeitos reais da condição com menos participantes.",
+    "q2": "O que é o pressuposto de esfericidade?",
+    "q2_a": "A esfericidade exige que as variâncias das diferenças entre todos os pares de condições sejam iguais. A violação infla a taxa de erro do tipo I. O teste de Mauchly verifica esse pressuposto. Se houver violação, aplique a correção de Greenhouse-Geisser ou Huynh-Feldt aos graus de liberdade.",
+    "q3": "O que o eta quadrado (η²) me diz?",
+    "q3_a": "Eta quadrado indica a proporção da variância total explicada pelo fator intra-sujeitos. Os valores 0.01, 0.06 e 0.14 são convencionalmente considerados efeitos pequeno, médio e grande, respectivamente. É um tamanho de efeito fácil de interpretar em ANOVA.",
+    "q4": "Quantos sujeitos eu preciso para ANOVA de medidas repetidas?",
+    "q4_a": "Normalmente recomenda-se um mínimo de 5–10 sujeitos para poder estatístico adequado, embora a abordagem correta seja uma análise de poder formal com base no tamanho de efeito esperado e no poder desejado (geralmente 0.80). Mais sujeitos são necessários quando o efeito esperado é pequeno.",
+    "q5": "E se meus dados violarem a esfericidade?",
+    "q5_a": "Aplique a correção de Greenhouse-Geisser (ε) para ajustar os graus de liberdade, tornando o teste F mais conservador. Quando ε está perto de 1, a esfericidade é aproximadamente atendida. Para violações severas (ε < 0.75), a correção de Greenhouse-Geisser é preferida.",
+    "q6": "Posso usar esta calculadora para um desenho de duas vias com medidas repetidas?",
+    "q6_a": "Não, esta calculadora trata apenas ANOVA de medidas repetidas de um fator (um fator intra-sujeitos). Para desenhos de duas vias com dois fatores intra-sujeitos ou desenhos mistos com fatores intra e entre sujeitos, você precisa de software especializado como R, SPSS ou a biblioteca pingouin do Python."
+  }
+}

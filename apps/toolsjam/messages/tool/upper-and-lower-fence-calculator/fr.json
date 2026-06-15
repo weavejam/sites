@@ -1,0 +1,82 @@
+{
+  "title": "Calculateur de bornes IQR pour outliers",
+  "tagline": "Repérez les valeurs aberrantes statistiques dans votre jeu de données grâce à la méthode des bornes fondée sur l’écart interquartile (IQR). Saisissez des nombres séparés par des virgules pour trouver instantanément Q1, Q3, l’IQR et les deux bornes.",
+  "intro": "Saisissez vos données séparées par des virgules, cliquez sur Calculer et voyez la borne supérieure, la borne inférieure et les éventuelles valeurs aberrantes de votre jeu de données.",
+  "field": {
+    "data": "Jeu de données"
+  },
+  "placeholder": {
+    "data": "ex. 4, 8, 15, 16, 23, 42"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir au moins 4 nombres séparés par des virgules pour calculer les bornes."
+  },
+  "result": {
+    "heading": "Résultats",
+    "n": "Effectif (n)",
+    "q1": "Q1 (25e percentile)",
+    "q3": "Q3 (75e percentile)",
+    "iqr": "IQR (Q3 − Q1)",
+    "lowerFence": "Borne inférieure (Q1 − 1.5 × IQR)",
+    "upperFence": "Borne supérieure (Q3 + 1.5 × IQR)",
+    "outliersHeading": "Valeurs aberrantes",
+    "noOutliers": "Aucune valeur aberrante détectée."
+  },
+  "about": {
+    "heading": "À propos du calculateur de bornes supérieure et inférieure",
+    "body": "La méthode des bornes supérieure et inférieure est la technique standard pour identifier les valeurs aberrantes dans un jeu de données à l’aide de l’écart interquartile (IQR). Développée dans le cadre du travail de John Tukey sur l’analyse exploratoire des données en 1977, elle offre une manière robuste et non paramétrique de signaler les observations inhabituelles sans supposer que les données suivent une distribution particulière. La méthode est largement enseignée dans les cours de statistique introductifs et constitue l’approche par défaut pour détecter les valeurs aberrantes dans les diagrammes en boîte.\n\nLe calcul commence par trier le jeu de données puis par déterminer le premier et le troisième quartile. Q1 (25e percentile) est la valeur en dessous de laquelle se trouve 25 % des données, tandis que Q3 (75e percentile) est la valeur en dessous de laquelle se trouve 75 % des données. L’IQR est simplement Q3 moins Q1, et représente la dispersion de la moitié centrale des données. Comme l’IQR ignore les valeurs extrêmes aux deux bouts de la distribution, il résiste aux valeurs aberrantes qu’il cherche justement à détecter ; cette propriété rend la méthode des bornes plus fiable que les méthodes fondées sur l’étendue.\n\nUne fois l’IQR calculé, les bornes sont fixées à 1.5 × IQR en dessous de Q1 (borne inférieure) et 1.5 × IQR au-dessus de Q3 (borne supérieure). Tout point de données situé sous la borne inférieure ou au-dessus de la borne supérieure est classé comme valeur aberrante. Le multiplicateur 1.5 a été choisi empiriquement par Tukey car il fonctionne bien pour des données approximativement normales : dans une distribution normale, cette règle signale environ 0.7 % des observations comme aberrantes, ce qui correspond à des valeurs situées à plus d’environ 2.7 écarts-types de la moyenne.\n\nPour des valeurs aberrantes plus extrêmes, certaines applications utilisent un multiplicateur de 3 au lieu de 1.5, en qualifiant ces points de valeurs aberrantes lointaines ou extrêmes. Les points situés hors de la borne de 1.5 × IQR mais à l’intérieur de celle de 3 × IQR sont parfois appelés valeurs aberrantes modérées. Ce calculateur utilise la règle standard de 1.5 × IQR, adaptée à la plupart des analyses exploratoires.\n\nLa détection des valeurs aberrantes est une étape essentielle du nettoyage des données, du contrôle qualité et de la modélisation statistique. En fabrication, une mesure de procédé située hors borne peut signaler une pièce défectueuse ou une erreur de mesure. En finance, des rendements extrêmes peuvent révéler des erreurs de données, des anomalies de marché ou de véritables événements nécessitant une enquête. En recherche clinique, les valeurs physiologiquement impossibles sont identifiées et examinées. En apprentissage automatique, les valeurs aberrantes peuvent fausser l’entraînement des modèles si elles ne sont pas prises en compte.\n\nIl est important de se rappeler qu’une valeur aberrante statistique n’est pas nécessairement une valeur erronée. Une valeur aberrante n’est qu’une observation anormalement éloignée de la masse des données selon la règle IQR. Il faut l’examiner pour déterminer s’il s’agit d’un véritable événement extrême, d’une erreur de mesure ou d’une erreur de saisie."
+  },
+  "examples": {
+    "heading": "Exemples de bornes supérieure et inférieure",
+    "intro": "Exemples détaillés pas à pas montrant comment la méthode des bornes identifie les valeurs aberrantes dans des jeux de données typiques.",
+    "colInput": "Jeu de données",
+    "colOutput": "Bornes et valeurs aberrantes",
+    "colNote": "Interprétation",
+    "items": [
+      {
+        "input": "10, 12, 14, 16, 18, 20, 100",
+        "output": "Inférieure : 4 | Supérieure : 28 | Aberrante : 100",
+        "note": "Q1=13, Q3=19, IQR=6. Borne inférieure = 13 − 9 = 4. Borne supérieure = 19 + 9 = 28. La valeur 100 dépasse la borne supérieure et est signalée comme aberrante."
+      },
+      {
+        "input": "5, 7, 8, 9, 10, 11, 12, 14",
+        "output": "Inférieure : 2.5 | Supérieure : 16.5 | Aucune valeur aberrante",
+        "note": "Q1=7.75, Q3=11.25, IQR=3.5. Les bornes sont 2.5 et 16.5. Toutes les valeurs (de 5 à 14) se trouvent à l’intérieur des bornes, donc il n’y a aucune valeur aberrante."
+      },
+      {
+        "input": "2, 3, 5, 7, 8, 9, 10, 11, 12, 50",
+        "output": "Inférieure : −2.375 | Supérieure : 18.625 | Aberrante : 50",
+        "note": "Q1=5.5, Q3=10.75, IQR=5.25. Borne supérieure = 10.75 + 7.875 = 18.625. La valeur 50 est bien au-dessus de la borne supérieure et constitue une valeur aberrante manifeste."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de bornes",
+    "steps": [
+      "Saisissez vos données dans le champ, séparées par des virgules ou des espaces. Il faut au moins 4 valeurs pour calculer des quartiles significatifs.",
+      "Cliquez sur Calculer pour obtenir Q1, Q3, l’IQR, la borne inférieure (Q1 − 1.5 × IQR) et la borne supérieure (Q3 + 1.5 × IQR).",
+      "Consultez les valeurs de bornes mises en évidence : tout point sous la borne inférieure ou au-dessus de la borne supérieure est une valeur aberrante.",
+      "Vérifiez la section Valeurs aberrantes pour voir les valeurs signalées explicitement.",
+      "Cliquez sur Réinitialiser pour effacer la saisie et recommencer avec un nouveau jeu de données."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur les bornes supérieure et inférieure",
+    "q1": "Que sont les bornes supérieure et inférieure ?",
+    "q1_a": "La borne supérieure est Q3 + 1.5 × IQR et la borne inférieure est Q1 − 1.5 × IQR. Tout point de données en dehors de ces bornes est considéré comme une valeur aberrante. Les bornes créent une plage qui encadre la dispersion attendue d’une distribution approximativement en cloche.",
+    "q2": "Pourquoi utiliser 1.5 fois l’IQR ?",
+    "q2_a": "Le multiplicateur 1.5 a été choisi par John Tukey parce qu’il est approximativement optimal pour détecter les valeurs aberrantes dans des données normales tout en maintenant un faible taux de faux positifs. Dans une distribution normale, il signale environ 0.7 % des observations. Doubler le multiplicateur à 3 ne capture que les valeurs aberrantes extrêmes.",
+    "q3": "Qu’est-ce que l’IQR et comment le calcule-t-on ?",
+    "q3_a": "L’IQR (écart interquartile) est Q3 moins Q1 et représente la dispersion des 50 % centraux des données. On le calcule en triant les données, en trouvant le 25e percentile (Q1) et le 75e percentile (Q3), puis en soustrayant. L’IQR est robuste aux valeurs aberrantes car il ignore les 25 % supérieurs et inférieurs des valeurs.",
+    "q4": "Une valeur aberrante signifie-t-elle que les données sont fausses ?",
+    "q4_a": "Pas nécessairement. Une valeur aberrante est simplement une observation anormalement extrême par rapport à la masse des données. Cela peut être un véritable événement extrême, une erreur de mesure ou une erreur de saisie. Chaque valeur signalée doit être examinée dans son contexte avant d’être supprimée ou corrigée.",
+    "q5": "Comment les bornes se relient-elles aux boîtes à moustaches ?",
+    "q5_a": "Les bornes supérieure et inférieure définissent les moustaches d’un diagramme en boîte de Tukey standard. La boîte couvre l’IQR (de Q1 à Q3), la ligne dans la boîte est la médiane, et les moustaches s’étendent jusqu’aux points de données les plus extrêmes qui restent dans les bornes. Les points au-delà des moustaches sont tracés individuellement comme des valeurs aberrantes.",
+    "q6": "La méthode des bornes convient-elle aux petits jeux de données ?",
+    "q6_a": "La méthode fonctionne mieux avec au moins 10 à 20 observations. Avec moins de valeurs, les estimations des quartiles sont imprécises et les bornes peuvent être peu fiables. Pour de très petits jeux de données, il vaut mieux examiner visuellement toutes les valeurs plutôt que de s’appuyer uniquement sur la règle automatique des bornes."
+  }
+}

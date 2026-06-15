@@ -1,0 +1,94 @@
+{
+  "title": "Calculateur de rapport de cotes - OR, IC et valeur p",
+  "tagline": "Calculez le rapport de cotes, l’intervalle de confiance, le score Z et la valeur p à partir d’un tableau de contingence 2×2 pour des études cas-témoins et épidémiologiques.",
+  "intro": "Saisissez les quatre effectifs de votre tableau 2×2, choisissez un niveau de confiance et obtenez instantanément le rapport de cotes avec une inférence statistique complète.",
+  "tableNote": "Renseignez les effectifs des groupes exposé et non exposé. Les cellules doivent être des entiers non négatifs. Lorsqu’une cellule vaut zéro, la correction de Haldane-Anscombe (ajout de 0,5 à chaque cellule) est appliquée automatiquement.",
+  "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+  "group": {
+    "exposed": "Groupe exposé",
+    "unexposed": "Groupe non exposé"
+  },
+  "field": {
+    "a": "Résultat positif – Cas (a)",
+    "b": "Résultat négatif – Non-cas (b)",
+    "c": "Résultat positif – Cas (c)",
+    "d": "Résultat négatif – Non-cas (d)",
+    "confidenceLevel": "Niveau de confiance"
+  },
+  "placeholder": {
+    "cell": "Saisissez un effectif ≥ 0"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres non négatifs dans les quatre cellules."
+  },
+  "result": {
+    "heading": "Résultats",
+    "or": "Rapport de cotes (OR)",
+    "ciLabel": "Intervalle de confiance",
+    "z": "Score Z",
+    "pValue": "Valeur p",
+    "lnOR": "ln(OR)",
+    "se": "Erreur standard",
+    "correctionNote": "Cellule nulle détectée — correction de Haldane-Anscombe (+ 0,5) appliquée à toutes les cellules."
+  },
+  "about": {
+    "heading": "À propos du calculateur de rapport de cotes",
+    "body": "Le rapport de cotes (OR) est l’une des mesures d’association les plus utilisées en recherche biomédicale, en épidémiologie et dans les sciences sociales. Il quantifie la force de la relation entre une exposition et un résultat binaire en comparant les cotes du résultat dans un groupe exposé avec celles du groupe non exposé. Un OR de 1 indique l’absence d’association ; un OR supérieur à 1 suggère que l’exposition augmente les cotes du résultat ; un OR inférieur à 1 suggère un effet protecteur.\n\nLe rapport de cotes est calculé à partir d’un tableau de contingence 2×2, format standard pour présenter des données d’études cas-témoins. Le tableau comporte quatre cellules : (a) personnes exposées ayant le résultat, (b) personnes exposées n’ayant pas le résultat, (c) personnes non exposées ayant le résultat et (d) personnes non exposées n’ayant pas le résultat. La formule est simplement OR = (a × d) / (b × c), soit le rapport des produits croisés du tableau.\n\nL’inférence statistique pour l’OR se fait sur son logarithme naturel, car la distribution d’échantillonnage de ln(OR) est approximativement normale, même avec des tailles d’échantillon modérées. L’erreur standard de ln(OR) est SE = √(1/a + 1/b + 1/c + 1/d). On en déduit un score Z : Z = ln(OR) / SE, qui suit une loi normale standard sous l’hypothèse nulle d’absence d’association (OR = 1). La valeur p bilatérale est p = 2 × Φ(−|Z|), où Φ est la fonction de répartition de la loi normale standard. Si la valeur p est inférieure au seuil de significativité choisi (généralement 0,05), le rapport de cotes est statistiquement différent de 1.\n\nL’intervalle de confiance (IC) de l’OR est obtenu en exponentiant l’intervalle autour de ln(OR) : CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. Pour un IC à 95 %, Z_α/2 = 1,96. Si l’IC n’inclut pas 1,0, le résultat est statistiquement significatif au seuil de 5 %. La largeur de l’IC reflète la précision de l’estimation ; des intervalles plus larges résultent d’échantillons plus petits ou de cellules clairsemées.\n\nUne difficulté pratique apparaît lorsqu’une cellule du tableau 2×2 vaut zéro, ce qui rend la formule standard de l’OR indéfinie (division par zéro ou logarithme de zéro). La solution habituelle est la correction de Haldane-Anscombe : ajouter 0,5 à chaque cellule avant de calculer l’OR et l’erreur standard. Ce calculateur applique cette correction automatiquement et vous en avertit lorsqu’elle est utilisée. La correction introduit un léger biais, mais c’est bien préférable à l’absence totale de résultat.\n\nL’OR est la mesure naturelle dans les études cas-témoins, où le plan d’échantillonnage fixe le nombre de cas et de témoins plutôt que la prévalence de l’exposition. Dans les études de cohorte et les essais randomisés, le risque relatif (RR) est souvent préféré car il est plus intuitif. Pour des issues rares (prévalence inférieure à environ 10 %), OR ≈ RR, mais pour des issues fréquentes l’OR s’éloigne toujours davantage de 1 que le RR correspondant, et l’interpréter comme un RR peut surestimer l’ampleur de l’association. Indiquez toujours la mesure utilisée et vérifiez si l’hypothèse de rareté de la maladie s’applique à vos données."
+  },
+  "examples": {
+    "heading": "Exemples détaillés",
+    "intro": "Trois scénarios d’étude classiques montrant comment lire la sortie du rapport de cotes et juger la significativité statistique.",
+    "colInput": "Scénario d’étude",
+    "colOutput": "Rapport de cotes",
+    "colNote": "Interprétation",
+    "loadSmoking": "Charger l’exemple tabac",
+    "loadDrug": "Charger l’exemple médicament",
+    "loadVaccine": "Charger l’exemple vaccin",
+    "items": [
+      {
+        "input": "Tabagisme et cancer du poumon : a=650, b=350, c=100, d=900 (95% CI)",
+        "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+        "note": "Les fumeurs ont environ 16,7 fois plus de cotes de cancer du poumon que les non-fumeurs. L’IC n’inclut pas 1,0, donc l’association est hautement significative."
+      },
+      {
+        "input": "Nouveau médicament vs placebo : a=38, b=162, c=85, d=115 (95% CI)",
+        "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+        "note": "Le médicament réduit les cotes de maladie d’environ 68 %. OR < 1 indique un effet protecteur ; l’IC est entièrement inférieur à 1."
+      },
+      {
+        "input": "Étude vaccinale : a=15, b=485, c=55, d=445 (95% CI)",
+        "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+        "note": "Les personnes vaccinées ont 75 % de cotes d’infection en moins. Association protectrice forte, avec un intervalle de confiance étroit et significatif."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de rapport de cotes",
+    "steps": [
+      "Organisez vos données dans un tableau 2×2 : la cellule (a) = cas exposés, (b) = non-cas exposés, (c) = cas non exposés, (d) = non-cas non exposés.",
+      "Saisissez les quatre effectifs non négatifs dans les champs correspondants sous 'Groupe exposé' et 'Groupe non exposé'.",
+      "Choisissez le niveau de confiance souhaité (90 %, 95 % ou 99 %) dans la liste déroulante. La plupart des études publiées utilisent 95 %.",
+      "Cliquez sur Calculer. L’outil renvoie l’OR, l’intervalle de confiance, le score Z et la valeur p. Si une cellule était à zéro, une note de correction apparaît.",
+      "Interprétez le résultat : OR > 1 signifie que l’exposition augmente les cotes ; OR < 1 signifie qu’elle les diminue. Vérifiez si l’IC inclut 1 et si p ≤ α."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "q1": "Qu’est-ce qu’un rapport de cotes et en quoi diffère-t-il du risque relatif ?",
+    "q1_a": "Le rapport de cotes compare les cotes d’un résultat dans deux groupes, alors que le risque relatif (RR) compare les probabilités. Pour des issues rares (prévalence < 10 %), OR ≈ RR ; pour des issues fréquentes, l’OR s’éloigne davantage de 1,0 que le RR. Les études cas-témoins ne peuvent estimer valablement que l’OR, pas le RR, car l’échantillonnage est basé sur le résultat.",
+    "q2": "Comment interpréter OR = 2.5 ?",
+    "q2_a": "Un OR de 2,5 signifie que les cotes du résultat dans le groupe exposé sont 2,5 fois celles du groupe non exposé. Cela ne veut pas dire que le risque est 2,5 fois plus élevé, sauf si l’issue est rare. Pour des issues fréquentes, le ratio de risques réel sera inférieur à 2,5.",
+    "q3": "Que m’indique l’intervalle de confiance ?",
+    "q3_a": "Un intervalle de confiance à 95 % signifie que si l’étude était répétée de nombreuses fois dans les mêmes conditions, environ 95 % des intervalles calculés contiendraient la véritable OR de la population. En pratique, si l’IC exclut 1,0, le résultat est statistiquement significatif au seuil α = 0,05. Un IC large indique une faible précision, généralement due à un petit échantillon.",
+    "q4": "Quand la correction de Haldane-Anscombe est-elle appliquée ?",
+    "q4_a": "La correction ajoute 0,5 à chaque cellule lorsqu’une cellule vaut zéro. Une cellule nulle rend la formule standard de l’OR indéfinie (logarithme de zéro ou division par zéro). Cette correction permet de poursuivre l’estimation et constitue le remède le plus courant, bien qu’elle introduise un léger biais. Le calculateur le signale lorsqu’elle est utilisée.",
+    "q5": "Puis-je utiliser ce calculateur pour un essai contrôlé randomisé ?",
+    "q5_a": "Oui, mais envisagez de rapporter le risque relatif (RR) plutôt que l’OR, ou en plus de l’OR, car le RR est plus intuitif pour des issues fréquentes et constitue la mesure privilégiée par de nombreuses recommandations cliniques. Pour des ECR avec issues rares ou lors d’une méta-analyse combinant plusieurs plans d’étude, l’OR reste approprié.",
+    "q6": "Pourquoi les valeurs p et les intervalles de confiance semblent-ils parfois contradictoires ?",
+    "q6_a": "Ils ne devraient pas l’être : un IC à 95 % qui exclut 1,0 correspond toujours à p < 0,05 pour un test bilatéral. Les contradictions apparentes proviennent généralement des arrondis, de la comparaison de valeurs p unilatérales avec des IC bilatéraux, ou de l’utilisation de niveaux différents pour l’IC et l’alpha du test. Utilisez des réglages cohérents pour les deux."
+  }
+}

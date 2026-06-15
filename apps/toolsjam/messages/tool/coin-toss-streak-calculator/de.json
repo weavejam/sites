@@ -1,0 +1,102 @@
+{
+  "title": "Münzwurf-Serienrechner: Kopf und Zahl",
+  "tagline": "Berechne die Wahrscheinlichkeit für aufeinanderfolgende Köpfe oder Zahlen beim Münzwurf oder die erwartete Anzahl an Würfen für jede Serienlänge.",
+  "intro": "Gib Serienlänge und Typ ein und wähle dann zwischen der exakten Wahrscheinlichkeit innerhalb einer festen Anzahl von Würfen oder der erwarteten Anzahl an Würfen, die für die Serie nötig ist.",
+  "formula": "Formel (exakte Wkt.): dynamische Programmierung über Wurfsequenzen  •  Erwartete Würfe für k Köpfe: 2(2^k − 1)  •  Erwartete Würfe für k derselben Seite: 2^k − 1",
+  "field": {
+    "streakLen": "Serienlänge",
+    "streakType": "Serientyp",
+    "calcType": "Berechnungsart",
+    "maxTosses": "Maximale Würfe (optional)",
+    "maxTossesHint": "Leer lassen, um ein Standardfenster von ungefähr 2k² Würfen zu verwenden."
+  },
+  "placeholder": {
+    "streakLen": "z. B. 3",
+    "maxTosses": "z. B. 50"
+  },
+  "streakType": {
+    "heads": "Nur Kopf",
+    "tails": "Nur Zahl",
+    "either": "Beliebig (Kopf oder Zahl)"
+  },
+  "calcType": {
+    "exactProb": "Exakte Wahrscheinlichkeit",
+    "exactProb_desc": "Berechne die Wahrscheinlichkeit, die Serie innerhalb der angegebenen (oder Standard‑) Anzahl von Würfen mindestens einmal zu erreichen.",
+    "expectedTosses": "Erwartete Würfe",
+    "expectedTosses_desc": "Berechne die durchschnittliche Anzahl an Würfen, bis die Serie erstmals erreicht wird."
+  },
+  "button": {
+    "calculate": "Serie berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gib eine gültige Serienlänge ein (1–100). Wenn du maximale Würfe angibst, müssen sie ≥ Serienlänge und ≤ 100.000 sein."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "inNTosses": "Wahrscheinlichkeit, die Serie innerhalb von {n} Würfen zu erreichen",
+    "tosses": "Würfe (erwartet)",
+    "expectedDesc": "Im Durchschnitt werden so viele Würfe benötigt, bis die Serie erstmals erreicht wird."
+  },
+  "about": {
+    "heading": "Über den Münzwurf-Serienrechner",
+    "body": "Eine Serie — auch Run genannt — ist eine Folge gleicher, aufeinanderfolgender Ergebnisse. Das einfachste Beispiel ist eine Serie von k Köpfen in Folge beim Werfen einer fairen Münze. So simpel das klingt, die Mathematik von Serien beruht auf erstaunlich tiefen Ergebnissen der Wahrscheinlichkeitstheorie und findet Anwendung von der Sportanalyse bis zum Finanzrisiko‑Modellieren.\n\nDie Wahrscheinlichkeit, irgendwo in n Münzwürfen mindestens eine Serie von k Köpfen zu erhalten, lässt sich nicht mit einer einfachen Binomialformel berechnen. Man muss an jedem Punkt verfolgen, wie nah man an der vollständigen Serie ist — genau dafür eignet sich dynamische Programmierung. Dieser Rechner verwendet genau diesen Ansatz: Er führt eine Wahrscheinlichkeitsverteilung über die bisher erreichte Anzahl aufeinanderfolgender Köpfe, aktualisiert sie mit jedem neuen Wurf und summiert nach n Würfen die Wahrscheinlichkeit auf, die in den Zustand 'Serie vollständig' absorbiert wurde.\n\nDie erwartete Anzahl an Würfen bis zur ersten Serie von k Köpfen hat für eine faire Münze (p = 0.5) eine elegante geschlossene Form: E_k = 2(2^k − 1). Für k = 1 erwartet man im Mittel 2 Würfe bis zum ersten Kopf, was korrekt ist, da E[geometrisch(0.5)] = 1/0.5 = 2. Bei 3 Köpfen in Folge sind es 2(2^3 − 1) = 14 Würfe. Bei k = 10 liegt der Erwartungswert bereits bei 2.046 Würfen — ein Zeichen dafür, wie viel seltener lange Serien sind, als man intuitiv vermutet.\n\nFür 'beliebig'-Serien (k gleiche Ergebnisse in Folge, egal ob Kopf oder Zahl) beträgt die erwartete Anzahl an Würfen 2^k − 1. Das ist kürzer, weil jeder erste Wurf eine potenzielle Serie in diese Richtung starten kann. Für k = 3 beträgt die Wartezeit nur 7 Würfe im Vergleich zu 14 bei einer spezifischen Kopfserie. Intuitiv kann die Serie in beide Richtungen entstehen, wodurch sich die Chancen praktisch verdoppeln.\n\nSerienberechnungen sind in vielen Praxisfeldern relevant. Im Sport spricht man bei einem Basketballspieler, der die letzten 5 Würfe in Folge getroffen hat, davon, dass er 'heiß' ist. Die Statistik zum 'Hot-Hand'-Phänomen zeigt, dass zwar gewisse echte Korrelationen existieren, aber ein Großteil dessen, was Fans als Serienhaftigkeit wahrnehmen, einfach die natürliche Häufung zufälliger Prozesse ist. In der Finanzwelt wirkt ein Fonds, der den Markt 5 Jahre in Folge schlägt, beeindruckend — mit Tausenden von Fonds ist das unter der Nullhypothese 'kein Können' statistisch jedoch zu erwarten. Der Serienrechner hilft dir einzuschätzen, ob eine beobachtete Erfolgsserie angesichts der Anzahl an Chancen überraschend ist.\n\nBeim Glücksspiel helfen Serienwahrscheinlichkeiten, realistische Erwartungen zu setzen. Die Wahrscheinlichkeit, in 100 Würfen 10 Köpfe in Folge zu erhalten, liegt bei etwa 4,4 % — niedriger, als viele Spieler anhand der vielen möglichen Startpositionen vermuten. Die Wahrscheinlichkeit, in 1.000 Würfen 20 Köpfe in Folge zu erhalten, beträgt nur etwa 0,05 % und ist trotz der großen Zahl an Versuchen wirklich selten.\n\nDieser Rechner unterstützt Serienlängen von 1 bis 100 und im Wahrscheinlichkeitsmodus bis zu 100.000 Würfe und deckt damit alles von Übungsaufgaben bis zu groß angelegten Simulationsstudien ab."
+  },
+  "examples": {
+    "heading": "Beispiele für Münzwurf-Serien",
+    "intro": "Vier durchgerechnete Beispiele von Grundwahrscheinlichkeit bis Glücksspiel und Sportstatistik.",
+    "colInput": "Serie / Typ / Modus",
+    "colOutput": "Ergebnis",
+    "colNote": "Interpretation",
+    "loadThreeHeads": "Beispiel 3 Köpfe laden",
+    "loadLong": "Lange Serie laden",
+    "loadGambling": "Glücksspiel-Beispiel laden",
+    "items": [
+      {
+        "input": "Serie = 3, nur Kopf, erwartete Würfe",
+        "output": "14 Würfe",
+        "note": "Im Durchschnitt musst du eine faire Münze 14 Mal werfen, bevor 3 Köpfe in Folge auftreten. Formel: 2(2³ − 1) = 14."
+      },
+      {
+        "input": "Serie = 5, nur Kopf, Wahrscheinlichkeit in 50 Würfen",
+        "output": "≈ 55.19%",
+        "note": "Mehr als die Hälfte aller Folgen aus 50 fairen Würfen enthalten mindestens eine Serie von 5 aufeinanderfolgenden Köpfen."
+      },
+      {
+        "input": "Serie = 7, beliebig, erwartete Würfe",
+        "output": "127 Würfe",
+        "note": "Für 7 gleiche Ergebnisse in Folge (Kopf oder Zahl) erwartet man im Mittel 2⁷ − 1 = 127 Würfe."
+      },
+      {
+        "input": "Serie = 4, nur Kopf, erwartete Würfe",
+        "output": "30 Würfe",
+        "note": "Ein Spieler, der auf 4 Köpfe in Folge setzt, sollte etwa 30 Würfe warten. Formel: 2(2⁴ − 1) = 30."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Münzwurf-Serienrechner",
+    "steps": [
+      "Gib die Serienlänge ein — also die Anzahl gleicher, aufeinanderfolgender Ergebnisse, die dich interessiert (z. B. 3 für drei Köpfe in Folge).",
+      "Wähle den Serientyp: Nur Kopf, Nur Zahl oder Beliebig (k gleiche Ergebnisse in Folge).",
+      "Wähle die Berechnungsart: Exakte Wahrscheinlichkeit (innerhalb einer bestimmten Anzahl an Würfen) oder Erwartete Würfe.",
+      "Im Modus Exakte Wahrscheinlichkeit kannst du optional die maximale Anzahl an Würfen eingeben. Leer lassen verwendet das Standardfenster.",
+      "Klicke auf Serie berechnen. Das Ergebnis zeigt entweder die Wahrscheinlichkeit in Prozent oder die erwartete Anzahl an Würfen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Münzwurf-Serienrechner",
+    "q1": "Wie wird die Serienwahrscheinlichkeit berechnet?",
+    "q1_a": "Der Rechner verwendet dynamische Programmierung. Er verfolgt bei jedem simulierten Wurf die Wahrscheinlichkeit, in jedem möglichen 'Teilserien'-Zustand zu sein (0, 1, 2, ... k-1 aufeinanderfolgende Köpfe bisher). Sobald die Teilserie k erreicht, wird die Wahrscheinlichkeit absorbiert. Nach n Würfen entspricht die insgesamt absorbierte Wahrscheinlichkeit der Chance, die Serie mindestens einmal erreicht zu haben.",
+    "q2": "Warum wächst der Erwartungswert mit der Serienlänge so schnell?",
+    "q2_a": "Jedes zusätzliche Element in der Serie verdoppelt die erwartete Wartezeit ungefähr. Für Kopfserien bei einer fairen Münze gilt E_k = 2(2^k − 1), also eine Verdopplung bei jedem Anstieg von k um 1. Das liegt daran, dass man bei einem Fehlschlag kurz vor dem Ziel wieder von vorne beginnen muss und die Erfolgswahrscheinlichkeit für den nächsten Versuch mit jedem zusätzlichen Schritt halbiert wird.",
+    "q3": "Wie hoch ist die Wahrscheinlichkeit für 10 Köpfe in 100 Würfen?",
+    "q3_a": "Mit Serienlänge 10, Typ Nur Kopf und maximal 100 Würfen erhältst du etwa 4,4 %. Trotz der Tatsache, dass eine bestimmte Folge von 10 Ergebnissen für einen konkreten Startpunkt nur (0.5)^10 ≈ 0,1 % hat, ergeben die vielen möglichen Startpositionen und überlappenden Fenster zusammen eine Wahrscheinlichkeit von ungefähr 1 zu 23.",
+    "q4": "Ist eine Serie von 5 Siegen eines Sportteams ein Zeichen von Können oder Glück?",
+    "q4_a": "Das hängt von der Grundwahrscheinlichkeit zu gewinnen ab. Bei einem Team mit 50 % Gewinnchance (ausgeglichen) liegt die Wahrscheinlichkeit für 5 Siege in Folge bei (0.5)^5 ≈ 3,1 %. Über eine Saison mit 30+ Spielen ist die Wahrscheinlichkeit, irgendwann eine solche Serie zu sehen, deutlich höher — oft über 50 %. Eine Serie von 5 Siegen ist für sich genommen kein starker Beleg für eine Leistungssteigerung oder 'Hot Hand', es sei denn, die Grundgewinnrate des Teams liegt deutlich unter 50 %.",
+    "q5": "Wie unterscheidet sich der Modus 'beliebig' von 'nur Kopf'?",
+    "q5_a": "Im Modus 'beliebig' zählt jede Serie aus k gleichen Ergebnissen in Folge — egal ob alle Kopf oder alle Zahl sind. Die erwartete Anzahl an Würfen für eine 'beliebig'-Serie der Länge k ist 2^k − 1, also ungefähr halb so viel wie bei einer spezifischen Kopf- oder Zahlserie gleicher Länge (2(2^k − 1)). Das liegt daran, dass jeder Wurf in beide Richtungen eine Serie starten kann und sich die Chancen auf einen gültigen Lauf damit verdoppeln.",
+    "q6": "Kann ich das für andere binäre Zufallsereignisse als Münzen verwenden?",
+    "q6_a": "Ja, solange jeder Versuch unabhängig ist und die Erfolgswahrscheinlichkeit 50 % beträgt. Beispiele sind die Wahrscheinlichkeit, dass ein Basketballteam mit 50 % Gewinnchance 5 Spiele in Folge gewinnt, ein binärer Sensor denselben Wert k-mal in Folge misst oder die erwartete Anzahl von Münzentscheidungen, bis ein Random Walk eine Seite k-mal hintereinander erreicht. Die Mathematik ist für alle unabhängigen 50/50-binären Prozesse identisch."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "title": "Calculadora de tensão de Von Mises: escoamento e segurança",
+  "tagline": "Calcule a tensão equivalente de Von Mises e o fator de segurança a partir dos componentes de tensão normal e de cisalhamento.",
+  "intro": "Digite os seis componentes de tensão (σx, σy, σz, τxy, τyz, τzx) e, opcionalmente, a tensão de escoamento para avaliar a segurança do material.",
+  "field": {
+    "sigmaX": "Tensão normal σx (MPa)",
+    "sigmaY": "Tensão normal σy (MPa)",
+    "sigmaZ": "Tensão normal σz (MPa)",
+    "tauXY": "Tensão de cisalhamento τxy (MPa)",
+    "tauYZ": "Tensão de cisalhamento τyz (MPa)",
+    "tauZX": "Tensão de cisalhamento τzx (MPa)",
+    "yieldStrength": "Tensão de escoamento (MPa)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultados de tensão de Von Mises",
+    "vonMises": "Tensão de Von Mises: {value} MPa",
+    "factorOfSafety": "Fator de segurança: {value}",
+    "safe": "Seguro (sem escoamento)",
+    "yielding": "Escoando"
+  },
+  "error": {
+    "invalid": "Digite números válidos para os componentes de tensão."
+  },
+  "formula": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)])",
+  "about": {
+    "heading": "Sobre a calculadora de tensão de Von Mises",
+    "body": "A tensão de Von Mises, também chamada de tensão equivalente ou tensão efetiva, é uma medida escalar usada para prever o escoamento de materiais dúcteis sob carregamentos complexos. Ela combina os seis componentes de tensão — três tensões normais (σx, σy, σz) e três tensões de cisalhamento (τxy, τyz, τzx) — em um único valor equivalente que pode ser comparado diretamente à tensão de escoamento uniaxial do material.\n\nO critério de escoamento de Von Mises, proposto por Richard von Mises em 1913, afirma que um material dúctil começa a escoar quando a energia de distorção por unidade de volume atinge a energia de distorção no escoamento sob tração uniaxial. Isso é expresso matematicamente como: σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). Quando σ_vm é igual ou maior que a tensão de escoamento σ_y, o material é previsto como escoando.\n\nNa análise por elementos finitos (FEA), a tensão de Von Mises é um dos resultados mais relatados porque oferece um número único conveniente que resume a severidade do estado de tensão em qualquer ponto. Engenheiros a usam para identificar regiões críticas, avaliar o aproveitamento do material e calcular fatores de segurança. O fator de segurança (FoS) é definido como a razão entre a tensão de escoamento e a tensão de Von Mises: FoS = σ_y / σ_vm. Um FoS maior que 1 significa que o componente está seguro; valores abaixo de 1 indicam escoamento.\n\nPara carregamento uniaxial (apenas σx, todos os outros zero), a tensão de Von Mises é igual a σx, consistente com a definição direta de escoamento em um ensaio de tração simples. Para cisalhamento puro (apenas τxy), σ_vm = √3 × τxy, mostrando que o escoamento em cisalhamento ocorre em τ_y = σ_y/√3 ≈ 0.577σ_y. Essa relação é um resultado chave da teoria da plasticidade e é usada em previsões de falha por cisalhamento em parafusos, soldas e ligações estruturais.\n\nO critério de Von Mises é preferido ao critério de Tresca (tensão de cisalhamento máxima) na maioria das aplicações de engenharia porque é suave e diferenciável, se ajusta melhor aos dados experimentais da maioria dos metais dúcteis, incluindo aço, alumínio e cobre, e é mais conveniente em cálculos numéricos. O critério de Tresca é um pouco mais conservador (prevê escoamento em níveis de tensão mais baixos) e às vezes é usado em códigos de vasos de pressão.\n\nNa prática, a tensão de Von Mises é usada em projeto de componentes, análise de soldas, avaliação de juntas parafusadas, códigos de vasos de pressão e tubulações (ASME, EN), certificação estrutural aeroespacial e simulação de colisão automotiva. Entender o tensor de tensão completo e aplicar o critério de Von Mises permite que engenheiros façam projetos confiáveis e mais eficientes em material."
+  },
+  "examples": {
+    "heading": "Exemplos de tensão de Von Mises",
+    "intro": "Cenários de carregamento representativos mostrando a tensão de Von Mises, o fator de segurança e o estado de segurança.",
+    "colInput": "Cenário de carregamento",
+    "colOutput": "Tensão de Von Mises / FoS",
+    "colNote": "Estado de segurança",
+    "items": [
+      {
+        "input": "Tração uniaxial: σx=150 MPa, todos os outros=0, yield=300 MPa",
+        "output": "σ_vm = 150 MPa, FoS = 2.0",
+        "note": "Seguro (sem escoamento). Em carregamento uniaxial, a tensão de Von Mises é igual à tensão normal aplicada."
+      },
+      {
+        "input": "Cisalhamento puro: τxy=60 MPa, todas as tensões normais=0, yield=200 MPa",
+        "output": "σ_vm ≈ 103.9 MPa, FoS ≈ 1.92",
+        "note": "Seguro (sem escoamento). Para cisalhamento puro, σ_vm = √3 × τxy; o escoamento ocorre em τ = σ_y/√3."
+      },
+      {
+        "input": "Biaxial: σx=100, σy=80, τxy=30 MPa, yield=250 MPa",
+        "output": "σ_vm ≈ 105.4 MPa, FoS ≈ 2.37",
+        "note": "Seguro (sem escoamento). Tensões normais e de cisalhamento combinadas geram uma tensão equivalente moderada."
+      },
+      {
+        "input": "Complexo: σx=120, σy=−40, σz=20, τxy=45, τyz=15, τzx=25 MPa, yield=350 MPa",
+        "output": "σ_vm ≈ 168.0 MPa, FoS ≈ 2.08",
+        "note": "Seguro (sem escoamento). Estado de tensão 3D completo com contribuições significativas de cisalhamento."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de tensão de Von Mises",
+    "steps": [
+      "Digite os três componentes de tensão normal σx, σy, σz em MPa. Para tensão plana 2D, defina σz = 0.",
+      "Digite os três componentes de tensão de cisalhamento τxy, τyz, τzx em MPa. Para problemas 2D, defina τyz = τzx = 0.",
+      "Opcionalmente, informe a tensão de escoamento do material em MPa para calcular o fator de segurança e o estado de segurança.",
+      "Clique em Calcular. A tensão equivalente de Von Mises será exibida junto com FoS e o estado de segurança, se a tensão de escoamento for informada.",
+      "Use valores negativos para tensões normais de compressão. O critério de Von Mises é independente do sinal das tensões normais quando combinado com cisalhamento."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre tensão de Von Mises",
+    "q1": "O que é tensão de Von Mises?",
+    "q1_a": "A tensão de Von Mises é uma medida escalar de tensão equivalente que combina os seis componentes do tensor de tensões em um único valor. Ela representa a parcela de energia de distorção do estado de tensão e é usada para prever o escoamento em materiais dúcteis. Quando σ_vm ≥ σ_yield, o material é previsto como escoando.",
+    "q2": "Qual é a fórmula da tensão de Von Mises?",
+    "q2_a": "σ_vm = √(0.5 × [(σx−σy)² + (σy−σz)² + (σz−σx)² + 6(τxy² + τyz² + τzx²)]). Ela é derivada da teoria da energia de distorção e também pode ser expressa em termos das tensões principais σ1, σ2, σ3 como σ_vm = √(0.5 × [(σ1−σ2)² + (σ2−σ3)² + (σ3−σ1)²]).",
+    "q3": "Como o fator de segurança é calculado?",
+    "q3_a": "O fator de segurança (FoS) é a razão entre a tensão de escoamento do material e a tensão de Von Mises: FoS = σ_yield / σ_vm. Um FoS > 1 significa que o componente está seguro; FoS = 1 significa que o material está no ponto de escoamento; FoS < 1 indica escoamento (deformação plástica). Os códigos de engenharia normalmente exigem FoS de 1.5 a 4, dependendo da aplicação.",
+    "q4": "Qual é a diferença entre os critérios de Von Mises e Tresca?",
+    "q4_a": "Ambos preveem o escoamento em materiais dúcteis. O critério de Von Mises é baseado na energia de distorção e fornece σ_y = √3 × τ_y. O critério de Tresca é baseado na tensão de cisalhamento máxima e fornece σ_y = 2 × τ_y. Tresca é um pouco mais conservador (prevê escoamento em níveis de carga mais baixos) e é usado em alguns códigos de vasos de pressão. Von Mises se ajusta melhor aos dados experimentais da maioria dos metais.",
+    "q5": "A tensão de Von Mises pode ser usada para materiais frágeis?",
+    "q5_a": "Não — o critério de Von Mises se aplica especificamente a materiais dúcteis que escoam antes de fraturar (metais como aço, alumínio e cobre). Para materiais frágeis (ferro fundido, cerâmicas, concreto), a tensão principal máxima ou o critério de Mohr-Coulomb são mais apropriados, porque a fratura frágil é governada por fissuração por tração, e não por fluxo plástico guiado por cisalhamento.",
+    "q6": "O que significa uma tensão de Von Mises negativa?",
+    "q6_a": "A tensão de Von Mises é sempre não negativa (é a raiz quadrada de uma soma de quadrados). Ela não tem sinal. Uma tensão de Von Mises igual a zero significa que não há tensão naquele ponto. A direção do carregamento (tração vs. compressão) está nos componentes individuais de tensão, mas o escalar equivalente de Von Mises não distingue tração de compressão."
+  }
+}

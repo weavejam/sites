@@ -1,0 +1,100 @@
+{
+  "title": "Voltage Drop Calculator",
+  "tagline": "Calculate voltage drop, power loss, and receiving-end voltage for electrical wire runs.",
+  "intro": "Enter current, source voltage, wire length, resistance per kilometre, and power factor to instantly find the voltage drop and percentage drop for your circuit.",
+  "formula": "Formula: VD = 2 × I × R (Ω/km) × L (m) × PF / 1000  •  VD% = VD / Vsource × 100",
+  "field": {
+    "current": "Current (A)",
+    "sourceVoltage": "Source Voltage (V)",
+    "wireLength": "Wire Length (m)",
+    "wireResistance": "Wire Resistance (Ω/km)",
+    "powerFactor": "Power Factor"
+  },
+  "placeholder": {
+    "current": "e.g., 15",
+    "sourceVoltage": "e.g., 120",
+    "wireLength": "e.g., 50",
+    "wireResistance": "e.g., 1.83",
+    "powerFactor": "e.g., 1.0"
+  },
+  "hint": "Leave Power Factor at 1.0 for DC circuits and purely resistive AC loads. For inductive loads such as motors, use the load power factor (typically 0.80–0.95).",
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers for all fields, and a power factor between 0 and 1."
+  },
+  "result": {
+    "heading": "Result",
+    "labelDrop": "Voltage Drop",
+    "labelDropPct": "Voltage Drop %",
+    "labelReceiving": "Receiving-End Voltage",
+    "labelPowerLoss": "Power Loss"
+  },
+  "about": {
+    "heading": "About the Voltage Drop Calculator",
+    "body": "Voltage drop is the reduction in electrical potential between the source end and the load end of a wire run caused by the resistance of the conductors. Every real conductor has a finite resistance; when current flows through that resistance, some of the supply voltage is consumed by the wire itself rather than delivered to the load. The result is a lower voltage at the load terminals, which can impair equipment performance and, in extreme cases, cause overheating or premature equipment failure.\n\nThe standard formula for a two-wire single-phase circuit (one conductor out, one conductor back) is VD = 2 × I × R × L / 1000, where I is the current in amperes, R is the conductor resistance in ohms per kilometre, and L is the one-way wire length in metres. The factor of 2 accounts for the round-trip current path. Dividing by 1 000 converts the kilometre-based resistance figure to per-metre units. For AC circuits with reactive loads, the result is further multiplied by the load power factor to account for the phase relationship between voltage and current.\n\nThe voltage drop percentage — VD / Vsource × 100 — is the most useful metric for compliance checking. International and national electrical codes specify maximum allowable voltage drops. The National Electrical Code (NEC) in the United States recommends a maximum of 3 % voltage drop on branch circuits and 5 % total (feeder plus branch). British Standard BS 7671 and IEC standards have similar limits. Exceeding these limits wastes energy, dims lights, reduces motor torque, and can trip under-voltage protection relays.\n\nConductor resistance depends on material and cross-sectional area. Copper is more conductive than aluminium: typical copper conductor resistances are approximately 7.41 Ω/km for 2.5 mm², 4.61 Ω/km for 4 mm², and 3.08 Ω/km for 6 mm². Aluminium conductors have roughly 1.64 times higher resistance for the same cross-section, which is why aluminium wiring requires a larger gauge to match the voltage-drop performance of copper.\n\nPower factor matters for AC circuits with inductive loads such as motors, transformers, and fluorescent lighting ballasts. A motor operating at a power factor of 0.85 draws more current for the same real power than a resistive heater at PF = 1.0, increasing the voltage drop. Improving power factor with capacitor correction banks reduces conductor current and therefore voltage drop, sometimes eliminating the need for larger, more expensive cable.\n\nCorrect voltage drop calculations are essential at the design stage. Running a higher-gauge wire costs more upfront but saves energy continuously over the life of the installation."
+  },
+  "examples": {
+    "heading": "Voltage drop examples",
+    "intro": "Two typical wiring scenarios showing how to calculate voltage drop for residential and industrial circuits.",
+    "colInput": "Circuit Parameters",
+    "colOutput": "Voltage Drop",
+    "colNote": "VD %",
+    "loadResidential": "Load residential circuit example",
+    "loadIndustrial": "Load industrial motor example",
+    "items": [
+      {
+        "input": "15 A, 120 V, 50 m, 1.83 Ω/km, PF = 1.0",
+        "output": "2.745 V",
+        "note": "2.29 % — within the NEC's recommended 3 % limit. Receiving-end voltage: 117.26 V."
+      },
+      {
+        "input": "30 A, 480 V, 100 m, 0.727 Ω/km, PF = 0.85",
+        "output": "3.70 V",
+        "note": "0.77 % — well within limits for a 480 V industrial motor circuit with 4 mm² copper cable."
+      },
+      {
+        "input": "20 A, 230 V, 30 m, 7.41 Ω/km, PF = 1.0",
+        "output": "8.89 V",
+        "note": "3.86 % — exceeds the 3 % guideline for a long 2.5 mm² run; upgrade to 4 mm² cable."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the voltage drop calculator",
+    "steps": [
+      "Enter the load current in amperes — use the full-load current of the connected equipment, not a partial or average value.",
+      "Enter the source voltage at the supply end of the circuit (e.g., 120 V, 230 V, or 480 V).",
+      "Enter the one-way wire length in metres — do not double it; the formula already accounts for the return conductor.",
+      "Enter the conductor resistance in Ω/km from a cable datasheet or standard table (e.g., 1.83 Ω/km for 14 AWG copper or 4 mm² copper).",
+      "Enter the power factor (0–1). Use 1.0 for DC and resistive loads; use the motor nameplate power factor for motor circuits. Click Calculate to see voltage drop, percentage, receiving-end voltage, and power loss."
+    ]
+  },
+  "faq": {
+    "heading": "Voltage drop calculator FAQ",
+    "items": [
+      {
+        "q": "What is the maximum allowable voltage drop?",
+        "a": "Most electrical codes recommend a maximum of 3 % voltage drop on branch circuits and 5 % combined drop for feeder plus branch. The NEC follows this guidance (informatively in FPN notes), and BS 7671 Table 4Ab sets 3 % for lighting and 5 % for other circuits. Staying within limits protects equipment and reduces energy waste."
+      },
+      {
+        "q": "Why does the formula multiply by 2?",
+        "a": "The factor of 2 accounts for the complete current path: current flows out through one conductor and returns through another. Both conductors contribute resistance, so the total wire resistance is twice the single-conductor resistance for a given run length. Three-phase circuits use a different factor (√3 instead of 2) because the three conductors share the return current."
+      },
+      {
+        "q": "How does wire gauge affect voltage drop?",
+        "a": "A larger cross-sectional area means lower resistance per kilometre, which reduces voltage drop. Doubling the wire cross-section roughly halves the resistance and therefore the voltage drop for the same current and length. Going up one AWG step (e.g., from 12 AWG to 10 AWG) reduces resistance by about 20 %."
+      },
+      {
+        "q": "Does the calculation apply to DC circuits?",
+        "a": "Yes, with the power factor set to 1.0. DC circuits have no reactive components, so PF = 1.0 is always correct. The formula simplifies to VD = 2 × I × R × L / 1000 for DC, which is identical to the AC formula at unity power factor."
+      },
+      {
+        "q": "What conductor resistance should I use for copper cable?",
+        "a": "Common copper conductor resistances at 20 °C: 1.5 mm² ≈ 12.1 Ω/km, 2.5 mm² ≈ 7.41 Ω/km, 4 mm² ≈ 4.61 Ω/km, 6 mm² ≈ 3.08 Ω/km, 10 mm² ≈ 1.83 Ω/km. Resistance increases about 0.4 % per degree Celsius above 20 °C, so adjust for elevated operating temperatures in hot environments."
+      }
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "title": "Voltage Regulation Calculator",
+  "tagline": "Calculate load regulation and line regulation for power supplies from measured no-load and full-load voltages.",
+  "intro": "Enter no-load and full-load voltages to calculate load regulation. Optionally add line voltage range, load current, and output impedance to calculate line regulation.",
+  "formula": "Formula: Load Reg (%) = (V_NL − V_FL) / V_FL × 100  •  Line Reg (%) = (Rout × I) / ΔVin × 100",
+  "section": {
+    "loadReg": "Load Regulation (required)",
+    "lineReg": "Line Regulation (optional)"
+  },
+  "field": {
+    "noLoadVoltage": "No-Load Voltage (V)",
+    "fullLoadVoltage": "Full-Load Voltage (V)",
+    "nominalVoltage": "Nominal Voltage (V)",
+    "minLineVoltage": "Minimum Line Voltage (V)",
+    "maxLineVoltage": "Maximum Line Voltage (V)",
+    "loadCurrent": "Load Current (A)",
+    "outputImpedance": "Output Impedance (Ω)"
+  },
+  "placeholder": {
+    "noLoadVoltage": "e.g., 12.5",
+    "fullLoadVoltage": "e.g., 11.8",
+    "nominalVoltage": "e.g., 12",
+    "minLineVoltage": "e.g., 10.8",
+    "maxLineVoltage": "e.g., 13.2",
+    "loadCurrent": "e.g., 5",
+    "outputImpedance": "e.g., 0.1"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter at least the no-load and full-load voltages with valid positive values."
+  },
+  "result": {
+    "heading": "Result",
+    "labelLoadReg": "Load Regulation",
+    "labelVoltageChange": "Voltage Change (V_NL − V_FL)",
+    "labelLineReg": "Line Regulation",
+    "labelDeltaVout": "Output Voltage Change (ΔVout)"
+  },
+  "about": {
+    "heading": "About the Voltage Regulation Calculator",
+    "body": "Voltage regulation is a measure of how much a power supply's output voltage changes in response to changes in load current or input supply voltage. It is one of the most important specifications for any power source — a poor regulation means that equipment receives different voltages depending on how much current it draws, which can lead to malfunctions, data errors, and reduced component life.\n\nLoad regulation describes the change in output voltage as the load current varies from zero (no-load) to the maximum rated current (full-load). It is calculated as: Load Regulation (%) = (V_NL − V_FL) / V_FL × 100. A perfect regulator would have 0 % load regulation, meaning the output voltage is identical at no load and full load. In practice, linear regulators achieve 0.1–1 %, while high-quality switching supplies achieve 0.5–2 %. Budget designs may show 5 % or more.\n\nLine regulation describes the change in output voltage when the input supply voltage varies, while the load remains constant. It is expressed as the percentage change in output voltage per percentage change in input voltage, or as output voltage change per volt of input change. A power supply with good line regulation maintains a stable output despite mains voltage fluctuations — important in countries where utility voltage varies widely.\n\nOutput impedance is the key parameter that links load current to voltage change. A power supply behaves like an ideal voltage source in series with a small resistance Rout. When the load current increases by ΔI, the output voltage drops by ΔV = Rout × ΔI. Lower output impedance means better regulation. A laboratory bench supply might have Rout of a few milliohms, while a simple transformer-rectifier design might have several ohms.\n\nVoltage regulation figures appear prominently in power supply datasheets and are tested under specific conditions. Medical-grade power supplies typically require load regulation better than 1 % and line regulation better than 0.5 %, because patient safety circuits depend on stable operating voltages. Consumer electronics power supplies commonly specify 3–5 %. Industrial motor drives and PLC power supplies require 1–3 % to ensure reliable operation of sensitive control circuits.\n\nPoor voltage regulation wastes energy and generates heat. A supply with high output impedance dissipates the excess voltage across internal resistance as heat when the load draws current. Improving regulation — through better transformer winding, lower-dropout linear regulators, or feedback-controlled switching topologies — reduces thermal losses and improves system efficiency."
+  },
+  "examples": {
+    "heading": "Voltage regulation examples",
+    "intro": "Practical power supply measurements showing load regulation calculation.",
+    "colInput": "No-Load / Full-Load Voltage",
+    "colOutput": "Load Regulation",
+    "colNote": "Assessment",
+    "loadPSU12V": "Load 12 V PSU example",
+    "loadPSU5V": "Load 5 V PSU example",
+    "items": [
+      {
+        "input": "V_NL = 12.5 V, V_FL = 11.8 V",
+        "output": "5.93 %",
+        "note": "Acceptable for a general-purpose 12 V supply; below 5 % is good, below 1 % is excellent."
+      },
+      {
+        "input": "V_NL = 5.1 V, V_FL = 4.85 V",
+        "output": "5.15 %",
+        "note": "Borderline for digital logic. A 5 V microcontroller tolerates ±5 %, but less headroom for transients."
+      },
+      {
+        "input": "V_NL = 3.32 V, V_FL = 3.28 V",
+        "output": "1.22 %",
+        "note": "Good regulation for a 3.3 V switching supply. Logic circuits see very stable supply voltage."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the voltage regulation calculator",
+    "steps": [
+      "Measure or obtain the no-load output voltage (V_NL) — the output voltage with no current drawn from the supply.",
+      "Measure or obtain the full-load output voltage (V_FL) — the output voltage at maximum rated current.",
+      "Enter both values in the Load Regulation section and click Calculate to see load regulation percentage and voltage change.",
+      "For line regulation, additionally enter the nominal input voltage, minimum and maximum input line voltages, load current, and output impedance, then click Calculate.",
+      "Compare the load regulation result against your application's tolerance: below 1 % is excellent, 1–3 % is good, above 5 % may cause problems in sensitive circuits."
+    ]
+  },
+  "faq": {
+    "heading": "Voltage regulation calculator FAQ",
+    "items": [
+      {
+        "q": "What is a good voltage regulation percentage?",
+        "a": "Below 1 % is excellent and is typical of precision laboratory supplies and high-quality switching regulators. 1–3 % is good and suitable for most digital and analog circuits. 3–5 % is acceptable for general-purpose equipment. Above 5 % indicates poor regulation that may cause problems with sensitive logic circuits, ADCs, or communication modules."
+      },
+      {
+        "q": "What is the difference between load regulation and line regulation?",
+        "a": "Load regulation measures how much the output voltage changes as the current drawn by the load varies from zero to maximum. Line regulation measures how much the output voltage changes when the input supply voltage varies while the load is constant. Both specifications matter: load regulation tests the supply's ability to maintain voltage under varying demand, while line regulation tests its immunity to mains fluctuations."
+      },
+      {
+        "q": "Why is no-load voltage often higher than full-load voltage?",
+        "a": "Internal resistance (output impedance) causes a voltage drop when current flows. At no load, no current flows, so there is no drop and the output reaches its maximum. At full load, I × Rout volts are dropped internally, reducing the terminal voltage. Linear regulators and battery-backed supplies show this effect clearly; feedback-controlled switching supplies minimise it."
+      },
+      {
+        "q": "How does temperature affect voltage regulation?",
+        "a": "Both the voltage reference inside a power supply and the resistances of conductors change with temperature. A voltage reference with a high temperature coefficient will cause the output voltage to drift as the unit warms up, worsening effective regulation over time. Precision supplies use temperature-compensated bandgap references that maintain less than 10 ppm/°C drift."
+      },
+      {
+        "q": "Can I improve voltage regulation without replacing the supply?",
+        "a": "Yes. Adding a bulk electrolytic capacitor at the load smooths transient voltage dips caused by sudden current demands. For critical circuits, a low-dropout (LDO) regulator placed close to the load can re-regulate the supply rail with very low output impedance. Cable resistance also contributes to poor regulation at the load; using thicker wire or Kelvin sensing connections to the point of use eliminates that component."
+      }
+    ]
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "title": "Relative Risk Reduction Calculator - RRR, ARR & NNT",
+  "tagline": "Calculate RRR, ARR, NNT, relative risk, and event rates from treatment and control group data to measure how effective an intervention really is.",
+  "intro": "Enter the number of events and total patients for both your treatment group and control group to compute all key intervention-effectiveness metrics instantly.",
+  "formula": "CER = control events / control total | EER = treatment events / treatment total | RR = EER / CER | RRR = (CER − EER) / CER | ARR = CER − EER | NNT = 1 / |ARR|",
+  "group": {
+    "treatment": "Treatment Group",
+    "control": "Control Group"
+  },
+  "field": {
+    "treatmentEvents": "Treatment: Patients with Event",
+    "treatmentTotal": "Treatment: Total Patients",
+    "controlEvents": "Control: Patients with Event",
+    "controlTotal": "Control: Total Patients"
+  },
+  "placeholder": {
+    "events": "e.g. 80",
+    "total": "e.g. 1000"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid counts. Events cannot exceed total patients, totals must be positive, and the control event rate cannot be zero."
+  },
+  "result": {
+    "heading": "Results",
+    "cer": "CER (Control Event Rate)",
+    "eer": "EER (Treatment Event Rate)",
+    "rr": "Relative Risk (RR)",
+    "rrr": "RRR (Relative Risk Reduction)",
+    "arr": "ARR (Absolute Risk Reduction)",
+    "nnt": "NNT (Number Needed to Treat)"
+  },
+  "about": {
+    "heading": "About the Relative Risk Reduction Calculator",
+    "body": "Relative Risk Reduction (RRR) is a statistical measure that expresses the proportional reduction in an adverse outcome rate that is attributable to a treatment or intervention. If the control event rate (CER) is 12% and the treatment event rate (EER) is 8%, the RRR is (12% − 8%) / 12% = 33.3%. This tells clinicians, policy-makers, and researchers that the intervention reduces the risk of the event by one-third compared to the control condition.\n\nRRR is calculated from two event rates. The Control Event Rate (CER) is the proportion of patients in the control (untreated or placebo) group who experience the outcome of interest: CER = control events / control total. The Experimental (or Treatment) Event Rate (EER) is the corresponding proportion in the treatment group: EER = treatment events / treatment total. The Relative Risk (RR) is the ratio EER / CER. RRR = 1 − RR = (CER − EER) / CER. When the treatment is beneficial (EER < CER), RRR is positive and between 0 and 1 (0% to 100%). A negative RRR indicates that the treatment increases rather than reduces risk — it could also be called a Relative Risk Increase.\n\nAbsolute Risk Reduction (ARR), also called the Risk Difference, is the arithmetic difference between the two event rates: ARR = CER − EER. Unlike RRR, which is relative to the baseline, ARR is expressed in the same units as the event rate and conveys the actual size of the treatment effect. A drug with an RRR of 50% sounds impressive, but if the baseline risk is only 0.2%, the ARR is only 0.1% — meaning only 1 in 1000 patients benefit. This is why ARR and NNT are essential complements to RRR.\n\nNumber Needed to Treat (NNT) is the reciprocal of ARR: NNT = 1 / |ARR|. It answers the question: on average, how many patients need to receive the treatment for one additional patient to avoid the outcome? An NNT of 10 means that, on average, treating 10 patients prevents one adverse event. A lower NNT indicates a more efficient treatment. NNT should always be interpreted alongside the severity of the outcome: an NNT of 100 to prevent a fatal heart attack may be very worthwhile, while an NNT of 100 to prevent a mild headache may not justify the cost and side-effect burden.\n\nThese four metrics — CER, EER, RRR, ARR, and NNT — appear routinely in clinical guidelines, pharmaceutical product labels, systematic reviews, and health technology assessments. Regulatory agencies such as the FDA and EMA require absolute risk data in labelling to ensure prescribers and patients have a complete picture of treatment benefit. The RRR alone can be misleading: a headline claiming a drug reduces risk by 40% sounds dramatic, but if the ARR is 0.5% and the NNT is 200, clinicians need all three numbers to make an informed decision.\n\nThis calculator also handles cases where the treatment increases the event rate (ARR is negative). In that context, the NNT becomes the Number Needed to Harm (NNH) — the number of patients who need to be treated for one additional adverse event to occur. The interpretation flips but the formula is identical: NNH = 1 / |ARR| when ARR < 0."
+  },
+  "examples": {
+    "heading": "RRR calculation examples",
+    "intro": "Real clinical trial scenarios showing how to enter the data and interpret RRR, ARR, and NNT together.",
+    "colInput": "Study Data",
+    "colOutput": "Key Metrics",
+    "colNote": "Clinical Interpretation",
+    "loadDrug": "Load cholesterol drug",
+    "loadVaccine": "Load flu vaccine",
+    "loadSurgery": "Load surgical technique",
+    "items": [
+      {
+        "input": "Treatment: 80/1000 events; Control: 120/1000 events",
+        "output": "CER=12%, EER=8%, RR=0.667, RRR=33.3%, ARR=4%, NNT=25",
+        "note": "New cholesterol drug: treats 25 patients to prevent 1 heart attack. RRR of 33% sounds impressive; ARR of 4% and NNT of 25 put it in practical context."
+      },
+      {
+        "input": "Treatment: 25/5000 events; Control: 85/5000 events",
+        "output": "CER=1.7%, EER=0.5%, RR=0.294, RRR=70.6%, ARR=1.2%, NNT=83.3",
+        "note": "Flu vaccine: treats 83 people to prevent 1 flu case. Very high RRR of ~71% reflects strong vaccine efficacy despite the low absolute risk baseline."
+      },
+      {
+        "input": "Treatment: 10/250 events; Control: 25/250 events",
+        "output": "CER=10%, EER=4%, RR=0.4, RRR=60%, ARR=6%, NNT=16.7",
+        "note": "New surgical technique: NNT of ~17 means treating 17 patients with the new technique prevents 1 post-operative complication compared to the standard technique."
+      },
+      {
+        "input": "Drug side effect: treat=60/1000 events; control=20/1000 events",
+        "output": "CER=2%, EER=6%, RR=3.0, RRR=−200%, ARR=−4%, NNH=25",
+        "note": "The drug triples the nausea rate compared to placebo. ARR is negative (−4%) because EER > CER; NNT becomes NNH=25, meaning 25 patients treated per additional nausea case caused."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the RRR Calculator",
+    "steps": [
+      "Enter the number of patients who experienced the outcome in the Treatment Group, then enter the total number of patients in that group.",
+      "Enter the number of patients who experienced the outcome in the Control Group (placebo or untreated), then enter that group's total.",
+      "Click Calculate. The tool computes and displays CER, EER, Relative Risk, RRR, ARR, and NNT.",
+      "Interpret RRR as the proportional reduction in risk relative to the control event rate. Check ARR to understand the absolute size of the effect.",
+      "Use NNT to assess clinical efficiency: a lower NNT means fewer patients need treatment to achieve one beneficial outcome. If ARR is negative, interpret NNT as Number Needed to Harm."
+    ]
+  },
+  "faq": {
+    "heading": "RRR, ARR & NNT FAQ",
+    "q1": "What is the difference between RRR and ARR?",
+    "q1_a": "RRR (Relative Risk Reduction) is the proportional reduction in event rate relative to the control: (CER − EER) / CER. ARR (Absolute Risk Reduction) is the arithmetic difference: CER − EER. RRR is always larger in magnitude and can be misleading when the baseline risk is very low. ARR gives the actual reduction in risk per patient, making it a more clinically meaningful single number. Both are needed for a complete picture.",
+    "q2": "What does NNT mean and what is a 'good' NNT?",
+    "q2_a": "NNT is the Number Needed to Treat — the average number of patients who must receive the treatment for one additional patient to avoid the outcome, compared to the control. There is no universal 'good' threshold: it depends on the severity of the outcome, the cost of treatment, and the side-effect burden. An NNT of 5 to prevent a stroke is excellent; an NNT of 5 to prevent a mild headache may not justify treatment. Always consider NNT alongside the severity and frequency of the outcome and harms.",
+    "q3": "What is the Control Event Rate (CER) and why does it matter?",
+    "q3_a": "CER is the proportion of patients in the control group who experience the outcome: CER = control events / control total. It represents the baseline risk without treatment. CER determines how large the RRR translates to in absolute terms: a 50% RRR with CER = 20% gives ARR = 10% and NNT = 10, while the same RRR with CER = 0.4% gives ARR = 0.2% and NNT = 500. The same relative reduction can have very different practical importance depending on the baseline risk.",
+    "q4": "Can RRR be negative? What does that mean?",
+    "q4_a": "Yes. A negative RRR means the treatment group has a higher event rate than the control group — the treatment is associated with increased risk rather than reduced risk. In that case, (CER − EER) is negative and RRR is negative. The absolute value of ARR in this scenario is the Absolute Risk Increase, and the reciprocal is the Number Needed to Harm (NNH) — how many patients must be treated for one additional harm to occur.",
+    "q5": "Is RRR the same as efficacy in vaccine trials?",
+    "q5_a": "Vaccine efficacy (VE) is conceptually identical to RRR: VE = (CER − EER) / CER = 1 − RR. A vaccine efficacy of 95% means that vaccinated individuals have a 95% lower risk of the outcome compared to unvaccinated controls. The terms are used interchangeably in this context, though 'efficacy' typically refers to results from controlled trials while 'effectiveness' is used for real-world observational data.",
+    "q6": "How does this differ from the Relative Risk Calculator?",
+    "q6_a": "The Relative Risk Calculator takes a 2×2 contingency table (cells a, b, c, d) typically used in cohort epidemiology studies, and is focused on computing RR and its confidence interval. The Relative Risk Reduction Calculator takes treatment and control group totals and events, and focuses on computing the clinically useful metrics of RRR, ARR, and NNT that are standard in clinical trial reporting and evidence-based medicine. Both tools compute relative risk, but serve different primary use cases."
+  }
+}

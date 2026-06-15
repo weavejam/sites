@@ -1,0 +1,92 @@
+{
+  "title": "Calculadora de outliers - Detecte outliers usando IQR",
+  "tagline": "Encontre outliers estatísticos em qualquer conjunto de dados usando o método do intervalo interquartil — escolha detecção leve (1,5×IQR) ou extrema (3×IQR) na hora.",
+  "intro": "Digite uma lista de números separada por vírgulas, selecione o método de detecção de outliers e obtenha Q1, Q3, IQR, os valores dos limites e a lista de outliers.",
+  "formula": "IQR = Q3 − Q1  |  Limite inferior = Q1 − k × IQR  |  Limite superior = Q3 + k × IQR  |  k = 1,5 (leve) ou 3,0 (extremo)",
+  "field": {
+    "data": "Conjunto de dados (números separados por vírgulas)",
+    "method": "Método de detecção de outliers"
+  },
+  "placeholder": {
+    "data": "ex.: 10, 12, 14, 15, 16, 18, 20, 50"
+  },
+  "type": {
+    "mild": "Outliers leves (1,5 × IQR)",
+    "extreme": "Outliers extremos (3,0 × IQR)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira pelo menos 4 números separados por vírgulas."
+  },
+  "result": {
+    "heading": "Resultados",
+    "q1": "Q1 (primeiro quartil)",
+    "q3": "Q3 (terceiro quartil)",
+    "iqr": "IQR",
+    "lowerBound": "Limite inferior",
+    "upperBound": "Limite superior",
+    "outlierCount": "Quantidade de outliers",
+    "outliersLabel": "Outliers detectados",
+    "noOutliers": "Nenhum outlier encontrado",
+    "cleanDataLabel": "Dados sem outliers (ordenados)"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de outliers",
+    "body": "Um outlier é um ponto de dados que fica a uma distância anormal dos outros valores em um conjunto de dados. Na análise estatística, outliers podem distorcer medidas-resumo como média e desvio padrão, inflar estimativas de variância e violar premissas de testes paramétricos. Identificá-los cedo é uma etapa crítica em análise exploratória de dados, controle de qualidade e pré-processamento para machine learning.\n\nO método mais usado para detectar outliers é baseado no intervalo interquartil (IQR), que é a diferença entre o terceiro quartil (Q3) e o primeiro quartil (Q1) dos dados. Esse método é robusto porque o IQR, ao contrário da média e do desvio padrão, não é distorcido pelos próprios valores extremos. A fórmula dos dois limites é: limite inferior = Q1 − k × IQR e limite superior = Q3 + k × IQR. Qualquer ponto de dados fora desses limites é classificado como outlier.\n\nO multiplicador k define o quão agressiva é a marcação. A escolha mais comum é k = 1,5, o padrão em boxplots, que identifica os chamados outliers “leves” — valores que se afastam de forma perceptível da maior parte dos dados, mas ainda podem ter uma explicação legítima. Com k = 3,0, o critério é mais rígido; apenas outliers “extremos” são marcados — valores tão distantes da distribuição principal que quase certamente representam erros, anomalias ou eventos realmente raros.\n\nPara calcular os quartis, a calculadora primeiro ordena os dados em ordem crescente. Q1 é o percentil 25 e Q3 é o percentil 75 dos dados ordenados. Quando a posição do quartil cai entre dois pontos de dados, a calculadora interpola linearmente para produzir um resultado suave, consistente com o padrão do Excel e com muitas convenções de pacotes estatísticos.\n\nDetectar um outlier não significa excluí-lo automaticamente. Antes de remover ou transformar um outlier detectado, você deve investigar sua causa. Ele pode ser um erro de digitação, um erro de medição, um erro de amostragem (um valor de outra população) ou uma observação extrema genuína, cientificamente importante e que deve ser mantida. Por exemplo, em detecção de fraude, o ponto de dados mais importante pode ser o outlier. Em pesquisa clínica, o paciente com a resposta mais extrema pode ser o mais informativo. Sempre documente sua decisão e, se houver dúvida, reporte os resultados com e sem o outlier para mostrar sensibilidade.\n\nO método IQR é não paramétrico, ou seja, não assume a forma da distribuição subjacente. Isso o torna especialmente adequado para distribuições assimétricas, amostras pequenas e dados com vários agrupamentos. Para dados aproximadamente normais com amostras grandes, o método do escore Z (marcando valores com mais de 2 ou 3 desvios padrão da média) é uma alternativa, mas o próprio escore Z é inflado pelos outliers que ele tenta detectar, tornando a abordagem IQR geralmente mais confiável."
+  },
+  "examples": {
+    "heading": "Exemplos resolvidos",
+    "intro": "Três conjuntos de dados ilustrando um único outlier, vários outliers e um conjunto limpo sem outliers.",
+    "colInput": "Conjunto de dados",
+    "colOutput": "Outliers (1,5×IQR)",
+    "colNote": "Valores-chave",
+    "loadBasic": "Carregar exemplo básico",
+    "loadMultiple": "Carregar exemplo com vários outliers",
+    "loadNone": "Carregar exemplo sem outlier",
+    "items": [
+      {
+        "input": "10, 12, 14, 15, 16, 18, 20, 50",
+        "output": "50",
+        "note": "Q1=13,5, Q3=18,5, IQR=5, limite superior=26. O valor 50 ultrapassa 26 e é marcado como outlier."
+      },
+      {
+        "input": "1, 25, 28, 30, 32, 35, 38, 100",
+        "output": "1, 100",
+        "note": "Q1=27,25, Q3=35,75, IQR=8,5, limites: 14,5 a 48,5. Tanto 1 quanto 100 ficam fora desses limites."
+      },
+      {
+        "input": "10, 20, 30, 40, 50, 60, 70, 80",
+        "output": "None",
+        "note": "O espaçamento uniforme significa que nenhum ponto está a mais de 1,5×IQR do limite. Todos os valores estão limpos."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de outliers",
+    "steps": [
+      "Digite ou cole seus dados no campo como uma lista de números separada por vírgulas. Inteiros, decimais e números negativos são aceitos.",
+      "Selecione “Outliers leves (1,5 × IQR)” para a análise padrão usada em boxplots, ou “Outliers extremos (3,0 × IQR)” para marcar apenas as anomalias mais graves.",
+      "Clique em Calcular. A ferramenta exibe Q1, Q3, IQR, os limites inferior e superior e a quantidade de outliers.",
+      "Revise a lista de “Outliers detectados”. Investigue cada valor marcado antes de decidir removê-lo ou mantê-lo.",
+      "O conjunto de dados limpo (ordenado e sem outliers) aparece abaixo da lista para copiar rapidamente para sua análise."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "q1": "O que é o método IQR para detecção de outliers?",
+    "q1_a": "O método IQR (intervalo interquartil) calcula dois limites: Q1 − 1,5×IQR e Q3 + 1,5×IQR. Qualquer ponto de dados fora desses limites é marcado como outlier. O método é robusto porque Q1, Q3 e IQR não são influenciados pelos próprios outliers, ao contrário da média e do desvio padrão.",
+    "q2": "Devo sempre remover outliers?",
+    "q2_a": "Não. Investigue antes de remover. Outliers podem representar dados reais e importantes — uma transação fraudulenta, uma descoberta científica nova ou um defeito de fabricação que vale estudar. Remova apenas se houver um motivo válido, como um erro de digitação confirmado. Sempre registre as remoções ao reportar sua análise.",
+    "q3": "Qual é a diferença entre outliers leves e extremos?",
+    "q3_a": "Outliers leves ficam entre 1,5×IQR e 3×IQR além de um quartil. Outliers extremos ficam além de 3×IQR. Boxplots normalmente mostram outliers leves como círculos vazios e extremos como estrelas ou círculos preenchidos. Para a maioria das análises exploratórias, o limite de 1,5×IQR é o padrão.",
+    "q4": "Esta calculadora funciona com números negativos?",
+    "q4_a": "Sim. O método IQR é independente de escala e funciona corretamente com qualquer combinação de valores positivos, zero ou negativos. Basta incluir os números negativos na sua lista separada por vírgulas, por exemplo: −20, 5, 8, 9, 10, 12, 15.",
+    "q5": "Qual é o número mínimo de pontos de dados necessário?",
+    "q5_a": "A calculadora requer pelo menos 4 pontos de dados para calcular quartis e IQR de forma significativa. Para amostras muito pequenas (menos de 10 a 15 valores), os limites podem variar bastante e um outlier detectado deve ser interpretado com cautela.",
+    "q6": "Como este método se compara à abordagem de escore Z?",
+    "q6_a": "O método de escore Z marca valores com mais de 2 ou 3 desvios padrão da média. Ele assume dados aproximadamente normais e é sensível aos próprios outliers que tenta detectar, porque valores extremos aumentam a média e o desvio padrão. O método IQR não assume normalidade e, portanto, é preferível para dados assimétricos, distribuições com caudas pesadas e amostras pequenas ou moderadas."
+  }
+}

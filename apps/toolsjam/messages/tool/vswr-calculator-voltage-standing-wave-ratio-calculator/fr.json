@@ -1,0 +1,92 @@
+{
+  "title": "Calculatrice VSWR : rapport d'onde stationnaire",
+  "tagline": "Calculez le VSWR, la perte de retour, la perte d'adaptation et le rendement de transmission à partir de mesures de puissance ou d'impédance.",
+  "intro": "Choisissez le mode de mesure de puissance ou d'impédance pour calculer le coefficient de réflexion, le VSWR et les paramètres RF associés.",
+  "type": {
+    "powerMode": "Mesure de puissance",
+    "impedanceMode": "Mesure d'impédance"
+  },
+  "field": {
+    "forwardPower": "Puissance incidente (W)",
+    "reflectedPower": "Puissance réfléchie (W)",
+    "loadImpedance": "Impédance de charge (Ω)",
+    "charImpedance": "Impédance caractéristique (Ω)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats VSWR",
+    "gamma": "Coefficient de réflexion (Γ) : {value}",
+    "vswr": "VSWR : {value}",
+    "returnLoss": "Perte de retour : {value} dB",
+    "mismatchLoss": "Perte d'adaptation : {value} dB",
+    "efficiency": "Rendement de transmission : {value}%"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides.",
+    "reflectedExceedsForward": "La puissance réfléchie ne peut pas dépasser la puissance incidente.",
+    "forwardZero": "La puissance incidente doit être supérieure à zéro.",
+    "impedanceShort": "ZL + Z0 ne peut pas être égal à zéro."
+  },
+  "formula": "Γ = √(Pr/Pf) ou |(ZL−Z0)/(ZL+Z0)| | VSWR = (1+Γ)/(1−Γ) | RL = −20·log10(Γ) dB",
+  "about": {
+    "heading": "À propos de la calculatrice VSWR",
+    "body": "Le rapport d'ondes stationnaires en tension (VSWR) est une mesure fondamentale en ingénierie radiofréquence (RF) et micro-ondes qui indique à quel point une ligne de transmission est adaptée à sa charge. Lorsque la puissance RF circule dans un câble coaxial ou un guide d'ondes et rencontre une désadaptation d'impédance à la charge, une partie de la puissance est renvoyée vers la source. La superposition de l'onde incidente et de l'onde réfléchie crée une onde stationnaire, et le VSWR mesure le rapport entre la tension maximale et la tension minimale dans ce motif.\n\nUne adaptation parfaite donne VSWR = 1.0, ce qui signifie qu'aucune puissance n'est réfléchie. Les systèmes pratiques visent généralement VSWR ≤ 1.5 (moins de 4 % de puissance réfléchie). Des valeurs de VSWR élevées (supérieures à 3 ou 4) sont indésirables car elles gaspillent la puissance de l'émetteur, peuvent endommager l'amplificateur de puissance à cause de la puissance réfléchie et dégradent la qualité du signal. Dans les systèmes de diffusion et cellulaires, le VSWR de l'antenne est surveillé en continu, et des circuits de protection automatiques arrêtent les émetteurs lorsque le VSWR dépasse des seuils sûrs.\n\nLe coefficient de réflexion Γ (gamma) est le rapport entre l'amplitude de l'onde réfléchie et celle de l'onde incidente. Il varie de 0 (adaptation parfaite) à 1 (réflexion totale, comme dans un circuit ouvert ou un court-circuit). Le VSWR est directement lié à Γ : VSWR = (1 + |Γ|) / (1 − |Γ|). Pour les mesures de puissance, |Γ| = √(P_réfléchie / P_incidente). Pour les mesures d'impédance, Γ = (ZL − Z0) / (ZL + Z0), où ZL est l'impédance de charge et Z0 l'impédance caractéristique.\n\nLa perte de retour (en dB) quantifie le rapport entre la puissance réfléchie et la puissance incidente sur une échelle logarithmique : RL = −20 × log10(|Γ|). Une perte de retour élevée signifie une faible réflexion. Une perte de retour de 20 dB signifie que 1 % de la puissance est réfléchie ; 10 dB signifie 10 % réfléchis. La perte d'adaptation représente la puissance absorbée par le système de transmission en raison d'une désadaptation d'impédance, tandis que le rendement de transmission (1 − Γ²) × 100 % indique le pourcentage de puissance qui atteint réellement la charge.\n\nLes applications courantes incluent l'adaptation d'antennes, la conception de systèmes coaxiaux, l'adaptation de sortie d'amplificateurs, la caractérisation de filtres et les réseaux d'adaptation d'impédance en conception de circuits RF."
+  },
+  "examples": {
+    "heading": "Exemples de VSWR",
+    "intro": "Scénarios RF courants avec VSWR, perte de retour et rendement de transmission.",
+    "colInput": "Mesure",
+    "colOutput": "VSWR / Perte de retour",
+    "colNote": "Rendement de transmission",
+    "items": [
+      {
+        "input": "Adaptation parfaite (puissance) : Pf=100W, Pr=0W",
+        "output": "Γ=0, VSWR=1.0, RL=∞ dB",
+        "note": "Rendement 100 %. Système idéalement adapté — toute la puissance est délivrée à la charge."
+      },
+      {
+        "input": "Bonne adaptation (impédance) : ZL=75Ω, Z0=50Ω",
+        "output": "Γ=0.2, VSWR=1.5, RL=14.0 dB",
+        "note": "Rendement 96 %. Acceptable pour la plupart des applications ; spécification d'antenne typique."
+      },
+      {
+        "input": "Mauvaise adaptation (puissance) : Pf=100W, Pr=25W",
+        "output": "Γ=0.5, VSWR=3.0, RL=6.0 dB",
+        "note": "Rendement 75 %. Désadaptation importante : 25 % de la puissance est renvoyée vers la source."
+      },
+      {
+        "input": "Forte désadaptation (impédance) : ZL=200Ω, Z0=50Ω",
+        "output": "Γ=0.6, VSWR=4.0, RL=4.4 dB",
+        "note": "Rendement 64 %. Mauvaise adaptation nécessitant un réseau d'adaptation d'impédance pour fonctionner efficacement."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice VSWR",
+    "steps": [
+      "Choisissez le mode de mesure : Mesure de puissance (utilise la puissance incidente et réfléchie) ou Mesure d'impédance (utilise l'impédance de charge et l'impédance caractéristique).",
+      "En mode Puissance : saisissez la puissance incidente et la puissance réfléchie en watts. La puissance réfléchie doit être inférieure à la puissance incidente.",
+      "En mode Impédance : saisissez l'impédance de charge ZL et l'impédance caractéristique Z0 en ohms. Pour les systèmes coaxiaux, Z0 est généralement de 50Ω ; pour les systèmes de télévision par câble, il est généralement de 75Ω.",
+      "Cliquez sur Calculer pour voir le coefficient de réflexion (Γ), le VSWR, la perte de retour, la perte d'adaptation et le rendement de transmission.",
+      "Visez un VSWR ≤ 1.5 (perte de retour ≥ 14 dB) pour des systèmes RF bien adaptés. Des valeurs supérieures à 3 indiquent une désadaptation d'impédance importante nécessitant une correction."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ VSWR",
+    "q1": "Que signifie VSWR ?",
+    "q1_a": "VSWR signifie Voltage Standing Wave Ratio, c'est-à-dire rapport d'ondes stationnaires en tension. Il s'agit du rapport entre l'amplitude de tension maximale et minimale dans une onde stationnaire créée lorsqu'une ligne de transmission n'est pas parfaitement adaptée à sa charge. VSWR = 1.0 correspond à une adaptation parfaite ; VSWR > 1 indique une désadaptation d'impédance. Un VSWR de 2.0 signifie que la tension maximale est deux fois la tension minimale dans l'onde stationnaire.",
+    "q2": "Quelle est une bonne valeur de VSWR ?",
+    "q2_a": "Pour la plupart des applications RF, VSWR ≤ 1.5 est considéré comme bon (perte de retour ≥ 14 dB, réflexion < 4 %). VSWR ≤ 2.0 est acceptable pour de nombreuses applications de diffusion et radioamateur. Des valeurs supérieures à 3.0 indiquent une désadaptation importante et une puissance gaspillée. Des systèmes critiques comme les liaisons montantes satellitaires peuvent exiger VSWR ≤ 1.2. VSWR = 1.0 est idéal, mais difficile à atteindre en pratique.",
+    "q3": "Qu'est-ce que la perte de retour et quel est son lien avec le VSWR ?",
+    "q3_a": "La perte de retour est le rapport entre la puissance réfléchie et la puissance incidente exprimé en dB : RL = −20 × log10(|Γ|). Une perte de retour élevée signifie peu de réflexion. Le VSWR et la perte de retour sont directement liés : VSWR 1.5 → RL 14 dB ; VSWR 2.0 → RL 9.5 dB ; VSWR 3.0 → RL 6.0 dB. Les ingénieurs RF préfèrent souvent spécifier la perte de retour car elle augmente lorsque l'adaptation s'améliore (plus élevé = mieux).",
+    "q4": "Quelles sont les causes d'un VSWR élevé ?",
+    "q4_a": "Un VSWR élevé est causé par une désadaptation d'impédance entre la ligne de transmission et la charge. Les causes courantes incluent : antenne non réglée sur la fréquence de fonctionnement ; connecteurs endommagés ou corrodés ; infiltration d'eau dans le câble coaxial ; impédance de ligne d'alimentation incorrecte ; impédance de sortie de l'émetteur non adaptée au câble ; ou charge (filtre, amplificateur) avec une impédance d'entrée incorrecte. Des réseaux d'adaptation d'impédance (réseaux en L, réseaux en π, adaptation par stub) peuvent réduire le VSWR.",
+    "q5": "Le VSWR peut-il endommager un émetteur ?",
+    "q5_a": "Oui — un VSWR élevé signifie qu'une partie importante de la puissance est renvoyée vers l'émetteur. Les émetteurs modernes disposent de coupleurs directionnels et de circuits de protection qui détectent une forte puissance réfléchie et réduisent la sortie ou s'arrêtent automatiquement. Cependant, un VSWR élevé prolongé peut provoquer un stress thermique dans l'étage final de l'amplificateur, endommager les transistors et rendre l'alimentation instable. Assurez-vous toujours que le VSWR reste dans la plage d'utilisation spécifiée par l'émetteur.",
+    "q6": "Quelle est la différence entre VSWR et S11 ?",
+    "q6_a": "S11 (le coefficient de réflexion d'entrée en notation des paramètres S) et VSWR décrivent la même désadaptation d'impédance sous des angles différents. |S11| = |Γ| (module du coefficient de réflexion). Ils sont liés par : VSWR = (1 + |S11|) / (1 − |S11|) et Perte de retour = −20 × log10(|S11|) dB. S11 est couramment utilisé dans les mesures au analyseur de réseaux vectoriel (VNA) et s'exprime comme un nombre complexe, tandis que le VSWR est toujours réel et positif."
+  }
+}

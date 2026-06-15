@@ -1,0 +1,89 @@
+{
+  "title": "Calculatrice de régression exponentielle",
+  "tagline": "Ajustez un modèle exponentiel y = ab^x à vos données et prédisez des valeurs futures.",
+  "intro": "Saisissez des paires de données (x, y) pour calculer l'équation de régression exponentielle, R² et les prédictions.",
+  "field": {
+    "dataPoints": "Points de données (x, y)",
+    "dataPointsPlaceholder": "1 1.6\n2 2.5\n3 3.8\n4 5.9\n5 9.1",
+    "dataPointsHint": "Saisissez une paire par ligne, séparée par un espace ou une virgule. Exemple : 1 2.5",
+    "predictX": "Prédire Y pour un X donné",
+    "predictXPlaceholder": "p. ex. 6"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir au moins 3 points de données valides avec des valeurs de y positives. Chaque ligne doit contenir deux nombres séparés par un espace ou une virgule."
+  },
+  "result": {
+    "heading": "Résultats",
+    "equation": "Équation de régression",
+    "a": "Coefficient 'a'",
+    "b": "Coefficient 'b'",
+    "rSquared": "R² (coefficient de détermination)",
+    "correlation": "Coefficient de corrélation (R)",
+    "predictedY": "Y prédit"
+  },
+  "about": {
+    "heading": "À propos de la calculatrice de régression exponentielle",
+    "body": "La régression exponentielle est une technique d'ajustement de courbe qui permet de trouver la fonction exponentielle y = ab^x la mieux adaptée à un ensemble de points de données. Elle est utilisée lorsque les données suggèrent une croissance ou une décroissance exponentielle — quand on trace les données, les points semblent suivre une courbe en J (croissance) ou une courbe concave décroissante (décroissance). Le modèle exponentiel est linéaire dans son logarithme : prendre le logarithme népérien des deux côtés donne ln(y) = ln(a) + x·ln(b), ce qui est une équation linéaire en ln(y) et x.\n\nL'ajustement utilise la méthode des moindres carrés appliquée à l'équation linéarisée. Plus précisément, on minimise la somme des carrés des résidus dans l'espace ln(y). On obtient ainsi les formules suivantes : ln(b) = [n·Σ(x·ln y) − Σx·Σ(ln y)] / [n·Σx² − (Σx)²] et ln(a) = [Σ(ln y) − ln(b)·Σx] / n, d'où l'on récupère a = e^(ln a) et b = e^(ln b).\n\nLe modèle y = ab^x peut s'interpréter ainsi. Le coefficient a est l'ordonnée à l'origine : il représente la valeur de y lorsque x = 0. La base b contrôle le taux de variation : si b > 1, le modèle montre une croissance avec un facteur de b par unité (par exemple, b = 1.05 signifie 5% de croissance par incrément de x). Si 0 < b < 1, le modèle montre une décroissance. Le taux de croissance en pourcentage est (b − 1) × 100%.\n\nLe coefficient de détermination R² mesure la qualité de l'ajustement du modèle aux données sur une échelle de 0 à 1. Un R² de 0.95 signifie que 95% de la variance de y est expliquée par le modèle exponentiel. Pour des données scientifiques, des valeurs de R² supérieures à 0.90 sont généralement considérées comme un bon ajustement. Le coefficient de corrélation R = √R² × sign(ln b) indique la direction et l'intensité de la relation exponentielle.\n\nContrainte importante : toutes les valeurs de y doivent être positives pour une régression exponentielle, car le logarithme de zéro ou d'un nombre négatif n'est pas défini. Si vos données contiennent des valeurs de y non positives, vous devrez peut-être transformer ou décaler les données, ou envisager un autre modèle de régression, comme la régression polynomiale."
+  },
+  "examples": {
+    "heading": "Exemples",
+    "intro": "Ces exemples illustrent la régression exponentielle appliquée à des données biologiques, financières et physiques.",
+    "colInput": "Points de données",
+    "colOutput": "Équation",
+    "colNote": "Scénario",
+    "items": [
+      {
+        "input": "(1,2), (2,4.1), (3,7.9), (4,16.2), (5,33.0)",
+        "output": "y ≈ 0.98 × 2.01^x, R² ≈ 0.999",
+        "note": "Colonies bactériennes doublant environ toutes les heures"
+      },
+      {
+        "input": "(0,1000), (1,1050), (2,1102.5), (3,1157.6), (4,1215.5)",
+        "output": "y = 1000 × 1.05^x, R² = 1.000",
+        "note": "Croissance parfaite à intérêts composés de 5% ; R² = 1"
+      },
+      {
+        "input": "(0,100), (10,82), (20,67), (30,55), (40,45)",
+        "output": "y ≈ 100 × 0.981^x, R² ≈ 0.999",
+        "note": "Désintégration radioactive ; b < 1 indique une décroissance exponentielle"
+      },
+      {
+        "input": "(1971,2300), (1982,134000), (1993,3.1M), (2000,42M), (2011,2.6B)",
+        "output": "y suit une tendance exponentielle, R² ≈ 0.97",
+        "note": "Loi de Moore : le nombre de transistors double environ tous les 2 ans"
+      }
+    ],
+    "loadBacteria": "Charger : croissance bactérienne",
+    "loadCompoundInterest": "Charger : intérêts composés",
+    "loadRadioactive": "Charger : décroissance radioactive"
+  },
+  "howto": {
+    "heading": "Comment utiliser cette calculatrice",
+    "steps": [
+      "Saisissez vos points de données dans la zone de texte — une paire par ligne, avec les valeurs x et y séparées par un espace ou une virgule (par ex. '1 2.5' ou '1,2.5'). Vous avez besoin d'au moins 3 points de données.",
+      "Assurez-vous que toutes les valeurs de y sont strictement positives — l'algorithme de régression exponentielle nécessite de prendre le logarithme de y.",
+      "Si besoin, saisissez une valeur x dans le champ 'Prédire Y' pour obtenir une prédiction du modèle ajusté.",
+      "Cliquez sur Calculer pour afficher l'équation de régression y = ab^x, les coefficients a et b, R², le coefficient de corrélation R et toute prédiction demandée.",
+      "Utilisez les boutons de chargement rapide pour charger des exemples prédéfinis et voir comment l'équation de régression est dérivée."
+    ]
+  },
+  "faq": {
+    "heading": "Foire aux questions",
+    "q1": "Qu'est-ce que la régression exponentielle ?",
+    "q1_a": "La régression exponentielle ajuste une courbe de la forme y = ab^x à un ensemble de points de données, où a est la valeur initiale et b le facteur de croissance/décroissance par unité de x. Elle est utilisée lorsque les données croissent ou décroissent à un rythme proportionnel à leur valeur actuelle. L'ajustement se fait en linéarisant le modèle par les logarithmes puis en appliquant la méthode des moindres carrés ordinaires aux données transformées.",
+    "q2": "Que signifient les coefficients a et b ?",
+    "q2_a": "Le coefficient a est l'ordonnée à l'origine — la valeur de y prévue lorsque x = 0. La base b détermine la variation multiplicative de y pour chaque augmentation de 1 de x. Si b = 1.1, la valeur de y augmente de 10% à chaque unité. Si b = 0.9, la valeur diminue de 10% par unité. Le taux de croissance en pourcentage est (b − 1) × 100%.",
+    "q3": "Que mesure R² et quelle est une bonne valeur ?",
+    "q3_a": "R² (le coefficient de détermination) mesure la proportion de la variance des valeurs originales de y expliquée par le modèle exponentiel ajusté. Il varie de 0 à 1, 1 indiquant un ajustement parfait. Pour des données scientifiques, R² > 0.95 est excellent, 0.80–0.95 est bon, et en dessous de 0.80 cela suggère que le modèle exponentiel n'est peut-être pas approprié et qu'il faut essayer une autre forme de modèle.",
+    "q4": "Pourquoi les valeurs de y doivent-elles être positives ?",
+    "q4_a": "L'algorithme de régression exponentielle linéarise le modèle en prenant ln(y). Le logarithme népérien n'est défini que pour des nombres strictement positifs — ln(0) vaut moins l'infini et le logarithme d'un nombre négatif n'est pas défini en arithmétique réelle. Si vos données contiennent des valeurs de y non positives, vous devrez peut-être décaler les données (ajouter une constante à toutes les valeurs de y), utiliser un modèle différent (polynomial, loi de puissance) ou vérifier si les données suivent vraiment une croissance exponentielle.",
+    "q5": "En quoi est-ce différent de la régression linéaire ?",
+    "q5_a": "La régression linéaire ajuste une droite y = mx + b aux données, en supposant un taux de variation constant. La régression exponentielle ajuste y = ab^x, en supposant un taux de variation proportionnel constant. Pour choisir entre les deux, tracez vos données sur une échelle linéaire (linéaire si elles forment une droite) et sur une échelle semi-logarithmique (exponentielle si elles forment une droite en semi-log). Vous pouvez aussi comparer les valeurs de R², mais le R² des deux modèles n'est pas directement comparable car la régression exponentielle minimise les résidus dans l'espace logarithmique.",
+    "q6": "Puis-je utiliser cette calculatrice pour une décroissance exponentielle ?",
+    "q6_a": "Oui. La décroissance exponentielle est un cas particulier où 0 < b < 1. Si b = 0.95, la quantité diminue de 5% par unité de x. La calculatrice gère automatiquement la croissance et la décroissance — vous n'avez rien à modifier. Saisissez simplement vos points de données et l'algorithme déterminera la bonne valeur de b. La désintégration radioactive, la concentration de médicament dans le sang et la température de refroidissement suivent tous ce schéma."
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "title": "Calculadora de límites IQR para outliers",
+  "tagline": "Identifica valores atípicos estadísticos en tu conjunto de datos usando el método de límites del rango intercuartílico (IQR). Ingresa números separados por comas para encontrar al instante Q1, Q3, IQR y ambos límites.",
+  "intro": "Ingresa tus datos separados por comas, haz clic en Calcular y verás el límite superior, el límite inferior y cualquier valor atípico de tu conjunto de datos.",
+  "field": {
+    "data": "Conjunto de datos"
+  },
+  "placeholder": {
+    "data": "p. ej., 4, 8, 15, 16, 23, 42"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Ingresa al menos 4 números separados por comas para calcular los límites."
+  },
+  "result": {
+    "heading": "Resultados",
+    "n": "Conteo (n)",
+    "q1": "Q1 (percentil 25)",
+    "q3": "Q3 (percentil 75)",
+    "iqr": "IQR (Q3 − Q1)",
+    "lowerFence": "Límite inferior (Q1 − 1.5 × IQR)",
+    "upperFence": "Límite superior (Q3 + 1.5 × IQR)",
+    "outliersHeading": "Valores atípicos",
+    "noOutliers": "No se detectaron valores atípicos."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de límites superior e inferior",
+    "body": "El método de límites superior e inferior es la técnica estándar para identificar valores atípicos en un conjunto de datos usando el rango intercuartílico (IQR). Desarrollado como parte del marco de análisis exploratorio de datos de John Tukey en 1977, ofrece una forma robusta y no paramétrica de señalar observaciones inusuales sin asumir que los datos siguen una distribución específica. Este método se enseña ampliamente en cursos introductorios de estadística y es el enfoque predeterminado de detección de valores atípicos en los diagramas de caja y bigotes.\n\nEl cálculo comienza ordenando el conjunto de datos y encontrando el primer y el tercer cuartil. Q1 (percentil 25) es el valor por debajo del cual cae el 25% de los datos, mientras que Q3 (percentil 75) es el valor por debajo del cual cae el 75%. El IQR es simplemente Q3 menos Q1, y representa la dispersión de la mitad central de los datos. Como el IQR ignora los valores extremos en ambos extremos de la distribución, resiste los mismos valores atípicos que intenta detectar; esa propiedad hace que el método de límites sea más confiable que los métodos basados en el rango.\n\nUna vez calculado el IQR, los límites se fijan en 1.5 × IQR por debajo de Q1 (límite inferior) y 1.5 × IQR por encima de Q3 (límite superior). Cualquier dato por debajo del límite inferior o por encima del límite superior se clasifica como valor atípico. El multiplicador 1.5 fue elegido empíricamente por Tukey porque funciona bien para datos aproximadamente normales: en una distribución normal, esta regla marca alrededor del 0.7% de las observaciones como atípicas, lo que corresponde a valores a más de unas 2.7 desviaciones estándar de la media.\n\nPara valores atípicos más extremos, algunas aplicaciones usan un multiplicador de 3 en lugar de 1.5 y etiquetan esos puntos como valores atípicos extremos o muy alejados. Los puntos fuera del límite de 1.5 × IQR pero dentro del de 3 × IQR a veces se llaman valores atípicos leves. Esta calculadora usa la regla estándar de 1.5 × IQR, adecuada para la mayoría de los análisis exploratorios.\n\nLa detección de valores atípicos es un paso crítico en la limpieza de datos, el control de calidad y el modelado estadístico. En manufactura, una medición fuera del límite puede indicar una unidad defectuosa o un error de medición. En finanzas, los rendimientos extremos pueden señalar errores de datos, anomalías del mercado o eventos reales que requieren investigación. En investigación clínica, se identifican y revisan valores fisiológicamente imposibles. En aprendizaje automático, los valores atípicos pueden distorsionar el entrenamiento del modelo si no se abordan.\n\nEs importante recordar que los valores atípicos estadísticos no son necesariamente valores erróneos. Un valor atípico es simplemente una observación inusualmente lejana del grueso de los datos según la regla IQR. Debe investigarse si representa un evento extremo real, un error de medición o un error de captura de datos."
+  },
+  "examples": {
+    "heading": "Ejemplos de límites superior e inferior",
+    "intro": "Ejemplos resueltos paso a paso que muestran cómo el método de límites identifica valores atípicos en conjuntos de datos típicos.",
+    "colInput": "Conjunto de datos",
+    "colOutput": "Límites y valores atípicos",
+    "colNote": "Interpretación",
+    "items": [
+      {
+        "input": "10, 12, 14, 16, 18, 20, 100",
+        "output": "Inferior: 4 | Superior: 28 | Atípico: 100",
+        "note": "Q1=13, Q3=19, IQR=6. Límite inferior = 13 − 9 = 4. Límite superior = 19 + 9 = 28. El valor 100 supera el límite superior y se marca como atípico."
+      },
+      {
+        "input": "5, 7, 8, 9, 10, 11, 12, 14",
+        "output": "Inferior: 2.5 | Superior: 16.5 | Sin atípicos",
+        "note": "Q1=7.75, Q3=11.25, IQR=3.5. Los límites son 2.5 y 16.5. Todos los valores (de 5 a 14) quedan dentro de los límites, así que no hay valores atípicos."
+      },
+      {
+        "input": "2, 3, 5, 7, 8, 9, 10, 11, 12, 50",
+        "output": "Inferior: −2.375 | Superior: 18.625 | Atípico: 50",
+        "note": "Q1=5.5, Q3=10.75, IQR=5.25. Límite superior = 10.75 + 7.875 = 18.625. El valor 50 está muy por encima del límite superior y es un atípico claro."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de límites",
+    "steps": [
+      "Escribe tus datos en el campo de entrada, separados por comas o espacios. Necesitas al menos 4 valores para calcular cuartiles significativos.",
+      "Haz clic en Calcular para obtener Q1, Q3, el IQR, el límite inferior (Q1 − 1.5 × IQR) y el límite superior (Q3 + 1.5 × IQR).",
+      "Revisa los valores de límite resaltados: cualquier dato por debajo del límite inferior o por encima del superior es un atípico.",
+      "Consulta la sección de valores atípicos para ver los valores concretos marcados explícitamente.",
+      "Haz clic en Restablecer para limpiar la entrada y empezar de nuevo con un conjunto de datos nuevo."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre límites superior e inferior",
+    "q1": "¿Qué son los límites superior e inferior?",
+    "q1_a": "El límite superior es Q3 + 1.5 × IQR y el límite inferior es Q1 − 1.5 × IQR. Cualquier dato fuera de estos límites se considera atípico. Los límites crean un rango que contiene la dispersión esperada de una distribución aproximadamente en forma de campana.",
+    "q2": "¿Por qué usar 1.5 veces el IQR?",
+    "q2_a": "John Tukey eligió el multiplicador 1.5 porque es aproximadamente óptimo para detectar valores atípicos en datos normales y, a la vez, mantiene baja la tasa de falsos positivos. En una distribución normal marca cerca del 0.7% de las observaciones. Duplicar el multiplicador a 3 solo detecta atípicos extremos.",
+    "q3": "¿Qué es el IQR y cómo se calcula?",
+    "q3_a": "El IQR (rango intercuartílico) es Q3 menos Q1 y representa la dispersión del 50% central de los datos. Se calcula ordenando los datos, encontrando el percentil 25 (Q1) y el percentil 75 (Q3), y luego restando. El IQR resiste los valores atípicos porque ignora el 25% superior e inferior de los valores.",
+    "q4": "¿Un valor atípico significa que los datos están mal?",
+    "q4_a": "No necesariamente. Un valor atípico es simplemente una observación inusualmente extrema respecto al grueso de los datos. Puede ser un evento extremo real, un error de medición o un error de captura. Cada valor marcado debe investigarse en contexto antes de eliminarlo o corregirlo.",
+    "q5": "¿Cómo se relacionan los límites con los diagramas de caja?",
+    "q5_a": "Los límites superior e inferior definen los bigotes en un diagrama de caja de Tukey estándar. La caja cubre el IQR (de Q1 a Q3), la línea dentro de la caja es la mediana, y los bigotes se extienden hasta los datos más extremos que aún están dentro de los límites. Los puntos más allá de los bigotes se representan individualmente como atípicos.",
+    "q6": "¿Es adecuado el método de límites para conjuntos pequeños?",
+    "q6_a": "El método funciona mejor con al menos 10 a 20 observaciones. Con menos valores, las estimaciones de cuartiles son imprecisas y los límites pueden ser poco confiables. Para conjuntos muy pequeños, conviene revisar visualmente todos los valores en lugar de depender solo de la regla automática de límites."
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "title": "Calculateur de test F pour l’égalité de deux variances",
+  "tagline": "Déterminez si deux variances de population sont égales avec le test F. Obtenez la statistique F, la p-valeur, les degrés de liberté et une décision claire.",
+  "intro": "Saisissez la variance d’échantillon et la taille d’échantillon de chaque groupe, choisissez le niveau de signification et voyez instantanément si les deux variances sont statistiquement égales.",
+  "card": {
+    "title": "Test F pour l’égalité de deux variances",
+    "description": "Tester si deux échantillons indépendants ont des variances de population égales"
+  },
+  "field": {
+    "group1": "Groupe 1",
+    "group2": "Groupe 2",
+    "variance": "Variance (s²)",
+    "variance1": "Variance du groupe 1 (s²)",
+    "variance2": "Variance du groupe 2 (s²)",
+    "sampleSize": "Taille d’échantillon (n)",
+    "sampleSize1": "Taille d’échantillon du groupe 1 (n)",
+    "sampleSize2": "Taille d’échantillon du groupe 2 (n)",
+    "alpha": "Niveau de signification (α)"
+  },
+  "placeholder": {
+    "variance": "p. ex. 5.2",
+    "sampleSize": "p. ex. 30"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs valides. Les variances doivent être ≥ 0 et les tailles d’échantillon des entiers ≥ 2."
+  },
+  "result": {
+    "heading": "Résultat",
+    "fStatistic": "Statistique F",
+    "df1": "df₁ (numérateur)",
+    "df2": "df₂ (dénominateur)",
+    "pValue": "p-valeur (bilatérale)",
+    "criticalF": "Valeur F critique",
+    "reject": "Rejeter H₀ — les deux variances sont significativement différentes.",
+    "failReject": "Ne pas rejeter H₀ — aucune différence significative entre les variances."
+  },
+  "about": {
+    "heading": "À propos du test F pour l’égalité de deux variances",
+    "body": "Le test F pour l’égalité de deux variances est une procédure statistique classique utilisée pour déterminer si deux populations indépendantes ont la même variance. Nommé d’après Sir Ronald A. Fisher, il est largement utilisé comme vérification diagnostique avant l’application d’un test t à deux échantillons, qui suppose que les deux groupes ont des variances de population égales. Si le test F rejette cette hypothèse, il faut utiliser à la place le test t de Welch, qui ne requiert pas l’égalité des variances.\n\nLa statistique de test est le rapport des deux variances d’échantillon : F = s₁² / s₂². Par convention, la plus grande variance d’échantillon est placée au numérateur afin que F ≥ 1, ce qui concentre toute la masse critique dans la queue supérieure de la loi F et simplifie l’interprétation. L’hypothèse nulle H₀ affirme que les variances de population sont égales (σ₁² = σ₂²), tandis que l’hypothèse alternative H₁ affirme qu’elles diffèrent (σ₁² ≠ σ₂²). Les degrés de liberté sont df₁ = n₁ − 1 (numérateur) et df₂ = n₂ − 1 (dénominateur), où n₁ et n₂ sont les tailles d’échantillon respectives.\n\nPour évaluer la signification, la valeur F calculée est comparée à la loi F avec (df₁, df₂) degrés de liberté. Pour un test bilatéral, la p-valeur est égale à 2 × P(F > F_obs). Si la p-valeur est inférieure ou égale au niveau de signification α choisi (généralement 0.05 ou 0.01), H₀ est rejetée et les variances sont déclarées significativement différentes. La valeur F critique au niveau α choisi fournit une frontière de décision équivalente : si F_obs > F_crit, rejeter H₀.\n\nLe test F a de nombreuses applications pratiques. Dans l’industrie, il vérifie si deux lignes de production fabriquent des pièces avec une variabilité dimensionnelle égale, condition préalable aux procédures de contrôle qualité qui supposent des processus uniformes. En recherche clinique, il vérifie si deux groupes de traitement présentent une variabilité de réponse similaire, ce qui affecte à la fois la conception de l’étude et son interprétation. En finance, il compare la volatilité de deux actifs ou portefeuilles, éclairant l’évaluation du risque et les stratégies de diversification. En agriculture, il évalue si deux engrais produisent des cultures avec une constance de rendement égale.\n\nMalgré sa puissance, le test F présente une limite importante : il est très sensible aux écarts à la normalité. Les deux échantillons doivent provenir de populations normalement distribuées pour que le test soit valide. Lorsque la normalité est incertaine, les analystes préfèrent souvent le test de Levene ou le test de Brown–Forsythe, plus robustes, qui remplacent les écarts bruts à la moyenne par des écarts absolus ou des écarts à la médiane. Ce calculateur utilise la CDF exacte de la loi F via la fonction bêta incomplète régularisée, produisant des p-valeurs cohérentes avec R (var.test), Python (scipy.stats.levene) et SPSS."
+  },
+  "examples": {
+    "heading": "Test F pour l’égalité des variances — exemples",
+    "intro": "Trois exemples détaillés issus de l’industrie, de l’éducation et de la finance.",
+    "colInput": "Entrée",
+    "colOutput": "Résultat",
+    "colNote": "Contexte",
+    "loadMfg": "Charger l’exemple industriel",
+    "loadTeaching": "Charger l’exemple de méthodes d’enseignement",
+    "loadStock": "Charger l’exemple de volatilité boursière",
+    "items": [
+      {
+        "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+        "output": "F = 1.1724, p ≈ 0.6767 — ne pas rejeter H₀",
+        "note": "Deux machines produisent des boulons. Les variances des diamètres ne sont pas significativement différentes ; les deux machines sont également régulières."
+      },
+      {
+        "input": "s₁² = 110, n₁ = 41; s₂² = 125, n₂ = 31; α = 0.05",
+        "output": "F = 1.1364, p ≈ 0.6679 — ne pas rejeter H₀",
+        "note": "Deux méthodes d’enseignement. Les variances des scores aux tests sont statistiquement égales ; les deux méthodes produisent une constance similaire des résultats."
+      },
+      {
+        "input": "s₁² = 5.2, n₁ = 100; s₂² = 4.8, n₂ = 100; α = 0.01",
+        "output": "F = 1.0833, p ≈ 0.6366 — ne pas rejeter H₀",
+        "note": "Deux actions comparées selon la volatilité des rendements quotidiens. Au seuil de 1 %, rien n’indique des profils de risque différents."
+      },
+      {
+        "input": "s₁² = 18, n₁ = 16; s₂² = 12, n₂ = 16; α = 0.10",
+        "output": "F = 1.5, p ≈ 0.3952 — ne pas rejeter H₀",
+        "note": "Hauteur des plantes sous deux engrais. La variance de la croissance n’est pas statistiquement différente au seuil de 10 %."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de test F pour l’égalité des variances",
+    "steps": [
+      "Saisissez la variance d’échantillon (s²) du groupe 1 — l’écart quadratique moyen par rapport à la moyenne du groupe — ainsi que le nombre d’observations (n) dans ce groupe.",
+      "Saisissez la variance et la taille d’échantillon correspondantes pour le groupe 2 dans les champs du groupe 2.",
+      "Choisissez un niveau de signification α dans la liste déroulante : 0.01 (1 %), 0.05 (5 %) ou 0.10 (10 %). Le choix le plus courant dans les recherches publiées est 0.05.",
+      "Cliquez sur « Calculer ». Le calculateur place automatiquement la plus grande variance au numérateur, calcule F = s_max²/s_min², calcule la p-valeur bilatérale avec la loi F et affiche la valeur F critique.",
+      "Interprétez le résultat : si p-valeur ≤ α, les variances sont significativement différentes et vous devez utiliser un test t de Welch plutôt qu’un test t standard à variances égales. Sinon, l’égalité des variances peut être supposée."
+    ]
+  },
+  "faq": {
+    "heading": "Test F pour l’égalité des variances — FAQ",
+    "q1": "Que teste le test F pour l’égalité des variances ?",
+    "q1_a": "Il teste l’hypothèse nulle H₀ : σ₁² = σ₂² contre l’alternative H₁ : σ₁² ≠ σ₂². Un résultat significatif (p ≤ α) signifie que les deux variances de population sont statistiquement différentes. Un résultat non significatif signifie que les données sont compatibles avec des variances égales, mais ne prouve pas qu’elles sont égales.",
+    "q2": "Pourquoi utilise-t-on le test F avant un test t à deux échantillons ?",
+    "q2_a": "Le test t à deux échantillons avec variance groupée suppose que les deux groupes ont la même variance de population. Si cette hypothèse est violée, le test peut produire des p-valeurs incorrectes. Exécuter d’abord un test F vérifie cette hypothèse : si le test F est significatif, utilisez plutôt le test t de Welch, qui ne suppose pas l’égalité des variances.",
+    "q3": "Quelles sont les hypothèses du test F pour l’égalité des variances ?",
+    "q3_a": "Les deux échantillons doivent provenir de populations normalement distribuées, et les échantillons doivent être indépendants l’un de l’autre. Le test F est assez sensible à la non-normalité ; même des écarts modérés peuvent déformer la p-valeur. Si la normalité est douteuse, utilisez plutôt le test de Levene ou le test de Brown–Forsythe.",
+    "q4": "Pourquoi place-t-on toujours la plus grande variance au numérateur ?",
+    "q4_a": "Placer la plus grande variance au numérateur garantit F ≥ 1, ce qui confine la région critique à la queue supérieure de la loi F et évite de consulter une table de queue inférieure. Pour un test bilatéral, la p-valeur est alors simplement 2 × P(F > F_obs), ce qui est direct à calculer.",
+    "q5": "Comment interpréter la valeur F critique ?",
+    "q5_a": "La valeur F critique (F_crit) est la valeur qui coupe le α/2 supérieur de la loi F. Si votre F calculé dépasse F_crit, vous rejetez H₀ au niveau de signification α. Utiliser la p-valeur ou la valeur critique conduit toujours à la même décision : ce sont deux façons équivalentes de résumer la même comparaison.",
+    "q6": "Quand faut-il utiliser le test de Levene plutôt que le test F ?",
+    "q6_a": "Le test de Levene est préférable lorsque vos données peuvent ne pas suivre une distribution normale, car il est robuste à la non-normalité. Le test F pour l’égalité des variances est optimal lorsque la normalité est vérifiée, mais son taux d’erreur de type I peut être fortement déformé par des données asymétriques ou à queues épaisses. En pratique, de nombreux statisticiens utilisent le test de Levene par défaut pour éviter ce risque."
+  }
+}

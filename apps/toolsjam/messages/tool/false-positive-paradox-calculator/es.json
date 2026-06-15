@@ -1,0 +1,96 @@
+{
+  "title": "Calculadora de paradoja del falso positivo - Teorema de Bayes",
+  "tagline": "Calcula la probabilidad real de tener una condición tras una prueba positiva. Introduce prevalencia, sensibilidad y especificidad para ver cómo las bajas tasas base crean paradojas de falso positivo.",
+  "intro": "Introduce la prevalencia de la condición en la población y la sensibilidad y especificidad de la prueba, luego haz clic para ver la probabilidad real de que un resultado positivo sea auténtico.",
+  "card": {
+    "title": "Calculadora de paradoja del falso positivo",
+    "description": "Encuentra la probabilidad real de una condición dado un resultado positivo"
+  },
+  "field": {
+    "prevalence": "Prevalencia de la condición (%)",
+    "sensitivity": "Sensibilidad de la prueba (%)",
+    "specificity": "Especificidad de la prueba (%)"
+  },
+  "placeholder": {
+    "percent": "p. ej., 1.5"
+  },
+  "button": {
+    "calculate": "Calcular probabilidad",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce porcentajes válidos. La prevalencia debe estar entre 0 y 100, y la sensibilidad y la especificidad deben ser > 0 y ≤ 100."
+  },
+  "result": {
+    "heading": "Resultado",
+    "ppv": "Probabilidad de tener la condición (PPV)",
+    "npv": "Probabilidad de no tener la condición (NPV)",
+    "breakdownHeading": "Desglose de la población (por cada 100.000 personas)",
+    "truePositive": "Verdaderos positivos",
+    "falsePositive": "Falsos positivos",
+    "trueNegative": "Verdaderos negativos",
+    "falseNegative": "Falsos negativos",
+    "breakdownNote": "Recuento estimado de una población hipotética de 100.000 personas."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de paradoja del falso positivo",
+    "body": "La paradoja del falso positivo —también conocida como falacia de la tasa base— es un fenómeno estadístico contraintuitivo en el que el número de resultados falsos positivos de una prueba supera al de verdaderos positivos, incluso cuando la prueba es muy precisa. La paradoja aparece siempre que la condición que se evalúa es rara: el pequeño grupo de personas realmente afectadas genera muchos menos verdaderos positivos que el grupo mucho mayor de personas sanas genera falsas alarmas, incluso con una baja tasa de falsos positivos.\n\nLas matemáticas detrás de la paradoja son el teorema de Bayes. Dada la prevalencia P(D) de la condición, la sensibilidad de la prueba (tasa de verdaderos positivos) Se y su especificidad (tasa de verdaderos negativos) Sp, el valor predictivo positivo (PPV) —la probabilidad de que una persona con resultado positivo realmente tenga la condición— es: PPV = (Se × P(D)) / (Se × P(D) + (1 − Sp) × (1 − P(D))). Cuando P(D) es muy pequeña, el denominador queda dominado por el término de falso positivo (1 − Sp) × (1 − P(D)), y aun una tasa minúscula de falsos positivos aplicada a una gran población sana sobrepasa el pequeño conteo de verdaderos positivos.\n\nUna ilustración clásica: supón que una enfermedad afecta al 0,1% de la población (1 de cada 1.000), y que una prueba tiene 99% de sensibilidad y 99% de especificidad. De 100.000 personas, unas 100 tienen la enfermedad (0,1%) y 99.900 no la tienen. La prueba identifica correctamente a 99 de los 100 enfermos (verdaderos positivos), pero también marca por error al 1% de los 99.900 sanos: unos 999 falsos positivos. Así, de las 1.098 personas que dan positivo, solo 99 realmente tienen la enfermedad: un PPV de apenas 9%. Una prueba con 99% de acierto produce 91% de falsas alarmas porque la prevalencia es muy baja.\n\nEste principio tiene implicaciones profundas en medicina, seguridad y tecnología. En programas de cribado médico, hacer pruebas masivas para enfermedades raras —incluso con pruebas muy precisas— puede generar gran cantidad de pacientes ansiosos que en realidad están sanos, desperdiciando recursos y causando daño. Por eso, las guías de salud pública suelen restringir el cribado masivo a subpoblaciones con mayor prevalencia, donde el PPV es clínicamente aceptable. En controles de seguridad, los sistemas de reconocimiento facial con gran precisión aún pueden producir miles de falsos positivos al escanear a millones de viajeros inocentes en busca de unos pocos sospechosos. En el filtrado de spam, las altas tasas de falsos positivos erosionan la confianza aunque el sistema detecte casi todo el spam.\n\nLa solución, tanto en medicina como en políticas públicas, es aplicar el teorema de Bayes e incorporar la probabilidad previa (prevalencia) antes de interpretar cualquier resultado. Un resultado positivo en una prueba de cribado no significa que tengas la enfermedad: significa que tu probabilidad de tenerla ha aumentado desde la prevalencia poblacional hasta el PPV, que aún puede ser muy bajo. Un seguimiento con una segunda prueba confirmatoria más específica actualiza de nuevo la probabilidad, normalmente hasta un valor mucho más alto que justifica la acción clínica. Esta calculadora hace que ese razonamiento sea transparente e interactivo, y permite a clínicos, investigadores y responsables de políticas explorar cómo los cambios en prevalencia, sensibilidad y especificidad modifican el PPV y el desglose poblacional."
+  },
+  "examples": {
+    "heading": "Paradoja del falso positivo — Ejemplos",
+    "intro": "Cuatro escenarios que muestran cómo la prevalencia domina la precisión de la prueba al determinar el valor predictivo real.",
+    "colInput": "Entrada",
+    "colOutput": "PPV",
+    "colNote": "Contexto",
+    "loadRare": "Cargar ejemplo de enfermedad rara",
+    "loadCommon": "Cargar ejemplo de condición común",
+    "loadSpam": "Cargar ejemplo de filtro de spam",
+    "items": [
+      {
+        "input": "Prevalencia 0,1%, Sensibilidad 99%, Especificidad 99%",
+        "output": "PPV ≈ 9,0%",
+        "note": "Cribado de enfermedad rara. A pesar de una prueba con 99% de acierto, 91 de cada 100 resultados positivos son falsas alarmas: la paradoja clásica del falso positivo."
+      },
+      {
+        "input": "Prevalencia 10%, Sensibilidad 95%, Especificidad 90%",
+        "output": "PPV ≈ 51,4%",
+        "note": "Una condición más común. Una mayor prevalencia mejora drásticamente el PPV; aproximadamente la mitad de los resultados positivos son genuinos."
+      },
+      {
+        "input": "Prevalencia 1%, Sensibilidad 99,9%, Especificidad 98%",
+        "output": "PPV ≈ 33,5%",
+        "note": "Analogía del filtro de spam. Incluso un filtro excelente sigue generando muchos falsos positivos cuando el spam es solo el 1% del correo."
+      },
+      {
+        "input": "Prevalencia 0,01%, Sensibilidad 99,5%, Especificidad 99%",
+        "output": "PPV ≈ 0,99%",
+        "note": "Escáner de seguridad aeroportuaria para una amenaza muy rara. 99 de cada 100 alertas son falsas alarmas, lo que ilustra el problema de buscar una aguja en un pajar."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de paradoja del falso positivo",
+    "steps": [
+      "Introduce la prevalencia de la condición: el porcentaje de la población que la tiene. Por ejemplo, si 1 de cada 200 personas está afectada, introduce 0,5.",
+      "Introduce la sensibilidad de la prueba (tasa de verdaderos positivos): el porcentaje de personas realmente afectadas que la prueba identifica correctamente como positivas.",
+      "Introduce la especificidad de la prueba (tasa de verdaderos negativos): el porcentaje de personas realmente sanas que la prueba identifica correctamente como negativas.",
+      "Haz clic en “Calcular probabilidad”. La calculadora aplica el teorema de Bayes para mostrar el PPV (probabilidad de tener la condición dado un resultado positivo) y el NPV (probabilidad de no tenerla dado un resultado negativo), además de un desglose de verdaderos y falsos positivos y negativos por cada 100.000 personas.",
+      "Ajusta los valores para explorar cómo los cambios en prevalencia, sensibilidad y especificidad desplazan el PPV: verás que la prevalencia tiene el mayor impacto en si una prueba positiva es significativa."
+    ]
+  },
+  "faq": {
+    "heading": "Paradoja del falso positivo — Preguntas frecuentes",
+    "q1": "¿Qué es la paradoja del falso positivo?",
+    "q1_a": "La paradoja del falso positivo ocurre cuando el número de resultados falsos positivos de una prueba supera al de verdaderos positivos, aunque la prueba sea precisa. Ocurre porque una baja prevalencia de la enfermedad hace que la gran población sana genere muchas falsas alarmas —más que los verdaderos positivos que genera la pequeña población enferma— incluso con una baja tasa de falsos positivos.",
+    "q2": "¿Qué son la sensibilidad y la especificidad?",
+    "q2_a": "La sensibilidad (tasa de verdaderos positivos) es la probabilidad de que una persona que tiene la condición obtenga un resultado positivo. La especificidad (tasa de verdaderos negativos) es la probabilidad de que una persona que no tiene la condición obtenga un resultado negativo. Una prueba con 95% de sensibilidad detecta 95 de cada 100 casos; una prueba con 90% de especificidad descarta correctamente a 90 de cada 100 personas sanas.",
+    "q3": "¿Qué es el PPV y por qué es distinto de la precisión?",
+    "q3_a": "El PPV (valor predictivo positivo) es la probabilidad de que un resultado positivo refleje un verdadero positivo, es decir, que la persona realmente tenga la condición. La precisión mide con qué frecuencia la prueba acierta en general. El PPV depende mucho de la prevalencia, mientras que la precisión no. Una prueba puede ser 99% precisa y aun así tener un PPV inferior al 10% cuando la condición es rara.",
+    "q4": "¿Cómo puedo mejorar el PPV de una prueba?",
+    "q4_a": "Las formas más eficaces de aumentar el PPV son incrementar la especificidad de la prueba (reduciendo la tasa de falsos positivos), restringir la prueba a subpoblaciones con mayor prevalencia donde la probabilidad previa ya es más alta, y aplicar pruebas confirmatorias secuenciales. En las pruebas secuenciales, el resultado positivo de la primera criba se convierte en la nueva entrada de 'prevalencia' para una segunda prueba confirmatoria más específica, que actualiza la probabilidad a un valor mucho más alto y clínicamente más útil.",
+    "q5": "¿Qué me dice el NPV?",
+    "q5_a": "El NPV (valor predictivo negativo) es la probabilidad de que una persona con resultado negativo realmente no tenga la condición. Para enfermedades raras, el NPV suele ser muy alto: cuando la prevalencia es 0,1%, casi todos los resultados negativos son verdaderos negativos. Un NPV alto significa que un resultado negativo es muy tranquilizador. El NPV disminuye a medida que aumenta la prevalencia.",
+    "q6": "¿Por qué la prevalencia importa más que la precisión de la prueba?",
+    "q6_a": "Con prevalencias muy bajas, incluso una tasa minúscula de falsos positivos aplicada a una enorme población sana eclipsa a los verdaderos positivos de la pequeña población enferma. Duplicar la especificidad de 95% a 97,5% solo reduce a la mitad los falsos positivos por persona, pero duplicar la prevalencia duplica el número de verdaderos positivos; por eso la prevalencia impulsa mucho más el PPV que la precisión."
+  }
+}

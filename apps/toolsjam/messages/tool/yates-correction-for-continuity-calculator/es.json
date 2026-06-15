@@ -1,0 +1,105 @@
+{
+  "title": "Calculadora chi-cuadrado con corrección de Yates",
+  "tagline": "Calcula la estadística chi-cuadrado con corrección de Yates para tablas de contingencia 2×2. Reduce el error de Tipo I cuando las frecuencias esperadas son pequeñas.",
+  "intro": "Ingresa los cuatro conteos de celda (a, b, c, d) de tu tabla de contingencia 2×2 para calcular el valor χ² con corrección de Yates y el p-valor.",
+  "table": {
+    "label": "Ingresa los conteos de tu tabla de contingencia 2×2: Grupo A en las filas, Resultado 1/2 en las columnas."
+  },
+  "field": {
+    "a": "Grupo A, Resultado 1 (a)",
+    "b": "Grupo A, Resultado 2 (b)",
+    "c": "Grupo B, Resultado 1 (c)",
+    "d": "Grupo B, Resultado 2 (d)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Ingresa enteros no negativos para las cuatro celdas, con al menos una fila y una columna que no sean todas cero."
+  },
+  "result": {
+    "heading": "Resultados",
+    "chi2": "Estadístico χ² de Yates",
+    "pValue": "p-valor",
+    "df": "Grados de libertad",
+    "N": "N total",
+    "significant": "Se detectó una asociación significativa (p < 0.05).",
+    "notSignificant": "No se detectó una asociación significativa (p ≥ 0.05)."
+  },
+  "about": {
+    "heading": "Acerca de la corrección de continuidad de Yates",
+    "body": "La corrección de continuidad de Yates es un ajuste aplicado a la prueba chi-cuadrado (χ²) cuando se usa con una tabla de contingencia 2×2. La distribución chi-cuadrado es continua, pero las frecuencias observadas en una tabla de contingencia son conteos discretos. Esta discrepancia hace que la aproximación chi-cuadrado sobreestime el estadístico de prueba, lo que produce p-valores demasiado pequeños y aumenta el riesgo de error de Tipo I, especialmente cuando el tamaño de muestra o las frecuencias esperadas son pequeñas.\n\nFrank Yates propuso la corrección en 1934. La idea es simple: restar 0.5 de la diferencia absoluta entre cada frecuencia observada y esperada antes de elevarla al cuadrado. La fórmula corregida es χ² = Σ (|O − E| − 0.5)² / E sumada sobre las cuatro celdas. Este pequeño ajuste reduce el valor global de chi-cuadrado, produciendo un p-valor más conservador (más grande) que refleja mejor la probabilidad real de los resultados observados o más extremos.\n\nLa corrección es especialmente importante cuando alguna frecuencia esperada cae por debajo de 10, y sobre todo cuando alguna está por debajo de 5. En esas condiciones, se sabe que la prueba chi-cuadrado estándar no es fiable, y la corrección de Yates ayuda a compensar. Para muestras más grandes en las que todas las frecuencias esperadas superan 10, la corrección tiene un impacto mínimo y la prueba chi-cuadrado estándar es suficiente.\n\nPara usar la calculadora, debes estructurar tus datos como una tabla de contingencia 2×2. Las dos filas representan los dos grupos (por ejemplo, tratamiento vs. control) y las dos columnas representan los dos posibles resultados (por ejemplo, éxito vs. fracaso). La celda a es el conteo de sujetos del Grupo A con Resultado 1, la celda b es el del Grupo A con Resultado 2, la celda c es el del Grupo B con Resultado 1 y la celda d es el del Grupo B con Resultado 2.\n\nLos grados de libertad para una tabla 2×2 siempre son 1. El p-valor se calcula a partir de la distribución chi-cuadrado con 1 grado de libertad. Un p-valor por debajo de 0.05 se interpreta convencionalmente como evidencia de una asociación estadísticamente significativa entre la pertenencia al grupo y el resultado.\n\nEn la comunidad estadística sigue el debate sobre cuándo usar la corrección de Yates. Algunos estadísticos argumentan que corrige en exceso y reduce la potencia estadística. La alternativa preferida por muchos estadísticos modernos para frecuencias esperadas muy pequeñas es la prueba exacta de Fisher, que calcula la probabilidad exacta sin depender en absoluto de la aproximación chi-cuadrado. Sin embargo, la corrección de Yates sigue enseñándose y aceptándose ampliamente en muchas disciplinas y es la opción adecuada cuando quieres un resultado rápido y conservador para una tabla 2×2."
+  },
+  "examples": {
+    "heading": "Ejemplos prácticos",
+    "intro": "Explora distintos escenarios para entender cómo funciona la calculadora.",
+    "colInput": "Entrada (a, b, c, d)",
+    "colOutput": "χ² / p-valor",
+    "colNote": "Nota",
+    "items": [
+      {
+        "input": "a=3, b=22, c=11, d=14",
+        "output": "χ²≈4.86, p≈0.027",
+        "note": "Ensayo de vacuna — significativo; la vacuna reduce la tasa de infección."
+      },
+      {
+        "input": "a=15, b=5, c=8, d=12",
+        "output": "χ²≈3.68, p≈0.055",
+        "note": "Método de enseñanza — al límite, no significativo con α=0.05."
+      },
+      {
+        "input": "a=25, b=975, c=15, d=985",
+        "output": "χ²≈2.07, p≈0.151",
+        "note": "Prueba de anuncios A/B — no hay diferencia significativa en la tasa de clics."
+      },
+      {
+        "input": "a=1, b=49, c=6, d=44",
+        "output": "χ²≈2.48, p≈0.115",
+        "note": "Estudio de efecto secundario raro — aquí la corrección de Yates es esencial por los conteos bajos."
+      }
+    ],
+    "loadVaccine": "Ensayo de vacuna",
+    "loadTeaching": "Método de enseñanza",
+    "loadAB": "Prueba A/B de anuncios"
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora",
+    "steps": [
+      "Organiza tus datos en una tabla 2×2: Grupo A en la primera fila, Grupo B en la segunda, Resultado 1 en la primera columna y Resultado 2 en la segunda.",
+      "Ingresa el conteo de la celda a (Grupo A, Resultado 1) en el primer campo y el de la celda b (Grupo A, Resultado 2) en el segundo.",
+      "Ingresa el conteo de la celda c (Grupo B, Resultado 1) y d (Grupo B, Resultado 2) en los campos restantes. Todos los valores deben ser enteros no negativos.",
+      "Haz clic en Calcular para ver el valor χ² con corrección de Yates, los grados de libertad (siempre 1), el p-valor y la decisión de significancia.",
+      "Usa los botones de ejemplo para cargar datos predefinidos y verificar resultados o explorar casos de uso comunes."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Qué es la corrección de continuidad de Yates?",
+        "a": "La corrección de Yates es un ajuste a la fórmula chi-cuadrado estándar para tablas 2×2. Resta 0.5 de la diferencia absoluta entre las frecuencias observadas y esperadas antes de elevar al cuadrado. Esto hace que la prueba sea más conservadora, reduciendo el riesgo de un falso positivo (error de Tipo I) cuando el tamaño de muestra o los conteos esperados son pequeños."
+      },
+      {
+        "q": "¿Cuándo debo usar la corrección de Yates en lugar de la prueba chi-cuadrado estándar?",
+        "a": "Usa la corrección de Yates cuando alguna frecuencia esperada sea menor que 10. La prueba chi-cuadrado estándar es adecuada cuando todas las frecuencias esperadas son 10 o más. Para muestras muy pequeñas en las que alguna frecuencia esperada sea menor que 5, considera la prueba exacta de Fisher, ya que es aún más fiable en ese escenario."
+      },
+      {
+        "q": "¿Qué representan las celdas a, b, c y d?",
+        "a": "La celda a es el número de sujetos del Grupo A que tuvieron el Resultado 1. La celda b es el número del Grupo A con Resultado 2. La celda c es el número del Grupo B con Resultado 1. La celda d es el número del Grupo B con Resultado 2. En un estudio de vacuna, el Grupo A podría ser vacunado, el Grupo B no vacunado, Resultado 1 infectado y Resultado 2 no infectado."
+      },
+      {
+        "q": "¿Por qué el grado de libertad siempre es 1 en una tabla 2×2?",
+        "a": "Los grados de libertad de una prueba chi-cuadrado de independencia son (filas − 1) × (columnas − 1). Para una tabla 2×2, eso es (2−1) × (2−1) = 1. Esto significa que, una vez que conoces los totales marginales y el valor de una celda, todos los demás valores quedan completamente determinados, por lo que solo queda un parámetro libre."
+      },
+      {
+        "q": "¿La corrección de Yates reduce la potencia estadística?",
+        "a": "Sí, hacer la prueba más conservadora significa que se necesita evidencia más fuerte para rechazar la hipótesis nula. Los críticos sostienen que la corrección de Yates puede sobrecorregir y aumentar el riesgo de error de Tipo II (pasar por alto un efecto real). Para muestras grandes con conteos esperados altos, la corrección es insignificante. Muchos estadísticos modernos prefieren la prueba exacta de Fisher para análisis 2×2 con muestras pequeñas."
+      },
+      {
+        "q": "¿Puedo usar esta calculadora para tablas mayores que 2×2?",
+        "a": "No. La corrección de Yates está diseñada específicamente para tablas de contingencia 2×2. Para tablas más grandes (como 3×2 o 3×3), usa la prueba chi-cuadrado de Pearson estándar sin corrección de continuidad. La fórmula y los grados de libertad son distintos para tablas más grandes."
+      }
+    ]
+  }
+}

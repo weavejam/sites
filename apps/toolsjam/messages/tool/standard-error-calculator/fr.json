@@ -1,0 +1,113 @@
+{
+  "title": "Calculateur d’erreur standard - SE à partir de données ou résumé",
+  "tagline": "Calculez l’erreur standard de la moyenne (SE) à partir de données brutes ou de statistiques résumées. Obtenez instantanément le SE, l’intervalle de confiance et les statistiques descriptives clés.",
+  "intro": "Choisissez le mode Données brutes et saisissez vos valeurs, ou passez aux Statistiques résumées et indiquez la moyenne, l’écart type et la taille de l’échantillon. Sélectionnez un niveau de confiance pour voir l’intervalle en même temps que le SE.",
+  "formula": "SE = s / √n  (données brutes : s est l’écart type de l’échantillon)  •  SE = σ / √n  (résumé : σ est l’écart type fourni)  •  CI = x̄ ± z × SE",
+  "type": {
+    "rawData": "Données brutes",
+    "summary": "Statistiques résumées"
+  },
+  "field": {
+    "method": "Méthode de calcul",
+    "rawData": "Données (nombres séparés par des virgules)",
+    "mean": "Moyenne",
+    "sd": "Écart type (ET)",
+    "n": "Taille de l’échantillon (n)",
+    "confLevel": "Niveau de confiance"
+  },
+  "placeholder": {
+    "rawData": "ex. 12.5, 15, 16.2, 14.8, 17",
+    "mean": "ex. 500",
+    "sd": "ex. 5",
+    "n": "ex. 100"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des données valides. Pour les données brutes, au moins 2 nombres sont requis. Pour les statistiques résumées, l’ET doit être positif et n doit être ≥ 2."
+  },
+  "result": {
+    "heading": "Résultats",
+    "n": "Taille de l’échantillon (n)",
+    "mean": "Moyenne",
+    "sd": "Écart type",
+    "se": "Erreur standard (SE)",
+    "ci": "Intervalle de confiance à {conf}"
+  },
+  "examples": {
+    "heading": "Exemples d’erreur standard",
+    "intro": "Quatre exemples détaillés montrant les deux modes de saisie et des usages typiques.",
+    "colInput": "Entrée",
+    "colOutput": "SE",
+    "colNote": "Contexte",
+    "loadRawScores": "Charger les données brutes",
+    "loadSummary": "Charger les statistiques résumées",
+    "items": [
+      {
+        "input": "Brutes : 85, 92, 88, 78, 90",
+        "output": "SE ≈ 2.4413",
+        "note": "Notes d’étudiants (n=5). Moyenne = 86.6, ET ≈ 5.46. Le SE indique que la moyenne est connue à environ ±2.4 points."
+      },
+      {
+        "input": "Brutes : 22, 25, 21, 24, 23, 26, 22",
+        "output": "SE ≈ 0.6801",
+        "note": "Températures maximales quotidiennes en °C sur une semaine (n=7). Un SE faible reflète une météo stable."
+      },
+      {
+        "input": "Résumé : Mean=500, SD=5, n=100",
+        "output": "SE = 0.5000",
+        "note": "Poids de pièces sortant d’une usine (n=100). Un n élevé fait chuter le SE bien en dessous de 1 g malgré un ET de 5 g."
+      },
+      {
+        "input": "Résumé : Mean=10, SD=3.5, n=49",
+        "output": "SE = 0.5000",
+        "note": "Réduction de la pression artérielle dans un essai clinique (n=49). IC à 95 % ≈ [9.02, 10.98] mmHg."
+      }
+    ]
+  },
+  "about": {
+    "heading": "À propos du calculateur d’erreur standard",
+    "body": "L’erreur standard de la moyenne (SE ou SEM) est l’écart type de la distribution d’échantillonnage de la moyenne. En termes simples, elle indique à quelle distance la moyenne de l’échantillon risque de se trouver de la vraie moyenne de la population si l’échantillonnage était répété de nombreuses fois. Un SE faible signifie que la moyenne de l’échantillon est une estimation précise de la moyenne de la population ; un SE élevé indique davantage d’incertitude.\n\nLa formule est SE = s / √n, où s est l’écart type de l’échantillon et n le nombre d’observations. En mode données brutes, le calculateur commence par calculer l’écart type de l’échantillon (avec la correction de Bessel, en utilisant n−1 au dénominateur), puis le divise par √n. En mode statistiques résumées, vous fournissez directement la moyenne, l’écart type et n, ce qui est pratique lorsque vous disposez déjà de données agrégées — par exemple issues d’un article publié — sans accès aux observations brutes.\n\nCe calculateur calcule également l’intervalle de confiance de la moyenne au niveau choisi (90 %, 95 % ou 99 %). L’intervalle est construit comme x̄ ± z × SE, où z est la valeur critique de la loi normale standard (1.645 pour 90 %, 1.96 pour 95 %, 2.576 pour 99 %). Ces intervalles basés sur z conviennent aux grands échantillons (n ≥ 30) ou lorsque la population est connue pour être normale. Pour de petits échantillons provenant de populations non normales, un intervalle basé sur t (avec t à n−1 degrés de liberté) est plus précis ; en pratique, z et t sont presque identiques pour n ≥ 30.\n\nLe SE est utilisé dans presque tous les domaines de la recherche quantitative. En médecine, les articles cliniques rapportent souvent les moyennes avec leurs SE ou leurs intervalles de confiance afin que les lecteurs puissent juger si les différences entre groupes de traitement sont cliniquement significatives. En fabrication, les évaluations de la capacité des procédés utilisent le SE pour déterminer si la moyenne de l’échantillon est bien à l’intérieur des limites de spécification. En sciences sociales, la marge d’erreur d’une moyenne rapportée dépend directement du SE. En analyse du risque financier, le SE sert à estimer l’incertitude autour des rendements moyens et d’autres statistiques. En apprentissage automatique, il sous-tend les intervalles de confiance bootstrap utilisés pour comparer les métriques de performance des modèles.\n\nIl est aussi important de savoir quand rapporter le SE plutôt que l’écart type (ET). L’ET décrit la dispersion des mesures individuelles ; il ne diminue pas quand on collecte plus de données (en supposant que la variabilité réelle de la population reste fixe). Le SE décrit la précision de l’estimation de la moyenne, et il diminue avec plus de données car SE = ET / √n. Si votre objectif est de communiquer la variabilité entre individus — par exemple la répartition des âges des patients dans une étude — rapportez l’ET. Si votre objectif est de communiquer la précision d’une estimation de moyenne — par exemple la fiabilité d’une baisse moyenne de la pression artérielle — rapportez le SE ou l’intervalle de confiance dérivé."
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur d’erreur standard",
+    "steps": [
+      "Choisissez Données brutes si vous avez des observations individuelles, ou Statistiques résumées si vous connaissez déjà la moyenne, l’ET et la taille de l’échantillon.",
+      "Saisissez vos données : une liste séparée par des virgules pour les données brutes, ou trois valeurs numériques (moyenne, ET, n) pour les statistiques résumées.",
+      "Sélectionnez un niveau de confiance (90 %, 95 % ou 99 %) pour contrôler la largeur de l’intervalle de confiance.",
+      "Cliquez sur Calculer. Le panneau de résultats affiche la taille de l’échantillon, la moyenne, l’ET, le SE et l’intervalle de confiance.",
+      "Cliquez sur Réinitialiser pour effacer toutes les entrées, ou utilisez les boutons d’exemple pour charger des jeux de données prédéfinis et explorer le résultat."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur l’erreur standard",
+    "items": [
+      {
+        "q": "Qu’est-ce que l’erreur standard de la moyenne ?",
+        "a": "L’erreur standard de la moyenne (SE ou SEM) mesure la précision de la moyenne d’échantillon comme estimation de la moyenne de la population. Elle est égale à l’écart type de l’échantillon divisé par la racine carrée de la taille de l’échantillon : SE = s / √n. Un SE faible indique que la moyenne d’échantillon est une estimation fiable ; un SE élevé indique davantage d’incertitude. Le SE diminue lorsque la taille de l’échantillon augmente, car les grands échantillons apportent plus d’informations sur la population."
+      },
+      {
+        "q": "Quelle est la différence entre erreur standard et écart type ?",
+        "a": "L’écart type (ET) mesure la dispersion des valeurs individuelles autour de la moyenne d’échantillon. L’erreur standard (SE) mesure la précision de la moyenne d’échantillon comme estimation de la moyenne de la population. L’ET ne diminue pas avec plus d’observations car la variabilité réelle de la population est fixe ; le SE diminue car SE = ET / √n. Lors du reporting, utilisez l’ET pour décrire la variabilité des données et le SE (ou un intervalle de confiance) pour décrire la précision de l’estimation."
+      },
+      {
+        "q": "Quand dois-je utiliser le mode Données brutes ou le mode Statistiques résumées ?",
+        "a": "Utilisez le mode Données brutes lorsque vous avez accès aux mesures individuelles de votre échantillon : saisissez toutes les valeurs et le calculateur déterminera automatiquement la moyenne, l’ET et le SE. Utilisez le mode Statistiques résumées lorsque vous disposez déjà de données agrégées, comme la moyenne et l’écart type rapportés dans une étude publiée, ou lorsque vous planifiez une étude et souhaitez voir comment différentes tailles d’échantillon affectent le SE."
+      },
+      {
+        "q": "Pourquoi les grands échantillons produisent-ils des erreurs standard plus petites ?",
+        "a": "Parce que SE = ET / √n, augmenter n rend le dénominateur plus grand et le SE plus petit. En pratique, chaque observation supplémentaire apporte davantage d’informations sur la population, donc la moyenne d’échantillon se rapproche de la vraie moyenne de la population. Doubler n réduit le SE d’un facteur √2, soit environ 1.41. C’est la base quantitative du principe selon lequel les études plus grandes donnent des conclusions plus fiables."
+      },
+      {
+        "q": "Quel niveau de confiance dois-je choisir ?",
+        "a": "Le niveau 95 % est la convention la plus utilisée en recherche scientifique — un IC à 95 % signifie que si vous répétiez l’échantillonnage de nombreuses fois, 95 % des intervalles obtenus contiendraient la vraie moyenne de la population. Choisissez 90 % si vous préférez un intervalle plus étroit et acceptez un risque plus élevé de manquer la vraie moyenne. Choisissez 99 % pour les situations où manquer la vraie valeur serait coûteux, comme les essais cliniques ou l’ingénierie de sécurité, en acceptant un intervalle plus large en échange d’une plus grande certitude."
+      },
+      {
+        "q": "Ce calculateur est-il précis pour les petits échantillons ?",
+        "a": "Le calculateur utilise des intervalles de confiance basés sur z (1.96 pour 95 %, etc.), qui sont techniquement les plus précis pour les grands échantillons (n ≥ 30), où l’approximation normale est très bonne. Pour les petits échantillons, le bon multiplicateur est la valeur t de la distribution t à n−1 degrés de liberté, légèrement plus grande que la valeur z correspondante. Pour n ≥ 30, la différence est faible (par exemple t ≈ 2.042 contre z = 1.96 à 95 % avec n=30), mais pour n < 10 l’écart devient notable. Utilisez un calculateur d’intervalle t dédié pour les très petits échantillons."
+      }
+    ]
+  }
+}

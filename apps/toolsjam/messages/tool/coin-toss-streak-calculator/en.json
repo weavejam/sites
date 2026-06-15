@@ -1,0 +1,102 @@
+{
+  "title": "Coin Toss Streak Calculator - Consecutive Heads & Tails",
+  "tagline": "Calculate the probability of achieving consecutive heads or tails in coin tosses, or find the expected number of tosses needed for any streak length.",
+  "intro": "Enter a streak length and type, then choose between calculating the exact probability within a set number of tosses or the expected number of tosses to achieve the streak.",
+  "formula": "Formula (exact prob): dynamic programming over toss sequences  •  Expected tosses for k heads: 2(2^k − 1)  •  Expected tosses for k of either: 2^k − 1",
+  "field": {
+    "streakLen": "Streak Length",
+    "streakType": "Streak Type",
+    "calcType": "Calculation Type",
+    "maxTosses": "Maximum Tosses (Optional)",
+    "maxTossesHint": "Leave blank to use a default window of approximately 2k² tosses."
+  },
+  "placeholder": {
+    "streakLen": "e.g. 3",
+    "maxTosses": "e.g. 50"
+  },
+  "streakType": {
+    "heads": "Heads Only",
+    "tails": "Tails Only",
+    "either": "Either (Heads or Tails)"
+  },
+  "calcType": {
+    "exactProb": "Exact Probability",
+    "exactProb_desc": "Compute the probability of achieving the streak at least once within the specified (or default) number of tosses.",
+    "expectedTosses": "Expected Number of Tosses",
+    "expectedTosses_desc": "Compute the average number of tosses needed until the streak is first achieved."
+  },
+  "button": {
+    "calculate": "Calculate Streak",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter a valid streak length (1–100). If specifying max tosses, it must be ≥ streak length and ≤ 100,000."
+  },
+  "result": {
+    "heading": "Result",
+    "inNTosses": "Probability of achieving the streak within {n} tosses",
+    "tosses": "tosses (expected)",
+    "expectedDesc": "On average, this many tosses are needed before the streak is first achieved."
+  },
+  "about": {
+    "heading": "About the Coin Toss Streak Calculator",
+    "body": "A streak — also called a run — is a sequence of consecutive identical outcomes. The most elementary example is a run of k heads in a row when tossing a fair coin. While this sounds simple, the mathematics of streaks involves surprisingly deep results from probability theory and has applications ranging from sports analytics to financial risk modelling.\n\nThe probability of getting at least one streak of k consecutive heads somewhere within n coin tosses cannot be computed with a simple binomial formula. It requires tracking how close you are to completing a streak at every point in the sequence — a task perfectly suited to dynamic programming. The calculator uses exactly this approach: it maintains a probability distribution over the number of consecutive heads accumulated so far, updates it with each new toss, and sums the probability absorbed into the 'streak complete' state after n tosses.\n\nThe expected number of tosses until the first streak of k consecutive heads has an elegant closed form for a fair coin (p = 0.5): E_k = 2(2^k − 1). For k = 1, you expect 2 tosses on average before the first head, which is correct since E[geometric(0.5)] = 1/0.5 = 2. For k = 3 heads in a row, the expected number is 2(2^3 − 1) = 2 × 7 = 14. For k = 10, the expectation is already 2,046 tosses — demonstrating that long streaks are much rarer than intuition suggests.\n\nFor 'either' streaks (k consecutive outcomes of the same type, whether heads or tails), the expected number of tosses is 2^k − 1. This is shorter because any outcome on the first toss starts a potential streak in that direction. For k = 3, the expected wait is only 7 tosses compared to 14 for specifically heads — intuitively, the streak can form in either direction, effectively doubling the opportunities.\n\nStreak calculations arise in many practical contexts. In sports, people observe that a basketball player who made the last 5 shots in a row is 'on fire'. Statistical research on this 'hot hand' phenomenon finds that while some real correlation exists, much of what fans perceive as streakiness is simply the natural clustering expected from random processes. In finance, a mutual fund that beats the market 5 years in a row looks impressive, but with thousands of funds this is statistically inevitable under the null hypothesis of no skill. The streak calculator helps you judge whether an observed run of successes is surprising given the number of opportunities.\n\nIn gambling, understanding streak probabilities helps set realistic expectations. The probability of getting 10 heads in a row in 100 tosses is about 4.4% — lower than many gamblers expect when they consider the many possible starting positions. The probability of getting 20 heads in a row in 1,000 tosses is only about 0.05% — genuinely rare, despite the large number of trials.\n\nThis calculator supports streak lengths from 1 to 100 and a maximum of 100,000 tosses in the probability mode, covering all practical scenarios from classroom exercises to large-scale simulation studies."
+  },
+  "examples": {
+    "heading": "Coin Toss Streak Examples",
+    "intro": "Four worked examples from basic probability to gambling and sports statistics.",
+    "colInput": "Streak / Type / Mode",
+    "colOutput": "Result",
+    "colNote": "Interpretation",
+    "loadThreeHeads": "Load 3-heads example",
+    "loadLong": "Load long streak",
+    "loadGambling": "Load gambling example",
+    "items": [
+      {
+        "input": "Streak = 3, Heads Only, Expected Tosses",
+        "output": "14 tosses",
+        "note": "On average you must toss a fair coin 14 times before getting 3 heads in a row. Formula: 2(2³ − 1) = 14."
+      },
+      {
+        "input": "Streak = 5, Heads Only, Probability in 50 tosses",
+        "output": "≈ 55.19%",
+        "note": "More than half of all sequences of 50 fair flips contain at least one run of 5 consecutive heads."
+      },
+      {
+        "input": "Streak = 7, Either, Expected Tosses",
+        "output": "127 tosses",
+        "note": "For 7 consecutive outcomes of the same type (heads or tails), expect 2⁷ − 1 = 127 tosses on average."
+      },
+      {
+        "input": "Streak = 4, Heads Only, Expected Tosses",
+        "output": "30 tosses",
+        "note": "A gambler betting on 4 consecutive heads should expect to wait about 30 tosses. Formula: 2(2⁴ − 1) = 30."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Coin Toss Streak Calculator",
+    "steps": [
+      "Enter the streak length — the number of consecutive identical outcomes you are interested in (e.g. 3 for three heads in a row).",
+      "Choose the streak type: Heads Only, Tails Only, or Either (any k consecutive identical outcomes).",
+      "Select the calculation mode: Exact Probability (within a number of tosses) or Expected Number of Tosses.",
+      "For Exact Probability mode, optionally enter a maximum number of tosses. Leave blank to use a default window.",
+      "Click Calculate Streak. The result shows either the probability as a percentage or the expected number of tosses needed."
+    ]
+  },
+  "faq": {
+    "heading": "Coin Toss Streak FAQ",
+    "q1": "How is the streak probability calculated?",
+    "q1_a": "The calculator uses dynamic programming. It tracks the probability of being in each possible 'partial streak' state (0, 1, 2, ... k-1 consecutive heads so far) as each new toss is simulated. When the partial streak reaches k, the probability is absorbed. After n tosses, the total absorbed probability equals the probability of having achieved the streak at least once.",
+    "q2": "Why does the expected number grow so fast with streak length?",
+    "q2_a": "Each additional element in the streak multiplies the expected wait by approximately 2. For fair coin heads streaks, E_k = 2(2^k − 1), which doubles each time k increases by 1. This is because every time you get close to completing a streak but then fail, you must restart from scratch, and the probability of successfully completing the next attempt is halved for each additional step required.",
+    "q3": "What is the probability of a streak of 10 heads in 100 tosses?",
+    "q3_a": "Using the calculator with streak length 10, type Heads Only, max tosses 100, you get approximately 4.4%. Despite the streak requiring a specific sequence of 10 outcomes (probability (0.5)^10 ≈ 0.1% for a specific starting position), the many possible starting positions and overlapping windows combine to produce a probability of roughly 1 in 23.",
+    "q4": "Is a run of 5 wins by a sports team evidence of skill or luck?",
+    "q4_a": "It depends on the base probability of winning. For a team with a 50% win probability (evenly matched), a run of 5 wins has probability (0.5)^5 ≈ 3.1%. Over a season of 30+ games, the probability of encountering at least one such run at some point is much higher — often above 50%. A run of 5 wins is not, by itself, strong evidence of a change in skill level or 'hot hand' unless the team's baseline win rate is substantially below 50%.",
+    "q5": "How does the 'either' mode differ from heads-only?",
+    "q5_a": "In 'either' mode, the streak counts any k consecutive outcomes of the same type — whether all heads or all tails. The expected number of tosses for an 'either' streak of length k is 2^k − 1, roughly half the expected wait for a specific-side streak of the same length (which is 2(2^k − 1)). This is because any flip can start a streak in either direction, doubling the opportunities to begin a valid run.",
+    "q6": "Can I use this for non-coin binary random events?",
+    "q6_a": "Yes, as long as each trial is independent and has a 50% probability of success. Examples include the probability of a basketball team with a 50% win rate getting a 5-game winning streak, the probability of a binary sensor reading the same value k times in a row, or the expected number of coin-like decisions before a random walk hits one side k times consecutively. The mathematics is identical for all independent 50/50 binary processes."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "title": "Übertragungsrechner – Signalleistung und Datenrate",
+  "tagline": "Berechnen Sie Freiraumdämpfung, Empfangsleistung, SNR, Shannon-Kanalkapazität und Bandbreiteneffizienz für Funkverbindungen.",
+  "intro": "Geben Sie Sendeleistung, Entfernung, Frequenz, Bandbreite, Datenrate und Antennengewinn ein, um die Signalausbreitung in jedem Funksystem zu analysieren.",
+  "formula": "FSPL = 20·log(d) + 20·log(f) − 147.55 dB | Pr = Pt + 2·Ga − FSPL (dBm) | C = B·log₂(1 + SNR)",
+  "field": {
+    "txPower": "Sendeleistung (W)",
+    "distance": "Entfernung (m)",
+    "frequency": "Frequenz (Hz)",
+    "bandwidth": "Bandbreite (Hz)",
+    "dataRate": "Datenrate (bps)",
+    "antennaGain": "Antennengewinn (dB)"
+  },
+  "placeholder": {
+    "txPower": "z. B. 0.1",
+    "distance": "z. B. 10",
+    "frequency": "z. B. 2400000000",
+    "bandwidth": "z. B. 20000000",
+    "dataRate": "z. B. 54000000",
+    "antennaGain": "z. B. 2"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie für alle Felder positive Werte ein. Frequenz, Bandbreite und Datenrate müssen größer als Null sein."
+  },
+  "result": {
+    "heading": "Übertragungsergebnisse",
+    "pathLoss": "Freiraumdämpfung: {value} dB",
+    "rxPower": "Empfangsleistung: {value} dBm",
+    "snr": "Signal-Rausch-Verhältnis: {value} dB",
+    "shannonCapacity": "Shannon-Kapazität: {value} Mbit/s",
+    "spectralEfficiency": "Spektrale Effizienz (Shannon): {value} bit/s/Hz",
+    "bwEfficiency": "Bandbreiteneffizienz (tatsächlich): {value} bit/s/Hz"
+  },
+  "about": {
+    "heading": "Über den Übertragungsrechner",
+    "body": "Die Analyse der Signalübertragung ist ein Grundpfeiler der Nachrichtentechnik. Wann immer elektromagnetische Energie von einer Antenne abgestrahlt wird, breitet sie sich dreidimensional aus, und ihre Leistungsdichte nimmt mit dem Quadrat der Entfernung von der Quelle ab. Dieses Verhalten — und die Grenzen, die es der Auslegung von Kommunikationssystemen setzt — zu verstehen, ist für Ingenieure, die WLAN-Netze, Mobilfunk-Basisstationen, Satellitenverbindungen, Rundfunk und Radarsysteme entwerfen, unverzichtbar.\n\nDie wichtigste Kennzahl in einer Link-Budget-Betrachtung ist die Freiraumdämpfung (FSPL). Für ein Signal, das sich in einer ungehinderten Umgebung über die Entfernung d bei der Frequenz f ausbreitet, gilt: FSPL (in Dezibel) = 20·log₁₀(d) + 20·log₁₀(f) − 147.55, wobei d in Metern und f in Hertz angegeben wird. Die Ausbreitungsdämpfung ist keine dissipative Dämpfung; sie ist lediglich die Folge davon, dass sich die kugelförmig expandierende Wellenfront über eine immer größere Fläche verteilt. Höhere Frequenzen verlieren bei gleicher Entfernung proportional mehr Leistung als niedrigere Frequenzen, weil ihre Wellenlänge kürzer ist — die Antennenapertur erfasst einen kleineren Anteil der expandierenden Kugel.\n\nDie Empfangsleistung lautet dann: Pr (dBm) = Pt (dBm) + Gt (dB) + Gr (dB) − FSPL (dB), wobei Pt die Sendeleistung, Gt der Gewinn der Sendeantenne und Gr der Gewinn der Empfangsantenne ist. Dieser Rechner nimmt der Einfachheit halber an, dass an beiden Enden dieselbe Antenne verwendet wird. Antennengewinn erzeugt keine Leistung; er bündelt sie in eine bestimmte Richtung. Eine Antenne mit 15 dB Gewinn fokussiert Leistung wie ein Scheinwerfer gegenüber der isotropen Referenz und entspricht damit einer Vergrößerung der Sendeleistung um etwa den Faktor 31.\n\nDas Signal-Rausch-Verhältnis (SNR) wird berechnet, indem die Empfangsleistung mit der thermischen Rauschleistung N = k·T·B verglichen wird, wobei k die Boltzmann-Konstante (1.38 × 10⁻²³ J/K), T die Rauschtemperatur (standardmäßig 290 K) und B die Bandbreite ist. Größere Bandbreite erfasst mehr Rauschen, weshalb Systeme mit großer Bandbreite für dasselbe SNR deutlich mehr Signalleistung benötigen als Schmalbandsysteme.\n\nDer Shannon-Hartley-Satz setzt eine fundamentale Obergrenze für die Informationsrate, die über jeden Kanal zuverlässig übertragen werden kann: C = B·log₂(1 + SNR). Dieses theoretische Maximum, die Shannon-Kapazität, kann unabhängig von der Cleverness des Modulations- und Codierungsschemas nie überschritten werden. Moderne Systeme wie 5G NR und Wi‑Fi 6 nutzen adaptive Modulation und Codierung, die sich unter guten Kanalbedingungen bis auf wenige Zehntel dB an diese Grenze annähern. Das Verhältnis von Shannon-Kapazität zu Bandbreite, die spektrale Effizienz, gibt an, wie viele Bit pro Sekunde und Hertz der Kanal theoretisch liefern kann. Der Vergleich mit der tatsächlichen Datenraten-Effizienz zeigt, wie effizient das System sein verfügbares Spektrum nutzt."
+  },
+  "examples": {
+    "heading": "Beispiele für den Übertragungsrechner",
+    "intro": "Drei Kommunikationsszenarien von Indoor-WLAN bis zum geostationären Satelliten zeigen, wie sich Maßstab auf Dämpfung und Kapazität auswirkt.",
+    "colInput": "Szenarioparameter",
+    "colOutput": "Dämpfung / Empfangsleistung",
+    "colNote": "Hinweise",
+    "loadWifi": "WLAN-Beispiel laden",
+    "loadCellular": "Mobilfunk-Beispiel laden",
+    "loadSatellite": "Satelliten-Beispiel laden",
+    "items": [
+      {
+        "input": "WLAN: 0.1 W, 10 m, 2.4 GHz, 20 MHz BW, 54 Mbit/s, 2 dBi Gewinn",
+        "output": "FSPL ≈ 60.1 dB, Pr ≈ −36.1 dBm",
+        "note": "Typischer Heimrouter in 10 m Entfernung. Bei einer thermischen Rauschschwelle von etwa −101 dBm ergibt sich SNR ≈ 65 dB — mehr als genug für 54 Mbit/s 802.11g."
+      },
+      {
+        "input": "Mobilfunk: 50 W, 1 km, 900 MHz, 5 MHz BW, 10 Mbit/s, 15 dBi Gewinn",
+        "output": "FSPL ≈ 91.5 dB, Pr ≈ −14.5 dBm",
+        "note": "GSM/LTE-Basisstation. Der hohe Antennengewinn kompensiert die Dämpfung über 1 km; das SNR liegt deutlich über der Schwelle für Sprache und Basisdaten."
+      },
+      {
+        "input": "Satellit: 100 W, 35,786 km, 12 GHz, 50 MHz BW, 100 Mbit/s, 40 dBi Gewinn",
+        "output": "FSPL ≈ 205.1 dB, Pr ≈ −75.1 dBm",
+        "note": "GEO-Satellitenlink. Die enorme Dämpfung wird durch sehr hohe Antennengewinne (Parabolantennen) auf Uplink- und Downlink-Seite kompensiert."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Übertragungsrechner",
+    "steps": [
+      "Geben Sie die Ausgangsleistung des Senders in Watt ein. Das ist die an die Antenne abgegebene Leistung — nicht die DC-Eingangsleistung des Senders.",
+      "Geben Sie die Entfernung zwischen Sender und Empfänger in Metern ein. Verwenden Sie bei Satellitenverbindungen die Schrägstrecke (nicht die Höhe) in Metern.",
+      "Geben Sie die Trägerfrequenz in Hertz ein. Beispiel: 2.4 GHz = 2,400,000,000 Hz. Höhere Frequenzen erleiden größere Freiraumdämpfung.",
+      "Geben Sie die Kanalbandbreite in Hertz, die nominelle Datenrate in Bit pro Sekunde und den Antennengewinn in dBi (Dezibel relativ zu einem isotropen Strahler) ein. Der Rechner verwendet denselben Gewinn an Sender und Empfänger.",
+      "Klicken Sie auf Berechnen. Prüfen Sie Dämpfung, Empfangsleistung, SNR und Shannon-Kapazität. Liegt die Empfangsleistung unter dem Rauschboden des Systems, funktioniert die Verbindung bei der angegebenen Reichweite nicht."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Übertragungsrechner",
+    "q1": "Was ist Freiraumdämpfung und warum nimmt sie mit der Frequenz zu?",
+    "q1_a": "Freiraumdämpfung ist die Abschwächung der Signalleistung durch die kugelförmige Ausbreitung der elektromagnetischen Welle, während sie sich von der Quelle entfernt. Sie nimmt mit der Frequenz zu, weil ein höherfrequentes Signal eine kürzere Wellenlänge hat — und eine Empfangsantenne mit fester physischer Größe bei kürzeren Wellenlängen einen kleineren Anteil der einfallenden Leistung erfasst. Anders gesagt: Eine Antenne mit festem Gewinn hat bei höheren Frequenzen eine kleinere wirksame Apertur.",
+    "q2": "Warum erhöht sich die Dämpfung bei doppelter Entfernung nur um 6 dB?",
+    "q2_a": "Die Dämpfung folgt dem Abstandsquadratgesetz: Die Empfangsleistung ist proportional zu 1/d². In Dezibel bedeutet das, dass die Dämpfung bei doppelter Entfernung um 20·log₁₀(2) ≈ 6 dB zunimmt. Verdoppelt man die Entfernung, sinkt die Empfangsleistung also auf ein Viertel, nicht auf die Hälfte. Das wird oft missverstanden, wenn man eine lineare Beziehung zwischen Entfernung und Signalstärke erwartet.",
+    "q3": "Was ist die Shannon-Kapazität und wie nah kommen reale Systeme heran?",
+    "q3_a": "Die Shannon-Kapazität C = B·log₂(1 + SNR) ist die theoretisch maximale Datenrate, die über einen Kanal mit gegebener Bandbreite und SNR zuverlässig übertragen werden kann, unabhängig vom Modulations- oder Codierungsschema. Moderne Systeme mit LDPC- oder Turbo-Codes in Kombination mit adaptiver Modulation (256-QAM oder 1024-QAM) erreichen Werte innerhalb von 1–2 dB des Shannon-Limits, was bedeutet, dass sie 70–90 % des theoretischen Maximums übertragen.",
+    "q4": "Was ist Antennengewinn und wie beeinflusst er das Link-Budget?",
+    "q4_a": "Antennengewinn misst, wie viel mehr Leistung eine Antenne in ihrer bevorzugten Richtung abstrahlt (oder empfängt) als ein isotroper Strahler. Eine 15 dBi-Antenne konzentriert die Leistung im Hauptstrahl um etwa den Faktor 31. In der Link-Budget-Gleichung addieren sich Sende- und Empfangsantennengewinn direkt zum Empfangssignalpegel und vervielfachen effektiv die nutzbare Signalleistung, ohne die Sendeleistung zu erhöhen.",
+    "q5": "Wie wirkt sich Bandbreite auf Rauschen und Datenkapazität aus?",
+    "q5_a": "Die thermische Rauschleistung ist proportional zur Bandbreite: N = kTB. Eine Verdopplung der Bandbreite verdoppelt die Rauschleistung (plus 3 dB Rauschen) und verringert das SNR um 3 dB. Gleichzeitig kann eine Verdopplung der Bandbreite nach Shannon auch die erreichbare Datenrate pro SNR verdoppeln. Der Kompromiss wird in adaptiven Systemen durch Modulationsordnung und Codierungsrate gesteuert.",
+    "q6": "Kann dieser Rechner für Innen- oder Stadtausbreitung verwendet werden?",
+    "q6_a": "Der Rechner modelliert Freiraumausbreitung, was für Sichtverbindungs-Verbindungen im Freien (Satellit, Punkt-zu-Punkt-Mikrowelle) genau ist. Innen- und Stadtumgebungen haben zusätzliche Verluste durch Wände, Möbel, Gebäude und Mehrwege-Fading — häufig modelliert als zusätzliche Dämpfung von 10–40 dB je nach Szenario. Für diese Anwendungen fügen Sie eine Durchdringungsdämpfung hinzu oder verwenden Sie ein empirisches Modell wie ITU-R P.1238 oder COST 231 Hata."
+  }
+}

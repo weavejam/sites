@@ -1,0 +1,108 @@
+{
+  "title": "Calculateur de corrélation de Spearman - corrélation de rang",
+  "tagline": "Calculez le coefficient de corrélation de rang de Spearman (ρ) entre deux jeux de données — mesurez la force et la direction d'une relation monotone sans supposer la normalité.",
+  "intro": "Saisissez deux jeux de données de même longueur, séparés par des virgules. Le calculateur classe chaque jeu de données et calcule ρ à l'aide de la formule de Pearson sur les rangs, en gérant correctement les ex æquo.",
+  "formula": "ρ = 1 − (6 Σdᵢ²) / (n(n²−1))  pour des données sans ex æquo  •  Général : ρ = Cov(R(X), R(Y)) / (σ_R(X) · σ_R(Y))",
+  "field": {
+    "dataX": "Jeu de données X",
+    "dataXHint": "Saisissez des nombres séparés par des virgules ou des espaces",
+    "dataY": "Jeu de données Y",
+    "dataYHint": "Doit contenir le même nombre de valeurs que le jeu X"
+  },
+  "placeholder": {
+    "data": "ex. 1, 2, 3, 4, 5"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir au moins 2 valeurs numériques valides dans chaque jeu de données et vérifier que les deux jeux ont la même longueur."
+  },
+  "result": {
+    "heading": "Résultats de corrélation de Spearman",
+    "rho": "ρ (Rho)",
+    "n": "n (paires)",
+    "interpretation": "Force",
+    "dirPositive": "positive",
+    "dirNegative": "négative",
+    "strength": {
+      "veryStrong": "Très forte",
+      "strong": "Forte",
+      "moderate": "Modérée",
+      "weak": "Faible",
+      "negligible": "Négligeable"
+    }
+  },
+  "examples": {
+    "heading": "Exemples de corrélation de Spearman",
+    "intro": "Quatre exemples détaillés illustrant différentes forces de corrélation et structures de données.",
+    "colInput": "Jeux de données",
+    "colOutput": "ρ",
+    "colNote": "Interprétation",
+    "loadPerfect": "Charger la corrélation positive parfaite",
+    "loadNegative": "Charger la forte corrélation négative",
+    "loadZero": "Charger l'absence de corrélation",
+    "items": [
+      {
+        "input": "X: 10, 20, 30, 40, 50 | Y: 2, 4, 6, 8, 10",
+        "output": "ρ = 1.0000",
+        "note": "Relation monotone positive parfaite — les deux variables augmentent toujours ensemble."
+      },
+      {
+        "input": "X: 105, 120, 90, 150, 135 | Y: 4.5, 3.2, 5.0, 2.1, 2.9",
+        "output": "ρ = −1.0000",
+        "note": "Relation négative parfaite — X et Y sont classés en ordre exactement inverse."
+      },
+      {
+        "input": "X: 1, 2, 3, 4, 5 | Y: 3, 1, 5, 2, 4",
+        "output": "ρ = 0.3000",
+        "note": "Relation monotone positive faible entre les deux classements."
+      },
+      {
+        "input": "X: 8, 9, 10, 10, 12 | Y: 4, 6, 5, 5, 7",
+        "output": "ρ ≈ 0.6842",
+        "note": "Corrélation positive modérée ; les valeurs ex æquo sont gérées par moyennage des rangs."
+      }
+    ]
+  },
+  "about": {
+    "heading": "À propos du calculateur de corrélation de Spearman",
+    "body": "Le coefficient de corrélation de rang de Spearman, noté ρ (rho) ou rs, est une mesure non paramétrique de la relation monotone entre deux variables. Contrairement à la corrélation de Pearson, qui mesure la relation linéaire et suppose que les données suivent une distribution normale et sont mesurées sur une échelle d'intervalle ou de rapport, le coefficient de Spearman travaille avec les rangs des valeurs. Il convient donc aux données ordinales, aux données comportant des valeurs aberrantes, et à toute situation où la relation entre les variables est monotone mais pas nécessairement linéaire.\n\nLe calcul se déroule en trois étapes. D'abord, chaque jeu de données est classé : la plus petite valeur reçoit le rang 1, la deuxième plus petite le rang 2, et ainsi de suite. En cas d'ex æquo, chaque valeur à égalité reçoit la moyenne des rangs qu'elle aurait occupés. Ensuite, on calcule la différence dᵢ entre les rangs appariés pour chaque paire d'observations. Enfin, on calcule ρ. Pour des données sans ex æquo, la formule classique ρ = 1 − (6 Σdᵢ²) / (n(n²−1)) donne un résultat exact. Pour des données avec ex æquo, ce calculateur utilise la formule plus générale — la corrélation de Pearson calculée sur les rangs — qui gère correctement les ex æquo par construction.\n\nLe coefficient varie de −1 à +1. Une valeur de +1 signifie une relation monotone positive parfaite : chaque augmentation d'une variable s'accompagne d'une augmentation de l'autre. Une valeur de −1 signifie une relation monotone négative parfaite : chaque augmentation d'une variable s'accompagne d'une diminution de l'autre. Une valeur de 0 indique l'absence de relation monotone. En pratique, les valeurs supérieures à ±0.7 sont considérées comme fortes, de ±0.5 à ±0.7 modérées, de ±0.3 à ±0.5 faibles, et en dessous de ±0.3 négligeables, même si le seuil de 'significatif' dépend toujours de la taille de l'échantillon et du contexte.\n\nLa corrélation de Spearman est largement utilisée en psychologie (classement des préférences ou des attitudes), en éducation (comparaison des rangs de classe avec les scores aux tests), en médecine (comparaison des scores de gravité des symptômes), en écologie (comptages d'abondance et qualité de l'habitat), en finance (classement des fonds communs de placement selon le rendement ajusté du risque) et en études de marché (classements des préférences des consommateurs). Tout domaine travaillant avec des données classées, ordinales ou non normales peut en bénéficier.\n\nUne limite importante : la ρ de Spearman ne détecte que les relations monotones. Si la relation est en forme de U ou autrement non monotone, ρ peut être proche de zéro même lorsqu'une relation forte existe. Dans ce cas, des nuages de points et d'autres diagnostics visuels doivent toujours accompagner le coefficient numérique afin de garantir une interprétation correcte du résultat."
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de corrélation de Spearman",
+    "steps": [
+      "Saisissez votre premier jeu de données (X) sous forme de nombres séparés par des virgules dans le champ Jeu de données X.",
+      "Saisissez votre deuxième jeu de données (Y) dans le champ Jeu de données Y — il doit contenir exactement le même nombre de valeurs que X.",
+      "Cliquez sur Calculer. Le calculateur classe les deux jeux de données, gère les valeurs ex æquo en moyennant les rangs, et calcule ρ avec la formule de Pearson sur les rangs.",
+      "Lisez la valeur de ρ, la taille de l'échantillon et l'interprétation de la force dans le panneau de résultats.",
+      "Utilisez les boutons d'exemple pour charger des jeux de données prédéfinis et voir des scénarios typiques de corrélation positive, négative et nulle."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la corrélation de Spearman",
+    "items": [
+      {
+        "q": "Quelle est la différence entre la corrélation de Spearman et celle de Pearson ?",
+        "a": "Le r de Pearson mesure la force d'une relation linéaire et suppose que les deux variables suivent une distribution normale et sont mesurées sur une échelle d'intervalle. La ρ de Spearman mesure toute relation monotone, pas seulement linéaire, et fonctionne sur des données classées, ce qui la rend robuste aux valeurs aberrantes et valide pour des données ordinales. Utilisez Spearman lorsque l'hypothèse de normalité est violée, que les données sont ordinales ou que des valeurs aberrantes sont présentes."
+      },
+      {
+        "q": "La corrélation de Spearman nécessite-t-elle une taille d'échantillon minimale ?",
+        "a": "Techniquement, la formule fonctionne avec n ≥ 2, mais avec de très petits échantillons (n < 5), le coefficient est très sensible aux valeurs individuelles et les tests de significativité ont une très faible puissance. Un minimum de 10 à 15 observations appariées est recommandé pour une estimation fiable, et pour les tests de significativité formels, n ≥ 20 est préférable."
+      },
+      {
+        "q": "Comment le calculateur gère-t-il les valeurs ex æquo ?",
+        "a": "Lorsque deux observations ou plus partagent la même valeur, chacune reçoit la moyenne des rangs qu'elle aurait occupés. Par exemple, si les valeurs aux positions 3 et 4 sont identiques, chacune reçoit le rang 3.5. Le calculateur utilise ensuite la formule de Pearson sur les rangs, qui est algébriquement équivalente à la formule simple en dᵢ² lorsqu'il n'y a pas d'ex æquo et qui gère correctement les ex æquo lorsqu'ils sont présents."
+      },
+      {
+        "q": "Que signifie une ρ de Spearman égale à 0 ?",
+        "a": "Une ρ exactement égale à 0 signifie qu'il n'existe aucune relation monotone entre les classements de X et Y. Cela ne veut pas dire que les variables sont indépendantes — une relation non monotone (par exemple en U) peut aussi produire une ρ proche de 0. Tracez toujours vos données avec le coefficient pour vous assurer qu'aucun motif n'est oublié."
+      },
+      {
+        "q": "Peut-on utiliser la corrélation de Spearman avec des données catégorielles ?",
+        "a": "La corrélation de Spearman nécessite au moins des données ordinales — des données qui peuvent être classées de manière significative. Elle ne peut pas s'appliquer aux données catégorielles nominales (par exemple les couleurs, les noms, les étiquettes), où la notion d'ordre ne s'applique pas. Pour les données nominales, envisagez plutôt le V de Cramér ou d'autres mesures d'association."
+      }
+    ]
+  }
+}

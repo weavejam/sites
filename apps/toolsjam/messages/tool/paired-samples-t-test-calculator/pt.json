@@ -1,0 +1,95 @@
+{
+  "title": "Calculadora t de amostras pareadas - antes e depois",
+  "tagline": "Faça um teste t de amostras pareadas para comparar dois grupos relacionados — medições antes/depois, pares correspondentes — e obter o t, o valor-p e o intervalo de confiança.",
+  "intro": "Digite dois grupos de dados separados por vírgulas e com o mesmo tamanho, defina o nível de significância e o tipo de teste, e obtenha instantaneamente a saída completa do teste t pareado.",
+  "formula": "t = d̄ / (s_d / √n)  |  df = n − 1  |  d̄ = média das diferenças  |  s_d = desvio padrão das diferenças",
+  "field": {
+    "group1": "Dados do grupo 1 (ex.: antes do tratamento)",
+    "group2": "Dados do grupo 2 (ex.: depois do tratamento)",
+    "alpha": "Nível de significância (α)",
+    "mu": "Diferença média hipotetizada (μ₀)",
+    "tail": "Tipo de teste"
+  },
+  "placeholder": {
+    "data": "ex.: 140, 135, 150, 155, 130"
+  },
+  "tail": {
+    "two-tailed": "Bilateral",
+    "right-tailed": "Unilateral à direita",
+    "left-tailed": "Unilateral à esquerda"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite pelo menos 2 valores correspondentes em cada grupo. Os dois grupos devem ter o mesmo número de dados."
+  },
+  "result": {
+    "heading": "Resultados",
+    "tStat": "Estatística t",
+    "df": "Graus de liberdade",
+    "pValue": "Valor-p",
+    "dBar": "Diferença média (d̄)",
+    "sd": "Desv. padrão das diferenças (s_d)",
+    "ci95": "Intervalo de confiança de 95%",
+    "reject": "Rejeitar H₀ — foi detectada uma diferença estatisticamente significativa.",
+    "failReject": "Não rejeitar H₀ — nenhuma diferença estatisticamente significativa foi detectada."
+  },
+  "about": {
+    "heading": "Sobre a calculadora t de amostras pareadas",
+    "body": "O teste t de amostras pareadas (também chamado de teste t dependente ou teste t de pares correspondentes) é um procedimento estatístico paramétrico que determina se a diferença média entre dois conjuntos de medições relacionadas é significativamente diferente de zero (ou de qualquer outro valor hipotetizado). Ele é chamado de “pareado” porque cada observação do grupo 1 corresponde exatamente a uma observação do grupo 2 — as duas medições vêm do mesmo sujeito, de participantes pareados ou do mesmo local medido em dois momentos diferentes.\n\nA aplicação mais comum é um estudo antes e depois: um pesquisador mede uma característica (pressão arterial, nota de prova, peso, vendas) antes de uma intervenção e mede novamente depois. Como as mesmas pessoas são medidas duas vezes, os dois grupos não são independentes — são correlacionados. Ignorar essa correlação e usar um teste t para amostras independentes seria incorreto; isso subestimaria a precisão da comparação ao não levar em conta a variabilidade natural entre sujeitos que se cancela quando trabalhamos com diferenças.\n\nO truque computacional que torna o teste t pareado elegante é reduzi-lo a um problema de uma amostra. Para cada par i, calcule a diferença d_i = Grupo1_i − Grupo2_i. O teste então pergunta: a média dessas diferenças (d̄) é significativamente diferente de zero? Isso transforma o problema de duas amostras em um teste t de uma amostra sobre as diferenças. A estatística é t = (d̄ − μ₀) / (s_d / √n), onde μ₀ é a diferença média hipotetizada (normalmente 0), s_d é o desvio padrão amostral das diferenças e n é o número de pares. Sob a hipótese nula, a estatística segue uma distribuição t de Student com df = n − 1 graus de liberdade.\n\nO valor-p dessa estatística t informa a probabilidade de observar uma diferença média tão grande quanto d̄ (ou maior) se a verdadeira diferença média da população fosse μ₀. Se o valor-p ficar abaixo do nível de significância α escolhido, você rejeita a hipótese nula e conclui que existe uma diferença média estatisticamente significativa entre as medições pareadas. O intervalo de confiança de d̄ fornece uma faixa plausível para a verdadeira diferença média e, muitas vezes, é mais informativo que o valor-p sozinho.\n\nPara que o teste t pareado seja válido, as diferenças d_i devem ser aproximadamente normalmente distribuídas. Essa suposição pode ser verificada olhando um histograma ou um gráfico Q-Q normal das diferenças. Com n ≥ 30, o Teorema Central do Limite torna essa suposição menos crítica, mesmo que as diferenças individuais não sejam normais. Para amostras pequenas com diferenças claramente não normais, o teste de postos sinalizados de Wilcoxon é a alternativa não paramétrica.\n\nAs aplicações mais comuns incluem ensaios clínicos de eficácia (antes e depois do uso de um medicamento), pesquisa educacional (pré-teste e pós-teste), estudos de nutrição e condicionamento físico (medições de base e de acompanhamento) e análise de negócios (vendas antes e depois de uma campanha publicitária). Em cada caso, o requisito-chave é que cada par de valores venha da mesma pessoa, entidade ou unidade pareada — e não de dois grupos independentes."
+  },
+  "examples": {
+    "heading": "Exemplos resolvidos",
+    "intro": "Três cenários de antes e depois com dados realistas para ilustrar a saída do teste t pareado.",
+    "colInput": "Desenho do estudo",
+    "colOutput": "Estatística t / valor-p",
+    "colNote": "Conclusão",
+    "loadBP": "Carregar exemplo de pressão arterial",
+    "loadTutor": "Carregar exemplo de tutoria",
+    "loadSales": "Carregar exemplo de campanha de vendas",
+    "items": [
+      {
+        "input": "Pressão arterial antes: 140,135,150,155,130,142,138,147,152,133 / depois: 132,130,145,148,125,135,130,140,145,128 (bilateral, α=0.05, n=10)",
+        "output": "t ≈ 16.00, df = 9, p < 0.001",
+        "note": "Altamente significativa. O remédio reduziu a pressão sistólica média em 6.4 mmHg em 10 pacientes."
+      },
+      {
+        "input": "Notas antes: 75,80,82,70,88,65,90,78 / depois: 85,85,88,78,92,75,95,85 (bilateral, α=0.05, n=8)",
+        "output": "t ≈ −8.47, df = 7, p < 0.001",
+        "note": "Melhora significativa. Os alunos tiveram, em média, 6.9 pontos a mais após o programa de reforço."
+      },
+      {
+        "input": "Vendas semanais antes: 500,550,480,600,520,530 / depois: 540,580,500,650,550,560 (bilateral, α=0.05, n=6)",
+        "output": "t ≈ −7.91, df = 5, p < 0.001",
+        "note": "A campanha publicitária aumentou significativamente as vendas semanais em uma média de 33.3 unidades por loja."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora t de amostras pareadas",
+    "steps": [
+      "Digite os dados do Grupo 1 (por exemplo, valores “antes”) como uma lista separada por vírgulas no primeiro campo.",
+      "Digite os dados do Grupo 2 (por exemplo, valores “depois”) no segundo campo. Os dois grupos precisam ter o mesmo número de valores; o primeiro número do Grupo 1 é pareado com o primeiro do Grupo 2, e assim por diante.",
+      "Defina o nível de significância α (0.01, 0.05 ou 0.10) e a diferença média hipotetizada μ₀ (geralmente 0). Selecione o tipo de teste (bilateral, unilateral à direita ou unilateral à esquerda).",
+      "Clique em Calcular para ver a estatística t, os graus de liberdade, o valor-p, a diferença média, o desvio padrão das diferenças e um intervalo de confiança de 95%.",
+      "Compare o valor-p com α. Se p ≤ α, rejeite H₀ e conclua que existe uma diferença média estatisticamente significativa. Se p > α, não rejeite H₀."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "q1": "Quando devo usar um teste t pareado em vez de um t independente?",
+    "q1_a": "Use um teste t pareado quando cada observação de um grupo estiver naturalmente pareada ou ligada a exatamente uma observação do outro grupo — por exemplo, a mesma pessoa medida antes e depois de um tratamento, ou dois irmãos atribuídos a dietas diferentes. Se os dois grupos forem independentes (pessoas diferentes, sem relação e sem pareamento), use um teste t para amostras independentes.",
+    "q2": "O que é a diferença média hipotetizada μ₀?",
+    "q2_a": "μ₀ é o valor que você supõe que a diferença média real seja sob a hipótese nula. Na maioria das aplicações — testar se uma intervenção tem algum efeito — μ₀ = 0. Para hipóteses mais específicas, como verificar se um medicamento reduz a pressão arterial em pelo menos 10 mmHg, você definiria μ₀ = 10.",
+    "q3": "E se minhas diferenças não forem normalmente distribuídas?",
+    "q3_a": "O teste t pareado assume que as diferenças são aproximadamente normais. Com n ≥ 30 pares, o Teorema Central do Limite torna essa suposição menos crítica. Para amostras pequenas com diferenças claramente não normais (verifique um histograma), o teste de postos sinalizados de Wilcoxon é uma alternativa não paramétrica robusta que não assume normalidade.",
+    "q4": "Como interpreto o intervalo de confiança?",
+    "q4_a": "O intervalo de confiança de 95% dá uma faixa de valores plausíveis para a verdadeira diferença média. Se o intervalo não incluir zero, o resultado é significativo em α = 0.05. O intervalo é mais informativo que o valor-p sozinho porque mostra a magnitude e a direção do efeito. Por exemplo, um IC de (2.3, 9.8) mostra que o efeito é significativo e varia de pequeno a moderadamente grande.",
+    "q5": "Posso fazer um teste t pareado unilateral?",
+    "q5_a": "Sim. Selecione “Unilateral à direita” se você prevê Grupo 1 > Grupo 2 (diferença média positiva), ou “Unilateral à esquerda” se você prevê Grupo 1 < Grupo 2 (diferença média negativa). Um teste unilateral é mais poderoso, mas só é válido quando a direção do efeito foi especificada antes da coleta de dados. Usar um teste unilateral apenas porque o resultado bilateral ficou limítrofe é uma forma de p-hacking.",
+    "q6": "O que um resultado significativo realmente significa?",
+    "q6_a": "Um resultado significativo (p ≤ α) significa que a diferença média observada é improvável de ter ocorrido por acaso se a hipótese nula fosse verdadeira. Isso não prova que a hipótese nula é falsa nem garante que o efeito seja grande ou clinicamente importante. Sempre informe a diferença média d̄, seu intervalo de confiança e um tamanho de efeito (como d de Cohen = d̄ / s_d) para que os leitores possam julgar a importância prática."
+  }
+}

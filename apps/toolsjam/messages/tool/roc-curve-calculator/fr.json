@@ -1,0 +1,85 @@
+{
+  "title": "Calculateur de courbe ROC et AUC - Évaluation d'un classifieur binaire",
+  "tagline": "Tests statistiques avancés",
+  "intro": "Saisissez ci-dessous les scores de prédiction de votre modèle et les vraies étiquettes pour générer une courbe ROC et calculer l'aire sous la courbe (AUC).",
+  "field": {
+    "dataInput": "Données (Score, Étiquette)",
+    "dataInputHint": "Saisissez une observation par ligne au format 'score,label'. Les étiquettes doivent être 0 ou 1. Exemple : 0.9,1"
+  },
+  "placeholder": {
+    "dataInput": "Saisissez les données sous la forme 'score,label' sur chaque ligne.\nExemple :\n0.9,1\n0.8,1\n0.7,0\n0.4,0"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Entrée invalide. Chaque ligne doit contenir un score numérique et une étiquette binaire (0 ou 1), et les deux classes doivent être présentes."
+  },
+  "result": {
+    "auc": "AUC",
+    "aucExcellent": "Discrimination excellente",
+    "aucGood": "Discrimination bonne",
+    "aucFair": "Discrimination passable",
+    "aucPoor": "Discrimination faible",
+    "optimalThreshold": "Seuil optimal",
+    "sensitivity": "Sensibilité (TPR)",
+    "specificity": "Spécificité (1−FPR)",
+    "threshold": "Seuil",
+    "fpr": "FPR",
+    "tpr": "TPR"
+  },
+  "about": {
+    "heading": "À propos du calculateur de courbe ROC et AUC",
+    "body": "La courbe ROC (Receiver Operating Characteristic) est un outil graphique permettant d'évaluer la capacité de discrimination d'un modèle de classification binaire sur l'ensemble des seuils de décision possibles. Elle trace le taux de vrais positifs (TPR, ou sensibilité) sur l'axe y par rapport au taux de faux positifs (FPR, ou 1 − spécificité) sur l'axe x lorsque le seuil de décision varie du plus élevé au plus bas.\n\nLa sensibilité (TPR) est la proportion de positifs réels correctement identifiés : TPR = TP / (TP + FN). La spécificité est la proportion de négatifs réels correctement identifiés : Specificity = TN / (TN + FP). FPR = 1 − Specificity = FP / (TN + FP). Un classifieur parfait passerait par le coin supérieur gauche (FPR = 0, TPR = 1), tandis que la courbe ROC d'un classifieur aléatoire suit la diagonale allant de (0,0) à (1,1).\n\nL'aire sous la courbe ROC (AUC) résume la performance globale de classification en un seul scalaire. Une AUC de 1.0 représente une discrimination parfaite ; 0.5 représente l'absence de discrimination (équivalent à un tirage au sort). Conventionnellement, AUC ≥ 0.9 est excellente, 0.8–0.9 est bonne, 0.7–0.8 est passable et en dessous de 0.7 est faible.\n\nCe calculateur calcule l'AUC à l'aide de la règle du trapèze, qui intègre l'aire sous la courbe ROC en escalier. Il identifie également le seuil de décision optimal à l'aide de la statistique J de Youden (J = sensitivity + specificity − 1), qui maximise la somme de la sensibilité et de la spécificité et fournit un point d'exploitation équilibré.\n\nLes courbes ROC et l'AUC sont des métriques d'évaluation standards en diagnostic médical (où les classifieurs séparent les patients malades des patients sains), en apprentissage automatique (évaluation des modèles de classification binaire) et en scoring de crédit. Contrairement à l'exactitude, l'AUC est insensible au déséquilibre des classes, ce qui la rend particulièrement utile lorsque les cas positifs sont rares.\n\nCet outil accepte toute liste de paires score-étiquette. Les scores peuvent être des probabilités, des valeurs de logit ou tout autre classement continu. Les étiquettes doivent être 0 (classe négative) ou 1 (classe positive). Le tableau des résultats affiche tous les points d'exploitation ROC, avec la ligne du seuil optimal mise en évidence pour faciliter la consultation."
+  },
+  "examples": {
+    "heading": "Exemples de courbe ROC",
+    "intro": "Ces exemples montrent comment les valeurs d'AUC correspondent à différents niveaux de performance du classifieur.",
+    "colInput": "Paires score, étiquette",
+    "colOutput": "AUC",
+    "colNote": "Interprétation",
+    "items": [
+      {
+        "input": "0.9,1 / 0.8,1 / 0.3,0 / 0.2,0",
+        "output": "AUC = 1.0",
+        "note": "Classifieur parfait"
+      },
+      {
+        "input": "0.9,1 / 0.8,1 / 0.75,1 / 0.6,0 / 0.55,1 / 0.45,0 / 0.4,0 / 0.35,0",
+        "output": "AUC ≈ 0.9375",
+        "note": "Discrimination excellente"
+      },
+      {
+        "input": "0.9,0 / 0.8,1 / 0.7,0 / 0.6,1 / 0.5,0 / 0.4,1",
+        "output": "AUC ≈ 0.33",
+        "note": "Classement inversé — pire que le hasard"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser ce calculateur",
+    "steps": [
+      "Saisissez une observation par ligne au format 'score,label', où score est une prédiction numérique et label vaut 0 ou 1.",
+      "Assurez-vous que vos données contiennent des exemples positifs (label=1) et négatifs (label=0).",
+      "Cliquez sur 'Calculer' pour calculer l'AUC et générer les points de la courbe ROC.",
+      "Consultez la valeur d'AUC et son interprétation qualitative (excellente, bonne, passable ou faible).",
+      "Repérez la ligne du seuil optimal (mise en évidence dans le tableau) pour le meilleur compromis entre sensibilité et spécificité."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "q1": "Qu'est-ce que l'AUC et pourquoi est-elle importante ?",
+    "q1_a": "L'AUC (aire sous la courbe ROC) mesure la capacité d'un classifieur à classer les instances positives au-dessus des négatives sur tous les seuils. Elle est indépendante du seuil et robuste au déséquilibre des classes, ce qui en fait une référence standard pour les modèles de classification binaire en médecine, en apprentissage automatique et en finance.",
+    "q2": "Que signifie une AUC de 0.5 ?",
+    "q2_a": "Une AUC de 0.5 signifie que le classifieur ne fait pas mieux qu'un tirage au sort : il classe les instances positives et négatives de manière aléatoire. Toute AUC inférieure à 0.5 suggère que le classifieur se trompe systématiquement, et inverser ses prédictions donnerait une performance supérieure au hasard.",
+    "q3": "Comment le seuil optimal est-il sélectionné ?",
+    "q3_a": "Ce calculateur utilise la statistique J de Youden (J = sensitivity + specificity − 1) pour sélectionner le seuil optimal. Elle maximise la somme de la sensibilité et de la spécificité, offrant un point de fonctionnement équilibré. Des critères alternatifs, comme minimiser le coût ou maximiser le score F1, peuvent donner des seuils optimaux différents selon l'application.",
+    "q4": "L'AUC peut-elle être utilisée pour la classification multi-classe ?",
+    "q4_a": "L'AUC standard est définie pour la classification binaire. Pour les problèmes multi-classes, on peut calculer une AUC one-vs-rest pour chaque classe séparément, ou rapporter une AUC macro-moyenne ou pondérée. Ce calculateur ne prend en charge que la classification binaire (étiquettes 0 et 1).",
+    "q5": "Quelle est la différence entre sensibilité et spécificité ?",
+    "q5_a": "La sensibilité (rappel ou TPR) mesure la capacité du classifieur à détecter les vrais positifs : TP / (TP + FN). La spécificité mesure sa capacité à éviter les fausses alertes : TN / (TN + FP). Une sensibilité élevée est cruciale lorsqu'omettre un cas positif est coûteux (par exemple, dépistage de maladie). Une spécificité élevée est importante lorsque les faux positifs sont coûteux (par exemple, tests de confirmation).",
+    "q6": "L'AUC est-elle toujours la meilleure métrique pour évaluer un modèle ?",
+    "q6_a": "L'AUC est excellente pour comparer des modèles à travers différents seuils et pour les jeux de données déséquilibrés, mais ce n'est pas toujours le meilleur choix. Pour des données très déséquilibrées, l'AUC précision-rappel (PR-AUC) est souvent plus informative. Pour un seuil de décision spécifique, des métriques comme le score F1, l'exactitude ou le coefficient de corrélation de Matthews peuvent être plus pertinentes."
+  }
+}

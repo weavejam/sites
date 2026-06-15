@@ -1,0 +1,102 @@
+{
+  "title": "Calculadora de estatística F - ANOVA e teste de razão de variâncias",
+  "tagline": "Calcule a estatística F, os graus de liberdade, o valor p e o valor F crítico para comparar duas variâncias amostrais em uma ANOVA ou teste de razão F.",
+  "intro": "Insira a variância amostral e o tamanho de cada grupo, escolha um nível de significância e obtenha a estatística F com uma decisão clara de rejeitar ou não rejeitar.",
+  "card": {
+    "title": "Calculadora de estatística F",
+    "description": "Compare as variâncias de dois grupos usando o teste de razão F"
+  },
+  "field": {
+    "group1": "Dados do grupo 1",
+    "group2": "Dados do grupo 2",
+    "variance": "Variância amostral (s²)",
+    "variance1": "Variância amostral do grupo 1 (s²)",
+    "variance2": "Variância amostral do grupo 2 (s²)",
+    "sampleSize": "Tamanho da amostra (n)",
+    "sampleSize1": "Tamanho da amostra do grupo 1 (n)",
+    "sampleSize2": "Tamanho da amostra do grupo 2 (n)",
+    "alpha": "Nível de significância (α)"
+  },
+  "placeholder": {
+    "variance": "ex.: 0.34",
+    "sampleSize": "ex.: 25"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira valores válidos. As variâncias devem ser ≥ 0 e os tamanhos das amostras devem ser inteiros ≥ 2."
+  },
+  "result": {
+    "heading": "Resultado",
+    "fStatistic": "Estatística F",
+    "df1": "df₁ (numerador)",
+    "df2": "df₂ (denominador)",
+    "pValue": "Valor p (bicaudal)",
+    "criticalF": "Valor F crítico",
+    "reject": "Rejeitar H₀ — as variâncias são significativamente diferentes.",
+    "failReject": "Não rejeitar H₀ — não há diferença significativa entre as variâncias."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de estatística F",
+    "body": "A estatística F é uma razão entre duas variâncias usada para determinar se diferenças entre médias de grupos ou variâncias de grupos são estatisticamente significativas. Batizada em homenagem a Sir Ronald A. Fisher, ela forma a base da análise de variância (ANOVA) e também é a quantidade-chave no teste F para igualdade de duas variâncias. Sempre que você precisa decidir se a dispersão dos valores em um grupo difere de modo relevante da de outro, a estatística F fornece uma resposta rigorosa baseada em probabilidade.\n\nEm sua essência, a estatística F é simplesmente F = s₁² / s₂², em que s₁² e s₂² são as variâncias amostrais de dois grupos independentes. Por convenção, a maior variância é colocada no numerador para que F seja sempre ≥ 1, o que restringe toda a massa de probabilidade de interesse à cauda direita da distribuição F. O valor resultante é então comparado a uma distribuição F teórica parametrizada por dois valores de graus de liberdade: df₁ = n₁ − 1 (numerador) e df₂ = n₂ − 1 (denominador). Um valor F grande significa que as variâncias são muito diferentes; um F próximo de 1 significa que elas são semelhantes.\n\nA distribuição F é assimétrica à direita e assume apenas valores não negativos. Seu formato exato depende de df₁ e df₂. Para um teste bicaudal — o tipo mais comum, que verifica qualquer diferença independentemente da direção — o valor p é calculado como 2 × P(F > F_obs), em que P(F > F_obs) é a área na cauda direita da distribuição F além da estatística observada. Se esse valor p for menor ou igual ao nível de significância α escolhido, você rejeita a hipótese nula H₀: σ₁² = σ₂² e conclui que as variâncias diferem significativamente.\n\nNa ANOVA, a estatística F assume uma forma ligeiramente diferente: é a razão entre a variância entre grupos (quadrados médios entre grupos, ou MSB) e a variância dentro dos grupos (quadrados médios dentro dos grupos, ou MSW). Se as médias dos grupos forem todas idênticas, MSB e MSW devem ser aproximadamente iguais, resultando em F ≈ 1. À medida que as médias dos grupos divergem, MSB cresce em relação a MSW e F aumenta, até ultrapassar o limiar crítico.\n\nAplicações comuns da estatística F incluem controle de qualidade na manufatura (duas máquinas produzem peças com a mesma variabilidade?), pesquisa educacional (dois métodos de ensino levam a notas de teste igualmente consistentes?), análise financeira (duas ações têm volatilidade semelhante?) e ciência agrícola (dois fertilizantes produzem safras com a mesma consistência?). Antes de executar um teste t de duas amostras, muitos analistas usam primeiro o teste F para verificar a suposição de variâncias iguais; se o teste F rejeitar H₀, um teste t de Welch (variâncias desiguais) é mais apropriado.\n\nEsta calculadora automatiza o cálculo da CDF da distribuição F usando a função beta incompleta regularizada, fornecendo valores p precisos para quaisquer graus de liberdade positivos sem necessidade de tabelas estatísticas. O valor F crítico é encontrado invertendo numericamente a CDF. Ambos os resultados são consistentes com os valores produzidos por R, Python (scipy) e SPSS."
+  },
+  "examples": {
+    "heading": "Exemplos da calculadora de estatística F",
+    "intro": "Três cenários reais mostrando como aplicar o teste F para comparar variâncias.",
+    "colInput": "Entrada",
+    "colOutput": "Resultado",
+    "colNote": "Contexto",
+    "loadMfg": "Carregar exemplo de manufatura",
+    "loadTeaching": "Carregar exemplo de métodos de ensino",
+    "loadStock": "Carregar exemplo de volatilidade de ações",
+    "items": [
+      {
+        "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+        "output": "F = 1.1724, p ≈ 0.6767 — não rejeitar H₀",
+        "note": "Duas máquinas produzindo parafusos. A variância do diâmetro não é significativamente diferente no nível de 5%."
+      },
+      {
+        "input": "s₁² = 110, n₁ = 41; s₂² = 135, n₂ = 31; α = 0.05",
+        "output": "F = 1.2273, p ≈ 0.5061 — não rejeitar H₀",
+        "note": "Dois métodos de ensino. As variâncias das notas dos testes não são significativamente diferentes; ambos os métodos produzem consistência semelhante."
+      },
+      {
+        "input": "s₁² = 1.5, n₁ = 30; s₂² = 1.2, n₂ = 30; α = 0.01",
+        "output": "F = 1.25, p ≈ 0.5717 — não rejeitar H₀",
+        "note": "Variâncias dos retornos diários de ações. No nível de significância de 1%, não há evidência de volatilidade diferente."
+      },
+      {
+        "input": "s₁² = 550, n₁ = 50; s₂² = 620, n₂ = 50; α = 0.10",
+        "output": "F = 1.1273, p ≈ 0.5659 — não rejeitar H₀",
+        "note": "Rendimento de culturas com dois fertilizantes. A variância da produção é estatisticamente semelhante no nível de 10%."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de estatística F",
+    "steps": [
+      "Insira a variância amostral (s²) e o tamanho da amostra (n) do grupo 1 na seção \"Dados do grupo 1\". Ambos os valores devem ser números ≥ 0 (variância) e ≥ 2 (tamanho da amostra).",
+      "Insira a variância e o tamanho da amostra correspondentes do grupo 2 na seção \"Dados do grupo 2\".",
+      "Selecione o nível de significância α desejado no menu suspenso — 0.01, 0.05 ou 0.10 são as três opções padrão.",
+      "Clique em \"Calcular\". A calculadora coloca a maior variância no numerador, calcula F = s_max² / s_min², deriva os graus de liberdade (df₁ = n_max − 1, df₂ = n_min − 1) e avalia o valor p bicaudal e o valor F crítico.",
+      "Compare o valor p com α. Se p ≤ α, rejeite H₀ e conclua que as variâncias diferem significativamente. Caso contrário, não rejeite H₀. Clique em \"Redefinir\" para limpar todos os campos e começar novamente."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ da calculadora de estatística F",
+    "q1": "O que é a estatística F?",
+    "q1_a": "A estatística F é a razão entre duas variâncias amostrais: F = s₁² / s₂². Por convenção, a maior variância fica no numerador, portanto F ≥ 1. Sob a hipótese nula de que ambas as variâncias populacionais são iguais, ela segue uma distribuição F com df₁ = n₁ − 1 e df₂ = n₂ − 1 graus de liberdade.",
+    "q2": "O que o valor p representa em um teste F?",
+    "q2_a": "O valor p é a probabilidade de observar uma estatística F tão extrema quanto — ou mais extrema que — a calculada, assumindo que H₀ (variâncias iguais) é verdadeira. Um valor p pequeno (≤ α) significa que uma razão tão grande é improvável sob H₀, então você rejeita H₀. Um valor p grande significa que os dados são consistentes com variâncias iguais.",
+    "q3": "Quando devo usar um teste F unicaudal ou bicaudal?",
+    "q3_a": "Use um teste bicaudal (o padrão aqui) quando quiser detectar qualquer diferença entre as variâncias, independentemente da direção. Use um teste unicaudal apenas se você tiver uma hipótese direcional prévia — por exemplo, σ₁² > σ₂². Para obter um valor p unicaudal, divida pela metade o valor p bicaudal desta calculadora.",
+    "q4": "Quais são as suposições do teste F?",
+    "q4_a": "O teste F para igualdade de variâncias exige que ambas as amostras sejam retiradas de populações normalmente distribuídas e que as amostras sejam independentes. Se houver dúvida sobre a normalidade, considere o teste de Levene ou o teste de Brown–Forsythe, que são mais robustos à não normalidade.",
+    "q5": "Como o valor F crítico é usado?",
+    "q5_a": "O valor F crítico F_crit é o limiar além do qual você rejeita H₀ no α escolhido. Se F_obs > F_crit, rejeite H₀. O valor crítico é equivalente à abordagem do valor p: F_obs > F_crit se e somente se valor p < α. Ambos os métodos sempre produzem a mesma decisão.",
+    "q6": "Qual é a diferença entre um teste F e um teste t?",
+    "q6_a": "Um teste t compara as médias de dois grupos, enquanto um teste F (no contexto de duas amostras) compara suas variâncias. Na ANOVA, a estatística F compara a variância entre médias de grupos com a variância dentro dos grupos, testando efetivamente se todas as médias dos grupos são iguais. O teste t de duas amostras pode ser visto como um caso especial em que o valor F é igual a t²."
+  }
+}

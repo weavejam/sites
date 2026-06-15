@@ -1,0 +1,94 @@
+{
+  "title": "Calculadora de razão de chances - OR, IC e valor p",
+  "tagline": "Calcule a razão de chances, o intervalo de confiança, o escore Z e o valor p a partir de uma tabela de contingência 2×2 para estudos caso-controle e epidemiológicos.",
+  "intro": "Digite as quatro contagens da sua tabela 2×2, escolha um nível de confiança e receba instantaneamente a razão de chances com inferência estatística completa.",
+  "tableNote": "Preencha as contagens dos grupos exposto e não exposto. As células devem ser inteiros não negativos. Quando qualquer célula é zero, aplica-se automaticamente a correção de Haldane-Anscombe (somar 0,5 a cada célula).",
+  "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+  "group": {
+    "exposed": "Grupo exposto",
+    "unexposed": "Grupo não exposto"
+  },
+  "field": {
+    "a": "Resultado positivo – Casos (a)",
+    "b": "Resultado negativo – Não casos (b)",
+    "c": "Resultado positivo – Casos (c)",
+    "d": "Resultado negativo – Não casos (d)",
+    "confidenceLevel": "Nível de confiança"
+  },
+  "placeholder": {
+    "cell": "Digite uma contagem ≥ 0"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite números não negativos em todas as quatro células."
+  },
+  "result": {
+    "heading": "Resultados",
+    "or": "Razão de chances (OR)",
+    "ciLabel": "Intervalo de confiança",
+    "z": "Escore Z",
+    "pValue": "Valor p",
+    "lnOR": "ln(OR)",
+    "se": "Erro padrão",
+    "correctionNote": "Célula zero detectada — correção de Haldane-Anscombe (+ 0,5) aplicada a todas as células."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de razão de chances",
+    "body": "A razão de chances (OR) é uma das medidas de associação mais usadas em pesquisa biomédica, epidemiologia e ciências sociais. Ela quantifica a força da relação entre uma exposição e um desfecho binário ao comparar as chances do desfecho em um grupo exposto com as chances no grupo não exposto. Uma OR igual a 1 indica ausência de associação; uma OR maior que 1 sugere que a exposição aumenta as chances do desfecho; e uma OR menor que 1 sugere efeito protetor.\n\nA razão de chances é calculada a partir de uma tabela de contingência 2×2, o formato padrão para apresentar dados de estudos caso-controle. A tabela tem quatro células: (a) expostos com o desfecho, (b) expostos sem o desfecho, (c) não expostos com o desfecho e (d) não expostos sem o desfecho. A fórmula é simplesmente OR = (a × d) / (b × c), isto é, a razão dos produtos cruzados da tabela.\n\nA inferência estatística para a OR é feita sobre seu logaritmo natural, porque a distribuição amostral de ln(OR) é aproximadamente normal, mesmo com tamanhos de amostra moderados. O erro padrão de ln(OR) é SE = √(1/a + 1/b + 1/c + 1/d). A partir disso, calcula-se um escore Z como Z = ln(OR) / SE, que segue a distribuição normal padrão sob a hipótese nula de ausência de associação (OR = 1). O valor p bicaudal é p = 2 × Φ(−|Z|), onde Φ é a função de distribuição acumulada normal padrão. Se o valor p ficar abaixo do nível de significância escolhido (normalmente 0,05), a razão de chances é estatisticamente diferente de 1.\n\nO intervalo de confiança (IC) da OR é construído exponenciando o intervalo ao redor de ln(OR): CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. Para um IC de 95%, Z_α/2 = 1,96. Se o IC não incluir 1,0, o resultado é estatisticamente significativo ao nível de 5%. A largura do IC reflete a precisão da estimativa; intervalos mais largos surgem de tamanhos de amostra menores ou células esparsas.\n\nSurge uma complicação prática quando alguma célula da tabela 2×2 é zero, o que torna a fórmula padrão da OR indefinida (divisão por zero ou logaritmo de zero). A solução padrão é a correção de Haldane-Anscombe: adicionar 0,5 a cada célula antes de calcular a OR e o SE. Esta calculadora aplica a correção automaticamente e avisa quando ela é usada. A correção introduz um pequeno viés, mas é muito melhor do que não retornar nenhum resultado.\n\nA OR é a medida natural em estudos caso-controle, em que o desenho fixa o número de casos e controles em vez da prevalência da exposição. Em estudos de coorte e ensaios randomizados, o risco relativo (RR) costuma ser preferido porque é mais intuitivo. Para desfechos raros (prevalência abaixo de cerca de 10%), OR ≈ RR, mas para desfechos comuns a OR ficará sempre mais distante de 1 do que o RR correspondente, e interpretá-la como RR pode superestimar a magnitude da associação. Sempre informe qual medida está usando e verifique se a suposição de doença rara se aplica aos seus dados."
+  },
+  "examples": {
+    "heading": "Exemplos resolvidos",
+    "intro": "Três cenários clássicos de estudo mostrando como ler a saída da razão de chances e avaliar a significância estatística.",
+    "colInput": "Cenário do estudo",
+    "colOutput": "Razão de chances",
+    "colNote": "Interpretação",
+    "loadSmoking": "Carregar exemplo de tabagismo",
+    "loadDrug": "Carregar exemplo de fármaco",
+    "loadVaccine": "Carregar exemplo de vacina",
+    "items": [
+      {
+        "input": "Tabagismo e câncer de pulmão: a=650, b=350, c=100, d=900 (95% CI)",
+        "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+        "note": "Fumantes têm cerca de 16,7 vezes mais chances de câncer de pulmão do que não fumantes. O IC exclui 1,0, portanto a associação é altamente significativa."
+      },
+      {
+        "input": "Novo fármaco vs. placebo: a=38, b=162, c=85, d=115 (95% CI)",
+        "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+        "note": "O fármaco reduz as chances da doença em cerca de 68%. OR < 1 indica efeito protetor; o IC está totalmente abaixo de 1."
+      },
+      {
+        "input": "Estudo de vacinação: a=15, b=485, c=55, d=445 (95% CI)",
+        "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+        "note": "Pessoas vacinadas têm 75% menos chances de infecção. Uma associação protetora forte, com intervalo de confiança estreito e significativo."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de razão de chances",
+    "steps": [
+      "Organize seus dados em uma tabela 2×2: célula (a) = casos expostos, (b) = não casos expostos, (c) = casos não expostos, (d) = não casos não expostos.",
+      "Digite as quatro contagens não negativas nos campos correspondentes sob 'Grupo exposto' e 'Grupo não exposto'.",
+      "Selecione o nível de confiança desejado (90%, 95% ou 99%) no menu suspenso. A maioria dos estudos publicados usa 95%.",
+      "Clique em Calcular. A ferramenta retorna a OR, o intervalo de confiança, o escore Z e o valor p. Se alguma célula foi zero, uma nota de correção aparecerá.",
+      "Interprete o resultado: OR > 1 significa que a exposição aumenta as chances; OR < 1 significa que as diminui. Verifique se o IC inclui 1 e se p ≤ α."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "q1": "O que é uma razão de chances e como ela difere do risco relativo?",
+    "q1_a": "A razão de chances compara as chances de um desfecho em dois grupos, enquanto o risco relativo (RR) compara as probabilidades. Para desfechos raros (prevalência < 10%), OR ≈ RR; para desfechos comuns, a OR se afasta mais de 1,0 do que o RR. Estudos caso-controle só podem estimar validamente a OR, não o RR, porque a amostragem é baseada no desfecho.",
+    "q2": "Como interpreto OR = 2,5?",
+    "q2_a": "Uma OR de 2,5 significa que as chances do desfecho no grupo exposto são 2,5 vezes as do grupo não exposto. Isso não quer dizer que o risco seja 2,5 vezes maior, a menos que o desfecho seja raro. Para desfechos comuns, a razão de riscos real será menor que 2,5.",
+    "q3": "O que o intervalo de confiança me diz?",
+    "q3_a": "Um intervalo de confiança de 95% significa que, se você repetisse o estudo muitas vezes nas mesmas condições, cerca de 95% dos intervalos calculados conteriam a OR verdadeira da população. Na prática, se o IC exclui 1,0, o resultado é estatisticamente significativo em α = 0,05. Um IC amplo indica baixa precisão, geralmente por uma amostra pequena.",
+    "q4": "Quando a correção de Haldane-Anscombe é aplicada?",
+    "q4_a": "A correção adiciona 0,5 a cada célula quando alguma célula é zero. Uma célula zero torna a fórmula padrão da OR indefinida (logaritmo de zero ou divisão por zero). A correção permite continuar a estimativa e é a solução mais comum, embora introduza um pequeno viés. A calculadora destaca quando ela foi usada.",
+    "q5": "Posso usar esta calculadora em um ensaio clínico randomizado?",
+    "q5_a": "Sim, mas considere relatar o risco relativo (RR) em vez da OR ou junto com ela, porque o RR é mais intuitivo para desfechos comuns e é a medida preferida por muitas diretrizes clínicas. Para ECRs com desfechos raros ou ao combinar desenhos de estudo em uma meta-análise, a OR continua apropriada.",
+    "q6": "Por que valores p e intervalos de confiança às vezes parecem contraditórios?",
+    "q6_a": "Eles não deveriam ser contraditórios: um IC de 95% que exclui 1,0 sempre corresponde a p < 0,05 em um teste bicaudal. As aparentes contradições costumam surgir por arredondamento, pela comparação de valores p unicaudais com ICs bicaudais ou pela aplicação de níveis diferentes ao IC e ao alfa do teste. Use configurações consistentes para ambos."
+  }
+}

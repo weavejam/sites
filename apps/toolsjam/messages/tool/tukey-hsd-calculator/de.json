@@ -1,0 +1,94 @@
+{
+  "title": "Tukey-HSD-Rechner - ANOVA-Post-hoc-Test",
+  "tagline": "Führen Sie nach der ANOVA Tukeys Test auf ehrlich signifikante Unterschiede durch, um zu erkennen, welche Gruppenmittelwerte sich signifikant unterscheiden.",
+  "intro": "Geben Sie für jede Gruppe kommagetrennte Daten ein, wählen Sie die Anzahl der Gruppen und das Signifikanzniveau und klicken Sie dann auf Berechnen, um die ANOVA-Tabelle und alle paarweisen Vergleiche zu sehen.",
+  "field": {
+    "group": "Gruppe",
+    "numGroups": "Anzahl der Gruppen",
+    "alpha": "Signifikanzniveau (α)"
+  },
+  "placeholder": {
+    "group": "z. B. 23, 25, 28, 30"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Geben Sie in jeder von mindestens 2 Gruppen mindestens 2 Werte ein und klicken Sie dann auf Berechnen."
+  },
+  "result": {
+    "anovaHeading": "ANOVA-Tabelle",
+    "source": "Quelle",
+    "ss": "SS",
+    "df": "df",
+    "ms": "MS",
+    "f": "F",
+    "between": "Zwischen den Gruppen",
+    "within": "Innerhalb der Gruppen",
+    "hsdValue": "HSD-Schwelle",
+    "qCritical": "kritisches q",
+    "pairHeading": "Paarweise Vergleiche (Tukey HSD)",
+    "pair": "Paar",
+    "meanI": "Mittelwert i",
+    "meanJ": "Mittelwert j",
+    "diff": "|Diff.|",
+    "significance": "Ergebnis",
+    "significant": "Signifikant",
+    "notSignificant": "Nicht signifikant",
+    "vsLabel": "vs"
+  },
+  "about": {
+    "heading": "Über den Tukey-HSD-Test",
+    "body": "Der Tukey-Test auf ehrlich signifikante Unterschiede (HSD) ist ein weit verbreitetes Post-hoc-Verfahren, das nach einer einfaktoriellen ANOVA mit signifikantem F-Wert eingesetzt wird. Wenn die ANOVA zeigt, dass sich mindestens ein Gruppenmittelwert von den anderen unterscheidet, zeigt Tukey HSD genau, welche Mittelwertpaare für diesen Unterschied verantwortlich sind, und kontrolliert dabei die familienweise Fehlerrate auf dem gewählten α-Niveau über alle Vergleiche hinweg.\n\nDer Test wurde 1949 vom Statistiker John Tukey entwickelt und ist bis heute der Goldstandard, wenn alle paarweisen Vergleiche relevant sind. Anders als die Bonferroni-Korrektur, die oft zu konservativ ist, erreicht Tukeys Verfahren bei gleichen Stichprobengrößen eine exakte Kontrolle der experimentweiten Fehlerrate und bei ungleichen Größen eine gute Näherung. Diese Balance aus statistischer Power und Fehlerkontrolle macht ihn zur Standardwahl für den Vergleich von drei oder mehr Behandlungsgruppen in Bereichen von der Landwirtschaft und Psychologie bis zu klinischen Studien und der Fertigung.\n\nDie Berechnung beginnt mit einer einfaktoriellen ANOVA: Aus allen Beobachtungen wird der Gesamtmittelwert berechnet, dann wird die Quadratsumme in Zwischen-Gruppen-Variation (wie stark sich die Gruppenmittelwerte vom Gesamtmittelwert unterscheiden) und Innerhalb-Gruppen-Variation (wie stark die Einzelwerte um ihre Gruppenmittelwerte streuen) zerlegt. Teilt man jede Quadratsumme durch ihre Freiheitsgrade, erhält man die mittleren Quadrate. Die F-Statistik ist das Verhältnis des mittleren Quadrats zwischen den Gruppen zum mittleren Quadrat innerhalb der Gruppen; ein hoher F-Wert deutet auf tatsächlich unterschiedliche Mittelwerte hin.\n\nFür den HSD-Schritt wird der kritische Wert q aus der Tabelle der studentisierten Spannweite anhand der Anzahl der Gruppen k und der Freiheitsgrade innerhalb der Gruppen bestimmt. Die HSD-Schwelle ist dann q × √(MS_within / n_harmonic), wobei n_harmonic das harmonische Mittel der Stichprobengrößen ist. Jedes Mittelwertpaar, dessen absoluter Unterschied diese Schwelle überschreitet, wird als signifikant verschieden eingestuft.\n\nDieser Rechner unterstützt 2 bis 6 Gruppen mit ungleichen Stichprobengrößen und verwendet das harmonische Mittel als effektive Stichprobengröße. Die Ergebnisse enthalten die vollständige ANOVA-Tabelle und eine komplette Matrix paarweiser Vergleiche. Verwenden Sie α = 0.05 für das übliche 95%-Niveau oder α = 0.01 für das strengere 99%-Niveau."
+  },
+  "examples": {
+    "heading": "Tukey-HSD-Beispiele",
+    "intro": "Repräsentative Datensätze, die zeigen, wie der Test signifikante Gruppenunterschiede erkennt oder eben nicht.",
+    "colInput": "Gruppen",
+    "colOutput": "Ergebnis",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "G1: 23,25,28,30 | G2: 22,24,26,28 | G3: 35,38,40,42",
+        "output": "G1 vs G3: Signifikant; G2 vs G3: Signifikant",
+        "note": "Der Mittelwert von Gruppe 3 (~38.75) liegt weit über den Gruppen 1 und 2 (~26.5 und ~25). Paare mit G3 überschreiten die HSD-Schwelle."
+      },
+      {
+        "input": "G1: 10,11,12 | G2: 10,12,11 | G3: 11,13,12",
+        "output": "Keine signifikanten Unterschiede",
+        "note": "Die Mittelwerte sind 11, 11 und 12. Die Unterschiede sind im Verhältnis zur Within-Group-Variabilität klein, daher liegen alle Paare unter der HSD-Schwelle."
+      },
+      {
+        "input": "G1: 5,6,7,8 | G2: 12,14,13,15 | G3: 20,21,22,23 | G4: 30,31,29,32",
+        "output": "Alle Paare signifikant",
+        "note": "Vier gleichmäßig verteilte Gruppen mit enger Streuung innerhalb der Gruppen. Jedes Mittelwertpaar unterscheidet sich um mehr als die HSD-Schwelle bei alpha=0.05."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Tukey-HSD-Rechner",
+    "steps": [
+      "Wählen Sie mit den Gruppenauswahl-Buttons oben im Rechner die Anzahl der Gruppen (2-6).",
+      "Geben Sie die kommagetrennten Datenwerte für jede Gruppe in das passende Eingabefeld ein.",
+      "Wählen Sie Ihr Signifikanzniveau: alpha=0.05 für die übliche 5%-Schwelle oder alpha=0.01 für eine strengere 1%-Schwelle.",
+      "Klicken Sie auf Berechnen, um die ANOVA-Tabelle (SS, df, MS, F) und die vollständige paarweise Vergleichstabelle zu sehen.",
+      "Prüfen Sie die Ergebnis-Spalte in der Paar-Tabelle: Als Signifikant markierte Paare haben Mittelwertunterschiede, die die HSD-Schwelle überschreiten."
+    ]
+  },
+  "faq": {
+    "heading": "Tukey-HSD FAQ",
+    "q1": "Wann sollte ich den Tukey-HSD-Test verwenden?",
+    "q1_a": "Verwenden Sie Tukey HSD nach einem signifikanten einfaktoriellen ANOVA-Ergebnis, wenn Sie wissen möchten, welche Gruppenmittelwerte sich unterscheiden. Er ist ideal, wenn alle paarweisen Vergleiche geplant sind und Sie die experimentweite Fehlerrate streng kontrollieren wollen.",
+    "q2": "Was bedeutet die HSD-Schwelle?",
+    "q2_a": "Die HSD-Schwelle ist der kleinste absolute Unterschied zwischen zwei Gruppenmittelwerten, der beim gewählten Alpha-Niveau als statistisch signifikant gilt. Jedes Paar mit einem größeren Mittelwertunterschied wird als signifikant verschieden markiert.",
+    "q3": "Worin unterscheidet sich Tukey HSD vom t-Test?",
+    "q3_a": "Ein paarweiser t-Test korrigiert nicht für multiple Vergleiche, sodass mehrere t-Tests die Wahrscheinlichkeit eines Fehlalarms erhöhen. Tukey HSD kontrolliert die familienweise Fehlerrate über alle Vergleiche hinweg gleichzeitig und ist daher für drei oder mehr Gruppen geeigneter.",
+    "q4": "Benötigt Tukey HSD gleiche Stichprobengrößen?",
+    "q4_a": "Gleiche Stichprobengrößen liefern eine exakte Kontrolle der familienweisen Fehlerrate. Bei ungleichen Größen verwendet dieser Rechner das harmonische Mittel der Gruppengrößen, was eine gute Näherung nach der Tukey-Kramer-Methode darstellt.",
+    "q5": "Was ist die studentisierte Spannweite q?",
+    "q5_a": "Die q-Statistik ist das Verhältnis der Spannweite der Gruppenmittelwerte zum Standardfehler. Kritische Werte werden aus der Verteilung der studentisierten Spannweite abgelesen, die die Anzahl der Gruppen k und die Fehlervarianz-Freiheitsgrade berücksichtigt.",
+    "q6": "Was mache ich, wenn ANOVA nicht signifikant ist?",
+    "q6_a": "Wenn der globale F-Test der ANOVA nicht signifikant ist, werden Post-hoc-Tests wie Tukey HSD normalerweise nicht durchgeführt, weil es keinen statistischen Nachweis für unterschiedliche Mittelwerte gibt. Üblicherweise berichtet man das nicht signifikante F und beendet die Analyse dort."
+  }
+}

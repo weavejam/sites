@@ -1,0 +1,104 @@
+{
+  "title": "Calculateur IQR - écart interquartile et valeurs aberrantes",
+  "tagline": "Calculez l'écart interquartile (IQR), les quartiles Q1 et Q3, la médiane, et identifiez les valeurs aberrantes avec la règle 1.5×IQR à partir de tout jeu de données séparé par des virgules.",
+  "intro": "Saisissez vos données sous forme de nombres séparés par des virgules, puis cliquez sur Calculer pour obtenir le résumé à cinq nombres, l'IQR, les valeurs des seuils et les valeurs aberrantes.",
+  "field": {
+    "data": "Jeu de données (nombres séparés par des virgules)",
+    "dataHint": "Saisissez des nombres séparés par des virgules ou des espaces, p. ex. 2, 4, 4, 5, 6, 7, 8, 9"
+  },
+  "placeholder": {
+    "data": "p. ex. 2, 4, 4, 5, 6, 7, 8, 9"
+  },
+  "button": {
+    "calculate": "Calculer l'IQR",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir au moins deux nombres valides séparés par des virgules."
+  },
+  "result": {
+    "heading": "Résultats",
+    "n": "Effectif (n)",
+    "min": "Minimum",
+    "max": "Maximum",
+    "q1": "Q1 (25e percentile)",
+    "median": "Médiane (Q2)",
+    "q3": "Q3 (75e percentile)",
+    "iqr": "IQR (Q3 − Q1)",
+    "lowerFence": "Seuil inférieur (Q1 − 1.5×IQR)",
+    "upperFence": "Seuil supérieur (Q3 + 1.5×IQR)",
+    "outliersLabel": "Valeurs aberrantes",
+    "noOutliers": "Aucune valeur aberrante détectée."
+  },
+  "about": {
+    "heading": "À propos du calculateur IQR",
+    "body": "L'écart interquartile (IQR) est l'étendue des 50% centraux d'un jeu de données : la distance entre le 25e percentile (Q1) et le 75e percentile (Q3). C'est l'une des mesures de dispersion statistique les plus robustes et les plus utilisées, car contrairement à l'étendue totale ou à l'écart type, elle n'est pas affectée par les valeurs extrêmes ni par les valeurs aberrantes. Que vous analysiez des notes d'examen, des mesures de tension artérielle, des prix immobiliers, des tolérances de fabrication ou tout autre jeu de données réel, l'IQR donne une image fiable de la dispersion centrale.\n\nPour calculer l'IQR, le calculateur trie d'abord les données de la plus petite à la plus grande, puis localise Q1 et Q3 à l'aide d'une interpolation linéaire sur les statistiques d'ordre. Q1 est la valeur au 25e percentile, le point en dessous duquel se trouvent 25% des données. Q3 est la valeur au 75e percentile, le point en dessous duquel se trouvent 75% des données. L'IQR est simplement Q3 − Q1. La médiane (Q2), le minimum et le maximum sont également fournis afin de présenter le résumé complet à cinq nombres, fondement d'un diagramme en boîte à moustaches.\n\nLa règle 1.5×IQR, introduite par John Tukey, est la méthode standard pour identifier les valeurs aberrantes potentielles. Tout point de données situé sous le seuil inférieur (Q1 − 1.5×IQR) ou au-dessus du seuil supérieur (Q3 + 1.5×IQR) est considéré comme une valeur aberrante suspecte. Ces seuils définissent les moustaches dans une boîte à moustaches de Tukey. Un point situé à plus de 3×IQR du quartile le plus proche (le seuil interne prolongé jusqu'à un seuil externe) est considéré comme une valeur aberrante extrême. Le calculateur signale toutes les valeurs situées hors des seuils 1.5×IQR.\n\nIl est important de noter que la règle 1.5×IQR identifie des valeurs aberrantes statistiques — des valeurs anormalement éloignées du bloc central des données — mais pas nécessairement des erreurs de données. Un point signalé comme aberrant peut être une erreur de mesure, une erreur de saisie, un signal de fraude ou simplement une observation réellement rare mais légitime. Les connaissances métier restent indispensables pour décider quoi faire des points signalés.\n\nL'IQR est la mesure de dispersion privilégiée lorsque les données sont asymétriques ou lorsque des valeurs aberrantes sont attendues, comme dans les distributions de revenus, les temps de réaction ou les prix immobiliers sur des marchés mixtes. Pour des données symétriques, normalement distribuées et sans valeurs aberrantes, l'écart type est légèrement plus efficace. Mais lorsque la robustesse compte — en analyse exploratoire des données, en statistiques non paramétriques ou dès que vous ne pouvez pas supposer la normalité — l'IQR est l'outil de référence pour caractériser la dispersion du centre de vos données."
+  },
+  "examples": {
+    "heading": "Exemples d'IQR",
+    "intro": "Quatre jeux de données montrant comment l'IQR et la détection des valeurs aberrantes fonctionnent en pratique.",
+    "colInput": "Jeu de données",
+    "colOutput": "IQR",
+    "colNote": "Notes",
+    "loadBasic": "Charger le jeu de données simple",
+    "loadOutliers": "Charger le jeu avec valeurs aberrantes",
+    "loadScores": "Charger les notes de test",
+    "items": [
+      {
+        "input": "2, 4, 4, 5, 6, 7, 8, 9",
+        "output": "IQR = 3.25 (Q1=4, Q3=7.25)",
+        "note": "Nombre pair de valeurs. Q1=4, médiane=5.5, Q3=7.25. Aucune valeur aberrante détectée."
+      },
+      {
+        "input": "10, 20, 30, 40, 50, 60, 70",
+        "output": "IQR = 30 (Q1=25, Q3=55)",
+        "note": "Effectif impair : Q1=25, médiane=40, Q3=55, IQR=30. Seuil inférieur=−20, seuil supérieur=100. Aucune valeur aberrante."
+      },
+      {
+        "input": "6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49, 78, 108",
+        "output": "IQR = 11 (Q1=36, Q3=47)",
+        "note": "Seuil inférieur=19.5, seuil supérieur=63.5. Les valeurs 6, 7, 15, 78 et 108 sont signalées comme aberrantes."
+      },
+      {
+        "input": "88, 92, 80, 78, 95, 84, 76, 90, 81, 85, 93",
+        "output": "IQR = 10.5 (Q1=80.5, Q3=91)",
+        "note": "Notes de test allant de 76 à 95. Aucune valeur aberrante : les performances de la classe sont bien regroupées."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur IQR",
+    "steps": [
+      "Saisissez votre jeu de données dans le champ d'entrée sous forme de nombres séparés par des virgules. Vous pouvez aussi utiliser des espaces comme séparateurs. L'ordre des valeurs n'a pas d'importance : le calculateur les trie automatiquement.",
+      "Cliquez sur Calculer l'IQR. L'outil affiche n (effectif), le minimum, le maximum, Q1, la médiane, Q3, l'IQR, les seuils inférieur et supérieur, ainsi que les valeurs aberrantes.",
+      "Examinez l'IQR pour comprendre à quel point les 50% centraux de vos données sont dispersés. Un IQR plus grand signifie une plus forte variabilité dans la partie centrale des données.",
+      "Vérifiez les valeurs des seuils. Tout point inférieur à Q1 − 1.5×IQR ou supérieur à Q3 + 1.5×IQR est listé comme valeur aberrante potentielle. Examinez chaque point signalé pour déterminer s'il s'agit d'une erreur de données ou d'une vraie valeur extrême.",
+      "Utilisez les boutons d'exemple pour charger des jeux de données prédéfinis et voir comment l'IQR et la détection des valeurs aberrantes réagissent à différentes distributions."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ IQR",
+    "items": [
+      {
+        "q": "Qu'est-ce que l'écart interquartile (IQR) ?",
+        "a": "L'écart interquartile est la différence entre le troisième quartile (Q3, 75e percentile) et le premier quartile (Q1, 25e percentile) : IQR = Q3 − Q1. Il représente la dispersion des 50% centraux des données. Comme il ignore les 25% supérieurs et les 25% inférieurs des valeurs, l'IQR n'est pas affecté par les valeurs extrêmes, ce qui en fait une mesure de dispersion plus robuste que l'étendue totale ou l'écart type lorsque les données sont asymétriques ou contiennent des anomalies."
+      },
+      {
+        "q": "Comment Q1 et Q3 sont-ils calculés ?",
+        "a": "Le calculateur utilise une interpolation linéaire sur les données triées. Pour Q1, la position est 0.25 × (n−1) dans un tableau trié indexé à partir de zéro. Si cette position n'est pas un entier, la valeur est interpolée entre les deux points de données adjacents. La même méthode est utilisée pour Q3 à la position 0.75 × (n−1). C'est la même méthode que celle utilisée par des logiciels statistiques comme R (type 7) et la fonction QUARTILE.INC d'Excel."
+      },
+      {
+        "q": "Comment la règle 1.5×IQR identifie-t-elle les valeurs aberrantes ?",
+        "a": "La règle 1.5×IQR de John Tukey définit le seuil inférieur = Q1 − 1.5×IQR et le seuil supérieur = Q3 + 1.5×IQR. Tout point de données situé hors de ces seuils est une valeur aberrante potentielle. Le multiplicateur 1.5 a été choisi parce que, pour une distribution parfaitement normale, seulement environ 0.7% des valeurs tombent hors de ces seuils, ce qui les rend très peu susceptibles d'apparaître par hasard. Une règle plus stricte utilise un multiplicateur de 3.0 et ne signale que les points les plus extrêmes comme valeurs très éloignées."
+      },
+      {
+        "q": "L'IQR est-il meilleur que l'écart type pour mesurer la dispersion ?",
+        "a": "Chaque mesure convient à des situations différentes. L'écart type utilise toutes les valeurs et est optimal pour des données symétriques, normalement distribuées et sans valeurs aberrantes. L'IQR n'utilise que les 50% centraux des valeurs et résiste beaucoup mieux à l'asymétrie et aux valeurs aberrantes. Si vos données sont approximativement normales, l'écart type fournit plus d'informations. Si elles sont asymétriques (revenus, prix immobiliers, durées de survie) ou contiennent des valeurs aberrantes, l'IQR est la meilleure mesure de la dispersion typique."
+      },
+      {
+        "q": "Puis-je utiliser l'IQR pour un jeu de données de seulement deux ou trois valeurs ?",
+        "a": "Techniquement oui, mais le résultat est d'une utilité limitée. Avec de très petits échantillons (n < 4 ou 5), les estimations des quartiles sont très instables et l'IQR ne représente pas de manière fiable la dispersion de la population. La règle de détection 1.5×IQR fonctionne aussi mal avec de minuscules échantillons : elle peut ne signaler aucune valeur aberrante même si les données contiennent des erreurs, ou produire des seuils qui excluent des valeurs légitimes. Une analyse IQR pertinente nécessite généralement au moins 5 à 10 observations."
+      }
+    ]
+  }
+}

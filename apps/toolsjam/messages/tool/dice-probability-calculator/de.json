@@ -1,0 +1,94 @@
+{
+  "title": "Würfel-Wahrscheinlichkeitsrechner - exakt und mindestens",
+  "tagline": "Berechne die exakte Wahrscheinlichkeit beliebiger Würfelergebnisse — exakte Summe, mindestens oder höchstens — für bis zu 10 Würfel mit beliebiger Seitenzahl.",
+  "intro": "Gib die Anzahl der Würfel, die Seiten pro Würfel und deine Zielsumme ein und wähle dann, ob du die exakte, mindestens- oder höchstens-Wahrscheinlichkeit berechnen möchtest.",
+  "type": {
+    "exact": "Exakte Summe",
+    "atLeast": "Mindestens",
+    "atMost": "Höchstens"
+  },
+  "field": {
+    "calcType": "Berechnungstyp",
+    "numberOfDice": "Anzahl der Würfel",
+    "sidesPerDie": "Seiten pro Würfel",
+    "targetSum": "Zielsumme"
+  },
+  "placeholder": {
+    "dice": "1–10",
+    "targetSum": "Zielsumme eingeben"
+  },
+  "button": {
+    "calculate": "Wahrscheinlichkeit berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gib gültige Werte ein: 1–10 Würfel, mindestens 2 Seiten und eine positive Zielsumme.",
+    "range": "Die Zielsumme muss für diese Würfelkonfiguration zwischen {min} (Minimum) und {max} (Maximum) liegen."
+  },
+  "result": {
+    "heading": "Wahrscheinlichkeit",
+    "fraction": "{favorable} günstige Ergebnisse von insgesamt {total} ({fraction})",
+    "summary": "{n} Würfel × d{s}, {type} {target}"
+  },
+  "about": {
+    "heading": "Über den Würfel-Wahrscheinlichkeitsrechner",
+    "body": "Würfelwahrscheinlichkeit ist ein grundlegendes Thema sowohl in der Unterhaltungsmathematik als auch in der formalen Wahrscheinlichkeitstheorie. Jedes Mal, wenn du einen fairen Würfel wirfst, hat jede Seite die gleiche Wahrscheinlichkeit, oben zu landen — bei einem standardmäßigen sechsseitigen Würfel beträgt sie für jedes Ergebnis 1/6. Wenn du mehrere Würfel wirfst und die Ergebnisse addierst, folgt die Anzahl der Wege zu jeder möglichen Summe einer charakteristischen Verteilung, die deutlich nicht gleichförmig ist und bei drei oder mehr Würfeln stark glockenförmig wird.\n\nDer Würfel-Wahrscheinlichkeitsrechner verwendet einen Faltungsansatz mit dynamischer Programmierung, um die exakte Anzahl der Wege zu zählen, mit denen jede mögliche Summe erzielt werden kann. Ausgehend von einem einzigen Ergebnis 0 mit 1 Möglichkeit iteriert er über jeden Würfel und erweitert die Verteilung, indem jeder mögliche Seitenwert berücksichtigt wird. So entsteht eine exakte Anzahl günstiger Ergebnisse für jede Zielsumme. Die Division durch die Gesamtzahl der Ergebnisse — einfach (Seiten pro Würfel) hoch (Anzahl der Würfel) — ergibt die Wahrscheinlichkeit als Dezimalbruch zwischen 0 und 1.\n\nDer Rechner unterstützt drei Arten von Wahrscheinlichkeitsabfragen. Die exakte Wahrscheinlichkeit beantwortet: „Wie groß ist die Wahrscheinlichkeit, dass die Würfelsumme genau T beträgt?“ — nützlich, wenn eine Brettspielregel eine bestimmte Zahl verlangt. Die mindestens-Wahrscheinlichkeit beantwortet: „Wie groß ist die Wahrscheinlichkeit, dass die Würfelsumme T oder mehr beträgt?“ — relevant in Rollenspielen, wenn ein Mindestwert zum Erfolg nötig ist. Die höchstens-Wahrscheinlichkeit beantwortet: „Wie groß ist die Wahrscheinlichkeit, dass die Würfelsumme T oder weniger beträgt?“ — nützlich für Risikobewertungen und Schwellenwertberechnungen.\n\nDie theoretische Wahrscheinlichkeit eines Würfelergebnisses zu kennen, ist wertvoll für Spieldesign, Strategie, Unterricht und Glücksspielanalyse. Beim Wurf von zwei standardmäßigen sechsseitigen Würfeln hat beispielsweise die Summe 7 die höchste Wahrscheinlichkeit (6 von 36, also 16,67 %), weil es sechs Kombinationen gibt, die sie erzeugen: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Summen an den Extremen — 2 (Snake Eyes) oder 12 (Boxcars) — haben jeweils nur eine Kombination und damit eine Wahrscheinlichkeit von nur 1/36 (≈ 2,78 %). Diese Verteilung zu verstehen, ist der Kern vieler Brettspiel- und Casino-Strategien.\n\nNeben sechsseitigen Würfeln verarbeitet der Rechner auch polyedrische Würfel, wie sie in Pen-&-Paper-Rollenspielen üblich sind: d4, d8, d10, d12 und d20. Die Verteilung der Summen ändert sich stark mit der Anzahl der Seiten. Ein einzelner d20 erzeugt eine Gleichverteilung; zwei d20-Würfel erzeugen eine Dreiecksverteilung; drei oder mehr erzeugen eine zunehmend glockenförmige Kurve. Diese Konvergenz zur Normalverteilung ist eine konkrete Veranschaulichung des Zentralen Grenzwertsatzes in Aktion."
+  },
+  "examples": {
+    "heading": "Beispiele zur Würfelwahrscheinlichkeit",
+    "intro": "Drei Szenarien, die Berechnungen für exakte, mindestens- und höchstens-Wahrscheinlichkeiten zeigen.",
+    "colInput": "Szenario",
+    "colOutput": "Wahrscheinlichkeit",
+    "colNote": "Erklärung",
+    "loadSingle": "Ein d6 — eine 4 würfeln",
+    "loadLucky7": "Zwei d6 — Summe = 7",
+    "loadHighRoll": "Drei d6 — Summe ≥ 16",
+    "items": [
+      {
+        "input": "1 Würfel, d6, exakte Summe = 4",
+        "output": "16.6667%",
+        "note": "Ein günstiges Ergebnis (Seite zeigt 4) von insgesamt 6. P = 1/6."
+      },
+      {
+        "input": "2 Würfel, d6, exakte Summe = 7",
+        "output": "16.6667%",
+        "note": "Sechs Kombinationen ergeben eine Summe von 7 aus insgesamt 36: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). P = 6/36 = 1/6."
+      },
+      {
+        "input": "3 Würfel, d6, Summe mindestens = 16",
+        "output": "4.6296%",
+        "note": "10 Kombinationen von insgesamt 216 ergeben eine Summe von 16 oder mehr. P = 10/216 ≈ 4.63%."
+      },
+      {
+        "input": "2 Würfel, d6, Summe höchstens = 4",
+        "output": "16.6667%",
+        "note": "Die Summen 2 (1 Möglichkeit), 3 (2 Möglichkeiten) und 4 (3 Möglichkeiten) ergeben 6 günstige Ergebnisse von 36. P = 6/36 = 1/6."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Würfel-Wahrscheinlichkeitsrechner",
+    "steps": [
+      "Wähle den Berechnungstyp: Exakte Summe für eine bestimmte Summe, Mindestens für einen Mindestschwellenwert oder Höchstens für einen Höchstschwellenwert.",
+      "Gib im ersten Feld die Anzahl der Würfel (1–10) ein. Mehr Würfel verschieben die Verteilung in Richtung einer Glockenkurve.",
+      "Wähle im Dropdown die Anzahl der Seiten pro Würfel aus (d4, d6, d8, d10, d12 oder d20).",
+      "Gib die Zielsumme ein, die dich interessiert. Der gültige Bereich wird angezeigt, wenn du einen Wert außerhalb des Bereichs eingibst.",
+      "Klicke auf Wahrscheinlichkeit berechnen. Das Ergebnis zeigt die Wahrscheinlichkeit als Prozentsatz, den Bruch der günstigen Ergebnisse über allen Ergebnissen und den gekürzten Bruch."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zur Würfelwahrscheinlichkeit",
+    "q1": "Warum ist 7 die häufigste Summe bei zwei sechsseitigen Würfeln?",
+    "q1_a": "Es gibt 6 Kombinationen, die aus 36 Gesamtergebnissen eine Summe von 7 erzeugen. Damit hat sie die höchste Wahrscheinlichkeit von 1/6 ≈ 16,67 %. Die Summen 6 und 8 sind die nächsthäufigen (je 5/36), während 2 und 12 mit je 1/36 am seltensten sind. Diese asymmetrische Verteilung ist der Grund, warum Craps, Monopoly und viele andere Würfelspiele um die Zahl 7 kreisen.",
+    "q2": "Was ist der Unterschied zwischen „exakt“, „mindestens“ und „höchstens“?",
+    "q2_a": "Die exakte Wahrscheinlichkeit gibt die Chance an, dass die Summe genau der Zielzahl entspricht. Die mindestens-Wahrscheinlichkeit gibt die Chance an, dass die Summe größer oder gleich dem Ziel ist — nützlich, wenn du einen Mindestwurf zum Erfolg brauchst. Die höchstens-Wahrscheinlichkeit gibt die Chance an, dass die Summe kleiner oder gleich dem Ziel ist — nützlich, wenn du unter einem Schwellenwert bleiben möchtest.",
+    "q3": "Wie beeinflusst die Anzahl der Würfel die Form der Verteilung?",
+    "q3_a": "Mit einem einzelnen Würfel ist die Verteilung vollkommen gleichförmig — jede Seite ist gleich wahrscheinlich. Mit zwei Würfeln wird die Verteilung dreieckig und erreicht in der Mitte ihren Höhepunkt. Mit drei oder mehr Würfeln wird sie glockenförmig und ähnelt zunehmend einer Normalverteilung, als direkte Folge des Zentralen Grenzwertsatzes. Das bedeutet, dass extreme Summen exponentiell seltener werden, je mehr Würfel du hinzufügst.",
+    "q4": "Kann ich diesen Rechner für nicht standardmäßige Würfel verwenden?",
+    "q4_a": "Der Rechner unterstützt d4, d6, d8, d10, d12 und d20 — die standardmäßigen polyedrischen Würfel, die in den meisten Tabletop-Spielen verwendet werden. Sie decken die große Mehrheit realer Würfel ab. Wenn du Wahrscheinlichkeiten für einen Würfel mit einer anderen Seitenzahl benötigst, verwende die Standardformeln: Gesamtergebnisse = sides^n, und zähle günstige Ergebnisse mit derselben Faltungslogik, die der Rechner intern anwendet.",
+    "q5": "Ist die Wahrscheinlichkeitsberechnung exakt oder nur näherungsweise?",
+    "q5_a": "Die Berechnung ist exakt und verwendet Ganzzahlarithmetik. Der Rechner zählt jede mögliche Kombination mit dynamischer Programmierung (Faltung erzeugender Funktionen) und dividiert dann durch die Gesamtzahl der Ergebnisse. Es werden keine Stichproben, Simulationen oder Näherungen verwendet. Der angezeigte Prozentsatz wird zur Lesbarkeit auf vier Dezimalstellen gerundet, der zugrunde liegende Bruch ist jedoch exakt.",
+    "q6": "Wie kann ich Würfelwahrscheinlichkeit in der Spielstrategie nutzen?",
+    "q6_a": "Wenn du die Wahrscheinlichkeit jedes Ergebnisses kennst, kannst du fundierte Entscheidungen treffen. In Die Siedler von Catan bringt das Platzieren von Siedlungen auf Feldern mit 6 und 8 die höchste Häufigkeit der Rohstoffproduktion, weil jede Zahl bei zwei d6 einer Chance von 5/36 entspricht. Im Kampf bei Dungeons & Dragons hilft dir die Wahrscheinlichkeit, mit einem d20 eine 15 oder höher zu würfeln (P = 6/20 = 30 %), das Risiko einzuschätzen, bevor du eine riskante Aktion versuchst."
+  }
+}

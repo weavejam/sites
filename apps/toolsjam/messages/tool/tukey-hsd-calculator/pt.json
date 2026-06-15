@@ -1,0 +1,94 @@
+{
+  "title": "Calculadora Tukey HSD - Teste post hoc ANOVA",
+  "tagline": "Execute o teste de diferença honestamente significativa de Tukey após a ANOVA para identificar quais médias dos grupos diferem significativamente entre si.",
+  "intro": "Digite dados separados por vírgulas para cada grupo, selecione o número de grupos e o nível de significância e clique em Calcular para ver a tabela ANOVA e todas as comparações par a par.",
+  "field": {
+    "group": "Grupo",
+    "numGroups": "Número de grupos",
+    "alpha": "Nível de significância (α)"
+  },
+  "placeholder": {
+    "group": "ex.: 23, 25, 28, 30"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite pelo menos 2 valores em cada um dos 2 ou mais grupos e depois clique em Calcular."
+  },
+  "result": {
+    "anovaHeading": "Tabela ANOVA",
+    "source": "Fonte",
+    "ss": "SS",
+    "df": "df",
+    "ms": "MS",
+    "f": "F",
+    "between": "Entre grupos",
+    "within": "Dentro dos grupos",
+    "hsdValue": "Limite HSD",
+    "qCritical": "q crítico",
+    "pairHeading": "Comparações par a par (Tukey HSD)",
+    "pair": "Par",
+    "meanI": "Média i",
+    "meanJ": "Média j",
+    "diff": "|Dif.|",
+    "significance": "Resultado",
+    "significant": "Significativo",
+    "notSignificant": "Não significativo",
+    "vsLabel": "vs"
+  },
+  "about": {
+    "heading": "Sobre o teste HSD de Tukey",
+    "body": "O teste de diferença honestamente significativa (HSD) de Tukey é um procedimento post hoc amplamente usado, aplicado depois que uma ANOVA de uma via retorna um estatístico F significativo. Quando a ANOVA mostra que pelo menos uma média de grupo difere das demais, o Tukey HSD aponta exatamente quais pares de médias são responsáveis por essa diferença, controlando a taxa de erro familiar no nível α escolhido em todas as comparações ao mesmo tempo.\n\nO teste foi desenvolvido pelo estatístico John Tukey em 1949 e continua sendo o padrão de referência quando todas as comparações par a par são relevantes. Diferente da correção de Bonferroni, que pode ser excessivamente conservadora, o método de Tukey alcança controle exato da taxa de erro experimental quando os tamanhos amostrais são iguais e controle aproximado quando são desiguais. Esse equilíbrio entre poder estatístico e controle de erro faz dele a escolha padrão para comparar três ou mais grupos de tratamento em áreas que vão da agricultura e psicologia a ensaios clínicos e manufatura.\n\nO cálculo começa com uma ANOVA de uma via: a média geral é calculada a partir de todas as observações e, depois, a soma dos quadrados é dividida entre variação entre grupos (o quanto as médias dos grupos se afastam da média geral) e variação dentro dos grupos (o quanto os valores individuais se espalham em torno das médias do próprio grupo). Dividir cada soma de quadrados pelos seus graus de liberdade fornece os quadrados médios. O estatístico F é a razão entre o quadrado médio entre grupos e o quadrado médio dentro dos grupos; um F alto sugere que os grupos têm médias realmente diferentes.\n\nNa etapa HSD, o valor crítico q é consultado na tabela da distribuição de amplitude studentizada usando o número de grupos k e os graus de liberdade dentro dos grupos. O limite HSD é então q × √(MS_within / n_harmonic), onde n_harmonic é a média harmônica dos tamanhos amostrais dos grupos. Qualquer par de médias cuja diferença absoluta ultrapasse esse limite é declarado significativamente diferente.\n\nEsta calculadora lida com 2 a 6 grupos com tamanhos amostrais desiguais, usando a média harmônica como tamanho amostral efetivo. Os resultados incluem a tabela ANOVA completa e uma matriz completa de comparações par a par. Use α = 0.05 para o nível de confiança padrão de 95% ou α = 0.01 para o nível mais rigoroso de 99%."
+  },
+  "examples": {
+    "heading": "Exemplos de Tukey HSD",
+    "intro": "Conjuntos de dados representativos que mostram como o teste detecta ou não detecta diferenças significativas entre grupos.",
+    "colInput": "Grupos",
+    "colOutput": "Veredito",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "G1: 23,25,28,30 | G2: 22,24,26,28 | G3: 35,38,40,42",
+        "output": "G1 vs G3: Significativo; G2 vs G3: Significativo",
+        "note": "A média do grupo 3 (~38.75) está muito acima dos grupos 1 e 2 (~26.5 e ~25). Os pares que envolvem G3 ultrapassam o limite HSD."
+      },
+      {
+        "input": "G1: 10,11,12 | G2: 10,12,11 | G3: 11,13,12",
+        "output": "Sem diferenças significativas",
+        "note": "As médias são 11, 11 e 12. As diferenças são pequenas em relação à variabilidade dentro dos grupos, então todos os pares ficam abaixo do limite HSD."
+      },
+      {
+        "input": "G1: 5,6,7,8 | G2: 12,14,13,15 | G3: 20,21,22,23 | G4: 30,31,29,32",
+        "output": "Todos os pares significativos",
+        "note": "Quatro grupos igualmente espaçados com pouca dispersão interna. Cada par de médias difere por mais que o limite HSD em alpha=0.05."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora Tukey HSD",
+    "steps": [
+      "Selecione o número de grupos (2-6) usando os botões do seletor de grupos no topo da calculadora.",
+      "Digite os valores de dados separados por vírgulas para cada grupo no campo correspondente.",
+      "Escolha o nível de significância: alpha=0.05 para o limite convencional de 5%, ou alpha=0.01 para um limite mais rigoroso de 1%.",
+      "Clique em Calcular para ver a tabela ANOVA (SS, df, MS, F) e a tabela completa de comparações par a par.",
+      "Verifique a coluna Resultado na tabela par a par — os pares marcados como Significativo têm diferenças de médias que ultrapassam o limite HSD."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre Tukey HSD",
+    "q1": "Quando devo usar o teste HSD de Tukey?",
+    "q1_a": "Use o Tukey HSD depois de obter um resultado significativo de ANOVA de uma via e quando quiser descobrir quais médias de grupo diferem. É ideal quando todas as comparações par a par estão planejadas e você quer controle rigoroso da taxa de erro familiar.",
+    "q2": "O que significa o limite HSD?",
+    "q2_a": "O limite HSD é a menor diferença absoluta entre duas médias de grupo considerada estatisticamente significativa no nível alpha escolhido. Qualquer par cuja diferença de médias ultrapasse esse valor é marcado como significativamente diferente.",
+    "q3": "Como o Tukey HSD difere do teste t?",
+    "q3_a": "Um teste t por pares não corrige comparações múltiplas, então fazer vários testes t aumenta a chance de falso positivo. O Tukey HSD controla a taxa de erro familiar em todas as comparações ao mesmo tempo, sendo mais apropriado para três ou mais grupos.",
+    "q4": "O Tukey HSD exige tamanhos amostrais iguais?",
+    "q4_a": "Tamanhos amostrais iguais fornecem controle exato da taxa de erro familiar. Para tamanhos desiguais, esta calculadora usa a média harmônica dos tamanhos dos grupos, o que fornece uma boa aproximação conhecida como método Tukey-Kramer.",
+    "q5": "O que é a estatística de amplitude studentizada q?",
+    "q5_a": "A estatística q é a razão entre a amplitude das médias dos grupos e o erro padrão. Os valores críticos são consultados na distribuição de amplitude studentizada, que considera o número de grupos k e os graus de liberdade do erro.",
+    "q6": "O que faço se a ANOVA não for significativa?",
+    "q6_a": "Se o teste F global da ANOVA não for significativo, normalmente não são feitos testes post hoc como o Tukey HSD, porque não há evidência estatística de que alguma média difira. O procedimento padrão é relatar o F não significativo e encerrar ali."
+  }
+}

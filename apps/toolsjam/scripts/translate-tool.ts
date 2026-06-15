@@ -311,9 +311,9 @@ async function translateOne(toolId: string, force: boolean): Promise<boolean> {
     console.log(`= ${toolId}: cache already complete`);
     return true;
   }
-  const enMessages = loadJson(path.join(MESSAGES_DIR, "en.json")) as Record<string, Record<string, unknown>>;
-  const enContent = enMessages.tool?.[toolId];
-  if (!enContent) { console.error(`✗ ${toolId}: missing tool.${toolId} in en.json`); return false; }
+  const enFile = path.join(MESSAGES_DIR, "tool", toolId, "en.json");
+  if (!existsSync(enFile)) { console.error(`✗ ${toolId}: missing ${enFile}`); return false; }
+  const enContent = loadJson(enFile);
 
   const outDir = path.join(CACHE_DIR, "translations");
   mkdirSync(outDir, { recursive: true });

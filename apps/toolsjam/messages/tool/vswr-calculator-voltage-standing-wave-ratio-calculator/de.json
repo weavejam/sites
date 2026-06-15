@@ -1,0 +1,92 @@
+{
+  "title": "VSWR-Rechner: Stehwellenverhältnis",
+  "tagline": "Berechnen Sie VSWR, Rückflussdämpfung, Fehlanpassungsverlust und Übertragungseffizienz aus Leistungs- oder Impedanzmessungen.",
+  "intro": "Wählen Sie den Leistungs- oder Impedanzmessmodus, um den Reflexionskoeffizienten, das VSWR und weitere RF-Übertragungsparameter zu berechnen.",
+  "type": {
+    "powerMode": "Leistungsmessung",
+    "impedanceMode": "Impedanzmessung"
+  },
+  "field": {
+    "forwardPower": "Vorwärtsleistung (W)",
+    "reflectedPower": "Reflexionsleistung (W)",
+    "loadImpedance": "Lastimpedanz (Ω)",
+    "charImpedance": "Wellenwiderstand (Ω)"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "VSWR-Ergebnisse",
+    "gamma": "Reflexionskoeffizient (Γ): {value}",
+    "vswr": "VSWR: {value}",
+    "returnLoss": "Rückflussdämpfung: {value} dB",
+    "mismatchLoss": "Fehlanpassungsverlust: {value} dB",
+    "efficiency": "Übertragungseffizienz: {value}%"
+  },
+  "error": {
+    "invalid": "Bitte gültige positive Zahlen eingeben.",
+    "reflectedExceedsForward": "Die Reflexionsleistung darf die Vorwärtsleistung nicht überschreiten.",
+    "forwardZero": "Die Vorwärtsleistung muss größer als null sein.",
+    "impedanceShort": "ZL + Z0 darf nicht null sein."
+  },
+  "formula": "Γ = √(Pr/Pf) oder |(ZL−Z0)/(ZL+Z0)| | VSWR = (1+Γ)/(1−Γ) | RL = −20·log10(Γ) dB",
+  "about": {
+    "heading": "Über den VSWR-Rechner",
+    "body": "Das Stehwellenverhältnis (VSWR) ist eine grundlegende Messgröße in der Hochfrequenz- (RF) und Mikrowellentechnik und beschreibt, wie gut eine Übertragungsleitung an ihre Last angepasst ist. Wenn RF-Leistung entlang eines Koaxialkabels oder Wellenleiters läuft und an der Last auf eine Impedanzfehlanpassung trifft, wird ein Teil der Leistung zur Quelle zurück reflektiert. Die Überlagerung von Vorwärts- und Rückwärtswelle erzeugt ein Stehwellenmuster, und das VSWR misst das Verhältnis von Maximal- zu Minimalspannung in diesem Muster.\n\nEine perfekte Anpassung ergibt VSWR = 1,0, also keine reflektierte Leistung. Praktische Systeme streben meist VSWR ≤ 1,5 an (weniger als 4 % reflektierte Leistung). Hohe VSWR-Werte (über 3 oder 4) sind unerwünscht, weil sie Senderleistung verschwenden, den Leistungsverstärker durch reflektierte Leistung beschädigen können und die Signalqualität verschlechtern. In Rundfunk- und Mobilfunksystemen wird das VSWR der Antenne kontinuierlich überwacht, und automatische Schutzschaltungen schalten Sender ab, wenn das VSWR sichere Grenzwerte überschreitet.\n\nDer Reflexionskoeffizient Γ (Gamma) ist das Verhältnis der Amplitude der reflektierten Welle zur einfallenden Welle. Er reicht von 0 (perfekte Anpassung) bis 1 (vollständige Reflexion, z. B. bei offenem oder kurzgeschlossenem Anschluss). VSWR und Γ hängen direkt zusammen: VSWR = (1 + |Γ|) / (1 − |Γ|). Bei Leistungsmessungen gilt |Γ| = √(P_reflektiert / P_vorwärts). Bei Impedanzmessungen gilt Γ = (ZL − Z0) / (ZL + Z0), wobei ZL die Lastimpedanz und Z0 der Wellenwiderstand ist.\n\nDie Rückflussdämpfung (in dB) quantifiziert das Verhältnis von reflektierter zu Vorwärtsleistung auf logarithmischer Skala: RL = −20 × log10(|Γ|). Eine hohe Rückflussdämpfung bedeutet geringe Reflexion. Eine Rückflussdämpfung von 20 dB bedeutet, dass 1 % der Leistung reflektiert wird; 10 dB bedeutet 10 % reflektiert. Der Fehlanpassungsverlust beschreibt die von der Übertragungsanlage aufgrund der Impedanzfehlanpassung aufgenommene Leistung, während die Übertragungseffizienz (1 − Γ²) × 100 % den Anteil der Leistung zeigt, der tatsächlich die Last erreicht.\n\nTypische Anwendungen sind Antennenanpassung, Koaxialsystem-Design, Ausgangsanpassung von Verstärkern, Filtercharakterisierung und Impedanzanpassungsnetzwerke im RF-Schaltungsdesign."
+  },
+  "examples": {
+    "heading": "VSWR-Beispiele",
+    "intro": "Typische RF-Anpassungsszenarien mit VSWR, Rückflussdämpfung und Übertragungseffizienz.",
+    "colInput": "Messung",
+    "colOutput": "VSWR / Rückflussdämpfung",
+    "colNote": "Übertragungseffizienz",
+    "items": [
+      {
+        "input": "Perfekte Anpassung (Leistung): Pf=100W, Pr=0W",
+        "output": "Γ=0, VSWR=1.0, RL=∞ dB",
+        "note": "100 % Effizienz. Ideales angepasstes System — die gesamte Leistung wird an die Last abgegeben."
+      },
+      {
+        "input": "Gute Anpassung (Impedanz): ZL=75Ω, Z0=50Ω",
+        "output": "Γ=0.2, VSWR=1.5, RL=14.0 dB",
+        "note": "96 % Effizienz. Für die meisten Anwendungen akzeptabel; typische Antennenspezifikation."
+      },
+      {
+        "input": "Schlechte Anpassung (Leistung): Pf=100W, Pr=25W",
+        "output": "Γ=0.5, VSWR=3.0, RL=6.0 dB",
+        "note": "75 % Effizienz. Deutliche Fehlanpassung — 25 % der Leistung werden zur Quelle zurück reflektiert."
+      },
+      {
+        "input": "Starke Fehlanpassung (Impedanz): ZL=200Ω, Z0=50Ω",
+        "output": "Γ=0.6, VSWR=4.0, RL=4.4 dB",
+        "note": "64 % Effizienz. Schlechte Anpassung, die für einen effizienten Betrieb ein Impedanzanpassungsnetzwerk erfordert."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den VSWR-Rechner",
+    "steps": [
+      "Wählen Sie den Messmodus: Leistungsmessung (verwendet Vorwärts- und Reflexionsleistung) oder Impedanzmessung (verwendet Last- und Wellenwiderstand).",
+      "Im Leistungsmodus: Geben Sie die Vorwärts- (einfallende) Leistung und die Reflexionsleistung in Watt ein. Die Reflexionsleistung muss kleiner als die Vorwärtsleistung sein.",
+      "Im Impedanzmodus: Geben Sie die Lastimpedanz ZL und den Wellenwiderstand Z0 in Ohm ein. Bei Koaxialsystemen beträgt Z0 typischerweise 50Ω, bei Kabel-TV-Systemen 75Ω.",
+      "Klicken Sie auf Berechnen, um den Reflexionskoeffizienten (Γ), das VSWR, die Rückflussdämpfung, den Fehlanpassungsverlust und die Übertragungseffizienz anzuzeigen.",
+      "Zielen Sie auf VSWR ≤ 1,5 (Rückflussdämpfung ≥ 14 dB) für gut angepasste RF-Systeme. Werte über 3 weisen auf eine erhebliche Impedanzfehlanpassung hin, die korrigiert werden sollte."
+    ]
+  },
+  "faq": {
+    "heading": "VSWR-FAQ",
+    "q1": "Was bedeutet VSWR?",
+    "q1_a": "VSWR steht für Voltage Standing Wave Ratio, auf Deutsch Stehwellenverhältnis. Es ist das Verhältnis der maximalen zur minimalen Spannungsamplitude in einem Stehwellenmuster, das entsteht, wenn eine Übertragungsleitung nicht perfekt an ihre Last angepasst ist. VSWR = 1,0 bedeutet perfekte Anpassung; VSWR > 1 zeigt eine Impedanzfehlanpassung an. Ein VSWR von 2,0 bedeutet, dass die maximale Spannung in der Stehwelle doppelt so groß ist wie die minimale.",
+    "q2": "Was ist ein guter VSWR-Wert?",
+    "q2_a": "Für die meisten RF-Anwendungen gilt VSWR ≤ 1,5 als gut (Rückflussdämpfung ≥ 14 dB, Reflexion < 4 %). VSWR ≤ 2,0 ist für viele Rundfunk- und Amateurfunkanwendungen akzeptabel. Werte über 3,0 zeigen eine deutliche Fehlanpassung und verschwendete Leistung an. Kritische Systeme wie Satelliten-Uplinks benötigen möglicherweise VSWR ≤ 1,2. VSWR = 1,0 ist ideal, aber praktisch kaum erreichbar.",
+    "q3": "Was ist Rückflussdämpfung und wie hängt sie mit VSWR zusammen?",
+    "q3_a": "Die Rückflussdämpfung ist das Verhältnis von reflektierter zu Vorwärtsleistung, ausgedrückt in dB: RL = −20 × log10(|Γ|). Eine hohe Rückflussdämpfung bedeutet geringe Reflexion. VSWR und Rückflussdämpfung sind direkt verknüpft: VSWR 1,5 → RL 14 dB; VSWR 2,0 → RL 9,5 dB; VSWR 3,0 → RL 6,0 dB. RF-Ingenieure bevorzugen oft die Rückflussdämpfung, weil sie bei besserer Anpassung steigt (höher ist besser).",
+    "q4": "Was verursacht ein hohes VSWR?",
+    "q4_a": "Ein hohes VSWR wird durch Impedanzfehlanpassung zwischen Übertragungsleitung und Last verursacht. Häufige Ursachen sind: nicht auf die Betriebsfrequenz abgestimmte Antenne; beschädigte oder korrodierte Steckverbinder; Wassereintritt in das Koaxialkabel; falsche Leitungsimpedanz; nicht angepasste Ausgangsimpedanz des Senders; oder eine Last (z. B. Filter, Verstärker) mit falscher Eingangsimpedanz. Impedanzanpassungsnetzwerke (L-Netzwerke, Pi-Netzwerke, Stub-Anpassung) können das VSWR senken.",
+    "q5": "Kann VSWR einen Sender beschädigen?",
+    "q5_a": "Ja — ein hohes VSWR bedeutet, dass ein erheblicher Teil der Leistung zum Sender zurück reflektiert wird. Moderne Sender besitzen Richtkoppler und Schutzschaltungen, die hohe reflektierte Leistung erkennen und die Ausgangsleistung reduzieren oder den Sender automatisch abschalten. Ein dauerhaft hohes VSWR kann jedoch thermische Belastungen in der Endstufe verursachen, Transistoren beschädigen und die Stromversorgung instabil machen. Stellen Sie stets sicher, dass das VSWR innerhalb des vom Sender angegebenen Betriebsbereichs liegt.",
+    "q6": "Was ist der Unterschied zwischen VSWR und S11?",
+    "q6_a": "S11 (der Eingangs-Reflexionskoeffizient in der S-Parameter-Notation) und VSWR beschreiben dieselbe Impedanzfehlanpassung aus unterschiedlichen Blickwinkeln. |S11| = |Γ| (Betrag des Reflexionskoeffizienten). Sie hängen zusammen durch: VSWR = (1 + |S11|) / (1 − |S11|) und Rückflussdämpfung = −20 × log10(|S11|) dB. S11 wird häufig bei Messungen mit einem Vektornetzwerkanalysator (VNA) verwendet und als komplexe Zahl dargestellt, während VSWR immer reell und positiv ist."
+  }
+}

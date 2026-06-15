@@ -1,0 +1,105 @@
+{
+  "title": "Calculateur khi-deux avec correction de Yates",
+  "tagline": "Calculez la statistique du khi-deux corrigée de Yates pour les tableaux de contingence 2×2. Réduisez l’erreur de type I lorsque les fréquences attendues sont faibles.",
+  "intro": "Saisissez les quatre effectifs (a, b, c, d) de votre tableau de contingence 2×2 pour calculer la valeur χ² corrigée de Yates et la p-value.",
+  "table": {
+    "label": "Saisissez les effectifs de votre tableau de contingence 2×2 : groupe A en lignes, résultat 1/2 en colonnes."
+  },
+  "field": {
+    "a": "Groupe A, résultat 1 (a)",
+    "b": "Groupe A, résultat 2 (b)",
+    "c": "Groupe B, résultat 1 (c)",
+    "d": "Groupe B, résultat 2 (d)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des entiers non négatifs pour les quatre cellules, avec au moins une ligne et une colonne non nulles."
+  },
+  "result": {
+    "heading": "Résultats",
+    "chi2": "Statistique χ² de Yates",
+    "pValue": "p-value",
+    "df": "Degrés de liberté",
+    "N": "N total",
+    "significant": "Association significative détectée (p < 0.05).",
+    "notSignificant": "Aucune association significative détectée (p ≥ 0.05)."
+  },
+  "about": {
+    "heading": "À propos de la correction de continuité de Yates",
+    "body": "La correction de continuité de Yates est un ajustement appliqué au test du khi-deux (χ²) lorsqu’il est utilisé avec un tableau de contingence 2×2. La distribution du khi-deux est continue, alors que les fréquences observées dans un tableau de contingence sont des comptages discrets. Cette différence conduit l’approximation du khi-deux à surestimer la statistique du test, ce qui produit des p-values trop petites et augmente le risque d’erreur de type I — surtout lorsque la taille d’échantillon ou les fréquences attendues sont faibles.\n\nFrank Yates a proposé cette correction en 1934. L’idée est simple : soustraire 0,5 de la différence absolue entre chaque fréquence observée et attendue avant de la mettre au carré. La formule corrigée est χ² = Σ (|O − E| − 0,5)² / E, sommée sur les quatre cellules. Ce petit ajustement réduit la valeur globale du khi-deux, produisant une p-value plus conservatrice (plus grande) qui reflète mieux la probabilité réelle des résultats observés ou plus extrêmes.\n\nLa correction est particulièrement importante lorsque toute fréquence attendue est inférieure à 10, et surtout lorsqu’elle est inférieure à 5. Dans ces conditions, le test du khi-deux standard est connu pour être peu fiable, et la correction de Yates aide à compenser. Pour les échantillons plus grands où toutes les fréquences attendues dépassent 10, la correction a un impact minime et le test du khi-deux standard est suffisant.\n\nPour utiliser ce calculateur, vous devez structurer vos données sous forme de tableau de contingence 2×2. Les deux lignes représentent les deux groupes (par exemple, traitement vs témoin), et les deux colonnes représentent les deux résultats possibles (par exemple, succès vs échec). La cellule a correspond au groupe A avec le résultat 1, la cellule b au groupe A avec le résultat 2, la cellule c au groupe B avec le résultat 1, et la cellule d au groupe B avec le résultat 2.\n\nLes degrés de liberté pour un tableau 2×2 sont toujours de 1. La p-value est calculée à partir de la distribution du khi-deux avec 1 degré de liberté. Une p-value inférieure à 0,05 est classiquement interprétée comme une preuve d’association statistiquement significative entre l’appartenance au groupe et le résultat.\n\nLe débat reste ouvert dans la communauté statistique sur le moment où il faut utiliser la correction de Yates. Certains statisticiens soutiennent qu’elle corrige trop et réduit la puissance statistique. L’alternative privilégiée par beaucoup pour des fréquences attendues très faibles est le test exact de Fisher, qui calcule la probabilité exacte sans s’appuyer du tout sur l’approximation du khi-deux. Toutefois, la correction de Yates reste largement enseignée et acceptée dans de nombreuses disciplines et constitue le bon choix lorsque vous souhaitez un résultat rapide et conservateur pour un tableau 2×2."
+  },
+  "examples": {
+    "heading": "Exemples pratiques",
+    "intro": "Explorez différents scénarios pour comprendre le fonctionnement du calculateur.",
+    "colInput": "Entrée (a, b, c, d)",
+    "colOutput": "χ² / p-value",
+    "colNote": "Note",
+    "items": [
+      {
+        "input": "a=3, b=22, c=11, d=14",
+        "output": "χ²≈4.86, p≈0.027",
+        "note": "Essai vaccinal — significatif ; le vaccin réduit le taux d’infection."
+      },
+      {
+        "input": "a=15, b=5, c=8, d=12",
+        "output": "χ²≈3.68, p≈0.055",
+        "note": "Méthode d’enseignement — limite, non significatif à α=0.05."
+      },
+      {
+        "input": "a=25, b=975, c=15, d=985",
+        "output": "χ²≈2.07, p≈0.151",
+        "note": "Test publicitaire A/B — aucune différence significative du taux de clic."
+      },
+      {
+        "input": "a=1, b=49, c=6, d=44",
+        "output": "χ²≈2.48, p≈0.115",
+        "note": "Étude sur effet secondaire rare — la correction de Yates est essentielle ici en raison des faibles effectifs."
+      }
+    ],
+    "loadVaccine": "Essai vaccinal",
+    "loadTeaching": "Méthode d’enseignement",
+    "loadAB": "Test publicitaire A/B"
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur",
+    "steps": [
+      "Organisez vos données dans un tableau 2×2 : groupe A sur la première ligne, groupe B sur la deuxième, résultat 1 en première colonne et résultat 2 en deuxième colonne.",
+      "Saisissez l’effectif de la cellule a (groupe A, résultat 1) dans le premier champ, puis celui de la cellule b (groupe A, résultat 2) dans le second.",
+      "Saisissez l’effectif des cellules c (groupe B, résultat 1) et d (groupe B, résultat 2) dans les champs restants. Toutes les valeurs doivent être des entiers non négatifs.",
+      "Cliquez sur Calculer pour voir la valeur χ² corrigée de Yates, les degrés de liberté (toujours 1), la p-value et la décision de significativité.",
+      "Utilisez les boutons d’exemple pour charger des données prédéfinies et vérifier les résultats ou explorer des cas d’usage courants."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ",
+    "items": [
+      {
+        "q": "Qu’est-ce que la correction de continuité de Yates ?",
+        "a": "La correction de Yates est un ajustement de la formule standard du khi-deux pour les tableaux 2×2. Elle soustrait 0,5 de la différence absolue entre les fréquences observées et attendues avant la mise au carré. Cela rend le test plus conservateur et réduit le risque de faux positif (erreur de type I) lorsque la taille d’échantillon ou les effectifs attendus sont faibles."
+      },
+      {
+        "q": "Quand dois-je utiliser la correction de Yates plutôt que le test du khi-deux standard ?",
+        "a": "Utilisez la correction de Yates lorsque toute fréquence attendue est inférieure à 10. Le test du khi-deux standard est suffisant lorsque toutes les fréquences attendues sont égales ou supérieures à 10. Pour des échantillons très petits où une fréquence attendue est inférieure à 5, envisagez plutôt le test exact de Fisher, car il est encore plus fiable dans ce cas."
+      },
+      {
+        "q": "Que représentent les cellules a, b, c et d ?",
+        "a": "La cellule a est le nombre de sujets du groupe A ayant obtenu le résultat 1. La cellule b est le nombre du groupe A ayant obtenu le résultat 2. La cellule c est le nombre du groupe B ayant obtenu le résultat 1. La cellule d est le nombre du groupe B ayant obtenu le résultat 2. Dans une étude vaccinale, le groupe A pourrait être vacciné, le groupe B non vacciné, le résultat 1 infecté et le résultat 2 non infecté."
+      },
+      {
+        "q": "Pourquoi le degré de liberté est-il toujours 1 pour un tableau 2×2 ?",
+        "a": "Les degrés de liberté d’un test du khi-deux d’indépendance sont égaux à (lignes − 1) × (colonnes − 1). Pour un tableau 2×2, cela donne (2−1) × (2−1) = 1. Cela signifie qu’une fois les totaux marginaux et une valeur de cellule connus, toutes les autres valeurs sont entièrement déterminées, ne laissant qu’un seul paramètre libre."
+      },
+      {
+        "q": "La correction de Yates réduit-elle la puissance statistique ?",
+        "a": "Oui, rendre le test plus conservateur signifie qu’il faut des preuves plus fortes pour rejeter l’hypothèse nulle. Les critiques soutiennent que la correction de Yates peut corriger excessivement, augmentant le risque d’erreur de type II (manquer un effet réel). Pour les grands échantillons avec des effectifs attendus élevés, la correction est négligeable. Beaucoup de statisticiens modernes préfèrent le test exact de Fisher pour les analyses 2×2 de petits échantillons."
+      },
+      {
+        "q": "Puis-je utiliser ce calculateur pour des tableaux plus grands que 2×2 ?",
+        "a": "Non. La correction de Yates est spécifiquement conçue pour les tableaux de contingence 2×2. Pour des tableaux plus grands (comme 3×2 ou 3×3), utilisez le test du khi-deux de Pearson standard sans correction de continuité. La formule et les degrés de liberté sont différents pour des tableaux plus grands."
+      }
+    ]
+  }
+}

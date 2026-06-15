@@ -1,0 +1,89 @@
+{
+  "title": "Calculadora de regresión exponencial",
+  "tagline": "Ajusta un modelo exponencial y = ab^x a tus datos y predice valores futuros.",
+  "intro": "Ingresa pares de datos (x, y) para calcular la ecuación de regresión exponencial, R² y predicciones.",
+  "field": {
+    "dataPoints": "Puntos de datos (x, y)",
+    "dataPointsPlaceholder": "1 1.6\n2 2.5\n3 3.8\n4 5.9\n5 9.1",
+    "dataPointsHint": "Ingresa un par por línea, separado por un espacio o una coma. Ejemplo: 1 2.5",
+    "predictX": "Predecir Y para un X dado",
+    "predictXPlaceholder": "p. ej., 6"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Ingresa al menos 3 puntos de datos válidos con valores de y positivos. Cada línea debe contener dos números separados por un espacio o una coma."
+  },
+  "result": {
+    "heading": "Resultados",
+    "equation": "Ecuación de regresión",
+    "a": "Coeficiente 'a'",
+    "b": "Coeficiente 'b'",
+    "rSquared": "R² (coeficiente de determinación)",
+    "correlation": "Coeficiente de correlación (R)",
+    "predictedY": "Y predicho"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de regresión exponencial",
+    "body": "La regresión exponencial es una técnica de ajuste de curvas que encuentra la función exponencial y = ab^x que mejor se adapta a un conjunto dado de puntos. Se usa cuando los datos sugieren crecimiento o decaimiento exponencial, es decir, cuando al graficarlos los puntos parecen seguir una curva en J (crecimiento) o una curva cóncava descendente (decaimiento). El modelo exponencial es lineal en su logaritmo: al tomar el logaritmo natural de ambos lados se obtiene ln(y) = ln(a) + x·ln(b), una ecuación lineal en ln(y) y x.\n\nEl procedimiento de ajuste usa el método de mínimos cuadrados aplicado a la ecuación linealizada. En concreto, minimizamos la suma de cuadrados de los residuos en el espacio ln(y). Esto da las fórmulas: ln(b) = [n·Σ(x·ln y) − Σx·Σ(ln y)] / [n·Σx² − (Σx)²] y ln(a) = [Σ(ln y) − ln(b)·Σx] / n, de las cuales se recuperan a = e^(ln a) y b = e^(ln b).\n\nEl modelo y = ab^x puede interpretarse así. El coeficiente a es la intersección con el eje y: representa el valor de y cuando x = 0. La base b controla la tasa de cambio: si b > 1, el modelo muestra crecimiento con un factor de b por unidad (por ejemplo, b = 1.05 significa 5% de crecimiento por cada aumento de 1 en x). Si 0 < b < 1, el modelo muestra decaimiento. La tasa de crecimiento como porcentaje es (b − 1) × 100%.\n\nEl coeficiente de determinación R² mide qué tan bien se ajusta el modelo a los datos en una escala de 0 a 1. Un R² de 0.95 significa que el 95% de la varianza en y queda explicado por el modelo exponencial. En datos científicos, valores de R² superiores a 0.90 suelen considerarse un buen ajuste. El coeficiente de correlación R = √R² × sign(ln b) indica la dirección y la fuerza de la relación exponencial.\n\nRestricción importante: todos los valores de y deben ser positivos para la regresión exponencial porque el logaritmo de cero o de un número negativo no está definido. Si tus datos contienen valores de y no positivos, puede que necesites transformar o desplazar los datos, o considerar otro modelo de regresión, como la regresión polinómica."
+  },
+  "examples": {
+    "heading": "Ejemplos",
+    "intro": "Estos ejemplos ilustran la regresión exponencial aplicada a datos biológicos, financieros y físicos.",
+    "colInput": "Puntos de datos",
+    "colOutput": "Ecuación",
+    "colNote": "Escenario",
+    "items": [
+      {
+        "input": "(1,2), (2,4.1), (3,7.9), (4,16.2), (5,33.0)",
+        "output": "y ≈ 0.98 × 2.01^x, R² ≈ 0.999",
+        "note": "Colonia bacteriana que se duplica aproximadamente cada hora"
+      },
+      {
+        "input": "(0,1000), (1,1050), (2,1102.5), (3,1157.6), (4,1215.5)",
+        "output": "y = 1000 × 1.05^x, R² = 1.000",
+        "note": "Crecimiento perfecto con interés compuesto del 5%; R² = 1"
+      },
+      {
+        "input": "(0,100), (10,82), (20,67), (30,55), (40,45)",
+        "output": "y ≈ 100 × 0.981^x, R² ≈ 0.999",
+        "note": "Desintegración radiactiva; b < 1 indica decaimiento exponencial"
+      },
+      {
+        "input": "(1971,2300), (1982,134000), (1993,3.1M), (2000,42M), (2011,2.6B)",
+        "output": "y se ajusta exponencialmente, R² ≈ 0.97",
+        "note": "Ley de Moore: el número de transistores se duplica aproximadamente cada 2 años"
+      }
+    ],
+    "loadBacteria": "Cargar: crecimiento bacteriano",
+    "loadCompoundInterest": "Cargar: interés compuesto",
+    "loadRadioactive": "Cargar: decaimiento radiactivo"
+  },
+  "howto": {
+    "heading": "Cómo usar esta calculadora",
+    "steps": [
+      "Ingresa tus puntos de datos en el área de texto: un par por línea, con los valores x e y separados por un espacio o una coma (por ejemplo, '1 2.5' o '1,2.5'). Necesitas al menos 3 puntos de datos.",
+      "Asegúrate de que todos los valores de y sean estrictamente positivos: el algoritmo de regresión exponencial requiere tomar logaritmos de y.",
+      "Opcionalmente, ingresa un valor x en el campo 'Predecir Y' para obtener una predicción a partir del modelo ajustado.",
+      "Haz clic en Calcular para ver la ecuación de regresión y = ab^x, los coeficientes a y b, R², el coeficiente de correlación R y cualquier predicción solicitada.",
+      "Usa los botones de carga rápida para cargar ejemplos preconstruidos y explorar cómo se deriva la ecuación de regresión."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "q1": "¿Qué es la regresión exponencial?",
+    "q1_a": "La regresión exponencial ajusta una curva de la forma y = ab^x a un conjunto de puntos, donde a es el valor inicial y b es el factor de crecimiento o decaimiento por unidad de x. Se usa cuando los datos crecen o decrecen a una tasa proporcional a su valor actual. El ajuste se realiza linealizando el modelo mediante logaritmos y aplicando mínimos cuadrados ordinarios a los datos transformados.",
+    "q2": "¿Qué significan los coeficientes a y b?",
+    "q2_a": "El coeficiente a es la intersección con el eje y: el valor de y previsto cuando x = 0. La base b determina el cambio multiplicativo de y por cada aumento de 1 en x. Si b = 1.1, el valor de y aumenta 10% por cada unidad. Si b = 0.9, el valor disminuye 10% por unidad. La tasa de crecimiento como porcentaje es (b − 1) × 100%.",
+    "q3": "¿Qué mide R² y cuál es un buen valor?",
+    "q3_a": "R² (el coeficiente de determinación) mide la proporción de la varianza en los valores originales de y explicada por el modelo exponencial ajustado. Va de 0 a 1, donde 1 indica un ajuste perfecto. Para datos científicos, R² > 0.95 es excelente, 0.80–0.95 es bueno y por debajo de 0.80 sugiere que el modelo exponencial puede no ser apropiado y que conviene probar otra forma de modelo.",
+    "q4": "¿Por qué los valores de y deben ser positivos?",
+    "q4_a": "El algoritmo de regresión exponencial linealiza el modelo tomando ln(y). El logaritmo natural solo está definido para números estrictamente positivos: ln(0) es menos infinito y el logaritmo de un número negativo no está definido en aritmética real. Si tus datos tienen valores de y no positivos, puede que necesites desplazar los datos (sumar una constante a todos los valores de y), usar un modelo diferente (polinómico, ley de potencia) o investigar si los datos realmente siguen un crecimiento exponencial.",
+    "q5": "¿En qué se diferencia de la regresión lineal?",
+    "q5_a": "La regresión lineal ajusta una recta y = mx + b a los datos, asumiendo una tasa de cambio constante. La regresión exponencial ajusta y = ab^x, asumiendo una tasa de cambio proporcional constante. Para elegir entre ambas, grafica tus datos en escala lineal (lineal si parecen una recta) y en escala semilogarítmica (exponencial si parecen una recta en semilog). También puedes comparar los valores de R², aunque el R² de ambos modelos no es directamente comparable porque la regresión exponencial minimiza los residuos en el espacio logarítmico.",
+    "q6": "¿Puedo usar esta calculadora para decaimiento exponencial?",
+    "q6_a": "Sí. El decaimiento exponencial es un caso especial donde 0 < b < 1. Si b = 0.95, la cantidad disminuye 5% por cada unidad de x. La calculadora maneja automáticamente tanto el crecimiento como el decaimiento; no necesitas cambiar ninguna configuración. Solo ingresa tus puntos de datos y el algoritmo determinará el valor correcto de b. La desintegración radiactiva, la concentración de medicamentos en la sangre y la temperatura de enfriamiento siguen este patrón."
+  }
+}

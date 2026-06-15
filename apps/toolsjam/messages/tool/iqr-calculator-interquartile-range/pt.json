@@ -1,0 +1,104 @@
+{
+  "title": "Calculadora IQR - intervalo interquartil e outliers",
+  "tagline": "Calcule o intervalo interquartil (IQR), os quartis Q1 e Q3, a mediana e identifique outliers pela regra 1.5×IQR em qualquer conjunto de dados separado por vírgulas.",
+  "intro": "Digite seus dados como números separados por vírgulas e clique em Calcular para obter o resumo de cinco números, o IQR, os valores de cerca e todos os outliers.",
+  "field": {
+    "data": "Conjunto de dados (números separados por vírgulas)",
+    "dataHint": "Digite números separados por vírgulas ou espaços, ex.: 2, 4, 4, 5, 6, 7, 8, 9"
+  },
+  "placeholder": {
+    "data": "ex.: 2, 4, 4, 5, 6, 7, 8, 9"
+  },
+  "button": {
+    "calculate": "Calcular IQR",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite pelo menos dois números válidos separados por vírgulas."
+  },
+  "result": {
+    "heading": "Resultados",
+    "n": "Contagem (n)",
+    "min": "Mínimo",
+    "max": "Máximo",
+    "q1": "Q1 (25º percentil)",
+    "median": "Mediana (Q2)",
+    "q3": "Q3 (75º percentil)",
+    "iqr": "IQR (Q3 − Q1)",
+    "lowerFence": "Cerca inferior (Q1 − 1.5×IQR)",
+    "upperFence": "Cerca superior (Q3 + 1.5×IQR)",
+    "outliersLabel": "Outliers",
+    "noOutliers": "Nenhum outlier detectado."
+  },
+  "about": {
+    "heading": "Sobre a calculadora IQR",
+    "body": "O intervalo interquartil (IQR) é a amplitude dos 50% centrais de um conjunto de dados — a distância entre o 25º percentil (Q1) e o 75º percentil (Q3). É uma das medidas de dispersão estatística mais robustas e amplamente usadas porque, ao contrário da amplitude total ou do desvio padrão, não é afetado por valores extremos e outliers. Seja analisando notas de provas, leituras de pressão arterial, preços de imóveis, tolerâncias de fabricação ou qualquer outro conjunto de dados do mundo real, o IQR oferece uma visão confiável da dispersão central.\n\nPara calcular o IQR, a calculadora primeiro ordena os dados do menor para o maior e depois localiza Q1 e Q3 usando interpolação linear nas estatísticas de ordem. Q1 é o valor no 25º percentil — o ponto abaixo do qual ficam 25% dos dados. Q3 é o valor no 75º percentil — o ponto abaixo do qual ficam 75% dos dados. O IQR é simplesmente Q3 − Q1. A mediana (Q2), o mínimo e o máximo também são informados para fornecer o resumo completo de cinco números, que é a base de um boxplot.\n\nA regra 1.5×IQR, introduzida por John Tukey, é o método padrão para identificar possíveis outliers. Qualquer ponto de dados abaixo da cerca inferior (Q1 − 1.5×IQR) ou acima da cerca superior (Q3 + 1.5×IQR) é considerado um outlier suspeito. Essas cercas definem os bigodes em um boxplot de Tukey. Um ponto a mais de 3×IQR do quartil mais próximo (a cerca interna estendida para uma cerca externa) é considerado um outlier extremo. A calculadora marca todos os valores fora das cercas de 1.5×IQR.\n\nÉ importante observar que a regra 1.5×IQR identifica outliers estatísticos — valores incomumente distantes do bloco central dos dados —, mas não necessariamente erros nos dados. Um ponto marcado como outlier pode ser erro de medição, erro de digitação, sinal de fraude ou simplesmente uma observação genuinamente rara, mas legítima. Conhecimento do domínio é sempre necessário para decidir o que fazer com os pontos marcados.\n\nO IQR é a medida de dispersão preferida quando os dados são assimétricos ou quando outliers são esperados, como em distribuições de renda, tempos de reação ou preços de imóveis em mercados mistos. Para dados simétricos, normalmente distribuídos e sem outliers, o desvio padrão é ligeiramente mais eficiente. Mas quando a robustez importa — em análise exploratória de dados, estatística não paramétrica ou sempre que não se pode assumir normalidade — o IQR é a ferramenta ideal para caracterizar o quanto o meio dos seus dados está espalhado."
+  },
+  "examples": {
+    "heading": "Exemplos de IQR",
+    "intro": "Quatro conjuntos de dados mostrando como o IQR e a detecção de outliers funcionam na prática.",
+    "colInput": "Conjunto de dados",
+    "colOutput": "IQR",
+    "colNote": "Notas",
+    "loadBasic": "Carregar conjunto básico",
+    "loadOutliers": "Carregar conjunto com outliers",
+    "loadScores": "Carregar notas de teste",
+    "items": [
+      {
+        "input": "2, 4, 4, 5, 6, 7, 8, 9",
+        "output": "IQR = 3.25 (Q1=4, Q3=7.25)",
+        "note": "Número par de valores. Q1=4, mediana=5.5, Q3=7.25. Nenhum outlier detectado."
+      },
+      {
+        "input": "10, 20, 30, 40, 50, 60, 70",
+        "output": "IQR = 30 (Q1=25, Q3=55)",
+        "note": "Contagem ímpar: Q1=25, mediana=40, Q3=55, IQR=30. Cerca inferior=−20, cerca superior=100. Sem outliers."
+      },
+      {
+        "input": "6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49, 78, 108",
+        "output": "IQR = 11 (Q1=36, Q3=47)",
+        "note": "Cerca inferior=19.5, cerca superior=63.5. Os valores 6, 7, 15, 78 e 108 são marcados como outliers."
+      },
+      {
+        "input": "88, 92, 80, 78, 95, 84, 76, 90, 81, 85, 93",
+        "output": "IQR = 10.5 (Q1=80.5, Q3=91)",
+        "note": "Notas de teste variando de 76 a 95. Sem outliers — desempenho da turma bem concentrado."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora IQR",
+    "steps": [
+      "Digite seu conjunto de dados no campo de entrada como números separados por vírgulas. Você também pode usar espaços como separadores. A ordem dos valores não importa — a calculadora os ordena automaticamente.",
+      "Clique em Calcular IQR. A ferramenta exibe n (contagem), mínimo, máximo, Q1, mediana, Q3, IQR, as cercas inferior e superior e quaisquer outliers.",
+      "Analise o IQR para entender o quanto os 50% centrais dos seus dados estão espalhados. Um IQR maior significa mais variabilidade na parte central dos dados.",
+      "Verifique os valores das cercas. Qualquer ponto abaixo de Q1 − 1.5×IQR ou acima de Q3 + 1.5×IQR é listado como possível outlier. Investigue cada ponto marcado para determinar se é um erro nos dados ou um valor extremo genuíno.",
+      "Use os botões de exemplo para carregar conjuntos de dados prontos e ver como o IQR e a detecção de outliers se comportam em diferentes distribuições."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre IQR",
+    "items": [
+      {
+        "q": "O que é o intervalo interquartil (IQR)?",
+        "a": "O intervalo interquartil é a diferença entre o terceiro quartil (Q3, 75º percentil) e o primeiro quartil (Q1, 25º percentil): IQR = Q3 − Q1. Ele representa a dispersão dos 50% centrais dos dados. Como ignora os 25% superiores e inferiores dos valores, o IQR não é afetado por outliers extremos, tornando-se uma medida de dispersão mais robusta do que a amplitude total ou o desvio padrão quando os dados são assimétricos ou contêm anomalias."
+      },
+      {
+        "q": "Como Q1 e Q3 são calculados?",
+        "a": "A calculadora usa interpolação linear nos dados ordenados. Para Q1, a posição é 0.25 × (n−1) em um array ordenado indexado a partir de zero. Se essa posição não for um número inteiro, o valor é interpolado entre os dois pontos de dados adjacentes. O mesmo método é usado para Q3 na posição 0.75 × (n−1). É o mesmo método usado por softwares estatísticos como R (type 7) e pela função QUARTILE.INC do Excel."
+      },
+      {
+        "q": "Como a regra 1.5×IQR identifica outliers?",
+        "a": "A regra 1.5×IQR de John Tukey define cerca inferior = Q1 − 1.5×IQR e cerca superior = Q3 + 1.5×IQR. Qualquer ponto de dados fora dessas cercas é um possível outlier. O multiplicador 1.5 foi escolhido porque, em uma distribuição perfeitamente normal, apenas cerca de 0.7% dos valores ficam fora dessas cercas, tornando-os muito improváveis de ocorrer ao acaso. Uma regra mais rígida usa multiplicador 3.0, marcando apenas os pontos mais extremos como outliers distantes."
+      },
+      {
+        "q": "O IQR é melhor que o desvio padrão para medir dispersão?",
+        "a": "Cada medida é adequada a situações diferentes. O desvio padrão usa todos os valores dos dados e é ideal para dados simétricos, normalmente distribuídos e sem outliers. O IQR usa apenas os 50% centrais dos valores e é muito mais resistente à assimetria e a outliers. Se seus dados são aproximadamente normais, o desvio padrão fornece mais informações. Se são assimétricos (renda, preços de imóveis, tempos de sobrevivência) ou contêm outliers, o IQR é a melhor medida da dispersão típica."
+      },
+      {
+        "q": "Posso usar IQR em um conjunto de dados com apenas dois ou três valores?",
+        "a": "Tecnicamente sim, mas o resultado tem utilidade limitada. Com amostras muito pequenas (n < 4 ou 5), as estimativas de quartis são muito instáveis e o IQR não representa de forma confiável a dispersão da população. A regra de outliers 1.5×IQR também se comporta mal com amostras minúsculas — pode não marcar outliers mesmo quando há erros nos dados, ou pode produzir cercas que excluem valores legítimos. Uma análise de IQR significativa geralmente requer pelo menos 5–10 observações."
+      }
+    ]
+  }
+}

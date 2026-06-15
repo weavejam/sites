@@ -1,0 +1,110 @@
+{
+  "title": "Water Viscosity Calculator",
+  "tagline": "Estimate water dynamic viscosity, kinematic viscosity, density, and Reynolds number from temperature, pressure, and optional pipe flow inputs.",
+  "intro": "Enter water temperature and pressure to calculate viscosity. Add flow velocity and pipe diameter when you also want the Reynolds number.",
+  "field": {
+    "temperature": "Temperature (°C)",
+    "pressure": "Pressure (bar)",
+    "flowVelocity": "Flow Velocity (m/s)",
+    "pipeDiameter": "Pipe Diameter (m)"
+  },
+  "placeholder": {
+    "temperature": "e.g. 20",
+    "pressure": "e.g. 1",
+    "flowVelocity": "e.g. 2",
+    "pipeDiameter": "e.g. 0.05"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Result",
+    "value": "Dynamic viscosity {dynamic} mPa·s • Kinematic viscosity {kinematic} mm²/s",
+    "dynamic": "Dynamic Viscosity",
+    "kinematic": "Kinematic Viscosity",
+    "density": "Estimated Density",
+    "reynolds": "Reynolds Number",
+    "unitDynamic": "mPa·s",
+    "unitKinematic": "mm²/s",
+    "unitDensity": "kg/m³",
+    "unitReynolds": "",
+    "reynoldsUnavailable": "—",
+    "pressureNote": "Pressure entered: {pressure} bar"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers. Temperature and pressure are required, and velocity and diameter must be supplied together if used."
+  },
+  "hint": "Pressure is accepted for context, while the viscosity model is primarily temperature-based for pure water in everyday engineering ranges.",
+  "formula": "μ = 2.414×10^-5 × 10^(247.8 / (T_K − 140)) Pa·s • ν = μ / ρ • Re = ρvD / μ",
+  "about": {
+    "heading": "About Water Viscosity",
+    "body": "Water viscosity describes how strongly liquid water resists flow and shear. In practical terms, it tells you how “thick” or “thin” water behaves when it moves through a pipe, around a pump impeller, across a heat exchanger surface, or through a process line. Engineers normally work with two related properties: dynamic viscosity, usually written as μ, and kinematic viscosity, written as ν. Dynamic viscosity measures the internal friction of the fluid itself, while kinematic viscosity divides that friction by density so you can compare flow behaviour more directly. This calculator reports dynamic viscosity in millipascal-seconds (mPa·s) and kinematic viscosity in square millimetres per second (mm²/s), also called centistokes.\n\nFor pure water, viscosity changes much more with temperature than with pressure in most everyday conditions. Cold water is noticeably more viscous than warm water because the molecules are less energetic and intermolecular attraction has a stronger relative effect on motion. As temperature rises, the internal resistance drops quickly. That is why water near room temperature has a dynamic viscosity of about 1.002 mPa·s, while near the boiling point it falls to around 0.282 mPa·s. This change has major consequences for pumping power, flow regime, pressure drop, and heat-transfer performance. Even a modest temperature increase can shift a system from sluggish laminar flow toward more turbulent behaviour.\n\nThe calculator uses an Andrade-type empirical equation for dynamic viscosity of pure water, which is a standard approximation for a wide span of liquid-water temperatures. It then estimates density with a simple quadratic expression around the well-known density maximum close to 4°C. Dividing dynamic viscosity by density gives kinematic viscosity. Although the density expression is simplified, it is appropriate for general design estimates, quick checks, coursework, and everyday process calculations. If you are working with saline water, glycol mixtures, dirty process water, or very high pressures, a dedicated property database is still the better choice.\n\nWhen you also enter flow velocity and pipe diameter, the calculator estimates the Reynolds number using Re = ρvD/μ. Reynolds number is one of the most useful dimensionless quantities in fluid mechanics because it helps classify flow behaviour. Low Reynolds numbers indicate viscous, orderly motion where laminar assumptions may apply. High Reynolds numbers indicate inertial effects dominate and turbulence becomes more likely. For internal pipe flow, laminar flow is commonly associated with Re below roughly 2,300, transitional flow occupies the middle range, and turbulent flow often appears above about 4,000. Since viscosity appears in the denominator, warmer water usually produces a higher Reynolds number than colder water in the same pipe.\n\nThis makes water viscosity a core design property across civil, mechanical, chemical, and environmental engineering. You use it to estimate friction losses, size pumps, compare heat-transfer conditions, understand laboratory measurements, and sanity-check simulation inputs. Students can use the calculator to see how strongly water properties vary with temperature, while practitioners can use it for fast front-end estimates before switching to more detailed software. In short, water viscosity connects temperature, flow resistance, and fluid regime in one compact physical property that influences nearly every liquid-water system."
+  },
+  "examples": {
+    "heading": "Examples",
+    "intro": "These examples show how water viscosity changes with temperature and how optional flow inputs add a Reynolds-number estimate.",
+    "colInput": "Input",
+    "colOutput": "Output",
+    "colNote": "Notes",
+    "loadRoom": "Load 20°C water",
+    "loadBoiling": "Load 100°C water",
+    "loadFlow": "Load pipe-flow example",
+    "items": [
+      {
+        "input": "20°C, 1 bar",
+        "output": "Dynamic: 1.002 mPa·s • Kinematic: 1.003 mm²/s",
+        "note": "Room-temperature water sits near the familiar 1 mPa·s benchmark, making it a common reference point in lab and design work."
+      },
+      {
+        "input": "100°C, 1 bar",
+        "output": "Dynamic: 0.279 mPa·s • Kinematic: 0.287 mm²/s",
+        "note": "Hot water flows much more easily than cold water, so viscosity drops sharply and Reynolds number rises for the same pipe conditions."
+      },
+      {
+        "input": "4°C, 1 bar",
+        "output": "Dynamic: 1.547 mPa·s • Kinematic: 1.547 mm²/s",
+        "note": "Near 4°C, water is densest and relatively viscous, so momentum diffuses more slowly than at room temperature."
+      },
+      {
+        "input": "20°C, 1 bar, 2 m/s, 0.05 m pipe",
+        "output": "Re ≈ 99,749",
+        "note": "Adding velocity and diameter shows that ordinary water service often sits well inside the turbulent regime."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use",
+    "steps": [
+      "Enter the water temperature in degrees Celsius and the operating pressure in bar. These two fields are required for every calculation.",
+      "If you need a Reynolds number, also enter the average flow velocity and the internal pipe diameter. Leave both optional fields blank if you only want viscosity values.",
+      "Click Calculate to see dynamic viscosity, kinematic viscosity, estimated density, and Reynolds number when flow data is present.",
+      "Use the worked examples to compare cold, room-temperature, and hot water, then reset the form to try a new operating condition."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "What is the difference between dynamic and kinematic viscosity?",
+        "a": "Dynamic viscosity measures the fluid's internal resistance to shear and is usually given in Pa·s or mPa·s. Kinematic viscosity divides dynamic viscosity by density, so it reflects how momentum diffuses through the fluid and is commonly reported in mm²/s or cSt."
+      },
+      {
+        "q": "Why does water viscosity drop as temperature rises?",
+        "a": "As water warms up, its molecules have more thermal energy and can move past one another more easily. That reduces internal friction, so hot water usually has a much lower viscosity than cold water."
+      },
+      {
+        "q": "Why is pressure included if the formula is temperature-based?",
+        "a": "Pressure is included because it is an important operating variable in real systems and helps document the condition you are evaluating. For ordinary liquid-water calculations over moderate ranges, temperature dominates the viscosity change, so a simple temperature-driven model is often sufficient for quick estimates."
+      },
+      {
+        "q": "What Reynolds number should I expect for pipe flow?",
+        "a": "For internal pipe flow, Reynolds numbers below roughly 2,300 are commonly treated as laminar, while values above about 4,000 are usually turbulent. The region in between is transitional, where disturbances and inlet conditions strongly influence the actual flow pattern."
+      },
+      {
+        "q": "Are these values good enough for engineering design?",
+        "a": "They are well suited for preliminary engineering calculations, coursework, and fast validation checks. For final design in critical systems, unusual water chemistry, or extreme temperature and pressure ranges, you should confirm against a higher-fidelity property source."
+      }
+    ]
+  }
+}

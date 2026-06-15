@@ -1,0 +1,92 @@
+{
+  "title": "Stichprobenfehler-Rechner - Fehlermarge",
+  "tagline": "Berechnen Sie Stichprobenfehler und Fehlermarge für Anteile und Mittelwerte. Unterstützt endliche Populationskorrektur und mehrere Konfidenzniveaus.",
+  "intro": "Wählen Sie, ob Sie mit Anteilen oder Mittelwerten arbeiten, geben Sie Ihre Stichprobendaten ein, wählen Sie ein Konfidenzniveau und klicken Sie auf Berechnen, um Standardfehler und Fehlermarge zu erhalten.",
+  "formula": "Anteil: SE = √[p(1–p)/n]  •  Mittelwert: SE = s/√n  •  Mit FPC: SE_adj = SE × √[(N–n)/(N–1)]  •  Fehlermarge = Z × SE",
+  "type": {
+    "proportion": "Anteil",
+    "proportion_desc": "Für kategoriale Ergebnisse wie Ja/Nein-Antworten, Bestehens-/Durchfallquoten oder den Prozentsatz der Befragten, die eine bestimmte Option bevorzugen.",
+    "mean": "Mittelwert",
+    "mean_desc": "Für kontinuierliche numerische Daten wie Körpergrößen, Gewichte, Testergebnisse, Temperaturen oder Antwortzeiten."
+  },
+  "field": {
+    "calcType": "Berechnungstyp",
+    "sampleProportion": "Stichprobenanteil (p)",
+    "sampleMean": "Stichprobenmittelwert (x̄)",
+    "sampleSD": "Stichproben-Standardabweichung (s)",
+    "sampleSize": "Stichprobengröße (n)",
+    "populationSize": "Populationsgröße (optional)",
+    "confidenceLevel": "Konfidenzniveau"
+  },
+  "placeholder": {
+    "proportion": "z. B. 0.55",
+    "number": "Zahl eingeben",
+    "integer": "z. B. 500",
+    "optional": "Für unendliche Population leer lassen"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte prüfen Sie Ihre Eingaben. Der Anteil muss zwischen 0 und 1 liegen, die Stichprobengröße muss eine positive ganze Zahl sein und die Standardabweichung (im Mittelwertmodus) darf nicht negativ sein."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "standardError": "Standardfehler",
+    "marginOfError": "Fehlermarge"
+  },
+  "about": {
+    "heading": "Über den Stichprobenfehler-Rechner",
+    "body": "Der Stichprobenfehler ist eine unvermeidliche Folge davon, dass nur eine Teilmenge (eine Stichprobe) statt der gesamten Population untersucht wird. Da jede Stichprobe nur einen Bruchteil des Ganzen darstellt, weichen die daraus berechneten Statistiken — etwa Mittelwert oder Anteil — leicht von den wahren Populationswerten ab. Der Stichprobenfehler quantifiziert diese Unsicherheit.\n\nDieser Rechner berechnet zwei eng verwandte Größen: den Standardfehler (SE) und die Fehlermarge (MoE). Der Standardfehler ist die Standardabweichung der Stichprobenverteilung und misst, wie stark Stichprobenstatistiken von Stichprobe zu Stichprobe variieren. Die Fehlermarge erweitert dies, indem sie den SE mit dem zum gewählten Konfidenzniveau passenden Z-Wert multipliziert und so einen Bereich liefert, der den wahren Populationsparameter wahrscheinlich enthält.\n\nFür Anteile lautet der Standardfehler SE = √[p(1–p)/n], wobei p der beobachtete Stichprobenanteil und n die Stichprobengröße ist. Für Mittelwerte lautet der Standardfehler SE = s/√n, wobei s die Stichproben-Standardabweichung und n die Stichprobengröße ist. In beiden Fällen sinkt der SE mit zunehmender Stichprobengröße, was widerspiegelt, dass größere Stichproben präzisere Schätzungen liefern.\n\nWenn die Stichprobengröße mehr als 5 % der gesamten Populationsgröße N ausmacht, sollte der Faktor der endlichen Populationskorrektur (FPC) angewendet werden: SE_adj = SE × √[(N–n)/(N–1)]. Diese Korrektur reduziert den SE, weil ein großer Teil der Population direkt gemessen wird. Ist die Population sehr groß oder unbekannt, ist der Einfluss der FPC vernachlässigbar und kann sicher ignoriert werden.\n\nDie Fehlermarge (MoE) = Z × SE_adj, wobei Z der Z-Wert für das gewählte Konfidenzniveau ist (1.282 für 80 %, 1.645 für 90 %, 1.960 für 95 %, 2.576 für 99 %). Die MoE gibt die halbe Breite des Konfidenzintervalls an: Wenn Ihr Stichprobenanteil 55 % beträgt und die MoE ±3 % ist, können Sie (auf dem angegebenen Niveau) sicher sein, dass der wahre Populationsanteil zwischen 52 % und 58 % liegt.\n\nDer Stichprobenfehler unterscheidet sich von Nicht-Stichprobenfehlern wie Messfehlern, Antwortverzerrungen, Abdeckungsverzerrungen und Dateneingabefehlern. Nicht-Stichprobenfehler entstehen aus Mängeln bei der Erhebung oder Verarbeitung der Daten, nicht aus der Zufälligkeit der Stichprobenauswahl. Während der Stichprobenfehler durch eine größere Stichprobe reduziert werden kann, erfordern Nicht-Stichprobenfehler Verbesserungen im Studiendesign, in der Frageformulierung und in den Verfahren zur Datenqualität.\n\nDieser Rechner ist nützlich für Umfrageforscher, Meinungsforscher, Qualitätsingenieure und alle, die die Unsicherheit ihrer stichprobenbasierten Schätzungen klar und quantitativ kommunizieren müssen."
+  },
+  "examples": {
+    "heading": "Beispiele zur Berechnung des Stichprobenfehlers",
+    "intro": "Drei Szenarien zur Veranschaulichung von Anteils- und Mittelwertberechnungen mit und ohne endliche Populationskorrektur.",
+    "colInput": "Parameter",
+    "colOutput": "SE / Fehlermarge",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "Anteil: p=0.55, n=400, 95 % KN, unendliche Population",
+        "output": "SE=0.0249, MoE=±0.0488",
+        "note": "Eine Umfrage mit 55 % Zustimmung hat eine Fehlermarge von etwa ±4.9 %, sodass der wahre Anteil bei 95 % Konfidenz zwischen 50.1 % und 59.9 % liegt."
+      },
+      {
+        "input": "Mittelwert: x̄=82, s=15, n=100, 95 % KN, unendliche Population",
+        "output": "SE=1.500, MoE=±2.940",
+        "note": "Durchschnittliche Testpunktzahl von 82 mit SD=15 bei 100 Studierenden. Der wahre Klassenmittelwert liegt bei 95 % Konfidenz zwischen 79.06 und 84.94."
+      },
+      {
+        "input": "Anteil: p=0.3, n=200, 95 % KN, N=500",
+        "output": "SE≈0.0287, MoE≈±0.0562",
+        "note": "Die FPC reduziert den SE, weil n/N=40 % beträgt und damit die 5-%-Schwelle überschreitet. Ohne Korrektur wäre der SE 0.0324."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Stichprobenfehler-Rechner",
+    "steps": [
+      "Wählen Sie den Berechnungstyp: Anteil für kategoriale Daten (z. B. Ja/Nein-Umfragen) oder Mittelwert für kontinuierliche numerische Daten (z. B. Testergebnisse, Messwerte).",
+      "Geben Sie die erforderlichen Werte für Ihren Modus ein: Stichprobenanteil im Anteilsmodus oder Stichprobenmittelwert und Stichproben-Standardabweichung im Mittelwertmodus.",
+      "Geben Sie die Stichprobengröße (n) ein. Eine größere Stichprobe erzeugt einen kleineren Standardfehler und eine engere Fehlermarge.",
+      "Geben Sie optional die Populationsgröße ein, wenn Ihre Population endlich ist und Ihre Stichprobe mehr als 5 % der Gesamtpopulation ausmacht. Lassen Sie das Feld leer, um eine unendliche Population anzunehmen.",
+      "Wählen Sie das Konfidenzniveau und klicken Sie auf Berechnen. Die Ergebnisse zeigen Standardfehler und Fehlermarge. Klicken Sie auf Zurücksetzen, um alle Felder zu löschen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Stichprobenfehler-Rechner",
+    "q1": "Was ist der Unterschied zwischen Stichprobenfehler und Fehlermarge?",
+    "q1_a": "Der Standardfehler (Stichprobenfehler) misst die typische Abweichung von Stichprobenstatistiken vom wahren Populationswert, ausgedrückt in den ursprünglichen Einheiten. Die Fehlermarge multipliziert diesen Wert mit einem Z-Wert, um ein Konfidenzintervall zu erstellen — einen Bereich, der den wahren Populationswert mit einer angegebenen Wahrscheinlichkeit wahrscheinlich enthält.",
+    "q2": "Wie wirkt sich die Stichprobengröße auf die Fehlermarge aus?",
+    "q2_a": "Die Fehlermarge ist proportional zu 1/√n. Eine Vervierfachung der Stichprobengröße halbiert daher die Fehlermarge. Wenn eine Stichprobe beispielsweise von 100 auf 400 erhöht wird, sinkt der Standardfehler von 0.05 auf 0.025 und die Fehlermarge halbiert sich. Dies ist der direkteste Weg, die Präzision Ihrer Schätzung zu verbessern.",
+    "q3": "Wann sollte ich die endliche Populationskorrektur anwenden?",
+    "q3_a": "Wenden Sie die FPC an, wenn Ihre Stichprobengröße ungefähr 5 % der Gesamtpopulation überschreitet. Wenn Sie zum Beispiel 200 von 800 Mitarbeitenden befragen (25 % der Population), reduziert die FPC den Standardfehler deutlich und erzeugt ein genaueres, engeres Konfidenzintervall.",
+    "q4": "Was ist der Unterschied zwischen Stichprobenfehler und Nicht-Stichprobenfehler?",
+    "q4_a": "Der Stichprobenfehler entsteht durch Zufall bei der Auswahl der Personen; er kann quantifiziert und durch eine größere Stichprobe reduziert werden. Nicht-Stichprobenfehler (z. B. verzerrte Umfragefragen, Messfehler, Non-Response-Bias) entstehen aus Mängeln bei Datenerhebung oder -verarbeitung, sind schwerer zu erkennen und lassen sich nicht einfach durch eine größere Stichprobe beheben.",
+    "q5": "Warum verwendet dieser Rechner unterschiedliche Z-Werte für jedes Konfidenzniveau?",
+    "q5_a": "Der Z-Wert übersetzt ein Konfidenzniveau in die Anzahl der Standardfehler, die nötig ist, um diesen Anteil einer Normalverteilung abzudecken. Ein Konfidenzniveau von 95 % verwendet Z=1.96, weil 95 % einer Standardnormalverteilung innerhalb von ±1.96 Standardabweichungen vom Mittelwert liegen. Höhere Konfidenzniveaus erfordern größere Z-Werte und erzeugen breitere Konfidenzintervalle.",
+    "q6": "Kann ich diesen Rechner für A/B-Testergebnisse verwenden?",
+    "q6_a": "Ja, für eine grundlegende Interpretation der Fehlermarge. Wenn Ihr A/B-Test einen Anteil misst (z. B. Conversion-Rate), geben Sie den beobachteten Anteil, die Anzahl der Beobachtungen in dieser Gruppe und das gewünschte Konfidenzniveau ein. Die Fehlermarge zeigt die Unsicherheit rund um die beobachtete Rate. Für einen vollständigen Signifikanztest zum Vergleich zweier Gruppen verwenden Sie einen speziellen Zwei-Anteile-z-Test-Rechner."
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "title": "Calculadora de distribución normal inversa - hallar X",
+  "tagline": "Encuentra el valor x correspondiente a una probabilidad acumulada dada bajo la curva normal. Soporta cálculos de cola izquierda, cola derecha y dos colas (centro).",
+  "intro": "Introduce la media μ, la desviación estándar σ, la probabilidad acumulada y el tipo de cola para encontrar el valor x o el intervalo correspondientes.",
+  "field": {
+    "mean": "Media (μ)",
+    "stdDev": "Desviación estándar (σ)",
+    "probability": "Probabilidad acumulada",
+    "tailType": "Tipo de cola",
+    "probabilityHintOne": "Introduce un valor entre 0 y 1 (exclusivo). Para cola izquierda: área a la izquierda de x. Para cola derecha: área a la derecha de x.",
+    "probabilityHintTwo": "Introduce el área central (entre los dos valores x), por ejemplo 0.95 para el 95% central."
+  },
+  "placeholder": {
+    "probability": "p. ej. 0.95"
+  },
+  "tail": {
+    "left": "Cola izquierda",
+    "right": "Cola derecha",
+    "two": "Dos colas (centro)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Revisa tus datos. La probabilidad debe estar entre 0 y 1, σ debe ser positiva y todos los campos deben estar completos."
+  },
+  "result": {
+    "heading": "Resultado",
+    "xValue": "valor x",
+    "zScore": "puntuación Z",
+    "xLow": "valor x inferior",
+    "xHigh": "valor x superior",
+    "zRange": "rango de puntuación Z",
+    "zRangeSep": "a"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de distribución normal inversa",
+    "body": "La calculadora de distribución normal inversa —también llamada función cuantil o función percentil de la normal— responde a la pregunta: dada una probabilidad acumulada, ¿cuál es el valor x correspondiente? Es lo contrario de consultar la tabla de la CDF normal estándar. En lugar de calcular P(X ≤ x) a partir de x, tú indicas P y resuelves x.\n\nEn estadística, la distribución normal (también llamada distribución gaussiana o curva de campana) se parametriza mediante su media μ y desviación estándar σ. Cualquier distribución normal puede convertirse en normal estándar (μ=0, σ=1) calculando la puntuación Z: Z = (x − μ) / σ. Del mismo modo, cualquier cuantil Z de la normal estándar puede convertirse en una puntuación original x = μ + σ·Z. La calculadora de distribución normal inversa aprovecha esto para trabajar directamente con cualquier media y desviación estándar, evitando la conversión en dos pasos.\n\nEl modo de cola izquierda encuentra el valor x por debajo del cual cae la fracción especificada de la distribución. Si introduces μ=0, σ=1 y probability=0.95, la herramienta devuelve aproximadamente 1.6449, lo que significa que el 95% de la distribución normal estándar queda por debajo de Z=1.6449. Este es el percentil 95, muy utilizado para construir intervalos de confianza unilaterales del 95% o para hallar el valor crítico de una prueba unilateral con α=0.05.\n\nEl modo de cola derecha encuentra el valor x por encima del cual cae la fracción especificada de la distribución. Introducir μ=100, σ=15 y probability=0.02 devuelve aproximadamente 130.8, lo que significa que solo el 2% de las puntuaciones de CI (modeladas como N(100,15)) superan ese valor. Así se determinan puntos de corte para programas para superdotados, umbrales de admisión en percentiles altos y límites de control de calidad para excesos en la cola superior.\n\nEl modo de dos colas (centro) encuentra el intervalo simétrico alrededor de la media que contiene la probabilidad central especificada. Introducir probability=0.95 significa que quieres el intervalo que cubre el 95% central de la distribución, por lo que cada cola contiene el 2.5%. La herramienta devuelve tanto el valor x inferior como el superior. Así se construyen exactamente los intervalos de confianza del 95%: la media muestral ± 1.96 errores estándar corresponde a μ=0, σ=1 y al intervalo bilateral del 95%.\n\nLas aplicaciones prácticas incluyen: hallar puntuaciones Z para valores críticos en pruebas de hipótesis; calcular intervalos de tolerancia en manufactura (por ejemplo, el rango que contiene el 99% central de las dimensiones del producto); fijar umbrales de aprobado/suspenso en exámenes estandarizados; determinar límites de value-at-risk (VaR) en finanzas; y deshacer una previsión probabilística para recuperar el umbral original. La función inversa normal es una de las operaciones más usadas en estadística aplicada, solo por detrás de la CDF."
+  },
+  "examples": {
+    "heading": "Ejemplos de distribución normal inversa",
+    "intro": "Escenarios habituales de estadística, control de calidad y psicometría.",
+    "colInput": "Parámetros",
+    "colOutput": "Resultado",
+    "colNote": "Aplicación",
+    "loadZ95": "Cargar puntuación Z para el percentil 95",
+    "loadIQ": "Cargar puntuación de CI del 2% superior",
+    "loadTolerance": "Cargar intervalo de tolerancia del 99%",
+    "items": [
+      {
+        "input": "μ=0, σ=1, P=0.95, Left-Tailed",
+        "output": "x = 1.6449 (Z = 1.6449)",
+        "note": "El percentil 95 de la normal estándar. Se usa como valor crítico para una prueba unilateral con α=0.05."
+      },
+      {
+        "input": "μ=100, σ=15, P=0.02, Right-Tailed",
+        "output": "x ≈ 130.8 (Z ≈ 2.054)",
+        "note": "CI mínimo para estar en el 2% superior. Útil para umbrales de admisión en programas para superdotados."
+      },
+      {
+        "input": "μ=50, σ=0.5, P=0.99, Two-Tailed",
+        "output": "x = 48.71 to 51.29",
+        "note": "Intervalo de tolerancia de fabricación que contiene el 99% de las longitudes de producto. El 1% restante se reparte entre demasiado corto y demasiado largo."
+      },
+      {
+        "input": "μ=75, σ=8, P=0.10, Left-Tailed",
+        "output": "x ≈ 64.74 (Z ≈ −1.282)",
+        "note": "Punto de corte del 10% inferior para notas de examen. Los estudiantes por debajo de este umbral pueden necesitar apoyo de recuperación."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de distribución normal inversa",
+    "steps": [
+      "Selecciona el tipo de cola: Cola izquierda si quieres el valor por debajo del cual cae una fracción dada; Cola derecha si quieres el valor por encima del cual cae una fracción; Dos colas (centro) si quieres el intervalo simétrico alrededor de la media que captura una fracción central.",
+      "Introduce la Media μ (el centro de la distribución) y la Desviación estándar σ (debe ser positiva). Usa μ=0 y σ=1 para consultar la normal estándar / puntuación Z.",
+      "Introduce la Probabilidad acumulada como un decimal entre 0 y 1. Para Cola izquierda, es el área a la izquierda de x. Para Cola derecha, es el área a la derecha. Para Dos colas, es el área central (por ejemplo, 0.95 para el 95% central).",
+      "Haz clic en Calcular. En los modos de una sola cola, el resultado muestra el valor x y su puntuación Z. En el modo de dos colas, muestra los límites inferior y superior y el rango de puntuaciones Z correspondiente.",
+      "Usa los botones de ejemplo para cargar casos comunes como puntuaciones Z para intervalos de confianza del 95%, umbrales percentiles de CI o rangos de tolerancia de fabricación."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la distribución normal inversa",
+    "items": [
+      {
+        "q": "¿Qué es la distribución normal inversa?",
+        "a": "La distribución normal inversa (también llamada función cuantil o función probit) convierte una probabilidad acumulada en el valor correspondiente de la curva normal. Si la CDF normal te da P(X ≤ x), la inversa normal te da x a partir de P. Es la función que usa tu calculadora cuando buscas un valor Z crítico para un nivel de confianza dado; por ejemplo, Z=1.96 para el 97.5% de la normal estándar."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre una puntuación Z y un valor x?",
+        "a": "Una puntuación Z es el valor estandarizado en unidades de desviaciones estándar respecto de la media: Z = (x − μ) / σ. Un valor x es la medida original en sus unidades reales. La calculadora devuelve ambos: el valor x útil para umbrales del mundo real (nota de examen, longitud de producto, presión arterial) y la puntuación Z útil para comparar distribuciones o consultar tablas estadísticas."
+      },
+      {
+        "q": "¿Cómo encuentro el valor crítico para un intervalo de confianza del 95%?",
+        "a": "Un intervalo de confianza del 95% usa valores críticos de dos colas que recortan el 2.5% en cada cola. Establece μ=0, σ=1, probability=0.95 y elige Dos colas (centro). La calculadora devuelve Z≈1.96 como límite superior (y −1.96 como límite inferior). La media muestral ± 1.96 × (error estándar) da el intervalo de confianza del 95% para cualquier estimador normalmente distribuido."
+      },
+      {
+        "q": "¿Qué probabilidad debo introducir para una prueba unilateral con α=0.05?",
+        "a": "Para una prueba de cola izquierda con α=0.05, introduce probability=0.05 con Cola izquierda seleccionada; el resultado es el valor crítico por debajo del cual rechazas H₀. Para una prueba de cola derecha con α=0.05, introduce probability=0.05 con Cola derecha seleccionada; el resultado es el valor crítico por encima del cual rechazas H₀. Para una prueba bilateral con α=0.05, introduce probability=0.95 con Dos colas (centro) para obtener ±1.96."
+      },
+      {
+        "q": "¿Puedo usarla para una distribución normal no estándar?",
+        "a": "Sí: esa es una de las principales ventajas de la calculadora frente a las tablas Z simples. Introduce la media μ y la desviación estándar σ reales de tu distribución, y la calculadora transforma automáticamente la puntuación Z a tus unidades originales usando x = μ + σ × Z. No necesitas estandarizar los datos manualmente."
+      }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "title": "Calculadora de razón de momios - OR, IC y valor P",
+  "tagline": "Calcula la razón de momios, el intervalo de confianza, el valor Z y el valor P a partir de una tabla de contingencia 2×2 para estudios caso-control y epidemiológicos.",
+  "intro": "Ingresa los cuatro conteos de celdas de tu tabla 2×2, elige un nivel de confianza y recibe al instante la razón de momios con inferencia estadística completa.",
+  "tableNote": "Completa los conteos de los grupos expuesto y no expuesto. Las celdas deben ser enteros no negativos. Cuando alguna celda es cero, se aplica automáticamente la corrección de Haldane-Anscombe (sumar 0.5 a cada celda).",
+  "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+  "group": {
+    "exposed": "Grupo expuesto",
+    "unexposed": "Grupo no expuesto"
+  },
+  "field": {
+    "a": "Resultado positivo – Casos (a)",
+    "b": "Resultado negativo – No casos (b)",
+    "c": "Resultado positivo – Casos (c)",
+    "d": "Resultado negativo – No casos (d)",
+    "confidenceLevel": "Nivel de confianza"
+  },
+  "placeholder": {
+    "cell": "Ingresa un conteo ≥ 0"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Ingresa números no negativos en las cuatro celdas."
+  },
+  "result": {
+    "heading": "Resultados",
+    "or": "Razón de momios (OR)",
+    "ciLabel": "Intervalo de confianza",
+    "z": "Z",
+    "pValue": "Valor P",
+    "lnOR": "ln(OR)",
+    "se": "Error estándar",
+    "correctionNote": "Se detectó una celda cero: se aplicó la corrección de Haldane-Anscombe (+ 0.5) a todas las celdas."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de razón de momios",
+    "body": "La razón de momios (OR) es una de las medidas de asociación más usadas en la investigación biomédica, la epidemiología y las ciencias sociales. Cuantifica la fuerza de la relación entre una exposición y un resultado binario al comparar la probabilidad del resultado en un grupo expuesto con la del grupo no expuesto. Una OR de 1 indica ausencia de asociación; una OR mayor que 1 sugiere que la exposición aumenta la probabilidad del resultado; y una OR menor que 1 sugiere un efecto protector.\n\nLa razón de momios se calcula a partir de una tabla de contingencia 2×2, el formato estándar para presentar datos de estudios caso-control. La tabla tiene cuatro celdas: (a) expuestos con el resultado, (b) expuestos sin el resultado, (c) no expuestos con el resultado y (d) no expuestos sin el resultado. La fórmula es simplemente OR = (a × d) / (b × c), es decir, la razón de productos cruzados de la tabla.\n\nLa inferencia estadística para la OR se realiza sobre su logaritmo natural, porque la distribución muestral de ln(OR) es aproximadamente normal, incluso con tamaños de muestra moderados. El error estándar de ln(OR) es SE = √(1/a + 1/b + 1/c + 1/d). A partir de esto, se calcula un valor Z como Z = ln(OR) / SE, que sigue una distribución normal estándar bajo la hipótesis nula de ausencia de asociación (OR = 1). El valor P bilateral es p = 2 × Φ(−|Z|), donde Φ es la función de distribución acumulada normal estándar. Si el valor P está por debajo del nivel de significancia elegido (normalmente 0.05), la razón de momios difiere de 1 de forma estadísticamente significativa.\n\nEl intervalo de confianza (IC) de la OR se construye exponenciando el intervalo alrededor de ln(OR): CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. Para un IC del 95%, Z_α/2 = 1.96. Si el IC no incluye 1.0, el resultado es estadísticamente significativo al nivel del 5%. El ancho del IC refleja la precisión de la estimación; intervalos más amplios surgen de tamaños de muestra pequeños o celdas escasas.\n\nSurge una complicación práctica cuando alguna celda de la tabla 2×2 es cero, lo que hace que la fórmula estándar de la OR no esté definida (división por cero o logaritmo de cero). La solución habitual es la corrección de Haldane-Anscombe: agregar 0.5 a cada celda antes de calcular la OR y el SE. Esta calculadora aplica la corrección automáticamente y te avisa cuando la usa. La corrección introduce un sesgo pequeño, pero es mucho mejor que no devolver ningún resultado.\n\nLa OR es la medida natural en los estudios caso-control, donde el diseño fija el número de casos y controles en lugar de la prevalencia de la exposición. En estudios de cohorte y ensayos aleatorizados, suele preferirse el riesgo relativo (RR) porque es más intuitivo. Para resultados raros (prevalencia por debajo de aproximadamente 10%), OR ≈ RR, pero para resultados comunes la OR siempre estará más alejada de 1 que el RR correspondiente, y interpretarla como RR puede sobrestimar la magnitud de la asociación. Indica siempre qué medida estás usando y comprueba si tu datos cumplen el supuesto de enfermedad rara."
+  },
+  "examples": {
+    "heading": "Ejemplos resueltos",
+    "intro": "Tres escenarios clásicos de estudio que muestran cómo leer la salida de la razón de momios y juzgar la significancia estadística.",
+    "colInput": "Escenario del estudio",
+    "colOutput": "Razón de momios",
+    "colNote": "Interpretación",
+    "loadSmoking": "Cargar ejemplo de tabaquismo",
+    "loadDrug": "Cargar ejemplo de fármaco",
+    "loadVaccine": "Cargar ejemplo de vacuna",
+    "items": [
+      {
+        "input": "Tabaquismo y cáncer de pulmón: a=650, b=350, c=100, d=900 (95% CI)",
+        "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+        "note": "Los fumadores tienen aproximadamente 16.7 veces las probabilidades de cáncer de pulmón en comparación con los no fumadores. El IC excluye 1.0, por lo que la asociación es altamente significativa."
+      },
+      {
+        "input": "Nuevo fármaco vs. placebo: a=38, b=162, c=85, d=115 (95% CI)",
+        "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+        "note": "El fármaco reduce las probabilidades de enfermedad en aproximadamente 68%. OR < 1 indica un efecto protector; el IC está completamente por debajo de 1."
+      },
+      {
+        "input": "Estudio de vacunación: a=15, b=485, c=55, d=445 (95% CI)",
+        "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+        "note": "Las personas vacunadas tienen 75% menos probabilidades de infección. Una asociación protectora fuerte, con un intervalo de confianza estrecho y significativo."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de razón de momios",
+    "steps": [
+      "Organiza tus datos en una tabla 2×2: la celda (a) = casos expuestos, (b) = no casos expuestos, (c) = casos no expuestos, (d) = no casos no expuestos.",
+      "Ingresa los cuatro conteos no negativos en los campos correspondientes bajo 'Grupo expuesto' y 'Grupo no expuesto'.",
+      "Selecciona el nivel de confianza deseado (90%, 95% o 99%) en el menú desplegable. La mayoría de las investigaciones publicadas usan 95%.",
+      "Haz clic en Calcular. La herramienta devuelve la OR, el intervalo de confianza, el valor Z y el valor P. Si alguna celda fue cero, aparecerá una nota de corrección.",
+      "Interpreta el resultado: OR > 1 significa que la exposición aumenta las probabilidades; OR < 1 significa que las disminuye. Comprueba si el IC incluye 1 y si p ≤ α."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "q1": "¿Qué es una razón de momios y en qué se diferencia del riesgo relativo?",
+    "q1_a": "La razón de momios compara las probabilidades de un resultado en dos grupos, mientras que el riesgo relativo (RR) compara las probabilidades. Para resultados raros (prevalencia < 10%), OR ≈ RR; para resultados comunes la OR se aleja más de 1.0 que el RR. Los estudios caso-control solo pueden estimar de forma válida la OR, no el RR, porque el muestreo se basa en el resultado.",
+    "q2": "¿Cómo interpreto OR = 2.5?",
+    "q2_a": "Una OR de 2.5 significa que las probabilidades del resultado en el grupo expuesto son 2.5 veces las del grupo no expuesto. No significa que el riesgo sea 2.5 veces mayor salvo que el resultado sea raro. Para resultados comunes, la razón de riesgos real será menor que 2.5.",
+    "q3": "¿Qué me dice el intervalo de confianza?",
+    "q3_a": "Un intervalo de confianza del 95% significa que, si repitieras el estudio muchas veces bajo las mismas condiciones, aproximadamente el 95% de los intervalos calculados contendrían la OR verdadera de la población. En la práctica, si el IC excluye 1.0, el resultado es estadísticamente significativo con α = 0.05. Un IC amplio indica baja precisión, normalmente por una muestra pequeña.",
+    "q4": "¿Cuándo se aplica la corrección de Haldane-Anscombe?",
+    "q4_a": "La corrección agrega 0.5 a cada celda cuando alguna celda es cero. Una celda cero hace que la fórmula estándar de la OR no esté definida (logaritmo de cero o división por cero). La corrección permite continuar la estimación y es el remedio más común, aunque introduce un pequeño sesgo. La calculadora lo destaca cuando se usa.",
+    "q5": "¿Puedo usar esta calculadora para un ensayo controlado aleatorizado?",
+    "q5_a": "Sí, pero considera reportar el riesgo relativo (RR) en lugar de la OR o junto con ella, porque el RR es más intuitivo para resultados comunes y es la medida que prefieren muchas guías clínicas. Para ECA con resultados raros o al combinar diseños de estudio en un metanálisis, la OR sigue siendo apropiada.",
+    "q6": "¿Por qué a veces parecen contradictorios los valores P y los intervalos de confianza?",
+    "q6_a": "No deberían ser contradictorios: un IC del 95% que excluye 1.0 siempre corresponde a p < 0.05 en una prueba bilateral. Las aparentes contradicciones suelen deberse al redondeo, a comparar valores P unilaterales con IC bilaterales o a usar distintos niveles de confianza y alfa para la prueba. Usa configuraciones consistentes en ambos."
+  }
+}

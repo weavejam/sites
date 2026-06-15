@@ -1,0 +1,91 @@
+{
+  "title": "Upper Control Limit (UCL) Calculator - SPC Charts",
+  "tagline": "Calculate the Upper Control Limit (UCL) and Lower Control Limit (LCL) for statistical process control charts using raw data or summary statistics.",
+  "intro": "Select a calculation mode (From Data or From Summary), enter your values, and click Calculate to get the UCL, LCL, mean, and standard deviation instantly.",
+  "field": {
+    "mode": "Calculation mode",
+    "data": "Data (comma-separated)",
+    "mean": "Process Mean (x̅)",
+    "stdDev": "Standard Deviation (σ)",
+    "sigmaK": "Sigma multiplier (k)",
+    "sigmaKHint": "Typical values: 3 (99.73%), 2 (95.45%). Default is 3."
+  },
+  "type": {
+    "data": "From Data",
+    "summary": "From Summary"
+  },
+  "placeholder": {
+    "data": "e.g., 10, 11, 9, 12, 10, 11",
+    "mean": "e.g., 50",
+    "stdDev": "e.g., 5"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter at least 2 data points, or valid mean and standard deviation values."
+  },
+  "result": {
+    "heading": "Control Limits",
+    "mean": "Process mean (x̅)",
+    "stdDev": "Standard deviation (σ)",
+    "n": "Sample size (n)",
+    "ucl": "Upper Control Limit (UCL)",
+    "lcl": "Lower Control Limit (LCL)",
+    "formula": "Formulas: UCL = x̅ + {k}σ | LCL = x̅ − {k}σ"
+  },
+  "about": {
+    "heading": "About the Upper Control Limit (UCL)",
+    "body": "The Upper Control Limit (UCL) is a key element of Statistical Process Control (SPC), the methodology developed by Walter Shewhart at Bell Laboratories in the 1920s to distinguish normal process variation from signals that warrant investigation. Control charts plot process measurements over time and use the UCL (and its counterpart, the Lower Control Limit, LCL) to define the boundaries of acceptable variation. A process is said to be in statistical control when all measurements fall within the control limits and show no non-random patterns.\n\nThe UCL is calculated as the process mean plus k times the process standard deviation: UCL = x̄ + kσ. The corresponding LCL is x̄ − kσ. The value of k is typically set at 3, which for a normal distribution means that 99.73% of observations should fall within the control limits when the process is stable. A point exceeding the UCL (or falling below the LCL) is a signal that the process may have shifted or that an unusual cause is operating. Some applications use k = 2 (95.45%) for more sensitive detection, at the cost of more frequent false alarms.\n\nSPC control charts come in several varieties. The X-bar chart monitors the average of subgroup samples. The individual (I) chart monitors single measurements. The R chart and S chart monitor within-subgroup variability. This calculator computes the UCL for individual measurements or subgroup means using either raw data (to estimate the mean and standard deviation directly) or pre-computed summary statistics (mean and standard deviation provided by the user).\n\nWhen raw data is provided, the calculator estimates the process mean as the sample average and the standard deviation using the sample formula (dividing by n − 1, Bessel's correction). This gives an unbiased estimate of the population standard deviation, which is appropriate for estimating long-run process variation. The resulting UCL and LCL define the expected range of future observations if the process remains stable.\n\nControl limits are not specification limits. Specification limits define what is acceptable to the customer (engineering tolerances, regulatory requirements). Control limits define what the process is naturally capable of producing. A process can be in statistical control while still producing output outside the specification limits — in which case the process capability must be improved, not just monitored.\n\nThe UCL and LCL are used across manufacturing, healthcare, software development, call centers, and any context where output quality needs to be tracked over time. Understanding and computing these limits is an essential skill in quality engineering and process improvement."
+  },
+  "examples": {
+    "heading": "UCL examples",
+    "intro": "Worked calculations showing how the UCL is computed from data and from summary statistics.",
+    "colInput": "Inputs",
+    "colOutput": "UCL / LCL",
+    "colNote": "Context",
+    "items": [
+      {
+        "input": "Data: 10,11,9,12,10,11,10,9,12,11 | k=3",
+        "output": "UCL ≈ 13.74 | LCL ≈ 7.26",
+        "note": "Mean = 10.5, sample Std Dev ≈ 1.080. UCL = 10.5 + 3×1.080 ≈ 13.74, LCL = 10.5 − 3×1.080 ≈ 7.26. Any measurement outside these limits is an out-of-control signal."
+      },
+      {
+        "input": "Mean = 50, Std Dev = 5 | k=3",
+        "output": "UCL = 65 | LCL = 35",
+        "note": "UCL = 50 + 3×5 = 65. Classic 3-sigma rule. A manufactured part measured above 65 triggers a review of the production process."
+      },
+      {
+        "input": "Mean = 100, Std Dev = 8 | k=2",
+        "output": "UCL = 116 | LCL = 84",
+        "note": "Using k=2 (2-sigma limits) catches 95.45% of normal variation. More sensitive than 3-sigma but generates more false alarms."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the UCL calculator",
+    "steps": [
+      "Choose From Data if you have raw measurements, or From Summary if you already know the mean and standard deviation.",
+      "In From Data mode, enter your comma-separated measurements in the data field. In From Summary mode, enter the process mean and standard deviation.",
+      "Set the sigma multiplier k (default 3). Use 3 for standard 3-sigma control limits or 2 for tighter 2-sigma limits.",
+      "Click Calculate to see the UCL, LCL, mean, and standard deviation.",
+      "Any future process measurement above the UCL or below the LCL is an out-of-control signal requiring investigation."
+    ]
+  },
+  "faq": {
+    "heading": "UCL calculator FAQ",
+    "q1": "What is the Upper Control Limit (UCL)?",
+    "q1_a": "The UCL is the upper boundary on a control chart, set at k standard deviations above the process mean (typically k=3). Measurements exceeding the UCL are statistically unlikely under stable process conditions and signal that the process may have changed or an unusual cause is present.",
+    "q2": "What is the difference between UCL and an upper specification limit?",
+    "q2_a": "A specification limit is set by the customer or design requirements and defines acceptable product quality. The UCL is calculated from the process data and reflects natural process variation. A process can be in control (within UCL) but still produce defects (outside specification limits) if the process spread is too wide.",
+    "q3": "Why is k=3 the standard choice?",
+    "q3_a": "For a normally distributed process, setting k=3 means 99.73% of observations fall within the control limits when the process is stable. This limits false alarms (incorrectly flagging a stable process) to about 0.27%, which balances detection sensitivity against the cost of unnecessary investigations.",
+    "q4": "What does it mean when a point exceeds the UCL?",
+    "q4_a": "A point above the UCL is called an out-of-control signal. It indicates that the observation is unlikely to have occurred by random chance alone, suggesting that a special cause (an unusual event, a process change, a measurement error) may have occurred. The process should be investigated to find and eliminate the cause.",
+    "q5": "Can I use this calculator for subgroup means?",
+    "q5_a": "Yes. If you provide the mean of your subgroup means and the standard deviation of the subgroup means (also called the standard error), the calculator will compute the UCL and LCL for the X-bar chart directly. The inputs are the same regardless of whether values represent individual measurements or subgroup averages.",
+    "q6": "How do I estimate the standard deviation from data?",
+    "q6_a": "The calculator uses the sample standard deviation formula, dividing by n−1 (Bessel's correction), which gives an unbiased estimate of the population standard deviation. In practice, SPC charts sometimes use the average range divided by d2 for subgroup data, but for individual measurements the sample standard deviation is the appropriate estimate."
+  }
+}

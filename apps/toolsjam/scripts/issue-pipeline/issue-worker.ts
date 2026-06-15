@@ -282,25 +282,19 @@ async function main() {
     //    out-of-band content-only push from the sweeper.  This keeps port
     //    cycle time short and isolates throttle-prone translate failures.
 
-    // 5. apply staged en.json content (dev copilot writes per-tool JSON to
-    //    .port-batches/en-content/<id>.json instead of editing the giant
-    //    messages/en.json directly — this script merges them in one shot).
-    //    Back-compat: if no staged files exist (dev copilot still on the old
-    //    "edit en.json one tool at a time" prompt), skip and trust the
-    //    in-place edits.  This lets in-flight batches under the OLD prompt
-    //    finish cleanly while NEW spawns adopt the staged-file workflow.
-    updateState(issue.number, { phase: "apply-en" });
+    // 5. validate per-tool i18n.  Dev copilot writes English content directly
+    //    to messages/tool/<id>/en.json (one tool, one file — no merge step
+    //    needed since each tool owns its own file under the new split layout).
+    //    We verify the file exists + parses as JSON before paying for the
+    //    expensive build/e2e.  Stricter schema validation is left to vitest
+    //    (which exercises every fixture against the tool's useTranslations).
+    updateState(issue.number, { phase: "verify-en" });
     const toolIds = jobs.map((j) => j.toolId);
-    const stageDir = path.join(wtApp, ".port-batches", "en-content");
-    const stagedIds = toolIds.filter((id) => existsSync(path.join(stageDir, `${id}.json`)));
-    if (stagedIds.length === 0) {
-      log(wid, "no staged en-content files — assuming old-prompt batch edited en.json directly; skipping apply-en");
-    } else if (stagedIds.length < toolIds.length) {
-      const missing = toolIds.filter((id) => !stagedIds.includes(id));
-      throw new Error(`apply-en: partial staging — missing ${missing.join(", ")}`);
-    } else {
-      const apEn = run("pnpm", ["exec", "tsx", "scripts/apply-en-content.ts", ...toolIds], wtApp, wid);
-      if (apEn.code !== 0) throw new Error("apply-en-content failed (invalid staged JSON)");
+    for (const id of toolIds) {
+      const f = path.join(wtApp, "messages", "tool", id, "en.json");
+      if (!existsSync(f)) throw new Error(`verify-en: missing ${f}`);
+      try { JSON.parse(readFileSync(f, "utf8")); }
+      catch (e) { throw new Error(`verify-en: invalid JSON in ${f}: ${(e as Error).message}`); }
     }
 
     // 6. barrel + tests + build + e2e

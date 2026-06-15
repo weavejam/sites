@@ -1,0 +1,113 @@
+{
+  "title": "Calculadora de error estándar - SE con datos o resumen",
+  "tagline": "Calcula el error estándar de la media (SE) a partir de datos brutos o estadísticas resumidas. Obtén SE, intervalo de confianza y estadísticos clave al instante.",
+  "intro": "Elige el modo Datos brutos e introduce tus números, o cambia a Estadísticas resumidas y proporciona la media, la DE y el tamaño de la muestra. Selecciona un nivel de confianza para ver el intervalo junto con el SE.",
+  "formula": "SE = s / √n  (datos brutos: s es la DE muestral)  •  SE = σ / √n  (resumen: σ es la DE proporcionada)  •  CI = x̄ ± z × SE",
+  "type": {
+    "rawData": "Datos brutos",
+    "summary": "Estadísticas resumidas"
+  },
+  "field": {
+    "method": "Método de cálculo",
+    "rawData": "Datos (números separados por comas)",
+    "mean": "Media",
+    "sd": "Desviación estándar (DE)",
+    "n": "Tamaño de muestra (n)",
+    "confLevel": "Nivel de confianza"
+  },
+  "placeholder": {
+    "rawData": "p. ej. 12.5, 15, 16.2, 14.8, 17",
+    "mean": "p. ej. 500",
+    "sd": "p. ej. 5",
+    "n": "p. ej. 100"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce datos válidos. Para datos brutos, se requieren al menos 2 números. Para estadísticas resumidas, la DE debe ser positiva y n debe ser ≥ 2."
+  },
+  "result": {
+    "heading": "Resultados",
+    "n": "Tamaño de muestra (n)",
+    "mean": "Media",
+    "sd": "Desviación estándar",
+    "se": "Error estándar (SE)",
+    "ci": "Intervalo de confianza {conf}"
+  },
+  "examples": {
+    "heading": "Ejemplos de error estándar",
+    "intro": "Cuatro ejemplos resueltos que muestran ambos modos de entrada y aplicaciones típicas.",
+    "colInput": "Entrada",
+    "colOutput": "SE",
+    "colNote": "Contexto",
+    "loadRawScores": "Cargar puntuaciones brutas",
+    "loadSummary": "Cargar estadísticas resumidas",
+    "items": [
+      {
+        "input": "Brutos: 85, 92, 88, 78, 90",
+        "output": "SE ≈ 2.4413",
+        "note": "Calificaciones de estudiantes (n=5). Media = 86.6, DE ≈ 5.46. El SE muestra que la media tiene una precisión de ±2.4 puntos."
+      },
+      {
+        "input": "Brutos: 22, 25, 21, 24, 23, 26, 22",
+        "output": "SE ≈ 0.6801",
+        "note": "Temperaturas máximas diarias en °C durante una semana (n=7). Un SE pequeño refleja un clima consistente."
+      },
+      {
+        "input": "Resumen: Mean=500, SD=5, n=100",
+        "output": "SE = 0.5000",
+        "note": "Pesos de piezas de una fábrica (n=100). Un n grande empuja el SE muy por debajo de 1 g pese a una DE de 5 g."
+      },
+      {
+        "input": "Resumen: Mean=10, SD=3.5, n=49",
+        "output": "SE = 0.5000",
+        "note": "Reducción de presión arterial en un ensayo clínico (n=49). IC del 95% ≈ [9.02, 10.98] mmHg."
+      }
+    ]
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de error estándar",
+    "body": "El error estándar de la media (SE o SEM) es la desviación estándar de la distribución muestral de la media. En términos sencillos, indica qué tan lejos podría estar la media muestral de la verdadera media poblacional si repitieras el muestreo muchas veces. Un SE pequeño significa que tu media muestral es una estimación precisa de la media poblacional; un SE grande implica más incertidumbre.\n\nLa fórmula es SE = s / √n, donde s es la desviación estándar de tu muestra y n es el número de observaciones. En el modo de datos brutos, la calculadora primero calcula la desviación estándar muestral (usando la corrección de Bessel con n−1 en el denominador) y luego divide por √n. En el modo de estadísticas resumidas, proporcionas directamente la media, la desviación estándar y n, lo cual es útil cuando ya tienes datos agregados —por ejemplo, de un artículo publicado— y no puedes acceder a las observaciones originales.\n\nEsta calculadora también calcula el intervalo de confianza para la media al nivel que elijas (90%, 95% o 99%). El intervalo se construye como x̄ ± z × SE, donde z es el valor crítico de la distribución normal estándar (1.645 para 90%, 1.96 para 95%, 2.576 para 99%). Estos intervalos basados en z son apropiados para muestras grandes (n ≥ 30) o cuando se sabe que la población sigue una distribución normal. Para muestras pequeñas de poblaciones no normales, un intervalo basado en t (usando t con n−1 grados de libertad) sería más preciso; como regla práctica, los valores z y t son casi idénticos para n ≥ 30.\n\nEl SE se usa en casi todas las ramas de la investigación cuantitativa. En medicina, los artículos clínicos suelen reportar medias con sus SE o intervalos de confianza para que los lectores puedan juzgar si las diferencias entre grupos de tratamiento son clínicamente relevantes. En manufactura, las evaluaciones de capacidad de proceso usan el SE para determinar si la media muestral está de forma fiable dentro de los límites de especificación. En encuestas de ciencias sociales, el margen de error de una media reportada depende directamente del SE. En análisis de riesgo financiero, el SE se usa para estimar la incertidumbre en torno a los rendimientos medios y otros estadísticos. En aprendizaje automático, el SE sustenta los intervalos de confianza bootstrap usados para comparar métricas de rendimiento de modelos.\n\nTambién es importante saber cuándo reportar SE frente a desviación estándar (DE). La DE describe cuán dispersas están las mediciones individuales; no disminuye al recolectar más datos (suponiendo que la variabilidad poblacional real sea fija). El SE describe la precisión de la estimación de la media, y sí disminuye con más datos porque SE = DE / √n. Cuando tu objetivo es comunicar la variabilidad entre individuos —por ejemplo, el rango de edades de los pacientes en un estudio— reporta DE. Cuando tu objetivo es comunicar la precisión de una estimación de la media —por ejemplo, la fiabilidad de una reducción media de la presión arterial— reporta SE o su intervalo de confianza derivado."
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de error estándar",
+    "steps": [
+      "Elige Datos brutos si tienes observaciones individuales, o Estadísticas resumidas si ya conoces la media, la DE y el tamaño de muestra.",
+      "Introduce tus datos: una lista separada por comas para Datos brutos, o tres valores numéricos (media, DE, n) para Estadísticas resumidas.",
+      "Selecciona un nivel de confianza (90%, 95% o 99%) para controlar lo ancho que será el intervalo de confianza.",
+      "Haz clic en Calcular. El panel de resultados mostrará tamaño de muestra, media, DE, SE e intervalo de confianza.",
+      "Haz clic en Restablecer para borrar todos los datos, o usa los botones de ejemplo para cargar conjuntos predefinidos y explorar el resultado."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre el error estándar",
+    "items": [
+      {
+        "q": "¿Qué es el error estándar de la media?",
+        "a": "El error estándar de la media (SE o SEM) cuantifica la precisión de la media muestral como estimación de la media poblacional. Es igual a la desviación estándar muestral dividida por la raíz cuadrada del tamaño de la muestra: SE = s / √n. Un SE pequeño indica que la media muestral es una estimación fiable; un SE grande indica mayor incertidumbre. El SE disminuye a medida que aumenta el tamaño de la muestra porque las muestras más grandes aportan más información sobre la población."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre error estándar y desviación estándar?",
+        "a": "La desviación estándar (DE) mide la dispersión de los datos individuales alrededor de la media muestral. El error estándar (SE) mide la precisión de la media muestral como estimación de la media poblacional. La DE no se reduce con más observaciones porque la variabilidad real de la población es fija; el SE sí se reduce porque SE = DE / √n. Al reportar resultados, usa DE para describir la variabilidad de los datos y SE (o un intervalo de confianza) para describir la precisión de la estimación."
+      },
+      {
+        "q": "¿Cuándo debo usar el modo Datos brutos frente al modo Estadísticas resumidas?",
+        "a": "Usa el modo Datos brutos cuando tengas acceso a las mediciones individuales de tu muestra: introduce todos los valores y la calculadora calculará automáticamente la media, la DE y el SE. Usa el modo Estadísticas resumidas cuando ya tengas datos agregados, como la media y la desviación estándar reportadas en un estudio publicado, o cuando estés planificando un estudio y quieras explorar cómo distintos tamaños de muestra afectan al SE."
+      },
+      {
+        "q": "¿Por qué las muestras más grandes producen errores estándar más pequeños?",
+        "a": "Porque SE = DE / √n, al aumentar n el denominador crece y el SE disminuye. Conceptualmente, cada observación adicional aporta más información sobre la población, así que la media muestral se acerca más a la verdadera media poblacional. Duplicar n reduce el SE por un factor de √2, aproximadamente 1.41. Esta es la base cuantitativa del principio de que los estudios más grandes producen conclusiones más fiables."
+      },
+      {
+        "q": "¿Qué nivel de confianza debería elegir?",
+        "a": "El 95% es la convención más usada en la investigación científica: un IC del 95% significa que, si repitieras el muestreo muchas veces, el 95% de los intervalos resultantes contendrían la verdadera media poblacional. Usa 90% si prefieres un intervalo más estrecho y aceptas un mayor riesgo de no incluir la media real. Usa 99% en aplicaciones donde pasar por alto el valor real sería costoso, como ensayos clínicos o ingeniería de seguridad, aceptando un intervalo más amplio a cambio de mayor certeza."
+      },
+      {
+        "q": "¿Es precisa esta calculadora para muestras pequeñas?",
+        "a": "La calculadora usa intervalos de confianza basados en z (1.96 para 95%, etc.), que técnicamente son más precisos para muestras grandes (n ≥ 30), donde la aproximación normal es muy buena. Para muestras pequeñas, el multiplicador correcto es el valor t de la distribución t con n−1 grados de libertad, que es algo mayor que el valor z correspondiente. Para n ≥ 30 la diferencia es pequeña (por ejemplo, t ≈ 2.042 frente a z = 1.96 con 95% y n=30), pero para n < 10 la discrepancia se vuelve notable. Usa una calculadora dedicada de intervalos t para muestras muy pequeñas."
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "title": "Calculadora de limite superior de controle (UCL) - Gráficos SPC",
+  "tagline": "Calcule o limite superior de controle (UCL) e o limite inferior de controle (LCL) para gráficos de controle estatístico de processo usando dados brutos ou estatísticas resumidas.",
+  "intro": "Selecione um modo de cálculo (A partir dos dados ou A partir do resumo), insira seus valores e clique em Calcular para obter instantaneamente UCL, LCL, média e desvio padrão.",
+  "field": {
+    "mode": "Modo de cálculo",
+    "data": "Dados (separados por vírgulas)",
+    "mean": "Média do processo (x̅)",
+    "stdDev": "Desvio padrão (σ)",
+    "sigmaK": "Multiplicador sigma (k)",
+    "sigmaKHint": "Valores típicos: 3 (99,73%), 2 (95,45%). O padrão é 3."
+  },
+  "type": {
+    "data": "A partir dos dados",
+    "summary": "A partir do resumo"
+  },
+  "placeholder": {
+    "data": "ex.: 10, 11, 9, 12, 10, 11",
+    "mean": "ex.: 50",
+    "stdDev": "ex.: 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira pelo menos 2 pontos de dados, ou valores válidos de média e desvio padrão."
+  },
+  "result": {
+    "heading": "Limites de controle",
+    "mean": "Média do processo (x̅)",
+    "stdDev": "Desvio padrão (σ)",
+    "n": "Tamanho da amostra (n)",
+    "ucl": "Limite superior de controle (UCL)",
+    "lcl": "Limite inferior de controle (LCL)",
+    "formula": "Fórmulas: UCL = x̅ + {k}σ | LCL = x̅ − {k}σ"
+  },
+  "about": {
+    "heading": "Sobre o limite superior de controle (UCL)",
+    "body": "O limite superior de controle (UCL) é um elemento-chave do controle estatístico de processo (SPC), metodologia desenvolvida por Walter Shewhart nos Bell Laboratories na década de 1920 para distinguir a variação normal do processo dos sinais que exigem investigação. Os gráficos de controle traçam medições do processo ao longo do tempo e usam o UCL (e seu equivalente, o limite inferior de controle, LCL) para definir os limites da variação aceitável. Diz-se que um processo está sob controle estatístico quando todas as medições ficam dentro dos limites de controle e não mostram padrões não aleatórios.\n\nO UCL é calculado como a média do processo mais k vezes o desvio padrão do processo: UCL = x̄ + kσ. O LCL correspondente é x̄ − kσ. O valor de k normalmente é definido como 3, o que, em uma distribuição normal, significa que 99,73% das observações devem ficar dentro dos limites de controle quando o processo está estável. Um ponto que excede o UCL (ou fica abaixo do LCL) é um sinal de que o processo pode ter se deslocado ou que uma causa incomum está atuando. Algumas aplicações usam k = 2 (95,45%) para detecção mais sensível, ao custo de alarmes falsos mais frequentes.\n\nOs gráficos de controle SPC existem em diversas variedades. O gráfico X-bar monitora a média de amostras de subgrupos. O gráfico individual (I) monitora medições únicas. Os gráficos R e S monitoram a variabilidade dentro dos subgrupos. Esta calculadora calcula o UCL para medições individuais ou médias de subgrupos usando dados brutos (para estimar diretamente a média e o desvio padrão) ou estatísticas resumidas pré-calculadas (média e desvio padrão fornecidos pelo usuário).\n\nQuando dados brutos são fornecidos, a calculadora estima a média do processo como a média amostral e calcula o desvio padrão usando a fórmula amostral (dividindo por n − 1, correção de Bessel). Isso fornece uma estimativa não viesada do desvio padrão populacional, adequada para estimar a variação do processo no longo prazo. O UCL e o LCL resultantes definem a faixa esperada de observações futuras se o processo permanecer estável.\n\nLimites de controle não são limites de especificação. Limites de especificação definem o que é aceitável para o cliente (tolerâncias de engenharia, requisitos regulatórios). Limites de controle definem o que o processo é naturalmente capaz de produzir. Um processo pode estar sob controle estatístico e ainda produzir saídas fora dos limites de especificação — nesse caso, a capacidade do processo deve ser melhorada, não apenas monitorada.\n\nO UCL e o LCL são usados em manufatura, saúde, desenvolvimento de software, call centers e qualquer contexto em que a qualidade da saída precise ser acompanhada ao longo do tempo. Entender e calcular esses limites é uma habilidade essencial em engenharia da qualidade e melhoria de processos."
+  },
+  "examples": {
+    "heading": "Exemplos de UCL",
+    "intro": "Cálculos resolvidos mostrando como o UCL é calculado a partir de dados e estatísticas resumidas.",
+    "colInput": "Entradas",
+    "colOutput": "UCL / LCL",
+    "colNote": "Contexto",
+    "items": [
+      {
+        "input": "Dados: 10,11,9,12,10,11,10,9,12,11 | k=3",
+        "output": "UCL ≈ 13.74 | LCL ≈ 7.26",
+        "note": "Média = 10.5, desvio padrão amostral ≈ 1.080. UCL = 10.5 + 3×1.080 ≈ 13.74, LCL = 10.5 − 3×1.080 ≈ 7.26. Qualquer medição fora desses limites é um sinal de fora de controle."
+      },
+      {
+        "input": "Média = 50, desvio padrão = 5 | k=3",
+        "output": "UCL = 65 | LCL = 35",
+        "note": "UCL = 50 + 3×5 = 65. Regra clássica de 3 sigma. Uma peça fabricada medida acima de 65 aciona uma revisão do processo de produção."
+      },
+      {
+        "input": "Média = 100, desvio padrão = 8 | k=2",
+        "output": "UCL = 116 | LCL = 84",
+        "note": "Usar k=2 (limites de 2 sigma) captura 95,45% da variação normal. É mais sensível que 3 sigma, mas gera mais alarmes falsos."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de UCL",
+    "steps": [
+      "Escolha A partir dos dados se você tem medições brutas, ou A partir do resumo se já conhece a média e o desvio padrão.",
+      "No modo A partir dos dados, insira suas medições separadas por vírgulas no campo de dados. No modo A partir do resumo, insira a média do processo e o desvio padrão.",
+      "Defina o multiplicador sigma k (padrão 3). Use 3 para limites de controle padrão de 3 sigma ou 2 para limites mais estreitos de 2 sigma.",
+      "Clique em Calcular para ver o UCL, o LCL, a média e o desvio padrão.",
+      "Qualquer medição futura do processo acima do UCL ou abaixo do LCL é um sinal de fora de controle que requer investigação."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ da calculadora de UCL",
+    "q1": "O que é o limite superior de controle (UCL)?",
+    "q1_a": "O UCL é o limite superior em um gráfico de controle, definido a k desvios padrão acima da média do processo (normalmente k=3). Medições que excedem o UCL são estatisticamente improváveis sob condições de processo estáveis e sinalizam que o processo pode ter mudado ou que há uma causa incomum presente.",
+    "q2": "Qual é a diferença entre UCL e um limite superior de especificação?",
+    "q2_a": "Um limite de especificação é definido pelo cliente ou pelos requisitos de projeto e determina a qualidade aceitável do produto. O UCL é calculado a partir dos dados do processo e reflete a variação natural do processo. Um processo pode estar em controle (dentro do UCL) e ainda produzir defeitos (fora dos limites de especificação) se a dispersão do processo for ampla demais.",
+    "q3": "Por que k=3 é a escolha padrão?",
+    "q3_a": "Para um processo com distribuição normal, definir k=3 significa que 99,73% das observações ficam dentro dos limites de controle quando o processo está estável. Isso limita alarmes falsos (sinalizar incorretamente um processo estável) a cerca de 0,27%, equilibrando sensibilidade de detecção e custo de investigações desnecessárias.",
+    "q4": "O que significa quando um ponto excede o UCL?",
+    "q4_a": "Um ponto acima do UCL é chamado de sinal de fora de controle. Ele indica que é improvável que a observação tenha ocorrido apenas por acaso, sugerindo que uma causa especial (evento incomum, mudança de processo, erro de medição) pode ter ocorrido. O processo deve ser investigado para encontrar e eliminar a causa.",
+    "q5": "Posso usar esta calculadora para médias de subgrupos?",
+    "q5_a": "Sim. Se você fornecer a média das médias de subgrupos e o desvio padrão das médias de subgrupos (também chamado de erro padrão), a calculadora calculará diretamente o UCL e o LCL do gráfico X-bar. As entradas são as mesmas, independentemente de os valores representarem medições individuais ou médias de subgrupos.",
+    "q6": "Como estimo o desvio padrão a partir dos dados?",
+    "q6_a": "A calculadora usa a fórmula do desvio padrão amostral, dividindo por n−1 (correção de Bessel), o que fornece uma estimativa não viesada do desvio padrão populacional. Na prática, gráficos SPC às vezes usam a amplitude média dividida por d2 para dados de subgrupos, mas para medições individuais o desvio padrão amostral é a estimativa apropriada."
+  }
+}

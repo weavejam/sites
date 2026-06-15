@@ -1,0 +1,107 @@
+{
+  "title": "Calculadora de temperatura de anelamento - ferramenta de primers PCR",
+  "tagline": "Calcule a temperatura ideal de anelamento de PCR a partir de sequências de DNA de primers usando a regra de Wallace, a fórmula de conteúdo GC ou o método termodinâmico do vizinho mais próximo.",
+  "intro": "Digite a sequência do primer forward (e opcionalmente a do reverse), ajuste as concentrações de sal e DNA, escolha um método de cálculo e receba imediatamente a temperatura de anelamento recomendada.",
+  "field": {
+    "forwardPrimer": "Sequência do primer forward",
+    "reversePrimer": "Sequência do primer reverse (opcional)",
+    "salt": "Concentração de sal (mM)",
+    "dna": "Concentração de DNA (nM)",
+    "method": "Método de cálculo"
+  },
+  "type": {
+    "wallaceRule": "Regra de Wallace",
+    "gcContent": "Conteúdo GC",
+    "nearestNeighbor": "Vizinho mais próximo"
+  },
+  "placeholder": {
+    "primerSeq": "ex.: ATGGAGCTGAAGCAGCAGATCC",
+    "optional": "opcional"
+  },
+  "button": {
+    "calculate": "Calcular temperatura",
+    "reset": "Redefinir valores"
+  },
+  "error": {
+    "invalid": "Digite uma sequência válida de primer com pelo menos 10 bases e concentrações positivas válidas de sal e DNA."
+  },
+  "result": {
+    "heading": "Resultados de temperatura",
+    "annealingTemp": "Temperatura de anelamento recomendada (Ta)",
+    "tmForward": "Tm — primer forward",
+    "tmReverse": "Tm — primer reverse",
+    "formula": "Ta = menor Tm − 5°C. O método do vizinho mais próximo usa parâmetros de SantaLucia 1998 com correção de sal."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de temperatura de anelamento",
+    "body": "A calculadora de temperatura de anelamento prevê a temperatura ideal de anelamento de PCR (Ta) para um par de primers de oligonucleotídeos com base em suas sequências de DNA e nas condições da reação. Definir corretamente a temperatura de anelamento é uma das decisões mais importantes no planejamento de PCR: se estiver muito baixa, surgem produtos inespecíficos; se estiver muito alta, os primers não se ligam com eficiência, reduzindo o rendimento ou até impedindo a amplificação. A calculadora elimina esse chute aplicando modelos termodinâmicos estabelecidos para fornecer um ponto de partida confiável antes de usar o termociclador.\n\nA temperatura de melting (Tm) de um primer é a temperatura na qual 50% dos dúplex primer-template se dissociam em fitas simples. A temperatura de anelamento normalmente é definida 5°C abaixo da menor Tm do par de primers, resultando em: Ta = min(Tm_forward, Tm_reverse) − 5°C. Essa regra equilibra ligação específica e extensão eficiente e é a convenção usada pela maioria dos laboratórios de biologia molecular no mundo.\n\nA calculadora oferece três métodos de predição de Tm com diferentes níveis de precisão e aplicabilidade. A regra de Wallace (Tm = 2°C × (A+T) + 4°C × (G+C)) é a estimativa mais simples e rápida. Ela é razoavelmente precisa para primers com menos de cerca de 20 bases e ainda é útil como verificação rápida, mas ignora interações de empilhamento vizinho e não faz correção de sal. Use quando precisar de uma estimativa rápida e aproximada.\n\nO método de conteúdo GC (Tm = 69.3 + 41 × GC_fraction − 650/n) é a fórmula de Marmur-Doty-Schildkraut adaptada para oligonucleotídeos curtos. Ele incorpora o comprimento do primer (n) e a fração GC, oferecendo uma estimativa melhor que a regra de Wallace na faixa típica de 18–30 bases. Ainda é uma aproximação, pois trata todos os pares de bases do mesmo tipo como termodinamicamente equivalentes.\n\nO método do vizinho mais próximo (SantaLucia 1998) é a abordagem mais precisa e a usada por ferramentas comerciais de design de primers como Primer3 e OligoCalc. Ele calcula ΔH e ΔS somando as contribuições de entalpia e entropia de cada par de dinucleotídeos consecutivos ao longo do primer e aplica a fórmula termodinâmica Tm = ΔH / (ΔS + R × ln(CT)) − 273.15, onde R é a constante dos gases e CT é a concentração total de fita. Em seguida, aplica-se a correção de sal Tm_corrected = Tm + 16.6 × log10([Na+]/1000). Esse método é o padrão ouro para primers de qualquer comprimento e conteúdo GC, especialmente para sequências ricas em GC ou AT que fogem muito da composição média.\n\nA concentração de sal importa porque cátions monovalentes estabilizam a dupla hélice de DNA ao neutralizar a repulsão entre os grupos fosfato carregados negativamente. Concentrações mais altas elevam a Tm; concentrações mais baixas a reduzem. O valor padrão de 50 mM de Na⁺ é adequado para tampões PCR padrão. A concentração de DNA (primer) afeta a Tm pelo termo ln(CT) na fórmula do vizinho mais próximo; o padrão de 250 nM é típico de reações PCR. Ajustar esses valores às suas condições reais melhora a precisão da predição."
+  },
+  "examples": {
+    "heading": "Exemplos de temperatura de anelamento PCR",
+    "intro": "Sequências de primers de exemplo ilustrando diferentes composições de GC e faixas de comprimento em todos os três métodos de cálculo.",
+    "colInput": "Sequência do primer",
+    "colOutput": "Ta (°C)",
+    "colNote": "Detalhes",
+    "items": [
+      {
+        "input": "ATGGAGCTGAAGCAGCAGATCC (22 bp, 54.5% GC)",
+        "output": "Ta ≈ 58°C",
+        "note": "Primer padrão para amplificação gênica. Método do vizinho mais próximo. Sal 50 mM, primer 250 nM."
+      },
+      {
+        "input": "GCGCGCGGATCCATGAAGCTG (21 bp, 71.4% GC)",
+        "output": "Ta ≈ 67°C",
+        "note": "Primer com alto GC; requer temperatura de anelamento mais alta. Método de conteúdo GC. Sal 75 mM."
+      },
+      {
+        "input": "ATCGATCGATCG (12 bp, 50% GC)",
+        "output": "Ta ≈ 31°C",
+        "note": "Primer curto, regra de Wallace. Ta = 2(6) + 4(6) − 5 = 31°C. Primers curtos exigem Ta menor."
+      },
+      {
+        "input": "TTGACGATCATGAGCTTGGC (20 bp, 50% GC)",
+        "output": "Ta ≈ 52°C",
+        "note": "Condição de baixo sal (25 mM). Menor sal reduz a Tm em comparação com as condições padrão de 50 mM."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de temperatura de anelamento",
+    "steps": [
+      "Digite a sequência de DNA do primer forward no primeiro campo (direção 5’ para 3’). Apenas bases ATGC são usadas; bases ambíguas e espaços são ignorados.",
+      "Opcionalmente, digite a sequência do primer reverse. Se fornecida, a Ta será baseada na menor das duas Tm do par de primers.",
+      "Ajuste a concentração de sal (padrão 50 mM NaCl) e a concentração de DNA/primer (padrão 250 nM). Use as condições reais da sua reação para melhor precisão.",
+      "Escolha um método de cálculo: Regra de Wallace para uma estimativa rápida, Conteúdo GC para precisão moderada ou Vizinho mais próximo (SantaLucia 1998) para o resultado mais preciso.",
+      "Clique em Calcular temperatura. O painel de resultados mostrará a temperatura de anelamento recomendada (Ta) e os valores de Tm de cada primer com estatísticas de composição de bases."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre a calculadora de temperatura de anelamento",
+    "items": [
+      {
+        "q": "Qual é a diferença entre Tm e Ta?",
+        "a": "Tm (temperatura de melting) é a temperatura na qual 50% dos dúplex primer-template se dissociam em fitas simples — é uma propriedade do próprio primer e das condições da reação. Ta (temperatura de anelamento) é a temperatura usada no termociclador de PCR durante a etapa de anelamento. Ta costuma ser definida 5°C abaixo da menor Tm do par de primers para garantir ligação eficiente e específica."
+      },
+      {
+        "q": "Qual método de cálculo devo usar?",
+        "a": "Para a maioria dos trabalhos de PCR em laboratório, o método do Vizinho mais próximo (SantaLucia 1998) é o mais preciso e o recomendado pelo NCBI Primer-BLAST e pelo Primer3. Use a Regra de Wallace apenas para primers muito curtos (menos de 14 bases) ou para uma checagem rápida de ordem de grandeza. Use o método de Conteúdo GC quando quiser algo um pouco mais preciso que Wallace, mas ainda mais rápido que NN, por exemplo durante a triagem inicial de primers."
+      },
+      {
+        "q": "Por que minha PCR falha mesmo usando a temperatura de anelamento calculada?",
+        "a": "A Ta calculada é um ponto de partida, não uma garantia. O desempenho real da PCR também depende da especificidade do primer (verifique com BLAST), de dímeros e hairpins (verifique com OligoAnalyzer), da estrutura secundária do molde, da concentração de Mg2⁺, da processividade da polimerase e das taxas de rampa do termociclador. Se a temperatura calculada não funcionar, tente uma PCR em gradiente entre ±2–10°C ao redor de Ta, ou reduza a temperatura de anelamento em incrementos de 2°C."
+      },
+      {
+        "q": "Como a concentração de sal afeta a temperatura de anelamento?",
+        "a": "Concentrações mais altas de sal monovalente (Na⁺, K⁺) estabilizam a dupla hélice de DNA ao blindar a repulsão entre os fosfatos carregados negativamente, elevando a Tm. Passar de 25 mM para 100 mM de NaCl normalmente aumenta a Tm em 2–3°C. Tampões PCR padrão contêm 50–75 mM de KCl mais Mg2⁺; informe a concentração equivalente de Na⁺ para obter os melhores resultados com a correção de sal do método do vizinho mais próximo."
+      },
+      {
+        "q": "O que devo fazer quando os primers de um par têm Tm muito diferentes?",
+        "a": "Quando os dois primers diferem em mais de 5°C de Tm, considere redesenhar o primer de menor Tm para torná-lo mais longo ou mais rico em GC, aproximando os valores. Uma grande diferença de Tm faz com que um dos primers se ligue com menos eficiência na Ta escolhida, o que pode reduzir o rendimento e favorecer produtos de uma só extremidade. Como compromisso, às vezes você pode usar um protocolo de PCR touchdown que começa acima da maior Tm e desce ao longo da faixa de temperatura de anelamento."
+      },
+      {
+        "q": "A Tm do primer muda na presença de DMSO ou outros aditivos?",
+        "a": "Sim. O DMSO desestabiliza a dupla hélice e reduz a Tm em cerca de 0.5–1.0°C por porcentagem de DMSO adicionada. Betaína, glicerol e formamida também reduzem a Tm. Esses aditivos são usados para amplificar moldes ricos em GC ou estruturados; quando estiverem presentes, reduza sua Ta em aproximadamente a mesma quantidade. A calculadora não modela os efeitos dos aditivos, então ajuste Ta manualmente se sua reação incluir cosolventes."
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "title": "Calculadora de rachas de monedas: caras y cruces",
+  "tagline": "Calcula la probabilidad de conseguir caras o cruces consecutivos al lanzar una moneda, o el número esperado de lanzamientos para cualquier longitud de racha.",
+  "intro": "Introduce la longitud y el tipo de racha, y luego elige entre calcular la probabilidad exacta dentro de un número fijo de lanzamientos o el número esperado de lanzamientos para lograr la racha.",
+  "formula": "Fórmula (prob. exacta): programación dinámica sobre secuencias de lanzamientos  •  Lanzamientos esperados para k caras: 2(2^k − 1)  •  Lanzamientos esperados para k de cualquier lado: 2^k − 1",
+  "field": {
+    "streakLen": "Longitud de la racha",
+    "streakType": "Tipo de racha",
+    "calcType": "Tipo de cálculo",
+    "maxTosses": "Lanzamientos máximos (opcional)",
+    "maxTossesHint": "Déjalo en blanco para usar una ventana predeterminada de aproximadamente 2k² lanzamientos."
+  },
+  "placeholder": {
+    "streakLen": "p. ej., 3",
+    "maxTosses": "p. ej., 50"
+  },
+  "streakType": {
+    "heads": "Solo caras",
+    "tails": "Solo cruces",
+    "either": "Cualquiera (caras o cruces)"
+  },
+  "calcType": {
+    "exactProb": "Probabilidad exacta",
+    "exactProb_desc": "Calcula la probabilidad de lograr la racha al menos una vez dentro del número de lanzamientos especificado (o predeterminado).",
+    "expectedTosses": "Número esperado de lanzamientos",
+    "expectedTosses_desc": "Calcula el promedio de lanzamientos necesarios hasta que la racha se logra por primera vez."
+  },
+  "button": {
+    "calculate": "Calcular racha",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce una longitud de racha válida (1–100). Si indicas lanzamientos máximos, deben ser ≥ la longitud de la racha y ≤ 100,000."
+  },
+  "result": {
+    "heading": "Resultado",
+    "inNTosses": "Probabilidad de lograr la racha dentro de {n} lanzamientos",
+    "tosses": "lanzamientos (esperados)",
+    "expectedDesc": "En promedio, se necesitan tantos lanzamientos antes de lograr la racha por primera vez."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de rachas de monedas",
+    "body": "Una racha —también llamada run— es una secuencia de resultados idénticos consecutivos. El ejemplo más simple es una racha de k caras seguidas al lanzar una moneda justa. Aunque suene sencillo, las matemáticas de las rachas implican resultados sorprendentemente profundos de la teoría de la probabilidad y tienen aplicaciones que van desde el análisis deportivo hasta la modelización del riesgo financiero.\n\nLa probabilidad de obtener al menos una racha de k caras consecutivas en algún punto dentro de n lanzamientos no puede calcularse con una simple fórmula binomial. Requiere seguir, en cada paso, lo cerca que estás de completar una racha, una tarea ideal para la programación dinámica. Esta calculadora usa exactamente ese enfoque: mantiene una distribución de probabilidad sobre cuántas caras consecutivas llevas acumuladas, la actualiza con cada nuevo lanzamiento y suma la probabilidad absorbida en el estado de 'racha completada' después de n lanzamientos.\n\nEl número esperado de lanzamientos hasta la primera racha de k caras consecutivas tiene una forma cerrada elegante para una moneda justa (p = 0.5): E_k = 2(2^k − 1). Para k = 1, se esperan 2 lanzamientos en promedio antes de la primera cara, lo cual es correcto, ya que E[geométrica(0.5)] = 1/0.5 = 2. Para 3 caras seguidas, el valor esperado es 2(2^3 − 1) = 14. Para k = 10, la expectativa ya es de 2,046 lanzamientos, lo que demuestra que las rachas largas son mucho más raras de lo que sugiere la intuición.\n\nEn las rachas de 'cualquiera' (k resultados consecutivos del mismo tipo, ya sean caras o cruces), el número esperado de lanzamientos es 2^k − 1. Es más corto porque cualquier resultado del primer lanzamiento inicia una posible racha en esa dirección. Para k = 3, la espera esperada es solo 7 lanzamientos, frente a 14 para una racha específicamente de caras. Intuitivamente, la racha puede formarse en cualquiera de los dos sentidos, duplicando de hecho las oportunidades.\n\nLos cálculos de rachas aparecen en muchos contextos prácticos. En deportes, se observa que un jugador de baloncesto que encestó los últimos 5 tiros seguidos está 'on fire'. La investigación estadística sobre este fenómeno del 'hot hand' encuentra que, aunque existe cierta correlación real, gran parte de lo que los aficionados perciben como rachas es simplemente el agrupamiento natural esperado de procesos aleatorios. En finanzas, un fondo que supera al mercado 5 años seguidos parece impresionante, pero con miles de fondos esto es estadísticamente inevitable bajo la hipótesis nula de ausencia de habilidad. La calculadora de rachas ayuda a juzgar si una serie observada de éxitos es sorprendente dado el número de oportunidades.\n\nEn el juego, entender las probabilidades de rachas ayuda a fijar expectativas realistas. La probabilidad de obtener 10 caras seguidas en 100 lanzamientos es de aproximadamente 4.4%, menor de lo que muchos jugadores esperan al considerar los muchos posibles puntos de inicio. La probabilidad de obtener 20 caras seguidas en 1,000 lanzamientos es de solo 0.05%, realmente rara, pese al gran número de intentos.\n\nEsta calculadora admite longitudes de racha de 1 a 100 y un máximo de 100,000 lanzamientos en el modo de probabilidad, cubriendo escenarios prácticos desde ejercicios de clase hasta estudios de simulación a gran escala."
+  },
+  "examples": {
+    "heading": "Ejemplos de rachas de monedas",
+    "intro": "Cuatro ejemplos resueltos, desde probabilidad básica hasta juego y estadística deportiva.",
+    "colInput": "Racha / Tipo / Modo",
+    "colOutput": "Resultado",
+    "colNote": "Interpretación",
+    "loadThreeHeads": "Cargar ejemplo de 3 caras",
+    "loadLong": "Cargar racha larga",
+    "loadGambling": "Cargar ejemplo de juego",
+    "items": [
+      {
+        "input": "Racha = 3, solo caras, lanzamientos esperados",
+        "output": "14 lanzamientos",
+        "note": "En promedio, debes lanzar una moneda justa 14 veces antes de conseguir 3 caras seguidas. Fórmula: 2(2³ − 1) = 14."
+      },
+      {
+        "input": "Racha = 5, solo caras, probabilidad en 50 lanzamientos",
+        "output": "≈ 55.19%",
+        "note": "Más de la mitad de todas las secuencias de 50 lanzamientos justos contienen al menos una racha de 5 caras consecutivas."
+      },
+      {
+        "input": "Racha = 7, cualquiera, lanzamientos esperados",
+        "output": "127 lanzamientos",
+        "note": "Para 7 resultados consecutivos del mismo tipo (caras o cruces), se esperan 2⁷ − 1 = 127 lanzamientos en promedio."
+      },
+      {
+        "input": "Racha = 4, solo caras, lanzamientos esperados",
+        "output": "30 lanzamientos",
+        "note": "Un jugador que apueste por 4 caras consecutivas debería esperar unas 30 tiradas. Fórmula: 2(2⁴ − 1) = 30."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de rachas de monedas",
+    "steps": [
+      "Introduce la longitud de la racha: el número de resultados idénticos consecutivos que te interesa (por ejemplo, 3 para tres caras seguidas).",
+      "Elige el tipo de racha: Solo caras, Solo cruces o Cualquiera (cualquier k resultados idénticos consecutivos).",
+      "Selecciona el modo de cálculo: Probabilidad exacta (dentro de un número de lanzamientos) o Número esperado de lanzamientos.",
+      "En el modo de probabilidad exacta, puedes introducir opcionalmente un número máximo de lanzamientos. Déjalo en blanco para usar la ventana predeterminada.",
+      "Haz clic en Calcular racha. El resultado mostrará la probabilidad en porcentaje o el número esperado de lanzamientos necesarios."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre rachas de monedas",
+    "q1": "¿Cómo se calcula la probabilidad de una racha?",
+    "q1_a": "La calculadora usa programación dinámica. Sigue la probabilidad de estar en cada estado posible de 'racha parcial' (0, 1, 2, ... k-1 caras consecutivas hasta ahora) a medida que se simula cada nuevo lanzamiento. Cuando la racha parcial alcanza k, la probabilidad se absorbe. Después de n lanzamientos, la probabilidad total absorbida equivale a la probabilidad de haber logrado la racha al menos una vez.",
+    "q2": "¿Por qué el número esperado crece tan rápido con la longitud de la racha?",
+    "q2_a": "Cada elemento adicional de la racha multiplica aproximadamente por 2 el tiempo de espera esperado. Para rachas de caras con moneda justa, E_k = 2(2^k − 1), lo que se duplica cada vez que k aumenta en 1. Esto ocurre porque cada vez que te acercas a completar la racha pero fallas, debes empezar de nuevo, y la probabilidad de completar con éxito el siguiente intento se reduce a la mitad por cada paso adicional requerido.",
+    "q3": "¿Cuál es la probabilidad de una racha de 10 caras en 100 lanzamientos?",
+    "q3_a": "Usando longitud de racha 10, tipo Solo caras y 100 lanzamientos máximos, obtienes aproximadamente 4.4%. Aunque una secuencia específica de 10 resultados tiene probabilidad (0.5)^10 ≈ 0.1% para un punto de inicio concreto, los muchos puntos de inicio posibles y las ventanas superpuestas se combinan para producir una probabilidad de aproximadamente 1 en 23.",
+    "q4": "¿Una racha de 5 victorias de un equipo deportivo es evidencia de habilidad o de suerte?",
+    "q4_a": "Depende de la probabilidad base de victoria. Para un equipo con 50% de probabilidad de ganar (igualado), una racha de 5 victorias tiene probabilidad (0.5)^5 ≈ 3.1%. En una temporada de 30+ partidos, la probabilidad de encontrar al menos una racha así en algún momento es mucho mayor —a menudo por encima del 50%. Una racha de 5 victorias no es, por sí sola, una evidencia sólida de un cambio en el nivel de habilidad o de 'hot hand' a menos que la tasa base de victorias del equipo esté sustancialmente por debajo del 50%.",
+    "q5": "¿En qué se diferencia el modo 'cualquiera' del modo solo caras?",
+    "q5_a": "En el modo 'cualquiera', la racha cuenta cualquier k resultados consecutivos del mismo tipo, ya sean todas caras o todas cruces. El número esperado de lanzamientos para una racha 'cualquiera' de longitud k es 2^k − 1, aproximadamente la mitad de la espera esperada para una racha de un solo lado de la misma longitud (que es 2(2^k − 1)). Esto se debe a que cualquier lanzamiento puede iniciar una racha en cualquiera de las dos direcciones, duplicando las oportunidades de empezar una racha válida.",
+    "q6": "¿Puedo usar esto para eventos binarios aleatorios que no sean monedas?",
+    "q6_a": "Sí, siempre que cada prueba sea independiente y tenga una probabilidad de éxito del 50%. Ejemplos: la probabilidad de que un equipo de baloncesto con 50% de victorias consiga una racha de 5 partidos ganados, la probabilidad de que un sensor binario lea el mismo valor k veces seguidas, o el número esperado de decisiones tipo moneda antes de que un paseo aleatorio alcance un lado k veces consecutivas. La matemática es idéntica para todos los procesos binarios independientes 50/50."
+  }
+}

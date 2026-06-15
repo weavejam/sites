@@ -1,0 +1,101 @@
+{
+  "title": "Weibull-Verteilungsrechner - PDF, CDF und Zuverlässigkeit",
+  "tagline": "Berechnen Sie aus beliebigen Form- und Skalenparametern die Weibull-PDF, CDF, Zuverlässigkeitsfunktion, Hazard-Rate, Mittelwert, Median, Modus und Varianz.",
+  "intro": "Geben Sie den Formparameter k, den Skalenparameter λ und einen Wert x ein, um eine vollständige Analyse der Weibull-Verteilung einschließlich Ausfallwahrscheinlichkeit und Zuverlässigkeit zu erhalten.",
+  "formula": "PDF: f(x) = (k/λ)(x/λ)^(k−1) · exp(−(x/λ)^k)  •  CDF: F(x) = 1 − exp(−(x/λ)^k)  •  Mittelwert = λ · Γ(1 + 1/k)",
+  "field": {
+    "k": "Form (k)",
+    "lambda": "Skala (λ)",
+    "x": "Wert (x)"
+  },
+  "placeholder": {
+    "k": "z. B. 2.1",
+    "lambda": "z. B. 8500",
+    "x": "z. B. 7000"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gültige Zahlen eingeben. Form k und Skala λ müssen positiv sein; x muss nicht negativ sein."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "pdf": "PDF f(x)",
+    "cdf": "CDF F(x)",
+    "reliability": "Zuverlässigkeit R(x)",
+    "hazard": "Hazard-Rate h(x)",
+    "mean": "Mittelwert",
+    "median": "Median",
+    "mode": "Modus",
+    "variance": "Varianz",
+    "stdDev": "Standardabweichung"
+  },
+  "about": {
+    "heading": "Über den Weibull-Verteilungsrechner",
+    "body": "Die Weibull-Verteilung ist eine stetige Wahrscheinlichkeitsverteilung, benannt nach dem schwedischen Ingenieur und Mathematiker Waloddi Weibull, der sie 1951 zur Modellierung von Materialfestigkeit und Ermüdung verwendete. Heute gehört sie zu den wichtigsten Verteilungen in der Zuverlässigkeitstechnik, Überlebensanalyse, Windgeschwindigkeitsmodellierung und Extremwerttheorie, weil ihr Formparameter k steigende, konstante oder fallende Ausfallraten innerhalb einer einzigen flexiblen Verteilungsfamilie abbilden kann.\n\nDie Verteilung ist durch zwei Parameter definiert. Der Formparameter k (manchmal β geschrieben) bestimmt, ob die Ausfallrate mit der Zeit steigt, fällt oder konstant bleibt. Bei k > 1 steigt die Ausfallrate mit der Zeit an – das modelliert Verschleißausfälle typischer mechanischer Komponenten, die sich durch Nutzung abnutzen. Bei k = 1 reduziert sich die Weibull-Verteilung exakt auf die Exponentialverteilung mit konstanter Ausfallrate und modelliert rein zufällige Ausfälle wie bei elektronischen Komponenten mit stabiler Grundrate. Bei k < 1 nimmt die Ausfallrate mit der Zeit ab – das modelliert Säuglingssterblichkeit, bei der defekte Teile früh ausfallen und die Überlebenden zuverlässiger werden. Der Skalenparameter λ (manchmal η geschrieben) ist die charakteristische Lebensdauer: Bei x = λ gilt unabhängig von k stets CDF = 1 − e⁻¹ ≈ 63.2 %.\n\nDie Wahrscheinlichkeitsdichtefunktion (PDF) f(x) gibt die relative Wahrscheinlichkeit an, einen Ausfall genau zum Zeitpunkt x zu beobachten. Die kumulative Verteilungsfunktion (CDF) F(x) gibt die Wahrscheinlichkeit an, dass ein Bauteil bis x ausgefallen ist; das wird auch als Unzuverlässigkeit bezeichnet. Die Zuverlässigkeitsfunktion R(x) = 1 − F(x) gibt die Wahrscheinlichkeit an, über x hinaus zu überleben, und ist die zentrale Kennzahl für Garantie- und Wartungsplanung. Die Hazard-Rate h(x) = f(x) / R(x) ist die momentane Ausfallrate zum Zeitpunkt x unter der Bedingung, dass bis dahin überlebt wurde; im Ingenieurwesen spricht man auch von Mortalitätskraft oder Hazard-Funktion.\n\nDer Mittelwert der Weibull-Verteilung ist λ · Γ(1 + 1/k), wobei Γ die Gammafunktion ist. Der Median ist λ · (ln 2)^(1/k). Der Modus (wahrscheinlichste Ausfallzeit) ist λ · ((k−1)/k)^(1/k) bei k > 1 und 0 bei k ≤ 1. Die Varianz ist λ² · [Γ(1 + 2/k) − (Γ(1 + 1/k))²].\n\nWeibull-Analysen werden in Flottenwartungsplanung, Luftfahrtkomponentenzertifizierung, Windenergie-Resource-Bewertung, Erdbeben-Wiederkehrperiodenschätzung und Krebsüberlebensstudien eingesetzt. Dieser Rechner führt alle Standard-Weibull-Berechnungen in einem Schritt aus und nutzt die Lanczos-Approximation für die Gammafunktion, um über einen großen Parameterbereich hohe numerische Genauigkeit zu gewährleisten."
+  },
+  "examples": {
+    "heading": "Weibull-Verteilungsbeispiele",
+    "intro": "Drei Industrieszenarien zeigen, wie die Weibull-Verteilung Ausfall und Zuverlässigkeit modelliert.",
+    "colInput": "Parameter",
+    "colOutput": "CDF F(x)",
+    "colNote": "Details",
+    "loadBearing": "Lagerbelastungsanalyse",
+    "loadWind": "Windgeschwindigkeit",
+    "loadExponential": "Exponentialfall",
+    "items": [
+      {
+        "input": "k=2.1, λ=8500, x=7000",
+        "output": "F(7000) ≈ 0.485",
+        "note": "Etwa 48.5 % der Lager fallen vor 7000 Stunden aus. Bei k > 1 steigt die Ausfallrate mit dem Alter (Verschleißphase)."
+      },
+      {
+        "input": "k=1.8, λ=12 mph, x=15 mph",
+        "output": "F(15) ≈ 0.776",
+        "note": "Die Wahrscheinlichkeit, dass die tägliche mittlere Windgeschwindigkeit bei oder unter 15 mph liegt, beträgt etwa 77.6 %. In vielen Regionen folgen Windgeschwindigkeiten einer Weibull-Verteilung mit k ≈ 1.5–2.5."
+      },
+      {
+        "input": "k=1, λ=500, x=500",
+        "output": "F(500) ≈ 0.632",
+        "note": "Bei k=1 reduziert sich Weibull auf die Exponentialverteilung. Bei x=λ gilt F(x) = 1 − e⁻¹ ≈ 63.2 % unabhängig von k – das ist die definierende Eigenschaft von λ."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Weibull-Verteilungsrechner",
+    "steps": [
+      "Geben Sie den Formparameter k ein – Werte über 1 modellieren Verschleiß, k=1 ist exponentiell und Werte unter 1 modellieren Säuglingssterblichkeit.",
+      "Geben Sie den Skalenparameter λ ein, der die charakteristische Lebensdauer darstellt (der Zeitpunkt, bis zu dem etwa 63.2 % der Einheiten ausgefallen sind).",
+      "Geben Sie den Wert x ein, an dem Sie die Verteilung auswerten möchten – typischerweise Zeit, Strecke oder Belastungsniveau.",
+      "Klicken Sie auf Berechnen, um PDF, CDF, Zuverlässigkeit, Hazard-Rate, Mittelwert, Median, Modus, Varianz und Standardabweichung zu erhalten.",
+      "Verwenden Sie die Beispielschaltflächen, um vordefinierte technische oder Umwelt-Szenarien sofort zu laden."
+    ]
+  },
+  "faq": {
+    "heading": "Weibull-FAQ",
+    "items": [
+      {
+        "q": "Was bedeutet der Formparameter k in der Praxis?",
+        "a": "Der Formparameter k bestimmt das Muster der Ausfallrate. Bei k < 1 sinkt die Ausfallrate mit der Zeit – frühe Defekte dominieren. Bei k = 1 ist die Ausfallrate konstant – rein zufällige Ausfälle. Bei k > 1 steigt die Ausfallrate – Verschleiß ist der dominante Ausfallmodus. Die meisten mechanischen Komponenten haben k zwischen 1 und 4."
+      },
+      {
+        "q": "Was ist die Zuverlässigkeitsfunktion und wie nutze ich sie?",
+        "a": "Die Zuverlässigkeit R(x) = 1 − F(x) gibt die Wahrscheinlichkeit an, dass ein Bauteil über x hinaus überlebt. Für Wartungspläne oder Garantiefristen wählen Sie eine akzeptable Ausfallwahrscheinlichkeit und lösen nach dem entsprechenden x auf. Zum Beispiel bedeutet R(x) = 0.90, dass 90 % der Einheiten voraussichtlich über x hinaus überleben."
+      },
+      {
+        "q": "Warum liegt die CDF bei x=λ immer bei etwa 63.2 %?",
+        "a": "Bei x = λ wird der Exponent in der CDF-Formel zu (λ/λ)^k = 1, also F(λ) = 1 − e⁻¹ ≈ 0.6321. Das gilt für jeden k-Wert und macht λ zur universellen charakteristischen Lebensdauer: 63.2 % der Einheiten sind bis zum Skalenparameter ausgefallen, unabhängig von der Form."
+      },
+      {
+        "q": "Was ist die Hazard-Rate und wann ist sie wichtig?",
+        "a": "Die Hazard-Rate h(x) ist die momentane Ausfallrate zum Zeitpunkt x unter der Bedingung, dass bis dahin überlebt wurde. In der Zuverlässigkeitstechnik dient sie zur Planung vorbeugender Wartung. Wenn h(x) steigt (k > 1), ist es wirtschaftlich sinnvoll, Teile vor Erreichen eines hohen Hazard-Alters zu ersetzen. Wenn h(x) konstant ist (k = 1), ist der Ersatzzeitpunkt statistisch irrelevant."
+      },
+      {
+        "q": "Worin unterscheidet sich der Weibull-Mittelwert vom Skalenparameter?",
+        "a": "Der Skalenparameter λ ist der Zeitpunkt, an dem 63.2 % der Einheiten ausgefallen sind – nicht die mittlere Lebensdauer. Der Mittelwert ist λ · Γ(1 + 1/k). Bei k=1 (Exponentialverteilung) gilt Mittelwert = λ. Bei k=2 beträgt der Mittelwert etwa 0.886 λ. Bei k=3.44 liegt der Mittelwert ungefähr bei λ. Der Mittelwert kann also je nach Form über oder unter λ liegen."
+      }
+    ]
+  }
+}

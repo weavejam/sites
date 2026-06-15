@@ -1,0 +1,102 @@
+{
+  "title": "Calculadora de transformador - kVA necessário",
+  "tagline": "Calcule a potência kVA correta do transformador a partir da potência da carga, fator de potência, eficiência, temperatura ambiente e fator de segurança.",
+  "intro": "Informe a potência da carga, fator de potência, eficiência, condições de temperatura e margem de segurança para determinar o tamanho mínimo e recomendado do transformador em kVA.",
+  "formula": "kVA = kW / (PF × η) × fator_continuo × (1 + SF/100) / reducao_temp",
+  "field": {
+    "loadPower": "Potência da carga (kW)",
+    "powerFactor": "Fator de potência (0–1)",
+    "ambientTemp": "Temperatura ambiente (°C)",
+    "safetyFactor": "Fator de segurança (%)",
+    "efficiency": "Eficiência do transformador (%)",
+    "loadType": "Tipo de carga",
+    "phaseType": "Tipo de fase"
+  },
+  "type": {
+    "loadType": {
+      "continuous": "Contínua",
+      "non-continuous": "Não contínua"
+    },
+    "phaseType": {
+      "single": "Monofásica",
+      "three": "Trifásica"
+    }
+  },
+  "placeholder": {
+    "loadPower": "ex.: 150",
+    "powerFactor": "ex.: 0.85",
+    "ambientTemp": "ex.: 25",
+    "safetyFactor": "ex.: 20",
+    "efficiency": "ex.: 96"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira valores válidos. O fator de potência deve estar entre 0 e 1, a eficiência entre 0 e 100%, e todos os campos devem ser positivos."
+  },
+  "result": {
+    "heading": "Resultados do dimensionamento do transformador",
+    "recommended": "Tamanho padrão recomendado: {value} kVA",
+    "required": "Requisito calculado: {value} kVA",
+    "apparentPower": "Potência aparente (antes da redução): {value} kVA",
+    "tempDerate": "Redução por temperatura aplicada: {value}%"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de dimensionamento de transformador",
+    "body": "O dimensionamento de transformador é o processo de selecionar a potência nominal adequada em kVA (quilovolt-ampere) para um transformador de potência com base na carga elétrica que ele deve atender. O dimensionamento correto é crítico: um transformador subdimensionado superaquece e falha prematuramente, enquanto um transformador superdimensionado desperdiça investimento, espaço físico e energia por maiores perdas no núcleo em vazio.\n\nO primeiro passo é entender a diferença entre potência ativa e potência aparente. A potência ativa, medida em quilowatts (kW), é a potência realmente consumida por cargas resistivas, como aquecedores e lâmpadas incandescentes. A potência aparente, medida em quilovolt-amperes (kVA), inclui tanto a potência ativa quanto a potência reativa — a energia oscilante absorvida e devolvida por cargas indutivas, como motores e reatores de lâmpadas fluorescentes. A relação entre elas é o fator de potência (PF): kVA = kW ÷ PF. Uma carga com fator de potência de 0.8 exige 25% mais capacidade de transformador do que uma carga puramente resistiva de mesma potência em watts.\n\nA eficiência do transformador também importa. Mesmo um transformador com eficiência nominal de 97% dissipa 3% da potência transferida como calor, o que significa que a fonte deve fornecer 100/97 ≈ 1.031 vezes a carga entregue. Em grandes transformadores industriais, esse acréscimo é pequeno, mas não pode ser ignorado em cálculos de dimensionamento apertados.\n\nO tipo de carga afeta o dimensionamento por meio da regra de carga contínua, amplamente adotada a partir do National Electrical Code (NEC) e de normas semelhantes no mundo todo. Uma carga de operação contínua (definida como aquela que funciona por três horas ou mais na corrente nominal) é limitada a 80% da capacidade nominal do transformador; de forma equivalente, o transformador deve ser dimensionado a 125% dos kVA da carga contínua. Cargas não contínuas não exigem essa redução.\n\nA temperatura ambiente degrada o desempenho do transformador. A maioria dos transformadores de distribuição é especificada para temperatura ambiente máxima de 40°C. Acima de 40°C, o carregamento permitido cai aproximadamente 1% por grau excedente. Em climas quentes, isso pode exigir um transformador substancialmente maior do que a carga sozinha sugere.\n\nPor fim, engenheiros aplicam um fator de segurança — normalmente 15–30% — para acomodar crescimento futuro da carga, incertezas de medição, distorção harmônica de inversores de frequência e equipamentos eletrônicos, além de picos de demanda inesperados. A calculadora soma todas essas correções e então arredonda para o próximo valor nominal padrão em kVA da lista de tamanhos preferenciais da indústria (5, 7.5, 10, 15, 25, 37.5, 50, 75, 100, 167, 250, 333, 500 kVA e maiores)."
+  },
+  "examples": {
+    "heading": "Exemplos de dimensionamento de transformador",
+    "intro": "Três cenários reais que mostram como o tipo de carga, a temperatura e os fatores de segurança afetam a seleção final do transformador em kVA.",
+    "colInput": "Condições de carga",
+    "colOutput": "kVA recomendado",
+    "colNote": "Observações",
+    "loadOffice": "Carga de prédio comercial",
+    "loadIndustrial": "Carga de planta industrial",
+    "loadResidential": "Carga de condomínio residencial",
+    "items": [
+      {
+        "input": "150 kW, PF=0.85, contínua, 25°C, 20% segurança, 96% efic., trifásica",
+        "output": "333 kVA",
+        "note": "Escritório comercial: potência aparente ≈ 183.8 kVA; fator contínuo de 125% e fator de segurança de 20% → requerido ≈ 275.7 kVA; o próximo tamanho padrão é 333 kVA."
+      },
+      {
+        "input": "500 kW, PF=0.75, contínua, 35°C, 25% segurança, 95% efic., trifásica",
+        "output": "1500 kVA",
+        "note": "Planta industrial com baixo fator de potência. Potência aparente ≈ 701.8 kVA; fatores contínuo e de segurança → requerido ≈ 1096.5 kVA; o próximo padrão é 1500 kVA."
+      },
+      {
+        "input": "75 kW, PF=0.90, não contínua, 20°C, 15% segurança, 97% efic., monofásica",
+        "output": "100 kVA",
+        "note": "Condomínio residencial com carga não contínua. Potência aparente ≈ 85.9 kVA; 15% de segurança → requerido ≈ 98.8 kVA; o próximo tamanho padrão é 100 kVA."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de dimensionamento de transformador",
+    "steps": [
+      "Informe a potência ativa total da carga em quilowatts (kW). Em uma instalação existente, leia em um medidor de potência; em novos projetos, some as potências de placa de todos os equipamentos conectados.",
+      "Informe o fator de potência da carga. Use 0.9–1.0 para cargas resistivas, 0.7–0.85 para cargas mistas de motores e iluminação, e consulte as fichas técnicas dos equipamentos para valores precisos.",
+      "Informe a temperatura ambiente em °C. Acima de 40°C, a calculadora aplica automaticamente a redução por temperatura.",
+      "Informe o percentual do fator de segurança (normalmente 15–30%) e a eficiência do transformador (geralmente 95–98%). Selecione carga contínua ou não contínua e configuração monofásica ou trifásica.",
+      "Clique em Calcular para ver os kVA requeridos calculados e o próximo tamanho padrão recomendado de transformador a especificar na compra."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre dimensionamento de transformador",
+    "q1": "Qual é a diferença entre kVA e kW no dimensionamento de transformadores?",
+    "q1_a": "kW é a potência ativa consumida pela carga; kVA é a potência aparente que o transformador deve fornecer, incluindo potência reativa. Para cargas com fator de potência menor que 1.0, o transformador deve ser dimensionado pelo valor em kVA, não pelo valor em kW. Uma carga de 100 kW a 0.8 PF exige um transformador capaz de entregar 125 kVA.",
+    "q2": "Por que cargas contínuas exigem um fator de dimensionamento de 125%?",
+    "q2_a": "Códigos elétricos (como o Artigo 210 do NEC nos EUA) especificam que condutores e transformadores não devem ser carregados acima de 80% de sua capacidade nominal para cargas contínuas, ou seja, cargas que funcionam por três horas ou mais. Esse máximo de 80% corresponde à regra de dimensionamento de 125%. Ele fornece uma margem térmica que evita a degradação do isolamento e aumenta a vida útil do equipamento.",
+    "q3": "Como um fator de potência mais alto afeta o tamanho do transformador?",
+    "q3_a": "Um fator de potência mais alto reduz os kVA de transformador necessários para a mesma carga em kW. Melhorar o fator de potência de 0.7 para 0.9 reduz os kVA necessários em cerca de 22%, o que pode permitir a escolha de um transformador menor e mais barato. Capacitores de correção do fator de potência são frequentemente instalados em locais industriais por esse motivo.",
+    "q4": "Quais tamanhos padrão de transformador em kVA estão disponíveis?",
+    "q4_a": "Potências comuns de transformadores de distribuição incluem 5, 7.5, 10, 15, 25, 37.5, 50, 75, 100, 167, 250, 333, 500, 667 e 1000 kVA, continuando por 1500, 2000 e 2500 kVA. Sempre selecione o próximo tamanho acima do requisito calculado para garantir capacidade adequada.",
+    "q5": "Como a temperatura ambiente afeta o dimensionamento do transformador?",
+    "q5_a": "A maioria dos transformadores é especificada para temperatura ambiente máxima de 40°C. Acima de 40°C, as temperaturas do núcleo e dos enrolamentos aumentam, acelerando o envelhecimento do isolamento. Como regra prática, cada aumento de 10°C na temperatura do enrolamento reduz pela metade a vida do isolamento. A calculadora aplica uma redução de aproximadamente 1% por grau acima de 40°C para compensar.",
+    "q6": "Devo incluir crescimento futuro da carga no fator de segurança?",
+    "q6_a": "Sim. Um fator de segurança de 20–30% normalmente cobre tanto a incerteza de medição quanto o crescimento de carga no curto prazo. Para horizontes de planejamento mais longos (10–20 anos), é comum selecionar um transformador um tamanho padrão acima do que o cálculo imediato sugere. Superdimensionar um transformador em um degrau padrão custa relativamente pouco, mas evita uma substituição cara se a carga crescer mais rápido do que o esperado."
+  }
+}

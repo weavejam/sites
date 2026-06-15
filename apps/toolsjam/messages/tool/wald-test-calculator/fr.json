@@ -1,0 +1,104 @@
+{
+  "title": "Calculateur de test de Wald - Significativité statistique",
+  "tagline": "Effectuez un test de Wald pour déterminer si une estimation de paramètre est statistiquement significative : saisissez β̂, β₀, SE et α pour obtenir des résultats instantanés.",
+  "intro": "Saisissez l’estimation du paramètre, la valeur hypothétique, l’erreur standard et le niveau de significativité. Le calculateur renvoie la statistique de Wald, le score z, la valeur p et la décision.",
+  "formula": "Statistique de Wald W = ((β̂ − β₀) / SE)²  •  score z = (β̂ − β₀) / SE  •  valeur p = 2 · (1 − Φ(|z|))",
+  "field": {
+    "betaHat": "Estimation du paramètre (β̂)",
+    "beta0": "Valeur hypothétique (β₀)",
+    "se": "Erreur standard (SE)",
+    "alpha": "Niveau de significativité (α)"
+  },
+  "placeholder": {
+    "betaHat": "p. ex. 2.5",
+    "beta0": "p. ex. 0",
+    "se": "p. ex. 1.1",
+    "alpha": "p. ex. 0.05"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres valides. L’erreur standard doit être positive et le niveau de significativité doit être compris entre 0 et 1."
+  },
+  "result": {
+    "heading": "Résultat",
+    "waldStat": "Statistique de Wald (W)",
+    "zScore": "Score z",
+    "pValue": "Valeur p",
+    "decision": "Décision",
+    "reject": "Rejeter H₀",
+    "failToReject": "Ne pas rejeter H₀"
+  },
+  "about": {
+    "heading": "À propos du calculateur de test de Wald",
+    "body": "Le test de Wald est un test statistique paramétrique nommé d’après le statisticien Abraham Wald. Il fait partie des trois tests classiques d’hypothèse en estimation du maximum de vraisemblance, avec le test du rapport de vraisemblance et le test du score (multiplicateur de Lagrange). Le test de Wald est de loin le plus courant, car il ne nécessite que l’estimation elle-même et son erreur standard, deux valeurs habituellement fournies par les logiciels statistiques, sans exiger la fonction de vraisemblance complète.\n\nL’idée du test de Wald est simple. Si une estimation de paramètre β̂ est éloignée de la valeur hypothétique β₀ relativement à sa précision (mesurée par l’erreur standard SE), alors l’hypothèse nulle H₀: β = β₀ a peu de chances d’être vraie. La statistique de Wald est W = ((β̂ − β₀) / SE)², c’est-à-dire le carré du score z. Sous l’hypothèse nulle et avec un échantillon suffisamment grand, W suit une loi du khi carré à un degré de liberté. De façon équivalente, le score z signé z = (β̂ − β₀) / SE suit une loi normale standard, de sorte que la valeur p bilatérale est 2 · (1 − Φ(|z|)), où Φ est la fonction de répartition de la loi normale standard.\n\nLa valeur p répond à la question suivante : si l’hypothèse nulle était vraie, quelle serait la probabilité d’observer une statistique de test au moins aussi extrême que celle effectivement calculée ? Une petite valeur p (généralement inférieure au niveau de significativité α, souvent fixé à 0.05 ou 0.01) fournit une preuve contre H₀. Lorsque p < α, le résultat est dit statistiquement significatif et l’on rejette l’hypothèse nulle. Lorsque p ≥ α, on ne la rejette pas : les données ne fournissent pas assez d’éléments pour conclure que le paramètre diffère de β₀, même si cela ne signifie pas que H₀ est vraie.\n\nLe test de Wald est omniprésent en statistique appliquée. En régression linéaire et logistique, les statistiques t rapportées pour chaque coefficient sont essentiellement des scores z de Wald, et les valeurs p associées testent si chaque coefficient est significativement différent de zéro. En économétrie, le test de Wald sert à tester simultanément des hypothèses conjointes sur plusieurs coefficients (au moyen d’extensions en algèbre matricielle). En analyse de survie, il teste si une covariable prédit significativement le taux de risque. En génétique, les études d’association pangénomique utilisent des statistiques de type Wald pour tester des millions de polymorphismes nucléotidiques simples.\n\nUne limite connue du test de Wald est qu’il peut produire des résultats différents selon la paramétrisation d’un paramètre, car le test repose sur une approximation quadratique locale de la vraisemblance. Pour les petits échantillons, le test du rapport de vraisemblance est souvent préféré, car il est plus précis. Le test de Wald est le plus fiable lorsque la taille de l’échantillon est grande, que l’estimation est approximativement distribuée normalement (c’est-à-dire lorsque les conditions asymptotiques sont remplies) et que l’erreur standard est bien estimée."
+  },
+  "examples": {
+    "heading": "Exemples de test de Wald",
+    "intro": "Trois scénarios réalistes issus de l’économie, de la médecine et de la statistique générale montrant le test de Wald en pratique.",
+    "colInput": "Entrée",
+    "colOutput": "Décision",
+    "colNote": "Détails",
+    "loadBasic": "Charger l’exemple de base",
+    "loadEducation": "Charger l’exemple sur l’éducation",
+    "loadDrug": "Charger l’exemple d’essai médicamenteux",
+    "items": [
+      {
+        "input": "β̂=2.5, β₀=0, SE=1.1, α=0.05",
+        "output": "Rejeter H₀",
+        "note": "z = 2.27, W = 5.17, p ≈ 0.023. L’estimation est à plus de 2 erreurs standards de zéro ; on rejette donc l’hypothèse nulle à α = 0.05."
+      },
+      {
+        "input": "β̂=0.08, β₀=0, SE=0.02, α=0.05",
+        "output": "Rejeter H₀",
+        "note": "Coefficient d’éducation : z = 4.0, p < 0.001. Une année supplémentaire d’éducation a un effet non nul hautement significatif sur les salaires."
+      },
+      {
+        "input": "β̂=−0.5, β₀=0, SE=0.2, α=0.01",
+        "output": "Ne pas rejeter H₀",
+        "note": "Efficacité du médicament avec un α=0.01 strict : z = −2.5, p ≈ 0.012. L’effet est significatif à α=0.05, mais pas au seuil plus strict de 1 %."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de test de Wald",
+    "steps": [
+      "Saisissez l’estimation du paramètre β̂ issue de votre sortie de régression ou de votre modèle statistique.",
+      "Saisissez la valeur hypothétique β₀, généralement 0 lorsque vous testez si un coefficient est non nul.",
+      "Saisissez l’erreur standard SE de l’estimation, indiquée dans la même sortie statistique.",
+      "Définissez le niveau de significativité α : utilisez 0.05 pour le seuil conventionnel de 5 % ou 0.01 pour un seuil plus strict de 1 %.",
+      "Cliquez sur Calculer pour obtenir la statistique de Wald, le score z, la valeur p bilatérale et la décision de rejet ou de non-rejet."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur le test de Wald",
+    "items": [
+      {
+        "q": "Que mesure le test de Wald ?",
+        "a": "Le test de Wald mesure la distance entre une estimation de paramètre et une valeur hypothétique, exprimée en unités d’erreur standard. Il teste si cette distance est suffisamment grande pour conclure, à un niveau de significativité donné, que le vrai paramètre diffère de la valeur hypothétique."
+      },
+      {
+        "q": "Quelle est la différence entre le test de Wald et le test t ?",
+        "a": "Dans les grands échantillons, ils sont essentiellement équivalents : tous deux comparent une estimation à une valeur nulle en unités d’erreur standard. La principale différence est que le test t utilise une loi t (tenant compte de l’incertitude sur l’estimation de la variance), tandis que le test de Wald utilise la loi normale et constitue donc un test asymptotique mieux adapté aux grands échantillons."
+      },
+      {
+        "q": "Pourquoi l’hypothèse nulle est-elle généralement β₀ = 0 ?",
+        "a": "Tester par rapport à zéro revient à demander si un prédicteur a un effet quelconque. En régression, un coefficient nul signifie que la variable est non pertinente. Fixer β₀ = 0 est l’usage le plus courant, mais vous pouvez tester n’importe quelle valeur, par exemple pour vérifier si un paramètre est égal à une valeur prédite par la théorie, comme 1 ou −0.5."
+      },
+      {
+        "q": "Que signifie ne pas rejeter H₀ ?",
+        "a": "Ne pas rejeter H₀ signifie que les données ne fournissent pas assez de preuves pour conclure que le paramètre diffère de la valeur hypothétique. Cela ne prouve pas que H₀ est vraie. Le résultat peut refléter un effet réellement nul ou une puissance statistique insuffisante due à un petit échantillon ou à une grande erreur standard."
+      },
+      {
+        "q": "Quand utiliser plutôt le test du rapport de vraisemblance ?",
+        "a": "Le test du rapport de vraisemblance est préférable lorsque les tailles d’échantillon sont petites, lorsque le paramètre est proche de la limite de son domaine admissible ou lorsque les résultats du test de Wald dépendent fortement de la paramétrisation choisie. Pour de grands échantillons et des estimations distribuées de manière régulière, le test de Wald et le test du rapport de vraisemblance donnent des valeurs p presque identiques."
+      },
+      {
+        "q": "Quel niveau de significativité dois-je utiliser ?",
+        "a": "Le seuil conventionnel est α = 0.05 (5 %), ce qui signifie que vous acceptez 5 % de risque de rejeter à tort une hypothèse nulle vraie. Pour des exigences plus strictes, comme l’approbation de dispositifs médicaux, la génomique ou la physique, on utilise α = 0.01, voire 0.001. Pour la recherche exploratoire, α = 0.10 est parfois accepté. Ce choix doit être fait avant d’examiner les données."
+      }
+    ]
+  }
+}

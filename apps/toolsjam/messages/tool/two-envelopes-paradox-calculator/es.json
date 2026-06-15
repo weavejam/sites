@@ -1,0 +1,79 @@
+{
+  "title": "Calculadora de la paradoja de los dos sobres",
+  "tagline": "Explora de forma interactiva la famosa paradoja de los dos sobres. Introduce el monto de tu sobre para analizar los valores esperados y entender el rompecabezas matemático.",
+  "intro": "Introduce el monto que ves en el sobre elegido y haz clic en Analizar para ver el valor esperado de cambiar frente a quedarse, junto con la explicación de la paradoja.",
+  "field": {
+    "amount": "Monto en tu sobre (X)"
+  },
+  "placeholder": {
+    "amount": "p. ej., 100"
+  },
+  "button": {
+    "analyze": "Analizar",
+    "reset": "Reiniciar"
+  },
+  "error": {
+    "invalid": "Introduce un número positivo para el monto del sobre."
+  },
+  "result": {
+    "heading": "Análisis del valor esperado",
+    "evKeepLabel": "Valor esperado si te quedas",
+    "evKeepDesc": "El valor en tu sobre es seguro.",
+    "evSwitchLabel": "Valor esperado si cambias",
+    "evSwitchDesc": "Basado en E[el otro] = 0.5×(2X) + 0.5×(X/2) = 1.25X",
+    "paradoxNote": "Paradoja: El mismo razonamiento aplicado al otro sobre también da 1.25× su valor, creando un aparente bucle infinito. El fallo es que X no puede ser simultáneamente la cantidad mayor y la menor."
+  },
+  "about": {
+    "heading": "Acerca de la paradoja de los dos sobres",
+    "body": "La paradoja de los dos sobres es uno de los rompecabezas más célebres de la teoría de la probabilidad y la teoría de la decisión. Se popularizó en las décadas de 1980 y 1990 y sigue generando debates intensos entre matemáticos, filósofos y estadísticos. El planteamiento es engañosamente simple: hay dos sobres, cada uno contiene una cantidad de dinero. Uno de los sobres tiene exactamente el doble que el otro. Eliges uno al azar, miras la cantidad X que hay dentro y luego debes decidir si cambias al otro sobre.\n\nEl argumento probabilístico ingenuo dice así: el otro sobre contiene 2X (si elegiste el menor) o X/2 (si elegiste el mayor). Ambos casos son igual de probables con probabilidad 0.5. Por tanto, el valor esperado del otro sobre es 0.5 × 2X + 0.5 × X/2 = X + X/4 = 1.25X. Como 1.25X es mayor que X, siempre deberías cambiar. Pero ahí está la paradoja: si cambias y ahora tienes el otro sobre con cantidad Y = 1.25X, la misma lógica te dice que vuelvas a cambiar, y así ad infinitum.\n\nEsta calculadora aplica el argumento ingenuo para calcular ambos valores esperados, haciendo tangible la paradoja con números reales. Cuando introduces X = 100, muestra que el análisis ingenuo predice un EV de 125 al cambiar y solo 100 al quedarse. El cálculo aritmético es correcto, entonces ¿por qué la conclusión es errónea?\n\nLa resolución depende de la teoría de la probabilidad. El argumento ingenuo asume implícitamente que, después de ver X, es igual de probable que el otro sobre contenga 2X o X/2; es decir, trata a X como si pudiera ser tanto la cantidad menor como la mayor con la misma probabilidad. Pero en cualquier caso concreto, X es o bien la cantidad menor (y entonces el otro sobre definitivamente tiene 2X) o bien la mayor (y entonces el otro sobre definitivamente tiene X/2). El análisis correcto exige una distribución previa sobre las posibles cantidades ocultas en los sobres. Para la mayoría de los priors naturales —incluida cualquier distribución con esperanza finita— el valor esperado correcto de cambiar es exactamente X, sin ventaja alguna.\n\nDicho de forma más formal, supón que las dos cantidades son m y 2m tomadas de alguna distribución. Si observas X, la esperanza condicional del otro sobre dada la distribución previa no es 1.25X en general. La fórmula ingenua mezcla dos cantidades de referencia (m y 2m) como si compartieran la misma base, y ese es el truco algebraico que crea la ilusión de ganancia.\n\nLa paradoja de los dos sobres ilustra de forma elegante cómo un razonamiento probabilístico informal puede llevar a contradicciones cuando se aplica sin cuidado, y por qué es esencial condicionar bayesianamente sobre el prior correcto. Ha impulsado investigaciones sobre priors impropios, intercambiabilidad y teoría de decisión bajo ambigüedad, convirtiéndose en un ejemplo clásico en cursos avanzados de probabilidad."
+  },
+  "examples": {
+    "heading": "Ejemplos de la paradoja de los dos sobres",
+    "intro": "Cantidades concretas que muestran el cálculo ingenuo del valor esperado y la paradoja que genera.",
+    "colInput": "Cantidad vista (X)",
+    "colOutput": "EV si cambias (ingenuo)",
+    "colNote": "Interpretación",
+    "items": [
+      {
+        "input": "X = $100",
+        "output": "$125",
+        "note": "EV ingenuo = 0.5×$200 + 0.5×$50 = $125. Parece que cambiar gana $25, pero la misma lógica aplicada al otro lado llega a la misma conclusión."
+      },
+      {
+        "input": "X = $40",
+        "output": "$50",
+        "note": "EV = 0.5×$80 + 0.5×$20 = $50. El argumento ingenuo siempre infla la ganancia esperada en un 25% de la cantidad observada."
+      },
+      {
+        "input": "X = $500",
+        "output": "$625",
+        "note": "EV = 0.5×$1000 + 0.5×$250 = $625. Para cualquier X la fórmula da 1.25X, lo que explica por qué la paradoja persiste sin importar la cantidad observada."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de los dos sobres",
+    "steps": [
+      "Introduce en el campo etiquetado como Monto en tu sobre (X) la cantidad que ves en el sobre elegido.",
+      "Haz clic en Analizar para calcular los valores esperados ingenuos de quedarse y cambiar.",
+      "Lee el panel de Valor esperado si te quedas: simplemente muestra tu cantidad observada X como valor seguro.",
+      "Lee el panel de Valor esperado si cambias: muestra 1.25X, resultado del argumento probabilístico ingenuo.",
+      "Revisa la nota de la paradoja debajo de los resultados para entender por qué la cifra 1.25X es engañosa y cuál es la resolución correcta."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la paradoja de los dos sobres",
+    "q1": "¿Por qué el argumento ingenuo da 1.25X?",
+    "q1_a": "La fórmula ingenua calcula 0.5×(2X) + 0.5×(X/2) = 1.25X tratando ambas posibilidades como igualmente probables dado el valor observado. Es correcta algebraicamente, pero falla probabilísticamente porque mezcla dos cantidades de referencia distintas como si compartieran la misma base.",
+    "q2": "¿Alguna vez es correcto cambiar de sobre?",
+    "q2_a": "Sin información adicional, cambiar o quedarse son decisiones igualmente buenas. El valor esperado de ambos sobres es el mismo cuando se calcula correctamente con una distribución previa adecuada sobre las cantidades. Cambiar nunca ofrece una ventaja garantizada.",
+    "q3": "¿Cuál es el fallo en el argumento de cambiar?",
+    "q3_a": "El fallo es que, después de ver X, no sabes si X es la cantidad menor o la mayor. El argumento ingenuo trata a X como si pudiera ser m y 2m a la vez, pero esos casos se excluyen mutuamente. Un análisis bayesiano riguroso muestra que la ganancia esperada correcta al cambiar es cero para cualquier prior adecuado.",
+    "q4": "¿La paradoja cambia si miro dentro del sobre?",
+    "q4_a": "Mirar y ver X proporciona información, pero sin conocer la distribución de cantidades no ayuda a decidir. Si conoces la distribución previa (por ejemplo, cantidades extraídas de una distribución uniforme con un máximo), a veces puedes ganar al cambiar, pero la regla ingenua de 1.25X sigue siendo incorrecta en general.",
+    "q5": "¿Es lo mismo que el problema de Monty Hall?",
+    "q5_a": "Están relacionados, pero son distintos. En el problema de Monty Hall, la acción del anfitrión después de tu elección aporta información nueva real que cambia las probabilidades, así que cambiar sí es beneficioso. En la paradoja de los dos sobres, no se revela información nueva después de ver X, por lo que cambiar no tiene beneficio esperado sobre quedarse.",
+    "q6": "¿Qué nos enseña esta paradoja sobre la probabilidad?",
+    "q6_a": "Subraya la importancia de especificar la distribución previa antes de aplicar argumentos probabilísticos. El razonamiento informal sobre eventos equiprobables debe apoyarse en un espacio de probabilidad bien definido. Es una advertencia sobre los peligros de usar fórmulas de valor esperado sin comprobar las suposiciones subyacentes."
+  }
+}

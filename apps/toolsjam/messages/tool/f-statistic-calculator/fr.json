@@ -1,0 +1,102 @@
+{
+  "title": "Calculateur de statistique F - ANOVA et test du rapport de variances",
+  "tagline": "Calculez la statistique F, les degrés de liberté, la valeur p et la valeur F critique pour comparer deux variances d'échantillon dans une ANOVA ou un test de rapport F.",
+  "intro": "Saisissez la variance d'échantillon et la taille de chaque groupe, choisissez un niveau de signification et obtenez la statistique F avec une décision claire de rejet ou de non-rejet.",
+  "card": {
+    "title": "Calculateur de statistique F",
+    "description": "Comparez les variances de deux groupes avec le test du rapport F"
+  },
+  "field": {
+    "group1": "Données du groupe 1",
+    "group2": "Données du groupe 2",
+    "variance": "Variance d'échantillon (s²)",
+    "variance1": "Variance d'échantillon du groupe 1 (s²)",
+    "variance2": "Variance d'échantillon du groupe 2 (s²)",
+    "sampleSize": "Taille d'échantillon (n)",
+    "sampleSize1": "Taille d'échantillon du groupe 1 (n)",
+    "sampleSize2": "Taille d'échantillon du groupe 2 (n)",
+    "alpha": "Niveau de signification (α)"
+  },
+  "placeholder": {
+    "variance": "p. ex. 0.34",
+    "sampleSize": "p. ex. 25"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs valides. Les variances doivent être ≥ 0 et les tailles d'échantillon doivent être des entiers ≥ 2."
+  },
+  "result": {
+    "heading": "Résultat",
+    "fStatistic": "Statistique F",
+    "df1": "df₁ (numérateur)",
+    "df2": "df₂ (dénominateur)",
+    "pValue": "Valeur p (bilatérale)",
+    "criticalF": "Valeur F critique",
+    "reject": "Rejeter H₀ — les variances sont significativement différentes.",
+    "failReject": "Ne pas rejeter H₀ — aucune différence significative entre les variances."
+  },
+  "about": {
+    "heading": "À propos du calculateur de statistique F",
+    "body": "La statistique F est un rapport de deux variances utilisé pour déterminer si les différences entre moyennes de groupes ou variances de groupes sont statistiquement significatives. Nommée d'après Sir Ronald A. Fisher, elle constitue l'ossature de l'analyse de variance (ANOVA) et représente aussi la quantité clé du test F d'égalité de deux variances. Chaque fois que vous devez décider si la dispersion des valeurs d'un groupe diffère de manière significative de celle d'un autre, la statistique F fournit une réponse rigoureuse fondée sur les probabilités.\n\nÀ la base, la statistique F est simplement F = s₁² / s₂², où s₁² et s₂² sont les variances d'échantillon de deux groupes indépendants. Par convention, la variance la plus grande est placée au numérateur afin que F soit toujours ≥ 1, ce qui limite toute la masse de probabilité pertinente à la queue droite de la distribution F. La valeur obtenue est ensuite comparée à une distribution F théorique paramétrée par deux valeurs de degrés de liberté : df₁ = n₁ − 1 (numérateur) et df₂ = n₂ − 1 (dénominateur). Une grande valeur de F signifie que les variances sont très différentes ; un F proche de 1 signifie qu'elles sont similaires.\n\nLa distribution F est asymétrique à droite et ne prend que des valeurs non négatives. Sa forme exacte dépend de df₁ et df₂. Pour un test bilatéral — le type le plus courant, qui recherche toute différence quelle qu'en soit la direction — la valeur p est calculée comme 2 × P(F > F_obs), où P(F > F_obs) est l'aire dans la queue droite de la distribution F au-delà de la statistique observée. Si cette valeur p est inférieure ou égale au niveau de signification α choisi, vous rejetez l'hypothèse nulle H₀: σ₁² = σ₂² et concluez que les variances diffèrent significativement.\n\nDans l'ANOVA, la statistique F prend une forme légèrement différente : c'est le rapport entre la variance intergroupes (carrés moyens intergroupes, ou MSB) et la variance intragroupes (carrés moyens intragroupes, ou MSW). Si les moyennes des groupes sont toutes identiques, MSB et MSW devraient être à peu près égaux, donnant F ≈ 1. À mesure que les moyennes des groupes divergent, MSB augmente relativement à MSW et F s'accroît, jusqu'à dépasser le seuil critique.\n\nLes applications courantes de la statistique F incluent le contrôle qualité en fabrication (deux machines produisent-elles des pièces avec la même variabilité ?), la recherche en éducation (deux méthodes d'enseignement donnent-elles des résultats de test aussi réguliers ?), l'analyse financière (deux actions ont-elles une volatilité similaire ?) et les sciences agricoles (deux engrais donnent-ils des cultures avec la même régularité ?). Avant d'effectuer un test t à deux échantillons, de nombreux analystes utilisent d'abord le test F pour vérifier l'hypothèse d'égalité des variances ; si le test F rejette H₀, un test t de Welch (variances inégales) est plus approprié.\n\nCe calculateur automatise le calcul de la CDF de la distribution F à l'aide de la fonction bêta incomplète régularisée, ce qui fournit des valeurs p précises pour tout degré de liberté positif sans recourir aux tables statistiques. La valeur F critique est trouvée en inversant numériquement la CDF. Les deux sorties sont cohérentes avec les valeurs produites par R, Python (scipy) et SPSS."
+  },
+  "examples": {
+    "heading": "Exemples du calculateur de statistique F",
+    "intro": "Trois scénarios réels montrant comment appliquer le test F pour comparer des variances.",
+    "colInput": "Entrée",
+    "colOutput": "Résultat",
+    "colNote": "Contexte",
+    "loadMfg": "Charger l'exemple de fabrication",
+    "loadTeaching": "Charger l'exemple de méthodes d'enseignement",
+    "loadStock": "Charger l'exemple de volatilité boursière",
+    "items": [
+      {
+        "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+        "output": "F = 1.1724, p ≈ 0.6767 — ne pas rejeter H₀",
+        "note": "Deux machines produisent des boulons. La variance du diamètre n'est pas significativement différente au seuil de 5 %."
+      },
+      {
+        "input": "s₁² = 110, n₁ = 41; s₂² = 135, n₂ = 31; α = 0.05",
+        "output": "F = 1.2273, p ≈ 0.5061 — ne pas rejeter H₀",
+        "note": "Deux méthodes d'enseignement. Les variances des scores de test ne sont pas significativement différentes ; les deux méthodes produisent une régularité similaire."
+      },
+      {
+        "input": "s₁² = 1.5, n₁ = 30; s₂² = 1.2, n₂ = 30; α = 0.01",
+        "output": "F = 1.25, p ≈ 0.5717 — ne pas rejeter H₀",
+        "note": "Variances des rendements quotidiens d'actions. Au niveau de signification de 1 %, rien n'indique une volatilité différente."
+      },
+      {
+        "input": "s₁² = 550, n₁ = 50; s₂² = 620, n₂ = 50; α = 0.10",
+        "output": "F = 1.1273, p ≈ 0.5659 — ne pas rejeter H₀",
+        "note": "Rendement de cultures avec deux engrais. La variance de la production est statistiquement similaire au seuil de 10 %."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de statistique F",
+    "steps": [
+      "Saisissez la variance d'échantillon (s²) et la taille d'échantillon (n) du groupe 1 dans la section « Données du groupe 1 ». Les deux valeurs doivent être des nombres ≥ 0 (variance) et ≥ 2 (taille d'échantillon).",
+      "Saisissez la variance et la taille d'échantillon correspondantes pour le groupe 2 dans la section « Données du groupe 2 ».",
+      "Sélectionnez le niveau de signification α souhaité dans la liste déroulante — 0.01, 0.05 ou 0.10 sont les trois choix standard.",
+      "Cliquez sur « Calculer ». Le calculateur place la variance la plus grande au numérateur, calcule F = s_max² / s_min², détermine les degrés de liberté (df₁ = n_max − 1, df₂ = n_min − 1) et évalue la valeur p bilatérale ainsi que la valeur F critique.",
+      "Comparez la valeur p à α. Si p ≤ α, rejetez H₀ et concluez que les variances diffèrent significativement. Sinon, ne rejetez pas H₀. Cliquez sur « Réinitialiser » pour effacer tous les champs et recommencer."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de statistique F",
+    "q1": "Qu'est-ce que la statistique F ?",
+    "q1_a": "La statistique F est le rapport de deux variances d'échantillon : F = s₁² / s₂². Par convention, la variance la plus grande est placée au numérateur, donc F ≥ 1. Sous l'hypothèse nulle selon laquelle les deux variances de population sont égales, elle suit une distribution F avec df₁ = n₁ − 1 et df₂ = n₂ − 1 degrés de liberté.",
+    "q2": "Que représente la valeur p dans un test F ?",
+    "q2_a": "La valeur p est la probabilité d'observer une statistique F aussi extrême — ou plus extrême — que celle calculée, en supposant que H₀ (variances égales) est vraie. Une petite valeur p (≤ α) signifie qu'un rapport aussi grand est peu probable sous H₀, donc vous rejetez H₀. Une grande valeur p signifie que les données sont compatibles avec des variances égales.",
+    "q3": "Quand utiliser un test F unilatéral plutôt que bilatéral ?",
+    "q3_a": "Utilisez un test bilatéral (par défaut ici) lorsque vous voulez détecter toute différence entre les variances, quelle qu'en soit la direction. Utilisez un test unilatéral uniquement si vous avez une hypothèse directionnelle préalable, par exemple σ₁² > σ₂². Pour une valeur p unilatérale, divisez par deux la valeur p bilatérale de ce calculateur.",
+    "q4": "Quelles sont les hypothèses du test F ?",
+    "q4_a": "Le test F d'égalité des variances exige que les deux échantillons soient tirés de populations normalement distribuées et qu'ils soient indépendants. Si la normalité est douteuse, envisagez le test de Levene ou le test de Brown–Forsythe, plus robustes à la non-normalité.",
+    "q5": "Comment utilise-t-on la valeur F critique ?",
+    "q5_a": "La valeur F critique F_crit est le seuil au-delà duquel vous rejetez H₀ au niveau α choisi. Si F_obs > F_crit, rejetez H₀. La valeur critique est équivalente à l'approche par valeur p : F_obs > F_crit si et seulement si valeur p < α. Les deux méthodes donnent toujours la même décision.",
+    "q6": "Quelle est la différence entre un test F et un test t ?",
+    "q6_a": "Un test t compare les moyennes de deux groupes, tandis qu'un test F (dans le contexte de deux échantillons) compare leurs variances. Dans l'ANOVA, la statistique F compare la variance entre les moyennes de groupes à la variance au sein des groupes, testant effectivement si toutes les moyennes de groupes sont égales. Le test t à deux échantillons peut être vu comme un cas particulier où la valeur F est égale à t²."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Calculateur du paradoxe des deux enveloppes",
+  "tagline": "Explorez de manière interactive le célèbre paradoxe des deux enveloppes. Saisissez le montant de votre enveloppe pour analyser les valeurs espérées et comprendre l’énigme mathématique.",
+  "intro": "Saisissez le montant visible dans l’enveloppe choisie puis cliquez sur Analyser pour voir la valeur espérée en changeant ou en gardant, ainsi que l’explication du paradoxe.",
+  "field": {
+    "amount": "Montant dans votre enveloppe (X)"
+  },
+  "placeholder": {
+    "amount": "ex. 100"
+  },
+  "button": {
+    "analyze": "Analyser",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir un nombre positif pour le montant de l’enveloppe."
+  },
+  "result": {
+    "heading": "Analyse de la valeur espérée",
+    "evKeepLabel": "Valeur espérée si vous gardez",
+    "evKeepDesc": "La valeur dans votre enveloppe est certaine.",
+    "evSwitchLabel": "Valeur espérée si vous changez",
+    "evSwitchDesc": "Basée sur E[autre] = 0.5×(2X) + 0.5×(X/2) = 1.25X",
+    "paradoxNote": "Paradoxe : le même raisonnement appliqué à l’autre enveloppe donne aussi 1.25× sa valeur, créant une boucle apparemment infinie. L’erreur est que X ne peut pas être à la fois le montant le plus grand et le plus petit."
+  },
+  "about": {
+    "heading": "À propos du paradoxe des deux enveloppes",
+    "body": "Le paradoxe des deux enveloppes est l’un des casse-têtes les plus célèbres de la théorie des probabilités et de la théorie de la décision. Popularisé dans les années 1980 et 1990, il continue de susciter des débats animés entre mathématiciens, philosophes et statisticiens. Le scénario est trompeusement simple : deux enveloppes contiennent chacune une somme d’argent. L’une contient exactement le double de l’autre. Vous choisissez une enveloppe au hasard, regardez le montant X à l’intérieur, puis devez décider si vous changez pour l’autre enveloppe.\n\nL’argument probabiliste naïf est le suivant : l’autre enveloppe contient soit 2X (si vous avez choisi la plus petite), soit X/2 (si vous avez choisi la plus grande). Les deux cas sont supposés également probables avec une probabilité de 0.5. Par conséquent, la valeur espérée de l’autre enveloppe est 0.5 × 2X + 0.5 × X/2 = X + X/4 = 1.25X. Comme 1.25X est supérieur à X, vous devriez toujours changer. Mais voici le paradoxe : si vous changez et tenez maintenant l’autre enveloppe contenant Y = 1.25X, le même raisonnement vous dit de revenir en arrière, et ainsi de suite à l’infini.\n\nCe calculateur applique l’argument naïf pour calculer les deux valeurs espérées, rendant le paradoxe tangible avec de vrais nombres. Lorsque vous entrez X = 100, il montre que l’analyse naïve prédit une EV de 125 en changeant et seulement 100 en gardant. Le calcul est arithmétiquement correct, alors pourquoi la conclusion est-elle erronée ?\n\nLa résolution repose sur la théorie des probabilités. L’argument naïf suppose implicitement qu’après avoir vu X, il est également probable que l’autre enveloppe contienne 2X ou X/2 — autrement dit, il traite X comme s’il pouvait être à la fois le plus petit et le plus grand montant avec la même probabilité. Or, dans toute configuration concrète, X est soit le plus petit montant (auquel cas l’autre enveloppe contient forcément 2X), soit le plus grand (auquel cas l’autre enveloppe contient forcément X/2). Une analyse correcte exige une distribution a priori des montants possibles cachés dans les enveloppes. Pour la plupart des a priori naturels — y compris toute distribution d’espérance finie — la valeur espérée correcte du changement est exactement X, ce qui n’offre aucun avantage.\n\nPlus formellement, supposons que les deux montants soient m et 2m tirés d’une certaine distribution. Si vous observez X, l’espérance conditionnelle de l’autre enveloppe donnée par l’a priori n’est pas 1.25X en général. La formule naïve mélange deux montants de référence (m et 2m) comme s’ils partageaient la même base, et c’est ce tour de passe-passe algébrique qui crée l’illusion d’un gain.\n\nLe paradoxe des deux enveloppes illustre magnifiquement comment un raisonnement probabiliste informel peut mener à des contradictions s’il est appliqué sans précaution, et pourquoi il est essentiel de conditionner rigoureusement selon le bon a priori bayésien. Il a stimulé des travaux sur les a priori impropres, l’échangeabilité et la théorie de la décision sous ambiguïté, ce qui en fait un exemple incontournable des cours avancés de probabilités."
+  },
+  "examples": {
+    "heading": "Exemples du paradoxe des deux enveloppes",
+    "intro": "Montants concrets montrant le calcul naïf de la valeur espérée et le paradoxe qu’il crée.",
+    "colInput": "Montant vu (X)",
+    "colOutput": "EV si vous changez (naïf)",
+    "colNote": "Interprétation",
+    "items": [
+      {
+        "input": "X = $100",
+        "output": "$125",
+        "note": "EV naïve = 0.5×$200 + 0.5×$50 = $125. On dirait qu’échanger rapporte $25, mais le même raisonnement appliqué à l’autre côté mène à la même conclusion."
+      },
+      {
+        "input": "X = $40",
+        "output": "$50",
+        "note": "EV = 0.5×$80 + 0.5×$20 = $50. L’argument naïf gonfle toujours le gain espéré de 25 % du montant observé."
+      },
+      {
+        "input": "X = $500",
+        "output": "$625",
+        "note": "EV = 0.5×$1000 + 0.5×$250 = $625. Pour tout X, la formule donne 1.25X, ce qui explique pourquoi le paradoxe persiste quel que soit le montant observé."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur des deux enveloppes",
+    "steps": [
+      "Saisissez dans le champ intitulé Montant dans votre enveloppe (X) le montant que vous voyez dans l’enveloppe choisie.",
+      "Cliquez sur Analyser pour calculer les valeurs espérées naïves pour garder ou changer.",
+      "Lisez le panneau Valeur espérée si vous gardez : il affiche simplement votre montant observé X comme valeur certaine.",
+      "Lisez le panneau Valeur espérée si vous changez : il affiche 1.25X, résultat de l’argument probabiliste naïf.",
+      "Consultez la note sur le paradoxe sous les résultats pour comprendre pourquoi la valeur 1.25X est trompeuse et quelle est la bonne résolution."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du paradoxe des deux enveloppes",
+    "q1": "Pourquoi l’argument naïf donne-t-il 1.25X ?",
+    "q1_a": "La formule naïve calcule 0.5×(2X) + 0.5×(X/2) = 1.25X en traitant les deux possibilités comme également probables étant donné la valeur observée. Le calcul est correct sur le plan algébrique, mais il est probabilistiquement faux car il mélange deux montants de référence différents comme s’ils partageaient la même base.",
+    "q2": "Est-il parfois correct de changer d’enveloppe ?",
+    "q2_a": "Sans information supplémentaire, changer ou garder sont deux choix équivalents. La valeur espérée des deux enveloppes est la même lorsqu’on la calcule correctement à l’aide d’une distribution a priori appropriée des montants. Changer n’offre jamais d’avantage garanti.",
+    "q3": "Quelle est la faille dans l’argument du changement ?",
+    "q3_a": "La faille est qu’après avoir vu X, vous ne savez pas si X est le plus petit ou le plus grand montant. L’argument naïf traite X comme s’il pouvait être à la fois m et 2m, mais ces cas s’excluent mutuellement. Une analyse bayésienne rigoureuse montre que le gain espéré correct du changement est nul pour tout a priori approprié.",
+    "q4": "Le paradoxe change-t-il si j’ouvre l’enveloppe ?",
+    "q4_a": "Ouvrir l’enveloppe et voir X fournit de l’information, mais sans connaître la distribution des montants, cela ne permet pas de décider. Si vous connaissez la distribution a priori (par exemple des montants tirés d’une distribution uniforme bornée), il est parfois avantageux de changer, mais la règle naïve 1.25X reste en général fausse.",
+    "q5": "Est-ce la même chose que le problème de Monty Hall ?",
+    "q5_a": "Ils sont liés mais différents. Dans le problème de Monty Hall, l’action de l’animateur après votre choix fournit une véritable nouvelle information qui modifie les probabilités, donc changer est réellement avantageux. Dans le paradoxe des deux enveloppes, aucune nouvelle information n’est révélée après avoir vu X, donc le changement n’a aucun avantage espéré par rapport au fait de garder.",
+    "q6": "Qu’enseigne ce paradoxe sur la probabilité ?",
+    "q6_a": "Il souligne l’importance de préciser la distribution a priori avant d’appliquer des arguments de probabilité. Le raisonnement informel sur des événements équiprobables doit reposer sur un espace probabiliste bien défini. C’est un avertissement sur les dangers d’utiliser des formules de valeur espérée sans vérifier les hypothèses sous-jacentes."
+  }
+}

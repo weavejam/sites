@@ -1,0 +1,108 @@
+{
+  "title": "Calculateur de loi normale inverse - trouver X",
+  "tagline": "Trouvez la valeur x correspondant à une probabilité cumulée donnée sous la courbe normale. Prend en charge les calculs en queue gauche, queue droite et deux queues (centre).",
+  "intro": "Saisissez la moyenne μ, l'écart type σ, la probabilité cumulée et le type de queue pour obtenir la valeur x ou l'intervalle correspondant.",
+  "field": {
+    "mean": "Moyenne (μ)",
+    "stdDev": "Écart type (σ)",
+    "probability": "Probabilité cumulée",
+    "tailType": "Type de queue",
+    "probabilityHintOne": "Saisissez une valeur entre 0 et 1 (exclus). En queue gauche : aire à gauche de x. En queue droite : aire à droite de x.",
+    "probabilityHintTwo": "Saisissez l'aire centrale (entre les deux valeurs x), par exemple 0.95 pour le centre à 95 %."
+  },
+  "placeholder": {
+    "probability": "ex. 0.95"
+  },
+  "tail": {
+    "left": "Queue gauche",
+    "right": "Queue droite",
+    "two": "Deux queues (centre)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Vérifiez vos saisies. La probabilité doit être comprise entre 0 et 1, σ doit être positif et tous les champs doivent être renseignés."
+  },
+  "result": {
+    "heading": "Résultat",
+    "xValue": "valeur x",
+    "zScore": "score Z",
+    "xLow": "valeur x inférieure",
+    "xHigh": "valeur x supérieure",
+    "zRange": "plage de scores Z",
+    "zRangeSep": "à"
+  },
+  "about": {
+    "heading": "À propos du calculateur de loi normale inverse",
+    "body": "Le calculateur de loi normale inverse — parfois appelé fonction quantile ou fonction percentile de la loi normale — répond à la question suivante : étant donnée une probabilité cumulée, quelle est la valeur x correspondante ? C’est l’inverse de la consultation d’une table de CDF normale standard. Au lieu de calculer P(X ≤ x) à partir de x, vous indiquez P et résolvez pour x.\n\nEn statistique, la loi normale (aussi appelée loi gaussienne ou courbe en cloche) est paramétrée par sa moyenne μ et son écart type σ. Toute loi normale peut être convertie en loi normale centrée réduite (μ=0, σ=1) en calculant le score Z : Z = (x − μ) / σ. Réciproquement, tout quantile Z de la loi normale centrée réduite peut être reconverti en valeur brute x = μ + σ·Z. Le calculateur de loi normale inverse exploite cela pour vous permettre de travailler directement avec n’importe quelle moyenne et n’importe quel écart type, sans conversion en deux étapes.\n\nLe mode queue gauche trouve la valeur x en dessous de laquelle se situe la fraction spécifiée de la distribution. Si vous saisissez μ=0, σ=1 et probability=0.95, l’outil renvoie environ 1.6449, ce qui signifie que 95 % de la loi normale standard est en dessous de Z=1.6449. C’est le 95e percentile, largement utilisé pour construire des intervalles de confiance unilatéraux à 95 % ou pour trouver la valeur critique d’un test unilatéral à α=0.05.\n\nLe mode queue droite trouve la valeur x au-dessus de laquelle se situe la fraction spécifiée de la distribution. En saisissant μ=100, σ=15 et probability=0.02, on obtient environ 130.8, ce qui signifie que seulement 2 % des scores de QI (modélisés par N(100,15)) dépassent cette valeur. C’est ainsi que l’on détermine des seuils pour les programmes pour élèves surdoués, des seuils d’admission par percentile élevé et des limites de contrôle qualité pour les dépassements dans la queue supérieure.\n\nLe mode deux queues (centre) trouve l’intervalle symétrique autour de la moyenne qui contient la probabilité centrale spécifiée. Saisir probability=0.95 signifie que vous voulez l’intervalle qui couvre les 95 % centraux de la distribution, chaque queue contenant alors 2.5 %. L’outil renvoie les valeurs x inférieure et supérieure. C’est exactement ainsi que sont construits les intervalles de confiance à 95 % : la moyenne d’échantillon ± 1.96 erreurs standards correspond à μ=0, σ=1 et à l’intervalle bilatéral à 95 %.\n\nLes applications pratiques incluent : trouver des scores Z pour des valeurs critiques de tests d’hypothèse ; calculer des intervalles de tolérance en fabrication (par exemple la plage contenant les 99 % centraux des dimensions d’un produit) ; fixer des seuils de réussite/échec dans les tests standardisés ; déterminer des seuils de Value at Risk (VaR) en finance ; et inverser une prévision probabiliste pour retrouver le seuil d’origine. La fonction inverse normale est l’une des opérations les plus utilisées en statistique appliquée, juste derrière la CDF elle-même."
+  },
+  "examples": {
+    "heading": "Exemples de loi normale inverse",
+    "intro": "Scénarios courants en statistique, contrôle qualité et psychométrie.",
+    "colInput": "Paramètres",
+    "colOutput": "Résultat",
+    "colNote": "Application",
+    "loadZ95": "Charger le score Z du 95e percentile",
+    "loadIQ": "Charger le score de QI du top 2 %",
+    "loadTolerance": "Charger l'intervalle de tolérance à 99 %",
+    "items": [
+      {
+        "input": "μ=0, σ=1, P=0.95, Left-Tailed",
+        "output": "x = 1.6449 (Z = 1.6449)",
+        "note": "Le 95e percentile de la loi normale standard. Utilisé comme valeur critique pour un test unilatéral à α=0.05."
+      },
+      {
+        "input": "μ=100, σ=15, P=0.02, Right-Tailed",
+        "output": "x ≈ 130.8 (Z ≈ 2.054)",
+        "note": "QI minimal pour faire partie des 2 % supérieurs. Utile pour les seuils d’admissibilité aux programmes pour surdoués."
+      },
+      {
+        "input": "μ=50, σ=0.5, P=0.99, Two-Tailed",
+        "output": "x = 48.71 to 51.29",
+        "note": "Intervalle de tolérance de fabrication contenant 99 % des longueurs de produit. Le 1 % restant est réparti entre trop court et trop long."
+      },
+      {
+        "input": "μ=75, σ=8, P=0.10, Left-Tailed",
+        "output": "x ≈ 64.74 (Z ≈ −1.282)",
+        "note": "Seuil des 10 % inférieurs pour les notes d’examen. Les élèves sous ce seuil peuvent avoir besoin d’un soutien de rattrapage."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de loi normale inverse",
+    "steps": [
+      "Sélectionnez le type de queue : Queue gauche si vous voulez la valeur en dessous de laquelle se situe une fraction donnée ; Queue droite si vous voulez la valeur au-dessus de laquelle se situe une fraction ; Deux queues (centre) si vous voulez l’intervalle symétrique autour de la moyenne qui capture une fraction centrale.",
+      "Saisissez la Moyenne μ (le centre de la distribution) et l’Écart type σ (doit être positif). Utilisez μ=0 et σ=1 pour la loi normale standard / la consultation d’un score Z.",
+      "Saisissez la Probabilité cumulée sous forme décimale entre 0 et 1. Pour Queue gauche, il s’agit de l’aire à gauche de x. Pour Queue droite, c’est l’aire à droite. Pour Deux queues, c’est l’aire centrale (par exemple 0.95 pour le centre à 95 %).",
+      "Cliquez sur Calculer. En mode une queue, le résultat affiche la valeur x et son score Z. En mode deux queues, il affiche les bornes inférieure et supérieure ainsi que la plage de scores Z correspondante.",
+      "Utilisez les boutons d’exemple pour précharger des cas courants tels que les scores Z pour des intervalles de confiance à 95 %, des seuils percentiles de QI ou des plages de tolérance de fabrication."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la loi normale inverse",
+    "items": [
+      {
+        "q": "Qu’est-ce que la loi normale inverse ?",
+        "a": "La loi normale inverse (aussi appelée fonction quantile ou fonction probit) ramène une probabilité cumulée à la valeur correspondante sur la courbe normale. Si la CDF normale vous donne P(X ≤ x), l’inverse normale vous donne x à partir de P. C’est la fonction utilisée lorsque vous cherchez une valeur critique Z pour un niveau de confiance donné — par exemple Z=1.96 pour 97.5 % de la loi normale standard."
+      },
+      {
+        "q": "Quelle est la différence entre un score Z et une valeur x ?",
+        "a": "Un score Z est la valeur standardisée, exprimée en nombre d’écarts types par rapport à la moyenne : Z = (x − μ) / σ. Une valeur x est la mesure brute dans ses unités d’origine. Le calculateur renvoie les deux : la valeur x utile pour les seuils réels (note d’examen, longueur de produit, tension artérielle) et le score Z utile pour comparer des distributions ou consulter des tables statistiques."
+      },
+      {
+        "q": "Comment trouver la valeur critique pour un intervalle de confiance à 95 % ?",
+        "a": "Un intervalle de confiance à 95 % utilise des valeurs critiques bilatérales qui retranchent 2.5 % dans chaque queue. Réglez μ=0, σ=1, probability=0.95 et choisissez Deux queues (centre). Le calculateur renvoie Z≈1.96 comme borne supérieure (et −1.96 comme borne inférieure). La moyenne d’échantillon ± 1.96 × (erreur standard) donne l’intervalle de confiance à 95 % pour tout estimateur approximativement normalement distribué."
+      },
+      {
+        "q": "Quelle probabilité dois-je saisir pour un test unilatéral à α=0.05 ?",
+        "a": "Pour un test à gauche avec α=0.05, saisissez probability=0.05 avec Queue gauche sélectionnée ; le résultat est la valeur critique en dessous de laquelle vous rejetez H₀. Pour un test à droite avec α=0.05, saisissez probability=0.05 avec Queue droite sélectionnée ; le résultat est la valeur critique au-dessus de laquelle vous rejetez H₀. Pour un test bilatéral à α=0.05, saisissez probability=0.95 avec Deux queues (centre) afin d’obtenir ±1.96."
+      },
+      {
+        "q": "Puis-je l’utiliser pour une loi normale non standard ?",
+        "a": "Oui — c’est l’un des principaux avantages du calculateur par rapport aux simples tables Z. Saisissez la moyenne μ et l’écart type σ réels de votre distribution, et le calculateur transforme automatiquement le score Z en vos unités d’origine avec x = μ + σ × Z. Vous n’avez pas besoin de standardiser vos données manuellement."
+      }
+    ]
+  }
+}

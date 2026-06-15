@@ -1,0 +1,86 @@
+{
+  "title": "Calculateur d'ANOVA à mesures répétées - Statistique F et taille d'effet",
+  "tagline": "Tests statistiques avancés",
+  "intro": "Saisissez vos données ci-dessous. Chaque ligne représente un sujet et chaque colonne une condition ou un temps différent. Les valeurs peuvent être séparées par des virgules, des espaces ou des tabulations.",
+  "field": {
+    "dataInput": "Saisie des données",
+    "dataInputHint": "Chaque ligne = un sujet ; chaque colonne = une condition. Exemple : 8,9,7 sur une même ligne."
+  },
+  "placeholder": {
+    "dataInput": "8, 9, 7\n10, 11, 9\n6, 8, 5"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Saisie invalide. Veuillez entrer au moins 2 sujets et 2 conditions avec le même nombre de valeurs par ligne."
+  },
+  "result": {
+    "heading": "Résultats de l'ANOVA",
+    "source": "Source",
+    "colSS": "SS",
+    "colDf": "ddl",
+    "colMS": "MS",
+    "colF": "F",
+    "betweenConditions": "Entre conditions",
+    "error": "Erreur (résiduelle)",
+    "total": "Total",
+    "subjects": "Sujets (n)",
+    "conditions": "Conditions (k)",
+    "etaSquared": "η² (eta carré)"
+  },
+  "about": {
+    "heading": "À propos du calculateur d'ANOVA à mesures répétées",
+    "body": "L'ANOVA à mesures répétées (analyse de variance) est une technique statistique utilisée lorsque les mêmes sujets sont mesurés dans plusieurs conditions ou à différents moments. Contrairement à une ANOVA inter-sujets, le plan à mesures répétées contrôle les différences individuelles en traitant chaque sujet comme son propre contrôle, ce qui augmente fortement la puissance statistique.\n\nCe calculateur réalise une ANOVA à mesures répétées à un facteur. Le plan comporte un seul facteur intra-sujets (la condition ou le temps) avec k niveaux, mesuré sur n sujets. La variance totale des données se décompose en trois composantes : la variance attribuable aux différences entre conditions (le facteur d'intérêt), la variance attribuable aux différences individuelles entre sujets et la variance d'erreur résiduelle.\n\nLa statistique F est calculée comme le rapport entre le carré moyen entre conditions (MSbetween) et le carré moyen de l'erreur (MSerror). Une valeur F élevée par rapport à la valeur critique de la distribution F (avec dfbetween = k−1 et dferror = (n−1)(k−1) degrés de liberté) indique qu'au moins une moyenne de condition diffère significativement des autres.\n\nLa taille d'effet est quantifiée par le eta carré (η²), égal à SS_between divisé par SS_total. Une valeur de η² = 0.01 est considérée comme faible, 0.06 comme moyenne et 0.14 ou plus comme forte, selon les conventions de Cohen. Le eta carré partiel est souvent rapporté dans la littérature car il se concentre sur la proportion de variance expliquée par le facteur d'intérêt.\n\nLe calculateur suppose la sphéricité, c'est-à-dire que les variances des différences entre toutes les paires de conditions sont égales. Lorsque cette hypothèse est violée (comme le détecte le test de Mauchly), les chercheurs appliquent généralement les corrections de Greenhouse-Geisser ou Huynh-Feldt pour ajuster les degrés de liberté. Pour une analyse exploratoire ou une vérification rapide, les valeurs de F et de η² non corrigées calculées ici constituent un bon point de départ.\n\nCet outil est conçu à des fins pédagogiques et d'analyse préliminaire. Pour des résultats de qualité publication, en particulier avec des plans complexes ou des violations de sphéricité suspectées, utilisez un logiciel statistique dédié comme SPSS, R (avec le package ez) ou Python (avec pingouin)."
+  },
+  "examples": {
+    "heading": "Exemples d'ANOVA à mesures répétées",
+    "intro": "Ces exemples montrent comment interpréter les résultats d'une ANOVA à mesures répétées.",
+    "colInput": "Données (lignes=sujets)",
+    "colOutput": "Statistique F",
+    "colNote": "Interprétation",
+    "items": [
+      {
+        "input": "8,9,7 / 10,11,9 / 6,8,5 (3 sujets × 3 conditions)",
+        "output": "F ≈ 37.4, η² ≈ 0.28",
+        "note": "Effet de condition fort"
+      },
+      {
+        "input": "4,7,6,9 / 3,5,4,8 / 6,8,9,11 / 2,5,3,7 (4 × 4)",
+        "output": "F ≈ 50.7, η² ≈ 0.53",
+        "note": "Grande taille d'effet"
+      },
+      {
+        "input": "3,5,4,7 / 2,4,6,5 / 5,7,3,9 (3 × 4, motif irrégulier)",
+        "output": "F ≈ 2.84, η² ≈ 0.50",
+        "note": "F non significatif, η² modéré"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser ce calculateur",
+    "steps": [
+      "Saisissez les données de sorte que chaque ligne représente un sujet et chaque colonne une condition ou un temps.",
+      "Séparez les valeurs d'une ligne par des virgules, des espaces ou des tabulations ; utilisez une nouvelle ligne pour chaque sujet.",
+      "Cliquez sur « Calculer » pour lancer l'ANOVA à mesures répétées à un facteur.",
+      "Consultez le tableau ANOVA montrant les SS, ddl, MS et la statistique F pour chaque source de variance.",
+      "Vérifiez la valeur du eta carré (η²) pour évaluer la signification pratique de l'effet de condition."
+    ]
+  },
+  "faq": {
+    "heading": "Foire aux questions",
+    "q1": "Quand dois-je utiliser une ANOVA à mesures répétées plutôt qu'une ANOVA à un facteur ?",
+    "q1_a": "Utilisez une ANOVA à mesures répétées lorsque les mêmes sujets sont mesurés dans toutes les conditions. Elle est plus puissante qu'une ANOVA inter-sujets car elle retire la variance due aux différences individuelles du terme d'erreur, ce qui facilite la détection d'effets réels avec moins de participants.",
+    "q2": "Qu'est-ce que l'hypothèse de sphéricité ?",
+    "q2_a": "La sphéricité exige que les variances des différences entre toutes les paires de conditions soient égales. Sa violation augmente le taux d'erreur de type I. Le test de Mauchly vérifie cette hypothèse. Si elle est violée, appliquez les corrections de Greenhouse-Geisser ou Huynh-Feldt aux degrés de liberté.",
+    "q3": "Que m'indique le eta carré (η²) ?",
+    "q3_a": "Le eta carré indique la proportion de la variance totale expliquée par le facteur intra-sujets. Les valeurs de 0.01, 0.06 et 0.14 sont classiquement considérées comme des effets faibles, moyens et forts. C'est une taille d'effet facile à interpréter pour une ANOVA.",
+    "q4": "Combien de sujets faut-il pour une ANOVA à mesures répétées ?",
+    "q4_a": "Un minimum de 5 à 10 sujets est généralement recommandé pour une puissance statistique suffisante, même si l'approche correcte consiste à réaliser une analyse de puissance formelle basée sur la taille d'effet attendue et la puissance désirée (souvent 0.80). Il faut davantage de sujets lorsque l'effet attendu est faible.",
+    "q5": "Que faire si mes données violent la sphéricité ?",
+    "q5_a": "Appliquez la correction de Greenhouse-Geisser (ε) pour ajuster les degrés de liberté et rendre le test F plus conservateur. Lorsque ε est proche de 1, la sphéricité est approximativement respectée. En cas de violation sévère (ε < 0.75), la correction de Greenhouse-Geisser est préférable.",
+    "q6": "Puis-je utiliser ce calculateur pour un plan à mesures répétées à deux facteurs ?",
+    "q6_a": "Non, ce calculateur ne gère que l'ANOVA à mesures répétées à un facteur (un seul facteur intra-sujets). Pour des plans à deux facteurs avec deux facteurs intra-sujets ou des plans mixtes avec facteurs intra- et inter-sujets, il faut un logiciel spécialisé comme R, SPSS ou la bibliothèque pingouin de Python."
+  }
+}

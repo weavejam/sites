@@ -1,0 +1,86 @@
+{
+  "title": "ANOVA-Rechner für Messwiederholungen - F-Statistik und Effektstärke",
+  "tagline": "Fortgeschrittene statistische Tests",
+  "intro": "Geben Sie Ihre Daten unten ein. Jede Zeile steht für eine Person und jede Spalte für eine andere Bedingung oder einen anderen Zeitpunkt. Werte können durch Kommas, Leerzeichen oder Tabulatoren getrennt werden.",
+  "field": {
+    "dataInput": "Dateneingabe",
+    "dataInputHint": "Jede Zeile = eine Person; jede Spalte = eine Bedingung. Beispiel: 8,9,7 in einer Zeile."
+  },
+  "placeholder": {
+    "dataInput": "8, 9, 7\n10, 11, 9\n6, 8, 5"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Ungültige Eingabe. Bitte geben Sie mindestens 2 Personen und 2 Bedingungen ein, mit der gleichen Anzahl von Werten pro Zeile."
+  },
+  "result": {
+    "heading": "ANOVA-Ergebnisse",
+    "source": "Quelle",
+    "colSS": "SS",
+    "colDf": "df",
+    "colMS": "MS",
+    "colF": "F",
+    "betweenConditions": "Zwischen Bedingungen",
+    "error": "Fehler (Residual)",
+    "total": "Gesamt",
+    "subjects": "Personen (n)",
+    "conditions": "Bedingungen (k)",
+    "etaSquared": "η² (Eta-Quadrat)"
+  },
+  "about": {
+    "heading": "Über den Rechner für ANOVA mit Messwiederholung",
+    "body": "Die ANOVA mit Messwiederholung (Varianzanalyse) ist ein statistisches Verfahren, das verwendet wird, wenn dieselben Personen unter mehreren Bedingungen oder zu unterschiedlichen Zeitpunkten gemessen werden. Im Gegensatz zur ANOVA zwischen Personen kontrolliert das Messwiederholungs-Design individuelle Unterschiede, indem jede Person als eigene Kontrolle behandelt wird. Dadurch steigt die Teststärke deutlich.\n\nDieser Rechner führt eine einfaktorielle ANOVA mit Messwiederholung durch. Das Design umfasst einen einzigen Within-Subjects-Faktor (die Bedingung oder Zeit) mit k Stufen, gemessen an n Personen. Die Gesamtvarianz der Daten wird in drei Komponenten aufgeteilt: Varianz aufgrund von Unterschieden zwischen Bedingungen (der interessierende Faktor), Varianz aufgrund individueller Unterschiede zwischen Personen und Restfehlervarianz.\n\nDie F-Statistik wird als Verhältnis der mittleren Quadratsumme zwischen Bedingungen (MSbetween) zur mittleren Quadratsumme des Fehlers (MSerror) berechnet. Ein großer F-Wert im Verhältnis zum kritischen Wert der F-Verteilung (mit dfbetween = k−1 und dferror = (n−1)(k−1) Freiheitsgraden) zeigt an, dass sich mindestens ein Bedingungsmittelwert signifikant von den anderen unterscheidet.\n\nDie Effektstärke wird mit Eta-Quadrat (η²) quantifiziert, also SS_between geteilt durch SS_total. Ein Wert von η² = 0.01 gilt nach Cohens Konvention als klein, 0.06 als mittel und 0.14 oder höher als groß. In Veröffentlichungen wird häufig partielles Eta-Quadrat berichtet, da es den Anteil der durch den interessierenden Faktor erklärten Varianz fokussiert.\n\nDer Rechner setzt Sphärizität voraus, also dass die Varianzen der Differenzen zwischen allen Bedingungspaaren gleich sind. Wenn diese Annahme verletzt ist (ermittelt durch den Mauchly-Test), werden üblicherweise Greenhouse-Geisser- oder Huynh-Feldt-Korrekturen angewendet, um die Freiheitsgrade anzupassen. Für explorative Analysen und schnelle Prüfungen sind die hier berechneten unkorrigierten F- und η²-Werte ein nützlicher Ausgangspunkt.\n\nDieses Tool ist für Lehr- und Voranalysen gedacht. Für publizierbare Ergebnisse, insbesondere bei komplexen Designs oder vermuteten Sphärizitätsverletzungen, verwenden Sie spezialisierte Statistiksoftware wie SPSS, R (mit dem ez-Paket) oder Python (mit pingouin)."
+  },
+  "examples": {
+    "heading": "Beispiele für ANOVA mit Messwiederholung",
+    "intro": "Diese Beispiele zeigen, wie man Ergebnisse einer ANOVA mit Messwiederholung interpretiert.",
+    "colInput": "Daten (Zeilen=Personen)",
+    "colOutput": "F-Statistik",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "8,9,7 / 10,11,9 / 6,8,5 (3 Personen × 3 Bedingungen)",
+        "output": "F ≈ 37.4, η² ≈ 0.28",
+        "note": "Starker Bedingungseffekt"
+      },
+      {
+        "input": "4,7,6,9 / 3,5,4,8 / 6,8,9,11 / 2,5,3,7 (4 × 4)",
+        "output": "F ≈ 50.7, η² ≈ 0.53",
+        "note": "Große Effektstärke"
+      },
+      {
+        "input": "3,5,4,7 / 2,4,6,5 / 5,7,3,9 (3 × 4, unregelmäßiges Muster)",
+        "output": "F ≈ 2.84, η² ≈ 0.50",
+        "note": "F nicht signifikant, η² moderat"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie diesen Rechner",
+    "steps": [
+      "Geben Sie die Daten so ein, dass jede Zeile eine Person und jede Spalte eine Bedingung oder einen Zeitpunkt darstellt.",
+      "Trennen Sie Werte innerhalb einer Zeile durch Kommas, Leerzeichen oder Tabulatoren; verwenden Sie für jede Person eine neue Zeile.",
+      "Klicken Sie auf „Berechnen“, um die einfaktorielle ANOVA mit Messwiederholung auszuführen.",
+      "Prüfen Sie die ANOVA-Tabelle mit SS, df, MS und der F-Statistik für jede Varianzquelle.",
+      "Überprüfen Sie den Eta-Quadrat-Wert (η²), um die praktische Bedeutung des Bedingungseffekts einzuschätzen."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "q1": "Wann sollte ich eine ANOVA mit Messwiederholung statt einer einfaktoriellen ANOVA verwenden?",
+    "q1_a": "Verwenden Sie eine ANOVA mit Messwiederholung, wenn dieselben Personen unter allen Bedingungen gemessen werden. Sie ist leistungsfähiger als eine ANOVA zwischen Personen, weil sie die Varianz individueller Unterschiede aus dem Fehlerterm entfernt und so echte Bedingungseffekte mit weniger Teilnehmern leichter erkennbar macht.",
+    "q2": "Was ist die Sphärizitätsannahme?",
+    "q2_a": "Sphärizität bedeutet, dass die Varianzen der Differenzen zwischen allen Bedingungspaaren gleich sein müssen. Ein Verstoß erhöht die Fehlerrate 1. Art. Der Mauchly-Test prüft diese Annahme. Bei Verletzung sollten Greenhouse-Geisser- oder Huynh-Feldt-Korrekturen auf die Freiheitsgrade angewendet werden.",
+    "q3": "Was sagt mir Eta-Quadrat (η²)?",
+    "q3_a": "Eta-Quadrat gibt den Anteil der Gesamtvarianz an, der durch den Within-Subjects-Faktor erklärt wird. Werte von 0.01, 0.06 und 0.14 gelten traditionell als kleine, mittlere bzw. große Effekte. Es ist eine bei ANOVA leicht interpretierbare Effektstärke.",
+    "q4": "Wie viele Personen brauche ich für eine ANOVA mit Messwiederholung?",
+    "q4_a": "Für ausreichende Teststärke werden meist mindestens 5–10 Personen empfohlen, wobei eine formale Power-Analyse auf Basis der erwarteten Effektstärke und der gewünschten Power (meist 0.80) der korrekte Ansatz ist. Bei kleinen erwarteten Effekten braucht man mehr Personen.",
+    "q5": "Was, wenn meine Daten die Sphärizität verletzen?",
+    "q5_a": "Wenden Sie die Greenhouse-Geisser-Korrektur (ε) an, um die Freiheitsgrade anzupassen und den F-Test konservativer zu machen. Liegt ε nahe bei 1, ist Sphärizität ungefähr erfüllt. Bei starker Verletzung (ε < 0.75) ist Greenhouse-Geisser zu bevorzugen.",
+    "q6": "Kann ich diesen Rechner für ein zweifaktorielles Messwiederholungs-Design verwenden?",
+    "q6_a": "Nein, dieser Rechner behandelt nur einfaktorielle ANOVA mit Messwiederholung (einen Within-Subjects-Faktor). Für zweifaktorielle Designs mit zwei Within-Subjects-Faktoren oder gemischte Designs mit Within- und Between-Subjects-Faktoren benötigen Sie spezialisierte Software wie R, SPSS oder Python mit der Bibliothek pingouin."
+  }
+}

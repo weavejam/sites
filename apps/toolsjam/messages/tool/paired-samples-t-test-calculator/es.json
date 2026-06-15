@@ -1,0 +1,95 @@
+{
+  "title": "Calculadora t de muestras pareadas - antes y después",
+  "tagline": "Realiza una prueba t de muestras pareadas para comparar dos grupos relacionados — mediciones antes/después, pares emparejados — y obtener el estadístico t, el valor p y el intervalo de confianza.",
+  "intro": "Introduce dos grupos de datos separados por comas y del mismo tamaño, define el nivel de significación y el tipo de prueba, y obtiene al instante el resultado completo de la prueba t pareada.",
+  "formula": "t = d̄ / (s_d / √n)  |  df = n − 1  |  d̄ = media de las diferencias  |  s_d = desviación estándar de las diferencias",
+  "field": {
+    "group1": "Datos del grupo 1 (p. ej., antes del tratamiento)",
+    "group2": "Datos del grupo 2 (p. ej., después del tratamiento)",
+    "alpha": "Nivel de significación (α)",
+    "mu": "Diferencia media hipotetizada (μ₀)",
+    "tail": "Tipo de prueba"
+  },
+  "placeholder": {
+    "data": "p. ej., 140, 135, 150, 155, 130"
+  },
+  "tail": {
+    "two-tailed": "Bilateral",
+    "right-tailed": "Unilateral derecha",
+    "left-tailed": "Unilateral izquierda"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce al menos 2 valores coincidentes en cada grupo. Ambos grupos deben tener el mismo número de datos."
+  },
+  "result": {
+    "heading": "Resultados",
+    "tStat": "Estadístico t",
+    "df": "Grados de libertad",
+    "pValue": "Valor p",
+    "dBar": "Diferencia media (d̄)",
+    "sd": "Desv. estándar de las diferencias (s_d)",
+    "ci95": "Intervalo de confianza del 95%",
+    "reject": "Rechazar H₀ — se detectó una diferencia estadísticamente significativa.",
+    "failReject": "No se rechaza H₀ — no se detectó una diferencia estadísticamente significativa."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora t de muestras pareadas",
+    "body": "La prueba t de muestras pareadas (también llamada t de muestras dependientes o t de pares emparejados) es un procedimiento estadístico paramétrico que determina si la diferencia media entre dos conjuntos de mediciones relacionadas es significativamente distinta de cero (o de cualquier otro valor hipotetizado). Se llama “pareada” porque cada observación del grupo 1 corresponde exactamente a una observación del grupo 2: las dos mediciones proceden del mismo sujeto, de participantes emparejados o del mismo lugar medido en dos momentos distintos.\n\nLa aplicación más común es un diseño antes y después: un investigador mide una característica (presión arterial, nota, peso, ventas) antes de una intervención y luego otra vez después. Como se mide a las mismas personas dos veces, los dos grupos no son independientes, sino correlacionados. Ignorar esa correlación y usar una t de muestras independientes sería incorrecto; subestimaría la precisión de la comparación al no tener en cuenta la variabilidad natural entre sujetos que se cancela al trabajar con diferencias.\n\nEl truco computacional que hace elegante a la prueba t pareada es reducirla a un problema de una sola muestra. Para cada par i, calcula la diferencia d_i = Grupo1_i − Grupo2_i. Entonces la prueba pregunta: ¿la media de estas diferencias (d̄) es significativamente distinta de cero? Esto transforma el problema de dos muestras en una prueba t de una muestra sobre las diferencias. El estadístico es t = (d̄ − μ₀) / (s_d / √n), donde μ₀ es la diferencia media hipotetizada (normalmente 0), s_d es la desviación estándar muestral de las diferencias y n es el número de pares. Bajo la hipótesis nula, el estadístico sigue una distribución t de Student con df = n − 1 grados de libertad.\n\nEl valor p de este estadístico te dice la probabilidad de observar una diferencia media tan grande como d̄ (o mayor) si la diferencia media real de la población fuera μ₀. Si el valor p está por debajo del nivel de significación α que elegiste, rechazas la hipótesis nula y concluyes que existe una diferencia media estadísticamente significativa entre las mediciones pareadas. El intervalo de confianza de d̄ ofrece un rango plausible para la diferencia media real y, a menudo, es más informativo que el valor p por sí solo.\n\nPara que la prueba t pareada sea válida, las diferencias d_i deben distribuirse aproximadamente de forma normal. Este supuesto se comprueba examinando un histograma o un gráfico Q-Q normal de las diferencias. Con n ≥ 30, el Teorema Central del Límite hace que este supuesto sea menos crítico incluso si las diferencias individuales no son normales. Para muestras pequeñas con diferencias claramente no normales, la prueba de rangos con signo de Wilcoxon es la alternativa no paramétrica.\n\nLas aplicaciones más comunes incluyen ensayos médicos de eficacia (antes y después de un fármaco), investigación educativa (pretest frente a postest), estudios de nutrición y fitness (mediciones de línea base frente a seguimiento) y analítica de negocios (ventas antes y después de una campaña publicitaria). En cada caso, el requisito clave es que cada par de valores proceda de la misma persona, entidad o unidad emparejada, no de dos grupos independientes."
+  },
+  "examples": {
+    "heading": "Ejemplos resueltos",
+    "intro": "Tres escenarios de antes y después con datos realistas para ilustrar el resultado de la prueba t pareada.",
+    "colInput": "Diseño del estudio",
+    "colOutput": "Estadístico t / valor p",
+    "colNote": "Conclusión",
+    "loadBP": "Cargar ejemplo de presión arterial",
+    "loadTutor": "Cargar ejemplo de tutoría",
+    "loadSales": "Cargar ejemplo de campaña de ventas",
+    "items": [
+      {
+        "input": "Presión arterial antes: 140,135,150,155,130,142,138,147,152,133 / después: 132,130,145,148,125,135,130,140,145,128 (bilateral, α=0.05, n=10)",
+        "output": "t ≈ 16.00, df = 9, p < 0.001",
+        "note": "Muy significativa. El fármaco redujo la presión sistólica media en 6.4 mmHg en 10 pacientes."
+      },
+      {
+        "input": "Notas antes: 75,80,82,70,88,65,90,78 / después: 85,85,88,78,92,75,95,85 (bilateral, α=0.05, n=8)",
+        "output": "t ≈ −8.47, df = 7, p < 0.001",
+        "note": "Mejora significativa. El alumnado obtuvo una media de 6.9 puntos más tras el programa de tutoría."
+      },
+      {
+        "input": "Ventas semanales antes: 500,550,480,600,520,530 / después: 540,580,500,650,550,560 (bilateral, α=0.05, n=6)",
+        "output": "t ≈ −7.91, df = 5, p < 0.001",
+        "note": "La campaña publicitaria aumentó significativamente las ventas semanales en una media de 33.3 unidades por tienda."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora t de muestras pareadas",
+    "steps": [
+      "Introduce los datos del Grupo 1 (por ejemplo, valores “antes”) como una lista separada por comas en el primer campo.",
+      "Introduce los datos del Grupo 2 (por ejemplo, valores “después”) en el segundo campo. Ambos grupos deben tener el mismo número de valores; el primer dato del Grupo 1 se empareja con el primero del Grupo 2, y así sucesivamente.",
+      "Define el nivel de significación α (0.01, 0.05 o 0.10) y la diferencia media hipotetizada μ₀ (normalmente 0). Selecciona el tipo de prueba (bilateral, unilateral derecha o unilateral izquierda).",
+      "Haz clic en Calcular para ver el estadístico t, los grados de libertad, el valor p, la diferencia media, la desviación estándar de las diferencias y un intervalo de confianza del 95%.",
+      "Compara el valor p con α. Si p ≤ α, rechaza H₀ y concluye que existe una diferencia media estadísticamente significativa. Si p > α, no se rechaza H₀."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "q1": "¿Cuándo debo usar una prueba t pareada en lugar de una t independiente?",
+    "q1_a": "Usa una prueba t pareada cuando cada observación de un grupo esté naturalmente emparejada o vinculada con exactamente una observación del otro grupo — por ejemplo, la misma persona medida antes y después de un tratamiento, o dos hermanos asignados a dietas distintas. Si los dos grupos son independientes (personas distintas, sin relación ni emparejamiento), usa una prueba t de muestras independientes.",
+    "q2": "¿Qué es la diferencia media hipotetizada μ₀?",
+    "q2_a": "μ₀ es el valor que se supone que tiene la diferencia media real bajo la hipótesis nula. En la mayoría de los casos — cuando se quiere saber si una intervención tiene algún efecto — μ₀ = 0. Para hipótesis más específicas, como comprobar si un fármaco reduce la presión arterial al menos 10 mmHg, se fijaría μ₀ = 10.",
+    "q3": "¿Qué pasa si mis diferencias no se distribuyen normalmente?",
+    "q3_a": "La prueba t pareada asume que las diferencias se distribuyen aproximadamente de forma normal. Con n ≥ 30 pares, el Teorema Central del Límite hace menos crítica esa suposición. Para muestras pequeñas con diferencias claramente no normales (comprueba un histograma), la prueba de rangos con signo de Wilcoxon es una alternativa no paramétrica robusta que no asume normalidad.",
+    "q4": "¿Cómo interpreto el intervalo de confianza?",
+    "q4_a": "El intervalo de confianza del 95% ofrece un rango de valores plausibles para la diferencia media real. Si el intervalo no incluye cero, el resultado es significativo con α = 0.05. El intervalo es más informativo que el valor p por sí solo porque muestra la magnitud y la dirección del efecto. Por ejemplo, un IC de (2.3, 9.8) indica que el efecto es significativo y que va de pequeño a moderadamente grande.",
+    "q5": "¿Puedo hacer una prueba t pareada unilateral?",
+    "q5_a": "Sí. Selecciona “Unilateral derecha” si predices que Grupo 1 > Grupo 2 (diferencia media positiva), o “Unilateral izquierda” si predices que Grupo 1 < Grupo 2 (diferencia media negativa). Una prueba unilateral tiene más potencia, pero solo es válida cuando la dirección del efecto se especificó antes de recoger los datos. Usar una prueba unilateral solo porque el resultado bilateral quedó cerca del umbral es una forma de p-hacking.",
+    "q6": "¿Qué significa realmente un resultado significativo?",
+    "q6_a": "Un resultado significativo (p ≤ α) significa que la diferencia media observada es poco probable que haya ocurrido por azar si la hipótesis nula fuera verdadera. No demuestra que la hipótesis nula sea falsa ni garantiza que el efecto sea grande o clínicamente importante. Informa siempre la diferencia media d̄, su intervalo de confianza y un tamaño del efecto (como d de Cohen = d̄ / s_d) para que se pueda valorar la importancia práctica."
+  }
+}

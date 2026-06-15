@@ -1,0 +1,105 @@
+{
+  "title": "Calculadora qui-quadrado com correção de Yates",
+  "tagline": "Calcule a estatística qui-quadrado com correção de Yates para tabelas de contingência 2×2. Reduza o erro do Tipo I quando as frequências esperadas forem pequenas.",
+  "intro": "Insira as quatro contagens (a, b, c, d) da sua tabela de contingência 2×2 para calcular o valor χ² com correção de Yates e o p-valor.",
+  "table": {
+    "label": "Insira as contagens da sua tabela de contingência 2×2: Grupo A nas linhas, Resultado 1/2 nas colunas."
+  },
+  "field": {
+    "a": "Grupo A, Resultado 1 (a)",
+    "b": "Grupo A, Resultado 2 (b)",
+    "c": "Grupo B, Resultado 1 (c)",
+    "d": "Grupo B, Resultado 2 (d)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira inteiros não negativos para as quatro células, com pelo menos uma linha e uma coluna que não sejam todas zero."
+  },
+  "result": {
+    "heading": "Resultados",
+    "chi2": "Estatística χ² de Yates",
+    "pValue": "p-valor",
+    "df": "Graus de liberdade",
+    "N": "N total",
+    "significant": "Associação significativa detectada (p < 0.05).",
+    "notSignificant": "Nenhuma associação significativa detectada (p ≥ 0.05)."
+  },
+  "about": {
+    "heading": "Sobre a correção de continuidade de Yates",
+    "body": "A correção de continuidade de Yates é um ajuste aplicado ao teste qui-quadrado (χ²) quando usado com uma tabela de contingência 2×2. A distribuição qui-quadrado é contínua, mas as frequências observadas em uma tabela de contingência são contagens discretas. Essa discrepância faz com que a aproximação qui-quadrado superestime a estatística de teste, levando a p-valores muito pequenos e a um risco maior de erro do Tipo I — especialmente quando o tamanho da amostra ou as frequências esperadas são pequenas.\n\nFrank Yates propôs a correção em 1934. A ideia é simples: subtrair 0,5 da diferença absoluta entre cada frequência observada e esperada antes de elevar ao quadrado. A fórmula corrigida é χ² = Σ (|O − E| − 0,5)² / E, somada sobre as quatro células. Esse pequeno ajuste reduz o valor geral do qui-quadrado, produzindo um p-valor mais conservador (maior) que reflete melhor a probabilidade real dos resultados observados ou mais extremos.\n\nA correção é especialmente importante quando qualquer frequência esperada fica abaixo de 10, e principalmente abaixo de 5. Nessas condições, sabe-se que o teste qui-quadrado padrão é pouco confiável, e a correção de Yates ajuda a compensar. Para amostras maiores, nas quais todas as frequências esperadas ultrapassam 10, a correção tem impacto mínimo e o teste qui-quadrado padrão é suficiente.\n\nPara usar a calculadora, você precisa estruturar seus dados como uma tabela de contingência 2×2. As duas linhas representam os dois grupos (por exemplo, tratamento vs. controle), e as duas colunas representam os dois possíveis resultados (por exemplo, sucesso vs. fracasso). A célula a é a contagem do Grupo A com Resultado 1, a célula b é do Grupo A com Resultado 2, a célula c é do Grupo B com Resultado 1 e a célula d é do Grupo B com Resultado 2.\n\nOs graus de liberdade para uma tabela 2×2 são sempre 1. O p-valor é calculado a partir da distribuição qui-quadrado com 1 grau de liberdade. Um p-valor abaixo de 0.05 é convencionalmente interpretado como evidência de uma associação estatisticamente significativa entre a pertença ao grupo e o resultado.\n\nAinda há debate na comunidade estatística sobre quando usar a correção de Yates. Alguns estatísticos argumentam que ela corrige em excesso e reduz o poder estatístico. A alternativa preferida por muitos estatísticos modernos para frequências esperadas muito pequenas é o teste exato de Fisher, que calcula a probabilidade exata sem depender da aproximação qui-quadrado. No entanto, a correção de Yates continua amplamente ensinada e aceita em muitas áreas e é a escolha adequada quando você quer um resultado rápido e conservador para uma tabela 2×2."
+  },
+  "examples": {
+    "heading": "Exemplos práticos",
+    "intro": "Explore vários cenários para entender como a calculadora funciona.",
+    "colInput": "Entrada (a, b, c, d)",
+    "colOutput": "χ² / p-valor",
+    "colNote": "Observação",
+    "items": [
+      {
+        "input": "a=3, b=22, c=11, d=14",
+        "output": "χ²≈4.86, p≈0.027",
+        "note": "Ensaio de vacina — significativo; a vacina reduz a taxa de infecção."
+      },
+      {
+        "input": "a=15, b=5, c=8, d=12",
+        "output": "χ²≈3.68, p≈0.055",
+        "note": "Método de ensino — limítrofe, não significativo em α=0.05."
+      },
+      {
+        "input": "a=25, b=975, c=15, d=985",
+        "output": "χ²≈2.07, p≈0.151",
+        "note": "Teste A/B de anúncios — nenhuma diferença significativa na taxa de cliques."
+      },
+      {
+        "input": "a=1, b=49, c=6, d=44",
+        "output": "χ²≈2.48, p≈0.115",
+        "note": "Estudo de efeito colateral raro — aqui a correção de Yates é essencial devido às contagens baixas."
+      }
+    ],
+    "loadVaccine": "Ensaio de vacina",
+    "loadTeaching": "Método de ensino",
+    "loadAB": "Teste A/B de anúncios"
+  },
+  "howto": {
+    "heading": "Como usar a calculadora",
+    "steps": [
+      "Organize seus dados em uma tabela 2×2: Grupo A na primeira linha, Grupo B na segunda, Resultado 1 na primeira coluna e Resultado 2 na segunda.",
+      "Digite a contagem da célula a (Grupo A, Resultado 1) no primeiro campo e a da célula b (Grupo A, Resultado 2) no segundo.",
+      "Digite a contagem da célula c (Grupo B, Resultado 1) e da célula d (Grupo B, Resultado 2) nos campos restantes. Todos os valores devem ser inteiros não negativos.",
+      "Clique em Calcular para ver o valor χ² com correção de Yates, os graus de liberdade (sempre 1), o p-valor e a decisão de significância.",
+      "Use os botões de exemplo para carregar dados predefinidos e verificar resultados ou explorar casos de uso comuns."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "items": [
+      {
+        "q": "O que é a correção de continuidade de Yates?",
+        "a": "A correção de Yates é um ajuste à fórmula qui-quadrado padrão para tabelas 2×2. Ela subtrai 0,5 da diferença absoluta entre as frequências observadas e esperadas antes de elevar ao quadrado. Isso torna o teste mais conservador, reduzindo o risco de falso positivo (erro do Tipo I) quando o tamanho da amostra ou as contagens esperadas são pequenos."
+      },
+      {
+        "q": "Quando devo usar a correção de Yates em vez do teste qui-quadrado padrão?",
+        "a": "Use a correção de Yates quando qualquer frequência esperada for menor que 10. O teste qui-quadrado padrão é adequado quando todas as frequências esperadas são 10 ou mais. Para amostras muito pequenas, em que alguma frequência esperada seja menor que 5, considere o teste exato de Fisher, pois ele é ainda mais confiável nesse cenário."
+      },
+      {
+        "q": "O que as células a, b, c e d representam?",
+        "a": "A célula a é o número de sujeitos do Grupo A que tiveram o Resultado 1. A célula b é o número do Grupo A com o Resultado 2. A célula c é o número do Grupo B com o Resultado 1. A célula d é o número do Grupo B com o Resultado 2. Em um estudo de vacina, o Grupo A pode ser vacinado, o Grupo B não vacinado, o Resultado 1 infectado e o Resultado 2 não infectado."
+      },
+      {
+        "q": "Por que o grau de liberdade é sempre 1 em uma tabela 2×2?",
+        "a": "Os graus de liberdade de um teste qui-quadrado de independência são (linhas − 1) × (colunas − 1). Para uma tabela 2×2, isso é (2−1) × (2−1) = 1. Isso significa que, uma vez conhecidos os totais marginais e o valor de uma célula, todos os outros valores ficam totalmente determinados, restando apenas um parâmetro livre."
+      },
+      {
+        "q": "A correção de Yates reduz o poder estatístico?",
+        "a": "Sim, tornar o teste mais conservador significa que ele exige evidência mais forte para rejeitar a hipótese nula. Críticos argumentam que a correção de Yates pode corrigir em excesso, aumentando o risco de erro do Tipo II (deixar passar um efeito real). Para amostras grandes com contagens esperadas altas, o impacto é mínimo. Muitos estatísticos modernos preferem o teste exato de Fisher para análises 2×2 com amostras pequenas."
+      },
+      {
+        "q": "Posso usar esta calculadora para tabelas maiores que 2×2?",
+        "a": "Não. A correção de Yates foi projetada especificamente para tabelas de contingência 2×2. Para tabelas maiores (como 3×2 ou 3×3), use o teste qui-quadrado de Pearson padrão, sem correção de continuidade. A fórmula e os graus de liberdade são diferentes para tabelas maiores."
+      }
+    ]
+  }
+}

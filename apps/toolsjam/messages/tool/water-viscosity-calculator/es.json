@@ -1,0 +1,110 @@
+{
+  "title": "Calculadora de viscosidad del agua",
+  "tagline": "Estima la viscosidad dinámica, la viscosidad cinemática, la densidad y el número de Reynolds del agua a partir de temperatura, presión y caudal opcional en tubería.",
+  "intro": "Introduce la temperatura y la presión del agua para calcular la viscosidad. Añade la velocidad del flujo y el diámetro de la tubería si también quieres el número de Reynolds.",
+  "field": {
+    "temperature": "Temperatura (°C)",
+    "pressure": "Presión (bar)",
+    "flowVelocity": "Velocidad del flujo (m/s)",
+    "pipeDiameter": "Diámetro de la tubería (m)"
+  },
+  "placeholder": {
+    "temperature": "p. ej. 20",
+    "pressure": "p. ej. 1",
+    "flowVelocity": "p. ej. 2",
+    "pipeDiameter": "p. ej. 0.05"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultado",
+    "value": "Viscosidad dinámica {dynamic} mPa·s • Viscosidad cinemática {kinematic} mm²/s",
+    "dynamic": "Viscosidad dinámica",
+    "kinematic": "Viscosidad cinemática",
+    "density": "Densidad estimada",
+    "reynolds": "Número de Reynolds",
+    "unitDynamic": "mPa·s",
+    "unitKinematic": "mm²/s",
+    "unitDensity": "kg/m³",
+    "unitReynolds": "",
+    "reynoldsUnavailable": "—",
+    "pressureNote": "Presión introducida: {pressure} bar"
+  },
+  "error": {
+    "invalid": "Introduce números válidos. La temperatura y la presión son obligatorias, y la velocidad y el diámetro deben indicarse juntos si se usan."
+  },
+  "hint": "La presión se acepta como contexto, aunque el modelo de viscosidad se basa principalmente en la temperatura para agua pura en rangos de ingeniería habituales.",
+  "formula": "μ = 2.414×10^-5 × 10^(247.8 / (T_K − 140)) Pa·s • ν = μ / ρ • Re = ρvD / μ",
+  "about": {
+    "heading": "Acerca de la viscosidad del agua",
+    "body": "La viscosidad del agua describe con qué fuerza resiste el agua líquida el flujo y el esfuerzo cortante. En términos prácticos, te indica si el agua se comporta como un fluido “espeso” o “ligero” cuando se mueve por una tubería, alrededor de un impulsor de bomba, sobre la superficie de un intercambiador de calor o a través de una línea de proceso. Los ingenieros suelen trabajar con dos propiedades relacionadas: la viscosidad dinámica, normalmente escrita como μ, y la viscosidad cinemática, escrita como ν. La viscosidad dinámica mide la fricción interna del propio fluido, mientras que la viscosidad cinemática divide esa fricción por la densidad para comparar el comportamiento del flujo de forma más directa. Esta calculadora muestra la viscosidad dinámica en milipascal-segundo (mPa·s) y la viscosidad cinemática en milímetros cuadrados por segundo (mm²/s), también llamados centistokes.\n\nEn el agua pura, la viscosidad cambia mucho más con la temperatura que con la presión en la mayoría de las condiciones cotidianas. El agua fría es notablemente más viscosa que el agua caliente porque las moléculas tienen menos energía y la atracción intermolecular afecta más al movimiento. A medida que aumenta la temperatura, la resistencia interna cae con rapidez. Por eso, el agua cerca de temperatura ambiente tiene una viscosidad dinámica de aproximadamente 1.002 mPa·s, mientras que cerca del punto de ebullición baja a alrededor de 0.282 mPa·s. Este cambio tiene consecuencias importantes para la potencia de bombeo, el régimen de flujo, la pérdida de carga y el rendimiento de transferencia de calor. Incluso un aumento moderado de temperatura puede llevar un sistema de flujo laminar lento hacia un comportamiento más turbulento.\n\nLa calculadora usa una ecuación empírica tipo Andrade para la viscosidad dinámica del agua pura, una aproximación estándar para un amplio rango de temperaturas del agua líquida. Después estima la densidad con una expresión cuadrática sencilla alrededor del máximo de densidad bien conocido cerca de 4°C. Dividir la viscosidad dinámica entre la densidad da la viscosidad cinemática. Aunque la expresión de densidad está simplificada, es adecuada para estimaciones de diseño general, comprobaciones rápidas, tareas académicas y cálculos rutinarios de proceso. Si trabajas con agua salina, mezclas de glicol, agua de proceso sucia o presiones muy altas, sigue siendo mejor usar una base de datos de propiedades dedicada.\n\nCuando también introduces la velocidad del flujo y el diámetro de la tubería, la calculadora estima el número de Reynolds usando Re = ρvD/μ. El número de Reynolds es una de las magnitudes adimensionales más útiles en mecánica de fluidos porque ayuda a clasificar el comportamiento del flujo. Los números de Reynolds bajos indican un movimiento viscoso y ordenado, donde pueden aplicarse supuestos de flujo laminar. Los números altos indican que los efectos inerciales dominan y la turbulencia es más probable. Para flujo interno en tuberías, el flujo laminar suele asociarse con Re por debajo de unos 2,300, el flujo de transición ocupa el rango medio y el flujo turbulento suele aparecer por encima de unos 4,000. Como la viscosidad aparece en el denominador, el agua más caliente suele producir un número de Reynolds mayor que el agua más fría en la misma tubería.\n\nEsto hace de la viscosidad del agua una propiedad central de diseño en ingeniería civil, mecánica, química y ambiental. Se usa para estimar pérdidas por fricción, dimensionar bombas, comparar condiciones de transferencia de calor, entender mediciones de laboratorio y comprobar entradas de simulación. Los estudiantes pueden usar la calculadora para ver cuánto varían las propiedades del agua con la temperatura, mientras que los profesionales pueden emplearla para estimaciones rápidas antes de pasar a software más detallado. En resumen, la viscosidad del agua conecta temperatura, resistencia al flujo y régimen del fluido en una sola propiedad física compacta que influye en casi cualquier sistema de agua líquida."
+  },
+  "examples": {
+    "heading": "Ejemplos",
+    "intro": "Estos ejemplos muestran cómo cambia la viscosidad del agua con la temperatura y cómo las entradas opcionales de flujo añaden una estimación del número de Reynolds.",
+    "colInput": "Entrada",
+    "colOutput": "Salida",
+    "colNote": "Notas",
+    "loadRoom": "Cargar agua a 20°C",
+    "loadBoiling": "Cargar agua a 100°C",
+    "loadFlow": "Cargar ejemplo de flujo en tubería",
+    "items": [
+      {
+        "input": "20°C, 1 bar",
+        "output": "Dinámica: 1.002 mPa·s • Cinemática: 1.003 mm²/s",
+        "note": "El agua a temperatura ambiente está cerca del conocido punto de referencia de 1 mPa·s, por lo que suele usarse como valor de referencia en laboratorio y diseño."
+      },
+      {
+        "input": "100°C, 1 bar",
+        "output": "Dinámica: 0.279 mPa·s • Cinemática: 0.287 mm²/s",
+        "note": "El agua caliente fluye mucho más fácilmente que el agua fría, así que la viscosidad cae con fuerza y el número de Reynolds sube para las mismas condiciones de tubería."
+      },
+      {
+        "input": "4°C, 1 bar",
+        "output": "Dinámica: 1.547 mPa·s • Cinemática: 1.547 mm²/s",
+        "note": "Cerca de 4°C, el agua es más densa y relativamente más viscosa, así que el momento se difunde más lentamente que a temperatura ambiente."
+      },
+      {
+        "input": "20°C, 1 bar, 2 m/s, 0.05 m pipe",
+        "output": "Re ≈ 99,749",
+        "note": "Al añadir velocidad y diámetro se ve que el servicio de agua corriente suele estar muy dentro del régimen turbulento."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usarla",
+    "steps": [
+      "Introduce la temperatura del agua en grados Celsius y la presión de operación en bar. Estos dos campos son obligatorios en cada cálculo.",
+      "Si necesitas un número de Reynolds, introduce también la velocidad media del flujo y el diámetro interior de la tubería. Si solo quieres la viscosidad, deja en blanco los dos campos opcionales.",
+      "Haz clic en Calcular para ver la viscosidad dinámica, la viscosidad cinemática, la densidad estimada y, si hay datos de flujo, el número de Reynolds.",
+      "Usa los ejemplos para comparar agua fría, a temperatura ambiente y caliente, y luego restablece el formulario para probar una nueva condición de operación."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Cuál es la diferencia entre viscosidad dinámica y cinemática?",
+        "a": "La viscosidad dinámica mide la resistencia interna del fluido al esfuerzo cortante y suele expresarse en Pa·s o mPa·s. La viscosidad cinemática divide la viscosidad dinámica por la densidad, así que refleja cómo se difunde el momento en el fluido y normalmente se informa en mm²/s o cSt."
+      },
+      {
+        "q": "¿Por qué baja la viscosidad del agua cuando sube la temperatura?",
+        "a": "Al calentarse, las moléculas de agua tienen más energía térmica y pueden moverse unas respecto de otras con mayor facilidad. Eso reduce la fricción interna, así que el agua caliente suele tener una viscosidad mucho menor que el agua fría."
+      },
+      {
+        "q": "¿Por qué se incluye la presión si la fórmula depende de la temperatura?",
+        "a": "La presión se incluye porque es una variable de operación importante en sistemas reales y ayuda a documentar la condición que estás evaluando. Para cálculos ordinarios de agua líquida en rangos moderados, la temperatura domina el cambio de viscosidad, así que un modelo sencillo basado en temperatura suele bastar para estimaciones rápidas."
+      },
+      {
+        "q": "¿Qué número de Reynolds debo esperar en flujo por tubería?",
+        "a": "Para flujo interno, los números de Reynolds por debajo de unos 2,300 suelen tratarse como laminares, mientras que los valores por encima de unos 4,000 suelen ser turbulentos. La zona intermedia es de transición, donde las perturbaciones y las condiciones de entrada influyen mucho en el patrón real de flujo."
+      },
+      {
+        "q": "¿Estos valores sirven para diseño de ingeniería?",
+        "a": "Son adecuados para cálculos preliminares, tareas y comprobaciones rápidas. Para el diseño final de sistemas críticos, química del agua inusual o rangos extremos de temperatura y presión, conviene confirmar con una fuente de propiedades de mayor fidelidad."
+      }
+    ]
+  }
+}

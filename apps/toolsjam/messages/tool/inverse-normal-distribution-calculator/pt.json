@@ -1,0 +1,108 @@
+{
+  "title": "Calculadora de distribuição normal inversa - achar X",
+  "tagline": "Encontre o valor x correspondente a uma probabilidade acumulada dada sob a curva normal. Suporta cálculos de cauda esquerda, cauda direita e duas caudas (centro).",
+  "intro": "Digite a média μ, o desvio padrão σ, a probabilidade acumulada e o tipo de cauda para encontrar o valor x ou o intervalo correspondente.",
+  "field": {
+    "mean": "Média (μ)",
+    "stdDev": "Desvio padrão (σ)",
+    "probability": "Probabilidade acumulada",
+    "tailType": "Tipo de cauda",
+    "probabilityHintOne": "Digite um valor entre 0 e 1 (exclusivo). Para cauda esquerda: área à esquerda de x. Para cauda direita: área à direita de x.",
+    "probabilityHintTwo": "Digite a área no centro (entre os dois valores x), por exemplo 0.95 para o centro de 95%."
+  },
+  "placeholder": {
+    "probability": "ex.: 0.95"
+  },
+  "tail": {
+    "left": "Cauda esquerda",
+    "right": "Cauda direita",
+    "two": "Duas caudas (centro)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Confira seus dados. A probabilidade deve estar entre 0 e 1, σ deve ser positivo e todos os campos precisam estar preenchidos."
+  },
+  "result": {
+    "heading": "Resultado",
+    "xValue": "valor x",
+    "zScore": "escore Z",
+    "xLow": "valor x inferior",
+    "xHigh": "valor x superior",
+    "zRange": "intervalo de escores Z",
+    "zRangeSep": "a"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de distribuição normal inversa",
+    "body": "A calculadora de distribuição normal inversa — às vezes chamada de função quantil ou função percentil da normal — responde à pergunta: dada uma probabilidade acumulada, qual é o valor x correspondente? Isso é o oposto de consultar a tabela da CDF normal padrão. Em vez de calcular P(X ≤ x) a partir de x, você informa P e resolve para x.\n\nEm estatística, a distribuição normal (também chamada de distribuição gaussiana ou curva em sino) é parametrizada pela média μ e pelo desvio padrão σ. Qualquer distribuição normal pode ser convertida em normal padrão (μ=0, σ=1) calculando o escore Z: Z = (x − μ) / σ. De forma equivalente, qualquer quantil Z da normal padrão pode ser convertido em um valor bruto x = μ + σ·Z. A calculadora de distribuição normal inversa usa isso para permitir que você trabalhe diretamente com qualquer média e desvio padrão, sem a conversão em duas etapas.\n\nO modo de cauda esquerda encontra o valor x abaixo do qual cai a fração especificada da distribuição. Se você informar μ=0, σ=1 e probability=0.95, a ferramenta retorna aproximadamente 1.6449, indicando que 95% da distribuição normal padrão fica abaixo de Z=1.6449. Esse é o 95º percentil, amplamente usado para construir intervalos de confiança unilaterais de 95% ou para encontrar o valor crítico de um teste unilateral com α=0.05.\n\nO modo de cauda direita encontra o valor x acima do qual cai a fração especificada da distribuição. Inserindo μ=100, σ=15 e probability=0.02, o resultado é aproximadamente 130.8, o que significa que apenas 2% dos escores de QI (modelados como N(100,15)) excedem esse valor. É assim que você encontra cortes para programas para superdotados, limites de admissão no topo dos percentis e limites de controle de qualidade para excedentes na cauda superior.\n\nO modo de duas caudas (centro) encontra o intervalo simétrico em torno da média que contém a probabilidade central especificada. Informar probability=0.95 significa que você quer o intervalo que captura os 95% centrais da distribuição, então cada cauda contém 2.5 %. A ferramenta retorna os valores x inferior e superior. É exatamente assim que os intervalos de confiança de 95% são construídos: média amostral ± 1.96 erros-padrão corresponde a μ=0, σ=1 e ao intervalo bicaudal de 95%.\n\nAplicações práticas incluem: encontrar escores Z para valores críticos em testes de hipótese; calcular intervalos de tolerância na manufatura (por exemplo, a faixa que contém os 99% centrais das dimensões do produto); definir limites de aprovação/reprovação em testes padronizados; determinar cortes de value-at-risk (VaR) em finanças; e inverter uma previsão de probabilidade para recuperar o limite original. A função inversa normal é uma das operações mais usadas em estatística aplicada, ficando atrás apenas da própria CDF."
+  },
+  "examples": {
+    "heading": "Exemplos de distribuição normal inversa",
+    "intro": "Cenários comuns em estatística, controle de qualidade e psicometria.",
+    "colInput": "Parâmetros",
+    "colOutput": "Resultado",
+    "colNote": "Aplicação",
+    "loadZ95": "Carregar escore Z do 95º percentil",
+    "loadIQ": "Carregar QI do top 2%",
+    "loadTolerance": "Carregar intervalo de tolerância de 99%",
+    "items": [
+      {
+        "input": "μ=0, σ=1, P=0.95, Left-Tailed",
+        "output": "x = 1.6449 (Z = 1.6449)",
+        "note": "O 95º percentil da normal padrão. Usado como valor crítico para um teste unilateral com α=0.05."
+      },
+      {
+        "input": "μ=100, σ=15, P=0.02, Right-Tailed",
+        "output": "x ≈ 130.8 (Z ≈ 2.054)",
+        "note": "QI mínimo para estar entre os 2% superiores. Útil para limites de elegibilidade em programas para superdotados."
+      },
+      {
+        "input": "μ=50, σ=0.5, P=0.99, Two-Tailed",
+        "output": "x = 48.71 to 51.29",
+        "note": "Intervalo de tolerância de fabricação contendo 99% dos comprimentos do produto. O 1% restante se divide entre curto demais e longo demais."
+      },
+      {
+        "input": "μ=75, σ=8, P=0.10, Left-Tailed",
+        "output": "x ≈ 64.74 (Z ≈ −1.282)",
+        "note": "Corte dos 10% inferiores para notas de prova. Alunos abaixo desse limite podem precisar de apoio de recuperação."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de distribuição normal inversa",
+    "steps": [
+      "Selecione o tipo de cauda: Cauda esquerda se quiser o valor abaixo do qual cai uma fração dada; Cauda direita se quiser o valor acima do qual cai uma fração; Duas caudas (centro) se quiser o intervalo simétrico em torno da média que captura uma fração central.",
+      "Digite a Média μ (o centro da distribuição) e o Desvio padrão σ (deve ser positivo). Use μ=0 e σ=1 para consultar a normal padrão / escore Z.",
+      "Digite a Probabilidade acumulada como um decimal entre 0 e 1. Para Cauda esquerda, é a área à esquerda de x. Para Cauda direita, é a área à direita. Para Duas caudas, é a área central (por exemplo, 0.95 para o centro de 95%).",
+      "Clique em Calcular. Nos modos de uma cauda, o resultado mostra o valor x e seu escore Z. No modo de duas caudas, mostra os limites inferior e superior e o intervalo correspondente de escores Z.",
+      "Use os botões de exemplo para carregar cenários comuns, como escores Z para intervalos de confiança de 95%, limites percentis de QI ou faixas de tolerância de fabricação."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre a distribuição normal inversa",
+    "items": [
+      {
+        "q": "O que é a distribuição normal inversa?",
+        "a": "A distribuição normal inversa (também chamada de função quantil ou função probit) mapeia uma probabilidade acumulada de volta para o valor correspondente na curva normal. Se a CDF normal informa P(X ≤ x), a inversa normal informa x dado P. É a função usada quando você procura um valor crítico de Z para um nível de confiança específico — por exemplo, Z=1.96 para 97.5% da normal padrão."
+      },
+      {
+        "q": "Qual é a diferença entre um escore Z e um valor x?",
+        "a": "Um escore Z é o valor padronizado em unidades de desvios-padrão a partir da média: Z = (x − μ) / σ. Um valor x é a medição bruta nas unidades originais. A calculadora retorna ambos: o valor x útil para limites do mundo real (nota de prova, comprimento de produto, pressão arterial) e o escore Z útil para comparar distribuições ou consultar probabilidades em tabelas estatísticas."
+      },
+      {
+        "q": "Como encontro o valor crítico para um intervalo de confiança de 95%?",
+        "a": "Um intervalo de confiança de 95% usa valores críticos bicaudais que cortam 2.5% em cada cauda. Defina μ=0, σ=1, probability=0.95 e escolha Duas caudas (centro). A calculadora retorna Z≈1.96 como limite superior (e −1.96 como limite inferior). A média amostral ± 1.96 × (erro-padrão) fornece o intervalo de confiança de 95% para qualquer estimador aproximadamente normal."
+      },
+      {
+        "q": "Que probabilidade devo inserir para um teste unilateral com α=0.05?",
+        "a": "Para um teste de cauda esquerda com α=0.05, insira probability=0.05 com Cauda esquerda selecionada; o resultado é o valor crítico abaixo do qual você rejeita H₀. Para um teste de cauda direita com α=0.05, insira probability=0.05 com Cauda direita selecionada; o resultado é o valor crítico acima do qual você rejeita H₀. Para um teste bicaudal com α=0.05, insira probability=0.95 com Duas caudas (centro) para obter ±1.96."
+      },
+      {
+        "q": "Posso usar isso para uma distribuição normal não padrão?",
+        "a": "Sim — essa é uma das principais vantagens da calculadora em relação às tabelas Z simples. Digite a média μ e o desvio padrão σ reais da sua distribuição, e a calculadora transforma automaticamente o escore Z para as unidades originais usando x = μ + σ × Z. Você não precisa padronizar os dados manualmente."
+      }
+    ]
+  }
+}

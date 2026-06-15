@@ -1,0 +1,102 @@
+{
+  "title": "Calculadora de rachas de moeda: caras e coroas",
+  "tagline": "Calcule a probabilidade de conseguir caras ou coroas consecutivas ao jogar uma moeda, ou o número esperado de lançamentos para qualquer tamanho de racha.",
+  "intro": "Digite o tamanho e o tipo da racha e depois escolha entre calcular a probabilidade exata dentro de um número fixo de lançamentos ou o número esperado de lançamentos necessário para alcançar a racha.",
+  "formula": "Fórmula (prob. exata): programação dinâmica sobre sequências de lançamentos  •  Lançamentos esperados para k caras: 2(2^k − 1)  •  Lançamentos esperados para k de qualquer lado: 2^k − 1",
+  "field": {
+    "streakLen": "Tamanho da racha",
+    "streakType": "Tipo de racha",
+    "calcType": "Tipo de cálculo",
+    "maxTosses": "Lançamentos máximos (opcional)",
+    "maxTossesHint": "Deixe em branco para usar uma janela padrão de aproximadamente 2k² lançamentos."
+  },
+  "placeholder": {
+    "streakLen": "ex.: 3",
+    "maxTosses": "ex.: 50"
+  },
+  "streakType": {
+    "heads": "Só caras",
+    "tails": "Só coroas",
+    "either": "Qualquer um (caras ou coroas)"
+  },
+  "calcType": {
+    "exactProb": "Probabilidade exata",
+    "exactProb_desc": "Calcule a probabilidade de conseguir a racha ao menos uma vez dentro do número de lançamentos especificado (ou padrão).",
+    "expectedTosses": "Número esperado de lançamentos",
+    "expectedTosses_desc": "Calcule a média de lançamentos necessários até a racha ser alcançada pela primeira vez."
+  },
+  "button": {
+    "calculate": "Calcular racha",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite um tamanho de racha válido (1–100). Se informar lançamentos máximos, eles devem ser ≥ o tamanho da racha e ≤ 100.000."
+  },
+  "result": {
+    "heading": "Resultado",
+    "inNTosses": "Probabilidade de conseguir a racha em {n} lançamentos",
+    "tosses": "lançamentos (esperados)",
+    "expectedDesc": "Em média, essa é a quantidade de lançamentos necessária antes que a racha seja alcançada pela primeira vez."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de rachas de moeda",
+    "body": "Uma racha — também chamada de run — é uma sequência de resultados idênticos consecutivos. O exemplo mais básico é uma sequência de k caras seguidas ao lançar uma moeda justa. Embora pareça simples, a matemática das rachas envolve resultados surpreendentemente profundos da teoria das probabilidades e tem aplicações que vão da análise esportiva à modelagem de risco financeiro.\n\nA probabilidade de obter ao menos uma racha de k caras em algum ponto dentro de n lançamentos não pode ser calculada com uma simples fórmula binomial. É necessário acompanhar o quanto você está perto de completar a racha a cada etapa da sequência — uma tarefa perfeita para a programação dinâmica. Esta calculadora usa exatamente essa abordagem: mantém uma distribuição de probabilidade sobre o número de caras consecutivas acumuladas até agora, atualiza isso a cada novo lançamento e soma a probabilidade absorvida no estado de 'racha completa' após n lançamentos.\n\nO número esperado de lançamentos até a primeira racha de k caras tem uma forma fechada elegante para uma moeda justa (p = 0,5): E_k = 2(2^k − 1). Para k = 1, espera-se 2 lançamentos em média antes da primeira cara, o que está correto, já que E[geométrica(0,5)] = 1/0,5 = 2. Para 3 caras seguidas, o valor esperado é 2(2^3 − 1) = 14. Para k = 10, a expectativa já é de 2.046 lançamentos — mostrando que rachas longas são muito mais raras do que a intuição sugere.\n\nNas rachas de 'qualquer lado' (k resultados consecutivos do mesmo tipo, sejam caras ou coroas), o número esperado de lançamentos é 2^k − 1. Isso é menor porque qualquer resultado no primeiro lançamento inicia uma possível racha nessa direção. Para k = 3, a espera esperada é de apenas 7 lançamentos, em comparação com 14 para uma racha específica de caras. Intuitivamente, a racha pode se formar em qualquer direção, dobrando as oportunidades.\n\nOs cálculos de racha aparecem em muitos contextos práticos. No esporte, diz-se que um jogador de basquete que acertou os últimos 5 arremessos em sequência está 'quentíssimo'. Pesquisas estatísticas sobre o fenômeno da 'mão quente' mostram que, embora exista alguma correlação real, boa parte do que os torcedores percebem como rachas é apenas o agrupamento natural esperado em processos aleatórios. Em finanças, um fundo que vence o mercado 5 anos seguidos parece impressionante, mas com milhares de fundos isso é estatisticamente inevitável sob a hipótese nula de ausência de habilidade. A calculadora ajuda a avaliar se uma sequência observada de sucessos é surpreendente dado o número de oportunidades.\n\nNo jogo, entender probabilidades de rachas ajuda a definir expectativas realistas. A probabilidade de obter 10 caras seguidas em 100 lançamentos é de cerca de 4,4% — menor do que muitos apostadores imaginam ao considerar os vários pontos de início possíveis. A probabilidade de obter 20 caras seguidas em 1.000 lançamentos é de apenas 0,05% — realmente rara, apesar do grande número de tentativas.\n\nEsta calculadora suporta rachas de 1 a 100 e até 100.000 lançamentos no modo de probabilidade, cobrindo cenários práticos de exercícios de sala de aula a estudos de simulação em grande escala."
+  },
+  "examples": {
+    "heading": "Exemplos de rachas de moeda",
+    "intro": "Quatro exemplos resolvidos, da probabilidade básica ao jogo e às estatísticas esportivas.",
+    "colInput": "Racha / Tipo / Modo",
+    "colOutput": "Resultado",
+    "colNote": "Interpretação",
+    "loadThreeHeads": "Carregar exemplo de 3 caras",
+    "loadLong": "Carregar racha longa",
+    "loadGambling": "Carregar exemplo de jogo",
+    "items": [
+      {
+        "input": "Racha = 3, só caras, lançamentos esperados",
+        "output": "14 lançamentos",
+        "note": "Em média, você precisa jogar uma moeda justa 14 vezes antes de obter 3 caras seguidas. Fórmula: 2(2³ − 1) = 14."
+      },
+      {
+        "input": "Racha = 5, só caras, probabilidade em 50 lançamentos",
+        "output": "≈ 55,19%",
+        "note": "Mais da metade de todas as sequências de 50 lançamentos justos contém ao menos uma racha de 5 caras consecutivas."
+      },
+      {
+        "input": "Racha = 7, qualquer um, lançamentos esperados",
+        "output": "127 lançamentos",
+        "note": "Para 7 resultados consecutivos do mesmo tipo (caras ou coroas), espere em média 2⁷ − 1 = 127 lançamentos."
+      },
+      {
+        "input": "Racha = 4, só caras, lançamentos esperados",
+        "output": "30 lançamentos",
+        "note": "Um apostador que aposta em 4 caras consecutivas deve esperar cerca de 30 lançamentos. Fórmula: 2(2⁴ − 1) = 30."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de rachas de moeda",
+    "steps": [
+      "Digite o tamanho da racha — o número de resultados idênticos consecutivos que você deseja (por exemplo, 3 para três caras seguidas).",
+      "Escolha o tipo de racha: Só caras, Só coroas ou Qualquer um (qualquer k resultados idênticos consecutivos).",
+      "Selecione o modo de cálculo: Probabilidade exata (dentro de um número de lançamentos) ou Número esperado de lançamentos.",
+      "No modo de probabilidade exata, você pode opcionalmente informar o número máximo de lançamentos. Deixe em branco para usar a janela padrão.",
+      "Clique em Calcular racha. O resultado mostrará a probabilidade em porcentagem ou o número esperado de lançamentos necessários."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre rachas de moeda",
+    "q1": "Como a probabilidade da racha é calculada?",
+    "q1_a": "A calculadora usa programação dinâmica. Ela acompanha a probabilidade de estar em cada possível estado de 'racha parcial' (0, 1, 2, ... k-1 caras consecutivas até o momento) conforme cada novo lançamento é simulado. Quando a racha parcial atinge k, a probabilidade é absorvida. Após n lançamentos, a probabilidade total absorvida é a probabilidade de ter alcançado a racha ao menos uma vez.",
+    "q2": "Por que o número esperado cresce tão rápido com o tamanho da racha?",
+    "q2_a": "Cada elemento adicional na racha multiplica o tempo de espera esperado por aproximadamente 2. Para rachas de caras em moeda justa, E_k = 2(2^k − 1), o que dobra a cada aumento de k em 1. Isso acontece porque, sempre que você está perto de completar a racha, mas falha, precisa recomeçar do zero, e a probabilidade de concluir com sucesso a próxima tentativa cai pela metade a cada passo adicional necessário.",
+    "q3": "Qual é a probabilidade de 10 caras em 100 lançamentos?",
+    "q3_a": "Usando tamanho de racha 10, tipo Só caras e máximo de 100 lançamentos, você obtém aproximadamente 4,4%. Apesar de uma sequência específica de 10 resultados ter probabilidade (0,5)^10 ≈ 0,1% para um ponto de partida concreto, os muitos pontos de início possíveis e as janelas sobrepostas se combinam para produzir uma probabilidade de cerca de 1 em 23.",
+    "q4": "Uma sequência de 5 vitórias de um time esportivo é evidência de habilidade ou sorte?",
+    "q4_a": "Depende da probabilidade básica de vitória. Para um time com 50% de chance de vitória (equilibrado), uma racha de 5 vitórias tem probabilidade (0,5)^5 ≈ 3,1%. Em uma temporada de 30+ jogos, a chance de encontrar ao menos uma racha dessas em algum momento é muito maior — frequentemente acima de 50%. Uma racha de 5 vitórias, por si só, não é uma evidência forte de mudança de habilidade ou de 'mão quente' a menos que a taxa base de vitória do time esteja substancialmente abaixo de 50%.",
+    "q5": "Como o modo 'qualquer um' difere do modo só caras?",
+    "q5_a": "No modo 'qualquer um', a racha conta qualquer k resultados consecutivos do mesmo tipo — sejam todos caras ou todas coroas. O número esperado de lançamentos para uma racha 'qualquer um' de comprimento k é 2^k − 1, cerca de metade da espera esperada para uma racha de um lado específico do mesmo comprimento (que é 2(2^k − 1)). Isso acontece porque qualquer lançamento pode iniciar uma racha em qualquer direção, dobrando as oportunidades de começar uma sequência válida.",
+    "q6": "Posso usar isso para eventos binários aleatórios que não sejam moedas?",
+    "q6_a": "Sim, desde que cada tentativa seja independente e tenha 50% de probabilidade de sucesso. Exemplos: a probabilidade de um time de basquete com 50% de vitórias conseguir uma racha de 5 jogos, a probabilidade de um sensor binário ler o mesmo valor k vezes seguidas, ou o número esperado de decisões tipo moeda antes de uma caminhada aleatória atingir um lado k vezes consecutivas. A matemática é idêntica para todos os processos binários independentes de 50/50."
+  }
+}

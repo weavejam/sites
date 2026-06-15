@@ -1,0 +1,102 @@
+{
+  "title": "F-Statistic Calculator - ANOVA & Variance Ratio Test",
+  "tagline": "Calculate the F-statistic, degrees of freedom, p-value, and critical F-value for comparing two sample variances in an ANOVA or F-ratio test.",
+  "intro": "Enter the sample variance and size for each group, choose a significance level, and get the F-statistic with a clear reject/fail-to-reject decision.",
+  "card": {
+    "title": "F-Statistic Calculator",
+    "description": "Compare two group variances using the F-ratio test"
+  },
+  "field": {
+    "group1": "Group 1 Data",
+    "group2": "Group 2 Data",
+    "variance": "Sample Variance (s²)",
+    "variance1": "Group 1 Sample Variance (s²)",
+    "variance2": "Group 2 Sample Variance (s²)",
+    "sampleSize": "Sample Size (n)",
+    "sampleSize1": "Group 1 Sample Size (n)",
+    "sampleSize2": "Group 2 Sample Size (n)",
+    "alpha": "Significance Level (α)"
+  },
+  "placeholder": {
+    "variance": "e.g. 0.34",
+    "sampleSize": "e.g. 25"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid values. Variances must be ≥ 0 and sample sizes must be integers ≥ 2."
+  },
+  "result": {
+    "heading": "Result",
+    "fStatistic": "F-Statistic",
+    "df1": "df₁ (numerator)",
+    "df2": "df₂ (denominator)",
+    "pValue": "p-Value (two-tailed)",
+    "criticalF": "Critical F-Value",
+    "reject": "Reject H₀ — the variances are significantly different.",
+    "failReject": "Fail to reject H₀ — no significant difference between the variances."
+  },
+  "about": {
+    "heading": "About the F-Statistic Calculator",
+    "body": "The F-statistic is a ratio of two variances used to determine whether differences between group means or group variances are statistically significant. Named after Sir Ronald A. Fisher, it forms the backbone of Analysis of Variance (ANOVA) and is also the key quantity in the F-test for equality of two variances. Whenever you need to decide whether the spread of values in one group differs meaningfully from another, the F-statistic gives you a rigorous, probability-based answer.\n\nAt its core, the F-statistic is simply F = s₁² / s₂², where s₁² and s₂² are the sample variances of two independent groups. By convention, the larger variance is placed in the numerator so that F is always ≥ 1, which confines all the probability mass of interest to the right tail of the F-distribution. The resulting value is then compared to a theoretical F-distribution parameterised by two degrees-of-freedom values: df₁ = n₁ − 1 (numerator) and df₂ = n₂ − 1 (denominator). A large F-value means the variances are very different; an F near 1 means they are similar.\n\nThe F-distribution is right-skewed and takes only non-negative values. Its exact shape depends on df₁ and df₂. For a two-tailed test — the most common type, which checks for any difference regardless of direction — the p-value is calculated as 2 × P(F > F_obs), where P(F > F_obs) is the area in the right tail of the F-distribution beyond the observed statistic. If this p-value is less than or equal to your chosen significance level α, you reject the null hypothesis H₀: σ₁² = σ₂² and conclude that the variances differ significantly.\n\nIn ANOVA, the F-statistic takes a slightly different form: it is the ratio of between-group variance (mean squares between, or MSB) to within-group variance (mean squares within, or MSW). If the group means are all identical, MSB and MSW should be roughly equal, giving F ≈ 1. As the group means diverge, MSB grows relative to MSW and F increases, eventually exceeding the critical threshold.\n\nCommon applications of the F-statistic include quality control in manufacturing (are two machines producing parts with the same variability?), educational research (do two teaching methods lead to equally consistent test scores?), financial analysis (do two stocks have similar volatility?), and agricultural science (do two fertilisers yield crops with the same consistency?). Before running a two-sample t-test, many analysts use the F-test first to verify the equal-variances assumption — if the F-test rejects H₀, a Welch t-test (unequal variances) is more appropriate.\n\nThis calculator automates the F-distribution CDF computation using the regularised incomplete beta function, giving you accurate p-values for any positive degrees of freedom without needing statistical tables. The critical F-value is found by inverting the CDF numerically. Both outputs are consistent with the values produced by R, Python (scipy), and SPSS."
+  },
+  "examples": {
+    "heading": "F-Statistic Calculator Examples",
+    "intro": "Three real-world scenarios showing how to apply the F-test to compare variances.",
+    "colInput": "Input",
+    "colOutput": "Result",
+    "colNote": "Context",
+    "loadMfg": "Load manufacturing example",
+    "loadTeaching": "Load teaching-methods example",
+    "loadStock": "Load stock-volatility example",
+    "items": [
+      {
+        "input": "s₁² = 0.34, n₁ = 25; s₂² = 0.29, n₂ = 25; α = 0.05",
+        "output": "F = 1.1724, p ≈ 0.6767 — fail to reject H₀",
+        "note": "Two machines producing bolts. The variance in diameter is not significantly different at the 5% level."
+      },
+      {
+        "input": "s₁² = 110, n₁ = 41; s₂² = 135, n₂ = 31; α = 0.05",
+        "output": "F = 1.2273, p ≈ 0.5061 — fail to reject H₀",
+        "note": "Two teaching methods. Test-score variances are not significantly different; both methods produce similar consistency."
+      },
+      {
+        "input": "s₁² = 1.5, n₁ = 30; s₂² = 1.2, n₂ = 30; α = 0.01",
+        "output": "F = 1.25, p ≈ 0.5717 — fail to reject H₀",
+        "note": "Stock daily-return variances. At the 1% significance level there is no evidence of different volatility."
+      },
+      {
+        "input": "s₁² = 550, n₁ = 50; s₂² = 620, n₂ = 50; α = 0.10",
+        "output": "F = 1.1273, p ≈ 0.5659 — fail to reject H₀",
+        "note": "Crop yield with two fertilisers. Variance in output is statistically similar at the 10% level."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the F-Statistic Calculator",
+    "steps": [
+      "Enter the sample variance (s²) and sample size (n) for Group 1 under the 'Group 1 Data' section. Both values must be numbers ≥ 0 (variance) and ≥ 2 (sample size).",
+      "Enter the corresponding variance and sample size for Group 2 in the 'Group 2 Data' section.",
+      "Select your desired significance level α from the dropdown — 0.01, 0.05, or 0.10 are the three standard choices.",
+      "Click 'Calculate'. The calculator places the larger variance in the numerator, computes F = s_max² / s_min², derives the degrees of freedom (df₁ = n_max − 1, df₂ = n_min − 1), and evaluates the two-tailed p-value and critical F-value.",
+      "Compare the p-value to α. If p ≤ α, reject H₀ and conclude the variances differ significantly. Otherwise, fail to reject H₀. Click 'Reset' to clear all fields and start over."
+    ]
+  },
+  "faq": {
+    "heading": "F-Statistic Calculator FAQ",
+    "q1": "What is the F-statistic?",
+    "q1_a": "The F-statistic is the ratio of two sample variances: F = s₁² / s₂². By convention, the larger variance goes in the numerator so F ≥ 1. It follows an F-distribution with df₁ = n₁ − 1 and df₂ = n₂ − 1 degrees of freedom under the null hypothesis that both population variances are equal.",
+    "q2": "What does the p-value represent in an F-test?",
+    "q2_a": "The p-value is the probability of observing an F-statistic as extreme as — or more extreme than — the one calculated, assuming H₀ (equal variances) is true. A small p-value (≤ α) means such a large ratio is unlikely under H₀, so you reject H₀. A large p-value means the data are consistent with equal variances.",
+    "q3": "When should I use a one-tailed versus two-tailed F-test?",
+    "q3_a": "Use a two-tailed test (the default here) when you want to detect any difference between the variances, regardless of direction. Use a one-tailed test only if you have a prior directional hypothesis — for example, that σ₁² > σ₂². For a one-tailed p-value, halve the two-tailed p-value from this calculator.",
+    "q4": "What are the assumptions of the F-test?",
+    "q4_a": "The F-test for equality of variances requires that both samples be drawn from normally distributed populations and that the samples be independent. If normality is in doubt, consider Levene's test or the Brown–Forsythe test, which are more robust to non-normality.",
+    "q5": "How is the critical F-value used?",
+    "q5_a": "The critical F-value F_crit is the threshold beyond which you reject H₀ at your chosen α. If F_obs > F_crit, reject H₀. The critical value is equivalent to the p-value approach: F_obs > F_crit if and only if p-value < α. Both methods always give the same decision.",
+    "q6": "What is the difference between an F-test and a t-test?",
+    "q6_a": "A t-test compares the means of two groups, while an F-test (in the two-sample context) compares their variances. In ANOVA, the F-statistic compares the variance between group means to the variance within groups, effectively testing whether all group means are equal. The two-sample t-test can be seen as a special case where the F-value equals t²."
+  }
+}

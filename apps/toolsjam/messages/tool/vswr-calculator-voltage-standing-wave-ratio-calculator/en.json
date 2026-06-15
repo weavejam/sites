@@ -1,0 +1,92 @@
+{
+  "title": "VSWR Calculator – Voltage Standing Wave Ratio",
+  "tagline": "Calculate VSWR, return loss, mismatch loss, and transmission efficiency from power or impedance measurements.",
+  "intro": "Choose power measurement or impedance measurement mode to compute reflection coefficient, VSWR, and related RF transmission parameters.",
+  "type": {
+    "powerMode": "Power Measurement",
+    "impedanceMode": "Impedance Measurement"
+  },
+  "field": {
+    "forwardPower": "Forward Power (W)",
+    "reflectedPower": "Reflected Power (W)",
+    "loadImpedance": "Load Impedance (Ω)",
+    "charImpedance": "Characteristic Impedance (Ω)"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "VSWR Results",
+    "gamma": "Reflection Coefficient (Γ): {value}",
+    "vswr": "VSWR: {value}",
+    "returnLoss": "Return Loss: {value} dB",
+    "mismatchLoss": "Mismatch Loss: {value} dB",
+    "efficiency": "Transmission Efficiency: {value}%"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers.",
+    "reflectedExceedsForward": "Reflected power cannot exceed forward power.",
+    "forwardZero": "Forward power must be greater than zero.",
+    "impedanceShort": "ZL + Z0 cannot be zero."
+  },
+  "formula": "Γ = √(Pr/Pf) or |(ZL−Z0)/(ZL+Z0)| | VSWR = (1+Γ)/(1−Γ) | RL = −20·log10(Γ) dB",
+  "about": {
+    "heading": "About the VSWR Calculator",
+    "body": "Voltage Standing Wave Ratio (VSWR) is a fundamental measurement in radio frequency (RF) and microwave engineering that quantifies how well a transmission line is matched to its load. When RF power travels along a coaxial cable or waveguide and encounters an impedance mismatch at the load, some power is reflected back toward the source. The superposition of the forward-traveling and reflected waves creates a standing wave pattern, and VSWR measures the ratio of the maximum to minimum voltage in this pattern.\n\nA perfect impedance match gives VSWR = 1.0, meaning no power is reflected. Practical systems aim for VSWR ≤ 1.5 (meaning less than 4% of power is reflected). High VSWR values (above 3 or 4) are undesirable because they waste transmitter power, can damage the power amplifier due to reflected power, and degrade signal quality. In broadcast and cellular systems, antenna VSWR is continuously monitored, and automatic protection circuits shut down transmitters when VSWR exceeds safe thresholds.\n\nThe reflection coefficient Γ (gamma) is the ratio of the reflected wave amplitude to the incident wave amplitude. It ranges from 0 (perfect match) to 1 (total reflection, as with an open or short circuit). VSWR is directly related to Γ: VSWR = (1 + |Γ|) / (1 − |Γ|). For power measurements, |Γ| = √(P_reflected / P_forward). For impedance measurements, Γ = (ZL − Z0) / (ZL + Z0), where ZL is the load impedance and Z0 is the characteristic impedance.\n\nReturn loss (in dB) quantifies the ratio of reflected power to forward power on a logarithmic scale: RL = −20 × log10(|Γ|). High return loss means low reflection. A return loss of 20 dB means 1% of power is reflected; 10 dB means 10% reflected. Mismatch loss represents the power absorbed by the transmission system due to impedance mismatch, while transmission efficiency (1 − Γ²) × 100% shows the percentage of power that actually reaches the load.\n\nCommon applications include antenna matching, coaxial cable system design, amplifier output matching, filter characterization, and impedance matching networks in RF circuit design."
+  },
+  "examples": {
+    "heading": "VSWR Examples",
+    "intro": "Common RF matching scenarios with VSWR, return loss, and transmission efficiency.",
+    "colInput": "Measurement",
+    "colOutput": "VSWR / Return Loss",
+    "colNote": "Transmission Efficiency",
+    "items": [
+      {
+        "input": "Perfect Match (Power): Pf=100W, Pr=0W",
+        "output": "Γ=0, VSWR=1.0, RL=∞ dB",
+        "note": "100% efficiency. Ideal matched system — all power delivered to load."
+      },
+      {
+        "input": "Good Match (Impedance): ZL=75Ω, Z0=50Ω",
+        "output": "Γ=0.2, VSWR=1.5, RL=14.0 dB",
+        "note": "96% efficiency. Acceptable for most applications; typical antenna specification."
+      },
+      {
+        "input": "Poor Match (Power): Pf=100W, Pr=25W",
+        "output": "Γ=0.5, VSWR=3.0, RL=6.0 dB",
+        "note": "75% efficiency. Significant mismatch — 25% of power reflected back to source."
+      },
+      {
+        "input": "High Mismatch (Impedance): ZL=200Ω, Z0=50Ω",
+        "output": "Γ=0.6, VSWR=4.0, RL=4.4 dB",
+        "note": "64% efficiency. Poor match requiring an impedance matching network for efficient operation."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the VSWR Calculator",
+    "steps": [
+      "Select the measurement mode: Power Measurement (uses forward and reflected power) or Impedance Measurement (uses load and characteristic impedances).",
+      "For Power mode: enter the forward (incident) power in watts and reflected power in watts. Reflected power must be less than forward power.",
+      "For Impedance mode: enter the load impedance ZL and characteristic impedance Z0 in ohms. Z0 is typically 50Ω for coaxial systems or 75Ω for cable TV systems.",
+      "Click Calculate to see the reflection coefficient (Γ), VSWR, return loss, mismatch loss, and transmission efficiency.",
+      "Aim for VSWR ≤ 1.5 (return loss ≥ 14 dB) for well-matched RF systems. Values above 3 indicate significant impedance mismatch requiring corrective action."
+    ]
+  },
+  "faq": {
+    "heading": "VSWR FAQ",
+    "q1": "What does VSWR mean?",
+    "q1_a": "VSWR stands for Voltage Standing Wave Ratio. It is the ratio of the maximum to minimum voltage amplitude in a standing wave pattern created when a transmission line is not perfectly matched to its load. VSWR = 1.0 is a perfect match; VSWR > 1 indicates impedance mismatch. A VSWR of 2.0 means the maximum voltage is twice the minimum voltage in the standing wave.",
+    "q2": "What is a good VSWR value?",
+    "q2_a": "For most RF applications, VSWR ≤ 1.5 is considered good (return loss ≥ 14 dB, reflection < 4%). VSWR ≤ 2.0 is acceptable for many broadcast and amateur applications. Values above 3.0 indicate significant mismatch and wasted power. Critical systems like satellite uplinks may require VSWR ≤ 1.2. VSWR = 1.0 is ideal but practically unachievable.",
+    "q3": "What is return loss and how does it relate to VSWR?",
+    "q3_a": "Return loss is the ratio of reflected power to forward power expressed in dB: RL = −20 × log10(|Γ|). High return loss means low reflection. VSWR and return loss are directly related: VSWR 1.5 → RL 14 dB; VSWR 2.0 → RL 9.5 dB; VSWR 3.0 → RL 6.0 dB. RF engineers often prefer to specify return loss because it increases as the match improves (higher is better).",
+    "q4": "What causes high VSWR?",
+    "q4_a": "High VSWR is caused by impedance mismatch between the transmission line and the load. Common causes include: antenna not tuned to the operating frequency; damaged or corroded connectors; coaxial cable with water ingress; incorrect feedline impedance; transmitter output impedance not matched to the cable; or a load (e.g., filter, amplifier) with incorrect input impedance. Impedance matching networks (L-networks, pi-networks, stub matching) can reduce VSWR.",
+    "q5": "Can VSWR damage a transmitter?",
+    "q5_a": "Yes — high VSWR means significant power is reflected back to the transmitter. Modern transmitters have directional couplers and protection circuits that detect high reflected power and reduce output or shut down automatically. However, sustained high VSWR can cause thermal stress in the final amplifier stage, damage transistors, and cause power supply instability. Always ensure the VSWR is within the transmitter's specified operating range.",
+    "q6": "What is the difference between VSWR and S11?",
+    "q6_a": "S11 (the input reflection coefficient in S-parameter notation) and VSWR describe the same impedance mismatch from different perspectives. |S11| = |Γ| (magnitude of reflection coefficient). They are related by: VSWR = (1 + |S11|) / (1 − |S11|) and Return Loss = −20 × log10(|S11|) dB. S11 is commonly used in vector network analyzer (VNA) measurements and is expressed as a complex number, while VSWR is always real and positive."
+  }
+}

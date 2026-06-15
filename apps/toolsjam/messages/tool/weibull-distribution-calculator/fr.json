@@ -1,0 +1,101 @@
+{
+  "title": "Calculateur de Weibull - PDF, CDF et fiabilité",
+  "tagline": "Calculez la PDF, la CDF, la fonction de fiabilité, le taux de risque, la moyenne, la médiane, le mode et la variance à partir de n'importe quels paramètres de forme et d'échelle.",
+  "intro": "Saisissez le paramètre de forme k, le paramètre d'échelle λ et une valeur x pour obtenir une analyse complète de la distribution de Weibull, y compris la probabilité de défaillance et la fiabilité.",
+  "formula": "PDF : f(x) = (k/λ)(x/λ)^(k−1) · exp(−(x/λ)^k)  •  CDF : F(x) = 1 − exp(−(x/λ)^k)  •  Moyenne = λ · Γ(1 + 1/k)",
+  "field": {
+    "k": "Forme (k)",
+    "lambda": "Échelle (λ)",
+    "x": "Valeur (x)"
+  },
+  "placeholder": {
+    "k": "p. ex. 2.1",
+    "lambda": "p. ex. 8500",
+    "x": "p. ex. 7000"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres valides. La forme k et l'échelle λ doivent être positives ; x doit être non négatif."
+  },
+  "result": {
+    "heading": "Résultat",
+    "pdf": "PDF f(x)",
+    "cdf": "CDF F(x)",
+    "reliability": "Fiabilité R(x)",
+    "hazard": "Taux de risque h(x)",
+    "mean": "Moyenne",
+    "median": "Médiane",
+    "mode": "Mode",
+    "variance": "Variance",
+    "stdDev": "Écart type"
+  },
+  "about": {
+    "heading": "À propos du calculateur de Weibull",
+    "body": "La distribution de Weibull est une distribution de probabilité continue qui porte le nom de l'ingénieur et mathématicien suédois Waloddi Weibull, qui l'a utilisée en 1951 pour modéliser la résistance et la fatigue des matériaux. Elle est aujourd'hui l'une des distributions les plus importantes en ingénierie de fiabilité, en analyse de survie, en modélisation de la vitesse du vent et en théorie des valeurs extrêmes, car son paramètre de forme k permet de modéliser des taux de défaillance croissants, constants ou décroissants au sein d'une seule famille souple.\n\nLa distribution est définie par deux paramètres. Le paramètre de forme k (parfois noté β) détermine si le taux de défaillance augmente, diminue ou reste constant au fil du temps. Lorsque k > 1, le taux de défaillance augmente avec le temps, ce qui modélise les défaillances par usure typiques des composants mécaniques qui se dégradent à l'usage. Lorsque k = 1, la distribution de Weibull se réduit exactement à la distribution exponentielle à taux de défaillance constant, modélisant des défaillances purement aléatoires comme celles de composants électroniques avec un taux de fond stable. Lorsque k < 1, le taux de défaillance diminue au fil du temps, ce qui modélise les défaillances de mortalité infantile : les éléments défectueux tombent tôt en panne et les survivants deviennent plus fiables. Le paramètre d'échelle λ (parfois noté η) est la durée de vie caractéristique : à x = λ, la CDF vaut 1 − e⁻¹ ≈ 63,2 %, quelle que soit la valeur de k.\n\nLa fonction de densité de probabilité (PDF) f(x) donne la probabilité relative d'observer une défaillance exactement au temps x. La fonction de répartition cumulée (CDF) F(x) donne la probabilité qu'un composant soit déjà tombé en panne au plus tard à x ; on parle aussi de non-fiabilité. La fonction de fiabilité R(x) = 1 − F(x) donne la probabilité de survivre au-delà de x, qui est l'indicateur principal pour les garanties et la planification de maintenance. Le taux de risque h(x) = f(x) / R(x) est le taux instantané de défaillance à x sachant que le composant a survécu jusque-là ; en ingénierie, on parle aussi de force de mortalité ou de fonction de risque.\n\nLa moyenne de la distribution de Weibull est λ · Γ(1 + 1/k), où Γ est la fonction gamma. La médiane est λ · (ln 2)^(1/k). Le mode (temps de défaillance le plus probable) est λ · ((k−1)/k)^(1/k) lorsque k > 1 et zéro lorsque k ≤ 1. La variance est λ² · [Γ(1 + 2/k) − (Γ(1 + 1/k))²].\n\nL'analyse de Weibull intervient dans la planification de la maintenance de flotte, la certification de composants aéronautiques, l'évaluation des ressources éoliennes, l'estimation des périodes de retour des séismes et les études de survie en cancérologie. Ce calculateur effectue tous les calculs standards de Weibull en une seule étape, en utilisant l'approximation de Lanczos pour la fonction gamma afin de conserver une grande précision numérique sur une large plage de valeurs."
+  },
+  "examples": {
+    "heading": "Exemples de la distribution de Weibull",
+    "intro": "Trois scénarios industriels montrant comment la distribution de Weibull modélise la défaillance et la fiabilité.",
+    "colInput": "Paramètres",
+    "colOutput": "CDF F(x)",
+    "colNote": "Détails",
+    "loadBearing": "Analyse de roulements",
+    "loadWind": "Vitesse du vent",
+    "loadExponential": "Cas exponentiel",
+    "items": [
+      {
+        "input": "k=2.1, λ=8500, x=7000",
+        "output": "F(7000) ≈ 0.485",
+        "note": "Environ 48.5 % des roulements tomberont en panne avant 7000 heures. Avec k > 1, le taux de défaillance augmente avec l'âge (régime d'usure)."
+      },
+      {
+        "input": "k=1.8, λ=12 mph, x=15 mph",
+        "output": "F(15) ≈ 0.776",
+        "note": "La probabilité que la vitesse moyenne quotidienne du vent soit inférieure ou égale à 15 mph est d'environ 77.6 %. Dans de nombreuses régions, les vitesses du vent suivent une loi de Weibull avec k ≈ 1.5–2.5."
+      },
+      {
+        "input": "k=1, λ=500, x=500",
+        "output": "F(500) ≈ 0.632",
+        "note": "Lorsque k=1, Weibull se réduit à la distribution exponentielle. À x=λ, F(x) = 1 − e⁻¹ ≈ 63.2 %, quelle que soit la valeur de k ; c'est la propriété caractéristique de λ."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de Weibull",
+    "steps": [
+      "Saisissez le paramètre de forme k : une valeur supérieure à 1 modélise l'usure, k=1 est exponentiel et une valeur inférieure à 1 modélise la mortalité infantile.",
+      "Saisissez le paramètre d'échelle λ, qui représente la durée de vie caractéristique (le moment où environ 63.2 % des unités auront cessé de fonctionner).",
+      "Saisissez la valeur x à laquelle vous souhaitez évaluer la distribution ; il s'agit généralement d'un temps, d'une distance ou d'un niveau de contrainte.",
+      "Cliquez sur Calculer pour obtenir la PDF, la CDF, la fiabilité, le taux de risque, la moyenne, la médiane, le mode, la variance et l'écart type.",
+      "Utilisez les boutons d'exemple pour charger instantanément des scénarios techniques ou environnementaux prédéfinis."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la distribution de Weibull",
+    "items": [
+      {
+        "q": "Que signifie concrètement le paramètre de forme k ?",
+        "a": "Le paramètre de forme k détermine le schéma du taux de défaillance. Lorsque k < 1, le taux de défaillance diminue avec le temps : les défauts précoces dominent. Lorsque k = 1, le taux de défaillance est constant : il s'agit de défaillances purement aléatoires. Lorsque k > 1, le taux de défaillance augmente : l'usure devient le mode de défaillance dominant. La plupart des composants mécaniques ont un k compris entre 1 et 4."
+      },
+      {
+        "q": "Qu'est-ce que la fonction de fiabilité et comment l'utiliser ?",
+        "a": "La fiabilité R(x) = 1 − F(x) donne la probabilité qu'un composant survive au-delà de x. Pour planifier une maintenance ou une période de garantie, vous choisissez une probabilité de défaillance acceptable et vous résolvez le x correspondant. Par exemple, R(x) = 0.90 signifie que 90 % des unités devraient survivre au-delà de x."
+      },
+      {
+        "q": "Pourquoi la CDF vaut-elle toujours environ 63.2 % à x=λ ?",
+        "a": "À x = λ, l'exposant de la formule de la CDF devient (λ/λ)^k = 1, donc F(λ) = 1 − e⁻¹ ≈ 0.6321. C'est vrai pour toute valeur de k, ce qui fait de λ la durée de vie caractéristique universelle : 63.2 % des unités auront défailli à la valeur d'échelle, quelle que soit la forme."
+      },
+      {
+        "q": "Qu'est-ce que le taux de risque et quand est-il important ?",
+        "a": "Le taux de risque h(x) est le taux instantané de défaillance à x, sachant que l'on a survécu jusque-là. En ingénierie de fiabilité, il sert à planifier la maintenance préventive. Lorsque h(x) augmente (k > 1), remplacer les pièces avant qu'elles n'atteignent un âge à haut risque est rentable. Lorsque h(x) est constant (k = 1), le moment de remplacement n'a pas d'importance statistique."
+      },
+      {
+        "q": "En quoi la moyenne de Weibull diffère-t-elle du paramètre d'échelle ?",
+        "a": "Le paramètre d'échelle λ est le moment où 63.2 % des unités ont défailli ; ce n'est pas la durée de vie moyenne. La moyenne est λ · Γ(1 + 1/k). Pour k=1 (exponentielle), moyenne = λ. Pour k=2, la moyenne vaut environ 0.886 λ. Pour k=3.44, la moyenne est proche de λ. La moyenne peut donc être supérieure ou inférieure à λ selon la forme."
+      }
+    ]
+  }
+}

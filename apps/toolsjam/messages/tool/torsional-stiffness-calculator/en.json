@@ -1,0 +1,95 @@
+{
+  "title": "Torsional Stiffness Calculator – Shear Stress and Torque",
+  "tagline": "Calculate torsional stiffness, max shear stress, and strain energy for circular shafts from shear modulus, length, and diameter.",
+  "intro": "Enter your shaft geometry and material properties to instantly compute torsional stiffness, maximum shear stress, polar moment of inertia, and strain energy.",
+  "formula": "K = G·J/L | J = πd⁴/32 | τ_max = T·(d/2)/J | U = T²·L/(2·G·J)",
+  "field": {
+    "crossSectionType": "Cross Section Type",
+    "torque": "Applied Torque (N·m)",
+    "angle": "Twist Angle (rad)",
+    "shearModulus": "Shear Modulus G (GPa)",
+    "length": "Length (m)",
+    "diameter": "Diameter (m)"
+  },
+  "type": {
+    "circular": "Circular"
+  },
+  "placeholder": {
+    "torque": "e.g. 1500",
+    "angle": "e.g. 0.05",
+    "shearModulus": "e.g. 80",
+    "length": "e.g. 1.5",
+    "diameter": "e.g. 0.03"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers in all fields."
+  },
+  "result": {
+    "heading": "Results",
+    "stiffness": "Torsional Stiffness (analytical K=GJ/L): {value} N·m/rad",
+    "stiffnessMeasured": "Torsional Stiffness (measured K=T/θ): {value} N·m/rad",
+    "shearStress": "Max Shear Stress: {value} MPa",
+    "polarMoment": "Polar Moment of Inertia: {value} m⁴",
+    "strainEnergy": "Strain Energy: {value} J"
+  },
+  "about": {
+    "heading": "About the torsional stiffness calculator",
+    "body": "Torsional stiffness is a fundamental mechanical property that quantifies a structural component's resistance to angular deformation when subjected to a twisting moment, or torque. Engineers working with rotating shafts, drive systems, precision instruments, and structural frames rely on accurate torsional stiffness calculations to ensure reliable, safe, and efficient designs.\n\nThe core relationship is straightforward: torsional stiffness K equals the product of the material's shear modulus G and the cross-section's polar moment of inertia J, divided by the component's length L. Written as K = G·J/L, this formula captures two independent contributions — the material's inherent resistance to shear deformation, and the geometry's contribution through how material is distributed around the rotation axis.\n\nFor a solid circular cross-section, the polar moment of inertia is J = πd⁴/32, where d is the diameter. This fourth-power dependence on diameter means that doubling the diameter increases torsional stiffness sixteen-fold — geometry matters enormously. That is why solid thick shafts are much stiffer than slender rods of the same material, and why hollow circular sections are so attractive in aerospace applications where weight must be minimized while stiffness is maintained.\n\nThe shear modulus G is a material constant. Steel has G ≈ 79–80 GPa, aluminum alloys range from 26–30 GPa, brass sits around 38–42 GPa, titanium is typically 40–45 GPa, and engineering polymers are much lower at 1–5 GPa. Selecting the right material and cross-section to meet a stiffness target is one of the most common tasks in mechanical design.\n\nBeyond stiffness, this calculator also computes maximum shear stress τ_max = T·r/J and strain energy U = T²·L/(2·G·J). Maximum shear stress governs whether a shaft will yield or fracture under the applied torque, and must be compared against the material's shear yield strength (approximately 0.577 × tensile yield strength for ductile metals). Strain energy indicates how much elastic energy is stored in the twisted component — relevant for fatigue life calculations and for understanding dynamic response under cyclic loading.\n\nPractical applications span automotive driveshafts that transmit engine torque to wheels, gas-turbine engine shafts that must resist enormous torques without excessive twist, machine-tool spindles where even tiny angular deflections degrade surface finish, and torsion bars in vehicle suspensions. In each case, the designer balances stiffness, weight, cost, and strength to achieve reliable performance over the product's intended lifetime."
+  },
+  "examples": {
+    "heading": "Torsional stiffness examples",
+    "intro": "Three worked scenarios covering common engineering materials and applications.",
+    "colInput": "Input",
+    "colOutput": "Torsional Stiffness",
+    "colNote": "Application",
+    "loadSteel": "Load steel shaft",
+    "loadAluminum": "Load aluminum shaft",
+    "loadBrass": "Load brass shaft",
+    "items": [
+      {
+        "input": "Steel shaft: T=1500 N·m, θ=0.05 rad, G=80 GPa, L=1.5 m, d=0.03 m",
+        "output": "K ≈ 4,241 N·m/rad, τ_max ≈ 283 MPa",
+        "note": "Typical automotive driveshaft. K = G·J/L with J = πd⁴/32 = 7.95 × 10⁻⁸ m⁴; shear stress from τ = T·r/J."
+      },
+      {
+        "input": "Aluminum shaft: T=800 N·m, θ=0.08 rad, G=26 GPa, L=2.0 m, d=0.04 m",
+        "output": "K ≈ 3,267 N·m/rad, τ_max ≈ 63.6 MPa",
+        "note": "Lightweight aerospace drive shaft. Lower shear modulus of aluminum requires larger diameter for similar stiffness."
+      },
+      {
+        "input": "Brass shaft: T=200 N·m, θ=0.02 rad, G=40 GPa, L=0.5 m, d=0.01 m",
+        "output": "K ≈ 78.5 N·m/rad, τ_max ≈ 1019 MPa",
+        "note": "Small-diameter precision shaft. Very high shear stress exceeds typical brass strength — increase diameter or reduce torque."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the torsional stiffness calculator",
+    "steps": [
+      "Select the cross-section type. Currently the calculator supports solid circular sections, which cover the vast majority of engineering shaft designs.",
+      "Enter the applied torque in newton-metres (N·m) and the expected twist angle in radians. These are used to compute shear stress and strain energy.",
+      "Enter the shear modulus G of your material in gigapascals (GPa). Use 80 for carbon steel, 26–30 for aluminium alloys, 40 for brass, or consult your material datasheet.",
+      "Enter the component length in metres and the shaft diameter in metres. Remember the polar moment of inertia scales with d⁴, so small changes in diameter have a large effect.",
+      "Click Calculate to view torsional stiffness (N·m/rad), maximum shear stress (MPa), polar moment of inertia (m⁴), and strain energy (J). Compare the shear stress against your material's allowable shear stress before finalising the design."
+    ]
+  },
+  "faq": {
+    "heading": "Torsional stiffness FAQ",
+    "q1": "What is the difference between torsional stiffness and torsional strength?",
+    "q1_a": "Torsional stiffness (K, in N·m/rad) describes how much a component deforms (twists) per unit of applied torque — it is a measure of rigidity. Torsional strength is the maximum torque the component can carry before it yields or fractures. A component can be stiff but brittle, or flexible but tough; both properties must be evaluated independently in design.",
+    "q2": "Why does diameter have such a large influence on torsional stiffness?",
+    "q2_a": "Because the polar moment of inertia J = πd⁴/32 scales with the fourth power of diameter. Doubling the diameter increases J — and therefore K — by a factor of 16. This makes cross-section size the most powerful lever in shaft design, far more influential than material choice or length.",
+    "q3": "What shear modulus should I use for steel?",
+    "q3_a": "Most carbon and alloy steels have G in the range 78–82 GPa. A standard design value is 80 GPa. Stainless steels are slightly lower at around 73–77 GPa. Always check your specific material datasheet when designing safety-critical components.",
+    "q4": "How do I convert twist angle from degrees to radians?",
+    "q4_a": "Multiply degrees by π/180 (approximately 0.01745). For example, 5° = 5 × 0.01745 ≈ 0.0873 rad. The calculator requires the angle in radians because the shear stress and strain-energy formulas use the SI radian system.",
+    "q5": "What is strain energy stored in a twisted shaft?",
+    "q5_a": "Strain energy U = T²L/(2GJ) is the elastic energy stored in the shaft when it is twisted by torque T. It equals the work done by the torque during the twisting. Understanding strain energy is important for fatigue analysis, since it directly relates to the cyclic loading the shaft experiences, and for assessing impact resistance.",
+    "q6": "Can this calculator handle hollow circular sections?",
+    "q6_a": "The current calculator covers solid circular sections. For hollow circular sections (tubes), replace J with π(D⁴ − d⁴)/32, where D is the outer diameter and d is the inner diameter. Hollow sections offer excellent stiffness-to-weight ratios, which is why they are preferred in aerospace and bicycle frame design."
+  }
+}

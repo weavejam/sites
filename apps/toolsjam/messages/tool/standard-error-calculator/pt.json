@@ -1,0 +1,113 @@
+{
+  "title": "Calculadora de erro padrão - SE com dados ou resumo",
+  "tagline": "Calcule o erro padrão da média (SE) a partir de dados brutos ou estatísticas resumidas. Veja SE, intervalo de confiança e estatísticas descritivas essenciais na hora.",
+  "intro": "Escolha o modo Dados brutos e insira seus números, ou mude para Estatísticas resumidas e informe a média, o DP e o tamanho da amostra. Selecione um nível de confiança para ver o intervalo junto com o SE.",
+  "formula": "SE = s / √n  (dados brutos: s é o DP amostral)  •  SE = σ / √n  (resumo: σ é o DP informado)  •  CI = x̄ ± z × SE",
+  "type": {
+    "rawData": "Dados brutos",
+    "summary": "Estatísticas resumidas"
+  },
+  "field": {
+    "method": "Método de cálculo",
+    "rawData": "Dados (números separados por vírgula)",
+    "mean": "Média",
+    "sd": "Desvio padrão (DP)",
+    "n": "Tamanho da amostra (n)",
+    "confLevel": "Nível de confiança"
+  },
+  "placeholder": {
+    "rawData": "ex.: 12.5, 15, 16.2, 14.8, 17",
+    "mean": "ex.: 500",
+    "sd": "ex.: 5",
+    "n": "ex.: 100"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira dados válidos. Para dados brutos, são necessários pelo menos 2 números. Para estatísticas resumidas, o DP deve ser positivo e n deve ser ≥ 2."
+  },
+  "result": {
+    "heading": "Resultados",
+    "n": "Tamanho da amostra (n)",
+    "mean": "Média",
+    "sd": "Desvio padrão",
+    "se": "Erro padrão (SE)",
+    "ci": "Intervalo de confiança de {conf}"
+  },
+  "examples": {
+    "heading": "Exemplos de erro padrão",
+    "intro": "Quatro exemplos resolvidos mostrando os dois modos de entrada e aplicações típicas.",
+    "colInput": "Entrada",
+    "colOutput": "SE",
+    "colNote": "Contexto",
+    "loadRawScores": "Carregar dados brutos",
+    "loadSummary": "Carregar estatísticas resumidas",
+    "items": [
+      {
+        "input": "Brutos: 85, 92, 88, 78, 90",
+        "output": "SE ≈ 2.4413",
+        "note": "Notas de estudantes (n=5). Média = 86.6, DP ≈ 5.46. O SE mostra que a média tem precisão de cerca de ±2,4 pontos."
+      },
+      {
+        "input": "Brutos: 22, 25, 21, 24, 23, 26, 22",
+        "output": "SE ≈ 0.6801",
+        "note": "Temperaturas máximas diárias em °C ao longo de uma semana (n=7). Um SE pequeno reflete um clima consistente."
+      },
+      {
+        "input": "Resumo: Mean=500, SD=5, n=100",
+        "output": "SE = 0.5000",
+        "note": "Pesos de peças de uma fábrica (n=100). Um n grande derruba o SE bem abaixo de 1 g, apesar de um DP de 5 g."
+      },
+      {
+        "input": "Resumo: Mean=10, SD=3.5, n=49",
+        "output": "SE = 0.5000",
+        "note": "Redução da pressão arterial em um ensaio clínico (n=49). IC de 95% ≈ [9.02, 10.98] mmHg."
+      }
+    ]
+  },
+  "about": {
+    "heading": "Sobre a Calculadora de Erro Padrão",
+    "body": "O erro padrão da média (SE ou SEM) é o desvio padrão da distribuição amostral da média. Em termos simples, ele indica o quão longe a média amostral tende a ficar da verdadeira média populacional se o processo de amostragem fosse repetido muitas vezes. Um SE pequeno significa que a média da amostra é uma estimativa precisa da média populacional; um SE grande indica maior incerteza.\n\nA fórmula é SE = s / √n, em que s é o desvio padrão da sua amostra e n é o número de observações. No modo de dados brutos, a calculadora primeiro calcula o desvio padrão amostral (usando a correção de Bessel, com n−1 no denominador) e depois divide por √n. No modo de estatísticas resumidas, você informa diretamente a média, o desvio padrão e n, o que é útil quando você já tem dados agregados — por exemplo, de um artigo publicado — e não tem acesso às observações brutas.\n\nA calculadora também calcula o intervalo de confiança da média no nível escolhido (90%, 95% ou 99%). O intervalo é construído como x̄ ± z × SE, em que z é o valor crítico da distribuição normal padrão (1,645 para 90%, 1,96 para 95%, 2,576 para 99%). Esses intervalos baseados em z são apropriados para amostras grandes (n ≥ 30) ou quando a população é conhecida por ser normalmente distribuída. Para amostras pequenas de populações não normais, um intervalo baseado em t (usando t com n−1 graus de liberdade) seria mais preciso; como regra prática, os valores z e t são quase idênticos para n ≥ 30.\n\nO SE é usado em quase todos os ramos da pesquisa quantitativa. Na medicina, artigos clínicos normalmente relatam médias com seus SEs ou intervalos de confiança para que os leitores possam julgar se as diferenças entre grupos de tratamento são clinicamente significativas. Na manufatura, avaliações de capacidade de processo usam o SE para determinar se a média amostral está de forma confiável dentro dos limites de especificação. Em pesquisas de ciências sociais, a margem de erro de uma média reportada é função direta do SE. Na análise de risco financeiro, o SE é usado para estimar a incerteza em torno de retornos médios e outros estatísticos. Em machine learning, o SE sustenta os intervalos de confiança bootstrap usados para comparar métricas de desempenho de modelos.\n\nEntender quando relatar SE versus desvio padrão (DP) também é importante. O DP descreve o quanto as medições individuais se espalham; ele não diminui quando você coleta mais dados (assumindo que a variabilidade real da população permaneça fixa). O SE descreve a precisão da estimativa da média e diminui com mais dados porque SE = DP / √n. Quando o objetivo é comunicar variabilidade entre indivíduos — por exemplo, a faixa de idades dos pacientes em um estudo — relate o DP. Quando o objetivo é comunicar a precisão de uma estimativa de média — por exemplo, a confiabilidade de uma redução média da pressão arterial — relate o SE ou o intervalo de confiança derivado dele."
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de erro padrão",
+    "steps": [
+      "Escolha Dados brutos se você tiver observações individuais, ou Estatísticas resumidas se já souber a média, o DP e o tamanho da amostra.",
+      "Insira seus dados — uma lista separada por vírgulas para Dados brutos, ou três valores numéricos (média, DP, n) para Estatísticas resumidas.",
+      "Selecione um nível de confiança (90%, 95% ou 99%) para controlar a largura do intervalo de confiança.",
+      "Clique em Calcular. O painel de resultados mostrará o tamanho da amostra, média, DP, SE e intervalo de confiança.",
+      "Clique em Redefinir para limpar todas as entradas ou use os botões de exemplo para carregar conjuntos prontos e explorar a saída."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre erro padrão",
+    "items": [
+      {
+        "q": "O que é o erro padrão da média?",
+        "a": "O erro padrão da média (SE ou SEM) quantifica a precisão da média amostral como estimativa da média populacional. Ele é igual ao desvio padrão da amostra dividido pela raiz quadrada do tamanho da amostra: SE = s / √n. Um SE pequeno indica que a média amostral é uma estimativa confiável; um SE grande indica maior incerteza. O SE diminui à medida que o tamanho da amostra aumenta, porque amostras maiores fornecem mais informações sobre a população."
+      },
+      {
+        "q": "Qual é a diferença entre erro padrão e desvio padrão?",
+        "a": "O desvio padrão (DP) mede a dispersão dos dados individuais em torno da média amostral. O erro padrão (SE) mede a precisão da média amostral como estimativa da média populacional. O DP não diminui com mais observações porque a variabilidade real da população é fixa; o SE diminui porque SE = DP / √n. Ao relatar resultados, use DP para descrever a variabilidade dos dados e SE (ou um intervalo de confiança) para descrever a precisão da estimativa."
+      },
+      {
+        "q": "Quando devo usar o modo Dados brutos versus o modo Estatísticas resumidas?",
+        "a": "Use o modo Dados brutos quando você tiver acesso às medições individuais da sua amostra — insira todos os valores e a calculadora calculará automaticamente a média, o DP e o SE. Use o modo Estatísticas resumidas quando você já tiver dados agregados, como a média e o desvio padrão reportados em um estudo publicado, ou quando estiver planejando um estudo e quiser explorar como diferentes tamanhos de amostra afetam o SE."
+      },
+      {
+        "q": "Por que amostras maiores produzem erros padrão menores?",
+        "a": "Porque SE = DP / √n, aumentar n torna o denominador maior e o SE menor. Conceitualmente, cada observação adicional traz mais informações sobre a população, então a média amostral se aproxima mais da média populacional real. Dobrar n reduz o SE por um fator de √2, cerca de 1,41. Essa é a base quantitativa do princípio de que estudos maiores geram conclusões mais confiáveis."
+      },
+      {
+        "q": "Qual nível de confiança devo escolher?",
+        "a": "O nível de 95% é o padrão mais usado na pesquisa científica — um IC de 95% significa que, se você repetisse o processo de amostragem muitas vezes, 95% dos intervalos resultantes conteriam a verdadeira média populacional. Use 90% se preferir um intervalo mais estreito e aceitar um risco maior de não capturar a média real. Use 99% para aplicações em que perder o valor verdadeiro seria custoso, como ensaios clínicos ou engenharia de segurança, aceitando um intervalo mais amplo em troca de maior certeza."
+      },
+      {
+        "q": "Esta calculadora é precisa para amostras pequenas?",
+        "a": "A calculadora usa intervalos de confiança baseados em z (1,96 para 95%, etc.), que tecnicamente são mais precisos para amostras grandes (n ≥ 30), onde a aproximação normal é muito boa. Para amostras pequenas, o multiplicador correto é o valor t da distribuição t com n−1 graus de liberdade, que é um pouco maior que o valor z correspondente. Para n ≥ 30 a diferença é pequena (por exemplo, t ≈ 2,042 versus z = 1,96 com 95% e n=30), mas para n < 10 a discrepância fica notável. Use uma calculadora dedicada de intervalo t para amostras muito pequenas."
+      }
+    ]
+  }
+}

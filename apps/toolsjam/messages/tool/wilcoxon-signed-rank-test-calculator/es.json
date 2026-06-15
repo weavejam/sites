@@ -1,0 +1,97 @@
+{
+  "title": "Calculadora de rangos con signo de Wilcoxon para muestras pareadas",
+  "tagline": "Compara dos muestras relacionadas o mediciones repetidas con la prueba no paramétrica de rangos con signo de Wilcoxon. Obtén el estadístico W, la puntuación Z y el valor p sin suponer normalidad.",
+  "intro": "Introduce tus mediciones pareadas antes/después como números separados por comas. Ambas muestras deben tener exactamente la misma cantidad de valores.",
+  "field": {
+    "sample1": "Datos de la muestra 1 (p. ej., antes del tratamiento)",
+    "sample2": "Datos de la muestra 2 (p. ej., después del tratamiento)"
+  },
+  "placeholder": {
+    "sample": "p. ej., 10, 12, 15, 11, 20"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce al menos un número válido en cada muestra.",
+    "mismatch": "Ambas muestras deben tener la misma cantidad de valores."
+  },
+  "result": {
+    "heading": "Resultados",
+    "W": "Estadístico W",
+    "Z": "Puntuación Z",
+    "pValue": "Valor p (bilateral)",
+    "n": "n (diferencias no nulas)",
+    "Wplus": "W⁺ (suma de rangos positivos)",
+    "Wminus": "W⁻ (suma de rangos negativos)",
+    "reject": "Se rechaza H₀ — hay una diferencia significativa entre las muestras pareadas (α = 0.05).",
+    "failReject": "No se rechaza H₀ — no se detectó una diferencia significativa (α = 0.05)."
+  },
+  "about": {
+    "heading": "Acerca de la prueba de rangos con signo de Wilcoxon",
+    "body": "La prueba de rangos con signo de Wilcoxon es una prueba estadística no paramétrica de hipótesis usada para comparar dos muestras relacionadas o mediciones repetidas en un solo grupo. Es la versión no paramétrica de la prueba t pareada y se aplica cuando no puede justificarse el supuesto de normalidad de las diferencias entre pares.\n\nFrank Wilcoxon introdujo la prueba en 1945, y es especialmente útil en ensayos clínicos y ciencias del comportamiento, donde a menudo se mide a las mismas personas antes y después de una intervención. En lugar de usar los valores brutos, la prueba ordena las diferencias absolutas entre observaciones pareadas y suma por separado los rangos asociados a las diferencias positivas y negativas.\n\nEl procedimiento funciona así. Para cada par, se calcula la diferencia d = (después − antes). Los pares con diferencia cero se excluyen. Las diferencias absolutas se ordenan de menor a mayor, y los empates reciben el rango promedio. La suma de rangos de las diferencias positivas es W⁺, y la de las negativas es W⁻. El estadístico W es el menor de W⁺ y W⁻.\n\nPara muestras grandes (por lo general n ≥ 10), la distribución de W se aproxima con una distribución normal. La puntuación Z se calcula usando la media y la desviación estándar de W bajo la hipótesis nula. La media es n(n+1)/4 y la desviación estándar es √[n(n+1)(2n+1)/24], donde n es el número de diferencias no nulas.\n\nLa hipótesis nula afirma que la diferencia mediana entre observaciones pareadas es cero: el tratamiento no tiene efecto. La hipótesis alternativa puede ser bilateral (la diferencia mediana no es cero) o unilateral (positiva o negativa). Esta calculadora muestra el valor p bilateral, que es la opción más conservadora.\n\nUn valor p por debajo de 0.05 suele interpretarse como evidencia de que las mediciones pareadas difieren de forma significativa. En un estudio de presión arterial, esto podría indicar que un medicamento redujo de manera significativa la presión sistólica. En un estudio de psicología, podría mostrar que un programa de terapia redujo significativamente los puntajes de ansiedad.\n\nLa prueba exige que las observaciones estén emparejadas: cada observación de la muestra 1 debe corresponder a una observación específica de la muestra 2 (la misma persona en otro momento o sujetos emparejados). Los pares deben ser independientes entre sí, y las diferencias deben provenir de una distribución simétrica, aunque no necesariamente normal.\n\nFrente a la prueba t pareada, la prueba de rangos con signo de Wilcoxon es más robusta frente a valores atípicos y distribuciones no normales, pero un poco menos potente cuando se cumple la normalidad. Es la opción recomendada para muestras pequeñas, resultados ordinales o datos con valores extremos."
+  },
+  "examples": {
+    "heading": "Ejemplos prácticos",
+    "intro": "Usa estos ejemplos para ver cómo funciona la calculadora con distintos conjuntos de datos pareados.",
+    "colInput": "Entrada",
+    "colOutput": "Salida",
+    "colNote": "Nota",
+    "items": [
+      {
+        "input": "Antes: 140,135,150,160,130,145,155,138,148,152 — Después: 132,130,142,151,125,137,145,130,140,148",
+        "output": "W=0, Z≈−2.80, p≈0.005",
+        "note": "Medicamento para la presión arterial: todas las diferencias son negativas, con una reducción significativa."
+      },
+      {
+        "input": "Antes: 8,7,6,9,8,7,8,9 — Después: 6,5,5,7,6,6,7,7",
+        "output": "W=0, Z≈−2.52, p≈0.012",
+        "note": "Puntajes de ansiedad tras la terapia: mejora significativa con α = 0.05."
+      },
+      {
+        "input": "Antes: 75,80,82,79,88,90,76,85,89,92,78,84 — Después: 80,85,85,83,90,94,81,88,92,95,81,89",
+        "output": "W=0, Z≈+3.06, p≈0.002",
+        "note": "Calificaciones de estudiantes antes y después de un nuevo método de enseñanza: mejora muy significativa."
+      }
+    ],
+    "loadBP": "Presión arterial",
+    "loadAnxiety": "Puntajes de ansiedad",
+    "loadScores": "Calificaciones de estudiantes"
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora",
+    "steps": [
+      "Introduce las mediciones antes del tratamiento (o de referencia) en el campo de la muestra 1, separadas por comas.",
+      "Introduce las mediciones correspondientes después del tratamiento en el campo de la muestra 2. Ambas muestras deben tener exactamente la misma cantidad de valores.",
+      "Haz clic en Calcular para obtener las diferencias, ordenarlas y producir el estadístico W, la puntuación Z y el valor p.",
+      "Un valor p por debajo de 0.05 (mostrado en rojo) indica una diferencia estadísticamente significativa entre ambas condiciones.",
+      "Usa los botones de ejemplo para cargar rápidamente conjuntos de datos reales y comprobar la calculadora con resultados conocidos."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Cuál es la diferencia entre la prueba de rangos con signo de Wilcoxon y la prueba t pareada?",
+        "a": "Ambas comparan mediciones pareadas, pero la prueba t pareada asume que las diferencias siguen una distribución normal. La prueba de rangos con signo de Wilcoxon no hace ese supuesto, por lo que se prefiere en muestras pequeñas, datos ordinales o datos con valores atípicos importantes. Cuando hay normalidad, la prueba t tiene algo más de potencia."
+      },
+      {
+        "q": "¿Qué pasa con los pares cuya diferencia es cero?",
+        "a": "Los pares en los que los valores antes y después son idénticos (diferencia = 0) se excluyen del análisis. El tamaño muestral efectivo n usado para calcular el estadístico y el valor p solo cuenta las diferencias no nulas. Este es el procedimiento estándar recomendado en la mayoría de los textos de estadística."
+      },
+      {
+        "q": "¿Cómo se manejan las diferencias empatadas?",
+        "a": "Cuando varios pares producen la misma diferencia absoluta, se les asigna el promedio de los rangos que ocuparían. Por ejemplo, si tres pares con |d| = 5 compiten por los rangos 4, 5 y 6, cada uno recibe rango 5. Esta corrección de rango medio preserva la validez de la aproximación Z."
+      },
+      {
+        "q": "¿Por qué esta calculadora solo reporta un valor p bilateral?",
+        "a": "La prueba bilateral es la más conservadora y la opción predeterminada en la mayoría de los estudios exploratorios. Comprueba si la diferencia mediana es distinta de cero en cualquier dirección. Para hipótesis direccionales (por ejemplo, que un tratamiento siempre mejora los resultados), puedes dividir entre dos el valor p bilateral reportado para obtener el unilateral."
+      },
+      {
+        "q": "¿Qué tamaño de muestra hace falta para que la aproximación Z sea válida?",
+        "a": "La aproximación normal para el estadístico W suele ser fiable cuando n ≥ 10 después de eliminar las diferencias cero. Para muestras más pequeñas, conviene consultar los valores críticos exactos de la tabla de Wilcoxon. Esta calculadora usa la aproximación normal, así que ten cautela con n < 10."
+      }
+    ]
+  }
+}

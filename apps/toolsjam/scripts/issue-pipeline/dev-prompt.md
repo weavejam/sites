@@ -60,18 +60,17 @@ mid-batch leaves earlier pages usable.
    - English title ≤ 60 chars, primary keyword first, no brand suffix.
    - English description 120–160 chars, primary + ≥1 secondary keyword, ends with a value prop.
 
-4. Write `tool.<TOOL_ID>`'s English content to a STAGING FILE — DO NOT touch
-   `messages/en.json` directly. Path:
-       `<REPO_ROOT>/apps/toolsjam/.port-batches/en-content/<TOOL_ID>.json`
-   The file's top-level JSON object IS the value of `tool.<TOOL_ID>` (no
-   outer `{"tool": ...}` wrapping). Required keys include `title`, `tagline`,
-   plus every `t("…")` / `t.raw("…")` key your `.tsx` references —
-   typically `about`, `examples`, `howto`, `faq`, `field`, `button`, etc.
-   `about.body` ≥ 300 words, multiple paragraphs joined with `\n\n`.
-   Use the `create` tool — one call per tool, atomic, no anchor matching.
-   A separate apply step (run by the outer worker AFTER you finish all
-   tools) merges every staged file into `messages/en.json`. You never have
-   to edit the giant en.json yourself.
+4. Write `tool.<TOOL_ID>`'s English content directly to a per-tool i18n file:
+       `<REPO_ROOT>/apps/toolsjam/messages/tool/<TOOL_ID>/en.json`
+   Use the `create` tool — one call per tool, atomic, no anchor matching, no
+   shared-file race. The file's top-level JSON object IS the value of
+   `tool.<TOOL_ID>` (no outer `{"tool": ...}` wrapping). Required keys
+   include `title`, `tagline`, plus every `t("…")` / `t.raw("…")` key your
+   `.tsx` references — typically `about`, `examples`, `howto`, `faq`,
+   `field`, `button`, etc. `about.body` ≥ 300 words, multiple paragraphs
+   joined with `\n\n`. Non-English locales (`zh-CN.json`, `ja.json`, …)
+   under the SAME directory are filled later by the translate sweeper —
+   do NOT create them.
 
 5. Generate `src/tools/<TOOL_ID>.fixtures.ts` exporting `fixtures: ToolFixture[]`
    with ≥ 2 happy-path cases. Use exact label strings matching the English
@@ -79,12 +78,12 @@ mid-batch leaves earlier pages usable.
    depend on `<input type="number">` accepting non-numeric text.
 
 Rules during Phase 1:
-- Do NOT run the build. Do NOT install packages. Do NOT modify
-  `messages/*.json` (en, zh-CN, ja, …) — en is staged via the JSON files in
-  step 4; other locales are filled by a later step. Do NOT modify shared
-  infra (i18n config, categories, layout, components/ui/*, fixtures barrel).
-- Per tool you may only touch: the component, the category registry, the
-  `.port-batches/en-content/<TOOL_ID>.json` staging file, and the fixtures file.
+- Do NOT run the build. Do NOT install packages. Do NOT modify shared infra
+  (i18n config, categories, layout, components/ui/*, fixtures barrel).
+- Do NOT touch `messages/shared/*.json` or any other tool's
+  `messages/tool/<OTHER_ID>/*.json` — only your own tools' folders.
+- Per tool you may only touch: the component, the category registry,
+  `messages/tool/<TOOL_ID>/en.json`, and the fixtures file.
 
 When Phase 1 is complete, regenerate the fixtures barrel by running:
     pnpm fixtures:barrel
@@ -150,27 +149,28 @@ sitting at `<REPO_ROOT>/apps/toolsjam`. The pages added in this batch are:
 {{JOBS_BLOCK}}
 
 Review ONLY files changed by this batch (the 5 `.tsx`, the 5 `.fixtures.ts`,
-the modified `<category>.ts` registry files, and the staged English content
-files under `apps/toolsjam/.port-batches/en-content/<id>.json` — one per
-tool). Read those staged JSON files directly with `cat` / `Read`; they are
-the source of truth for English content during review. (They are merged into
-`messages/en.json` by the outer worker AFTER you finish, so en.json is NOT
-in this batch's diff.) Use `git --no-pager diff origin/main..HEAD` inside
-`<REPO_ROOT>` to see the committed diff.
+the modified `<category>.ts` registry files, and the 5 per-tool English i18n
+files at `apps/toolsjam/messages/tool/<id>/en.json`). Read those JSON files
+directly with `cat` / `Read`. Use `git --no-pager diff origin/main..HEAD`
+inside `<REPO_ROOT>` to see the full committed diff.
 
 Check, for EACH page:
 - Component uses `useTranslations("tool.<id>")` for every visible string.
 - Title in registry: ≤ 60 chars, primary keyword first, no brand suffix.
 - Description in registry: 120–160 chars.
-- Staged `.port-batches/en-content/<id>.json` exists and is valid JSON.
-- `about.body` in the staged JSON: ≥ 300 words, multiple paragraphs.
+- `messages/tool/<id>/en.json` exists and is valid JSON.
+- `about.body` in that JSON: ≥ 300 words, multiple paragraphs.
 - `examples.items`: ≥ 3 entries with realistic, internally-consistent numbers.
 - `howto.steps`: 3–5 action-oriented items.
 - `faq.items`: 4–6 Q&A, answers ≥ 2 sentences.
-- Fixtures: ≥ 2 happy-path cases, label strings match the staged JSON's `field/button/type` values.
+- Fixtures: ≥ 2 happy-path cases, label strings match the en.json's `field/button/type` values.
 - JSON-LD `WebApplication` and `FAQPage` are present in the component.
 - No hard-coded English strings in JSX outside `<script type="application/ld+json">` blocks.
-- File only changed within its allowed scope (no edits to ui/, i18n config, categories, `messages/*.json`). NOTE: `src/tools/_fixtures-barrel.ts` and `messages/en.json` are both regenerated by the outer worker AFTER you finish — they WILL appear in the diff, but that is correct and NOT a BLOCKER.
+- File only changed within its allowed scope (no edits to ui/, i18n config,
+  categories, `messages/shared/*.json`, or other tools' message folders).
+  NOTE: `src/tools/_fixtures-barrel.ts` is regenerated by the outer worker
+  AFTER you finish — it WILL appear in the diff, but that is correct and NOT
+  a BLOCKER.
 
 Respond with ONLY a single JSON object matching the schema above — no
 markdown, no commentary. `items` MUST list every BLOCKER you find; an empty

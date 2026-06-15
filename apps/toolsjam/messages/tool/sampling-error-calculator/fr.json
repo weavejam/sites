@@ -1,0 +1,92 @@
+{
+  "title": "Calculateur d'erreur d'échantillonnage - Marge d'erreur",
+  "tagline": "Calculez l'erreur d'échantillonnage et la marge d'erreur pour les proportions et les moyennes. Prend en charge la correction de population finie et plusieurs niveaux de confiance.",
+  "intro": "Choisissez si vous travaillez avec des proportions ou des moyennes, saisissez les données de votre échantillon, sélectionnez un niveau de confiance, puis cliquez sur Calculer pour obtenir l'erreur standard et la marge d'erreur.",
+  "formula": "Proportion : SE = √[p(1–p)/n]  •  Moyenne : SE = s/√n  •  Avec FPC : SE_adj = SE × √[(N–n)/(N–1)]  •  Marge d'erreur = Z × SE",
+  "type": {
+    "proportion": "Proportion",
+    "proportion_desc": "À utiliser pour les résultats catégoriels comme les réponses oui/non, les taux réussite/échec ou le pourcentage de répondants préférant une option précise.",
+    "mean": "Moyenne",
+    "mean_desc": "À utiliser pour les données numériques continues comme les tailles, les poids, les notes de test, les températures ou les temps de réponse."
+  },
+  "field": {
+    "calcType": "Type de calcul",
+    "sampleProportion": "Proportion d'échantillon (p)",
+    "sampleMean": "Moyenne d'échantillon (x̄)",
+    "sampleSD": "Écart-type d'échantillon (s)",
+    "sampleSize": "Taille de l'échantillon (n)",
+    "populationSize": "Taille de la population (facultatif)",
+    "confidenceLevel": "Niveau de confiance"
+  },
+  "placeholder": {
+    "proportion": "p. ex. 0.55",
+    "number": "Saisissez un nombre",
+    "integer": "p. ex. 500",
+    "optional": "Laissez vide pour une population infinie"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez vérifier vos entrées. La proportion doit être comprise entre 0 et 1, la taille de l'échantillon doit être un entier positif et l'écart-type (en mode moyenne) doit être non négatif."
+  },
+  "result": {
+    "heading": "Résultat",
+    "standardError": "Erreur standard",
+    "marginOfError": "Marge d'erreur"
+  },
+  "about": {
+    "heading": "À propos du calculateur d'erreur d'échantillonnage",
+    "body": "L'erreur d'échantillonnage est une conséquence inévitable de l'étude d'un sous-ensemble (un échantillon) plutôt que de l'ensemble de la population. Comme chaque échantillon ne représente qu'une fraction du tout, les statistiques qui en sont calculées — comme la moyenne ou la proportion — diffèrent légèrement des vraies valeurs de la population. L'erreur d'échantillonnage quantifie cette incertitude.\n\nCe calculateur détermine deux grandeurs étroitement liées : l'erreur standard (SE) et la marge d'erreur (MoE). L'erreur standard est l'écart-type de la distribution d'échantillonnage ; elle mesure dans quelle mesure les statistiques d'échantillon varient d'un échantillon à l'autre. La marge d'erreur prolonge cette idée en multipliant la SE par le score Z correspondant au niveau de confiance choisi, ce qui donne un intervalle susceptible de contenir le vrai paramètre de population.\n\nPour les proportions, l'erreur standard est SE = √[p(1–p)/n], où p est la proportion observée dans l'échantillon et n la taille de l'échantillon. Pour les moyennes, l'erreur standard est SE = s/√n, où s est l'écart-type de l'échantillon et n la taille de l'échantillon. Dans les deux cas, la SE diminue lorsque la taille de l'échantillon augmente, ce qui reflète le fait que les grands échantillons produisent des estimations plus précises.\n\nLorsque la taille de l'échantillon dépasse 5 % de la taille totale de la population N, il convient d'appliquer le facteur de correction de population finie (FPC) : SE_adj = SE × √[(N–n)/(N–1)]. Cette correction réduit la SE parce qu'une grande fraction de la population est mesurée directement. Si la population est très grande ou inconnue, l'effet de la FPC est négligeable et peut être ignoré sans risque.\n\nLa marge d'erreur (MoE) = Z × SE_adj, où Z est le score Z du niveau de confiance choisi (1.282 pour 80 %, 1.645 pour 90 %, 1.960 pour 95 %, 2.576 pour 99 %). La MoE donne la demi-largeur de l'intervalle de confiance : si votre proportion d'échantillon est de 55 % et que la MoE est de ±3 %, vous pouvez être confiant (au niveau spécifié) que la vraie proportion de la population se situe entre 52 % et 58 %.\n\nL'erreur d'échantillonnage est distincte des erreurs non dues à l'échantillonnage, comme les erreurs de mesure, les biais de réponse, les biais de couverture et les erreurs de saisie. Ces erreurs proviennent de défauts dans la collecte ou le traitement des données, plutôt que du caractère aléatoire de la sélection d'un échantillon. Si l'erreur d'échantillonnage peut être réduite en augmentant la taille de l'échantillon, les erreurs non dues à l'échantillonnage exigent des améliorations de la conception de l'étude, de la formulation des questions et des procédures de qualité des données.\n\nCe calculateur est utile aux chercheurs en sondages, aux sondeurs, aux ingénieurs qualité et à toute personne qui doit communiquer clairement et quantitativement l'incertitude de ses estimations fondées sur un échantillon."
+  },
+  "examples": {
+    "heading": "Exemples de calcul d'erreur d'échantillonnage",
+    "intro": "Trois scénarios illustrant les calculs de proportion et de moyenne avec et sans correction de population finie.",
+    "colInput": "Paramètres",
+    "colOutput": "SE / Marge d'erreur",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Proportion : p=0.55, n=400, IC 95 %, population infinie",
+        "output": "SE=0.0249, MoE=±0.0488",
+        "note": "Un sondage indiquant 55 % de soutien a une marge d'erreur d'environ ±4.9 % ; la vraie proportion se situe donc entre 50.1 % et 59.9 % avec un niveau de confiance de 95 %."
+      },
+      {
+        "input": "Moyenne : x̄=82, s=15, n=100, IC 95 %, population infinie",
+        "output": "SE=1.500, MoE=±2.940",
+        "note": "Note moyenne de 82 avec SD=15 pour 100 étudiants. La vraie moyenne de la classe se situe entre 79.06 et 84.94 avec un niveau de confiance de 95 %."
+      },
+      {
+        "input": "Proportion : p=0.3, n=200, IC 95 %, N=500",
+        "output": "SE≈0.0287, MoE≈±0.0562",
+        "note": "La FPC réduit la SE car n/N=40 %, ce qui dépasse le seuil de 5 %. Sans correction, la SE serait de 0.0324."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur d'erreur d'échantillonnage",
+    "steps": [
+      "Sélectionnez le type de calcul : Proportion pour les données catégorielles (p. ex. sondages oui/non) ou Moyenne pour les données numériques continues (p. ex. notes de test, mesures).",
+      "Saisissez les entrées requises pour votre mode : Proportion d'échantillon pour le mode proportion, ou Moyenne d'échantillon et Écart-type d'échantillon pour le mode moyenne.",
+      "Saisissez la Taille de l'échantillon (n). Une taille d'échantillon plus grande produit une erreur standard plus faible et une marge d'erreur plus étroite.",
+      "Saisissez éventuellement la Taille de la population si votre population est finie et si votre échantillon représente plus de 5 % du total. Laissez vide pour supposer une population infinie.",
+      "Sélectionnez le Niveau de confiance et cliquez sur Calculer. Les résultats affichent l'Erreur standard et la Marge d'erreur. Cliquez sur Réinitialiser pour effacer tous les champs."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur d'erreur d'échantillonnage",
+    "q1": "Quelle est la différence entre l'erreur d'échantillonnage et la marge d'erreur ?",
+    "q1_a": "L'erreur standard (erreur d'échantillonnage) mesure l'écart typique des statistiques d'échantillon par rapport à la vraie valeur de la population, exprimé dans les unités d'origine. La marge d'erreur multiplie cette valeur par un score Z pour créer un intervalle de confiance, c'est-à-dire une plage susceptible de contenir la vraie valeur de la population à un niveau de probabilité donné.",
+    "q2": "Comment la taille de l'échantillon affecte-t-elle la marge d'erreur ?",
+    "q2_a": "La marge d'erreur est proportionnelle à 1/√n ; quadrupler la taille de l'échantillon divise donc la marge d'erreur par deux. Par exemple, passer d'un échantillon de 100 à 400 réduit l'erreur standard de 0.05 à 0.025 et divise la marge d'erreur par deux. C'est la façon la plus directe d'améliorer la précision de votre estimation.",
+    "q3": "Quand dois-je appliquer la correction de population finie ?",
+    "q3_a": "Appliquez la FPC lorsque la taille de votre échantillon dépasse environ 5 % de la population totale. Par exemple, si vous interrogez 200 employés sur 800 (25 % de la population), la FPC réduit sensiblement l'erreur standard et produit un intervalle de confiance plus exact et plus resserré.",
+    "q4": "Quelle est la différence entre erreur d'échantillonnage et erreur non due à l'échantillonnage ?",
+    "q4_a": "L'erreur d'échantillonnage provient du hasard dans le choix des individus ; elle peut être quantifiée et réduite en augmentant la taille de l'échantillon. Les erreurs non dues à l'échantillonnage (p. ex. questions biaisées, erreurs de mesure, biais de non-réponse) proviennent de défauts dans la collecte ou le traitement des données, sont plus difficiles à détecter et ne peuvent pas être corrigées simplement en prenant un échantillon plus grand.",
+    "q5": "Pourquoi ce calculateur utilise-t-il des scores Z différents pour chaque niveau de confiance ?",
+    "q5_a": "Le score Z traduit un niveau de confiance en nombre d'erreurs standards nécessaires pour capturer cette fraction d'une distribution normale. Un niveau de confiance de 95 % utilise Z=1.96 parce que 95 % d'une distribution normale standard se situe à ±1.96 écart-type de la moyenne. Des niveaux de confiance plus élevés exigent des scores Z plus grands, ce qui produit des intervalles de confiance plus larges.",
+    "q6": "Puis-je utiliser ce calculateur pour des résultats de test A/B ?",
+    "q6_a": "Oui, pour une interprétation de base de la marge d'erreur. Si votre test A/B mesure une proportion (p. ex. un taux de conversion), saisissez la proportion observée, le nombre d'observations dans ce groupe et le niveau de confiance souhaité. La marge d'erreur indique l'incertitude autour du taux observé. Pour un test de signification complet comparant deux groupes, utilisez un calculateur dédié au test z à deux proportions."
+  }
+}

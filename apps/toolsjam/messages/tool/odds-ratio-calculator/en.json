@@ -1,0 +1,94 @@
+{
+  "title": "Odds Ratio Calculator - OR, CI & P-Value from 2×2 Table",
+  "tagline": "Calculate the odds ratio, confidence interval, Z-score, and p-value from a 2×2 contingency table for case-control and epidemiological studies.",
+  "intro": "Enter the four cell counts from your 2×2 table, choose a confidence level, and instantly receive the odds ratio with full statistical inference.",
+  "tableNote": "Fill in the exposed and unexposed group counts. Cells must be non-negative integers. A Haldane-Anscombe correction (adding 0.5 to each cell) is applied automatically when any cell is zero.",
+  "formula": "OR = (a × d) / (b × c)  |  SE(ln OR) = √(1/a + 1/b + 1/c + 1/d)  |  CI = exp(ln OR ± Z × SE)  |  p = 2 × (1 − Φ(|Z|))",
+  "group": {
+    "exposed": "Exposed Group",
+    "unexposed": "Unexposed Group"
+  },
+  "field": {
+    "a": "Outcome Positive – Cases (a)",
+    "b": "Outcome Negative – Non-Cases (b)",
+    "c": "Outcome Positive – Cases (c)",
+    "d": "Outcome Negative – Non-Cases (d)",
+    "confidenceLevel": "Confidence Level"
+  },
+  "placeholder": {
+    "cell": "Enter count ≥ 0"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter non-negative numbers in all four cells."
+  },
+  "result": {
+    "heading": "Results",
+    "or": "Odds Ratio (OR)",
+    "ciLabel": "Confidence Interval",
+    "z": "Z-Score",
+    "pValue": "P-Value",
+    "lnOR": "ln(OR)",
+    "se": "Standard Error",
+    "correctionNote": "Zero cell detected — Haldane-Anscombe correction (+ 0.5) applied to all cells."
+  },
+  "about": {
+    "heading": "About the Odds Ratio Calculator",
+    "body": "The odds ratio (OR) is one of the most widely used measures of association in biomedical research, epidemiology, and the social sciences. It quantifies the strength of the relationship between an exposure and a binary outcome by comparing the odds of the outcome occurring in an exposed group with the odds of the outcome occurring in an unexposed group. An OR of 1 indicates no association; an OR greater than 1 suggests the exposure increases the odds of the outcome; and an OR less than 1 suggests the exposure is protective.\n\nThe odds ratio is calculated from a 2×2 contingency table, which is the standard format for presenting case-control study data. The table has four cells: (a) exposed individuals who have the outcome, (b) exposed individuals who do not have the outcome, (c) unexposed individuals who have the outcome, and (d) unexposed individuals who do not have the outcome. The formula is simply OR = (a × d) / (b × c), which is the cross-product ratio of the table.\n\nStatistical inference for the OR is performed on its natural logarithm because the sampling distribution of ln(OR) is approximately normal, even for moderate sample sizes. The standard error of ln(OR) is SE = √(1/a + 1/b + 1/c + 1/d). From this, a Z-score is computed as Z = ln(OR) / SE, which follows a standard normal distribution under the null hypothesis of no association (OR = 1). The two-tailed p-value is p = 2 × Φ(−|Z|), where Φ is the standard normal CDF. If the p-value is below your chosen significance level (typically 0.05), the odds ratio is statistically significantly different from 1.\n\nThe confidence interval (CI) for the OR is constructed by exponentiating the interval around ln(OR): CI = [exp(ln OR − Z_α/2 × SE), exp(ln OR + Z_α/2 × SE)]. For a 95% CI, Z_α/2 = 1.96. If the CI does not include 1.0, the result is statistically significant at the 5% level. The CI width reflects the precision of the estimate; wider intervals arise from smaller sample sizes or sparse cells.\n\nA practical complication arises when any cell in the 2×2 table equals zero, which makes the standard OR formula undefined (division by zero or log of zero). The standard remedy is the Haldane-Anscombe correction: add 0.5 to every cell before computing the OR and SE. This calculator applies the correction automatically and alerts you when it has been used. The correction introduces a small bias but is far better than returning no result at all.\n\nThe OR is the natural measure in case-control studies, where the sampling design fixes the number of cases and controls rather than the exposure prevalence. In cohort studies and randomized trials, the relative risk (RR) is often preferred because it is more directly interpretable. For rare outcomes (prevalence below about 10%), OR ≈ RR, but for common outcomes the OR will always be further from 1 than the corresponding RR, and interpreting OR as RR can overstate the magnitude of the association. Always report which measure you are using and check whether the rare-disease assumption holds in your data."
+  },
+  "examples": {
+    "heading": "Worked Examples",
+    "intro": "Three classic study scenarios showing how to read the odds ratio output and judge statistical significance.",
+    "colInput": "Study Scenario",
+    "colOutput": "Odds Ratio",
+    "colNote": "Interpretation",
+    "loadSmoking": "Load smoking example",
+    "loadDrug": "Load drug trial example",
+    "loadVaccine": "Load vaccine example",
+    "items": [
+      {
+        "input": "Smoking & lung cancer: a=650, b=350, c=100, d=900 (95% CI)",
+        "output": "OR = 16.71 (CI: 13.07 – 21.38)",
+        "note": "Smokers have roughly 16.7× the odds of lung cancer compared to non-smokers. The CI excludes 1.0, so the association is highly significant."
+      },
+      {
+        "input": "New drug vs. placebo: a=38, b=162, c=85, d=115 (95% CI)",
+        "output": "OR = 0.318 (CI: 0.196 – 0.516)",
+        "note": "The drug reduces the odds of disease by about 68%. OR < 1 indicates a protective effect; the CI is entirely below 1."
+      },
+      {
+        "input": "Vaccination study: a=15, b=485, c=55, d=445 (95% CI)",
+        "output": "OR = 0.250 (CI: 0.138 – 0.454)",
+        "note": "Vaccinated individuals have 75% lower odds of infection. A strong protective association with a tight, significant confidence interval."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Odds Ratio Calculator",
+    "steps": [
+      "Organise your data into a 2×2 table: cell (a) = exposed cases, (b) = exposed non-cases, (c) = unexposed cases, (d) = unexposed non-cases.",
+      "Enter the four non-negative counts into the corresponding input fields under 'Exposed Group' and 'Unexposed Group'.",
+      "Select the desired confidence level (90%, 95%, or 99%) from the dropdown. Most published research uses 95%.",
+      "Click Calculate. The tool returns the OR, confidence interval, Z-score, and p-value. If any cell was zero, a correction note appears.",
+      "Interpret the result: OR > 1 means the exposure increases odds; OR < 1 means it decreases odds. Check whether the CI includes 1 and whether p ≤ α."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "What is an odds ratio and how does it differ from relative risk?",
+    "q1_a": "The odds ratio compares the odds of an outcome in two groups, while the relative risk (RR) compares the probabilities. For rare outcomes (prevalence < 10%), OR ≈ RR; for common outcomes the OR drifts further from 1.0 than the RR. Case-control studies can only validly estimate OR, not RR, because the sampling is outcome-based.",
+    "q2": "How do I interpret OR = 2.5?",
+    "q2_a": "An OR of 2.5 means the odds of the outcome in the exposed group are 2.5 times the odds in the unexposed group. It does not mean the risk is 2.5 times higher unless the outcome is rare. For common outcomes, the actual risk ratio will be smaller than 2.5.",
+    "q3": "What does the confidence interval tell me?",
+    "q3_a": "A 95% confidence interval means that if you repeated the study many times under the same conditions, about 95% of the calculated intervals would contain the true population OR. Practically, if the CI excludes 1.0, the result is statistically significant at α = 0.05. A wide CI indicates low precision, usually due to a small sample.",
+    "q4": "When is the Haldane-Anscombe correction applied?",
+    "q4_a": "The correction adds 0.5 to every cell when any cell equals zero. A zero cell makes the standard OR formula undefined (log of zero or division by zero). The correction allows estimation to proceed and is the most common remedy, though it introduces a slight bias. The calculator highlights when this correction has been used.",
+    "q5": "Can I use this calculator for a randomized controlled trial?",
+    "q5_a": "Yes, but consider reporting the relative risk (RR) instead of or alongside the OR, because RR is more intuitively interpretable for common outcomes and is the measure most clinical guidelines prefer. For RCTs with rare outcomes or when pooling across study designs in a meta-analysis, OR remains appropriate.",
+    "q6": "Why are p-values and confidence intervals sometimes contradictory?",
+    "q6_a": "They should not be contradictory: a 95% CI that excludes 1.0 always corresponds to p < 0.05 for a two-tailed test. Apparent contradictions usually arise from rounding, from comparing one-tailed p-values against two-tailed CIs, or from applying different confidence levels to the CI and alpha level of the test. Use consistent settings for both."
+  }
+}

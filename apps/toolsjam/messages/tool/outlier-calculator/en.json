@@ -1,0 +1,92 @@
+{
+  "title": "Outlier Calculator - Detect Outliers Using IQR Method",
+  "tagline": "Find statistical outliers in any data set using the interquartile range method — choose mild (1.5×IQR) or extreme (3×IQR) detection instantly.",
+  "intro": "Enter a comma-separated list of numbers, select your outlier detection method, and get Q1, Q3, IQR, fence values, and the list of outliers.",
+  "formula": "IQR = Q3 − Q1  |  Lower fence = Q1 − k × IQR  |  Upper fence = Q3 + k × IQR  |  k = 1.5 (mild) or 3.0 (extreme)",
+  "field": {
+    "data": "Data Set (comma-separated numbers)",
+    "method": "Outlier Detection Method"
+  },
+  "placeholder": {
+    "data": "e.g. 10, 12, 14, 15, 16, 18, 20, 50"
+  },
+  "type": {
+    "mild": "Mild Outliers (1.5 × IQR)",
+    "extreme": "Extreme Outliers (3.0 × IQR)"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter at least 4 comma-separated numbers."
+  },
+  "result": {
+    "heading": "Results",
+    "q1": "Q1 (First Quartile)",
+    "q3": "Q3 (Third Quartile)",
+    "iqr": "IQR",
+    "lowerBound": "Lower Fence",
+    "upperBound": "Upper Fence",
+    "outlierCount": "Outlier Count",
+    "outliersLabel": "Outliers detected",
+    "noOutliers": "No outliers found",
+    "cleanDataLabel": "Data without outliers (sorted)"
+  },
+  "about": {
+    "heading": "About the Outlier Calculator",
+    "body": "An outlier is a data point that lies an abnormal distance from other values in a data set. In statistical analysis, outliers can distort summary statistics like the mean and standard deviation, inflate variance estimates, and violate the assumptions of parametric tests. Identifying them early is a critical step in exploratory data analysis, quality control, and machine learning preprocessing.\n\nThe most widely used method for detecting outliers is based on the interquartile range (IQR), which is the difference between the third quartile (Q3) and the first quartile (Q1) of the data. This method is robust because the IQR, unlike the mean and standard deviation, is not itself distorted by extreme values. The formula for the two fences is: lower fence = Q1 − k × IQR and upper fence = Q3 + k × IQR. Any data point that falls outside these fences is classified as an outlier.\n\nThe multiplier k determines how aggressively outliers are flagged. The most common choice is k = 1.5, which is the default in box-plot analysis and identifies what are sometimes called 'mild' outliers — values that deviate noticeably from the bulk of the data but may still have a legitimate explanation. For k = 3.0, the criterion is stricter; only 'extreme' outliers are flagged — values that are so far from the main distribution that they almost certainly represent errors, anomalies, or genuinely rare events.\n\nTo compute the quartiles, the calculator first sorts the data in ascending order. Q1 is the 25th percentile and Q3 is the 75th percentile of the sorted data. When the quartile position falls between two data points, the calculator linearly interpolates to produce a smooth result consistent with the default Excel and many statistics package conventions.\n\nOutlier detection does not mean automatic deletion. Before removing or transforming a detected outlier, you should investigate its cause. An outlier may be a data entry error (a mistyped digit), a measurement error (a faulty instrument reading), a sampling error (a value from a different population), or a genuine extreme observation that is scientifically important and should be retained. For example, in fraud detection, the most important data point is the outlier. In clinical research, the patient with the most extreme response may be the most informative. Always document your decision and, when in doubt, report results with and without the outlier to show sensitivity.\n\nThe IQR method is non-parametric, meaning it makes no assumption about the shape of the underlying distribution. This makes it especially suitable for skewed distributions, small samples, and data that contain multiple clusters. For roughly normal data with large samples, the Z-score method (flagging values more than 2 or 3 standard deviations from the mean) is an alternative, but the Z-score is itself inflated by the outliers it is meant to detect, making the IQR approach generally more reliable."
+  },
+  "examples": {
+    "heading": "Worked Examples",
+    "intro": "Three data sets illustrating single outliers, multiple outliers, and a clean data set with no outliers.",
+    "colInput": "Data Set",
+    "colOutput": "Outliers (1.5×IQR)",
+    "colNote": "Key Values",
+    "loadBasic": "Load basic example",
+    "loadMultiple": "Load multiple outliers",
+    "loadNone": "Load no-outlier example",
+    "items": [
+      {
+        "input": "10, 12, 14, 15, 16, 18, 20, 50",
+        "output": "50",
+        "note": "Q1=13.5, Q3=18.5, IQR=5, Upper fence=26. The value 50 exceeds 26 and is flagged as an outlier."
+      },
+      {
+        "input": "1, 25, 28, 30, 32, 35, 38, 100",
+        "output": "1, 100",
+        "note": "Q1=27.25, Q3=35.75, IQR=8.5, Fences: 14.5 to 48.5. Both 1 and 100 fall outside these bounds."
+      },
+      {
+        "input": "10, 20, 30, 40, 50, 60, 70, 80",
+        "output": "None",
+        "note": "Uniform spacing means no point is more than 1.5×IQR from the fence. All values are clean."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Outlier Calculator",
+    "steps": [
+      "Type or paste your data into the input field as a comma-separated list of numbers. Integers, decimals, and negative numbers are all accepted.",
+      "Select 'Mild Outliers (1.5 × IQR)' for the standard analysis used in box plots, or 'Extreme Outliers (3.0 × IQR)' to flag only the most severe anomalies.",
+      "Click Calculate. The tool displays Q1, Q3, IQR, the lower and upper fences, and the outlier count.",
+      "Review the 'Outliers detected' list. Investigate each flagged value before deciding to remove or retain it.",
+      "The cleaned data set (sorted, with outliers removed) is displayed below the outlier list for quick copying into your analysis."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "What is the IQR method for outlier detection?",
+    "q1_a": "The IQR (interquartile range) method computes two fences: Q1 − 1.5×IQR and Q3 + 1.5×IQR. Any data point outside these fences is flagged as an outlier. The method is robust because Q1, Q3, and IQR are not influenced by the outliers themselves, unlike the mean and standard deviation.",
+    "q2": "Should I always remove outliers?",
+    "q2_a": "No. Investigate before removing. Outliers may represent real, important data points — a fraud transaction, a novel scientific finding, or a manufacturing defect worth studying. Remove only if you have a valid reason such as a confirmed data entry error. Always note removals when reporting your analysis.",
+    "q3": "What is the difference between mild and extreme outliers?",
+    "q3_a": "Mild outliers fall between 1.5×IQR and 3×IQR beyond a quartile. Extreme outliers fall beyond 3×IQR. Box plots typically show mild outliers as open circles and extreme outliers as stars or filled circles. For most exploratory analyses, the 1.5×IQR threshold is standard.",
+    "q4": "Does this calculator work with negative numbers?",
+    "q4_a": "Yes. The IQR method is scale-invariant and works correctly with any combination of positive, zero, or negative values. Simply include the negative numbers in your comma-separated list using a minus sign, for example: −20, 5, 8, 9, 10, 12, 15.",
+    "q5": "What is the minimum number of data points needed?",
+    "q5_a": "The calculator requires at least 4 data points to compute meaningful quartiles and IQR. For very small samples (fewer than 10–15 values), the fence boundaries can be highly variable and a detected outlier should be interpreted cautiously.",
+    "q6": "How does this method compare to the Z-score approach?",
+    "q6_a": "The Z-score method flags values more than 2 or 3 standard deviations from the mean. It assumes approximately normal data and is sensitive to the outliers it is trying to detect because extreme values inflate the mean and standard deviation. The IQR method makes no normality assumption and is therefore preferred for skewed data, heavy-tailed distributions, and small or moderate samples."
+  }
+}

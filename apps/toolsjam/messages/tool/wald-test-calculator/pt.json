@@ -1,0 +1,104 @@
+{
+  "title": "Calculadora de teste de Wald - Significância estatística",
+  "tagline": "Realize um teste de Wald para determinar se uma estimativa de parâmetro é estatisticamente significativa: informe β̂, β₀, SE e α para obter resultados instantâneos.",
+  "intro": "Informe a estimativa do parâmetro, o valor hipotetizado, o erro padrão e o nível de significância. A calculadora retorna a estatística de Wald, o escore z, o valor p e a decisão.",
+  "formula": "Estatística de Wald W = ((β̂ − β₀) / SE)²  •  escore z = (β̂ − β₀) / SE  •  valor p = 2 · (1 − Φ(|z|))",
+  "field": {
+    "betaHat": "Estimativa do parâmetro (β̂)",
+    "beta0": "Valor hipotetizado (β₀)",
+    "se": "Erro padrão (SE)",
+    "alpha": "Nível de significância (α)"
+  },
+  "placeholder": {
+    "betaHat": "ex.: 2.5",
+    "beta0": "ex.: 0",
+    "se": "ex.: 1.1",
+    "alpha": "ex.: 0.05"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Informe números válidos. O erro padrão deve ser positivo e o nível de significância deve estar entre 0 e 1."
+  },
+  "result": {
+    "heading": "Resultado",
+    "waldStat": "Estatística de Wald (W)",
+    "zScore": "Escore z",
+    "pValue": "Valor p",
+    "decision": "Decisão",
+    "reject": "Rejeitar H₀",
+    "failToReject": "Não rejeitar H₀"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de teste de Wald",
+    "body": "O teste de Wald é um teste estatístico paramétrico nomeado em homenagem ao estatístico Abraham Wald. Ele é um dos três testes clássicos de hipótese na estimação por máxima verossimilhança, ao lado do teste da razão de verossimilhanças e do teste de escore (multiplicador de Lagrange). O teste de Wald é, de longe, o mais comum, porque requer apenas a própria estimativa e seu erro padrão, ambos rotineiramente reportados por softwares estatísticos, sem exigir a função de verossimilhança completa.\n\nA ideia por trás do teste de Wald é direta. Se uma estimativa de parâmetro β̂ estiver distante do valor hipotetizado β₀ em relação à sua precisão (medida pelo erro padrão SE), então é improvável que a hipótese nula H₀: β = β₀ seja verdadeira. A estatística de Wald é W = ((β̂ − β₀) / SE)², que é o escore z ao quadrado. Sob a hipótese nula e com uma amostra suficientemente grande, W segue uma distribuição qui-quadrado com um grau de liberdade. De forma equivalente, o escore z com sinal z = (β̂ − β₀) / SE segue uma distribuição normal padrão, portanto o valor p bicaudal é 2 · (1 − Φ(|z|)), em que Φ é a CDF normal padrão.\n\nO valor p responde à pergunta: se a hipótese nula fosse verdadeira, qual seria a probabilidade de observar uma estatística de teste pelo menos tão extrema quanto a que foi realmente calculada? Um valor p pequeno (geralmente abaixo do nível de significância α, frequentemente definido como 0.05 ou 0.01) fornece evidência contra H₀. Quando p < α, o resultado é chamado de estatisticamente significativo e rejeitamos a hipótese nula. Quando p ≥ α, não a rejeitamos: não há evidência suficiente para concluir que o parâmetro difere de β₀, embora isso não signifique que H₀ seja verdadeira.\n\nO teste de Wald é onipresente na estatística aplicada. Em regressão linear e logística, as estatísticas t reportadas para cada coeficiente são essencialmente escores z de Wald, e os valores p associados testam se cada coeficiente é significativamente diferente de zero. Em econometria, o teste de Wald é usado para testar hipóteses conjuntas sobre múltiplos coeficientes simultaneamente (usando extensões de álgebra matricial). Em análise de sobrevivência, ele testa se uma covariável prediz significativamente a taxa de risco. Em genética, estudos de associação genômica ampla usam estatísticas do tipo Wald para testar milhões de polimorfismos de nucleotídeo único.\n\nUma limitação conhecida do teste de Wald é que ele pode produzir resultados diferentes dependendo de como um parâmetro é parametrizado, porque o teste depende de uma aproximação quadrática local da verossimilhança. Para amostras pequenas, o teste da razão de verossimilhanças costuma ser preferido por ser mais preciso. O teste de Wald é mais confiável quando o tamanho da amostra é grande, a estimativa é aproximadamente normalmente distribuída (isto é, as condições assintóticas se mantêm) e o erro padrão é bem estimado."
+  },
+  "examples": {
+    "heading": "Exemplos de teste de Wald",
+    "intro": "Três cenários realistas de economia, medicina e estatística geral mostrando o teste de Wald em ação.",
+    "colInput": "Entrada",
+    "colOutput": "Decisão",
+    "colNote": "Detalhes",
+    "loadBasic": "Carregar exemplo básico",
+    "loadEducation": "Carregar exemplo de educação",
+    "loadDrug": "Carregar exemplo de ensaio com medicamento",
+    "items": [
+      {
+        "input": "β̂=2.5, β₀=0, SE=1.1, α=0.05",
+        "output": "Rejeitar H₀",
+        "note": "z = 2.27, W = 5.17, p ≈ 0.023. A estimativa está a mais de 2 erros padrão de zero, então rejeitamos a hipótese nula em α = 0.05."
+      },
+      {
+        "input": "β̂=0.08, β₀=0, SE=0.02, α=0.05",
+        "output": "Rejeitar H₀",
+        "note": "Coeficiente de educação: z = 4.0, p < 0.001. Um ano adicional de educação tem um efeito não zero altamente significativo sobre os salários."
+      },
+      {
+        "input": "β̂=−0.5, β₀=0, SE=0.2, α=0.01",
+        "output": "Não rejeitar H₀",
+        "note": "Eficácia do medicamento com α=0.01 estrito: z = −2.5, p ≈ 0.012. O efeito é significativo em α=0.05, mas não no limite mais rigoroso de 1%."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de teste de Wald",
+    "steps": [
+      "Informe a estimativa do parâmetro β̂ da sua saída de regressão ou modelo estatístico.",
+      "Informe o valor hipotetizado β₀, normalmente 0 ao testar se um coeficiente é diferente de zero.",
+      "Informe o erro padrão SE da estimativa, reportado na mesma saída estatística.",
+      "Defina o nível de significância α: use 0.05 para o limite convencional de 5% ou 0.01 para um limite mais rigoroso de 1%.",
+      "Clique em Calcular para obter a estatística de Wald, o escore z, o valor p bicaudal e a decisão de rejeitar ou não rejeitar."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre o teste de Wald",
+    "items": [
+      {
+        "q": "O que o teste de Wald mede?",
+        "a": "O teste de Wald mede quão distante uma estimativa de parâmetro está de um valor hipotetizado, expressa em unidades de erro padrão. Ele testa se essa distância é grande o suficiente para concluir, em um dado nível de significância, que o parâmetro verdadeiro difere do valor hipotetizado."
+      },
+      {
+        "q": "Qual é a diferença entre o teste de Wald e o teste t?",
+        "a": "Em amostras grandes, eles são essencialmente equivalentes: ambos comparam uma estimativa a um valor nulo em unidades de erro padrão. A principal diferença é que o teste t usa uma distribuição t (levando em conta a incerteza na estimativa da variância), enquanto o teste de Wald usa a distribuição normal e, portanto, é um teste assintótico mais adequado a amostras grandes."
+      },
+      {
+        "q": "Por que a hipótese nula geralmente é β₀ = 0?",
+        "a": "Testar contra zero pergunta se um preditor tem algum efeito. Em regressão, um coeficiente zero significa que a variável é irrelevante. Definir β₀ = 0 é o uso mais comum, mas você pode testar contra qualquer valor, por exemplo, para verificar se um parâmetro é igual a um valor previsto teoricamente, como 1 ou −0.5."
+      },
+      {
+        "q": "O que significa não rejeitar H₀?",
+        "a": "Não rejeitar H₀ significa que os dados não fornecem evidência suficiente para concluir que o parâmetro difere do valor hipotetizado. Isso não prova que H₀ seja verdadeira. O resultado pode refletir um efeito genuinamente zero ou pode refletir poder estatístico insuficiente devido a uma amostra pequena ou a um erro padrão grande."
+      },
+      {
+        "q": "Quando devo usar o teste da razão de verossimilhanças?",
+        "a": "O teste da razão de verossimilhanças é preferido quando os tamanhos de amostra são pequenos, quando o parâmetro está próximo do limite de seu intervalo permitido ou quando os resultados do teste de Wald dependem muito da parametrização escolhida. Para amostras grandes e estimativas com distribuição suave, o teste de Wald e o teste da razão de verossimilhanças fornecem valores p quase idênticos."
+      },
+      {
+        "q": "Qual nível de significância devo usar?",
+        "a": "O limite convencional é α = 0.05 (5%), o que significa aceitar 5% de chance de rejeitar falsamente uma hipótese nula verdadeira. Para requisitos mais rigorosos, como aprovação de dispositivos médicos, genômica ou física, usa-se α = 0.01 ou até 0.001. Em pesquisas exploratórias, α = 0.10 às vezes é aceito. A escolha deve ser feita antes de ver os dados."
+      }
+    ]
+  }
+}

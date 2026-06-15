@@ -1,0 +1,92 @@
+{
+  "title": "Calculadora de valores atípicos - Detecta atípicos con el método IQR",
+  "tagline": "Encuentra valores atípicos estadísticos en cualquier conjunto de datos con el método del rango intercuartílico: elige detección leve (1.5×IQR) o extrema (3×IQR) al instante.",
+  "intro": "Introduce una lista de números separada por comas, selecciona el método de detección de atípicos y obtén Q1, Q3, IQR, los valores de los límites y la lista de atípicos.",
+  "formula": "IQR = Q3 − Q1  |  Límite inferior = Q1 − k × IQR  |  Límite superior = Q3 + k × IQR  |  k = 1.5 (leve) o 3.0 (extremo)",
+  "field": {
+    "data": "Conjunto de datos (números separados por comas)",
+    "method": "Método de detección de atípicos"
+  },
+  "placeholder": {
+    "data": "p. ej. 10, 12, 14, 15, 16, 18, 20, 50"
+  },
+  "type": {
+    "mild": "Atípicos leves (1.5 × IQR)",
+    "extreme": "Atípicos extremos (3.0 × IQR)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce al menos 4 números separados por comas."
+  },
+  "result": {
+    "heading": "Resultados",
+    "q1": "Q1 (primer cuartil)",
+    "q3": "Q3 (tercer cuartil)",
+    "iqr": "IQR",
+    "lowerBound": "Límite inferior",
+    "upperBound": "Límite superior",
+    "outlierCount": "Cantidad de atípicos",
+    "outliersLabel": "Atípicos detectados",
+    "noOutliers": "No se encontraron atípicos",
+    "cleanDataLabel": "Datos sin atípicos (ordenados)"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de atípicos",
+    "body": "Un valor atípico es un dato que se encuentra a una distancia anormal de los demás valores de un conjunto de datos. En el análisis estadístico, los atípicos pueden distorsionar medidas resumen como la media y la desviación estándar, inflar las estimaciones de varianza y violar los supuestos de las pruebas paramétricas. Identificarlos pronto es un paso clave en el análisis exploratorio de datos, el control de calidad y el preprocesamiento para aprendizaje automático.\n\nEl método más utilizado para detectar atípicos se basa en el rango intercuartílico (IQR), que es la diferencia entre el tercer cuartil (Q3) y el primer cuartil (Q1). Este método es robusto porque, a diferencia de la media y la desviación estándar, el IQR no se ve distorsionado por los valores extremos. La fórmula de los dos límites es: límite inferior = Q1 − k × IQR y límite superior = Q3 + k × IQR. Cualquier dato que quede fuera de estos límites se clasifica como atípico.\n\nEl multiplicador k determina cuán estricta es la detección. La opción más común es k = 1.5, el valor predeterminado en los diagramas de caja, que identifica lo que a veces se llama atípicos “leves”: valores que se apartan de forma notable del grueso de los datos, pero que aún pueden tener una explicación válida. Con k = 3.0, el criterio es más estricto; solo se marcan los atípicos “extremos”, valores tan alejados de la distribución principal que casi con certeza representan errores, anomalías o sucesos realmente raros.\n\nPara calcular los cuartiles, la calculadora primero ordena los datos de menor a mayor. Q1 es el percentil 25 y Q3 es el percentil 75 del conjunto ordenado. Cuando la posición del cuartil cae entre dos valores, la calculadora interpola linealmente para producir un resultado suave, coherente con la configuración predeterminada de Excel y con muchas convenciones de paquetes estadísticos.\n\nDetectar un atípico no significa borrarlo automáticamente. Antes de eliminar o transformar un valor detectado, conviene investigar su causa. Puede ser un error de entrada (un dígito mal escrito), un error de medición (una lectura defectuosa), un error de muestreo (un valor de otra población) o una observación extrema real que sea científicamente importante y deba conservarse. Por ejemplo, en la detección de fraude, el dato más importante puede ser precisamente el atípico. En investigación clínica, el paciente con la respuesta más extrema puede ser el más informativo. Documenta siempre tu decisión y, si tienes dudas, informa los resultados con y sin el atípico para mostrar sensibilidad.\n\nEl método IQR es no paramétrico, lo que significa que no asume una forma concreta para la distribución subyacente. Por eso es especialmente útil para distribuciones asimétricas, muestras pequeñas y datos con varios grupos. Para datos aproximadamente normales con muestras grandes, el método de la puntuación Z (marcar valores a más de 2 o 3 desviaciones estándar de la media) es una alternativa, pero la propia puntuación Z se ve inflada por los valores atípicos que intenta detectar, por lo que el enfoque IQR suele ser más fiable."
+  },
+  "examples": {
+    "heading": "Ejemplos resueltos",
+    "intro": "Tres conjuntos de datos que ilustran un atípico único, varios atípicos y un conjunto limpio sin atípicos.",
+    "colInput": "Conjunto de datos",
+    "colOutput": "Atípicos (1.5×IQR)",
+    "colNote": "Valores clave",
+    "loadBasic": "Cargar ejemplo básico",
+    "loadMultiple": "Cargar varios atípicos",
+    "loadNone": "Cargar ejemplo sin atípicos",
+    "items": [
+      {
+        "input": "10, 12, 14, 15, 16, 18, 20, 50",
+        "output": "50",
+        "note": "Q1=13.5, Q3=18.5, IQR=5, límite superior=26. El valor 50 supera 26 y se marca como atípico."
+      },
+      {
+        "input": "1, 25, 28, 30, 32, 35, 38, 100",
+        "output": "1, 100",
+        "note": "Q1=27.25, Q3=35.75, IQR=8.5, límites: 14.5 a 48.5. Tanto 1 como 100 quedan fuera de estos límites."
+      },
+      {
+        "input": "10, 20, 30, 40, 50, 60, 70, 80",
+        "output": "None",
+        "note": "El espaciado uniforme significa que ningún punto está a más de 1.5×IQR del límite. Todos los valores son limpios."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de atípicos",
+    "steps": [
+      "Escribe o pega tus datos en el campo de entrada como una lista de números separada por comas. Se aceptan enteros, decimales y números negativos.",
+      "Selecciona 'Atípicos leves (1.5 × IQR)' para el análisis estándar de los diagramas de caja, o 'Atípicos extremos (3.0 × IQR)' para marcar solo las anomalías más graves.",
+      "Haz clic en Calcular. La herramienta mostrará Q1, Q3, IQR, los límites inferior y superior, y la cantidad de atípicos.",
+      "Revisa la lista de 'Atípicos detectados'. Investiga cada valor marcado antes de decidir si lo eliminas o lo conservas.",
+      "El conjunto de datos depurado (ordenado y sin atípicos) se muestra debajo para copiarlo rápidamente en tu análisis."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "q1": "¿Qué es el método IQR para detectar atípicos?",
+    "q1_a": "El método IQR (rango intercuartílico) calcula dos límites: Q1 − 1.5×IQR y Q3 + 1.5×IQR. Cualquier dato fuera de estos límites se marca como atípico. El método es robusto porque Q1, Q3 e IQR no se ven influidos por los propios atípicos, a diferencia de la media y la desviación estándar.",
+    "q2": "¿Debo eliminar siempre los atípicos?",
+    "q2_a": "No. Investiga antes de eliminar. Los atípicos pueden representar datos reales e importantes: una transacción fraudulenta, un hallazgo científico novedoso o un defecto de fabricación digno de estudio. Elimínalos solo si tienes una razón válida, como un error de entrada confirmado. Siempre indica las eliminaciones al informar tu análisis.",
+    "q3": "¿Cuál es la diferencia entre atípicos leves y extremos?",
+    "q3_a": "Los atípicos leves quedan entre 1.5×IQR y 3×IQR más allá de un cuartil. Los atípicos extremos quedan por encima de 3×IQR. Los diagramas de caja suelen mostrar los atípicos leves como círculos vacíos y los extremos como estrellas o círculos rellenos. Para la mayoría de los análisis exploratorios, el umbral de 1.5×IQR es el estándar.",
+    "q4": "¿Esta calculadora funciona con números negativos?",
+    "q4_a": "Sí. El método IQR es independiente de la escala y funciona correctamente con cualquier combinación de valores positivos, cero y negativos. Solo incluye los números negativos en tu lista separada por comas, por ejemplo: −20, 5, 8, 9, 10, 12, 15.",
+    "q5": "¿Cuál es el número mínimo de datos necesario?",
+    "q5_a": "La calculadora requiere al menos 4 datos para calcular cuartiles e IQR de forma significativa. En muestras muy pequeñas (menos de 10 a 15 valores), los límites pueden variar mucho y un atípico detectado debe interpretarse con cautela.",
+    "q6": "¿Cómo se compara este método con el enfoque Z-score?",
+    "q6_a": "El método Z-score marca valores a más de 2 o 3 desviaciones estándar de la media. Asume datos aproximadamente normales y es sensible a los propios atípicos que intenta detectar, porque los valores extremos inflan la media y la desviación estándar. El método IQR no asume normalidad y, por tanto, se prefiere para datos asimétricos, distribuciones de colas pesadas y muestras pequeñas o moderadas."
+  }
+}

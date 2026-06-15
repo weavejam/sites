@@ -1,0 +1,97 @@
+{
+  "title": "Calculadora de divisor de voltaje",
+  "tagline": "Calcula el voltaje de salida, la corriente y la disipación de potencia en divisores resistivos.",
+  "intro": "Introduce el voltaje de entrada y dos valores de resistencia para obtener el voltaje de salida, la corriente del circuito y la potencia disipada en cada resistencia.",
+  "formula": "Fórmula: Vout = Vin × R2 / (R1 + R2)  •  I = Vin / (R1 + R2)  •  P = I² × R",
+  "field": {
+    "vin": "Voltaje de entrada (Vin)",
+    "r1": "Resistencia R1 (Ω)",
+    "r2": "Resistencia R2 (Ω)"
+  },
+  "placeholder": {
+    "vin": "p. ej., 12",
+    "r1": "p. ej., 1000",
+    "r2": "p. ej., 2000"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce números positivos válidos para el voltaje y ambas resistencias."
+  },
+  "result": {
+    "heading": "Resultado",
+    "labelVout": "Voltaje de salida (Vout)",
+    "labelCurrent": "Corriente del circuito",
+    "labelPowerTotal": "Potencia total",
+    "labelPowerR1": "Potencia en R1",
+    "labelPowerR2": "Potencia en R2"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de divisor de voltaje",
+    "body": "El divisor de voltaje es uno de los circuitos más fundamentales de la electrónica. Consiste en dos resistencias conectadas en serie entre una fuente y tierra, tomando el voltaje de salida desde el punto medio entre ambas. El circuito divide el voltaje de entrada en una salida menor, en proporción directa a los valores de resistencia, siguiendo la ley de Ohm y las reglas de resistencias en serie.\n\nLa fórmula principal es Vout = Vin × R2 / (R1 + R2). Esta expresión se puede derivar en dos pasos: la corriente total por la serie es I = Vin / (R1 + R2) por la ley de Ohm, y el voltaje sobre R2 es I × R2. Al sustituirlo se obtiene la fórmula del divisor. Como R2 aparece tanto en el numerador como en el denominador, el voltaje de salida siempre es menor que el de entrada (para resistencias positivas). Si ambas resistencias son iguales, la salida es exactamente la mitad de la fuente; con valores distintos, la salida cambia proporcionalmente.\n\nLos divisores de voltaje se usan en toda la electrónica. En la interfaz de sensores, una salida de 0–5 V suele escalarse a 0–3.3 V para el ADC de un microcontrolador eligiendo R1 = 2.2 kΩ y R2 = 3.3 kΩ. En circuitos de polarización de transistores, un divisor establece el voltaje de base que fija el punto de operación en reposo de un transistor bipolar. En equipos de audio, los potenciómetros son divisores de voltaje ajustables de forma continua que controlan el volumen. El cambio de nivel lógico digital también usa a menudo un divisor de dos resistencias para traducir una salida lógica de 5 V al umbral de 3.3 V de un dispositivo receptor.\n\nLa disipación de potencia es una consideración clave de diseño. Cada resistencia disipa P = I² × R vatios, y la disipación total es Vin² / (R1 + R2). Elegir resistencias de menor valor mejora la inmunidad a las corrientes de carga, pero desperdicia más potencia. Comprueba siempre que la disipación calculada esté muy por debajo de la potencia nominal de la resistencia: una regla común de seguridad es reducirla al menos un 50 %, así que una resistencia de 250 mW no debería superar 125 mW en uso continuo.\n\nLa fórmula del divisor sin carga es exacta para una fuente ideal y resistencias ideales. En la práctica, cualquier carga conectada sobre R2 aparece en paralelo y reduce la resistencia efectiva inferior, llevando Vout por debajo del valor sin carga. Para un funcionamiento cargado preciso, asegúrate de que la resistencia de carga sea al menos diez veces mayor que R2, o ten en cuenta la combinación en paralelo en tu diseño."
+  },
+  "examples": {
+    "heading": "Ejemplos de divisor de voltaje",
+    "intro": "Tres circuitos prácticos que muestran la fórmula en acción.",
+    "colInput": "Vin / R1 / R2",
+    "colOutput": "Vout",
+    "colNote": "Nota",
+    "loadHalf": "Cargar ejemplo de mitad de voltaje",
+    "loadSensor": "Cargar ejemplo de interfaz de sensor",
+    "loadReference": "Cargar ejemplo de voltaje de referencia",
+    "items": [
+      {
+        "input": "10 V, R1 = 1 kΩ, R2 = 1 kΩ",
+        "output": "5 V",
+        "note": "Las resistencias iguales siempre producen exactamente la mitad del voltaje de entrada. Corriente = 5 mA, potencia total = 50 mW."
+      },
+      {
+        "input": "5 V, R1 = 2.2 kΩ, R2 = 3.3 kΩ",
+        "output": "3 V",
+        "note": "Clásico cambio de nivel de 5 V a 3 V usado al conectar sensores de 5 V a entradas ADC de microcontroladores de 3.3 V."
+      },
+      {
+        "input": "12 V, R1 = 10 kΩ, R2 = 5 kΩ",
+        "output": "4 V",
+        "note": "R2 / (R1 + R2) = 5/15 = 1/3, así que Vout = 12 × 1/3 = 4 V. Potencia total = 9.6 mW a 0.8 mA."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de divisor de voltaje",
+    "steps": [
+      "Introduce el voltaje de alimentación (Vin): el voltaje aplicado a toda la combinación en serie R1 + R2.",
+      "Introduce el valor de R1, la resistencia superior conectada entre la alimentación y el nodo de salida.",
+      "Introduce el valor de R2, la resistencia inferior conectada entre el nodo de salida y tierra.",
+      "Haz clic en Calcular para ver el voltaje de salida, la corriente del circuito y la disipación de potencia de cada resistencia.",
+      "Usa los botones de ejemplo para cargar configuraciones comunes o pulsa Restablecer para empezar de nuevo."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre el divisor de voltaje",
+    "items": [
+      {
+        "q": "¿Cuál es la fórmula del divisor de voltaje?",
+        "a": "La fórmula es Vout = Vin × R2 / (R1 + R2). Proviene directamente de la ley de Ohm: la misma corriente circula por ambas resistencias en serie, por lo que el voltaje en cada una es proporcional a su resistencia. R2 en el numerador y el total (R1 + R2) en el denominador determinan la fracción de la fuente que aparece en la salida."
+      },
+      {
+        "q": "¿Por qué conectar una carga cambia el voltaje de salida?",
+        "a": "Cualquier resistencia de carga Rload colocada sobre R2 forma una combinación en paralelo con R2, reduciendo la resistencia inferior efectiva por debajo de R2. Esto baja la relación R2_eff / (R1 + R2_eff), lo que reduce Vout. Para minimizar el error por carga, elige Rload ≥ 10 × R2, o usa un buffer con amplificador operacional para presentar una impedancia prácticamente infinita a la salida del divisor."
+      },
+      {
+        "q": "¿Cómo elijo R1 y R2 para un voltaje de salida dado?",
+        "a": "Parte de la relación Vout / Vin = R2 / (R1 + R2). Elige R2 según la corriente aceptable y luego resuelve R1 = R2 × (Vin / Vout − 1). Por ejemplo, para obtener 3.3 V desde 5 V, Vout/Vin = 0.66, así que R1 = R2 × (1/0.66 − 1) ≈ 0.515 × R2. Si usas R2 = 10 kΩ, R1 ≈ 5.15 kΩ; redondea al valor estándar más cercano."
+      },
+      {
+        "q": "¿Qué potencia nominal de resistencia necesito?",
+        "a": "Cada resistencia disipa P = I² × R, donde I = Vin / (R1 + R2). Elige una resistencia con una potencia nominal al menos el doble de la disipación calculada. Por ejemplo, si el cálculo muestra 80 mW, usa una resistencia de 1/4 W (250 mW) para un margen de seguridad adecuado."
+      },
+      {
+        "q": "¿Puede un divisor de voltaje suministrar corriente significativa a una carga?",
+        "a": "No sin afectar la precisión. Un divisor de voltaje está pensado para señalización y polarización, no para entregar potencia. Si la corriente de carga es comparable a la corriente en reposo del divisor (I = Vin / (R1 + R2)), el voltaje de salida caerá. Para corrientes de carga moderadas, usa un regulador de voltaje o un buffer con amplificador operacional."
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "title": "Calculadora del índice de variación cualitativa (IQV)",
+  "tagline": "Mide la diversidad de datos categóricos con el índice de variación cualitativa. Introduce las frecuencias de las categorías para calcular un IQV de 0 (sin variación) a 1 (variación máxima).",
+  "intro": "Introduce el conteo de frecuencia de cada categoría separado por comas y haz clic en Calcular para obtener el IQV y métricas de dispersión relacionadas.",
+  "field": {
+    "frequencies": "Frecuencias de las categorías",
+    "frequenciesHint": "Introduce los conteos de cada categoría separados por comas, por ejemplo 48, 35, 12, 5"
+  },
+  "placeholder": {
+    "frequencies": "p. ej. 48, 35, 12, 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce al menos dos frecuencias no negativas separadas por comas."
+  },
+  "result": {
+    "heading": "IQV",
+    "n": "Observaciones totales (N)",
+    "k": "Número de categorías (K)",
+    "observedPairs": "Pares observados entre categorías",
+    "possiblePairs": "Pares posibles entre categorías",
+    "interpretation": {
+      "low": "Variación baja: la mayoría de las observaciones se concentran en una o pocas categorías.",
+      "moderate": "Variación moderada: las observaciones se distribuyen entre varias categorías.",
+      "high": "Variación alta: las observaciones están repartidas casi por igual entre todas las categorías."
+    }
+  },
+  "about": {
+    "heading": "Acerca de la calculadora del índice de variación cualitativa",
+    "body": "El índice de variación cualitativa (IQV) es una medida estadística de diversidad o dispersión para datos nominales (categóricos): datos que encajan en categorías con nombre y sin un orden numérico inherente, como afiliación política, raza, religión, idioma hablado o color de ojos. Como las categorías nominales no pueden restarse ni ordenarse por rango, las medidas tradicionales de dispersión, como la varianza o la desviación estándar, no son aplicables. El IQV cubre ese vacío al medir qué tan uniformemente se distribuyen las observaciones entre las categorías y producir un único número entre 0 y 1.\n\nUn IQV de 0 significa que no hay variación en absoluto: todas las observaciones caen en la misma categoría. Un IQV de 1 significa que hay variación máxima: todas las categorías tienen exactamente la misma frecuencia. Entre ambos extremos, el IQV aumenta a medida que la distribución se vuelve más uniforme. Un conjunto de datos con cuatro categorías donde una categoría representa el 90% de las observaciones tendría un IQV cercano a 0, mientras que uno con cuatro categorías que capturan aproximadamente el 25% cada una se acercaría a 1.\n\nLa fórmula es: IQV = [K / (K − 1)] × [1 − Σpᵢ²], donde K es el número de categorías y pᵢ es la proporción de observaciones en la categoría i. La cantidad Σpᵢ² es el índice Herfindahl–Hirschman (también la suma de proporciones al cuadrado), que se minimiza cuando todas las proporciones son iguales (1/K cada una, dando K × (1/K)² = 1/K) y se maximiza cuando todas las observaciones están en una sola categoría (dando 1). Multiplicar por K/(K−1) reescala el resultado para que la uniformidad perfecta siempre dé IQV = 1, independientemente del número de categorías.\n\nEl IQV también puede derivarse del concepto de pares: de todos los pares posibles de observaciones, ¿qué fracción procede de categorías diferentes? El numerador es el conteo de pares entre categorías (pares observados), y el denominador es el máximo posible de pares entre categorías, que ocurriría si las observaciones estuvieran distribuidas de la forma más uniforme posible. Esta derivación por conteo de pares da el mismo número que la fórmula de proporciones y aporta una intuición útil: el IQV responde a la pregunta “¿qué fracción de todos los pares aleatorios de observaciones está formada por dos personas de grupos diferentes?”\n\nLos científicos sociales usan ampliamente el IQV para medir la diversidad racial y étnica de poblaciones, la heterogeneidad religiosa, la fragmentación de partidos políticos y la diversidad lingüística de países. Los ecólogos usan una medida equivalente llamada índice de diversidad de Simpson. Los investigadores de mercado lo usan para evaluar la concentración o fragmentación de la cuota de mercado. En todas estas aplicaciones, el IQV ofrece un número único, conciso, normalizado e interpretable que puede compararse entre poblaciones de distintos tamaños y números de categorías, lo que lo hace mucho más útil que los conteos brutos de categorías por sí solos."
+  },
+  "examples": {
+    "heading": "Ejemplos de IQV",
+    "intro": "Cuatro escenarios que muestran cómo cambia el IQV con la distribución de frecuencias.",
+    "colInput": "Frecuencias",
+    "colOutput": "IQV",
+    "colNote": "Interpretación",
+    "loadMaxVariation": "Cargar variación máxima (25, 25, 25, 25)",
+    "loadModerate": "Cargar moderada (48, 35, 12, 5)",
+    "loadSkewed": "Cargar sesgada (80, 20)",
+    "items": [
+      {
+        "input": "25, 25, 25, 25 (cuatro categorías iguales)",
+        "output": "IQV = 1.0000",
+        "note": "Variación máxima perfecta. Cada categoría contiene exactamente el 25% de las observaciones: uniformidad total."
+      },
+      {
+        "input": "100, 0 (una categoría dominante)",
+        "output": "IQV = 0.0000",
+        "note": "Sin variación. Todas las observaciones caen en una categoría; la segunda categoría está vacía."
+      },
+      {
+        "input": "48, 35, 12, 5 (encuesta de ciencias sociales)",
+        "output": "IQV ≈ 0.8403",
+        "note": "Variación de moderada a alta. Una distribución típica de respuestas en una encuesta de cuatro opciones."
+      },
+      {
+        "input": "80, 20 (dos categorías, sesgada)",
+        "output": "IQV = 0.6400",
+        "note": "Con solo dos categorías, IQV = 4×p×(1−p) = 4×0.8×0.2 = 0.64. Variación moderada."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de IQV",
+    "steps": [
+      "Cuenta cuántas observaciones caen en cada categoría. Por ejemplo, si 48 encuestados eligieron la opción A, 35 la opción B, 12 la opción C y 5 la opción D, tus frecuencias son 48, 35, 12, 5.",
+      "Introduce esas frecuencias en el campo de entrada separadas por comas. El orden no importa: el IQV depende solo de los valores de frecuencia, no de ningún orden de las categorías.",
+      "Haz clic en Calcular. La herramienta muestra el IQV (de 0 a 1), las observaciones totales N, el número de categorías K y los pares entre categorías observados y posibles.",
+      "Interpreta el IQV: los valores cercanos a 0 indican que la mayoría de las observaciones se concentran en una categoría (baja diversidad), mientras que los valores cercanos a 1 indican que las observaciones están repartidas casi por igual entre todas las categorías (alta diversidad).",
+      "Usa los botones de ejemplo para cargar conjuntos de datos predefinidos y comprobar tu comprensión del índice antes de introducir tus propios datos."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre IQV",
+    "items": [
+      {
+        "q": "¿Qué significa un IQV de 0.75?",
+        "a": "Un IQV de 0.75 significa que el 75% de todos los pares posibles de observaciones seleccionadas al azar consiste en dos individuos de categorías diferentes. Indica una diversidad moderadamente alta: los datos no están concentrados en una sola categoría, pero las observaciones tampoco están distribuidas de forma perfectamente uniforme. Cuanto más se acerca el IQV a 1, más uniformemente distribuidas están las categorías."
+      },
+      {
+        "q": "¿Puedo usar IQV para datos ordinales o numéricos?",
+        "a": "El IQV está diseñado para datos nominales (categóricos), donde las categorías no tienen un orden ni una distancia significativos. Para datos ordinales, donde las categorías pueden ordenarse pero las distancias no son iguales, o para datos numéricos (de intervalo/razón), son más apropiadas otras medidas como la correlación de rangos, la varianza o la desviación estándar. Aplicar IQV a categorías ordinales descarta la información de orden y puede dar una imagen engañosa de la dispersión de los datos."
+      },
+      {
+        "q": "¿Cuántas categorías necesito para calcular IQV?",
+        "a": "Necesitas al menos dos categorías, porque con una sola categoría todas las observaciones están en el mismo grupo y no puede haber variación. La fórmula del IQV divide por (K−1), por lo que K=1 no está definido matemáticamente. Con dos categorías y frecuencias p y (1−p), el IQV se simplifica a 4×p×(1−p), que alcanza 1.0 cuando p=0.5 (división igual) y es 0 cuando p=0 o p=1."
+      },
+      {
+        "q": "¿IQV es lo mismo que el índice de diversidad de Simpson?",
+        "a": "Están muy estrechamente relacionados. El índice de diversidad de Simpson D = 1 − Σpᵢ² mide la probabilidad de que dos individuos seleccionados al azar pertenezcan a categorías diferentes, y su complemento también equivale a 1 − Σpᵢ². El IQV va un paso más allá al multiplicar por K/(K−1) para normalizar el resultado, de modo que la uniformidad perfecta siempre dé exactamente 1 sin importar el número de categorías. Sin esta normalización, el valor máximo de 1 − Σpᵢ² depende de K."
+      },
+      {
+        "q": "¿Cambia el IQV si cambio el nombre o el orden de mis categorías?",
+        "a": "No. La fórmula del IQV usa solo los valores de frecuencia (o proporciones), no los nombres ni el orden de las categorías. Podrías cambiar “Totalmente de acuerdo” por “Categoría 1” o intercambiar el orden en la entrada, y el IQV sería idéntico. Esto lo convierte en una verdadera medida de dispersión para datos nominales donde no existe un orden natural."
+      }
+    ]
+  }
+}

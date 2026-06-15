@@ -1,0 +1,107 @@
+{
+  "title": "Calculadora de regulação de tensão",
+  "tagline": "Calcule a regulação de carga e de linha de fontes de alimentação a partir de tensões medidas em vazio e em plena carga.",
+  "intro": "Insira as tensões em vazio e em plena carga para calcular a regulação de carga. Opcionalmente, adicione a faixa de tensão de entrada, a corrente de carga e a impedância de saída para calcular a regulação de linha.",
+  "formula": "Fórmula: Regulação de carga (%) = (V_NL − V_FL) / V_FL × 100  •  Regulação de linha (%) = (Rout × I) / ΔVin × 100",
+  "section": {
+    "loadReg": "Regulação de carga (obrigatório)",
+    "lineReg": "Regulação de linha (opcional)"
+  },
+  "field": {
+    "noLoadVoltage": "Tensão em vazio (V)",
+    "fullLoadVoltage": "Tensão em plena carga (V)",
+    "nominalVoltage": "Tensão nominal (V)",
+    "minLineVoltage": "Tensão mínima de linha (V)",
+    "maxLineVoltage": "Tensão máxima de linha (V)",
+    "loadCurrent": "Corrente de carga (A)",
+    "outputImpedance": "Impedância de saída (Ω)"
+  },
+  "placeholder": {
+    "noLoadVoltage": "ex.: 12.5",
+    "fullLoadVoltage": "ex.: 11.8",
+    "nominalVoltage": "ex.: 12",
+    "minLineVoltage": "ex.: 10.8",
+    "maxLineVoltage": "ex.: 13.2",
+    "loadCurrent": "ex.: 5",
+    "outputImpedance": "ex.: 0.1"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Informe ao menos as tensões em vazio e em plena carga com valores positivos válidos."
+  },
+  "result": {
+    "heading": "Resultado",
+    "labelLoadReg": "Regulação de carga",
+    "labelVoltageChange": "Variação de tensão (V_NL − V_FL)",
+    "labelLineReg": "Regulação de linha",
+    "labelDeltaVout": "Variação da tensão de saída (ΔVout)"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de regulação de tensão",
+    "body": "A regulação de tensão mede quanto a tensão de saída de uma fonte de alimentação muda em resposta a variações na corrente de carga ou na tensão de entrada. É uma das especificações mais importantes de qualquer fonte: uma regulação ruim significa que o equipamento recebe tensões diferentes conforme a corrente consumida, o que pode causar falhas, erros de dados e redução da vida útil dos componentes.\n\nA regulação de carga descreve a mudança na tensão de saída quando a corrente de carga varia de zero (sem carga) até a corrente nominal máxima (plena carga). Ela é calculada como: Regulação de carga (%) = (V_NL − V_FL) / V_FL × 100. Um regulador ideal teria 0 % de regulação de carga, ou seja, a tensão de saída seria idêntica sem carga e em plena carga. Na prática, reguladores lineares alcançam 0.1–1 %, enquanto fontes chaveadas de alta qualidade alcançam 0.5–2 %. Projetos econômicos podem apresentar 5 % ou mais.\n\nA regulação de linha descreve a mudança na tensão de saída quando a tensão de entrada varia, enquanto a carga permanece constante. Ela é expressa como a variação percentual da tensão de saída por variação percentual da tensão de entrada, ou como a variação da tensão de saída por volt de variação de entrada. Uma fonte com boa regulação de linha mantém a saída estável apesar das flutuações da rede — algo importante em países onde a tensão da rede varia bastante.\n\nA impedância de saída é o parâmetro-chave que liga a corrente de carga à variação de tensão. Uma fonte de alimentação se comporta como uma fonte de tensão ideal em série com uma pequena resistência Rout. Quando a corrente de carga aumenta em ΔI, a tensão de saída cai em ΔV = Rout × ΔI. Quanto menor a impedância de saída, melhor a regulação. Uma fonte de bancada pode ter Rout de alguns miliohms, enquanto um projeto simples com transformador e retificação pode ter vários ohms.\n\nOs números de regulação de tensão aparecem com destaque nas folhas de dados de fontes e são testados sob condições específicas. Fontes de grau médico normalmente exigem regulação de carga melhor que 1 % e regulação de linha melhor que 0.5 %, porque os circuitos de segurança do paciente dependem de tensões estáveis. Fontes para eletrônica de consumo costumam especificar 3–5 %. Fontes para acionamentos industriais e CLPs geralmente exigem 1–3 % para garantir operação confiável de circuitos de controle sensíveis.\n\nUma regulação de tensão ruim desperdiça energia e gera calor. Uma fonte com alta impedância de saída dissipa o excesso de tensão na resistência interna como calor quando a carga consome corrente. Melhorar a regulação — com melhor enrolamento do transformador, reguladores lineares de baixa queda ou topologias chaveadas controladas por feedback — reduz perdas térmicas e melhora a eficiência do sistema."
+  },
+  "examples": {
+    "heading": "Exemplos de regulação de tensão",
+    "intro": "Medições práticas de fontes que mostram o cálculo da regulação de carga.",
+    "colInput": "Tensão em vazio / plena carga",
+    "colOutput": "Regulação de carga",
+    "colNote": "Avaliação",
+    "loadPSU12V": "Exemplo de fonte 12 V",
+    "loadPSU5V": "Exemplo de fonte 5 V",
+    "items": [
+      {
+        "input": "V_NL = 12.5 V, V_FL = 11.8 V",
+        "output": "5.93 %",
+        "note": "Aceitável para uma fonte 12 V de uso geral; abaixo de 5 % é bom e abaixo de 1 % é excelente."
+      },
+      {
+        "input": "V_NL = 5.1 V, V_FL = 4.85 V",
+        "output": "5.15 %",
+        "note": "No limite para lógica digital. Um microcontrolador de 5 V tolera ±5 %, mas com menos margem para transitórios."
+      },
+      {
+        "input": "V_NL = 3.32 V, V_FL = 3.28 V",
+        "output": "1.22 %",
+        "note": "Boa regulação para uma fonte chaveada de 3.3 V. Os circuitos lógicos veem uma tensão de alimentação muito estável."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de regulação de tensão",
+    "steps": [
+      "Meça ou obtenha a tensão de saída em vazio (V_NL) — a tensão de saída sem consumo de corrente pela fonte.",
+      "Meça ou obtenha a tensão de saída em plena carga (V_FL) — a tensão de saída na corrente nominal máxima.",
+      "Insira ambos os valores na seção de regulação de carga e clique em Calcular para ver o percentual de regulação e a variação de tensão.",
+      "Para a regulação de linha, também informe a tensão nominal de entrada, as tensões mínima e máxima de entrada, a corrente de carga e a impedância de saída, depois clique em Calcular.",
+      "Compare o resultado da regulação de carga com a tolerância da sua aplicação: abaixo de 1 % é excelente, 1–3 % é bom e acima de 5 % pode causar problemas em circuitos sensíveis."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre a calculadora de regulação de tensão",
+    "items": [
+      {
+        "q": "Qual é um bom percentual de regulação de tensão?",
+        "a": "Abaixo de 1 % é excelente e típico de fontes de laboratório de precisão e reguladores chaveados de alta qualidade. 1–3 % é bom e adequado para a maioria dos circuitos digitais e analógicos. 3–5 % é aceitável para equipamentos de uso geral. Acima de 5 % indica regulação ruim, que pode causar problemas em lógicas sensíveis, ADCs ou módulos de comunicação."
+      },
+      {
+        "q": "Qual é a diferença entre regulação de carga e regulação de linha?",
+        "a": "A regulação de carga mede quanto a tensão de saída muda quando a corrente consumida pela carga varia de zero ao máximo. A regulação de linha mede quanto a tensão de saída muda quando a tensão de entrada varia enquanto a carga permanece constante. Ambas são importantes: a regulação de carga testa a capacidade da fonte de manter a tensão sob demanda variável, enquanto a regulação de linha testa sua imunidade às flutuações da rede."
+      },
+      {
+        "q": "Por que a tensão em vazio costuma ser maior que a tensão em plena carga?",
+        "a": "A resistência interna (impedância de saída) causa uma queda de tensão quando a corrente flui. Em vazio, não há corrente, então não há queda e a saída atinge seu máximo. Em plena carga, I × Rout é dissipado internamente, reduzindo a tensão nos terminais. Reguladores lineares e fontes com bateria mostram esse efeito com clareza; fontes chaveadas com realimentação o minimizam."
+      },
+      {
+        "q": "Como a temperatura afeta a regulação de tensão?",
+        "a": "Tanto a referência de tensão dentro de uma fonte quanto as resistências dos condutores mudam com a temperatura. Uma referência com alto coeficiente térmico fará a tensão de saída derivar à medida que a unidade aquece, piorando a regulação efetiva com o tempo. Fontes de precisão usam referências bandgap compensadas por temperatura que mantêm deriva inferior a 10 ppm/°C."
+      },
+      {
+        "q": "Posso melhorar a regulação de tensão sem trocar a fonte?",
+        "a": "Sim. Adicionar um capacitor eletrolítico de bulk na carga suaviza quedas transitórias de tensão causadas por demandas súbitas de corrente. Para circuitos críticos, um regulador de baixa queda (LDO) colocado perto da carga pode religar a regulação do barramento com impedância de saída muito baixa. A resistência do cabo também contribui para má regulação na carga; usar fios mais grossos ou conexões Kelvin até o ponto de uso elimina esse componente."
+      }
+    ]
+  }
+}

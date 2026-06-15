@@ -1,0 +1,86 @@
+{
+  "title": "Calculadora de ANOVA de medidas repetidas - Estadístico F y tamaño de efecto",
+  "tagline": "Pruebas estadísticas avanzadas",
+  "intro": "Introduce tus datos abajo. Cada fila representa a un sujeto y cada columna una condición o momento distinto. Los valores pueden separarse con comas, espacios o tabulaciones.",
+  "field": {
+    "dataInput": "Entrada de datos",
+    "dataInputHint": "Cada fila = un sujeto; cada columna = una condición. Ejemplo: 8,9,7 en una sola fila."
+  },
+  "placeholder": {
+    "dataInput": "8, 9, 7\n10, 11, 9\n6, 8, 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Entrada no válida. Introduce al menos 2 sujetos y 2 condiciones con el mismo número de valores por fila."
+  },
+  "result": {
+    "heading": "Resultados del ANOVA",
+    "source": "Fuente",
+    "colSS": "SS",
+    "colDf": "gl",
+    "colMS": "MS",
+    "colF": "F",
+    "betweenConditions": "Entre condiciones",
+    "error": "Error (residual)",
+    "total": "Total",
+    "subjects": "Sujetos (n)",
+    "conditions": "Condiciones (k)",
+    "etaSquared": "η² (eta cuadrado)"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de ANOVA de medidas repetidas",
+    "body": "El ANOVA de medidas repetidas (análisis de varianza) es una técnica estadística que se utiliza cuando los mismos sujetos se miden bajo varias condiciones o en diferentes momentos. A diferencia de un ANOVA entre sujetos, el diseño de medidas repetidas controla las diferencias individuales tratando a cada sujeto como su propio control, lo que aumenta considerablemente la potencia estadística.\n\nEsta calculadora realiza un ANOVA de medidas repetidas de un factor. El diseño incluye un único factor intra-sujetos (la condición o el tiempo) con k niveles, medido en n sujetos. La varianza total de los datos se divide en tres componentes: varianza atribuible a las diferencias entre condiciones (el factor de interés), varianza atribuible a las diferencias individuales entre sujetos y varianza de error residual.\n\nEl estadístico F se calcula como la razón entre la media cuadrática entre condiciones (MSbetween) y la media cuadrática del error (MSerror). Un valor de F grande en relación con el valor crítico de la distribución F (con dfbetween = k−1 y dferror = (n−1)(k−1) grados de libertad) indica que al menos una media de condición difiere significativamente de las demás.\n\nEl tamaño del efecto se cuantifica mediante eta cuadrado (η²), que equivale a SS_between dividido por SS_total. Un valor de η² = 0.01 se considera pequeño, 0.06 mediano y 0.14 o superior grande, siguiendo las convenciones de Cohen. En la investigación publicada suele informarse eta cuadrado parcial, ya que se centra en la proporción de varianza explicada por el factor de interés.\n\nLa calculadora asume esfericidad: que las varianzas de las diferencias entre todos los pares de condiciones son iguales. Cuando este supuesto se viola (según la prueba de Mauchly), los investigadores suelen aplicar las correcciones de Greenhouse-Geisser o Huynh-Feldt para ajustar los grados de libertad. Para análisis exploratorios y comprobaciones rápidas, los valores no corregidos de F y η² calculados aquí son un buen punto de partida.\n\nEsta herramienta está diseñada con fines educativos y de análisis preliminar. Para resultados aptos para publicación, especialmente con diseños complejos o sospecha de violaciones de esfericidad, utiliza software estadístico especializado como SPSS, R (con el paquete ez) o Python (con pingouin)."
+  },
+  "examples": {
+    "heading": "Ejemplos de ANOVA de medidas repetidas",
+    "intro": "Estos ejemplos muestran cómo interpretar resultados de ANOVA de medidas repetidas.",
+    "colInput": "Datos (filas=sujetos)",
+    "colOutput": "Estadístico F",
+    "colNote": "Interpretación",
+    "items": [
+      {
+        "input": "8,9,7 / 10,11,9 / 6,8,5 (3 sujetos × 3 condiciones)",
+        "output": "F ≈ 37.4, η² ≈ 0.28",
+        "note": "Fuerte efecto de la condición"
+      },
+      {
+        "input": "4,7,6,9 / 3,5,4,8 / 6,8,9,11 / 2,5,3,7 (4 × 4)",
+        "output": "F ≈ 50.7, η² ≈ 0.53",
+        "note": "Tamaño de efecto grande"
+      },
+      {
+        "input": "3,5,4,7 / 2,4,6,5 / 5,7,3,9 (3 × 4, patrón irregular)",
+        "output": "F ≈ 2.84, η² ≈ 0.50",
+        "note": "F no significativo, η² moderado"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar esta calculadora",
+    "steps": [
+      "Introduce los datos de modo que cada fila represente a un sujeto y cada columna una condición o momento.",
+      "Separa los valores de una fila con comas, espacios o tabulaciones; usa una nueva línea para cada sujeto.",
+      "Haz clic en 'Calcular' para ejecutar el ANOVA de medidas repetidas de un factor.",
+      "Revisa la tabla ANOVA con SS, gl, MS y el estadístico F de cada fuente de variación.",
+      "Comprueba el valor de eta cuadrado (η²) para evaluar la significación práctica del efecto de la condición."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "q1": "¿Cuándo debo usar ANOVA de medidas repetidas en lugar de ANOVA de un factor?",
+    "q1_a": "Usa ANOVA de medidas repetidas cuando los mismos sujetos se miden en todas las condiciones. Tiene más potencia que el ANOVA entre sujetos porque elimina la varianza por diferencias individuales del término de error, lo que facilita detectar efectos reales de la condición con menos participantes.",
+    "q2": "¿Qué es el supuesto de esfericidad?",
+    "q2_a": "La esfericidad exige que las varianzas de las diferencias entre todos los pares de condiciones sean iguales. Su violación infla la tasa de error de tipo I. La prueba de Mauchly comprueba este supuesto. Si se viola, aplica la corrección de Greenhouse-Geisser o Huynh-Feldt a los grados de libertad.",
+    "q3": "¿Qué me dice eta cuadrado (η²)?",
+    "q3_a": "Eta cuadrado indica la proporción de la varianza total explicada por el factor intra-sujetos. Los valores de 0.01, 0.06 y 0.14 se consideran convencionalmente efectos pequeños, medianos y grandes, respectivamente. Es un tamaño de efecto fácil de interpretar para ANOVA.",
+    "q4": "¿Cuántos sujetos necesito para un ANOVA de medidas repetidas?",
+    "q4_a": "Suele recomendarse un mínimo de 5–10 sujetos para una potencia estadística adecuada, aunque el enfoque correcto es un análisis de potencia formal basado en el tamaño de efecto esperado y la potencia deseada (normalmente 0.80). Se necesitan más sujetos cuando el efecto esperado es pequeño.",
+    "q5": "¿Qué pasa si mis datos violan la esfericidad?",
+    "q5_a": "Aplica la corrección de Greenhouse-Geisser (ε) para ajustar los grados de libertad y hacer la prueba F más conservadora. Cuando ε está cerca de 1, la esfericidad se cumple aproximadamente. Para violaciones severas (ε < 0.75), se prefiere Greenhouse-Geisser.",
+    "q6": "¿Puedo usar esta calculadora para un diseño de medidas repetidas de dos factores?",
+    "q6_a": "No, esta calculadora solo maneja ANOVA de medidas repetidas de un factor (un solo factor intra-sujetos). Para diseños de dos factores con dos factores intra-sujetos o diseños mixtos con factores intra y entre sujetos, necesitas software especializado como R, SPSS o la biblioteca pingouin de Python."
+  }
+}

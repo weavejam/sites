@@ -1,0 +1,100 @@
+{
+  "title": "Calculateur de chute de tension",
+  "tagline": "Calculez la chute de tension, les pertes de puissance et la tension en bout de ligne pour les câbles électriques.",
+  "intro": "Saisissez le courant, la tension source, la longueur du câble, la résistance par kilomètre et le facteur de puissance pour obtenir instantanément la chute de tension et son pourcentage dans votre circuit.",
+  "formula": "Formule : VD = 2 × I × R (Ω/km) × L (m) × PF / 1000  •  VD% = VD / Vsource × 100",
+  "field": {
+    "current": "Courant (A)",
+    "sourceVoltage": "Tension source (V)",
+    "wireLength": "Longueur du câble (m)",
+    "wireResistance": "Résistance du câble (Ω/km)",
+    "powerFactor": "Facteur de puissance"
+  },
+  "placeholder": {
+    "current": "p. ex. 15",
+    "sourceVoltage": "p. ex. 120",
+    "wireLength": "p. ex. 50",
+    "wireResistance": "p. ex. 1.83",
+    "powerFactor": "p. ex. 1.0"
+  },
+  "hint": "Laissez le facteur de puissance à 1.0 pour les circuits CC et les charges CA purement résistives. Pour les charges inductives comme les moteurs, utilisez le facteur de puissance de la charge (généralement 0.80–0.95).",
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs, ainsi qu’un facteur de puissance compris entre 0 et 1."
+  },
+  "result": {
+    "heading": "Résultat",
+    "labelDrop": "Chute de tension",
+    "labelDropPct": "Chute de tension %",
+    "labelReceiving": "Tension en bout de ligne",
+    "labelPowerLoss": "Perte de puissance"
+  },
+  "about": {
+    "heading": "À propos du calculateur de chute de tension",
+    "body": "La chute de tension est la diminution du potentiel électrique entre l’extrémité source et l’extrémité charge d’un câble, causée par la résistance des conducteurs. Tout conducteur réel possède une résistance finie ; lorsque le courant traverse cette résistance, une partie de la tension d’alimentation est consommée par le câble lui-même au lieu d’être fournie à la charge. Il en résulte une tension plus faible aux bornes de la charge, ce qui peut dégrader les performances des équipements et, dans les cas extrêmes, provoquer une surchauffe ou une défaillance prématurée.\n\nLa formule standard pour un circuit monophasé à deux fils (un conducteur aller, un conducteur retour) est VD = 2 × I × R × L / 1000, où I est le courant en ampères, R la résistance du conducteur en ohms par kilomètre et L la longueur aller du câble en mètres. Le facteur 2 tient compte du trajet aller-retour du courant. La division par 1 000 convertit la résistance donnée au kilomètre en unités par mètre. Pour les circuits CA avec charges réactives, le résultat est en outre multiplié par le facteur de puissance de la charge afin de tenir compte de la relation de phase entre tension et courant.\n\nLe pourcentage de chute de tension — VD / Vsource × 100 — est l’indicateur le plus utile pour vérifier la conformité. Les codes électriques internationaux et nationaux fixent des chutes de tension maximales admissibles. Le National Electrical Code (NEC) aux États-Unis recommande un maximum de 3 % de chute de tension sur les circuits terminaux et 5 % au total (alimentation plus circuit terminal). La norme britannique BS 7671 et les normes IEC prévoient des limites similaires. Dépasser ces limites gaspille de l’énergie, atténue l’éclairage, réduit le couple moteur et peut déclencher des relais de protection contre les sous-tensions.\n\nLa résistance d’un conducteur dépend du matériau et de sa section. Le cuivre est plus conducteur que l’aluminium : les résistances typiques des conducteurs en cuivre sont d’environ 7.41 Ω/km pour 2.5 mm², 4.61 Ω/km pour 4 mm² et 3.08 Ω/km pour 6 mm². Les conducteurs en aluminium ont une résistance environ 1.64 fois plus élevée à section identique, ce qui explique pourquoi un câblage en aluminium nécessite une section plus importante pour obtenir la même performance de chute de tension que le cuivre.\n\nLe facteur de puissance est important dans les circuits CA comportant des charges inductives telles que moteurs, transformateurs et ballasts d’éclairage fluorescent. Un moteur fonctionnant avec un facteur de puissance de 0.85 absorbe davantage de courant pour la même puissance active qu’un chauffage résistif à PF = 1.0, ce qui augmente la chute de tension. L’amélioration du facteur de puissance par des batteries de condensateurs réduit le courant dans les conducteurs et donc la chute de tension, évitant parfois l’emploi d’un câble plus gros et plus coûteux.\n\nDes calculs corrects de chute de tension sont essentiels dès la phase de conception. Utiliser un conducteur de section supérieure coûte plus cher au départ, mais permet d’économiser de l’énergie en continu pendant toute la durée de vie de l’installation."
+  },
+  "examples": {
+    "heading": "Exemples de chute de tension",
+    "intro": "Deux scénarios de câblage typiques montrant comment calculer la chute de tension pour des circuits résidentiels et industriels.",
+    "colInput": "Paramètres du circuit",
+    "colOutput": "Chute de tension",
+    "colNote": "VD %",
+    "loadResidential": "Exemple de circuit de charge résidentiel",
+    "loadIndustrial": "Exemple de charge de moteur industriel",
+    "items": [
+      {
+        "input": "15 A, 120 V, 50 m, 1.83 Ω/km, PF = 1.0",
+        "output": "2.745 V",
+        "note": "2.29 % — dans la limite de 3 % recommandée par le NEC. Tension en bout de ligne : 117.26 V."
+      },
+      {
+        "input": "30 A, 480 V, 100 m, 0.727 Ω/km, PF = 0.85",
+        "output": "3.70 V",
+        "note": "0.77 % — largement dans les limites pour un circuit de moteur industriel 480 V avec câble cuivre de 4 mm²."
+      },
+      {
+        "input": "20 A, 230 V, 30 m, 7.41 Ω/km, PF = 1.0",
+        "output": "8.89 V",
+        "note": "3.86 % — dépasse la recommandation de 3 % pour une longue liaison de 2.5 mm² ; passez à un câble de 4 mm²."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de chute de tension",
+    "steps": [
+      "Saisissez le courant de charge en ampères — utilisez le courant à pleine charge de l’équipement raccordé, et non une valeur partielle ou moyenne.",
+      "Saisissez la tension source à l’extrémité d’alimentation du circuit (p. ex. 120 V, 230 V ou 480 V).",
+      "Saisissez la longueur aller du câble en mètres — ne la doublez pas ; la formule tient déjà compte du conducteur de retour.",
+      "Saisissez la résistance du conducteur en Ω/km depuis une fiche technique de câble ou un tableau standard (p. ex. 1.83 Ω/km pour du cuivre 14 AWG ou 4 mm²).",
+      "Saisissez le facteur de puissance (0–1). Utilisez 1.0 pour le CC et les charges résistives ; utilisez le facteur de puissance indiqué sur la plaque moteur pour les circuits de moteurs. Cliquez sur Calculer pour afficher la chute de tension, le pourcentage, la tension en bout de ligne et la perte de puissance."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de chute de tension",
+    "items": [
+      {
+        "q": "Quelle est la chute de tension maximale admissible ?",
+        "a": "La plupart des codes électriques recommandent une chute de tension maximale de 3 % sur les circuits terminaux et de 5 % combinée pour l’alimentation plus le circuit terminal. Le NEC suit cette recommandation (à titre informatif dans les notes FPN), et le tableau 4Ab de la BS 7671 fixe 3 % pour l’éclairage et 5 % pour les autres circuits. Rester dans les limites protège les équipements et réduit le gaspillage d’énergie."
+      },
+      {
+        "q": "Pourquoi la formule multiplie-t-elle par 2 ?",
+        "a": "Le facteur 2 tient compte du trajet complet du courant : le courant part par un conducteur et revient par un autre. Les deux conducteurs contribuent à la résistance, de sorte que la résistance totale du câble est deux fois celle d’un seul conducteur pour une longueur donnée. Les circuits triphasés utilisent un autre facteur (√3 au lieu de 2), car les trois conducteurs partagent le courant de retour."
+      },
+      {
+        "q": "Comment la section du câble influence-t-elle la chute de tension ?",
+        "a": "Une section plus grande signifie une résistance plus faible par kilomètre, ce qui réduit la chute de tension. Doubler la section du conducteur divise approximativement la résistance par deux et donc la chute de tension pour le même courant et la même longueur. Monter d’un pas AWG (par exemple de 12 AWG à 10 AWG) réduit la résistance d’environ 20 %."
+      },
+      {
+        "q": "Le calcul s’applique-t-il aux circuits CC ?",
+        "a": "Oui, avec le facteur de puissance réglé sur 1.0. Les circuits CC n’ont pas de composantes réactives, donc PF = 1.0 est toujours correct. La formule se simplifie en VD = 2 × I × R × L / 1000 pour le CC, ce qui est identique à la formule CA à facteur de puissance unitaire."
+      },
+      {
+        "q": "Quelle résistance de conducteur utiliser pour un câble en cuivre ?",
+        "a": "Résistances courantes des conducteurs en cuivre à 20 °C : 1.5 mm² ≈ 12.1 Ω/km, 2.5 mm² ≈ 7.41 Ω/km, 4 mm² ≈ 4.61 Ω/km, 6 mm² ≈ 3.08 Ω/km, 10 mm² ≈ 1.83 Ω/km. La résistance augmente d’environ 0.4 % par degré Celsius au-dessus de 20 °C ; corrigez donc les valeurs pour les températures de fonctionnement élevées dans les environnements chauds."
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "title": "Calculadora de error muestral - Margen de error",
+  "tagline": "Calcula el error muestral y el margen de error para proporciones y medias. Admite corrección por población finita y varios niveles de confianza.",
+  "intro": "Elige si trabajas con proporciones o medias, introduce los datos de la muestra, selecciona un nivel de confianza y haz clic en Calcular para obtener el error estándar y el margen de error.",
+  "formula": "Proporción: SE = √[p(1–p)/n]  •  Media: SE = s/√n  •  Con FPC: SE_adj = SE × √[(N–n)/(N–1)]  •  Margen de error = Z × SE",
+  "type": {
+    "proportion": "Proporción",
+    "proportion_desc": "Úsalo para resultados categóricos como respuestas sí/no, tasas de aprobación/reprobación o el porcentaje de encuestados que prefieren una opción específica.",
+    "mean": "Media",
+    "mean_desc": "Úsalo para datos numéricos continuos como estaturas, pesos, calificaciones, temperaturas o tiempos de respuesta."
+  },
+  "field": {
+    "calcType": "Tipo de cálculo",
+    "sampleProportion": "Proporción muestral (p)",
+    "sampleMean": "Media muestral (x̄)",
+    "sampleSD": "Desviación estándar muestral (s)",
+    "sampleSize": "Tamaño de muestra (n)",
+    "populationSize": "Tamaño de la población (opcional)",
+    "confidenceLevel": "Nivel de confianza"
+  },
+  "placeholder": {
+    "proportion": "p. ej., 0.55",
+    "number": "Introduce un número",
+    "integer": "p. ej., 500",
+    "optional": "Déjalo en blanco para población infinita"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Revisa tus datos. La proporción debe estar entre 0 y 1, el tamaño de muestra debe ser un entero positivo y la desviación estándar (en modo media) no puede ser negativa."
+  },
+  "result": {
+    "heading": "Resultado",
+    "standardError": "Error estándar",
+    "marginOfError": "Margen de error"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de error muestral",
+    "body": "El error muestral es una consecuencia inevitable de estudiar un subconjunto (una muestra) en lugar de toda la población. Como cada muestra es solo una fracción del total, las estadísticas calculadas a partir de ella —como la media o la proporción— diferirán ligeramente de los valores reales de la población. El error muestral cuantifica esta incertidumbre.\n\nEsta calculadora calcula dos magnitudes estrechamente relacionadas: el error estándar (SE) y el margen de error (MoE). El error estándar es la desviación estándar de la distribución muestral y mide cuánto varían las estadísticas de una muestra a otra. El margen de error amplía esto al multiplicar el SE por la puntuación Z correspondiente al nivel de confianza elegido, lo que da un intervalo que probablemente contiene el verdadero parámetro poblacional.\n\nPara proporciones, el error estándar es SE = √[p(1–p)/n], donde p es la proporción muestral observada y n es el tamaño de la muestra. Para medias, el error estándar es SE = s/√n, donde s es la desviación estándar muestral y n es el tamaño de la muestra. En ambos casos, el SE disminuye a medida que aumenta el tamaño de muestra, lo que refleja que las muestras más grandes producen estimaciones más precisas.\n\nCuando el tamaño de muestra supera el 5% del tamaño total de la población N, debe aplicarse el factor de corrección por población finita (FPC): SE_adj = SE × √[(N–n)/(N–1)]. Esta corrección reduce el SE porque se mide directamente una gran fracción de la población. Si la población es muy grande o desconocida, el efecto de la FPC es insignificante y puede ignorarse con seguridad.\n\nEl margen de error (MoE) = Z × SE_adj, donde Z es la puntuación Z del nivel de confianza elegido (1.282 para 80%, 1.645 para 90%, 1.960 para 95%, 2.576 para 99%). El MoE da la semiamplitud del intervalo de confianza: si tu proporción muestral es 55% y el MoE es ±3%, puedes confiar (al nivel especificado) en que la proporción real de la población está entre 52% y 58%.\n\nEl error muestral es distinto de los errores no muestrales, como el error de medición, el sesgo de respuesta, el sesgo de cobertura y los errores de ingreso de datos. Los errores no muestrales surgen de fallas en la forma de recopilar o procesar los datos, no de la naturaleza aleatoria de seleccionar una muestra. Aunque el error muestral puede reducirse aumentando el tamaño de muestra, los errores no muestrales requieren mejoras en el diseño del estudio, la redacción de preguntas y los procedimientos de calidad de datos.\n\nEsta calculadora es útil para investigadores de encuestas, encuestadores, ingenieros de control de calidad y cualquier persona que necesite comunicar la incertidumbre de sus estimaciones basadas en muestras de forma clara y cuantitativa."
+  },
+  "examples": {
+    "heading": "Ejemplos de cálculo de error muestral",
+    "intro": "Tres escenarios que ilustran cálculos de proporción y media con y sin corrección por población finita.",
+    "colInput": "Parámetros",
+    "colOutput": "SE / Margen de error",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Proporción: p=0.55, n=400, 95% NC, población infinita",
+        "output": "SE=0.0249, MoE=±0.0488",
+        "note": "Una encuesta que encuentra 55% de apoyo tiene un margen de error de aproximadamente ±4.9%, por lo que la proporción real está entre 50.1% y 59.9% con 95% de confianza."
+      },
+      {
+        "input": "Media: x̄=82, s=15, n=100, 95% NC, población infinita",
+        "output": "SE=1.500, MoE=±2.940",
+        "note": "Puntuación media de 82 con SD=15 en 100 estudiantes. La media real de la clase está entre 79.06 y 84.94 con 95% de confianza."
+      },
+      {
+        "input": "Proporción: p=0.3, n=200, 95% NC, N=500",
+        "output": "SE≈0.0287, MoE≈±0.0562",
+        "note": "La FPC reduce el SE porque n/N=40%, lo que supera el umbral del 5%. Sin corrección, el SE sería 0.0324."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de error muestral",
+    "steps": [
+      "Selecciona el tipo de cálculo: Proporción para datos categóricos (p. ej., encuestas sí/no) o Media para datos numéricos continuos (p. ej., calificaciones, mediciones).",
+      "Introduce los datos requeridos para tu modo: Proporción muestral para el modo proporción, o Media muestral y Desviación estándar muestral para el modo media.",
+      "Introduce el Tamaño de muestra (n). Un tamaño de muestra mayor produce un error estándar menor y un margen de error más estrecho.",
+      "Opcionalmente, introduce el Tamaño de la población si tu población es finita y tu muestra supera el 5% del total. Déjalo en blanco para asumir una población infinita.",
+      "Selecciona el Nivel de confianza y haz clic en Calcular. Los resultados muestran el Error estándar y el Margen de error. Haz clic en Restablecer para borrar todos los campos."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de error muestral",
+    "q1": "¿Cuál es la diferencia entre error muestral y margen de error?",
+    "q1_a": "El error estándar (error muestral) mide la desviación típica de las estadísticas muestrales respecto del valor real de la población, expresada en las unidades originales. El margen de error multiplica esto por una puntuación Z para crear un intervalo de confianza: un rango que probablemente contiene el valor real de la población a un nivel de probabilidad especificado.",
+    "q2": "¿Cómo afecta el tamaño de muestra al margen de error?",
+    "q2_a": "El margen de error es proporcional a 1/√n, por lo que cuadruplicar el tamaño de muestra reduce a la mitad el margen de error. Por ejemplo, aumentar una muestra de 100 a 400 reduce el error estándar de 0.05 a 0.025, recortando el margen de error a la mitad. Es la forma más directa de mejorar la precisión de tu estimación.",
+    "q3": "¿Cuándo debo aplicar la corrección por población finita?",
+    "q3_a": "Aplica la FPC cuando el tamaño de tu muestra supere aproximadamente el 5% de la población total. Por ejemplo, si encuestas a 200 de 800 empleados (25% de la población), la FPC reduce de forma significativa el error estándar y produce un intervalo de confianza más preciso y estrecho.",
+    "q4": "¿Cuál es la diferencia entre error muestral y error no muestral?",
+    "q4_a": "El error muestral surge del azar en la selección de individuos y puede cuantificarse y reducirse aumentando el tamaño de muestra. Los errores no muestrales (p. ej., preguntas sesgadas, errores de medición, sesgo de no respuesta) surgen de fallas en la recopilación o el procesamiento de datos, son más difíciles de detectar y no pueden corregirse simplemente tomando una muestra más grande.",
+    "q5": "¿Por qué esta calculadora usa diferentes puntuaciones Z para cada nivel de confianza?",
+    "q5_a": "La puntuación Z traduce un nivel de confianza en el número de errores estándar necesarios para capturar esa fracción de una distribución normal. Un nivel de confianza del 95% usa Z=1.96 porque el 95% de una distribución normal estándar cae dentro de ±1.96 desviaciones estándar de la media. Niveles de confianza más altos requieren puntuaciones Z mayores, lo que produce intervalos de confianza más amplios.",
+    "q6": "¿Puedo usar esta calculadora para resultados de pruebas A/B?",
+    "q6_a": "Sí, para una interpretación básica del margen de error. Si tu prueba A/B mide una proporción (p. ej., tasa de conversión), introduce la proporción observada, el número de observaciones de ese grupo y el nivel de confianza deseado. El margen de error indica la incertidumbre alrededor de la tasa observada. Para una prueba de significancia completa que compare dos grupos, usa una calculadora dedicada de prueba z de dos proporciones."
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "title": "Calculateur de rangs signés de Wilcoxon pour échantillons appariés",
+  "tagline": "Comparez deux échantillons liés ou des mesures répétées avec le test non paramétrique de rangs signés de Wilcoxon. Obtenez la statistique W, le score Z et la valeur p sans supposer la normalité.",
+  "intro": "Saisissez vos mesures appariées avant/après sous forme de nombres séparés par des virgules. Les deux échantillons doivent contenir exactement le même nombre de valeurs.",
+  "field": {
+    "sample1": "Données de l’échantillon 1 (p. ex. avant traitement)",
+    "sample2": "Données de l’échantillon 2 (p. ex. après traitement)"
+  },
+  "placeholder": {
+    "sample": "p. ex. 10, 12, 15, 11, 20"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir au moins un nombre valide dans chaque échantillon.",
+    "mismatch": "Les deux échantillons doivent contenir le même nombre de valeurs."
+  },
+  "result": {
+    "heading": "Résultats",
+    "W": "Statistique W",
+    "Z": "Score Z",
+    "pValue": "Valeur p (bilatérale)",
+    "n": "n (différences non nulles)",
+    "Wplus": "W⁺ (somme des rangs positifs)",
+    "Wminus": "W⁻ (somme des rangs négatifs)",
+    "reject": "Rejet de H₀ — une différence significative existe entre les échantillons appariés (α = 0.05).",
+    "failReject": "H₀ non rejetée — aucune différence significative n’a été détectée (α = 0.05)."
+  },
+  "about": {
+    "heading": "À propos du test de rangs signés de Wilcoxon",
+    "body": "Le test de rangs signés de Wilcoxon est un test d’hypothèse statistique non paramétrique utilisé pour comparer deux échantillons liés ou des mesures répétées sur un même groupe. C’est l’équivalent non paramétrique du test t apparié, appliqué lorsque l’hypothèse de normalité des différences entre paires ne peut pas être justifiée.\n\nIntroduit par Frank Wilcoxon en 1945, ce test est particulièrement utile dans les essais cliniques et les sciences du comportement, où l’on mesure souvent les mêmes individus avant et après une intervention. Au lieu d’utiliser les valeurs brutes, le test classe les différences absolues entre observations appariées et additionne séparément les rangs associés aux différences positives et négatives.\n\nLe fonctionnement est le suivant. Pour chaque paire, on calcule la différence d = (après − avant). Les paires dont la différence est nulle sont exclues. Les différences absolues sont classées de la plus petite à la plus grande, les ex æquo recevant le rang moyen. La somme des rangs positifs est W⁺, et la somme des rangs négatifs est W⁻. La statistique W est la plus petite des deux.\n\nPour les échantillons plus grands (généralement n ≥ 10), la distribution de W est bien approchée par une loi normale. Le score Z est calculé à partir de la moyenne et de l’écart-type de W sous l’hypothèse nulle. La moyenne vaut n(n+1)/4 et l’écart-type √[n(n+1)(2n+1)/24], où n est le nombre de différences non nulles.\n\nL’hypothèse nulle affirme que la différence médiane entre les observations appariées est nulle — le traitement n’a pas d’effet. L’hypothèse alternative peut être bilatérale (la différence médiane n’est pas nulle) ou unilatérale (positive ou négative). Ce calculateur affiche la valeur p bilatérale, qui est le choix le plus conservateur.\n\nUne valeur p inférieure à 0.05 est généralement interprétée comme une preuve que les mesures appariées diffèrent significativement. Dans une étude sur la pression artérielle, cela pourrait indiquer qu’un médicament a abaissé de façon significative la pression systolique. Dans une étude en psychologie, cela pourrait montrer qu’un programme thérapeutique a réduit de manière significative les scores d’anxiété.\n\nLe test exige que les observations soient appariées : chaque observation de l’échantillon 1 doit correspondre à une observation précise de l’échantillon 2 (le même sujet à un autre moment, ou des sujets appariés). Les paires doivent être indépendantes les unes des autres, et les différences doivent provenir d’une distribution symétrique, sans nécessairement être normale.\n\nComparé au test t apparié, le test de rangs signés de Wilcoxon est plus robuste face aux valeurs aberrantes et aux distributions non normales, mais un peu moins puissant lorsque l’hypothèse de normalité est vérifiée. C’est le choix recommandé pour les petits échantillons, les résultats ordinaux ou les données comportant des valeurs extrêmes."
+  },
+  "examples": {
+    "heading": "Exemples pratiques",
+    "intro": "Utilisez ces exemples pour voir comment le calculateur fonctionne avec différents jeux de données appariées.",
+    "colInput": "Entrée",
+    "colOutput": "Sortie",
+    "colNote": "Note",
+    "items": [
+      {
+        "input": "Avant : 140,135,150,160,130,145,155,138,148,152 — Après : 132,130,142,151,125,137,145,130,140,148",
+        "output": "W=0, Z≈−2.80, p≈0.005",
+        "note": "Médicament contre la tension artérielle — toutes les différences sont négatives, avec une baisse nette."
+      },
+      {
+        "input": "Avant : 8,7,6,9,8,7,8,9 — Après : 6,5,5,7,6,6,7,7",
+        "output": "W=0, Z≈−2.52, p≈0.012",
+        "note": "Scores d’anxiété après thérapie — amélioration significative à α = 0.05."
+      },
+      {
+        "input": "Avant : 75,80,82,79,88,90,76,85,89,92,78,84 — Après : 80,85,85,83,90,94,81,88,92,95,81,89",
+        "output": "W=0, Z≈+3.06, p≈0.002",
+        "note": "Scores d’élèves avant et après une nouvelle méthode d’enseignement — gain très significatif."
+      }
+    ],
+    "loadBP": "Pression artérielle",
+    "loadAnxiety": "Scores d’anxiété",
+    "loadScores": "Scores d’élèves"
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur",
+    "steps": [
+      "Saisissez les mesures avant traitement (ou de base) dans le champ de l’échantillon 1, séparées par des virgules.",
+      "Saisissez les mesures correspondantes après traitement dans le champ de l’échantillon 2. Les deux échantillons doivent contenir exactement le même nombre de valeurs.",
+      "Cliquez sur Calculer pour déterminer les différences, les classer, puis obtenir la statistique W, le score Z et la valeur p.",
+      "Une valeur p inférieure à 0.05 (affichée en rouge) indique une différence statistiquement significative entre les deux conditions.",
+      "Utilisez les boutons d’exemple pour charger rapidement des jeux de données réels et vérifier le calculateur avec des résultats connus."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ",
+    "items": [
+      {
+        "q": "Quelle est la différence entre le test de rangs signés de Wilcoxon et le test t apparié ?",
+        "a": "Les deux comparent des mesures appariées, mais le test t apparié suppose que les différences suivent une loi normale. Le test de rangs signés de Wilcoxon ne fait pas cette hypothèse et est donc préférable pour les petits échantillons, les données ordinales ou les données comportant des valeurs aberrantes importantes. Lorsque la normalité est vérifiée, le test t a un peu plus de puissance."
+      },
+      {
+        "q": "Que se passe-t-il avec les paires dont la différence est nulle ?",
+        "a": "Les paires où les valeurs avant et après sont identiques (différence = 0) sont exclues de l’analyse. La taille effective n utilisée pour calculer la statistique et la valeur p ne compte que les différences non nulles. C’est la procédure standard recommandée dans la plupart des manuels de statistique."
+      },
+      {
+        "q": "Comment les différences ex æquo sont-elles gérées ?",
+        "a": "Lorsque plusieurs paires produisent la même différence absolue, elles reçoivent la moyenne des rangs qu’elles occuperaient. Par exemple, si trois paires avec |d| = 5 sont en concurrence pour les rangs 4, 5 et 6, chacune reçoit le rang 5. Cette correction par rang moyen préserve la validité de l’approximation Z."
+      },
+      {
+        "q": "Pourquoi ce calculateur ne fournit-il qu’une valeur p bilatérale ?",
+        "a": "Le test bilatéral est le plus conservateur et le choix par défaut de la plupart des études exploratoires. Il teste si la différence médiane est différente de zéro dans l’une ou l’autre direction. Pour des hypothèses directionnelles (par exemple un traitement qui améliore toujours les résultats), vous pouvez diviser par deux la valeur p bilatérale affichée pour obtenir la valeur p unilatérale."
+      },
+      {
+        "q": "De quelle taille d’échantillon a-t-on besoin pour que l’approximation Z soit valable ?",
+        "a": "En général, l’approximation normale de la statistique W est assez fiable lorsque n ≥ 10 après suppression des différences nulles. Pour des échantillons plus petits, il faut consulter les valeurs critiques exactes de la table de Wilcoxon. Ce calculateur utilise l’approximation normale, donc soyez prudent avec n < 10."
+      }
+    ]
+  }
+}

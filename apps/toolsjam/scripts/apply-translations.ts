@@ -112,44 +112,51 @@ export async function applyTranslations(ids?: string[]): Promise<ApplyResult> {
     if (!existsSync(CACHE_DIR)) return { applied: [], skipped: [], categories: [] };
     ids = readdirSync(CACHE_DIR).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, ""));
   }
+  // We still need the lock for the shared category .ts writes (one category
+  // file holds many tools — e.g. statistic.ts holds 200+).  Per-tool per-locale
+  // message files (messages/tool/<id>/<locale>.json) are written directly
+  // OUTSIDE the lock because each tool owns its own dir; no cross-tool races.
+  const applied: string[] = [];
+  const skipped: { id: string; reason: string }[] = [];
+
+  // PHASE 1 — outside lock: validate cache files and write per-tool locale
+  // JSON files.  Each id touches only its own messages/tool/<id>/* dir.
+  type Ready = { id: string; cache: Record<string, CacheLocale> };
+  const ready: Ready[] = [];
+  for (const id of ids) {
+    const cachePath = path.join(CACHE_DIR, `${id}.json`);
+    if (!existsSync(cachePath)) { skipped.push({ id, reason: "no cache" }); continue; }
+    let cache: Record<string, CacheLocale>;
+    try { cache = loadJson<Record<string, CacheLocale>>(cachePath); }
+    catch (e: unknown) { skipped.push({ id, reason: `bad json: ${(e as Error)?.message ?? e}` }); continue; }
+    const missing = LOCALES.filter((l) => !cache[l]?.content);
+    if (missing.length) { skipped.push({ id, reason: `missing locales ${missing.join(",")}` }); continue; }
+    // write per-tool, per-locale message files
+    const toolDir = path.join(MESSAGES_DIR, "tool", id);
+    mkdirSync(toolDir, { recursive: true });
+    for (const l of LOCALES) saveJson(path.join(toolDir, `${l}.json`), cache[l].content);
+    ready.push({ id, cache });
+  }
+
+  if (ready.length === 0) return { applied: [], skipped, categories: [] };
+
+  // PHASE 2 — inside lock: mutate the shared category .ts files (slug/title/desc).
   await acquireLock();
   try {
-    // Snapshot all categories once inside the lock so we don't re-read after
-    // mutations.  Holds whole-tool registry in memory (~few MB worst case).
     const catCache = new Map<string, ToolEntry[]>();
     const dirtyCats = new Set<string>();
-    const applied: string[] = [];
-    const skipped: { id: string; reason: string }[] = [];
-
-    // Index id → category by scanning each category once.
     const idToCat = new Map<string, string>();
     for (const cat of listCategories()) {
       const { entries } = readCategoryFile(cat);
       catCache.set(cat, entries);
       for (const e of entries) idToCat.set(e.id, cat);
     }
-
-    // Snapshot messages JSON once per locale.
-    const msgs = new Map<string, Record<string, any>>();
-    for (const l of LOCALES) msgs.set(l, loadJson<Record<string, any>>(path.join(MESSAGES_DIR, `${l}.json`)));
-
-    for (const id of ids) {
-      const cachePath = path.join(CACHE_DIR, `${id}.json`);
-      if (!existsSync(cachePath)) { skipped.push({ id, reason: "no cache" }); continue; }
-      let cache: Record<string, CacheLocale>;
-      try { cache = loadJson<Record<string, CacheLocale>>(cachePath); }
-      catch (e: any) { skipped.push({ id, reason: `bad json: ${e?.message ?? e}` }); continue; }
-      const missing = LOCALES.filter((l) => !cache[l]?.content);
-      if (missing.length) { skipped.push({ id, reason: `missing locales ${missing.join(",")}` }); continue; }
+    for (const { id, cache } of ready) {
       const cat = idToCat.get(id);
       if (!cat) { skipped.push({ id, reason: "not in any category registry" }); continue; }
       const entries = catCache.get(cat)!;
       const entry = entries.find((e) => e.id === id)!;
-
       for (const l of LOCALES) {
-        const m = msgs.get(l)!;
-        m.tool = m.tool || {};
-        m.tool[id] = cache[l].content;
         entry.slugs[l] = cache[l].slug;
         entry.titles[l] = cache[l].title;
         entry.descriptions[l] = cache[l].description;
@@ -157,14 +164,7 @@ export async function applyTranslations(ids?: string[]): Promise<ApplyResult> {
       dirtyCats.add(cat);
       applied.push(id);
     }
-
-    // Flush ALL writes at the very end (still inside lock).
     for (const cat of dirtyCats) writeCategoryFile(cat, catCache.get(cat)!);
-    // messages flush — every locale touched if anything applied
-    if (applied.length > 0) {
-      for (const l of LOCALES) saveJson(path.join(MESSAGES_DIR, `${l}.json`), msgs.get(l));
-    }
-
     return { applied, skipped, categories: [...dirtyCats] };
   } finally {
     releaseLock();

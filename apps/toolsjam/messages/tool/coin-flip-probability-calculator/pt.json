@@ -1,0 +1,95 @@
+{
+  "title": "Calculadora de probabilidade de lançamento de moeda - Distribuição binomial",
+  "tagline": "Calcule a probabilidade exata de qualquer resultado de lançamento de moeda usando a distribuição binomial — descubra a chance de exatamente, pelo menos ou no máximo N caras.",
+  "intro": "Digite o número de lançamentos, a quantidade de caras de interesse e escolha o tipo de cálculo para obter a probabilidade na hora.",
+  "formula": "Fórmula: P(X=k) = C(n,k) × (0.5)^n  •  pelo menos: Σ P(X=i) para i=k..n  •  no máximo: Σ P(X=i) para i=0..k",
+  "field": {
+    "flips": "Número de lançamentos",
+    "heads": "Número de caras",
+    "calcType": "Tipo de cálculo"
+  },
+  "placeholder": {
+    "flips": "ex.: 10",
+    "heads": "ex.: 5"
+  },
+  "type": {
+    "exactly": "Exatamente",
+    "exactly_desc": "Calcula a probabilidade de obter exatamente a quantidade informada de caras.",
+    "atLeast": "Pelo menos",
+    "atLeast_desc": "Calcula a probabilidade de obter a quantidade informada de caras ou mais.",
+    "atMost": "No máximo",
+    "atMost_desc": "Calcula a probabilidade de obter a quantidade informada de caras ou menos."
+  },
+  "button": {
+    "calculate": "Calcular probabilidade",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite um número válido de lançamentos (1–10000) e uma quantidade de caras entre 0 e o número de lançamentos."
+  },
+  "result": {
+    "heading": "Probabilidade",
+    "decimal": "Decimal"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de probabilidade de moeda",
+    "body": "Uma moeda justa tem exatamente dois resultados — cara e coroa — e cada um tem probabilidade de 0.5. Quando você lança a mesma moeda várias vezes, os resultados individuais são independentes: a moeda não tem memória, então o resultado de um lançamento não pode influenciar o próximo. Essa combinação de probabilidade fixa e independência é a característica definidora de um experimento binomial, e a distribuição binomial é, portanto, o modelo matemático exato para sequências de lançamentos de moeda.\n\nA probabilidade de obter exatamente k caras em n lançamentos é dada pela função de massa de probabilidade binomial: P(X = k) = C(n, k) × (0.5)^n, onde C(n, k) é o coeficiente binomial n! / (k! × (n − k)!). O fator C(n, k) conta o número de sequências distintas de n lançamentos que contêm exatamente k caras. O fator (0.5)^n é a probabilidade de uma sequência específica de comprimento n. Multiplicando os dois, obtemos a probabilidade total de k caras em todas as ordens possíveis.\n\nPara perguntas cumulativas — \"pelo menos k caras\" ou \"no máximo k caras\" — a calculadora soma as probabilidades pontuais do intervalo relevante. \"Pelo menos k\" significa a soma de i = k até i = n; \"no máximo k\" significa a soma de i = 0 até i = k. Para n grandes, essas somas podem envolver milhares de termos, por isso uma ferramenta computacional é muito mais prática do que fazer à mão.\n\nAlguns resultados são intuitivos de imediato. Para uma moeda justa lançada 10 vezes, obter exatamente 5 caras tem probabilidade de ≈ 24.61%. Obter pelo menos 5 caras tem probabilidade exata de 50% por simetria. Obter 10 caras seguidas tem probabilidade de (0.5)^10 ≈ 0.098%, o que parece surpreendente até perceber que isso é apenas uma das 1,024 sequências igualmente prováveis. Nenhuma sequência individual é mais ou menos provável que outra — apenas conjuntos de sequências com propriedades em comum (como exatamente 5 caras) têm totais diferentes.\n\nA probabilidade de lançamento de moeda aparece em muitos contextos práticos além do jogo. Em ensaios clínicos, um esquema de randomização em dois braços com alocação 50/50 é matematicamente idêntico a jogar uma moeda justa. Em criptografia, sequências de bits geradas por um gerador de números aleatórios por hardware devem seguir uma distribuição indistinguível de uma moeda justa. Em controle de qualidade, a proporção de itens defeituosos de uma linha de produção pode ser modelada como uma proporção binomial, e decidir se a taxa de defeitos difere da meta usa exatamente os mesmos cálculos de probabilidade. Em análise esportiva, sequências de vitórias de uma equipe equilibrada seguem um modelo de moeda, e entender a distribuição binomial ajuda a separar habilidade real de variação aleatória.\n\nEsta calculadora usa aritmética logarítmica internamente para lidar com n grandes sem overflow, permitindo calcular probabilidades para até 10,000 lançamentos com precisão. Para n muito grandes e k moderado, a distribuição binomial também pode ser aproximada por uma distribuição normal com média np e desvio padrão √(np(1−p)), mas a calculadora usa sempre a fórmula exata para máxima precisão."
+  },
+  "examples": {
+    "heading": "Exemplos de probabilidade de moeda",
+    "intro": "Quatro exemplos resolvidos cobrindo cenários comuns, de problemas de sala de aula a apostas e controle de qualidade.",
+    "colInput": "Lançamentos / Caras / Tipo",
+    "colOutput": "Probabilidade",
+    "colNote": "Explicação",
+    "loadFair": "Carregar exemplo de moeda justa",
+    "loadGambling": "Carregar exemplo de aposta",
+    "loadConservative": "Carregar exemplo conservador",
+    "items": [
+      {
+        "input": "10 lançamentos, exatamente 5 caras",
+        "output": "≈ 24.61%",
+        "note": "Resultado único mais provável em 10 lançamentos de uma moeda justa. Usa P(X=5) = C(10,5) × (0.5)^10."
+      },
+      {
+        "input": "10 lançamentos, pelo menos 7 caras",
+        "output": "≈ 17.19%",
+        "note": "Soma P(X=7) + P(X=8) + P(X=9) + P(X=10). Relevante para apostas em maioria de caras."
+      },
+      {
+        "input": "8 lançamentos, no máximo 3 caras",
+        "output": "≈ 36.33%",
+        "note": "Soma P(X=0) até P(X=3). Útil para estimativas conservadoras e análise da cauda inferior."
+      },
+      {
+        "input": "100 lançamentos, exatamente 50 caras",
+        "output": "≈ 7.96%",
+        "note": "Apesar de ser o resultado único mais provável, representa menos de 8% porque há muitos resultados possíveis."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de probabilidade de moeda",
+    "steps": [
+      "Digite o total de lançamentos no campo Número de lançamentos (1 a 10,000).",
+      "Digite a quantidade de caras de interesse — ela deve estar entre 0 e o número de lançamentos.",
+      "Escolha o tipo de cálculo: Exatamente (probabilidade pontual), Pelo menos (acumulada superior) ou No máximo (acumulada inferior).",
+      "Clique em Calcular probabilidade. A probabilidade será mostrada em porcentagem e em decimal.",
+      "Use os botões de exemplo para carregar instantaneamente cenários comuns e verificar seu entendimento dos resultados."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sobre probabilidade de moeda",
+    "q1": "Por que obter exatamente 5 caras em 10 lançamentos tem apenas cerca de 24.6% de chance?",
+    "q1_a": "Embora 5 em 10 seja o resultado único mais provável, há 11 resultados possíveis (de 0 a 10 caras) e suas probabilidades somam 100%. Os 75.4% restantes se distribuem pelos outros 10 resultados. Mesmo que cada resultado individual perto das caudas seja improvável, juntos eles somam uma parte significativa da probabilidade total.",
+    "q2": "A ordem de caras e coroas importa?",
+    "q2_a": "Não. A calculadora conta a probabilidade de obter k caras em qualquer ordem. O coeficiente binomial C(n,k) considera automaticamente todas as ordenações possíveis. Se você quisesse a probabilidade de uma sequência específica — por exemplo, exatamente HTHTHTHTHT — isso seria simplesmente (0.5)^10 ≈ 0.098% e não exigiria esta calculadora.",
+    "q3": "Qual é o número esperado de caras em n lançamentos?",
+    "q3_a": "O valor esperado (média) de uma distribuição binomial com n ensaios e probabilidade p é E[X] = n × p. Para uma moeda justa, p = 0.5, então você espera n/2 caras em média. Em 10 lançamentos, espera 5 caras; em 100 lançamentos, 50 caras. O valor esperado não é garantia — é a média de longo prazo ao repetir o experimento muitas vezes.",
+    "q4": "Como calcular a probabilidade de obter caras pelo menos uma vez em n lançamentos?",
+    "q4_a": "Use a regra do complemento: P(pelo menos 1 cara) = 1 − P(0 caras) = 1 − (0.5)^n. Para 5 lançamentos, isso é 1 − (0.5)^5 = 1 − 0.03125 = 96.875%. Você pode verificar isso usando o modo Pelo menos com Caras = 1 nesta calculadora.",
+    "q5": "Uma longa sequência de coroas torna a próxima jogada mais provável de ser cara?",
+    "q5_a": "Não. Isso é a falácia do jogador. Como cada lançamento é independente, a probabilidade de cara no próximo lançamento continua exatamente 0.5, independentemente do que veio antes. A moeda não tem memória. Embora sequências longas sejam improváveis antes de começarem, uma vez no meio delas, os lançamentos restantes são tão aleatórios quanto qualquer outra sequência.",
+    "q6": "Esta calculadora pode lidar com moedas viciadas?",
+    "q6_a": "Esta calculadora assume uma moeda justa com p = 0.5. Para uma moeda viciada com probabilidade p de cara, a fórmula é P(X=k) = C(n,k) × p^k × (1−p)^(n−k). Para calcular probabilidades de uma moeda viciada, você precisaria substituir o valor apropriado de p. As somas acumuladas Pelo menos e No máximo funcionam do mesmo jeito — apenas com a probabilidade viciada no lugar de 0.5."
+  }
+}

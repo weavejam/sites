@@ -1,0 +1,79 @@
+{
+  "title": "Calculadora do paradoxo dos dois envelopes",
+  "tagline": "Explore de forma interativa o famoso paradoxo dos dois envelopes. Informe o valor do seu envelope para analisar os valores esperados e entender o quebra-cabeça matemático.",
+  "intro": "Informe o valor que você vê no envelope escolhido e clique em Analisar para ver o valor esperado de trocar versus manter, junto com a explicação do paradoxo.",
+  "field": {
+    "amount": "Valor no seu envelope (X)"
+  },
+  "placeholder": {
+    "amount": "ex.: 100"
+  },
+  "button": {
+    "analyze": "Analisar",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite um número positivo para o valor no envelope."
+  },
+  "result": {
+    "heading": "Análise do valor esperado",
+    "evKeepLabel": "Valor esperado se você mantiver",
+    "evKeepDesc": "O valor no seu envelope é certo.",
+    "evSwitchLabel": "Valor esperado se você trocar",
+    "evSwitchDesc": "Com base em E[outro] = 0.5×(2X) + 0.5×(X/2) = 1.25X",
+    "paradoxNote": "Paradoxo: o mesmo raciocínio aplicado ao outro envelope também produz 1.25× o valor dele, criando um aparente loop infinito. A falha é que X não pode ser simultaneamente a quantia maior e a menor."
+  },
+  "about": {
+    "heading": "Sobre o paradoxo dos dois envelopes",
+    "body": "O paradoxo dos dois envelopes é um dos quebra-cabeças mais famosos da teoria das probabilidades e da teoria da decisão. Ele se popularizou nas décadas de 1980 e 1990 e continua gerando debates intensos entre matemáticos, filósofos e estatísticos. A ideia é enganadoramente simples: há dois envelopes, cada um com uma quantia em dinheiro. Um contém exatamente o dobro do outro. Você escolhe um envelope ao acaso, olha a quantia X dentro dele e então decide se troca pelo outro envelope.\n\nO argumento probabilístico ingênuo diz o seguinte: o outro envelope contém 2X (se você escolheu o menor) ou X/2 (se você escolheu o maior). Os dois casos são igualmente prováveis, com probabilidade 0.5. Portanto, o valor esperado do outro envelope é 0.5 × 2X + 0.5 × X/2 = X + X/4 = 1.25X. Como 1.25X é maior que X, você deveria sempre trocar. Mas aí está o paradoxo: se você trocar e agora estiver com o outro envelope, com Y = 1.25X, o mesmo raciocínio dirá para trocar de volta, e assim por diante indefinidamente.\n\nEsta calculadora aplica o argumento ingênuo para calcular os dois valores esperados, tornando o paradoxo concreto com números reais. Quando você informa X = 100, ela mostra que a análise ingênua prevê EV de 125 ao trocar e apenas 100 ao manter. A conta está correta, então por que a conclusão está errada?\n\nA resolução depende da teoria das probabilidades. O argumento ingênuo assume implicitamente que, depois de ver X, é igualmente provável que o outro envelope contenha 2X ou X/2 — ou seja, trata X como se pudesse ser tanto a quantia menor quanto a maior com a mesma probabilidade. Mas, em qualquer cenário concreto, X é ou a quantia menor (e então o outro envelope definitivamente tem 2X) ou a maior (e então o outro envelope definitivamente tem X/2). A análise correta exige uma distribuição a priori para as quantias possíveis nos envelopes. Para a maioria dos priors naturais — incluindo qualquer distribuição com valor esperado finito — o valor esperado correto de trocar é exatamente X, sem vantagem alguma.\n\nDe forma mais formal, suponha que as duas quantias sejam m e 2m, sorteadas de alguma distribuição. Se você observa X, a esperança condicional do outro envelope, dado o prior, não é 1.25X em geral. A fórmula ingênua mistura duas quantias de referência (m e 2m) como se compartilhassem a mesma base, e esse é o truque algébrico que cria a ilusão de ganho.\n\nO paradoxo dos dois envelopes mostra de forma elegante como um raciocínio probabilístico informal pode levar a contradições quando usado sem cuidado, e por que é essencial condicionar de maneira bayesiana sobre o prior correto. Ele impulsionou pesquisas sobre priors impróprios, permutabilidade e teoria da decisão sob ambiguidade, tornando-se um exemplo clássico em cursos avançados de probabilidade."
+  },
+  "examples": {
+    "heading": "Exemplos do paradoxo dos dois envelopes",
+    "intro": "Valores concretos que mostram o cálculo ingênuo do valor esperado e o paradoxo que ele cria.",
+    "colInput": "Valor visto (X)",
+    "colOutput": "EV ao trocar (ingênuo)",
+    "colNote": "Interpretação",
+    "items": [
+      {
+        "input": "X = $100",
+        "output": "$125",
+        "note": "EV ingênuo = 0.5×$200 + 0.5×$50 = $125. Parece que trocar ganha $25, mas a mesma lógica aplicada ao outro lado leva à mesma conclusão."
+      },
+      {
+        "input": "X = $40",
+        "output": "$50",
+        "note": "EV = 0.5×$80 + 0.5×$20 = $50. O argumento ingênuo sempre infla o ganho esperado em 25% do valor observado."
+      },
+      {
+        "input": "X = $500",
+        "output": "$625",
+        "note": "EV = 0.5×$1000 + 0.5×$250 = $625. Para qualquer X, a fórmula dá 1.25X, mostrando por que o paradoxo persiste independentemente do valor observado."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora dos dois envelopes",
+    "steps": [
+      "Digite no campo com o rótulo Valor no seu envelope (X) a quantia que você vê no envelope escolhido.",
+      "Clique em Analisar para calcular os valores esperados ingênuos de manter e trocar.",
+      "Leia o painel Valor esperado se você mantiver — ele mostra apenas sua quantia observada X como valor certo.",
+      "Leia o painel Valor esperado se você trocar — ele mostra 1.25X, resultado do argumento probabilístico ingênuo.",
+      "Revise a nota sobre o paradoxo abaixo dos resultados para entender por que 1.25X é enganoso e qual é a resolução correta."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre o paradoxo dos dois envelopes",
+    "q1": "Por que o argumento ingênuo dá 1.25X?",
+    "q1_a": "A fórmula ingênua calcula 0.5×(2X) + 0.5×(X/2) = 1.25X tratando as duas possibilidades como igualmente prováveis dado o valor observado. Está correta em termos algébricos, mas falha em termos probabilísticos porque mistura duas quantias de referência diferentes como se compartilhassem a mesma base.",
+    "q2": "Alguma vez é correto trocar de envelope?",
+    "q2_a": "Sem informação adicional, trocar ou manter são escolhas igualmente boas. O valor esperado dos dois envelopes é o mesmo quando calculado corretamente com uma distribuição a priori adequada para as quantias. Trocar nunca oferece vantagem garantida.",
+    "q3": "Qual é a falha no argumento de trocar?",
+    "q3_a": "A falha é que, depois de ver X, você não sabe se X é a quantia menor ou a maior. O argumento ingênuo trata X como se pudesse ser m e 2m ao mesmo tempo, mas esses casos são mutuamente exclusivos. Uma análise bayesiana rigorosa mostra que o ganho esperado correto ao trocar é zero para qualquer prior adequado.",
+    "q4": "O paradoxo muda se eu espiar o envelope?",
+    "q4_a": "Espiar e ver X fornece informação, mas sem conhecer a distribuição das quantias isso não ajuda na decisão. Se você conhece o prior (por exemplo, quantias extraídas de uma distribuição uniforme com limite máximo), às vezes pode haver vantagem em trocar, mas a regra ingênua de 1.25X continua errada em geral.",
+    "q5": "Isso é o mesmo que o problema de Monty Hall?",
+    "q5_a": "Eles são relacionados, mas diferentes. No problema de Monty Hall, a ação do apresentador depois da sua escolha traz informação nova real que altera as probabilidades, então trocar realmente ajuda. No paradoxo dos dois envelopes, nada novo é revelado depois que você vê X, então trocar não tem vantagem esperada sobre manter.",
+    "q6": "O que esse paradoxo ensina sobre probabilidade?",
+    "q6_a": "Ele destaca a importância de especificar o prior antes de aplicar argumentos probabilísticos. O raciocínio informal sobre eventos igualmente prováveis precisa estar ancorado em um espaço de probabilidade bem definido. É um alerta sobre os perigos de usar fórmulas de valor esperado sem verificar as premissas subjacentes."
+  }
+}

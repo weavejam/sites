@@ -1,0 +1,108 @@
+{
+  "title": "Calculadora de correlación de Spearman - correlación por rangos",
+  "tagline": "Calcula el coeficiente de correlación por rangos de Spearman (ρ) entre dos conjuntos de datos: mide la fuerza y la dirección de una relación monótona sin asumir normalidad.",
+  "intro": "Introduce dos conjuntos de datos separados por comas y de igual longitud. La calculadora asigna rangos a cada conjunto y calcula ρ usando la fórmula de Pearson sobre los rangos, manejando correctamente los empates.",
+  "formula": "ρ = 1 − (6 Σdᵢ²) / (n(n²−1))  para datos sin empates  •  General: ρ = Cov(R(X), R(Y)) / (σ_R(X) · σ_R(Y))",
+  "field": {
+    "dataX": "Conjunto de datos X",
+    "dataXHint": "Introduce números separados por comas o espacios",
+    "dataY": "Conjunto de datos Y",
+    "dataYHint": "Debe tener la misma cantidad de valores que el conjunto X"
+  },
+  "placeholder": {
+    "data": "p. ej. 1, 2, 3, 4, 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce al menos 2 valores numéricos válidos en cada conjunto y asegúrate de que ambos tengan la misma longitud."
+  },
+  "result": {
+    "heading": "Resultados de correlación de Spearman",
+    "rho": "ρ (Rho)",
+    "n": "n (pares)",
+    "interpretation": "Fuerza",
+    "dirPositive": "positiva",
+    "dirNegative": "negativa",
+    "strength": {
+      "veryStrong": "Muy fuerte",
+      "strong": "Fuerte",
+      "moderate": "Moderada",
+      "weak": "Débil",
+      "negligible": "Despreciable"
+    }
+  },
+  "examples": {
+    "heading": "Ejemplos de correlación de Spearman",
+    "intro": "Cuatro ejemplos resueltos que ilustran distintas fuerzas de correlación y estructuras de datos.",
+    "colInput": "Conjuntos de datos",
+    "colOutput": "ρ",
+    "colNote": "Interpretación",
+    "loadPerfect": "Cargar positiva perfecta",
+    "loadNegative": "Cargar negativa fuerte",
+    "loadZero": "Cargar sin correlación",
+    "items": [
+      {
+        "input": "X: 10, 20, 30, 40, 50 | Y: 2, 4, 6, 8, 10",
+        "output": "ρ = 1.0000",
+        "note": "Relación monótona positiva perfecta: ambas variables aumentan siempre juntas."
+      },
+      {
+        "input": "X: 105, 120, 90, 150, 135 | Y: 4.5, 3.2, 5.0, 2.1, 2.9",
+        "output": "ρ = −1.0000",
+        "note": "Relación negativa perfecta: X e Y se ordenan exactamente en sentido inverso."
+      },
+      {
+        "input": "X: 1, 2, 3, 4, 5 | Y: 3, 1, 5, 2, 4",
+        "output": "ρ = 0.3000",
+        "note": "Relación monótona positiva débil entre ambos ordenamientos."
+      },
+      {
+        "input": "X: 8, 9, 10, 10, 12 | Y: 4, 6, 5, 5, 7",
+        "output": "ρ ≈ 0.6842",
+        "note": "Correlación positiva moderada; los valores empatados se manejan promediando rangos."
+      }
+    ]
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de correlación de Spearman",
+    "body": "El coeficiente de correlación por rangos de Spearman, denotado ρ (rho) o rs, es una medida no paramétrica de la relación monótona entre dos variables. A diferencia de la correlación de Pearson, que mide la relación lineal y requiere que los datos sean normalmente distribuidos y medidos en escala de intervalo o razón, el coeficiente de Spearman trabaja con los rangos de los valores. Esto lo hace apropiado para datos ordinales, datos con valores atípicos y cualquier situación en la que la relación entre variables sea monótona pero no necesariamente lineal.\n\nEl cálculo se realiza en tres pasos. Primero, cada conjunto de datos se ordena por rango: el valor más pequeño recibe el rango 1, el segundo más pequeño el rango 2, y así sucesivamente. Cuando hay empates, cada valor empatado recibe el promedio de los rangos que habría ocupado. Segundo, se calcula la diferencia dᵢ entre los rangos emparejados para cada observación. Tercero, se calcula ρ. Para datos sin empates, la fórmula clásica ρ = 1 − (6 Σdᵢ²) / (n(n²−1)) da un resultado exacto. Para datos con empates, esta calculadora usa la fórmula más general —la correlación de Pearson calculada sobre los rangos—, que maneja correctamente los empates por construcción.\n\nEl coeficiente varía entre −1 y +1. Un valor de +1 significa una relación monótona positiva perfecta: cada aumento en una variable va acompañado de un aumento en la otra. Un valor de −1 significa una relación monótona negativa perfecta: cada aumento en una variable va acompañado de una disminución en la otra. Un valor de 0 indica ausencia de relación monótona. En la práctica, valores por encima de ±0.7 se consideran fuertes, entre ±0.5 y ±0.7 moderados, entre ±0.3 y ±0.5 débiles, y por debajo de ±0.3 despreciables, aunque el umbral de 'significativo' siempre depende del tamaño de la muestra y del contexto.\n\nLa correlación de Spearman se usa ampliamente en psicología (ordenar preferencias o actitudes), educación (comparar rangos de clase con calificaciones de exámenes), medicina (comparar puntuaciones de gravedad de síntomas), ecología (recuentos de abundancia frente a calidad del hábitat), finanzas (clasificar fondos mutuos por rentabilidad ajustada al riesgo) e investigación de mercados (clasificaciones de preferencias del consumidor). Cualquier campo que trabaje con datos ordenados, ordinales o no normales se beneficia de ella.\n\nUna limitación importante: la ρ de Spearman detecta solo relaciones monótonas. Si la relación es en forma de U u otra forma no monótona, la ρ puede estar cerca de cero incluso cuando existe una relación fuerte. En esos casos, los diagramas de dispersión y otros diagnósticos visuales deben acompañar siempre al coeficiente numérico para interpretar correctamente el resultado."
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de correlación de Spearman",
+    "steps": [
+      "Introduce tu primer conjunto de datos (X) como números separados por comas en el campo Conjunto de datos X.",
+      "Introduce tu segundo conjunto de datos (Y) en el campo Conjunto de datos Y; debe tener exactamente la misma cantidad de valores que X.",
+      "Haz clic en Calcular. La calculadora asigna rangos a ambos conjuntos, trata los valores empatados promediando sus rangos y calcula ρ usando la fórmula de Pearson sobre los rangos.",
+      "Lee el valor de ρ, el tamaño de la muestra y la interpretación de la fuerza en el panel de resultados.",
+      "Usa los botones de ejemplo para cargar conjuntos de datos predefinidos y ver escenarios típicos de correlación positiva, negativa y nula."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la correlación de Spearman",
+    "items": [
+      {
+        "q": "¿Cuál es la diferencia entre la correlación de Spearman y la de Pearson?",
+        "a": "La r de Pearson mide la fuerza de una relación lineal y asume que ambas variables están normalmente distribuidas y medidas en escala de intervalo. La ρ de Spearman mide cualquier relación monótona, no solo lineal, y funciona con datos ordenados, por lo que es robusta frente a valores atípicos y válida para datos ordinales. Usa Spearman cuando no se cumpla la normalidad, los datos sean ordinales o existan valores atípicos."
+      },
+      {
+        "q": "¿La correlación de Spearman requiere un tamaño mínimo de muestra?",
+        "a": "Técnicamente, la fórmula funciona con n ≥ 2, pero con muestras muy pequeñas (n < 5) el coeficiente es muy sensible a valores individuales y las pruebas de significancia tienen muy baja potencia. Se recomienda un mínimo de 10–15 observaciones emparejadas para una estimación fiable, y para pruebas de significancia formales se prefiere n ≥ 20."
+      },
+      {
+        "q": "¿Cómo maneja la calculadora los valores empatados?",
+        "a": "Cuando dos o más observaciones comparten el mismo valor, cada observación empatada recibe el promedio de los rangos que habría ocupado. Por ejemplo, si los valores en las posiciones 3 y 4 son iguales, cada uno recibe rango 3.5. Luego la calculadora usa la fórmula de Pearson sobre rangos, que es algebraicamente equivalente a la fórmula simple de dᵢ² cuando no hay empates y maneja correctamente los empates cuando existen."
+      },
+      {
+        "q": "¿Qué significa una ρ de Spearman igual a 0?",
+        "a": "Una ρ exactamente igual a 0 significa que no hay relación monótona entre los ordenamientos de X e Y. Eso no significa que las variables sean independientes; una relación no monótona (por ejemplo, en forma de U) también puede producir una ρ cercana a 0. Siempre grafica tus datos junto con el coeficiente para asegurarte de no pasar por alto ningún patrón."
+      },
+      {
+        "q": "¿Se puede usar la correlación de Spearman con datos categóricos?",
+        "a": "La correlación de Spearman requiere al menos datos ordinales, es decir, datos que puedan ordenarse de forma significativa. No puede aplicarse a datos categóricos nominales (por ejemplo, colores, nombres o etiquetas), donde no existe el concepto de orden. Para datos nominales, considera Cramér's V u otras medidas de asociación."
+      }
+    ]
+  }
+}

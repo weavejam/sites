@@ -1,0 +1,104 @@
+{
+  "title": "Wald Test Calculator - Statistical Significance",
+  "tagline": "Perform a Wald test to determine whether a parameter estimate is statistically significant — enter β̂, β₀, SE, and α for instant results.",
+  "intro": "Enter the parameter estimate, the hypothesized value, the standard error, and the significance level. The calculator returns the Wald statistic, z-score, p-value, and decision.",
+  "formula": "Wald statistic W = ((β̂ − β₀) / SE)²  •  z-score = (β̂ − β₀) / SE  •  p-value = 2 · (1 − Φ(|z|))",
+  "field": {
+    "betaHat": "Parameter Estimate (β̂)",
+    "beta0": "Hypothesized Value (β₀)",
+    "se": "Standard Error (SE)",
+    "alpha": "Significance Level (α)"
+  },
+  "placeholder": {
+    "betaHat": "e.g., 2.5",
+    "beta0": "e.g., 0",
+    "se": "e.g., 1.1",
+    "alpha": "e.g., 0.05"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers. Standard error must be positive and significance level must be between 0 and 1."
+  },
+  "result": {
+    "heading": "Result",
+    "waldStat": "Wald Statistic (W)",
+    "zScore": "z-Score",
+    "pValue": "p-Value",
+    "decision": "Decision",
+    "reject": "Reject H₀",
+    "failToReject": "Fail to Reject H₀"
+  },
+  "about": {
+    "heading": "About the Wald test calculator",
+    "body": "The Wald test is a parametric statistical test named after the statistician Abraham Wald. It is one of the three classical tests of hypothesis in maximum likelihood estimation, alongside the likelihood-ratio test and the score (Lagrange multiplier) test. The Wald test is by far the most commonly encountered because it requires only the estimate itself and its standard error — both of which are routinely reported by statistical software — without requiring the full likelihood function.\n\nThe idea behind the Wald test is straightforward. If a parameter estimate β̂ is far from the hypothesized value β₀ relative to its precision (measured by the standard error SE), then the null hypothesis H₀: β = β₀ is unlikely to be true. The Wald statistic is W = ((β̂ − β₀) / SE)², which is the squared z-score. Under the null hypothesis and with a large enough sample, W follows a chi-squared distribution with one degree of freedom. Equivalently, the signed z-score z = (β̂ − β₀) / SE follows a standard normal distribution, so the two-sided p-value is 2 · (1 − Φ(|z|)), where Φ is the standard normal CDF.\n\nThe p-value answers the question: if the null hypothesis were true, what is the probability of observing a test statistic at least as extreme as the one actually computed? A small p-value (typically below the significance level α, often set to 0.05 or 0.01) provides evidence against H₀. When p < α, the result is called statistically significant and we reject the null hypothesis. When p ≥ α, we fail to reject it — we do not have enough evidence to conclude the parameter differs from β₀, though this does not mean H₀ is true.\n\nThe Wald test is ubiquitous in applied statistics. In linear and logistic regression, the t-statistics reported for each coefficient are essentially Wald z-scores, and the associated p-values test whether each coefficient is significantly different from zero. In econometrics, the Wald test is used to test joint hypotheses about multiple coefficients simultaneously (using matrix algebra extensions). In survival analysis, it tests whether a covariate significantly predicts the hazard rate. In genetics, genome-wide association studies use Wald-type statistics to test millions of single-nucleotide polymorphisms.\n\nA known limitation of the Wald test is that it can produce different results depending on how a parameter is parameterised, because the test relies on a local quadratic approximation to the likelihood. For small samples, the likelihood-ratio test is often preferred because it is more accurate. The Wald test is most reliable when the sample size is large, the estimate is approximately normally distributed (i.e., asymptotic conditions hold), and the standard error is well-estimated."
+  },
+  "examples": {
+    "heading": "Wald test examples",
+    "intro": "Three realistic scenarios from economics, medicine, and general statistics showing the Wald test in action.",
+    "colInput": "Input",
+    "colOutput": "Decision",
+    "colNote": "Details",
+    "loadBasic": "Load basic example",
+    "loadEducation": "Load education example",
+    "loadDrug": "Load drug trial example",
+    "items": [
+      {
+        "input": "β̂=2.5, β₀=0, SE=1.1, α=0.05",
+        "output": "Reject H₀",
+        "note": "z = 2.27, W = 5.17, p ≈ 0.023. The estimate is more than 2 standard errors from zero, so we reject the null at α = 0.05."
+      },
+      {
+        "input": "β̂=0.08, β₀=0, SE=0.02, α=0.05",
+        "output": "Reject H₀",
+        "note": "Education coefficient: z = 4.0, p < 0.001. An additional year of education has a highly significant non-zero effect on wages."
+      },
+      {
+        "input": "β̂=−0.5, β₀=0, SE=0.2, α=0.01",
+        "output": "Fail to Reject H₀",
+        "note": "Drug efficacy at strict α=0.01: z = −2.5, p ≈ 0.012. The effect is significant at α=0.05 but not at the stricter 1% threshold."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the Wald test calculator",
+    "steps": [
+      "Enter the parameter estimate β̂ from your regression output or statistical model.",
+      "Enter the hypothesized value β₀ — typically 0 when testing whether a coefficient is non-zero.",
+      "Enter the standard error SE of the estimate, reported in the same statistical output.",
+      "Set the significance level α — use 0.05 for the conventional 5% threshold or 0.01 for a stricter 1% threshold.",
+      "Click Calculate to get the Wald statistic, z-score, two-sided p-value, and the reject/fail-to-reject decision."
+    ]
+  },
+  "faq": {
+    "heading": "Wald test FAQ",
+    "items": [
+      {
+        "q": "What does the Wald test measure?",
+        "a": "The Wald test measures how far a parameter estimate is from a hypothesized value, expressed in units of standard error. It tests whether that distance is large enough to conclude, at a given significance level, that the true parameter differs from the hypothesized value."
+      },
+      {
+        "q": "What is the difference between the Wald test and the t-test?",
+        "a": "In large samples they are essentially equivalent — both compare an estimate to a null value in units of standard error. The main difference is that the t-test uses a t-distribution (accounting for uncertainty in the variance estimate), while the Wald test uses the normal distribution and is therefore an asymptotic test best suited to large samples."
+      },
+      {
+        "q": "Why is the null hypothesis usually β₀ = 0?",
+        "a": "Testing against zero asks whether a predictor has any effect at all. In regression, a coefficient of zero means the variable is irrelevant. Setting β₀ = 0 is the most common use, but you can test against any value — for example, to check whether a parameter equals a theoretically predicted value such as 1 or −0.5."
+      },
+      {
+        "q": "What does failing to reject H₀ mean?",
+        "a": "Failing to reject H₀ means the data do not provide sufficient evidence to conclude that the parameter differs from the hypothesized value. It does not prove H₀ is true. The result may reflect a genuinely zero effect, or it may reflect insufficient statistical power due to a small sample or a large standard error."
+      },
+      {
+        "q": "When should I use the likelihood-ratio test instead?",
+        "a": "The likelihood-ratio test is preferred when sample sizes are small, when the parameter is near the boundary of its allowable range, or when the Wald test results depend heavily on the parameterisation chosen. For large samples and smoothly distributed estimates, the Wald test and likelihood-ratio test give nearly identical p-values."
+      },
+      {
+        "q": "What significance level should I use?",
+        "a": "The conventional threshold is α = 0.05 (5%), meaning you accept a 5% chance of falsely rejecting a true null hypothesis. For stricter requirements — medical device approval, genomics, or physics — α = 0.01 or even 0.001 is used. For exploratory research, α = 0.10 is sometimes accepted. The choice should be made before seeing the data."
+      }
+    ]
+  }
+}

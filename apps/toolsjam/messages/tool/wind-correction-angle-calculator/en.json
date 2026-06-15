@@ -1,0 +1,93 @@
+{
+  "title": "Wind Correction Angle Calculator – Aviation Navigation",
+  "tagline": "Calculate wind correction angle, true heading, and ground speed for accurate flight navigation.",
+  "intro": "Enter true course, wind direction, wind speed, and true airspeed to determine the heading correction needed to maintain your desired ground track.",
+  "field": {
+    "trueCourse": "True Course (°)",
+    "windDirection": "Wind Direction (°)",
+    "windSpeed": "Wind Speed (kts)",
+    "trueAirspeed": "True Airspeed (kts)"
+  },
+  "placeholder": {
+    "trueCourse": "e.g. 090",
+    "windDirection": "e.g. 270",
+    "windSpeed": "e.g. 15",
+    "trueAirspeed": "e.g. 120"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid values. True airspeed must be positive.",
+    "windTooStrong": "Wind speed exceeds airspeed — no valid wind correction angle exists."
+  },
+  "result": {
+    "heading": "Navigation Results",
+    "wca": "Wind Correction Angle (WCA) = {value}°",
+    "trueHeading": "True Heading (TH) = {value}°",
+    "groundSpeed": "Ground Speed (GS) = {value} kts"
+  },
+  "formula": "WCA = arcsin(WS × sin(WD − TC) / TAS) | GS from law of cosines",
+  "about": {
+    "heading": "About the Wind Correction Angle Calculator",
+    "body": "The wind correction angle (WCA), also called the crab angle, is the angular difference between the direction an aircraft must point (true heading) and the direction it actually needs to travel over the ground (true course). Without correcting for wind, an aircraft flying at a fixed heading will drift off its intended track, potentially missing a destination or entering restricted airspace.\n\nThis calculation is one of the most fundamental skills in aviation navigation, taught in every private pilot ground school. The underlying mathematics comes from vector addition: the aircraft's velocity through the air (represented by its true airspeed and true heading) plus the wind velocity vector equals the aircraft's velocity over the ground (represented by its ground speed and ground track).\n\nThe formula for wind correction angle is: WCA = arcsin(WS × sin(WD − TC) / TAS), where WS is wind speed, WD is wind direction (the direction FROM which the wind is blowing, in aviation convention), TC is the desired true course, and TAS is true airspeed. The result gives the angle the pilot must add or subtract from the true course to obtain the true heading.\n\nGround speed is then computed from the law of cosines: GS² = TAS² + WS² − 2 × TAS × WS × cos(TH − WD + 180°). Ground speed determines flight time and fuel requirements. A headwind reduces ground speed; a tailwind increases it. Crosswinds reduce ground speed slightly and require a heading correction.\n\nIn the E6B flight computer (the classic circular slide rule used by pilots for decades), the wind correction is performed by laying off the wind vector and reading off the correction angle and ground speed graphically. Modern electronic flight bags (EFBs) and GPS flight management systems compute this automatically, but pilots are still trained to calculate it manually as a backup.\n\nThe limitation of the formula is that it breaks down when wind speed exceeds true airspeed (the aircraft cannot maintain the desired course at all), which is why the calculator checks for this condition.\n\nBeyond VFR (visual flight rules) navigation, wind correction is critical for IFR (instrument flight rules) operations, especially on final approach where maintaining the exact runway centreline requires precise crab angle calculation and removal of the crab just before touchdown."
+  },
+  "examples": {
+    "heading": "Wind Correction Angle Examples",
+    "intro": "Common flight scenarios showing wind correction calculations.",
+    "colInput": "Flight Parameters",
+    "colOutput": "WCA / True Heading / GS",
+    "colNote": "Scenario",
+    "loadCrosswind": "Load crosswind scenario",
+    "loadHeadwind": "Load headwind scenario",
+    "loadTailwind": "Load tailwind scenario",
+    "items": [
+      {
+        "input": "TC=090°, WD=000°, WS=15 kts, TAS=80 kts",
+        "output": "WCA ≈ −10.8°, TH ≈ 79.2°, GS ≈ 78.6 kts",
+        "note": "Left crosswind from the north. Crab left 10.8° into wind; ground speed drops slightly to 78.6 kts."
+      },
+      {
+        "input": "TC=180°, WD=180°, WS=20 kts, TAS=120 kts",
+        "output": "WCA = 0°, TH = 180°, GS = 100 kts",
+        "note": "Pure headwind — no correction angle needed, but ground speed is reduced by full wind speed."
+      },
+      {
+        "input": "TC=270°, WD=090°, WS=25 kts, TAS=150 kts",
+        "output": "WCA = 0°, TH = 270°, GS = 175 kts",
+        "note": "Pure tailwind — no correction needed, and ground speed is boosted by full wind speed."
+      },
+      {
+        "input": "TC=045°, WD=315°, WS=10 kts, TAS=100 kts",
+        "output": "WCA ≈ −7.2°, TH ≈ 37.8°, GS ≈ 99.4 kts",
+        "note": "Quartering left crosswind. Small crab angle required; ground speed nearly equals TAS."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Wind Correction Angle Calculator",
+    "steps": [
+      "Enter the True Course (TC) — the magnetic or true course you wish to fly, in degrees (0–360).",
+      "Enter the Wind Direction (WD) — the direction FROM which the wind is blowing, in degrees. In aviation, winds are reported as the direction they come from.",
+      "Enter the Wind Speed (WS) and True Airspeed (TAS) in consistent units (knots recommended).",
+      "Click Calculate. The calculator returns the Wind Correction Angle, True Heading, and Ground Speed.",
+      "Apply the Wind Correction Angle to your True Course to get your True Heading. Convert to magnetic heading by applying variation as needed."
+    ]
+  },
+  "faq": {
+    "heading": "Wind Correction Angle FAQ",
+    "q1": "What is wind correction angle in aviation?",
+    "q1_a": "Wind correction angle (WCA) is the angle a pilot must offset their heading from the desired track to compensate for wind drift. If you fly straight ahead at a fixed heading in a crosswind, you will drift off course. By 'crabbing' into the wind — pointing slightly upwind — the wind pushes you sideways just enough to keep you on the desired track. The WCA is the difference between your true heading (where you point the nose) and your true course (where you actually travel).",
+    "q2": "How is wind direction reported in aviation?",
+    "q2_a": "In aviation, wind direction is always reported as the direction FROM which the wind blows, measured in degrees true or magnetic. For example, a 270° wind means the wind is coming from the west. This is the opposite of the meteorological convention used in some other fields where wind direction can mean the direction the wind is going. ATIS and METAR reports use this FROM convention, as does this calculator.",
+    "q3": "What is the difference between true course and true heading?",
+    "q3_a": "True course (TC) is the direction you want to travel over the ground — the line between your departure and destination. True heading (TH) is the direction the aircraft's nose actually points. In calm air, TC equals TH. In a crosswind, TH differs from TC by the wind correction angle. After applying WCA to TC you get TH; then apply magnetic variation to TH to get magnetic heading (MH), and add compass deviation to get compass heading (CH).",
+    "q4": "What happens when wind speed is greater than airspeed?",
+    "q4_a": "If wind speed exceeds true airspeed, there is no solution for the wind correction angle formula — sin(WCA) = WS/TAS × sin(angle) would require sin > 1, which is impossible. This means the aircraft simply cannot make headway against the wind on that particular course. The pilot must increase airspeed, wait for the wind to decrease, or choose a different routing to avoid the adverse wind component.",
+    "q5": "How does a crosswind affect landing?",
+    "q5_a": "On approach, a pilot must crab into the wind to maintain the runway centreline. Just before touchdown, the crab angle is removed by applying rudder to align the aircraft with the runway direction — otherwise the aircraft would touch down while moving sideways, stressing the landing gear. The maximum demonstrated crosswind component for an aircraft is listed in the Pilot Operating Handbook and must not be exceeded for safe operations.",
+    "q6": "What is ground speed and why does it matter?",
+    "q6_a": "Ground speed (GS) is the aircraft's actual speed over the ground, combining the effects of airspeed and wind. A headwind reduces ground speed below airspeed; a tailwind increases it. Ground speed determines flight time (distance ÷ GS = time) and fuel required. Flight planning uses ground speed to calculate estimated time enroute (ETE), fuel consumption, and required fuel reserves. GPS displays ground speed directly; in pre-GPS navigation it was computed from airspeed and wind triangle calculations."
+  }
+}

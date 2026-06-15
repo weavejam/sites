@@ -1,0 +1,96 @@
+{
+  "title": "Calculateur de pont de Wheatstone — Mesurer une résistance inconnue",
+  "tagline": "Calculez une résistance inconnue grâce au pont de Wheatstone équilibré avec une grande précision.",
+  "intro": "Saisissez les résistances connues (R1, R2, R3), le rapport de tension de sortie du pont et la tension d’alimentation pour résoudre la résistance inconnue Rx.",
+  "field": {
+    "r1": "Résistance R1 (Ω)",
+    "r2": "Résistance R2 (Ω)",
+    "r3": "Résistance R3 (Ω)",
+    "voltageRatio": "Rapport de tension (V)",
+    "supplyVoltage": "Tension d’alimentation (V)"
+  },
+  "placeholder": {
+    "r1": "ex. 1000",
+    "r2": "ex. 1000",
+    "r3": "ex. 500",
+    "voltageRatio": "ex. 0",
+    "supplyVoltage": "ex. 5"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides pour tous les champs.",
+    "outOfRange": "Aucune solution valide — vérifiez que les valeurs de R et le rapport de tension sont physiquement cohérents."
+  },
+  "result": {
+    "heading": "Résultat",
+    "rx": "Résistance inconnue Rx = {value} Ω",
+    "vout": "Tension de sortie du pont = {value} V",
+    "balanced": "État du pont : équilibré (Vout ≈ 0)",
+    "unbalanced": "État du pont : déséquilibré"
+  },
+  "formula": "Formule : Rx = R2·R3/R1 (équilibré) | Vout = Vs·(Rx/(R2+Rx) − R3/(R1+R3))",
+  "about": {
+    "heading": "À propos du calculateur de pont de Wheatstone",
+    "body": "Le pont de Wheatstone est l’une des méthodes les plus élégantes et les plus précises pour mesurer une résistance électrique. Inventé par Samuel Hunter Christie en 1833 et popularisé par Sir Charles Wheatstone en 1843, ce circuit de pont reste plus de 180 ans plus tard un pilier de la mesure électrique et de la technologie des capteurs.\n\nLe pont de Wheatstone classique se compose de quatre résistances disposées en losange, avec une source de tension connectée à une paire de nœuds opposés et un galvanomètre (ou voltmètre différentiel) connecté à l’autre paire. Lorsque le pont est équilibré — c’est-à-dire lorsque le rapport des résistances d’une branche est égal à celui de l’autre — aucun courant ne circule dans le galvanomètre. Cette condition de nullité est exploitée pour déterminer une résistance inconnue avec une précision remarquable.\n\nLa condition d’équilibre s’écrit R1/R2 = R3/Rx, ce qui se réarrange en Rx = R2·R3/R1. Cette formule est exacte et ne nécessite aucun étalonnage ; la précision dépend uniquement de la précision avec laquelle R1, R2 et R3 sont connus. Les ponts de laboratoire de précision peuvent mesurer des résistances avec une exactitude meilleure qu’une partie par million.\n\nLorsque le pont n’est pas à l’équilibre — ce qui est souvent le cas dans les applications de capteurs où une faible variation de résistance doit être détectée — la tension de sortie Vout est liée à la tension d’alimentation Vs par : Vout = Vs·(Rx/(R2+Rx) − R3/(R1+R3)). Ce calculateur utilise cette formule à l’envers : à partir de la tension de sortie mesurée, il résout Rx.\n\nLe pont de Wheatstone est indispensable dans les applications à jauges de contrainte. Une jauge de contrainte est un élément résistif dont la résistance varie proportionnellement à la déformation mécanique. En collant des jauges sur un élément structurel et en les connectant en pont de Wheatstone, les ingénieurs peuvent mesurer forces, pressions, couples et déplacements avec une précision inférieure au microstrain. Les cellules de charge, transducteurs de pression et capteurs de force, des balances industrielles aux trains d’atterrissage d’avion, utilisent généralement des configurations en pont de Wheatstone.\n\nLes capteurs de température basés sur des RTD (détecteurs de température à résistance) et des thermistances bénéficient également des circuits en pont. Comme la résistance varie avec la température, la tension de sortie du pont varie de manière prévisible avec celle-ci, ce qui permet une mesure précise. Les RTD en platine (Pt100, Pt1000) sont couramment lus à l’aide de ponts dans le contrôle des procédés industriels.\n\nLes applications modernes s’étendent aux biocapteurs, capteurs chimiques et dispositifs MEMS, où de très faibles variations de résistance dues à des interactions biologiques ou chimiques sont détectées par déséquilibre du pont. La simplicité fondamentale et l’immunité au bruit du principe du pont — fondé sur une mesure de nullité ou une tension différentielle — le rendent robuste face aux perturbations en mode commun et aux fluctuations de l’alimentation."
+  },
+  "examples": {
+    "heading": "Exemples de pont de Wheatstone",
+    "intro": "Cliquez sur un exemple pour le charger dans le calculateur.",
+    "colInput": "Configuration du circuit",
+    "colOutput": "Rx inconnue (Ω)",
+    "colNote": "Remarques",
+    "loadBalanced": "Charger le pont équilibré",
+    "loadUnbalanced": "Charger le pont déséquilibré",
+    "loadStrainGauge": "Charger la jauge de contrainte",
+    "items": [
+      {
+        "input": "R1=1000Ω, R2=1000Ω, R3=500Ω, Vout=0V, Vs=5V",
+        "output": "Rx = 500 Ω",
+        "note": "Pont parfaitement équilibré. R1/R2 = R3/Rx, donc Rx = R2·R3/R1 = 500 Ω."
+      },
+      {
+        "input": "R1=1000Ω, R2=1000Ω, R3=750Ω, Vout=0.25V, Vs=10V",
+        "output": "Rx ≈ 830 Ω",
+        "note": "Pont déséquilibré. La tension de sortie indique un écart de résistance par rapport à l’équilibre."
+      },
+      {
+        "input": "R1=120Ω, R2=120Ω, R3=120Ω, Vout=0.05V, Vs=5V",
+        "output": "Rx ≈ 124.9 Ω",
+        "note": "Configuration typique de jauge de contrainte. Un faible décalage de tension indique une variation d’environ 4.9 Ω par rapport à la valeur nominale de 120 Ω."
+      },
+      {
+        "input": "R1=10000Ω, R2=10000Ω, R3=100Ω, Vout=0.01V, Vs=3.3V",
+        "output": "Rx ≈ 131 Ω",
+        "note": "Pont à grand rapport pour mesurer de faibles résistances. Un très faible décalage de Vout, près de l’équilibre, fait varier Rx par rapport à la référence de 100 Ω."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de pont de Wheatstone",
+    "steps": [
+      "Saisissez les trois résistances connues R1, R2 et R3 en ohms (Ω). Utilisez la même unité pour les trois.",
+      "Saisissez la tension d’alimentation (Vs), c’est-à-dire la tension appliquée aux bornes du pont.",
+      "Saisissez le rapport de tension (tension de sortie du pont Vout) mesuré entre les deux points milieux du pont. Pour un pont équilibré, saisissez 0.",
+      "Cliquez sur Calculer. Le calculateur résout Rx = R2·R3/R1, ajusté à tout décalage de tension.",
+      "Utilisez les boutons d’exemple pour charger des configurations courantes et vérifier votre montage."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur le pont de Wheatstone",
+    "q1": "À quoi sert un pont de Wheatstone ?",
+    "q1_a": "Un pont de Wheatstone sert à mesurer une résistance électrique inconnue avec une grande précision. Il fonctionne en équilibrant le circuit de manière à ce qu’aucun courant ne circule dans l’appareil de mesure, puis en utilisant les résistances connues pour calculer la résistance inconnue. Il est aussi largement utilisé dans les capteurs (jauges de contrainte, capteurs de température, transducteurs de pression) lorsqu’il faut détecter précisément de petites variations de résistance.",
+    "q2": "Quelle est la formule du pont de Wheatstone ?",
+    "q2_a": "Pour un pont équilibré (Vout = 0) : Rx = R2 × R3 / R1. Pour un pont déséquilibré avec tension de sortie Vout et tension d’alimentation Vs : Vout = Vs × (Rx/(R2+Rx) − R3/(R1+R3)). En résolvant pour Rx, on obtient : Rx = ratio × R2 / (1 − ratio), où ratio = Vout/Vs + R3/(R1+R3).",
+    "q3": "Que signifie un pont équilibré ?",
+    "q3_a": "Un pont de Wheatstone équilibré signifie que la tension de sortie entre les deux points milieux est exactement nulle. Cela se produit lorsque R1/R2 = R3/Rx. Dans ce cas, aucun courant ne circule dans le galvanomètre (ou voltmètre différentiel). La condition d’équilibre permet de calculer la résistance inconnue à partir des trois résistances connues sans dépendre de la tension d’alimentation, ce qui améliore la précision.",
+    "q4": "Pourquoi le pont de Wheatstone est-il si précis ?",
+    "q4_a": "Le pont de Wheatstone est précis car il s’agit d’une méthode de mesure à nullité — à l’équilibre, le résultat dépend uniquement des rapports de résistances, pas des valeurs absolues de la tension d’alimentation ni de la sensibilité de l’instrument. Cela élimine les erreurs dues à la dérive de la source et à la non-linéarité du galvanomètre. Les circuits de pont modernes atteignent une précision de l’ordre de la partie par million.",
+    "q5": "Comment fonctionne un pont de Wheatstone avec des jauges de contrainte ?",
+    "q5_a": "Une jauge de contrainte est un élément résistif dont la résistance varie légèrement sous l’effet d’une contrainte mécanique. En collant une ou plusieurs jauges sur un élément structurel et en les plaçant dans un pont de Wheatstone, de très faibles variations de résistance (souvent inférieures à 0.1 %) produisent des tensions de sortie mesurables. Quatre jauges actives (pont complet) maximisent la sensibilité et compensent les effets de la température. Cette configuration est utilisée dans les cellules de charge, capteurs de couple et transducteurs de pression.",
+    "q6": "Quelles sont les limites du pont de Wheatstone ?",
+    "q6_a": "Le pont de Wheatstone est le plus précis près de la condition d’équilibre. Pour de grands écarts de résistance, la relation entre Vout et Rx devient non linéaire et nécessite la formule complète ou des facteurs de correction. La résistance des fils dans les longues liaisons peut introduire des erreurs si elle n’est pas compensée. À très haute fréquence, la capacité et l’inductance des branches du pont affectent les performances, ce qui impose d’utiliser des variantes de pont AC, comme les ponts de Maxwell ou de Hay, pour des mesures précises."
+  }
+}

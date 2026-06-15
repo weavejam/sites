@@ -1,0 +1,92 @@
+{
+  "title": "Ausreißer-Rechner - Ausreißer mit der IQR-Methode erkennen",
+  "tagline": "Finden Sie statistische Ausreißer in jedem Datensatz mit der Interquartilsabstand-Methode — wählen Sie sofort zwischen milder (1,5×IQR) oder extremer (3×IQR) Erkennung.",
+  "intro": "Geben Sie eine kommaseparierte Liste von Zahlen ein, wählen Sie die Ausreißer-Methode, und erhalten Sie Q1, Q3, IQR, Grenzwerte und die Liste der Ausreißer.",
+  "formula": "IQR = Q3 − Q1  |  Untere Grenze = Q1 − k × IQR  |  Obere Grenze = Q3 + k × IQR  |  k = 1,5 (mild) oder 3,0 (extrem)",
+  "field": {
+    "data": "Datensatz (durch Kommas getrennte Zahlen)",
+    "method": "Ausreißer-Erkennungsmethode"
+  },
+  "placeholder": {
+    "data": "z. B. 10, 12, 14, 15, 16, 18, 20, 50"
+  },
+  "type": {
+    "mild": "Milde Ausreißer (1,5 × IQR)",
+    "extreme": "Extreme Ausreißer (3,0 × IQR)"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie mindestens 4 durch Kommas getrennte Zahlen ein."
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "q1": "Q1 (erstes Quartil)",
+    "q3": "Q3 (drittes Quartil)",
+    "iqr": "IQR",
+    "lowerBound": "Untere Grenze",
+    "upperBound": "Obere Grenze",
+    "outlierCount": "Anzahl der Ausreißer",
+    "outliersLabel": "Erkannte Ausreißer",
+    "noOutliers": "Keine Ausreißer gefunden",
+    "cleanDataLabel": "Daten ohne Ausreißer (sortiert)"
+  },
+  "about": {
+    "heading": "Über den Ausreißer-Rechner",
+    "body": "Ein Ausreißer ist ein Datenpunkt, der in ungewöhnlichem Abstand zu den übrigen Werten eines Datensatzes liegt. In der statistischen Analyse können Ausreißer Kennzahlen wie Mittelwert und Standardabweichung verzerren, Varianzschätzungen aufblähen und die Annahmen parametrischer Tests verletzen. Sie frühzeitig zu identifizieren ist ein wichtiger Schritt in der explorativen Datenanalyse, der Qualitätskontrolle und der Vorverarbeitung für Machine Learning.\n\nDie am häufigsten verwendete Methode zur Ausreißererkennung basiert auf dem Interquartilsabstand (IQR), also der Differenz zwischen dem dritten Quartil (Q3) und dem ersten Quartil (Q1). Diese Methode ist robust, weil der IQR im Gegensatz zu Mittelwert und Standardabweichung nicht selbst durch Extremwerte verzerrt wird. Die Formel für die beiden Grenzen lautet: untere Grenze = Q1 − k × IQR und obere Grenze = Q3 + k × IQR. Jeder Datenpunkt außerhalb dieser Grenzen wird als Ausreißer eingestuft.\n\nDer Multiplikator k bestimmt, wie streng Ausreißer markiert werden. Die gängigste Wahl ist k = 1,5, der Standard in Boxplots. Er erkennt sogenannte „milde“ Ausreißer — Werte, die sich deutlich von der Mehrzahl der Daten abheben, aber noch eine plausible Erklärung haben können. Bei k = 3,0 ist das Kriterium strenger; nur „extreme“ Ausreißer werden markiert — Werte, die so weit von der Hauptverteilung entfernt sind, dass sie fast sicher Fehler, Anomalien oder wirklich seltene Ereignisse darstellen.\n\nZur Berechnung der Quartile sortiert der Rechner die Daten zuerst aufsteigend. Q1 ist das 25. Perzentil und Q3 das 75. Perzentil der sortierten Daten. Liegt die Quartilsposition zwischen zwei Datenpunkten, verwendet der Rechner lineare Interpolation, um ein glattes Ergebnis zu erzeugen, das mit der Standard-Excel-Logik und vielen Statistikpaketen übereinstimmt.\n\nAusreißererkennung bedeutet nicht automatische Löschung. Bevor Sie einen erkannten Ausreißer entfernen oder transformieren, sollten Sie seine Ursache prüfen. Es kann sich um einen Eingabefehler (vertipptes Zeichen), einen Messfehler (fehlerhaftes Gerät), einen Stichprobenfehler (Wert aus einer anderen Population) oder eine echte extreme Beobachtung handeln, die wissenschaftlich wichtig ist und behalten werden sollte. In der Betrugserkennung ist zum Beispiel oft der Ausreißer der wichtigste Datenpunkt. In der klinischen Forschung kann der Patient mit der extremsten Reaktion am aufschlussreichsten sein. Dokumentieren Sie Ihre Entscheidung immer und berichten Sie im Zweifel Ergebnisse mit und ohne Ausreißer, um die Sensitivität zu zeigen.\n\nDie IQR-Methode ist nichtparametrisch und macht daher keine Annahme über die Form der zugrunde liegenden Verteilung. Das macht sie besonders geeignet für schiefe Verteilungen, kleine Stichproben und Daten mit mehreren Clustern. Bei ungefähr normalverteilten Daten mit großen Stichproben ist die Z-Score-Methode (Werte markieren, die mehr als 2 oder 3 Standardabweichungen vom Mittelwert entfernt sind) eine Alternative, aber der Z-Score wird selbst von den Ausreißern aufgebläht, die er erkennen soll. Deshalb ist der IQR-Ansatz in der Regel zuverlässiger."
+  },
+  "examples": {
+    "heading": "Durchgerechnete Beispiele",
+    "intro": "Drei Datensätze veranschaulichen einzelne Ausreißer, mehrere Ausreißer und einen sauberen Datensatz ohne Ausreißer.",
+    "colInput": "Datensatz",
+    "colOutput": "Ausreißer (1,5×IQR)",
+    "colNote": "Wichtige Werte",
+    "loadBasic": "Basisbeispiel laden",
+    "loadMultiple": "Mehrere-Ausreißer-Beispiel laden",
+    "loadNone": "Beispiel ohne Ausreißer laden",
+    "items": [
+      {
+        "input": "10, 12, 14, 15, 16, 18, 20, 50",
+        "output": "50",
+        "note": "Q1=13,5, Q3=18,5, IQR=5, obere Grenze=26. Der Wert 50 überschreitet 26 und wird als Ausreißer markiert."
+      },
+      {
+        "input": "1, 25, 28, 30, 32, 35, 38, 100",
+        "output": "1, 100",
+        "note": "Q1=27,25, Q3=35,75, IQR=8,5, Grenzen: 14,5 bis 48,5. Sowohl 1 als auch 100 liegen außerhalb dieser Grenzen."
+      },
+      {
+        "input": "10, 20, 30, 40, 50, 60, 70, 80",
+        "output": "None",
+        "note": "Gleichmäßige Abstände bedeuten, dass kein Wert mehr als 1,5×IQR von der Grenze entfernt ist. Alle Werte sind unauffällig."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Ausreißer-Rechner",
+    "steps": [
+      "Geben Sie Ihre Daten als kommaseparierte Zahlenliste in das Eingabefeld ein oder fügen Sie sie ein. Ganze Zahlen, Dezimalzahlen und negative Zahlen werden akzeptiert.",
+      "Wählen Sie „Milde Ausreißer (1,5 × IQR)“ für die Standardanalyse in Boxplots oder „Extreme Ausreißer (3,0 × IQR)“, um nur die schwerwiegendsten Anomalien zu markieren.",
+      "Klicken Sie auf Berechnen. Das Tool zeigt Q1, Q3, IQR, die untere und obere Grenze sowie die Anzahl der Ausreißer an.",
+      "Prüfen Sie die Liste der „erkannten Ausreißer“. Untersuchen Sie jeden markierten Wert, bevor Sie entscheiden, ihn zu entfernen oder zu behalten.",
+      "Der bereinigte Datensatz (sortiert und ohne Ausreißer) wird darunter angezeigt, damit Sie ihn schnell in Ihre Analyse übernehmen können."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "q1": "Was ist die IQR-Methode zur Ausreißererkennung?",
+    "q1_a": "Die IQR-Methode (Interquartilsabstand) berechnet zwei Grenzen: Q1 − 1,5×IQR und Q3 + 1,5×IQR. Jeder Datenpunkt außerhalb dieser Grenzen wird als Ausreißer markiert. Die Methode ist robust, weil Q1, Q3 und IQR im Gegensatz zu Mittelwert und Standardabweichung nicht von den Ausreißern selbst beeinflusst werden.",
+    "q2": "Sollte ich Ausreißer immer entfernen?",
+    "q2_a": "Nein. Untersuchen Sie sie zuerst. Ausreißer können reale, wichtige Datenpunkte darstellen — eine Betrugstransaktion, eine neue wissenschaftliche Entdeckung oder ein lohnender Fertigungsfehler. Entfernen Sie sie nur bei einem triftigen Grund, etwa einem bestätigten Eingabefehler. Vermerken Sie Entfernungen immer in Ihrer Auswertung.",
+    "q3": "Was ist der Unterschied zwischen milden und extremen Ausreißern?",
+    "q3_a": "Milde Ausreißer liegen zwischen 1,5×IQR und 3×IQR jenseits eines Quartils. Extreme Ausreißer liegen über 3×IQR. Boxplots zeigen milde Ausreißer typischerweise als offene Kreise und extreme Ausreißer als Sterne oder ausgefüllte Kreise. Für die meisten explorativen Analysen ist der 1,5×IQR-Schwellenwert Standard.",
+    "q4": "Funktioniert der Rechner mit negativen Zahlen?",
+    "q4_a": "Ja. Die IQR-Methode ist skaleninvariant und funktioniert korrekt mit beliebigen Kombinationen aus positiven, null und negativen Werten. Fügen Sie negative Zahlen einfach in Ihre kommaseparierte Liste ein, zum Beispiel: −20, 5, 8, 9, 10, 12, 15.",
+    "q5": "Wie viele Datenpunkte werden mindestens benötigt?",
+    "q5_a": "Der Rechner benötigt mindestens 4 Datenpunkte, um sinnvolle Quartile und einen IQR zu berechnen. Bei sehr kleinen Stichproben (weniger als 10–15 Werte) können die Grenzen stark schwanken, daher sollten erkannte Ausreißer vorsichtig interpretiert werden.",
+    "q6": "Wie schneidet diese Methode im Vergleich zum Z-Score-Ansatz ab?",
+    "q6_a": "Die Z-Score-Methode markiert Werte, die mehr als 2 oder 3 Standardabweichungen vom Mittelwert entfernt sind. Sie setzt ungefähr normalverteilte Daten voraus und ist empfindlich gegenüber den Ausreißern, die sie erkennen soll, weil Extremwerte Mittelwert und Standardabweichung aufblähen. Die IQR-Methode nimmt keine Normalverteilung an und ist daher für schiefe Daten, heavy-tailed Verteilungen sowie kleine oder mittlere Stichproben vorzuziehen."
+  }
+}

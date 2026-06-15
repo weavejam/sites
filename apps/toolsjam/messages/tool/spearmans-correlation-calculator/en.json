@@ -1,0 +1,108 @@
+{
+  "title": "Spearman's Correlation Calculator - Rank Correlation",
+  "tagline": "Compute Spearman's rank correlation coefficient (ρ) between two datasets — measure the strength and direction of a monotonic relationship without assuming normality.",
+  "intro": "Enter two comma-separated datasets of equal length. The calculator ranks each dataset and computes ρ using the Pearson formula on ranks, handling ties correctly.",
+  "formula": "ρ = 1 − (6 Σdᵢ²) / (n(n²−1))  for data without ties  •  General: ρ = Cov(R(X), R(Y)) / (σ_R(X) · σ_R(Y))",
+  "field": {
+    "dataX": "Data Set X",
+    "dataXHint": "Enter numbers separated by commas or spaces",
+    "dataY": "Data Set Y",
+    "dataYHint": "Must have the same number of values as Data Set X"
+  },
+  "placeholder": {
+    "data": "e.g. 1, 2, 3, 4, 5"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter at least 2 valid numeric values in each dataset, and ensure both datasets have the same length."
+  },
+  "result": {
+    "heading": "Spearman's Correlation Results",
+    "rho": "ρ (Rho)",
+    "n": "n (pairs)",
+    "interpretation": "Strength",
+    "dirPositive": "positive",
+    "dirNegative": "negative",
+    "strength": {
+      "veryStrong": "Very strong",
+      "strong": "Strong",
+      "moderate": "Moderate",
+      "weak": "Weak",
+      "negligible": "Negligible"
+    }
+  },
+  "examples": {
+    "heading": "Spearman's correlation examples",
+    "intro": "Four worked examples that illustrate different correlation strengths and data structures.",
+    "colInput": "Datasets",
+    "colOutput": "ρ",
+    "colNote": "Interpretation",
+    "loadPerfect": "Load perfect positive",
+    "loadNegative": "Load strong negative",
+    "loadZero": "Load no correlation",
+    "items": [
+      {
+        "input": "X: 10, 20, 30, 40, 50 | Y: 2, 4, 6, 8, 10",
+        "output": "ρ = 1.0000",
+        "note": "Perfect positive monotonic relationship — both variables always increase together."
+      },
+      {
+        "input": "X: 105, 120, 90, 150, 135 | Y: 4.5, 3.2, 5.0, 2.1, 2.9",
+        "output": "ρ = −1.0000",
+        "note": "Perfect negative relationship — X and Y rank in exactly reverse order."
+      },
+      {
+        "input": "X: 1, 2, 3, 4, 5 | Y: 3, 1, 5, 2, 4",
+        "output": "ρ = 0.3000",
+        "note": "Weak positive monotonic relationship between the two rank orderings."
+      },
+      {
+        "input": "X: 8, 9, 10, 10, 12 | Y: 4, 6, 5, 5, 7",
+        "output": "ρ ≈ 0.6842",
+        "note": "Moderate positive correlation; tied values handled by averaging ranks."
+      }
+    ]
+  },
+  "about": {
+    "heading": "About the Spearman's Correlation Calculator",
+    "body": "Spearman's rank correlation coefficient, denoted ρ (rho) or rs, is a non-parametric measure of the monotonic relationship between two variables. Unlike Pearson's correlation, which measures the linear relationship and requires data to be normally distributed and measured on interval or ratio scales, Spearman's coefficient works with the ranks of the data values. This makes it appropriate for ordinal data, data with outliers, and any situation where the relationship between variables is monotonic but not necessarily linear.\n\nThe calculation proceeds in three steps. First, each dataset is ranked: the smallest value receives rank 1, the second-smallest receives rank 2, and so on. When ties exist, each tied value receives the average of the ranks they would otherwise have occupied. Second, the difference dᵢ between the paired ranks is computed for each observation pair. Third, ρ is calculated. For data without ties, the classic formula ρ = 1 − (6 Σdᵢ²) / (n(n²−1)) gives an exact result. For data with ties, this calculator uses the more general formula — Pearson's correlation computed on the ranks — which handles ties correctly by construction.\n\nThe coefficient ranges from −1 to +1. A value of +1 means a perfect positive monotonic relationship: every increase in one variable is accompanied by an increase in the other. A value of −1 means a perfect negative monotonic relationship: every increase in one variable is accompanied by a decrease in the other. A value of 0 indicates no monotonic relationship. In practice, values above ±0.7 are considered strong, ±0.5 to ±0.7 moderate, ±0.3 to ±0.5 weak, and below ±0.3 negligible, though the threshold for 'significant' always depends on sample size and context.\n\nSpearman's correlation is widely used in psychology (ranking preferences or attitudes), education (comparing class ranks to test scores), medicine (comparing symptom severity scores), ecology (abundance counts versus habitat quality), finance (ranking mutual funds by risk-adjusted return), and market research (consumer preference rankings). Any field that works with ranked, ordered, or non-normal data benefits from it.\n\nOne important limitation: Spearman's ρ detects only monotonic relationships. If the relationship is U-shaped or otherwise non-monotonic, ρ may be near zero even when a strong relationship exists. In such cases, scatter plots and other visual diagnostics should always accompany the numerical coefficient to ensure the result is interpreted correctly."
+  },
+  "howto": {
+    "heading": "How to use the Spearman's correlation calculator",
+    "steps": [
+      "Enter your first dataset (X) as comma-separated numbers in the Data Set X field.",
+      "Enter your second dataset (Y) in the Data Set Y field — it must have exactly the same number of values as X.",
+      "Click Calculate. The calculator ranks both datasets, handles any tied values by averaging ranks, and computes ρ using the Pearson formula on ranks.",
+      "Read the ρ value, sample size, and strength interpretation from the results panel.",
+      "Use the example buttons to load pre-built datasets and see typical positive, negative, and zero-correlation scenarios."
+    ]
+  },
+  "faq": {
+    "heading": "Spearman's correlation FAQ",
+    "items": [
+      {
+        "q": "What is the difference between Spearman's and Pearson's correlation?",
+        "a": "Pearson's r measures the strength of a linear relationship and assumes both variables are normally distributed and measured on an interval scale. Spearman's ρ measures any monotonic relationship — not just linear — and works on ranked data, making it robust to outliers and valid for ordinal data. Use Spearman when the normality assumption is violated, data are ordinal, or outliers are present."
+      },
+      {
+        "q": "Does Spearman's correlation require a minimum sample size?",
+        "a": "Technically the formula works with n ≥ 2, but with very small samples (n < 5) the coefficient is highly sensitive to individual values and significance tests have very low power. A minimum of 10–15 paired observations is recommended for a reliable estimate, and for formal significance testing n ≥ 20 is preferred."
+      },
+      {
+        "q": "How does the calculator handle tied values?",
+        "a": "When two or more observations share the same value, each tied observation receives the average of the ranks it would have occupied. For example, if values at positions 3 and 4 are both equal, each receives rank 3.5. The calculator then uses the Pearson-on-ranks formula, which is algebraically equivalent to the simple dᵢ² formula when there are no ties and correctly handles ties when they are present."
+      },
+      {
+        "q": "What does a Spearman's ρ of 0 mean?",
+        "a": "A ρ of exactly 0 means there is no monotonic relationship between the rank orderings of X and Y. It does not mean the variables are independent — a non-monotonic relationship (e.g. U-shaped) would also produce ρ near 0. Always plot your data alongside the coefficient to be sure no pattern is being missed."
+      },
+      {
+        "q": "Can Spearman's correlation be used with categorical data?",
+        "a": "Spearman's correlation requires at least ordinal data — data that can be meaningfully ranked. It cannot be applied to nominal categorical data (e.g. colors, names, labels) where the concept of rank ordering does not apply. For nominal data, consider Cramér's V or other association measures instead."
+      }
+    ]
+  }
+}

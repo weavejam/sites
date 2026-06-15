@@ -1,0 +1,104 @@
+{
+  "title": "IQR-Rechner - Interquartilsabstand, Q1, Q3 und Ausreißer",
+  "tagline": "Berechnen Sie den Interquartilsabstand (IQR), die Quartile Q1 und Q3, den Median und erkennen Sie Ausreißer mit der 1.5×IQR-Regel in jedem kommagetrennten Datensatz.",
+  "intro": "Geben Sie Ihre Daten als kommagetrennte Zahlen ein und klicken Sie auf Berechnen, um die vollständige Fünf-Zahlen-Zusammenfassung, den IQR, die Zaunwerte und alle Ausreißer zu erhalten.",
+  "field": {
+    "data": "Datensatz (kommagetrennte Zahlen)",
+    "dataHint": "Geben Sie Zahlen ein, getrennt durch Kommas oder Leerzeichen, z. B. 2, 4, 4, 5, 6, 7, 8, 9"
+  },
+  "placeholder": {
+    "data": "z. B. 2, 4, 4, 5, 6, 7, 8, 9"
+  },
+  "button": {
+    "calculate": "IQR berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie mindestens zwei gültige Zahlen ein, getrennt durch Kommas."
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "n": "Anzahl (n)",
+    "min": "Minimum",
+    "max": "Maximum",
+    "q1": "Q1 (25. Perzentil)",
+    "median": "Median (Q2)",
+    "q3": "Q3 (75. Perzentil)",
+    "iqr": "IQR (Q3 − Q1)",
+    "lowerFence": "Unterer Zaun (Q1 − 1.5×IQR)",
+    "upperFence": "Oberer Zaun (Q3 + 1.5×IQR)",
+    "outliersLabel": "Ausreißer",
+    "noOutliers": "Keine Ausreißer erkannt."
+  },
+  "about": {
+    "heading": "Über den IQR-Rechner",
+    "body": "Der Interquartilsabstand (IQR) ist die Spannweite der mittleren 50% eines Datensatzes, also der Abstand zwischen dem 25. Perzentil (Q1) und dem 75. Perzentil (Q3). Er ist eine der robustesten und am häufigsten verwendeten Kennzahlen statistischer Streuung, weil er im Gegensatz zur Gesamtspannweite oder Standardabweichung von Extremwerten und Ausreißern völlig unbeeinflusst bleibt. Ob Sie Prüfungsergebnisse, Blutdruckwerte, Immobilienpreise, Fertigungstoleranzen oder andere reale Datensätze analysieren: Der IQR liefert ein zuverlässiges Bild der zentralen Streuung.\n\nZur Berechnung des IQR sortiert der Rechner die Daten zunächst von klein nach groß und bestimmt anschließend Q1 und Q3 mithilfe linearer Interpolation auf den Ordnungsstatistiken. Q1 ist der Wert am 25. Perzentil, also der Punkt, unter dem 25% der Daten liegen. Q3 ist der Wert am 75. Perzentil, also der Punkt, unter dem 75% der Daten liegen. Der IQR ist einfach Q3 − Q1. Median (Q2), Minimum und Maximum werden ebenfalls ausgegeben, sodass Sie die vollständige Fünf-Zahlen-Zusammenfassung erhalten, die Grundlage eines Boxplots.\n\nDie von John Tukey eingeführte 1.5×IQR-Regel ist die Standardmethode zur Identifikation potenzieller Ausreißer. Jeder Datenpunkt unterhalb des unteren Zauns (Q1 − 1.5×IQR) oder oberhalb des oberen Zauns (Q3 + 1.5×IQR) gilt als vermuteter Ausreißer. Diese Zäune definieren die Whisker in einem Tukey-Boxplot. Ein Punkt, der mehr als 3×IQR vom nächstgelegenen Quartil entfernt ist (der innere Zaun bis zu einem äußeren Zaun erweitert), gilt als extremer Ausreißer. Der Rechner markiert alle Werte außerhalb der 1.5×IQR-Zäune.\n\nWichtig ist, dass die 1.5×IQR-Regel statistische Ausreißer identifiziert — Werte, die ungewöhnlich weit vom zentralen Datenkörper entfernt sind —, aber nicht zwingend Datenfehler. Ein als Ausreißer markierter Punkt kann ein Messfehler, ein Eingabefehler, ein Betrugssignal oder einfach eine wirklich seltene, aber legitime Beobachtung sein. Fachwissen ist immer erforderlich, um zu entscheiden, wie mit markierten Punkten umzugehen ist.\n\nDer IQR ist die bevorzugte Streuungskennzahl, wenn Daten schief verteilt sind oder Ausreißer erwartet werden, etwa bei Einkommensverteilungen, Reaktionszeiten oder Immobilienpreisen in gemischten Märkten. Für symmetrische, normalverteilte Daten ohne Ausreißer ist die Standardabweichung etwas effizienter. Wenn jedoch Robustheit zählt — in der explorativen Datenanalyse, in der nichtparametrischen Statistik oder immer dann, wenn Normalverteilung nicht angenommen werden kann —, ist der IQR das Mittel der Wahl, um zu beschreiben, wie stark die Mitte Ihrer Daten streut."
+  },
+  "examples": {
+    "heading": "IQR-Beispiele",
+    "intro": "Vier Datensätze zeigen, wie IQR und Ausreißererkennung in der Praxis funktionieren.",
+    "colInput": "Datensatz",
+    "colOutput": "IQR",
+    "colNote": "Hinweise",
+    "loadBasic": "Einfachen Datensatz laden",
+    "loadOutliers": "Datensatz mit Ausreißern laden",
+    "loadScores": "Testergebnisse laden",
+    "items": [
+      {
+        "input": "2, 4, 4, 5, 6, 7, 8, 9",
+        "output": "IQR = 3.25 (Q1=4, Q3=7.25)",
+        "note": "Gerade Anzahl von Werten. Q1=4, Median=5.5, Q3=7.25. Keine Ausreißer erkannt."
+      },
+      {
+        "input": "10, 20, 30, 40, 50, 60, 70",
+        "output": "IQR = 30 (Q1=25, Q3=55)",
+        "note": "Ungerade Anzahl: Q1=25, Median=40, Q3=55, IQR=30. Unterer Zaun=−20, oberer Zaun=100. Keine Ausreißer."
+      },
+      {
+        "input": "6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49, 78, 108",
+        "output": "IQR = 11 (Q1=36, Q3=47)",
+        "note": "Unterer Zaun=19.5, oberer Zaun=63.5. Die Werte 6, 7, 15, 78 und 108 werden als Ausreißer markiert."
+      },
+      {
+        "input": "88, 92, 80, 78, 95, 84, 76, 90, 81, 85, 93",
+        "output": "IQR = 10.5 (Q1=80.5, Q3=91)",
+        "note": "Testergebnisse von 76 bis 95. Keine Ausreißer — eine eng gebündelte Klassenleistung."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den IQR-Rechner",
+    "steps": [
+      "Geben Sie Ihren Datensatz im Eingabefeld als kommagetrennte Zahlen ein. Sie können auch Leerzeichen als Trennzeichen verwenden. Die Reihenfolge der Werte spielt keine Rolle — der Rechner sortiert sie automatisch.",
+      "Klicken Sie auf IQR berechnen. Das Tool zeigt n (Anzahl), Minimum, Maximum, Q1, Median, Q3, IQR, den unteren und oberen Zaun sowie alle Ausreißer an.",
+      "Betrachten Sie den IQR, um zu verstehen, wie stark die mittleren 50% Ihrer Daten streuen. Ein größerer IQR bedeutet mehr Variabilität im zentralen Teil der Daten.",
+      "Prüfen Sie die Zaunwerte. Jeder Datenpunkt unter Q1 − 1.5×IQR oder über Q3 + 1.5×IQR wird als potenzieller Ausreißer aufgeführt. Untersuchen Sie jeden markierten Punkt, um festzustellen, ob es sich um einen Datenfehler oder einen echten Extremwert handelt.",
+      "Verwenden Sie die Beispielschaltflächen, um vorbereitete Datensätze zu laden und zu sehen, wie sich IQR und Ausreißererkennung bei verschiedenen Datenverteilungen verhalten."
+    ]
+  },
+  "faq": {
+    "heading": "IQR FAQ",
+    "items": [
+      {
+        "q": "Was ist der Interquartilsabstand (IQR)?",
+        "a": "Der Interquartilsabstand ist die Differenz zwischen dem dritten Quartil (Q3, 75. Perzentil) und dem ersten Quartil (Q1, 25. Perzentil): IQR = Q3 − Q1. Er beschreibt die Streuung der mittleren 50% der Daten. Da er die oberen und unteren 25% der Werte ignoriert, wird der IQR nicht von extremen Ausreißern beeinflusst und ist bei schiefen Daten oder Anomalien eine robustere Streuungskennzahl als Gesamtspannweite oder Standardabweichung."
+      },
+      {
+        "q": "Wie werden Q1 und Q3 berechnet?",
+        "a": "Der Rechner verwendet lineare Interpolation auf den sortierten Daten. Für Q1 liegt die Position bei 0.25 × (n−1) in einem nullbasierten sortierten Array. Wenn diese Position keine ganze Zahl ist, wird der Wert zwischen den beiden benachbarten Datenpunkten interpoliert. Für Q3 wird dieselbe Methode an Position 0.75 × (n−1) verwendet. Dies ist die gleiche Methode, die Statistiksoftware wie R (type 7) und Excels Funktion QUARTILE.INC verwendet."
+      },
+      {
+        "q": "Wie erkennt die 1.5×IQR-Regel Ausreißer?",
+        "a": "John Tukeys 1.5×IQR-Regel definiert unterer Zaun = Q1 − 1.5×IQR und oberer Zaun = Q3 + 1.5×IQR. Jeder Datenpunkt außerhalb dieser Zäune ist ein potenzieller Ausreißer. Der Multiplikator 1.5 wurde gewählt, weil bei einer vollkommenen Normalverteilung nur etwa 0.7% der Werte außerhalb dieser Zäune liegen und sie daher sehr unwahrscheinlich zufällig auftreten. Eine strengere Regel verwendet den Multiplikator 3.0 und markiert nur die extremsten Punkte als ferne Ausreißer."
+      },
+      {
+        "q": "Ist der IQR besser als die Standardabweichung zur Messung der Streuung?",
+        "a": "Jede Kennzahl eignet sich für unterschiedliche Situationen. Die Standardabweichung nutzt alle Datenwerte und ist optimal für symmetrische, normalverteilte Daten ohne Ausreißer. Der IQR nutzt nur die mittleren 50% der Werte und ist deutlich widerstandsfähiger gegenüber Schiefe und Ausreißern. Wenn Ihre Daten annähernd normalverteilt sind, liefert die Standardabweichung mehr Informationen. Wenn Ihre Daten schief sind (Einkommen, Immobilienpreise, Überlebenszeiten) oder Ausreißer enthalten, ist der IQR die bessere Kennzahl für typische Streuung."
+      },
+      {
+        "q": "Kann ich den IQR für einen Datensatz mit nur zwei oder drei Werten verwenden?",
+        "a": "Technisch ja, aber das Ergebnis ist nur begrenzt nützlich. Bei sehr kleinen Stichproben (n < 4 oder 5) sind Quartilsschätzungen sehr instabil, und der IQR repräsentiert die Streuung der Grundgesamtheit nicht zuverlässig. Auch die 1.5×IQR-Ausreißerregel verhält sich bei winzigen Stichproben schlecht: Sie markiert möglicherweise keine Ausreißer, obwohl Fehler vorhanden sind, oder erzeugt Zäune, die legitime Werte ausschließen. Eine aussagekräftige IQR-Analyse erfordert in der Regel mindestens 5–10 Beobachtungen."
+      }
+    ]
+  }
+}

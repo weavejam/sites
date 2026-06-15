@@ -8,9 +8,19 @@ import * as React from "react";
 import { describe, test, expect } from "vitest";
 import { render, screen, fireEvent, within } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
-import enMessages from "../../messages/en.json";
 import { allTools } from "@/data/tools";
 import type { ToolFixtureModule, FixtureAction, ToolFixture } from "@/tools/fixture";
+
+// Load each tool's per-tool english bundle (messages/tool/<id>/en.json)
+// eagerly so the test setup remains synchronous like before the split.
+const toolEnMessages = import.meta.glob("../../messages/tool/*/en.json", {
+  eager: true,
+}) as Record<string, { default: Record<string, unknown> }>;
+const enByToolId: Map<string, Record<string, unknown>> = new Map();
+for (const [p, mod] of Object.entries(toolEnMessages)) {
+  const m = p.match(/\/tool\/([^/]+)\/en\.json$/);
+  if (m) enByToolId.set(m[1], mod.default);
+}
 
 // Lazy-import each tool + its fixtures via Vite's import.meta.glob (eager so
 // jest-style `describe` registers synchronously).
@@ -39,8 +49,10 @@ for (const [p, mod] of Object.entries(componentModules)) {
 function renderTool(toolId: string) {
   const Comp = componentByToolId.get(toolId);
   if (!Comp) throw new Error(`no component for ${toolId}`);
+  const tMsgs = enByToolId.get(toolId);
+  if (!tMsgs) throw new Error(`no en messages for ${toolId}`);
   return render(
-    <NextIntlClientProvider locale="en" messages={enMessages as Record<string, unknown>}>
+    <NextIntlClientProvider locale="en" messages={{ tool: { [toolId]: tMsgs } }}>
       <Comp locale="en" />
     </NextIntlClientProvider>,
   );

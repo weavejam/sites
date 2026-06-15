@@ -1,0 +1,89 @@
+{
+  "title": "Post-Test Probability Calculator",
+  "tagline": "Calculate post-test probability using Bayes' theorem",
+  "intro": "Enter the prior probability, test sensitivity, and test specificity (all as percentages) to compute post-test probabilities, PPV, NPV, and likelihood ratios.",
+  "field": {
+    "priorProbability": "Prior Probability (Pre-test) (%)",
+    "sensitivity": "Test Sensitivity (True Positive Rate) (%)",
+    "specificity": "Test Specificity (True Negative Rate) (%)"
+  },
+  "placeholder": {
+    "percent": "e.g., 20"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "postTestPositive": "Post-test Probability (Positive Test)",
+    "postTestNegative": "Post-test Probability (Negative Test)",
+    "ppv": "PPV (Positive Predictive Value)",
+    "npv": "NPV (Negative Predictive Value)",
+    "lrPos": "LR+ (Positive Likelihood Ratio)",
+    "lrNeg": "LR− (Negative Likelihood Ratio)"
+  },
+  "error": {
+    "invalid": "Please enter valid percentages between 0 and 100 for all three fields."
+  },
+  "about": {
+    "heading": "About the Post-Test Probability Calculator",
+    "body": "Post-test probability is the revised probability that a patient has a condition after a diagnostic test result is known. It is calculated using Bayes' theorem, which formally updates beliefs in light of new evidence. This calculator implements the core diagnostic accuracy framework used in evidence-based medicine, clinical decision support, and medical education.\n\nThe three inputs required are: (1) prior probability — the pre-test probability or disease prevalence before testing; (2) sensitivity — the true positive rate, or the probability that the test is positive given the condition is present; and (3) specificity — the true negative rate, or the probability that the test is negative given the condition is absent.\n\nFor a positive test result, the post-test probability equals the Positive Predictive Value (PPV), calculated as: PPV = (sensitivity × prior) / (sensitivity × prior + (1−specificity) × (1−prior)). For a negative result, the probability of disease is 1 − NPV, where NPV = (specificity × (1−prior)) / (specificity × (1−prior) + (1−sensitivity) × prior).\n\nLikelihood ratios (LRs) provide another way to update probabilities. LR+ = sensitivity / (1−specificity) tells how much a positive result increases disease odds. LR− = (1−sensitivity) / specificity tells how much a negative result decreases the odds. An LR+ above 10 or an LR− below 0.1 indicates a diagnostically powerful test.\n\nOne of the most counterintuitive results in medical statistics is the base-rate effect: even a highly accurate test has a low PPV when the disease is rare. For example, a test with 99% sensitivity and 99% specificity applied to a disease with 0.1% prevalence has a PPV of only about 9%. This means 91% of positive tests are false positives — a critical consideration in population screening programs.\n\nThis calculator is useful for clinicians interpreting diagnostic test results, researchers designing screening protocols, medical students learning Bayesian reasoning, and epidemiologists evaluating test performance at different prevalence levels.\n\nAlways remember that prior probability should be estimated from the best available evidence: published prevalence data, clinical history, physical examination findings, and patient risk factors. The quality of your post-test estimate depends directly on the accuracy of your prior estimate and the validity of the test's published sensitivity and specificity values."
+  },
+  "examples": {
+    "heading": "Examples",
+    "intro": "These examples show how disease prevalence and test accuracy affect post-test probability.",
+    "loadCommon": "Common Disease (20%)",
+    "loadRare": "Rare Disease (0.1%)",
+    "colInput": "Prior, Sensitivity, Specificity",
+    "colOutput": "Post-test Prob (+)",
+    "colNote": "Scenario",
+    "items": [
+      {
+        "input": "Prior=20%, Sens=85%, Spec=80%",
+        "output": "PPV ≈ 51.5%",
+        "note": "Common condition screening"
+      },
+      {
+        "input": "Prior=0.1%, Sens=99%, Spec=99%",
+        "output": "PPV ≈ 9.0%",
+        "note": "Rare disease — base-rate neglect"
+      },
+      {
+        "input": "Prior=5%, Sens=99.5%, Spec=85%",
+        "output": "PPV ≈ 25.8%",
+        "note": "High-sensitivity screening test"
+      },
+      {
+        "input": "Prior=15%, Sens=80%, Spec=99.8%",
+        "output": "PPV ≈ 98.8%",
+        "note": "High-specificity confirmatory test"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use This Calculator",
+    "steps": [
+      "Enter the prior (pre-test) probability as a percentage — this is the prevalence or your initial estimate of disease probability before testing.",
+      "Enter the test sensitivity (true positive rate) as a percentage — how often the test is positive when the condition is present.",
+      "Enter the test specificity (true negative rate) as a percentage — how often the test is negative when the condition is absent.",
+      "Click 'Calculate' to see the post-test probabilities after a positive and negative result, PPV, NPV, and likelihood ratios.",
+      "Use the Quick Load buttons to explore realistic clinical scenarios and observe how prevalence affects test interpretation."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "What is post-test probability?",
+    "q1_a": "Post-test probability is the probability that a condition is present given the result of a diagnostic test. It is derived from Bayes' theorem, combining the prior probability (prevalence or pre-test probability) with the test's sensitivity and specificity. A positive test raises the probability above the prior; a negative test lowers it.",
+    "q2": "What is the difference between sensitivity and specificity?",
+    "q2_a": "Sensitivity (true positive rate) measures the proportion of people with the condition who test positive: TP / (TP + FN). Specificity (true negative rate) measures the proportion of people without the condition who test negative: TN / (TN + FP). High sensitivity minimizes missed cases; high specificity minimizes false alarms.",
+    "q3": "What is PPV and why does it depend on prevalence?",
+    "q3_a": "Positive Predictive Value (PPV) is the probability that a person with a positive test actually has the condition. It depends on both test accuracy and disease prevalence. Even with a 99% accurate test, PPV can be low for rare diseases — a phenomenon known as the false positive paradox or base-rate neglect. This is why understanding prior probability is critical in diagnostic medicine.",
+    "q4": "What are likelihood ratios and how do I use them?",
+    "q4_a": "The positive likelihood ratio (LR+) = sensitivity / (1−specificity) indicates how much a positive result increases the odds of disease. LR− = (1−sensitivity) / specificity indicates how much a negative result decreases the odds. Rules of thumb: LR+ > 10 or LR− < 0.1 produce large, clinically significant changes in probability.",
+    "q5": "Why might a highly accurate test give a low post-test probability?",
+    "q5_a": "When disease prevalence (prior probability) is very low, even a very accurate test produces many false positives relative to true positives. For example, a 99%-accurate test for a disease with 0.1% prevalence has a PPV of only about 9% — 91% of positive tests are false positives. This is why mass screening for rare diseases must be carefully designed.",
+    "q6": "What is the difference between PPV and post-test probability after a positive result?",
+    "q6_a": "For a simple two-outcome test (positive/negative), PPV and the post-test probability after a positive result are the same value. Both represent P(disease | positive test). The term 'post-test probability' is the more general Bayesian language used in clinical decision-making, while PPV is the epidemiological term used in test validation studies."
+  }
+}

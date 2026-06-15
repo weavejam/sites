@@ -1,0 +1,107 @@
+{
+  "title": "Annealing-Temperatur-Rechner - PCR-Primer-Tool",
+  "tagline": "Berechnen Sie die optimale PCR-Annealing-Temperatur aus Primer-DNA-Sequenzen mit der Wallace-Regel, der GC-Gehalt-Formel oder der thermodynamischen Nachbarpaar-Methode.",
+  "intro": "Geben Sie Ihre Forward-Primer-Sequenz ein (optional auch den Reverse-Primer), legen Sie Salz- und DNA-Konzentrationen fest, wählen Sie eine Berechnungsmethode und erhalten Sie sofort die empfohlene Annealing-Temperatur.",
+  "field": {
+    "forwardPrimer": "Forward-Primer-Sequenz",
+    "reversePrimer": "Reverse-Primer-Sequenz (optional)",
+    "salt": "Salzkonzentration (mM)",
+    "dna": "DNA-Konzentration (nM)",
+    "method": "Berechnungsmethode"
+  },
+  "type": {
+    "wallaceRule": "Wallace-Regel",
+    "gcContent": "GC-Gehalt",
+    "nearestNeighbor": "Nachbarpaar"
+  },
+  "placeholder": {
+    "primerSeq": "z. B. ATGGAGCTGAAGCAGCAGATCC",
+    "optional": "optional"
+  },
+  "button": {
+    "calculate": "Temperatur berechnen",
+    "reset": "Werte zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie eine gültige Primersequenz mit mindestens 10 Basen sowie gültige positive Salz- und DNA-Konzentrationen ein."
+  },
+  "result": {
+    "heading": "Temperaturergebnisse",
+    "annealingTemp": "Empfohlene Annealing-Temperatur (Ta)",
+    "tmForward": "Tm — Forward-Primer",
+    "tmReverse": "Tm — Reverse-Primer",
+    "formula": "Ta = niedrigste Tm − 5°C. Die Nachbarpaar-Methode verwendet SantaLucia-1998-Parameter mit Salzkorrektur."
+  },
+  "about": {
+    "heading": "Über den Annealing-Temperatur-Rechner",
+    "body": "Der Annealing-Temperatur-Rechner sagt die optimale PCR-Annealing-Temperatur (Ta) für ein Paar von Oligonukleotid-Primern auf Grundlage ihrer DNA-Sequenzen und der Reaktionsbedingungen voraus. Die richtige Annealing-Temperatur ist eine der wichtigsten Entscheidungen im PCR-Design: Ist sie zu niedrig, entstehen unspezifische Produkte; ist sie zu hoch, binden die Primer nicht effizient, was die Ausbeute senkt oder die Amplifikation ganz verhindert. Der Rechner beseitigt dieses Rätselraten, indem er etablierte thermodynamische Modelle anwendet und Ihnen einen verlässlichen Ausgangspunkt liefert, bevor Sie den Thermocycler einsetzen.\n\nDie Schmelztemperatur (Tm) eines Primers ist die Temperatur, bei der sich 50 % der Primer-Template-Duplexe in Einzelstränge auftrennen. Die Annealing-Temperatur wird typischerweise 5°C unter der niedrigeren Tm des Primerpaars angesetzt, also: Ta = min(Tm_forward, Tm_reverse) − 5°C. Diese Regel gleicht spezifische Bindung und effiziente Verlängerung aus und ist die Konvention, die in den meisten molekularbiologischen Laboren weltweit verwendet wird.\n\nDer Rechner bietet drei Tm-Vorhersagemethoden mit unterschiedlicher Genauigkeit und Anwendbarkeit. Die Wallace-Regel (Tm = 2°C × (A+T) + 4°C × (G+C)) ist die einfachste und schnellste Abschätzung. Für Primer unter etwa 20 Basen ist sie recht genau und als schneller Plausibilitätscheck nützlich, sie ignoriert jedoch Nachbarpaar-Stacking-Effekte und ist nicht salzkorrekturiert. Verwenden Sie sie, wenn Sie eine schnelle grobe Schätzung benötigen.\n\nDie GC-Gehalt-Methode (Tm = 69.3 + 41 × GC_fraction − 650/n) ist die Marmur-Doty-Schildkraut-Formel, angepasst für kurze Oligonukleotide. Sie berücksichtigt die Primerlänge (n) und den GC-Anteil und liefert über den typischen Primerbereich von 18–30 Basen hinweg eine bessere Schätzung als die Wallace-Regel. Es bleibt jedoch eine Näherung, da alle Basenpaare desselben Typs thermodynamisch als gleichwertig behandelt werden.\n\nDie Nachbarpaar-Methode (SantaLucia 1998) ist der genaueste Ansatz und wird von kommerziellen Primer-Design-Tools wie Primer3 und OligoCalc verwendet. Sie berechnet ΔH und ΔS durch Summierung der Enthalpie- und Entropiebeiträge jedes aufeinanderfolgenden Dinukleotidpaars entlang des Primers und wendet dann die thermodynamische Formel Tm = ΔH / (ΔS + R × ln(CT)) − 273.15 an, wobei R die Gaskonstante und CT die gesamte Strangkonzentration ist. Anschließend erfolgt eine Salzkorrektur mit Tm_corrected = Tm + 16.6 × log10([Na+]/1000). Diese Methode ist der Goldstandard für Primer jeder Länge und jedes GC-Gehalts, insbesondere für GC-reiche oder AT-reiche Sequenzen, die stark von der Durchschnittszusammensetzung abweichen.\n\nDie Salzkonzentration ist wichtig, weil einwertige Kationen die DNA-Doppelhelix stabilisieren, indem sie die Abstoßung zwischen den negativ geladenen Phosphatgruppen neutralisieren. Höhere Salzkonzentrationen erhöhen die Tm; niedrigere senken sie. Der Standardwert von 50 mM Na⁺ ist für Standard-PCR-Puffer geeignet. Die DNA-(Primer-)Konzentration beeinflusst die Tm über den ln(CT)-Term in der Nachbarpaar-Formel; der Standardwert von 250 nM ist typisch für PCR-Reaktionen. Wenn Sie diese Werte an Ihre tatsächlichen Reaktionsbedingungen anpassen, wird die Vorhersage genauer."
+  },
+  "examples": {
+    "heading": "Beispiele für PCR-Annealing-Temperaturen",
+    "intro": "Beispiel-Primersequenzen, die unterschiedliche GC-Zusammensetzungen und Längenbereiche über alle drei Berechnungsmethoden hinweg veranschaulichen.",
+    "colInput": "Primersequenz",
+    "colOutput": "Ta (°C)",
+    "colNote": "Details",
+    "items": [
+      {
+        "input": "ATGGAGCTGAAGCAGCAGATCC (22 bp, 54.5% GC)",
+        "output": "Ta ≈ 58°C",
+        "note": "Standard-Primer zur Genamplifikation. Nachbarpaar-Methode. Salz 50 mM, Primer 250 nM."
+      },
+      {
+        "input": "GCGCGCGGATCCATGAAGCTG (21 bp, 71.4% GC)",
+        "output": "Ta ≈ 67°C",
+        "note": "GC-reicher Primer; benötigt eine erhöhte Annealing-Temperatur. GC-Gehalt-Methode. Salz 75 mM."
+      },
+      {
+        "input": "ATCGATCGATCG (12 bp, 50% GC)",
+        "output": "Ta ≈ 31°C",
+        "note": "Kurzer Primer, Wallace-Regel. Ta = 2(6) + 4(6) − 5 = 31°C. Kurze Primer benötigen eine niedrigere Ta."
+      },
+      {
+        "input": "TTGACGATCATGAGCTTGGC (20 bp, 50% GC)",
+        "output": "Ta ≈ 52°C",
+        "note": "Niedrig-Salz-Bedingung (25 mM). Niedrigere Salzkonzentration senkt die Tm gegenüber den Standardbedingungen mit 50 mM."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Annealing-Temperatur-Rechner",
+    "steps": [
+      "Geben Sie im ersten Feld die DNA-Sequenz des Forward-Primers in 5’-zu-3’-Richtung ein. Es werden nur ATGC-Basen verwendet; mehrdeutige Basen und Leerzeichen werden ignoriert.",
+      "Geben Sie optional die Reverse-Primer-Sequenz ein. Wenn vorhanden, basiert Ta auf dem niedrigeren der beiden Tm-Werte des passenden Primerpaars.",
+      "Stellen Sie die Salzkonzentration (Standard 50 mM NaCl) und die DNA-/Primerkonzentration (Standard 250 nM) ein. Verwenden Sie für die beste Genauigkeit Ihre tatsächlichen Reaktionsbedingungen.",
+      "Wählen Sie eine Berechnungsmethode: Wallace-Regel für eine schnelle grobe Schätzung, GC-Gehalt für mittlere Genauigkeit oder Nachbarpaar (SantaLucia 1998) für das genaueste Ergebnis.",
+      "Klicken Sie auf Temperatur berechnen. Das Ergebnisfeld zeigt die empfohlene Annealing-Temperatur (Ta) sowie die Tm-Werte jeder Primersequenz mit Basenzusammensetzung."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Annealing-Temperatur-Rechner",
+    "items": [
+      {
+        "q": "Was ist der Unterschied zwischen Tm und Ta?",
+        "a": "Tm (Schmelztemperatur) ist die Temperatur, bei der sich 50 % der Primer-Template-Duplexe in Einzelstränge trennen; sie ist eine Eigenschaft des Primers selbst und der Reaktionsbedingungen. Ta (Annealing-Temperatur) ist die Temperatur, die im PCR-Thermocycler während des Annealing-Schritts verwendet wird. Ta wird typischerweise 5°C unter der niedrigeren Tm des Primerpaars eingestellt, um eine effiziente und spezifische Bindung sicherzustellen."
+      },
+      {
+        "q": "Welche Berechnungsmethode sollte ich verwenden?",
+        "a": "Für die meisten PCR-Arbeiten im Labor ist die Nachbarpaar-Methode (SantaLucia 1998) am genauesten und wird von NCBI Primer-BLAST und Primer3 empfohlen. Verwenden Sie die Wallace-Regel nur für sehr kurze Primer (weniger als 14 Basen) oder für eine schnelle Überschlagsrechnung. Nutzen Sie die GC-Gehalt-Methode, wenn Sie etwas Genauigeres als Wallace, aber noch schneller als NN möchten, etwa beim ersten Primer-Screening."
+      },
+      {
+        "q": "Warum schlägt meine PCR trotz berechneter Annealing-Temperatur fehl?",
+        "a": "Die berechnete Ta ist ein Ausgangspunkt, keine Garantie. Die tatsächliche PCR-Leistung hängt auch von der Spezifität der Primer (per BLAST prüfen), Primer-Dimeren und Haarnadeln (per OligoAnalyzer prüfen), der Template-Sekundärstruktur, der Mg2⁺-Konzentration, der Polymerase-Prozessivität und den Rampenraten des Thermocyclers ab. Wenn die berechnete Temperatur nicht funktioniert, versuchen Sie eine Gradienten-PCR über ±2–10°C um Ta oder senken Sie die Annealing-Temperatur in 2°C-Schritten."
+      },
+      {
+        "q": "Wie beeinflusst die Salzkonzentration die Annealing-Temperatur?",
+        "a": "Höhere Konzentrationen einwertiger Salze (Na⁺, K⁺) stabilisieren die DNA-Doppelhelix, indem sie die Abstoßung der negativ geladenen Phosphatrückgrate abschirmen, und erhöhen so die Tm. Ein Anstieg von 25 mM auf 100 mM NaCl erhöht die Tm typischerweise um 2–3°C. Standard-PCR-Puffer enthalten 50–75 mM KCl plus Mg2⁺; geben Sie für die beste Salzkorrektur im Nachbarpaar-Modell die Na⁺-Äquivalentkonzentration an."
+      },
+      {
+        "q": "Was soll ich tun, wenn die Primer eines Paars sehr unterschiedliche Tm-Werte haben?",
+        "a": "Wenn sich die beiden Primer in der Tm um mehr als 5°C unterscheiden, sollten Sie den Primer mit der niedrigeren Tm so neu gestalten, dass er länger oder GC-reicher ist, um die Werte anzugleichen. Ein großer Tm-Mismatch führt dazu, dass ein Primer bei der gewählten Ta weniger effizient bindet, was die Ausbeute senken und einseitige Produkte fördern kann. Als Kompromiss können Sie manchmal ein Touchdown-PCR-Protokoll verwenden, das oberhalb der höheren Tm beginnt und über den Annealing-Temperaturbereich absenkt."
+      },
+      {
+        "q": "Ändert sich die Primer-Tm in Gegenwart von DMSO oder anderen Additiven?",
+        "a": "Ja. DMSO destabilisiert die Doppelhelix und senkt die Tm um etwa 0.5–1.0°C pro Prozent DMSO. Betain, Glycerol und Formamid senken die Tm ebenfalls. Diese Additive werden verwendet, um GC-reiche oder strukturierte Templates zu amplifizieren; wenn sie vorhanden sind, senken Sie Ihre Ta entsprechend. Der Rechner modelliert die Wirkung von Additiven nicht, passen Sie Ta daher bei Reaktionen mit Cosolventien manuell an."
+      }
+    ]
+  }
+}

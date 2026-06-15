@@ -1,0 +1,97 @@
+{
+  "title": "Calculateur du test exact de Fisher - tableau de contingence 2x2",
+  "tagline": "Calculez les p-values unilatérales et bilatérales ainsi que l’odds ratio pour un tableau de contingence 2×2 avec le test exact de Fisher — idéal pour les petits échantillons.",
+  "intro": "Saisissez les quatre effectifs de votre tableau 2×2 (groupe × résultat), puis cliquez sur Calculer pour obtenir les p-values exactes et l’odds ratio.",
+  "card": {
+    "title": "Test exact de Fisher",
+    "description": "Analyse un tableau de contingence 2×2 pour sa significativité statistique"
+  },
+  "table": {
+    "outcome1": "Résultat 1",
+    "outcome2": "Résultat 2",
+    "group1": "Groupe 1",
+    "group2": "Groupe 2"
+  },
+  "field": {
+    "cellA": "Cellule A (Groupe 1, Résultat 1)",
+    "cellB": "Cellule B (Groupe 1, Résultat 2)",
+    "cellC": "Cellule C (Groupe 2, Résultat 1)",
+    "cellD": "Cellule D (Groupe 2, Résultat 2)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des entiers non négatifs dans les quatre cases et assurez-vous que le total est supérieur à zéro."
+  },
+  "result": {
+    "heading": "Résultat",
+    "oneTailed": "p-value unilatérale",
+    "twoTailed": "p-value bilatérale",
+    "oddsRatio": "Odds ratio",
+    "significant": "Statistiquement significatif à p < 0,05 — rejet de H₀.",
+    "notSignificant": "Non statistiquement significatif à p < 0,05 — H₀ non rejetée."
+  },
+  "about": {
+    "heading": "À propos du test exact de Fisher",
+    "body": "Le test exact de Fisher est un test de significativité statistique destiné à l’analyse de tableaux de contingence 2×2. Développé par Sir Ronald A. Fisher en 1922, il détermine s’il existe une association non aléatoire entre deux variables catégorielles — par exemple entre un groupe de traitement et une issue patient. Contrairement au test du chi carré, qui repose sur une approximation devenant inexacte lorsque les effectifs attendus sont faibles, le test exact de Fisher calcule la probabilité exacte des données observées (et de toutes les configurations plus extrêmes) à l’aide de la distribution hypergéométrique.\n\nLe test organise les données dans un tableau 2×2 dont les totaux marginaux sont fixés (sommes des lignes et des colonnes). À partir de ces marges, il calcule la probabilité de l’agencement observé sous l’hypothèse nulle d’absence d’association. La probabilité d’un tableau donné avec les cellules [a, b; c, d] est fournie par la formule hypergéométrique : P = C(a+b, a) × C(c+d, c) / C(n, a+c), où n = a+b+c+d. La p-value s’obtient en sommant les probabilités de tous les tableaux au moins aussi extrêmes que celui observé.\n\nPour une p-value unilatérale, 'extrême' signifie des tableaux où l’association va dans la même direction que celle observée. Pour une p-value bilatérale — adaptée à la plupart des questions de recherche — 'extrême' signifie des tableaux ayant une probabilité égale ou inférieure à celle du tableau observé, en additionnant les deux queues. La p-value bilatérale est donc plus conservative et plus largement utilisée dans la littérature.\n\nL’odds ratio quantifie la force de l’association : OR = (a × d) / (b × c). Un odds ratio de 1 signifie absence d’association ; une valeur supérieure à 1 indique que le Résultat 1 est plus probable dans le Groupe 1 que dans le Groupe 2 ; une valeur inférieure à 1 indique l’inverse. L’odds ratio est une mesure clé dans les études cas-témoins, les essais cliniques et les études d’association génétique.\n\nLe test exact de Fisher est approprié chaque fois que l’effectif attendu dans une cellule du tableau 2×2 est inférieur à 5, seuil à partir duquel l’approximation du chi carré devient peu fiable. Parmi les applications courantes figurent les essais cliniques comparant les taux de succès de traitement entre deux groupes, l’épidémiologie génétique testant l’association d’un allèle avec une maladie, la recherche en éducation comparant les taux de réussite/échec entre deux méthodes d’enseignement, et l’analyse marketing comparant les taux de conversion de deux variantes publicitaires. Le test est exact quel que soit la taille de l’échantillon, ce qui en fait la référence pour les petits échantillons dans ces domaines."
+  },
+  "examples": {
+    "heading": "Test exact de Fisher — Exemples",
+    "intro": "Trois scénarios réels montrant comment construire un tableau de contingence 2×2 et interpréter les p-values exactes.",
+    "colInput": "Tableau [a, b; c, d]",
+    "colOutput": "p bilatérale",
+    "colNote": "Contexte",
+    "loadDrug": "Charger l’exemple d’efficacité médicamenteuse",
+    "loadGene": "Charger l’exemple de génétique",
+    "loadTeaching": "Charger l’exemple de méthode d’enseignement",
+    "items": [
+      {
+        "input": "a=9, b=1, c=2, d=8 (n=20)",
+        "output": "p = 0.0350 (significatif)",
+        "note": "Essai d’un nouveau médicament : 9 des 10 patients traités se sont améliorés contre 2 des 10 sous placebo. L’association entre traitement et amélioration est statistiquement significative."
+      },
+      {
+        "input": "a=7, b=3, c=1, d=12 (n=23)",
+        "output": "p = 0.0189 (significatif)",
+        "note": "Génétique : 7 porteurs de la variante sur 10 sont malades contre 1 sur 13 chez les non-porteurs. Le gène est significativement associé à la maladie."
+      },
+      {
+        "input": "a=10, b=2, c=5, d=8 (n=25)",
+        "output": "p = 0.0840 (non significatif à 0,05)",
+        "note": "Méthodes d’enseignement : 10 des 12 élèves ont réussi avec la méthode A contre 5 des 13 avec la méthode B. La différence n’est pas significative au seuil de 5 %."
+      },
+      {
+        "input": "a=4, b=100, c=0, d=110 (n=214)",
+        "output": "p = 0.0563 (limite)",
+        "note": "Test A/B d’une campagne publicitaire : 4 conversions pour l’annonce A contre 0 pour l’annonce B, sur environ 110 vues chacune. Le résultat est borderline et mérite un suivi sur un échantillon plus grand."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur du test exact de Fisher",
+    "steps": [
+      "Organisez vos données dans un tableau de contingence 2×2 : les lignes sont les deux groupes (Groupe 1 et Groupe 2) et les colonnes sont les deux résultats possibles (Résultat 1 et Résultat 2).",
+      "Saisissez l’effectif de chaque cellule : Cellule A (Groupe 1, Résultat 1), Cellule B (Groupe 1, Résultat 2), Cellule C (Groupe 2, Résultat 1), Cellule D (Groupe 2, Résultat 2). Toutes les valeurs doivent être des entiers non négatifs.",
+      "Cliquez sur « Calculer ». Le calculateur énumère tous les tableaux 2×2 possibles ayant les mêmes totaux marginaux et additionne les probabilités hypergéométriques pour obtenir les p-values exactes unilatérales et bilatérales.",
+      "Lisez la p-value bilatérale pour la plupart des questions de recherche. Si p < 0,05, l’association entre les deux groupes et les deux résultats est statistiquement significative.",
+      "Interprétez l’odds ratio : des valeurs > 1 indiquent que le Résultat 1 est plus probable dans le Groupe 1 ; des valeurs < 1 indiquent qu’il est moins probable. Utilisez les boutons d’exemple sous le tableau pour voir comment le test fonctionne dans des scénarios réels."
+    ]
+  },
+  "faq": {
+    "heading": "Test exact de Fisher — FAQ",
+    "q1": "Quand dois-je utiliser le test exact de Fisher plutôt que le chi carré ?",
+    "q1_a": "Utilisez le test exact de Fisher dès qu’un effectif attendu dans votre tableau 2×2 est inférieur à 5, ou lorsque la taille totale de l’échantillon est faible (n < 20 est une règle empirique courante). Le test du chi carré repose sur une approximation qui se dégrade avec de petits effectifs, produisant des p-values peu fiables. Le test de Fisher est toujours exact, donc il peut être utilisé en toute sécurité pour n’importe quelle taille d’échantillon.",
+    "q2": "Que signifie la p-value bilatérale dans le test de Fisher ?",
+    "q2_a": "La p-value bilatérale est la probabilité d’observer un tableau aussi extrême, ou plus extrême, que celui obtenu dans l’une ou l’autre direction, en supposant que l’hypothèse nulle d’absence d’association est vraie. 'Extrême' signifie ici une probabilité hypergéométrique aussi faible que, ou plus faible que, celle du tableau observé. Une p-value < 0,05 signifie conventionnellement que l’association est statistiquement significative.",
+    "q3": "Qu’est-ce que l’odds ratio et comment l’interpréter ?",
+    "q3_a": "L’odds ratio (OR) est (a × d) / (b × c). Un OR de 1 signifie que le Résultat 1 est tout aussi probable dans les deux groupes — aucune association. OR > 1 signifie que le Résultat 1 est plus probable dans le Groupe 1 que dans le Groupe 2 ; OR < 1 signifie qu’il est moins probable. Par exemple, OR = 9 signifie que les chances du Résultat 1 dans le Groupe 1 sont neuf fois celles du Groupe 2, une forte association positive.",
+    "q4": "Quelle est la différence entre les p-values unilatérales et bilatérales ?",
+    "q4_a": "La p-value unilatérale teste une association dans une direction précise (par exemple, que le Groupe 1 a un taux de Résultat 1 plus élevé que le Groupe 2). La p-value bilatérale teste toute association, quelle qu’en soit la direction. Sauf si vous aviez une hypothèse directionnelle préalable avant de voir les données, la p-value bilatérale est le choix approprié et plus conservateur.",
+    "q5": "Que sont les totaux marginaux et pourquoi doivent-ils être fixes ?",
+    "q5_a": "Les totaux marginaux sont les sommes des lignes (a+b et c+d) et des colonnes (a+c et b+d) du tableau. Le test de Fisher conditionne ces totaux comme fixes, ce qui sert de base à la dérivation de la distribution hypergéométrique exacte. En pratique, les marges sont fixées par la conception de l’étude (par exemple, des tailles de groupe prédéterminées ou un nombre total d’événements).",
+    "q6": "Le test exact de Fisher peut-il être utilisé pour des tableaux plus grands que 2×2 ?",
+    "q6_a": "Le test exact de Fisher classique est défini pour les tableaux 2×2. Des généralisations aux tableaux de contingence r×c plus grands existent (avec une distribution hypergéométrique multidimensionnelle), mais elles sont coûteuses en calcul. Pour les tableaux plus grands avec de petits effectifs attendus, on peut appliquer le test exact à des sous-tableaux 2×2, ou utiliser des tests exacts basés sur une simulation Monte Carlo disponibles dans les logiciels statistiques."
+  }
+}
