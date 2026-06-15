@@ -2206,39 +2206,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "elastic-potential-energy-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "danxing-shinei-nengliang-jisuanqi",
+      "zh-TW": "danxing-weineng-jisuanqi",
+      ja: "dansei-ichi-energy-keisanki",
+      ko: "tanseong-giho-energy-gyeolsanki",
+      es: "calculadora-energia-potencial-elastica",
+      fr: "calculateur-energie-potentielle-elastique",
+      de: "berechner-elastische-lageenergie",
+      pt: "calculadora-energia-potencial-elastica",
+      ru: "kalkulyator-uprugoy-potentsialnoy-energii"
     },
     titles: {
       en: "Elastic Potential Energy Calculator – Spring Energy Formula",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "弹性势能计算器：弹簧能量公式",
+      "zh-TW": "彈性位能計算器：彈簧能量公式",
+      ja: "弾性位置エネルギー計算機：ばねの式",
+      ko: "탄성 위치 에너지 계산기: 스프링 공식",
+      es: "Calculadora de energía potencial elástica",
+      fr: "Calculateur d'énergie potentielle élastique",
+      de: "Rechner für elastische potenzielle Energie",
+      pt: "Calculadora de energia potencial elástica",
+      ru: "Калькулятор упругой потенциальной энергии"
     },
     descriptions: {
       en: "Calculate elastic potential energy, spring constant, or displacement using U = ½kx². Solve any Hooke's Law spring variable for physics and engineering problems.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "使用 U=½kx² 计算弹性势能、弹簧常数或位移，快速求解胡克定律中的任意变量。",
+      "zh-TW": "使用 U=½kx² 計算彈性位能、彈簧常數或位移，快速求解胡克定律中的任一變數。",
+      ja: "U=½kx²で弾性位置エネルギー、ばね定数、変位を計算。フックの法則の任意の変数を求めます。",
+      ko: "U=½kx²로 탄성 위치 에너지, 스프링 상수, 변위를 계산합니다. 후크 법칙의 변수를 빠르게 구하세요.",
+      es: "Calcula la energía potencial elástica, la constante del resorte o el desplazamiento con U=½kx² y la ley de Hooke.",
+      fr: "Calculez l'énergie potentielle élastique, la constante du ressort ou le déplacement avec U=½kx² et la loi de Hooke.",
+      de: "Berechnen Sie elastische potenzielle Energie, Federkonstante oder Auslenkung mit U=½kx² und dem Hookeschen Gesetz.",
+      pt: "Calcule energia potencial elástica, constante da mola ou deslocamento com U=½kx² e a lei de Hooke.",
+      ru: "Рассчитайте упругую потенциальную энергию, жёсткость пружины или смещение по U=½kx² и закону Гука."
     }
   },
   {
@@ -2246,39 +2246,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "delta-to-wye-conversion",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "sanjiaoxing-zhuanxing-jisuanqi",
+      "zh-TW": "sanjiaoxing-zhuanxing-jisuanqi",
+      ja: "deruta-sutaa-henkan-keisanki",
+      ko: "delteu-wai-byeonhwan-gyesangi",
+      es: "conversor-delta-estrella",
+      fr: "convertisseur-triangle-etoile",
+      de: "delta-stern-rechner",
+      pt: "conversor-delta-estrela",
+      ru: "preobrazovanie-treugolnik-zvezda"
     },
     titles: {
       en: "Delta to Wye Conversion Calculator – Resistor Network",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "三角形转星形计算器",
+      "zh-TW": "三角形轉星形計算器",
+      ja: "デルタ-スター変換計算機",
+      ko: "델타-와이 변환 계산기",
+      es: "Calculadora de conversión Delta a Estrella",
+      fr: "Calculateur de conversion triangle-étoile",
+      de: "Delta-Stern-Umrechner",
+      pt: "Calculadora de conversão Delta para Estrela",
+      ru: "Калькулятор преобразования треугольник–звезда"
     },
     descriptions: {
       en: "Convert Delta (Δ) and Wye (Y) resistor networks instantly. Enter three resistance values and get the equivalent configuration for circuit analysis and design.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "即时转换三角形（Δ）和星形（Y）电阻网络。输入三个电阻值，即可得到等效配置，便于电路分析与设计。",
+      "zh-TW": "立即轉換三角形（Δ）與星形（Y）電阻網路。輸入三個電阻值，即可取得等效配置，方便電路分析與設計。",
+      ja: "デルタ（Δ）とスター（Y）の抵抗網を即座に変換。3つの抵抗値を入力すると、等価回路がすぐにわかります。",
+      ko: "델타(Δ)와 와이(Y) 저항망을 즉시 변환하세요. 세 저항값을 입력하면 회로 분석과 설계에 필요한 등가 구성이 표시됩니다.",
+      es: "Convierte al instante redes de resistencias Delta (Δ) y Estrella (Y). Introduce tres valores y obtén la configuración equivalente para diseño y análisis.",
+      fr: "Convertissez instantanément des réseaux de résistances Triangle (Δ) et Étoile (Y). Saisissez trois valeurs et obtenez la configuration équivalente.",
+      de: "Delta- (Δ) und Stern-Netzwerke sofort umrechnen. Geben Sie drei Widerstandswerte ein und erhalten Sie die äquivalente Schaltung für Analyse und Entwurf.",
+      pt: "Converta instantaneamente redes de resistores Delta (Δ) e Estrela (Y). Informe três valores e obtenha a configuração equivalente para análise e projeto.",
+      ru: "Мгновенно преобразуйте сети резисторов Δ и Y. Введите три значения и получите эквивалентную схему для анализа и проектирования."
     }
   },
   {
@@ -2286,39 +2286,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "delta-v-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "delta-v-ji-suan-qi",
+      "zh-TW": "delta-v-ji-suan-qi",
+      ja: "delta-v-keisanki",
+      ko: "delta-v-gyesangi",
+      es: "calculadora-delta-v",
+      fr: "calculateur-delta-v",
+      de: "delta-v-rechner",
+      pt: "calculadora-delta-v",
+      ru: "kalkulyator-delta-v"
     },
     titles: {
       en: "Delta-V Calculator – Tsiolkovsky Rocket Equation",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "Delta-V 计算器 - 齐奥尔科夫斯基火箭方程",
+      "zh-TW": "Delta-V 計算器 - 齊奧爾科夫斯基火箭方程",
+      ja: "Delta-V計算機 - ツィオルコフスキーのロケット方程式",
+      ko: "Delta-V 계산기 - 치올콥스키 로켓 방정식",
+      es: "Calculadora Delta-V - Ecuación del cohete de Tsiolkovski",
+      fr: "Calculateur Delta-V - Équation de Tsiolkovski",
+      de: "Delta-V-Rechner - Ziolkowski-Raketengleichung",
+      pt: "Calculadora Delta-V - Equação do foguete de Tsiolkovsky",
+      ru: "Калькулятор Delta-V - уравнение ракеты Циолковского"
     },
     descriptions: {
       en: "Calculate delta-v using the Tsiolkovsky rocket equation. Enter initial mass, final mass, and exhaust velocity for orbital maneuver and mission planning.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "使用齐奥尔科夫斯基火箭方程计算 delta-v。输入初始质量、最终质量和排气速度，用于轨道机动和任务规划。",
+      "zh-TW": "使用齊奧爾科夫斯基火箭方程計算 delta-v。輸入初始質量、最終質量和排氣速度，用於軌道機動與任務規劃。",
+      ja: "ツィオルコフスキーのロケット方程式でdelta-vを計算。初期質量、最終質量、排気速度を入力し、軌道マヌーバやミッション計画に活用できます。",
+      ko: "치올콥스키 로켓 방정식으로 delta-v를 계산하세요. 초기 질량, 최종 질량, 배기 속도를 입력해 궤도 기동과 임무 계획에 활용합니다.",
+      es: "Calcula delta-v con la ecuación del cohete de Tsiolkovski. Introduce masa inicial, masa final y velocidad de escape para maniobras orbitales.",
+      fr: "Calculez le delta-v avec l'équation de Tsiolkovski. Saisissez masse initiale, masse finale et vitesse d'éjection pour vos manœuvres orbitales.",
+      de: "Berechne Delta-v mit der Ziolkowski-Raketengleichung. Anfangsmasse, Endmasse und Ausströmgeschwindigkeit für Bahnmanöver eingeben.",
+      pt: "Calcule delta-v com a equação do foguete de Tsiolkovsky. Informe massa inicial, massa final e velocidade de exaustão para manobras orbitais.",
+      ru: "Рассчитайте delta-v по уравнению ракеты Циолковского. Введите начальную массу, конечную массу и скорость истечения для орбитальных маневров."
     }
   },
   {
@@ -2326,39 +2326,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "density-altitude-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "midu-gaodu-jisuanqi",
+      "zh-TW": "midu-gaodu-jisuanqi",
+      ja: "mitsudo-kodo-keisanki",
+      ko: "mildo-godo-gyesangi",
+      es: "calculadora-altitud-densidad",
+      fr: "calculateur-altitude-densite",
+      de: "dichtehoehenrechner",
+      pt: "calculadora-altitude-densidade",
+      ru: "kalkulyator-plotnostnoy-vysoty"
     },
     titles: {
       en: "Density Altitude Calculator – Aviation Performance Tool",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "密度高度计算器",
+      "zh-TW": "密度高度計算器",
+      ja: "密度高度計算機",
+      ko: "밀도고도 계산기",
+      es: "Calculadora de altitud densidad",
+      fr: "Calculateur d’altitude densité",
+      de: "Dichtehöhenrechner",
+      pt: "Calculadora de altitude densidade",
+      ru: "Калькулятор плотностной высоты"
     },
     descriptions: {
       en: "Calculate density altitude and air density from pressure altitude, temperature, and humidity. Essential aviation tool for aircraft performance planning.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据压力高度、温度和湿度计算密度高度与空气密度。飞行性能规划的必备工具。",
+      "zh-TW": "根據壓力高度、溫度與濕度計算密度高度與空氣密度。飛行性能規劃的必備工具。",
+      ja: "気圧高度、気温、湿度から密度高度と空気密度を計算。航空機性能計画に必須のツールです。",
+      ko: "기압고도, 기온, 습도로 밀도고도와 공기밀도를 계산합니다. 항공 성능 계획에 필수인 도구입니다.",
+      es: "Calcula la altitud densidad y la densidad del aire a partir de la altitud de presión, la temperatura y la humedad.",
+      fr: "Calculez l’altitude densité et la densité de l’air à partir de l’altitude-pression, de la température et de l’humidité.",
+      de: "Berechnen Sie Dichtehöhe und Luftdichte aus Druckhöhe, Temperatur und Luftfeuchtigkeit.",
+      pt: "Calcule a altitude densidade e a densidade do ar com base na altitude de pressão, temperatura e umidade.",
+      ru: "Рассчитайте плотностную высоту и плотность воздуха по барометрической высоте, температуре и влажности."
     }
   },
   {
@@ -2366,39 +2366,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "density-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "midu-jisuanqi",
+      "zh-TW": "midu-jisuanqi",
+      ja: "mitsudo-keisanki",
+      ko: "mildo-gyesangi",
+      es: "calculadora-de-densidad",
+      fr: "calculateur-de-densite",
+      de: "dichte-rechner",
+      pt: "calculadora-de-densidade",
+      ru: "kalkulyator-plotnosti"
     },
     titles: {
       en: "Density Calculator – Mass, Volume and Density Formula",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "密度计算器",
+      "zh-TW": "密度計算器",
+      ja: "密度計算機",
+      ko: "밀도 계산기",
+      es: "Calculadora de densidad",
+      fr: "Calculateur de densité",
+      de: "Dichte-Rechner",
+      pt: "Calculadora de densidade",
+      ru: "Калькулятор плотности"
     },
     descriptions: {
       en: "Calculate density, mass, or volume using ρ = m/V. Supports multiple units for physics, chemistry, engineering, and material science applications.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "使用 ρ = m/V 计算密度、质量或体积，支持物理、化学、工程和材料科学中的多种单位。",
+      "zh-TW": "使用 ρ = m/V 計算密度、質量或體積，支援物理、化學、工程與材料科學的多種單位。",
+      ja: "ρ = m/V を使って密度・質量・体積を計算。物理、化学、工学、材料科学向けの複数単位に対応。",
+      ko: "ρ = m/V로 밀도, 질량, 부피를 계산합니다. 물리, 화학, 공학, 재료과학에 필요한 다양한 단위를 지원합니다.",
+      es: "Calcula densidad, masa o volumen con ρ = m/V. Compatible con varias unidades para física, química, ingeniería y ciencia de materiales.",
+      fr: "Calculez la densité, la masse ou le volume avec ρ = m/V. Prend en charge plusieurs unités pour la physique, la chimie et l’ingénierie.",
+      de: "Berechnen Sie Dichte, Masse oder Volumen mit ρ = m/V. Unterstützt mehrere Einheiten für Physik, Chemie, Technik und Materialwissenschaft.",
+      pt: "Calcule densidade, massa ou volume com ρ = m/V. Compatível com várias unidades para física, química, engenharia e ciência dos materiais.",
+      ru: "Рассчитайте плотность, массу или объём по формуле ρ = m/V. Поддерживаются разные единицы для физики, химии и инженерии."
     }
   },
   {
@@ -4441,8 +4441,4 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   }
-
-
-
-
 ];

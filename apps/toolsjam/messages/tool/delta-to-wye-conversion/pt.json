@@ -1,0 +1,92 @@
+{
+  "title": "Calculadora de conversão Delta para Estrela",
+  "tagline": "Converta entre configurações elétricas Delta (Δ) e Estrela (Y) e calcule resistências equivalentes instantaneamente.",
+  "intro": "Escolha a direção da conversão, informe os três valores de resistência e obtenha as resistências equivalentes da outra configuração.",
+  "field": {
+    "type": "Tipo de conversão",
+    "r1": "Resistência R1 (Ω)",
+    "r2": "Resistência R2 (Ω)",
+    "r3": "Resistência R3 (Ω)"
+  },
+  "type": {
+    "deltaToWye": "Delta para Estrela (Δ → Y)",
+    "wyeToDelta": "Estrela para Delta (Y → Δ)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Informe valores de resistência positivos e válidos para R1, R2 e R3.",
+    "zero": "Os valores de resistência devem ser maiores que zero."
+  },
+  "result": {
+    "heading": "Resultados da conversão",
+    "deltaToWye": "Resultados de Delta para Estrela",
+    "wyeToDelta": "Resultados de Estrela para Delta",
+    "ra": "Ra",
+    "rb": "Rb",
+    "rc": "Rc",
+    "rab": "R12",
+    "rbc": "R23",
+    "rca": "R31"
+  },
+  "about": {
+    "heading": "Sobre a conversão Delta para Estrela",
+    "body": "As configurações Delta (Δ) e Estrela (Y) são duas formas fundamentais de conectar três resistores (ou impedâncias) em uma rede elétrica de três terminais. Seus nomes vêm da semelhança com a letra grega delta e com a letra Y. Essas topologias aparecem em engenharia elétrica, sistemas de potência e análise de circuitos o tempo todo. Saber transformar uma na outra é uma habilidade essencial para simplificar redes complexas que não podem ser reduzidas apenas com combinações série-paralelo.\n\nNa configuração Delta, três resistores formam um laço triangular entre os nós A, B e C. Cada resistor fica diretamente entre dois dos três terminais: R12 entre A e B, R23 entre B e C, e R31 entre C e A. A Delta é comum em distribuição trifásica porque fornece um caminho para correntes circulantes e simplifica o fornecimento de potência reativa. Porém, para análise de circuitos, muitas vezes é mais fácil converter a rede Delta em uma Estrela equivalente antes de aplicar as leis de Kirchhoff ou o método das tensões nodais.\n\nNa configuração Estrela (também chamada de Star), três resistores conectam um nó neutro central a cada um dos três terminais externos. Ra liga o neutro ao terminal A, Rb ao terminal B e Rc ao terminal C. Como o ponto neutro é acessível, redes em Estrela tornam medições de tensão mais simples e são o padrão em sistemas trifásicos equilibrados, nos quais o neutro conduz a corrente de retorno.\n\nAs fórmulas de transformação de Delta para Estrela são derivadas igualando a resistência medida entre cada par de terminais nas duas redes. Para os resistores Delta R1 (A-B), R2 (B-C) e R3 (C-A), as resistências equivalentes em Estrela são: Ra = R1·R3 / (R1+R2+R3), Rb = R1·R2 / (R1+R2+R3) e Rc = R2·R3 / (R1+R2+R3). Observe que R1+R2+R3 aparece em todos os denominadores, atuando como fator de normalização.\n\nA transformação inversa de Estrela para Delta é igualmente importante. Dados os resistores Ra, Rb e Rc, primeiro calcule S = Ra·Rb + Rb·Rc + Rc·Ra. Depois, R12 = S/Rc, R23 = S/Ra e R31 = S/Rb. Em uma rede equilibrada, se Ra = Rb = Rc = RY, a resistência Delta equivalente é RΔ = 3·RY. Ao contrário, cada ramo da Estrela equivale a um terço do ramo Delta: RY = RΔ/3.\n\nEssas transformações são amplamente usadas em engenharia de sistemas de potência para simplificar cálculos de fluxo de carga, na análise de pontes para eliminar ramos que não são série nem paralelo e no projeto de filtros quando o casamento de impedância exige mudar entre topologias. As mesmas fórmulas se estendem a impedâncias complexas — basta substituir cada resistência R por uma impedância Z = R + jX — tornando a técnica igualmente aplicável a circuitos CA em qualquer frequência."
+  },
+  "examples": {
+    "heading": "Exemplos de conversão Delta para Estrela",
+    "intro": "Exemplos resolvidos mostrando as duas direções de conversão com valores de resistência realistas.",
+    "colInput": "Configuração de entrada",
+    "colOutput": "Resultado",
+    "colNote": "Observações",
+    "items": [
+      {
+        "input": "Delta equilibrada: R1 = R2 = R3 = 10 Ω → Estrela",
+        "output": "Ra = Rb = Rc = 3.33 Ω",
+        "note": "Uma Delta equilibrada se converte em uma Estrela equilibrada, em que cada ramo vale um terço da resistência Delta."
+      },
+      {
+        "input": "Delta desequilibrada: R1 = 5 Ω, R2 = 10 Ω, R3 = 15 Ω → Estrela",
+        "output": "Ra = 2.5 Ω, Rb = 1.67 Ω, Rc = 5.0 Ω",
+        "note": "Soma = 30 Ω. Ra = 5×15/30, Rb = 5×10/30, Rc = 10×15/30."
+      },
+      {
+        "input": "Estrela: Ra = 6 Ω, Rb = 8 Ω, Rc = 12 Ω → Delta",
+        "output": "R12 = 18 Ω, R23 = 36 Ω, R31 = 27 Ω",
+        "note": "S = 6×8 + 8×12 + 12×6 = 216. R12 = 216/12, R23 = 216/6, R31 = 216/8."
+      },
+      {
+        "input": "Delta de distribuição: R1 = 2.5 Ω, R2 = 3.0 Ω, R3 = 2.8 Ω → Estrela",
+        "output": "Ra = 0.843 Ω, Rb = 0.904 Ω, Rc = 1.012 Ω",
+        "note": "Resistências típicas de alimentadores em uma pequena rede de distribuição convertidas para Estrela para análise de fluxo de carga."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de conversão Delta para Estrela",
+    "steps": [
+      "Selecione a direção da conversão: escolha 'Delta para Estrela (Δ → Y)' se seus três resistores formam um laço triangular, ou 'Estrela para Delta (Y → Δ)' se eles estão conectados por um nó central.",
+      "Informe os três valores de resistência (R1, R2, R3) em ohms. Todos os valores devem ser números positivos e diferentes de zero.",
+      "Clique em Calcular. A calculadora mostra os três resistores equivalentes da configuração convertida.",
+      "Leia o resultado: para Delta para Estrela, você obtém Ra, Rb e Rc (os três braços da estrela); para Estrela para Delta, você obtém R12, R23 e R31 (os três lados do triângulo).",
+      "Clique em Redefinir para limpar todos os campos e começar uma nova conversão com valores diferentes."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre a conversão Delta para Estrela",
+    "q1": "Quando devo usar uma transformação Delta para Estrela?",
+    "q1_a": "Use essa transformação sempre que um circuito contiver uma sub-rede Delta que impeça uma redução simples em série ou paralelo. Ao converter a Delta para sua Estrela equivalente, o circuito muitas vezes se torna uma estrutura mais fácil de resolver com a lei de Ohm e as leis de Kirchhoff. É especialmente comum na análise de pontes e em cálculos de potência trifásica.",
+    "q2": "As duas redes têm exatamente o mesmo comportamento nos terminais?",
+    "q2_a": "Sim — a Estrela equivalente e a Delta original produzem exatamente a mesma corrente e tensão nos três terminais externos para qualquer circuito conectado. A distribuição interna de corrente é diferente, mas de fora as duas são indistinguíveis. Essa equivalência é a base matemática da transformação.",
+    "q3": "Qual é a regra para redes equilibradas?",
+    "q3_a": "Quando os três resistores Delta são iguais (R1 = R2 = R3 = RΔ), cada braço da Estrela vale RΔ/3. Por outro lado, se os três braços da Estrela forem iguais (Ra = Rb = Rc = RY), cada lado da Delta vale 3·RY. Esse atalho é útil em cargas trifásicas equilibradas e filtros em escada simétricos.",
+    "q4": "Posso usar essas fórmulas para impedâncias em CA?",
+    "q4_a": "Com certeza. Basta substituir cada resistência R por uma impedância complexa Z = R + jωL − j/(ωC). As fórmulas de transformação mantêm exatamente a mesma forma; apenas os valores R são trocados por Z. Isso torna a técnica aplicável também a redes indutivas ou capacitivas em qualquer frequência.",
+    "q5": "Por que minha calculadora mostra rótulos diferentes para os resistores Delta?",
+    "q5_a": "Porque livros didáticos usam convenções diferentes. Alguns chamam os braços da Delta de R12, R23 e R31 para indicar quais pares de nós eles conectam; outros usam Ra, Rb e Rc para os braços da Estrela. Esta calculadora usa R1, R2 e R3 para simplificar a entrada e mapeia os resultados para a notação padrão.",
+    "q6": "A transformação é reversível sem erro?",
+    "q6_a": "Sim — converter uma rede de Delta para Estrela e depois voltar para Delta recupera exatamente os valores originais, limitado apenas pelo arredondamento de ponto flutuante nos cálculos. Esta calculadora usa precisão dupla IEEE-754, então os erros de arredondamento ficam abaixo de 10⁻¹⁰ em relação aos valores de entrada."
+  }
+}

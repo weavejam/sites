@@ -1,0 +1,90 @@
+{
+  "title": "Calculateur Delta-V",
+  "tagline": "Calculez le changement de vitesse nécessaire aux missions spatiales avec l'équation de Tsiolkovski, de l'insertion en LEO aux transferts interplanétaires.",
+  "intro": "Saisissez la masse initiale, la masse finale (après la poussée) et la vitesse d'éjection pour calculer le delta-v, le carburant consommé et l'impulsion spécifique.",
+  "field": {
+    "initialMass": "Masse initiale (kg)",
+    "finalMass": "Masse finale (kg)",
+    "exhaustVelocity": "Vitesse d'éjection (m/s)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs positives valides pour les trois champs.",
+    "massRatio": "La masse initiale doit être supérieure à la masse finale (la masse de carburant doit être positive).",
+    "exhaustZero": "La vitesse d'éjection doit être supérieure à zéro."
+  },
+  "result": {
+    "heading": "Résultats Delta-V",
+    "deltaV": "Delta-V (ΔV)",
+    "fuelMass": "Masse de carburant",
+    "massRatio": "Rapport de masse (m₀/mf)",
+    "specificImpulse": "Impulsion spécifique (Isp)",
+    "unit": {
+      "ms": "m/s",
+      "kms": "km/s",
+      "kg": "kg",
+      "s": "s"
+    }
+  },
+  "about": {
+    "heading": "À propos du calculateur Delta-V",
+    "body": "Le delta-v (noté Δv) est la grandeur la plus importante de la mécanique orbitale. Il représente le changement total de vitesse qu'un engin spatial doit accomplir au cours d'une mission, que ce soit pour échapper à la gravité terrestre, atteindre une orbite circulaire, passer d'une orbite à une autre ou ralentir avant un atterrissage planétaire. Comme les changements de vitesse dans l'espace nécessitent du propergol, les concepteurs de mission considèrent le delta-v comme un budget : plus la demande totale de delta-v est élevée, plus la fusée doit emporter de propergol, et donc plus la mission devient lourde et coûteuse.\n\nL'équation de la fusée de Tsiolkovski, publiée par Constantin Tsiolkovski en 1903, est le fondement mathématique de tous les calculs de delta-v. Elle s'écrit : ΔV = Ve × ln(m₀ / mf), où Ve est la vitesse effective d'éjection du propergol (en mètres par seconde), m₀ la masse humide initiale de l'engin spatial (incluant tout le propergol) et mf la masse sèche finale (après consommation du propergol). Le logarithme naturel du rapport de masse m₀/mf signifie que doubler le delta-v exige un rapport de masse exponentiellement plus élevé : c'est le défi fondamental de la propulsion par fusée et la raison pour laquelle les fusées à étages sont utilisées pour les missions à fort delta-v.\n\nLa vitesse d'éjection Ve est étroitement liée à l'impulsion spécifique Isp par la relation Ve = Isp × g₀, où g₀ = 9.80665 m/s² est l'accélération standard de la pesanteur à la surface de la Terre. L'impulsion spécifique se mesure en secondes et fournit une mesure de l'efficacité du moteur indépendante du propergol. Une fusée chimique brûlant de l'hydrogène liquide et de l'oxygène atteint Isp ≈ 450 s (Ve ≈ 4,415 m/s), tandis que les propulseurs ioniques peuvent atteindre Isp > 3,000 s au prix d'une poussée très faible. Un Isp plus élevé signifie qu'il faut moins de propergol pour le même delta-v, ce qui explique pourquoi les concepteurs d'engins spatiaux investissent massivement dans des moteurs à hautes performances.\n\nLes budgets delta-v typiques illustrent l'échelle du voyage spatial : atteindre l'orbite terrestre basse (LEO) depuis le sol nécessite environ 9,400 m/s (dont une grande partie compense la traînée atmosphérique et les pertes gravitationnelles pendant l'ascension) ; un transfert de Hohmann de la LEO vers l'orbite géostationnaire (GEO) coûte environ 3,900 m/s ; un transfert Terre–Mars demande environ 3,600 m/s depuis la LEO ; et l'atterrissage sur la Lune depuis l'orbite lunaire nécessite environ 1,900 m/s. Ces valeurs s'additionnent vite : chaque kilogramme de charge utile ou de masse structurelle se traduit directement, via l'équation de la fusée, par une augmentation notable du propergol requis.\n\nCe calculateur utilise les trois entrées principales — masse initiale, masse finale et vitesse d'éjection — et renvoie le delta-v en m/s et en km/s, la masse de carburant consommée, le rapport de masse et l'impulsion spécifique équivalente. Ces résultats sont utiles pour la planification préliminaire de missions, la comparaison de systèmes de propulsion et la vérification des sorties de logiciels de trajectoire."
+  },
+  "examples": {
+    "heading": "Exemples du calculateur Delta-V",
+    "intro": "Scénarios de mission réalistes, des manœuvres de satellites aux transferts interplanétaires.",
+    "colInput": "Mission / Entrées",
+    "colOutput": "Delta-V",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Insertion en LEO : m₀ = 1000 kg, mf = 300 kg, Ve = 3000 m/s",
+        "output": "ΔV ≈ 3611 m/s",
+        "note": "Rapport de masse = 3.33 ; ln(3.33) × 3000. Représente la fraction de propergol nécessaire pour placer une charge utile depuis une trajectoire suborbitale sur une orbite circulaire de 200 km."
+      },
+      {
+        "input": "Transfert vers GEO : m₀ = 500 kg, mf = 200 kg, Ve = 3200 m/s",
+        "output": "ΔV ≈ 2929 m/s",
+        "note": "Rapport de masse = 2.5 ; ln(2.5) × 3200. Allumage typique d'un moteur d'apogée pour circulariser à l'altitude géostationnaire depuis une orbite de transfert de Hohmann."
+      },
+      {
+        "input": "Transfert vers Mars : m₀ = 2000 kg, mf = 800 kg, Ve = 3500 m/s",
+        "output": "ΔV ≈ 3211 m/s",
+        "note": "Rapport de masse = 2.5 ; ln(2.5) × 3500. Allumage approximatif d'injection transmartienne nécessaire pour quitter l'orbite terrestre sur une trajectoire à énergie minimale vers Mars."
+      },
+      {
+        "input": "Manœuvre de satellite : m₀ = 100 kg, mf = 95 kg, Ve = 2800 m/s",
+        "output": "ΔV ≈ 144 m/s",
+        "note": "Faible rapport de masse = 1.053 ; ln(1.053) × 2800. Allumage typique de maintien à poste ou de correction d'orbite pour un petit satellite d'observation de la Terre."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur Delta-V",
+    "steps": [
+      "Saisissez la masse initiale (humide) de l'engin spatial en kilogrammes : c'est la masse totale incluant tout le propergol chargé pour l'allumage.",
+      "Saisissez la masse finale (sèche) en kilogrammes : c'est la masse restante une fois le propergol épuisé.",
+      "Saisissez la vitesse effective d'éjection de votre moteur en m/s. Si vous ne connaissez que l'impulsion spécifique (Isp en secondes), multipliez-la par 9.80665 pour obtenir la vitesse d'éjection.",
+      "Cliquez sur Calculer. Les résultats affichent le delta-v en m/s et en km/s, la masse de carburant consommée, le rapport de masse et l'impulsion spécifique équivalente.",
+      "Cliquez sur Réinitialiser pour effacer toutes les valeurs et démarrer un nouveau calcul."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur Delta-V",
+    "q1": "Qu'est-ce que le delta-v et pourquoi est-il important ?",
+    "q1_a": "Le delta-v est le changement total de vitesse qu'un engin spatial doit obtenir par propulsion. Il détermine la quantité de propergol nécessaire à une mission : comme l'équation de la fusée est exponentielle, chaque m/s supplémentaire de delta-v demandé multiplie la masse de propergol requise, ce qui fait du delta-v le facteur central de conception de toutes les missions par fusée.",
+    "q2": "Comment convertir l'impulsion spécifique en vitesse d'éjection ?",
+    "q2_a": "Multipliez l'Isp (en secondes) par la gravité standard g₀ = 9.80665 m/s². Par exemple, un moteur avec Isp = 311 s a une vitesse d'éjection de 311 × 9.80665 ≈ 3050 m/s. Inversement, divisez la vitesse d'éjection par g₀ pour retrouver l'impulsion spécifique.",
+    "q3": "Pourquoi l'équation de la fusée utilise-t-elle un logarithme naturel ?",
+    "q3_a": "Parce qu'à mesure qu'une fusée brûle du propergol, sa masse diminue continuellement, et chaque petite masse éjectée fournit une accélération légèrement plus grande au véhicule devenu plus léger. L'intégration de cette accélération variable dans le temps produit la relation logarithmique. En conséquence, doubler le delta-v exige de mettre au carré le rapport de masse, ce qui rend les missions à fort Δv extrêmement gourmandes en propergol.",
+    "q4": "Quelles sont les valeurs typiques de delta-v pour les missions spatiales courantes ?",
+    "q4_a": "Atteindre l'orbite terrestre basse depuis le sol nécessite ≈9,400 m/s (pertes gravitationnelles et de traînée incluses). Le transfert de LEO vers GEO demande ≈3,900 m/s. De la Terre vers Mars, ≈3,600 m/s depuis la LEO. L'alunissage depuis l'orbite lunaire demande ≈1,900 m/s. Ces chiffres expliquent pourquoi même de petites hausses de charge utile exigent des fusées disproportionnellement plus grandes.",
+    "q5": "Ce calculateur peut-il gérer plusieurs allumages ?",
+    "q5_a": "Pour une mission à plusieurs allumages, calculez chaque allumage séparément puis additionnez les valeurs de delta-v. Le delta-v total de la mission est la somme arithmétique de tous les allumages individuels. Pour chaque allumage, utilisez comme masse initiale la masse de l'engin spatial au début de cet allumage. Cette méthode fournit le budget de propergol de chaque étage ou manœuvre.",
+    "q6": "Qu'est-ce qu'un rapport de masse et quelles valeurs sont typiques ?",
+    "q6_a": "Le rapport de masse est m₀/mf : la masse initiale divisée par la masse finale. Un rapport de 2 signifie que la moitié de la masse initiale était du propergol. Les fusées chimiques vers la LEO ont besoin d'un rapport de masse d'environ 8–10, d'où l'utilisation de fusées à étages. Les sondes de l'espace lointain à propulsion ionique peuvent atteindre le même delta-v avec des rapports de masse beaucoup plus faibles grâce à leurs vitesses d'éjection extrêmement élevées."
+  }
+}

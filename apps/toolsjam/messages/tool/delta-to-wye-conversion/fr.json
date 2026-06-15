@@ -1,0 +1,92 @@
+{
+  "title": "Calculateur de conversion triangle-étoile",
+  "tagline": "Convertissez entre les configurations électriques Triangle (Δ) et Étoile (Y) et calculez instantanément les résistances équivalentes.",
+  "intro": "Choisissez le sens de conversion, saisissez trois valeurs de résistance et obtenez les résistances équivalentes de l’autre configuration.",
+  "field": {
+    "type": "Type de conversion",
+    "r1": "Résistance R1 (Ω)",
+    "r2": "Résistance R2 (Ω)",
+    "r3": "Résistance R3 (Ω)"
+  },
+  "type": {
+    "deltaToWye": "Triangle vers Étoile (Δ → Y)",
+    "wyeToDelta": "Étoile vers Triangle (Y → Δ)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs de résistance positives et valides pour R1, R2 et R3.",
+    "zero": "Les valeurs de résistance doivent être supérieures à zéro."
+  },
+  "result": {
+    "heading": "Résultats de la conversion",
+    "deltaToWye": "Résultats Triangle vers Étoile",
+    "wyeToDelta": "Résultats Étoile vers Triangle",
+    "ra": "Ra",
+    "rb": "Rb",
+    "rc": "Rc",
+    "rab": "R12",
+    "rbc": "R23",
+    "rca": "R31"
+  },
+  "about": {
+    "heading": "À propos de la conversion triangle-étoile",
+    "body": "Les configurations Triangle (Δ) et Étoile (Y) sont deux façons fondamentales de connecter trois résistances (ou impédances) dans un réseau électrique à trois bornes. Leurs noms viennent de leur ressemblance avec la lettre grecque delta et la lettre Y. Ces topologies apparaissent partout en génie électrique, dans les systèmes de puissance et dans l’analyse de circuits. Savoir passer de l’une à l’autre est une compétence essentielle pour simplifier des réseaux complexes qu’on ne peut pas réduire par de simples combinaisons série-parallèle.\n\nDans une configuration Triangle, trois résistances forment une boucle triangulaire entre les nœuds A, B et C. Chaque résistance se situe directement entre deux bornes : R12 entre A et B, R23 entre B et C, et R31 entre C et A. Le Triangle est courant en distribution triphasée parce qu’il fournit un chemin pour les courants circulants et simplifie la fourniture de puissance réactive. Pour l’analyse de circuits, il est toutefois souvent plus simple de convertir d’abord le Triangle en Étoile équivalente avant d’appliquer les lois de Kirchhoff ou la méthode des tensions nodales.\n\nDans une configuration Étoile (aussi appelée Star), trois résistances relient un nœud neutre central à chacune des trois bornes externes. Ra relie le neutre à la borne A, Rb à la borne B et Rc à la borne C. Comme le point neutre est accessible, les réseaux en Étoile rendent les mesures de tension plus simples et constituent la norme dans les systèmes triphasés équilibrés où le neutre transporte le courant de retour.\n\nLes formules de transformation Triangle vers Étoile sont obtenues en égalant la résistance mesurée entre chaque paire de bornes dans les deux réseaux. Pour les résistances Triangle R1 (A-B), R2 (B-C) et R3 (C-A), les résistances Étoile équivalentes sont : Ra = R1·R3 / (R1+R2+R3), Rb = R1·R2 / (R1+R2+R3), et Rc = R2·R3 / (R1+R2+R3). Remarquez que R1+R2+R3 apparaît dans chaque dénominateur, jouant le rôle de facteur de normalisation.\n\nLa transformation inverse Étoile vers Triangle est tout aussi importante. Étant données les résistances Ra, Rb et Rc, on calcule d’abord S = Ra·Rb + Rb·Rc + Rc·Ra. Puis R12 = S/Rc, R23 = S/Ra et R31 = S/Rb. Dans un réseau équilibré où Ra = Rb = Rc = RY, la résistance Triangle équivalente vaut RΔ = 3·RY. Inversement, chaque branche de l’Étoile vaut un tiers de la branche Triangle : RY = RΔ/3.\n\nCes transformations sont largement utilisées en ingénierie des systèmes électriques pour simplifier les calculs de flux de puissance, dans l’analyse des ponts pour éliminer des branches qui ne sont ni en série ni en parallèle, et dans la conception de filtres lorsque l’adaptation d’impédance exige de changer de topologie. Les mêmes formules s’étendent aux impédances complexes : il suffit de remplacer chaque résistance R par une impédance Z = R + jX, ce qui rend la méthode valable pour les circuits CA à n’importe quelle fréquence."
+  },
+  "examples": {
+    "heading": "Exemples de conversion triangle-étoile",
+    "intro": "Exemples détaillés montrant les deux sens de conversion avec des valeurs de résistance réalistes.",
+    "colInput": "Configuration d’entrée",
+    "colOutput": "Résultat",
+    "colNote": "Remarques",
+    "items": [
+      {
+        "input": "Triangle équilibré : R1 = R2 = R3 = 10 Ω → Étoile",
+        "output": "Ra = Rb = Rc = 3.33 Ω",
+        "note": "Un Triangle équilibré se convertit en Étoile équilibrée, où chaque branche vaut un tiers de la résistance Triangle."
+      },
+      {
+        "input": "Triangle déséquilibré : R1 = 5 Ω, R2 = 10 Ω, R3 = 15 Ω → Étoile",
+        "output": "Ra = 2.5 Ω, Rb = 1.67 Ω, Rc = 5.0 Ω",
+        "note": "Somme = 30 Ω. Ra = 5×15/30, Rb = 5×10/30, Rc = 10×15/30."
+      },
+      {
+        "input": "Étoile : Ra = 6 Ω, Rb = 8 Ω, Rc = 12 Ω → Triangle",
+        "output": "R12 = 18 Ω, R23 = 36 Ω, R31 = 27 Ω",
+        "note": "S = 6×8 + 8×12 + 12×6 = 216. R12 = 216/12, R23 = 216/6, R31 = 216/8."
+      },
+      {
+        "input": "Triangle de distribution : R1 = 2.5 Ω, R2 = 3.0 Ω, R3 = 2.8 Ω → Étoile",
+        "output": "Ra = 0.843 Ω, Rb = 0.904 Ω, Rc = 1.012 Ω",
+        "note": "Résistances typiques d’un petit réseau de distribution converties en Étoile pour l’analyse de flux de puissance."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de conversion triangle-étoile",
+    "steps": [
+      "Choisissez le sens de conversion : sélectionnez 'Triangle vers Étoile (Δ → Y)' si vos trois résistances forment une boucle triangulaire, ou 'Étoile vers Triangle (Y → Δ)' si elles sont reliées via un nœud central.",
+      "Saisissez les trois valeurs de résistance (R1, R2, R3) en ohms. Elles doivent toutes être positives et non nulles.",
+      "Cliquez sur Calculer. Le calculateur affiche les trois résistances équivalentes de la configuration convertie.",
+      "Lisez le résultat : pour Triangle vers Étoile, vous obtenez Ra, Rb et Rc (les trois branches de l’étoile) ; pour Étoile vers Triangle, vous obtenez R12, R23 et R31 (les trois côtés du triangle).",
+      "Cliquez sur Réinitialiser pour effacer tous les champs et recommencer avec d’autres valeurs."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la conversion triangle-étoile",
+    "q1": "Quand faut-il utiliser une transformation Triangle vers Étoile ?",
+    "q1_a": "Utilisez cette transformation lorsqu’un circuit contient un sous-réseau Triangle qui empêche une réduction simple en série ou en parallèle. En convertissant le Triangle en Étoile équivalente, le circuit devient souvent une structure plus facile à résoudre avec la loi d’Ohm et les lois de Kirchhoff. C’est particulièrement courant dans l’analyse des ponts et les calculs de puissance triphasée.",
+    "q2": "Les deux réseaux ont-ils exactement le même comportement aux bornes ?",
+    "q2_a": "Oui — l’Étoile équivalente et le Triangle d’origine produisent exactement le même courant et la même tension aux trois bornes externes pour n’importe quel circuit externe. La répartition interne du courant diffère, mais de l’extérieur les deux réseaux sont indiscernables. Cette équivalence constitue la base mathématique de la transformation.",
+    "q3": "Quelle est la règle pour les réseaux équilibrés ?",
+    "q3_a": "Lorsque les trois résistances Triangle sont égales (R1 = R2 = R3 = RΔ), chaque branche de l’Étoile vaut RΔ/3. Inversement, si les trois branches de l’Étoile sont égales (Ra = Rb = Rc = RY), chaque côté du Triangle vaut 3·RY. Cette astuce est très utile pour les charges triphasées équilibrées et les filtres en échelle symétriques.",
+    "q4": "Puis-je utiliser ces formules pour des impédances en CA ?",
+    "q4_a": "Absolument. Remplacez simplement chaque résistance R par une impédance complexe Z = R + jωL − j/(ωC). Les formules de transformation gardent exactement la même forme ; il suffit de substituer les valeurs Z aux valeurs R. La méthode s’applique donc aussi aux réseaux inductifs ou capacitifs à n’importe quelle fréquence.",
+    "q5": "Pourquoi mon calculateur affiche-t-il des libellés différents pour les résistances Triangle ?",
+    "q5_a": "Les manuels utilisent des conventions différentes. Certains appellent les branches Triangle R12, R23 et R31 pour indiquer la paire de nœuds qu’elles relient ; d’autres utilisent Ra, Rb et Rc pour les branches de l’Étoile. Ce calculateur emploie R1, R2 et R3 pour simplifier la saisie et mappe ensuite les résultats vers la notation standard.",
+    "q6": "La transformation est-elle réversible sans erreur ?",
+    "q6_a": "Oui — convertir un réseau de Triangle en Étoile puis revenir en Triangle permet de retrouver exactement les valeurs d’origine, à la seule limite des arrondis en virgule flottante. Ce calculateur utilise la double précision IEEE-754, donc les erreurs d’arrondi sont inférieures à 10⁻¹⁰ par rapport aux valeurs d’entrée."
+  }
+}

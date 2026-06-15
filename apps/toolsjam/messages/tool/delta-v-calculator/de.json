@@ -1,0 +1,90 @@
+{
+  "title": "Delta-V-Rechner",
+  "tagline": "Berechne die für Raumfahrtmissionen nötige Geschwindigkeitsänderung mit der Ziolkowski-Raketengleichung - von der LEO-Insertion bis zu interplanetaren Transfers.",
+  "intro": "Gib Anfangsmasse, Endmasse (nach dem Brennen) und Ausströmgeschwindigkeit ein, um Delta-v, verbrauchten Treibstoff und spezifischen Impuls zu berechnen.",
+  "field": {
+    "initialMass": "Anfangsmasse (kg)",
+    "finalMass": "Endmasse (kg)",
+    "exhaustVelocity": "Ausströmgeschwindigkeit (m/s)"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gib für alle drei Felder gültige positive Werte ein.",
+    "massRatio": "Die Anfangsmasse muss größer als die Endmasse sein (die Treibstoffmasse muss positiv sein).",
+    "exhaustZero": "Die Ausströmgeschwindigkeit muss größer als null sein."
+  },
+  "result": {
+    "heading": "Delta-V-Ergebnisse",
+    "deltaV": "Delta-V (ΔV)",
+    "fuelMass": "Treibstoffmasse",
+    "massRatio": "Massenverhältnis (m₀/mf)",
+    "specificImpulse": "Spezifischer Impuls (Isp)",
+    "unit": {
+      "ms": "m/s",
+      "kms": "km/s",
+      "kg": "kg",
+      "s": "s"
+    }
+  },
+  "about": {
+    "heading": "Über den Delta-V-Rechner",
+    "body": "Delta-v (geschrieben Δv) ist die wichtigste Einzelgröße der Orbitalmechanik. Es beschreibt die gesamte Geschwindigkeitsänderung, die ein Raumfahrzeug im Verlauf einer Mission erreichen muss - ob zum Verlassen der Erdgravitation, zum Erreichen einer Kreisbahn, zum Transfer zwischen Umlaufbahnen oder zum Abbremsen für eine Planetenlandung. Da Geschwindigkeitsänderungen im Weltraum Treibstoff erfordern, betrachten Missionsplaner Delta-v als Budget: Je höher der gesamte Delta-v-Bedarf, desto mehr Treibstoff muss die Rakete mitführen, und desto schwerer und teurer wird die Mission.\n\nDie Ziolkowski-Raketengleichung, 1903 von Konstantin Ziolkowski veröffentlicht, ist die mathematische Grundlage aller Delta-v-Berechnungen. Sie lautet: ΔV = Ve × ln(m₀ / mf), wobei Ve die effektive Ausströmgeschwindigkeit des Treibstoffs ist (in Metern pro Sekunde), m₀ die anfängliche Nassmasse des Raumfahrzeugs (einschließlich des gesamten Treibstoffs) und mf die endgültige Trockenmasse (nach Verbrauch des Treibstoffs). Der natürliche Logarithmus des Massenverhältnisses m₀/mf bedeutet, dass eine Verdopplung des Delta-v ein exponentiell größeres Massenverhältnis erfordert. Das ist die grundlegende Herausforderung des Raketenantriebs und der Grund, warum für Missionen mit hohem Delta-v Stufenraketen eingesetzt werden.\n\nDie Ausströmgeschwindigkeit Ve ist über die Beziehung Ve = Isp × g₀ eng mit dem spezifischen Impuls Isp verknüpft, wobei g₀ = 9.80665 m/s² die Standardfallbeschleunigung an der Erdoberfläche ist. Der spezifische Impuls wird in Sekunden gemessen und liefert ein vom Treibstoff unabhängiges Maß für die Triebwerkseffizienz. Eine chemische Rakete, die flüssigen Wasserstoff und Sauerstoff verbrennt, erreicht Isp ≈ 450 s (Ve ≈ 4,415 m/s), während Ionentriebwerke Isp > 3,000 s erreichen können, allerdings bei sehr geringem Schub. Ein höherer Isp bedeutet, dass für dasselbe Delta-v weniger Treibstoff benötigt wird - deshalb investieren Raumfahrzeugentwickler stark in Hochleistungstriebwerke.\n\nTypische Delta-v-Budgets verdeutlichen die Größenordnung der Raumfahrt: Das Erreichen einer niedrigen Erdumlaufbahn (LEO) vom Boden aus erfordert etwa 9,400 m/s (ein großer Teil davon entfällt auf Luftwiderstand und Gravitationsverluste während des Aufstiegs); ein Hohmann-Transfer von LEO in eine geostationäre Umlaufbahn (GEO) kostet etwa 3,900 m/s; ein Erde-Mars-Transfer benötigt von LEO aus rund 3,600 m/s; und eine Mondlandung aus der Mondumlaufbahn erfordert etwa 1,900 m/s. Diese Werte summieren sich schnell, weshalb jedes Kilogramm Nutzlast oder Strukturmasse durch die Raketengleichung direkt in deutlich mehr erforderlichen Treibstoff übersetzt wird.\n\nDieser Rechner verwendet die drei Haupteingaben - Anfangsmasse, Endmasse und Ausströmgeschwindigkeit - und gibt Delta-v sowohl in m/s als auch in km/s, die verbrauchte Treibstoffmasse, das Massenverhältnis und den äquivalenten spezifischen Impuls aus. Diese Ergebnisse sind nützlich für die Missionsplanung erster Ordnung, den Vergleich von Antriebssystemen und die Überprüfung von Ausgaben aus Flugbahnsoftware."
+  },
+  "examples": {
+    "heading": "Beispiele für den Delta-V-Rechner",
+    "intro": "Realistische Missionsszenarien von Satellitenmanövern bis zu interplanetaren Transfers.",
+    "colInput": "Mission / Eingaben",
+    "colOutput": "Delta-V",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "LEO-Insertion: m₀ = 1000 kg, mf = 300 kg, Ve = 3000 m/s",
+        "output": "ΔV ≈ 3611 m/s",
+        "note": "Massenverhältnis = 3.33; ln(3.33) × 3000. Beschreibt den Treibstoffanteil, der nötig ist, um eine Nutzlast von einer suborbitalen Flugbahn in eine 200-km-Kreisbahn zu bringen."
+      },
+      {
+        "input": "GEO-Transfer: m₀ = 500 kg, mf = 200 kg, Ve = 3200 m/s",
+        "output": "ΔV ≈ 2929 m/s",
+        "note": "Massenverhältnis = 2.5; ln(2.5) × 3200. Typischer Apogäumsmotor-Burn zur Zirkularisierung auf geostationärer Höhe aus einer Hohmann-Transferbahn."
+      },
+      {
+        "input": "Mars-Transfer: m₀ = 2000 kg, mf = 800 kg, Ve = 3500 m/s",
+        "output": "ΔV ≈ 3211 m/s",
+        "note": "Massenverhältnis = 2.5; ln(2.5) × 3500. Näherungsweiser Trans-Mars-Injektionsburn, um die Erdumlaufbahn auf einer Minimalenergie-Bahn zum Mars zu verlassen."
+      },
+      {
+        "input": "Satellitenmanöver: m₀ = 100 kg, mf = 95 kg, Ve = 2800 m/s",
+        "output": "ΔV ≈ 144 m/s",
+        "note": "Kleines Massenverhältnis = 1.053; ln(1.053) × 2800. Typischer Burn für Stationkeeping oder Bahnkorrektur eines kleinen Erdbeobachtungssatelliten."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Delta-V-Rechner",
+    "steps": [
+      "Gib die anfängliche (nasse) Masse des Raumfahrzeugs in Kilogramm ein - das ist die Gesamtmasse einschließlich des gesamten für den Burn geladenen Treibstoffs.",
+      "Gib die endgültige (trockene) Masse in Kilogramm ein - das ist die Masse, die nach dem Verbrauch des Treibstoffs verbleibt.",
+      "Gib die effektive Ausströmgeschwindigkeit deines Triebwerks in m/s ein. Wenn du nur den spezifischen Impuls kennst (Isp in Sekunden), multipliziere ihn mit 9.80665, um die Ausströmgeschwindigkeit zu erhalten.",
+      "Klicke auf Berechnen. Die Ergebnisse zeigen Delta-v in m/s und km/s, verbrauchte Treibstoffmasse, Massenverhältnis und äquivalenten spezifischen Impuls.",
+      "Klicke auf Zurücksetzen, um alle Werte zu löschen und eine neue Berechnung zu starten."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Delta-V-Rechner",
+    "q1": "Was ist Delta-v und warum ist es wichtig?",
+    "q1_a": "Delta-v ist die gesamte Geschwindigkeitsänderung, die ein Raumfahrzeug durch Antrieb erreichen muss. Es bestimmt, wie viel Treibstoff für eine Mission benötigt wird: Weil die Raketengleichung exponentiell ist, vervielfacht jeder zusätzliche m/s Delta-v-Bedarf die erforderliche Treibstoffmasse. Damit ist Delta-v der zentrale Auslegungstreiber aller Raketenmissionen.",
+    "q2": "Wie rechne ich spezifischen Impuls in Ausströmgeschwindigkeit um?",
+    "q2_a": "Multipliziere Isp (in Sekunden) mit der Standardgravitation g₀ = 9.80665 m/s². Ein Triebwerk mit Isp = 311 s hat zum Beispiel eine Ausströmgeschwindigkeit von 311 × 9.80665 ≈ 3050 m/s. Umgekehrt teilst du die Ausströmgeschwindigkeit durch g₀, um den spezifischen Impuls zu erhalten.",
+    "q3": "Warum verwendet die Raketengleichung einen natürlichen Logarithmus?",
+    "q3_a": "Weil die Masse einer Rakete beim Verbrennen von Treibstoff kontinuierlich abnimmt und jede kleine ausgestoßene Masse dem nun leichteren Fahrzeug eine etwas größere Beschleunigung verleiht. Die Integration dieser zeitlich veränderlichen Beschleunigung ergibt die logarithmische Beziehung. Die Folge ist, dass eine Verdopplung des Delta-v eine Quadrierung des Massenverhältnisses erfordert - dadurch sind Missionen mit hohem Δv extrem treibstoffintensiv.",
+    "q4": "Welche typischen Delta-v-Werte gelten für gängige Raumfahrtmissionen?",
+    "q4_a": "Das Erreichen einer niedrigen Erdumlaufbahn vom Boden aus erfordert ≈9,400 m/s (einschließlich Gravitations- und Luftwiderstandsverlusten). LEO-zu-GEO-Transfer ≈3,900 m/s. Erde zu Mars ≈3,600 m/s von LEO aus. Mondlandung aus der Mondumlaufbahn ≈1,900 m/s. Diese Zahlen erklären, warum selbst kleine Nutzlaststeigerungen unverhältnismäßig große Raketen erfordern.",
+    "q5": "Kann dieser Rechner mehrere Burns verarbeiten?",
+    "q5_a": "Für eine Mission mit mehreren Burns berechnest du jeden Burn separat und addierst die Delta-v-Werte. Das gesamte Missions-Delta-v ist die arithmetische Summe aller einzelnen Burns. Verwende für jeden Burn die Raumfahrzeugmasse zu Beginn dieses Burns als Anfangsmasse. So erhältst du das Treibstoffbudget für jede Stufe oder jedes Manöver.",
+    "q6": "Was ist ein Massenverhältnis und welche Werte sind typisch?",
+    "q6_a": "Das Massenverhältnis ist m₀/mf - Anfangsmasse geteilt durch Endmasse. Ein Verhältnis von 2 bedeutet, dass die Hälfte der Anfangsmasse Treibstoff war. Chemische Raketen nach LEO benötigen ein Massenverhältnis von etwa 8–10, weshalb Stufenraketen verwendet werden. Ionisch angetriebene Tiefraumsonden können dasselbe Delta-v dank ihrer extrem hohen Ausströmgeschwindigkeiten mit deutlich niedrigeren Massenverhältnissen erreichen."
+  }
+}
