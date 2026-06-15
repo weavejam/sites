@@ -117,7 +117,12 @@ import { fixtures as f_diffraction_grating_calculator } from "@/tools/diffractio
 import { fixtures as f_diopter_calculator } from "@/tools/diopter-calculator.fixtures";
 import { fixtures as f_dipole_calculator } from "@/tools/dipole-calculator.fixtures";
 import { fixtures as f_dipole_moment_calculator } from "@/tools/dipole-moment-calculator.fixtures";
+import { fixtures as f_direct_variation_calculator } from "@/tools/direct-variation-calculator.fixtures";
+import { fixtures as f_direction_of_the_vector_calculator } from "@/tools/direction-of-the-vector-calculator.fixtures";
+import { fixtures as f_discriminant_calculator } from "@/tools/discriminant-calculator.fixtures";
 import { fixtures as f_dispersion_calculator } from "@/tools/dispersion-calculator.fixtures";
+import { fixtures as f_distance_formula_calculator } from "@/tools/distance-formula-calculator.fixtures";
+import { fixtures as f_distance_from_point_to_plane_calculator } from "@/tools/distance-from-point-to-plane-calculator.fixtures";
 import { fixtures as f_dot_plot_calculator } from "@/tools/dot-plot-calculator.fixtures";
 import { fixtures as f_easter_calculator } from "@/tools/easter-calculator.fixtures";
 import { fixtures as f_edpi_calculator } from "@/tools/edpi-calculator.fixtures";
@@ -175,6 +180,11 @@ import { fixtures as f_great_circle_calculator } from "@/tools/great-circle-calc
 import { fixtures as f_greater_than_or_less_than_calculator } from "@/tools/greater-than-or-less-than-calculator.fixtures";
 import { fixtures as f_gsd_calculator_ground_sample_distance } from "@/tools/gsd-calculator-ground-sample-distance.fixtures";
 import { fixtures as f_guitar_string_tension_calculator } from "@/tools/guitar-string-tension-calculator.fixtures";
+import { fixtures as f_hadamard_product_calculator } from "@/tools/hadamard-product-calculator.fixtures";
+import { fixtures as f_half_angle_calculator } from "@/tools/half-angle-calculator.fixtures";
+import { fixtures as f_harmonic_mean_calculator } from "@/tools/harmonic-mean-calculator.fixtures";
+import { fixtures as f_harmonic_number_calculator } from "@/tools/harmonic-number-calculator.fixtures";
+import { fixtures as f_herons_formula_calculator } from "@/tools/herons-formula-calculator.fixtures";
 import { fixtures as f_hypothesis_testing_calculator } from "@/tools/hypothesis-testing-calculator.fixtures";
 import { fixtures as f_impact_factor_calculator } from "@/tools/impact-factor-calculator.fixtures";
 import { fixtures as f_impedance_matching_calculator } from "@/tools/impedance-matching-calculator.fixtures";
@@ -536,7 +546,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "diopter-calculator": f_diopter_calculator,
   "dipole-calculator": f_dipole_calculator,
   "dipole-moment-calculator": f_dipole_moment_calculator,
+  "direct-variation-calculator": f_direct_variation_calculator,
+  "direction-of-the-vector-calculator": f_direction_of_the_vector_calculator,
+  "discriminant-calculator": f_discriminant_calculator,
   "dispersion-calculator": f_dispersion_calculator,
+  "distance-formula-calculator": f_distance_formula_calculator,
+  "distance-from-point-to-plane-calculator": f_distance_from_point_to_plane_calculator,
   "dot-plot-calculator": f_dot_plot_calculator,
   "easter-calculator": f_easter_calculator,
   "edpi-calculator": f_edpi_calculator,
@@ -594,6 +609,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "greater-than-or-less-than-calculator": f_greater_than_or_less_than_calculator,
   "gsd-calculator-ground-sample-distance": f_gsd_calculator_ground_sample_distance,
   "guitar-string-tension-calculator": f_guitar_string_tension_calculator,
+  "hadamard-product-calculator": f_hadamard_product_calculator,
+  "half-angle-calculator": f_half_angle_calculator,
+  "harmonic-mean-calculator": f_harmonic_mean_calculator,
+  "harmonic-number-calculator": f_harmonic_number_calculator,
+  "herons-formula-calculator": f_herons_formula_calculator,
   "hypothesis-testing-calculator": f_hypothesis_testing_calculator,
   "impact-factor-calculator": f_impact_factor_calculator,
   "impedance-matching-calculator": f_impedance_matching_calculator,
