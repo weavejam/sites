@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora GSD - distancia de muestreo del terreno para fotografía aérea",
+  "tagline": "Calcula la distancia de muestreo del terreno (GSD) para fotografía aérea, mapeo con drones y teledetección. Introduce ancho de sensor, altura de vuelo y distancia focal.",
+  "intro": "Introduce el ancho del sensor de la cámara, la altura de vuelo y la distancia focal para calcular el GSD. Añade las dimensiones de la imagen para obtener el área cubierta en tierra.",
+  "field": {
+    "sensorWidth": "Ancho del sensor (mm)",
+    "sensorWidthHint": "Ancho físico del sensor de la cámara (p. ej., 23.5 mm para APS-C)",
+    "flyingHeight": "Altura de vuelo (m)",
+    "flyingHeightHint": "Altitud sobre el nivel del suelo en metros",
+    "focalLength": "Distancia focal (mm)",
+    "focalLengthHint": "Distancia focal del objetivo en milímetros",
+    "imageWidth": "Ancho de imagen (px) — opcional",
+    "imageWidthHint": "Cantidad de píxeles horizontales de la imagen capturada",
+    "imageHeight": "Alto de imagen (px) — opcional",
+    "imageHeightHint": "Cantidad de píxeles verticales de la imagen capturada"
+  },
+  "button": {
+    "calculate": "Calcular GSD",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce valores positivos válidos para el ancho del sensor, la altura de vuelo y la distancia focal."
+  },
+  "result": {
+    "heading": "Resultados de GSD",
+    "unitGsd": "cm / píxel",
+    "coverageW": "Ancho de cobertura en tierra",
+    "coverageH": "Alto de cobertura en tierra",
+    "coverageArea": "Área de cobertura",
+    "noImageWidth": "Añade el ancho de imagen (px) para obtener el GSD por píxel. Ancho actual de cobertura en tierra:",
+    "groundCoverageWidth": "ancho de cobertura en tierra (equivalente al sensor)"
+  },
+  "about": {
+    "heading": "Acerca de la distancia de muestreo del terreno (GSD)",
+    "body": "La distancia de muestreo del terreno (GSD) es la métrica más fundamental de la resolución espacial en imágenes aéreas y de drones. Representa la distancia real sobre el terreno que corresponde a un píxel en una fotografía aérea. Un GSD de 2 cm por píxel significa que cada píxel cubre un cuadrado de 2 cm × 2 cm en el suelo; los objetos menores de aproximadamente 2 cm no pueden resolverse en la imagen. Comprender y controlar el GSD es esencial para planificar levantamientos aéreos, mapeo con drones, fotogrametría y aplicaciones de teledetección.\n\nLa fórmula del GSD es directa: GSD [cm/px] = (ancho del sensor [mm] × altura de vuelo [m] × 100) ÷ (distancia focal [mm] × ancho de imagen [px]). Esta relación resume la física clave de la fotografía aérea en una sola ecuación. Un sensor más ancho captura un campo de visión más amplio, lo que aumenta la cobertura pero reduce la densidad de píxeles. Una mayor altitud aumenta la cobertura a costa de la resolución. Una distancia focal más larga amplía la escena, reduciendo la cobertura pero mejorando la resolución, exactamente como hacer zoom con una cámara. Más píxeles distribuidos sobre la misma área de sensor también mejoran la resolución al dividir la escena en detalles más finos.\n\nLos valores típicos de GSD varían mucho según la aplicación. Los levantamientos catastrales de alta precisión y la inspección de infraestructura requieren GSD de 1–3 cm por píxel, alcanzables con vuelos a baja altitud (50–100 m) y sensores de alta resolución. El monitoreo de agricultura de precisión suele usar GSD de 3–10 cm para análisis de salud de cultivos y mapeo de campos. El mapeo topográfico general puede usar GSD de 10–30 cm, ofreciendo mayor cobertura por vuelo. El monitoreo ambiental regional y los estudios de uso del suelo en grandes áreas pueden operar con GSD de 50+ cm desde aeronaves de ala fija a mayores altitudes.\n\nLas dimensiones opcionales de la imagen (ancho y alto en píxeles) permiten que la calculadora obtenga el área de cobertura en tierra además del GSD por píxel. Ancho de cobertura en tierra = GSD × ancho de imagen, y área de cobertura en tierra = ancho de cobertura × alto de cobertura. Estas métricas son esenciales para planificar vuelos: determinan cuántas líneas de vuelo se necesitan para cubrir un área de proyecto dada con el porcentaje de solape deseado para el procesamiento fotogramétrico.\n\nEntre los sensores comunes para drones se encuentra el DJI Phantom 4 Pro (sensor de 13.2 mm, distancia focal de 24 mm, 5472 × 3648 px), que ofrece aproximadamente 2.7 cm de GSD a 100 m de altitud. La Sony A6000 (sensor de 23.5 mm, distancia focal de 35 mm, 6000 × 4000 px) entrega aproximadamente 1.1 cm de GSD a 100 m. Las cámaras de formato completo como la Sony A7R IV (sensor de 35.9 mm, distancia focal de 50 mm, 9504 × 6336 px) pueden lograr GSD subcentimétrico a altitudes muy bajas.\n\nVerifica siempre que la altura de vuelo planificada cumpla con la normativa aeronáutica local (por ejemplo, la FAA Part 107 limita los drones a 400 pies sobre el nivel del suelo en EE. UU.). En la práctica, las condiciones meteorológicas, la duración de la batería y las restricciones de espacio aéreo también limitan las alturas de vuelo alcanzables."
+  },
+  "examples": {
+    "heading": "Ejemplos de cálculo de GSD",
+    "intro": "Configuraciones reales de cámara y sus valores de GSD resultantes a distintas altitudes.",
+    "colInput": "Configuración de cámara",
+    "colOutput": "GSD",
+    "colNote": "Aplicación",
+    "items": [
+      {
+        "input": "Sensor: 23.5 mm, altura: 100 m, focal: 35 mm, imagen: 6000 × 4000 px",
+        "output": "1.12 cm/px",
+        "note": "Mapeo de alta resolución con sensor APS-C. GSD inferior a 2 cm, adecuado para levantamientos catastrales e inspección detallada de sitios."
+      },
+      {
+        "input": "Sensor: 13.2 mm, altura: 120 m, focal: 24 mm, imagen: 4000 × 3000 px",
+        "output": "1.65 cm/px",
+        "note": "Configuración estándar de dron (sensor de 1 pulgada). Buena para agricultura de precisión y monitoreo de obras a altitud moderada."
+      },
+      {
+        "input": "Sensor: 35.9 mm, altura: 500 m, focal: 50 mm, imagen: 8000 × 6000 px",
+        "output": "4.49 cm/px",
+        "note": "Levantamiento a gran altitud que cubre áreas extensas. Adecuado para mapeo regional de uso del suelo y monitoreo ambiental."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora GSD",
+    "steps": [
+      "Introduce el ancho del sensor de tu cámara en milímetros; lo encontrarás en las especificaciones técnicas de la cámara (p. ej., 13.2 mm para DJI Phantom, 23.5 mm para cámaras APS-C).",
+      "Introduce la altura de vuelo sobre el nivel del suelo en metros; es la altitud a la que volará el dron o la aeronave durante el levantamiento.",
+      "Introduce la distancia focal del objetivo en milímetros; usa la distancia focal real, no el equivalente a 35 mm.",
+      "Opcionalmente, introduce el ancho y el alto de la imagen en píxeles; son las dimensiones de resolución completa del sensor (p. ej., 6000 × 4000 para una cámara de 24 MP).",
+      "Haz clic en Calcular GSD para ver el GSD en cm/píxel y las dimensiones de cobertura en tierra. Usa el GSD para planificar la altitud de vuelo y el solape de tu proyecto de mapeo."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora GSD",
+    "items": [
+      {
+        "q": "¿Cuál es un buen GSD para mapeo con drones?",
+        "a": "Depende de la aplicación. Para agricultura de precisión y monitoreo de cultivos, un GSD de 3–10 cm suele ser suficiente. Para inspección de infraestructura y mapeo detallado, apunta a 1–3 cm de GSD. Para levantamientos topográficos generales que cubren áreas grandes, 10–30 cm de GSD equilibran resolución y eficiencia de vuelo. Ajusta siempre el GSD a tus requisitos de precisión antes de planificar el vuelo."
+      },
+      {
+        "q": "¿Cómo reduzco el GSD para obtener mayor resolución?",
+        "a": "Reduce la altura de vuelo (vuela más bajo), usa un objetivo con mayor distancia focal o una cámara con más píxeles o un sensor más grande. Volar más bajo tiene el efecto más directo: reducir la altitud a la mitad reduce el GSD a la mitad. Sin embargo, las altitudes más bajas requieren más líneas de vuelo para cubrir la misma área, lo que aumenta el tiempo de vuelo y la cantidad de imágenes a procesar."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre GSD y resolución de imagen?",
+        "a": "La resolución de imagen se refiere al número de píxeles de la imagen (p. ej., 6000 × 4000 = 24 megapíxeles). El GSD es el tamaño real de cada píxel sobre el terreno. Una imagen de 24 MP puede tener un GSD pobre de 50 cm/píxel si se toma desde gran altitud, o un GSD excelente de 1 cm/píxel si se toma cerca del suelo. El GSD es la métrica operativamente significativa para la precisión del mapeo."
+      },
+      {
+        "q": "¿Cómo afecta la distancia focal al GSD?",
+        "a": "La distancia focal y el GSD son inversamente proporcionales: duplicar la distancia focal reduce el GSD a la mitad (duplica la resolución) y también reduce a la mitad el ancho de cobertura en tierra. Los lentes gran angular (distancia focal corta) capturan más área, pero con menor resolución por píxel. Los teleobjetivos (distancia focal larga) capturan menos área, pero resuelven detalles más finos. En mapeo con drones son comunes los objetivos de 20–50 mm."
+      },
+      {
+        "q": "¿Por qué necesito las dimensiones de la imagen para el cálculo completo de GSD?",
+        "a": "El GSD es la distancia en tierra por píxel, por lo que requiere saber cuántos píxeles abarcan el ancho del sensor. Sin las dimensiones de la imagen solo puedes calcular el ancho total de cobertura en tierra en metros, útil para entender el campo de visión pero no para trabajos de mapeo de precisión. Introducir el ancho de imagen convierte la cobertura en resolución por píxel, la métrica estándar en especificaciones de levantamientos aéreos."
+      },
+      {
+        "q": "¿Qué porcentaje de solape debo usar en mapeo con drones?",
+        "a": "Para procesamiento fotogramétrico con software como Pix4D o DroneDeploy, lo estándar es 75–80% de solape frontal (en la dirección de vuelo) y 65–70% de solape lateral (entre líneas de vuelo). Un mayor solape mejora la densidad de la nube de puntos y reduce errores de reconstrucción, pero aumenta el tiempo de vuelo y el volumen de datos. Para ortomosaicos simples con requisitos de GSD menores, un 60% de solape en ambas direcciones puede ser suficiente."
+      }
+    ]
+  }
+}
