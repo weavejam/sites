@@ -4520,5 +4520,205 @@ export const tools: ToolEntry[] = [
          pt: "",
          ru: ""
        }
+  },
+  {
+    id: "distributive-property-calculator",
+    category: "math",
+    slugs: {
+      en: "distributive-property-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Distributive Property Calculator - Expand Expressions",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Expand algebraic expressions using the distributive property a(b+c)=ab+ac. Enter coefficient and terms to get instant step-by-step expansion results.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "dividing-exponents-calculator",
+    category: "math",
+    slugs: {
+      en: "dividing-exponents-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Dividing Exponents Calculator - Quotient Rule a^m÷a^n",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Apply the quotient rule to divide exponential expressions. Enter bases and exponents to get a^m÷a^n=a^(m-n) with step-by-step solutions and numeric results.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "dividing-fractions-calculator",
+    category: "math",
+    slugs: {
+      en: "dividing-fractions-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Dividing Fractions Calculator - Step-by-Step Solutions",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Divide fractions step by step using the keep-change-flip method. Enter two fractions to get simplified results with decimal equivalents and worked solutions.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "dividing-radicals-calculator",
+    category: "math",
+    slugs: {
+      en: "dividing-radicals-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Dividing Radicals Calculator - ⁿ√a ÷ ⁿ√b Quotient Property",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Divide radical expressions using the quotient property ⁿ√a÷ⁿ√b=ⁿ√(a÷b). Supports square roots, cube roots, and nth roots with simplified step-by-step results.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "divisibility-test-calculator",
+    category: "math",
+    slugs: {
+      en: "divisibility-test-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Divisibility Test Calculator - Check Divisibility Rules",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Test any integer for divisibility by 2–12 or custom divisors. Get instant results with remainders and built-in divisibility rules for every number.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
 ];
