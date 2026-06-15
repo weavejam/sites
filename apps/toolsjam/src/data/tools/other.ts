@@ -2514,6 +2514,86 @@ export const tools: ToolEntry[] = [
       en: "Calculate guitar string tension in pounds and Newtons. Enter scale length, string gauge, material, and target note or frequency for precise tension results.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "angle-of-impact-calculator",
+    category: "other",
+    slugs: {
+      en: "angle-of-impact-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Angle of Impact Calculator - Collision & Trajectory Analysis",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate impact angles, exit velocity, and energy loss for any collision. Enter velocity, angles, coefficient of restitution, and mass for instant results.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "antipode-calculator",
+    category: "other",
+    slugs: {
+      en: "antipode-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Antipode Calculator - Find Earth's Opposite Point",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Find the exact antipodal coordinates for any location on Earth. Enter latitude and longitude to get the diametrically opposite point and great-circle distance.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "aquarium-calculator",
+    category: "other",
+    slugs: {
+      en: "aquarium-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Aquarium Calculator - Volume, Fish Capacity & Maintenance",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate aquarium volume, safe fish capacity, required filtration flow, and weekly water change volume. Essential planning tool for aquarium hobbyists.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "aquarium-glass-thickness-calculator",
+    category: "other",
+    slugs: {
+      en: "aquarium-glass-thickness-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Aquarium Glass Thickness Calculator - Safe Tank Design",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate the minimum safe glass thickness for any aquarium tank. Uses hydrostatic pressure and plate-bending formulas for float, tempered, and acrylic panels.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "aspect-ratio-calculator",
+    category: "other",
+    slugs: {
+      en: "aspect-ratio-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Aspect Ratio Calculator - Screen, Video & Image Ratios",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate the aspect ratio of any display, video, or image. Get simplified W:H ratio, decimal value, and nearest standard format name instantly.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
 
 
