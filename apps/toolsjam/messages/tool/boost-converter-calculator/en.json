@@ -1,0 +1,119 @@
+{
+  "title": "Boost Converter Calculator – DC-DC Step-Up Voltage Design",
+  "tagline": "Calculate duty cycle, inductor current, input current, and efficiency for boost converter circuits in power electronics design.",
+  "intro": "Enter input voltage, output voltage, switching frequency, inductor value, and load current to design your DC-DC step-up converter.",
+  "field": {
+    "inputVoltage": "Input Voltage (Vin)",
+    "outputVoltage": "Output Voltage (Vout)",
+    "switchingFrequency": "Switching Frequency (f)",
+    "inductorValue": "Inductor Value (L)",
+    "loadCurrent": "Load Current (Iout)"
+  },
+  "placeholder": {
+    "inputVoltage": "e.g. 3.7",
+    "outputVoltage": "e.g. 5",
+    "switchingFrequency": "e.g. 500000",
+    "inductorValue": "e.g. 0.000047",
+    "loadCurrent": "e.g. 0.5"
+  },
+  "unit": {
+    "inputVoltage": "V",
+    "outputVoltage": "V",
+    "switchingFrequency": "Hz",
+    "inductorValue": "H",
+    "loadCurrent": "A"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers for all fields.",
+    "voltageRatio": "Output voltage must be greater than input voltage for a boost converter.",
+    "dutyCycle": "Duty cycle must be between 0 and 1. Check Vin and Vout values."
+  },
+  "result": {
+    "heading": "Results",
+    "dutyCycle": "Duty Cycle (D)",
+    "dutyCyclePercent": "Duty Cycle (%)",
+    "inputCurrent": "Average Input Current (Iin)",
+    "inductorRipple": "Inductor Current Ripple (ΔIL)",
+    "inductorPeak": "Peak Inductor Current (IL_peak)",
+    "outputPower": "Output Power (Pout)",
+    "inputPower": "Input Power (Pin, ideal)"
+  },
+  "about": {
+    "heading": "About the boost converter calculator",
+    "body": "A boost converter, also called a step-up converter, is a DC-DC switching power supply topology that produces an output voltage higher than its input voltage. It is one of the three fundamental non-isolated converter topologies in power electronics, alongside the buck (step-down) and buck-boost converters. Boost converters are ubiquitous in battery-powered devices, LED drivers, automotive electronics, solar energy systems, and any application where the available supply voltage is lower than the required load voltage.\n\nThe basic boost converter consists of an inductor, a switch (typically a MOSFET), a diode, an output capacitor, and a control circuit. During the on-time of the switch (duration D×T_s, where D is the duty cycle and T_s = 1/f is the switching period), current builds up in the inductor, storing energy in its magnetic field. During the off-time ((1−D)×T_s), the switch opens and the inductor releases its stored energy through the diode into the output capacitor and load, boosting the voltage above the input level.\n\nIn continuous conduction mode (CCM), where inductor current never drops to zero, the ideal voltage conversion ratio is Vout/Vin = 1/(1−D). Solving for the duty cycle gives D = 1 − Vin/Vout. For example, to boost 3.7 V to 5 V the duty cycle is 1 − 3.7/5 = 0.26 or 26%. Because duty cycle approaches 1 as the conversion ratio increases, very high ratios become impractical due to switch timing limitations and increasing conduction losses.\n\nThe inductor current ripple ΔIL = Vin × D / (L × f) determines how much the inductor current oscillates around its average value. Larger inductance L or higher switching frequency f reduces ripple, improving efficiency and reducing output voltage ripple. The peak inductor current IL_peak = Iin + ΔIL/2 must not exceed the inductor's saturation current rating. In an ideal lossless converter, input power Pin = Vin × Iin equals output power Pout = Vout × Iout, so the average input current is Iin = Pout/Vin.\n\nReal converters have losses from MOSFET on-resistance, diode forward voltage, inductor series resistance, and switching losses, so actual efficiency η < 100%. This calculator assumes ideal components; multiply the ideal input current by 1/η for a real-world estimate.\n\nThis tool is essential for power electronics engineers, hobbyists, and students designing boost converter circuits for battery management, IoT devices, LED lighting, or renewable energy applications."
+  },
+  "examples": {
+    "heading": "Boost converter design examples",
+    "intro": "Practical scenarios illustrating boost converter parameter calculations.",
+    "loadBattery": "Battery 3.7 V → 5 V",
+    "loadAutomotive": "Automotive 12 V → 24 V",
+    "loadSolar": "Solar MPPT 8 V → 18 V",
+    "colOutput": "Key Results",
+    "colNote": "Application",
+    "items": [
+      {
+        "input": "Vin = 3.7 V, Vout = 5 V, f = 500 kHz, L = 47 µH, Iout = 0.5 A",
+        "output": "D = 26%, ΔIL ≈ 0.041 A, Iin ≈ 0.676 A",
+        "note": "Li-ion battery to USB 5 V. Low duty cycle and high frequency keep ripple small."
+      },
+      {
+        "input": "Vin = 12 V, Vout = 24 V, f = 100 kHz, L = 100 µH, Iout = 2 A",
+        "output": "D = 50%, ΔIL ≈ 0.6 A, Iin ≈ 4 A",
+        "note": "12 V to 24 V automotive conversion. 50% duty cycle is the maximum practical limit for many controllers."
+      },
+      {
+        "input": "Vin = 8 V, Vout = 18 V, f = 200 kHz, L = 68 µH, Iout = 1.5 A",
+        "output": "D ≈ 55.6%, ΔIL ≈ 0.327 A, Iin ≈ 3.375 A",
+        "note": "Solar MPPT application. Output tracks the bus voltage while input follows panel MPP voltage."
+      },
+      {
+        "input": "Vin = 5 V, Vout = 36 V, f = 300 kHz, L = 33 µH, Iout = 0.3 A",
+        "output": "D ≈ 86.1%, ΔIL ≈ 0.435 A, Iin ≈ 2.16 A",
+        "note": "High-brightness LED driver. Very high duty cycle; derating and PCB layout are critical at this ratio."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the boost converter calculator",
+    "steps": [
+      "Enter Input Voltage (Vin) — the DC supply voltage from your battery or source.",
+      "Enter Output Voltage (Vout) — the required output; must be greater than Vin for a boost topology.",
+      "Enter Switching Frequency (f) in Hz — higher frequencies allow smaller inductors but increase switching losses.",
+      "Enter Inductor Value (L) in henries and Load Current (Iout) in amperes for your circuit design.",
+      "Click Calculate to see duty cycle, inductor ripple current, peak inductor current, and input/output power."
+    ]
+  },
+  "faq": {
+    "heading": "Boost converter FAQ",
+    "items": [
+      {
+        "q": "What is the duty cycle in a boost converter?",
+        "a": "The duty cycle D is the fraction of the switching period during which the MOSFET is turned on. For an ideal boost converter D = 1 − Vin/Vout. For example, boosting 5 V to 12 V gives D = 1 − 5/12 ≈ 58.3%. Higher duty cycles correspond to larger voltage step-up ratios."
+      },
+      {
+        "q": "What is inductor current ripple and why does it matter?",
+        "a": "Inductor current ripple ΔIL is the peak-to-peak variation of current through the inductor during each switching cycle. Excessive ripple can cause the inductor to saturate, increase core losses, and amplify output voltage ripple. Designers typically target ripple below 20–30% of the average inductor current by choosing appropriate L and f."
+      },
+      {
+        "q": "What is continuous conduction mode (CCM)?",
+        "a": "In CCM the inductor current never falls to zero during the switching cycle. The boost conversion formula Vout = Vin/(1−D) applies in CCM. Below a critical load current the converter enters discontinuous conduction mode (DCM), where current reaches zero for part of the cycle and the voltage conversion ratio changes. This calculator assumes CCM."
+      },
+      {
+        "q": "How do I choose the inductor value for a boost converter?",
+        "a": "Choose the inductor to keep the current ripple ΔIL within 20–30% of the average input current: L = Vin × D / (ΔIL × f). Larger L reduces ripple but increases size and cost. Always verify that the peak inductor current (Iin + ΔIL/2) is below the inductor's saturation current specification with some margin."
+      },
+      {
+        "q": "Why is boost converter efficiency less than 100%?",
+        "a": "Real boost converters lose energy in MOSFET conduction resistance (I²R losses), MOSFET switching transitions, diode forward-voltage drop, inductor copper and core losses, and gate drive power. Typical efficiencies range from 85% to 97% depending on operating point. Using synchronous rectification (replacing the diode with a second MOSFET) recovers most of the diode loss."
+      },
+      {
+        "q": "What is the maximum practical duty cycle?",
+        "a": "Most boost controller ICs limit the maximum duty cycle to around 80–95% to ensure the switch has time to turn off and the inductor to transfer energy. Very high duty cycles (approaching 1) also magnify component tolerances and make the converter sensitive to disturbances. In practice, boost converters are rarely used above a 10:1 voltage ratio."
+      }
+    ]
+  }
+}
