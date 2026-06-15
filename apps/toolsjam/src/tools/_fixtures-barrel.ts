@@ -222,10 +222,15 @@ import { fixtures as f_projector_calculator } from "@/tools/projector-calculator
 import { fixtures as f_propagation_delay_calculator } from "@/tools/propagation-delay-calculator.fixtures";
 import { fixtures as f_pte_score_calculator } from "@/tools/pte-score-calculator.fixtures";
 import { fixtures as f_pyramid_block_calculator } from "@/tools/pyramid-block-calculator.fixtures";
+import { fixtures as f_quaternion_calculator } from "@/tools/quaternion-calculator.fixtures";
+import { fixtures as f_queueing_theory_calculator } from "@/tools/queueing-theory-calculator.fixtures";
+import { fixtures as f_quotient_calculator } from "@/tools/quotient-calculator.fixtures";
+import { fixtures as f_radical_calculator } from "@/tools/radical-calculator.fixtures";
 import { fixtures as f_raid_calculator } from "@/tools/raid-calculator.fixtures";
 import { fixtures as f_rain_to_snow_calculator } from "@/tools/rain-to-snow-calculator.fixtures";
 import { fixtures as f_rainfall_calculator } from "@/tools/rainfall-calculator.fixtures";
 import { fixtures as f_ram_latency_calculator } from "@/tools/ram-latency-calculator.fixtures";
+import { fixtures as f_ratio_calculator } from "@/tools/ratio-calculator.fixtures";
 import { fixtures as f_rational_zeros_calculator } from "@/tools/rational-zeros-calculator.fixtures";
 import { fixtures as f_rationalize_denominator_calculator } from "@/tools/rationalize-denominator-calculator.fixtures";
 import { fixtures as f_ratios_of_directed_line_segments_calculator } from "@/tools/ratios-of-directed-line-segments-calculator.fixtures";
@@ -581,10 +586,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "propagation-delay-calculator": f_propagation_delay_calculator,
   "pte-score-calculator": f_pte_score_calculator,
   "pyramid-block-calculator": f_pyramid_block_calculator,
+  "quaternion-calculator": f_quaternion_calculator,
+  "queueing-theory-calculator": f_queueing_theory_calculator,
+  "quotient-calculator": f_quotient_calculator,
+  "radical-calculator": f_radical_calculator,
   "raid-calculator": f_raid_calculator,
   "rain-to-snow-calculator": f_rain_to_snow_calculator,
   "rainfall-calculator": f_rainfall_calculator,
   "ram-latency-calculator": f_ram_latency_calculator,
+  "ratio-calculator": f_ratio_calculator,
   "rational-zeros-calculator": f_rational_zeros_calculator,
   "rationalize-denominator-calculator": f_rationalize_denominator_calculator,
   "ratios-of-directed-line-segments-calculator": f_ratios_of_directed_line_segments_calculator,

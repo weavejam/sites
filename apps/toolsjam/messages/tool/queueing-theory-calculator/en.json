@@ -1,0 +1,109 @@
+{
+  "title": "Queueing Theory Calculator - M/M/c Queue Analysis",
+  "tagline": "Calculate waiting line performance metrics including utilization, average queue length, waiting times, and probabilities for M/M/1, M/M/c, and finite-capacity models.",
+  "intro": "Select a queue model, enter the arrival rate and service rate, then click Calculate to see full performance metrics.",
+  "field": {
+    "model": "Queue Model",
+    "lambda": "Arrival Rate (λ) — customers per unit time",
+    "mu": "Service Rate (μ) — customers per server per unit time",
+    "servers": "Number of Servers (c)",
+    "capacity": "System Capacity (K)",
+    "population": "Population Size (N)"
+  },
+  "model": {
+    "mm1": "M/M/1 (Single Server)",
+    "mmc": "M/M/c (Multiple Servers)",
+    "mmck": "M/M/c/K (Finite Capacity)",
+    "mmcn": "M/M/c/N (Finite Population)"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "placeholder": {
+    "rate": "Enter rate",
+    "integer": "Enter integer"
+  },
+  "result": {
+    "heading": "Queue Performance Metrics",
+    "utilization": "Server Utilization (ρ)",
+    "p0": "Probability of Empty System (P₀)",
+    "lq": "Average Queue Length (Lq)",
+    "l": "Average System Length (L)",
+    "wq": "Average Wait in Queue (Wq)",
+    "w": "Average Time in System (W)",
+    "pBlock": "Blocking Probability"
+  },
+  "error": {
+    "invalidInput": "Please enter valid positive numbers for arrival and service rates.",
+    "unstable": "The system is unstable: arrival rate must be less than total service capacity (λ < c·μ).",
+    "zeroMu": "Service rate μ must be greater than zero."
+  },
+  "about": {
+    "heading": "About Queueing Theory",
+    "body": "Queueing theory is a branch of mathematics that studies waiting lines (queues). It provides tools to predict the behavior of a system where arrivals occur randomly, service takes time, and resources (servers) are limited. Applications span telecommunications (packet switching), healthcare (patient scheduling), manufacturing (machine queues), transportation (traffic flow), and computer science (operating system scheduling).\n\nThe Kendall notation A/S/c/K/N describes a queue by its arrival process (A), service time distribution (S), number of servers (c), system capacity (K), and population size (N). The most common notation is M/M/c, where both arrivals and service times follow exponential (Memoryless) distributions — the M stands for Markovian (exponential). This calculator covers four key models.\n\nThe M/M/1 model is the simplest: a single server with Poisson arrivals (rate λ) and exponential service times (rate μ). The system is stable only when ρ = λ/μ < 1. The average number in the system is L = ρ/(1-ρ), and average time in system is W = 1/(μ-λ) by Little's Law (L = λW).\n\nThe M/M/c model extends this to c parallel identical servers. The combined service capacity is c·μ, so stability requires ρ = λ/(c·μ) < 1. The Erlang C formula gives the probability that an arriving customer must wait: C(c,ρ) = (cρ)^c/(c!(1-ρ)) · P₀, where P₀ is the probability the system is empty.\n\nThe M/M/c/K model adds a finite waiting room — the system capacity K is the maximum total customers (in service plus waiting). Customers who arrive when the system is full are blocked (turned away). This model suits restaurants, parking lots, and hospital wards. The blocking probability is P(K) = P₀ · (λ/μ)^K / K! for M/M/1/K.\n\nThe M/M/c/N model assumes a finite source population of N potential customers. A customer already in the system cannot generate new arrivals, so the effective arrival rate decreases as the system fills. This model suits machine-repair problems where N machines can break down at rate λ each and are repaired at rate μ.\n\nLittle's Law — L = λ_eff × W — is the universal relationship connecting average number in the system (L), effective arrival rate (λ_eff), and average time in system (W). It holds for almost any stable queueing system regardless of distribution assumptions and is the foundation for all performance formulas in this calculator."
+  },
+  "examples": {
+    "heading": "Queueing Theory Examples",
+    "intro": "Explore different queueing scenarios with realistic parameters.",
+    "colInput": "Scenario",
+    "colOutput": "Key Metrics",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "Bank teller: M/M/1, λ=10/hr, μ=12/hr",
+        "output": "ρ=83.3%, Lq=4.17, Wq=25 min",
+        "note": "One busy teller. Average queue of 4 people, 25-minute wait. High utilization — a second teller would dramatically reduce wait times."
+      },
+      {
+        "input": "Call center: M/M/c, λ=25/hr, μ=10/hr, c=3",
+        "output": "ρ=83.3%, Lq≈3.51, Wq≈8.4 min",
+        "note": "Three operators share the load. Total capacity is 30/hr. Erlang C formula gives Lq≈3.51 and average wait time Wq≈8.4 min."
+      },
+      {
+        "input": "Restaurant: M/M/c/K, λ=15/hr, μ=8/hr, c=2, K=20",
+        "output": "ρ=93.75%, Blocking prob≈2.1%",
+        "note": "Finite seating limits system to 20 customers total. About 2% of arriving guests are turned away during peak hours."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Queueing Theory Calculator",
+    "steps": [
+      "Choose the queue model from the dropdown: M/M/1 for a single server, M/M/c for multiple parallel servers, M/M/c/K if there is a maximum capacity limit, or M/M/c/N for a finite source population.",
+      "Enter the arrival rate λ (average number of customers arriving per unit time) and service rate μ (average number a single server can handle per unit time).",
+      "For M/M/c, M/M/c/K, and M/M/c/N models, also enter the number of servers c. For M/M/c/K enter the total system capacity K; for M/M/c/N enter the finite population size N.",
+      "Click Calculate. The results section shows server utilization ρ, the probability the system is empty (P₀), average queue length (Lq), average system length (L), average wait in queue (Wq), and average time in system (W).",
+      "If the system is unstable (arrival rate exceeds service capacity), an error message is shown — increase c or μ, or reduce λ to obtain a stable configuration."
+    ]
+  },
+  "faq": {
+    "heading": "Queueing Theory FAQ",
+    "items": [
+      {
+        "q": "What does server utilization ρ mean?",
+        "a": "Server utilization ρ = λ / (c·μ) is the fraction of time each server is busy on average. A utilization of 0.85 means servers are busy 85% of the time. When ρ approaches 1 the queue grows without bound; when ρ > 1 the system is unstable and cannot handle the workload in the long run."
+      },
+      {
+        "q": "What is Little's Law?",
+        "a": "Little's Law states that L = λ·W, where L is the average number of customers in the system, λ is the effective arrival rate, and W is the average time each customer spends in the system. It applies to any stable system regardless of arrival or service distributions and is one of the most powerful results in queueing theory."
+      },
+      {
+        "q": "What is the Erlang C formula used for?",
+        "a": "The Erlang C formula calculates the probability that an arriving customer in an M/M/c queue must wait (all servers are busy). It is the basis for the Wq formula in multi-server queues and is widely used in call center staffing to determine how many agents are needed to meet a service level target."
+      },
+      {
+        "q": "What is the difference between M/M/c/K and M/M/c/N?",
+        "a": "M/M/c/K limits the total number of customers in the system (both waiting and being served) to K — arrivals beyond K are rejected (blocking). M/M/c/N models a closed system where there are only N potential customers in total; once a customer enters the queue, the effective arrival rate from the remaining population decreases."
+      },
+      {
+        "q": "How do I reduce average wait time in a queueing system?",
+        "a": "The most effective levers are: increasing service rate μ (faster servers), adding more servers c (parallel channels), or reducing variability. Counterintuitively, dropping utilization from 90% to 80% can halve the queue length because queue length grows super-linearly as ρ approaches 1."
+      },
+      {
+        "q": "Are M/M queues realistic models for real-world systems?",
+        "a": "M/M models assume Poisson arrivals and exponential service times, which are reasonable approximations for many real systems like phone calls, web requests, and random customer arrivals. More general M/G/1 or G/G/c models exist for non-exponential service times, but M/M results provide accurate order-of-magnitude estimates for capacity planning."
+      }
+    ]
+  }
+}
