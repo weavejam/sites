@@ -1,0 +1,109 @@
+{
+  "title": "Calculateur d’angle de repos - pente granulaire",
+  "tagline": "Calculez l’angle maximal de pente stable des matériaux granulaires selon le coefficient de friction, la taille des particules, l’humidité et la masse volumique apparente.",
+  "intro": "Sélectionnez un matériau prédéfini ou saisissez des propriétés personnalisées pour obtenir l’angle de repos et la classe d’écoulement de tout solide en vrac.",
+  "field": {
+    "materialType": "Type de matériau",
+    "frictionCoef": "Coefficient de friction interne (μ)",
+    "particleSize": "Taille moyenne des particules (mm)",
+    "moistureContent": "Teneur en humidité (%)",
+    "bulkDensity": "Masse volumique apparente (kg/m³)"
+  },
+  "materialOption": {
+    "drySand": "Sable sec",
+    "coal": "Charbon",
+    "grain": "Grain (blé)",
+    "limestone": "Calcaire",
+    "custom": "Personnalisé"
+  },
+  "placeholder": {
+    "frictionCoef": "p. ex. 0.65",
+    "particleSize": "p. ex. 0.5",
+    "moistureContent": "p. ex. 2",
+    "bulkDensity": "p. ex. 1600"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Angle de repos",
+    "angleLabel": "Angle de repos (θ)",
+    "classLabel": "Classe d’écoulement",
+    "class": {
+      "veryFree": "Très fluide (< 20°)",
+      "free": "Fluide (20–30°)",
+      "moderate": "Écoulement modéré (30–40°)",
+      "cohesive": "Cohésif / écoulement difficile (40–50°)",
+      "veryCohesive": "Très cohésif / non fluide (> 50°)"
+    },
+    "formula": "Base : θ = atan(μ) ; corrigé selon la taille des particules et la teneur en humidité"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs.",
+    "frictionRange": "Le coefficient de friction doit être compris entre 0.01 et 10.",
+    "moistureRange": "La teneur en humidité doit être comprise entre 0% et 100%."
+  },
+  "about": {
+    "heading": "À propos du calculateur d’angle de repos",
+    "body": "L’angle de repos est l’angle le plus raide, mesuré depuis l’horizontale, auquel un matériau granulaire reste stable sans glisser ni s’écouler. C’est une propriété fondamentale des solides en vrac et elle joue un rôle essentiel dans la conception des trémies, silos, stocks, goulottes de transfert de convoyeurs, talus de mines à ciel ouvert, remblais de barrages et talus de remblais routiers.\n\nLe principal facteur qui contrôle l’angle de repos est le coefficient de friction interne μ, qui traduit la résistance au glissement entre les particules. L’angle de base est simplement θ_base = arctan(μ) × (180/π). Par exemple, un matériau avec μ = 0.65 a un angle de base d’environ 33°. Cette relation fondamentale provient du même modèle de friction de Coulomb utilisé dans toute la mécanique du contact : l’angle auquel une particule sur une pente commence à glisser est déterminé par le rapport entre la force tangentielle nécessaire pour vaincre la friction et la force normale, soit exactement μ = tan(θ).\n\nEn pratique, l’angle de repos réel dépend de plusieurs facteurs supplémentaires. La taille des particules compte, car les particules très fines (en dessous d’environ 0.1 mm) subissent des forces de cohésion de van der Waals et électrostatiques importantes par rapport à leur poids gravitaire, ce qui les rend plus cohésives et augmente l’angle effectif. Les particules très grossières, à l’inverse, ont tendance à s’imbriquer moins efficacement et peuvent présenter un angle légèrement inférieur à celui que suggère le seul coefficient de friction.\n\nLa teneur en humidité a un effet complexe. De faibles quantités d’eau créent des ponts liquides entre les particules, produisant une cohésion capillaire qui augmente l’angle de repos. C’est pourquoi le sable légèrement humide conserve sa forme à des angles plus raides que le sable totalement sec ou saturé : c’est l’effet bien connu du château de sable. Lorsque l’humidité dépasse un seuil (généralement 15–25% en masse pour la plupart des sols), le matériau approche de la saturation et les ponts liquides se rompent, ce qui réduit la friction effective et l’angle. Les matériaux très humides finissent par s’écouler comme un liquide.\n\nLa masse volumique apparente affecte le poids de la colonne de matériau, mais pas directement l’angle, car la force motrice (gravité) et la force résistante (friction) varient toutes deux avec la masse. Elle reste toutefois importante pour calculer les charges sur les structures de stockage et les convoyeurs ; elle est donc incluse dans ce calculateur comme paramètre informatif.\n\nCe calculateur applique des corrections empiriques à l’angle de base pour la taille des particules et l’humidité. Ces corrections sont des approximations simplifiées valables pour des applications d’ingénierie courantes. Pour les conceptions critiques — analyse de stabilité de talus miniers, évaluations de sécurité de barrages ou conception de grands silos — il faut toujours utiliser des essais de laboratoire (essai de cisaillement direct, essai triaxial) afin de déterminer les paramètres réels de résistance au cisaillement du matériau et des conditions spécifiques."
+  },
+  "examples": {
+    "heading": "Exemples de calcul d’angle de repos",
+    "intro": "Matériaux en vrac courants avec leurs valeurs typiques d’angle de repos et leur contexte d’ingénierie.",
+    "colInput": "Matériau",
+    "colOutput": "Angle de repos",
+    "colNote": "Notes d’ingénierie",
+    "loadSand": "Charger le sable sec",
+    "loadCoal": "Charger le charbon",
+    "loadGrain": "Charger le grain (blé)",
+    "loadLimestone": "Charger le calcaire",
+    "items": [
+      {
+        "input": "Sable sec : μ=0.65, taille=0.5 mm, humidité=2%, densité=1600 kg/m³",
+        "output": "≈ 34.6°",
+        "note": "Valeur typique pour du sable sec de qualité construction. Les pentes de stocks et les remblais routiers utilisent cette valeur en conception."
+      },
+      {
+        "input": "Charbon : μ=0.55, taille=25 mm, humidité=8%, densité=1200 kg/m³",
+        "output": "≈ 29.9°",
+        "note": "Charbon brut avec humidité de surface typique. Conception de stocks pour installations de manutention du charbon."
+      },
+      {
+        "input": "Grain (blé) : μ=0.45, taille=5 mm, humidité=12%, densité=800 kg/m³",
+        "output": "≈ 27.1°",
+        "note": "Blé à une teneur en humidité sûre pour le stockage. Important pour la conception des silos et l’écoulement du matériau."
+      },
+      {
+        "input": "Calcaire : μ=0.70, taille=15 mm, humidité=3%, densité=1500 kg/m³",
+        "output": "≈ 34.9°",
+        "note": "Calcaire concassé à usage industriel. Pertinent pour la conception de stocks de granulats et la vidange des bennes."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur d’angle de repos",
+    "steps": [
+      "Sélectionnez un matériau prédéfini dans la liste déroulante. Les champs se rempliront automatiquement avec des valeurs typiques pour ce matériau. Choisissez Personnalisé pour saisir vos propres valeurs.",
+      "Ajustez le coefficient de friction interne μ pour votre matériau. Les valeurs typiques vont de 0.3 (granules lisses) à 0.8 (particules rugueuses et anguleuses).",
+      "Saisissez la taille moyenne des particules en millimètres et la teneur en humidité en pourcentage massique.",
+      "Saisissez la masse volumique apparente en kg/m³. Elle affecte les calculs de charge, mais pas directement l’angle.",
+      "Cliquez sur Calculer pour voir l’angle de repos et la classe d’écoulement du matériau."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur l’angle de repos",
+    "q1": "Qu’est-ce que l’angle de repos ?",
+    "q1_a": "L’angle de repos est l’angle maximal auquel un matériau granulaire reste stable sur une pente sans glisser. Il est mesuré depuis l’horizontale et résulte directement de la friction entre les particules. Les matériaux ayant des coefficients de friction élevés présentent des angles de repos plus raides. Cet angle sert à concevoir des piles de stockage, trémies, convoyeurs et pentes naturelles.",
+    "q2": "Comment mesure-t-on expérimentalement l’angle de repos ?",
+    "q2_a": "La méthode la plus courante consiste à verser le matériau sec à travers un entonnoir sur une surface plane, puis à mesurer l’angle du cône obtenu. Une deuxième méthode incline une boîte remplie de matériau jusqu’à ce qu’il commence à s’écouler. Une troisième méthode (pour les sols) utilise l’essai de cisaillement direct ou l’essai de compression triaxiale pour mesurer les paramètres de résistance au cisaillement, à partir desquels l’angle de friction est déduit. Pour les applications critiques de conception, les résultats de laboratoire sont plus précis que les estimations théoriques.",
+    "q3": "Pourquoi le sable humide a-t-il un angle de repos plus raide que le sable sec ?",
+    "q3_a": "De petites quantités d’eau créent des ménisques capillaires entre les grains de sable, attirant les particules les unes vers les autres et ajoutant une résistance cohésive au-delà de la simple friction. C’est pourquoi le sable humide conserve la forme d’un château de sable alors que le sable sec s’effondre. L’effet atteint un maximum à une teneur en humidité spécifique (généralement autour de 5–10% en masse), puis diminue lorsque l’eau supplémentaire remplit les pores et lubrifie les contacts.",
+    "q4": "Quelle est la différence entre l’angle de repos et l’angle de friction ?",
+    "q4_a": "Pour les matériaux granulaires secs et non cohésifs, ils sont identiques : angle de friction φ = angle de repos = arctan(μ). Pour les matériaux cohésifs (argiles, sols humides), l’angle de repos est supérieur à l’angle de friction, car la cohésion ajoute une résistance au cisaillement supplémentaire. En mécanique des sols, le critère de rupture de Mohr-Coulomb τ = c + σ·tan(φ) sépare les contributions de la cohésion c et de l’angle de friction φ.",
+    "q5": "Comment l’angle de repos est-il utilisé dans la conception des silos ?",
+    "q5_a": "Dans la conception des silos, l’angle de repos détermine le demi-angle requis de la trémie. Pour un écoulement en masse (où tout le matériau se déplace pendant la vidange), les parois de la trémie doivent être plus raides que l’angle de repos plus une marge de sécurité. Si la trémie est trop peu inclinée, le matériau forme une arche stable ou un puits de stagnation qui bloque la sortie : c’est l’obstruction d’écoulement ou le pontage. La méthode de conception de Jenike formalise cette analyse.",
+    "q6": "L’angle de repos peut-il dépasser 90 degrés ?",
+    "q6_a": "Non. Un angle de repos supérieur à 90° est physiquement impossible pour les matériaux granulaires : cela signifierait que le matériau pourrait adhérer à une surface verticale ou en surplomb sans fixation mécanique. Les poudres fines très cohésives peuvent former des arches en surplomb raides dans les bennes, mais il s’agit d’un effet structurel d’arc, pas d’un véritable angle de repos. En pratique, l’angle de repos maximal observé pour des matériaux secs est d’environ 60–65° pour des particules très anguleuses et imbriquées."
+  }
+}
