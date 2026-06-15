@@ -1599,11 +1599,85 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "gpa-calculator",
+    category: "other",
+    slugs: {
+      en: "gpa-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "GPA Calculator - Calculate Grade Point Average",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate your GPA with the standard 4.0 scale. Enter courses, letter grades, and credit hours for an instant weighted Grade Point Average result.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "gpa-calculator-pakistan",
+    category: "other",
+    slugs: {
+      en: "gpa-calculator-pakistan",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "GPA Calculator Pakistan - Convert Grades to 4.0 GPA",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Convert Pakistani university grades — percentage or letter — to GPA on the HEC 4.0 scale. Supports mixed input for accurate academic GPA calculation.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "grade-calculator",
+    category: "other",
+    slugs: {
+      en: "grade-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Grade Calculator - Calculate Academic Grades and GPA",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate GPA from letter or numerical grades with credit-hour weighting. Supports mixed grading systems and shows per-course letter grade conversions.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "gsd-calculator-ground-sample-distance",
+    category: "other",
+    slugs: {
+      en: "gsd-calculator-ground-sample-distance",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "GSD Calculator - Ground Sample Distance for Drone Mapping",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate Ground Sample Distance (GSD) in cm/pixel for aerial photography and drone mapping. Enter sensor width, altitude, and focal length for instant results.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "guitar-string-tension-calculator",
+    category: "other",
+    slugs: {
+      en: "guitar-string-tension-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Guitar String Tension Calculator - Calculate String Force",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate guitar string tension in pounds and Newtons. Enter scale length, string gauge, material, and target note or frequency for precise tension results.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
-
-
-
-
-
-
 ];
