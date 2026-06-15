@@ -1,0 +1,115 @@
+{
+  "title": "Minecraft Circle Generator - Cercles parfaits",
+  "tagline": "Générez des cercles au pixel près pour vos constructions Minecraft. Obtenez les coordonnées exactes des blocs pour n’importe quel rayon avec les algorithmes Midpoint ou Bresenham.",
+  "intro": "Entrez un rayon, des coordonnées de centre facultatives, choisissez votre algorithme et le type de remplissage, puis cliquez sur Generate pour voir la carte exacte de placement des blocs pour votre cercle Minecraft.",
+  "field": {
+    "radius": "Rayon (blocs)",
+    "centerX": "Centre X",
+    "centerY": "Centre Y",
+    "algorithm": "Algorithme",
+    "fillType": "Type de remplissage"
+  },
+  "placeholder": {
+    "radius": "ex. 10",
+    "coord": "ex. 0"
+  },
+  "algorithm": {
+    "midpoint": "Cercle Midpoint",
+    "bresenham": "Cercle Bresenham"
+  },
+  "fillType": {
+    "outline": "Contour",
+    "filled": "Rempli"
+  },
+  "button": {
+    "generate": "Générer le cercle",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Carte du cercle",
+    "blockCount": "Blocs totaux",
+    "diameter": "Diamètre",
+    "centerLabel": "Centre",
+    "copyCoords": "Copier les coordonnées",
+    "copied": "Copié !"
+  },
+  "error": {
+    "invalidRadius": "Veuillez saisir un rayon valide (1–60).",
+    "invalidCoords": "Veuillez saisir des coordonnées entières valides."
+  },
+  "about": {
+    "heading": "À propos du générateur de cercles Minecraft",
+    "body": "Construire des structures circulaires dans Minecraft est l’une des compétences les plus recherchées pour tout bâtisseur sérieux. Contrairement à la construction réelle, où l’on peut utiliser une boussole et une corde, la grille de blocs de Minecraft oblige à approximer un vrai cercle avec une technique de pixels sur grille — la même approche mathématique utilisée en infographie depuis des décennies.\n\nLe générateur implémente deux algorithmes standard du secteur. L’algorithme Midpoint Circle (appelé aussi dans certains textes algorithme de Bresenham pour le cercle) fonctionne en suivant un paramètre de décision qui détermine si le prochain pixel avance horizontalement, verticalement ou en diagonale autour de la frontière du cercle. En partant du sommet du cercle et en itérant un octant à la fois, il remplit simultanément les huit positions symétriques, produisant un contour lisse, équilibré et avec un minimum de trous visuels.\n\nL’algorithme de Bresenham pour le cercle est une variante légère qui initialise différemment le paramètre de décision (d = 3 − 2r au lieu de d = 1 − r). Les deux algorithmes donnent des résultats très proches pour la plupart des rayons, mais peuvent différer d’un ou deux blocs à certains rayons. Les bâtisseurs Minecraft expérimentés en préfèrent parfois un ou l’autre selon l’esthétique souhaitée à une taille donnée.\n\nPour les petits cercles (rayon 5–15), les deux algorithmes sont couramment utilisés pour les tours, puits, piliers et constructions décoratives. Les cercles moyens (rayon 15–30) conviennent bien aux arènes, aux salles circulaires et aux dômes. Les grands cercles (rayon 30–60) sont généralement utilisés pour les constructions massives comme les colisées, les cours de châteaux et les projets de terraformation planétaire.\n\nL’option de remplissage génère un disque plein en calculant, pour chaque ligne, la distance x maximale depuis le centre qui reste dans le rayon, puis en remplissant tous les blocs de cette plage. C’est utile pour les plateformes, les sols et toute construction nécessitant une base circulaire solide plutôt qu’un simple contour.\n\nLors de la construction dans Minecraft, il est utile de marquer d’abord le bloc central, puis d’utiliser les coordonnées générées pour placer les blocs ligne par ligne. L’affichage des coordonnées de ce générateur est relatif au centre (0, 0), donc il suffit d’ajouter vos coordonnées de centre en jeu à chaque valeur pour obtenir les coordonnées du monde. Utiliser un pack de textures d’affichage des coordonnées ou appuyer sur F3 dans Java Edition vous aidera à vérifier votre position pendant la construction.\n\nLe rayon maximal pris en charge par ce générateur est de 60 blocs, ce qui produit un diamètre de 121 blocs — suffisamment grand pour les projets les plus ambitieux en survie ou en créatif. Pour les très grands cercles, le nombre de blocs peut dépasser 10 000 pour les disques remplis, alors planifiez vos matériaux avant de commencer à miner."
+  },
+  "examples": {
+    "heading": "Exemples du générateur de cercles Minecraft",
+    "intro": "Tailles de construction courantes pour vous aider à choisir le bon rayon pour votre projet.",
+    "colInput": "Type de construction",
+    "colOutput": "Rayon / Blocs",
+    "colNote": "Utilisations courantes",
+    "loadSmall": "Petit cercle (r=5)",
+    "loadMedium": "Cercle moyen (r=15)",
+    "loadLarge": "Grand cercle (r=30)",
+    "items": [
+      {
+        "input": "Pilier décoratif / puits",
+        "output": "Rayon 5 · 28 blocs de contour",
+        "note": "Parfait pour des colonnes, de petites tours ou des ouvertures de puits. Tient facilement dans une base survie."
+      },
+      {
+        "input": "Arène / salle de réunion",
+        "output": "Rayon 15 · 84 blocs de contour",
+        "note": "Construction moyenne classique — assez d’espace pour un intérieur fonctionnel sans dominer le paysage."
+      },
+      {
+        "input": "Mur extérieur du colisée",
+        "output": "Rayon 30 · 168 blocs de contour",
+        "note": "Projet de grande ampleur. Prévoyez plusieurs heures de placement et plus de 200 blocs de matériau de mur."
+      },
+      {
+        "input": "Sol de plateforme plein",
+        "output": "Rayon 10 rempli · 317 blocs",
+        "note": "Utilisez le mode rempli pour obtenir un disque solide. Idéal pour des plateformes circulaires, des massifs de jardin et des fondations surélevées."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le générateur de cercles Minecraft",
+    "steps": [
+      "Entrez le rayon souhaité en blocs. Le rayon est la distance entre le bloc central et l’anneau le plus externe — un rayon de 10 produit un cercle de 21 blocs de large.",
+      "Vous pouvez saisir Center X et Center Y si vous souhaitez des coordonnées absolues en jeu plutôt que des coordonnées relatives à partir de (0, 0).",
+      "Choisissez l’algorithme : Midpoint pour des cercles lisses et régulièrement espacés, ou Bresenham pour un motif décalé légèrement différent. Comparez les deux et choisissez votre préférence.",
+      "Réglez Fill Type sur Outline pour n’obtenir que l’anneau (idéal pour les murs) ou sur Filled pour un disque plein (idéal pour les sols et plateformes).",
+      "Cliquez sur Generate Circle. La grille visuelle montre exactement où placer les blocs. Chaque case remplie représente un bloc. Utilisez la liste des coordonnées pour les placer précisément dans votre monde."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du générateur de cercles Minecraft",
+    "items": [
+      {
+        "q": "Pourquoi le cercle n’a-t-il pas l’air parfaitement rond pour les petits rayons ?",
+        "a": "Tout cercle tracé sur une grille carrée doit être approximé. À très petit rayon (1–4), la grille est trop grossière pour produire un cercle reconnaissable, et le résultat ressemble davantage à un losange ou à un octogone. À partir du rayon 5, les deux algorithmes produisent des cercles visuellement lisses qui paraissent ronds à une distance de vue normale en jeu."
+      },
+      {
+        "q": "Quelle est la différence entre Midpoint et Bresenham ?",
+        "a": "Les deux algorithmes utilisent un paramètre de décision incrémental pour choisir le prochain pixel sur la frontière du cercle. L’algorithme Midpoint initialise d = 1 − r, tandis que la variante Bresenham utilise d = 3 − 2r. En pratique, les résultats sont identiques pour de nombreux rayons et ne diffèrent que d’un ou deux blocs pour d’autres. La différence visuelle est négligeable pour la plupart des constructions."
+      },
+      {
+        "q": "Comment utiliser les coordonnées générées dans Minecraft ?",
+        "a": "La grille est centrée sur (0, 0) par défaut. Pour l’utiliser dans votre monde, notez les coordonnées X et Z du bloc central souhaité en jeu (affichées en appuyant sur F3 dans Java Edition) et ajoutez ces valeurs à chaque paire de coordonnées du résultat. L’axe Y (hauteur) est vertical — pour un cercle horizontal au sol, tous les blocs partagent le même niveau Y."
+      },
+      {
+        "q": "Quel rayon maximal puis-je générer ?",
+        "a": "Le générateur prend en charge des rayons de 1 à 60 blocs. Un rayon de 60 crée un cercle de 121 blocs de large. Pour les cercles remplis au rayon 60, le nombre de blocs dépasse 11 000 — assurez-vous d’avoir suffisamment de matériaux avant de construire à cette échelle."
+      },
+      {
+        "q": "Puis-je construire une sphère avec cet outil ?",
+        "a": "Une sphère est une pile de cercles de rayons variables. Pour chaque couche horizontale à une hauteur y relative à l’équateur, calculez le rayon de la couche avec r_layer = √(r² − y²), puis générez un cercle avec ce rayon. Ce générateur traite une couche à la fois — empilez plusieurs cercles générés à différents niveaux Y pour former une sphère complète."
+      },
+      {
+        "q": "Comment construire un cylindre creux ou une tour ?",
+        "a": "Générez un cercle de contour au rayon souhaité et placez cet anneau à chaque niveau Y que vous voulez faire traverser au cylindre. Le mode Outline (et non Filled) vous donne l’anneau qui forme la paroi du cylindre. Le nombre de blocs par couche vous indique combien de blocs de mur il faut par niveau vertical."
+      }
+    ]
+  }
+}

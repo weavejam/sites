@@ -1,0 +1,115 @@
+{
+  "title": "Minecraft Circle Generator - Círculos perfectos",
+  "tagline": "Genera círculos precisos para proyectos de construcción en Minecraft. Obtén las coordenadas exactas de bloques para cualquier radio con los algoritmos Midpoint o Bresenham.",
+  "intro": "Introduce un radio, coordenadas opcionales del centro, elige el algoritmo y el tipo de relleno, y luego haz clic en Generate para ver el mapa exacto de colocación de bloques para tu círculo de Minecraft.",
+  "field": {
+    "radius": "Radio (bloques)",
+    "centerX": "Centro X",
+    "centerY": "Centro Y",
+    "algorithm": "Algoritmo",
+    "fillType": "Tipo de relleno"
+  },
+  "placeholder": {
+    "radius": "p. ej. 10",
+    "coord": "p. ej. 0"
+  },
+  "algorithm": {
+    "midpoint": "Círculo Midpoint",
+    "bresenham": "Círculo Bresenham"
+  },
+  "fillType": {
+    "outline": "Contorno",
+    "filled": "Relleno"
+  },
+  "button": {
+    "generate": "Generar círculo",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Mapa del círculo",
+    "blockCount": "Bloques totales",
+    "diameter": "Diámetro",
+    "centerLabel": "Centro",
+    "copyCoords": "Copiar coordenadas",
+    "copied": "¡Copiado!"
+  },
+  "error": {
+    "invalidRadius": "Introduce un radio válido (1–60).",
+    "invalidCoords": "Introduce coordenadas enteras válidas."
+  },
+  "about": {
+    "heading": "Acerca del generador de círculos de Minecraft",
+    "body": "Construir estructuras circulares en Minecraft es una de las habilidades más valoradas para cualquier constructor serio. A diferencia de la construcción real, donde puedes usar una brújula y cuerda, la cuadrícula de bloques de Minecraft obliga a aproximar un círculo verdadero con la técnica de píxeles sobre una rejilla, el mismo enfoque matemático que la informática gráfica ha usado durante décadas.\n\nEl generador implementa dos algoritmos estándar de la industria. El algoritmo Midpoint (también llamado en algunos textos algoritmo de círculo de Bresenham) funciona siguiendo un parámetro de decisión que determina si el siguiente píxel avanza en horizontal, vertical o diagonal alrededor del borde del círculo. Partiendo de la parte superior del círculo y avanzando un octante a la vez, rellena simultáneamente las ocho posiciones simétricas, produciendo un contorno suave y equilibrado con el mínimo de huecos visuales.\n\nEl algoritmo de Bresenham para círculos es una variante ligera que inicializa el parámetro de decisión de forma distinta (d = 3 − 2r en lugar de d = 1 − r). Ambos algoritmos producen resultados muy similares para la mayoría de los radios, pero pueden diferir en uno o dos bloques en radios concretos. Algunos constructores expertos de Minecraft prefieren uno u otro según cómo encaje el resultado con su estética en un tamaño dado.\n\nPara círculos pequeños (radio 5–15), ambos algoritmos se usan con frecuencia en torres, pozos, pilares y construcciones decorativas. Los círculos medianos (radio 15–30) funcionan bien para arenas, salas circulares y cúpulas. Los círculos grandes (radio 30–60) se usan normalmente para construcciones masivas como coliseos, patios de castillos y proyectos de terraformación planetaria.\n\nLa opción de relleno genera un disco sólido calculando, para cada fila, la distancia máxima en x desde el centro que cae dentro del radio y rellenando todos los bloques de ese tramo. Esto es útil para plataformas, suelos y cualquier construcción que necesite una base circular sólida y no solo el contorno.\n\nAl construir en Minecraft, conviene marcar primero el bloque central y luego usar las coordenadas generadas para colocar los bloques fila por fila. La visualización de coordenadas de este generador es relativa al centro (0, 0), así que solo tienes que sumar las coordenadas centrales de tu mundo a cada valor para obtener las coordenadas absolutas. Usar un paquete de texturas con visualización de coordenadas o pulsar F3 en Java Edition te ayudará a verificar tu posición mientras construyes.\n\nEl radio máximo compatible en este generador es de 60 bloques, lo que produce un diámetro de 121 bloques, suficiente para los proyectos más ambiciosos en supervivencia o creativo. Para círculos muy grandes, el número de bloques puede superar los 10,000 en discos rellenos, así que planifica bien los materiales antes de empezar a minar."
+  },
+  "examples": {
+    "heading": "Ejemplos del generador de círculos de Minecraft",
+    "intro": "Tamaños de construcción comunes para ayudarte a elegir el radio adecuado para tu proyecto.",
+    "colInput": "Tipo de construcción",
+    "colOutput": "Radio / Bloques",
+    "colNote": "Usos comunes",
+    "loadSmall": "Círculo pequeño (r=5)",
+    "loadMedium": "Círculo mediano (r=15)",
+    "loadLarge": "Círculo grande (r=30)",
+    "items": [
+      {
+        "input": "Pilar decorativo / pozo",
+        "output": "Radio 5 · 28 bloques de contorno",
+        "note": "Perfecto para columnas, torres pequeñas o bocas de pozo. Cabe fácilmente en una base de supervivencia."
+      },
+      {
+        "input": "Arena / sala de reuniones",
+        "output": "Radio 15 · 84 bloques de contorno",
+        "note": "Construcción mediana clásica: suficiente espacio para un interior funcional sin dominar el paisaje."
+      },
+      {
+        "input": "Muro exterior del coliseo",
+        "output": "Radio 30 · 168 bloques de contorno",
+        "note": "Proyecto a gran escala. Reserva varias horas para colocar bloques y prepara más de 200 bloques de material para muros."
+      },
+      {
+        "input": "Suelo de plataforma sólida",
+        "output": "Radio 10 relleno · 317 bloques",
+        "note": "Usa el modo relleno para obtener un disco sólido. Ideal para plataformas circulares, parterres y cimientos elevados."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar el generador de círculos de Minecraft",
+    "steps": [
+      "Introduce el radio deseado en bloques. El radio es la distancia desde el bloque central hasta el anillo más exterior: un radio de 10 produce un círculo de 21 bloques de ancho.",
+      "Opcionalmente, introduce Center X y Center Y si quieres coordenadas absolutas del juego en lugar de coordenadas relativas desde (0, 0).",
+      "Elige el algoritmo: Midpoint para círculos suaves y uniformemente espaciados, o Bresenham para un patrón escalonado ligeramente distinto. Compáralos y elige tu preferencia.",
+      "Configura Fill Type en Outline para solo el anillo (ideal para muros) o en Filled para un disco sólido (ideal para suelos y plataformas).",
+      "Haz clic en Generate Circle. La cuadrícula visual muestra exactamente dónde colocar los bloques. Cada celda rellena representa un bloque. Usa la lista de coordenadas para colocarlos con precisión en tu mundo."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes del generador de círculos de Minecraft",
+    "items": [
+      {
+        "q": "¿Por qué el círculo no se ve perfectamente redondo en radios pequeños?",
+        "a": "Cualquier círculo dibujado sobre una cuadrícula cuadrada debe aproximarse. En radios muy pequeños (1–4), la cuadrícula es demasiado gruesa para producir un círculo reconocible, así que el resultado se parece más a un diamante o un octágono. A partir del radio 5, ambos algoritmos producen círculos visualmente suaves que se perciben como redondos a una distancia normal dentro del juego."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre los algoritmos Midpoint y Bresenham?",
+        "a": "Ambos algoritmos usan un parámetro de decisión incremental para elegir el siguiente píxel adecuado en el borde del círculo. El algoritmo Midpoint inicializa d = 1 − r, mientras que la variante de Bresenham usa d = 3 − 2r. En la práctica, las salidas son idénticas para muchos radios y solo difieren en uno o dos bloques en otros. La diferencia visual es insignificante para la mayoría de las construcciones."
+      },
+      {
+        "q": "¿Cómo uso las coordenadas generadas en Minecraft?",
+        "a": "La cuadrícula está centrada en (0, 0) por defecto. Para usarlas en tu mundo, toma las coordenadas X y Z del bloque central deseado en el juego (se muestran al pulsar F3 en Java Edition) y súmalas a cada par de coordenadas del resultado. El eje Y (altura) va hacia arriba: para un círculo horizontal en el suelo, todos los bloques comparten el mismo nivel Y."
+      },
+      {
+        "q": "¿Cuál es el radio máximo que puedo generar?",
+        "a": "El generador admite radios de 1 a 60 bloques. Un radio de 60 crea un círculo de 121 bloques de ancho. Para círculos rellenos con radio 60, el número de bloques supera los 11,000, así que asegúrate de tener materiales suficientes antes de construir a esta escala."
+      },
+      {
+        "q": "¿Puedo construir una esfera con esta herramienta?",
+        "a": "Una esfera es una pila de círculos con radios variables. Para cada capa horizontal a una altura y relativa al ecuador, calcula el radio de la capa como r_layer = √(r² − y²) y genera un círculo con ese radio. Este generador maneja una capa a la vez: apila varios círculos generados a distintos niveles Y para formar una esfera completa."
+      },
+      {
+        "q": "¿Cómo construyo un cilindro hueco o una torre?",
+        "a": "Genera un círculo de contorno con el radio deseado y coloca ese mismo anillo en cada nivel Y que quieras que abarque el cilindro. Usar el modo Outline (no Filled) te da el anillo que forma la pared del cilindro. El número de bloques por capa te indica cuántos materiales de pared necesitas por nivel vertical."
+      }
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "title": "Minecraft Circle Generator - Círculos perfeitos",
+  "tagline": "Gere círculos com precisão de pixel para projetos de construção no Minecraft. Obtenha coordenadas exatas de blocos para qualquer raio usando os algoritmos Midpoint ou Bresenham.",
+  "intro": "Digite um raio, coordenadas opcionais do centro, escolha o algoritmo e o tipo de preenchimento e clique em Generate para ver o mapa exato de colocação de blocos do seu círculo no Minecraft.",
+  "field": {
+    "radius": "Raio (blocos)",
+    "centerX": "Centro X",
+    "centerY": "Centro Y",
+    "algorithm": "Algoritmo",
+    "fillType": "Tipo de preenchimento"
+  },
+  "placeholder": {
+    "radius": "ex.: 10",
+    "coord": "ex.: 0"
+  },
+  "algorithm": {
+    "midpoint": "Círculo Midpoint",
+    "bresenham": "Círculo Bresenham"
+  },
+  "fillType": {
+    "outline": "Contorno",
+    "filled": "Preenchido"
+  },
+  "button": {
+    "generate": "Gerar círculo",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Mapa do círculo",
+    "blockCount": "Total de blocos",
+    "diameter": "Diâmetro",
+    "centerLabel": "Centro",
+    "copyCoords": "Copiar coordenadas",
+    "copied": "Copiado!"
+  },
+  "error": {
+    "invalidRadius": "Digite um raio válido (1–60).",
+    "invalidCoords": "Digite coordenadas inteiras válidas."
+  },
+  "about": {
+    "heading": "Sobre o gerador de círculos de Minecraft",
+    "body": "Construir estruturas circulares no Minecraft é uma das habilidades mais procuradas por qualquer construtor sério. Ao contrário da construção no mundo real, em que você pode usar bússola e barbante, a grade de blocos do Minecraft exige aproximar um círculo verdadeiro com a técnica de pixels em grade — a mesma abordagem matemática usada na computação gráfica há décadas.\n\nO gerador implementa dois algoritmos padrão da indústria. O algoritmo Midpoint Circle (também chamado em alguns textos de algoritmo de círculo de Bresenham) funciona acompanhando um parâmetro de decisão que determina se o próximo pixel avança na horizontal, vertical ou diagonal em torno da borda do círculo. Partindo do topo do círculo e iterando um octante por vez, ele preenche simultaneamente as oito posições simétricas, produzindo um contorno suave, equilibrado e com o mínimo de lacunas visuais.\n\nO algoritmo de Bresenham para círculo é uma variação leve que inicializa o parâmetro de decisão de forma diferente (d = 3 − 2r em vez de d = 1 − r). Ambos os algoritmos produzem resultados muito semelhantes para a maioria dos raios, mas podem diferir em um ou dois blocos em raios específicos. Construtores experientes de Minecraft às vezes preferem um ou outro conforme o resultado combina melhor com sua estética em um determinado tamanho.\n\nPara círculos menores (raio 5–15), ambos os algoritmos são muito usados em torres, poços, pilares e construções decorativas. Círculos médios (raio 15–30) funcionam bem para arenas, salas circulares e cúpulas. Círculos grandes (raio 30–60) normalmente são usados para construções massivas, como coliseus, pátios de castelos e projetos de terraformação planetária.\n\nA opção preenchida gera um disco sólido calculando, para cada linha, a maior distância em x a partir do centro que ainda fica dentro do raio e preenchendo cada bloco desse intervalo. Isso é útil para plataformas, pisos e qualquer construção que precise de uma base circular sólida, e não apenas do contorno.\n\nAo construir no Minecraft, ajuda marcar primeiro o bloco central e depois usar as coordenadas geradas para colocar os blocos linha por linha. A exibição de coordenadas deste gerador é relativa ao centro (0, 0), então basta somar suas coordenadas centrais do jogo a cada valor para obter as coordenadas do mundo. Usar um pacote de textura com exibição de coordenadas ou pressionar F3 na Java Edition ajudará a verificar sua posição enquanto constrói.\n\nO raio máximo suportado neste gerador é 60 blocos, o que produz um diâmetro de 121 blocos — grande o suficiente para os projetos mais ambiciosos no modo sobrevivência ou criativo. Para círculos muito grandes, a contagem de blocos pode ultrapassar 10.000 em discos preenchidos, então planeje seus materiais antes de começar a minerar."
+  },
+  "examples": {
+    "heading": "Exemplos do gerador de círculos de Minecraft",
+    "intro": "Tamanhos de construção comuns para ajudar você a escolher o raio certo para o seu projeto.",
+    "colInput": "Tipo de construção",
+    "colOutput": "Raio / Blocos",
+    "colNote": "Usos comuns",
+    "loadSmall": "Círculo pequeno (r=5)",
+    "loadMedium": "Círculo médio (r=15)",
+    "loadLarge": "Círculo grande (r=30)",
+    "items": [
+      {
+        "input": "Pilar decorativo / poço",
+        "output": "Raio 5 · 28 blocos de contorno",
+        "note": "Perfeito para colunas, torres pequenas ou aberturas de poço. Cabe facilmente em uma base de sobrevivência."
+      },
+      {
+        "input": "Arena / salão de reuniões",
+        "output": "Raio 15 · 84 blocos de contorno",
+        "note": "Construção média clássica — espaço suficiente para um interior funcional sem dominar a paisagem."
+      },
+      {
+        "input": "Muro externo do coliseu",
+        "output": "Raio 30 · 168 blocos de contorno",
+        "note": "Projeto em grande escala. Reserve várias horas para colocar os blocos e prepare mais de 200 blocos de material de parede."
+      },
+      {
+        "input": "Piso de plataforma sólida",
+        "output": "Raio 10 preenchido · 317 blocos",
+        "note": "Use o modo preenchido para obter um disco sólido. Ótimo para plataformas circulares, canteiros e fundações elevadas."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar o gerador de círculos de Minecraft",
+    "steps": [
+      "Digite o raio desejado em blocos. O raio é a distância do bloco central até o anel mais externo — um raio de 10 produz um círculo com 21 blocos de largura.",
+      "Opcionalmente, informe Center X e Center Y se quiser coordenadas absolutas no jogo em vez de coordenadas relativas a partir de (0, 0).",
+      "Escolha o algoritmo: Midpoint para círculos suaves e igualmente espaçados, ou Bresenham para um padrão escalonado um pouco diferente. Compare os dois e escolha sua preferência.",
+      "Defina Fill Type como Outline para apenas o anel (ideal para paredes) ou como Filled para um disco sólido (ideal para pisos e plataformas).",
+      "Clique em Generate Circle. A grade visual mostra exatamente onde colocar os blocos. Cada célula preenchida representa um bloco. Use a lista de coordenadas para posicionar tudo com precisão no seu mundo."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes do gerador de círculos de Minecraft",
+    "items": [
+      {
+        "q": "Por que o círculo não parece perfeitamente redondo em raios pequenos?",
+        "a": "Qualquer círculo desenhado em uma grade quadrada precisa ser aproximado. Em raios muito pequenos (1–4), a grade é grosseira demais para produzir um círculo reconhecível, então o resultado se parece mais com um losango ou octógono. A partir do raio 5, ambos os algoritmos produzem círculos visualmente suaves que parecem redondos a uma distância normal dentro do jogo."
+      },
+      {
+        "q": "Qual é a diferença entre os algoritmos Midpoint e Bresenham?",
+        "a": "Ambos usam um parâmetro de decisão incremental para escolher o próximo pixel na borda do círculo. O algoritmo Midpoint inicializa d = 1 − r, enquanto a variante de Bresenham usa d = 3 − 2r. Na prática, as saídas são idênticas para muitos raios e diferem em apenas um ou dois blocos em outros. A diferença visual é insignificante para a maioria das construções."
+      },
+      {
+        "q": "Como uso as coordenadas geradas no Minecraft?",
+        "a": "A grade é centralizada em (0, 0) por padrão. Para usá-las no seu mundo, anote as coordenadas X e Z do bloco central desejado no jogo (mostradas ao pressionar F3 na Java Edition) e some esses valores a cada par de coordenadas na saída. O eixo Y (altura) vai para cima — para um círculo horizontal no chão, todos os blocos compartilham o mesmo nível de Y."
+      },
+      {
+        "q": "Qual é o raio máximo que posso gerar?",
+        "a": "O gerador suporta raios de 1 a 60 blocos. Um raio de 60 cria um círculo com 121 blocos de largura. Para círculos preenchidos com raio 60, a contagem de blocos passa de 11.000 — garanta materiais suficientes antes de construir nessa escala."
+      },
+      {
+        "q": "Posso construir uma esfera com esta ferramenta?",
+        "a": "Uma esfera é uma pilha de círculos com raios variados. Para cada camada horizontal na altura y relativa ao equador, calcule o raio da camada como r_layer = √(r² − y²) e gere um círculo com esse raio. Este gerador trata uma camada por vez — empilhe vários círculos gerados em diferentes níveis Y para formar uma esfera completa."
+      },
+      {
+        "q": "Como construo um cilindro oco ou uma torre?",
+        "a": "Gere um círculo de contorno no raio desejado e coloque o mesmo anel em cada nível Y que o cilindro deve cobrir. Usar o modo Outline (e não Filled) fornece o anel que forma a parede do cilindro. A contagem de blocos por camada mostra quantos blocos de parede você precisa por nível vertical."
+      }
+    ]
+  }
+}
