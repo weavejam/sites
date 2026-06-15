@@ -151,14 +151,19 @@ import { fixtures as f_polynomial_regression_calculator } from "@/tools/polynomi
 import { fixtures as f_pooled_standard_deviation_calculator } from "@/tools/pooled-standard-deviation-calculator.fixtures";
 import { fixtures as f_population_variance_calculator } from "@/tools/population-variance-calculator.fixtures";
 import { fixtures as f_post_test_probability_calculator } from "@/tools/post-test-probability-calculator.fixtures";
+import { fixtures as f_rainfall_calculator } from "@/tools/rainfall-calculator.fixtures";
+import { fixtures as f_ram_latency_calculator } from "@/tools/ram-latency-calculator.fixtures";
 import { fixtures as f_rayleigh_distribution_calculator } from "@/tools/rayleigh-distribution-calculator.fixtures";
+import { fixtures as f_recruitment_process_duration_calculator } from "@/tools/recruitment-process-duration-calculator.fixtures";
 import { fixtures as f_relative_error_calculator } from "@/tools/relative-error-calculator.fixtures";
 import { fixtures as f_relative_frequency_calculator } from "@/tools/relative-frequency-calculator.fixtures";
 import { fixtures as f_relative_risk_calculator } from "@/tools/relative-risk-calculator.fixtures";
 import { fixtures as f_relative_risk_reduction_calculator } from "@/tools/relative-risk-reduction-calculator.fixtures";
 import { fixtures as f_relative_standard_deviation_calculator } from "@/tools/relative-standard-deviation-calculator.fixtures";
+import { fixtures as f_reorder_point_calculator } from "@/tools/reorder-point-calculator.fixtures";
 import { fixtures as f_repeated_measures_anova_calculator } from "@/tools/repeated-measures-anova-calculator.fixtures";
 import { fixtures as f_residual_calculator } from "@/tools/residual-calculator.fixtures";
+import { fixtures as f_resolution_scale_calculator } from "@/tools/resolution-scale-calculator.fixtures";
 import { fixtures as f_risk_calculator } from "@/tools/risk-calculator.fixtures";
 import { fixtures as f_roc_curve_calculator } from "@/tools/roc-curve-calculator.fixtures";
 import { fixtures as f_roulette_payout_calculator } from "@/tools/roulette-payout-calculator.fixtures";
@@ -390,14 +395,19 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "pooled-standard-deviation-calculator": f_pooled_standard_deviation_calculator,
   "population-variance-calculator": f_population_variance_calculator,
   "post-test-probability-calculator": f_post_test_probability_calculator,
+  "rainfall-calculator": f_rainfall_calculator,
+  "ram-latency-calculator": f_ram_latency_calculator,
   "rayleigh-distribution-calculator": f_rayleigh_distribution_calculator,
+  "recruitment-process-duration-calculator": f_recruitment_process_duration_calculator,
   "relative-error-calculator": f_relative_error_calculator,
   "relative-frequency-calculator": f_relative_frequency_calculator,
   "relative-risk-calculator": f_relative_risk_calculator,
   "relative-risk-reduction-calculator": f_relative_risk_reduction_calculator,
   "relative-standard-deviation-calculator": f_relative_standard_deviation_calculator,
+  "reorder-point-calculator": f_reorder_point_calculator,
   "repeated-measures-anova-calculator": f_repeated_measures_anova_calculator,
   "residual-calculator": f_residual_calculator,
+  "resolution-scale-calculator": f_resolution_scale_calculator,
   "risk-calculator": f_risk_calculator,
   "roc-curve-calculator": f_roc_curve_calculator,
   "roulette-payout-calculator": f_roulette_payout_calculator,
