@@ -4920,7 +4920,208 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+   id: "dot-product-calculator",
+   category: "math",
+   slugs: {
+     en: "dot-product-calculator",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   titles: {
+     en: "Dot Product Calculator - 2D & 3D Vector Dot Product",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   descriptions: {
+     en: "Dot product calculator for 2D and 3D vectors. Computes scalar product, angle between vectors, and magnitudes — essential for linear algebra and physics.",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   }
+  },
+  {
+   id: "double-angle-formula-calculator",
+   category: "math",
+   slugs: {
+     en: "double-angle-formula-calculator",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   titles: {
+     en: "Double Angle Formula Calculator - sin cos tan 2x",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   descriptions: {
+     en: "Double angle formula calculator for sin(2x), cos(2x), and tan(2x) in degrees or radians. Instant trig identity results for students and engineers.",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   }
+  },
+  {
+   id: "doubling-time-calculator",
+   category: "math",
+   slugs: {
+     en: "doubling-time-calculator",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   titles: {
+     en: "Doubling Time Calculator - Investment & Population Growth",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   descriptions: {
+     en: "Doubling time calculator using exact logarithm formula and Rule of 72. Find how long investments, populations, or any growth rate takes to double.",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   }
+  },
+  {
+   id: "e-calculator",
+   category: "math",
+   slugs: {
+     en: "e-calculator",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   titles: {
+     en: "e Calculator - Euler's Number, e^x & ln(x)",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   descriptions: {
+     en: "e calculator for Euler's number, e^x exponential functions, and natural logarithms ln(x). Get precise results with Taylor series and step-by-step solutions.",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   }
+  },
+  {
+   id: "egyptian-fractions-calculator",
+   category: "math",
+   slugs: {
+     en: "egyptian-fractions-calculator",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   titles: {
+     en: "Egyptian Fractions Calculator - Unit Fraction Decomposition",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   },
+   descriptions: {
+     en: "Egyptian fractions calculator converts any fraction into a sum of distinct unit fractions using the greedy algorithm — with step-by-step greedy decomposition.",
+     "zh-CN": "",
+     "zh-TW": "",
+     ja: "",
+     ko: "",
+     es: "",
+     fr: "",
+     de: "",
+     pt: "",
+     ru: ""
+   }
   }
+
 
 
 ];
