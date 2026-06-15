@@ -2646,39 +2646,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "carburetor-cfm-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "huahuaqi-cfm-jisuanqi",
+      "zh-TW": "hua-you-qi-cfm-ji-suan-qi",
+      ja: "kaatori-cfm-keisan",
+      ko: "kaebureoteo-cfm-gyeonsangi",
+      es: "calculadora-cfm-carburador",
+      fr: "calculateur-cfm-carburateur",
+      de: "vergaser-cfm-rechner",
+      pt: "calculadora-cfm-carburador",
+      ru: "kalkulyator-cfm-karbyuratora"
     },
     titles: {
       en: "Carburetor CFM Calculator – Engine Air Flow Sizing",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "化油器CFM计算器",
+      "zh-TW": "化油器CFM計算器",
+      ja: "キャブレターCFM計算機",
+      ko: "카뷰레터 CFM 계산기",
+      es: "Calculadora CFM del carburador",
+      fr: "Calculateur CFM du carburateur",
+      de: "Vergaser-CFM-Rechner",
+      pt: "Calculadora de CFM do carburador",
+      ru: "Калькулятор CFM карбюратора"
     },
     descriptions: {
       en: "Calculate required carburetor CFM from engine displacement, RPM, and volumetric efficiency. Size your carb correctly for peak performance and fuel economy.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据排量、转速和容积效率计算所需化油器CFM，帮助你为峰值性能和燃油经济性正确选型。",
+      "zh-TW": "根據排量、轉速與容積效率計算所需化油器CFM，幫你正確選型以兼顧峰值性能與燃油經濟性。",
+      ja: "排気量、回転数、体積効率から必要CFMを計算し、最高性能と燃費の両立に合うキャブレター選びを支援します。",
+      ko: "배기량, RPM, 체적 효율로 필요한 카뷰레터 CFM을 계산해 최고 성능과 연비에 맞는 사이즈를 고르세요.",
+      es: "Calcula el CFM necesario del carburador según la cilindrada, las RPM y la eficiencia volumétrica para lograr el mejor rendimiento y consumo.",
+      fr: "Calculez le CFM nécessaire d’un carburateur selon la cylindrée, le régime et le rendement volumétrique pour viser performance et économie.",
+      de: "Berechnen Sie den benötigten Vergaser-CFM anhand von Hubraum, Drehzahl und Volumeneffizienz für maximale Leistung und Sparsamkeit.",
+      pt: "Calcule o CFM necessário do carburador com base na cilindrada, RPM e eficiência volumétrica para melhor desempenho e economia.",
+      ru: "Рассчитайте нужный CFM карбюратора по объёму двигателя, оборотам и объёмному КПД для лучшей мощности и экономичности."
     }
   },
   {
@@ -2686,39 +2686,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "carnot-efficiency-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "kanuo-xiaolv-jisuanqi",
+      "zh-TW": "kanuo-xiaolv-jisuanqi",
+      ja: "kanou-koritsu-keisanki",
+      ko: "kareuno-hyoyul-gyesangi",
+      es: "calculadora-eficiencia-carnot",
+      fr: "calculateur-rendement-carnot",
+      de: "carnot-wirkungsgrad-rechner",
+      pt: "calculadora-eficiencia-carnot",
+      ru: "kalkulyator-effektivnosti-karno"
     },
     titles: {
       en: "Carnot Efficiency Calculator – Max Thermodynamic Efficiency",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "卡诺效率计算器 - 最大热力学效率",
+      "zh-TW": "卡諾效率計算器 - 最大熱力學效率",
+      ja: "カルノー効率計算機 - 最大熱力学効率",
+      ko: "카르노 효율 계산기 - 최대 열역학 효율",
+      es: "Calculadora de eficiencia de Carnot",
+      fr: "Calculateur de rendement de Carnot",
+      de: "Carnot-Wirkungsgrad-Rechner",
+      pt: "Calculadora de eficiência de Carnot",
+      ru: "Калькулятор эффективности Карно"
     },
     descriptions: {
       en: "Calculate the maximum theoretical Carnot efficiency for any heat engine from hot and cold reservoir temperatures in Kelvin using η = 1 − Tc/Th.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "用开尔文热源与冷源温度计算任意热机的最大理论卡诺效率：η = 1 − Tc/Th。",
+      "zh-TW": "用開爾文熱源與冷源溫度計算任一熱機的最大理論卡諾效率：η = 1 − Tc/Th。",
+      ja: "高温・低温熱源のケルビン温度から、任意の熱機関の最大理論カルノー効率を η = 1 − Tc/Th で計算します。",
+      ko: "고온·저온 저장소의 켈빈 온도로 모든 열기관의 최대 이론 카르노 효율을 η = 1 − Tc/Th로 계산합니다.",
+      es: "Calcula la eficiencia teórica máxima de Carnot para cualquier motor térmico con temperaturas de focos caliente y frío en Kelvin.",
+      fr: "Calculez le rendement théorique maximal de Carnot d'un moteur thermique avec les températures chaude et froide en Kelvin.",
+      de: "Berechnen Sie den maximalen theoretischen Carnot-Wirkungsgrad einer Wärmekraftmaschine aus Reservoirtemperaturen in Kelvin.",
+      pt: "Calcule a eficiência teórica máxima de Carnot de qualquer motor térmico usando temperaturas dos reservatórios em Kelvin.",
+      ru: "Рассчитайте максимальную теоретическую эффективность Карно для тепловой машины по температурам резервуаров в Кельвинах."
     }
   },
   {
@@ -2726,39 +2726,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "centrifugal-force-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "li-xin-li-jisuanqi",
+      "zh-TW": "li-xin-li-jisuanqi",
+      ja: "enshinryoku-keisanki",
+      ko: "wonsimryeok-gyesan-gi",
+      es: "calculadora-fuerza-centrifuga",
+      fr: "calculateur-force-centrifuge",
+      de: "zentrifugalkraft-rechner",
+      pt: "calculadora-forca-centrifuga",
+      ru: "tsentrobezhnaya-sila-kalkulyator"
     },
     titles: {
       en: "Centrifugal Force Calculator – Linear and Angular Velocity",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "离心力计算器",
+      "zh-TW": "離心力計算器",
+      ja: "遠心力計算機",
+      ko: "원심력 계산기",
+      es: "Calculadora de fuerza centrífuga",
+      fr: "Calculateur de force centrifuge",
+      de: "Zentrifugalkraft-Rechner",
+      pt: "Calculadora de força centrífuga",
+      ru: "Калькулятор центробежной силы"
     },
     descriptions: {
       en: "Calculate centrifugal force and centripetal acceleration from mass, radius, and linear or angular velocity. Supports kg, g, lb, m, cm, ft, m/s, km/h, RPM.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据质量、半径和线速度或角速度计算离心力与向心加速度，支持 kg、g、lb、m、cm、ft、m/s、km/h、RPM。",
+      "zh-TW": "根據質量、半徑與線速度或角速度計算離心力與向心加速度，支援 kg、g、lb、m、cm、ft、m/s、km/h、RPM。",
+      ja: "質量・半径・線速度または角速度から遠心力と向心加速度を計算。kg、g、lb、m、cm、ft、m/s、km/h、RPMに対応。",
+      ko: "질량, 반지름, 선속도 또는 각속도로 원심력과 구심가속도를 계산합니다. kg, g, lb, m, cm, ft, m/s, km/h, RPM 지원.",
+      es: "Calcula la fuerza centrífuga y la aceleración centrípeta a partir de masa, radio y velocidad lineal o angular.",
+      fr: "Calcule la force centrifuge et l’accélération centripète à partir de la masse, du rayon et de la vitesse linéaire ou angulaire.",
+      de: "Berechnet Zentrifugalkraft und Zentripetalbeschleunigung aus Masse, Radius und linearer oder Winkelgeschwindigkeit.",
+      pt: "Calcule a força centrífuga e a aceleração centrípeta a partir de massa, raio e velocidade linear ou angular.",
+      ru: "Рассчитывает центробежную силу и центростремительное ускорение по массе, радиусу и линейной или угловой скорости."
     }
   },
   {
@@ -2766,39 +2766,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "centrifuge-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "lixinji-jisuanqi",
+      "zh-TW": "lixinji-jisuanqi",
+      ja: "enshinki-keisanshi",
+      ko: "wonsimbunrigi-gyesangi",
+      es: "calculadora-de-centrifuga",
+      fr: "calculateur-de-centrifugeuse",
+      de: "zentrifugen-rechner",
+      pt: "calculadora-de-centrifuga",
+      ru: "kalkulyator-tsentrifugi"
     },
     titles: {
       en: "Centrifuge Calculator – RCF, RPM, and Rotor Radius",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "离心机计算器",
+      "zh-TW": "離心機計算器",
+      ja: "遠心機計算機",
+      ko: "원심분리기 계산기",
+      es: "Calculadora de centrífuga",
+      fr: "Calculateur de centrifugeuse",
+      de: "Zentrifugenrechner",
+      pt: "Calculadora de centrífuga",
+      ru: "Калькулятор центрифуги"
     },
     descriptions: {
       en: "Calculate centrifuge RCF (g-force), RPM, or rotor radius. Enter any two values to solve for the third using the standard RCF = 1.118×10⁻⁵ × r × RPM² formula.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算离心机 RCF、RPM 或转子半径。输入任意两个值即可用 RCF = 1.118×10⁻⁵ × r × RPM² 求出第三个。",
+      "zh-TW": "計算離心機 RCF、RPM 或轉子半徑。輸入任意兩個值即可用 RCF = 1.118×10⁻⁵ × r × RPM² 求出第三個。",
+      ja: "遠心機の RCF、RPM、ローター半径を計算。任意の2つの値を入力すると、RCF = 1.118×10⁻⁵ × r × RPM² で3つ目が求まります。",
+      ko: "원심분리기의 RCF, RPM, 로터 반경을 계산하세요. 두 값만 입력하면 RCF = 1.118×10⁻⁵ × r × RPM²로 나머지 하나를 구할 수 있습니다.",
+      es: "Calcula la RCF, las RPM o el radio del rotor de tu centrífuga. Ingresa dos valores para obtener el tercero con la fórmula RCF = 1.118×10⁻⁵ × r × RPM².",
+      fr: "Calculez la RCF, le RPM ou le rayon du rotor de votre centrifugeuse. Saisissez deux valeurs pour obtenir la troisième avec RCF = 1.118×10⁻⁵ × r × RPM².",
+      de: "Berechnen Sie RCF, RPM oder den Rotorradius Ihrer Zentrifuge. Mit zwei Werten erhalten Sie den dritten über RCF = 1.118×10⁻⁵ × r × RPM².",
+      pt: "Calcule a RCF, o RPM ou o raio do rotor da sua centrífuga. Informe dois valores para obter o terceiro com RCF = 1.118×10⁻⁵ × r × RPM².",
+      ru: "Рассчитайте RCF, RPM или радиус ротора центрифуги. Введите любые два значения, чтобы найти третье по формуле RCF = 1.118×10⁻⁵ × r × RPM²."
     }
   },
   {
@@ -5041,5 +5041,4 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   }
-
 ];
