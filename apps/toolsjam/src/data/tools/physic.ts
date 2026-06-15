@@ -2606,39 +2606,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "de-broglie-wavelength-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "de-broglie-wavelength-calculator",
+      "zh-TW": "de-broglie-wavelength-calculator",
+      ja: "do-buroi-hacho-keisanki",
+      ko: "deu-beuroi-pajang-gyesangi",
+      es: "calculadora-longitud-onda-de-broglie",
+      fr: "calculateur-longueur-onde-de-broglie",
+      de: "de-broglie-wellenlaenge-rechner",
+      pt: "calculadora-comprimento-onda-de-broglie",
+      ru: "kalkulyator-dliny-volny-de-broilya"
     },
     titles: {
       en: "De Broglie Wavelength Calculator – Wave-Particle Duality",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "德布罗意波长计算器",
+      "zh-TW": "德布羅意波長計算器",
+      ja: "ド・ブロイ波長計算機",
+      ko: "드브로이 파장 계산기",
+      es: "Calculadora de longitud de onda de De Broglie",
+      fr: "Calculateur de longueur d’onde de De Broglie",
+      de: "De-Broglie-Wellenlänge-Rechner",
+      pt: "Calculadora de comprimento de onda de De Broglie",
+      ru: "Калькулятор длины волны де Бройля"
     },
     descriptions: {
       en: "Calculate the De Broglie wavelength from mass and velocity, kinetic energy, or momentum. Reveals wave-particle duality in nanometres and picometres.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据质量与速度、动能或动量计算德布罗意波长，以纳米和皮米呈现波粒二象性。",
+      "zh-TW": "依質量與速度、動能或動量計算德布羅意波長，以奈米與皮米呈現波粒二象性。",
+      ja: "質量と速度、運動エネルギー、または運動量からド・ブロイ波長を計算し、波動粒子二重性を nm と pm で確認します。",
+      ko: "질량과 속도, 운동 에너지 또는 운동량으로 드브로이 파장을 계산하고 nm와 pm 단위로 파동-입자 이중성을 확인합니다.",
+      es: "Calcula la longitud de onda de De Broglie desde masa y velocidad, energía cinética o momento, en nanómetros y picómetros.",
+      fr: "Calculez la longueur d’onde de De Broglie à partir de la masse et vitesse, de l’énergie cinétique ou de la quantité de mouvement.",
+      de: "Berechne die De-Broglie-Wellenlänge aus Masse und Geschwindigkeit, kinetischer Energie oder Impuls in Nanometern und Pikometern.",
+      pt: "Calcule o comprimento de onda de De Broglie por massa e velocidade, energia cinética ou momento, em nanômetros e picômetros.",
+      ru: "Рассчитайте длину волны де Бройля по массе и скорости, кинетической энергии или импульсу в нанометрах и пикометрах."
     }
   },
   {
@@ -4841,6 +4841,4 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   }
-
-
 ];
