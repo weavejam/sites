@@ -1,0 +1,100 @@
+{
+  "title": "Impedance Matching Calculator - VSWR & Power Transfer",
+  "tagline": "Calculate VSWR, reflection coefficient, and power transfer efficiency between source and load impedances for RF and antenna systems.",
+  "intro": "Enter the source and load impedances (real and imaginary parts) to calculate key matching parameters including VSWR, reflection coefficient, and power transfer efficiency.",
+  "field": {
+    "sourceReal": "Source Impedance (Real) Ω",
+    "sourceImag": "Source Impedance (Imaginary) Ω",
+    "loadReal": "Load Impedance (Real) Ω",
+    "loadImag": "Load Impedance (Imaginary) Ω",
+    "frequency": "Frequency (MHz)",
+    "lineImpedance": "Transmission Line Impedance Ω",
+    "lineLength": "Line Length (m)"
+  },
+  "placeholder": {
+    "sourceReal": "e.g. 50",
+    "sourceImag": "e.g. 0",
+    "loadReal": "e.g. 75",
+    "loadImag": "e.g. 0",
+    "frequency": "e.g. 1000",
+    "lineImpedance": "e.g. 50",
+    "lineLength": "e.g. 5"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers for source and load impedances.",
+    "zeroSource": "Source impedance real part cannot be zero."
+  },
+  "result": {
+    "heading": "Results",
+    "reflectionCoeff": "Reflection Coefficient |Γ|",
+    "vswr": "VSWR",
+    "returnLoss": "Return Loss (dB)",
+    "powerTransfer": "Power Transfer Efficiency (%)",
+    "mismatchLoss": "Mismatch Loss (dB)",
+    "perfectMatch": "Perfect match — no reflections",
+    "goodMatch": "Good match (VSWR < 2)",
+    "poorMatch": "Poor match (VSWR ≥ 2)"
+  },
+  "about": {
+    "heading": "About the Impedance Matching Calculator",
+    "body": "Impedance matching is a fundamental concept in electrical engineering and RF design. When electrical energy travels from a source to a load, the amount of power delivered to the load depends critically on how closely the source impedance matches the load impedance. A mismatch causes a portion of the signal to be reflected back toward the source, wasting energy and potentially causing interference, signal distortion, or even equipment damage in high-power applications.\n\nThe reflection coefficient Γ (gamma) is the primary parameter that quantifies an impedance mismatch. It is a complex number defined as Γ = (Z_L − Z_S) / (Z_L + Z_S), where Z_L is the load impedance and Z_S is the source impedance, both expressed as complex numbers with real (resistive) and imaginary (reactive) parts. The magnitude |Γ| ranges from 0 (perfect match, no reflection) to 1 (total reflection, no power transfer).\n\nThe Voltage Standing Wave Ratio (VSWR) is a real-valued, positive number derived from the reflection coefficient: VSWR = (1 + |Γ|) / (1 − |Γ|). A VSWR of 1:1 indicates a perfect impedance match with all power delivered to the load. A VSWR of 2:1 means roughly 11% of incident power is reflected. A VSWR above 3:1 is generally considered a poor match and can degrade system performance significantly. In practice, most RF systems aim for VSWR ≤ 2:1.\n\nReturn loss is expressed in decibels and represents how much of the incident power is reflected: RL = −20 × log₁₀(|Γ|) dB. A higher return loss value means less reflected power and a better match. A return loss of 20 dB corresponds to only 1% of power being reflected, which is excellent for most applications.\n\nPower transfer efficiency measures what fraction of the available source power actually reaches the load: efficiency = (1 − |Γ|²) × 100%. A mismatch loss of 0.5 dB corresponds to about 11% of power being lost to reflection, which is audible in audio systems and significant in communication systems.\n\nIn practice, impedance matching is achieved using networks of passive components — L-networks, T-networks, or pi-networks — or transmission line techniques such as quarter-wave transformers and stub matching. The impedance matching calculator helps RF engineers, antenna designers, and telecommunications professionals quickly identify whether their system meets matching requirements and quantify the penalty paid for any mismatch."
+  },
+  "examples": {
+    "heading": "Impedance Matching Examples",
+    "intro": "Common RF scenarios showing how source and load impedance values translate into VSWR and power transfer efficiency.",
+    "colInput": "Scenario",
+    "colOutput": "VSWR / Efficiency",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "50Ω source → 50Ω load (perfect match)",
+        "output": "VSWR 1.00 / 100%",
+        "note": "No reflections. All available power reaches the load. Ideal for coaxial cable systems at any frequency."
+      },
+      {
+        "input": "50Ω source → 75Ω load (antenna matching)",
+        "output": "VSWR 1.50 / 96%",
+        "note": "|Γ| = 0.2. Only 4% of power reflected. Acceptable for most broadcast and video systems without a matching network."
+      },
+      {
+        "input": "50Ω source → 100−50jΩ load (reactive load)",
+        "output": "VSWR ≈ 2.62 / 80%",
+        "note": "|Γ| ≈ 0.447. About 20% of power reflected. A matching network is recommended for frequencies above 100 MHz to improve efficiency."
+      },
+      {
+        "input": "50Ω source → 25+30jΩ load (high-frequency RF)",
+        "output": "VSWR ≈ 2.87 / 77%",
+        "note": "|Γ| ≈ 0.483. At 10 GHz, ~23% of power is reflected. Stub tuning or an L-network is required to bring VSWR below 2:1."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Impedance Matching Calculator",
+    "steps": [
+      "Enter the real (resistive) and imaginary (reactive) parts of the source impedance in ohms. For a purely resistive 50Ω source, enter 50 and 0.",
+      "Enter the real and imaginary parts of the load impedance. A positive imaginary value is inductive; a negative value is capacitive.",
+      "Optionally enter frequency, transmission line impedance, and line length for a more complete system analysis.",
+      "Click Calculate to see the reflection coefficient, VSWR, return loss, and power transfer efficiency.",
+      "Use the results to decide whether a matching network is needed, and compare different impedance pairs to find the best design trade-off."
+    ]
+  },
+  "faq": {
+    "heading": "Impedance Matching FAQ",
+    "q1": "What is the ideal VSWR for an RF system?",
+    "q1_a": "A VSWR of 1:1 is ideal but rarely achieved in practice. Most RF engineers consider VSWR ≤ 2:1 acceptable, which corresponds to a reflection coefficient of 0.33 and a return loss of about 9.5 dB. For high-performance or power applications, a tighter specification of VSWR ≤ 1.5:1 is common.",
+    "q2": "Why does impedance mismatch matter in RF systems?",
+    "q2_a": "Mismatch wastes transmit power, reduces receiver sensitivity, and can cause signal reflections that create standing waves on the transmission line. In high-power transmitters, reflected power can damage the output stage. In precision measurement equipment, reflections add uncertainty to the measurement result.",
+    "q3": "What is the difference between return loss and mismatch loss?",
+    "q3_a": "Return loss measures the ratio of reflected power to incident power in dB (higher is better). Mismatch loss measures the reduction in available gain due to the mismatch — how much less power reaches the load compared to a perfectly matched system. Both are derived from the reflection coefficient but answer different questions.",
+    "q4": "How do I achieve impedance matching in practice?",
+    "q4_a": "Common techniques include L-networks, T-networks, or pi-networks of inductors and capacitors; quarter-wave transmission line transformers; and single or double stub tuners. The choice depends on the frequency range, bandwidth requirement, power level, and physical size constraints of the design.",
+    "q5": "Does the sign of the imaginary impedance part matter?",
+    "q5_a": "Yes. A positive imaginary part indicates an inductive impedance (current lags voltage), while a negative imaginary part indicates a capacitive impedance (current leads voltage). The sign affects the phase of the reflection coefficient and the type of matching network needed, though the magnitude of the reflection and VSWR depend only on |Γ|.",
+    "q6": "Can this calculator handle complex (lossy) transmission lines?",
+    "q6_a": "The current calculator uses lossless transmission line theory, which is accurate for most practical scenarios at RF frequencies with short to moderate line lengths. For very long lines or at millimetre-wave frequencies where conductor and dielectric losses are significant, a more detailed simulation tool that includes the attenuation constant would be needed."
+  }
+}

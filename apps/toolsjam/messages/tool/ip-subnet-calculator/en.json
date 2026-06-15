@@ -1,0 +1,102 @@
+{
+  "title": "IP Subnet Calculator - Network Address & IP Ranges",
+  "tagline": "Calculate network address, broadcast address, usable IP range, and host count from any IP address and subnet mask or CIDR prefix.",
+  "intro": "Enter an IPv4 address and subnet mask (or CIDR prefix length) to see the complete network details including all usable host addresses.",
+  "field": {
+    "ipAddress": "IP Address",
+    "subnetMask": "Subnet Mask",
+    "cidrPrefix": "CIDR Prefix (Optional)"
+  },
+  "placeholder": {
+    "ipAddress": "e.g. 192.168.1.100",
+    "subnetMask": "e.g. 255.255.255.0",
+    "cidrPrefix": "e.g. 24"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalidIp": "Please enter a valid IPv4 address (e.g. 192.168.1.1).",
+    "invalidMask": "Please enter a valid subnet mask or CIDR prefix (0–32).",
+    "bothRequired": "Please enter both an IP address and a subnet mask or CIDR prefix."
+  },
+  "result": {
+    "heading": "Network Details",
+    "networkAddress": "Network Address",
+    "subnetMask": "Subnet Mask",
+    "cidr": "CIDR Notation",
+    "broadcastAddress": "Broadcast Address",
+    "firstHost": "First Usable Host",
+    "lastHost": "Last Usable Host",
+    "totalHosts": "Total Hosts",
+    "usableHosts": "Usable Hosts",
+    "ipClass": "IP Class",
+    "wildcardMask": "Wildcard Mask",
+    "binaryMask": "Binary Mask",
+    "noUsableHosts": "No usable hosts (point-to-point or host route)",
+    "classA": "A",
+    "classB": "B",
+    "classC": "C",
+    "classD": "D (Multicast)",
+    "classE": "E (Reserved)"
+  },
+  "about": {
+    "heading": "About the IP Subnet Calculator",
+    "body": "IP subnetting is the technique of dividing a single IP address space into multiple smaller logical networks called subnets. Every device on an IPv4 network requires a unique IP address, and subnetting is the tool that organises those addresses into a coherent, manageable structure. Understanding subnetting is a foundational skill for network engineers, system administrators, and anyone studying for networking certifications such as CompTIA Network+, CCNA, or JNCIA.\n\nEvery IPv4 address is a 32-bit binary number typically written in dotted decimal notation: four groups of eight bits (octets), each from 0 to 255, separated by dots. The subnet mask is another 32-bit number that tells you which portion of the IP address identifies the network and which portion identifies the individual host. The network portion is represented by consecutive 1-bits starting from the left; the host portion is all 0-bits on the right. In CIDR (Classless Inter-Domain Routing) notation, the prefix length — the number after the slash, such as /24 — simply counts those leading 1-bits.\n\nTo find the network address, apply a bitwise AND between the IP address and the subnet mask. To find the broadcast address, set all host bits to 1 (bitwise OR with the wildcard mask). The first usable host is the network address plus one; the last usable host is the broadcast address minus one. The number of usable hosts is 2^(32-prefix) − 2, subtracting the network address and broadcast address that are reserved.\n\nSubnet classes originate from the original classful addressing scheme. Class A addresses (1.x.x.x–126.x.x.x) used a /8 prefix, providing millions of hosts per network. Class B (128.x.x.x–191.x.x.x) used /16. Class C (192.x.x.x–223.x.x.x) used /24 with 254 hosts. Modern networks use CIDR, which allows any prefix length from /0 to /32 regardless of these historical class boundaries. Private address ranges (10.x.x.x, 172.16.x.x–172.31.x.x, and 192.168.x.x) are reserved for internal use and are never routed on the public internet.\n\nThe wildcard mask is the bitwise complement of the subnet mask, used in access control lists (ACLs) and routing protocols such as OSPF to specify which parts of an address should match. A wildcard mask of 0.0.0.255 means the last octet can be anything — it matches any host in the /24 subnet. The IP subnet calculator provides all of these derived values instantly, eliminating the error-prone manual binary arithmetic that makes subnet calculations a common stumbling block for networking students."
+  },
+  "examples": {
+    "heading": "IP Subnet Calculator Examples",
+    "intro": "Common network configurations showing how different subnet masks affect address ranges and usable host counts.",
+    "colInput": "IP / Mask",
+    "colOutput": "Network / Hosts",
+    "colNote": "Use Case",
+    "items": [
+      {
+        "input": "192.168.1.100 / 255.255.255.0 (/24)",
+        "output": "192.168.1.0 — 254 usable hosts",
+        "note": "Standard home and small-office network. Supports up to 254 devices. Range: 192.168.1.1–192.168.1.254."
+      },
+      {
+        "input": "10.0.1.50 / 255.255.255.192 (/26)",
+        "output": "10.0.1.0 — 62 usable hosts",
+        "note": "Small department subnet within a corporate network. Range: 10.0.1.1–10.0.1.62. Four /26 subnets fit inside a /24."
+      },
+      {
+        "input": "172.16.100.200 / 255.255.0.0 (/16)",
+        "output": "172.16.0.0 — 65,534 usable hosts",
+        "note": "Large corporate or campus network. Entire 172.16.x.x block; suitable for thousands of devices across multiple floors or buildings."
+      },
+      {
+        "input": "10.0.0.5 / 255.255.255.252 (/30)",
+        "output": "10.0.0.4 — 2 usable hosts",
+        "note": "Point-to-point router link. Only 2 usable addresses, ideal for connecting two routers with no wasted addresses."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the IP Subnet Calculator",
+    "steps": [
+      "Enter a valid IPv4 address in dotted decimal notation (e.g. 192.168.1.100) in the IP Address field.",
+      "Enter the subnet mask in dotted decimal format (e.g. 255.255.255.0) or leave the subnet mask field empty and enter only the CIDR prefix length (e.g. 24).",
+      "If you enter both a subnet mask and a CIDR prefix, the CIDR prefix takes precedence.",
+      "Click Calculate to see the network address, broadcast address, usable host range, host count, wildcard mask, and binary mask.",
+      "Use the results to plan your network layout, configure router interfaces, write ACLs, or study for networking exams."
+    ]
+  },
+  "faq": {
+    "heading": "IP Subnet Calculator FAQ",
+    "q1": "What is the difference between a subnet mask and a CIDR prefix?",
+    "q1_a": "They express the same information in different formats. A subnet mask such as 255.255.255.0 is a 32-bit number in dotted decimal notation. A CIDR prefix such as /24 counts the number of consecutive 1-bits in that mask. Both identify the network portion of the IP address; /24 and 255.255.255.0 are exactly equivalent.",
+    "q2": "Why are two addresses always reserved in a subnet?",
+    "q2_a": "The lowest address in any subnet (all host bits zero) is the network address, used to identify the subnet itself in routing tables. The highest address (all host bits one) is the broadcast address, used to send packets to all devices in the subnet simultaneously. Neither can be assigned to an individual host, so a /24 subnet has 256 total addresses but only 254 usable ones.",
+    "q3": "What subnet mask should I use for a small home network?",
+    "q3_a": "A /24 (255.255.255.0) is the standard choice. It provides 254 usable addresses — far more than most homes need — and is universally understood. Most home routers default to 192.168.1.0/24 or 192.168.0.0/24. If you need fewer addresses and want to practice subnetting, /28 gives 14 usable hosts, and /25 gives 126.",
+    "q4": "What are private IP address ranges?",
+    "q4_a": "RFC 1918 defines three private ranges not routed on the public internet: 10.0.0.0/8 (16.7 million addresses), 172.16.0.0/12 (1 million addresses across 172.16–172.31), and 192.168.0.0/16 (65,536 addresses). Devices using these ranges communicate with the internet through Network Address Translation (NAT) on a router.",
+    "q5": "What is a /32 subnet?",
+    "q5_a": "A /32 subnet mask (255.255.255.255) identifies a single host — there are no host bits, so only the exact address matches. It is used in host routes in routing tables to direct traffic to a specific device, and in loopback interface configurations. A /32 has zero usable hosts in the traditional sense because there is no network or broadcast address distinct from the host address.",
+    "q6": "How do I split a /24 into four equal subnets?",
+    "q6_a": "Add 2 bits to the prefix length: /24 becomes /26. Each /26 contains 64 addresses (62 usable hosts). The four subnets are: .0/26 (.1–.62), .64/26 (.65–.126), .128/26 (.129–.190), and .192/26 (.193–.254). The subnet boundary increments by 64 in the last octet. This calculator confirms the details for each individual subnet."
+  }
+}

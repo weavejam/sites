@@ -1,0 +1,95 @@
+{
+  "title": "Impostor Odds Calculator - Among Us Probability",
+  "tagline": "Calculate the probability that any specific player is an impostor in Among Us based on total players, impostors, and alive players.",
+  "intro": "Enter the total number of players, number of impostors, alive players, and how many you find suspicious to see the exact impostor probabilities.",
+  "field": {
+    "totalPlayers": "Total Players",
+    "numImpostors": "Number of Impostors",
+    "alivePlayers": "Alive Players",
+    "suspiciousPlayers": "Suspicious Players"
+  },
+  "placeholder": {
+    "totalPlayers": "e.g. 10",
+    "numImpostors": "e.g. 2",
+    "alivePlayers": "e.g. 8",
+    "suspiciousPlayers": "e.g. 3"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive integers for all fields.",
+    "impostorsExceedAlive": "Number of impostors cannot exceed alive players.",
+    "suspiciousExceedAlive": "Suspicious players cannot exceed alive players.",
+    "impostorsExceedTotal": "Number of impostors cannot exceed total players."
+  },
+  "result": {
+    "heading": "Results",
+    "baseOdds": "Base Impostor Probability (any player)",
+    "suspiciousOdds": "Prob. at Least 1 Impostor Among Suspicious",
+    "crewOdds": "Prob. Random Player is Crewmate",
+    "impostorRatio": "Impostor Ratio",
+    "safeToVote": "Majority of suspicious group are likely impostors — consider voting.",
+    "cautious": "Less than half of the suspicious group are likely impostors — vote with caution.",
+    "endGame": "End-game scenario: impostors may equal or outnumber crewmates."
+  },
+  "about": {
+    "heading": "About the Among Us Impostor Odds Calculator",
+    "body": "Among Us is a social deduction game in which a small number of impostors are hidden among a larger group of crewmates. The crewmates try to complete tasks and identify the impostors; the impostors try to sabotage and eliminate crewmates without being detected. Because the game depends entirely on incomplete information and probabilistic reasoning, understanding the underlying mathematics can meaningfully improve your strategic decision-making.\n\nThe most fundamental probability in Among Us is the base impostor probability: the chance that any randomly chosen player is an impostor. This is simply the number of surviving impostors divided by the number of alive players. In a standard 10-player game with 2 impostors and 8 players still alive, the base rate is 2/8 = 25%. That baseline informs every subsequent deduction you make during a meeting.\n\nWhen you nominate a group of suspicious players — say, 3 people you found acting strangely — you can ask: what is the probability that at least one of those three is an impostor? This is a hypergeometric probability problem. The formula calculates the complement of the event that all three suspicious players are crewmates, given the known population of impostors and crewmates. A probability above 50% suggests voting is mathematically justified; below 50% means you are more likely to eject an innocent crewmate than a real impostor.\n\nThe end-game scenario is particularly critical in Among Us. When impostors equal crewmates in number, crewmates lose the vote — they can no longer remove impostors by majority vote even with perfect information. Knowing when the game has reached this tipping point, and acting before it does, is one of the most important strategic insights the calculator can provide.\n\nCombinatorial mathematics also helps explain why early ejection of crewmates is so costly. Each incorrect vote removes a crewmate, shrinking the pool of votes available to the majority and accelerating the path to impostor parity. Conversely, a correct ejection of an impostor shifts the probability landscape dramatically, making the remaining players proportionally safer on average.\n\nWhile the calculator cannot replace good observation skills, task-checking, and inter-player communication, it gives you a precise mathematical foundation for your decisions. Use it to understand how dramatically the odds shift as players are eliminated, how much your suspicion list needs to narrow before voting is statistically sound, and how close the game is to an impostor win condition."
+  },
+  "examples": {
+    "heading": "Among Us Impostor Odds Examples",
+    "intro": "Game scenarios showing how player counts and information change the probability that a suspicious player is an impostor.",
+    "colInput": "Game State",
+    "colOutput": "Base Impostor Odds",
+    "colNote": "Strategic Insight",
+    "items": [
+      {
+        "input": "10 players, 2 impostors, 10 alive, 0 suspicious",
+        "output": "20% per player",
+        "note": "Early game with no information. Every player has a 1-in-5 chance of being an impostor. Focus on task completion and gathering evidence before the first vote."
+      },
+      {
+        "input": "10 players, 2 impostors, 8 alive, 3 suspicious",
+        "output": "25% base; ~64% at least 1 in group",
+        "note": "Mid-game. P(at least 1 impostor among 3) = 1 − C(6,3)/C(8,3) = 1 − 20/56 ≈ 64%. Voting is statistically justifiable with a 64% chance of catching an impostor."
+      },
+      {
+        "input": "6 players, 1 impostor, 6 alive, 2 suspicious",
+        "output": "~17% base; ~33% at least 1 in group",
+        "note": "Small game with 1 impostor. Probability that the impostor is in the suspicious duo is only 1/3. Gathering more evidence before voting is wise."
+      },
+      {
+        "input": "10 players, 2 impostors, 4 alive, 2 suspicious",
+        "output": "50% base — end-game",
+        "note": "Critical end-game state. Impostors are 2 of 4 remaining players. If suspicious players are correct targets, crewmates must act immediately to avoid losing by parity."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Impostor Odds Calculator",
+    "steps": [
+      "Enter the total number of players in the lobby at the start of the game (typically 4–15).",
+      "Enter the number of impostors configured for the game (usually 1, 2, or 3).",
+      "Enter the number of players currently alive — update this each time a player is eliminated.",
+      "Enter the number of players you currently find suspicious to see the probability that at least one of them is an impostor.",
+      "Use the results to guide your voting decisions: a probability above 50% for the suspicious group supports a vote, while below 50% suggests waiting for more evidence."
+    ]
+  },
+  "faq": {
+    "heading": "Among Us Impostor Odds FAQ",
+    "q1": "How is the base impostor probability calculated?",
+    "q1_a": "The base probability is simply impostors ÷ alive players. If 2 impostors remain among 8 alive players, each player has a 25% chance of being an impostor. This baseline shifts every time a player is ejected, regardless of whether they were an impostor or crewmate.",
+    "q2": "What does the probability for the suspicious group mean?",
+    "q2_a": "It is the probability that at least one of your flagged players is an impostor, calculated using the hypergeometric distribution. It answers: 'If I vote on this group, how likely am I to eject at least one impostor?' A result above 50% means the vote is statistically sound; below 50% means you are more likely to waste a vote.",
+    "q3": "When do impostors win Among Us by default?",
+    "q3_a": "Impostors win when their count equals or exceeds the number of surviving crewmates, because they can then block any vote to eject one of their own. At that point, crewmates cannot win through voting alone. Recognising this end-game condition early — and acting before it is reached — is a crucial tactical skill.",
+    "q4": "Does this calculator account for tasks or sabotages?",
+    "q4_a": "No. The calculator focuses on voting probabilities based on player counts. Winning through task completion is a parallel win condition that does not depend on the impostor count in the same way. When crewmates are close to completing all tasks, the calculus changes and pushing for task completion may be safer than risky votes.",
+    "q5": "Can the calculator help with self-reporting analysis?",
+    "q5_a": "Indirectly yes. If a player reports a body and becomes highly suspicious, updating the suspicious player count with that person included shows how the probability shifts. Combined with task-completion observations, the calculator helps you weigh whether the self-report is consistent with impostor behaviour or just bad luck for a crewmate.",
+    "q6": "What are typical impostor counts for different lobby sizes?",
+    "q6_a": "In standard Among Us, 1 impostor is used for 4–6 players, 2 impostors for 7–9 players, and 3 impostors for 10–15 players. Using more impostors in a small lobby makes the game nearly impossible for crewmates; fewer impostors in large lobbies creates very low per-player base rates and increases the importance of evidence gathering."
+  }
+}
