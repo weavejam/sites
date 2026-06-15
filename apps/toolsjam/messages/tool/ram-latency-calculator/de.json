@@ -1,0 +1,111 @@
+{
+  "title": "RAM-Latenzrechner",
+  "tagline": "Berechnen Sie RAM-Latenz, Speichertimings und Leistungswerte für DDR-Speicher.",
+  "intro": "Optimieren Sie die Systemleistung, indem Sie die RAM-Latenz in Nanosekunden anhand von CAS-Latenz und Speichertakt berechnen. Unverzichtbar für PC-Bauer, Overclocker und die Systemoptimierung.",
+  "field": {
+    "casLatency": "CAS-Latenz (CL)",
+    "frequency": "Speichertakt (MHz)",
+    "tRCD": "RAS-zu-CAS-Verzögerung (tRCD)",
+    "tRP": "RAS-Vorladezeit (tRP)",
+    "tRAS": "Zeilenaktivzeit (tRAS)"
+  },
+  "placeholder": {
+    "casLatency": "z. B. 16",
+    "frequency": "z. B. 3200",
+    "tRCD": "z. B. 18",
+    "tRP": "z. B. 18",
+    "tRAS": "z. B. 38"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "clLatency": "CAS-Latenz (ns)",
+    "tRCDLatency": "tRCD-Latenz (ns)",
+    "tRPLatency": "tRP-Latenz (ns)",
+    "totalLatency": "Gesamte Zugriffszeit (ns)",
+    "clockCycle": "Taktzykluszeit (ns)"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie gültige positive Zahlen für CAS-Latenz und Speichertakt ein."
+  },
+  "about": {
+    "heading": "Über den RAM-Latenzrechner",
+    "body": "Der RAM-Latenzrechner ist ein unverzichtbares Werkzeug für PC-Enthusiasten, Systembauer und Overclocker, die die Leistung des Speichersubsystems verstehen und optimieren möchten. RAM-Latenz — insbesondere die CAS-Latenz — beeinflusst direkt, wie schnell Ihr Prozessor Daten aus dem Speicher abrufen kann, und ist damit eine kritische Kennzahl für Gaming-, Workstation- und Server-Systeme.\n\nDie CAS-Latenz (Column Address Strobe Latency, kurz CL) ist die Anzahl der Taktzyklen zwischen der Datenanforderung des Speichercontrollers und der Bereitstellung der Daten durch den RAM. Der reine CL-Wert ist jedoch ohne Kenntnis des Speichertakts wenig aussagekräftig. Ein DDR4-3200-CL16-Kit bietet tatsächlich eine geringere Latenz als ein DDR4-2133-CL14-Kit, weil die schnellere Taktperiode den höheren CL-Wert mehr als ausgleicht. Dieser Rechner wandelt Zyklen in echte Nanosekunden-Latenzen um, damit Sie direkt vergleichen können.\n\nDie Formel zur Berechnung der CAS-Latenz in Nanosekunden lautet: CL-Latenz (ns) = (CL / (Frequency / 2)) × 1000. Das liegt daran, dass DDR-Speicher Daten zweimal pro Taktzyklus überträgt (Double Data Rate), sodass die tatsächliche Taktfrequenz halb so hoch ist wie die angegebene Geschwindigkeit. Ein DDR4-3200-Modul läuft beispielsweise mit 1600 MHz realem Takt und hat eine Taktzykluszeit von 0,625 ns. Bei CL16 beträgt die CAS-Latenz also 16 × 0,625 = 10 ns.\n\nNeben der CAS-Latenz umfassen moderne Speichertimings auch tRCD (RAS to CAS Delay — die Verzögerung nach dem Aktivieren einer Speicherzeile, bevor Daten gelesen werden können), tRP (RAS Precharge Time — die Zeit, um eine Zeile zu schließen und die nächste vorzubereiten) und tRAS (Row Active Time — die Mindestzeit, die eine Zeile aktiv bleiben muss). Zusammen beschreiben diese vier Timings (CL-tRCD-tRP-tRAS) das vollständige Speicherzugriffsmuster und stehen auf den Spezifikationsblättern der Module.\n\nFür den praktischen Systemaufbau gilt: Straffere Timings (niedrigere Werte) bei gleicher oder höherer Frequenz liefern in der Regel die bessere reale Leistung. Allerdings erfordern stabile, enge Timings oft höhere Speicherspannung und eine sorgfältige BIOS-Konfiguration. Dieser Rechner hilft Ihnen, Kits zu vergleichen und vor dem Kauf fundierte Entscheidungen für Ihre Speicherbestückung zu treffen."
+  },
+  "examples": {
+    "heading": "Beispiele",
+    "intro": "Vergleichen Sie diese gängigen DDR4- und DDR5-Speicherkonfigurationen und ihre echten Latenzen in Nanosekunden.",
+    "colInput": "Speicherkonfiguration",
+    "colOutput": "CAS-Latenz (ns)",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "DDR4-3200 CL16",
+        "output": "10.00 ns",
+        "note": "DDR4 im Mainstream, solide Gaming-Leistung"
+      },
+      {
+        "input": "DDR4-3600 CL18",
+        "output": "10.00 ns",
+        "note": "Gleiche Latenz wie 3200 CL16 — höhere Bandbreite"
+      },
+      {
+        "input": "DDR4-3600 CL16",
+        "output": "8.89 ns",
+        "note": "Leistungsstarkes Kit, hervorragend für AMD Ryzen"
+      },
+      {
+        "input": "DDR5-6000 CL30",
+        "output": "10.00 ns",
+        "note": "Nächste DDR5-Generation mit mehr Bandbreitenreserve"
+      },
+      {
+        "input": "DDR4-2133 CL15",
+        "output": "14.08 ns",
+        "note": "Älteres Budget-Kit — langsamer trotz niedrigerem CL-Wert"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Anwendung",
+    "steps": [
+      "Geben Sie den CAS-Latenzwert (CL) aus den RAM-Spezifikationen oder SPD-Daten ein.",
+      "Geben Sie den Speichertakt in MHz ein, wie auf dem Modul angegeben (z. B. 3200 für DDR4-3200).",
+      "Optional können Sie tRCD-, tRP- und tRAS-Werte eingeben, um weitere Timings zu berechnen.",
+      "Klicken Sie auf Berechnen, um alle Latenzen in Nanosekunden angezeigt zu bekommen.",
+      "Vergleichen Sie die Ergebnisse verschiedener Speicherkonfigurationen, um das beste Kit für Ihren Rechner zu wählen."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Was ist CAS-Latenz und warum ist sie wichtig?",
+        "a": "Die CAS-Latenz (Column Address Strobe) ist die Anzahl der Taktzyklen zwischen der Datenanforderung des Speichercontrollers und der Bereitstellung der Daten durch den RAM. Niedrigere CL-Werte oder höhere Frequenzen können die tatsächliche Latenz in Nanosekunden senken und damit die Reaktionsgeschwindigkeit von Anwendungen verbessern, insbesondere bei Gaming und datenintensiven Workloads. Sie ist vor allem in latenzempfindlichen Anwendungen mit häufigen, zufälligen Speicherzugriffen wichtig."
+      },
+      {
+        "q": "Warum kann ein höherer CL-Wert trotzdem eine niedrigere Latenz haben?",
+        "a": "Weil die Latenz in Nanosekunden sowohl vom CL-Wert als auch vom Speichertakt abhängt. Speicher mit höherer Frequenz hat kürzere Taktzyklen, sodass selbst bei mehr wartenden Zyklen die Gesamtzeit niedriger sein kann. DDR4-3600 CL18 (10 ns) schlägt beispielsweise DDR4-2133 CL15 (14,08 ns) in der realen Latenz, weil das 3600-MHz-Kit deutlich kürzere Zyklen hat. Berechnen Sie für faire Vergleiche immer die Nanosekunden-Latenz."
+      },
+      {
+        "q": "Was bedeuten tRCD, tRP und tRAS?",
+        "a": "tRCD (RAS to CAS Delay) ist die Verzögerung zwischen dem Aktivieren einer Speicherzeile und dem Lesen von Daten daraus. tRP (RAS Precharge Time) ist die Zeit, die benötigt wird, um eine Zeile zu schließen und die nächste vorzubereiten. tRAS (Row Active Time) ist die Mindestzeit, die eine Speicherzeile aktiv bleiben muss. Zusammen mit der CAS-Latenz definieren diese vier Timings (CL-tRCD-tRP-tRAS) die komplette Speicherzugriffssequenz und das Leistungsprofil."
+      },
+      {
+        "q": "Wie finde ich die Timings meines RAMs heraus?",
+        "a": "Speichertimings stehen auf dem RAM-Label, in den Produktspezifikationen oder lassen sich mit CPU-Z (einem kostenlosen Tool) im SPD-Tab auslesen. XMP-/EXPO-Profile im BIOS zeigen ebenfalls die programmierten Timings. Die Timings werden im Format CL-tRCD-tRP-tRAS angegeben, zum Beispiel 16-18-18-38 für DDR4-3200 CL16."
+      },
+      {
+        "q": "Verbessern straffere RAM-Timings die Gaming-Leistung?",
+        "a": "Ja, straffere Speichertimings können die FPS verbessern und die minimalen Framezeiten senken, besonders in CPU-limitierten Szenarien. AMD-Ryzen-Prozessoren reagieren besonders empfindlich auf Speicherlatenz, da ihr Infinity-Fabric-Interconnect mit dem Speichertakt synchron läuft. CL14 bis CL16 bei 3600 MHz gilt als Sweet Spot für Ryzen-Gaming-Systeme."
+      },
+      {
+        "q": "Worin unterscheiden sich DDR4- und DDR5-Latenz?",
+        "a": "DDR5-Module haben meist höhere rohe CL-Werte (oft CL30–CL40) als DDR4 (CL14–CL18), laufen aber mit deutlich höheren Frequenzen (4800–8000+ MHz), sodass die tatsächliche Latenz in Nanosekunden mit DDR4 vergleichbar oder nur geringfügig höher ist. Der Hauptvorteil von DDR5 ist die deutlich höhere Speicherbandbreite, die bei Multicore-Workloads, Content Creation und KI-Anwendungen wichtiger ist als reine Latenzverbesserungen."
+      }
+    ]
+  }
+}

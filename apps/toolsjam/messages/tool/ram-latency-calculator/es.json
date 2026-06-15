@@ -1,0 +1,111 @@
+{
+  "title": "Calculadora de latencia RAM",
+  "tagline": "Calcula la latencia de RAM, los tiempos de memoria y las métricas de rendimiento de la memoria DDR.",
+  "intro": "Optimiza el rendimiento de tu sistema calculando la latencia de RAM en nanosegundos a partir de la latencia CAS y la frecuencia de memoria. Esencial para montadores de PC, entusiastas del overclock y la optimización del sistema.",
+  "field": {
+    "casLatency": "Latencia CAS (CL)",
+    "frequency": "Frecuencia de memoria (MHz)",
+    "tRCD": "Retardo RAS a CAS (tRCD)",
+    "tRP": "Tiempo de preacondicionamiento RAS (tRP)",
+    "tRAS": "Tiempo de actividad de fila (tRAS)"
+  },
+  "placeholder": {
+    "casLatency": "p. ej., 16",
+    "frequency": "p. ej., 3200",
+    "tRCD": "p. ej., 18",
+    "tRP": "p. ej., 18",
+    "tRAS": "p. ej., 38"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultados",
+    "clLatency": "Latencia CAS (ns)",
+    "tRCDLatency": "Latencia tRCD (ns)",
+    "tRPLatency": "Latencia tRP (ns)",
+    "totalLatency": "Latencia total de acceso (ns)",
+    "clockCycle": "Tiempo de ciclo de reloj (ns)"
+  },
+  "error": {
+    "invalid": "Introduce números positivos válidos para la latencia CAS y la frecuencia de memoria."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de latencia RAM",
+    "body": "La calculadora de latencia RAM es una herramienta esencial para entusiastas del PC, montadores de sistemas y overclockers que quieren entender y optimizar el rendimiento del subsistema de memoria. La latencia de RAM, especialmente la latencia CAS, influye directamente en la velocidad con la que el procesador puede recuperar datos de la memoria, por lo que es una métrica crítica tanto en equipos de juego como de trabajo o servidores.\n\nLa latencia CAS (Column Address Strobe Latency, o CL) es el número de ciclos de reloj que transcurren entre la solicitud de datos por parte del controlador de memoria y la entrega de esos datos por la RAM. Sin embargo, el valor bruto de CL no significa nada si no conoces la frecuencia de memoria. Un kit DDR4-3200 CL16 ofrece una latencia real menor que un kit DDR4-2133 CL14, porque el ciclo de reloj más rápido compensa con creces el CL más alto. Esta calculadora convierte los ciclos en latencias reales en nanosegundos para que puedas compararlos directamente.\n\nLa fórmula para calcular la latencia CAS en nanosegundos es: Latencia CL (ns) = (CL / (Frequency / 2)) × 1000. Esto se debe a que la memoria DDR transfiere datos dos veces por ciclo de reloj (Double Data Rate), por lo que la frecuencia real del reloj es la mitad de la velocidad nominal. Por ejemplo, DDR4-3200 funciona a 1600 MHz reales, lo que da un ciclo de 0.625 ns. Con CL16, la latencia CAS es 16 × 0.625 = 10 ns.\n\nMás allá de la latencia CAS, los tiempos de memoria modernos incluyen tRCD (RAS to CAS Delay — el retraso tras activar una fila antes de poder leer datos), tRP (RAS Precharge Time — el tiempo necesario para cerrar una fila y preparar la siguiente) y tRAS (Row Active Time — el tiempo mínimo que una fila debe permanecer activa). Junto con la latencia CAS, estos cuatro valores (CL-tRCD-tRP-tRAS) describen el patrón completo de acceso a memoria y aparecen en las hojas de especificaciones.\n\nEn la práctica, unos tiempos más ajustados (números más bajos) con la misma o mayor frecuencia suelen ofrecer mejor rendimiento real. Sin embargo, conseguir tiempos estables y ajustados suele requerir más voltaje de memoria y una configuración cuidadosa de la BIOS. Esta calculadora te ayuda a comparar kits y a tomar decisiones de compra informadas antes de decidir la configuración de memoria para tu equipo."
+  },
+  "examples": {
+    "heading": "Ejemplos",
+    "intro": "Compara estas configuraciones comunes de memoria DDR4 y DDR5 y su latencia real en nanosegundos.",
+    "colInput": "Configuración de memoria",
+    "colOutput": "Latencia CAS (ns)",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "DDR4-3200 CL16",
+        "output": "10.00 ns",
+        "note": "DDR4 convencional, buen rendimiento en juegos"
+      },
+      {
+        "input": "DDR4-3600 CL18",
+        "output": "10.00 ns",
+        "note": "La misma latencia que 3200 CL16, pero con más ancho de banda"
+      },
+      {
+        "input": "DDR4-3600 CL16",
+        "output": "8.89 ns",
+        "note": "Kit de alto rendimiento, excelente para AMD Ryzen"
+      },
+      {
+        "input": "DDR5-6000 CL30",
+        "output": "10.00 ns",
+        "note": "DDR5 de nueva generación con más margen de ancho de banda"
+      },
+      {
+        "input": "DDR4-2133 CL15",
+        "output": "14.08 ns",
+        "note": "Kit antiguo y económico: más lento pese a un CL más bajo"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usarla",
+    "steps": [
+      "Introduce el valor de latencia CAS (CL) de las especificaciones de tu RAM o de los datos SPD.",
+      "Introduce la frecuencia de memoria en MHz tal como aparece en el paquete (por ejemplo, 3200 para DDR4-3200).",
+      "Opcionalmente, introduce los valores de tRCD, tRP y tRAS para calcular latencias adicionales.",
+      "Haz clic en Calcular para ver todas las latencias convertidas a nanosegundos.",
+      "Compara los resultados entre distintas configuraciones de memoria para elegir el mejor kit para tu equipo."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Qué es la latencia CAS y por qué importa?",
+        "a": "La latencia CAS (Column Address Strobe) es el número de ciclos de reloj que pasan entre la solicitud de datos del controlador de memoria y la entrega de esos datos por la RAM. Un CL más bajo o una frecuencia más alta pueden reducir la latencia real en nanosegundos, lo que mejora la capacidad de respuesta de las aplicaciones, especialmente en juegos y cargas intensivas de datos. Es más importante en aplicaciones sensibles a la latencia donde hay accesos aleatorios frecuentes a la memoria."
+      },
+      {
+        "q": "¿Por qué un CL más alto puede tener menos latencia?",
+        "a": "Porque la latencia en nanosegundos depende tanto del valor CL como de la frecuencia de memoria. Una memoria de mayor frecuencia tiene ciclos de reloj más cortos, así que aunque haya más ciclos que esperar, el tiempo total puede ser menor. Por ejemplo, DDR4-3600 CL18 (10 ns) supera a DDR4-2133 CL15 (14.08 ns) en latencia real porque el kit de 3600 MHz tiene ciclos mucho más cortos. Calcula siempre la latencia en nanosegundos para comparar con justicia."
+      },
+      {
+        "q": "¿Qué significan tRCD, tRP y tRAS?",
+        "a": "tRCD (RAS to CAS Delay) es el retraso entre activar una fila de memoria y leer datos de ella. tRP (RAS Precharge Time) es el tiempo necesario para cerrar una fila y preparar otra. tRAS (Row Active Time) es el tiempo mínimo que una fila debe permanecer activa. Junto con la latencia CAS, estos cuatro tiempos (CL-tRCD-tRP-tRAS) definen la secuencia completa de acceso a memoria y su perfil de rendimiento."
+      },
+      {
+        "q": "¿Cómo encuentro las especificaciones de timing de mi RAM?",
+        "a": "Los tiempos de memoria aparecen en la etiqueta de la RAM, en las especificaciones del producto o pueden leerse con CPU-Z (una herramienta gratuita) en la pestaña SPD. Los perfiles XMP/EXPO en la BIOS también muestran los tiempos programados. Los tiempos se escriben en formato CL-tRCD-tRP-tRAS, como 16-18-18-38 para DDR4-3200 CL16."
+      },
+      {
+        "q": "¿Un timing de RAM más ajustado mejora el rendimiento en juegos?",
+        "a": "Sí, unos tiempos de memoria más ajustados pueden mejorar los FPS y reducir los tiempos mínimos de fotograma, especialmente en escenarios limitados por la CPU. Los procesadores AMD Ryzen son especialmente sensibles a la latencia de memoria debido a su interconexión Infinity Fabric, que funciona sincronizada con la frecuencia de la memoria. Lograr CL14-CL16 a 3600 MHz se considera el punto ideal para equipos Ryzen orientados a juegos."
+      },
+      {
+        "q": "¿Cuál es la diferencia de latencia entre DDR4 y DDR5?",
+        "a": "Los módulos DDR5 suelen tener valores CL más altos (a menudo CL30–CL40) que DDR4 (CL14–CL18), pero DDR5 funciona a frecuencias mucho mayores (4800–8000+ MHz), por lo que la latencia real en nanosegundos es comparable o solo ligeramente superior a la de DDR4. La gran ventaja de DDR5 es un ancho de banda de memoria mucho mayor, lo que beneficia más a cargas multinúcleo, creación de contenido y aplicaciones de IA que a la latencia pura."
+      }
+    ]
+  }
+}
