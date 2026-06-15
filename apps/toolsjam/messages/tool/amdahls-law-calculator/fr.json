@@ -1,0 +1,92 @@
+{
+  "title": "Loi d’Amdahl : accélération et efficacité",
+  "tagline": "Calculez l’accélération parallèle, l’accélération théorique maximale, le temps d’exécution et l’efficacité parallèle avec la loi d’Amdahl pour les systèmes multiprocesseurs.",
+  "intro": "Saisissez la fraction sérielle de votre programme, le nombre de processeurs et le temps d’exécution initial pour calculer l’accélération et l’efficacité.",
+  "field": {
+    "serialFraction": "Fraction sérielle (p)",
+    "numProcessors": "Nombre de processeurs (n)",
+    "execTime": "Temps d’exécution initial (secondes)"
+  },
+  "placeholder": {
+    "serialFraction": "0–1, par ex. 0.1",
+    "numProcessors": "par ex. 8",
+    "execTime": "par ex. 3600"
+  },
+  "button": {
+    "calculate": "Calculer l’accélération",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs valides : la fraction sérielle doit être comprise entre 0 et 1, le nombre de processeurs doit être ≥ 1 et le temps d’exécution doit être > 0.",
+    "zeroSerial": "Une fraction sérielle de 0 signifie que tout le programme est parallélisable : l’accélération maximale est égale au nombre de processeurs."
+  },
+  "result": {
+    "heading": "Résultats de la loi d’Amdahl",
+    "speedup": "Accélération S({n}) : {value}×",
+    "maxSpeedup": "Accélération maximale (n→∞) : {value}×",
+    "parallelTime": "Temps d’exécution parallèle : {value} s",
+    "efficiency": "Efficacité parallèle : {value}%",
+    "formula": "S(n) = 1 / (p + (1 − p) / n)"
+  },
+  "about": {
+    "heading": "À propos de la loi d’Amdahl",
+    "body": "La loi d’Amdahl, formulée par l’architecte informatique Gene Amdahl en 1967, décrit l’accélération théorique obtenue lorsqu’un calcul est parallélisé sur plusieurs processeurs. C’est l’un des principes les plus importants et les plus cités en calcul parallèle, car il fixe une limite supérieure stricte aux gains de performance qu’apporte l’ajout de processeurs, quel que soit leur nombre.\n\nLa loi part d’une observation simple : tout programme réel comporte deux parties. L’une est intrinsèquement sérielle — elle doit s’exécuter de manière séquentielle, car chaque étape dépend du résultat de la précédente. L’autre est parallélisable — elle peut être divisée en tâches indépendantes et exécutée simultanément sur plusieurs processeurs. La loi d’Amdahl formalise la relation entre ces deux parties.\n\nLa formule est : S(n) = 1 / (p + (1 − p) / n), où S est l’accélération, p est la fraction du programme qui doit s’exécuter en série (entre 0 et 1), n est le nombre de processeurs et (1 − p) est la fraction parallélisable. Lorsque n tend vers l’infini, le terme (1 − p) / n tend vers zéro et l’accélération tend vers 1/p — l’accélération théorique maximale. Ce maximum dépend entièrement de la fraction sérielle et ne peut pas être dépassé, quel que soit le nombre de processeurs utilisés.\n\nLes implications sont fortes. Si 10 % d’un programme doit s’exécuter en série (p = 0.1), l’accélération maximale est 1/0.1 = 10×, peu importe le nombre de processeurs. Si 20 % est sériel, le maximum est 5×. Si 50 % est sériel, le maximum n’est que de 2×. Ajouter davantage de processeurs au-delà d’un certain point produit des rendements décroissants, car la partie sérielle devient le goulet d’étranglement — on parle parfois du « plafond d’Amdahl ».\n\nPrenons un exemple concret : un programme prend 3 600 secondes sur un seul cœur, avec 80 % du travail parallélisable (p = 0.2). Avec 8 processeurs, l’accélération est S(8) = 1 / (0.2 + 0.8/8) = 1 / (0.2 + 0.1) = 1 / 0.3 = 3.33×. Le temps d’exécution parallèle est de 3600 / 3.33 = 1080 secondes. Avec 16 processeurs, S(16) = 1 / (0.2 + 0.8/16) = 1 / (0.2 + 0.05) = 4×, et le temps tombe à 900 secondes. Doubler de 8 à 16 processeurs n’améliore les performances que de 20 %, car les 20 % sériels dominent.\n\nL’efficacité parallèle est l’accélération divisée par le nombre de processeurs, exprimée en pourcentage : E = S(n)/n × 100 %. Elle mesure dans quelle mesure chaque processeur supplémentaire est utilisé. Une efficacité parfaite (100 %) signifierait que chaque processeur est pleinement exploité — un idéal théorique. En pratique, l’efficacité baisse à mesure que l’on ajoute des processeurs, car la fraction sérielle gaspille du temps processeur. Lorsque l’efficacité descend sous 50 %, ajouter des processeurs coûte plus en matériel que cela n’économise en temps.\n\nLa loi d’Amdahl suppose que la fraction sérielle p reste constante, quelle que soit la taille du problème. La loi de Gustafson (1988) offre une perspective complémentaire : pour des problèmes plus grands, une plus grande fraction du travail devient parallélisable et l’efficacité reste plus élevée à mesure que le nombre de processeurs augmente. Ensemble, ces deux lois donnent une vision complète de la montée en charge parallèle — la loi d’Amdahl est pessimiste mais décrit correctement le cas à taille fixe, tandis que la loi de Gustafson est plus optimiste et s’applique lorsque la taille du problème croît avec le nombre de processeurs.\n\nLes applications pratiques de la loi d’Amdahl incluent la conception d’architectures CPU et GPU, l’allocation de ressources dans le cloud, l’analyse d’algorithmes pour le calcul haute performance et l’estimation du retour sur investissement de l’ajout de processeurs à un système existant. Identifier et réduire la fraction sérielle d’un calcul — grâce à de meilleurs algorithmes, à une réduction des coûts de synchronisation ou à une refonte des structures de données — est le moyen le plus efficace de repousser le plafond d’Amdahl."
+  },
+  "examples": {
+    "heading": "Exemples de la loi d’Amdahl",
+    "intro": "Différents scénarios de parallélisme montrent comment la fraction sérielle limite l’accélération maximale atteignable.",
+    "colInput": "Paramètres",
+    "colOutput": "Accélération",
+    "colNote": "Notes",
+    "loadParallel": "Charger un exemple très parallèle",
+    "loadModerate": "Charger un exemple de parallélisme modéré",
+    "loadSerial": "Charger un exemple à forte fraction sérielle",
+    "items": [
+      {
+        "input": "p=0.05, n=8, T=1000 s",
+        "output": "5.93×",
+        "note": "Faible fraction sérielle (5 %). S(8) = 1/(0.05+0.95/8) = 1/0.1688 = 5.93×. Accélération maximale = 1/0.05 = 20×. Échelle presque linéaire avec 8 processeurs."
+      },
+      {
+        "input": "p=0.2, n=16, T=3600 s",
+        "output": "4×",
+        "note": "Fraction sérielle de 20 %. S(16) = 1/(0.2+0.8/16) = 1/0.25 = 4×. Le temps parallèle = 900 s. L’accélération maximale est limitée à 5×."
+      },
+      {
+        "input": "p=0.5, n=8, T=1000 s",
+        "output": "1.6×",
+        "note": "Forte fraction sérielle (50 %). Même avec 8 processeurs, l’accélération n’est que de 1.6×. L’accélération maximale est de 2×, quel que soit le nombre de processeurs."
+      },
+      {
+        "input": "p=0.1, n=32, T=7200 s",
+        "output": "7.8×",
+        "note": "Fraction sérielle de 10 %, 32 processeurs. S(32) = 1/(0.1+0.9/32) ≈ 7.8×. Accélération maximale = 10×. Au-delà d’environ 16 processeurs, les gains supplémentaires sont minimes."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de loi d’Amdahl",
+    "steps": [
+      "Saisissez la fraction sérielle p — la proportion de votre programme qui doit s’exécuter séquentiellement. Utilisez une valeur entre 0 (entièrement parallèle) et 1 (entièrement sériel). Par exemple, si 15 % de votre programme est sériel, saisissez 0.15.",
+      "Saisissez le nombre de processeurs n — le nombre d’unités de calcul parallèle (cœurs, threads, nœuds) que vous utilisez ou prévoyez d’utiliser.",
+      "Saisissez le temps d’exécution initial en secondes sur un seul processeur. Cette valeur sert à calculer le temps d’exécution parallèle réel.",
+      "Cliquez sur Calculer l’accélération pour voir le ratio d’accélération S(n), l’accélération théorique maximale (1/p), le temps d’exécution parallèle et l’efficacité parallèle.",
+      "Ajustez le nombre de processeurs pour explorer les rendements décroissants — essayez de doubler n et observez comment l’accélération évolue par rapport au coût matériel."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la loi d’Amdahl",
+    "q1": "Que représente la fraction sérielle en pratique ?",
+    "q1_a": "La fraction sérielle p inclut toutes les parties d’un programme qui ne peuvent pas être parallélisées : l’initialisation et la finalisation séquentielles, le chargement de données depuis le disque, les barrières de synchronisation entre phases parallèles, la surcharge de communication interprocessus et les sections avec dépendances de données où l’étape N doit se terminer avant que l’étape N+1 ne commence. Même de petites fractions sérielles — comme 5 à 10 % — peuvent plafonner fortement l’accélération maximale atteignable.",
+    "q2": "Quelle est la différence entre la loi d’Amdahl et la loi de Gustafson ?",
+    "q2_a": "La loi d’Amdahl suppose une taille de problème fixe — vous voulez résoudre le même problème plus vite en ajoutant des processeurs. La loi de Gustafson suppose que les processeurs supplémentaires servent à résoudre un problème plus grand dans le même temps. La loi d’Amdahl donne un plafond d’accélération pessimiste pour des charges fixes ; la loi de Gustafson montre que l’efficacité parallèle reste élevée lorsque la taille du problème augmente. Les deux perspectives sont correctes dans leurs contextes respectifs.",
+    "q3": "L’accélération peut-elle dépasser 1/p en pratique ?",
+    "q3_a": "Une accélération superlinéaire — c’est-à-dire une accélération supérieure à n — est parfois observée en raison des effets de cache : lorsqu’un problème est réparti sur plusieurs processeurs, les données de chaque processeur tiennent dans son cache privé, ce qui évite les accès lents à la mémoire principale. Toutefois, au sens asymptotique, l’accélération superlinéaire ne peut pas dépasser la limite d’Amdahl 1/p et s’explique toujours par des effets matériels non pris en compte par le modèle théorique.",
+    "q4": "Qu’est-ce que l’efficacité parallèle et pourquoi est-elle importante ?",
+    "q4_a": "L’efficacité parallèle E = S(n)/n × 100 % mesure la part de la capacité de chaque processeur qui est utilisée de manière productive. Une efficacité de 100 % signifie que chaque processeur ajouté contribue exactement proportionnellement à l’accélération — un idéal théorique. Une efficacité inférieure à 50 % indique que la surcharge de coordination et le goulot d’étranglement sériel absorbent plus de la moitié de la capacité ajoutée, rendant l’ajout de processeurs peu rentable.",
+    "q5": "Comment réduire la fraction sérielle de mon programme ?",
+    "q5_a": "Les techniques courantes incluent l’utilisation de structures de données sans verrou pour réduire les barrières de synchronisation, la refonte des algorithmes pour éliminer les dépendances entre étapes, la mise en pipeline de l’initialisation séquentielle avec le calcul parallèle, l’utilisation d’E/S asynchrones pour superposer le chargement des données au traitement, et le profilage pour trouver les vrais goulots d’étranglement au lieu de deviner. Réduire de moitié la fraction sérielle double l’accélération maximale possible.",
+    "q6": "La loi d’Amdahl s’applique-t-elle au calcul sur GPU ?",
+    "q6_a": "Oui. Les GPU ont des milliers de cœurs de calcul, mais il existe une surcharge sérielle importante liée au lancement des kernels, aux transferts de données entre la mémoire CPU et GPU, et au code de préparation séquentielle. Un programme GPU où les transferts et la préparation représentent 20 % du temps total ne peut pas dépasser 5× d’accélération par rapport au CPU, quelle que soit la puissance de calcul du GPU. Réduire les transferts CPU-GPU et maximiser l’occupation des kernels est l’équivalent GPU de la réduction de la fraction sérielle."
+  }
+}

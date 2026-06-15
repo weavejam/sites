@@ -1,0 +1,92 @@
+{
+  "title": "Ley de Amdahl: aceleración y eficiencia",
+  "tagline": "Calcula la aceleración paralela, la aceleración máxima teórica, el tiempo de ejecución y la eficiencia paralela con la ley de Amdahl para sistemas multiprocesador.",
+  "intro": "Introduce la fracción serial de tu programa, el número de procesadores y el tiempo de ejecución original para calcular la aceleración y la eficiencia.",
+  "field": {
+    "serialFraction": "Fracción serial (p)",
+    "numProcessors": "Número de procesadores (n)",
+    "execTime": "Tiempo de ejecución original (segundos)"
+  },
+  "placeholder": {
+    "serialFraction": "0–1, por ejemplo 0.1",
+    "numProcessors": "por ejemplo 8",
+    "execTime": "por ejemplo 3600"
+  },
+  "button": {
+    "calculate": "Calcular aceleración",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce valores válidos: la fracción serial debe estar entre 0 y 1, los procesadores deben ser ≥ 1 y el tiempo de ejecución debe ser > 0.",
+    "zeroSerial": "Una fracción serial de 0 significa que todo el programa es paralelizable: la aceleración máxima es igual al número de procesadores."
+  },
+  "result": {
+    "heading": "Resultados de la ley de Amdahl",
+    "speedup": "Aceleración S({n}): {value}×",
+    "maxSpeedup": "Aceleración máxima (n→∞): {value}×",
+    "parallelTime": "Tiempo de ejecución paralelo: {value} s",
+    "efficiency": "Eficiencia paralela: {value}%",
+    "formula": "S(n) = 1 / (p + (1 − p) / n)"
+  },
+  "about": {
+    "heading": "Acerca de la ley de Amdahl",
+    "body": "La ley de Amdahl, formulada por el arquitecto de computadoras Gene Amdahl en 1967, describe la aceleración teórica que se puede lograr al paralelizar un cálculo en múltiples procesadores. Es uno de los principios más importantes y citados en computación paralela porque establece un límite superior estricto a las mejoras de rendimiento que pueden aportar más procesadores, sin importar cuántos añadas.\n\nLa ley parte de una observación sencilla: cualquier programa real consta de dos partes. Una es inherentemente serial y debe ejecutarse secuencialmente porque cada paso depende del resultado del anterior. La otra es paralelizable y puede dividirse en tareas independientes para ejecutarse al mismo tiempo en varios procesadores. La ley de Amdahl formaliza la relación entre estas dos partes.\n\nLa fórmula es: S(n) = 1 / (p + (1 − p) / n), donde S es la aceleración, p es la fracción del programa que debe ejecutarse en serie (entre 0 y 1), n es el número de procesadores y (1 − p) es la fracción paralelizable. A medida que n tiende a infinito, el término (1 − p) / n se aproxima a cero y la aceleración se acerca a 1/p, la aceleración teórica máxima. Ese máximo está determinado por completo por la fracción serial y no puede superarse por muchos procesadores que se añadan.\n\nLas implicaciones son importantes. Si el 10% de un programa debe ejecutarse en serie (p = 0.1), la aceleración máxima es 1/0.1 = 10×, sin importar cuántos procesadores uses. Si el 20% es serial, el máximo es 5×. Si el 50% es serial, el máximo es solo 2×. Añadir más procesadores a partir de cierto punto produce rendimientos decrecientes porque la parte serial se convierte en el cuello de botella; a veces esto se llama el “techo de Amdahl”.\n\nVeamos un ejemplo concreto: un programa tarda 3,600 segundos en un solo núcleo, con un 80% del trabajo paralelizable (p = 0.2). Con 8 procesadores, la aceleración es S(8) = 1 / (0.2 + 0.8/8) = 1 / (0.2 + 0.1) = 1 / 0.3 = 3.33×. El tiempo paralelo es 3600 / 3.33 = 1080 segundos. Con 16 procesadores, S(16) = 1 / (0.2 + 0.8/16) = 1 / (0.2 + 0.05) = 4×, y el tiempo baja a 900 segundos. Duplicar de 8 a 16 procesadores solo mejora el rendimiento un 20% porque el 20% serial domina.\n\nLa eficiencia paralela es la aceleración dividida por el número de procesadores, expresada como porcentaje: E = S(n)/n × 100%. Mide qué tan bien se aprovecha cada procesador adicional. Una eficiencia perfecta (100%) significaría que cada procesador se utiliza por completo, un ideal teórico. En la práctica, la eficiencia cae al añadir más procesadores porque la fracción serial desperdicia tiempo de CPU. Cuando la eficiencia baja del 50%, añadir más procesadores cuesta más en hardware de lo que ahorra en tiempo.\n\nLa ley de Amdahl asume que la fracción serial p permanece constante independientemente del tamaño del problema. La ley de Gustafson (1988) ofrece una perspectiva complementaria: para problemas más grandes, una mayor fracción del trabajo se vuelve paralelizable y la eficiencia se mantiene más alta al aumentar el número de procesadores. Juntas, ambas leyes ofrecen una visión completa del escalado paralelo: la ley de Amdahl es pesimista pero describe con precisión el escenario de tamaño fijo, mientras que la ley de Gustafson es optimista y se aplica cuando el tamaño del problema crece con el número de procesadores.\n\nEntre las aplicaciones prácticas de la ley de Amdahl están el diseño de arquitecturas CPU y GPU, la provisión de recursos en la nube, el análisis de algoritmos para computación de alto rendimiento y la estimación del retorno de invertir en más procesadores para un sistema existente. Identificar y reducir la fracción serial de un cálculo —mediante mejores algoritmos, menor sobrecarga de sincronización o rediseño de estructuras de datos— es la forma más eficaz de elevar el techo de Amdahl."
+  },
+  "examples": {
+    "heading": "Ejemplos de la ley de Amdahl",
+    "intro": "Distintos escenarios de paralelismo muestran cómo la fracción serial limita la aceleración máxima alcanzable.",
+    "colInput": "Parámetros",
+    "colOutput": "Aceleración",
+    "colNote": "Notas",
+    "loadParallel": "Cargar ejemplo altamente paralelo",
+    "loadModerate": "Cargar ejemplo de paralelismo moderado",
+    "loadSerial": "Cargar ejemplo con alta fracción serial",
+    "items": [
+      {
+        "input": "p=0.05, n=8, T=1000 s",
+        "output": "5.93×",
+        "note": "Fracción serial baja (5%). S(8) = 1/(0.05+0.95/8) = 1/0.1688 = 5.93×. Aceleración máxima = 1/0.05 = 20×. Escala casi lineal con 8 procesadores."
+      },
+      {
+        "input": "p=0.2, n=16, T=3600 s",
+        "output": "4×",
+        "note": "Fracción serial del 20%. S(16) = 1/(0.2+0.8/16) = 1/0.25 = 4×. El tiempo paralelo = 900 s. La aceleración máxima queda limitada a 5×."
+      },
+      {
+        "input": "p=0.5, n=8, T=1000 s",
+        "output": "1.6×",
+        "note": "Fracción serial alta (50%). Incluso con 8 procesadores, la aceleración es solo 1.6×. La aceleración máxima es 2× sin importar cuántos procesadores haya."
+      },
+      {
+        "input": "p=0.1, n=32, T=7200 s",
+        "output": "7.8×",
+        "note": "Fracción serial del 10%, 32 procesadores. S(32) = 1/(0.1+0.9/32) ≈ 7.8×. Aceleración máxima = 10×. Más allá de ~16 procesadores, las ganancias adicionales son mínimas."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de la ley de Amdahl",
+    "steps": [
+      "Introduce la fracción serial p, es decir, la proporción del programa que debe ejecutarse secuencialmente. Usa un valor entre 0 (totalmente paralelo) y 1 (totalmente serial). Por ejemplo, si el 15% de tu programa es serial, introduce 0.15.",
+      "Introduce el número de procesadores n, es decir, la cantidad de unidades de procesamiento paralelo (núcleos, hilos, nodos) que estás usando o planeas usar.",
+      "Introduce el tiempo de ejecución original en segundos en un solo procesador. Esto se usa para calcular el tiempo de ejecución paralelo real.",
+      "Haz clic en Calcular aceleración para ver la relación de aceleración S(n), la aceleración teórica máxima (1/p), el tiempo de ejecución paralelo y la eficiencia paralela.",
+      "Ajusta el número de procesadores para explorar los rendimientos decrecientes: prueba a duplicar n y observa cómo cambia la aceleración frente al coste de duplicar el hardware."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la ley de Amdahl",
+    "q1": "¿Qué representa en la práctica la fracción serial?",
+    "q1_a": "La fracción serial p incluye todas las partes de un programa que no pueden paralelizarse: inicialización y cierre secuenciales, carga de datos desde disco, barreras de sincronización entre fases paralelas, sobrecarga de comunicación entre procesos y secciones con dependencias de datos donde el paso N debe terminar antes de que empiece el paso N+1. Incluso fracciones seriales pequeñas, como 5–10%, pueden limitar mucho la aceleración máxima alcanzable.",
+    "q2": "¿Cuál es la diferencia entre la ley de Amdahl y la de Gustafson?",
+    "q2_a": "La ley de Amdahl asume un tamaño de problema fijo: quieres resolver el mismo problema más rápido añadiendo procesadores. La ley de Gustafson asume que usas procesadores adicionales para resolver un problema más grande en el mismo tiempo. La ley de Amdahl da un techo de aceleración pesimista para cargas fijas; la de Gustafson muestra que la eficiencia paralela se mantiene alta cuando crece el tamaño del problema. Ambas perspectivas son correctas en sus contextos.",
+    "q3": "¿Puede la aceleración superar alguna vez 1/p en la práctica?",
+    "q3_a": "La aceleración superlineal —es decir, una aceleración mayor que n— se observa a veces por efectos de caché: cuando un problema se divide entre varios procesadores, los datos de cada procesador caben en su caché privada y se evitan accesos lentos a la memoria principal. Sin embargo, en sentido asintótico la aceleración superlineal no puede superar el límite de Amdahl 1/p y siempre se explica por efectos de hardware no capturados por el modelo teórico.",
+    "q4": "¿Qué es la eficiencia paralela y por qué importa?",
+    "q4_a": "La eficiencia paralela E = S(n)/n × 100% mide qué proporción de la capacidad de cada procesador se usa de forma productiva. Una eficiencia del 100% significa que cada procesador añadido contribuye exactamente de forma proporcional a la aceleración, un ideal teórico. Una eficiencia inferior al 50% sugiere que la sobrecarga de coordinación y el cuello de botella serial están consumiendo más de la mitad de la capacidad añadida, por lo que sumar más procesadores es una mala inversión.",
+    "q5": "¿Cómo puedo reducir la fracción serial de mi programa?",
+    "q5_a": "Las técnicas comunes incluyen usar estructuras de datos sin bloqueos para reducir barreras de sincronización, rediseñar algoritmos para eliminar dependencias entre pasos, convertir la inicialización secuencial en una tubería junto con el cálculo paralelo, usar E/S asíncrona para solapar la carga de datos con el procesamiento y perfilar para encontrar los cuellos de botella reales en lugar de adivinar. Incluso reducir a la mitad la fracción serial duplica la aceleración máxima alcanzable.",
+    "q6": "¿La ley de Amdahl se aplica a la computación en GPU?",
+    "q6_a": "Sí. Las GPU tienen miles de núcleos, pero existe una sobrecarga serial importante por el lanzamiento de kernels, las transferencias de datos entre memoria CPU y GPU, y el código de preparación secuencial. Un programa de GPU donde la transferencia de datos y la preparación representan el 20% del tiempo total no puede superar 5× de aceleración frente a CPU, por muy alto que sea el rendimiento de cómputo de la GPU. Minimizar la transferencia CPU-GPU y maximizar la ocupación del kernel es el equivalente en GPU a reducir la fracción serial."
+  }
+}

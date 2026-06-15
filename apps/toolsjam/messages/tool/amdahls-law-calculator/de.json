@@ -1,0 +1,92 @@
+{
+  "title": "Amdahlsches Gesetz: Speedup und Effizienz",
+  "tagline": "Berechnen Sie parallelen Speedup, maximalen theoretischen Speedup, Ausführungszeit und parallele Effizienz mit Amdahls Gesetz für Multiprozessorsysteme.",
+  "intro": "Geben Sie den seriellen Anteil Ihres Programms, die Anzahl der Prozessoren und die ursprüngliche Laufzeit ein, um Speedup und Effizienz zu berechnen.",
+  "field": {
+    "serialFraction": "Serieller Anteil (p)",
+    "numProcessors": "Anzahl der Prozessoren (n)",
+    "execTime": "Ursprüngliche Ausführungszeit (Sekunden)"
+  },
+  "placeholder": {
+    "serialFraction": "0–1, z. B. 0.1",
+    "numProcessors": "z. B. 8",
+    "execTime": "z. B. 3600"
+  },
+  "button": {
+    "calculate": "Speedup berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gültige Werte eingeben: Der serielle Anteil muss zwischen 0 und 1 liegen, die Prozessorzahl muss ≥ 1 sein und die Ausführungszeit muss > 0 sein.",
+    "zeroSerial": "Ein serieller Anteil von 0 bedeutet, dass das gesamte Programm parallelisierbar ist — der maximale Speedup entspricht der Anzahl der Prozessoren."
+  },
+  "result": {
+    "heading": "Ergebnisse von Amdahls Gesetz",
+    "speedup": "Speedup S({n}): {value}×",
+    "maxSpeedup": "Maximaler Speedup (n→∞): {value}×",
+    "parallelTime": "Parallele Ausführungszeit: {value} s",
+    "efficiency": "Parallele Effizienz: {value}%",
+    "formula": "S(n) = 1 / (p + (1 − p) / n)"
+  },
+  "about": {
+    "heading": "Über Amdahls Gesetz",
+    "body": "Amdahls Gesetz, formuliert vom Computerarchitekten Gene Amdahl im Jahr 1967, beschreibt den theoretischen Speedup, der durch die Parallelisierung einer Berechnung auf mehrere Prozessoren erreichbar ist. Es ist eines der wichtigsten und am häufigsten zitierten Prinzipien im Parallelrechnen, weil es eine harte Obergrenze für die Leistungsgewinne setzt, die zusätzliche Prozessoren liefern können — ganz gleich, wie viele Sie hinzufügen.\n\nDas Gesetz beginnt mit einer einfachen Beobachtung: Jedes reale Programm besteht aus zwei Teilen. Ein Teil ist inhärent seriell — er muss sequentiell ausgeführt werden, weil jeder Schritt vom Ergebnis des vorherigen abhängt. Der andere Teil ist parallelisierbar — er kann in unabhängige Aufgaben zerlegt und gleichzeitig auf mehreren Prozessoren ausgeführt werden. Amdahls Gesetz formalisiert das Verhältnis zwischen diesen beiden Teilen.\n\nDie Formel lautet: S(n) = 1 / (p + (1 − p) / n), wobei S der Speedup ist, p der Anteil des Programms ist, der seriell laufen muss (zwischen 0 und 1), n die Anzahl der Prozessoren und (1 − p) der parallelisierbare Anteil. Wenn n gegen unendlich wächst, nähert sich der Term (1 − p) / n dem Wert 0, und der Speedup nähert sich 1/p — dem maximalen theoretischen Speedup. Dieses Maximum wird vollständig vom seriellen Anteil bestimmt und kann unabhängig von der Prozessorzahl nicht überschritten werden.\n\nDie Konsequenzen sind erheblich. Wenn 10 % eines Programms seriell laufen müssen (p = 0.1), beträgt der maximale Speedup 1/0.1 = 10×, egal wie viele Prozessoren Sie einsetzen. Bei 20 % seriell sind es 5×. Bei 50 % seriell sind es nur 2×. Das Hinzufügen weiterer Prozessoren bringt ab einem gewissen Punkt nur noch abnehmende Erträge, weil der serielle Teil zum Engpass wird — manchmal auch als „Amdahl-Decke“ bezeichnet.\n\nEin konkretes Beispiel: Ein Programm benötigt auf einem einzelnen Kern 3.600 Sekunden, wobei 80 % der Arbeit parallelisierbar sind (p = 0.2). Mit 8 Prozessoren ist der Speedup S(8) = 1 / (0.2 + 0.8/8) = 1 / (0.2 + 0.1) = 1 / 0.3 = 3.33×. Die parallele Laufzeit beträgt 3600 / 3.33 = 1080 Sekunden. Mit 16 Prozessoren ist S(16) = 1 / (0.2 + 0.8/16) = 1 / (0.2 + 0.05) = 4×, und die Zeit sinkt auf 900 Sekunden. Die Verdopplung von 8 auf 16 Prozessoren verbessert die Leistung nur um 20 %, weil die seriellen 20 % dominieren.\n\nParallele Effizienz ist der Speedup geteilt durch die Anzahl der Prozessoren, ausgedrückt in Prozent: E = S(n)/n × 100 %. Sie misst, wie gut jeder zusätzliche Prozessor genutzt wird. Eine perfekte Effizienz (100 %) würde bedeuten, dass jeder Prozessor vollständig ausgelastet ist — ein theoretisches Ideal. In der Praxis sinkt die Effizienz mit mehr Prozessoren, weil der serielle Anteil Prozessorzeit verschwendet. Fällt die Effizienz unter 50 %, kostet das Hinzufügen weiterer Prozessoren in Hardware mehr, als es an Zeit spart.\n\nAmdahls Gesetz nimmt an, dass der serielle Anteil p unabhängig von der Problemgröße konstant bleibt. Gustafsons Gesetz (1988) bietet eine ergänzende Perspektive: Bei größeren Problemgrößen wird ein größerer Anteil der Arbeit parallelisierbar, und die Effizienz bleibt bei steigender Prozessorzahl höher. Zusammen ergeben die beiden Gesetze ein vollständiges Bild des parallelen Skalierens — Amdahls Gesetz ist pessimistisch, beschreibt aber das Szenario mit fester Problemgröße sehr genau, während Gustafsons Gesetz optimistischer ist und gilt, wenn die Problemgröße mit der Prozessorzahl wächst.\n\nPraktische Anwendungen von Amdahls Gesetz sind CPU- und GPU-Architekturdesign, Cloud-Ressourcenplanung, Algorithmusanalyse für High-Performance-Computing und die Schätzung des Nutzens zusätzlicher Prozessoren in bestehenden Systemen. Den seriellen Anteil einer Berechnung zu identifizieren und zu reduzieren — durch bessere Algorithmen, weniger Synchronisationsaufwand oder neu gestaltete Datenstrukturen — ist der effektivste Weg, Amdahls Decke anzuheben."
+  },
+  "examples": {
+    "heading": "Beispiele zu Amdahls Gesetz",
+    "intro": "Verschiedene Parallelisierungsszenarien zeigen, wie der serielle Anteil den maximal erreichbaren Speedup begrenzt.",
+    "colInput": "Parameter",
+    "colOutput": "Speedup",
+    "colNote": "Hinweise",
+    "loadParallel": "Stark paralleles Beispiel laden",
+    "loadModerate": "Beispiel mit mittlerer Parallelität laden",
+    "loadSerial": "Beispiel mit hohem seriellem Anteil laden",
+    "items": [
+      {
+        "input": "p=0.05, n=8, T=1000 s",
+        "output": "5.93×",
+        "note": "Niedriger serieller Anteil (5 %). S(8) = 1/(0.05+0.95/8) = 1/0.1688 = 5.93×. Maximaler Speedup = 1/0.05 = 20×. Nahezu lineares Skalieren bei 8 Prozessoren."
+      },
+      {
+        "input": "p=0.2, n=16, T=3600 s",
+        "output": "4×",
+        "note": "20 % serieller Anteil. S(16) = 1/(0.2+0.8/16) = 1/0.25 = 4×. Parallele Laufzeit = 900 s. Der maximale Speedup ist auf 5× begrenzt."
+      },
+      {
+        "input": "p=0.5, n=8, T=1000 s",
+        "output": "1.6×",
+        "note": "Hoher serieller Anteil (50 %). Selbst mit 8 Prozessoren beträgt der Speedup nur 1.6×. Der maximale Speedup liegt unabhängig von der Prozessorzahl bei 2×."
+      },
+      {
+        "input": "p=0.1, n=32, T=7200 s",
+        "output": "7.8×",
+        "note": "10 % serieller Anteil, 32 Prozessoren. S(32) = 1/(0.1+0.9/32) ≈ 7.8×. Maximaler Speedup = 10×. Über etwa 16 Prozessoren hinaus bringen weitere Prozessoren nur noch geringe Gewinne."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Amdahl-Rechner",
+    "steps": [
+      "Geben Sie den seriellen Anteil p ein — also den Anteil Ihres Programms, der sequenziell ausgeführt werden muss. Verwenden Sie einen Wert zwischen 0 (vollständig parallel) und 1 (vollständig seriell). Wenn z. B. 15 % Ihres Programms seriell sind, geben Sie 0.15 ein.",
+      "Geben Sie die Anzahl der Prozessoren n ein — die Zahl der parallelen Verarbeitungseinheiten (Kerne, Threads, Knoten), die Sie verwenden oder planen.",
+      "Geben Sie die ursprüngliche Ausführungszeit in Sekunden auf einem einzelnen Prozessor ein. Sie wird zur Berechnung der tatsächlichen parallelen Laufzeit verwendet.",
+      "Klicken Sie auf Speedup berechnen, um das Speedup-Verhältnis S(n), den maximalen theoretischen Speedup (1/p), die parallele Ausführungszeit und die parallele Effizienz anzuzeigen.",
+      "Passen Sie die Prozessorzahl an, um abnehmende Erträge zu untersuchen — verdoppeln Sie n und beobachten Sie, wie sich der Speedup im Verhältnis zu den Hardwarekosten verändert."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zu Amdahls Gesetz",
+    "q1": "Was bedeutet der serielle Anteil in der Praxis?",
+    "q1_a": "Der serielle Anteil p umfasst alle Teile eines Programms, die nicht parallelisiert werden können: sequentielle Initialisierung und Abschlussschritte, das Laden von Daten von der Festplatte, Synchronisationsbarrieren zwischen parallelen Phasen, Overhead der Prozesskommunikation und Abschnitte mit Datenabhängigkeiten, bei denen Schritt N abgeschlossen sein muss, bevor Schritt N+1 beginnen kann. Selbst kleine serielle Anteile von 5–10 % können den maximal erreichbaren Speedup stark begrenzen.",
+    "q2": "Was ist der Unterschied zwischen Amdahls Gesetz und Gustafsons Gesetz?",
+    "q2_a": "Amdahls Gesetz geht von einer festen Problemgröße aus — Sie möchten dasselbe Problem durch mehr Prozessoren schneller lösen. Gustafsons Gesetz nimmt an, dass zusätzliche Prozessoren genutzt werden, um in derselben Zeit ein größeres Problem zu lösen. Amdahls Gesetz liefert eine pessimistische Speedup-Obergrenze für feste Workloads; Gustafsons Gesetz zeigt, dass die parallele Effizienz bei wachsender Problemgröße hoch bleibt. Beide Perspektiven sind in ihren jeweiligen Kontexten richtig.",
+    "q3": "Kann der Speedup in der Praxis je 1/p übersteigen?",
+    "q3_a": "Superlinearer Speedup — also ein Speedup größer als n — wird gelegentlich durch Cache-Effekte beobachtet: Wenn ein Problem auf mehrere Prozessoren aufgeteilt wird, passen die Daten jedes Prozessors in dessen privaten Cache, wodurch langsame Zugriffe auf den Hauptspeicher entfallen. Asymptotisch kann der superlineare Speedup jedoch die Amdahl-Grenze 1/p nicht überschreiten und wird immer durch Hardwareeffekte erklärt, die das theoretische Modell nicht erfasst.",
+    "q4": "Was ist parallele Effizienz und warum ist sie wichtig?",
+    "q4_a": "Die parallele Effizienz E = S(n)/n × 100 % misst, welcher Anteil der Kapazität jedes Prozessors produktiv genutzt wird. Eine Effizienz von 100 % bedeutet, dass jeder zusätzliche Prozessor genau proportional zum Speedup beiträgt — ein theoretisches Ideal. Eine Effizienz unter 50 % deutet darauf hin, dass Koordinationsaufwand und serieller Engpass mehr als die Hälfte der zusätzlichen Kapazität verbrauchen, sodass weitere Prozessoren eine schlechte Investition sind.",
+    "q5": "Wie kann ich den seriellen Anteil meines Programms reduzieren?",
+    "q5_a": "Übliche Techniken sind lockfreie Datenstrukturen zur Reduzierung von Synchronisationsbarrieren, die Neugestaltung von Algorithmen zur Beseitigung von Datenabhängigkeiten zwischen Schritten, das Pipelining serieller Initialisierung mit paralleler Berechnung, asynchrones I/O zum Überlappen von Datenladen und Verarbeitung sowie Profiling, um die tatsächlichen Engpässe statt Vermutungen zu finden. Selbst eine Halbierung des seriellen Anteils verdoppelt den maximal erreichbaren Speedup.",
+    "q6": "Gilt Amdahls Gesetz auch für GPU-Computing?",
+    "q6_a": "Ja. GPUs haben Tausende von Shader-Kernen, aber es gibt erheblichen seriellen Overhead durch Kernel-Starts, Datentransfers zwischen CPU- und GPU-Speicher sowie sequenziellen Setup-Code. Ein GPU-Programm, bei dem Datentransfer und Setup 20 % der Gesamtzeit ausmachen, kann unabhängig von der Rechenleistung der GPU nicht mehr als 5× schneller als die CPU sein. CPU-GPU-Datentransfers zu minimieren und die Kernel-Auslastung zu maximieren, ist das GPU-Pendant zur Reduzierung des seriellen Anteils."
+  }
+}
