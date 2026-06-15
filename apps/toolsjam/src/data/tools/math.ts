@@ -521,5 +521,4 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   }
-
 ];
