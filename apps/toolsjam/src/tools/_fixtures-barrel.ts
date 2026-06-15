@@ -249,6 +249,11 @@ import { fixtures as f_sampling_distribution_of_the_sample_proportion_calculator
 import { fixtures as f_sampling_error_calculator } from "@/tools/sampling-error-calculator.fixtures";
 import { fixtures as f_scatter_plot_calculator } from "@/tools/scatter-plot-calculator.fixtures";
 import { fixtures as f_scientific_notation_calculator } from "@/tools/scientific-notation-calculator.fixtures";
+import { fixtures as f_simplifying_radicals_calculator } from "@/tools/simplifying-radicals-calculator.fixtures";
+import { fixtures as f_sine_calculator } from "@/tools/sine-calculator.fixtures";
+import { fixtures as f_singular_values_calculator } from "@/tools/singular-values-calculator.fixtures";
+import { fixtures as f_slant_height_calculator } from "@/tools/slant-height-calculator.fixtures";
+import { fixtures as f_slope_calculator } from "@/tools/slope-calculator.fixtures";
 import { fixtures as f_smp_x_distribution_calculator } from "@/tools/smp-x-distribution-calculator.fixtures";
 import { fixtures as f_snowman_calculator } from "@/tools/snowman-calculator.fixtures";
 import { fixtures as f_speaker_box_calculator } from "@/tools/speaker-box-calculator.fixtures";
@@ -598,6 +603,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "sampling-error-calculator": f_sampling_error_calculator,
   "scatter-plot-calculator": f_scatter_plot_calculator,
   "scientific-notation-calculator": f_scientific_notation_calculator,
+  "simplifying-radicals-calculator": f_simplifying_radicals_calculator,
+  "sine-calculator": f_sine_calculator,
+  "singular-values-calculator": f_singular_values_calculator,
+  "slant-height-calculator": f_slant_height_calculator,
+  "slope-calculator": f_slope_calculator,
   "smp-x-distribution-calculator": f_smp_x_distribution_calculator,
   "snowman-calculator": f_snowman_calculator,
   "speaker-box-calculator": f_speaker_box_calculator,

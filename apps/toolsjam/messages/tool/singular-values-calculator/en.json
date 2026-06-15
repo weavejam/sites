@@ -1,0 +1,103 @@
+{
+  "title": "Singular Values Calculator - SVD Matrix Decomposition",
+  "tagline": "Compute the singular values of any real matrix using SVD decomposition — enter rows separated by newlines and columns by commas to get all singular values, matrix rank, and norms instantly.",
+  "intro": "Enter your matrix to compute its singular values using Singular Value Decomposition (SVD). The calculator displays all singular values in descending order along with matrix properties.",
+  "formula": "Formula: A = UΣV^T. Singular values σᵢ = √(eigenvalues of A^T·A), sorted in descending order.",
+  "field": {
+    "matrix": "Matrix Input",
+    "matrixHint": "Enter each row on a separate line. Separate elements within a row using commas or spaces. All rows must have the same number of columns."
+  },
+  "placeholder": {
+    "matrix": "e.g.:\n1, 2\n3, 4"
+  },
+  "button": {
+    "calculate": "Calculate Singular Values",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Invalid matrix format. Ensure all rows have the same number of columns and all values are numeric."
+  },
+  "result": {
+    "heading": "SVD Results",
+    "singularValues": "Singular Values (σ₁ ≥ σ₂ ≥ …)",
+    "rank": "Rank",
+    "frobeniusNorm": "Frobenius Norm",
+    "spectralNorm": "Spectral Norm (σ₁)",
+    "conditionNumber": "Condition Number"
+  },
+  "about": {
+    "heading": "About the Singular Values Calculator",
+    "body": "Singular Value Decomposition (SVD) is one of the most important factorizations in linear algebra. For any real m×n matrix A, SVD expresses A as the product A = UΣV^T, where U is an m×m orthogonal matrix, Σ is an m×n diagonal matrix with non-negative entries on the diagonal, and V is an n×n orthogonal matrix. The diagonal entries σ₁ ≥ σ₂ ≥ … ≥ 0 of Σ are the singular values of A.\n\nSingular values are always non-negative real numbers, even when the original matrix contains negative entries or complex structure. They are uniquely determined by the matrix — unlike the vectors U and V, which may not be unique when singular values repeat. The number of non-zero singular values equals the rank of the matrix, which measures the dimension of the column space (the set of all possible outputs of the linear transformation represented by A).\n\nThe relationship between SVD and eigenvalues is precise: the singular values of A are the square roots of the eigenvalues of the symmetric positive semidefinite matrix A^T·A (or equivalently A·A^T for the left singular vectors). This calculator computes A^T·A and applies the Jacobi eigenvalue algorithm — an iterative method that zeros out off-diagonal elements of a symmetric matrix through a sequence of orthogonal rotations called Givens rotations — to find its eigenvalues, then takes their square roots.\n\nThe largest singular value σ₁ equals the spectral norm (also called the 2-norm or operator norm) of the matrix — the maximum factor by which the matrix can stretch a unit vector. The Frobenius norm is the square root of the sum of all squared singular values, and it equals the square root of the sum of all squared matrix entries. These norms have practical significance: the Frobenius norm is the most natural measure of total energy in a matrix, while the spectral norm controls sensitivity to perturbations.\n\nThe condition number κ = σ₁/σₙ (ratio of largest to smallest singular value) quantifies how well-conditioned the matrix is for solving linear systems. A condition number near 1 means the system is well-conditioned and easy to solve accurately. A very large condition number — say above 10⁶ or 10¹² — signals an ill-conditioned system where small perturbations in the input can cause large changes in the solution, a common source of numerical instability in scientific computing and machine learning.\n\nSVD has a remarkable range of applications. In data science, Principal Component Analysis (PCA) — the workhorse of dimensionality reduction — is mathematically equivalent to computing the SVD of the centred data matrix. The principal components are the right singular vectors V, and the variance explained by each component is proportional to the square of the corresponding singular value. In image processing and compression, retaining only the k largest singular values and their associated vectors produces a rank-k approximation of the image matrix that minimises the Frobenius norm error among all rank-k matrices — this is the Eckart-Young theorem. In recommendation systems (collaborative filtering), matrix factorisation via SVD is used to predict user ratings for unseen items. In engineering, the pseudo-inverse A† = VΣ†U^T provides the minimum-norm least-squares solution to overdetermined or underdetermined systems, which is critical in robotics, control theory, and signal processing.\n\nFor this calculator, matrices up to approximately 10×10 are handled reliably by the Jacobi algorithm. Very large matrices or matrices with many near-duplicate singular values may lose some precision due to accumulated floating-point rounding, but results are accurate to at least six significant digits for typical inputs."
+  },
+  "examples": {
+    "heading": "Singular Values Examples",
+    "intro": "Common matrix examples with their singular values and key properties.",
+    "colInput": "Matrix",
+    "colOutput": "Singular Values",
+    "colNote": "Properties",
+    "load2x2": "Load 2×2 example",
+    "loadDiagonal": "Load diagonal matrix",
+    "load2x3": "Load 2×3 example",
+    "items": [
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "output": "σ₁ ≈ 5.4650, σ₂ ≈ 0.3660",
+        "note": "A general 2×2 matrix. Rank = 2, condition number ≈ 14.93."
+      },
+      {
+        "input": "[[1, 0, 0], [0, 2, 0], [0, 0, 3]]",
+        "output": "σ₁ = 3, σ₂ = 2, σ₃ = 1",
+        "note": "Diagonal matrix. Singular values equal the absolute values of the diagonal entries."
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6]]",
+        "output": "σ₁ ≈ 9.5080, σ₂ ≈ 0.7729",
+        "note": "2×3 matrix with rank 2. SVD yields min(2,3)=2 singular values; both are non-zero here."
+      },
+      {
+        "input": "[[1, 2], [2, 4]]",
+        "output": "σ₁ = 5, σ₂ = 0",
+        "note": "Rank-deficient matrix (row 2 = 2 × row 1). One singular value is zero."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Singular Values Calculator",
+    "steps": [
+      "Enter your matrix in the text area: put each row on its own line, and separate column values within a row by commas or spaces.",
+      "Verify all rows have the same number of elements — the calculator will flag a parse error if row lengths are inconsistent.",
+      "Click Calculate Singular Values. The tool computes A^T·A, applies the Jacobi eigenvalue algorithm, and displays all singular values in descending order.",
+      "Read the additional properties: rank (number of non-zero singular values), Frobenius norm, spectral norm (σ₁), and condition number (σ₁/σₙ) if the matrix has full column rank.",
+      "Use the example buttons to load pre-filled matrices and explore how different matrix structures affect the singular values."
+    ]
+  },
+  "faq": {
+    "heading": "Singular Values FAQ",
+    "items": [
+      {
+        "q": "What are singular values?",
+        "a": "Singular values are non-negative scalars that capture the magnitude of a linear transformation. For a matrix A, the singular values are the square roots of the eigenvalues of A^T·A. They describe how much A stretches or shrinks vectors in different directions — the largest singular value gives the maximum stretching factor, and the smallest gives the minimum."
+      },
+      {
+        "q": "How are singular values different from eigenvalues?",
+        "a": "Eigenvalues are defined only for square matrices and can be negative or complex. Singular values are defined for any matrix (including rectangular ones) and are always non-negative real numbers. For symmetric positive definite matrices, the singular values and eigenvalues coincide. In general, the singular values of A are the square roots of the eigenvalues of A^T·A."
+      },
+      {
+        "q": "What does the condition number tell me?",
+        "a": "The condition number (σ₁/σₙ) measures sensitivity: a small condition number (near 1) means the matrix is well-behaved and linear systems Ax = b can be solved accurately. A large condition number (>10⁶) indicates near-singularity — the matrix is almost rank-deficient and solutions may be unreliable due to numerical amplification of rounding errors."
+      },
+      {
+        "q": "Why are singular values always non-negative?",
+        "a": "Singular values are defined as σᵢ = √λᵢ where λᵢ are the eigenvalues of A^T·A. Since A^T·A is a positive semidefinite matrix (all eigenvalues ≥ 0), the square roots are always non-negative real numbers. This holds for any real or complex matrix A."
+      },
+      {
+        "q": "What is the relationship between SVD and PCA?",
+        "a": "Principal Component Analysis (PCA) is mathematically equivalent to computing the SVD of the centred data matrix. The right singular vectors (columns of V) are the principal directions (principal components). The corresponding singular values are proportional to the standard deviations along those directions — specifically, σᵢ/√(m-1) is the standard deviation of the i-th principal component for an m-row data matrix."
+      },
+      {
+        "q": "Can this calculator handle rectangular matrices?",
+        "a": "Yes. The SVD is defined for any real m×n matrix regardless of whether m > n, m = n, or m < n. For an m×n matrix, the number of singular values equals min(m, n). An m×n matrix with m > n has at most n non-zero singular values; one with m < n has at most m non-zero singular values."
+      }
+    ]
+  }
+}
