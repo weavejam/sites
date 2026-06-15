@@ -134,6 +134,11 @@ import { fixtures as f_electrical_power_calculator } from "@/tools/electrical-po
 import { fixtures as f_empirical_rule_calculator } from "@/tools/empirical-rule-calculator.fixtures";
 import { fixtures as f_encounter_calculator_5e } from "@/tools/encounter-calculator-5e.fixtures";
 import { fixtures as f_engagement_rate_calculator } from "@/tools/engagement-rate-calculator.fixtures";
+import { fixtures as f_equation_of_a_circle_calculator } from "@/tools/equation-of-a-circle-calculator.fixtures";
+import { fixtures as f_equation_of_a_sphere_calculator } from "@/tools/equation-of-a-sphere-calculator.fixtures";
+import { fixtures as f_equilateral_triangle_calculator } from "@/tools/equilateral-triangle-calculator.fixtures";
+import { fixtures as f_equivalent_fractions_calculator } from "@/tools/equivalent-fractions-calculator.fixtures";
+import { fixtures as f_error_function_calculator } from "@/tools/error-function-calculator.fixtures";
 import { fixtures as f_error_propagation_calculator } from "@/tools/error-propagation-calculator.fixtures";
 import { fixtures as f_even_parity_bit_calculator } from "@/tools/even-parity-bit-calculator.fixtures";
 import { fixtures as f_expanded_form_calculator } from "@/tools/expanded-form-calculator.fixtures";
@@ -548,6 +553,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "empirical-rule-calculator": f_empirical_rule_calculator,
   "encounter-calculator-5e": f_encounter_calculator_5e,
   "engagement-rate-calculator": f_engagement_rate_calculator,
+  "equation-of-a-circle-calculator": f_equation_of_a_circle_calculator,
+  "equation-of-a-sphere-calculator": f_equation_of_a_sphere_calculator,
+  "equilateral-triangle-calculator": f_equilateral_triangle_calculator,
+  "equivalent-fractions-calculator": f_equivalent_fractions_calculator,
+  "error-function-calculator": f_error_function_calculator,
   "error-propagation-calculator": f_error_propagation_calculator,
   "even-parity-bit-calculator": f_even_parity_bit_calculator,
   "expanded-form-calculator": f_expanded_form_calculator,
