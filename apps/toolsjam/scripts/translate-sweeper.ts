@@ -302,6 +302,10 @@ async function runWorker(wid: string, queue: Queue, batchSize: number, maxBatche
 // --- main ----------------------------------------------------------------
 
 async function pass(args: Args): Promise<{ ok: number; fail: number; scanned: number }> {
+  // Always sync the local ref to origin/main before doing anything, so every
+  // path (scan, worktree create, worker re-sync) starts from the same true
+  // upstream snapshot — including the --tools=… path that bypasses scan.
+  fetchOriginMain();
   const startScan = Date.now();
   let pool = args.explicit ?? findNeedsTranslate();
   log("main", `scan: ${pool.length} tools need translation (took ${Math.round((Date.now() - startScan) / 1000)}s)`);
