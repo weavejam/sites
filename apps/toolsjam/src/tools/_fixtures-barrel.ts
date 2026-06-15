@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_black_hole_collision_calculator } from "@/tools/black-hole-collision-calculator.fixtures";
+import { fixtures as f_black_hole_temperature_calculator } from "@/tools/black-hole-temperature-calculator.fixtures";
+import { fixtures as f_blackbody_radiation_calculator } from "@/tools/blackbody-radiation-calculator.fixtures";
+import { fixtures as f_blast_radius_calculator } from "@/tools/blast-radius-calculator.fixtures";
+import { fixtures as f_bmep_calculator_brake_mean_effective_pressure_calculator } from "@/tools/bmep-calculator-brake-mean-effective-pressure-calculator.fixtures";
 import { fixtures as f_capacitive_reactance_calculator } from "@/tools/capacitive-reactance-calculator.fixtures";
 import { fixtures as f_capacitive_transformerless_power_supply_calculator } from "@/tools/capacitive-transformerless-power-supply-calculator.fixtures";
 import { fixtures as f_capacitor_calculator } from "@/tools/capacitor-calculator.fixtures";
@@ -194,6 +199,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "black-hole-collision-calculator": f_black_hole_collision_calculator,
+  "black-hole-temperature-calculator": f_black_hole_temperature_calculator,
+  "blackbody-radiation-calculator": f_blackbody_radiation_calculator,
+  "blast-radius-calculator": f_blast_radius_calculator,
+  "bmep-calculator-brake-mean-effective-pressure-calculator": f_bmep_calculator_brake_mean_effective_pressure_calculator,
   "capacitive-reactance-calculator": f_capacitive_reactance_calculator,
   "capacitive-transformerless-power-supply-calculator": f_capacitive_transformerless_power_supply_calculator,
   "capacitor-calculator": f_capacitor_calculator,
