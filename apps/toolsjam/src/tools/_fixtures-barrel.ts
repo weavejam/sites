@@ -176,6 +176,11 @@ import { fixtures as f_ip_subnet_calculator } from "@/tools/ip-subnet-calculator
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
 import { fixtures as f_kd_calculator_kill_death_ratio } from "@/tools/kd-calculator-kill-death-ratio.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
+import { fixtures as f_log_calculator } from "@/tools/log-calculator.fixtures";
+import { fixtures as f_long_addition_calculator } from "@/tools/long-addition-calculator.fixtures";
+import { fixtures as f_long_division_calculator } from "@/tools/long-division-calculator.fixtures";
+import { fixtures as f_long_multiplication_calculator } from "@/tools/long-multiplication-calculator.fixtures";
+import { fixtures as f_long_subtraction_calculator } from "@/tools/long-subtraction-calculator.fixtures";
 import { fixtures as f_matched_betting_calculator } from "@/tools/matched-betting-calculator.fixtures";
 import { fixtures as f_mayan_calendar_converter } from "@/tools/mayan-calendar-converter.fixtures";
 import { fixtures as f_mayan_numerals_converter } from "@/tools/mayan-numerals-converter.fixtures";
@@ -560,6 +565,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
   "kd-calculator-kill-death-ratio": f_kd_calculator_kill_death_ratio,
   "loan-calculator": f_loan_calculator,
+  "log-calculator": f_log_calculator,
+  "long-addition-calculator": f_long_addition_calculator,
+  "long-division-calculator": f_long_division_calculator,
+  "long-multiplication-calculator": f_long_multiplication_calculator,
+  "long-subtraction-calculator": f_long_subtraction_calculator,
   "matched-betting-calculator": f_matched_betting_calculator,
   "mayan-calendar-converter": f_mayan_calendar_converter,
   "mayan-numerals-converter": f_mayan_numerals_converter,
