@@ -259,6 +259,11 @@ import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/to
 import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
 import { fixtures as f_streaming_bitrate_calculator } from "@/tools/streaming-bitrate-calculator.fixtures";
 import { fixtures as f_streaming_services_royalties_calculator } from "@/tools/streaming-services-royalties-calculator.fixtures";
+import { fixtures as f_subtracting_fractions_calculator } from "@/tools/subtracting-fractions-calculator.fixtures";
+import { fixtures as f_subtraction_calculator } from "@/tools/subtraction-calculator.fixtures";
+import { fixtures as f_sum_and_difference_identities_calculator } from "@/tools/sum-and-difference-identities-calculator.fixtures";
+import { fixtures as f_sum_of_a_linear_number_sequence_calculator } from "@/tools/sum-of-a-linear-number-sequence-calculator.fixtures";
+import { fixtures as f_sum_of_products_calculator } from "@/tools/sum-of-products-calculator.fixtures";
 import { fixtures as f_sunbathing_calculator } from "@/tools/sunbathing-calculator.fixtures";
 import { fixtures as f_thermal_energy_calculator } from "@/tools/thermal-energy-calculator.fixtures";
 import { fixtures as f_thermal_equilibrium_calculator } from "@/tools/thermal-equilibrium-calculator.fixtures";
@@ -588,6 +593,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "standard-error-calculator": f_standard_error_calculator,
   "streaming-bitrate-calculator": f_streaming_bitrate_calculator,
   "streaming-services-royalties-calculator": f_streaming_services_royalties_calculator,
+  "subtracting-fractions-calculator": f_subtracting_fractions_calculator,
+  "subtraction-calculator": f_subtraction_calculator,
+  "sum-and-difference-identities-calculator": f_sum_and_difference_identities_calculator,
+  "sum-of-a-linear-number-sequence-calculator": f_sum_of_a_linear_number_sequence_calculator,
+  "sum-of-products-calculator": f_sum_of_products_calculator,
   "sunbathing-calculator": f_sunbathing_calculator,
   "thermal-energy-calculator": f_thermal_energy_calculator,
   "thermal-equilibrium-calculator": f_thermal_equilibrium_calculator,
