@@ -3920,11 +3920,206 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "hadamard-product-calculator",
+    category: "math",
+    slugs: {
+      en: "hadamard-product-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Hadamard Product Calculator - Element-Wise Multiplication",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Hadamard product calculator multiplies two vectors element by element, validates matching lengths, and shows results instantly for algebra, data science, and ML",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "half-angle-calculator",
+    category: "math",
+    slugs: {
+      en: "half-angle-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Half-Angle Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Half-angle calculator finds sin(θ/2), cos(θ/2), and tan(θ/2) from any angle in degrees or radians with automatic or manual quadrant signs.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "harmonic-mean-calculator",
+    category: "math",
+    slugs: {
+      en: "harmonic-mean-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Harmonic Mean Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Harmonic mean calculator computes the reciprocal-based average for positive sequences, showing the mean, count, and reciprocal sum for rates and ratios.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "harmonic-number-calculator",
+    category: "math",
+    slugs: {
+      en: "harmonic-number-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Harmonic Number Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Harmonic number calculator sums H_n term by term, with optional series breakdown and logarithmic approximation for analysis, number theory, and bounds.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "herons-formula-calculator",
+    category: "math",
+    slugs: {
+      en: "herons-formula-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Heron's Formula Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Heron's formula calculator finds triangle area from three side lengths, checks triangle validity, and returns area, perimeter, and semi-perimeter.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
-
-
-
-
-
 
 ];
