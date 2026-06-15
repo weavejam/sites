@@ -240,10 +240,15 @@ import { fixtures as f_resolution_scale_calculator } from "@/tools/resolution-sc
 import { fixtures as f_risk_calculator } from "@/tools/risk-calculator.fixtures";
 import { fixtures as f_roc_curve_calculator } from "@/tools/roc-curve-calculator.fixtures";
 import { fixtures as f_roulette_payout_calculator } from "@/tools/roulette-payout-calculator.fixtures";
+import { fixtures as f_round_to_the_nearest_thousand_calculator } from "@/tools/round-to-the-nearest-thousand-calculator.fixtures";
+import { fixtures as f_rounding_calculator } from "@/tools/rounding-calculator.fixtures";
+import { fixtures as f_rsa_calculator } from "@/tools/rsa-calculator.fixtures";
 import { fixtures as f_rse_calculator_relative_standard_error } from "@/tools/rse-calculator-relative-standard-error.fixtures";
 import { fixtures as f_sample_size_calculator } from "@/tools/sample-size-calculator.fixtures";
 import { fixtures as f_sampling_distribution_of_the_sample_proportion_calculator } from "@/tools/sampling-distribution-of-the-sample-proportion-calculator.fixtures";
 import { fixtures as f_sampling_error_calculator } from "@/tools/sampling-error-calculator.fixtures";
+import { fixtures as f_scatter_plot_calculator } from "@/tools/scatter-plot-calculator.fixtures";
+import { fixtures as f_scientific_notation_calculator } from "@/tools/scientific-notation-calculator.fixtures";
 import { fixtures as f_smp_x_distribution_calculator } from "@/tools/smp-x-distribution-calculator.fixtures";
 import { fixtures as f_snowman_calculator } from "@/tools/snowman-calculator.fixtures";
 import { fixtures as f_speaker_box_calculator } from "@/tools/speaker-box-calculator.fixtures";
@@ -584,10 +589,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "risk-calculator": f_risk_calculator,
   "roc-curve-calculator": f_roc_curve_calculator,
   "roulette-payout-calculator": f_roulette_payout_calculator,
+  "round-to-the-nearest-thousand-calculator": f_round_to_the_nearest_thousand_calculator,
+  "rounding-calculator": f_rounding_calculator,
+  "rsa-calculator": f_rsa_calculator,
   "rse-calculator-relative-standard-error": f_rse_calculator_relative_standard_error,
   "sample-size-calculator": f_sample_size_calculator,
   "sampling-distribution-of-the-sample-proportion-calculator": f_sampling_distribution_of_the_sample_proportion_calculator,
   "sampling-error-calculator": f_sampling_error_calculator,
+  "scatter-plot-calculator": f_scatter_plot_calculator,
+  "scientific-notation-calculator": f_scientific_notation_calculator,
   "smp-x-distribution-calculator": f_smp_x_distribution_calculator,
   "snowman-calculator": f_snowman_calculator,
   "speaker-box-calculator": f_speaker_box_calculator,

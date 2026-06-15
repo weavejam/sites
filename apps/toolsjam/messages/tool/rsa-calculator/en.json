@@ -1,0 +1,91 @@
+{
+  "title": "RSA Calculator - Public Key Encryption & Decryption Tool",
+  "tagline": "Generate RSA key pairs, encrypt and decrypt numeric messages — an interactive tool for learning public key cryptography and number theory.",
+  "intro": "Enter two distinct prime numbers (p and q), a public exponent (e), and an optional plaintext number to encrypt and decrypt using the RSA algorithm.",
+  "field": {
+    "p": "Prime p",
+    "q": "Prime q",
+    "e": "Public Exponent e",
+    "message": "Message (integer to encrypt)"
+  },
+  "placeholder": {
+    "prime": "e.g., 61",
+    "exponent": "e.g., 17",
+    "message": "e.g., 65"
+  },
+  "button": {
+    "generate": "Generate Keys & Encrypt",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive integers.",
+    "notPrime": "Not a prime number",
+    "sameFactors": "p and q must be different primes.",
+    "eNotCoprime": "e must be coprime with φ(n) = (p−1)(q−1).",
+    "eRange": "e must be greater than 1 and less than φ(n).",
+    "noInverse": "Could not compute modular inverse for d.",
+    "messageTooLarge": "Message must be less than n (p × q)."
+  },
+  "result": {
+    "heading": "RSA Key & Encryption Results",
+    "n": "Modulus n = p × q",
+    "phi": "φ(n) = (p−1)(q−1)",
+    "e": "Public exponent e",
+    "d": "Private key d",
+    "encrypted": "Encrypted ciphertext C",
+    "decrypted": "Decrypted plaintext M"
+  },
+  "about": {
+    "heading": "About the RSA calculator",
+    "body": "RSA (Rivest–Shamir–Adleman) is the most widely deployed public-key cryptosystem in the world. It underpins HTTPS, email encryption, digital signatures, and secure software distribution. Understanding RSA requires familiarity with three number-theory concepts: prime factorisation, modular arithmetic, and Euler's totient function — all of which this calculator makes interactive and tangible.\n\nThe RSA key generation process begins by selecting two distinct large prime numbers, p and q. For educational purposes this tool works with small primes, but real RSA implementations use primes with thousands of digits. The modulus n is computed as n = p × q. Next, Euler's totient φ(n) = (p − 1)(q − 1) is calculated. The public exponent e must be chosen such that 1 < e < φ(n) and gcd(e, φ(n)) = 1 — the most common choices are 3, 17, and 65,537 (the Fermat primes), with 65,537 used in virtually all production systems. The private exponent d is the modular multiplicative inverse of e modulo φ(n), found using the Extended Euclidean Algorithm: d ≡ e⁻¹ (mod φ(n)).\n\nEncryption is performed with the public key (e, n): ciphertext C = Mᵉ mod n, where M is the plaintext integer. Decryption uses the private key (d, n): plaintext M = Cᵈ mod n. The security of RSA rests on the practical impossibility of factoring a large n into its prime components p and q — a problem for which no polynomial-time classical algorithm is known.\n\nThis RSA calculator is designed for learning rather than production security. It uses JavaScript BigInt for exact integer arithmetic, so results are mathematically correct for any prime inputs the browser can handle. However, real-world secure systems need primes of at least 2,048 bits, proper padding schemes (OAEP), and cryptographic random number generators — none of which this educational tool provides.\n\nCommon use cases for this calculator include: computer science coursework on cryptography and number theory; verifying hand calculations of RSA key generation; exploring how small changes in e or the choice of p and q affect the private key d; and building intuition for why factoring n is the hard problem at the core of RSA's security.\n\nTo use the calculator, enter any two distinct prime numbers for p and q, choose a public exponent e that is coprime with φ(n), optionally enter a numeric message smaller than n, and click Generate. The tool instantly shows n, φ(n), d, and the encrypted and decrypted values so you can verify that decryption recovers the original message."
+  },
+  "examples": {
+    "heading": "RSA calculator examples",
+    "intro": "Three worked examples showing key generation and message encryption with small primes.",
+    "colInput": "Inputs (p, q, e, M)",
+    "colOutput": "Key Results",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "p=61, q=53, e=17, M=65",
+        "output": "n=3233, φ=3120, d=2753, C=2790, M′=65",
+        "note": "Classic textbook example. n=3233, φ(n)=3120. d=17⁻¹ mod 3120 = 2753. Encrypt 65: 65¹⁷ mod 3233 = 2790. Decrypt: 2790²⁷⁵³ mod 3233 = 65 ✓"
+      },
+      {
+        "input": "p=7, q=11, e=13, M=5",
+        "output": "n=77, φ=60, d=37, C=26, M′=5",
+        "note": "Small primes for hand-verification. φ(77)=60, gcd(13,60)=1 ✓. d=13⁻¹ mod 60=37. Encrypt 5: 5¹³ mod 77=26. Decrypt 26³⁷ mod 77=5 ✓"
+      },
+      {
+        "input": "p=17, q=19, e=5, M=88",
+        "output": "n=323, φ=288, d=173, C=200, M′=88",
+        "note": "Medium example. φ(323)=288, gcd(5,288)=1 ✓. d=5⁻¹ mod 288=173. Encrypt 88: 88⁵ mod 323=200. Decrypt 200¹⁷³ mod 323=88 ✓"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the RSA calculator",
+    "steps": [
+      "Enter two distinct prime numbers in the 'Prime p' and 'Prime q' fields. Start with well-known small primes like 61 and 53 to verify the classic example.",
+      "Enter a public exponent e that is greater than 1, less than φ(n) = (p−1)(q−1), and coprime with φ(n). Common choices are 3, 17, or 65537.",
+      "Optionally enter a numeric plaintext message M that is smaller than n (p × q) in the Message field.",
+      "Click 'Generate Keys & Encrypt'. The calculator shows the modulus n, totient φ(n), private key d, and — if you entered a message — the ciphertext C and decrypted M′.",
+      "Verify that the decrypted value M′ matches your original message M to confirm the RSA round-trip works correctly."
+    ]
+  },
+  "faq": {
+    "heading": "RSA calculator FAQ",
+    "q1": "What are p, q, n, e, and d in RSA?",
+    "q1_a": "p and q are two distinct prime numbers you choose. n = p × q is the public modulus. e is the public exponent — shared publicly. d is the private exponent, kept secret. The pair (e, n) is the public key; (d, n) is the private key. Anyone can encrypt a message using (e, n), but only the holder of d can decrypt it.",
+    "q2": "Why must e be coprime with φ(n)?",
+    "q2_a": "The private key d is the modular inverse of e modulo φ(n). A modular inverse exists only when gcd(e, φ(n)) = 1, i.e., when they share no common factors. If e shared a factor with φ(n), there would be no valid d and RSA key generation would fail.",
+    "q3": "Why must the message M be smaller than n?",
+    "q3_a": "RSA encryption is Mᵉ mod n. If M ≥ n, the modular reduction would lose information — two different messages could produce the same ciphertext, making decryption ambiguous. In practice, real RSA implementations pad messages with OAEP to ensure this constraint is always satisfied.",
+    "q4": "Is this RSA calculator secure for real use?",
+    "q4_a": "No. This tool is for educational purposes only. Production RSA requires prime numbers with at least 2,048 bits (roughly 617 decimal digits), cryptographically secure random prime generation, and padding schemes like OAEP. Small primes are trivially factorable and should never be used to protect real data.",
+    "q5": "What is Euler's totient φ(n)?",
+    "q5_a": "Euler's totient function φ(n) counts how many integers from 1 to n are coprime with n. For n = p × q where p and q are distinct primes, φ(n) = (p − 1)(q − 1). This value is central to RSA because it defines the group in which the key relationship d ≡ e⁻¹ (mod φ(n)) holds.",
+    "q6": "How does RSA decryption prove the private key works?",
+    "q6_a": "By Euler's theorem, for any M coprime with n, M^φ(n) ≡ 1 (mod n). Since e × d ≡ 1 (mod φ(n)), we have (Mᵉ)ᵈ = M^(ed) = M^(1 + k·φ(n)) = M × (M^φ(n))^k ≡ M × 1^k = M (mod n). So decryption always recovers the original message as long as M < n."
+  }
+}
