@@ -1,0 +1,87 @@
+{
+  "title": "Diagonalize Matrix Calculator",
+  "tagline": "Find eigenvalues, eigenvectors, and the diagonalization P⁻¹AP = D for 2×2 and 3×3 matrices.",
+  "intro": "Enter matrix rows separated by semicolons and elements by commas. For example, a 2×2 matrix [[3,1],[0,2]] is entered as 3,1;0,2.",
+  "field": {
+    "matrix": "Matrix (rows separated by semicolons)"
+  },
+  "placeholder": {
+    "matrix": "e.g. 3,1;0,2 or 1,2,0;3,1,2;0,1,1"
+  },
+  "button": {
+    "diagonalize": "Diagonalize",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Diagonalization Result",
+    "eigenvalues": "Eigenvalues",
+    "eigenvectors": "Eigenvectors",
+    "matrixP": "Matrix P (eigenvectors as columns)",
+    "matrixD": "Diagonal Matrix D",
+    "notDiagonalizable": "This matrix is not diagonalizable over the reals (complex or repeated eigenvalues with insufficient eigenvectors).",
+    "verified": "Verification: P⁻¹AP = D ✓"
+  },
+  "error": {
+    "invalid": "Please enter a valid 2×2 or 3×3 matrix. Use the format row1;row2 with comma-separated values.",
+    "nonSquare": "Only square matrices (2×2 or 3×3) are supported.",
+    "sizeMismatch": "Each row must have the same number of elements."
+  },
+  "about": {
+    "heading": "About Matrix Diagonalization",
+    "body": "Matrix diagonalization is a fundamental process in linear algebra that transforms a square matrix A into a diagonal matrix D through a similarity transformation. The relationship is expressed as P⁻¹AP = D, where P is the matrix of eigenvectors and D is the diagonal matrix containing eigenvalues.\n\nAn eigenvalue λ of a square matrix A is a scalar satisfying det(A − λI) = 0, where I is the identity matrix. This equation is called the characteristic equation of A, and the polynomial det(A − λI) is the characteristic polynomial. For a 2×2 matrix, this yields a quadratic; for a 3×3 matrix, a cubic. The eigenvalues are the roots of this polynomial.\n\nFor each eigenvalue λ, the corresponding eigenvectors are the non-zero solutions to (A − λI)v = 0. The set of all solutions (including the zero vector) forms the eigenspace corresponding to λ. A matrix is diagonalizable if and only if it has enough linearly independent eigenvectors to form the full basis — equivalently, the geometric multiplicity equals the algebraic multiplicity for every eigenvalue.\n\nThe diagonal matrix D has the eigenvalues along its main diagonal and zeros elsewhere. The transformation matrix P has the corresponding eigenvectors as its columns, in the same order as the eigenvalues in D. When P is invertible (which it is when A is diagonalizable), we can verify the relationship P⁻¹AP = D.\n\nDiagonalization is enormously useful because diagonal matrices are easy to work with. Computing powers of a diagonal matrix is trivial: D^n simply raises each diagonal entry to the nth power. This means computing A^n for large n becomes P D^n P⁻¹, which is far more efficient than repeated matrix multiplication. This has direct applications in computing Fibonacci numbers, modeling population growth with Leslie matrices, and solving systems of differential equations.\n\nIn data science and statistics, Principal Component Analysis (PCA) relies directly on diagonalization. The covariance matrix of a dataset is symmetric, so it is always diagonalizable with real eigenvalues. The eigenvectors define the principal components — the directions of maximum variance — and the eigenvalues tell you how much variance each component explains.\n\nIn quantum mechanics, diagonalization of the Hamiltonian matrix gives the energy levels and eigenstates of a physical system. In mechanical engineering, natural frequencies and mode shapes of vibrating structures are found by diagonalizing the system's stiffness and mass matrices.\n\nNot every matrix is diagonalizable. Matrices with repeated eigenvalues may or may not be diagonalizable depending on whether each repeated eigenvalue has a full eigenspace. Rotation matrices in 2D have complex eigenvalues and cannot be diagonalized over the real numbers. In such cases, the Jordan canonical form provides the closest diagonal approximation."
+  },
+  "examples": {
+    "heading": "Diagonalization Examples",
+    "intro": "Worked examples showing how different matrices diagonalize.",
+    "colInput": "Matrix",
+    "colOutput": "Eigenvalues",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "3,1;0,2  (2×2 upper triangular)",
+        "output": "λ₁ = 3, λ₂ = 2",
+        "note": "Upper triangular matrices have their eigenvalues on the diagonal. P = [[1,1],[0,−1]], D = [[3,0],[0,2]]."
+      },
+      {
+        "input": "2,1;1,2  (2×2 symmetric)",
+        "output": "λ₁ = 3, λ₂ = 1",
+        "note": "Symmetric matrices are always diagonalizable with real eigenvalues. Eigenvectors are orthogonal: [1,1] and [1,−1]."
+      },
+      {
+        "input": "4,1;0,4  (2×2 defective)",
+        "output": "λ = 4 (repeated)",
+        "note": "Repeated eigenvalue with only one linearly independent eigenvector — not diagonalizable. Jordan form needed."
+      },
+      {
+        "input": "1,0,0;0,2,0;0,0,3  (3×3 diagonal)",
+        "output": "λ₁ = 1, λ₂ = 2, λ₃ = 3",
+        "note": "A diagonal matrix is already in diagonalized form. P = I, D = A itself."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Diagonalize Matrix Calculator",
+    "steps": [
+      "Enter your matrix using semicolons to separate rows and commas to separate elements within each row. For a 2×2 matrix [[a,b],[c,d]], type a,b;c,d.",
+      "Click Diagonalize. The calculator computes the characteristic polynomial, finds eigenvalues, then solves for eigenvectors.",
+      "Review the Eigenvalues section to see all eigenvalues λ of your matrix.",
+      "Read the Matrix P section to see the eigenvectors as columns, and the Diagonal Matrix D to see the eigenvalues on the diagonal.",
+      "If the matrix is not diagonalizable (complex or insufficient eigenvectors), a message explains why real diagonalization is not possible."
+    ]
+  },
+  "faq": {
+    "heading": "Matrix Diagonalization FAQ",
+    "q1": "What does it mean for a matrix to be diagonalizable?",
+    "q1_a": "A square matrix A is diagonalizable if there exists an invertible matrix P such that P⁻¹AP = D, where D is diagonal. Equivalently, A must have n linearly independent eigenvectors, where n is its size. This holds when the geometric multiplicity of each eigenvalue equals its algebraic multiplicity.",
+    "q2": "What are eigenvalues and eigenvectors?",
+    "q2_a": "An eigenvalue λ is a scalar such that Av = λv has a non-zero solution v. The vector v is the corresponding eigenvector. Geometrically, eigenvectors are directions that the transformation A only stretches or flips (scales by λ), without rotating. Eigenvalues are found by solving det(A − λI) = 0.",
+    "q3": "Why is matrix diagonalization useful?",
+    "q3_a": "Diagonal matrices are easy to manipulate. Computing the nth power of a diagonal matrix just requires raising each diagonal entry to the nth power. So A^n = P D^n P⁻¹ is efficient. Diagonalization also decouples systems of equations, simplifying differential equations, population models, and graph analysis.",
+    "q4": "When is a matrix not diagonalizable?",
+    "q4_a": "A matrix fails to be diagonalizable when an eigenvalue's geometric multiplicity is less than its algebraic multiplicity — meaning the eigenspace is too small. Also, over the real numbers, a matrix with complex eigenvalues (like a 2D rotation) cannot be diagonalized using real matrices.",
+    "q5": "What is the difference between algebraic and geometric multiplicity?",
+    "q5_a": "The algebraic multiplicity of an eigenvalue is how many times it appears as a root of the characteristic polynomial. The geometric multiplicity is the dimension of the corresponding eigenspace (number of linearly independent eigenvectors). Diagonalizability requires these to be equal for every eigenvalue.",
+    "q6": "Can all symmetric matrices be diagonalized?",
+    "q6_a": "Yes. The Spectral Theorem guarantees that every real symmetric matrix is diagonalizable using an orthogonal matrix P (where P⁻¹ = Pᵀ), and all eigenvalues are real. This property is the reason PCA and many other techniques in statistics and physics rely on symmetric matrices."
+  }
+}

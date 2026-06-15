@@ -105,15 +105,20 @@ import { fixtures as f_darcys_law_calculator } from "@/tools/darcys-law-calculat
 import { fixtures as f_db_calculator } from "@/tools/db-calculator.fixtures";
 import { fixtures as f_db_gain_calculator } from "@/tools/db-gain-calculator.fixtures";
 import { fixtures as f_de_broglie_wavelength_calculator } from "@/tools/de-broglie-wavelength-calculator.fixtures";
+import { fixtures as f_decimal_to_percent_converter } from "@/tools/decimal-to-percent-converter.fixtures";
 import { fixtures as f_delta_to_wye_conversion } from "@/tools/delta-to-wye-conversion.fixtures";
 import { fixtures as f_delta_v_calculator } from "@/tools/delta-v-calculator.fixtures";
 import { fixtures as f_density_altitude_calculator } from "@/tools/density-altitude-calculator.fixtures";
 import { fixtures as f_density_calculator } from "@/tools/density-calculator.fixtures";
+import { fixtures as f_descartes_rule_of_signs_calculator } from "@/tools/descartes-rule-of-signs-calculator.fixtures";
 import { fixtures as f_dew_point_calculator } from "@/tools/dew-point-calculator.fixtures";
+import { fixtures as f_diagonalize_matrix_calculator } from "@/tools/diagonalize-matrix-calculator.fixtures";
+import { fixtures as f_diamond_problem_calculator } from "@/tools/diamond-problem-calculator.fixtures";
 import { fixtures as f_dice_probability_calculator } from "@/tools/dice-probability-calculator.fixtures";
 import { fixtures as f_dice_roller_calculator } from "@/tools/dice-roller-calculator.fixtures";
 import { fixtures as f_differential_pressure_calculator } from "@/tools/differential-pressure-calculator.fixtures";
 import { fixtures as f_diffraction_grating_calculator } from "@/tools/diffraction-grating-calculator.fixtures";
+import { fixtures as f_digit_sum_calculator } from "@/tools/digit-sum-calculator.fixtures";
 import { fixtures as f_diopter_calculator } from "@/tools/diopter-calculator.fixtures";
 import { fixtures as f_dipole_calculator } from "@/tools/dipole-calculator.fixtures";
 import { fixtures as f_dipole_moment_calculator } from "@/tools/dipole-moment-calculator.fixtures";
@@ -544,15 +549,20 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "db-calculator": f_db_calculator,
   "db-gain-calculator": f_db_gain_calculator,
   "de-broglie-wavelength-calculator": f_de_broglie_wavelength_calculator,
+  "decimal-to-percent-converter": f_decimal_to_percent_converter,
   "delta-to-wye-conversion": f_delta_to_wye_conversion,
   "delta-v-calculator": f_delta_v_calculator,
   "density-altitude-calculator": f_density_altitude_calculator,
   "density-calculator": f_density_calculator,
+  "descartes-rule-of-signs-calculator": f_descartes_rule_of_signs_calculator,
   "dew-point-calculator": f_dew_point_calculator,
+  "diagonalize-matrix-calculator": f_diagonalize_matrix_calculator,
+  "diamond-problem-calculator": f_diamond_problem_calculator,
   "dice-probability-calculator": f_dice_probability_calculator,
   "dice-roller-calculator": f_dice_roller_calculator,
   "differential-pressure-calculator": f_differential_pressure_calculator,
   "diffraction-grating-calculator": f_diffraction_grating_calculator,
+  "digit-sum-calculator": f_digit_sum_calculator,
   "diopter-calculator": f_diopter_calculator,
   "dipole-calculator": f_dipole_calculator,
   "dipole-moment-calculator": f_dipole_moment_calculator,
