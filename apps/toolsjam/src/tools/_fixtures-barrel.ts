@@ -124,10 +124,15 @@ import { fixtures as f_dividing_fractions_calculator } from "@/tools/dividing-fr
 import { fixtures as f_dividing_radicals_calculator } from "@/tools/dividing-radicals-calculator.fixtures";
 import { fixtures as f_divisibility_test_calculator } from "@/tools/divisibility-test-calculator.fixtures";
 import { fixtures as f_dot_plot_calculator } from "@/tools/dot-plot-calculator.fixtures";
+import { fixtures as f_dot_product_calculator } from "@/tools/dot-product-calculator.fixtures";
+import { fixtures as f_double_angle_formula_calculator } from "@/tools/double-angle-formula-calculator.fixtures";
+import { fixtures as f_doubling_time_calculator } from "@/tools/doubling-time-calculator.fixtures";
+import { fixtures as f_e_calculator } from "@/tools/e-calculator.fixtures";
 import { fixtures as f_easter_calculator } from "@/tools/easter-calculator.fixtures";
 import { fixtures as f_edpi_calculator } from "@/tools/edpi-calculator.fixtures";
 import { fixtures as f_effectiveness_ntu_calculator } from "@/tools/effectiveness-ntu-calculator.fixtures";
 import { fixtures as f_efficiency_calculator } from "@/tools/efficiency-calculator.fixtures";
+import { fixtures as f_egyptian_fractions_calculator } from "@/tools/egyptian-fractions-calculator.fixtures";
 import { fixtures as f_eirp_calculator_effective_isotropic_radiated_power } from "@/tools/eirp-calculator-effective-isotropic-radiated-power.fixtures";
 import { fixtures as f_elastic_constants_calculator } from "@/tools/elastic-constants-calculator.fixtures";
 import { fixtures as f_elastic_potential_energy_calculator } from "@/tools/elastic-potential-energy-calculator.fixtures";
@@ -553,10 +558,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "dividing-radicals-calculator": f_dividing_radicals_calculator,
   "divisibility-test-calculator": f_divisibility_test_calculator,
   "dot-plot-calculator": f_dot_plot_calculator,
+  "dot-product-calculator": f_dot_product_calculator,
+  "double-angle-formula-calculator": f_double_angle_formula_calculator,
+  "doubling-time-calculator": f_doubling_time_calculator,
+  "e-calculator": f_e_calculator,
   "easter-calculator": f_easter_calculator,
   "edpi-calculator": f_edpi_calculator,
   "effectiveness-ntu-calculator": f_effectiveness_ntu_calculator,
   "efficiency-calculator": f_efficiency_calculator,
+  "egyptian-fractions-calculator": f_egyptian_fractions_calculator,
   "eirp-calculator-effective-isotropic-radiated-power": f_eirp_calculator_effective_isotropic_radiated_power,
   "elastic-constants-calculator": f_elastic_constants_calculator,
   "elastic-potential-energy-calculator": f_elastic_potential_energy_calculator,
