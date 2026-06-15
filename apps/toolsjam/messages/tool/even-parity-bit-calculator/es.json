@@ -1,0 +1,106 @@
+{
+  "title": "Calculadora de paridad par - Detección binaria",
+  "tagline": "Genera bits de paridad par para la transmisión de datos binarios y valida al instante cadenas binarias recibidas para detectar errores de un solo bit.",
+  "intro": "Ingresa datos binarios para calcular su bit de paridad par y la cadena de transmisión, o pega datos recibidos para comprobar si hay errores de transmisión.",
+  "field": {
+    "binaryData": "Datos binarios",
+    "receivedData": "Datos recibidos (para validación)",
+    "binaryDataPlaceholder": "p. ej. 1010 o 11001100",
+    "receivedDataPlaceholder": "p. ej. 10101 (incluye el bit de paridad)"
+  },
+  "button": {
+    "calculate": "Calcular bit de paridad par",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalidBinary": "Los datos binarios solo deben contener 0 y 1.",
+    "invalidReceived": "Los datos recibidos solo deben contener 0 y 1.",
+    "emptyData": "Ingresa datos binarios."
+  },
+  "result": {
+    "heading": "Resultado",
+    "onesCount": "Cantidad de 1 en los datos",
+    "parityBit": "Bit de paridad par",
+    "transmissionString": "Cadena de transmisión (datos + bit de paridad)",
+    "validationHeading": "Resultado de la validación",
+    "valid": "Válido — la cantidad total de 1 es par; no se detectó ningún error.",
+    "invalid": "Error detectado — la cantidad total de 1 es impar; ocurrió un cambio de bit."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de bit de paridad par",
+    "body": "La verificación de paridad es uno de los mecanismos de detección de errores más antiguos y más utilizados en la comunicación digital. Siempre que los datos binarios viajan por un canal ruidoso — un cable serial, un bus de memoria, un enlace de red o un medio de almacenamiento — los bits individuales pueden corromperse por interferencia eléctrica, radiación cósmica o fallos de hardware. Un bit de paridad es un bit adicional que se agrega a un bloque de datos para que el receptor pueda comprobar si ocurrió alguna corrupción.\n\nLa paridad par es la variante en la que la cantidad total de bits en 1 en la secuencia combinada — bits de datos más bit de paridad — siempre se mantiene par. La regla es simple: cuenta los 1 en los datos originales. Si ese conteo ya es par, el bit de paridad se establece en 0. Si el conteo es impar, el bit de paridad se establece en 1, dejando el total en par. En términos matemáticos, el bit de paridad es el XOR (OR exclusivo) de todos los bits de datos: una sola operación que un circuito de hardware puede realizar en nanosegundos.\n\nPara verlo con un ejemplo concreto: supón que quieres transmitir la palabra de cuatro bits 1010. Esta palabra contiene exactamente dos 1, que ya es un número par, así que el bit de paridad par es 0. La cadena de transmisión completa es 10100. En el receptor, los cinco bits se someten a XOR: 1 ⊕ 0 ⊕ 1 ⊕ 0 ⊕ 0 = 0. Un resultado de 0 significa que la cantidad total de 1 es par, así que no se marca ningún error. Ahora supón que un bit se corrompió durante la transmisión y la cadena llegó como 11100. El receptor hace XOR: 1 ⊕ 1 ⊕ 1 ⊕ 0 ⊕ 0 = 1. Un resultado de XOR distinto de cero significa que la cantidad total de 1 es impar, indicando que ocurrió un error en alguna parte del marco de cinco bits.\n\nLa paridad par se diferencia de la paridad impar en un solo aspecto: el total objetivo es par en lugar de impar. Ambos esquemas detectan cualquier error de un solo bit con 100% de fiabilidad, porque cambiar un bit altera la paridad de par a impar o viceversa. Ambos fallan silenciosamente cuando se invierte un número par de bits al mismo tiempo, ya que dos cambios se cancelan entre sí y dejan la paridad sin cambios. Para aplicaciones que deben manejar errores de varios bits, los ingenieros usan códigos más sofisticados como CRC (Comprobación de Redundancia Cíclica), códigos de Hamming o códigos Reed-Solomon.\n\nA menudo se prefiere la paridad par sobre la impar en sistemas que necesitan mantener la conformidad del protocolo cuando todos los bits de datos son cero. Con paridad impar, una palabra de todos ceros siempre tiene un bit de paridad de 1, lo que garantiza una transmisión no nula. Con paridad par, una palabra de todos ceros produce una transmisión de todos ceros, lo que puede ser útil en algunos protocolos de inicialización o enlace. La elección entre paridad par e impar suele estar especificada por el estándar de comunicación que se implementa.\n\nLas aplicaciones prácticas de la paridad par incluyen la comunicación serial UART (donde el modo de paridad es una opción configurable), sistemas de memoria antiguos que almacenaban un bit extra de paridad por byte y algunos protocolos de enmarcado de red. Los enlaces modernos de alta velocidad suelen usar códigos de detección y corrección de errores más potentes, pero la paridad par sigue siendo valiosa en sistemas embebidos con recursos limitados y es un concepto fundamental en los cursos de informática y electrónica digital.\n\nEsta calculadora automatiza cada paso del cálculo de paridad par: valida que la entrada sea puramente binaria, cuenta la cantidad de bits en 1, determina el bit de paridad par correcto y genera la cadena de transmisión completa. El campo opcional de validación te permite pegar una cadena recibida (incluido su bit de paridad) y verificar de inmediato si la comprobación de paridad par pasa o falla."
+  },
+  "examples": {
+    "heading": "Ejemplos de bit de paridad par",
+    "intro": "La tabla siguiente muestra cómo se calcula el bit de paridad par para varias entradas binarias.",
+    "colInput": "Datos binarios",
+    "colOutput": "Bit de paridad",
+    "colNote": "Cadena de transmisión",
+    "items": [
+      {
+        "input": "1010",
+        "output": "0",
+        "note": "Dos 1 (par) → bit de paridad = 0. Transmisión: 10100"
+      },
+      {
+        "input": "1110",
+        "output": "1",
+        "note": "Tres 1 (impar) → bit de paridad = 1. Transmisión: 11101"
+      },
+      {
+        "input": "11001100",
+        "output": "0",
+        "note": "Cuatro 1 (par) → bit de paridad = 0. Transmisión: 110011000"
+      },
+      {
+        "input": "10110100",
+        "output": "0",
+        "note": "Cuatro 1 (par) → bit de paridad = 0. Transmisión: 101101000"
+      },
+      {
+        "input": "11111111",
+        "output": "0",
+        "note": "Ocho 1 (par) → bit de paridad = 0. Transmisión: 111111110"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de bit de paridad par",
+    "steps": [
+      "Ingresa la cadena binaria que deseas transmitir en el campo Datos binarios; usa solo 0 y 1, sin espacios ni separadores.",
+      "Haz clic en Calcular bit de paridad par para ver la cantidad de 1, el bit de paridad par requerido y la cadena de transmisión completa.",
+      "Copia la cadena de transmisión (los datos originales más el bit de paridad añadido) y envíala al receptor.",
+      "Para validar datos recibidos, pega la cadena completa recibida (incluido el bit de paridad) en el campo Datos recibidos y haz clic en Calcular; la herramienta comprobará si la cantidad total de 1 es par.",
+      "Haz clic en Restablecer para borrar todos los campos y empezar un cálculo nuevo."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de bit de paridad par",
+    "items": [
+      {
+        "q": "¿Qué es la paridad par?",
+        "a": "La paridad par es un esquema de detección de errores en el que se añade un bit de paridad a los datos binarios para que la cantidad total de bits en 1 en la cadena combinada (datos más bit de paridad) sea siempre par. Si los datos ya contienen una cantidad par de 1, el bit de paridad es 0; si la cantidad es impar, el bit de paridad es 1 para que el total sea par."
+      },
+      {
+        "q": "¿Cómo se calcula el bit de paridad par?",
+        "a": "El bit de paridad par equivale al XOR de todos los bits de datos. XOR produce 1 cuando la cantidad de 1 es impar y 0 cuando es par. Así, para los datos 1010 (dos 1, ya par), el XOR es 0 y el bit de paridad es 0. Para los datos 1110 (tres 1, impar), el XOR es 1 y el bit de paridad es 1."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre paridad par e impar?",
+        "a": "La paridad par garantiza que la cantidad total de bits en 1 sea par; la impar garantiza que sea impar. Ambas detectan cualquier error de un solo bit. La principal diferencia práctica es que la paridad impar asegura un bit de paridad distinto de cero para una palabra de todos ceros, lo que ayuda a detectar fallos atascados en cero. La paridad par puede preferirse cuando un protocolo requiere un enmarcado uniforme con bytes de relleno en cero."
+      },
+      {
+        "q": "¿La paridad par puede detectar todos los errores?",
+        "a": "No. La paridad par detecta de forma fiable cualquier error de un solo bit porque cambiar un bit altera la paridad de par a impar. Sin embargo, si exactamente dos bits cambian al mismo tiempo, la paridad sigue siendo par y el error no se detecta. Para una protección más robusta, usa CRC, códigos de Hamming o códigos de corrección Reed-Solomon."
+      },
+      {
+        "q": "¿Dónde se usa la paridad par en la práctica?",
+        "a": "La paridad par se usa en la comunicación serial UART (donde el modo de paridad es configurable), en algunos módulos de memoria antiguos y en ciertos protocolos de enmarcado de red. También es una herramienta didáctica fundamental en informática y electrónica digital porque muestra la detección de errores con una complejidad matemática mínima."
+      },
+      {
+        "q": "¿Cómo funciona la validación?",
+        "a": "Para validar datos recibidos, ingresa la cadena completa recibida —datos originales más el bit de paridad añadido— en el campo Datos recibidos. La calculadora cuenta la cantidad total de 1 en la cadena recibida. Si el conteo es par, se cumple la paridad par y no se marca ningún error. Si el conteo es impar, se detectó un error de un solo bit (o cualquier número impar de errores)."
+      }
+    ]
+  }
+}

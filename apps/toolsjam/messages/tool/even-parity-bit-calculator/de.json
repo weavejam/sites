@@ -1,0 +1,106 @@
+{
+  "title": "Rechner für gerade Parität - Binäre Fehlererkennung",
+  "tagline": "Erzeugen Sie gerade Paritätsbits für die Übertragung von Binärdaten und prüfen Sie empfangene Binärzeichenfolgen sofort auf Einzelbitfehler.",
+  "intro": "Geben Sie Binärdaten ein, um das gerade Paritätsbit und die Übertragungszeichenfolge zu berechnen, oder fügen Sie empfangene Daten ein, um Übertragungsfehler zu prüfen.",
+  "field": {
+    "binaryData": "Binärdaten",
+    "receivedData": "Empfangene Daten (zur Validierung)",
+    "binaryDataPlaceholder": "z. B. 1010 oder 11001100",
+    "receivedDataPlaceholder": "z. B. 10101 (inklusive Paritätsbit)"
+  },
+  "button": {
+    "calculate": "Gerades Paritätsbit berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalidBinary": "Binärdaten dürfen nur 0 und 1 enthalten.",
+    "invalidReceived": "Empfangene Daten dürfen nur 0 und 1 enthalten.",
+    "emptyData": "Bitte geben Sie Binärdaten ein."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "onesCount": "Anzahl der 1en in den Daten",
+    "parityBit": "Gerades Paritätsbit",
+    "transmissionString": "Übertragungszeichenfolge (Daten + Paritätsbit)",
+    "validationHeading": "Validierungsergebnis",
+    "valid": "Gültig — die Gesamtzahl der 1en ist gerade, kein Fehler erkannt.",
+    "invalid": "Fehler erkannt — die Gesamtzahl der 1en ist ungerade, ein Bitflip ist aufgetreten."
+  },
+  "about": {
+    "heading": "Über den Rechner für gerade Parität",
+    "body": "Die Paritätsprüfung ist eines der ältesten und am weitesten verbreiteten Verfahren zur Fehlererkennung in der digitalen Kommunikation. Wenn Binärdaten über einen störanfälligen Kanal laufen — etwa ein serielles Kabel, einen Speicherbus, eine Netzwerkverbindung oder ein Speichermedium — können einzelne Bits durch elektrische Störungen, kosmische Strahlung oder Hardwarefehler beschädigt werden. Ein Paritätsbit ist ein zusätzliches Bit, das an einen Datenblock angehängt wird und es dem Empfänger ermöglicht zu prüfen, ob eine Beschädigung aufgetreten ist.\n\nBei gerader Parität wird die Gesamtzahl der 1-Bits in der kombinierten Folge — Datenbits plus Paritätsbit — immer gerade gehalten. Die Regel ist einfach: Zählen Sie die 1en in den Originaldaten. Ist diese Anzahl bereits gerade, wird das Paritätsbit auf 0 gesetzt. Ist sie ungerade, wird das Paritätsbit auf 1 gesetzt, sodass die Gesamtsumme gerade wird. Mathematisch ist das Paritätsbit das XOR (exklusives Oder) aller Datenbits — eine einzige Operation, die eine Hardware-Schaltung in Nanosekunden ausführen kann.\n\nZur Veranschaulichung ein konkretes Beispiel: Angenommen, Sie möchten das vierstellige Datenwort 1010 übertragen. Dieses Wort enthält genau zwei 1en, also bereits eine gerade Anzahl, daher ist das gerade Paritätsbit 0. Die vollständige Übertragungszeichenfolge lautet 10100. Am Empfänger werden alle fünf Bits per XOR verknüpft: 1 ⊕ 0 ⊕ 1 ⊕ 0 ⊕ 0 = 0. Ein Ergebnis von 0 bedeutet, dass die Gesamtzahl der 1en gerade ist, also wird kein Fehler gemeldet. Wird nun unterwegs ein Bit beschädigt und die Zeichenfolge kommt als 11100 an, ergibt das XOR am Empfänger: 1 ⊕ 1 ⊕ 1 ⊕ 0 ⊕ 0 = 1. Ein von 0 verschiedener XOR-Wert bedeutet, dass die Gesamtzahl der 1en ungerade ist und irgendwo im Fünf-Bit-Frame ein Fehler aufgetreten ist.\n\nGerade Parität unterscheidet sich von ungerader Parität nur dadurch, dass die Zielsumme gerade statt ungerade ist. Beide Verfahren erkennen jeden Einzelbitfehler mit 100 % Zuverlässigkeit, da das Flippen eines Bits die Parität von gerade zu ungerade oder umgekehrt ändert. Beide versagen jedoch stillschweigend, wenn gleichzeitig eine gerade Anzahl von Bits kippt, da sich zwei Fehler gegenseitig aufheben und die Parität unverändert bleibt. Für Anwendungen mit Mehrbitfehlern verwenden Ingenieure ausgefeiltere Codes wie CRC (Zyklische Redundanzprüfung), Hamming-Codes oder Reed-Solomon-Codes.\n\nGerade Parität wird oft gegenüber ungerader Parität bevorzugt, wenn Protokolle bei ausschließlich 0-Werten konsistent bleiben müssen. Bei ungerader Parität hat ein Datenwort aus Nullen immer ein Paritätsbit von 1, wodurch die Übertragung nie null ist. Bei gerader Parität ergibt ein Datenwort aus Nullen ebenfalls eine Übertragung aus Nullen, was in manchen Initialisierungs- oder Handshake-Protokollen nützlich sein kann. Die Wahl zwischen gerader und ungerader Parität wird normalerweise durch den jeweiligen Kommunikationsstandard festgelegt.\n\nPraktische Anwendungen der geraden Parität sind die UART-Seriellkommunikation (bei der der Paritätsmodus konfigurierbar ist), ältere Speichersysteme, die pro Byte ein zusätzliches Paritätsbit speicherten, und einige Netzwerk-Framing-Protokolle. Moderne Hochgeschwindigkeitsverbindungen nutzen meist leistungsfähigere Fehlererkennungs- und Fehlerkorrekturcodes, doch gerade Parität bleibt in ressourcenbeschränkten Embedded-Systemen wertvoll und ist ein grundlegendes Konzept in jedem Informatik- und Digitaltechnik-Lehrplan.\n\nDieser Rechner automatisiert jeden Schritt der Berechnung gerader Parität: Er validiert, dass die Eingabe rein binär ist, zählt die Anzahl der 1en, bestimmt das korrekte gerade Paritätsbit und gibt die vollständige Übertragungszeichenfolge aus. Das optionale Validierungsfeld ermöglicht es Ihnen, eine empfangene Zeichenfolge (einschließlich Paritätsbit) einzufügen und sofort zu prüfen, ob die gerade Paritätsprüfung bestanden wurde oder fehlschlägt."
+  },
+  "examples": {
+    "heading": "Beispiele für gerade Paritätsbits",
+    "intro": "Die folgende Tabelle zeigt, wie das gerade Paritätsbit für mehrere Binäreingaben berechnet wird.",
+    "colInput": "Binärdaten",
+    "colOutput": "Paritätsbit",
+    "colNote": "Übertragungszeichenfolge",
+    "items": [
+      {
+        "input": "1010",
+        "output": "0",
+        "note": "Zwei 1en (gerade) → Paritätsbit = 0. Übertragung: 10100"
+      },
+      {
+        "input": "1110",
+        "output": "1",
+        "note": "Drei 1en (ungerade) → Paritätsbit = 1. Übertragung: 11101"
+      },
+      {
+        "input": "11001100",
+        "output": "0",
+        "note": "Vier 1en (gerade) → Paritätsbit = 0. Übertragung: 110011000"
+      },
+      {
+        "input": "10110100",
+        "output": "0",
+        "note": "Vier 1en (gerade) → Paritätsbit = 0. Übertragung: 101101000"
+      },
+      {
+        "input": "11111111",
+        "output": "0",
+        "note": "Acht 1en (gerade) → Paritätsbit = 0. Übertragung: 111111110"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Rechner für gerade Parität",
+    "steps": [
+      "Geben Sie die zu übertragende Binärzeichenfolge in das Feld Binärdaten ein — verwenden Sie nur 0 und 1, ohne Leerzeichen oder Trennzeichen.",
+      "Klicken Sie auf Gerades Paritätsbit berechnen, um die Anzahl der 1en, das benötigte gerade Paritätsbit und die vollständige Übertragungszeichenfolge zu sehen.",
+      "Kopieren Sie die Übertragungszeichenfolge (die Originaldaten plus das angehängte Paritätsbit) und senden Sie sie an den Empfänger.",
+      "Um empfangene Daten zu validieren, fügen Sie die vollständige empfangene Zeichenfolge (einschließlich Paritätsbit) in das Feld Empfangene Daten ein und klicken Sie auf Berechnen — das Tool prüft, ob die Gesamtzahl der 1en gerade ist.",
+      "Klicken Sie auf Zurücksetzen, um alle Felder zu löschen und eine neue Berechnung zu starten."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Rechner für gerade Parität",
+    "items": [
+      {
+        "q": "Was ist gerade Parität?",
+        "a": "Gerade Parität ist ein Verfahren zur Fehlererkennung, bei dem an Binärdaten ein Paritätsbit angehängt wird, sodass die Gesamtzahl der 1-Bits in der kombinierten Zeichenfolge (Daten plus Paritätsbit) immer gerade ist. Enthalten die Daten bereits eine gerade Anzahl von 1en, ist das Paritätsbit 0; ist die Anzahl ungerade, ist das Paritätsbit 1, damit die Summe gerade wird."
+      },
+      {
+        "q": "Wie wird das gerade Paritätsbit berechnet?",
+        "a": "Das gerade Paritätsbit entspricht dem XOR aller Datenbits. XOR ergibt 1, wenn die Anzahl der 1en ungerade ist, und 0, wenn sie gerade ist. Bei den Daten 1010 (zwei 1en, bereits gerade) ist das XOR daher 0 und das Paritätsbit 0. Bei den Daten 1110 (drei 1en, ungerade) ist das XOR 1 und das Paritätsbit 1."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen gerader und ungerader Parität?",
+        "a": "Gerade Parität stellt sicher, dass die Gesamtzahl der 1-Bits gerade ist; ungerade Parität stellt sicher, dass sie ungerade ist. Beide erkennen jeden Einzelbitfehler. Der wichtigste praktische Unterschied ist, dass ungerade Parität ein von 0 verschiedenes Paritätsbit für ein Datenwort aus Nullen garantiert, was hilft, auf 0 festhängende Fehler zu erkennen. Gerade Parität kann bevorzugt werden, wenn ein Protokoll konsistentes Framing mit Null-Padding verlangt."
+      },
+      {
+        "q": "Kann gerade Parität alle Fehler erkennen?",
+        "a": "Nein. Gerade Parität erkennt jeden Einzelbitfehler zuverlässig, weil das Flippen eines Bits die Parität von gerade auf ungerade ändert. Werden jedoch genau zwei Bits gleichzeitig gekippt, bleibt die Parität gerade und der Fehler bleibt unentdeckt. Für robusteren Schutz verwenden Sie CRC, Hamming-Codes oder Reed-Solomon-Fehlerkorrekturcodes."
+      },
+      {
+        "q": "Wo wird gerade Parität in der Praxis verwendet?",
+        "a": "Gerade Parität wird in der UART-Seriellkommunikation verwendet, bei der der Paritätsmodus konfigurierbar ist, in einigen älteren Speichermodulen und in bestimmten Netzwerk-Framing-Protokollen. Sie ist außerdem ein grundlegendes Lehrmittel in Informatik- und Digitaltechnik-Kursen, weil sie Fehlererkennung mit minimaler mathematischer Komplexität verdeutlicht."
+      },
+      {
+        "q": "Wie funktioniert die Validierung?",
+        "a": "Um empfangene Daten zu validieren, geben Sie die vollständige empfangene Zeichenfolge — Originaldaten plus angehängtes Paritätsbit — in das Feld Empfangene Daten ein. Der Rechner zählt die Gesamtzahl der 1en in der empfangenen Zeichenfolge. Ist die Zahl gerade, ist die gerade Parität erfüllt und es wird kein Fehler markiert. Ist sie ungerade, wurde ein Einzelbitfehler (oder eine ungerade Anzahl von Fehlern) erkannt."
+      }
+    ]
+  }
+}

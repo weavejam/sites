@@ -1,0 +1,112 @@
+{
+  "title": "Calculadora de tamaño de video",
+  "tagline": "Estima el tamaño de archivos MP4, MOV, AVI, MKV y WebM según resolución, velocidad de fotogramas, duración y ajustes de compresión.",
+  "intro": "Introduce las especificaciones de tu video para obtener una estimación precisa de almacenamiento para cargas, archivado y flujos de producción.",
+  "field": {
+    "width": "Ancho del video (píxeles)",
+    "height": "Alto del video (píxeles)",
+    "frameRate": "Velocidad de fotogramas (fps)",
+    "duration": "Duración del video (minutos)",
+    "format": "Formato de video",
+    "bitDepth": "Profundidad de bits",
+    "audioBitrate": "Tasa de bits de audio (kbps) — Opcional"
+  },
+  "format": {
+    "mp4": "MP4 (H.264)",
+    "mov": "MOV (ProRes)",
+    "avi": "AVI (sin compresión)",
+    "mkv": "MKV (H.265)",
+    "webm": "WebM (VP9)"
+  },
+  "bitDepth": {
+    "8": "8 bits",
+    "10": "10 bits",
+    "12": "12 bits"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce números positivos válidos para todos los campos obligatorios."
+  },
+  "result": {
+    "heading": "Tamaño estimado del archivo",
+    "videoSize": "Datos de video",
+    "audioSize": "Datos de audio",
+    "totalSize": "Tamaño total del archivo",
+    "bitrate": "Tasa de bits estimada"
+  },
+  "about": {
+    "heading": "Acerca de la estimación del tamaño de video",
+    "body": "Entender el tamaño de los archivos de video es esencial para cualquiera que trabaje con video digital: desde cineastas independientes y creadores de contenido hasta profesionales de TI que gestionan infraestructura de almacenamiento. El tamaño de un archivo de video lo determina la cantidad de bits necesarios para representar cada segundo de reproducción, una cifra conocida como tasa de bits. Multiplica la tasa de bits por la duración y obtendrás el tamaño del archivo; el reto es que la tasa de bits depende de la resolución, la velocidad de fotogramas, la profundidad de color y la eficiencia del algoritmo de compresión usado por cada formato contenedor.\n\nEsta calculadora usa la fórmula: Tamaño del archivo (bytes) = (Tasa de bits × Duración en segundos) ÷ 8, donde Tasa de bits (bps) = Ancho × Alto × Fotogramas por segundo × Profundidad de bits × Factor de compresión. El factor de compresión varía mucho según el formato. MP4 con codificación H.264 —el formato web más común— logra factores de compresión de alrededor de 0.005, lo que significa que descarta aproximadamente el 99.5% de los datos de píxel brutos sin perder una calidad perceptual aceptable. MOV con Apple ProRes conserva mucho más dato (factor ~0.05), produciendo archivos más grandes pero más adecuados para corrección de color y preferidos en posproducción. AVI en su forma sin compresión conserva casi todos los datos brutos (factor ~0.9), generando archivos enormes usados solo en contextos especializados de archivo o radiodifusión. MKV con H.265 (HEVC) es el códec moderno más eficiente, y logra la misma calidad visual que H.264 con aproximadamente la mitad del tamaño del archivo. WebM con VP9 se sitúa entre H.264 y H.265 en eficiencia.\n\nLa profundidad de bits también desempeña un papel importante. El video estándar de 8 bits codifica 256 niveles de luminancia y color por canal, suficiente para la mayoría del contenido de consumo. El video de 10 bits captura 1,024 niveles, preservando gradaciones finas en altas luces y sombras que benefician los flujos de corrección de color. El video de 12 bits ofrece 4,096 niveles y se usa en formatos RAW de cine donde se requiere la máxima flexibilidad en posproducción.\n\nLa velocidad de fotogramas determina cuántas imágenes individuales se capturan por segundo. El contenido cinematográfico estándar usa 24 fps; la televisión suele usar 25 o 30 fps; y el contenido de cámara lenta y videojuegos a menudo corre a 60 fps o más. Cada aumento en la velocidad de fotogramas incrementa proporcionalmente la tasa de bits y, por tanto, el tamaño del archivo, si todo lo demás se mantiene igual.\n\nEl audio aporta una fracción pequeña, pero no trivial, del tamaño total del archivo. Una pista estéreo AAC de 128 kbps añade unos 60 MB por hora —insignificante para un largometraje, pero notable en lotes grandes de clips cortos. Las tasas de bits de audio más altas (256–320 kbps) se usan en videoclips, conciertos y contenido para audiófilos.\n\nLos ejemplos integrados en esta calculadora cubren los escenarios de producción más comunes: una subida estándar de 1080p a YouTube, un proyecto cinematográfico 4K, un archivo de 720p optimizado para streaming y una grabación de videojuegos a alta velocidad de fotogramas. Úsalos como referencia para calibrar tus expectativas y luego ajusta los parámetros según tu cámara, tu software de edición y los requisitos de la plataforma de entrega."
+  },
+  "examples": {
+    "heading": "Ejemplos de tamaño de video",
+    "intro": "Escenarios de producción comunes y sus necesidades de almacenamiento estimadas.",
+    "colInput": "Especificaciones",
+    "colOutput": "Tam. estimado",
+    "colNote": "Caso de uso",
+    "items": [
+      {
+        "input": "1920×1080, 30 fps, 10 min, MP4 (H.264), 8 bits, audio de 128 kbps",
+        "output": "≈ 187 MB",
+        "note": "Subida HD estándar a YouTube. La compresión H.264 a 2.49 Mbps mantiene el tamaño manejable para la mayoría de los creadores."
+      },
+      {
+        "input": "3840×2160, 24 fps, 5 min, MOV (ProRes), 10 bits, audio de 320 kbps",
+        "output": "≈ 3.49 GB",
+        "note": "Producción cinematográfica 4K a ~99.5 Mbps (ProRes). Archivo grande para corrección de color; exporta a H.264 para la entrega."
+      },
+      {
+        "input": "1280×720, 30 fps, 15 min, MP4 (H.264), 8 bits, audio de 96 kbps",
+        "output": "≈ 129 MB",
+        "note": "Video de streaming optimizado a 1.11 Mbps. El H.264 en 720p minimiza el ancho de banda para quienes ven desde el móvil."
+      },
+      {
+        "input": "1920×1080, 60 fps, 20 min, MP4 (H.264), 8 bits, audio de 160 kbps",
+        "output": "≈ 735 MB",
+        "note": "Grabación de videojuegos a 60 fps (~4.98 Mbps). Duplicar la velocidad de fotogramas desde 30 fps casi duplica el tamaño del archivo."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de tamaño de video",
+    "steps": [
+      "Introduce el ancho y el alto de tu video en píxeles (por ejemplo, 1920 y 1080 para Full HD).",
+      "Introduce la velocidad de fotogramas en fotogramas por segundo (24, 30 o 60 son los valores más comunes).",
+      "Introduce la duración del video en minutos y selecciona el formato contenedor en el menú desplegable.",
+      "Elige la profundidad de bits (8 bits para contenido estándar, 10 bits para material gradado, 12 bits para cine RAW).",
+      "Opcionalmente, introduce la tasa de bits de audio en kbps y luego haz clic en Calcular para ver el tamaño estimado del archivo."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de tamaño de video",
+    "items": [
+      {
+        "q": "¿Por qué las estimaciones difieren del tamaño real de los archivos?",
+        "a": "La calculadora usa factores de compresión promedio para cada formato. Los codificadores reales ajustan la tasa de bits según la complejidad de la escena: una escena de acción con mucho movimiento usa más bits que una toma estática de una persona hablando. La estimación suele ser precisa dentro de un 20–30% para contenido típico, suficiente para planificar almacenamiento."
+      },
+      {
+        "q": "¿Cuál es el formato de video más eficiente para la entrega web?",
+        "a": "MKV con H.265 (HEVC) ofrece la mejor eficiencia de compresión, logrando una calidad comparable a MP4 H.264 con aproximadamente la mitad de la tasa de bits. Sin embargo, MP4 H.264 tiene una compatibilidad más amplia con dispositivos, por lo que es la opción práctica para la mayoría de las plataformas web, incluido YouTube y Vimeo."
+      },
+      {
+        "q": "¿Cómo se compara un video 4K con 1080p en tamaño de archivo?",
+        "a": "4K (3840×2160) tiene exactamente cuatro veces la cantidad de píxeles de 1080p (1920×1080), así que, si todo lo demás es igual, un archivo 4K será aproximadamente cuatro veces más grande que su equivalente en 1080p. En la práctica, los codificadores usan tasas de bits algo más altas para 4K, por lo que los archivos reales suelen ser entre 3 y 5 veces más grandes que los de 1080p equivalentes."
+      },
+      {
+        "q": "¿Debería usar video de 10 bits para mi canal de YouTube?",
+        "a": "El video de 10 bits es útil sobre todo si planeas corregir el color antes de subirlo. Conserva más información tonal para la gradación, pero produce archivos más grandes. Para contenido que se sube directamente y no requiere mucha gradación, 8 bits es indistinguible para los espectadores y genera archivos más pequeños que se cargan más rápido."
+      },
+      {
+        "q": "¿Qué tasa de bits de audio debo usar?",
+        "a": "AAC estéreo de 128 kbps es el estándar para la mayoría de las plataformas de video y resulta transparente para la mayoría de los oyentes. Usa 192–256 kbps para contenido con mucha música o grabaciones de conciertos. 320 kbps se reserva para contenido audiófilo donde la fidelidad máxima es la prioridad."
+      },
+      {
+        "q": "¿Por qué AVI es mucho más grande que MP4?",
+        "a": "AVI en su forma tradicional sin compresión almacena casi datos de fotograma en bruto sin compresión temporal, mientras que MP4 con H.264 usa una predicción sofisticada entre fotogramas para descartar la información redundante entre imágenes adyacentes. La diferencia de compresión puede ser de 100:1 o más, por eso AVI rara vez se usa para la entrega final y solo para formatos intermedios de edición."
+      }
+    ]
+  }
+}

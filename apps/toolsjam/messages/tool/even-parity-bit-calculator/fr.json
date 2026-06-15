@@ -1,0 +1,106 @@
+{
+  "title": "Calculateur de parité paire - Détection binaire",
+  "tagline": "Générez des bits de parité paire pour la transmission de données binaires et validez instantanément les chaînes binaires reçues pour détecter les erreurs d'un seul bit.",
+  "intro": "Saisissez des données binaires pour calculer leur bit de parité paire et la chaîne de transmission, ou collez des données reçues pour vérifier les erreurs de transmission.",
+  "field": {
+    "binaryData": "Données binaires",
+    "receivedData": "Données reçues (pour la validation)",
+    "binaryDataPlaceholder": "ex. 1010 ou 11001100",
+    "receivedDataPlaceholder": "ex. 10101 (inclut le bit de parité)"
+  },
+  "button": {
+    "calculate": "Calculer le bit de parité paire",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalidBinary": "Les données binaires doivent contenir uniquement des 0 et des 1.",
+    "invalidReceived": "Les données reçues doivent contenir uniquement des 0 et des 1.",
+    "emptyData": "Veuillez saisir des données binaires."
+  },
+  "result": {
+    "heading": "Résultat",
+    "onesCount": "Nombre de 1 dans les données",
+    "parityBit": "Bit de parité paire",
+    "transmissionString": "Chaîne de transmission (données + bit de parité)",
+    "validationHeading": "Résultat de la validation",
+    "valid": "Valide — le nombre total de 1 est pair, aucune erreur détectée.",
+    "invalid": "Erreur détectée — le nombre total de 1 est impair, un bit a basculé."
+  },
+  "about": {
+    "heading": "À propos du calculateur de parité paire",
+    "body": "La vérification de parité est l'un des mécanismes de détection d'erreurs les plus anciens et les plus largement déployés dans les communications numériques. Chaque fois que des données binaires traversent un canal bruité — un câble série, un bus mémoire, une liaison réseau ou un support de stockage — des bits individuels peuvent être corrompus par des interférences électriques, des radiations cosmiques ou des pannes matérielles. Un bit de parité est un bit supplémentaire ajouté à un bloc de données pour permettre au récepteur de vérifier si une corruption s'est produite.\n\nLa parité paire est la variante dans laquelle le nombre total de bits à 1 dans la séquence combinée — bits de données plus bit de parité — est toujours pair. La règle est simple : comptez les 1 dans les données d'origine. Si ce nombre est déjà pair, le bit de parité est mis à 0. S'il est impair, le bit de parité est mis à 1, ce qui rend le total pair. En termes mathématiques, le bit de parité est le XOR (OU exclusif) de tous les bits de données — une opération qu'un circuit matériel peut exécuter en nanosecondes.\n\nPrenons un exemple concret : supposons que vous souhaitiez transmettre le mot de quatre bits 1010. Ce mot contient exactement deux 1, ce qui est déjà pair, donc le bit de parité paire vaut 0. La chaîne de transmission complète est 10100. Au récepteur, les cinq bits sont XORés : 1 ⊕ 0 ⊕ 1 ⊕ 0 ⊕ 0 = 0. Un résultat de 0 signifie que le nombre total de 1 est pair, donc aucune erreur n'est signalée. Supposons maintenant qu'un bit ait été corrompu pendant le transit et que la chaîne soit arrivée sous la forme 11100. Le récepteur XOR : 1 ⊕ 1 ⊕ 1 ⊕ 0 ⊕ 0 = 1. Un résultat XOR non nul signifie que le nombre total de 1 est impair, signalant qu'une erreur s'est produite quelque part dans la trame de cinq bits.\n\nLa parité paire diffère de la parité impaire sur un seul point : la cible est un total pair plutôt qu'impair. Les deux schémas détectent toute erreur d'un seul bit avec une fiabilité de 100 %, car le basculement d'un bit change la parité de paire à impaire, ou inversement. Les deux échouent silencieusement lorsque deux bits changent simultanément, puisque deux inversions s'annulent et laissent la parité inchangée. Pour les applications devant gérer des erreurs multibits, les ingénieurs utilisent des codes plus sophistiqués tels que le CRC (contrôle de redondance cyclique), les codes de Hamming ou les codes Reed-Solomon.\n\nLa parité paire est souvent préférée à la parité impaire dans les systèmes qui doivent rester conformes au protocole lorsque toutes les données valent zéro. Avec la parité impaire, un mot composé de zéros possède toujours un bit de parité égal à 1, garantissant une transmission non nulle. Avec la parité paire, un mot de zéros produit une transmission entièrement nulle, ce qui peut être utile dans certains protocoles d'initialisation ou de poignée de main. Le choix entre parité paire et impaire est généralement spécifié par la norme de communication mise en œuvre.\n\nLes applications pratiques de la parité paire incluent la communication série UART (où le mode de parité est une option configurable), d'anciens systèmes mémoire stockant un bit de parité supplémentaire par octet, et certains protocoles de tramage réseau. Les liaisons modernes à haut débit utilisent généralement des codes de détection et de correction d'erreurs plus puissants, mais la parité paire reste utile dans les systèmes embarqués à ressources limitées et constitue un concept fondamental enseigné dans tous les cursus d'informatique et d'électronique numérique.\n\nCe calculateur automatise chaque étape du calcul de parité paire : il vérifie que l'entrée est purement binaire, compte le nombre de bits à 1, détermine le bon bit de parité paire et affiche la chaîne de transmission complète. Le champ de validation optionnel vous permet de coller une chaîne reçue (bit de parité inclus) et de vérifier immédiatement si le contrôle de parité paire réussit ou échoue."
+  },
+  "examples": {
+    "heading": "Exemples de bit de parité paire",
+    "intro": "Le tableau ci-dessous montre comment le bit de parité paire est calculé pour plusieurs entrées binaires.",
+    "colInput": "Données binaires",
+    "colOutput": "Bit de parité",
+    "colNote": "Chaîne de transmission",
+    "items": [
+      {
+        "input": "1010",
+        "output": "0",
+        "note": "Deux 1 (pair) → bit de parité = 0. Transmission : 10100"
+      },
+      {
+        "input": "1110",
+        "output": "1",
+        "note": "Trois 1 (impair) → bit de parité = 1. Transmission : 11101"
+      },
+      {
+        "input": "11001100",
+        "output": "0",
+        "note": "Quatre 1 (pair) → bit de parité = 0. Transmission : 110011000"
+      },
+      {
+        "input": "10110100",
+        "output": "0",
+        "note": "Quatre 1 (pair) → bit de parité = 0. Transmission : 101101000"
+      },
+      {
+        "input": "11111111",
+        "output": "0",
+        "note": "Huit 1 (pair) → bit de parité = 0. Transmission : 111111110"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de parité paire",
+    "steps": [
+      "Saisissez la chaîne binaire à transmettre dans le champ Données binaires — utilisez uniquement des 0 et des 1, sans espaces ni séparateurs.",
+      "Cliquez sur Calculer le bit de parité paire pour voir le nombre de 1, le bit de parité paire requis et la chaîne de transmission complète.",
+      "Copiez la chaîne de transmission (les données d'origine plus le bit de parité ajouté) et envoyez-la au récepteur.",
+      "Pour valider des données reçues, collez la chaîne reçue complète (bit de parité inclus) dans le champ Données reçues, puis cliquez sur Calculer — l'outil vérifie si le nombre total de 1 est pair.",
+      "Cliquez sur Réinitialiser pour effacer tous les champs et recommencer un nouveau calcul."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de bit de parité paire",
+    "items": [
+      {
+        "q": "Qu'est-ce que la parité paire ?",
+        "a": "La parité paire est un schéma de détection d'erreurs dans lequel un bit de parité est ajouté aux données binaires afin que le nombre total de bits à 1 dans la chaîne combinée (données + bit de parité) soit toujours pair. Si les données contiennent déjà un nombre pair de 1, le bit de parité vaut 0 ; si le nombre est impair, le bit de parité vaut 1 pour rendre le total pair."
+      },
+      {
+        "q": "Comment le bit de parité paire est-il calculé ?",
+        "a": "Le bit de parité paire est égal au XOR de tous les bits de données. Le XOR produit 1 lorsque le nombre de 1 est impair et 0 lorsqu'il est pair. Ainsi, pour les données 1010 (deux 1, déjà pair), le XOR vaut 0 et le bit de parité vaut 0. Pour les données 1110 (trois 1, impair), le XOR vaut 1 et le bit de parité vaut 1."
+      },
+      {
+        "q": "Quelle est la différence entre la parité paire et la parité impaire ?",
+        "a": "La parité paire garantit que le nombre total de bits à 1 est pair ; la parité impaire garantit qu'il est impair. Les deux détectent toute erreur d'un seul bit. La principale différence pratique est que la parité impaire garantit un bit de parité non nul pour un mot composé de zéros, ce qui aide à détecter des défauts bloqués à zéro. La parité paire peut être préférée lorsqu'un protocole exige un tramage cohérent avec des octets de remplissage à zéro."
+      },
+      {
+        "q": "La parité paire peut-elle détecter toutes les erreurs ?",
+        "a": "Non. La parité paire détecte de manière fiable toute erreur d'un seul bit, car la bascule d'un bit change la parité de paire à impaire. En revanche, si exactement deux bits basculent simultanément, la parité reste paire et l'erreur n'est pas détectée. Pour une protection plus robuste, utilisez CRC, codes de Hamming ou codes de correction Reed-Solomon."
+      },
+      {
+        "q": "Où la parité paire est-elle utilisée en pratique ?",
+        "a": "La parité paire est utilisée dans la communication série UART (où le mode de parité est configurable), certains anciens modules mémoire et certains protocoles de tramage réseau. C'est aussi un outil pédagogique fondamental en informatique et en électronique numérique, car il illustre la détection d'erreurs avec une complexité mathématique minimale."
+      },
+      {
+        "q": "Comment fonctionne la validation ?",
+        "a": "Pour valider des données reçues, saisissez la chaîne reçue complète — données d'origine plus bit de parité ajouté — dans le champ Données reçues. Le calculateur compte le nombre total de 1 dans la chaîne reçue. Si le compte est pair, la parité paire est respectée et aucune erreur n'est signalée. Si le compte est impair, une erreur d'un seul bit (ou tout nombre impair d'erreurs) a été détectée."
+      }
+    ]
+  }
+}
