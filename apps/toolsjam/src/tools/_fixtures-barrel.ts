@@ -118,6 +118,11 @@ import { fixtures as f_diopter_calculator } from "@/tools/diopter-calculator.fix
 import { fixtures as f_dipole_calculator } from "@/tools/dipole-calculator.fixtures";
 import { fixtures as f_dipole_moment_calculator } from "@/tools/dipole-moment-calculator.fixtures";
 import { fixtures as f_dispersion_calculator } from "@/tools/dispersion-calculator.fixtures";
+import { fixtures as f_distributive_property_calculator } from "@/tools/distributive-property-calculator.fixtures";
+import { fixtures as f_dividing_exponents_calculator } from "@/tools/dividing-exponents-calculator.fixtures";
+import { fixtures as f_dividing_fractions_calculator } from "@/tools/dividing-fractions-calculator.fixtures";
+import { fixtures as f_dividing_radicals_calculator } from "@/tools/dividing-radicals-calculator.fixtures";
+import { fixtures as f_divisibility_test_calculator } from "@/tools/divisibility-test-calculator.fixtures";
 import { fixtures as f_dot_plot_calculator } from "@/tools/dot-plot-calculator.fixtures";
 import { fixtures as f_easter_calculator } from "@/tools/easter-calculator.fixtures";
 import { fixtures as f_edpi_calculator } from "@/tools/edpi-calculator.fixtures";
@@ -542,6 +547,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "dipole-calculator": f_dipole_calculator,
   "dipole-moment-calculator": f_dipole_moment_calculator,
   "dispersion-calculator": f_dispersion_calculator,
+  "distributive-property-calculator": f_distributive_property_calculator,
+  "dividing-exponents-calculator": f_dividing_exponents_calculator,
+  "dividing-fractions-calculator": f_dividing_fractions_calculator,
+  "dividing-radicals-calculator": f_dividing_radicals_calculator,
+  "divisibility-test-calculator": f_divisibility_test_calculator,
   "dot-plot-calculator": f_dot_plot_calculator,
   "easter-calculator": f_easter_calculator,
   "edpi-calculator": f_edpi_calculator,
