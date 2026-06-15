@@ -1,0 +1,111 @@
+{
+  "title": "RAM Latency Calculator",
+  "tagline": "Calculate RAM latency, memory timing, and performance metrics for DDR memory.",
+  "intro": "Optimize your system performance by calculating RAM latency in nanoseconds from CAS latency and memory frequency. Essential for computer builders, overclockers, and system optimization.",
+  "field": {
+    "casLatency": "CAS Latency (CL)",
+    "frequency": "Memory Frequency (MHz)",
+    "tRCD": "RAS to CAS Delay (tRCD)",
+    "tRP": "RAS Precharge Time (tRP)",
+    "tRAS": "Row Active Time (tRAS)"
+  },
+  "placeholder": {
+    "casLatency": "e.g., 16",
+    "frequency": "e.g., 3200",
+    "tRCD": "e.g., 18",
+    "tRP": "e.g., 18",
+    "tRAS": "e.g., 38"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "clLatency": "CAS Latency (ns)",
+    "tRCDLatency": "tRCD Latency (ns)",
+    "tRPLatency": "tRP Latency (ns)",
+    "totalLatency": "Total Access Latency (ns)",
+    "clockCycle": "Clock Cycle Time (ns)"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers for CAS Latency and Memory Frequency."
+  },
+  "about": {
+    "heading": "About the RAM Latency Calculator",
+    "body": "The RAM Latency Calculator is an essential tool for computer enthusiasts, system builders, and overclockers who want to understand and optimize their memory subsystem performance. RAM latency — particularly CAS latency — directly affects how quickly your processor can retrieve data from memory, making it a critical metric for gaming, workstation, and server builds alike.\n\nCAS Latency (Column Address Strobe Latency, or CL) is the number of clock cycles that elapse between the memory controller requesting data and the RAM delivering that data. However, the raw CL number is meaningless without knowing the memory frequency. A DDR4-3200 CL16 kit actually delivers lower latency than a DDR4-2133 CL14 kit, because the faster clock cycle time more than compensates for the higher CL number. This calculator converts cycle counts into real nanosecond latencies so you can make direct comparisons.\n\nThe formula for calculating CAS latency in nanoseconds is: CL Latency (ns) = (CL / (Frequency / 2)) × 1000. This is because DDR memory transfers data twice per clock cycle (Double Data Rate), so the actual clock frequency is half the rated speed. For example, DDR4-3200 runs at 1600 MHz actual clock, giving a clock cycle of 0.625 ns. At CL16, the CAS latency is 16 × 0.625 = 10 ns.\n\nBeyond CAS latency, modern memory timing descriptions include tRCD (RAS to CAS Delay — the delay after activating a memory row before data can be read), tRP (RAS Precharge Time — time to close one row and prepare for the next), and tRAS (Row Active Time — minimum time a row must remain active). Together these four timings (CL-tRCD-tRP-tRAS) describe the complete memory access pattern and are printed on memory specification sheets.\n\nFor practical system building, tighter timings (lower numbers) with equal or higher frequency generally provide better real-world performance. However, achieving stable tight timings often requires higher memory voltages and careful BIOS configuration. This calculator helps you compare kits and make informed purchasing decisions before committing to a memory configuration for your build."
+  },
+  "examples": {
+    "heading": "Examples",
+    "intro": "Compare these common DDR4 and DDR5 memory configurations and their real latencies in nanoseconds.",
+    "colInput": "Memory Config",
+    "colOutput": "CAS Latency (ns)",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "DDR4-3200 CL16",
+        "output": "10.00 ns",
+        "note": "Mainstream DDR4, solid gaming performance"
+      },
+      {
+        "input": "DDR4-3600 CL18",
+        "output": "10.00 ns",
+        "note": "Same latency as 3200 CL16 — higher bandwidth"
+      },
+      {
+        "input": "DDR4-3600 CL16",
+        "output": "8.89 ns",
+        "note": "High-performance kit, excellent for AMD Ryzen"
+      },
+      {
+        "input": "DDR5-6000 CL30",
+        "output": "10.00 ns",
+        "note": "Next-gen DDR5 with higher bandwidth headroom"
+      },
+      {
+        "input": "DDR4-2133 CL15",
+        "output": "14.08 ns",
+        "note": "Older budget kit — slower despite lower CL number"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use",
+    "steps": [
+      "Enter the CAS Latency (CL) value from your RAM's specifications or SPD data.",
+      "Enter the Memory Frequency in MHz as listed on the package (e.g., 3200 for DDR4-3200).",
+      "Optionally enter tRCD, tRP, and tRAS values to compute additional timing latencies.",
+      "Click Calculate to see all latencies converted to nanoseconds.",
+      "Compare results across different memory configurations to choose the best kit for your build."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "What is CAS latency and why does it matter?",
+        "a": "CAS latency (Column Address Strobe) is the number of clock cycles that pass between the memory controller requesting data and RAM delivering it. Lower CL numbers or faster frequency can reduce actual nanosecond latency, which improves application responsiveness, particularly in gaming and data-intensive workloads. It matters most in latency-sensitive applications where frequent random memory accesses occur."
+      },
+      {
+        "q": "Why can a higher CL number still have lower latency?",
+        "a": "Because latency in nanoseconds depends on both the CL value and the memory frequency. Higher-frequency memory has shorter clock cycles, so even with more cycles to wait, the total time can be lower. For example, DDR4-3600 CL18 (10 ns) beats DDR4-2133 CL15 (14.08 ns) in real latency because the 3600 MHz kit has much shorter cycles. Always calculate nanosecond latency for fair comparisons."
+      },
+      {
+        "q": "What do tRCD, tRP, and tRAS mean?",
+        "a": "tRCD (RAS to CAS Delay) is the delay between activating a memory row and reading data from it. tRP (RAS Precharge Time) is the time needed to close one row before opening another. tRAS (Row Active Time) is the minimum time a memory row must stay active. Together with CAS latency, these four timings (CL-tRCD-tRP-tRAS) define the complete memory access sequence and performance profile."
+      },
+      {
+        "q": "How do I find my RAM's timing specifications?",
+        "a": "Memory timings are printed on the RAM's label, listed in product specifications, or readable via CPU-Z (a free software tool) under the SPD tab. XMP/EXPO profiles in BIOS also show the programmed timings. The timings are written in the format CL-tRCD-tRP-tRAS, such as 16-18-18-38 for DDR4-3200 CL16."
+      },
+      {
+        "q": "Does tighter RAM timing improve gaming performance?",
+        "a": "Yes, tighter memory timings can improve gaming frame rates and reduce minimum frame times, particularly in CPU-limited scenarios. AMD Ryzen processors are especially sensitive to memory latency due to their Infinity Fabric interconnect, which runs in sync with memory frequency. Achieving CL14-CL16 at 3600 MHz is considered the sweet spot for Ryzen-based gaming builds."
+      },
+      {
+        "q": "What is the difference between DDR4 and DDR5 latency?",
+        "a": "DDR5 modules have higher raw CL numbers (often CL30–CL40) compared to DDR4 (CL14–CL18), but DDR5 runs at much higher frequencies (4800–8000+ MHz), so actual nanosecond latency is comparable or only slightly higher than DDR4. DDR5's key advantage is substantially higher memory bandwidth, which benefits multi-core workloads, content creation, and AI applications more than pure latency improvements."
+      }
+    ]
+  }
+}
