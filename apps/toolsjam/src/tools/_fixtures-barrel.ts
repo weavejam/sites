@@ -133,10 +133,15 @@ import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calcul
 import { fixtures as f_gcf_calculator_greatest_common_factor } from "@/tools/gcf-calculator-greatest-common-factor.fixtures";
 import { fixtures as f_generic_rectangle_calculator } from "@/tools/generic-rectangle-calculator.fixtures";
 import { fixtures as f_hypothesis_testing_calculator } from "@/tools/hypothesis-testing-calculator.fixtures";
+import { fixtures as f_impact_factor_calculator } from "@/tools/impact-factor-calculator.fixtures";
+import { fixtures as f_impedance_matching_calculator } from "@/tools/impedance-matching-calculator.fixtures";
 import { fixtures as f_implied_probability_calculator } from "@/tools/implied-probability-calculator.fixtures";
+import { fixtures as f_impostor_odds_calculator_among_us } from "@/tools/impostor-odds-calculator-among-us.fixtures";
 import { fixtures as f_index_of_qualitative_variation_calculator } from "@/tools/index-of-qualitative-variation-calculator.fixtures";
 import { fixtures as f_inverse_normal_distribution_calculator } from "@/tools/inverse-normal-distribution-calculator.fixtures";
+import { fixtures as f_ip_subnet_calculator } from "@/tools/ip-subnet-calculator.fixtures";
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
+import { fixtures as f_kd_calculator_kill_death_ratio } from "@/tools/kd-calculator-kill-death-ratio.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
 import { fixtures as f_odd_parity_bit_calculator } from "@/tools/odd-parity-bit-calculator.fixtures";
 import { fixtures as f_odds_ratio_calculator } from "@/tools/odds-ratio-calculator.fixtures";
@@ -397,10 +402,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "gcf-calculator-greatest-common-factor": f_gcf_calculator_greatest_common_factor,
   "generic-rectangle-calculator": f_generic_rectangle_calculator,
   "hypothesis-testing-calculator": f_hypothesis_testing_calculator,
+  "impact-factor-calculator": f_impact_factor_calculator,
+  "impedance-matching-calculator": f_impedance_matching_calculator,
   "implied-probability-calculator": f_implied_probability_calculator,
+  "impostor-odds-calculator-among-us": f_impostor_odds_calculator_among_us,
   "index-of-qualitative-variation-calculator": f_index_of_qualitative_variation_calculator,
   "inverse-normal-distribution-calculator": f_inverse_normal_distribution_calculator,
+  "ip-subnet-calculator": f_ip_subnet_calculator,
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
+  "kd-calculator-kill-death-ratio": f_kd_calculator_kill_death_ratio,
   "loan-calculator": f_loan_calculator,
   "odd-parity-bit-calculator": f_odd_parity_bit_calculator,
   "odds-ratio-calculator": f_odds_ratio_calculator,
