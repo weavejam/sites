@@ -11260,6 +11260,533 @@
         "heading": "À propos du calculateur de dilatation du temps",
         "body": "La dilatation du temps est l'une des prédictions les plus contre-intuitives, mais aussi les mieux confirmées expérimentalement, de la relativité restreinte d'Einstein, publiée en 1905. Elle nous dit que le temps n'est pas absolu : la vitesse à laquelle une horloge avance dépend de sa vitesse par rapport à un observateur. Une horloge se déplaçant à la vitesse v par rapport à un observateur au repos ralentit d'un facteur de Lorentz γ = 1 / √(1 − v²/c²), où c est la vitesse de la lumière dans le vide.\n\nLa formule clé est t′ = γ × t₀, où t₀ est le temps propre — le temps enregistré par l'horloge en mouvement elle-même — et t′ est le temps coordonné enregistré par l'observateur au repos. Comme γ ≥ 1 en permanence, l'observateur au repos mesure toujours un intervalle de temps plus long que celui affiché par l'horloge en mouvement. La différence de temps Δt = t′ − t₀ est nulle lorsque v = 0 et croît sans borne lorsque v approche c.\n\nÀ des vitesses quotidiennes — même à 7,9 km/s comme la Station spatiale internationale — le facteur de Lorentz ne diffère de 1 qu'à la dixième décimale, rendant l'effet imperceptible dans la vie courante. Mais dans le monde de la métrologie de précision et de la navigation par satellite, ces minuscules écarts comptent énormément. Les satellites GPS orbitent à environ 3,87 km/s ; la relativité restreinte fait perdre à leurs horloges embarquées environ 7 microsecondes par jour par rapport aux horloges terrestres. Sans correction, les erreurs de position GPS s'accumuleraient à raison d'environ 2 km par jour.\n\nÀ des vitesses plus élevées, l'effet devient spectaculaire. À 86,6 % de la vitesse de la lumière, γ = 2 et l'horloge en mouvement avance à la moitié de la vitesse de l'horloge au repos. À 99 % c, γ ≈ 7,1 ; à 99,9 % c, γ ≈ 22,4. Cette dilatation est observée directement en physique des particules : les muons créés dans la haute atmosphère par les rayons cosmiques ont une demi-vie au repos de seulement 2,2 microsecondes, ce qui leur permettrait de parcourir au maximum environ 660 mètres avant de se désintégrer. Pourtant, on détecte couramment des muons au niveau de la mer après 15 km de trajet, car leur demi-vie, vue depuis la Terre, est dilatée d'un facteur γ ≈ 22 jusqu'à environ 48 microsecondes.\n\nCe calculateur vous permet d'explorer la dilatation du temps sur toute la gamme de vitesses, de zéro à presque c, ce qui en fait un outil pédagogique et d'ingénierie utile pour les étudiants en physique, les ingénieurs aérospatiaux et toute personne curieuse de la nature du temps et de la relativité."
       }
+    },
+    "transmission-calculator": {
+      "title": "Calculateur de transmission – Puissance du signal et débit",
+      "tagline": "Calculez la perte en espace libre, la puissance reçue, le SNR, la capacité de canal de Shannon et l'efficacité de bande pour les liaisons sans fil.",
+      "intro": "Saisissez la puissance d'émission, la distance, la fréquence, la bande passante, le débit de données et le gain d'antenne pour analyser la propagation du signal dans tout système sans fil.",
+      "formula": "FSPL = 20·log(d) + 20·log(f) − 147.55 dB | Pr = Pt + 2·Ga − FSPL (dBm) | C = B·log₂(1 + SNR)",
+      "field": {
+        "txPower": "Puissance d'émission (W)",
+        "distance": "Distance (m)",
+        "frequency": "Fréquence (Hz)",
+        "bandwidth": "Bande passante (Hz)",
+        "dataRate": "Débit de données (bps)",
+        "antennaGain": "Gain d'antenne (dB)"
+      },
+      "placeholder": {
+        "txPower": "ex. 0.1",
+        "distance": "ex. 10",
+        "frequency": "ex. 2400000000",
+        "bandwidth": "ex. 20000000",
+        "dataRate": "ex. 54000000",
+        "antennaGain": "ex. 2"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des valeurs positives dans tous les champs. La fréquence, la bande passante et le débit de données doivent être supérieurs à zéro."
+      },
+      "result": {
+        "heading": "Résultats de transmission",
+        "pathLoss": "Perte en espace libre : {value} dB",
+        "rxPower": "Puissance reçue : {value} dBm",
+        "snr": "Rapport signal/bruit : {value} dB",
+        "shannonCapacity": "Capacité de Shannon : {value} Mbit/s",
+        "spectralEfficiency": "Efficacité spectrale (Shannon) : {value} bit/s/Hz",
+        "bwEfficiency": "Efficacité de bande (réelle) : {value} bit/s/Hz"
+      },
+      "about": {
+        "heading": "À propos du calculateur de transmission",
+        "body": "L'analyse de la transmission du signal est un pilier de l'ingénierie des télécommunications. Chaque fois qu'une énergie électromagnétique est émise par une antenne, elle se propage dans les trois dimensions et sa densité de puissance diminue avec le carré de la distance à la source. Comprendre ce comportement — et les limites qu'il impose à la conception des systèmes de communication — est essentiel pour les ingénieurs qui conçoivent des réseaux WiFi, des stations de base cellulaires, des liaisons satellites, de la radio de diffusion et des systèmes radar.\n\nLa métrique la plus importante dans un bilan de liaison est la perte de trajet en espace libre (FSPL). Pour un signal parcourant une distance d à la fréquence f dans un environnement dégagé, FSPL (en décibels) = 20·log₁₀(d) + 20·log₁₀(f) − 147.55, où d est en mètres et f en hertz. La perte de trajet n'est pas une perte dissipative ; c'est simplement la conséquence du front d'onde sphérique qui dilue l'énergie transmise sur une surface de plus en plus grande. Les signaux à plus haute fréquence perdent proportionnellement plus de puissance que les signaux à plus basse fréquence à la même distance, car leur longueur d'onde est plus courte — l'ouverture effective de l'antenne occupe une plus petite fraction de la sphère en expansion.\n\nLa puissance reçue est alors : Pr (dBm) = Pt (dBm) + Gt (dB) + Gr (dB) − FSPL (dB), où Pt est la puissance transmise, Gt le gain de l'antenne d'émission et Gr le gain de l'antenne de réception. Ce calculateur suppose, pour simplifier, que la même antenne est utilisée aux deux extrémités. Le gain d'antenne ne crée pas de puissance ; il la concentre dans une direction particulière. Une antenne de 15 dB de gain concentre la puissance comme un projecteur par rapport à la référence isotrope, ce qui revient à multiplier la puissance de l'émetteur par un facteur d'environ 31.\n\nLe rapport signal/bruit (SNR) est calculé en comparant la puissance reçue à la puissance de bruit thermique N = k·T·B, où k est la constante de Boltzmann (1.38 × 10⁻²³ J/K), T la température de bruit (290 K standard) et B la bande passante. Une bande passante plus large capte davantage de bruit, ce qui explique pourquoi les systèmes à large bande exigent une puissance de signal bien plus élevée que les systèmes à bande étroite pour obtenir le même SNR.\n\nLe théorème de Shannon-Hartley fixe une borne supérieure fondamentale au débit d'information pouvant être transmis de manière fiable sur n'importe quel canal : C = B·log₂(1 + SNR). Ce maximum théorique, appelé capacité de Shannon, ne peut jamais être dépassé, quelle que soit la sophistication du schéma de modulation et de codage. Les systèmes modernes comme 5G NR et Wi‑Fi 6 utilisent une modulation et un codage adaptatifs qui s'approchent de cette limite à quelques dixièmes de dB près dans de bonnes conditions de canal. Le rapport entre la capacité de Shannon et la bande passante, appelé efficacité spectrale, indique combien de bits par seconde et par hertz le canal peut théoriquement fournir. La comparer à l'efficacité réelle du débit permet de voir avec quelle efficacité le système exploite son spectre disponible."
+      },
+      "examples": {
+        "heading": "Exemples du calculateur de transmission",
+        "intro": "Trois scénarios de communication, du WiFi intérieur au satellite géostationnaire, illustrant comment l'échelle influence la perte de trajet et la capacité.",
+        "colInput": "Paramètres du scénario",
+        "colOutput": "Perte de trajet / Puissance reçue",
+        "colNote": "Notes",
+        "loadWifi": "Charger l'exemple WiFi",
+        "loadCellular": "Charger l'exemple cellulaire",
+        "loadSatellite": "Charger l'exemple satellite",
+        "items": [
+          {
+            "input": "WiFi : 0.1 W, 10 m, 2.4 GHz, 20 MHz BW, 54 Mbit/s, gain de 2 dBi",
+            "output": "FSPL ≈ 60.1 dB, Pr ≈ −36.1 dBm",
+            "note": "Routeur domestique typique à 10 m. Avec un plancher de bruit thermique autour de −101 dBm, SNR ≈ 65 dB — largement suffisant pour du 54 Mbit/s en 802.11g."
+          },
+          {
+            "input": "Cellulaire : 50 W, 1 km, 900 MHz, 5 MHz BW, 10 Mbit/s, gain de 15 dBi",
+            "output": "FSPL ≈ 91.5 dB, Pr ≈ −14.5 dBm",
+            "note": "Station de base GSM/LTE. Le gain d'antenne élevé compense la perte de trajet sur 1 km ; le SNR est bien au-dessus du seuil pour la voix et les données de base."
+          },
+          {
+            "input": "Satellite : 100 W, 35,786 km, 12 GHz, 50 MHz BW, 100 Mbit/s, gain de 40 dBi",
+            "output": "FSPL ≈ 205.1 dB, Pr ≈ −75.1 dBm",
+            "note": "Lien satellite GEO. L'énorme perte de trajet est compensée par des gains d'antenne très élevés (antennes paraboliques) aux deux extrémités."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de transmission",
+        "steps": [
+          "Saisissez la puissance de sortie de l'émetteur en watts. Il s'agit de la puissance délivrée à l'antenne, et non de la puissance d'entrée continue de l'émetteur.",
+          "Saisissez la distance entre l'émetteur et le récepteur en mètres. Pour les liaisons satellites, utilisez la distance oblique (et non l'altitude) en mètres.",
+          "Saisissez la fréquence porteuse en hertz. Par exemple, 2.4 GHz = 2,400,000,000 Hz. Plus la fréquence est élevée, plus la perte en espace libre augmente.",
+          "Saisissez la bande passante du canal en hertz, le débit nominal en bits par seconde et le gain d'antenne en dBi (décibels par rapport à un radiateur isotrope). Le calculateur applique le même gain à l'émetteur et au récepteur.",
+          "Cliquez sur Calculer. Consultez la perte de trajet, la puissance reçue, le SNR et la capacité de Shannon. Si la puissance reçue est inférieure au plancher de bruit du système, la liaison ne fonctionnera pas à la portée spécifiée."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ du calculateur de transmission",
+        "q1": "Qu'est-ce que la perte en espace libre et pourquoi augmente-t-elle avec la fréquence ?",
+        "q1_a": "La perte en espace libre est l'atténuation de la puissance du signal due à l'expansion sphérique de l'onde électromagnétique lorsqu'elle s'éloigne de la source. Elle augmente avec la fréquence car un signal plus haute fréquence a une longueur d'onde plus courte, et une antenne de réception de taille physique fixe capte une plus petite fraction de la puissance incidente à des longueurs d'onde plus courtes. Autrement dit, une antenne à gain fixe a une ouverture effective plus petite aux fréquences élevées.",
+        "q2": "Pourquoi doubler la distance n'augmente-t-il la perte que de 6 dB ?",
+        "q2_a": "La perte de trajet suit la loi en carré inverse : la puissance reçue est proportionnelle à 1/d². En décibels, cela signifie que la perte augmente de 20·log₁₀(2) ≈ 6 dB lorsque la distance double. Ainsi, doubler la distance réduit la puissance reçue d'un facteur 4, pas d'un facteur 2. C'est souvent mal compris par ceux qui s'attendent à une relation linéaire entre distance et puissance du signal.",
+        "q3": "Qu'est-ce que la capacité de Shannon et à quel point les systèmes réels s'en approchent-ils ?",
+        "q3_a": "La capacité de Shannon C = B·log₂(1 + SNR) est le débit de données théorique maximal pouvant être transmis de manière fiable sur un canal donné avec une bande passante et un SNR donnés, indépendamment du schéma de modulation ou de codage. Les systèmes modernes utilisant des codes LDPC ou turbo associés à une modulation adaptative (256-QAM ou 1024-QAM) peuvent atteindre 1–2 dB du limite de Shannon, ce qui signifie qu'ils transmettent 70–90 % du maximum théorique.",
+        "q4": "Qu'est-ce que le gain d'antenne et comment influence-t-il le bilan de liaison ?",
+        "q4_a": "Le gain d'antenne mesure combien plus de puissance une antenne rayonne (ou reçoit) dans sa direction privilégiée par rapport à un radiateur isotrope. Une antenne de 15 dBi concentre la puissance d'un facteur d'environ 31× dans son faisceau. Dans l'équation du bilan de liaison, les gains d'antenne de transmission et de réception s'ajoutent directement au niveau du signal reçu, multipliant efficacement la puissance utile sans augmenter la puissance de l'émetteur.",
+        "q5": "Comment la bande passante affecte-t-elle le bruit et la capacité de données ?",
+        "q5_a": "La puissance du bruit thermique est proportionnelle à la bande passante : N = kTB. Doubler la bande passante double la puissance de bruit (ajoute 3 dB de bruit), ce qui réduit le SNR de 3 dB. En revanche, doubler la bande passante peut aussi doubler le débit atteignable par unité de SNR selon la formule de Shannon. Le compromis est géré par l'ordre de modulation et le taux de codage dans les systèmes adaptatifs.",
+        "q6": "Ce calculateur peut-il être utilisé pour la propagation intérieure ou urbaine ?",
+        "q6_a": "Le calculateur modélise la propagation en espace libre, ce qui est exact pour les liaisons extérieures en visibilité directe (satellite, micro-ondes point à point). Les environnements intérieurs et urbains subissent des pertes supplémentaires dues aux murs, meubles, bâtiments et à l'évanouissement multi-trajets — souvent modélisés comme 10–40 dB de perte de trajet supplémentaire selon le scénario. Pour ces applications, ajoutez une perte de pénétration intérieure ou utilisez un modèle empirique comme ITU-R P.1238 ou COST 231 Hata."
+      }
+    },
+    "thin-film-optical-coating-calculator": {
+      "title": "Calculateur de revêtement optique en couche mince",
+      "tagline": "Calculez la réflectance et la transmittance de revêtements optiques monocouches",
+      "intro": "Saisissez les indices de réfraction du milieu incident, de la couche mince et du substrat, ainsi que la longueur d'onde, l'épaisseur de la couche et l'angle d'incidence, pour calculer la réflectance et la transmittance des polarisations s et p avec les équations de Fresnel pour couches minces.",
+      "field": {
+        "nIncident": "Indice de réfraction (milieu incident)",
+        "nFilm": "Indice de réfraction (couche mince)",
+        "nSubstrate": "Indice de réfraction (substrat)",
+        "wavelength": "Longueur d'onde de la lumière (nm)",
+        "thickness": "Épaisseur de la couche (nm)",
+        "angle": "Angle d'incidence (°)",
+        "placeholder": {
+          "nIncident": "1.0",
+          "nFilm": "1.38",
+          "nSubstrate": "1.52",
+          "wavelength": "550",
+          "thickness": "100",
+          "angle": "0"
+        }
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs. Vérifiez que l'angle ne provoque pas de réflexion interne totale."
+      },
+      "result": {
+        "heading": "Résultat",
+        "sPol": "Polarisation s",
+        "pPol": "Polarisation p",
+        "reflectance": "Réflectance",
+        "transmittance": "Transmittance",
+        "avgReflectance": "Réflectance moyenne",
+        "avgTransmittance": "Transmittance moyenne"
+      },
+      "examples": {
+        "heading": "Exemples de revêtements en couche mince",
+        "intro": "Ces exemples illustrent des revêtements optiques monocouches courants avec des paramètres réalistes.",
+        "colInput": "Paramètres du revêtement",
+        "colOutput": "Réflectance",
+        "colNote": "Notes",
+        "loadAR": "Revêtement AR (MgF2)",
+        "loadHR": "Revêtement HR (ZnS)",
+        "loadSoap": "Bulle de savon",
+        "items": [
+          {
+            "input": "Revêtement AR : n₀=1.0, n₁=1.38 (MgF2), n₂=1.52 (verre), λ=550 nm, d=99.64 nm, θ=0°",
+            "output": "R ≈ 1.28 % (les deux polarisations en incidence normale)",
+            "note": "Un revêtement antireflet MgF2 quart d'onde sur verre réduit la réflexion du verre nu de 4.26 % à 1.28 % à 550 nm."
+          },
+          {
+            "input": "Revêtement HR : n₀=1.0, n₁=2.35 (ZnS), n₂=1.52 (verre), λ=633 nm, d=67.34 nm, θ=0°",
+            "output": "R ≈ 36 % (monocouche haute réflexion)",
+            "note": "Une seule couche ZnS quart d'onde augmente nettement la réflectance par rapport au verre nu."
+          },
+          {
+            "input": "Bulle de savon : n₀=1.0, n₁=1.33 (eau), n₂=1.0 (air), λ=600 nm, d=300 nm, θ=20°",
+            "output": "R varie avec la polarisation à cause de l'angle",
+            "note": "Couche mince d'eau dans l'air formant une bulle de savon. L'épaisseur de 300 nm produit des interférences constructives et destructives selon la longueur d'onde."
+          },
+          {
+            "input": "AR à 45° : n₀=1.0, n₁=1.38, n₂=1.52, λ=550 nm, d=99.64 nm, θ=45°",
+            "output": "Rs et Rp diffèrent à cause de la séparation des polarisations",
+            "note": "En incidence oblique, les polarisations s et p présentent des réflectances différentes ; la moyenne augmente par rapport à l'incidence normale."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de revêtement optique en couche mince",
+        "steps": [
+          "Saisissez l'indice de réfraction du milieu incident (par exemple 1.0 pour l'air) dans le premier champ.",
+          "Saisissez l'indice de réfraction du matériau de revêtement en couche mince (par exemple 1.38 pour MgF₂, 2.35 pour ZnS) dans le deuxième champ.",
+          "Saisissez l'indice de réfraction du substrat (par exemple 1.52 pour le verre optique) dans le troisième champ.",
+          "Définissez la longueur d'onde de la lumière en nanomètres (par exemple 550 nm pour la lumière verte), l'épaisseur de la couche en nanomètres et l'angle d'incidence en degrés.",
+          "Cliquez sur Calculer pour afficher la réflectance et la transmittance des polarisations s et p, ainsi que la moyenne non polarisée. Utilisez les boutons prédéfinis pour charger instantanément des scénarios de revêtement courants."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur les revêtements optiques en couche mince",
+        "items": [
+          {
+            "q": "Qu'est-ce qu'un revêtement optique en couche mince ?",
+            "a": "Un revêtement optique en couche mince est une couche de matériau déposée sur une surface optique — comme du verre ou une lentille — afin de modifier la façon dont la lumière interagit avec cette surface. En contrôlant l'indice de réfraction et l'épaisseur de la couche, les ingénieurs peuvent augmenter la réflectance (revêtements haute réflexion), la réduire (revêtements antireflet) ou créer des filtres sélectifs en longueur d'onde. Le phénomène repose sur l'interférence en couche mince : la lumière réfléchie par les surfaces supérieure et inférieure de la couche se combine de façon constructive ou destructive selon l'épaisseur optique de la couche par rapport à la longueur d'onde."
+          },
+          {
+            "q": "Quelles équations de Fresnel ce calculateur utilise-t-il ?",
+            "a": "Les équations de Fresnel décrivent comment la lumière est réfléchie et transmise à l'interface entre deux milieux d'indices de réfraction différents. Pour une couche mince unique, le calculateur utilise la formule de sommation d'Airy, qui tient compte des multiples réflexions aller-retour à l'intérieur de la couche. L'épaisseur de phase δ = (2π/λ) × n₁ × d × cos(θ₁) décrit la façon dont la longueur du chemin optique de la couche varie avec l'angle et l'épaisseur. Des équations distinctes sont utilisées pour la polarisation s (champ électrique perpendiculaire au plan d'incidence) et la polarisation p (champ électrique parallèle au plan d'incidence)."
+          },
+          {
+            "q": "Qu'est-ce que la condition quart d'onde ?",
+            "a": "Une couche optique a une épaisseur quart d'onde lorsque d = λ/(4n₁) en incidence normale, ce qui donne une épaisseur de phase δ = π/2. Pour un revêtement antireflet, cette condition provoque une interférence destructive entre les deux faisceaux réfléchis et minimise la réflectance. Pour un revêtement haute réflexion avec un choix approprié d'indice de réfraction, la même condition provoque une interférence constructive et maximise la réflectance. La condition quart d'onde est le point de conception le plus couramment utilisé pour les revêtements monocouches."
+          },
+          {
+            "q": "Pourquoi les polarisations s et p donnent-elles des résultats différents aux angles obliques ?",
+            "a": "En incidence oblique, les coefficients de réflexion de Fresnel diffèrent pour les deux états de polarisation, car le champ électrique interagit différemment avec la surface selon son orientation par rapport au plan d'incidence. Pour la polarisation p, la réflectance tombe à zéro à l'angle de Brewster avant de remonter, tandis que la réflectance en polarisation s augmente de façon monotone avec l'angle. Cette séparation est négligeable aux petits angles, mais devient significative au-delà d'environ 20–30 degrés."
+          },
+          {
+            "q": "Ce calculateur peut-il traiter les couches minces absorbantes ?",
+            "a": "Non. Ce calculateur est conçu pour les couches diélectriques non absorbantes dont l'indice de réfraction est un nombre réel positif. Les matériaux absorbants, comme les métaux ou les semi-conducteurs dopés, ont des indices de réfraction complexes (n + ik), qui nécessitent une formulation différente incluant un coefficient d'extinction k. Pour les couches absorbantes, il faut étendre la méthode de matrice de transfert aux grandeurs complexes."
+          },
+          {
+            "q": "Quelle est la précision du modèle monocouche pour les revêtements réels ?",
+            "a": "Pour une couche diélectrique idéale, monocouche et sans pertes, la formule d'Airy utilisée ici est exacte dans les limites de l'optique ondulatoire scalaire. Les revêtements réels s'écartent du modèle à cause de la rugosité de surface, de l'inhomogénéité de la couche, de la dispersion de l'indice de réfraction avec la longueur d'onde et de l'absorption. Les revêtements multicouches — comme les revêtements AR large bande ou les miroirs laser à nombreuses couches alternées — ne peuvent pas être analysés avec cet outil monocouche et nécessitent la méthode complète de matrice de transfert appliquée couche par couche."
+          }
+        ]
+      },
+      "about": {
+        "heading": "À propos du calculateur de revêtement optique en couche mince",
+        "body": "Les revêtements optiques en couche mince comptent parmi les technologies les plus importantes de la photonique moderne. On les trouve dans les objectifs d'appareil photo, les lunettes, les miroirs de télescope, les cellules solaires, les cavités laser et les écrans plats. En déposant une couche de matériau dont l'épaisseur est comparable à la longueur d'onde de la lumière visible (environ 100–700 nm), les ingénieurs optiques peuvent ajuster précisément la quantité de lumière réfléchie, transmise ou absorbée par une surface.\n\nLa physique des revêtements en couche mince repose sur l'interférence des ondes. Lorsque la lumière frappe une surface revêtue, une partie est réfléchie à l'interface air–couche et une autre partie à l'interface couche–substrat. Ces deux faisceaux réfléchis parcourent des distances légèrement différentes — déterminées par l'épaisseur optique n₁d de la couche — et reviennent donc à la surface avec une différence de phase. Si cette différence de phase vaut exactement une demi-longueur d'onde (π radians), les faisceaux s'annulent par interférence destructive, réduisant la réflectance presque à zéro : c'est un revêtement antireflet (AR). Si la différence de phase vaut une longueur d'onde complète (2π radians), les faisceaux s'additionnent par interférence constructive, augmentant la réflectance : c'est un revêtement haute réflexion (HR).\n\nLe calculateur utilise la formule d'Airy pour couches minces, équivalente à la méthode de matrice de transfert pour une seule couche. À partir des indices de réfraction du milieu incident (n₀), de la couche (n₁) et du substrat (n₂), ainsi que de la longueur d'onde λ, de l'épaisseur de couche d et de l'angle d'incidence θ, le calculateur applique d'abord la loi de Snell pour déterminer l'angle réfracté dans la couche, puis calcule les coefficients de réflexion de Fresnel pour les polarisations s et p à chaque interface, et évalue enfin la réflectance globale R avec le terme de phase δ = (2π/λ) n₁ d cos(θ₁). Pour une couche diélectrique sans pertes, la transmittance T est donnée par T = 1 − R.\n\nLes matériaux de revêtement courants incluent le fluorure de magnésium (MgF₂, n ≈ 1.38), largement utilisé comme revêtement AR monocouche sur le verre car son indice de réfraction est proche de la moyenne géométrique de l'air et du verre ; le sulfure de zinc (ZnS, n ≈ 2.35), qui fournit une forte réflectance ; le dioxyde de titane (TiO₂, n ≈ 2.35), utilisé dans les empilements HR large bande ; et le dioxyde de silicium (SiO₂, n ≈ 1.46), utilisé dans les empilements multicouches. Les conceptions multicouches étendent les principes des revêtements monocouches pour obtenir des performances large bande, coupe-bande ou passe-bande, mais nécessitent une optimisation numérique itérative plutôt que la formule fermée utilisée ici.\n\nCe calculateur est idéal pour les étudiants et les ingénieurs qui doivent comprendre ou évaluer rapidement les performances d'un revêtement monocouche : vérifier si un revêtement MgF₂ quart d'onde respecte une spécification, explorer l'évolution de la réflectance avec l'angle ou la longueur d'onde, ou modéliser des couches minces naturelles comme des bulles de savon ou des nappes d'huile."
+      }
+    },
+    "thin-lens-equation-calculator": {
+      "title": "Calculatrice de l’équation des lentilles minces",
+      "tagline": "Résoudre la formule de la lentille pour la focale, la distance objet ou image",
+      "intro": "Choisissez la variable à calculer, saisissez les deux valeurs connues restantes, et la calculatrice trouvera l’inconnue à l’aide de l’équation des lentilles minces 1/f = 1/dₒ + 1/dᵢ. Le grandissement et les caractéristiques de l’image sont calculés automatiquement.",
+      "field": {
+        "solveFor": "Résoudre pour",
+        "objectDistance": "Distance objet (dₒ)",
+        "imageDistance": "Distance image (dᵢ)",
+        "focalLength": "Distance focale (f)",
+        "placeholder": {
+          "objectDistance": "ex. 30",
+          "imageDistance": "ex. 15",
+          "focalLength": "ex. 10"
+        }
+      },
+      "type": {
+        "di": "Résoudre dᵢ",
+        "do": "Résoudre dₒ",
+        "f": "Résoudre f"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres valides pour les deux champs connus. Assurez-vous que l’objet n’est pas placé exactement au foyer."
+      },
+      "result": {
+        "heading": "Résultat",
+        "magnification": "Grandissement (m)",
+        "imageType": "Image",
+        "real": "Réelle",
+        "virtual": "Virtuelle",
+        "upright": "Droite",
+        "inverted": "Renversée",
+        "magnified": "Agrandie",
+        "diminished": "Réduite"
+      },
+      "examples": {
+        "heading": "Exemples de l’équation des lentilles minces",
+        "intro": "Ces exemples couvrent des situations d’optique courantes avec des lentilles convergentes et divergentes.",
+        "colInput": "Montage optique",
+        "colOutput": "Résultat",
+        "colNote": "Remarques",
+        "loadRealImage": "Image réelle (convergente)",
+        "loadVirtualImage": "Image virtuelle (loupe)",
+        "loadFocalLength": "Trouver la distance focale",
+        "items": [
+          {
+            "input": "Résoudre dᵢ : dₒ = 30 cm, f = 10 cm (lentille convergente)",
+            "output": "dᵢ = 15 cm, m = −0.5 (réelle, renversée, réduite)",
+            "note": "Un objet placé en 3F produit une image réelle, renversée, à 1.5F de l’autre côté de la lentille."
+          },
+          {
+            "input": "Résoudre dᵢ : dₒ = 5 cm, f = 10 cm (loupe)",
+            "output": "dᵢ = −10 cm, m = 2 (virtuelle, droite, agrandie)",
+            "note": "Un objet placé à l’intérieur de la distance focale d’une lentille convergente donne une image virtuelle, droite et agrandie : le principe de la loupe."
+          },
+          {
+            "input": "Résoudre dᵢ : dₒ = 30 cm, f = −10 cm (lentille divergente)",
+            "output": "dᵢ = −7.5 cm, m = 0.25 (virtuelle, droite, réduite)",
+            "note": "Une lentille divergente (concave) produit toujours une image virtuelle, droite et réduite, quelle que soit la position de l’objet."
+          },
+          {
+            "input": "Résoudre f : dₒ = 20 cm, dᵢ = 20 cm",
+            "output": "f = 10 cm (objet à 2F)",
+            "note": "Lorsque la distance objet et la distance image sont égales, l’objet est à 2F et l’image a la même taille que l’objet."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser la calculatrice des lentilles minces",
+        "steps": [
+          "Choisissez la grandeur à calculer — distance image dᵢ, distance objet dₒ ou distance focale f — en cliquant sur le bouton correspondant.",
+          "Saisissez les deux valeurs connues dans les champs activés. Utilisez des distances positives pour les objets/images réels et des distances négatives pour les objets/images virtuels ou les lentilles divergentes.",
+          "Cliquez sur Calculer pour voir immédiatement la valeur inconnue, le grandissement linéaire m = −dᵢ/dₒ et les caractéristiques de l’image (réelle/virtuelle, droite/renversée, agrandie/réduite).",
+          "Utilisez les boutons d’exemples pour charger des cas classiques comme une loupe, un objectif d’appareil photo ou la détermination de la distance focale.",
+          "Cliquez sur Réinitialiser pour effacer tous les champs et recommencer un nouveau calcul."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur l’équation des lentilles minces",
+        "items": [
+          {
+            "q": "Qu’est-ce que l’équation des lentilles minces ?",
+            "a": "L’équation des lentilles minces est 1/f = 1/dₒ + 1/dᵢ, où f est la distance focale de la lentille, dₒ la distance de la lentille à l’objet, et dᵢ la distance de la lentille à l’image. Elle s’applique à toute lentille mince idéale — convergente (f positif) ou divergente (f négatif) — et suppose que l’épaisseur de la lentille est négligeable par rapport aux distances objet et image."
+          },
+          {
+            "q": "Qu’est-ce que le grandissement et comment le calcule-t-on ?",
+            "a": "Le grandissement linéaire m = −dᵢ/dₒ décrit comment la taille de l’image se compare à celle de l’objet. Une valeur absolue supérieure à 1 signifie que l’image est agrandie ; inférieure à 1, qu’elle est réduite. Le signe négatif indique que l’image est renversée par rapport à l’objet. Par exemple, m = −2 signifie que l’image est deux fois plus grande que l’objet et qu’elle est à l’envers, comme dans un appareil photo ou un projecteur."
+          },
+          {
+            "q": "Comment distinguer une image réelle d’une image virtuelle ?",
+            "a": "Une image réelle se forme là où les rayons lumineux convergent réellement du côté opposé à l’objet ; dᵢ > 0 pour une image réelle. Une image virtuelle semble diverger d’un point situé du même côté que l’objet ; dᵢ < 0. Les images réelles peuvent être projetées sur un écran ; les images virtuelles ne le peuvent pas, mais elles sont visibles en regardant à travers la lentille, comme avec une loupe ou un viseur d’appareil photo."
+          },
+          {
+            "q": "Que se passe-t-il lorsque l’objet est placé au foyer ?",
+            "a": "Lorsque dₒ = f, l’équation de la lentille donne 1/dᵢ = 0, ce qui signifie que l’image se forme à l’infini : les rayons réfractés sont parallèles et ne convergent ni ne divergent plus. En pratique, cela signifie qu’aucune image bien définie n’est formée. Les lampes torches et les projecteurs exploitent cette géométrie pour produire un faisceau parallèle."
+          },
+          {
+            "q": "Puis-je utiliser cette calculatrice pour les miroirs ?",
+            "a": "La même équation des miroirs 1/f = 1/dₒ + 1/dᵢ s’applique aux miroirs concaves et convexes avec une convention de signe différente. Pour les miroirs, f = R/2 où R est le rayon de courbure ; f > 0 pour un miroir concave et f < 0 pour un miroir convexe. Vous pouvez utiliser cette calculatrice comme calculatrice de miroirs en saisissant le bon signe pour f."
+          },
+          {
+            "q": "Quelle convention de signe utilise cette calculatrice ?",
+            "a": "Cette calculatrice utilise la convention dite « réel positif » (aussi appelée convention cartésienne). Les distances objet dₒ sont positives lorsque l’objet est du côté de la lumière incidente de la lentille. Les distances image dᵢ sont positives lorsque l’image se forme du côté de sortie (image réelle) et négatives lorsqu’elle se trouve du même côté que l’objet (image virtuelle). Les focales sont positives pour les lentilles convergentes et négatives pour les lentilles divergentes."
+          }
+        ]
+      },
+      "about": {
+        "heading": "À propos de la calculatrice des lentilles minces",
+        "body": "L’équation des lentilles minces est l’un des résultats fondamentaux de l’optique géométrique. Elle relie les trois distances clés de tout système d’imagerie — la distance objet dₒ, la distance image dᵢ et la distance focale f de la lentille — par la relation élégante 1/f = 1/dₒ + 1/dᵢ. Cette calculatrice résout cette équation pour n’importe laquelle des trois inconnues à partir des deux autres, ce qui en fait un outil pratique pour les étudiants, les opticiens, les concepteurs d’appareils photo et toute personne travaillant avec des systèmes optiques.\n\nUne lentille convergente (convexe) a une distance focale positive et concentre les rayons parallèles en un foyer du côté opposé. Lorsqu’un objet est placé au-delà du foyer, une image réelle et renversée se forme de l’autre côté et peut être projetée sur un écran — le principe des appareils photo, des projecteurs et de l’œil humain. Lorsque l’objet est plus proche que la distance focale, la lentille agit comme une loupe, produisant une image virtuelle agrandie du même côté que l’objet, qui paraît droite à l’observateur.\n\nUne lentille divergente (concave) a une distance focale négative et fait diverger les rayons parallèles comme s’ils provenaient d’un foyer virtuel du même côté que la lumière incidente. De telles lentilles produisent toujours une image virtuelle, droite et réduite, quelle que soit la position de l’objet. Elles sont couramment utilisées avec des éléments convergents pour corriger la myopie dans les lunettes et réduire les aberrations dans les systèmes optiques composites.\n\nLe grandissement linéaire m = −dᵢ/dₒ indique à la fois la taille et l’orientation de l’image. Un grandissement négatif signifie une image renversée ; un grandissement positif, une image droite. La valeur absolue donne le rapport des tailles : |m| = 2 signifie que l’image est deux fois plus haute que l’objet.\n\nCette calculatrice utilise la convention cartésienne du réel positif, la plus courante dans les cours d’optique physique et d’ingénierie. Les distances objet sont positives lorsque l’objet est du côté de la lumière incidente de la lentille. Les distances image sont positives pour les images réelles (formées du côté de sortie) et négatives pour les images virtuelles (du même côté que l’objet). Les focales sont positives pour les lentilles convergentes et négatives pour les lentilles divergentes. Il est essentiel d’utiliser le bon signe pour f — entrer f = −10 cm au lieu de f = 10 cm change complètement la nature de l’image.\n\nAu-delà de la formule elle-même, la calculatrice interprète les résultats : image réelle ou virtuelle, droite ou renversée, agrandie ou réduite. Ces caractéristiques déterminent l’usage pratique de l’élément optique et sont indispensables pour concevoir des télescopes, microscopes, appareils photo ou projecteurs."
+      }
+    },
+    "three-phase-calculator": {
+      "title": "Calculateur de puissance triphasée",
+      "tagline": "Calculez les puissances apparente, active et réactive dans les systèmes CA triphasés",
+      "intro": "Saisissez trois des quatre valeurs — tension de ligne (V), courant de ligne (A), puissance active (W) et facteur de puissance — pour calculer toutes les grandeurs électriques restantes d’un système triphasé équilibré.",
+      "field": {
+        "voltage": "Tension de ligne (V)",
+        "current": "Courant de ligne (A)",
+        "activePower": "Puissance active (W)",
+        "powerFactor": "Facteur de puissance (cos φ)",
+        "hint": "Saisissez 3 des 4 champs pour calculer toutes les grandeurs restantes.",
+        "placeholder": {
+          "voltage": "ex. 400",
+          "current": "ex. 50",
+          "activePower": "ex. 30000",
+          "powerFactor": "ex. 0.85"
+        }
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins 3 valeurs positives valides parmi : tension, courant, puissance active et facteur de puissance (0–1)."
+      },
+      "result": {
+        "heading": "Résultats",
+        "apparentPower": "Puissance apparente (S)",
+        "activePower": "Puissance active (P)",
+        "reactivePower": "Puissance réactive (Q)",
+        "powerFactor": "Facteur de puissance (cos φ)",
+        "phaseAngle": "Angle de phase (φ)",
+        "lineVoltage": "Tension de ligne (V)"
+      },
+      "examples": {
+        "heading": "Exemples de puissance triphasée",
+        "intro": "Ces exemples présentent des calculs triphasés typiques pour des applications industrielles et de distribution électrique.",
+        "colInput": "Paramètres du système",
+        "colOutput": "Valeurs de puissance",
+        "colNote": "Remarques",
+        "loadIndustrial": "Moteur industriel 400 V",
+        "loadHighVoltage": "Départ 11 kV",
+        "loadMotor": "Moteur 75 kW",
+        "items": [
+          {
+            "input": "V = 400 V, I = 50 A, PF = 0.85",
+            "output": "S = 34 641 VA, P = 29 445 W, Q = 18 248 VAR",
+            "note": "Alimentation triphasée européenne standard de 400 V avec un facteur de puissance de charge industrielle typique de 0.85."
+          },
+          {
+            "input": "V = 11 000 V, I = 100 A, PF = 0.90",
+            "output": "S = 1 905 255 VA (1.9 MVA), P = 1 714 730 W, Q = 827 567 VAR",
+            "note": "Départ moyenne tension à 11 kV. La puissance apparente dépasse 1.9 MVA ; la puissance active est de 1.71 MW."
+          },
+          {
+            "input": "V = 480 V, P = 75 000 W, PF = 0.95",
+            "output": "I = 94.9 A, S = 78 948 VA, Q = 24 641 VAR",
+            "note": "Moteur de 75 kW sur une alimentation industrielle américaine de 480 V. Le courant absorbé et la puissance réactive sont calculés à partir de la tension et de la puissance active."
+          },
+          {
+            "input": "V = 230 V, I = 10 A, P = 3 450 W",
+            "output": "S = 3 984 VA, PF = 0.866, Q = 1 992 VAR",
+            "note": "Charge triphasée basse tension où le facteur de puissance est déduit de la puissance active mesurée et de la puissance apparente."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de puissance triphasée",
+        "steps": [
+          "Saisissez la tension de ligne (V_L) en volts : c’est la tension mesurée entre deux conducteurs de ligne quelconques dans un système triphasé.",
+          "Saisissez le courant de ligne (I_L) en ampères, la puissance active (P) en watts et/ou le facteur de puissance (cos φ, entre 0 et 1).",
+          "Fournissez au moins trois des quatre entrées ; le calculateur déterminera la grandeur manquante et calculera la puissance apparente S = √3 × V × I, la puissance réactive Q = √(S² − P²) et l’angle de phase φ.",
+          "Cliquez sur Calculer pour afficher tous les résultats. Utilisez les boutons prédéfinis pour charger des scénarios industriels courants.",
+          "Cliquez sur Réinitialiser pour effacer toutes les entrées et commencer un nouveau calcul."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la puissance triphasée",
+        "items": [
+          {
+            "q": "Quelle est la formule de la puissance apparente triphasée ?",
+            "a": "Pour un système triphasé équilibré, la puissance apparente S = √3 × V_L × I_L, où V_L est la tension entre lignes et I_L le courant de ligne. Cette formule s’applique aux connexions étoile (wye) comme aux connexions triangle, car le facteur √3 tient compte de la relation de phase. La puissance apparente se mesure en voltampères (VA) et représente la puissance totale tirée de l’alimentation, quel que soit le facteur de puissance."
+          },
+          {
+            "q": "Quelle est la différence entre puissance apparente, active et réactive ?",
+            "a": "La puissance apparente S (VA) est la puissance totale fournie par la source. La puissance active P (W) est la puissance réelle qui effectue un travail utile : chauffage, sortie mécanique, lumière. La puissance réactive Q (VAR) est la puissance stockée et restituée par les inductances et les condensateurs à chaque cycle sans produire de travail net. Elles sont liées par S² = P² + Q². Le facteur de puissance PF = P/S indique l’efficacité avec laquelle la puissance apparente est convertie en travail actif."
+          },
+          {
+            "q": "Qu’est-ce que le facteur de puissance et pourquoi est-il important ?",
+            "a": "Le facteur de puissance (cos φ) est le rapport entre la puissance active et la puissance apparente, compris entre 0 et 1. Un facteur de puissance de 1 signifie que tout le courant fourni produit un travail utile ; un facteur plus faible signifie qu’un courant plus important est prélevé pour la même sortie utile, ce qui augmente les pertes dans les câbles et transformateurs. Les clients industriels paient souvent une pénalité si leur PF descend sous 0.9 ou 0.95 ; on ajoute donc des condensateurs de correction du facteur de puissance pour l’améliorer."
+          },
+          {
+            "q": "Quelle est la différence entre les connexions étoile et triangle ?",
+            "a": "Dans une connexion étoile (wye), chaque phase est connectée entre une ligne et un point neutre. La tension de phase vaut V_L / √3 et le courant de phase est égal au courant de ligne. Dans une connexion triangle, chaque phase est connectée entre deux lignes. La tension de phase vaut V_L et le courant de phase vaut I_L / √3. Pour des charges équilibrées, les deux connexions produisent la même puissance triphasée ; ce calculateur utilise donc les grandeurs de ligne (V_L, I_L) et s’applique correctement aux deux topologies."
+          },
+          {
+            "q": "Comment calculer le courant triphasé à partir de la puissance et de la tension ?",
+            "a": "En réarrangeant S = √3 × V × I, on obtient I = S / (√3 × V) = P / (√3 × V × PF). Par exemple, une charge de 30 kW sur une alimentation de 400 V avec PF = 0.85 consomme I = 30 000 / (1.732 × 400 × 0.85) ≈ 51 A. Ce calculateur automatise ce réarrangement lorsque vous fournissez la tension, la puissance active et le facteur de puissance."
+          }
+        ]
+      },
+      "about": {
+        "heading": "À propos du calculateur de puissance triphasée",
+        "body": "La puissance en courant alternatif (CA) triphasé est la méthode standard de production, de transport et de distribution de l’électricité dans le monde. Contrairement au monophasé, qui délivre l’énergie sous forme d’une seule onde pulsée, le triphasé délivre l’énergie au moyen de trois ondes sinusoïdales superposées et décalées de 120 degrés. Cela produit un flux de puissance régulier et constant, permet aux moteurs de démarrer et de fonctionner plus efficacement, et rend l’utilisation des conducteurs plus économique sur de longues distances de transport.\n\nLes trois grandeurs fondamentales qui caractérisent un système triphasé sont la puissance apparente S (mesurée en voltampères, VA), la puissance active P (mesurée en watts, W) et la puissance réactive Q (mesurée en voltampères réactifs, VAR). La puissance apparente est le débit total d’énergie fourni à la charge ; la puissance active est la part qui effectue un travail utile, comme chauffer, éclairer ou entraîner l’arbre d’un moteur ; et la puissance réactive est l’énergie qui oscille entre la source et les éléments inductifs ou capacitifs sans effectuer de travail net sur un cycle complet.\n\nLes formules clés pour un système triphasé équilibré sont S = √3 × V_L × I_L, P = S × cos(φ) et Q = S × sin(φ), où V_L est la tension entre lignes, I_L le courant de ligne et φ l’angle de phase entre tension et courant. Le facteur de puissance PF = cos(φ) = P/S quantifie l’efficacité avec laquelle le courant fourni est converti en travail utile.\n\nCe calculateur accepte trois des quatre entrées principales — tension de ligne, courant de ligne, puissance active et facteur de puissance — et calcule toutes les grandeurs restantes. Les résultats incluent les puissances apparente, active et réactive en unités de base et en kilounités, le facteur de puissance et l’angle de phase en degrés. L’outil convient ainsi au dimensionnement des câbles électriques et de l’appareillage, à la vérification des charges moteur, au calcul des besoins de correction du facteur de puissance et à la vérification des données de facturation du fournisseur d’électricité.\n\nLes systèmes triphasés se caractérisent par deux types de connexion : étoile (wye) et triangle. Dans une connexion étoile, la tension de phase est V_L/√3 et le courant de phase est égal au courant de ligne ; dans une connexion triangle, la tension de phase est égale à la tension de ligne et le courant de phase vaut I_L/√3. Pour des charges équilibrées, les formules de puissance triphasée utilisant les grandeurs de ligne s’appliquent aux deux topologies, raison pour laquelle ce calculateur utilise directement V_L et I_L. Les charges déséquilibrées nécessitent une analyse phase par phase et sortent du champ de cet outil."
+      }
+    },
+    "thrust-to-weight-ratio-calculator": {
+      "title": "Calculateur de rapport poussée-poids",
+      "tagline": "Calculez le TWR, la force nette et l’accélération des fusées et aéronefs",
+      "intro": "Saisissez la poussée totale du système de propulsion, la masse du véhicule et l’accélération gravitationnelle pour calculer le rapport poussée-poids (TWR), la force nette et l’accélération nette — des paramètres de performance essentiels pour toute fusée, tout aéronef ou tout drone.",
+      "field": {
+        "thrust": "Poussée (N)",
+        "mass": "Masse (kg)",
+        "gravity": "Accélération gravitationnelle (m/s²)",
+        "placeholder": {
+          "thrust": "p. ex. 1000000",
+          "mass": "p. ex. 50000",
+          "gravity": "9.81"
+        }
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres positifs valides pour la poussée, la masse et l’accélération gravitationnelle."
+      },
+      "result": {
+        "heading": "Résultat",
+        "twr": "Rapport poussée-poids (TWR)",
+        "weight": "Poids (N)",
+        "netForce": "Force nette (N)",
+        "netAcceleration": "Accélération nette",
+        "canLiftOff": "✓ Peut décoller (TWR > 1)",
+        "cannotLiftOff": "✗ Ne peut pas décoller (TWR ≤ 1)"
+      },
+      "examples": {
+        "heading": "Exemples de rapport poussée-poids",
+        "intro": "Ces exemples comparent des systèmes de propulsion réels aux valeurs de TWR très différentes.",
+        "colInput": "Véhicule",
+        "colOutput": "TWR",
+        "colNote": "Remarques",
+        "loadSaturnV": "Fusée Saturn V",
+        "loadF16": "Avion de chasse F-16",
+        "loadDrone": "Drone quadricoptère",
+        "items": [
+          {
+            "input": "Premier étage de Saturn V : Poussée = 34 500 000 N, Masse = 2 300 000 kg, g = 9.81 m/s²",
+            "output": "TWR = 1.53",
+            "note": "Saturn V dépassait à peine TWR = 1 au décollage — un choix de conception courant pour les fusées, qui équilibre capacité de levage et efficacité du carburant."
+          },
+          {
+            "input": "F-16 Fighting Falcon : Poussée = 130 000 N, Masse = 16 000 kg, g = 9.81 m/s²",
+            "output": "TWR = 0.83 (configuration lisse, niveau de la mer)",
+            "note": "À une masse de combat typique, le F-16 a un TWR légèrement inférieur à 1, mais avec postcombustion et charge de carburant réduite, il dépasse 1 pour la montée supersonique."
+          },
+          {
+            "input": "Drone quadricoptère : Poussée = 40 N, Masse = 2 kg, g = 9.81 m/s²",
+            "output": "TWR = 2.04",
+            "note": "Un drone de course avec TWR ≈ 2 peut accélérer vers le haut à environ 1 g net, ce qui lui donne d’excellentes performances verticales."
+          },
+          {
+            "input": "Premier étage du SpaceX Falcon 9 : Poussée = 7 607 000 N, Masse = 549 054 kg, g = 9.81 m/s²",
+            "output": "TWR = 1.41",
+            "note": "Falcon 9 atteint juste le TWR nécessaire au décollage, avec une marge notable pour les pertes gravitationnelles pendant l’ascension."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de rapport poussée-poids",
+        "steps": [
+          "Saisissez la poussée totale du système de propulsion en newtons (N) dans le champ Poussée. Pour plusieurs moteurs, saisissez la poussée combinée.",
+          "Saisissez la masse totale du véhicule (carburant, charge utile et structure compris) en kilogrammes dans le champ Masse.",
+          "Saisissez l’accélération gravitationnelle en m/s² — utilisez 9.81 pour la surface de la Terre, 3.72 pour Mars, 1.62 pour la Lune ou une valeur personnalisée pour d’autres environnements.",
+          "Cliquez sur Calculer pour voir le rapport poussée-poids, savoir si le véhicule peut décoller, et afficher le poids, la force nette et l’accélération verticale nette.",
+          "Utilisez les boutons prédéfinis pour charger des exemples aérospatiaux connus, notamment Saturn V, le F-16 et un drone quadricoptère."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur le rapport poussée-poids",
+        "items": [
+          {
+            "q": "Qu’est-ce que le rapport poussée-poids (TWR) ?",
+            "a": "Le rapport poussée-poids (TWR) est le rapport sans dimension entre la force de poussée produite par un moteur ou un système de propulsion et la force gravitationnelle (poids) qui agit sur le véhicule. Il se calcule ainsi : TWR = F_thrust / (m × g). Un TWR supérieur à 1 signifie que le véhicule peut accélérer verticalement contre la gravité ; un TWR inférieur à 1 signifie que la poussée est insuffisante pour vaincre la gravité et que le véhicule ne peut pas décoller dans ce champ gravitationnel."
+          },
+          {
+            "q": "Quel TWR faut-il aux fusées et aux avions pour voler ?",
+            "a": "Pour un décollage vertical, un véhicule doit avoir TWR > 1. La plupart des lanceurs orbitaux sont conçus avec un TWR au décollage de 1.2–1.5 — assez élevé pour quitter le pas de tir sans gaspiller de carburant. Les avions de chasse fonctionnent généralement avec des TWR de 0.7 à 1.1 selon leur charge ; beaucoup d’avions à réaction ne dépassent TWR = 1 qu’en pleine postcombustion. Les drones et quadricoptères visent souvent un TWR de 2–3 pour des manœuvres agiles."
+          },
+          {
+            "q": "Comment l’accélération gravitationnelle influence-t-elle le calcul ?",
+            "a": "Le poids dépend de l’accélération gravitationnelle locale g ; un même véhicule aura donc des TWR différents sur différentes planètes. Sur Terre, g = 9.81 m/s² ; sur la Lune, g = 1.62 m/s² (le module lunaire Apollo avait un TWR < 1 sur Terre mais > 1 sur la Lune) ; sur Mars, g = 3.72 m/s². Le calculateur permet de saisir n’importe quelle valeur de g, ce qui est utile pour concevoir des engins spatiaux devant fonctionner dans plusieurs environnements gravitationnels."
+          },
+          {
+            "q": "Qu’est-ce que la force nette et quel est son lien avec le TWR ?",
+            "a": "La force nette est la différence entre la poussée et le poids : F_net = F_thrust − m × g. Lorsque TWR > 1, la force nette est positive et le véhicule accélère vers le haut. L’accélération nette vaut F_net / m = g × (TWR − 1). Par exemple, TWR = 1.5 sur Terre donne une accélération nette vers le haut de 0.5 × 9.81 = 4.9 m/s² — le véhicule accélère verticalement à environ un demi-g."
+          },
+          {
+            "q": "Le TWR change-t-il pendant le vol ?",
+            "a": "Oui. Le TWR change constamment pendant le vol, car le carburant est consommé, ce qui réduit la masse, tandis que la poussée reste généralement à peu près constante (elle peut varier avec la manette des gaz et la pression atmosphérique). À mesure que la masse diminue, le TWR augmente pendant la combustion d’une fusée. C’est pourquoi les fusées accélèrent fortement vers la fin de la combustion d’un étage. Les ingénieurs en tiennent compte en calculant le TWR au décollage (pire cas) et à l’extinction (meilleur cas) pour définir l’enveloppe d’accélération."
+          }
+        ]
+      },
+      "about": {
+        "heading": "À propos du calculateur de rapport poussée-poids",
+        "body": "Le rapport poussée-poids (TWR) est l’indicateur de performance le plus important pour tout véhicule qui doit vaincre la gravité au moyen de la poussée. Il intervient dans la conception des fusées, avions de chasse, avions commerciaux, drones et même ascenseurs à moteurs linéaires. Un TWR supérieur à 1 signifie que le système de propulsion produit plus de force que la gravité, permettant une accélération verticale ; un TWR inférieur à 1 signifie que le véhicule dépend de la portance aérodynamique (comme les avions conventionnels) ou ne peut pas quitter le sol.\n\nLe calcul est simple : TWR = F_thrust / W = F_thrust / (m × g), où F_thrust est la poussée totale en newtons, m la masse du véhicule en kilogrammes et g l’accélération gravitationnelle locale en m/s². Le poids W = m × g est la force gravitationnelle que le véhicule doit vaincre. La force nette disponible pour l’accélération est F_net = F_thrust − W, et l’accélération verticale nette obtenue est a = F_net / m = g × (TWR − 1).\n\nPour les lanceurs orbitaux, le TWR au décollage est un paramètre de conception critique. Les valeurs typiques vont d’environ 1.2 à 1.5. Un TWR trop faible entraîne une ascension lente et inefficace avec de fortes pertes gravitationnelles : le véhicule passe trop de temps à lutter contre la gravité avant d’acquérir une vitesse horizontale. Un TWR trop élevé brûle plus d’ergols que nécessaire au début du vol et augmente les charges structurelles. Le premier étage de Saturn V, par exemple, avait un TWR au décollage d’environ 1.5, qui montait au-dessus de 2 à mesure que le carburant était consommé.\n\nPour les aéronefs atmosphériques, le TWR a une signification différente. Un avion classique à voilure fixe n’a pas besoin de TWR > 1, car la portance aérodynamique supporte la majeure partie du poids ; le moteur doit seulement vaincre la traînée en vol en palier. Cependant, les avions de chasse conçus pour la montée rapide ou les manœuvres verticales visent souvent un TWR proche ou supérieur à 1 afin de maximiser l’énergie instantanée au sens de la théorie énergie-manœuvrabilité.\n\nCe calculateur calcule aussi la force nette et l’accélération nette, utiles pour comprendre les performances dynamiques. Il inclut un indicateur de décollage : si TWR > 1, le véhicule peut accélérer verticalement ; si TWR ≤ 1, il ne peut pas décoller dans le champ gravitationnel donné. Le champ d’accélération gravitationnelle permet d’évaluer les performances sur Terre, sur la Lune, sur Mars ou sur tout autre corps en saisissant la valeur appropriée de g."
+      }
     }
   }
 }
