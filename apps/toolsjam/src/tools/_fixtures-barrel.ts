@@ -101,6 +101,8 @@ import { fixtures as f_dipole_calculator } from "@/tools/dipole-calculator.fixtu
 import { fixtures as f_dipole_moment_calculator } from "@/tools/dipole-moment-calculator.fixtures";
 import { fixtures as f_dispersion_calculator } from "@/tools/dispersion-calculator.fixtures";
 import { fixtures as f_dot_plot_calculator } from "@/tools/dot-plot-calculator.fixtures";
+import { fixtures as f_easter_calculator } from "@/tools/easter-calculator.fixtures";
+import { fixtures as f_edpi_calculator } from "@/tools/edpi-calculator.fixtures";
 import { fixtures as f_effectiveness_ntu_calculator } from "@/tools/effectiveness-ntu-calculator.fixtures";
 import { fixtures as f_efficiency_calculator } from "@/tools/efficiency-calculator.fixtures";
 import { fixtures as f_eirp_calculator_effective_isotropic_radiated_power } from "@/tools/eirp-calculator-effective-isotropic-radiated-power.fixtures";
@@ -112,7 +114,10 @@ import { fixtures as f_electric_potential_calculator } from "@/tools/electric-po
 import { fixtures as f_electrical_mobility_calculator } from "@/tools/electrical-mobility-calculator.fixtures";
 import { fixtures as f_electrical_power_calculator } from "@/tools/electrical-power-calculator.fixtures";
 import { fixtures as f_empirical_rule_calculator } from "@/tools/empirical-rule-calculator.fixtures";
+import { fixtures as f_encounter_calculator_5e } from "@/tools/encounter-calculator-5e.fixtures";
+import { fixtures as f_engagement_rate_calculator } from "@/tools/engagement-rate-calculator.fixtures";
 import { fixtures as f_error_propagation_calculator } from "@/tools/error-propagation-calculator.fixtures";
+import { fixtures as f_even_parity_bit_calculator } from "@/tools/even-parity-bit-calculator.fixtures";
 import { fixtures as f_expanded_form_calculator } from "@/tools/expanded-form-calculator.fixtures";
 import { fixtures as f_expanding_logarithms_calculator } from "@/tools/expanding-logarithms-calculator.fixtures";
 import { fixtures as f_expected_value_calculator } from "@/tools/expected-value-calculator.fixtures";
@@ -390,6 +395,8 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "dipole-moment-calculator": f_dipole_moment_calculator,
   "dispersion-calculator": f_dispersion_calculator,
   "dot-plot-calculator": f_dot_plot_calculator,
+  "easter-calculator": f_easter_calculator,
+  "edpi-calculator": f_edpi_calculator,
   "effectiveness-ntu-calculator": f_effectiveness_ntu_calculator,
   "efficiency-calculator": f_efficiency_calculator,
   "eirp-calculator-effective-isotropic-radiated-power": f_eirp_calculator_effective_isotropic_radiated_power,
@@ -401,7 +408,10 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "electrical-mobility-calculator": f_electrical_mobility_calculator,
   "electrical-power-calculator": f_electrical_power_calculator,
   "empirical-rule-calculator": f_empirical_rule_calculator,
+  "encounter-calculator-5e": f_encounter_calculator_5e,
+  "engagement-rate-calculator": f_engagement_rate_calculator,
   "error-propagation-calculator": f_error_propagation_calculator,
+  "even-parity-bit-calculator": f_even_parity_bit_calculator,
   "expanded-form-calculator": f_expanded_form_calculator,
   "expanding-logarithms-calculator": f_expanding_logarithms_calculator,
   "expected-value-calculator": f_expected_value_calculator,

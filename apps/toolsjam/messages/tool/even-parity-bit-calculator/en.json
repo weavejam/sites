@@ -1,0 +1,106 @@
+{
+  "title": "Even Parity Bit Calculator - Binary Error Detection",
+  "tagline": "Generate even parity bits for binary data transmission and validate received binary strings for single-bit errors with instant results.",
+  "intro": "Enter binary data to compute its even parity bit and transmission string, or paste received data to check for transmission errors.",
+  "field": {
+    "binaryData": "Binary Data",
+    "receivedData": "Received Data (for validation)",
+    "binaryDataPlaceholder": "e.g. 1010 or 11001100",
+    "receivedDataPlaceholder": "e.g. 10101 (includes parity bit)"
+  },
+  "button": {
+    "calculate": "Calculate Even Parity Bit",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalidBinary": "Binary Data must contain only 0s and 1s.",
+    "invalidReceived": "Received Data must contain only 0s and 1s.",
+    "emptyData": "Please enter binary data."
+  },
+  "result": {
+    "heading": "Result",
+    "onesCount": "Number of 1s in data",
+    "parityBit": "Even parity bit",
+    "transmissionString": "Transmission string (data + parity bit)",
+    "validationHeading": "Validation Result",
+    "valid": "Valid — total number of 1s is even, no error detected.",
+    "invalid": "Error detected — total number of 1s is odd, a bit flip occurred."
+  },
+  "about": {
+    "heading": "About the Even Parity Bit Calculator",
+    "body": "Parity checking is one of the oldest and most widely deployed error-detection mechanisms in digital communication. Whenever binary data travels across a noisy channel — a serial cable, a memory bus, a network link, or a storage medium — individual bits can be corrupted by electrical interference, cosmic radiation, or hardware faults. A parity bit is a single extra bit appended to a block of data that allows the receiver to check whether any corruption has occurred.\n\nEven parity is the variant of parity checking where the total number of 1 bits in the combined sequence — data bits plus the parity bit — is always kept even. The rule is simple: count the 1s in the original data. If that count is already even, the parity bit is set to 0. If the count is odd, the parity bit is set to 1, making the grand total even. In mathematical terms, the parity bit is the XOR (exclusive OR) of all data bits — a single operation that a hardware circuit can perform in nanoseconds.\n\nTo illustrate with a concrete example: suppose you want to transmit the four-bit data word 1010. This word contains exactly two 1s, which is already even, so the even parity bit is 0. The complete transmission string is 10100. At the receiver, all five bits are XORed together: 1 ⊕ 0 ⊕ 1 ⊕ 0 ⊕ 0 = 0. A result of 0 means the total number of 1s is even, so no error is flagged. Now suppose one bit was corrupted in transit and the string arrived as 11100. The receiver XORs: 1 ⊕ 1 ⊕ 1 ⊕ 0 ⊕ 0 = 1. A non-zero XOR result means the total number of 1s is odd, signalling that an error occurred somewhere in the five-bit frame.\n\nEven parity differs from odd parity in a single respect: the target total is even rather than odd. Both schemes detect any single-bit error with 100% reliability, because flipping one bit changes the parity from even to odd or vice versa. Both fail silently when an even number of bits flip simultaneously, since two flips cancel each other out and leave the parity unchanged. For applications that must handle multi-bit errors, engineers use more sophisticated codes such as CRC (Cyclic Redundancy Check), Hamming codes, or Reed-Solomon codes.\n\nEven parity is often preferred over odd parity in systems that need to maintain protocol compliance when all data bits are zero. With odd parity, an all-zeros data word always has a parity bit of 1, guaranteeing a non-zero transmission. With even parity, an all-zeros data word results in an all-zeros transmission, which can be useful in some initialisation or handshake protocols. The choice between even and odd parity is typically specified by the communication standard being implemented.\n\nPractical applications of even parity include UART serial communication (where the parity bit is a configurable option), older memory systems that stored one extra parity bit per byte, and some network framing protocols. Modern high-speed links typically use more powerful error-detection and error-correction codes, but even parity remains valuable in resource-constrained embedded systems and is a foundational concept taught in every computer science and digital electronics curriculum.\n\nThis calculator automates every step of the even parity calculation: it validates that the input is purely binary, counts the number of 1 bits, determines the correct even parity bit, and outputs the full transmission string. The optional validation field allows you to paste a received string (including its parity bit) and immediately verify whether the even parity check passes or fails."
+  },
+  "examples": {
+    "heading": "Even Parity Bit Examples",
+    "intro": "The table below shows how the even parity bit is computed for several binary inputs.",
+    "colInput": "Binary Data",
+    "colOutput": "Parity Bit",
+    "colNote": "Transmission String",
+    "items": [
+      {
+        "input": "1010",
+        "output": "0",
+        "note": "Two 1s (even) → parity bit = 0. Transmission: 10100"
+      },
+      {
+        "input": "1110",
+        "output": "1",
+        "note": "Three 1s (odd) → parity bit = 1. Transmission: 11101"
+      },
+      {
+        "input": "11001100",
+        "output": "0",
+        "note": "Four 1s (even) → parity bit = 0. Transmission: 110011000"
+      },
+      {
+        "input": "10110100",
+        "output": "0",
+        "note": "Four 1s (even) → parity bit = 0. Transmission: 101101000"
+      },
+      {
+        "input": "11111111",
+        "output": "0",
+        "note": "Eight 1s (even) → parity bit = 0. Transmission: 111111110"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Even Parity Bit Calculator",
+    "steps": [
+      "Enter the binary data string you want to transmit in the Binary Data field — use only 0s and 1s, no spaces or separators.",
+      "Click Calculate Even Parity Bit to see the count of 1s, the required even parity bit, and the complete transmission string.",
+      "Copy the transmission string (original data plus the appended parity bit) and send it to the receiver.",
+      "To validate received data, paste the full received string (including the parity bit) into the Received Data field and click Calculate — the tool checks whether the total number of 1s is even.",
+      "Click Reset to clear all fields and start a fresh calculation."
+    ]
+  },
+  "faq": {
+    "heading": "Even Parity Bit Calculator FAQ",
+    "items": [
+      {
+        "q": "What is even parity?",
+        "a": "Even parity is an error-detection scheme where a parity bit is appended to binary data so that the total number of 1 bits in the combined string (data plus parity bit) is always even. If the data already contains an even count of 1s, the parity bit is 0; if the count is odd, the parity bit is 1 to make the total even."
+      },
+      {
+        "q": "How is the even parity bit calculated?",
+        "a": "The even parity bit equals the XOR of all data bits. XOR produces 1 when the count of 1s is odd and 0 when it is even. So for data 1010 (two 1s, already even), the XOR is 0 and the parity bit is 0. For data 1110 (three 1s, odd), the XOR is 1 and the parity bit is 1."
+      },
+      {
+        "q": "What is the difference between even and odd parity?",
+        "a": "Even parity ensures the total count of 1 bits is even; odd parity ensures it is odd. Both detect any single-bit error. The main practical difference is that odd parity guarantees a non-zero parity bit for an all-zeros data word, which helps detect stuck-at-zero faults. Even parity may be preferred when a protocol requires consistent framing with zero-valued padding bytes."
+      },
+      {
+        "q": "Can even parity detect all errors?",
+        "a": "No. Even parity reliably detects any single-bit error because flipping one bit changes the parity from even to odd. However, if exactly two bits flip simultaneously, the parity remains even and the error goes undetected. For more robust protection, use CRC, Hamming codes, or Reed-Solomon error-correction codes."
+      },
+      {
+        "q": "Where is even parity used in practice?",
+        "a": "Even parity is used in UART serial communication (where parity mode is a configurable setting), some legacy memory modules, and certain network framing protocols. It is also a fundamental teaching tool in computer science and digital electronics courses because it illustrates error detection with minimal mathematical complexity."
+      },
+      {
+        "q": "How does the validation check work?",
+        "a": "To validate received data, enter the full received string — original data plus the appended parity bit — in the Received Data field. The calculator counts the total number of 1s in the received string. If the count is even, even parity is satisfied and no error is flagged. If the count is odd, a single-bit error (or any odd number of errors) has been detected."
+      }
+    ]
+  }
+}
