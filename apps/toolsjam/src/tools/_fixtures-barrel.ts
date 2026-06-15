@@ -142,6 +142,11 @@ import { fixtures as f_gauss_jordan_elimination_calculator } from "@/tools/gauss
 import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calculator.fixtures";
 import { fixtures as f_gcf_calculator_greatest_common_factor } from "@/tools/gcf-calculator-greatest-common-factor.fixtures";
 import { fixtures as f_generic_rectangle_calculator } from "@/tools/generic-rectangle-calculator.fixtures";
+import { fixtures as f_gpa_calculator } from "@/tools/gpa-calculator.fixtures";
+import { fixtures as f_gpa_calculator_pakistan } from "@/tools/gpa-calculator-pakistan.fixtures";
+import { fixtures as f_grade_calculator } from "@/tools/grade-calculator.fixtures";
+import { fixtures as f_gsd_calculator_ground_sample_distance } from "@/tools/gsd-calculator-ground-sample-distance.fixtures";
+import { fixtures as f_guitar_string_tension_calculator } from "@/tools/guitar-string-tension-calculator.fixtures";
 import { fixtures as f_hypothesis_testing_calculator } from "@/tools/hypothesis-testing-calculator.fixtures";
 import { fixtures as f_impact_factor_calculator } from "@/tools/impact-factor-calculator.fixtures";
 import { fixtures as f_impedance_matching_calculator } from "@/tools/impedance-matching-calculator.fixtures";
@@ -436,6 +441,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "gcf-and-lcm-calculator": f_gcf_and_lcm_calculator,
   "gcf-calculator-greatest-common-factor": f_gcf_calculator_greatest_common_factor,
   "generic-rectangle-calculator": f_generic_rectangle_calculator,
+  "gpa-calculator": f_gpa_calculator,
+  "gpa-calculator-pakistan": f_gpa_calculator_pakistan,
+  "grade-calculator": f_grade_calculator,
+  "gsd-calculator-ground-sample-distance": f_gsd_calculator_ground_sample_distance,
+  "guitar-string-tension-calculator": f_guitar_string_tension_calculator,
   "hypothesis-testing-calculator": f_hypothesis_testing_calculator,
   "impact-factor-calculator": f_impact_factor_calculator,
   "impedance-matching-calculator": f_impedance_matching_calculator,
