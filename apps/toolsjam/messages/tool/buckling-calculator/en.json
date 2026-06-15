@@ -1,0 +1,100 @@
+{
+  "title": "Buckling Calculator – Euler Critical Load & Stress",
+  "tagline": "Calculate the critical buckling load, buckling stress, and safety factor for slender columns using Euler's formula.",
+  "intro": "Enter the material, geometric, and boundary condition parameters to determine whether a structural member is safe against buckling failure.",
+  "field": {
+    "appliedLoad": "Applied Load (N)",
+    "length": "Length (m)",
+    "modulus": "Modulus of Elasticity (GPa)",
+    "momentOfInertia": "Moment of Inertia (m⁴)",
+    "effectiveLengthFactor": "Effective Length Factor (K)",
+    "area": "Cross-Sectional Area (m²)"
+  },
+  "placeholder": {
+    "appliedLoad": "e.g., 75000",
+    "length": "e.g., 4.5",
+    "modulus": "e.g., 200",
+    "momentOfInertia": "e.g., 0.00015",
+    "effectiveLengthFactor": "e.g., 0.7",
+    "area": "e.g., 0.012"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please fill in all fields with valid positive numbers."
+  },
+  "result": {
+    "heading": "Buckling Analysis Results",
+    "criticalLoad": "Critical Buckling Load (Pcr)",
+    "bucklingStress": "Buckling Stress",
+    "safetyFactor": "Safety Factor",
+    "effectiveLength": "Effective Length (Le)",
+    "status": {
+      "safe": "SAFE — Applied load is below critical buckling load.",
+      "unsafe": "UNSAFE — Applied load exceeds critical buckling load!"
+    }
+  },
+  "about": {
+    "heading": "About the Buckling Calculator",
+    "body": "Structural buckling is a sudden failure mode that occurs when a slender member under compressive load deflects laterally rather than continuing to shorten elastically. It is critically important in column and strut design because buckling can occur at stresses well below the material's yield strength, making it distinct from straightforward compressive failure.\n\nThe theoretical foundation of buckling analysis is Euler's formula, first derived by Swiss mathematician Leonhard Euler in 1757. The critical buckling load — the compressive force at which an ideal elastic column transitions from stable to unstable equilibrium — is:\n\nPcr = (π² × E × I) / (K × L)²\n\nwhere E is the modulus of elasticity (Young's modulus) of the material, I is the second moment of area (moment of inertia) of the cross-section about the axis of bending, K is the effective length factor that accounts for the end boundary conditions, and L is the actual unsupported length of the member. The quantity K×L is called the effective length, Le.\n\nThe effective length factor K encodes the boundary conditions at each end: K = 0.5 for fixed-fixed (both ends fully restrained), K = 0.7 for fixed-pinned (one end fixed, one pinned — the most common case in practice), K = 1.0 for pinned-pinned (both ends free to rotate), and K = 2.0 for fixed-free (cantilever, one end fixed and the other completely free). Note that a smaller K raises the critical load significantly: a fixed-fixed column can carry four times the load of an identical pinned-pinned column.\n\nThe buckling stress is σcr = Pcr / A, where A is the cross-sectional area. If σcr exceeds the material's yield strength, the member would yield before buckling, meaning Euler's formula no longer governs and inelastic buckling formulas (given in design codes such as AISC 360 or Eurocode 3) should be used instead.\n\nThe safety factor against buckling is defined as SF = Pcr / P, where P is the actual applied load. Typical design safety factors range from 1.5 to 3.0 depending on the application, design code, and consequence of failure. A safety factor below 1.0 means the member has already buckled.\n\nEuler's formula assumes a perfectly straight, centrically loaded, homogeneous, isotropic member with elastic behavior and small deflections. Real columns deviate from these assumptions through initial imperfections, eccentric loading, residual stresses from manufacturing, and load eccentricity. These effects reduce the actual buckling capacity below the Euler prediction, which is why design codes apply reduction factors and require safety factors.\n\nBuckling is a critical design check for columns in steel-frame buildings, aircraft fuselage frames, rocket bodies, hydraulic cylinder rods, bicycle frames, and many other structures. In bridge trusses and long-span structures, compression members in the top chord must always be checked for buckling. The slenderness ratio KL/r (where r = √(I/A) is the radius of gyration) is a key dimensionless parameter: higher slenderness ratios indicate more buckling-prone members."
+  },
+  "examples": {
+    "heading": "Buckling calculator examples",
+    "intro": "Representative column designs showing how material, geometry, and end conditions affect the critical buckling load.",
+    "colInput": "Column Parameters",
+    "colOutput": "Critical Load (Pcr)",
+    "colNote": "End Conditions & Notes",
+    "loadSteelColumn": "Load steel fixed-pinned example",
+    "loadAluminum": "Load aluminum pinned-pinned example",
+    "loadCantilever": "Load cantilever example",
+    "items": [
+      {
+        "input": "Steel, L=4.5 m, E=200 GPa, I=0.00015 m⁴, K=0.7, A=0.012 m², P=75,000 N",
+        "output": "Pcr ≈ 29,841 kN",
+        "note": "Fixed-pinned (K=0.7). Safety factor ≈ 398. The column is far within safe limits for the applied 75 kN load."
+      },
+      {
+        "input": "Aluminum, L=2.8 m, E=70 GPa, I=0.00008 m⁴, K=1.0, A=0.008 m², P=25,000 N",
+        "output": "Pcr ≈ 7,050 kN",
+        "note": "Pinned-pinned (K=1.0). Safety factor ≈ 282. Aluminum's lower modulus requires more careful geometry design than steel for equivalent buckling resistance."
+      },
+      {
+        "input": "Concrete, L=3.2 m, E=30 GPa, I=0.00025 m⁴, K=0.5, A=0.025 m², P=120,000 N",
+        "output": "Pcr ≈ 28,915 kN",
+        "note": "Fixed-fixed (K=0.5). The fixed-fixed condition quadruples Pcr compared to a pinned-pinned column of the same size and material."
+      },
+      {
+        "input": "Steel, L=6.0 m, E=200 GPa, I=0.00005 m⁴, K=2.0, A=0.006 m², P=15,000 N",
+        "output": "Pcr ≈ 685 kN",
+        "note": "Fixed-free cantilever (K=2.0). The free end dramatically reduces buckling resistance — the effective length is 12 m for this 6 m column. Safety factor ≈ 46."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the buckling calculator",
+    "steps": [
+      "Enter the applied compressive load in newtons (N). This is the actual force the column must carry.",
+      "Enter the column length in metres (m) and the modulus of elasticity of the material in gigapascals (GPa). Use 200 GPa for steel, 70 GPa for aluminum, and 25–40 GPa for concrete.",
+      "Enter the minimum second moment of area (moment of inertia) in m⁴ and the cross-sectional area in m². Use the weak-axis I value because buckling occurs about the axis with the smallest I.",
+      "Select the effective length factor K based on the end conditions: 0.5 for fixed-fixed, 0.7 for fixed-pinned, 1.0 for pinned-pinned, or 2.0 for fixed-free (cantilever).",
+      "Click 'Calculate' to see the critical buckling load, buckling stress, effective length, and safety factor. A safety factor greater than 1.5–3 is generally required by structural design codes."
+    ]
+  },
+  "faq": {
+    "heading": "Buckling calculator FAQ",
+    "q1": "What is the effective length factor K?",
+    "q1_a": "The effective length factor K accounts for the end restraint conditions of a column. It scales the actual length to produce an equivalent pinned-pinned column that would buckle at the same load. K=0.5 for both ends fixed, K=0.7 for one end fixed and one end pinned, K=1.0 for both ends pinned, and K=2.0 for one end fixed and the other completely free. Choosing the wrong K is a common source of significant errors in buckling calculations.",
+    "q2": "When does Euler's formula not apply?",
+    "q2_a": "Euler's formula is valid only for slender columns where buckling occurs in the elastic range — before the material yields. The transition point is defined by the slenderness ratio KL/r: for structural steel (Fy ≈ 250 MPa, E = 200 GPa), elastic Euler buckling governs above approximately KL/r = 89. For shorter, stockier members, inelastic buckling or direct compressive yielding governs, and design code formulas (AISC, Eurocode 3) should be used instead.",
+    "q3": "What safety factor is required for column design?",
+    "q3_a": "The required safety factor depends on the design code, loading type, and consequence of failure. In AISC Load and Resistance Factor Design (LRFD), a resistance factor of 0.9 is applied to the nominal buckling capacity. In Allowable Stress Design (ASD), the effective safety factor is typically 1.67–1.92 on buckling. For preliminary design, a safety factor of 2.0–3.0 against the Euler critical load is a reasonable conservative starting point.",
+    "q4": "Why does buckling depend on E (modulus) but not yield strength?",
+    "q4_a": "Euler buckling is a stability (elastic equilibrium) phenomenon, not a strength phenomenon. The column buckles because it reaches an unstable equilibrium before the material yields. The modulus E governs how stiff the column is in bending — a stiffer material resists lateral deflection better. Yield strength only becomes relevant if the critical stress exceeds Fy, at which point inelastic buckling governs and strength does matter.",
+    "q5": "What is the slenderness ratio and why does it matter?",
+    "q5_a": "The slenderness ratio is KL/r, where r = √(I/A) is the radius of gyration. It is the key dimensionless indicator of buckling susceptibility. Higher slenderness ratios mean more buckling-prone members. Long, thin columns (high KL/r) buckle at low stress levels well below yield, while short, stocky columns (low KL/r) fail by yielding or crushing. Design codes use KL/r to determine which buckling formula to apply.",
+    "q6": "Does Euler buckling apply to beams as well as columns?",
+    "q6_a": "Yes, a related phenomenon called lateral-torsional buckling (LTB) affects beams loaded in bending. When an unbraced beam is loaded in its strong-axis plane, it can buckle sideways and twist — similar to column buckling but involving both bending and torsion. This calculator addresses column (axial compression) buckling only. Lateral-torsional buckling requires different equations that include the torsional constant and warping constant of the cross-section."
+  }
+}
