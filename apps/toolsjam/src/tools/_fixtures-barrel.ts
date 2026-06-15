@@ -180,8 +180,13 @@ import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-enve
 import { fixtures as f_uniform_distribution_calculator } from "@/tools/uniform-distribution-calculator.fixtures";
 import { fixtures as f_upper_and_lower_fence_calculator } from "@/tools/upper-and-lower-fence-calculator.fixtures";
 import { fixtures as f_upper_control_limit_calculator } from "@/tools/upper-control-limit-calculator.fixtures";
+import { fixtures as f_vampire_apocalypse_calculator } from "@/tools/vampire-apocalypse-calculator.fixtures";
 import { fixtures as f_variance_calculator } from "@/tools/variance-calculator.fixtures";
 import { fixtures as f_venn_diagram_calculator } from "@/tools/venn-diagram-calculator.fixtures";
+import { fixtures as f_vertical_exaggeration_calculator } from "@/tools/vertical-exaggeration-calculator.fixtures";
+import { fixtures as f_video_file_size_calculator_by_format } from "@/tools/video-file-size-calculator-by-format.fixtures";
+import { fixtures as f_video_frame_size_calculator } from "@/tools/video-frame-size-calculator.fixtures";
+import { fixtures as f_vocal_range_calculator } from "@/tools/vocal-range-calculator.fixtures";
 import { fixtures as f_volt_to_electron_volt_calculator } from "@/tools/volt-to-electron-volt-calculator.fixtures";
 import { fixtures as f_voltage_divider_calculator } from "@/tools/voltage-divider-calculator.fixtures";
 import { fixtures as f_voltage_drop_calculator } from "@/tools/voltage-drop-calculator.fixtures";
@@ -389,8 +394,13 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "uniform-distribution-calculator": f_uniform_distribution_calculator,
   "upper-and-lower-fence-calculator": f_upper_and_lower_fence_calculator,
   "upper-control-limit-calculator": f_upper_control_limit_calculator,
+  "vampire-apocalypse-calculator": f_vampire_apocalypse_calculator,
   "variance-calculator": f_variance_calculator,
   "venn-diagram-calculator": f_venn_diagram_calculator,
+  "vertical-exaggeration-calculator": f_vertical_exaggeration_calculator,
+  "video-file-size-calculator-by-format": f_video_file_size_calculator_by_format,
+  "video-frame-size-calculator": f_video_frame_size_calculator,
+  "vocal-range-calculator": f_vocal_range_calculator,
   "volt-to-electron-volt-calculator": f_volt_to_electron_volt_calculator,
   "voltage-divider-calculator": f_voltage_divider_calculator,
   "voltage-drop-calculator": f_voltage_drop_calculator,
