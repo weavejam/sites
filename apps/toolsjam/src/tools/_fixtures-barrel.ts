@@ -143,6 +143,11 @@ import { fixtures as f_ip_subnet_calculator } from "@/tools/ip-subnet-calculator
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
 import { fixtures as f_kd_calculator_kill_death_ratio } from "@/tools/kd-calculator-kill-death-ratio.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
+import { fixtures as f_mm_to_carat_conversion } from "@/tools/mm-to-carat-conversion.fixtures";
+import { fixtures as f_music_duration_calculator } from "@/tools/music-duration-calculator.fixtures";
+import { fixtures as f_music_interval_calculator } from "@/tools/music-interval-calculator.fixtures";
+import { fixtures as f_music_scale_calculator } from "@/tools/music-scale-calculator.fixtures";
+import { fixtures as f_music_transposition_calculator } from "@/tools/music-transposition-calculator.fixtures";
 import { fixtures as f_nanowrimo_calculator } from "@/tools/nanowrimo-calculator.fixtures";
 import { fixtures as f_nether_portal_calculator } from "@/tools/nether-portal-calculator.fixtures";
 import { fixtures as f_new_year_countdown_calculator } from "@/tools/new-year-countdown-calculator.fixtures";
@@ -417,6 +422,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
   "kd-calculator-kill-death-ratio": f_kd_calculator_kill_death_ratio,
   "loan-calculator": f_loan_calculator,
+  "mm-to-carat-conversion": f_mm_to_carat_conversion,
+  "music-duration-calculator": f_music_duration_calculator,
+  "music-interval-calculator": f_music_interval_calculator,
+  "music-scale-calculator": f_music_scale_calculator,
+  "music-transposition-calculator": f_music_transposition_calculator,
   "nanowrimo-calculator": f_nanowrimo_calculator,
   "nether-portal-calculator": f_nether_portal_calculator,
   "new-year-countdown-calculator": f_new_year_countdown_calculator,
