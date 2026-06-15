@@ -20,6 +20,11 @@ import { fixtures as f_conditional_probability_calculator } from "@/tools/condit
 import { fixtures as f_confidence_interval_calculator } from "@/tools/confidence-interval-calculator.fixtures";
 import { fixtures as f_confusion_matrix_calculator } from "@/tools/confusion-matrix-calculator.fixtures";
 import { fixtures as f_constant_of_proportionality_calculator } from "@/tools/constant-of-proportionality-calculator.fixtures";
+import { fixtures as f_darcy_weisbach_calculator } from "@/tools/darcy-weisbach-calculator.fixtures";
+import { fixtures as f_darcys_law_calculator } from "@/tools/darcys-law-calculator.fixtures";
+import { fixtures as f_db_calculator } from "@/tools/db-calculator.fixtures";
+import { fixtures as f_db_gain_calculator } from "@/tools/db-gain-calculator.fixtures";
+import { fixtures as f_de_broglie_wavelength_calculator } from "@/tools/de-broglie-wavelength-calculator.fixtures";
 import { fixtures as f_dice_probability_calculator } from "@/tools/dice-probability-calculator.fixtures";
 import { fixtures as f_dice_roller_calculator } from "@/tools/dice-roller-calculator.fixtures";
 import { fixtures as f_differential_pressure_calculator } from "@/tools/differential-pressure-calculator.fixtures";
@@ -169,6 +174,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "confidence-interval-calculator": f_confidence_interval_calculator,
   "confusion-matrix-calculator": f_confusion_matrix_calculator,
   "constant-of-proportionality-calculator": f_constant_of_proportionality_calculator,
+  "darcy-weisbach-calculator": f_darcy_weisbach_calculator,
+  "darcys-law-calculator": f_darcys_law_calculator,
+  "db-calculator": f_db_calculator,
+  "db-gain-calculator": f_db_gain_calculator,
+  "de-broglie-wavelength-calculator": f_de_broglie_wavelength_calculator,
   "dice-probability-calculator": f_dice_probability_calculator,
   "dice-roller-calculator": f_dice_roller_calculator,
   "differential-pressure-calculator": f_differential_pressure_calculator,

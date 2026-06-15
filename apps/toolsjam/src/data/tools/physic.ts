@@ -2040,5 +2040,205 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "darcy-weisbach-calculator",
+    category: "physic",
+    slugs: {
+      en: "darcy-weisbach-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Darcy-Weisbach Friction Loss Calculator for Pipe Flow",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate pipe friction head loss, Reynolds number, and friction factor using the Darcy-Weisbach equation for hydraulic engineering and fluid mechanics.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "darcys-law-calculator",
+    category: "physic",
+    slugs: {
+      en: "darcys-law-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Darcy's Law Calculator for Porous Media Flow Rate",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate volumetric flow rate, Darcy velocity, and seepage velocity through porous media using Darcy's Law for groundwater and reservoir engineering.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "db-calculator",
+    category: "physic",
+    slugs: {
+      en: "db-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Decibel (dB) Calculator – Convert Ratios and Combine Sources",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Convert power or amplitude ratios to dB, dB back to ratios, or combine multiple decibel sources. Covers acoustics, electronics, and signal processing formulas.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "db-gain-calculator",
+    category: "physic",
+    slugs: {
+      en: "db-gain-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "dB Gain Calculator for Power and Voltage Amplification",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate dB gain between input and output, or find the unknown output or input from a specified gain. Supports power and voltage for RF design.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "de-broglie-wavelength-calculator",
+    category: "physic",
+    slugs: {
+      en: "de-broglie-wavelength-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "De Broglie Wavelength Calculator – Wave-Particle Duality",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate the De Broglie wavelength from mass and velocity, kinetic energy, or momentum. Reveals wave-particle duality in nanometres and picometres.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
 ];
