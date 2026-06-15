@@ -1,0 +1,92 @@
+{
+  "title": "Calculateur de redresseur en pont – conversion CA vers CC",
+  "tagline": "Calculez la tension de sortie CC, la tension d’ondulation, le rendement et la tension inverse de crête d’un redresseur en pont double alternance.",
+  "intro": "Saisissez les paramètres d’entrée CA et les valeurs du circuit pour analyser les performances du redresseur en pont, notamment le facteur d’ondulation et la sortie CC.",
+  "field": {
+    "acVoltage": "Tension d’entrée CA (RMS)",
+    "resistance": "Résistance de charge (Ω)",
+    "diodeDrop": "Chute de tension de diode (V)",
+    "frequency": "Fréquence CA (Hz)",
+    "capacitance": "Capacité de filtrage (μF)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs."
+  },
+  "result": {
+    "heading": "Résultats",
+    "peakVoltage": "Tension d’entrée de crête",
+    "dcOutput": "Tension de sortie CC",
+    "rippleVoltage": "Tension d’ondulation (crête-à-crête)",
+    "rippleFactor": "Facteur d’ondulation",
+    "piv": "Tension inverse de crête (PIV)",
+    "efficiency": "Rendement du redresseur",
+    "loadCurrent": "Courant de charge CC",
+    "unit": {
+      "volts": "V",
+      "amps": "A",
+      "percent": "%"
+    }
+  },
+  "about": {
+    "heading": "À propos du calculateur de redresseur en pont",
+    "body": "Un redresseur en pont est un montage de quatre diodes connectées en configuration de pont qui convertit le courant alternatif (CA) en courant continu (CC). Contrairement à un redresseur simple alternance qui n’utilise qu’une seule diode et gaspille la moitié du cycle d’entrée, ou à un redresseur double alternance à prise médiane qui nécessite un transformateur à point milieu, le redresseur en pont utilise les deux alternances du cycle CA avec un simple réseau de quatre diodes et n’importe quel secondaire de transformateur ordinaire. C’est la topologie de redressement la plus courante dans les alimentations, les chargeurs de batteries et les convertisseurs CA vers CC.\n\nLe processus de redressement commence par la tension d’entrée CA, qui oscille sinusoïdalement autour de zéro. La valeur de crête de cette tension est V_peak = V_rms × √2, où V_rms est la valeur efficace indiquée sur les plaques signalétiques et mesurée par les voltmètres CA standard. Pendant l’alternance positive, deux des quatre diodes du pont conduisent, et pendant l’alternance négative, les deux autres conduisent. Dans les deux cas, le courant traverse la charge dans le même sens, produisant une onde CC pulsée qui atteint son pic deux fois par cycle CA.\n\nChaque diode présente une petite chute de tension directe, généralement 0.6–0.7 V pour les diodes au silicium à jonction p-n et 0.2–0.4 V pour les diodes Schottky. Comme deux diodes conduisent toujours en série à un instant donné, la tension de sortie de crête effective est V_peak_out = V_peak - 2 × V_diode_drop. La tension de sortie moyenne (CC) d’un redresseur en pont est V_DC = (2/π) × V_peak_out ≈ 0.6366 × V_peak_out.\n\nUn condensateur placé en parallèle avec la charge filtre la CC pulsée en se chargeant près de la tension de crête puis en se déchargeant lentement dans la charge entre les crêtes. La variation résiduelle de tension est appelée tension d’ondulation. Pour un redresseur en pont fonctionnant à la fréquence f, avec résistance de charge R et capacité C, la tension d’ondulation crête-à-crête approximative est V_r ≈ V_DC / (2 × f × R × C). Le facteur d’ondulation, défini comme le rapport entre la tension d’ondulation et la tension de sortie CC, quantifie la qualité du lissage ; un facteur plus faible signifie une alimentation plus propre.\n\nLa tension inverse de crête (PIV) est la tension inverse maximale appliquée à une diode non conductrice pendant le fonctionnement du circuit. Pour un redresseur en pont, PIV = V_peak - V_diode_drop (une chute de diode en moins que la crête, puisqu’une autre diode partage la tension inverse). Les diodes doivent être prévues au-dessus du PIV pour éviter le claquage.\n\nLe rendement du redresseur mesure l’efficacité avec laquelle la puissance d’entrée CA est convertie en puissance de sortie CC utile. Le rendement théorique maximal d’un redresseur en pont est d’environ 81.2%, contre 40.6% pour une conception simple alternance. Le rendement réel est légèrement inférieur à cause des pertes de conduction des diodes et de la résistance du transformateur. Ce calculateur fournit les indicateurs clés pour aider les ingénieurs à vérifier si les composants choisis répondront aux spécifications de l’alimentation."
+  },
+  "examples": {
+    "heading": "Exemples de redresseur en pont",
+    "intro": "Exemples pratiques de conception d’alimentation montrant la sortie CC, l’ondulation et le PIV pour différentes tensions d’entrée et capacités de filtrage.",
+    "colInput": "Paramètres d’entrée",
+    "colOutput": "Sortie CC / ondulation",
+    "colNote": "Application",
+    "items": [
+      {
+        "input": "12 V RMS, 100 Ω, 0.7 V diode, 50 Hz, 1000 μF",
+        "output": "V_DC ≈ 15.6 V, Ripple ≈ 1.56 V",
+        "note": "Convertisseur CA vers CC standard de 12 V. La tension de crête est de 16.97 V ; deux chutes de diode réduisent la sortie ; 1000 μF fournit un filtrage modéré à 50 Hz."
+      },
+      {
+        "input": "5 V RMS, 50 Ω, 0.3 V diode, 60 Hz, 2200 μF",
+        "output": "V_DC ≈ 6.5 V, Ripple ≈ 0.49 V",
+        "note": "Alimentation 5 V avec diodes Schottky à faible chute directe. Une capacité plus élevée et la fréquence de 60 Hz se combinent pour réduire fortement l’ondulation."
+      },
+      {
+        "input": "24 V RMS, 200 Ω, 0.7 V diode, 50 Hz, 4700 μF",
+        "output": "V_DC ≈ 32.4 V, Ripple ≈ 0.69 V",
+        "note": "Alimentation de laboratoire 24 V haute puissance. La grande capacité produit un facteur d’ondulation très faible, adapté aux circuits analogiques sensibles."
+      },
+      {
+        "input": "120 V RMS, 1000 Ω, 0.7 V diode, 60 Hz, 100 μF",
+        "output": "V_DC ≈ 168.6 V, Ripple ≈ 14.0 V",
+        "note": "Redresseur haute tension avec filtrage minimal. Le facteur d’ondulation élevé montre pourquoi davantage de capacité ou un régulateur de tension est nécessaire pour obtenir une CC propre."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de redresseur en pont",
+    "steps": [
+      "Saisissez la tension d’entrée CA en volts RMS (la valeur indiquée sur le secondaire de votre transformateur ou sur l’étiquette de l’alimentation CA).",
+      "Saisissez la résistance de charge en ohms, qui détermine le courant CC consommé. Si vous connaissez le courant de charge, calculez R = V_DC / I.",
+      "Saisissez la chute de tension directe de la diode : utilisez 0.6–0.7 V pour des diodes au silicium standard ou 0.2–0.4 V pour des diodes Schottky.",
+      "Saisissez la fréquence de l’alimentation CA (50 Hz en Europe/Asie, 60 Hz en Amérique du Nord) et la capacité de filtrage en microfarads.",
+      "Cliquez sur Calculer pour afficher la tension de sortie CC, la tension d’ondulation, le facteur d’ondulation, le PIV, le rendement et le courant de charge CC. Ajustez la capacité pour respecter votre spécification d’ondulation."
+    ]
+  },
+  "faq": {
+    "heading": "Foire aux questions",
+    "q1": "Pourquoi un redresseur en pont utilise-t-il deux chutes de tension de diode au lieu d’une seule ?",
+    "q1_a": "Dans un redresseur en pont, deux diodes sont toujours en série avec la charge pendant la conduction : l’une côté entrée et l’autre côté retour. Chaque diode a une chute de tension directe, donc la chute totale soustraite à la tension de crête est 2 × V_diode. Un redresseur simple alternance n’utilise qu’une seule diode et ne perd qu’une seule chute, mais il gaspille la moitié du cycle d’entrée. La pénalité de deux chutes du pont est le prix à payer pour une rectification double alternance sans transformateur à prise médiane.",
+    "q2": "Qu’est-ce que le facteur d’ondulation et quelle valeur est acceptable ?",
+    "q2_a": "Le facteur d’ondulation est le rapport entre la tension d’ondulation RMS et la tension de sortie CC. Une valeur de 0.05 (5%) ou moins est généralement acceptable pour les alimentations CC générales. Les amplificateurs audio et les instruments de précision exigent souvent moins de 1% d’ondulation, ce qui s’obtient avec des condensateurs plus grands ou un étage de régulation linéaire après le redresseur. Le facteur d’ondulation théorique non filtré d’un redresseur en pont est d’environ 0.48.",
+    "q3": "Comment choisir la taille du condensateur de filtrage ?",
+    "q3_a": "Commencez par la spécification d’ondulation de votre circuit. Réarrangez la formule d’ondulation en C = V_DC / (2 × f × R × V_r_max). Par exemple, pour limiter l’ondulation à moins de 1 V sur une sortie de 15 V avec une charge de 100 Ω à 50 Hz, il faut C ≥ 15 / (2 × 50 × 100 × 1) = 1500 μF. Choisissez la valeur standard de condensateur immédiatement supérieure et vérifiez que sa tension nominale dépasse la tension de sortie de crête.",
+    "q4": "Qu’est-ce que la tension inverse de crête et pourquoi est-elle importante ?",
+    "q4_a": "La tension inverse de crête (PIV) est la tension inverse maximale qu’une diode doit supporter lorsqu’elle ne conduit pas. Si la valeur PIV des diodes est dépassée, elles peuvent claquer, se mettre en court-circuit et détruire toute l’alimentation. Choisissez des diodes avec une valeur PIV au moins 20% supérieure à la valeur calculée afin de conserver une marge de sécurité pour les transitoires et les tolérances des composants.",
+    "q5": "Comment la fréquence affecte-t-elle la sortie CC et l’ondulation ?",
+    "q5_a": "La fréquence CA ne modifie pas directement la tension moyenne de sortie CC, mais elle influence fortement le filtrage. À 60 Hz, le condensateur se recharge plus souvent qu’à 50 Hz, il se décharge donc moins entre les crêtes et produit moins d’ondulation pour une même capacité. Les alimentations à découpage fonctionnent à des dizaines ou des centaines de kilohertz, ce qui leur permet d’utiliser de petits condensateurs de filtrage tout en obtenant une ondulation très faible.",
+    "q6": "Ce calculateur peut-il être utilisé pour des redresseurs en pont triphasés ?",
+    "q6_a": "Non, ce calculateur est conçu pour les redresseurs en pont monophasés double alternance. Un redresseur en pont triphasé utilise six diodes et produit une sortie plus lisse, avec un facteur d’ondulation intrinsèquement plus faible (environ 4.2%) sans filtrage. La sortie CC triphasée idéale est V_DC = (3√3/π) × V_peak_line. Un calculateur triphasé séparé serait nécessaire pour ces conceptions."
+  }
+}

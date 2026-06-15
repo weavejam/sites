@@ -1,0 +1,99 @@
+{
+  "title": "Calculadora de disjuntor – bitola de fio",
+  "tagline": "Calcule o tamanho correto do disjuntor e a bitola do fio para qualquer carga elétrica com base em tensão, potência, fator de potência e condições de instalação.",
+  "intro": "Digite os parâmetros da carga elétrica para determinar a corrente necessária do disjuntor e a bitola recomendada do fio seguindo as orientações do NEC.",
+  "field": {
+    "voltage": "Tensão (V)",
+    "power": "Potência (W)",
+    "powerFactor": "Fator de potência",
+    "loadType": "Tipo de carga",
+    "ambientTemp": "Temperatura ambiente (°C)",
+    "phaseType": "Tipo de fase"
+  },
+  "loadType": {
+    "continuous": "Contínua",
+    "nonContinuous": "Não contínua"
+  },
+  "phaseType": {
+    "single": "Monofásica",
+    "three": "Trifásica"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite números positivos válidos em todos os campos.",
+    "powerFactor": "O fator de potência deve estar entre 0 e 1."
+  },
+  "result": {
+    "heading": "Resultados",
+    "loadCurrent": "Corrente da carga",
+    "designCurrent": "Corrente de projeto",
+    "breakerSize": "Tamanho do disjuntor necessário",
+    "wireGauge": "Bitola de fio recomendada",
+    "tempCorrFactor": "Fator de correção de temperatura",
+    "unit": {
+      "amps": "A",
+      "awg": "AWG"
+    }
+  },
+  "about": {
+    "heading": "Sobre a calculadora de disjuntor",
+    "body": "Um disjuntor é um dispositivo de segurança que interrompe automaticamente um circuito elétrico quando a corrente excede um nível seguro, protegendo a fiação e os equipamentos contra superaquecimento e incêndio. Escolher o disjuntor correto é uma das tarefas mais fundamentais no projeto de sistemas elétricos, seja na fiação de uma cozinha residencial, no dimensionamento de um circuito de motor comercial ou no planejamento de um painel industrial de distribuição.\n\nO cálculo começa determinando a corrente da carga, que é a corrente real consumida pelo equipamento conectado. Em um circuito monofásico, a corrente da carga I é igual à potência P dividida pelo produto da tensão V e do fator de potência PF: I = P / (V × PF). Em um circuito trifásico, a fórmula considera os três condutores: I = P / (√3 × V × PF). O fator de potência, um valor adimensional entre 0 e 1, representa o quão eficientemente a carga converte energia elétrica em trabalho útil. Cargas resistivas, como aquecedores, têm PF ≈ 1,0, enquanto motores e equipamentos eletrônicos normalmente ficam entre 0,7 e 0,95.\n\nDepois que a corrente da carga é conhecida, o Código Elétrico Nacional dos EUA (NEC) exige que cargas contínuas — aquelas que devem operar por 3 horas ou mais — sejam protegidas por um disjuntor com corrente nominal não inferior a 125% da corrente da carga. Esse derating leva em conta o esforço térmico nos condutores e nos contatos do disjuntor durante operação prolongada. Cargas não contínuas são protegidas a 100% da corrente da carga. Esta calculadora aplica automaticamente o multiplicador de 125% quando você seleciona o tipo de carga Contínua.\n\nA temperatura ambiente também afeta a capacidade de condução de corrente dos condutores. O NEC fornece fatores de correção com base na classificação térmica da isolação (normalmente 75°C para fio THHN padrão). À medida que a temperatura ambiente sobe acima da referência padrão de 30°C, os condutores precisam ser derated para não ultrapassar o limite térmico da isolação. Esta calculadora aplica o fator de correção apropriado do NEC 310.15 para a temperatura ambiente informada.\n\nA corrente de projeto após aplicar os fatores de carga contínua e temperatura determina o tamanho mínimo do disjuntor. As correntes nominais padrão seguem uma série fixa: 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200, 225, 250, 300, 350 e 400 amperes. A calculadora seleciona o menor tamanho padrão igual ou superior à corrente de projeto.\n\nA escolha da bitola do fio deriva diretamente da corrente nominal do disjuntor escolhida. Pelo NEC, a ampacidade do condutor a 75°C deve ser igual ou superior à corrente nominal do disjuntor. Esta calculadora retorna o tamanho mínimo necessário em American Wire Gauge (AWG) ou kcmil. Combinações comuns incluem 14 AWG com disjuntor de 15 A, 12 AWG com 20 A, 10 AWG com 30 A, 8 AWG com 40–50 A, 6 AWG com 60 A, 4 AWG com 85 A e 2 AWG com 115 A. Sempre verifique o projeto final com um eletricista licenciado e com os requisitos do código local, pois o preenchimento do eletroduto, a distância e as condições específicas de instalação podem exigir derating adicional."
+  },
+  "examples": {
+    "heading": "Exemplos de dimensionamento de disjuntor",
+    "intro": "Cenários reais de dimensionamento mostrando o efeito do tipo de carga, do fator de potência e da temperatura no disjuntor e na bitola do fio necessários.",
+    "colInput": "Entrada",
+    "colOutput": "Resultado",
+    "colNote": "Observações",
+    "items": [
+      {
+        "input": "120 V, 1800 W, PF 0.95, Não contínua, 25 °C, Monofásica",
+        "output": "Disjuntor de 20 A, fio 12 AWG",
+        "note": "Circuito típico de cozinha. Corrente da carga = 1800/(120×0.95) ≈ 15.8 A; corrente de projeto não contínua = 15.8 A → disjuntor padrão de 20 A, condutor 12 AWG."
+      },
+      {
+        "input": "480 V, 15000 W, PF 0.85, Contínua, 35 °C, Trifásica",
+        "output": "Disjuntor de 30 A, fio 10 AWG",
+        "note": "Motor trifásico. I = 15000/(√3×480×0.85) ≈ 21.2 A; corrente de projeto contínua = 21.2×1.25 ≈ 26.5 A → disjuntor padrão de 30 A, 10 AWG."
+      },
+      {
+        "input": "240 V, 3000 W, PF 1.0, Contínua, 30 °C, Monofásica",
+        "output": "Disjuntor de 20 A, fio 12 AWG",
+        "note": "Aquecedor resistivo. I = 3000/(240×1.0) = 12.5 A; corrente de projeto contínua = 12.5×1.25 = 15.6 A → disjuntor padrão de 20 A, condutor 12 AWG."
+      },
+      {
+        "input": "120 V, 2400 W, PF 0.9, Contínua, 40 °C, Monofásica",
+        "output": "Disjuntor de 30 A, fio 10 AWG",
+        "note": "Circuito contínuo de alta carga. Corrente da carga ≈ 22.2 A; corrente de projeto = 22.2×1.25 = 27.8 A → disjuntor padrão de 30 A, 10 AWG. O fator de temperatura (0.82) é apenas informativo para o derating do condutor."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de disjuntor",
+    "steps": [
+      "Digite a tensão do circuito em volts (V). Valores comuns são 120 V ou 240 V para circuitos monofásicos residenciais e 208 V ou 480 V para sistemas trifásicos comerciais.",
+      "Digite a potência total conectada em watts (W). Para vários aparelhos no mesmo circuito, some as potências nominais.",
+      "Digite o fator de potência da carga (0.01–1.0). Use 1.0 para cargas puramente resistivas, como aquecedores; use 0.85–0.95 para motores e equipamentos eletrônicos.",
+      "Selecione o tipo de carga (Contínua ou Não contínua), a temperatura ambiente e a configuração de fase e clique em Calcular.",
+      "Leia o tamanho do disjuntor necessário e a bitola de fio recomendada nos resultados. Verifique com um eletricista licenciado antes de iniciar a instalação."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "q1": "O que é uma carga contínua e por que ela precisa de um disjuntor maior?",
+    "q1_a": "Uma carga contínua é aquela que opera na corrente máxima por 3 horas ou mais. O NEC exige que o disjuntor seja nominal a 125% da corrente da carga contínua porque a corrente sustentada gera mais calor nos contatos do disjuntor e nos condutores do que a corrente intermitente. Essa margem extra evita disparos indevidos e reduz o risco de incêndio.",
+    "q2": "Por que a temperatura ambiente afeta o tamanho do disjuntor?",
+    "q2_a": "Os condutores dissipam calor por convecção. Quando a temperatura ambiente é alta, o condutor não consegue dissipar calor com tanta eficiência, então sua capacidade segura de condução de corrente (ampacidade) diminui. O NEC fornece fatores de correção para temperaturas acima de 30°C. Se você não considerar a temperatura ambiente elevada, o fio pode superaquecer mesmo que o disjuntor nunca desarme.",
+    "q3": "O que é fator de potência e como ele afeta o dimensionamento do disjuntor?",
+    "q3_a": "Fator de potência é a relação entre potência real (watts) e potência aparente (volt-ampères). Um fator de potência baixo significa que o circuito consome mais corrente do que a potência real sozinha sugeriria. Como disjuntores e fios respondem à corrente, e não aos watts, uma carga com fator de potência de 0.7 consome cerca de 43% mais corrente do que uma carga idêntica com PF = 1.0, exigindo um disjuntor maior.",
+    "q4": "Posso usar um disjuntor menor que o próximo tamanho padrão acima da minha corrente de projeto?",
+    "q4_a": "Não. O disjuntor deve ser nominal igual ou acima da corrente de projeto para evitar disparos indevidos em carga normal. Sempre arredonde para cima para o próximo tamanho padrão. Instalar um disjuntor subdimensionado é uma violação do código e cria risco de incêndio. Instalar um disjuntor superdimensionado sem um condutor correspondentemente maior é igualmente perigoso.",
+    "q5": "Como a energia trifásica muda o cálculo?",
+    "q5_a": "Em um sistema trifásico balanceado, a potência é distribuída entre três condutores, então cada condutor transporta menos corrente do que em um circuito monofásico equivalente. A fórmula I = P / (√3 × V × PF) divide a potência por √3 (aproximadamente 1,732) vezes a tensão linha a linha. Isso normalmente resulta em disjuntores menores e fios mais finos em comparação com o monofásico para a mesma potência total.",
+    "q6": "Esta calculadora considera o preenchimento do eletroduto e a queda de tensão?",
+    "q6_a": "Não. Esta calculadora aplica a correção básica de temperatura NEC 310.15 e o derating de carga contínua. Trechos longos de cabo podem exigir bitola maior para limitar a queda de tensão a 3–5%, e vários condutores agrupados em um eletroduto exigem derating adicional. Consulte sempre as tabelas completas do NEC ou um eletricista licenciado para a seleção final do fio e do disjuntor."
+  }
+}

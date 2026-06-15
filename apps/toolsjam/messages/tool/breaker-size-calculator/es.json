@@ -1,0 +1,99 @@
+{
+  "title": "Calculadora de tamaño de disyuntor – calibre de cable",
+  "tagline": "Calcula el tamaño correcto del disyuntor y el calibre del cable para cualquier carga eléctrica según el voltaje, la potencia, el factor de potencia y las condiciones de cableado.",
+  "intro": "Introduce los parámetros de la carga eléctrica para determinar el amperaje requerido del disyuntor y el calibre de cable recomendado siguiendo las pautas del NEC.",
+  "field": {
+    "voltage": "Voltaje (V)",
+    "power": "Potencia (W)",
+    "powerFactor": "Factor de potencia",
+    "loadType": "Tipo de carga",
+    "ambientTemp": "Temperatura ambiente (°C)",
+    "phaseType": "Tipo de fase"
+  },
+  "loadType": {
+    "continuous": "Continua",
+    "nonContinuous": "No continua"
+  },
+  "phaseType": {
+    "single": "Monofásica",
+    "three": "Trifásica"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce números positivos válidos en todos los campos.",
+    "powerFactor": "El factor de potencia debe estar entre 0 y 1."
+  },
+  "result": {
+    "heading": "Resultados",
+    "loadCurrent": "Corriente de carga",
+    "designCurrent": "Corriente de diseño",
+    "breakerSize": "Tamaño de disyuntor requerido",
+    "wireGauge": "Calibre de cable recomendado",
+    "tempCorrFactor": "Factor de corrección por temperatura",
+    "unit": {
+      "amps": "A",
+      "awg": "AWG"
+    }
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de tamaño de disyuntor",
+    "body": "Un disyuntor es un dispositivo de seguridad que interrumpe automáticamente un circuito eléctrico cuando la corriente supera un nivel seguro, protegiendo el cableado y los equipos contra el sobrecalentamiento y el incendio. Seleccionar el tamaño correcto del disyuntor es una de las tareas más fundamentales en el diseño de sistemas eléctricos, ya sea que estés cableando una cocina residencial, dimensionando un circuito de motor comercial o planificando un panel industrial de distribución de energía.\n\nEl cálculo comienza determinando la corriente de carga, que es la corriente real consumida por el equipo conectado. En un circuito monofásico, la corriente de carga I es igual a la potencia P dividida por el producto del voltaje V y el factor de potencia PF: I = P / (V × PF). En un circuito trifásico, la fórmula considera los tres conductores: I = P / (√3 × V × PF). El factor de potencia, un valor adimensional entre 0 y 1, representa qué tan eficientemente la carga convierte la energía eléctrica en trabajo útil. Las cargas resistivas, como los calefactores, tienen PF ≈ 1.0, mientras que los motores y los equipos electrónicos suelen estar entre 0.7 y 0.95.\n\nUna vez conocida la corriente de carga, el Código Eléctrico Nacional (NEC) de Estados Unidos exige que las cargas continuas —aquellas que se espera que funcionen durante 3 horas o más— estén protegidas por un disyuntor con una capacidad nominal no menor al 125% de la corriente de carga. Esta reducción de capacidad compensa el esfuerzo térmico sobre los conductores y los contactos del disyuntor durante el funcionamiento prolongado. Las cargas no continuas se protegen al 100% de la corriente de carga. Esta calculadora aplica automáticamente el multiplicador del 125% cuando seleccionas el tipo de carga Continua.\n\nLa temperatura ambiente también afecta la capacidad de conducción de corriente de los conductores. El NEC proporciona factores de corrección basados en la clasificación térmica del aislamiento (normalmente 75°C para el cable THHN estándar). A medida que la temperatura ambiente supera la referencia estándar de 30°C, los conductores deben desclasificarse para no exceder el límite térmico de su aislamiento. Esta calculadora aplica el factor de corrección adecuado del NEC 310.15 para la temperatura ambiente que especifiques.\n\nLa corriente de diseño requerida después de aplicar los factores de carga continua y temperatura determina el tamaño mínimo del disyuntor. Las capacidades nominales estándar siguen una serie fija: 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200, 225, 250, 300, 350 y 400 amperios. La calculadora selecciona el tamaño estándar más pequeño que sea igual o superior a la corriente de diseño.\n\nLa selección del calibre del cable se deriva directamente de la capacidad del disyuntor elegida. Según el NEC, la ampacidad del conductor a 75°C debe ser igual o superior a la capacidad del disyuntor. Esta calculadora devuelve el tamaño mínimo requerido en American Wire Gauge (AWG) o kcmil. Las combinaciones comunes incluyen 14 AWG con disyuntor de 15 A, 12 AWG con 20 A, 10 AWG con 30 A, 8 AWG con 40–50 A, 6 AWG con 60 A, 4 AWG con 85 A y 2 AWG con 115 A. Verifica siempre tu diseño final con un electricista autorizado y los requisitos del código local, ya que el llenado del conducto, la distancia y las condiciones específicas de instalación pueden requerir una desclasificación adicional."
+  },
+  "examples": {
+    "heading": "Ejemplos de tamaño de disyuntor",
+    "intro": "Escenarios reales de dimensionamiento que muestran el efecto del tipo de carga, el factor de potencia y la temperatura sobre el disyuntor y el cable requeridos.",
+    "colInput": "Entrada",
+    "colOutput": "Resultado",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "120 V, 1800 W, PF 0.95, No continua, 25 °C, Monofásica",
+        "output": "Disyuntor de 20 A, cable 12 AWG",
+        "note": "Circuito típico de cocina. Corriente de carga = 1800/(120×0.95) ≈ 15.8 A; corriente de diseño no continua = 15.8 A → disyuntor estándar de 20 A, conductor 12 AWG."
+      },
+      {
+        "input": "480 V, 15000 W, PF 0.85, Continua, 35 °C, Trifásica",
+        "output": "Disyuntor de 30 A, cable 10 AWG",
+        "note": "Motor trifásico. I = 15000/(√3×480×0.85) ≈ 21.2 A; corriente de diseño continua = 21.2×1.25 ≈ 26.5 A → disyuntor estándar de 30 A, 10 AWG."
+      },
+      {
+        "input": "240 V, 3000 W, PF 1.0, Continua, 30 °C, Monofásica",
+        "output": "Disyuntor de 20 A, cable 12 AWG",
+        "note": "Calefactor resistivo. I = 3000/(240×1.0) = 12.5 A; corriente de diseño continua = 12.5×1.25 = 15.6 A → disyuntor estándar de 20 A, conductor 12 AWG."
+      },
+      {
+        "input": "120 V, 2400 W, PF 0.9, Continua, 40 °C, Monofásica",
+        "output": "Disyuntor de 30 A, cable 10 AWG",
+        "note": "Circuito continuo de alta carga. Corriente de carga ≈ 22.2 A; corriente de diseño = 22.2×1.25 = 27.8 A → disyuntor estándar de 30 A, 10 AWG. El factor de temperatura (0.82) es solo informativo para la desclasificación del conductor."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de tamaño de disyuntor",
+    "steps": [
+      "Introduce el voltaje del circuito en voltios (V). Los valores comunes son 120 V o 240 V para circuitos monofásicos residenciales y 208 V o 480 V para sistemas trifásicos comerciales.",
+      "Introduce la potencia total conectada en vatios (W). Si hay varios aparatos en el mismo circuito, suma sus potencias nominales.",
+      "Introduce el factor de potencia de la carga (0.01–1.0). Usa 1.0 para cargas puramente resistivas como calefactores; usa 0.85–0.95 para motores y equipos electrónicos.",
+      "Selecciona el tipo de carga (Continua o No continua), la temperatura ambiente y la configuración de fase, luego haz clic en Calcular.",
+      "Lee el tamaño de disyuntor requerido y el calibre de cable recomendado en los resultados. Verifica con un electricista autorizado antes de proceder con la instalación."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "q1": "¿Qué es una carga continua y por qué necesita un disyuntor más grande?",
+    "q1_a": "Una carga continua es aquella que opera a corriente máxima durante 3 horas o más. El NEC exige que el disyuntor esté clasificado al 125% de la corriente de carga continua porque la corriente sostenida genera más calor en los contactos del disyuntor y en los conductores que la corriente intermitente. Este margen adicional evita disparos molestos y reduce el riesgo de incendio.",
+    "q2": "¿Por qué la temperatura ambiente afecta el tamaño del disyuntor?",
+    "q2_a": "Los conductores disipan calor por convección. Cuando la temperatura ambiente es alta, el conductor no puede disipar el calor con tanta eficacia, por lo que disminuye su capacidad segura de conducción de corriente (ampacidad). El NEC proporciona factores de corrección para temperaturas superiores a 30°C. Si no consideras la temperatura ambiente elevada, el cable puede sobrecalentarse incluso si el disyuntor nunca se dispara.",
+    "q3": "¿Qué es un factor de potencia y cómo afecta al dimensionamiento del disyuntor?",
+    "q3_a": "El factor de potencia es la relación entre la potencia real (vatios) y la potencia aparente (voltio-amperios). Un factor de potencia bajo significa que el circuito consume más corriente de la que sugeriría la potencia real por sí sola. Como los disyuntores y los cables responden a la corriente y no a los vatios, una carga con un factor de potencia de 0.7 consume alrededor de un 43% más de corriente que una carga idéntica con PF = 1.0, requiriendo un disyuntor mayor.",
+    "q4": "¿Puedo usar un disyuntor más pequeño que el siguiente tamaño estándar por encima de mi corriente de diseño?",
+    "q4_a": "No. El disyuntor debe estar clasificado igual o por encima de la corriente de diseño para evitar disparos molestos bajo carga normal. Siempre redondea hacia arriba al siguiente tamaño estándar de disyuntor. Instalar un disyuntor subdimensionado incumple el código y crea un riesgo de incendio. Instalar un disyuntor sobredimensionado sin un conductor igualmente mayor es igualmente peligroso.",
+    "q5": "¿Cómo cambia el cálculo la energía trifásica?",
+    "q5_a": "En un sistema trifásico equilibrado, la potencia se distribuye entre tres conductores, por lo que cada conductor transporta menos corriente que en un circuito monofásico equivalente. La fórmula I = P / (√3 × V × PF) divide la potencia por √3 (aprox. 1.732) veces el voltaje entre líneas. Esto normalmente da como resultado disyuntores más pequeños y cables más delgados que en monofásico con la misma potencia total.",
+    "q6": "¿Esta calculadora tiene en cuenta el llenado del conducto y la caída de tensión?",
+    "q6_a": "No. Esta calculadora aplica la corrección básica de temperatura NEC 310.15 y la desclasificación por carga continua. Los recorridos largos de cable pueden requerir un calibre mayor para limitar la caída de tensión al 3–5%, y varios conductores agrupados en un conducto requieren una desclasificación adicional. Consulta siempre las tablas completas del NEC o a un electricista autorizado para la selección final del cable y del disyuntor."
+  }
+}

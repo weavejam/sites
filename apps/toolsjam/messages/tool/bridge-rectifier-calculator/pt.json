@@ -1,0 +1,92 @@
+{
+  "title": "Calculadora de retificador em ponte – conversão de CA para CC",
+  "tagline": "Calcule a tensão de saída CC, a tensão de ripple, a eficiência e a tensão inversa de pico para um circuito retificador em ponte de onda completa.",
+  "intro": "Insira os parâmetros de entrada CA e os valores do circuito para analisar o desempenho do retificador em ponte, incluindo o fator de ripple e a saída CC.",
+  "field": {
+    "acVoltage": "Tensão de entrada CA (RMS)",
+    "resistance": "Resistência da carga (Ω)",
+    "diodeDrop": "Queda de tensão do diodo (V)",
+    "frequency": "Frequência CA (Hz)",
+    "capacitance": "Capacitância do filtro (μF)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Informe números positivos válidos em todos os campos."
+  },
+  "result": {
+    "heading": "Resultados",
+    "peakVoltage": "Tensão de pico de entrada",
+    "dcOutput": "Tensão de saída CC",
+    "rippleVoltage": "Tensão de ripple (p-p)",
+    "rippleFactor": "Fator de ripple",
+    "piv": "Tensão inversa de pico (PIV)",
+    "efficiency": "Eficiência do retificador",
+    "loadCurrent": "Corrente de carga CC",
+    "unit": {
+      "volts": "V",
+      "amps": "A",
+      "percent": "%"
+    }
+  },
+  "about": {
+    "heading": "Sobre a calculadora de retificador em ponte",
+    "body": "Um retificador em ponte é uma disposição de quatro diodos conectados em configuração de ponte que converte corrente alternada (CA) em corrente contínua (CC). Diferente de um retificador de meia onda, que usa apenas um diodo e desperdiça metade do ciclo de entrada, ou de um retificador de onda completa com derivação central, que exige um transformador com tomada central, o retificador em ponte usa ambas as metades do ciclo de CA com uma rede simples de quatro diodos e qualquer secundário de transformador comum. É a topologia de retificação mais comum em fontes de alimentação, carregadores de bateria e conversores CA para CC.\n\nO processo de retificação começa com a tensão de entrada CA, que oscila sinusoidalmente em torno de zero. O valor de pico dessa tensão é V_peak = V_rms × √2, onde V_rms é o valor eficaz impresso nas placas dos equipamentos e medido por voltímetros CA padrão. Durante o semiciclo positivo, dois dos quatro diodos da ponte conduzem, e durante o semiciclo negativo, os outros dois conduzem. Em ambos os casos, a corrente flui pela carga na mesma direção, produzindo uma forma de onda CC pulsante que atinge seu pico duas vezes por ciclo CA.\n\nCada diodo tem uma pequena queda de tensão direta, tipicamente 0.6–0.7 V para diodos de junção p-n de silício e 0.2–0.4 V para diodos Schottky. Como dois diodos conduzem sempre em série em um dado momento, a tensão de pico efetiva de saída é V_peak_out = V_peak - 2 × V_diode_drop. A tensão média (CC) de saída de um retificador em ponte é V_DC = (2/π) × V_peak_out ≈ 0.6366 × V_peak_out.\n\nUm capacitor em paralelo com a carga filtra a CC pulsante carregando-se próximo da tensão de pico e descarregando-se lentamente na carga entre os picos. A variação residual de tensão é chamada de ripple. Para um retificador em ponte operando na frequência f, com resistência de carga R e capacitância C, a tensão de ripple pico a pico aproximada é V_r ≈ V_DC / (2 × f × R × C). O fator de ripple, definido como a razão entre a tensão de ripple e a tensão de saída CC, quantifica quão suave é a saída; um fator menor significa uma alimentação mais limpa.\n\nA tensão inversa de pico (PIV) é a tensão inversa máxima que aparece sobre um diodo não condutor durante a operação do circuito. Para um retificador em ponte, PIV = V_peak - V_diode_drop (uma queda de diodo a menos que o pico, já que outro diodo compartilha a tensão inversa). Os diodos devem ser especificados acima do PIV para evitar ruptura.\n\nA eficiência do retificador mede com que eficácia a potência de entrada CA é convertida em potência útil de saída CC. A eficiência teórica máxima de um retificador em ponte é de aproximadamente 81.2%, em comparação com 40.6% para um projeto de meia onda. A eficiência real é um pouco menor devido às perdas de condução dos diodos e à resistência do transformador. Esta calculadora fornece as métricas principais para que engenheiros avaliem se os componentes escolhidos atenderão às especificações da fonte de alimentação."
+  },
+  "examples": {
+    "heading": "Exemplos de retificador em ponte",
+    "intro": "Projetos práticos de fonte de alimentação mostrando saída CC, ripple e PIV para diferentes tensões de entrada e capacitores de filtro.",
+    "colInput": "Parâmetros de entrada",
+    "colOutput": "Saída CC / ripple",
+    "colNote": "Aplicação",
+    "items": [
+      {
+        "input": "12 V RMS, 100 Ω, 0.7 V diode, 50 Hz, 1000 μF",
+        "output": "V_DC ≈ 15.6 V, Ripple ≈ 1.56 V",
+        "note": "Conversor padrão de 12 V CA para CC. A tensão de pico é 16.97 V; duas quedas de diodo reduzem a saída; 1000 μF fornece filtragem moderada em 50 Hz."
+      },
+      {
+        "input": "5 V RMS, 50 Ω, 0.3 V diode, 60 Hz, 2200 μF",
+        "output": "V_DC ≈ 6.5 V, Ripple ≈ 0.49 V",
+        "note": "Fonte de 5 V com diodos Schottky de baixa queda direta. Capacitância maior e frequência de 60 Hz se combinam para reduzir bastante o ripple."
+      },
+      {
+        "input": "24 V RMS, 200 Ω, 0.7 V diode, 50 Hz, 4700 μF",
+        "output": "V_DC ≈ 32.4 V, Ripple ≈ 0.69 V",
+        "note": "Fonte de bancada de 24 V de alta potência. A grande capacitância produz um fator de ripple muito baixo, adequado para circuitos analógicos sensíveis."
+      },
+      {
+        "input": "120 V RMS, 1000 Ω, 0.7 V diode, 60 Hz, 100 μF",
+        "output": "V_DC ≈ 168.6 V, Ripple ≈ 14.0 V",
+        "note": "Retificador de alta tensão com filtragem mínima. O grande fator de ripple mostra por que é necessário mais capacitância ou um regulador de tensão para obter CC limpa."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de retificador em ponte",
+    "steps": [
+      "Informe a tensão de entrada CA em volts RMS (o valor mostrado no secundário do transformador ou na etiqueta da fonte CA).",
+      "Informe a resistência da carga em ohms, que determina a corrente CC consumida. Se a corrente de carga for conhecida, calcule R = V_DC / I.",
+      "Informe a queda de tensão direta do diodo: use 0.6–0.7 V para diodos de silício padrão ou 0.2–0.4 V para diodos Schottky.",
+      "Informe a frequência da fonte CA (50 Hz na Europa/Ásia, 60 Hz na América do Norte) e a capacitância do filtro em microfarads.",
+      "Clique em Calcular para ver a tensão de saída CC, a tensão de ripple, o fator de ripple, o PIV, a eficiência e a corrente de carga CC. Ajuste a capacitância para atender à sua especificação de ripple."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "q1": "Por que um retificador em ponte usa duas quedas de tensão de diodo em vez de uma?",
+    "q1_a": "Em um retificador em ponte, dois diodos estão sempre em série com a carga durante a condução — um no lado de entrada e outro no lado de retorno. Cada diodo tem uma queda de tensão direta, então a queda total subtraída da tensão de pico é 2 × V_diode. Um retificador de meia onda usa apenas um diodo e perde somente uma queda, mas desperdiça metade do ciclo de entrada. A penalidade de duas quedas da ponte é o custo da retificação de onda completa sem transformador com tomada central.",
+    "q2": "O que é fator de ripple e qual valor é aceitável?",
+    "q2_a": "O fator de ripple é a razão entre a tensão de ripple RMS e a tensão de saída CC. Um valor de 0.05 (5%) ou menos geralmente é aceitável para fontes CC de uso geral. Amplificadores de áudio e instrumentos de precisão costumam exigir menos de 1% de ripple, obtido com capacitores maiores ou com uma etapa de regulação linear após o retificador. O fator de ripple teórico sem filtro de um retificador em ponte é aproximadamente 0.48.",
+    "q3": "Como escolher o tamanho do capacitor de filtro?",
+    "q3_a": "Comece pela especificação de ripple do seu circuito. Reorganize a fórmula do ripple para C = V_DC / (2 × f × R × V_r_max). Por exemplo, para manter o ripple abaixo de 1 V em uma saída de 15 V com carga de 100 Ω a 50 Hz, você precisa de C ≥ 15 / (2 × 50 × 100 × 1) = 1500 μF. Escolha o próximo valor padrão de capacitor acima do calculado e garanta que sua tensão nominal exceda a tensão de pico de saída.",
+    "q4": "O que é tensão inversa de pico e por que ela importa?",
+    "q4_a": "A tensão inversa de pico (PIV) é a tensão reversa máxima que um diodo deve suportar quando não está conduzindo. Se a classificação de PIV dos diodos for excedida, eles podem entrar em ruptura, curto-circuitar e destruir toda a fonte. Selecione diodos com PIV de pelo menos 20% acima do valor calculado para dar margem de segurança para transitórios e tolerâncias de componentes.",
+    "q5": "Como a frequência afeta a saída CC e o ripple?",
+    "q5_a": "A frequência CA não altera diretamente a tensão média de saída CC, mas afeta muito o filtro. Em 60 Hz, o capacitor é recarregado com mais frequência do que em 50 Hz, então descarrega menos entre os picos e produz menos ripple para o mesmo valor de capacitor. Fontes chaveadas operam em dezenas a centenas de quilohertz, por isso podem usar capacitores de filtro pequenos e ainda assim obter ripple muito baixo.",
+    "q6": "Esta calculadora pode ser usada para retificadores em ponte trifásicos?",
+    "q6_a": "Não, esta calculadora foi projetada para retificadores em ponte monofásicos de onda completa. Um retificador em ponte trifásico usa seis diodos e produz uma saída mais suave, com um fator de ripple inerentemente menor (cerca de 4.2%) sem filtragem. A saída CC trifásica ideal é V_DC = (3√3/π) × V_peak_line. Seria necessária uma calculadora trifásica separada para esses projetos."
+  }
+}

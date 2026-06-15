@@ -1,0 +1,92 @@
+{
+  "title": "Brückengleichrichter-Rechner – AC-zu-DC-Umwandlung",
+  "tagline": "Berechnen Sie DC-Ausgangsspannung, Ripple-Spannung, Wirkungsgrad und Spitzensperrspannung für eine Vollweggleichrichter-Brückenschaltung.",
+  "intro": "Geben Sie die AC-Eingangsparameter und Schaltungswerte ein, um die Leistung des Brückengleichrichters einschließlich Ripple-Faktor und DC-Ausgang zu analysieren.",
+  "field": {
+    "acVoltage": "AC-Eingangsspannung (RMS)",
+    "resistance": "Lastwiderstand (Ω)",
+    "diodeDrop": "Diodenspannungsabfall (V)",
+    "frequency": "AC-Frequenz (Hz)",
+    "capacitance": "Filterkapazität (μF)"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie für alle Felder gültige positive Zahlen ein."
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "peakVoltage": "Eingangsspitzenwert",
+    "dcOutput": "DC-Ausgangsspannung",
+    "rippleVoltage": "Ripple-Spannung (SS)",
+    "rippleFactor": "Ripple-Faktor",
+    "piv": "Spitzensperrspannung (PIV)",
+    "efficiency": "Gleichrichterwirkungsgrad",
+    "loadCurrent": "DC-Laststrom",
+    "unit": {
+      "volts": "V",
+      "amps": "A",
+      "percent": "%"
+    }
+  },
+  "about": {
+    "heading": "Über den Brückengleichrichter-Rechner",
+    "body": "Ein Brückengleichrichter ist eine Anordnung aus vier Dioden in Brückenschaltung, die Wechselstrom (AC) in Gleichstrom (DC) umwandelt. Anders als ein Halbwellen-Gleichrichter, der nur eine Diode verwendet und die Hälfte des Eingangssignals verschwendet, oder ein Vollweggleichrichter mit Mittelanzapfung, der einen Transformator mit Mittelanzapfung benötigt, nutzt der Brückengleichrichter beide Halbwellen des AC-Signals mit einem einfachen Vier-Dioden-Netzwerk und jedem gewöhnlichen Transformatorsekundärkreis. Er ist die häufigste Gleichrichterschaltung in Netzteilen, Batterieladegeräten und AC-zu-DC-Wandlern.\n\nDer Gleichrichtungsprozess beginnt mit der AC-Eingangsspannung, die sinusförmig um Null schwingt. Der Spitzenwert dieser Spannung ist V_peak = V_rms × √2, wobei V_rms der auf Typenschildern angegebene und mit Standard-AC-Voltmetern gemessene Effektivwert ist. Während der positiven Halbwelle leiten zwei der vier Brückendioden, und während der negativen Halbwelle leiten die anderen zwei. In beiden Fällen fließt der Strom in derselben Richtung durch die Last, wodurch eine pulsierende DC-Wellenform entsteht, die pro AC-Zyklus zweimal den Spitzenwert erreicht.\n\nJede Diode hat einen kleinen Durchlassspannungsabfall, typischerweise 0.6–0.7 V bei Silizium-p-n-Dioden und 0.2–0.4 V bei Schottky-Dioden. Da zu jedem Zeitpunkt zwei Dioden in Serie leiten, ist die effektive Spitzen-Ausgangsspannung V_peak_out = V_peak - 2 × V_diode_drop. Die mittlere (DC-)Ausgangsspannung eines Brückengleichrichters ist V_DC = (2/π) × V_peak_out ≈ 0.6366 × V_peak_out.\n\nEin parallel zur Last geschalteter Kondensator glättet die pulsierende DC-Spannung, indem er sich nahe der Spitzenspannung auflädt und sich zwischen den Spitzen langsam in die Last entlädt. Die verbleibende Spannungsänderung heißt Ripple-Spannung. Für einen Brückengleichrichter mit Frequenz f, Lastwiderstand R und Kapazität C beträgt die näherungsweise Spitz-zu-Spitz-Ripple-Spannung V_r ≈ V_DC / (2 × f × R × C). Der Ripple-Faktor, definiert als Verhältnis von Ripple-Spannung zu DC-Ausgangsspannung, beschreibt, wie glatt die Ausgangsspannung ist; ein niedrigerer Ripple-Faktor bedeutet eine sauberere Versorgung.\n\nDie Spitzensperrspannung (PIV) ist die maximale Sperrspannung, die an einer nicht leitenden Diode während des Betriebs auftritt. Bei einem Brückengleichrichter gilt PIV = V_peak - V_diode_drop (also ein Diodenabfall weniger als der Spitzenwert, da eine andere Diode die Sperrspannung mitträgt). Dioden müssen oberhalb der PIV spezifiziert sein, um einen Durchbruch zu vermeiden.\n\nDer Gleichrichterwirkungsgrad misst, wie effizient die AC-Eingangsleistung in nutzbare DC-Ausgangsleistung umgewandelt wird. Der theoretische Maximalwirkungsgrad eines Brückengleichrichters liegt bei etwa 81.2%, gegenüber 40.6% bei einer Halbwellen-Schaltung. Der reale Wirkungsgrad ist wegen Diodenleitverlusten und Transformatorwiderstand etwas geringer. Dieser Rechner liefert die wichtigsten Kennwerte, damit Ingenieure beurteilen können, ob die gewählten Bauteile die Anforderungen der Stromversorgung erfüllen."
+  },
+  "examples": {
+    "heading": "Beispiele für Brückengleichrichter",
+    "intro": "Praktische Netzteil-Designs mit DC-Ausgang, Ripple und PIV für verschiedene Eingangsspannungen und Filterkondensatoren.",
+    "colInput": "Eingangsparameter",
+    "colOutput": "DC-Ausgang / Ripple",
+    "colNote": "Anwendung",
+    "items": [
+      {
+        "input": "12 V RMS, 100 Ω, 0.7 V diode, 50 Hz, 1000 μF",
+        "output": "V_DC ≈ 15.6 V, Ripple ≈ 1.56 V",
+        "note": "Standard-12-V-AC-zu-DC-Wandler. Die Spitzenspannung beträgt 16.97 V; zwei Diodenabfälle verringern den Ausgang; 1000 μF sorgen bei 50 Hz für eine moderate Glättung."
+      },
+      {
+        "input": "5 V RMS, 50 Ω, 0.3 V diode, 60 Hz, 2200 μF",
+        "output": "V_DC ≈ 6.5 V, Ripple ≈ 0.49 V",
+        "note": "5-V-Versorgung mit Schottky-Dioden und niedriger Durchlassspannung. Höhere Kapazität und 60 Hz reduzieren das Ripple deutlich."
+      },
+      {
+        "input": "24 V RMS, 200 Ω, 0.7 V diode, 50 Hz, 4700 μF",
+        "output": "V_DC ≈ 32.4 V, Ripple ≈ 0.69 V",
+        "note": "Leistungsstarkes 24-V-Labornetzteil. Die große Kapazität erzeugt einen sehr niedrigen Ripple-Faktor, geeignet für empfindliche analoge Schaltungen."
+      },
+      {
+        "input": "120 V RMS, 1000 Ω, 0.7 V diode, 60 Hz, 100 μF",
+        "output": "V_DC ≈ 168.6 V, Ripple ≈ 14.0 V",
+        "note": "Hochspannungs-Gleichrichter mit minimaler Glättung. Der hohe Ripple-Faktor zeigt, warum für sauberes DC mehr Kapazität oder ein Spannungsregler nötig ist."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Brückengleichrichter-Rechner",
+    "steps": [
+      "Geben Sie die AC-Eingangsspannung in RMS-Volt ein (den Wert auf der Sekundärseite Ihres Transformators oder auf dem AC-Versorgungsschild).",
+      "Geben Sie den Lastwiderstand in Ohm ein, der den DC-Strom bestimmt. Wenn der Laststrom bekannt ist, berechnen Sie R = V_DC / I.",
+      "Geben Sie den Vorwärtsspannungsabfall der Diode ein: Verwenden Sie 0.6–0.7 V für Standard-Siliziumdioden oder 0.2–0.4 V für Schottky-Dioden.",
+      "Geben Sie die Frequenz der AC-Versorgung (50 Hz in Europa/Asien, 60 Hz in Nordamerika) und die Filterkapazität in Mikrofarad ein.",
+      "Klicken Sie auf Berechnen, um DC-Ausgangsspannung, Ripple-Spannung, Ripple-Faktor, PIV, Wirkungsgrad und DC-Laststrom anzuzeigen. Passen Sie die Kapazität an, um Ihre Ripple-Vorgabe zu erfüllen."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "q1": "Warum verwendet ein Brückengleichrichter zwei Diodenspannungsabfälle statt nur einen?",
+    "q1_a": "Bei einem Brückengleichrichter sind während der Leitphase immer zwei Dioden in Serie mit der Last geschaltet – eine auf der Eingangsseite und eine auf der Rückleitung. Jede Diode hat einen Vorwärtsspannungsabfall, daher beträgt der insgesamt von der Spitzenspannung abzuziehende Abfall 2 × V_diode. Ein Halbwellen-Gleichrichter verwendet nur eine Diode und verliert nur einen Abfall, verschwendet aber die Hälfte des Eingangssignals. Der Zwei-Abfälle-Nachteil der Brücke ist der Preis für Vollweggleichrichtung ohne Mittelanzapfungs-Transformator.",
+    "q2": "Was ist der Ripple-Faktor und welcher Wert ist akzeptabel?",
+    "q2_a": "Der Ripple-Faktor ist das Verhältnis der RMS-Ripple-Spannung zur DC-Ausgangsspannung. Ein Wert von 0.05 (5%) oder weniger ist für allgemeine DC-Netzteile normalerweise akzeptabel. Audioverstärker und Präzisionsinstrumente benötigen oft weniger als 1% Ripple, was mit größeren Kondensatoren oder einer linearen Spannungsregelstufe nach dem Gleichrichter erreicht wird. Der theoretische unfiltrierte Ripple-Faktor eines Brückengleichrichters liegt bei etwa 0.48.",
+    "q3": "Wie wähle ich die Größe des Filterkondensators?",
+    "q3_a": "Beginnen Sie mit der Ripple-Spannungsspezifikation Ihrer Schaltung. Stellen Sie die Ripple-Formel um zu C = V_DC / (2 × f × R × V_r_max). Um beispielsweise das Ripple bei 15 V Ausgang und 100 Ω Last bei 50 Hz unter 1 V zu halten, benötigen Sie C ≥ 15 / (2 × 50 × 100 × 1) = 1500 μF. Wählen Sie die nächste Standard-Kapazität oberhalb des berechneten Werts und stellen Sie sicher, dass ihre Spannungsfestigkeit die Spitzenausgangsspannung übersteigt.",
+    "q4": "Was ist die Spitzensperrspannung und warum ist sie wichtig?",
+    "q4_a": "Die Spitzensperrspannung (PIV) ist die maximale Rückwärtsspannung, die eine Diode im nicht leitenden Zustand aushalten muss. Wird die PIV-Bewertung der Dioden überschritten, können sie durchbrechen, kurzgeschlossen werden und die gesamte Versorgung zerstören. Wählen Sie Dioden mit einer PIV-Bewertung von mindestens 20% über dem berechneten Wert, um eine Sicherheitsreserve für Transienten und Bauteiltoleranzen zu haben.",
+    "q5": "Wie wirkt sich die Frequenz auf DC-Ausgang und Ripple aus?",
+    "q5_a": "Die AC-Frequenz ändert die mittlere DC-Ausgangsspannung nicht direkt, beeinflusst aber die Glättung stark. Bei 60 Hz wird der Kondensator häufiger nachgeladen als bei 50 Hz, sodass er zwischen den Spitzen weniger entlädt und bei gleichem Kondensatorwert weniger Ripple entsteht. Schaltnetzteile arbeiten mit Zehn- bis Hunderttausenden Hertz, weshalb sie kleine Filterkondensatoren verwenden und dennoch sehr geringes Ripple erreichen können.",
+    "q6": "Kann dieser Rechner für dreiphasige Brückengleichrichter verwendet werden?",
+    "q6_a": "Nein, dieser Rechner ist für einphasige Vollweggleichrichter in Brückenschaltung ausgelegt. Ein dreiphasiger Brückengleichrichter verwendet sechs Dioden und erzeugt eine glattere Ausgangsspannung mit einem von Natur aus niedrigeren Ripple-Faktor (etwa 4.2%) ohne Filterung. Die ideale dreiphasige DC-Ausgangsspannung ist V_DC = (3√3/π) × V_peak_line. Für solche Auslegungen wäre ein separater Dreiphasen-Rechner erforderlich."
+  }
+}

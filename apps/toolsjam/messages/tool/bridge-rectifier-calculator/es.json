@@ -1,0 +1,92 @@
+{
+  "title": "Calculadora de rectificador en puente – conversión de CA a CC",
+  "tagline": "Calcula el voltaje de salida CC, el voltaje de rizado, la eficiencia y el voltaje inverso pico para un rectificador de puente de onda completa.",
+  "intro": "Ingresa los parámetros de entrada de CA y los valores del circuito para analizar el rendimiento del rectificador en puente, incluido el factor de rizado y la salida CC.",
+  "field": {
+    "acVoltage": "Voltaje de entrada CA (RMS)",
+    "resistance": "Resistencia de carga (Ω)",
+    "diodeDrop": "Caída de voltaje del diodo (V)",
+    "frequency": "Frecuencia de CA (Hz)",
+    "capacitance": "Capacitancia del filtro (μF)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Ingresa números positivos válidos en todos los campos."
+  },
+  "result": {
+    "heading": "Resultados",
+    "peakVoltage": "Voltaje pico de entrada",
+    "dcOutput": "Voltaje de salida CC",
+    "rippleVoltage": "Voltaje de rizado (p-p)",
+    "rippleFactor": "Factor de rizado",
+    "piv": "Voltaje inverso pico (PIV)",
+    "efficiency": "Eficiencia del rectificador",
+    "loadCurrent": "Corriente de carga CC",
+    "unit": {
+      "volts": "V",
+      "amps": "A",
+      "percent": "%"
+    }
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de rectificador en puente",
+    "body": "Un rectificador en puente es una disposición de cuatro diodos conectados en configuración de puente que convierte corriente alterna (CA) en corriente continua (CC). A diferencia de un rectificador de media onda, que usa solo un diodo y desperdicia la mitad del ciclo de entrada, o de un rectificador de onda completa con derivación central, que requiere un transformador con toma central, el rectificador en puente usa ambas mitades del ciclo de CA con una red simple de cuatro diodos y cualquier secundario de transformador común. Es la topología rectificadora más común en fuentes de alimentación, cargadores de baterías y convertidores de CA a CC.\n\nEl proceso de rectificación comienza con el voltaje de entrada CA, que oscila sinusoidalmente alrededor de cero. El valor pico de este voltaje es V_peak = V_rms × √2, donde V_rms es el valor eficaz impreso en las placas del equipo y medido por voltímetros de CA estándar. Durante el semiciclo positivo conducen dos de los cuatro diodos del puente, y durante el semiciclo negativo conducen los otros dos. En ambos casos la corriente fluye por la carga en la misma dirección, produciendo una forma de onda de CC pulsante que alcanza su pico dos veces por ciclo de CA.\n\nCada diodo tiene una pequeña caída de voltaje en directa, típicamente 0.6–0.7 V para diodos de unión p-n de silicio y 0.2–0.4 V para diodos Schottky. Como siempre conducen dos diodos en serie en cada momento, el voltaje pico efectivo de salida es V_peak_out = V_peak - 2 × V_diode_drop. El voltaje promedio (CC) de salida de un rectificador en puente es V_DC = (2/π) × V_peak_out ≈ 0.6366 × V_peak_out.\n\nUn capacitor colocado en paralelo con la carga filtra la CC pulsante cargándose casi hasta el voltaje pico y descargándose lentamente en la carga entre picos. La variación residual de voltaje se llama voltaje de rizado. Para un rectificador en puente que opera a frecuencia f, con resistencia de carga R y capacitancia C, el voltaje de rizado pico a pico aproximado es V_r ≈ V_DC / (2 × f × R × C). El factor de rizado, definido como la relación entre el voltaje de rizado y el voltaje de salida CC, cuantifica qué tan suave es la salida; un factor de rizado menor significa una alimentación más limpia.\n\nEl voltaje inverso pico (PIV) es el voltaje inverso máximo que aparece sobre un diodo que no conduce durante la operación del circuito. Para un rectificador en puente, PIV = V_peak - V_diode_drop (una caída de diodo menos que el pico, porque otro diodo comparte el voltaje inverso). Los diodos deben estar clasificados por encima del PIV para evitar la ruptura.\n\nLa eficiencia del rectificador mide qué tan eficazmente se convierte la potencia de entrada de CA en potencia útil de salida CC. La eficiencia máxima teórica de un rectificador en puente es de aproximadamente 81.2%, frente a 40.6% para un diseño de media onda. La eficiencia real es algo menor debido a las pérdidas por conducción de los diodos y la resistencia del transformador. Esta calculadora ofrece las métricas clave para que los ingenieros evalúen si los componentes elegidos cumplirán las especificaciones de su fuente de alimentación."
+  },
+  "examples": {
+    "heading": "Ejemplos de rectificador en puente",
+    "intro": "Diseños prácticos de fuentes de alimentación que muestran salida CC, rizado y PIV para distintos voltajes de entrada y capacitores de filtro.",
+    "colInput": "Parámetros de entrada",
+    "colOutput": "Salida CC / rizado",
+    "colNote": "Aplicación",
+    "items": [
+      {
+        "input": "12 V RMS, 100 Ω, 0.7 V diode, 50 Hz, 1000 μF",
+        "output": "V_DC ≈ 15.6 V, Ripple ≈ 1.56 V",
+        "note": "Convertidor estándar de 12 V de CA a CC. El voltaje pico es 16.97 V; dos caídas de diodo reducen la salida; 1000 μF proporciona un filtrado moderado a 50 Hz."
+      },
+      {
+        "input": "5 V RMS, 50 Ω, 0.3 V diode, 60 Hz, 2200 μF",
+        "output": "V_DC ≈ 6.5 V, Ripple ≈ 0.49 V",
+        "note": "Fuente de 5 V con diodos Schottky y baja caída directa. Una mayor capacitancia y la frecuencia de 60 Hz se combinan para reducir significativamente el rizado."
+      },
+      {
+        "input": "24 V RMS, 200 Ω, 0.7 V diode, 50 Hz, 4700 μF",
+        "output": "V_DC ≈ 32.4 V, Ripple ≈ 0.69 V",
+        "note": "Fuente de banco de 24 V de alta potencia. La gran capacitancia produce un factor de rizado muy bajo, adecuado para circuitos analógicos sensibles."
+      },
+      {
+        "input": "120 V RMS, 1000 Ω, 0.7 V diode, 60 Hz, 100 μF",
+        "output": "V_DC ≈ 168.6 V, Ripple ≈ 14.0 V",
+        "note": "Rectificador de alto voltaje con filtrado mínimo. El gran factor de rizado muestra por qué se necesita más capacitancia o un regulador de voltaje para obtener una CC limpia."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de rectificador en puente",
+    "steps": [
+      "Ingresa el voltaje de entrada CA en voltios RMS (el valor que aparece en el secundario del transformador o en la etiqueta de la fuente CA).",
+      "Ingresa la resistencia de carga en ohmios, que determina la corriente CC consumida. Si conoces la corriente de carga, calcula R = V_DC / I.",
+      "Ingresa la caída de voltaje en directa del diodo: usa 0.6–0.7 V para diodos de silicio estándar o 0.2–0.4 V para diodos Schottky.",
+      "Ingresa la frecuencia de la fuente CA (50 Hz en Europa/Asia, 60 Hz en Norteamérica) y la capacitancia del filtro en microfaradios.",
+      "Haz clic en Calcular para ver el voltaje de salida CC, el voltaje de rizado, el factor de rizado, el PIV, la eficiencia y la corriente de carga CC. Ajusta la capacitancia para cumplir tu especificación de rizado."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "q1": "¿Por qué un rectificador en puente usa dos caídas de voltaje de diodo en lugar de una?",
+    "q1_a": "En un rectificador en puente, siempre hay dos diodos en serie con la carga durante la conducción: uno en el lado de entrada y otro en el de retorno. Cada diodo tiene una caída de voltaje en directa, así que la caída total restada al voltaje pico es 2 × V_diode. Un rectificador de media onda usa solo un diodo y pierde una sola caída, pero desperdicia la mitad del ciclo de entrada. La penalización de dos caídas del puente es el precio de la rectificación de onda completa sin transformador con toma central.",
+    "q2": "¿Qué es el factor de rizado y qué valor es aceptable?",
+    "q2_a": "El factor de rizado es la relación entre el voltaje de rizado RMS y el voltaje de salida CC. Un valor de 0.05 (5%) o menos suele ser aceptable para fuentes de CC de uso general. Los amplificadores de audio y los instrumentos de precisión a menudo requieren menos de 1% de rizado, lo que se logra con capacitores más grandes o con una etapa de regulación lineal después del rectificador. El factor de rizado teórico sin filtrar de un rectificador en puente es aproximadamente 0.48.",
+    "q3": "¿Cómo elijo el tamaño del capacitor de filtro?",
+    "q3_a": "Empieza por la especificación de voltaje de rizado de tu circuito. Reordena la fórmula del rizado como C = V_DC / (2 × f × R × V_r_max). Por ejemplo, para mantener el rizado por debajo de 1 V en una salida de 15 V con una carga de 100 Ω a 50 Hz, necesitas C ≥ 15 / (2 × 50 × 100 × 1) = 1500 μF. Elige el siguiente valor estándar de capacitor por encima del calculado y asegúrate de que su tensión nominal exceda el voltaje pico de salida.",
+    "q4": "¿Qué es el voltaje inverso pico y por qué importa?",
+    "q4_a": "El voltaje inverso pico (PIV) es el máximo voltaje inverso que un diodo debe soportar cuando no conduce. Si se supera la clasificación PIV de los diodos, pueden romperse, cortocircuitarse y destruir toda la fuente. Selecciona diodos con una clasificación PIV al menos 20% superior al valor calculado para dejar margen de seguridad frente a transitorios y tolerancias de componentes.",
+    "q5": "¿Cómo afecta la frecuencia a la salida CC y al rizado?",
+    "q5_a": "La frecuencia de CA no cambia directamente el voltaje promedio de salida CC, pero afecta mucho al filtrado. A 60 Hz el capacitor se recarga más frecuentemente que a 50 Hz, por lo que se descarga menos entre picos y produce menos rizado con el mismo valor de capacitor. Las fuentes conmutadas operan a decenas o cientos de kilohercios, por eso pueden usar capacitores de filtro pequeños y aun así lograr un rizado muy bajo.",
+    "q6": "¿Se puede usar esta calculadora para rectificadores en puente trifásicos?",
+    "q6_a": "No, esta calculadora está diseñada para rectificadores en puente monofásicos de onda completa. Un rectificador en puente trifásico usa seis diodos y produce una salida más suave, con un factor de rizado inherentemente menor (alrededor de 4.2%) sin filtrado. La salida CC trifásica ideal es V_DC = (3√3/π) × V_peak_line. Para esos diseños se necesitaría una calculadora trifásica aparte."
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "title": "Calculateur de calibre de disjoncteur – section de câble",
+  "tagline": "Calculez le calibre de disjoncteur et la section de câble corrects pour toute charge électrique selon la tension, la puissance, le facteur de puissance et les conditions de câblage.",
+  "intro": "Saisissez les paramètres de la charge électrique pour déterminer l’intensité requise du disjoncteur et la section de câble recommandée selon les directives du NEC.",
+  "field": {
+    "voltage": "Tension (V)",
+    "power": "Puissance (W)",
+    "powerFactor": "Facteur de puissance",
+    "loadType": "Type de charge",
+    "ambientTemp": "Température ambiante (°C)",
+    "phaseType": "Type de phase"
+  },
+  "loadType": {
+    "continuous": "Continue",
+    "nonContinuous": "Non continue"
+  },
+  "phaseType": {
+    "single": "Monophasé",
+    "three": "Triphasé"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs.",
+    "powerFactor": "Le facteur de puissance doit être compris entre 0 et 1."
+  },
+  "result": {
+    "heading": "Résultats",
+    "loadCurrent": "Courant de charge",
+    "designCurrent": "Courant de dimensionnement",
+    "breakerSize": "Calibre de disjoncteur requis",
+    "wireGauge": "Section de câble recommandée",
+    "tempCorrFactor": "Facteur de correction de température",
+    "unit": {
+      "amps": "A",
+      "awg": "AWG"
+    }
+  },
+  "about": {
+    "heading": "À propos du calculateur de calibre de disjoncteur",
+    "body": "Un disjoncteur est un dispositif de sécurité qui interrompt automatiquement un circuit électrique lorsque le courant dépasse un niveau sûr, protégeant ainsi le câblage et les équipements contre la surchauffe et l’incendie. Choisir le bon calibre de disjoncteur est l’une des tâches les plus fondamentales de la conception électrique, que vous câbliez une cuisine résidentielle, dimensionniez un circuit moteur commercial ou planifiiez un tableau de distribution industriel.\n\nLe calcul commence par la détermination du courant de charge, c’est-à-dire le courant réellement absorbé par l’équipement connecté. Pour un circuit monophasé, le courant de charge I est égal à la puissance P divisée par le produit de la tension V et du facteur de puissance PF : I = P / (V × PF). Pour un circuit triphasé, la formule tient compte des trois conducteurs : I = P / (√3 × V × PF). Le facteur de puissance, une valeur sans dimension comprise entre 0 et 1, représente l’efficacité avec laquelle la charge convertit l’énergie électrique en travail utile. Les charges résistives comme les chauffages ont un PF ≈ 1,0, tandis que les moteurs et les équipements électroniques se situent généralement entre 0,7 et 0,95.\n\nUne fois le courant de charge connu, le Code national de l’électricité (NEC) exige que les charges continues — celles censées fonctionner pendant 3 heures ou plus — soient protégées par un disjoncteur d’un calibre au moins égal à 125 % du courant de charge. Cette réduction tient compte de l’échauffement des conducteurs et des contacts du disjoncteur lors d’un fonctionnement prolongé. Les charges non continues sont protégées à 100 % du courant de charge. Ce calculateur applique automatiquement le multiplicateur de 125 % lorsque vous sélectionnez le type de charge Continue.\n\nLa température ambiante influence également la capacité de transport de courant des conducteurs. Le NEC fournit des facteurs de correction fondés sur la température nominale de l’isolant (généralement 75°C pour le fil THHN standard). Lorsque la température ambiante dépasse la référence standard de 30°C, les conducteurs doivent être déclassés afin de ne pas dépasser la limite thermique de leur isolant. Ce calculateur applique le facteur de correction NEC 310.15 approprié à la température ambiante saisie.\n\nLe courant de dimensionnement obtenu après application des facteurs de charge continue et de température détermine le calibre minimal du disjoncteur. Les calibres standard suivent une série fixe : 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200, 225, 250, 300, 350 et 400 ampères. Le calculateur choisit le plus petit calibre standard supérieur ou égal au courant de dimensionnement.\n\nLe choix de la section de câble découle directement du calibre du disjoncteur choisi. Selon le NEC, l’ampacité du conducteur à 75°C doit être égale ou supérieure au calibre du disjoncteur. Ce calculateur renvoie la section minimale requise en American Wire Gauge (AWG) ou en kcmil. Les associations courantes incluent 14 AWG avec un disjoncteur de 15 A, 12 AWG avec 20 A, 10 AWG avec 30 A, 8 AWG avec 40–50 A, 6 AWG avec 60 A, 4 AWG avec 85 A et 2 AWG avec 115 A. Vérifiez toujours votre conception finale avec un électricien certifié et les exigences du code local, car le taux de remplissage du conduit, la longueur et les conditions spécifiques d’installation peuvent nécessiter une déclassification supplémentaire."
+  },
+  "examples": {
+    "heading": "Exemples de calibre de disjoncteur",
+    "intro": "Scénarios concrets de dimensionnement montrant l’effet du type de charge, du facteur de puissance et de la température sur le disjoncteur et la section de câble requis.",
+    "colInput": "Entrée",
+    "colOutput": "Résultat",
+    "colNote": "Remarques",
+    "items": [
+      {
+        "input": "120 V, 1800 W, PF 0.95, Non continue, 25 °C, Monophasé",
+        "output": "Disjoncteur 20 A, câble 12 AWG",
+        "note": "Circuit de cuisine typique. Courant de charge = 1800/(120×0.95) ≈ 15.8 A ; courant de dimensionnement non continu = 15.8 A → disjoncteur standard 20 A, conducteur 12 AWG."
+      },
+      {
+        "input": "480 V, 15000 W, PF 0.85, Continue, 35 °C, Triphasé",
+        "output": "Disjoncteur 30 A, câble 10 AWG",
+        "note": "Moteur triphasé. I = 15000/(√3×480×0.85) ≈ 21.2 A ; courant de dimensionnement continu = 21.2×1.25 ≈ 26.5 A → disjoncteur standard 30 A, 10 AWG."
+      },
+      {
+        "input": "240 V, 3000 W, PF 1.0, Continue, 30 °C, Monophasé",
+        "output": "Disjoncteur 20 A, câble 12 AWG",
+        "note": "Chauffage résistif. I = 3000/(240×1.0) = 12.5 A ; courant de dimensionnement continu = 12.5×1.25 = 15.6 A → disjoncteur standard 20 A, conducteur 12 AWG."
+      },
+      {
+        "input": "120 V, 2400 W, PF 0.9, Continue, 40 °C, Monophasé",
+        "output": "Disjoncteur 30 A, câble 10 AWG",
+        "note": "Circuit continu à forte charge. Courant de charge ≈ 22.2 A ; courant de dimensionnement = 22.2×1.25 = 27.8 A → disjoncteur standard 30 A, 10 AWG. Le facteur de température (0.82) est fourni à titre indicatif pour le déclassement du conducteur."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de calibre de disjoncteur",
+    "steps": [
+      "Saisissez la tension du circuit en volts (V). Les valeurs courantes sont 120 V ou 240 V pour les circuits monophasés résidentiels, et 208 V ou 480 V pour les systèmes triphasés commerciaux.",
+      "Saisissez la puissance totale connectée en watts (W). Pour plusieurs appareils sur le même circuit, additionnez leurs puissances nominales.",
+      "Saisissez le facteur de puissance de la charge (0.01–1.0). Utilisez 1.0 pour les charges purement résistives comme les chauffages ; utilisez 0.85–0.95 pour les moteurs et les équipements électroniques.",
+      "Sélectionnez le type de charge (Continue ou Non continue), la température ambiante et la configuration de phase, puis cliquez sur Calculer.",
+      "Lisez le calibre de disjoncteur requis et la section de câble recommandée dans les résultats. Faites vérifier le tout par un électricien certifié avant l’installation."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "q1": "Qu’est-ce qu’une charge continue et pourquoi nécessite-t-elle un disjoncteur plus grand ?",
+    "q1_a": "Une charge continue est une charge qui fonctionne à courant maximal pendant 3 heures ou plus. Le NEC exige que le disjoncteur soit dimensionné à 125 % du courant de charge continue, car un courant soutenu produit plus de chaleur dans les contacts du disjoncteur et les conducteurs qu’un courant intermittent. Cette marge supplémentaire évite les déclenchements intempestifs et réduit le risque d’incendie.",
+    "q2": "Pourquoi la température ambiante affecte-t-elle le calibre du disjoncteur ?",
+    "q2_a": "Les conducteurs évacuent la chaleur par convection. Lorsque la température ambiante est élevée, le conducteur dissipe moins efficacement la chaleur, donc son ampacité sûre diminue. Le NEC fournit des facteurs de correction pour les températures supérieures à 30°C. Si vous ne tenez pas compte d’une température ambiante élevée, le câble peut surchauffer même si le disjoncteur ne déclenche jamais.",
+    "q3": "Qu’est-ce qu’un facteur de puissance et comment influence-t-il le dimensionnement du disjoncteur ?",
+    "q3_a": "Le facteur de puissance est le rapport entre la puissance réelle (watts) et la puissance apparente (voltampères). Un facteur de puissance faible signifie que le circuit consomme plus de courant que ce que la seule puissance utile laisserait penser. Comme les disjoncteurs et les câbles réagissent au courant, et non aux watts, une charge avec un facteur de puissance de 0.7 consomme environ 43 % de courant en plus qu’une charge identique avec PF = 1.0, ce qui nécessite un disjoncteur plus grand.",
+    "q4": "Puis-je utiliser un disjoncteur plus petit que le prochain calibre standard au-dessus de mon courant de dimensionnement ?",
+    "q4_a": "Non. Le disjoncteur doit être dimensionné au moins au niveau du courant de dimensionnement pour éviter les déclenchements intempestifs en fonctionnement normal. Arrondissez toujours au calibre standard supérieur suivant. Installer un disjoncteur sous-dimensionné est une infraction au code et crée un risque d’incendie. Installer un disjoncteur surdimensionné sans conducteur correspondamment plus gros est tout aussi dangereux.",
+    "q5": "Comment l’alimentation triphasée modifie-t-elle le calcul ?",
+    "q5_a": "Dans un système triphasé équilibré, la puissance est répartie sur trois conducteurs, donc chaque conducteur transporte moins de courant que dans un circuit monophasé équivalent. La formule I = P / (√3 × V × PF) divise la puissance par √3 (environ 1,732) multiplié par la tension entre phases. Cela donne généralement des disjoncteurs plus petits et des câbles plus fins qu’en monophasé pour la même puissance totale.",
+    "q6": "Ce calculateur tient-il compte du remplissage du conduit et de la chute de tension ?",
+    "q6_a": "Non. Ce calculateur applique la correction de température NEC 310.15 de base et la déclassification pour charge continue. Les longues longueurs de câble peuvent nécessiter une section plus grande pour limiter la chute de tension à 3–5 %, et plusieurs conducteurs regroupés dans un conduit exigent une déclassification supplémentaire. Consultez toujours les tableaux complets du NEC ou un électricien certifié pour le choix final du câble et du disjoncteur."
+  }
+}
