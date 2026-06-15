@@ -177,6 +177,11 @@ import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-ca
 import { fixtures as f_kd_calculator_kill_death_ratio } from "@/tools/kd-calculator-kill-death-ratio.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
 import { fixtures as f_matched_betting_calculator } from "@/tools/matched-betting-calculator.fixtures";
+import { fixtures as f_matrix_addition_and_subtraction_calculator } from "@/tools/matrix-addition-and-subtraction-calculator.fixtures";
+import { fixtures as f_matrix_by_scalar_calculator } from "@/tools/matrix-by-scalar-calculator.fixtures";
+import { fixtures as f_matrix_calculator } from "@/tools/matrix-calculator.fixtures";
+import { fixtures as f_matrix_determinant_calculator } from "@/tools/matrix-determinant-calculator.fixtures";
+import { fixtures as f_matrix_multiplication_calculator } from "@/tools/matrix-multiplication-calculator.fixtures";
 import { fixtures as f_mayan_calendar_converter } from "@/tools/mayan-calendar-converter.fixtures";
 import { fixtures as f_mayan_numerals_converter } from "@/tools/mayan-numerals-converter.fixtures";
 import { fixtures as f_mean_calculator } from "@/tools/mean-calculator.fixtures";
@@ -566,6 +571,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "kd-calculator-kill-death-ratio": f_kd_calculator_kill_death_ratio,
   "loan-calculator": f_loan_calculator,
   "matched-betting-calculator": f_matched_betting_calculator,
+  "matrix-addition-and-subtraction-calculator": f_matrix_addition_and_subtraction_calculator,
+  "matrix-by-scalar-calculator": f_matrix_by_scalar_calculator,
+  "matrix-calculator": f_matrix_calculator,
+  "matrix-determinant-calculator": f_matrix_determinant_calculator,
+  "matrix-multiplication-calculator": f_matrix_multiplication_calculator,
   "mayan-calendar-converter": f_mayan_calendar_converter,
   "mayan-numerals-converter": f_mayan_numerals_converter,
   "mean-calculator": f_mean_calculator,
