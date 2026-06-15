@@ -3,6 +3,9 @@
 // (Playwright/esbuild, Vitest/Vite) can statically resolve everything.
 
 import type { ToolFixture } from "@/tools/fixture";
+import { fixtures as f_16_10_aspect_ratio_calculator } from "@/tools/16-10-aspect-ratio-calculator.fixtures";
+import { fixtures as f_16_9_aspect_ratio_calculator } from "@/tools/16-9-aspect-ratio-calculator.fixtures";
+import { fixtures as f_3d_printing_cost_calculator } from "@/tools/3d-printing-cost-calculator.fixtures";
 import { fixtures as f_555_timer_calculator } from "@/tools/555-timer-calculator.fixtures";
 import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } from "@/tools/a1c-calculator-hemoglobin-a1c-to-average-blood-sugar.fixtures";
 import { fixtures as f_absolute_humidity_calculator } from "@/tools/absolute-humidity-calculator.fixtures";
@@ -301,12 +304,17 @@ import { fixtures as f_wind_chill_calculator } from "@/tools/wind-chill-calculat
 import { fixtures as f_wind_correction_angle_calculator } from "@/tools/wind-correction-angle-calculator.fixtures";
 import { fixtures as f_wind_load_calculator } from "@/tools/wind-load-calculator.fixtures";
 import { fixtures as f_wing_loading_calculator } from "@/tools/wing-loading-calculator.fixtures";
+import { fixtures as f_xor_calculator } from "@/tools/xor-calculator.fixtures";
+import { fixtures as f_y_intercept_calculator } from "@/tools/y-intercept-calculator.fixtures";
 import { fixtures as f_yates_correction_for_continuity_calculator } from "@/tools/yates-correction-for-continuity-calculator.fixtures";
 import { fixtures as f_z_score_calculator } from "@/tools/z-score-calculator.fixtures";
 import { fixtures as f_z_test_calculator } from "@/tools/z-test-calculator.fixtures";
 import { fixtures as f_zombie_invasion_calculator } from "@/tools/zombie-invasion-calculator.fixtures";
 
 export const fixturesByTool: Record<string, ToolFixture[]> = {
+  "16-10-aspect-ratio-calculator": f_16_10_aspect_ratio_calculator,
+  "16-9-aspect-ratio-calculator": f_16_9_aspect_ratio_calculator,
+  "3d-printing-cost-calculator": f_3d_printing_cost_calculator,
   "555-timer-calculator": f_555_timer_calculator,
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
   "absolute-humidity-calculator": f_absolute_humidity_calculator,
@@ -605,6 +613,8 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "wind-correction-angle-calculator": f_wind_correction_angle_calculator,
   "wind-load-calculator": f_wind_load_calculator,
   "wing-loading-calculator": f_wing_loading_calculator,
+  "xor-calculator": f_xor_calculator,
+  "y-intercept-calculator": f_y_intercept_calculator,
   "yates-correction-for-continuity-calculator": f_yates_correction_for_continuity_calculator,
   "z-score-calculator": f_z_score_calculator,
   "z-test-calculator": f_z_test_calculator,
