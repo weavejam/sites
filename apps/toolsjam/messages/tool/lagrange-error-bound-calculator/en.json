@@ -1,0 +1,107 @@
+{
+  "title": "Lagrange Error Bound Calculator",
+  "tagline": "Estimate the maximum error of a Taylor polynomial approximation using the Lagrange remainder theorem.",
+  "intro": "Enter the four parameters below to compute the upper bound on the error of your Taylor polynomial approximation.",
+  "field": {
+    "maxDerivative": "Max Value of |f^(n+1)(z)| (M)",
+    "degree": "Degree of Polynomial (n)",
+    "expansionPoint": "Center of Expansion (a)",
+    "approximationPoint": "Point of Approximation (x)"
+  },
+  "placeholder": {
+    "maxDerivative": "e.g., 1.6487",
+    "degree": "e.g., 3",
+    "expansionPoint": "e.g., 0",
+    "approximationPoint": "e.g., 0.5"
+  },
+  "button": {
+    "calculate": "Calculate Error Bound",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Error Bound Result",
+    "formula": "Formula: |R\u2099(x)| \u2264 M / (n+1)! \u00d7 |x \u2212 a|\u207f\u207a\u00b9",
+    "bound": "Error Bound \u2264 {result}",
+    "computation": "({m} / {factorial}) \u00d7 {distance} = {result}"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers in all fields.",
+    "negativeM": "M must be a non-negative number.",
+    "negativeDegree": "Degree n must be a non-negative integer."
+  },
+  "about": {
+    "heading": "About the Lagrange Error Bound Calculator",
+    "body": "The Lagrange Error Bound, also called the Taylor Remainder Theorem or Lagrange Remainder, gives a rigorous upper limit on how far a Taylor polynomial can stray from the actual function it approximates. When you replace a complicated function like e\u02e3, cos(x), or ln(x) with a polynomial of degree n, you introduce a truncation error. The Lagrange bound tells you the worst that error can be over a specified interval, making it indispensable wherever precision matters.\n\nThe formula is |R\u2099(x)| \u2264 M \u00d7 |x \u2212 a|\u207f\u207a\u00b9 / (n+1)!, where n is the degree of the Taylor polynomial, a is the center of the expansion (the point around which the polynomial is built), x is the specific point where you are evaluating the approximation, and M is the maximum absolute value of the (n+1)-th derivative of the function on the closed interval between a and x. The key insight is that the error shrinks as n grows larger, because the factorial in the denominator grows much faster than the power of (x \u2212 a) in the numerator.\n\nFinding M is the most intellectually demanding part of the process. You must compute the (n+1)-th derivative of your function symbolically, then find its maximum absolute value on the interval [a, x] (or [x, a] if x < a). For well-behaved functions like exponentials and trigonometric functions, M is often straightforward: the (n+1)-th derivative of e\u02e3 is still e\u02e3, so M = e\u02e3 evaluated at the rightmost point. For cos(x), all derivatives are bounded by 1, so M = 1 is always safe (though a tighter bound is often possible). For other functions, symbolic differentiation and a brief analysis of the resulting expression on the interval suffice.\n\nPractical applications span numerical analysis, scientific computing, and engineering. Whenever you use a calculator, computer algebra system, or embedded firmware that evaluates transcendental functions via polynomials, some form of this bound is operating under the hood to guarantee the result is accurate to the required number of decimal places. In physics, polynomial approximations to wave functions, potential energy surfaces, and probability densities must meet similar accuracy requirements. In finance, series expansions of option pricing models depend on controlled truncation error.\n\nA common misconception is that a high-degree polynomial always gives a small error. While higher degree generally tightens the bound, a large |x \u2212 a| can dominate for functions with fast-growing derivatives. The best practice is to choose the expansion center a as close to the evaluation point x as possible, and to increase n until the error bound falls below your required tolerance.\n\nThis calculator automates the arithmetic of the Lagrange formula. You supply M (which requires your own derivative analysis), n, a, and x, and the tool instantly computes the upper bound. The result is a guarantee: the true absolute error |f(x) \u2212 P\u2099(x)| cannot exceed the displayed value."
+  },
+  "examples": {
+    "heading": "Lagrange Error Bound Examples",
+    "intro": "Four classic approximations showing how the error bound shrinks with higher degree or smaller intervals.",
+    "colInput": "Function / Setup",
+    "colOutput": "Error Bound",
+    "colNote": "Details",
+    "loadEx": "Load e^x example",
+    "loadCos": "Load cos(x) example",
+    "loadLn": "Load ln(x) example",
+    "items": [
+      {
+        "input": "e\u02e3, n=3, a=0, x=0.5, M=1.6487",
+        "output": "\u2264 0.004298",
+        "note": "4th derivative of e\u02e3 is e\u02e3; max on [0,0.5] is e\u2070\u22c5\u2075 \u2248 1.6487. Bound = 1.6487/24 \u00d7 0.5\u2074."
+      },
+      {
+        "input": "cos(x), n=2, a=0, x=0.1, M=0.09983",
+        "output": "\u2264 0.00001664",
+        "note": "3rd derivative of cos(x) is sin(x); max on [0,0.1] \u2248 0.09983. Bound = 0.09983/6 \u00d7 0.1\u00b3."
+      },
+      {
+        "input": "ln(x), n=3, a=1, x=1.2, M=6",
+        "output": "\u2264 0.0004",
+        "note": "4th derivative of ln(x) is 6/x\u2074; max on [1,1.2] at x=1 gives M=6. Bound = 6/24 \u00d7 0.2\u2074."
+      },
+      {
+        "input": "\u221ax, n=2, a=4, x=4.1, M=0.01172",
+        "output": "\u2264 0.0000000195",
+        "note": "3rd derivative of \u221ax is (3/8)x\u207b\u2075\u1d31\u00b2; max at x=4 gives M\u22480.01172. Bound = 0.01172/6 \u00d7 0.1\u00b3."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Lagrange Error Bound Calculator",
+    "steps": [
+      "Identify the function f(x) you are approximating, the degree n of the Taylor polynomial, the expansion center a, and the evaluation point x.",
+      "Compute the (n+1)-th derivative of f(x) symbolically, then find its maximum absolute value M on the closed interval between a and x.",
+      "Enter M, n, a, and x into the four input fields and click \u201cCalculate Error Bound\u201d.",
+      "Read the result: the displayed value is an upper bound on |f(x) \u2212 P\u2099(x)|. The true error is at most this large.",
+      "If the bound is too large for your application, increase the degree n or choose an expansion center a closer to x, then recalculate."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "What is the Lagrange Error Bound?",
+        "a": "The Lagrange Error Bound is a theorem that guarantees the error of a Taylor polynomial approximation does not exceed M \u00d7 |x \u2212 a|\u207f\u207a\u00b9 / (n+1)!, where M is the maximum absolute value of the (n+1)-th derivative on the interval. It provides a rigorous, computable worst-case estimate of truncation error."
+      },
+      {
+        "q": "How do I find the value of M?",
+        "a": "Differentiate your function n+1 times, then evaluate the absolute value of that derivative over every point between a and x. M is the largest value. For e\u02e3, the derivative is always e\u02e3 so M = e raised to the power of the larger endpoint. For sine and cosine, all derivatives are bounded by 1, making M = 1 always valid (though often improvable)."
+      },
+      {
+        "q": "Does a higher degree always give a smaller error bound?",
+        "a": "Generally yes, because the (n+1)! in the denominator grows faster than |x\u2212a|\u207f\u207a\u00b9 in the numerator for most common functions and small intervals. However, if |x\u2212a| is large or the function\u2019s derivatives grow quickly, increasing the degree may not always help, and an alternative approach (such as splitting the interval) may be more effective."
+      },
+      {
+        "q": "What is the difference between the error bound and the actual error?",
+        "a": "The actual error |f(x) \u2212 P\u2099(x)| is the true distance between the function and the polynomial at point x. The Lagrange bound is a guaranteed ceiling on that error. The actual error is almost always smaller than the bound; the bound is a conservative worst-case estimate."
+      },
+      {
+        "q": "Can I use this calculator for Maclaurin series?",
+        "a": "Yes. A Maclaurin series is simply a Taylor series centered at a = 0. Enter 0 in the \u201cCenter of Expansion (a)\u201d field and proceed normally. The formula and calculation are identical."
+      },
+      {
+        "q": "What are real-world applications of the Lagrange Error Bound?",
+        "a": "It is used in numerical methods to certify the accuracy of polynomial approximations in calculators and computer libraries, in finite element analysis to bound interpolation errors, in numerical integration to ensure quadrature rules meet tolerance requirements, and in control systems to verify that linearized models deviate only within acceptable limits from the true nonlinear dynamics. Wherever a Taylor expansion replaces an exact function, the Lagrange bound provides the rigorous guarantee that practitioners and auditors require."
+      }
+    ]
+  }
+}
