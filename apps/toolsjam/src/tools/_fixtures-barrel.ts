@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_bullet_energy_calculator } from "@/tools/bullet-energy-calculator.fixtures";
+import { fixtures as f_buoyancy_calculator } from "@/tools/buoyancy-calculator.fixtures";
+import { fixtures as f_buoyancy_experiment_calculator } from "@/tools/buoyancy-experiment-calculator.fixtures";
+import { fixtures as f_calorimetry_calculator } from "@/tools/calorimetry-calculator.fixtures";
+import { fixtures as f_capacitance_calculator } from "@/tools/capacitance-calculator.fixtures";
 import { fixtures as f_carburetor_cfm_calculator } from "@/tools/carburetor-cfm-calculator.fixtures";
 import { fixtures as f_carnot_efficiency_calculator } from "@/tools/carnot-efficiency-calculator.fixtures";
 import { fixtures as f_centrifugal_force_calculator } from "@/tools/centrifugal-force-calculator.fixtures";
@@ -179,6 +184,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "bullet-energy-calculator": f_bullet_energy_calculator,
+  "buoyancy-calculator": f_buoyancy_calculator,
+  "buoyancy-experiment-calculator": f_buoyancy_experiment_calculator,
+  "calorimetry-calculator": f_calorimetry_calculator,
+  "capacitance-calculator": f_capacitance_calculator,
   "carburetor-cfm-calculator": f_carburetor_cfm_calculator,
   "carnot-efficiency-calculator": f_carnot_efficiency_calculator,
   "centrifugal-force-calculator": f_centrifugal_force_calculator,
