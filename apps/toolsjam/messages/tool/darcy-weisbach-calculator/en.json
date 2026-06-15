@@ -1,0 +1,109 @@
+{
+  "title": "Darcy-Weisbach Friction Loss Calculator",
+  "tagline": "Calculate friction head loss in pipes using the Darcy-Weisbach equation — enter pipe geometry, velocity, and fluid properties for instant results.",
+  "intro": "Enter pipe diameter, length, flow velocity, kinematic viscosity, and roughness to calculate friction head loss, Reynolds number, and friction factor.",
+  "field": {
+    "pipeDiameter": "Pipe Diameter (m)",
+    "pipeLength": "Pipe Length (m)",
+    "velocity": "Flow Velocity (m/s)",
+    "kinematicViscosity": "Kinematic Viscosity (m²/s)",
+    "roughness": "Pipe Roughness (mm)"
+  },
+  "placeholder": {
+    "pipeDiameter": "e.g. 0.1",
+    "pipeLength": "e.g. 100",
+    "velocity": "e.g. 2.5",
+    "kinematicViscosity": "e.g. 1.006e-6",
+    "roughness": "e.g. 0.045"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "headLoss": "Friction Head Loss",
+    "reynolds": "Reynolds Number",
+    "frictionFactor": "Darcy Friction Factor",
+    "flowRegime": "Flow Regime",
+    "laminar": "Laminar",
+    "turbulent": "Turbulent",
+    "transitional": "Transitional",
+    "unit": {
+      "headLoss": "m",
+      "dimensionless": "—"
+    }
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers in all fields.",
+    "zeroDiameter": "Pipe diameter must be greater than zero.",
+    "zeroVelocity": "Flow velocity must be greater than zero."
+  },
+  "about": {
+    "heading": "About the Darcy-Weisbach Friction Loss Calculator",
+    "body": "The Darcy-Weisbach equation is the gold standard for computing friction head loss in pipe flow. Named after Henry Darcy and Julius Weisbach, it relates the energy dissipated by friction to the pipe geometry, flow velocity, and fluid properties through the elegant expression hf = f × (L/D) × (V²/2g), where hf is the friction head loss in metres of fluid column, f is the dimensionless Darcy friction factor, L is the pipe length, D is the internal pipe diameter, V is the average flow velocity, and g is gravitational acceleration (9.81 m/s²).\n\nUnderstanding the friction factor is the heart of any Darcy-Weisbach calculation. The Reynolds number Re = V·D/ν (where ν is the kinematic viscosity) tells you whether the flow is laminar or turbulent. For laminar flow (Re < 2300), the friction factor is simply f = 64/Re, a result that can be derived analytically from the Navier-Stokes equations for a circular pipe. For turbulent flow (Re > 4000), f depends on both Re and the relative roughness ε/D, where ε is the absolute pipe roughness. The widely used Colebrook-White equation captures this relationship implicitly, and the Swamee-Jain explicit approximation (accurate to within 3% for 10⁻⁶ ≤ ε/D ≤ 10⁻² and 5000 ≤ Re ≤ 10⁸) is used in this calculator: f = 0.25 / [log₁₀(ε/(3.7D) + 5.74/Re⁰·⁹)]². Between Re = 2300 and Re = 4000, the flow is in a transitional regime where friction factor prediction is less reliable.\n\nPipe roughness values vary significantly with material and age. Drawn copper and glass tubing has roughness as low as 0.0015 mm, commercial steel sits around 0.045 mm, cast iron around 0.26 mm, and rough concrete can be 1–3 mm or higher. As pipes age and scale, roughness increases, so conservative estimates are often prudent for design.\n\nThe head loss result can be converted to a pressure drop via ΔP = ρ·g·hf, where ρ is the fluid density. For water at 20°C this is approximately 9800 Pa per metre of head. Engineers use this to size pumps, check whether existing pump heads are sufficient, and balance parallel pipe networks. The Darcy-Weisbach equation is preferred over empirical formulas such as Hazen-Williams because it is dimensionally consistent, applies to any Newtonian fluid across all flow regimes, and has a clear physical basis.\n\nCommon applications include municipal water distribution networks, HVAC chilled-water and heating circuits, oil and gas pipelines, chemical plant process piping, and fire suppression systems. By entering the internal diameter rather than the nominal diameter, accounting for actual pipe roughness rather than manufacturer specifications, and using fluid viscosity at the operating temperature, engineers can obtain reliable head loss estimates for system design and troubleshooting."
+  },
+  "examples": {
+    "heading": "Worked Examples",
+    "intro": "Three representative pipe flow scenarios showing head loss calculations for different pipe materials and fluids.",
+    "colInput": "Scenario",
+    "colOutput": "Result",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Water in steel pipe: D=0.1 m, L=100 m, V=2.5 m/s, ν=1.006×10⁻⁶ m²/s, ε=0.045 mm",
+        "output": "hf ≈ 5.83 m (f ≈ 0.0183, Re ≈ 248,500)",
+        "note": "Turbulent flow. Typical municipal supply main. Friction head loss is 5.83 m over 100 m of 100 mm steel pipe."
+      },
+      {
+        "input": "Oil near-transitional: D=0.15 m, L=200 m, V=1.2 m/s, ν=5×10⁻⁵ m²/s, ε=0.26 mm",
+        "output": "hf ≈ 4.29 m (f ≈ 0.0438, Re ≈ 3,600)",
+        "note": "Near-transitional flow. High viscosity raises friction factor; substantial head loss over 200 m."
+      },
+      {
+        "input": "High-speed water: D=0.05 m, L=50 m, V=8 m/s, ν=1.006×10⁻⁶ m²/s, ε=0.0015 mm",
+        "output": "hf ≈ 45.8 m (f ≈ 0.0141, Re ≈ 397,600)",
+        "note": "High-velocity industrial flow in smooth copper pipe. Large head loss because velocity appears squared in the formula."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Darcy-Weisbach Calculator",
+    "steps": [
+      "Enter the internal pipe diameter in metres. Use the actual internal bore, not the nominal pipe size, for accurate results.",
+      "Enter the pipe length in metres — the full run from inlet to outlet for which you want the friction head loss.",
+      "Enter the average flow velocity in m/s. You can derive this from volumetric flow rate Q via V = Q / (π D² / 4).",
+      "Enter the kinematic viscosity in m²/s for your fluid at operating temperature. Water at 20°C is 1.006×10⁻⁶ m²/s.",
+      "Enter the pipe roughness in millimetres for your pipe material (e.g. 0.045 for commercial steel). Click Calculate to see head loss, Reynolds number, and friction factor instantly."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "What is friction head loss?",
+        "a": "Friction head loss (hf) is the energy dissipated per unit weight of fluid as it flows along a pipe, expressed in metres of fluid column. It represents the pressure the pump must supply to overcome pipe friction. The higher the velocity, the rougher the pipe, or the longer the run, the greater the head loss."
+      },
+      {
+        "q": "How is the friction factor calculated?",
+        "a": "For laminar flow (Re < 2300) the friction factor is exactly f = 64/Re. For turbulent flow the calculator uses the Swamee-Jain explicit approximation to the Colebrook-White equation: f = 0.25 / [log₁₀(ε/(3.7D) + 5.74/Re⁰·⁹)]², which avoids iterative solving while staying within 3% of the Moody chart."
+      },
+      {
+        "q": "What is the Reynolds number and why does it matter?",
+        "a": "The Reynolds number Re = V·D/ν is a dimensionless ratio of inertial to viscous forces. It determines the flow regime: Re < 2300 means laminar (smooth, predictable), Re > 4000 means turbulent (chaotic, higher friction), and 2300–4000 is transitional. Knowing the regime is essential because the friction factor formula changes between laminar and turbulent flow."
+      },
+      {
+        "q": "What pipe roughness value should I use?",
+        "a": "Roughness values in mm: drawn copper/glass ≈ 0.0015, commercial steel ≈ 0.045, cast iron ≈ 0.26, smooth concrete ≈ 0.3, rough concrete ≈ 1–3, riveted steel ≈ 0.9–9. Use higher values for aged pipes to account for scaling and corrosion, which always increases roughness over time."
+      },
+      {
+        "q": "Can I convert head loss to pressure drop?",
+        "a": "Yes. Multiply the head loss in metres by ρ·g, where ρ is the fluid density (kg/m³) and g = 9.81 m/s². For water at 20°C: ΔP (Pa) = 9789 × hf. This gives the friction pressure drop that the pump must overcome across the pipe section."
+      },
+      {
+        "q": "Does the equation apply to gases and non-water fluids?",
+        "a": "Yes, the Darcy-Weisbach equation applies to any Newtonian fluid — water, oil, air, steam — as long as you use the correct kinematic viscosity for your fluid at its operating temperature. For compressible gases at high velocities or large pressure drops, corrections for density variation along the pipe may be needed."
+      }
+    ]
+  }
+}

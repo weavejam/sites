@@ -1,0 +1,122 @@
+{
+  "title": "Decibel (dB) Calculator",
+  "tagline": "Convert ratios to decibels, dB back to ratios, or combine multiple dB sources — the essential online tool for acoustics, electronics, and signal processing.",
+  "intro": "Select a calculation type, choose power or amplitude quantity, enter your values, and get instant decibel results with the formula shown.",
+  "type": {
+    "ratioToDb": "Ratio to dB",
+    "ratioToDb_desc": "Convert a ratio between two values (e.g., output/input power or voltage) into its decibel equivalent.",
+    "dbToRatio": "dB to Ratio",
+    "dbToRatio_desc": "Convert a decibel value back to a linear power or amplitude ratio.",
+    "combineDb": "Combine dB Values",
+    "combineDb_desc": "Find the total level when multiple independent decibel sources are combined (logarithmic sum)."
+  },
+  "quantity": {
+    "label": "Quantity Type",
+    "power": "Power (e.g., Watts)",
+    "amplitude": "Amplitude (e.g., Volts)"
+  },
+  "field": {
+    "calcType": "Calculation Type",
+    "quantityType": "Quantity Type",
+    "reference": "Reference Value (X1)",
+    "measured": "Measured Value (X2)",
+    "dbValue": "dB Value",
+    "combineValues": "dB Values (comma-separated)"
+  },
+  "placeholder": {
+    "reference": "e.g. 10",
+    "measured": "e.g. 20",
+    "dbValue": "e.g. 3",
+    "combineValues": "e.g. 80, 85, 78"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Result",
+    "ratioToDbPower": "{result} dB  (10 × log₁₀({x2} / {x1}))",
+    "ratioToDbAmplitude": "{result} dB  (20 × log₁₀({x2} / {x1}))",
+    "dbToRatioPower": "Linear ratio = {result}  (10^({db}/10))",
+    "dbToRatioAmplitude": "Linear ratio = {result}  (10^({db}/20))",
+    "combineDb": "Combined level = {result} dB"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers in all required fields.",
+    "zeroReference": "Reference value (X1) cannot be zero.",
+    "negativeRatio": "Both values must be positive for a ratio-to-dB conversion.",
+    "invalidCombine": "Enter at least two comma-separated dB values."
+  },
+  "about": {
+    "heading": "About the Decibel (dB) Calculator",
+    "body": "The decibel (dB) is a logarithmic unit that expresses the ratio between two values of a physical quantity — most commonly power or field amplitude. Because the decibel scale compresses enormous ranges into manageable numbers and mirrors the way humans perceive loudness and signal strength, it has become the universal language of acoustics, electrical engineering, telecommunications, and RF systems.\n\nThe fundamental idea is simple: instead of saying 'the output power is 100 times the input power', engineers say 'the gain is 20 dB'. The logarithm converts multiplication into addition, so cascaded stages can be analysed by simply summing their dB gains and losses. A +3 dB change roughly doubles power; a +10 dB change multiplies power by 10; a +20 dB change multiplies power by 100. These rules of thumb are essential for quick system budget calculations.\n\nThere are two formulas, and choosing the wrong one is a frequent source of errors. For power quantities — watts, milliwatts, intensity, irradiance — use the power formula: dB = 10 × log₁₀(P₂/P₁). For amplitude (field) quantities — volts, amps, sound pressure, electric field strength — use the amplitude formula: dB = 20 × log₁₀(A₂/A₁). The factor-of-two difference arises because power is proportional to the square of amplitude (P ∝ A²), so a doubling of amplitude represents a fourfold increase in power, which is 6 dB by the amplitude formula and also 6 dB by the power formula applied to power ratios of 4 — they are consistent.\n\nCombining incoherent dB sources (independent noise sources, separate sound machines, multiple antennas) requires converting back to linear power, summing, and converting back to dB: L_total = 10 × log₁₀(Σ 10^(Lᵢ/10)). Two identical 60 dB sources give 63 dB, not 120 dB. This counterintuitive result surprises many students; the calculator's Combine mode handles it correctly.\n\nThe dB scale has spawned many absolute variants: dBm (relative to 1 mW), dBW (relative to 1 W), dBV (relative to 1 V), dBu (relative to 0.775 V), dBSPL (relative to 20 μPa in air). This calculator works with pure ratios and returns a dimensionless dB value. To obtain an absolute level in dBm or dBSPL, apply the result relative to your chosen reference level after the conversion."
+  },
+  "examples": {
+    "heading": "Worked Examples",
+    "intro": "Four real-world scenarios showing each calculation mode with typical engineering values.",
+    "colInput": "Scenario",
+    "colOutput": "Result",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Amplifier power gain: Pin = 10 W, Pout = 20 W (Power, Ratio to dB)",
+        "output": "3.01 dB",
+        "note": "10 × log₁₀(20/10) = 3.01 dB. Doubling power always adds approximately 3 dB."
+      },
+      {
+        "input": "Voltage gain: Vin = 5 V, Vout = 10 V (Amplitude, Ratio to dB)",
+        "output": "6.02 dB",
+        "note": "20 × log₁₀(10/5) = 6.02 dB. Doubling voltage amplitude is 6 dB, not 3 dB."
+      },
+      {
+        "input": "Signal attenuation: −6 dB in amplitude (dB to Ratio, Amplitude)",
+        "output": "Linear ratio = 0.5012",
+        "note": "10^(−6/20) ≈ 0.501. A −6 dB cable loss halves the voltage amplitude."
+      },
+      {
+        "input": "Two sound sources: 80 dB and 85 dB combined",
+        "output": "86.19 dB",
+        "note": "10 × log₁₀(10^8 + 10^8.5) ≈ 86.2 dB. The louder source dominates; adding a quieter source raises the total by only 1.2 dB."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the dB Calculator",
+    "steps": [
+      "Choose 'Ratio to dB' to convert a measured-to-reference ratio into decibels, 'dB to Ratio' to reverse the conversion, or 'Combine dB Values' to add independent sources logarithmically.",
+      "For Ratio to dB or dB to Ratio, select whether your quantity is Power (watts, intensity) or Amplitude (volts, pressure). This determines whether the calculator uses the factor-10 or factor-20 formula.",
+      "Enter the reference value X1 and measured value X2 for ratio conversions, or the dB value for the dB-to-ratio conversion. For Combine mode, enter all dB values separated by commas.",
+      "Click Calculate. The result panel shows the dB value or linear ratio along with the exact formula used so you can verify the arithmetic.",
+      "Click Reset to clear all fields and start a new calculation. Switch modes at any time without losing other field values."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "Why does doubling power give +3 dB but doubling voltage give +6 dB?",
+        "a": "Power is proportional to the square of voltage (P = V²/R). Doubling voltage quadruples power, which is +6 dB on the power scale. But 20 × log₁₀(2) = 6.02 dB on the amplitude scale. Both formulas are consistent: a doubling of voltage is a +6 dB change whether you use the power formula with a power ratio of 4, or the amplitude formula with a voltage ratio of 2."
+      },
+      {
+        "q": "Can I add decibel values directly?",
+        "a": "You can add dB gains and losses in a chain of components because multiplication of linear ratios corresponds to addition of logarithms. But you cannot add dB levels of independent sources, because those represent powers that must be summed linearly. Use the Combine dB Values mode: two equal 60 dB sources sum to 63 dB, not 120 dB."
+      },
+      {
+        "q": "What is the difference between dB and dBm?",
+        "a": "A plain dB value is a dimensionless ratio between two quantities. dBm is an absolute power level expressed relative to 1 milliwatt: P(dBm) = 10 × log₁₀(P_mW / 1 mW). To convert this calculator's ratio result to dBm, first express your reference X1 = 1 mW and X2 = your power in mW, then run the power Ratio-to-dB calculation."
+      },
+      {
+        "q": "What does a negative dB value mean?",
+        "a": "A negative dB value means the measured quantity is smaller than the reference — i.e., there is attenuation or loss rather than gain. For example, −3 dB means power is halved; −6 dB means voltage amplitude is halved. Audio cables, attenuators, and lossy transmission lines all have negative dB insertion loss."
+      },
+      {
+        "q": "How do I combine more than two dB sources?",
+        "a": "Enter all values separated by commas in the Combine dB Values field, e.g. '75, 80, 82, 78'. The calculator converts each to a linear power equivalent, sums them, and converts back to dB. You can combine any number of independent sources this way."
+      },
+      {
+        "q": "Why does combining two equal sources only add 3 dB?",
+        "a": "Because dB is logarithmic. Two equal power sources of L dB each have a combined power of 2×10^(L/10), and 10 × log₁₀(2×10^(L/10)) = L + 10 × log₁₀(2) ≈ L + 3.01 dB. Doubling the number of equal sources always adds approximately 3 dB regardless of the starting level."
+      }
+    ]
+  }
+}
