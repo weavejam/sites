@@ -3525,4 +3525,205 @@ export const tools: ToolEntry[] = [
 
 
 
-];
+  ,
+    {
+      id: "lagrange-error-bound-calculator",
+      category: "math",
+      slugs: {
+        en: "lagrange-error-bound-calculator",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      titles: {
+        en: "Lagrange Error Bound Calculator - Taylor Polynomial Error",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      descriptions: {
+        en: "Calculate the Lagrange error bound for Taylor polynomial approximations. Instantly find the maximum truncation error with M, n, a, and x.",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      }
+    },
+    {
+      id: "lateral-area-trapezoidal-prism-calculator",
+      category: "math",
+      slugs: {
+        en: "lateral-area-trapezoidal-prism-calculator",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      titles: {
+        en: "Lateral Area of Trapezoidal Prism Calculator",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      descriptions: {
+        en: "Calculate the lateral surface area of a trapezoidal prism. Enter bases, non-parallel sides, and prism height for instant results with formula.",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      }
+    },
+    {
+      id: "latus-rectum-calculator",
+      category: "math",
+      slugs: {
+        en: "latus-rectum-calculator",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      titles: {
+        en: "Latus Rectum Calculator - Parabola, Ellipse, Hyperbola",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      descriptions: {
+        en: "Find the latus rectum length for any conic section. Supports parabola (4p), ellipse, and hyperbola (2b\u00b2/a) with instant formula results.",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      }
+    },
+    {
+      id: "law-of-cosines-calculator",
+      category: "math",
+      slugs: {
+        en: "law-of-cosines-calculator",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      titles: {
+        en: "Law of Cosines Calculator - Solve Any Triangle (SAS/SSS)",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      descriptions: {
+        en: "Solve any triangle using the law of cosines. Find a missing side (SAS) or a missing angle (SSS) instantly with formula verification.",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      }
+    },
+    {
+      id: "law-of-sines-calculator",
+      category: "math",
+      slugs: {
+        en: "law-of-sines-calculator",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      titles: {
+        en: "Law of Sines Calculator - Solve Triangles (AAS, ASA, SSA)",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      },
+      descriptions: {
+        en: "Solve triangles with the law of sines for AAS, ASA, and SSA cases. Handles the ambiguous SSA case automatically. Get all sides and angles.",
+        "zh-CN": "",
+        "zh-TW": "",
+        ja: "",
+        ko: "",
+        es: "",
+        fr: "",
+        de: "",
+        pt: "",
+        ru: ""
+      }
+    }
+  ];
