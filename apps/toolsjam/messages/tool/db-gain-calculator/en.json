@@ -1,0 +1,120 @@
+{
+  "title": "dB Gain Calculator for Power and Voltage",
+  "tagline": "Calculate gain in decibels between two power or voltage values, or find an unknown input or output when the dB gain is specified.",
+  "intro": "Choose whether to calculate dB gain, find the output value, or find the input value. Select power or voltage, enter two known quantities, and get instant results.",
+  "type": {
+    "calculateGain": "Calculate dB Gain",
+    "calculateGain_desc": "Find the gain (or loss) in dB given the input and output values.",
+    "calculateOutput": "Calculate Output Value",
+    "calculateOutput_desc": "Find the output value given the input and the dB gain.",
+    "calculateInput": "Calculate Input Value",
+    "calculateInput_desc": "Find the input value given the output and the dB gain."
+  },
+  "quantity": {
+    "label": "Quantity Type",
+    "power": "Power (W, mW, etc.)",
+    "voltage": "Voltage (V, mV, etc.)"
+  },
+  "field": {
+    "calcType": "Calculation Type",
+    "quantityType": "Quantity Type",
+    "inputValue": "Input Value",
+    "outputValue": "Output Value",
+    "gainDb": "Gain (dB)"
+  },
+  "placeholder": {
+    "inputValue": "e.g. 10",
+    "outputValue": "e.g. 20",
+    "gainDb": "e.g. 3"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Result",
+    "gainPower": "Gain = {result} dB  (10 × log₁₀({output} / {input}))",
+    "gainVoltage": "Gain = {result} dB  (20 × log₁₀({output} / {input}))",
+    "outputPower": "Output = {result}  (input × 10^(gain/10))",
+    "outputVoltage": "Output = {result}  (input × 10^(gain/20))",
+    "inputPower": "Input = {result}  (output / 10^(gain/10))",
+    "inputVoltage": "Input = {result}  (output / 10^(gain/20))"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers in all enabled fields.",
+    "zeroInput": "Input value must be greater than zero.",
+    "zeroOutput": "Output value must be greater than zero."
+  },
+  "about": {
+    "heading": "About the dB Gain Calculator",
+    "body": "Gain is the ratio of an output signal to an input signal, and expressing it in decibels transforms that ratio into an additive quantity that can be summed through a chain of amplifiers, attenuators, and transmission lines. The dB gain calculator solves the three most common gain problems: computing the gain in dB when both input and output are known; computing the output level when the input and gain are known; and computing the required input level when the output target and gain specification are given.\n\nThe formula depends on the physical nature of the quantity being measured. For power quantities — watts, milliwatts, acoustic intensity — the power gain formula applies: G(dB) = 10 × log₁₀(P_out / P_in). For amplitude (field) quantities — volts, millivolts, amperes, sound pressure — the voltage gain formula applies: G(dB) = 20 × log₁₀(V_out / V_in). The factor of 20 instead of 10 arises because power is proportional to the square of a field quantity (P ∝ V²), so using 20 with voltage ratios produces the same dB result as using 10 with the corresponding power ratio. The two formulas are consistent by design.\n\nInverting the gain formulas gives the output and input calculations. For power: P_out = P_in × 10^(G/10); for voltage: V_out = V_in × 10^(G/20). A positive gain (G > 0) amplifies the signal; a negative gain (G < 0) attenuates it. A −3 dB gain halves power; a −6 dB gain halves voltage amplitude; a +20 dB gain multiplies voltage by 10 (or multiplies power by 100).\n\nIn electronics, the dB gain model is used to specify amplifier gain, filter insertion loss, cable attenuation, antenna gain, and link budget margins. In acoustics, it captures how much a loudspeaker amplifier or room treatment changes sound pressure level. In RF and microwave engineering, every component in the receive chain — antenna, LNA, cable, mixer, IF amplifier — is characterised by its dB gain or loss, and the total system gain is the algebraic sum of all contributions.\n\nNegative dB gain values are called insertion loss or attenuation. A coaxial cable specified at −2.5 dB per metre reduces power to 10^(−2.5/10) ≈ 0.562 of input per metre, or reduces voltage to 10^(−2.5/20) ≈ 0.750. Knowing whether you are working with power or voltage prevents the common error of applying the wrong formula and obtaining a result that is off by a factor of two in dB terms."
+  },
+  "examples": {
+    "heading": "Worked Examples",
+    "intro": "Four practical gain scenarios covering both power and voltage calculations.",
+    "colInput": "Scenario",
+    "colOutput": "Result",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Amplifier power gain: Pin = 10 W, Pout = 20 W",
+        "output": "Gain = 3.01 dB",
+        "note": "10 × log₁₀(2) = 3.01 dB. Doubling power always corresponds to approximately +3 dB."
+      },
+      {
+        "input": "Find output voltage: Vin = 1 V, Gain = 6 dB (Voltage)",
+        "output": "Vout = 2.00 V",
+        "note": "1 × 10^(6/20) ≈ 2.00 V. A +6 dB voltage gain doubles the amplitude."
+      },
+      {
+        "input": "Find input power: Pout = 100 W, Gain = 20 dB (Power)",
+        "output": "Pin = 1.00 W",
+        "note": "100 / 10^(20/10) = 100/100 = 1.00 W. A 20 dB power gain multiplies power by 100."
+      },
+      {
+        "input": "Attenuator: Vin = 5 V, Gain = −3 dB (Voltage)",
+        "output": "Vout ≈ 3.54 V",
+        "note": "5 × 10^(−3/20) ≈ 3.54 V. A −3 dB voltage attenuation reduces amplitude to about 70.7% of input."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the dB Gain Calculator",
+    "steps": [
+      "Select the calculation type: 'Calculate dB Gain' to find gain from input/output, 'Calculate Output Value' to find output from input and gain, or 'Calculate Input Value' to find input from output and gain.",
+      "Choose the quantity type — Power for watts/milliwatts/intensity, or Voltage for volts/amps/pressure. This sets the correct formula (factor 10 vs factor 20).",
+      "Enter the two known values. The field corresponding to the unknown will be disabled — leave it blank and the calculator will compute it for you.",
+      "Click Calculate. The result shows the computed value together with the formula so you can verify the mathematics.",
+      "Click Reset to clear all fields and run a new scenario. You can switch calculation type and quantity type at any time."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "What is the difference between power gain and voltage gain formulas?",
+        "a": "Power gain uses G = 10 × log₁₀(Pout/Pin) because power quantities are already proportional to signal strength. Voltage gain uses G = 20 × log₁₀(Vout/Vin) because power is proportional to the square of voltage. The factor of 20 ensures both formulas give the same dB value for a given physical gain. Choosing the wrong formula gives a result that is off by a factor of 2 in dB."
+      },
+      {
+        "q": "What does a negative dB gain mean?",
+        "a": "Negative dB gain means attenuation — the output is smaller than the input. A gain of −3 dB means power is halved; −6 dB means voltage amplitude is halved (power is quartered). Passive components like cables, connectors, and attenuators always have negative dB gain. Amplifiers have positive dB gain. Active filters can have either depending on the frequency."
+      },
+      {
+        "q": "How do I add gains for components in series?",
+        "a": "Simply add the dB values of each component in the chain. For example, an amplifier with +20 dB gain followed by a cable with −3 dB loss gives a net gain of +17 dB. This additive property is the main reason engineers use dB — it converts cascaded multiplications into simple additions, making link budget analysis straightforward."
+      },
+      {
+        "q": "What is 0 dB gain?",
+        "a": "0 dB gain means the output equals the input (ratio = 1) — no amplification and no attenuation. A unity-gain buffer amplifier, for example, has 0 dB gain. In link budget calculations, a component with 0 dB insertion loss passes the signal unchanged."
+      },
+      {
+        "q": "Can I use this calculator for acoustic gain?",
+        "a": "Yes. For sound pressure level (SPL) use the Voltage formula, because SPL is measured in pressure (an amplitude quantity). Enter the reference pressure as X_in and the measured pressure as X_out. The result in dB corresponds directly to the change in SPL. For acoustic intensity or power, use the Power formula."
+      },
+      {
+        "q": "How do I convert dB gain to a linear multiplier?",
+        "a": "For power: linear ratio = 10^(G/10). For voltage: linear ratio = 10^(G/20). Use the 'Calculate Output Value' mode with an input of 1 and the desired gain — the output value is exactly the linear multiplier. For example, 20 dB power gain → input = 1, output = 100, so the power multiplier is 100."
+      }
+    ]
+  }
+}
