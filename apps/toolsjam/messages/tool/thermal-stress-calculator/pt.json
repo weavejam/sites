@@ -1,0 +1,94 @@
+{
+  "title": "Calculadora de Tensão Térmica",
+  "tagline": "Calcule a tensão e a deformação térmica em materiais restringidos por variações de temperatura.",
+  "intro": "Insira as propriedades do material e as variações de temperatura para calcular tensão térmica, deformação e expansão. Suporta modelos de restrição uniaxial e biaxial.",
+  "field": {
+    "initialTemp": "Temperatura inicial (°C)",
+    "finalTemp": "Temperatura final (°C)",
+    "expansionCoeff": "Coeficiente de dilatação térmica (1/°C)",
+    "youngsModulus": "Módulo de Young (GPa)",
+    "poisson": "Coeficiente de Poisson"
+  },
+  "placeholder": {
+    "temp": "ex.: 20",
+    "alpha": "ex.: 0.000012",
+    "youngs": "ex.: 200",
+    "poisson": "ex.: 0.3"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultados",
+    "tempChange": "Variação de temperatura",
+    "thermalStrain": "Deformação térmica (ε = αΔT)",
+    "uniaxialStress": "Tensão uniaxial (totalmente restringido)",
+    "biaxialStress": "Tensão biaxial (estado plano de tensão)"
+  },
+  "error": {
+    "invalid": "Insira valores válidos em todos os campos. O coeficiente de dilatação e o módulo de Young devem ser positivos; o coeficiente de Poisson deve estar entre 0 e 0,5."
+  },
+  "formula": "ε = α × ΔT | σ_uniaxial = E × α × ΔT | σ_biaxial = E × α × ΔT / (1 − ν)",
+  "about": {
+    "heading": "Sobre a Calculadora de Tensão Térmica",
+    "body": "A tensão térmica é a tensão mecânica que surge em um material quando ele sofre uma variação de temperatura, mas não pode expandir ou contrair livremente. Em um material sem restrição, o aquecimento produz apenas deformação térmica ε = α × ΔT, sem tensão. Quando há restrição — por estrutura ao redor, fixações rígidas ou expansão diferencial entre camadas unidas — a expansão térmica bloqueada gera tensão interna que pode causar escoamento, trincas ou falha por fadiga.\n\nA tensão térmica uniaxial de um elemento totalmente restringido é σ = E × α × ΔT, onde E é o módulo de Young em pascais, α é o coeficiente de dilatação linear em 1/°C e ΔT é a variação de temperatura. Essa fórmula assume que a restrição impede toda deformação axial. Para uma barra de aço de 1 m (E = 200 GPa, α = 12 × 10⁻⁶/°C) aquecida em 100°C: σ = 200 × 10⁹ × 12 × 10⁻⁶ × 100 = 240 MPa — próximo do limite de escoamento do aço doce (250 MPa). Isso explica por que folgas para dilatação livre são essenciais em tubulações, pontes e trilhos ferroviários.\n\nPara placas ou cascas restringidas em duas direções (estado plano de tensão ou estado biaxial), a fórmula passa a ser σ = E × α × ΔT / (1 − ν), onde ν é o coeficiente de Poisson. O denominador (1 − ν) aumenta a tensão em relação ao caso uniaxial porque a dilatação lateral também é impedida. Para aço com ν = 0,3, o fator fica 1/0,7 ≈ 1,43, de modo que a tensão térmica biaxial é 43% maior que a uniaxial para a mesma variação de temperatura.\n\nA análise de tensão térmica é crítica na engenharia aeroespacial, onde componentes sofrem ciclos extremos de temperatura. Pás de turbina de motores a jato ficam expostas a temperaturas de combustão acima de 1400°C enquanto são resfriadas internamente até 800–900°C, criando gradientes acentuados ao longo da espessura e altas tensões térmicas cíclicas. Revestimentos de barreira térmica de zircônia estabilizada com ítria (α ≈ 10 × 10⁻⁶/°C) são ajustados o mais próximo possível do substrato metálico (α ≈ 12–16 × 10⁻⁶/°C) para reduzir a tensão de descolamento do revestimento.\n\nNa engenharia civil, a tensão térmica é gerenciada pelo projeto em vez de ser eliminada. Lajes de concreto usam juntas de controle serradas em intervalos que limitam a tensão térmica entre juntas abaixo da resistência à tração do concreto. Pontes de aço usam apoios de rolete e placas deslizantes nas juntas de dilatação para permitir livre movimentação térmica. Em contraste, pontes com encontros integrais permitem intencionalmente que o tabuleiro solicite termicamente as estacas de apoio, contando com a ductilidade das estacas H de aço para acomodar ciclos térmicos repetidos ao longo da vida útil da ponte."
+  },
+  "examples": {
+    "heading": "Exemplos de Tensão Térmica",
+    "intro": "Cenários de engenharia mostrando tensão térmica e deformação para problemas comuns de materiais restringidos.",
+    "colInput": "Material / Variação de temperatura / Propriedades",
+    "colOutput": "Tensão / Deformação",
+    "colNote": "Contexto de engenharia",
+    "items": [
+      {
+        "input": "Viga de aço: T₁=20°C, T₂=150°C | α=12×10⁻⁶/°C, E=200 GPa, ν=0.3",
+        "output": "ε = 1.56×10⁻³ | σ_uniaxial = 312 MPa | σ_biaxial = 445.7 MPa",
+        "note": "Aço totalmente restringido aquecido em 130°C. A tensão uniaxial excede o limite de escoamento do aço doce."
+      },
+      {
+        "input": "Resfriamento de placa de alumínio: T₁=200°C, T₂=0°C | α=23×10⁻⁶/°C, E=70 GPa, ν=0.33",
+        "output": "ε = −4.6×10⁻³ | σ_uniaxial = −322 MPa | σ_biaxial = −480.6 MPa",
+        "note": "Tensão de tração em alumínio restringido ao resfriar. Valores negativos indicam tração."
+      },
+      {
+        "input": "Aquecimento de fio de cobre: T₁=25°C, T₂=80°C | α=17×10⁻⁶/°C, E=110 GPa, ν=0.34",
+        "output": "ε = 9.35×10⁻⁴ | σ_uniaxial = 102.85 MPa",
+        "note": "Condutor de cobre aquecido sob restrição. Tensão compressiva moderada."
+      },
+      {
+        "input": "Choque térmico em vidro: T₁=20°C, T₂=300°C | α=9×10⁻⁶/°C, E=70 GPa, ν=0.23",
+        "output": "ε = 2.52×10⁻³ | σ_uniaxial = 176.4 MPa | σ_biaxial = 229.1 MPa",
+        "note": "O vidro tem baixa tenacidade à fratura; tensão biaxial ≥160 MPa normalmente causa fratura."
+      }
+    ],
+    "loadSteel": "Viga de aço",
+    "loadAluminum": "Resfriamento de alumínio",
+    "loadCopper": "Fio de cobre"
+  },
+  "howto": {
+    "heading": "Como usar a Calculadora de Tensão Térmica",
+    "steps": [
+      "Insira as temperaturas inicial e final em °C. A calculadora calcula ΔT = T_final − T_initial; ΔT positivo significa aquecimento (tensão compressiva em material restringido), ΔT negativo significa resfriamento (tensão de tração).",
+      "Insira o coeficiente de dilatação térmica em 1/°C. Valores comuns: aço = 12×10⁻⁶, alumínio = 23×10⁻⁶, cobre = 17×10⁻⁶, vidro = 9×10⁻⁶, concreto = 12×10⁻⁶.",
+      "Insira o módulo de Young em GPa. Valores comuns: aço = 200, alumínio = 70, cobre = 110, vidro = 70, concreto = 30–40.",
+      "Insira o coeficiente de Poisson (adimensional, normalmente 0,25–0,35). Valores comuns: aço = 0,30, alumínio = 0,33, cobre = 0,34, vidro = 0,23.",
+      "Clique em Calcular para ver a deformação térmica, a tensão uniaxial (para barra ou viga restringida em uma direção) e a tensão biaxial (para placa restringida em duas direções). Valores de tensão negativos indicam tração."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre tensão térmica",
+    "q1": "O que causa tensão térmica nos materiais?",
+    "q1_a": "A tensão térmica ocorre quando um material sofre variação de temperatura, mas não consegue expandir ou contrair livremente. A restrição pode ser externa (apoios rígidos, juntas aparafusadas) ou interna (diferentes taxas de expansão em camadas de um material composto). Se o material não estivesse restringido, ele apenas mudaria de dimensão sem gerar tensão. A restrição impede essa mudança dimensional e força o desenvolvimento de tensão elástica igual ao produto da rigidez (E) pela deformação bloqueada (αΔT).",
+    "q2": "Qual é a diferença entre tensão térmica uniaxial e biaxial?",
+    "q2_a": "A tensão térmica uniaxial (σ = EαΔT) se aplica a elementos restringidos em apenas uma direção, como uma barra ou viga fixada nas duas extremidades. A tensão térmica biaxial (σ = EαΔT / (1 − ν)) se aplica a placas ou cascas restringidas simultaneamente em duas direções no plano. O caso biaxial produz tensão maior porque a contração lateral (efeito de Poisson) também é impedida. A maioria das estruturas de paredes finas e componentes eletrônicos é melhor modelada como problema biaxial.",
+    "q3": "Como saber se a tensão térmica vai causar falha?",
+    "q3_a": "Compare a tensão térmica calculada com o limite de escoamento do material (para metais dúcteis) ou com a resistência à fratura (para materiais frágeis como vidro ou cerâmica). Para aço (limite de escoamento ≈ 250 MPa), uma tensão uniaxial de 312 MPa resultante de aquecimento de 130°C ultrapassaria o limite e causaria deformação permanente. Para carregamento térmico cíclico, verifique também a resistência à fadiga. Fatores de segurança de 1,5–3 são comuns em aplicações estruturais. Use o critério de von Mises para estados de tensão combinados.",
+    "q4": "Quais materiais são mais suscetíveis à falha por tensão térmica?",
+    "q4_a": "Materiais frágeis (vidro, cerâmica, concreto) são os mais vulneráveis porque não conseguem deformar plasticamente para aliviar a tensão — qualquer tensão acima da resistência à fratura causa ruptura frágil súbita. Materiais com alto módulo de Young e alto coeficiente de dilatação também são naturalmente mais propensos à tensão térmica: diamante (E = 1,000 GPa, α = 1×10⁻⁶/°C) é rígido, mas tem baixa expansão; filmes poliméricos (E = 1–3 GPa, α = 50–200×10⁻⁶/°C) têm alta expansão, mas baixo módulo, resultando em tensão moderada.",
+    "q5": "Como reduzir a tensão térmica em projetos de engenharia?",
+    "q5_a": "As estratégias incluem: (1) usar juntas de dilatação e apoios deslizantes para permitir livre movimentação térmica; (2) selecionar materiais com coeficientes de expansão compatíveis para conjuntos colados; (3) usar camadas intermediárias de baixo módulo (como solda dúctil ou adesivo polimérico) entre componentes rígidos com valores de α diferentes; (4) projetar procedimentos de aquecimento gradual para minimizar ΔT a cada instante; (5) usar revestimentos de barreira térmica ou isolamento para reduzir a diferença de temperatura sofrida pelos componentes estruturais. Combinar várias estratégias — por exemplo, juntas de dilatação mais compatibilidade de materiais mais taxas de aquecimento controladas — oferece a melhor proteção contra falha por tensão térmica em aplicações exigentes como tubulações de usinas e estruturas aeroespaciais.",
+    "q6": "Como o coeficiente de Poisson se relaciona com a tensão térmica?",
+    "q6_a": "O coeficiente de Poisson (ν) descreve a contração lateral que acompanha a deformação axial: ν = −ε_lateral / ε_axial. Na tensão térmica biaxial, a restrição impede ambas as direções de deformação no plano. O efeito de Poisson faz com que bloquear a deformação em X também gere tensão em Y e vice-versa, acoplando os dois componentes de tensão. A tensão biaxial resultante é E × α × ΔT / (1 − ν), e sempre é maior que o valor uniaxial. Para metais típicos com ν ≈ 0,3, a tensão biaxial é cerca de 43% maior que a uniaxial."
+  }
+}

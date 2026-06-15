@@ -1,0 +1,94 @@
+{
+  "title": "Calculadora de Esfuerzo Térmico",
+  "tagline": "Calcula el esfuerzo y la deformación térmica en materiales restringidos por cambios de temperatura.",
+  "intro": "Ingresa las propiedades del material y los cambios de temperatura para calcular el esfuerzo térmico, la deformación y la expansión. Compatible con modelos de restricción uniaxial y biaxial.",
+  "field": {
+    "initialTemp": "Temperatura inicial (°C)",
+    "finalTemp": "Temperatura final (°C)",
+    "expansionCoeff": "Coeficiente de dilatación térmica (1/°C)",
+    "youngsModulus": "Módulo de Young (GPa)",
+    "poisson": "Coeficiente de Poisson"
+  },
+  "placeholder": {
+    "temp": "p. ej., 20",
+    "alpha": "p. ej., 0.000012",
+    "youngs": "p. ej., 200",
+    "poisson": "p. ej., 0.3"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultados",
+    "tempChange": "Cambio de temperatura",
+    "thermalStrain": "Deformación térmica (ε = αΔT)",
+    "uniaxialStress": "Esfuerzo uniaxial (totalmente restringido)",
+    "biaxialStress": "Esfuerzo biaxial (esfuerzo plano)"
+  },
+  "error": {
+    "invalid": "Introduce valores válidos en todos los campos. El coeficiente de dilatación y el módulo de Young deben ser positivos; el coeficiente de Poisson debe estar entre 0 y 0.5."
+  },
+  "formula": "ε = α × ΔT | σ_uniaxial = E × α × ΔT | σ_biaxial = E × α × ΔT / (1 − ν)",
+  "about": {
+    "heading": "Acerca de la Calculadora de Esfuerzo Térmico",
+    "body": "El esfuerzo térmico es el esfuerzo mecánico que aparece en un material cuando sufre un cambio de temperatura pero no puede expandirse o contraerse libremente. En un material sin restricción, el calentamiento produce solo deformación térmica ε = α × ΔT, sin esfuerzo. Cuando existe restricción —por estructura circundante, apoyos rígidos o expansión diferencial entre capas unidas—, la expansión térmica bloqueada genera un esfuerzo interno que puede causar fluencia, grietas o fallo por fatiga.\n\nEl esfuerzo térmico uniaxial de un elemento totalmente restringido es σ = E × α × ΔT, donde E es el módulo de Young en pascales, α es el coeficiente de dilatación lineal en 1/°C y ΔT es el cambio de temperatura. Esta fórmula supone que la restricción impide toda deformación axial. Para una barra de acero de 1 m (E = 200 GPa, α = 12 × 10⁻⁶/°C) calentada 100°C: σ = 200 × 10⁹ × 12 × 10⁻⁶ × 100 = 240 MPa, cerca del límite elástico del acero dulce (250 MPa). Esto explica por qué son esenciales las provisiones de expansión libre en tuberías, puentes y vías férreas.\n\nPara placas o cascarones restringidos en dos direcciones (estado de esfuerzo plano o biaxial), la fórmula pasa a ser σ = E × α × ΔT / (1 − ν), donde ν es el coeficiente de Poisson. El denominador (1 − ν) incrementa el esfuerzo frente al caso uniaxial porque también se impide la expansión lateral. En acero con ν = 0.3, el factor pasa a 1/0.7 ≈ 1.43, de modo que el esfuerzo térmico biaxial es 43% mayor que el uniaxial para el mismo cambio de temperatura.\n\nEl análisis de esfuerzo térmico es crítico en ingeniería aeroespacial, donde los componentes soportan ciclos extremos de temperatura. Las palas de turbina de motores a reacción están expuestas a temperaturas de combustión superiores a 1400°C mientras se enfrían internamente hasta 800–900°C, creando gradientes bruscos a través del espesor y altos esfuerzos térmicos cíclicos. Los recubrimientos de barrera térmica de zirconia estabilizada con itria (α ≈ 10 × 10⁻⁶/°C) se ajustan lo más posible al sustrato metálico (α ≈ 12–16 × 10⁻⁶/°C) para reducir el esfuerzo de desprendimiento del recubrimiento.\n\nEn ingeniería civil, el esfuerzo térmico se gestiona mediante el diseño en lugar de eliminarse. Las losas de hormigón incorporan juntas de control aserradas a intervalos que limitan el esfuerzo térmico entre juntas por debajo de la resistencia a tracción del hormigón. Los puentes de acero usan apoyos de rodillo y placas deslizantes en las juntas de dilatación para permitir el movimiento térmico libre. En cambio, los puentes de estribo integral permiten de forma intencional que el tablero del puente cargue térmicamente a los pilotes de apoyo, confiando en la ductilidad de los pilotes H de acero para soportar ciclos térmicos repetidos durante toda la vida útil del puente."
+  },
+  "examples": {
+    "heading": "Ejemplos de Esfuerzo Térmico",
+    "intro": "Escenarios de ingeniería que muestran el esfuerzo térmico y la deformación en problemas comunes de materiales restringidos.",
+    "colInput": "Material / Cambio de temperatura / Propiedades",
+    "colOutput": "Esfuerzo / Deformación",
+    "colNote": "Contexto de ingeniería",
+    "items": [
+      {
+        "input": "Viga de acero: T₁=20°C, T₂=150°C | α=12×10⁻⁶/°C, E=200 GPa, ν=0.3",
+        "output": "ε = 1.56×10⁻³ | σ_uniaxial = 312 MPa | σ_biaxial = 445.7 MPa",
+        "note": "Acero totalmente restringido calentado 130°C. El esfuerzo uniaxial supera el límite elástico del acero dulce."
+      },
+      {
+        "input": "Enfriamiento de placa de aluminio: T₁=200°C, T₂=0°C | α=23×10⁻⁶/°C, E=70 GPa, ν=0.33",
+        "output": "ε = −4.6×10⁻³ | σ_uniaxial = −322 MPa | σ_biaxial = −480.6 MPa",
+        "note": "Esfuerzo de tracción en aluminio restringido al enfriarse. Los valores negativos indican tracción."
+      },
+      {
+        "input": "Calentamiento de alambre de cobre: T₁=25°C, T₂=80°C | α=17×10⁻⁶/°C, E=110 GPa, ν=0.34",
+        "output": "ε = 9.35×10⁻⁴ | σ_uniaxial = 102.85 MPa",
+        "note": "Conductor de cobre calentado bajo restricción. Esfuerzo compresivo moderado."
+      },
+      {
+        "input": "Choque térmico en vidrio: T₁=20°C, T₂=300°C | α=9×10⁻⁶/°C, E=70 GPa, ν=0.23",
+        "output": "ε = 2.52×10⁻³ | σ_uniaxial = 176.4 MPa | σ_biaxial = 229.1 MPa",
+        "note": "El vidrio tiene baja tenacidad a la fractura; un esfuerzo biaxial ≥160 MPa suele provocar fractura."
+      }
+    ],
+    "loadSteel": "Viga de acero",
+    "loadAluminum": "Enfriamiento de aluminio",
+    "loadCopper": "Alambre de cobre"
+  },
+  "howto": {
+    "heading": "Cómo usar la Calculadora de Esfuerzo Térmico",
+    "steps": [
+      "Ingresa las temperaturas inicial y final en °C. La calculadora obtiene ΔT = T_final − T_initial; un ΔT positivo significa calentamiento (esfuerzo compresivo en material restringido), un ΔT negativo significa enfriamiento (esfuerzo de tracción).",
+      "Ingresa el coeficiente de dilatación térmica en 1/°C. Valores comunes: acero = 12×10⁻⁶, aluminio = 23×10⁻⁶, cobre = 17×10⁻⁶, vidrio = 9×10⁻⁶, hormigón = 12×10⁻⁶.",
+      "Ingresa el módulo de Young en GPa. Valores comunes: acero = 200, aluminio = 70, cobre = 110, vidrio = 70, hormigón = 30–40.",
+      "Ingresa el coeficiente de Poisson (adimensional, normalmente 0.25–0.35). Valores comunes: acero = 0.30, aluminio = 0.33, cobre = 0.34, vidrio = 0.23.",
+      "Haz clic en Calcular para ver la deformación térmica, el esfuerzo uniaxial (para barras o vigas restringidas en una dirección) y el esfuerzo biaxial (para placas restringidas en dos direcciones). Los esfuerzos negativos indican tracción."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre esfuerzo térmico",
+    "q1": "¿Qué causa el esfuerzo térmico en los materiales?",
+    "q1_a": "El esfuerzo térmico ocurre cuando un material sufre un cambio de temperatura pero no puede expandirse o contraerse libremente. La restricción puede ser externa (apoyos rígidos, uniones atornilladas) o interna (diferentes tasas de expansión en distintas capas de un material compuesto). Si el material no estuviera restringido, simplemente cambiaría de dimensiones sin generar esfuerzo. La restricción impide ese cambio dimensional y obliga a desarrollar un esfuerzo elástico igual al producto de la rigidez (E) y la deformación bloqueada (αΔT).",
+    "q2": "¿Cuál es la diferencia entre esfuerzo térmico uniaxial y biaxial?",
+    "q2_a": "El esfuerzo térmico uniaxial (σ = EαΔT) se aplica a elementos restringidos en una sola dirección, como una barra o una viga fijada en ambos extremos. El esfuerzo térmico biaxial (σ = EαΔT / (1 − ν)) se aplica a placas o cascarones restringidos simultáneamente en dos direcciones del plano. El caso biaxial produce mayor esfuerzo porque también se impide la contracción lateral (efecto Poisson). La mayoría de las estructuras de pared delgada y los componentes electrónicos se modelan mejor como problemas biaxiales.",
+    "q3": "¿Cómo sé si el esfuerzo térmico causará fallo?",
+    "q3_a": "Compara el esfuerzo térmico calculado con el límite elástico del material (para metales dúctiles) o con la resistencia a la fractura (para materiales frágiles como vidrio o cerámica). Para acero (límite elástico ≈ 250 MPa), un esfuerzo uniaxial de 312 MPa producido por un calentamiento de 130°C superaría el límite y causaría deformación permanente. En cargas térmicas cíclicas, también revisa la resistencia a fatiga. En aplicaciones estructurales son habituales factores de seguridad de 1.5–3. Usa el criterio de von Mises para estados de esfuerzo combinados.",
+    "q4": "¿Qué materiales son más susceptibles al fallo por esfuerzo térmico?",
+    "q4_a": "Los materiales frágiles (vidrio, cerámica, hormigón) son los más vulnerables porque no pueden deformarse plásticamente para aliviar el esfuerzo: cualquier esfuerzo que supere su resistencia a la fractura provoca una rotura frágil súbita. Los materiales con alto módulo de Young y alto coeficiente de dilatación también son más propensos al esfuerzo térmico: el diamante (E = 1,000 GPa, α = 1×10⁻⁶/°C) es rígido pero se expande poco; las películas poliméricas (E = 1–3 GPa, α = 50–200×10⁻⁶/°C) se expanden mucho, pero su módulo es bajo, por lo que el esfuerzo resultante es moderado.",
+    "q5": "¿Cómo se puede reducir el esfuerzo térmico en el diseño de ingeniería?",
+    "q5_a": "Las estrategias de diseño incluyen: (1) usar juntas de dilatación y apoyos deslizantes para permitir el movimiento térmico libre; (2) elegir materiales con coeficientes de expansión compatibles en conjuntos unidos; (3) usar capas intermedias de bajo módulo (como soldadura dúctil o adhesivo polimérico) entre componentes rígidos con valores de α distintos; (4) diseñar procedimientos de calentamiento gradual para minimizar ΔT en cada instante; (5) usar recubrimientos de barrera térmica o aislamiento para reducir la diferencia de temperatura que experimentan los componentes estructurales. Combinar varias estrategias —por ejemplo, juntas de dilatación más compatibilidad de materiales más velocidades de calentamiento controladas— ofrece la mejor protección frente al fallo por esfuerzo térmico en aplicaciones exigentes como tuberías de plantas energéticas y estructuras aeroespaciales.",
+    "q6": "¿Qué relación tiene el coeficiente de Poisson con el esfuerzo térmico?",
+    "q6_a": "El coeficiente de Poisson (ν) describe la contracción lateral que acompaña a la deformación axial: ν = −ε_lateral / ε_axial. En el esfuerzo térmico biaxial, la restricción impide ambas direcciones de deformación en el plano. El efecto Poisson hace que bloquear la deformación en X también induzca esfuerzo en Y y viceversa, acoplando así los dos componentes de esfuerzo. El esfuerzo biaxial resultante es E × α × ΔT / (1 − ν), y siempre es mayor que el uniaxial. Para metales típicos con ν ≈ 0.3, el esfuerzo biaxial es aproximadamente 43% mayor que el uniaxial."
+  }
+}

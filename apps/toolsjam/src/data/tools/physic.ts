@@ -1406,39 +1406,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "thermal-stress-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "re-ying-li-ji-suan-qi",
+      "zh-TW": "re-ying-li-ji-suan-qi",
+      ja: "netsu-ouryoku-keisanki",
+      ko: "yeoncheol-ingeub-gyeonsan-gi",
+      es: "calculadora-esfuerzo-termico",
+      fr: "calculateur-contraintes-thermiques",
+      de: "thermische-spannungsrechner",
+      pt: "calculadora-de-tensao-termica",
+      ru: "kalkulyator-termicheskogo-napryazheniya"
     },
     titles: {
       en: "Thermal Stress Calculator – Strain & Constrained Expansion",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "热应力计算器",
+      "zh-TW": "熱應力計算器",
+      ja: "熱応力計算機",
+      ko: "열응력 계산기",
+      es: "Calculadora de Esfuerzo Térmico",
+      fr: "Calculateur de Contrainte Thermique",
+      de: "Thermischer Spannungsrechner",
+      pt: "Calculadora de Tensão Térmica",
+      ru: "Калькулятор термического напряжения"
     },
     descriptions: {
       en: "Calculate thermal stress σ=EαΔT and biaxial stress for constrained materials. Supports steel, aluminum, copper. Essential for structural engineering.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算受约束材料的热应力σ=EαΔT与双向应力，支持钢、铝、铜，适用于结构工程。",
+      "zh-TW": "計算受約束材料的熱應力σ=EαΔT與雙向應力，支援鋼、鋁、銅，適用結構工程。",
+      ja: "拘束材の熱応力σ=EαΔTと二軸応力を計算。鋼・アルミ・銅に対応し、構造設計に最適。",
+      ko: "구속된 재료의 열응력σ=EαΔT와 이축응력을 계산합니다. 강철, 알루미늄, 구리에 대응하며 구조공학에 유용합니다.",
+      es: "Calcula el esfuerzo térmico σ=EαΔT y el esfuerzo biaxial en materiales restringidos. Compatible con acero, aluminio y cobre.",
+      fr: "Calcule la contrainte thermique σ=EαΔT et la contrainte biaxiale pour matériaux contraints. Compatible acier, aluminium, cuivre.",
+      de: "Berechnet thermische Spannung σ=EαΔT und biaxiale Spannung für eingespannten Werkstoffe. Für Stahl, Aluminium und Kupfer.",
+      pt: "Calcule a tensão térmica σ=EαΔT e a tensão biaxial em materiais restringidos. Suporta aço, alumínio e cobre.",
+      ru: "Рассчитайте термическое напряжение σ=EαΔT и двухосное напряжение для стеснённых материалов. Для стали, алюминия и меди."
     }
   },
   {
@@ -1446,39 +1446,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "specific-gas-constant-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "biqiti-changshu-jisuanqi",
+      "zh-TW": "biqiti-changshu-jisuanqi",
+      ja: "hikikitei-teisu-keisan",
+      ko: "bigi-che-sangsu-gyesangi",
+      es: "calculadora-constante-especifica-gas",
+      fr: "calculateur-constante-specifique-gaz",
+      de: "spezifische-gaskonstante-rechner",
+      pt: "calculadora-constante-especifica-gas",
+      ru: "kalkulyator-udelnoy-gazovoy-postoyannoy"
     },
     titles: {
       en: "Specific Gas Constant Calculator – R Value for Any Gas",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "比气体常数计算器",
+      "zh-TW": "比氣體常數計算器",
+      ja: "比気体定数計算機",
+      ko: "비기체 상수 계산기",
+      es: "Calculadora de constante específica del gas",
+      fr: "Calculateur de constante spécifique du gaz",
+      de: "Rechner für die spezifische Gaskonstante",
+      pt: "Calculadora da constante específica do gás",
+      ru: "Калькулятор удельной газовой постоянной"
     },
     descriptions: {
       en: "Calculate the specific gas constant (R) for any gas from its molar mass. Use the ideal gas law PV=mRT to solve for pressure, volume, temperature, or mass.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据摩尔质量计算任意气体的比气体常数，并用理想气体定律求解压力、体积、温度或质量。",
+      "zh-TW": "依摩爾質量計算任意氣體的比氣體常數，並用理想氣體定律求解壓力、體積、溫度或質量。",
+      ja: "モル質量から任意の気体の比気体定数を計算し、理想気体の状態方程式で圧力・体積・温度・質量を求めます。",
+      ko: "몰질량으로 임의의 기체의 비기체 상수를 계산하고, 이상기체 법칙으로 압력·부피·온도·질량을 구합니다.",
+      es: "Calcula la constante específica del gas a partir de la masa molar y resuelve presión, volumen, temperatura o masa con la ley ideal.",
+      fr: "Calculez la constante spécifique d’un gaz à partir de sa masse molaire et résolvez pression, volume, température ou masse.",
+      de: "Berechnen Sie die spezifische Gaskonstante aus der Molmasse und lösen Sie Druck, Volumen, Temperatur oder Masse.",
+      pt: "Calcule a constante específica do gás a partir da massa molar e resolva pressão, volume, temperatura ou massa.",
+      ru: "Вычислите удельную газовую постоянную по молярной массе и найдите давление, объём, температуру или массу."
     }
   },
   {
@@ -1486,39 +1486,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "specific-gravity-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "bi-zhong-ji-suan-qi-mi-du-bi-yu-fu-li",
+      "zh-TW": "bi-zhong-ji-suan-qi-mi-du-bi-yu-fu-li",
+      ja: "hijuu-keisanki-mitsudo-hiryoku",
+      ko: "bijung-gyesan-gi-mildo-bi-bu-ryeok",
+      es: "calculadora-gravedad-especifica-flotabilidad",
+      fr: "calculateur-densite-relative-flottabilite",
+      de: "spezifisches-gewicht-auftrieb",
+      pt: "calculadora-gravidade-especifica-flutuabilidade",
+      ru: "kalkulyator-udelnogo-vesa-plavuchesti"
     },
     titles: {
       en: "Specific Gravity Calculator – Density Ratio & Buoyancy",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "比重计算器：密度比与浮力",
+      "zh-TW": "比重計算器：密度比與浮力",
+      ja: "比重計算機：密度比と浮力",
+      ko: "비중 계산기: 밀도비와 부력",
+      es: "Calculadora de gravedad específica y flotabilidad",
+      fr: "Calculateur de densité relative et flottabilité",
+      de: "Spezifisches Gewicht und Auftrieb berechnen",
+      pt: "Calculadora de gravidade específica e flutuabilidade",
+      ru: "Калькулятор удельного веса и плавучести"
     },
     descriptions: {
       en: "Calculate specific gravity and density ratio relative to water. Enter substance mass and volume, or input density directly, to instantly find buoyancy force.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "根据与水的密度比计算比重和密度比。输入质量和体积，或直接输入密度，即可立即得到浮力结果。",
+      "zh-TW": "根據與水的密度比計算比重與密度比。輸入質量和體積，或直接輸入密度，即可立即得到浮力結果。",
+      ja: "水との密度比から比重と密度比を計算。質量と体積を入力するか、密度を直接入力してすぐに浮力を確認できます。",
+      ko: "물과의 밀도비로 비중과 밀도비를 계산합니다. 질량과 부피를 입력하거나 밀도를 직접 넣어 즉시 부력을 확인하세요.",
+      es: "Calcula la gravedad específica y la densidad relativa respecto al agua. Ingresa masa y volumen o la densidad directamente.",
+      fr: "Calculez la densité relative et la masse volumique par rapport à l’eau. Saisissez la masse, le volume ou la densité directement.",
+      de: "Berechnen Sie das spezifische Gewicht und die relative Dichte gegenüber Wasser. Masse, Volumen oder Dichte direkt eingeben.",
+      pt: "Calcule a gravidade específica e a densidade relativa em relação à água. Informe massa, volume ou densidade diretamente.",
+      ru: "Рассчитайте удельный вес и относительную плотность по отношению к воде. Введите массу, объём или плотность напрямую."
     }
   },
   {
@@ -1526,39 +1526,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "specific-heat-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "bi-rong-ji-suan-qi",
+      "zh-TW": "bi-rong-ji-suan-qi",
+      ja: "hi-atsu-keisanki",
+      ko: "bihyeol-gyeonsangi",
+      es: "calculadora-calor-especifico",
+      fr: "calculateur-chaleur-specifique",
+      de: "spezifische-waermekapazitaet-rechner",
+      pt: "calculadora-calor-especifico",
+      ru: "kalkulyator-udelnoy-teploty"
     },
     titles: {
       en: "Specific Heat Calculator – Q = m × c × ΔT Formula",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "比热计算器：Q = m × c × ΔT",
+      "zh-TW": "比熱計算機：Q = m × c × ΔT",
+      ja: "比熱計算機：Q = m × c × ΔT",
+      ko: "비열 계산기: Q = m × c × ΔT",
+      es: "Calculadora de calor específico: Q = m × c × ΔT",
+      fr: "Calculateur de chaleur spécifique : Q = m × c × ΔT",
+      de: "Rechner für spezifische Wärmekapazität: Q = m × c × ΔT",
+      pt: "Calculadora de calor específico: Q = m × c × ΔT",
+      ru: "Калькулятор удельной теплоёмкости: Q = m × c × ΔT"
     },
     descriptions: {
       en: "Calculate heat energy Q, specific heat capacity, or temperature change using Q = m × c × ΔT. Perfect for thermodynamics, engineering, and lab applications.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "使用 Q = m × c × ΔT 计算热量、比热容或温度变化，适用于热力学、工程和实验。",
+      "zh-TW": "使用 Q = m × c × ΔT 計算熱量、比熱容或溫度變化，適用於熱力學、工程與實驗。",
+      ja: "Q = m × c × ΔT で熱量、比熱、温度変化を計算。熱力学、工学、実験に最適です。",
+      ko: "Q = m × c × ΔT로 열에너지, 비열, 온도 변화를 계산하세요. 열역학, 공학, 실험에 적합합니다.",
+      es: "Calcula energía térmica, calor específico o cambio de temperatura con Q = m × c × ΔT. Ideal para termodinámica e ingeniería.",
+      fr: "Calculez l'énergie thermique, la chaleur spécifique ou la variation de température avec Q = m × c × ΔT. Idéal pour la thermodynamique et l'ingénierie.",
+      de: "Berechnen Sie Wärmeenergie, spezifische Wärmekapazität oder Temperaturänderung mit Q = m × c × ΔT. Ideal für Thermodynamik und Technik.",
+      pt: "Calcule energia térmica, calor específico ou variação de temperatura com Q = m × c × ΔT. Ideal para termodinâmica e engenharia.",
+      ru: "Рассчитайте тепловую энергию, удельную теплоёмкость или изменение температуры по формуле Q = m × c × ΔT."
     }
   },
   {
@@ -1566,39 +1566,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "specific-impulse-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "bichong-jisuanqi",
+      "zh-TW": "bichong-jisuanqi",
+      ja: "bisuiryoku-keisanki",
+      ko: "bichueryeok-gyesangi",
+      es: "calculadora-impulso-especifico",
+      fr: "calculateur-impulsion-specifique",
+      de: "spezifischer-impuls-rechner",
+      pt: "calculadora-impulso-especifico",
+      ru: "kalkulyator-udelnogo-impulsa"
     },
     titles: {
       en: "Specific Impulse Calculator – Rocket Engine Efficiency",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "比冲计算器 – 火箭发动机效率",
+      "zh-TW": "比衝計算器 – 火箭發動機效率",
+      ja: "比推力計算機 – ロケットエンジン効率",
+      ko: "비추력 계산기 – 로켓 엔진 효율",
+      es: "Calculadora de impulso específico – eficiencia de cohetes",
+      fr: "Calculateur d’impulsion spécifique – rendement des fusées",
+      de: "Spezifischer Impuls Rechner – Raketeneffizienz",
+      pt: "Calculadora de impulso específico – eficiência de foguetes",
+      ru: "Калькулятор удельного импульса – эффективность ракет"
     },
     descriptions: {
       en: "Calculate specific impulse (Isp) and effective exhaust velocity for rocket engines. Enter thrust and mass flow rate to measure propulsion efficiency in seconds.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算火箭发动机的比冲（Isp）和有效排气速度。输入推力与质量流量，以秒为单位衡量推进效率。",
+      "zh-TW": "計算火箭發動機的比衝（Isp）與有效排氣速度。輸入推力與質量流率，以秒為單位衡量推進效率。",
+      ja: "ロケットエンジンの比推力（Isp）と有効排気速度を計算します。推力と質量流量を入力して、推進効率を秒で確認できます。",
+      ko: "로켓 엔진의 비추력(Isp)과 유효 배기 속도를 계산합니다. 추력과 질량 유량을 입력해 추진 효율을 초 단위로 확인하세요.",
+      es: "Calcula el impulso específico (Isp) y la velocidad efectiva de escape para motores cohete. Introduce empuje y caudal másico.",
+      fr: "Calculez l’impulsion spécifique (Isp) et la vitesse effective d’éjection des moteurs-fusées. Saisissez la poussée et le débit massique.",
+      de: "Berechnen Sie spezifischen Impuls (Isp) und effektive Ausströmgeschwindigkeit für Raketentriebwerke. Schub und Massenstrom eingeben.",
+      pt: "Calcule o impulso específico (Isp) e a velocidade efetiva de exaustão de motores de foguete. Informe empuxo e vazão mássica.",
+      ru: "Рассчитайте удельный импульс (Isp) и эффективную скорость истечения для ракетных двигателей. Введите тягу и массовый расход."
     }
   },
   {
@@ -2641,7 +2641,4 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   }
-
-
-
 ];

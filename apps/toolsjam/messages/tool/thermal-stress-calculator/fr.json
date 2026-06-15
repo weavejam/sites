@@ -1,0 +1,94 @@
+{
+  "title": "Calculateur de Contrainte Thermique",
+  "tagline": "Calcule la contrainte et la déformation thermiques dans des matériaux contraints par des variations de température.",
+  "intro": "Saisissez les propriétés du matériau et les variations de température pour calculer la contrainte thermique, la déformation et la dilatation. Prend en charge les modèles de contrainte uniaxiale et biaxiale.",
+  "field": {
+    "initialTemp": "Température initiale (°C)",
+    "finalTemp": "Température finale (°C)",
+    "expansionCoeff": "Coefficient de dilatation thermique (1/°C)",
+    "youngsModulus": "Module de Young (GPa)",
+    "poisson": "Coefficient de Poisson"
+  },
+  "placeholder": {
+    "temp": "ex. : 20",
+    "alpha": "ex. : 0.000012",
+    "youngs": "ex. : 200",
+    "poisson": "ex. : 0.3"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats",
+    "tempChange": "Variation de température",
+    "thermalStrain": "Déformation thermique (ε = αΔT)",
+    "uniaxialStress": "Contrainte uniaxiale (entièrement contrainte)",
+    "biaxialStress": "Contrainte biaxiale (état de contraintes planes)"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs valides pour tous les champs. Le coefficient de dilatation et le module de Young doivent être positifs ; le coefficient de Poisson doit être compris entre 0 et 0.5."
+  },
+  "formula": "ε = α × ΔT | σ_uniaxial = E × α × ΔT | σ_biaxial = E × α × ΔT / (1 − ν)",
+  "about": {
+    "heading": "À propos du calculateur de contrainte thermique",
+    "body": "La contrainte thermique est la contrainte mécanique qui se développe dans un matériau lorsqu'il subit une variation de température sans pouvoir se dilater ou se contracter librement. Dans un matériau non contraint, le chauffage produit une déformation thermique ε = α × ΔT sans contrainte. Lorsque des contraintes existent — par exemple une structure environnante, des fixations rigides ou une dilatation différentielle entre couches liées — la dilatation thermique bloquée génère une contrainte interne pouvant provoquer de la plastification, des fissures ou une rupture par fatigue.\n\nLa contrainte thermique uniaxiale d'un élément entièrement contraint est σ = E × α × ΔT, où E est le module de Young en pascals, α le coefficient de dilatation linéaire en 1/°C et ΔT la variation de température. Cette formule suppose que la contrainte empêche toute déformation axiale. Pour une barre d'acier de 1 m (E = 200 GPa, α = 12 × 10⁻⁶/°C) chauffée de 100°C : σ = 200 × 10⁹ × 12 × 10⁻⁶ × 100 = 240 MPa — proche de la limite d'élasticité de l'acier doux (250 MPa). Cela explique pourquoi des dispositifs de dilatation libre sont essentiels dans les canalisations, les ponts et les voies ferrées.\n\nPour les plaques ou coques contraintes dans deux directions (état de contraintes planes ou biaxial), la formule devient σ = E × α × ΔT / (1 − ν), où ν est le coefficient de Poisson. Le dénominateur (1 − ν) augmente la contrainte par rapport au cas uniaxial, car la dilatation latérale est elle aussi empêchée. Pour l'acier avec ν = 0.3, le facteur devient 1/0.7 ≈ 1.43, de sorte que la contrainte thermique biaxiale est 43% plus élevée que la valeur uniaxiale pour la même variation de température.\n\nL'analyse des contraintes thermiques est cruciale en aéronautique et en aérospatial, où les composants subissent des cycles de température extrêmes. Les aubes de turbine de réacteurs sont exposées à des températures de combustion dépassant 1400°C tout en étant refroidies en interne à 800–900°C, ce qui crée de forts gradients à travers l'épaisseur et des contraintes thermiques cycliques élevées. Les revêtements barrières thermiques en zircone stabilisée à l'yttrine (α ≈ 10 × 10⁻⁶/°C) sont adaptés au plus près du substrat métallique (α ≈ 12–16 × 10⁻⁶/°C) afin de réduire les contraintes de délamination du revêtement.\n\nEn génie civil, la contrainte thermique est gérée par la conception plutôt que supprimée. Les dalles de béton comportent des joints de retrait sciés à intervalles réguliers qui limitent la contrainte thermique entre joints en dessous de la résistance en traction du béton. Les ponts en acier utilisent des appuis à rouleaux et des plaques de glissement aux joints de dilatation pour permettre le libre mouvement thermique. À l'inverse, les ponts à culée intégrée laissent volontairement le tablier charger thermiquement les pieux de fondation, en s'appuyant sur la ductilité des pieux en acier en H pour supporter les cycles thermiques répétés durant la vie du pont."
+  },
+  "examples": {
+    "heading": "Exemples de contrainte thermique",
+    "intro": "Scénarios d'ingénierie illustrant la contrainte thermique et la déformation pour des problèmes courants de matériaux contraints.",
+    "colInput": "Matériau / Variation de température / Propriétés",
+    "colOutput": "Contrainte / Déformation",
+    "colNote": "Contexte d'ingénierie",
+    "items": [
+      {
+        "input": "Poutre en acier : T₁=20°C, T₂=150°C | α=12×10⁻⁶/°C, E=200 GPa, ν=0.3",
+        "output": "ε = 1.56×10⁻³ | σ_uniaxial = 312 MPa | σ_biaxial = 445.7 MPa",
+        "note": "Acier entièrement contraint chauffé de 130°C. La contrainte uniaxiale dépasse la limite d'élasticité de l'acier doux."
+      },
+      {
+        "input": "Refroidissement d'une plaque d'aluminium : T₁=200°C, T₂=0°C | α=23×10⁻⁶/°C, E=70 GPa, ν=0.33",
+        "output": "ε = −4.6×10⁻³ | σ_uniaxial = −322 MPa | σ_biaxial = −480.6 MPa",
+        "note": "Contrainte de traction dans un aluminium contraint en refroidissement. Les valeurs négatives indiquent la traction."
+      },
+      {
+        "input": "Chauffage d'un fil de cuivre : T₁=25°C, T₂=80°C | α=17×10⁻⁶/°C, E=110 GPa, ν=0.34",
+        "output": "ε = 9.35×10⁻⁴ | σ_uniaxial = 102.85 MPa",
+        "note": "Conducteur en cuivre chauffé sous contrainte. Contrainte de compression modérée."
+      },
+      {
+        "input": "Choc thermique du verre : T₁=20°C, T₂=300°C | α=9×10⁻⁶/°C, E=70 GPa, ν=0.23",
+        "output": "ε = 2.52×10⁻³ | σ_uniaxial = 176.4 MPa | σ_biaxial = 229.1 MPa",
+        "note": "Le verre a une faible ténacité à la rupture ; une contrainte biaxiale ≥160 MPa provoque généralement une rupture."
+      }
+    ],
+    "loadSteel": "Poutre en acier",
+    "loadAluminum": "Refroidissement de l'aluminium",
+    "loadCopper": "Fil de cuivre"
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de contrainte thermique",
+    "steps": [
+      "Saisissez les températures initiale et finale en °C. Le calculateur détermine ΔT = T_final − T_initial ; un ΔT positif indique un chauffage (contrainte de compression dans un matériau contraint), un ΔT négatif un refroidissement (contrainte de traction).",
+      "Saisissez le coefficient de dilatation thermique en 1/°C. Valeurs courantes : acier = 12×10⁻⁶, aluminium = 23×10⁻⁶, cuivre = 17×10⁻⁶, verre = 9×10⁻⁶, béton = 12×10⁻⁶.",
+      "Saisissez le module de Young en GPa. Valeurs courantes : acier = 200, aluminium = 70, cuivre = 110, verre = 70, béton = 30–40.",
+      "Saisissez le coefficient de Poisson (sans dimension, généralement 0.25–0.35). Valeurs courantes : acier = 0.30, aluminium = 0.33, cuivre = 0.34, verre = 0.23.",
+      "Cliquez sur Calculer pour voir la déformation thermique, la contrainte uniaxiale (pour une barre ou une poutre contrainte dans une seule direction) et la contrainte biaxiale (pour une plaque contrainte dans deux directions). Les valeurs de contrainte négatives indiquent une traction."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la contrainte thermique",
+    "q1": "Qu'est-ce qui provoque la contrainte thermique dans les matériaux ?",
+    "q1_a": "La contrainte thermique apparaît lorsqu'un matériau subit une variation de température mais ne peut pas se dilater ou se contracter librement. La contrainte peut être externe (supports rigides, assemblages boulonnés) ou interne (différences de dilatation entre couches d'un matériau composite). Sans contrainte, le matériau ne ferait que changer de dimensions sans effort. La contrainte empêche ce changement dimensionnel et force le développement d'une contrainte élastique égale au produit de la rigidité (E) et de la déformation bloquée (αΔT).",
+    "q2": "Quelle est la différence entre contrainte thermique uniaxiale et biaxiale ?",
+    "q2_a": "La contrainte thermique uniaxiale (σ = EαΔT) s'applique aux éléments contraints dans une seule direction, comme une barre ou une poutre fixée aux deux extrémités. La contrainte thermique biaxiale (σ = EαΔT / (1 − ν)) s'applique aux plaques ou coques contraintes simultanément dans deux directions du plan. Le cas biaxial produit une contrainte plus élevée car la contraction latérale (effet de Poisson) est elle aussi empêchée. La plupart des structures à paroi mince et des composants électroniques se modélisent mieux comme des problèmes biaxiaux.",
+    "q3": "Comment savoir si la contrainte thermique provoquera une défaillance ?",
+    "q3_a": "Comparez la contrainte thermique calculée à la limite d'élasticité du matériau (pour les métaux ductiles) ou à la résistance à la rupture (pour les matériaux fragiles comme le verre ou la céramique). Pour l'acier (limite d'élasticité ≈ 250 MPa), une contrainte uniaxiale de 312 MPa due à un chauffage de 130°C dépasserait la limite et provoquerait une déformation permanente. En charge thermique cyclique, vérifiez aussi la résistance à la fatigue. Des facteurs de sécurité de 1.5–3 sont courants en structure. Utilisez le critère de von Mises pour les états de contrainte combinés.",
+    "q4": "Quels matériaux sont les plus sensibles à la rupture par contrainte thermique ?",
+    "q4_a": "Les matériaux fragiles (verre, céramiques, béton) sont les plus vulnérables car ils ne peuvent pas se déformer plastiquement pour relâcher la contrainte — toute contrainte dépassant la résistance à la rupture provoque une rupture fragile brutale. Les matériaux à module de Young élevé et à coefficient de dilatation élevé sont aussi intrinsèquement plus sensibles aux contraintes thermiques : le diamant (E = 1,000 GPa, α = 1×10⁻⁶/°C) est rigide mais se dilate peu ; les films polymères (E = 1–3 GPa, α = 50–200×10⁻⁶/°C) se dilatent beaucoup mais ont un faible module, ce qui conduit à une contrainte modérée.",
+    "q5": "Comment réduire la contrainte thermique en conception ?",
+    "q5_a": "Les stratégies comprennent : (1) utiliser des joints de dilatation et des appuis coulissants pour permettre le libre mouvement thermique ; (2) choisir des matériaux compatibles en dilatation pour les assemblages collés ; (3) utiliser des couches intermédiaires à faible module (comme une soudure ductile ou un adhésif polymère) entre des composants rigides ayant des valeurs de α différentes ; (4) concevoir des montées en température progressives pour minimiser ΔT à tout instant ; (5) utiliser des revêtements barrières thermiques ou une isolation pour réduire l'écart de température subi par les éléments structurels. Combiner plusieurs stratégies — par exemple joints de dilatation, compatibilité des matériaux et chauffage contrôlé — offre la meilleure protection contre la rupture par contrainte thermique dans des applications exigeantes comme les tuyauteries de centrales et les structures aérospatiales.",
+    "q6": "Quel est le rôle du coefficient de Poisson dans la contrainte thermique ?",
+    "q6_a": "Le coefficient de Poisson (ν) décrit la contraction latérale qui accompagne la déformation axiale : ν = −ε_lateral / ε_axial. En contrainte thermique biaxiale, la contrainte empêche les deux directions de déformation dans le plan. L'effet de Poisson fait que bloquer la déformation en X induit aussi une contrainte en Y, et inversement, couplant ainsi les deux composantes de contrainte. La contrainte biaxiale résultante est E × α × ΔT / (1 − ν), et elle est toujours plus grande que la valeur uniaxiale. Pour des métaux typiques où ν ≈ 0.3, la contrainte biaxiale est environ 43% plus élevée que la contrainte uniaxiale."
+  }
+}
