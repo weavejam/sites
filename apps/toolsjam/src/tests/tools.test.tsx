@@ -49,8 +49,9 @@ for (const [p, mod] of Object.entries(componentModules)) {
 function renderTool(toolId: string) {
   const Comp = componentByToolId.get(toolId);
   if (!Comp) throw new Error(`no component for ${toolId}`);
-  const tMsgs = enByToolId.get(toolId);
-  if (!tMsgs) throw new Error(`no en messages for ${toolId}`);
+  // Missing en bundle is treated as empty (matches pre-split behavior where
+  // the monolithic en.json could be sparse for half-ported tools).
+  const tMsgs = enByToolId.get(toolId) ?? {};
   const messages = { tool: { [toolId]: tMsgs } } as unknown as Record<string, unknown>;
   return render(
     <NextIntlClientProvider locale="en" messages={messages}>

@@ -1,0 +1,94 @@
+{
+  "title": "Thermal Stress Calculator",
+  "tagline": "Calculate thermal stress and strain in constrained materials due to temperature changes.",
+  "intro": "Enter material properties and temperature changes to calculate thermal stress, strain, and expansion. Supports uniaxial and biaxial constraint models.",
+  "field": {
+    "initialTemp": "Initial Temperature (°C)",
+    "finalTemp": "Final Temperature (°C)",
+    "expansionCoeff": "Thermal Expansion Coefficient (1/°C)",
+    "youngsModulus": "Young's Modulus (GPa)",
+    "poisson": "Poisson's Ratio"
+  },
+  "placeholder": {
+    "temp": "e.g., 20",
+    "alpha": "e.g., 0.000012",
+    "youngs": "e.g., 200",
+    "poisson": "e.g., 0.3"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "tempChange": "Temperature Change",
+    "thermalStrain": "Thermal Strain (ε = αΔT)",
+    "uniaxialStress": "Uniaxial Stress (fully constrained)",
+    "biaxialStress": "Biaxial Stress (plane stress)"
+  },
+  "error": {
+    "invalid": "Please enter valid values for all fields. Expansion coefficient and Young's modulus must be positive; Poisson's ratio must be between 0 and 0.5."
+  },
+  "formula": "ε = α × ΔT | σ_uniaxial = E × α × ΔT | σ_biaxial = E × α × ΔT / (1 − ν)",
+  "about": {
+    "heading": "About the Thermal Stress Calculator",
+    "body": "Thermal stress is the mechanical stress that develops in a material when it is subjected to a temperature change but is prevented from expanding or contracting freely. In an unconstrained material, heating produces thermal strain ε = α × ΔT without any stress. When constraints are applied — by surrounding structure, rigid end fittings, or differential expansion between bonded layers — the blocked thermal expansion generates internal stress that can cause yielding, cracking, or fatigue failure.\n\nThe magnitude of uniaxial thermal stress for a fully constrained member is σ = E × α × ΔT, where E is Young's modulus in pascals, α is the coefficient of linear thermal expansion in 1/°C, and ΔT is the temperature change. This formula assumes the constraint prevents all axial strain. For a 1 m steel bar (E = 200 GPa, α = 12 × 10⁻⁶/°C) heated by 100°C: σ = 200 × 10⁹ × 12 × 10⁻⁶ × 100 = 240 MPa — approaching the yield strength of mild steel (250 MPa). This explains why unrestrained thermal expansion provisions are essential in pipework, bridge design, and railway tracks.\n\nFor plate or shell structures constrained in two directions (plane stress or biaxial state), the thermal stress formula becomes σ = E × α × ΔT / (1 − ν), where ν is Poisson's ratio. The (1 − ν) denominator increases the stress beyond the uniaxial value because lateral expansion is also prevented. For steel with ν = 0.3: the factor becomes 1/0.7 ≈ 1.43, so biaxial thermal stress is 43% higher than the uniaxial value for the same temperature change.\n\nThermal stress analysis is critical in aerospace engineering, where components experience extreme temperature cycles. Jet engine turbine blades are exposed to combustion temperatures exceeding 1400°C while being cooled internally to 800–900°C, creating steep through-thickness gradients and high cyclic thermal stresses. Thermal barrier coatings of yttria-stabilised zirconia (α ≈ 10 × 10⁻⁶/°C) are matched as closely as possible to the metallic substrate (α ≈ 12–16 × 10⁻⁶/°C) to reduce coating delamination stress.\n\nIn civil engineering, thermal stress is managed through design features rather than eliminated. Concrete road slabs include saw-cut control joints at intervals that limit the thermal stress between joints to below the tensile strength of concrete. Steel bridges use roller bearings and sliding plates at expansion joints to allow free thermal movement. In contrast, integral abutment bridges intentionally allow the bridge deck to thermally stress the supporting piles, relying on the ductility of steel H-piles to accommodate repeated thermal cycles over the bridge's lifetime."
+  },
+  "examples": {
+    "heading": "Thermal Stress Examples",
+    "intro": "Engineering scenarios showing thermal stress and strain for common constrained material problems.",
+    "colInput": "Material / Temperature Change / Properties",
+    "colOutput": "Stress / Strain",
+    "colNote": "Engineering Context",
+    "items": [
+      {
+        "input": "Steel beam: T₁=20°C, T₂=150°C | α=12×10⁻⁶/°C, E=200 GPa, ν=0.3",
+        "output": "ε = 1.56×10⁻³ | σ_uniaxial = 312 MPa | σ_biaxial = 445.7 MPa",
+        "note": "Fully constrained steel heated 130°C. Uniaxial stress exceeds mild steel yield strength."
+      },
+      {
+        "input": "Aluminum plate cooling: T₁=200°C, T₂=0°C | α=23×10⁻⁶/°C, E=70 GPa, ν=0.33",
+        "output": "ε = −4.6×10⁻³ | σ_uniaxial = −322 MPa | σ_biaxial = −480.6 MPa",
+        "note": "Tensile stress in constrained aluminum cooling. Negative values indicate tension."
+      },
+      {
+        "input": "Copper wire heating: T₁=25°C, T₂=80°C | α=17×10⁻⁶/°C, E=110 GPa, ν=0.34",
+        "output": "ε = 9.35×10⁻⁴ | σ_uniaxial = 102.85 MPa",
+        "note": "Copper electrical conductor heating under constraint. Moderate compressive stress."
+      },
+      {
+        "input": "Glass thermal shock: T₁=20°C, T₂=300°C | α=9×10⁻⁶/°C, E=70 GPa, ν=0.23",
+        "output": "ε = 2.52×10⁻³ | σ_uniaxial = 176.4 MPa | σ_biaxial = 229.1 MPa",
+        "note": "Glass has low fracture toughness; biaxial stress ≥160 MPa typically causes fracture."
+      }
+    ],
+    "loadSteel": "Steel Beam",
+    "loadAluminum": "Aluminum Cooling",
+    "loadCopper": "Copper Wire"
+  },
+  "howto": {
+    "heading": "How to Use the Thermal Stress Calculator",
+    "steps": [
+      "Enter initial and final temperatures in °C. The calculator computes ΔT = T_final − T_initial; positive ΔT means heating (compressive stress in constrained material), negative ΔT means cooling (tensile stress).",
+      "Enter the thermal expansion coefficient in 1/°C. Common values: steel = 12×10⁻⁶, aluminum = 23×10⁻⁶, copper = 17×10⁻⁶, glass = 9×10⁻⁶, concrete = 12×10⁻⁶.",
+      "Enter Young's modulus in GPa (gigapascals). Common values: steel = 200, aluminum = 70, copper = 110, glass = 70, concrete = 30–40.",
+      "Enter Poisson's ratio (dimensionless, typically 0.25–0.35). Common values: steel = 0.30, aluminum = 0.33, copper = 0.34, glass = 0.23.",
+      "Click Calculate to see thermal strain, uniaxial stress (for bar or beam constrained in one direction), and biaxial stress (for plate constrained in two directions). Negative stress values indicate tension."
+    ]
+  },
+  "faq": {
+    "heading": "Thermal Stress FAQ",
+    "q1": "What causes thermal stress in materials?",
+    "q1_a": "Thermal stress occurs when a material undergoes a temperature change but cannot expand or contract freely. The constraint may be external (rigid supports, bolted joints) or internal (different expansion rates in different layers of a composite material). If the material were unconstrained, it would simply change dimensions with no stress. The constraint prevents this dimensional change and forces the development of elastic stress equal to the product of stiffness (E) and blocked strain (αΔT).",
+    "q2": "What is the difference between uniaxial and biaxial thermal stress?",
+    "q2_a": "Uniaxial thermal stress (σ = EαΔT) applies to members constrained in one direction only, such as a rod or beam fixed at both ends. Biaxial thermal stress (σ = EαΔT / (1 − ν)) applies to plates or shells constrained in two in-plane directions simultaneously. The biaxial case produces higher stress because lateral (Poisson) contraction is also prevented. Most thin-walled structures and electronic components are better modelled as biaxial problems.",
+    "q3": "How do I know if thermal stress will cause failure?",
+    "q3_a": "Compare the calculated thermal stress to the material's yield strength (for ductile metals) or fracture strength (for brittle materials like glass or ceramics). For steel (yield strength ≈ 250 MPa), a uniaxial stress of 312 MPa from 130°C heating would exceed yield and cause permanent deformation. For cyclic thermal loading, also check fatigue strength. Safety factors of 1.5–3 are typical in structural applications. Use the von Mises criterion for combined stress states.",
+    "q4": "What materials are most susceptible to thermal stress failure?",
+    "q4_a": "Brittle materials (glass, ceramics, concrete) are most vulnerable because they cannot plastically deform to relieve stress — any stress exceeding fracture strength causes sudden brittle fracture. Materials with high Young's modulus and high thermal expansion coefficient are inherently more prone to thermal stress: diamond (E = 1,000 GPa, α = 1×10⁻⁶/°C) is stiff but has low expansion; polymer films (E = 1–3 GPa, α = 50–200×10⁻⁶/°C) have high expansion but low modulus, resulting in moderate stress.",
+    "q5": "How can thermal stress be reduced in engineering design?",
+    "q5_a": "Design strategies include: (1) using expansion joints and sliding supports to allow free thermal movement; (2) selecting materials with compatible expansion coefficients for bonded assemblies; (3) using low-modulus interlayers (such as compliant solder or polymer adhesive) between stiff components with different α values; (4) designing gradual thermal ramp-up procedures to minimise ΔT at any instant; (5) using thermal barrier coatings or insulation to reduce the temperature difference experienced by structural components. Combining multiple strategies — for example, expansion joints plus material matching plus controlled heating rates — provides the best protection against thermal stress failure in demanding applications such as power plant pipework and aerospace structures.",
+    "q6": "How is Poisson's ratio relevant to thermal stress?",
+    "q6_a": "Poisson's ratio (ν) describes the lateral contraction that accompanies axial strain: ν = −ε_lateral / ε_axial. In biaxial thermal stress, the constraint prevents both in-plane strain directions. The Poisson effect means that blocking strain in X also induces stress in the Y direction and vice versa, coupling the two stress components. The resulting biaxial stress is E × α × ΔT / (1 − ν), which is always larger than the uniaxial value. For typical metals where ν ≈ 0.3, biaxial stress is about 43% higher than uniaxial."
+  }
+}
