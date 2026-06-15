@@ -259,7 +259,12 @@ import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/to
 import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
 import { fixtures as f_streaming_bitrate_calculator } from "@/tools/streaming-bitrate-calculator.fixtures";
 import { fixtures as f_streaming_services_royalties_calculator } from "@/tools/streaming-services-royalties-calculator.fixtures";
+import { fixtures as f_sum_of_series_calculator } from "@/tools/sum-of-series-calculator.fixtures";
 import { fixtures as f_sunbathing_calculator } from "@/tools/sunbathing-calculator.fixtures";
+import { fixtures as f_supplementary_angles_calculator } from "@/tools/supplementary-angles-calculator.fixtures";
+import { fixtures as f_surface_area_calculator } from "@/tools/surface-area-calculator.fixtures";
+import { fixtures as f_surface_area_of_a_hemisphere_calculator } from "@/tools/surface-area-of-a-hemisphere-calculator.fixtures";
+import { fixtures as f_surface_area_of_a_triangular_prism_calculator } from "@/tools/surface-area-of-a-triangular-prism-calculator.fixtures";
 import { fixtures as f_thermal_energy_calculator } from "@/tools/thermal-energy-calculator.fixtures";
 import { fixtures as f_thermal_equilibrium_calculator } from "@/tools/thermal-equilibrium-calculator.fixtures";
 import { fixtures as f_thermal_expansion_calculator } from "@/tools/thermal-expansion-calculator.fixtures";
@@ -588,7 +593,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "standard-error-calculator": f_standard_error_calculator,
   "streaming-bitrate-calculator": f_streaming_bitrate_calculator,
   "streaming-services-royalties-calculator": f_streaming_services_royalties_calculator,
+  "sum-of-series-calculator": f_sum_of_series_calculator,
   "sunbathing-calculator": f_sunbathing_calculator,
+  "supplementary-angles-calculator": f_supplementary_angles_calculator,
+  "surface-area-calculator": f_surface_area_calculator,
+  "surface-area-of-a-hemisphere-calculator": f_surface_area_of_a_hemisphere_calculator,
+  "surface-area-of-a-triangular-prism-calculator": f_surface_area_of_a_triangular_prism_calculator,
   "thermal-energy-calculator": f_thermal_energy_calculator,
   "thermal-equilibrium-calculator": f_thermal_equilibrium_calculator,
   "thermal-expansion-calculator": f_thermal_expansion_calculator,
