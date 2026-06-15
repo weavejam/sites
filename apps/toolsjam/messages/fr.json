@@ -10155,6 +10155,521 @@
         "q6": "Comment mesurer expérimentalement la densité de l’eau ?",
         "q6_a": "La méthode la plus simple est le rapport masse/volume : pesez un volume connu d’eau avec une fiole jaugée calibrée et une balance de précision. Densité = masse (g) / volume (mL). Un pycnomètre offre une grande précision en définissant très précisément le volume. Un hydromètre mesure directement la densité par la profondeur de flottaison. Les densimètres numériques utilisent la technologie du tube en U oscillant pour des mesures rapides et très précises (±0.0001 g/mL)."
       }
+    },
+    "watts-to-amps-calculator": {
+      "title": "Calculateur watts en ampères",
+      "tagline": "Convertissez les watts en ampères à partir de la puissance, de la tension et d’un facteur de puissance optionnel pour les charges DC et les estimations AC simples.",
+      "intro": "Saisissez la puissance et la tension pour calculer le courant. Ajoutez un facteur de puissance si vous voulez une estimation AC au lieu du cas résistif ou DC par défaut.",
+      "field": {
+        "power": "Puissance (watts)",
+        "voltage": "Tension (volts)",
+        "powerFactor": "Facteur de puissance"
+      },
+      "placeholder": {
+        "power": "p. ex. 1200",
+        "voltage": "p. ex. 120",
+        "powerFactor": "p. ex. 0.95"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "result": {
+        "heading": "Résultat",
+        "value": "Courant = {current} A",
+        "current": "Courant",
+        "powerFactor": "Facteur de puissance utilisé",
+        "formula": "Formule utilisée",
+        "unitCurrent": "A",
+        "powerFactorNote": "FP",
+        "formulaDc": "I = P ÷ V",
+        "formulaAc": "I = P ÷ (V × FP)"
+      },
+      "error": {
+        "invalid": "Saisissez des nombres positifs valides pour la puissance et la tension, et utilisez un facteur de puissance entre 0 et 1."
+      },
+      "hint": "Laissez le facteur de puissance vide pour utiliser la valeur par défaut de 1.0, adaptée aux circuits DC et à de nombreuses charges purement résistives.",
+      "formula": {
+        "dc": "Pour les charges DC ou résistives : I = P / V",
+        "ac": "Pour les charges AC avec facteur de puissance : I = P / (V × FP)"
+      },
+      "about": {
+        "heading": "À propos de la conversion watts en ampères",
+        "body": "Un calculateur watts en ampères convertit la puissance électrique en courant consommé en combinant la puissance nominale avec la tension de fonctionnement. Dans le cas DC le plus simple, la relation est I = P / V. Si une charge consomme 500 watts à 12 volts, le courant est de 41.67 ampères. C’est l’un des calculs rapides les plus utiles en électronique, systèmes automobiles, installations solaires, câblage marin et dimensionnement d’appareils, car le courant détermine la section des conducteurs, le choix des fusibles, les limites des disjoncteurs et les questions de chute de tension.\n\nLa formule fonctionne parce que la puissance électrique est égale à la tension multipliée par le courant : P = V × I. En isolant le courant, on obtient I = P / V. C’est la relation correcte pour les circuits DC et pour les charges AC qui se comportent comme des dispositifs purement résistifs. Dans les systèmes AC réels, cependant, toute la puissance apparente ne devient pas de la puissance réelle. Une partie peut être liée au déphasage entre tension et courant causé par des composants inductifs ou capacitifs. C’est là qu’intervient le facteur de puissance.\n\nLe facteur de puissance, généralement noté FP, mesure l’efficacité avec laquelle le courant est converti en puissance réelle utile dans un circuit AC. Un facteur de puissance de 1 signifie que la tension et le courant sont parfaitement en phase, de sorte que la formule de type DC s’applique directement. Des facteurs de puissance plus faibles signifient que le circuit doit tirer davantage de courant pour fournir le même nombre de watts. Pour les estimations à valeur unique, le courant devient I = P / (V × FP). C’est pourquoi une charge de 1,200 watts à 120 volts avec un facteur de puissance de 0.95 tire un peu plus de courant que les mêmes 1,200 watts avec FP = 1. La différence compte lors du dimensionnement des circuits de dérivation, onduleurs, générateurs et dispositifs de protection.\n\nCe calculateur est particulièrement utile lorsque vous connaissez la puissance nominale mais devez comprendre l’impact sur l’installation. Un radiateur de 2,000 watts sur une alimentation de 240 volts consomme 8.33 ampères s’il est essentiellement résistif. Une charge DC de 500 watts sous 12 volts consomme 41.67 ampères, ce qui indique immédiatement que les exigences de câblage et de fusible seront bien plus strictes que la seule puissance brute ne le suggère. Les appareils ménagers, systèmes de camping-car, bancs de batteries et outils d’atelier deviennent tous plus faciles à comparer une fois exprimés en ampères.\n\nComme tout calculateur simplifié, cet outil est surtout utile comme estimation pratique. Les systèmes triphasés, les courants de démarrage des moteurs, la distorsion harmonique et les calculs détaillés de puissance apparente nécessitent une approche plus spécialisée. Pour les vérifications de conception courantes, les exemples pédagogiques et le dépannage quotidien, convertir des watts en ampères avec la tension et un facteur de puissance optionnel donne toutefois une vision rapide et informative de la demande réelle en courant. Cela aide à traduire une puissance de plaque signalétique en la grandeur qui pilote le plus directement un dimensionnement électrique sûr."
+      },
+      "examples": {
+        "heading": "Exemples",
+        "intro": "Ces exemples montrent comment le courant varie avec le niveau de tension et comment le facteur de puissance influence le courant AC consommé.",
+        "colInput": "Entrée",
+        "colOutput": "Sortie",
+        "colNote": "Notes",
+        "loadHousehold": "Charge 1200W à 120V",
+        "loadResistive": "Charge 2000W à 240V",
+        "loadDc": "Charge 500W à 12V",
+        "items": [
+          {
+            "input": "1200 W, 120 V, FP = 0.95",
+            "output": "I = 10.53 A",
+            "note": "Une charge AC proche de l’unité tire tout de même un peu plus de courant que le cas DC pur ou résistif, car le FP est inférieur à 1."
+          },
+          {
+            "input": "2000 W, 240 V, FP = 1.0",
+            "output": "I = 8.33 A",
+            "note": "Il s’agit de la relation résistive ou de type DC directe, où le courant est égal aux watts divisés par les volts."
+          },
+          {
+            "input": "500 W, 12 V, FP = 1.0",
+            "output": "I = 41.67 A",
+            "note": "Les systèmes basse tension exigent un courant élevé pour la même puissance, ce qui rend le dimensionnement des câbles essentiel dans les installations à batteries."
+          },
+          {
+            "input": "1500 W, 230 V, FP = 0.8",
+            "output": "I = 8.15 A",
+            "note": "Un facteur de puissance AC plus faible augmente le courant et peut modifier sensiblement le choix du disjoncteur et du conducteur."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Mode d’emploi",
+        "steps": [
+          "Saisissez la puissance réelle en watts et la tension de fonctionnement en volts. Les deux champs sont requis pour chaque calcul.",
+          "Laissez le facteur de puissance vide pour les charges DC ou purement résistives, ou saisissez une valeur entre 0 et 1 pour une estimation AC.",
+          "Cliquez sur Calculer pour afficher le courant en ampères et la formule utilisée pour le scénario.",
+          "Utilisez les exemples détaillés pour comparer les charges AC domestiques, les radiateurs résistifs et les systèmes DC basse tension, puis réinitialisez le formulaire pour un nouveau cas."
+        ]
+      },
+      "faq": {
+        "heading": "Questions fréquentes",
+        "items": [
+          {
+            "q": "Pourquoi une tension plus basse signifie-t-elle un courant plus élevé pour la même puissance ?",
+            "a": "La puissance est le produit de la tension et du courant. Si la puissance en watts reste fixe et que la tension baisse, le courant doit augmenter. C’est pourquoi les systèmes basse tension nécessitent souvent des conducteurs plus épais et des dispositifs de protection plus grands."
+          },
+          {
+            "q": "Qu’est-ce que le facteur de puissance ?",
+            "a": "Le facteur de puissance mesure l’efficacité avec laquelle le courant AC est transformé en puissance réelle utile. Un facteur de puissance de 1 indique un alignement idéal entre tension et courant, tandis que des valeurs plus faibles indiquent qu’il faut davantage de courant pour fournir les mêmes watts."
+          },
+          {
+            "q": "Dois-je laisser le facteur de puissance vide pour les circuits DC ?",
+            "a": "Oui. Les circuits DC n’utilisent pas les relations de phase AC ; le facteur de puissance effectif est donc traité comme 1 et la formule se simplifie en courant égal à puissance divisée par tension."
+          },
+          {
+            "q": "Puis-je l’utiliser pour des moteurs et des compresseurs ?",
+            "a": "Vous pouvez l’utiliser pour une estimation en régime établi si vous connaissez les watts en fonctionnement et un facteur de puissance approximatif. Toutefois, les moteurs peuvent avoir un courant d’appel au démarrage et des caractéristiques de fonctionnement qui nécessitent une analyse plus détaillée."
+          },
+          {
+            "q": "Pourquoi est-ce utile pour le dimensionnement électrique ?",
+            "a": "La protection des circuits et le dimensionnement des conducteurs reposent sur le courant, pas seulement sur la puissance. Convertir les watts en ampères aide à évaluer la charge du disjoncteur, le choix du fusible, la chute de tension et les exigences de câble avant l’installation."
+          }
+        ]
+      }
+    },
+    "volt-to-electron-volt-calculator": {
+      "title": "Calculateur de volts en électronvolts",
+      "tagline": "Convertissez instantanément la tension en électronvolts (eV) et en joules pour la physique, l’électronique et la mécanique quantique.",
+      "intro": "Saisissez une tension en volts pour voir l’énergie équivalente en électronvolts et en joules. La valeur numérique en eV est égale à la tension en V.",
+      "formula": "Formule : E (eV) = V  •  E (J) = V × 1.602176634×10⁻¹⁹",
+      "field": {
+        "voltage": "Tension (V)"
+      },
+      "placeholder": {
+        "voltage": "ex. : 12.5"
+      },
+      "unit": {
+        "eV": "eV",
+        "J": "J"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir une tension positive valide."
+      },
+      "result": {
+        "heading": "Résultat",
+        "labelEV": "Énergie (électronvolts)",
+        "labelJ": "Énergie (joules)"
+      },
+      "about": {
+        "heading": "À propos du calculateur de volts en électronvolts",
+        "body": "L’électronvolt (eV) est l’unité d’énergie standard utilisée en physique des particules, en physique atomique et en ingénierie des semi-conducteurs. Il est défini comme l’énergie cinétique gagnée par un seul électron lorsqu’il est accéléré à travers une différence de potentiel électrique de exactement un volt dans le vide. Comme la charge élémentaire de l’électron est 1.602176634×10⁻¹⁹ coulombs, un électronvolt équivaut à 1.602176634×10⁻¹⁹ joules.\n\nL’équation de définition est E = qV, où E est l’énergie en joules, q la charge de la particule en coulombs et V la tension en volts. Pour un seul électron, q = e (la charge élémentaire), donc l’énergie en joules est toujours la tension multipliée par 1.602176634×10⁻¹⁹. Surtout, la valeur numérique de l’énergie en électronvolts est identique à la tension en volts : 12 volts accélèrent un électron à 12 eV, et 1 000 volts lui donnent 1 000 eV (1 keV). C’est cette correspondance un à un qui rend l’électronvolt si pratique.\n\nLes électronvolts sont privilégiés en sciences atomiques et nucléaires parce que les joules sont une unité encombrante à l’échelle subatomique. Un seul photon de lumière visible transporte seulement environ 2–3 eV, l’énergie d’ionisation de l’hydrogène est de 13.6 eV, un photon X typique porte de 100 à 100 000 eV, et les photons gamma dépassent 100 keV. À l’autre extrémité, les accélérateurs de particules modernes portent les protons à des milliards d’électronvolts (GeV) et même à des milliers de milliards (TeV). Tous ces nombres seraient lourds à manipuler en multiples de 10⁻¹⁹ joules.\n\nEn ingénierie des semi-conducteurs, l’eV sert à décrire les bandes interdites — la différence d’énergie entre la bande de valence et la bande de conduction d’un matériau. Le silicium a une bande interdite de 1.12 eV, l’arséniure de gallium environ 1.42 eV, et le nitrure de gallium autour de 3.4 eV. Ces valeurs déterminent quelles longueurs d’onde un matériau peut absorber ou émettre, ce qui est essentiel pour concevoir des cellules solaires, des LED et des diodes laser. La tension d’amorçage d’une LED polarisée en direct est approximativement égale à sa bande interdite exprimée en eV.\n\nDans les microscopes électroniques, la tension d’accélération détermine la résolution du faisceau. Un électron de 100 kV possède une longueur d’onde de de Broglie des ordres de grandeur plus petite que la lumière visible, ce qui permet l’imagerie subnanométrique. Dans les spectromètres de masse, le rapport masse/charge d’un ion (m/z) est calibré par rapport à la tension d’accélération exprimée en électronvolts. Comprendre la relation volt-eV n’est donc pas seulement un exercice de conversion d’unités : cela relie des grandeurs d’ingénierie électrique macroscopiques au comportement quantique d’une particule individuelle."
+      },
+      "examples": {
+        "heading": "Exemples de conversion volt en électronvolt",
+        "intro": "Tensions courantes et énergies équivalentes en électronvolts et en joules.",
+        "colInput": "Tension",
+        "colOutput": "Énergie (eV)",
+        "colNote": "Énergie (J)",
+        "loadAA": "Charger l’exemple de pile AA",
+        "loadCar": "Charger l’exemple de batterie de voiture",
+        "loadOutlet": "Charger l’exemple de prise secteur",
+        "items": [
+          {
+            "input": "1.5 V (pile AA)",
+            "output": "1.5 eV",
+            "note": "2.40×10⁻¹⁹ J — énergie d’un seul électron accéléré par une pile AA neuve."
+          },
+          {
+            "input": "12 V (batterie de voiture)",
+            "output": "12 eV",
+            "note": "1.92×10⁻¹⁸ J — potentiel typique d’une batterie automobile au plomb-acide."
+          },
+          {
+            "input": "120 V (prise domestique)",
+            "output": "120 eV",
+            "note": "1.92×10⁻¹⁷ J — tension du secteur résidentiel nord-américain."
+          },
+          {
+            "input": "1 000 V (kilovolt)",
+            "output": "1 000 eV = 1 keV",
+            "note": "1.60×10⁻¹⁶ J — utilisé dans les tubes à rayons X et l’électronique haute tension."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de volts en électronvolts",
+        "steps": [
+          "Saisissez la valeur de tension dans le champ Tension (V). Les valeurs décimales et en notation scientifique sont acceptées.",
+          "Cliquez sur Calculer pour voir l’énergie équivalente en électronvolts (eV) et en joules (J).",
+          "Notez que la valeur numérique en eV est identique à la tension : 5 V équivaut toujours à 5 eV pour une particule simplement chargée.",
+          "Utilisez les boutons d’exemple sous le calculateur pour charger des tensions courantes comme une pile AA (1.5 V) ou une batterie de voiture (12 V).",
+          "Cliquez sur Réinitialiser pour effacer le champ et lancer un nouveau calcul."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ du calculateur de volts en électronvolts",
+        "items": [
+          {
+            "q": "À combien de joules correspond un électronvolt ?",
+            "a": "Un électronvolt équivaut exactement à 1.602176634×10⁻¹⁹ joules, soit l’énergie gagnée par un seul électron lorsqu’il est accéléré à travers une différence de potentiel d’un volt. Cette constante est fixée comme valeur exacte par la redéfinition du SI de 2019."
+          },
+          {
+            "q": "Pourquoi l’énergie en eV est-elle numériquement égale à la tension ?",
+            "a": "Par définition, 1 eV est l’énergie acquise par une charge élémentaire (e) à travers 1 volt. La formule E = qV signifie que, pour q = 1e, l’énergie en joules vaut V × e. En divisant par e pour convertir en eV, on obtient simplement V. Ainsi, 50 volts produisent toujours 50 eV pour une particule simplement chargée, quelle que soit sa masse."
+          },
+          {
+            "q": "La formule change-t-elle pour des particules portant une charge différente de 1 ?",
+            "a": "Oui. Pour une particule de nombre de charge z (par exemple z = 2 pour une particule alpha), l’énergie gagnée est z × V électronvolts. Un atome d’hélium doublement ionisé accéléré à 100 V gagne 200 eV. Ce calculateur suppose des particules simplement chargées (z = 1) ; multipliez le résultat par z pour les autres états de charge."
+          },
+          {
+            "q": "Quelle est la différence entre électronvolts et volts ?",
+            "a": "Les volts mesurent une différence de potentiel électrique (propriété du champ), tandis que les électronvolts mesurent une énergie (propriété de la particule). Les deux sont liés mais restent des grandeurs distinctes. On ne peut pas additionner 5 V et 3 eV car leurs dimensions physiques sont différentes ; on peut seulement dire qu’un potentiel de 5 V donne à une particule simplement chargée 5 eV d’énergie cinétique."
+          },
+          {
+            "q": "Comment utilise-t-on les électronvolts pour les bandes interdites des semi-conducteurs ?",
+            "a": "La bande interdite d’un semi-conducteur est l’énergie minimale d’un photon nécessaire pour exciter un électron de la bande de valence vers la bande de conduction. La bande interdite du silicium de 1.12 eV signifie qu’il faut au moins un photon de 1.12 eV. Cela correspond à une longueur d’onde d’environ 1 100 nm (proche infrarouge), ce qui explique pourquoi les cellules solaires en silicium peuvent capter le proche infrarouge mais pas des longueurs d’onde plus longues."
+          },
+          {
+            "q": "Puis-je utiliser ce calculateur pour des protons ou d’autres ions ?",
+            "a": "Oui ; pour les ions simplement chargés (z = 1), le résultat est le même que pour les électrons. Pour des ions multichargés comme Ca²⁺ (z = 2), doublez la valeur d’eV affichée. Le résultat en joules doit aussi être multiplié par z, car E (J) = z × e × V."
+          }
+        ]
+      }
+    },
+    "voltage-divider-calculator": {
+      "title": "Calculateur de diviseur de tension",
+      "tagline": "Calcule la tension de sortie, le courant et la dissipation de puissance des diviseurs résistifs.",
+      "intro": "Saisissez la tension d'entrée et deux valeurs de résistances pour obtenir la tension de sortie, le courant du circuit et la puissance dissipée dans chaque résistance.",
+      "formula": "Formule : Vout = Vin × R2 / (R1 + R2)  •  I = Vin / (R1 + R2)  •  P = I² × R",
+      "field": {
+        "vin": "Tension d'entrée (Vin)",
+        "r1": "Résistance R1 (Ω)",
+        "r2": "Résistance R2 (Ω)"
+      },
+      "placeholder": {
+        "vin": "ex. : 12",
+        "r1": "ex. : 1000",
+        "r2": "ex. : 2000"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres positifs valides pour la tension et les deux résistances."
+      },
+      "result": {
+        "heading": "Résultat",
+        "labelVout": "Tension de sortie (Vout)",
+        "labelCurrent": "Courant du circuit",
+        "labelPowerTotal": "Puissance totale",
+        "labelPowerR1": "Puissance dans R1",
+        "labelPowerR2": "Puissance dans R2"
+      },
+      "about": {
+        "heading": "À propos du calculateur de diviseur de tension",
+        "body": "Le diviseur de tension est l’un des circuits les plus fondamentaux de l’électronique. Il se compose de deux résistances montées en série entre une alimentation et la masse, la tension de sortie étant prélevée au nœud entre les deux résistances. Le circuit divise la tension d’entrée en une tension de sortie plus faible, en proportion directe des valeurs de résistance, conformément à la loi d’Ohm et aux règles des résistances en série.\n\nLa formule de base est Vout = Vin × R2 / (R1 + R2). Cette expression se dérive en deux étapes : le courant total dans l’ensemble en série est I = Vin / (R1 + R2) d’après la loi d’Ohm, et la tension aux bornes de R2 vaut I × R2. En remplaçant, on obtient la formule du diviseur. Comme R2 apparaît à la fois au numérateur et au dénominateur, la tension de sortie est toujours inférieure à la tension d’entrée (pour des résistances positives). Deux résistances égales donnent exactement la moitié de la tension d’alimentation, tandis que des valeurs différentes déplacent la sortie proportionnellement.\n\nLes diviseurs de tension sont utilisés partout en électronique. Pour l’interface capteurs, une sortie de capteur 0–5 V est souvent ramenée à 0–3.3 V pour l’ADC d’un microcontrôleur en choisissant R1 = 2.2 kΩ et R2 = 3.3 kΩ. Dans les circuits de polarisation de transistors, un diviseur établit la tension de base qui fixe le point de repos d’un transistor bipolaire. En audio, les potentiomètres sont des diviseurs de tension réglables en continu qui contrôlent le volume. Le décalage de niveau logique numérique utilise souvent un diviseur à deux résistances pour traduire une sortie logique de 5 V vers le seuil de 3.3 V d’un appareil récepteur.\n\nLa dissipation de puissance est un point de conception essentiel. Chaque résistance dissipe P = I² × R watts, et la dissipation totale vaut Vin² / (R1 + R2). Choisir des résistances de faible valeur améliore la résistance aux courants de charge, mais gaspille davantage de puissance. Vérifiez toujours que la dissipation calculée est largement inférieure à la puissance nominale de la résistance — une règle de sécurité courante consiste à appliquer une marge d’au moins 50 %, donc une résistance de 250 mW ne devrait pas dépasser 125 mW en usage continu.\n\nLa formule du diviseur sans charge est exacte pour une source de tension idéale et des résistances idéales. En pratique, toute charge connectée aux bornes de R2 se retrouve en parallèle et réduit la résistance effective inférieure, ce qui abaisse Vout par rapport à la valeur à vide. Pour un fonctionnement chargé précis, assurez-vous que la résistance de charge soit au moins dix fois plus grande que R2, ou prenez en compte l’association parallèle dans votre conception."
+      },
+      "examples": {
+        "heading": "Exemples de diviseur de tension",
+        "intro": "Trois circuits pratiques montrant la formule en action.",
+        "colInput": "Vin / R1 / R2",
+        "colOutput": "Vout",
+        "colNote": "Note",
+        "loadHalf": "Charger l’exemple de demi-tension",
+        "loadSensor": "Charger l’exemple d’interface capteur",
+        "loadReference": "Charger l’exemple de tension de référence",
+        "items": [
+          {
+            "input": "10 V, R1 = 1 kΩ, R2 = 1 kΩ",
+            "output": "5 V",
+            "note": "Des résistances égales produisent toujours exactement la moitié de la tension d’entrée. Courant = 5 mA, puissance totale = 50 mW."
+          },
+          {
+            "input": "5 V, R1 = 2.2 kΩ, R2 = 3.3 kΩ",
+            "output": "3 V",
+            "note": "Décalage classique de 5 V vers 3 V utilisé lors du raccordement de capteurs 5 V à des entrées ADC de microcontrôleurs 3.3 V."
+          },
+          {
+            "input": "12 V, R1 = 10 kΩ, R2 = 5 kΩ",
+            "output": "4 V",
+            "note": "R2 / (R1 + R2) = 5/15 = 1/3, donc Vout = 12 × 1/3 = 4 V. Puissance totale = 9.6 mW à 0.8 mA."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de diviseur de tension",
+        "steps": [
+          "Saisissez la tension d’alimentation (Vin) — la tension appliquée à l’ensemble de la série R1 + R2.",
+          "Saisissez la valeur de R1, la résistance du haut connectée entre l’alimentation et le nœud de sortie.",
+          "Saisissez la valeur de R2, la résistance du bas connectée entre le nœud de sortie et la masse.",
+          "Cliquez sur Calculer pour voir la tension de sortie, le courant du circuit et la dissipation de puissance de chaque résistance.",
+          "Utilisez les boutons d’exemple pour charger des configurations courantes, ou cliquez sur Réinitialiser pour recommencer."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ du calculateur de diviseur de tension",
+        "items": [
+          {
+            "q": "Quelle est la formule du diviseur de tension ?",
+            "a": "La formule est Vout = Vin × R2 / (R1 + R2). Elle découle directement de la loi d’Ohm : le même courant traverse les deux résistances en série, donc la tension aux bornes de chacune est proportionnelle à sa résistance. R2 au numérateur et le total (R1 + R2) au dénominateur donnent la fraction de l’alimentation présente en sortie."
+          },
+          {
+            "q": "Pourquoi le branchement d’une charge modifie-t-il la tension de sortie ?",
+            "a": "Toute résistance de charge Rload placée aux bornes de R2 forme un parallèle avec R2, ce qui réduit la résistance inférieure effective en dessous de R2. Cela abaisse le rapport R2_eff / (R1 + R2_eff) et donc Vout. Pour minimiser l’erreur de charge, choisissez Rload ≥ 10 × R2, ou utilisez un buffer à amplificateur opérationnel pour présenter une impédance d’entrée quasi infinie à la sortie du diviseur."
+          },
+          {
+            "q": "Comment choisir R1 et R2 pour une tension de sortie donnée ?",
+            "a": "Commencez par le rapport Vout / Vin = R2 / (R1 + R2). Choisissez R2 selon le courant acceptable, puis calculez R1 = R2 × (Vin / Vout − 1). Par exemple, pour obtenir 3.3 V à partir de 5 V, Vout/Vin = 0.66, donc R1 = R2 × (1/0.66 − 1) ≈ 0.515 × R2. Avec R2 = 10 kΩ, on obtient R1 ≈ 5.15 kΩ — à arrondir à la valeur normalisée la plus proche."
+          },
+          {
+            "q": "Quelle puissance nominale de résistance faut-il ?",
+            "a": "Chaque résistance dissipe P = I² × R, avec I = Vin / (R1 + R2). Choisissez une résistance dont la puissance nominale est au moins deux fois la dissipation calculée. Par exemple, si le calcul donne 80 mW, utilisez une résistance de 1/4 W (250 mW) pour une marge de sécurité suffisante."
+          },
+          {
+            "q": "Un diviseur de tension peut-il fournir un courant important à une charge ?",
+            "a": "Pas sans affecter la précision. Un diviseur de tension est conçu pour la signalisation et la polarisation, pas pour alimenter une charge. Si le courant de charge devient comparable au courant de repos du diviseur (I = Vin / (R1 + R2)), la tension de sortie s’affaisse. Pour des courants de charge plus élevés, utilisez plutôt un régulateur de tension ou un buffer à amplificateur opérationnel."
+          }
+        ]
+      }
+    },
+    "voltage-drop-calculator": {
+      "title": "Calculateur de chute de tension",
+      "tagline": "Calculez la chute de tension, les pertes de puissance et la tension en bout de ligne pour les câbles électriques.",
+      "intro": "Saisissez le courant, la tension source, la longueur du câble, la résistance par kilomètre et le facteur de puissance pour obtenir instantanément la chute de tension et son pourcentage dans votre circuit.",
+      "formula": "Formule : VD = 2 × I × R (Ω/km) × L (m) × PF / 1000  •  VD% = VD / Vsource × 100",
+      "field": {
+        "current": "Courant (A)",
+        "sourceVoltage": "Tension source (V)",
+        "wireLength": "Longueur du câble (m)",
+        "wireResistance": "Résistance du câble (Ω/km)",
+        "powerFactor": "Facteur de puissance"
+      },
+      "placeholder": {
+        "current": "p. ex. 15",
+        "sourceVoltage": "p. ex. 120",
+        "wireLength": "p. ex. 50",
+        "wireResistance": "p. ex. 1.83",
+        "powerFactor": "p. ex. 1.0"
+      },
+      "hint": "Laissez le facteur de puissance à 1.0 pour les circuits CC et les charges CA purement résistives. Pour les charges inductives comme les moteurs, utilisez le facteur de puissance de la charge (généralement 0.80–0.95).",
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs, ainsi qu’un facteur de puissance compris entre 0 et 1."
+      },
+      "result": {
+        "heading": "Résultat",
+        "labelDrop": "Chute de tension",
+        "labelDropPct": "Chute de tension %",
+        "labelReceiving": "Tension en bout de ligne",
+        "labelPowerLoss": "Perte de puissance"
+      },
+      "about": {
+        "heading": "À propos du calculateur de chute de tension",
+        "body": "La chute de tension est la diminution du potentiel électrique entre l’extrémité source et l’extrémité charge d’un câble, causée par la résistance des conducteurs. Tout conducteur réel possède une résistance finie ; lorsque le courant traverse cette résistance, une partie de la tension d’alimentation est consommée par le câble lui-même au lieu d’être fournie à la charge. Il en résulte une tension plus faible aux bornes de la charge, ce qui peut dégrader les performances des équipements et, dans les cas extrêmes, provoquer une surchauffe ou une défaillance prématurée.\n\nLa formule standard pour un circuit monophasé à deux fils (un conducteur aller, un conducteur retour) est VD = 2 × I × R × L / 1000, où I est le courant en ampères, R la résistance du conducteur en ohms par kilomètre et L la longueur aller du câble en mètres. Le facteur 2 tient compte du trajet aller-retour du courant. La division par 1 000 convertit la résistance donnée au kilomètre en unités par mètre. Pour les circuits CA avec charges réactives, le résultat est en outre multiplié par le facteur de puissance de la charge afin de tenir compte de la relation de phase entre tension et courant.\n\nLe pourcentage de chute de tension — VD / Vsource × 100 — est l’indicateur le plus utile pour vérifier la conformité. Les codes électriques internationaux et nationaux fixent des chutes de tension maximales admissibles. Le National Electrical Code (NEC) aux États-Unis recommande un maximum de 3 % de chute de tension sur les circuits terminaux et 5 % au total (alimentation plus circuit terminal). La norme britannique BS 7671 et les normes IEC prévoient des limites similaires. Dépasser ces limites gaspille de l’énergie, atténue l’éclairage, réduit le couple moteur et peut déclencher des relais de protection contre les sous-tensions.\n\nLa résistance d’un conducteur dépend du matériau et de sa section. Le cuivre est plus conducteur que l’aluminium : les résistances typiques des conducteurs en cuivre sont d’environ 7.41 Ω/km pour 2.5 mm², 4.61 Ω/km pour 4 mm² et 3.08 Ω/km pour 6 mm². Les conducteurs en aluminium ont une résistance environ 1.64 fois plus élevée à section identique, ce qui explique pourquoi un câblage en aluminium nécessite une section plus importante pour obtenir la même performance de chute de tension que le cuivre.\n\nLe facteur de puissance est important dans les circuits CA comportant des charges inductives telles que moteurs, transformateurs et ballasts d’éclairage fluorescent. Un moteur fonctionnant avec un facteur de puissance de 0.85 absorbe davantage de courant pour la même puissance active qu’un chauffage résistif à PF = 1.0, ce qui augmente la chute de tension. L’amélioration du facteur de puissance par des batteries de condensateurs réduit le courant dans les conducteurs et donc la chute de tension, évitant parfois l’emploi d’un câble plus gros et plus coûteux.\n\nDes calculs corrects de chute de tension sont essentiels dès la phase de conception. Utiliser un conducteur de section supérieure coûte plus cher au départ, mais permet d’économiser de l’énergie en continu pendant toute la durée de vie de l’installation."
+      },
+      "examples": {
+        "heading": "Exemples de chute de tension",
+        "intro": "Deux scénarios de câblage typiques montrant comment calculer la chute de tension pour des circuits résidentiels et industriels.",
+        "colInput": "Paramètres du circuit",
+        "colOutput": "Chute de tension",
+        "colNote": "VD %",
+        "loadResidential": "Exemple de circuit de charge résidentiel",
+        "loadIndustrial": "Exemple de charge de moteur industriel",
+        "items": [
+          {
+            "input": "15 A, 120 V, 50 m, 1.83 Ω/km, PF = 1.0",
+            "output": "2.745 V",
+            "note": "2.29 % — dans la limite de 3 % recommandée par le NEC. Tension en bout de ligne : 117.26 V."
+          },
+          {
+            "input": "30 A, 480 V, 100 m, 0.727 Ω/km, PF = 0.85",
+            "output": "3.70 V",
+            "note": "0.77 % — largement dans les limites pour un circuit de moteur industriel 480 V avec câble cuivre de 4 mm²."
+          },
+          {
+            "input": "20 A, 230 V, 30 m, 7.41 Ω/km, PF = 1.0",
+            "output": "8.89 V",
+            "note": "3.86 % — dépasse la recommandation de 3 % pour une longue liaison de 2.5 mm² ; passez à un câble de 4 mm²."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de chute de tension",
+        "steps": [
+          "Saisissez le courant de charge en ampères — utilisez le courant à pleine charge de l’équipement raccordé, et non une valeur partielle ou moyenne.",
+          "Saisissez la tension source à l’extrémité d’alimentation du circuit (p. ex. 120 V, 230 V ou 480 V).",
+          "Saisissez la longueur aller du câble en mètres — ne la doublez pas ; la formule tient déjà compte du conducteur de retour.",
+          "Saisissez la résistance du conducteur en Ω/km depuis une fiche technique de câble ou un tableau standard (p. ex. 1.83 Ω/km pour du cuivre 14 AWG ou 4 mm²).",
+          "Saisissez le facteur de puissance (0–1). Utilisez 1.0 pour le CC et les charges résistives ; utilisez le facteur de puissance indiqué sur la plaque moteur pour les circuits de moteurs. Cliquez sur Calculer pour afficher la chute de tension, le pourcentage, la tension en bout de ligne et la perte de puissance."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ du calculateur de chute de tension",
+        "items": [
+          {
+            "q": "Quelle est la chute de tension maximale admissible ?",
+            "a": "La plupart des codes électriques recommandent une chute de tension maximale de 3 % sur les circuits terminaux et de 5 % combinée pour l’alimentation plus le circuit terminal. Le NEC suit cette recommandation (à titre informatif dans les notes FPN), et le tableau 4Ab de la BS 7671 fixe 3 % pour l’éclairage et 5 % pour les autres circuits. Rester dans les limites protège les équipements et réduit le gaspillage d’énergie."
+          },
+          {
+            "q": "Pourquoi la formule multiplie-t-elle par 2 ?",
+            "a": "Le facteur 2 tient compte du trajet complet du courant : le courant part par un conducteur et revient par un autre. Les deux conducteurs contribuent à la résistance, de sorte que la résistance totale du câble est deux fois celle d’un seul conducteur pour une longueur donnée. Les circuits triphasés utilisent un autre facteur (√3 au lieu de 2), car les trois conducteurs partagent le courant de retour."
+          },
+          {
+            "q": "Comment la section du câble influence-t-elle la chute de tension ?",
+            "a": "Une section plus grande signifie une résistance plus faible par kilomètre, ce qui réduit la chute de tension. Doubler la section du conducteur divise approximativement la résistance par deux et donc la chute de tension pour le même courant et la même longueur. Monter d’un pas AWG (par exemple de 12 AWG à 10 AWG) réduit la résistance d’environ 20 %."
+          },
+          {
+            "q": "Le calcul s’applique-t-il aux circuits CC ?",
+            "a": "Oui, avec le facteur de puissance réglé sur 1.0. Les circuits CC n’ont pas de composantes réactives, donc PF = 1.0 est toujours correct. La formule se simplifie en VD = 2 × I × R × L / 1000 pour le CC, ce qui est identique à la formule CA à facteur de puissance unitaire."
+          },
+          {
+            "q": "Quelle résistance de conducteur utiliser pour un câble en cuivre ?",
+            "a": "Résistances courantes des conducteurs en cuivre à 20 °C : 1.5 mm² ≈ 12.1 Ω/km, 2.5 mm² ≈ 7.41 Ω/km, 4 mm² ≈ 4.61 Ω/km, 6 mm² ≈ 3.08 Ω/km, 10 mm² ≈ 1.83 Ω/km. La résistance augmente d’environ 0.4 % par degré Celsius au-dessus de 20 °C ; corrigez donc les valeurs pour les températures de fonctionnement élevées dans les environnements chauds."
+          }
+        ]
+      }
+    },
+    "voltage-regulation-calculator": {
+      "title": "Calculateur de régulation de tension",
+      "tagline": "Calculez la régulation de charge et la régulation de ligne des alimentations à partir des tensions mesurées à vide et en pleine charge.",
+      "intro": "Saisissez les tensions à vide et en pleine charge pour calculer la régulation de charge. Vous pouvez aussi ajouter la plage de tension d'entrée, le courant de charge et l'impédance de sortie pour calculer la régulation de ligne.",
+      "formula": "Formule : Régulation de charge (%) = (V_NL − V_FL) / V_FL × 100  •  Régulation de ligne (%) = (Rout × I) / ΔVin × 100",
+      "section": {
+        "loadReg": "Régulation de charge (obligatoire)",
+        "lineReg": "Régulation de ligne (facultative)"
+      },
+      "field": {
+        "noLoadVoltage": "Tension à vide (V)",
+        "fullLoadVoltage": "Tension en pleine charge (V)",
+        "nominalVoltage": "Tension nominale (V)",
+        "minLineVoltage": "Tension minimale d'entrée (V)",
+        "maxLineVoltage": "Tension maximale d'entrée (V)",
+        "loadCurrent": "Courant de charge (A)",
+        "outputImpedance": "Impédance de sortie (Ω)"
+      },
+      "placeholder": {
+        "noLoadVoltage": "ex. 12.5",
+        "fullLoadVoltage": "ex. 11.8",
+        "nominalVoltage": "ex. 12",
+        "minLineVoltage": "ex. 10.8",
+        "maxLineVoltage": "ex. 13.2",
+        "loadCurrent": "ex. 5",
+        "outputImpedance": "ex. 0.1"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins les tensions à vide et en pleine charge avec des valeurs positives valides."
+      },
+      "result": {
+        "heading": "Résultat",
+        "labelLoadReg": "Régulation de charge",
+        "labelVoltageChange": "Variation de tension (V_NL − V_FL)",
+        "labelLineReg": "Régulation de ligne",
+        "labelDeltaVout": "Variation de la tension de sortie (ΔVout)"
+      },
+      "about": {
+        "heading": "À propos du calculateur de régulation de tension",
+        "body": "La régulation de tension mesure à quel point la tension de sortie d'une alimentation varie en réponse aux changements de courant de charge ou de tension d'entrée. C'est l'une des spécifications les plus importantes de toute source d'alimentation : une mauvaise régulation signifie que l'équipement reçoit des tensions différentes selon le courant qu'il consomme, ce qui peut entraîner des dysfonctionnements, des erreurs de données et une réduction de la durée de vie des composants.\n\nLa régulation de charge décrit la variation de la tension de sortie lorsque le courant de charge passe de zéro (à vide) au courant nominal maximal (pleine charge). Elle se calcule ainsi : Régulation de charge (%) = (V_NL − V_FL) / V_FL × 100. Un régulateur parfait aurait une régulation de charge de 0 %, ce qui signifie que la tension de sortie est identique à vide et en pleine charge. En pratique, les régulateurs linéaires atteignent 0.1–1 %, tandis que les alimentations à découpage de haute qualité atteignent 0.5–2 %. Les conceptions économiques peuvent afficher 5 % ou plus.\n\nLa régulation de ligne décrit la variation de la tension de sortie lorsque la tension d'entrée varie, tandis que la charge reste constante. Elle s'exprime comme la variation en pourcentage de la tension de sortie par variation en pourcentage de la tension d'entrée, ou comme la variation de la tension de sortie par volt d'entrée. Une alimentation avec une bonne régulation de ligne maintient une sortie stable malgré les fluctuations du secteur — un point important dans les pays où la tension du réseau varie fortement.\n\nL'impédance de sortie est le paramètre clé qui relie le courant de charge à la variation de tension. Une alimentation se comporte comme une source de tension idéale en série avec une faible résistance Rout. Lorsque le courant de charge augmente de ΔI, la tension de sortie chute de ΔV = Rout × ΔI. Plus l'impédance de sortie est faible, meilleure est la régulation. Une alimentation de laboratoire peut avoir un Rout de quelques milliohms, tandis qu'une simple conception transformateur-redresseur peut en avoir plusieurs ohms.\n\nLes chiffres de régulation de tension figurent en bonne place dans les fiches techniques des alimentations et sont testés dans des conditions spécifiques. Les alimentations de qualité médicale exigent généralement une régulation de charge meilleure que 1 % et une régulation de ligne meilleure que 0.5 %, car les circuits de sécurité des patients dépendent de tensions de fonctionnement stables. Les alimentations grand public spécifient couramment 3–5 %. Les alimentations pour variateurs industriels et API exigent généralement 1–3 % pour garantir le bon fonctionnement des circuits de commande sensibles.\n\nUne mauvaise régulation de tension gaspille de l'énergie et génère de la chaleur. Une alimentation à forte impédance de sortie dissipe l'excès de tension en chaleur dans sa résistance interne lorsque la charge consomme du courant. Améliorer la régulation — grâce à un meilleur bobinage du transformateur, à des régulateurs linéaires à faible chute ou à des topologies à découpage pilotées par rétroaction — réduit les pertes thermiques et améliore l'efficacité du système."
+      },
+      "examples": {
+        "heading": "Exemples de régulation de tension",
+        "intro": "Mesures pratiques d'alimentations montrant le calcul de la régulation de charge.",
+        "colInput": "Tension à vide / pleine charge",
+        "colOutput": "Régulation de charge",
+        "colNote": "Évaluation",
+        "loadPSU12V": "Exemple d'alimentation 12 V",
+        "loadPSU5V": "Exemple d'alimentation 5 V",
+        "items": [
+          {
+            "input": "V_NL = 12.5 V, V_FL = 11.8 V",
+            "output": "5.93 %",
+            "note": "Acceptable pour une alimentation 12 V polyvalente ; en dessous de 5 %, c'est bien, et en dessous de 1 %, c'est excellent."
+          },
+          {
+            "input": "V_NL = 5.1 V, V_FL = 4.85 V",
+            "output": "5.15 %",
+            "note": "Limite pour la logique numérique. Un microcontrôleur 5 V tolère ±5 %, mais avec moins de marge pour les transitoires."
+          },
+          {
+            "input": "V_NL = 3.32 V, V_FL = 3.28 V",
+            "output": "1.22 %",
+            "note": "Bonne régulation pour une alimentation à découpage 3.3 V. Les circuits logiques voient une tension d'alimentation très stable."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de régulation de tension",
+        "steps": [
+          "Mesurez ou récupérez la tension de sortie à vide (V_NL) — la tension de sortie lorsque l'alimentation ne fournit aucun courant.",
+          "Mesurez ou récupérez la tension de sortie en pleine charge (V_FL) — la tension de sortie au courant nominal maximal.",
+          "Saisissez ces deux valeurs dans la section de régulation de charge et cliquez sur Calculer pour voir le pourcentage de régulation et la variation de tension.",
+          "Pour la régulation de ligne, saisissez aussi la tension d'entrée nominale, les tensions d'entrée minimale et maximale, le courant de charge et l'impédance de sortie, puis cliquez sur Calculer.",
+          "Comparez le résultat de régulation de charge à la tolérance de votre application : en dessous de 1 %, c'est excellent, 1–3 %, c'est bien, et au-dessus de 5 %, cela peut poser problème pour des circuits sensibles."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ du calculateur de régulation de tension",
+        "items": [
+          {
+            "q": "Quel pourcentage de régulation de tension est bon ?",
+            "a": "En dessous de 1 %, c'est excellent et typique des alimentations de laboratoire de précision et des régulateurs à découpage de haute qualité. 1–3 % est bien et convient à la plupart des circuits numériques et analogiques. 3–5 % est acceptable pour du matériel polyvalent. Au-delà de 5 %, la régulation est mauvaise et peut poser des problèmes aux circuits logiques sensibles, aux ADC ou aux modules de communication."
+          },
+          {
+            "q": "Quelle est la différence entre régulation de charge et régulation de ligne ?",
+            "a": "La régulation de charge mesure de combien la tension de sortie varie lorsque le courant consommé par la charge passe de zéro au maximum. La régulation de ligne mesure de combien la tension de sortie varie lorsque la tension d'entrée change alors que la charge reste constante. Les deux spécifications sont importantes : la régulation de charge évalue la capacité de l'alimentation à maintenir la tension sous demande variable, tandis que la régulation de ligne évalue sa résistance aux fluctuations du secteur."
+          },
+          {
+            "q": "Pourquoi la tension à vide est-elle souvent plus élevée que la tension en pleine charge ?",
+            "a": "La résistance interne (impédance de sortie) provoque une chute de tension quand le courant circule. À vide, aucun courant ne circule, donc il n'y a pas de chute et la sortie atteint son maximum. En pleine charge, I × Rout est dissipé en interne, ce qui réduit la tension aux bornes. Les régulateurs linéaires et les alimentations à batterie montrent clairement cet effet ; les alimentations à découpage à rétroaction le minimisent."
+          },
+          {
+            "q": "Comment la température affecte-t-elle la régulation de tension ?",
+            "a": "La référence de tension interne d'une alimentation et la résistance des conducteurs changent toutes deux avec la température. Une référence à coefficient thermique élevé fera dériver la tension de sortie lorsque l'unité chauffe, ce qui dégrade la régulation effective au fil du temps. Les alimentations de précision utilisent des références bandgap compensées en température qui maintiennent une dérive inférieure à 10 ppm/°C."
+          },
+          {
+            "q": "Puis-je améliorer la régulation de tension sans remplacer l'alimentation ?",
+            "a": "Oui. Ajouter un condensateur électrolytique de forte capacité à la charge atténue les baisses de tension transitoires dues aux appels de courant soudains. Pour les circuits critiques, un régulateur à faible chute de tension (LDO) placé près de la charge peut réguler à nouveau le rail avec une très faible impédance de sortie. La résistance du câble contribue aussi à une mauvaise régulation côté charge ; utiliser un câble plus épais ou des connexions Kelvin jusqu'au point d'utilisation supprime cette composante."
+          }
+        ]
+      }
     }
   }
 }

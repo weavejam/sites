@@ -10155,6 +10155,521 @@
         "q6": "Como medir a densidade da água experimentalmente?",
         "q6_a": "O método mais simples é a razão massa/volume: pese um volume conhecido de água usando um balão volumétrico calibrado e uma balança de precisão. Densidade = massa (g) / volume (mL). Um picnômetro oferece alta precisão ao definir o volume com exatidão. Um hidrômetro mede a densidade diretamente pela profundidade de flutuação. Densímetros digitais usam a tecnologia do tubo em U oscilante para medições rápidas e altamente precisas (±0.0001 g/mL)."
       }
+    },
+    "watts-to-amps-calculator": {
+      "title": "Calculadora de watts para amperes",
+      "tagline": "Converta watts em amperes a partir da potência, tensão e fator de potência opcional para cargas CC e estimativas CA de valor único.",
+      "intro": "Informe a potência e a tensão para calcular a corrente. Adicione um fator de potência quando quiser uma estimativa CA em vez do caso resistivo ou CC padrão.",
+      "field": {
+        "power": "Potência (watts)",
+        "voltage": "Tensão (volts)",
+        "powerFactor": "Fator de potência"
+      },
+      "placeholder": {
+        "power": "ex.: 1200",
+        "voltage": "ex.: 120",
+        "powerFactor": "ex.: 0.95"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Redefinir"
+      },
+      "result": {
+        "heading": "Resultado",
+        "value": "Corrente = {current} A",
+        "current": "Corrente",
+        "powerFactor": "Fator de potência usado",
+        "formula": "Fórmula usada",
+        "unitCurrent": "A",
+        "powerFactorNote": "FP",
+        "formulaDc": "I = P ÷ V",
+        "formulaAc": "I = P ÷ (V × FP)"
+      },
+      "error": {
+        "invalid": "Informe números positivos válidos para potência e tensão, e use um fator de potência entre 0 e 1."
+      },
+      "hint": "Deixe o fator de potência em branco para usar o valor padrão de 1.0, compatível com circuitos CC e muitas cargas puramente resistivas.",
+      "formula": {
+        "dc": "Para cargas CC ou resistivas: I = P / V",
+        "ac": "Para cargas CA com fator de potência: I = P / (V × FP)"
+      },
+      "about": {
+        "heading": "Sobre a conversão de watts para amperes",
+        "body": "Uma calculadora de watts para amperes converte potência elétrica em consumo de corrente combinando a potência nominal com a tensão de operação. No caso CC mais simples, a relação é I = P / V. Se uma carga consome 500 watts a 12 volts, a corrente é 41.67 amperes. Esse é um dos cálculos rápidos mais úteis em eletrônica, sistemas automotivos, instalações solares, fiação náutica e dimensionamento de aparelhos, porque a corrente determina a bitola do condutor, a escolha do fusível, os limites do disjuntor e as preocupações com queda de tensão.\n\nA fórmula funciona porque a potência elétrica é igual à tensão multiplicada pela corrente: P = V × I. Reorganizando para corrente, temos I = P / V. Essa é a relação correta para circuitos CC e para cargas CA que se comportam como dispositivos puramente resistivos. Em sistemas CA reais, porém, nem toda a potência aparente se torna potência real. Parte dela pode estar ligada ao deslocamento de fase entre tensão e corrente causado por componentes indutivos ou capacitivos. É aí que entra o fator de potência.\n\nO fator de potência, geralmente escrito como FP, mede a eficácia com que a corrente está sendo convertida em potência real útil em um circuito CA. Um fator de potência de 1 significa que tensão e corrente estão perfeitamente em fase, então a fórmula no estilo CC funciona diretamente. Fatores de potência menores significam que o circuito precisa puxar mais corrente para entregar a mesma quantidade de watts. Para estimativas de valor único, a corrente passa a ser I = P / (V × FP). Por isso uma carga de 1,200 watts a 120 volts e fator de potência 0.95 puxa um pouco mais de corrente do que os mesmos 1,200 watts com FP = 1. A diferença importa ao dimensionar circuitos derivados, inversores, geradores e dispositivos de proteção.\n\nEsta calculadora é especialmente útil quando você conhece a potência nominal, mas precisa entender o impacto na instalação. Um aquecedor de 2,000 watts em uma alimentação de 240 volts puxa 8.33 amperes se for essencialmente resistivo. Uma carga CC de 500 watts a 12 volts puxa 41.67 amperes, o que mostra imediatamente que os requisitos de fiação e fusível serão muito mais exigentes do que a potência bruta sozinha poderia sugerir. Eletrodomésticos, sistemas de motorhome, bancos de baterias e ferramentas de oficina ficam mais fáceis de comparar quando expressos em amperes.\n\nComo qualquer calculadora simplificada, esta ferramenta é melhor usada como uma estimativa prática. Sistemas trifásicos, correntes de partida de motores, distorção harmônica e cálculos detalhados de potência aparente exigem tratamento mais especializado. Ainda assim, para verificações rotineiras de projeto, exemplos educacionais e solução de problemas do dia a dia, converter watts para amperes com tensão e fator de potência opcional oferece uma visão rápida e informativa da demanda real de corrente. Ela ajuda a traduzir a potência da placa no valor que mais diretamente orienta um dimensionamento elétrico seguro."
+      },
+      "examples": {
+        "heading": "Exemplos",
+        "intro": "Estes exemplos mostram como a corrente muda com o nível de tensão e como o fator de potência afeta o consumo de corrente CA.",
+        "colInput": "Entrada",
+        "colOutput": "Saída",
+        "colNote": "Observações",
+        "loadHousehold": "Carga de 1200W em 120V",
+        "loadResistive": "Carga de 2000W em 240V",
+        "loadDc": "Carga de 500W em 12V",
+        "items": [
+          {
+            "input": "1200 W, 120 V, FP = 0.95",
+            "output": "I = 10.53 A",
+            "note": "Uma carga CA quase unitária ainda puxa um pouco mais de corrente do que o caso CC puro ou resistivo porque o FP está abaixo de 1."
+          },
+          {
+            "input": "2000 W, 240 V, FP = 1.0",
+            "output": "I = 8.33 A",
+            "note": "Esta é a relação resistiva ou no estilo CC direta, em que a corrente é igual aos watts divididos pelos volts."
+          },
+          {
+            "input": "500 W, 12 V, FP = 1.0",
+            "output": "I = 41.67 A",
+            "note": "Sistemas de baixa tensão exigem alta corrente para a mesma potência, por isso o dimensionamento dos cabos se torna crítico em configurações com baterias."
+          },
+          {
+            "input": "1500 W, 230 V, FP = 0.8",
+            "output": "I = 8.15 A",
+            "note": "Um fator de potência CA mais baixo aumenta a corrente e pode afetar significativamente a escolha do disjuntor e do condutor."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar",
+        "steps": [
+          "Informe a potência real em watts e a tensão de operação em volts. Ambos os campos são obrigatórios em todos os cálculos.",
+          "Deixe o fator de potência em branco para cargas CC ou puramente resistivas, ou informe um valor entre 0 e 1 para uma estimativa CA.",
+          "Clique em Calcular para ver a corrente em amperes e a fórmula usada para o cenário.",
+          "Use os exemplos resolvidos para comparar cargas CA domésticas, aquecedores resistivos e sistemas CC de baixa tensão; depois redefina o formulário para um novo caso."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes",
+        "items": [
+          {
+            "q": "Por que tensão menor significa corrente maior para a mesma potência?",
+            "a": "A potência é o produto da tensão pela corrente; portanto, se a potência em watts permanece fixa e a tensão cai, a corrente precisa subir. Por isso sistemas de baixa tensão costumam precisar de condutores mais grossos e dispositivos de proteção maiores."
+          },
+          {
+            "q": "O que é fator de potência?",
+            "a": "O fator de potência mede a eficácia com que a corrente CA é transformada em potência real útil. Um fator de potência de 1 significa alinhamento ideal entre tensão e corrente, enquanto valores menores indicam que mais corrente é necessária para entregar os mesmos watts."
+          },
+          {
+            "q": "Devo deixar o fator de potência em branco para circuitos CC?",
+            "a": "Sim. Circuitos CC não usam relações de fase CA, então o fator de potência efetivo é tratado como 1 e a fórmula se simplifica para corrente igual à potência dividida pela tensão."
+          },
+          {
+            "q": "Posso usar isto para motores e compressores?",
+            "a": "Você pode usar para uma estimativa em regime permanente se souber os watts em operação e um fator de potência aproximado. No entanto, motores podem ter corrente de partida e características operacionais que exigem análise mais detalhada."
+          },
+          {
+            "q": "Por que isso é útil para dimensionamento elétrico?",
+            "a": "A proteção do circuito e o dimensionamento dos condutores são baseados na corrente, não apenas na potência. Converter watts em amperes ajuda a avaliar carga do disjuntor, escolha do fusível, queda de tensão e requisitos de cabos antes da instalação."
+          }
+        ]
+      }
+    },
+    "volt-to-electron-volt-calculator": {
+      "title": "Calculadora de volt para elétron-volts",
+      "tagline": "Converta tensão em elétron-volts (eV) e joules instantaneamente para física, eletrônica e mecânica quântica.",
+      "intro": "Digite uma tensão em volts para ver a energia equivalente em elétron-volts e joules. O valor numérico de eV é igual à tensão em V.",
+      "formula": "Fórmula: E (eV) = V  •  E (J) = V × 1.602176634×10⁻¹⁹",
+      "field": {
+        "voltage": "Tensão (V)"
+      },
+      "placeholder": {
+        "voltage": "ex.: 12.5"
+      },
+      "unit": {
+        "eV": "eV",
+        "J": "J"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Redefinir"
+      },
+      "error": {
+        "invalid": "Digite uma tensão positiva válida."
+      },
+      "result": {
+        "heading": "Resultado",
+        "labelEV": "Energia (elétron-volts)",
+        "labelJ": "Energia (joules)"
+      },
+      "about": {
+        "heading": "Sobre a calculadora de volt para elétron-volts",
+        "body": "O elétron-volt (eV) é a unidade padrão de energia usada em física de partículas, física atômica e engenharia de semicondutores. Ele é definido como a quantidade de energia cinética ganha por um único elétron quando acelerado através de uma diferença de potencial elétrico de exatamente um volt no vácuo. Como a carga elementar do elétron é 1.602176634×10⁻¹⁹ coulombs, um elétron-volt equivale a 1.602176634×10⁻¹⁹ joules.\n\nA equação definidora é E = qV, onde E é a energia em joules, q é a carga da partícula em coulombs e V é a tensão em volts. Para um único elétron, q = e (a carga elementar), então a energia em joules é sempre a tensão multiplicada por 1.602176634×10⁻¹⁹. O ponto crucial é que o valor numérico da energia em elétron-volts é idêntico à tensão em volts — 12 volts aceleram um elétron a 12 eV, e 1 000 volts dão a ele 1 000 eV (1 keV). Esse mapeamento um-para-um é o que torna o elétron-volt uma unidade tão prática.\n\nElétron-volts são preferidos nas ciências atômica e nuclear porque joules são uma unidade inconvenientemente grande em escalas subatômicas. Um único fóton de luz visível carrega apenas cerca de 2–3 eV, a energia de ionização do hidrogênio é 13.6 eV, um fóton típico de raio X carrega de 100 a 100 000 eV, e fótons gama ultrapassam 100 keV. No outro extremo, aceleradores modernos levam prótons a bilhões de elétron-volts (GeV) e até trilhões (TeV). Todos esses números seriam pouco práticos como múltiplos de 10⁻¹⁹ joules.\n\nNa engenharia de semicondutores, eV descreve band gaps — a diferença de energia entre a banda de valência e a banda de condução de um material. O silício tem band gap de 1.12 eV, o arseneto de gálio cerca de 1.42 eV e o nitreto de gálio aproximadamente 3.4 eV. Esses valores determinam quais comprimentos de onda a matéria pode absorver ou emitir, sendo essenciais no projeto de células solares, LEDs e diodos laser. A tensão em que um LED polarizado diretamente entra em condução é aproximadamente igual ao seu band gap em eV.\n\nEm microscópios eletrônicos, a tensão de aceleração determina a resolução do feixe. Um elétron de 100 kV tem comprimento de onda de de Broglie ordens de grandeza menor que a luz visível, permitindo imagens subnanométricas. Em espectrômetros de massa, a razão massa/carga de um íon (m/z) é calibrada em relação à tensão de aceleração em elétron-volts. Entender a relação volt-eV, portanto, não é apenas um exercício de conversão de unidades — ela conecta grandezas macroscópicas da engenharia elétrica ao comportamento mecânico-quântico de partículas individuais."
+      },
+      "examples": {
+        "heading": "Exemplos de conversão de volt para elétron-volt",
+        "intro": "Tensões comuns e suas energias equivalentes em elétron-volts e joules.",
+        "colInput": "Tensão",
+        "colOutput": "Energia (eV)",
+        "colNote": "Energia (J)",
+        "loadAA": "Carregar exemplo de pilha AA",
+        "loadCar": "Carregar exemplo de bateria de carro",
+        "loadOutlet": "Carregar exemplo de tomada",
+        "items": [
+          {
+            "input": "1.5 V (pilha AA)",
+            "output": "1.5 eV",
+            "note": "2.40×10⁻¹⁹ J — energia de um único elétron acelerado por uma pilha AA nova."
+          },
+          {
+            "input": "12 V (bateria de carro)",
+            "output": "12 eV",
+            "note": "1.92×10⁻¹⁸ J — potencial típico de uma bateria automotiva chumbo-ácido."
+          },
+          {
+            "input": "120 V (tomada residencial)",
+            "output": "120 eV",
+            "note": "1.92×10⁻¹⁷ J — tensão da rede residencial norte-americana."
+          },
+          {
+            "input": "1 000 V (quilovolt)",
+            "output": "1 000 eV = 1 keV",
+            "note": "1.60×10⁻¹⁶ J — usado em tubos de raios X e eletrônica de alta tensão."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora de volt para elétron-volt",
+        "steps": [
+          "Digite o valor da tensão no campo Tensão (V). Valores decimais e em notação científica são aceitos.",
+          "Clique em Calcular para ver a energia equivalente em elétron-volts (eV) e em joules (J).",
+          "Observe que o valor numérico em eV é idêntico à tensão — 5 V sempre equivalem a 5 eV para uma partícula com carga simples.",
+          "Use os botões de exemplo abaixo da calculadora para carregar tensões comuns, como uma pilha AA (1.5 V) ou uma bateria de carro (12 V).",
+          "Clique em Redefinir para limpar o campo e iniciar um novo cálculo."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes sobre a calculadora de volt para elétron-volt",
+        "items": [
+          {
+            "q": "Quanto vale um elétron-volt em joules?",
+            "a": "Um elétron-volt equivale exatamente a 1.602176634×10⁻¹⁹ joules, que é a energia ganha por um único elétron ao ser acelerado por uma diferença de potencial de um volt. Essa constante foi fixada como valor exato pela redefinição do SI de 2019."
+          },
+          {
+            "q": "Por que a energia em eV é numericamente igual à tensão?",
+            "a": "Por definição, 1 eV é a energia adquirida por uma carga elementar (e) através de 1 volt. A fórmula E = qV significa que, para q = 1e, a energia em joules é V × e. Ao dividir por e para converter para eV, obtemos simplesmente V. Assim, 50 volts sempre produzem 50 eV para uma partícula com carga simples, independentemente da massa da partícula."
+          },
+          {
+            "q": "A fórmula muda para partículas com carga diferente de 1?",
+            "a": "Sim. Para uma partícula com número de carga z (por exemplo, z = 2 para uma partícula alfa), a energia ganha é z × V elétron-volts. Um átomo de hélio duplamente ionizado acelerado por 100 V ganha 200 eV. Esta calculadora assume partículas com carga simples (z = 1); multiplique o resultado por z para outros estados de carga."
+          },
+          {
+            "q": "Qual é a diferença entre elétron-volts e volts?",
+            "a": "Volts medem a diferença de potencial elétrico (uma propriedade do campo), enquanto elétron-volts medem energia (uma propriedade da partícula). Eles são relacionados, mas diferentes. Não é possível somar 5 V com 3 eV porque têm dimensões físicas distintas; só faz sentido dizer que um potencial de 5 V fornece 5 eV de energia cinética a uma partícula com carga simples."
+          },
+          {
+            "q": "Como elétron-volts são usados em band gaps de semicondutores?",
+            "a": "O band gap de um semicondutor é a energia mínima de fóton necessária para excitar um elétron da banda de valência para a banda de condução. O band gap do silício de 1.12 eV significa que é necessário um fóton com pelo menos 1.12 eV. Isso corresponde a um comprimento de onda de cerca de 1 100 nm (infravermelho próximo), razão pela qual células solares de silício podem aproveitar o IR próximo, mas não comprimentos de onda maiores."
+          },
+          {
+            "q": "Posso usar esta calculadora para prótons ou outros íons?",
+            "a": "Sim; para íons com carga simples (z = 1), o resultado é o mesmo que para elétrons. Para íons com carga múltipla, como Ca²⁺ (z = 2), dobre o valor em eV exibido. O resultado em joules também deve ser multiplicado por z, pois E (J) = z × e × V."
+          }
+        ]
+      }
+    },
+    "voltage-divider-calculator": {
+      "title": "Calculadora de divisor de tensão",
+      "tagline": "Calcule a tensão de saída, a corrente e a dissipação de potência em divisores resistivos.",
+      "intro": "Digite a tensão de entrada e dois valores de resistência para encontrar a tensão de saída, a corrente do circuito e a potência dissipada em cada resistor.",
+      "formula": "Fórmula: Vout = Vin × R2 / (R1 + R2)  •  I = Vin / (R1 + R2)  •  P = I² × R",
+      "field": {
+        "vin": "Tensão de entrada (Vin)",
+        "r1": "Resistência R1 (Ω)",
+        "r2": "Resistência R2 (Ω)"
+      },
+      "placeholder": {
+        "vin": "ex.: 12",
+        "r1": "ex.: 1000",
+        "r2": "ex.: 2000"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Redefinir"
+      },
+      "error": {
+        "invalid": "Digite números positivos válidos para a tensão e para as duas resistências."
+      },
+      "result": {
+        "heading": "Resultado",
+        "labelVout": "Tensão de saída (Vout)",
+        "labelCurrent": "Corrente do circuito",
+        "labelPowerTotal": "Potência total",
+        "labelPowerR1": "Potência em R1",
+        "labelPowerR2": "Potência em R2"
+      },
+      "about": {
+        "heading": "Sobre a calculadora de divisor de tensão",
+        "body": "O divisor de tensão é um dos circuitos mais fundamentais da eletrônica. Ele consiste em dois resistores ligados em série entre uma fonte e o terra, com a tensão de saída retirada do nó entre os dois resistores. O circuito divide a tensão de entrada em uma tensão de saída menor, em proporção direta aos valores de resistência, seguindo a Lei de Ohm e as regras de resistores em série.\n\nA fórmula central é Vout = Vin × R2 / (R1 + R2). Essa expressão pode ser derivada em duas linhas: a corrente total pela combinação em série é I = Vin / (R1 + R2) pela Lei de Ohm, e a tensão sobre R2 é I × R2. Substituindo, obtemos a fórmula do divisor. Como R2 aparece tanto no numerador quanto no denominador, a tensão de saída sempre é menor que a de entrada (para resistências positivas). Resistores iguais geram exatamente metade da tensão da fonte, enquanto valores diferentes deslocam a saída proporcionalmente.\n\nOs divisores de tensão são usados em toda a eletrônica. Em interface de sensores, uma saída de sensor de 0–5 V é comumente escalada para 0–3.3 V em um ADC de microcontrolador escolhendo R1 = 2.2 kΩ e R2 = 3.3 kΩ. Em circuitos de polarização de transistores, um divisor estabelece a tensão de base que define o ponto de operação em repouso de um transistor bipolar. Em equipamentos de áudio, potenciômetros são divisores de tensão continuamente ajustáveis que controlam o volume. A conversão de nível lógico digital também costuma usar um divisor de dois resistores para traduzir uma saída lógica de 5 V para o limiar de 3.3 V de um dispositivo receptor.\n\nA dissipação de potência é uma consideração crítica de projeto. Cada resistor dissipa P = I² × R watts, e a dissipação total é Vin² / (R1 + R2). Escolher resistores de menor valor melhora a imunidade a correntes de carga, mas desperdiça mais potência. Sempre verifique se a dissipação calculada está bem abaixo da potência nominal do resistor — uma regra comum de segurança é desclassificar em pelo menos 50 %, então um resistor de 250 mW não deve exceder 125 mW em uso contínuo.\n\nA fórmula do divisor sem carga é exata para uma fonte de tensão ideal e resistores ideais. Na prática, qualquer carga ligada em paralelo com R2 reduz a resistência efetiva inferior, puxando Vout para abaixo do valor sem carga. Para operação carregada precisa, garanta que a resistência da carga seja pelo menos dez vezes maior que R2, ou considere a combinação em paralelo no seu projeto."
+      },
+      "examples": {
+        "heading": "Exemplos de divisor de tensão",
+        "intro": "Três circuitos práticos mostrando a fórmula em ação.",
+        "colInput": "Vin / R1 / R2",
+        "colOutput": "Vout",
+        "colNote": "Observação",
+        "loadHalf": "Carregar exemplo de meia tensão",
+        "loadSensor": "Carregar exemplo de interface de sensor",
+        "loadReference": "Carregar exemplo de tensão de referência",
+        "items": [
+          {
+            "input": "10 V, R1 = 1 kΩ, R2 = 1 kΩ",
+            "output": "5 V",
+            "note": "Resistores iguais sempre produzem exatamente metade da tensão de entrada. Corrente = 5 mA, potência total = 50 mW."
+          },
+          {
+            "input": "5 V, R1 = 2.2 kΩ, R2 = 3.3 kΩ",
+            "output": "3 V",
+            "note": "Conversão clássica de 5 V para 3 V usada ao conectar sensores de 5 V a entradas ADC de microcontroladores de 3.3 V."
+          },
+          {
+            "input": "12 V, R1 = 10 kΩ, R2 = 5 kΩ",
+            "output": "4 V",
+            "note": "R2 / (R1 + R2) = 5/15 = 1/3, então Vout = 12 × 1/3 = 4 V. Potência total = 9.6 mW a 0.8 mA."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora de divisor de tensão",
+        "steps": [
+          "Digite a tensão de alimentação (Vin) — a tensão aplicada a toda a combinação em série R1 + R2.",
+          "Digite o valor de R1, o resistor superior conectado entre a alimentação e o nó de saída.",
+          "Digite o valor de R2, o resistor inferior conectado entre o nó de saída e o terra.",
+          "Clique em Calcular para ver a tensão de saída, a corrente do circuito e a dissipação de potência de cada resistor.",
+          "Use os botões de exemplo para carregar configurações comuns ou clique em Redefinir para começar novamente."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes sobre o divisor de tensão",
+        "items": [
+          {
+            "q": "Qual é a fórmula do divisor de tensão?",
+            "a": "A fórmula é Vout = Vin × R2 / (R1 + R2). Ela vem diretamente da Lei de Ohm: a mesma corrente passa pelos dois resistores em série, então a tensão em cada um é proporcional à sua resistência. R2 no numerador e o total (R1 + R2) no denominador fornecem a fração da fonte que aparece na saída."
+          },
+          {
+            "q": "Por que conectar uma carga altera a tensão de saída?",
+            "a": "Qualquer resistor de carga Rload colocado sobre R2 forma uma combinação em paralelo com R2, reduzindo a resistência inferior efetiva abaixo de R2. Isso diminui a razão R2_eff / (R1 + R2_eff), o que reduz Vout. Para minimizar o erro de carga, escolha Rload ≥ 10 × R2, ou use um buffer com amplificador operacional para apresentar impedância praticamente infinita à saída do divisor."
+          },
+          {
+            "q": "Como escolho R1 e R2 para uma tensão de saída desejada?",
+            "a": "Comece pela relação Vout / Vin = R2 / (R1 + R2). Escolha R2 com base na corrente aceitável e depois resolva R1 = R2 × (Vin / Vout − 1). Por exemplo, para obter 3.3 V a partir de 5 V, Vout/Vin = 0.66, então R1 = R2 × (1/0.66 − 1) ≈ 0.515 × R2. Usando R2 = 10 kΩ, R1 ≈ 5.15 kΩ — arredonde para o valor comercial mais próximo."
+          },
+          {
+            "q": "Qual potência nominal do resistor eu preciso?",
+            "a": "Cada resistor dissipa P = I² × R, onde I = Vin / (R1 + R2). Selecione um resistor com potência nominal de pelo menos o dobro da dissipação calculada. Por exemplo, se o cálculo mostrar 80 mW, use um resistor de 1/4 W (250 mW) para uma margem de segurança adequada."
+          },
+          {
+            "q": "Um divisor de tensão pode fornecer corrente significativa a uma carga?",
+            "a": "Não sem afetar a precisão. Um divisor de tensão foi projetado para sinalização e polarização, não para fornecimento de energia. Se a corrente da carga for comparável à corrente de repouso do divisor (I = Vin / (R1 + R2)), a tensão de saída vai cair. Para correntes de carga moderadas, use um regulador de tensão ou um buffer com amplificador operacional."
+          }
+        ]
+      }
+    },
+    "voltage-drop-calculator": {
+      "title": "Calculadora de queda de tensão",
+      "tagline": "Calcule a queda de tensão, a perda de potência e a tensão no ponto de carga em trechos de cabos elétricos.",
+      "intro": "Informe corrente, tensão de alimentação, comprimento do cabo, resistência por quilômetro e fator de potência para encontrar instantaneamente a queda de tensão e o percentual de queda do circuito.",
+      "formula": "Fórmula: VD = 2 × I × R (Ω/km) × L (m) × PF / 1000  •  VD% = VD / Vsource × 100",
+      "field": {
+        "current": "Corrente (A)",
+        "sourceVoltage": "Tensão de alimentação (V)",
+        "wireLength": "Comprimento do cabo (m)",
+        "wireResistance": "Resistência do cabo (Ω/km)",
+        "powerFactor": "Fator de potência"
+      },
+      "placeholder": {
+        "current": "ex.: 15",
+        "sourceVoltage": "ex.: 120",
+        "wireLength": "ex.: 50",
+        "wireResistance": "ex.: 1.83",
+        "powerFactor": "ex.: 1.0"
+      },
+      "hint": "Deixe o fator de potência em 1.0 para circuitos CC e cargas CA puramente resistivas. Para cargas indutivas, como motores, use o fator de potência da carga (normalmente 0.80–0.95).",
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Redefinir"
+      },
+      "error": {
+        "invalid": "Insira números positivos válidos em todos os campos e um fator de potência entre 0 e 1."
+      },
+      "result": {
+        "heading": "Resultado",
+        "labelDrop": "Queda de tensão",
+        "labelDropPct": "Queda de tensão %",
+        "labelReceiving": "Tensão no ponto de carga",
+        "labelPowerLoss": "Perda de potência"
+      },
+      "about": {
+        "heading": "Sobre a calculadora de queda de tensão",
+        "body": "Queda de tensão é a redução do potencial elétrico entre a extremidade de alimentação e a extremidade da carga de um trecho de cabo, causada pela resistência dos condutores. Todo condutor real tem uma resistência finita; quando a corrente passa por essa resistência, parte da tensão de alimentação é consumida pelo próprio cabo em vez de ser entregue à carga. O resultado é uma tensão menor nos terminais da carga, o que pode prejudicar o desempenho dos equipamentos e, em casos extremos, causar superaquecimento ou falha prematura.\n\nA fórmula padrão para um circuito monofásico de dois fios (um condutor de ida e um condutor de retorno) é VD = 2 × I × R × L / 1000, em que I é a corrente em ampères, R é a resistência do condutor em ohms por quilômetro e L é o comprimento de ida do cabo em metros. O fator 2 considera o caminho de ida e volta da corrente. Dividir por 1 000 converte a resistência baseada em quilômetros para unidades por metro. Em circuitos CA com cargas reativas, o resultado ainda é multiplicado pelo fator de potência da carga para considerar a relação de fase entre tensão e corrente.\n\nO percentual de queda de tensão — VD / Vsource × 100 — é a métrica mais útil para verificação de conformidade. Normas elétricas internacionais e nacionais especificam quedas de tensão máximas permitidas. O National Electrical Code (NEC), nos Estados Unidos, recomenda no máximo 3 % de queda de tensão em circuitos ramais e 5 % no total (alimentador mais ramal). A norma britânica BS 7671 e normas IEC têm limites semelhantes. Exceder esses limites desperdiça energia, reduz o brilho das lâmpadas, diminui o torque de motores e pode disparar relés de proteção contra subtensão.\n\nA resistência do condutor depende do material e da área da seção transversal. O cobre é mais condutivo que o alumínio: resistências típicas de condutores de cobre são aproximadamente 7.41 Ω/km para 2.5 mm², 4.61 Ω/km para 4 mm² e 3.08 Ω/km para 6 mm². Condutores de alumínio têm resistência cerca de 1.64 vez maior para a mesma seção, por isso a fiação de alumínio exige uma bitola maior para igualar o desempenho de queda de tensão do cobre.\n\nO fator de potência é importante em circuitos CA com cargas indutivas, como motores, transformadores e reatores de lâmpadas fluorescentes. Um motor operando com fator de potência de 0.85 consome mais corrente para a mesma potência ativa do que um aquecedor resistivo com PF = 1.0, aumentando a queda de tensão. Melhorar o fator de potência com bancos de correção por capacitores reduz a corrente no condutor e, portanto, a queda de tensão, às vezes eliminando a necessidade de cabos maiores e mais caros.\n\nCálculos corretos de queda de tensão são essenciais na etapa de projeto. Usar um cabo de maior bitola custa mais no início, mas economiza energia continuamente durante toda a vida útil da instalação."
+      },
+      "examples": {
+        "heading": "Exemplos de queda de tensão",
+        "intro": "Dois cenários típicos de fiação mostrando como calcular a queda de tensão em circuitos residenciais e industriais.",
+        "colInput": "Parâmetros do circuito",
+        "colOutput": "Queda de tensão",
+        "colNote": "VD %",
+        "loadResidential": "Exemplo de circuito residencial de carga",
+        "loadIndustrial": "Exemplo de carga de motor industrial",
+        "items": [
+          {
+            "input": "15 A, 120 V, 50 m, 1.83 Ω/km, PF = 1.0",
+            "output": "2.745 V",
+            "note": "2.29 % — dentro do limite de 3 % recomendado pelo NEC. Tensão no ponto de carga: 117.26 V."
+          },
+          {
+            "input": "30 A, 480 V, 100 m, 0.727 Ω/km, PF = 0.85",
+            "output": "3.70 V",
+            "note": "0.77 % — bem dentro dos limites para um circuito de motor industrial de 480 V com cabo de cobre de 4 mm²."
+          },
+          {
+            "input": "20 A, 230 V, 30 m, 7.41 Ω/km, PF = 1.0",
+            "output": "8.89 V",
+            "note": "3.86 % — excede a diretriz de 3 % para um trecho longo de 2.5 mm²; atualize para cabo de 4 mm²."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora de queda de tensão",
+        "steps": [
+          "Informe a corrente da carga em ampères — use a corrente de plena carga do equipamento conectado, não um valor parcial ou médio.",
+          "Informe a tensão de alimentação na extremidade de suprimento do circuito (ex.: 120 V, 230 V ou 480 V).",
+          "Informe o comprimento de ida do cabo em metros — não dobre o valor; a fórmula já considera o condutor de retorno.",
+          "Informe a resistência do condutor em Ω/km a partir de uma ficha técnica do cabo ou tabela padrão (ex.: 1.83 Ω/km para cobre 14 AWG ou cobre de 4 mm²).",
+          "Informe o fator de potência (0–1). Use 1.0 para CC e cargas resistivas; use o fator de potência da placa do motor para circuitos de motores. Clique em Calcular para ver a queda de tensão, o percentual, a tensão no ponto de carga e a perda de potência."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes da calculadora de queda de tensão",
+        "items": [
+          {
+            "q": "Qual é a queda de tensão máxima permitida?",
+            "a": "A maioria das normas elétricas recomenda queda de tensão máxima de 3 % em circuitos ramais e 5 % combinada para alimentador mais ramal. O NEC segue essa orientação (de forma informativa nas notas FPN), e a tabela 4Ab da BS 7671 define 3 % para iluminação e 5 % para outros circuitos. Manter-se dentro dos limites protege os equipamentos e reduz desperdício de energia."
+          },
+          {
+            "q": "Por que a fórmula multiplica por 2?",
+            "a": "O fator 2 considera o caminho completo da corrente: a corrente sai por um condutor e retorna por outro. Ambos os condutores contribuem com resistência, então a resistência total do cabo é o dobro da resistência de um único condutor para um dado comprimento. Circuitos trifásicos usam um fator diferente (√3 em vez de 2), porque os três condutores compartilham a corrente de retorno."
+          },
+          {
+            "q": "Como a bitola do fio afeta a queda de tensão?",
+            "a": "Uma área de seção transversal maior significa menor resistência por quilômetro, o que reduz a queda de tensão. Dobrar a seção do fio reduz aproximadamente pela metade a resistência e, portanto, a queda de tensão para a mesma corrente e comprimento. Aumentar um passo AWG (por exemplo, de 12 AWG para 10 AWG) reduz a resistência em cerca de 20 %."
+          },
+          {
+            "q": "O cálculo se aplica a circuitos CC?",
+            "a": "Sim, com o fator de potência definido como 1.0. Circuitos CC não têm componentes reativos, portanto PF = 1.0 está sempre correto. A fórmula se simplifica para VD = 2 × I × R × L / 1000 em CC, idêntica à fórmula CA com fator de potência unitário."
+          },
+          {
+            "q": "Que resistência de condutor devo usar para cabo de cobre?",
+            "a": "Resistências comuns de condutores de cobre a 20 °C: 1.5 mm² ≈ 12.1 Ω/km, 2.5 mm² ≈ 7.41 Ω/km, 4 mm² ≈ 4.61 Ω/km, 6 mm² ≈ 3.08 Ω/km, 10 mm² ≈ 1.83 Ω/km. A resistência aumenta cerca de 0.4 % por grau Celsius acima de 20 °C, portanto ajuste para temperaturas de operação elevadas em ambientes quentes."
+          }
+        ]
+      }
+    },
+    "voltage-regulation-calculator": {
+      "title": "Calculadora de regulação de tensão",
+      "tagline": "Calcule a regulação de carga e de linha de fontes de alimentação a partir de tensões medidas em vazio e em plena carga.",
+      "intro": "Insira as tensões em vazio e em plena carga para calcular a regulação de carga. Opcionalmente, adicione a faixa de tensão de entrada, a corrente de carga e a impedância de saída para calcular a regulação de linha.",
+      "formula": "Fórmula: Regulação de carga (%) = (V_NL − V_FL) / V_FL × 100  •  Regulação de linha (%) = (Rout × I) / ΔVin × 100",
+      "section": {
+        "loadReg": "Regulação de carga (obrigatório)",
+        "lineReg": "Regulação de linha (opcional)"
+      },
+      "field": {
+        "noLoadVoltage": "Tensão em vazio (V)",
+        "fullLoadVoltage": "Tensão em plena carga (V)",
+        "nominalVoltage": "Tensão nominal (V)",
+        "minLineVoltage": "Tensão mínima de linha (V)",
+        "maxLineVoltage": "Tensão máxima de linha (V)",
+        "loadCurrent": "Corrente de carga (A)",
+        "outputImpedance": "Impedância de saída (Ω)"
+      },
+      "placeholder": {
+        "noLoadVoltage": "ex.: 12.5",
+        "fullLoadVoltage": "ex.: 11.8",
+        "nominalVoltage": "ex.: 12",
+        "minLineVoltage": "ex.: 10.8",
+        "maxLineVoltage": "ex.: 13.2",
+        "loadCurrent": "ex.: 5",
+        "outputImpedance": "ex.: 0.1"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Redefinir"
+      },
+      "error": {
+        "invalid": "Informe ao menos as tensões em vazio e em plena carga com valores positivos válidos."
+      },
+      "result": {
+        "heading": "Resultado",
+        "labelLoadReg": "Regulação de carga",
+        "labelVoltageChange": "Variação de tensão (V_NL − V_FL)",
+        "labelLineReg": "Regulação de linha",
+        "labelDeltaVout": "Variação da tensão de saída (ΔVout)"
+      },
+      "about": {
+        "heading": "Sobre a calculadora de regulação de tensão",
+        "body": "A regulação de tensão mede quanto a tensão de saída de uma fonte de alimentação muda em resposta a variações na corrente de carga ou na tensão de entrada. É uma das especificações mais importantes de qualquer fonte: uma regulação ruim significa que o equipamento recebe tensões diferentes conforme a corrente consumida, o que pode causar falhas, erros de dados e redução da vida útil dos componentes.\n\nA regulação de carga descreve a mudança na tensão de saída quando a corrente de carga varia de zero (sem carga) até a corrente nominal máxima (plena carga). Ela é calculada como: Regulação de carga (%) = (V_NL − V_FL) / V_FL × 100. Um regulador ideal teria 0 % de regulação de carga, ou seja, a tensão de saída seria idêntica sem carga e em plena carga. Na prática, reguladores lineares alcançam 0.1–1 %, enquanto fontes chaveadas de alta qualidade alcançam 0.5–2 %. Projetos econômicos podem apresentar 5 % ou mais.\n\nA regulação de linha descreve a mudança na tensão de saída quando a tensão de entrada varia, enquanto a carga permanece constante. Ela é expressa como a variação percentual da tensão de saída por variação percentual da tensão de entrada, ou como a variação da tensão de saída por volt de variação de entrada. Uma fonte com boa regulação de linha mantém a saída estável apesar das flutuações da rede — algo importante em países onde a tensão da rede varia bastante.\n\nA impedância de saída é o parâmetro-chave que liga a corrente de carga à variação de tensão. Uma fonte de alimentação se comporta como uma fonte de tensão ideal em série com uma pequena resistência Rout. Quando a corrente de carga aumenta em ΔI, a tensão de saída cai em ΔV = Rout × ΔI. Quanto menor a impedância de saída, melhor a regulação. Uma fonte de bancada pode ter Rout de alguns miliohms, enquanto um projeto simples com transformador e retificação pode ter vários ohms.\n\nOs números de regulação de tensão aparecem com destaque nas folhas de dados de fontes e são testados sob condições específicas. Fontes de grau médico normalmente exigem regulação de carga melhor que 1 % e regulação de linha melhor que 0.5 %, porque os circuitos de segurança do paciente dependem de tensões estáveis. Fontes para eletrônica de consumo costumam especificar 3–5 %. Fontes para acionamentos industriais e CLPs geralmente exigem 1–3 % para garantir operação confiável de circuitos de controle sensíveis.\n\nUma regulação de tensão ruim desperdiça energia e gera calor. Uma fonte com alta impedância de saída dissipa o excesso de tensão na resistência interna como calor quando a carga consome corrente. Melhorar a regulação — com melhor enrolamento do transformador, reguladores lineares de baixa queda ou topologias chaveadas controladas por feedback — reduz perdas térmicas e melhora a eficiência do sistema."
+      },
+      "examples": {
+        "heading": "Exemplos de regulação de tensão",
+        "intro": "Medições práticas de fontes que mostram o cálculo da regulação de carga.",
+        "colInput": "Tensão em vazio / plena carga",
+        "colOutput": "Regulação de carga",
+        "colNote": "Avaliação",
+        "loadPSU12V": "Exemplo de fonte 12 V",
+        "loadPSU5V": "Exemplo de fonte 5 V",
+        "items": [
+          {
+            "input": "V_NL = 12.5 V, V_FL = 11.8 V",
+            "output": "5.93 %",
+            "note": "Aceitável para uma fonte 12 V de uso geral; abaixo de 5 % é bom e abaixo de 1 % é excelente."
+          },
+          {
+            "input": "V_NL = 5.1 V, V_FL = 4.85 V",
+            "output": "5.15 %",
+            "note": "No limite para lógica digital. Um microcontrolador de 5 V tolera ±5 %, mas com menos margem para transitórios."
+          },
+          {
+            "input": "V_NL = 3.32 V, V_FL = 3.28 V",
+            "output": "1.22 %",
+            "note": "Boa regulação para uma fonte chaveada de 3.3 V. Os circuitos lógicos veem uma tensão de alimentação muito estável."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora de regulação de tensão",
+        "steps": [
+          "Meça ou obtenha a tensão de saída em vazio (V_NL) — a tensão de saída sem consumo de corrente pela fonte.",
+          "Meça ou obtenha a tensão de saída em plena carga (V_FL) — a tensão de saída na corrente nominal máxima.",
+          "Insira ambos os valores na seção de regulação de carga e clique em Calcular para ver o percentual de regulação e a variação de tensão.",
+          "Para a regulação de linha, também informe a tensão nominal de entrada, as tensões mínima e máxima de entrada, a corrente de carga e a impedância de saída, depois clique em Calcular.",
+          "Compare o resultado da regulação de carga com a tolerância da sua aplicação: abaixo de 1 % é excelente, 1–3 % é bom e acima de 5 % pode causar problemas em circuitos sensíveis."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes sobre a calculadora de regulação de tensão",
+        "items": [
+          {
+            "q": "Qual é um bom percentual de regulação de tensão?",
+            "a": "Abaixo de 1 % é excelente e típico de fontes de laboratório de precisão e reguladores chaveados de alta qualidade. 1–3 % é bom e adequado para a maioria dos circuitos digitais e analógicos. 3–5 % é aceitável para equipamentos de uso geral. Acima de 5 % indica regulação ruim, que pode causar problemas em lógicas sensíveis, ADCs ou módulos de comunicação."
+          },
+          {
+            "q": "Qual é a diferença entre regulação de carga e regulação de linha?",
+            "a": "A regulação de carga mede quanto a tensão de saída muda quando a corrente consumida pela carga varia de zero ao máximo. A regulação de linha mede quanto a tensão de saída muda quando a tensão de entrada varia enquanto a carga permanece constante. Ambas são importantes: a regulação de carga testa a capacidade da fonte de manter a tensão sob demanda variável, enquanto a regulação de linha testa sua imunidade às flutuações da rede."
+          },
+          {
+            "q": "Por que a tensão em vazio costuma ser maior que a tensão em plena carga?",
+            "a": "A resistência interna (impedância de saída) causa uma queda de tensão quando a corrente flui. Em vazio, não há corrente, então não há queda e a saída atinge seu máximo. Em plena carga, I × Rout é dissipado internamente, reduzindo a tensão nos terminais. Reguladores lineares e fontes com bateria mostram esse efeito com clareza; fontes chaveadas com realimentação o minimizam."
+          },
+          {
+            "q": "Como a temperatura afeta a regulação de tensão?",
+            "a": "Tanto a referência de tensão dentro de uma fonte quanto as resistências dos condutores mudam com a temperatura. Uma referência com alto coeficiente térmico fará a tensão de saída derivar à medida que a unidade aquece, piorando a regulação efetiva com o tempo. Fontes de precisão usam referências bandgap compensadas por temperatura que mantêm deriva inferior a 10 ppm/°C."
+          },
+          {
+            "q": "Posso melhorar a regulação de tensão sem trocar a fonte?",
+            "a": "Sim. Adicionar um capacitor eletrolítico de bulk na carga suaviza quedas transitórias de tensão causadas por demandas súbitas de corrente. Para circuitos críticos, um regulador de baixa queda (LDO) colocado perto da carga pode religar a regulação do barramento com impedância de saída muito baixa. A resistência do cabo também contribui para má regulação na carga; usar fios mais grossos ou conexões Kelvin até o ponto de uso elimina esse componente."
+          }
+        ]
+      }
     }
   }
 }
