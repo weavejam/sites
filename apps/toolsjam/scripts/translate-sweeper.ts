@@ -104,6 +104,26 @@ function fetchOriginMain(): void {
   spawnSync("git", ["fetch", "origin", "main"], { cwd: MAIN_REPO, stdio: "ignore", windowsHide: true });
 }
 
+function gitFileExists(ref: string, relPath: string): boolean {
+  const r = spawnSync("git", ["cat-file", "-e", `${ref}:${relPath}`], {
+    cwd: MAIN_REPO, stdio: "ignore", windowsHide: true,
+  });
+  return r.status === 0;
+}
+
+function hasAllLocaleMessages(toolId: string): boolean {
+  // A tool is "translated" if every non-en per-tool messages file exists at
+  // origin/main.  This is the canonical source of truth — checking category.ts
+  // slugs/titles via regex is fragile (the unquoted-key variants ja/ko/es/...
+  // were silently missed by the old regex and caused every translated tool to
+  // be re-translated forever).
+  const prefix = "apps/toolsjam/messages/tool";
+  for (const loc of NON_EN) {
+    if (!gitFileExists("origin/main", `${prefix}/${toolId}/${loc}.json`)) return false;
+  }
+  return true;
+}
+
 function findNeedsTranslate(): string[] {
   fetchOriginMain();
   const need: string[] = [];
@@ -112,26 +132,14 @@ function findNeedsTranslate(): string[] {
     if (!file.endsWith(".ts") || file === "index.ts") continue;
     const src = gitShowAtRef("origin/main", `${DATA_DIR_REL}/${file}`);
     if (!src) continue;
-    const entryRe =
-      /\{\s*id:\s*"([^"]+)"[\s\S]*?slugs:\s*\{([^}]*)\}[\s\S]*?titles:\s*\{([^}]*)\}[\s\S]*?descriptions:\s*\{([^}]*)\}/g;
+    // Grab tool IDs only; we don't trust regex matching against the locale
+    // slug/title blocks (keys ja/ko/es/fr/de/pt/ru are unquoted identifiers
+    // in our category.ts but zh-CN/zh-TW are quoted, breaking a uniform regex).
+    const idRe = /\{\s*id:\s*"([^"]+)"/g;
     let m: RegExpExecArray | null;
-    while ((m = entryRe.exec(src))) {
+    while ((m = idRe.exec(src))) {
       const id = m[1]!;
-      const slugs = m[2]!;
-      const titles = m[3]!;
-      const enSlug = /"?en"?:\s*"([^"]+)"/.exec(slugs)?.[1];
-      const enTitle = /"?en"?:\s*"([^"]+)"/.exec(titles)?.[1];
-      if (!enSlug || !enTitle) continue;
-      let needsIt = false;
-      for (const loc of NON_EN) {
-        const sm = new RegExp(`"${loc}":\\s*"([^"]*)"`).exec(slugs);
-        const tm = new RegExp(`"${loc}":\\s*"([^"]*)"`).exec(titles);
-        const slugVal = sm?.[1] ?? "";
-        const titleVal = tm?.[1] ?? "";
-        if (!slugVal || !titleVal) { needsIt = true; break; }
-        if (slugVal === enSlug && titleVal === enTitle) { needsIt = true; break; }
-      }
-      if (needsIt) need.push(id);
+      if (!hasAllLocaleMessages(id)) need.push(id);
     }
   }
   return need;

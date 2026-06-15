@@ -145,19 +145,33 @@ function isCacheComplete(toolId: string): boolean {
   } catch { return false; }
 }
 
+// Stronger "is already translated" check that does not depend on the LLM
+// cache being present.  After cleanup or repo-clone, the LLM cache may be
+// empty but the per-tool messages files are already on disk; in that case we
+// must skip re-translation, otherwise the sweeper will burn LLM tokens
+// re-translating tools that are already done (and introduce noise diffs).
+function hasAllPerToolMessages(toolId: string): boolean {
+  for (const l of TARGET_LOCALES) {
+    const p = path.join(MESSAGES_DIR, "tool", toolId, `${l}.json`);
+    if (!existsSync(p)) return false;
+  }
+  return true;
+}
+
 function findAllUntranslated(): string[] {
   // "Untranslated" now means: tool registry entry exists but cache JSON is
-  // missing or incomplete.  Tools with a complete cache but un-applied entry
-  // are NOT returned — apply-translations handles those.
+  // missing or incomplete AND not all per-tool messages files are present.
+  // Tools with a complete cache but un-applied entry are NOT returned —
+  // apply-translations handles those.
   const fs = require("node:fs") as typeof import("node:fs");
   const out: string[] = [];
   for (const f of fs.readdirSync(DATA_DIR)) {
-    if (!f.endsWith(".ts")) continue;
+    if (!f.endsWith(".ts") || f === "index.ts") continue;
     const category = f.replace(/\.ts$/, "");
     try {
       const { entries } = readCategoryFile(category);
       for (const e of entries) {
-        if (!isCacheComplete(e.id)) out.push(e.id);
+        if (!isCacheComplete(e.id) && !hasAllPerToolMessages(e.id)) out.push(e.id);
       }
     } catch { /* ignore */ }
   }
@@ -309,6 +323,10 @@ async function translateOne(toolId: string, force: boolean): Promise<boolean> {
   if (!found) { console.error(`✗ ${toolId}: not in any category registry`); return false; }
   if (!force && isCacheComplete(toolId)) {
     console.log(`= ${toolId}: cache already complete`);
+    return true;
+  }
+  if (!force && hasAllPerToolMessages(toolId)) {
+    console.log(`= ${toolId}: per-tool messages already complete (skipping LLM)`);
     return true;
   }
   const enFile = path.join(MESSAGES_DIR, "tool", toolId, "en.json");
