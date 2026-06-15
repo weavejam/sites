@@ -1,0 +1,109 @@
+{
+  "title": "Blast Radius Calculator",
+  "tagline": "Calculate explosion blast radius, overpressure effects, and safety distances for various explosive scenarios.",
+  "intro": "Enter the explosive yield, detonation height, distance from blast, blast type, and safety factor to compute overpressure, fireball radius, and danger-zone boundaries using proven blast physics.",
+  "field": {
+    "yield": "Explosive Yield (kg TNT)",
+    "height": "Detonation Height (m)",
+    "distance": "Distance from Blast (m)",
+    "blastType": "Blast Type",
+    "safetyFactor": "Safety Factor"
+  },
+  "placeholder": {
+    "yield": "e.g., 100",
+    "height": "e.g., 0",
+    "distance": "e.g., 50",
+    "safetyFactor": "e.g., 1.5"
+  },
+  "blastType": {
+    "surface": "Surface (ground burst)",
+    "air": "Air burst",
+    "underground": "Underground"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid positive values for yield, height, and distance.",
+    "safetyFactor": "Safety factor must be ≥ 1."
+  },
+  "result": {
+    "heading": "Blast Analysis Results",
+    "scaledDistance": "Scaled Distance (Z)",
+    "overpressure": "Peak Overpressure",
+    "fireballRadius": "Fireball Radius",
+    "lethalRadius": "Lethal Radius (> 100 kPa)",
+    "dangerRadius": "Danger Radius (> 34.5 kPa)",
+    "safeRadius": "Safe Distance (< 7 kPa)",
+    "category": "Overpressure Category",
+    "effectiveYield": "Effective Yield",
+    "unitM": "m",
+    "unitKPa": "kPa",
+    "unitKgTNT": "kg TNT",
+    "unitMkg13": "m/kg^(1/3)",
+    "categories": {
+      "safe": "Safe (< 7 kPa)",
+      "moderate": "Moderate damage (7–34.5 kPa)",
+      "severe": "Severe damage (34.5–100 kPa)",
+      "lethal": "Potentially lethal (> 100 kPa)"
+    },
+    "formula": "Z = R / W^(1/3)  •  P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³)  •  [Brode, 1955]"
+  },
+  "about": {
+    "heading": "About the Blast Radius Calculator",
+    "body": "When an explosive detonates, it releases enormous energy in an extremely short time, creating a rapidly expanding shell of highly compressed gas — the blast wave. Understanding the spatial extent of this wave's destructive effects is essential for safety planning, military applications, accident investigation, and demolition engineering. The Blast Radius Calculator implements the Hopkinson–Cranz cube-root scaling law and the Brode empirical overpressure model to estimate blast effects at any distance.\n\nThe Hopkinson–Cranz scaling law (also called cube-root scaling) states that blast waves from explosives of different sizes but the same geometry and composition are geometrically similar when distances are scaled by the cube root of the charge weight. The scaled distance is defined as Z = R / W^(1/3), where R is the actual distance in metres and W is the equivalent TNT mass in kilograms. The same value of Z produces the same peak overpressure regardless of absolute yield — a property that makes scaled distance the fundamental independent variable in all empirical blast models.\n\nThe peak overpressure model used here is the Brode (1955) formula: P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³), where P_atm = 101.325 kPa is standard atmospheric pressure. This formula provides a good approximation for scaled distances Z > 0.1 m/kg^(1/3), covering the far-field to mid-field regime relevant to safety calculations. Near the fireball (Z < 0.1) the model overestimates; in the extreme far field (Z > 100) the acoustic approximation is more appropriate.\n\nThe effective yield is adjusted for detonation geometry. A surface burst concentrates the hemispherical shock into the upper hemisphere by ground reflection, effectively doubling the yield: W_eff = 1.8 × W for surface detonations. An air burst radiates spherically with W_eff = W. An underground burst loses energy to soil coupling, giving W_eff ≈ 0.7 × W for the airblast component.\n\nKey damage thresholds derived from the Brode model: Z ≈ 1.4 m/kg^(1/3) corresponds to 100 kPa (1 atm overpressure, lethal to unprotected persons); Z ≈ 3.0 corresponds to 34.5 kPa (5 psi, the conventional danger zone boundary used in blast safety standards); and Z ≈ 12 corresponds to approximately 7 kPa (1 psi, the threshold for window breakage and minor structural damage). The fireball radius is estimated from experimental data as r_fireball ≈ 3.9 × W^(1/3) metres.\n\nThe safety factor multiplies all critical radii to provide design margins. Regulatory standards for storage and handling of explosives (e.g., DoD 6055.9, NATO AASTP-1) typically mandate safety factors of 1.5 to 2.0 for inhabited buildings. Users should always consult applicable regulations and engage certified explosives engineers for any real-world application."
+  },
+  "examples": {
+    "heading": "Blast Radius Examples",
+    "intro": "The table below shows overpressure and safety distances for representative explosive scenarios.",
+    "colInput": "Parameters",
+    "colOutput": "Key results",
+    "colNote": "Scenario",
+    "loadMilitary": "Load military charge",
+    "loadIndustrial": "Load industrial demolition",
+    "loadAirBurst": "Load air burst",
+    "items": [
+      {
+        "input": "100 kg TNT, Surface, R=50 m, SF=1.5",
+        "output": "Z ≈ 8.86 m/kg^(1/3), P_s ≈ 10.1 kPa (moderate), R_danger ≈ 25 m",
+        "note": "Military explosive charge"
+      },
+      {
+        "input": "500 kg TNT, Surface, R=100 m, SF=2.0",
+        "output": "Z ≈ 10.4 m/kg^(1/3), P_s ≈ 8.5 kPa (moderate), R_danger ≈ 57 m",
+        "note": "Controlled building demolition"
+      },
+      {
+        "input": "50 kg TNT, Air burst, h=20 m, R=30 m, SF=1.0",
+        "output": "Z ≈ 9.79 m/kg^(1/3), P_s ≈ 9.1 kPa (moderate), R_danger ≈ 11 m",
+        "note": "Aerial detonation scenario"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Blast Radius Calculator",
+    "steps": [
+      "Enter the explosive yield in kilograms of TNT equivalent. If using a non-TNT explosive, multiply the actual mass by its TNT equivalence factor (e.g., C-4 ≈ 1.34, ANFO ≈ 0.82).",
+      "Enter the detonation height in metres above ground (0 for a ground-level surface burst).",
+      "Enter the distance from the blast centre in metres at which you want to evaluate the overpressure.",
+      "Select the blast type: Surface for ground-level detonations (enhanced by ground reflection), Air burst for elevated detonations, or Underground for subsurface blasts.",
+      "Set the safety factor (minimum 1.0; use 1.5–2.0 for safety-critical applications) and click Calculate to see overpressure, fireball radius, and all danger-zone radii."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "What is scaled distance and why is it useful?",
+    "q1_a": "Scaled distance Z = R / W^(1/3) is a dimensionless (or dimensioned) quantity that collapses blast data from charges of different sizes onto a single curve. A given value of Z always produces the same peak overpressure regardless of the absolute size of the charge, because the physics of blast wave propagation scales with the cube root of the energy release. This allows test data from small charges to be extrapolated to much larger yields.",
+    "q2": "What is the difference between a surface burst and an air burst?",
+    "q2_a": "In a surface burst the detonation occurs at or very near the ground. The reflected shock wave merges with the incident wave almost immediately, creating a hemispherical blast that is effectively equivalent to a charge of about 1.8× the actual yield. An air burst occurs at altitude; the incident spherical wave reaches the ground and creates a reflected wave that travels more slowly, forming a Mach stem at large distances. The total energy is the same but its spatial distribution differs.",
+    "q3": "What does peak overpressure mean in practice?",
+    "q3_a": "Peak overpressure is the maximum instantaneous pressure above ambient atmospheric pressure (101.325 kPa) in the blast wave. At 7 kPa (1 psi) windows break and people may be injured by flying glass. At 34.5 kPa (5 psi) residential structures suffer major structural damage. At 100 kPa (1 atm) concrete and masonry structures collapse and unprotected persons face lethal lung and ear injuries.",
+    "q4": "How accurate is the Brode overpressure formula?",
+    "q4_a": "The Brode formula provides order-of-magnitude accuracy suitable for safety planning in the range Z = 0.2 to 50 m/kg^(1/3). For precision engineering design, the Kingery-Bulmash polynomials (1984) are the standard, covering a wider range and fitted to a larger dataset. For very close-in effects (Z < 0.2) hydrodynamic simulation codes are required.",
+    "q5": "What is the TNT equivalence factor?",
+    "q5_a": "Different explosives release different energies per kilogram. The TNT equivalence factor normalises all explosives to the performance of TNT (4.610 MJ/kg). Common equivalences: ANFO ≈ 0.82, PETN ≈ 1.27, C-4 (RDX-based) ≈ 1.34, TATP ≈ 0.88, black powder ≈ 0.50. Multiply the actual charge mass by its equivalence factor to get the input for this calculator.",
+    "q6": "Can this calculator be used for nuclear weapons?",
+    "q6_a": "For large conventional explosives and small tactical nuclear devices, the Hopkinson-Cranz scaling and Brode model give reasonable first-pass estimates since the blast physics are similar. However, nuclear explosions involve thermal radiation, nuclear radiation, and electromagnetic pulse effects that are completely absent from conventional blasts and require separate models. The calculator should not be used as a sole source for nuclear effects estimation."
+  }
+}
