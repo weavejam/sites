@@ -1,0 +1,119 @@
+{
+  "title": "Condition Number Calculator - Matrix Conditioning & Stability",
+  "tagline": "Compute the condition number of a 2×2 or 3×3 matrix using the 1-norm, infinity-norm, or Frobenius norm. Diagnose numerical stability for linear systems.",
+  "intro": "Pick the matrix size and norm, enter the matrix entries, and the calculator returns κ(A) = ‖A‖ · ‖A⁻¹‖ together with an interpretation of how well-conditioned the matrix is.",
+  "field": {
+    "size": "Matrix Size",
+    "norm": "Norm Type",
+    "matrix": "Matrix Entries",
+    "cell11": "(1,1)",
+    "cell12": "(1,2)",
+    "cell13": "(1,3)",
+    "cell21": "(2,1)",
+    "cell22": "(2,2)",
+    "cell23": "(2,3)",
+    "cell31": "(3,1)",
+    "cell32": "(3,2)",
+    "cell33": "(3,3)"
+  },
+  "placeholder": {
+    "number": "0"
+  },
+  "type": {
+    "size2": "2 × 2",
+    "size3": "3 × 3",
+    "norm1": "1-norm (max column sum)",
+    "normInf": "Infinity-norm (max row sum)",
+    "normFro": "Frobenius norm"
+  },
+  "button": {
+    "calculate": "Calculate Condition Number",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please fill in every matrix entry with a valid number.",
+    "singular": "The matrix is singular (determinant ≈ 0). Its condition number is infinite."
+  },
+  "result": {
+    "heading": "Condition number",
+    "kappa": "κ(A) = {value}",
+    "normA": "‖A‖ = {value}",
+    "normInv": "‖A⁻¹‖ = {value}",
+    "det": "det(A) = {value}",
+    "interpretWell": "Well-conditioned matrix (κ < 100). Numerical solutions of Ax = b should be reliable.",
+    "interpretModerate": "Moderately conditioned (100 ≤ κ ≤ 1000). Expect some loss of precision in floating-point computations.",
+    "interpretIll": "Ill-conditioned matrix (κ > 1000). Small perturbations in the data can lead to large errors in the solution."
+  },
+  "about": {
+    "heading": "About the condition number calculator",
+    "body": "The condition number of an invertible matrix A is defined as κ(A) = ‖A‖ · ‖A⁻¹‖, where ‖·‖ denotes any compatible matrix norm. It measures how much the relative error in the solution x of a linear system A·x = b can be amplified by a relative error in b. Intuitively, a matrix with a small condition number is well-conditioned: small input errors produce small output errors. A matrix with a large condition number is ill-conditioned: even microscopic floating-point round-off in the data can produce wildly inaccurate solutions.\n\nThis calculator supports 2 × 2 and 3 × 3 matrices and three of the most widely used matrix norms. The 1-norm is the maximum absolute column sum, ‖A‖₁ = max_j Σᵢ |aᵢⱼ|. The infinity-norm is the maximum absolute row sum, ‖A‖∞ = max_i Σⱼ |aᵢⱼ|. The Frobenius norm is the square root of the sum of the squares of all entries, ‖A‖_F = √(Σᵢⱼ |aᵢⱼ|²), and is the matrix analogue of the Euclidean vector norm. For 2 × 2 matrices the inverse is computed analytically as A⁻¹ = (1/det A) · [[d, −b], [−c, a]]. For 3 × 3 matrices the cofactor (adjugate) formula is used.\n\nCondition numbers are central to numerical linear algebra. When you solve a linear system on a computer using LU decomposition or Gaussian elimination, the relative error in the computed solution is bounded above by roughly κ(A) · ε, where ε is the machine precision (about 10⁻¹⁶ in IEEE-754 double precision). A condition number of 10⁶ therefore means you can lose up to six digits of accuracy from round-off alone. As a rough rule of thumb, matrices with κ < 100 are considered well-conditioned, those with κ between 100 and 1000 are moderately conditioned, and anything above 10³ is ill-conditioned and should be approached with care.\n\nA few important caveats. The condition number depends on the choice of norm, so values computed with different norms are not directly comparable, though they are usually within a small constant factor of each other. The 2-norm (spectral norm) condition number, defined via singular values, is the most theoretically natural choice but is more expensive to compute and is not offered here. A singular matrix has determinant exactly zero, no inverse, and an infinite condition number; the calculator detects this case explicitly.\n\nUse this tool whenever you need to check whether a small linear system is safe to invert numerically, when teaching introductory numerical analysis, or as a quick sanity check before solving a system in a larger simulation or machine-learning pipeline."
+  },
+  "examples": {
+    "heading": "Worked examples",
+    "intro": "A few illustrative matrices spanning the range from well-conditioned to ill-conditioned.",
+    "colInput": "Matrix (2×2 or 3×3)",
+    "colOutput": "Condition number",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "[[1, 0], [0, 1]],  1-norm",
+        "output": "κ = 1",
+        "note": "The identity matrix is perfectly conditioned. Its condition number equals 1 in every standard norm."
+      },
+      {
+        "input": "[[2, 1], [1, 3]],  Frobenius",
+        "output": "κ ≈ 3.0",
+        "note": "A symmetric positive-definite matrix with a small condition number. Linear systems involving it are easy to solve accurately."
+      },
+      {
+        "input": "[[1, 1], [1, 1.0001]],  infinity-norm",
+        "output": "κ ≈ 40004",
+        "note": "Near-singular matrix. Tiny perturbations in the (2,2) entry will produce dramatically different solutions."
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 10]],  1-norm",
+        "output": "κ ≈ 380",
+        "note": "A 3×3 matrix that is moderately conditioned. Expect some loss of precision in single-precision floating point."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the condition number calculator",
+    "steps": [
+      "Choose the matrix size, either 2 × 2 or 3 × 3.",
+      "Pick the matrix norm you want to use — 1-norm, infinity-norm, or Frobenius norm.",
+      "Type each matrix entry into the corresponding cell of the grid.",
+      "Click Calculate Condition Number. The result panel shows κ(A), the matrix norm, the inverse norm, the determinant, and a plain-English interpretation.",
+      "Click Reset to clear all entries and start a new matrix."
+    ]
+  },
+  "faq": {
+    "heading": "Condition number FAQ",
+    "items": [
+      {
+        "q": "What does the condition number tell me?",
+        "a": "It bounds how much a relative error in the right-hand side b of a linear system A·x = b can be amplified in the solution x. A condition number of 10^k means you can lose up to k digits of accuracy from round-off alone."
+      },
+      {
+        "q": "What is a 'good' condition number?",
+        "a": "Values below 100 are generally considered well-conditioned, 100–1000 is moderate, and above 1000 is ill-conditioned. The thresholds depend on the precision of the arithmetic and on how much accuracy you need in the final answer."
+      },
+      {
+        "q": "Which norm should I use?",
+        "a": "The 1-norm and infinity-norm are cheap to compute and give very similar information; the Frobenius norm is also easy and is the matrix analogue of the Euclidean vector norm. The spectral (2-norm) condition number is the most theoretically natural choice but is more expensive and is not offered here."
+      },
+      {
+        "q": "Why is my matrix marked singular?",
+        "a": "A matrix is singular when its determinant is zero (or numerically indistinguishable from zero, below 10⁻¹⁰). Singular matrices have no inverse, so the condition number is infinite and the linear system A·x = b either has no solution or infinitely many."
+      },
+      {
+        "q": "Does the condition number depend on the right-hand side b?",
+        "a": "No. The condition number depends only on the matrix A. It gives a worst-case bound on the amplification of relative error in b, independent of the specific b you choose."
+      },
+      {
+        "q": "Can the condition number be less than 1?",
+        "a": "No. For any compatible matrix norm, κ(A) = ‖A‖ · ‖A⁻¹‖ ≥ ‖A · A⁻¹‖ = ‖I‖ ≥ 1. The minimum value of 1 is attained by orthogonal (or unitary) matrices in the 2-norm."
+      }
+    ]
+  }
+}
