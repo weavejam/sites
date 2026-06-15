@@ -1,0 +1,109 @@
+{
+  "title": "Cyclomatic Complexity Calculator - McCabe Metric Tool",
+  "tagline": "Calculate cyclomatic complexity using McCabe's graph formula M = E − N + 2P or the decision-count shortcut M = D + 1 to assess software quality.",
+  "intro": "Select a calculation method, enter the graph metrics or decision count, and get the McCabe complexity score with a risk classification.",
+  "type": {
+    "graph": "Graph-based (M = E − N + 2P)",
+    "graph_desc": "Use this method when you have a control-flow graph. Count the directed edges (E), nodes (N), and connected components (P, usually 1 for a single function).",
+    "decision": "Decision-based (M = D + 1)",
+    "decision_desc": "Count every decision point (if, else-if, case, loop, ternary, catch) and add 1. This gives the same result as the graph method for structured code."
+  },
+  "field": {
+    "method": "Calculation method",
+    "edges": "Edges (E)",
+    "nodes": "Nodes (N)",
+    "components": "Connected components (P)",
+    "decisions": "Decision points (D)"
+  },
+  "placeholder": {
+    "integer": "Enter integer"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid non-negative integers for all required fields."
+  },
+  "result": {
+    "heading": "Result",
+    "risk": "Risk level"
+  },
+  "risk": {
+    "low": "Low (1–4) — easy to test and maintain",
+    "moderate": "Moderate (5–7) — manageable",
+    "high": "High (8–10) — consider refactoring",
+    "veryHigh": "Very high (>10) — refactor recommended"
+  },
+  "formula": {
+    "graph": "Formula: M = E − N + 2P (McCabe, 1976)",
+    "decision": "Formula: M = D + 1 (D = number of decision points)"
+  },
+  "about": {
+    "heading": "About the cyclomatic complexity calculator",
+    "body": "Cyclomatic complexity is a software quality metric introduced by Thomas J. McCabe in 1976. It quantifies the structural complexity of a program by counting the number of linearly independent paths through the source code. The higher the complexity, the more test cases are needed to exercise every branch, and the harder the code is to understand, modify, and maintain.\n\nThe metric is grounded in graph theory. A program is modelled as a control-flow graph (CFG) in which each node represents a basic block — a straight-line sequence of instructions with a single entry point and a single exit point — and each directed edge represents a possible transfer of control from one block to another. Conditional statements, loops, and exception handlers create branches, increasing both the number of edges and the number of independent paths.\n\nMcCabe's formula is M = E − N + 2P, where E is the number of edges in the CFG, N is the number of nodes, and P is the number of connected components (typically 1 for a single function or procedure). For a completely linear program with no branches, M equals 1. Each additional binary decision point adds exactly 1 to the complexity. A switch statement with k cases adds k to the complexity, because it introduces k new paths.\n\nFor practical purposes, a simpler counting rule gives the same answer for structured code: M = D + 1, where D is the total number of decision points. A decision point is any construct that can send execution down two or more paths: an if or else-if clause, a case in a switch, a for, while, or do-while loop header, a ternary operator, a logical AND or OR that creates short-circuit branching, and a catch block.\n\nIndustry guidelines treat complexity values of 1–4 as low risk, 5–7 as moderate, 8–10 as high risk where refactoring should be considered, and values above 10 as very high risk where splitting the function is strongly recommended. The complexity value also gives the minimum number of test cases required to achieve full branch coverage: a function with cyclomatic complexity 8 needs at least 8 test cases to exercise every independent path.\n\nIt is important to understand what cyclomatic complexity does and does not measure. It does not directly measure lines of code, performance, or the correctness of an algorithm. A very long but completely sequential function has complexity 1, while a short function with deeply nested conditionals can have complexity 20. The metric specifically captures decision-path structure, which is the main driver of testing effort and the most common source of latent defects. Used alongside code review and other quality metrics, cyclomatic complexity is a practical guide to identifying functions that warrant priority attention during refactoring and testing."
+  },
+  "examples": {
+    "heading": "Cyclomatic complexity examples",
+    "intro": "Three examples showing both calculation methods on realistic code structures.",
+    "colInput": "Input",
+    "colOutput": "M",
+    "colNote": "Explanation",
+    "items": [
+      {
+        "input": "E = 9, N = 8, P = 1",
+        "output": "M = 3",
+        "note": "Graph method: 9 − 8 + 2×1 = 3. A simple function with two if statements and a loop."
+      },
+      {
+        "input": "D = 4 decisions",
+        "output": "M = 5",
+        "note": "Decision method: 4 + 1 = 5. A function with two if-else chains; moderate risk, manageable with 5 test cases."
+      },
+      {
+        "input": "E = 14, N = 10, P = 1",
+        "output": "M = 6",
+        "note": "Graph method: 14 − 10 + 2 = 6. A switch with 5 cases; moderate complexity, worth documenting each branch."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the cyclomatic complexity calculator",
+    "steps": [
+      "Choose the calculation method. Use graph-based if you have drawn or can inspect the control-flow graph of the code. Use decision-based for a quick estimate by counting decision keywords.",
+      "For graph-based: enter the number of edges (E), nodes (N), and connected components (P). P is 1 for a single function; enter the actual count only when analysing multiple disconnected components together.",
+      "For decision-based: count every if, else-if, case, for, while, do-while, ternary (?:), catch, and short-circuit logical operator (&&, ||) that produces a new branch. Enter that total as D.",
+      "Click Calculate. The result shows the McCabe complexity M and a risk classification — Low (1–4), Moderate (5–7), High (8–10), or Very High (>10).",
+      "Use the complexity value as the minimum number of test cases needed for full branch coverage, and consider refactoring any function with M > 10."
+    ]
+  },
+  "faq": {
+    "heading": "Cyclomatic complexity FAQ",
+    "items": [
+      {
+        "q": "What does cyclomatic complexity measure?",
+        "a": "It measures the number of linearly independent paths through a function's control-flow graph — in other words, how many distinct execution paths exist. Each additional decision point (if, loop, case) adds one more path. The value equals the minimum number of test cases needed to achieve full branch coverage."
+      },
+      {
+        "q": "What is a good cyclomatic complexity value?",
+        "a": "McCabe's original recommendation was that functions should have M ≤ 10. Values of 1–4 are low risk and easy to test; 5–7 are moderate; 8–10 are high risk; anything above 10 is very high risk and strongly warrants refactoring into smaller, focused functions."
+      },
+      {
+        "q": "Is the graph method the same as the decision-count method?",
+        "a": "They give the same result for structured programs (those without GOTO statements). The decision-count shortcut M = D + 1 counts every branching keyword and adds 1. The graph method M = E − N + 2P counts graph edges and nodes. Both capture the same underlying structural information."
+      },
+      {
+        "q": "Should I count each case in a switch statement separately?",
+        "a": "Yes. Each case label is an independent branch, so a switch with five cases adds 5 to the decision count (or adds 5 edges to the CFG). Some static analysis tools count only the number of case groups rather than individual cases; always check your tool's documentation to ensure consistent measurement."
+      },
+      {
+        "q": "How does cyclomatic complexity relate to testing?",
+        "a": "The complexity value M equals the minimum number of independent test cases needed to traverse every branch at least once. A function with M = 8 needs at least 8 carefully designed test cases for complete branch coverage. Higher complexity means more test effort, higher defect probability, and greater maintenance burden — all strong reasons to keep individual functions below M = 10."
+      },
+      {
+        "q": "Does cyclomatic complexity apply to all programming languages?",
+        "a": "Yes. The metric applies to any language with conditional and iterative control structures. The decision points differ slightly by language — Python uses elif, Ruby uses case/when, SQL uses CASE/WHEN — but the counting principle is the same. Automated tools for Java, Python, JavaScript, C#, and most other mainstream languages implement McCabe complexity as a standard quality metric."
+      }
+    ]
+  }
+}
