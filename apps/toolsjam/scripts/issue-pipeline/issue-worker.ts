@@ -282,7 +282,28 @@ async function main() {
     //    out-of-band content-only push from the sweeper.  This keeps port
     //    cycle time short and isolates throttle-prone translate failures.
 
-    // 5. barrel + tests + build + e2e
+    // 5. apply staged en.json content (dev copilot writes per-tool JSON to
+    //    .port-batches/en-content/<id>.json instead of editing the giant
+    //    messages/en.json directly — this script merges them in one shot).
+    //    Back-compat: if no staged files exist (dev copilot still on the old
+    //    "edit en.json one tool at a time" prompt), skip and trust the
+    //    in-place edits.  This lets in-flight batches under the OLD prompt
+    //    finish cleanly while NEW spawns adopt the staged-file workflow.
+    updateState(issue.number, { phase: "apply-en" });
+    const toolIds = jobs.map((j) => j.toolId);
+    const stageDir = path.join(wtApp, ".port-batches", "en-content");
+    const stagedIds = toolIds.filter((id) => existsSync(path.join(stageDir, `${id}.json`)));
+    if (stagedIds.length === 0) {
+      log(wid, "no staged en-content files — assuming old-prompt batch edited en.json directly; skipping apply-en");
+    } else if (stagedIds.length < toolIds.length) {
+      const missing = toolIds.filter((id) => !stagedIds.includes(id));
+      throw new Error(`apply-en: partial staging — missing ${missing.join(", ")}`);
+    } else {
+      const apEn = run("pnpm", ["exec", "tsx", "scripts/apply-en-content.ts", ...toolIds], wtApp, wid);
+      if (apEn.code !== 0) throw new Error("apply-en-content failed (invalid staged JSON)");
+    }
+
+    // 6. barrel + tests + build + e2e
     updateState(issue.number, { phase: "test" });
     const bar = run("pnpm", ["fixtures:barrel"], wtApp, wid);
     if (bar.code !== 0) throw new Error("fixtures:barrel failed");
@@ -294,7 +315,7 @@ async function main() {
     const e2e = run("pnpm", ["test:e2e", "--grep", JSON.stringify(grep)], wtApp, wid);
     if (e2e.code !== 0) throw new Error("playwright failed");
 
-    // 5. commit + push
+    // 7. commit + push
     updateState(issue.number, { phase: "commit" });
     run("git", ["add", "-A"], wt, wid);
     const ids = jobs.map((j) => `${j.category}/${j.toolId}`).join(", ");
