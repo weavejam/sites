@@ -178,9 +178,14 @@ import { fixtures as f_kd_calculator_kill_death_ratio } from "@/tools/kd-calcula
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
 import { fixtures as f_matched_betting_calculator } from "@/tools/matched-betting-calculator.fixtures";
 import { fixtures as f_mayan_calendar_converter } from "@/tools/mayan-calendar-converter.fixtures";
+import { fixtures as f_mayan_numerals_converter } from "@/tools/mayan-numerals-converter.fixtures";
+import { fixtures as f_mean_calculator } from "@/tools/mean-calculator.fixtures";
+import { fixtures as f_midpoint_calculator } from "@/tools/midpoint-calculator.fixtures";
 import { fixtures as f_minecraft_circle_generator } from "@/tools/minecraft-circle-generator.fixtures";
 import { fixtures as f_minecraft_end_portal_finder } from "@/tools/minecraft-end-portal-finder.fixtures";
 import { fixtures as f_minecraft_stack_calculator } from "@/tools/minecraft-stack-calculator.fixtures";
+import { fixtures as f_mixed_number_calculator } from "@/tools/mixed-number-calculator.fixtures";
+import { fixtures as f_mixed_number_to_improper_fraction_calculator } from "@/tools/mixed-number-to-improper-fraction-calculator.fixtures";
 import { fixtures as f_mm_to_carat_conversion } from "@/tools/mm-to-carat-conversion.fixtures";
 import { fixtures as f_multiplying_binomials_calculator } from "@/tools/multiplying-binomials-calculator.fixtures";
 import { fixtures as f_multiplying_exponents_calculator } from "@/tools/multiplying-exponents-calculator.fixtures";
@@ -557,9 +562,14 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "loan-calculator": f_loan_calculator,
   "matched-betting-calculator": f_matched_betting_calculator,
   "mayan-calendar-converter": f_mayan_calendar_converter,
+  "mayan-numerals-converter": f_mayan_numerals_converter,
+  "mean-calculator": f_mean_calculator,
+  "midpoint-calculator": f_midpoint_calculator,
   "minecraft-circle-generator": f_minecraft_circle_generator,
   "minecraft-end-portal-finder": f_minecraft_end_portal_finder,
   "minecraft-stack-calculator": f_minecraft_stack_calculator,
+  "mixed-number-calculator": f_mixed_number_calculator,
+  "mixed-number-to-improper-fraction-calculator": f_mixed_number_to_improper_fraction_calculator,
   "mm-to-carat-conversion": f_mm_to_carat_conversion,
   "multiplying-binomials-calculator": f_multiplying_binomials_calculator,
   "multiplying-exponents-calculator": f_multiplying_exponents_calculator,
