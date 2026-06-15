@@ -1,0 +1,115 @@
+{
+  "title": "Minecraft Circle Generator - Pixel Perfect Circles",
+  "tagline": "Generate pixel-perfect circles for Minecraft building projects. Get exact block coordinates for any radius using Midpoint or Bresenham circle algorithms.",
+  "intro": "Enter a radius, optional center coordinates, choose your algorithm and fill type, then click Generate to see the exact block placement map for your Minecraft circle.",
+  "field": {
+    "radius": "Radius (blocks)",
+    "centerX": "Center X",
+    "centerY": "Center Y",
+    "algorithm": "Algorithm",
+    "fillType": "Fill Type"
+  },
+  "placeholder": {
+    "radius": "e.g. 10",
+    "coord": "e.g. 0"
+  },
+  "algorithm": {
+    "midpoint": "Midpoint Circle",
+    "bresenham": "Bresenham Circle"
+  },
+  "fillType": {
+    "outline": "Outline",
+    "filled": "Filled"
+  },
+  "button": {
+    "generate": "Generate Circle",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Circle Map",
+    "blockCount": "Total blocks",
+    "diameter": "Diameter",
+    "centerLabel": "Center",
+    "copyCoords": "Copy Coordinates",
+    "copied": "Copied!"
+  },
+  "error": {
+    "invalidRadius": "Please enter a valid radius (1–60).",
+    "invalidCoords": "Please enter valid integer coordinates."
+  },
+  "about": {
+    "heading": "About the Minecraft Circle Generator",
+    "body": "Building circular structures in Minecraft is one of the most sought-after skills for any serious builder. Unlike real-world construction where you can use a compass and string, Minecraft's block-based grid means that a true circle must be approximated using the pixels-on-a-grid technique — the same mathematical approach used in computer graphics for decades.\n\nThe generator implements two industry-standard algorithms. The Midpoint Circle Algorithm (also called Bresenham's circle algorithm in some texts) works by tracking a decision parameter that determines whether the next pixel steps horizontally, vertically, or diagonally around the circle boundary. Starting at the top of the circle and iterating one octant at a time, it fills all eight symmetric positions simultaneously, producing a smooth, balanced outline with minimal visual gaps.\n\nThe Bresenham Circle Algorithm is a slight variant that initialises the decision parameter differently (d = 3 − 2r versus d = 1 − r). Both algorithms produce very similar results for most radii, but they can differ by one or two blocks at specific radii. Experienced Minecraft builders sometimes prefer one over the other based on how well the result matches their aesthetic preference at a given size.\n\nFor smaller circles (radius 5–15), both algorithms are commonly used for towers, wells, pillars, and decorative builds. Medium circles (radius 15–30) work well for arenas, circular rooms, and overhead domes. Large circles (radius 30–60) are typically used for massive builds such as coliseums, castle baileys, and planetary terraforming projects.\n\nThe filled option generates a solid disc by calculating, for each row, the maximum x-distance from the center that falls within the radius and filling every block in that span. This is useful for platforms, floors, and any build that needs a solid circular foundation rather than just the outline.\n\nWhen building in Minecraft, it helps to mark the center block first, then use the generated coordinates to place blocks row by row. The coordinate display in this generator is relative to the center (0, 0), so simply add your in-game center coordinates to each value to find the world coordinates. Using a coordinate-display texture pack or pressing F3 in Java Edition will help you verify your position as you build.\n\nThe maximum supported radius in this generator is 60 blocks, which produces a diameter of 121 blocks — large enough for the most ambitious survival or creative projects. For very large circles the block count can exceed 10,000 for filled discs, so plan your material requirements before you start mining."
+  },
+  "examples": {
+    "heading": "Minecraft Circle Generator Examples",
+    "intro": "Common build sizes to help you choose the right radius for your project.",
+    "colInput": "Build Type",
+    "colOutput": "Radius / Blocks",
+    "colNote": "Common uses",
+    "loadSmall": "Small circle (r=5)",
+    "loadMedium": "Medium circle (r=15)",
+    "loadLarge": "Large circle (r=30)",
+    "items": [
+      {
+        "input": "Decorative pillar / well",
+        "output": "Radius 5 · 28 outline blocks",
+        "note": "Perfect for columns, small towers, or well apertures. Fits easily in a survival base."
+      },
+      {
+        "input": "Arena / meeting hall",
+        "output": "Radius 15 · 84 outline blocks",
+        "note": "Classic medium build — enough room for a functional interior without dominating the landscape."
+      },
+      {
+        "input": "Coliseum outer wall",
+        "output": "Radius 30 · 168 outline blocks",
+        "note": "Large-scale project. Allow several hours of block placement and prepare 200+ blocks of wall material."
+      },
+      {
+        "input": "Solid platform floor",
+        "output": "Radius 10 filled · 317 blocks",
+        "note": "Use the filled mode to get a solid disc. Great for circular platforms, garden beds, and raised foundations."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Minecraft Circle Generator",
+    "steps": [
+      "Enter the desired radius in blocks. The radius is the distance from the center block to the outermost ring — a radius of 10 produces a circle 21 blocks wide.",
+      "Optionally enter Center X and Center Y if you want absolute in-game coordinates in the output rather than relative coordinates from (0, 0).",
+      "Choose the Algorithm: Midpoint for smooth, evenly spaced circles, or Bresenham for a slightly different stagger pattern. Compare both and pick your preference.",
+      "Set Fill Type to Outline for just the ring (ideal for walls) or Filled for a solid disc (ideal for floors and platforms).",
+      "Click Generate Circle. The visual grid shows exactly where to place blocks. Each filled cell represents one block. Use the coordinate list to place blocks precisely in your world."
+    ]
+  },
+  "faq": {
+    "heading": "Minecraft Circle Generator FAQ",
+    "items": [
+      {
+        "q": "Why doesn't the circle look perfectly round at small radii?",
+        "a": "Any circle drawn on a square grid must be approximated. At very small radii (1–4), the square grid is too coarse to produce a recognisable circle, so the result looks more like a diamond or octagon. From radius 5 upward, both algorithms produce visually smooth circles that read as round from a normal viewing distance in-game."
+      },
+      {
+        "q": "What is the difference between Midpoint and Bresenham algorithms?",
+        "a": "Both algorithms use an incremental decision parameter to choose the best next pixel on the circle boundary. The Midpoint algorithm initialises d = 1 − r, while the Bresenham variant uses d = 3 − 2r. In practice the outputs are identical for many radii and differ by only one or two blocks for others. The visual difference is negligible for most builds."
+      },
+      {
+        "q": "How do I use the generated coordinates in Minecraft?",
+        "a": "The grid is centred at (0, 0) by default. To use the coordinates in your world, note your desired center block's X and Z coordinates in-game (shown by pressing F3 in Java Edition) and add those values to each coordinate pair in the output. The Y (height) axis is up — for a horizontal circle on the ground, all blocks share the same Y level."
+      },
+      {
+        "q": "What is the maximum radius I can generate?",
+        "a": "The generator supports radii from 1 to 60 blocks. A radius of 60 creates a circle 121 blocks wide. For filled circles at radius 60, the block count exceeds 11,000 — ensure you have sufficient materials before attempting to build at this scale."
+      },
+      {
+        "q": "Can I build a sphere using this tool?",
+        "a": "A sphere is a stack of circles with varying radii. For each horizontal layer at height y relative to the equator, calculate the layer radius as r_layer = √(r² − y²) and generate a circle with that radius. This generator handles one layer at a time — stack multiple generated circles at different Y levels to form a full sphere."
+      },
+      {
+        "q": "How do I build a hollow cylinder or tower?",
+        "a": "Generate an outline circle at your desired radius and place that same ring at every Y level (height) you want the cylinder to span. Using the outline (not filled) mode gives you the ring that forms the cylinder wall. The block count per layer tells you how many blocks of wall material you need per vertical level."
+      }
+    ]
+  }
+}
