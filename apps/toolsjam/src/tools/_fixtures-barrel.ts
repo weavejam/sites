@@ -3,9 +3,16 @@
 // (Playwright/esbuild, Vitest/Vite) can statically resolve everything.
 
 import type { ToolFixture } from "@/tools/fixture";
+import { fixtures as f_555_timer_calculator } from "@/tools/555-timer-calculator.fixtures";
 import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } from "@/tools/a1c-calculator-hemoglobin-a1c-to-average-blood-sugar.fixtures";
+import { fixtures as f_absolute_humidity_calculator } from "@/tools/absolute-humidity-calculator.fixtures";
+import { fixtures as f_ac_wattage_calculator } from "@/tools/ac-wattage-calculator.fixtures";
+import { fixtures as f_acceleration_calculator } from "@/tools/acceleration-calculator.fixtures";
+import { fixtures as f_acceleration_in_the_electric_field_calculator } from "@/tools/acceleration-in-the-electric-field-calculator.fixtures";
+import { fixtures as f_acoustic_impedance_calculator } from "@/tools/acoustic-impedance-calculator.fixtures";
 import { fixtures as f_acres_per_hour_calculator } from "@/tools/acres-per-hour-calculator.fixtures";
 import { fixtures as f_acres_to_hectares_converter } from "@/tools/acres-to-hectares-converter.fixtures";
+import { fixtures as f_air_density_calculator } from "@/tools/air-density-calculator.fixtures";
 import { fixtures as f_air_pressure_at_altitude_calculator } from "@/tools/air-pressure-at-altitude-calculator.fixtures";
 import { fixtures as f_alfven_velocity_calculator } from "@/tools/alfven-velocity-calculator.fixtures";
 import { fixtures as f_alien_civilization_calculator } from "@/tools/alien-civilization-calculator.fixtures";
@@ -216,20 +223,30 @@ import { fixtures as f_watts_to_amps_calculator } from "@/tools/watts-to-amps-ca
 import { fixtures as f_weibull_distribution_calculator } from "@/tools/weibull-distribution-calculator.fixtures";
 import { fixtures as f_weighted_mean_calculator } from "@/tools/weighted-mean-calculator.fixtures";
 import { fixtures as f_wheatstone_bridge_calculator } from "@/tools/wheatstone-bridge-calculator.fixtures";
+import { fixtures as f_white_christmas_calculator } from "@/tools/white-christmas-calculator.fixtures";
 import { fixtures as f_wiens_law_calculator } from "@/tools/wiens-law-calculator.fixtures";
 import { fixtures as f_wilcoxon_rank_sum_test_calculator } from "@/tools/wilcoxon-rank-sum-test-calculator.fixtures";
 import { fixtures as f_wilcoxon_signed_rank_test_calculator } from "@/tools/wilcoxon-signed-rank-test-calculator.fixtures";
+import { fixtures as f_wind_chill_calculator } from "@/tools/wind-chill-calculator.fixtures";
 import { fixtures as f_wind_correction_angle_calculator } from "@/tools/wind-correction-angle-calculator.fixtures";
 import { fixtures as f_wind_load_calculator } from "@/tools/wind-load-calculator.fixtures";
 import { fixtures as f_wing_loading_calculator } from "@/tools/wing-loading-calculator.fixtures";
 import { fixtures as f_yates_correction_for_continuity_calculator } from "@/tools/yates-correction-for-continuity-calculator.fixtures";
 import { fixtures as f_z_score_calculator } from "@/tools/z-score-calculator.fixtures";
 import { fixtures as f_z_test_calculator } from "@/tools/z-test-calculator.fixtures";
+import { fixtures as f_zombie_invasion_calculator } from "@/tools/zombie-invasion-calculator.fixtures";
 
 export const fixturesByTool: Record<string, ToolFixture[]> = {
+  "555-timer-calculator": f_555_timer_calculator,
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
+  "absolute-humidity-calculator": f_absolute_humidity_calculator,
+  "ac-wattage-calculator": f_ac_wattage_calculator,
+  "acceleration-calculator": f_acceleration_calculator,
+  "acceleration-in-the-electric-field-calculator": f_acceleration_in_the_electric_field_calculator,
+  "acoustic-impedance-calculator": f_acoustic_impedance_calculator,
   "acres-per-hour-calculator": f_acres_per_hour_calculator,
   "acres-to-hectares-converter": f_acres_to_hectares_converter,
+  "air-density-calculator": f_air_density_calculator,
   "air-pressure-at-altitude-calculator": f_air_pressure_at_altitude_calculator,
   "alfven-velocity-calculator": f_alfven_velocity_calculator,
   "alien-civilization-calculator": f_alien_civilization_calculator,
@@ -440,13 +457,16 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "weibull-distribution-calculator": f_weibull_distribution_calculator,
   "weighted-mean-calculator": f_weighted_mean_calculator,
   "wheatstone-bridge-calculator": f_wheatstone_bridge_calculator,
+  "white-christmas-calculator": f_white_christmas_calculator,
   "wiens-law-calculator": f_wiens_law_calculator,
   "wilcoxon-rank-sum-test-calculator": f_wilcoxon_rank_sum_test_calculator,
   "wilcoxon-signed-rank-test-calculator": f_wilcoxon_signed_rank_test_calculator,
+  "wind-chill-calculator": f_wind_chill_calculator,
   "wind-correction-angle-calculator": f_wind_correction_angle_calculator,
   "wind-load-calculator": f_wind_load_calculator,
   "wing-loading-calculator": f_wing_loading_calculator,
   "yates-correction-for-continuity-calculator": f_yates_correction_for_continuity_calculator,
   "z-score-calculator": f_z_score_calculator,
   "z-test-calculator": f_z_test_calculator,
+  "zombie-invasion-calculator": f_zombie_invasion_calculator,
 };

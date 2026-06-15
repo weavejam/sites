@@ -1,0 +1,117 @@
+{
+  "title": "555 Timer Calculator",
+  "tagline": "Calculate 555 timer IC frequency, duty cycle, and timing for astable oscillator and monostable one-shot circuits.",
+  "intro": "Select astable (continuous oscillator) or monostable (single pulse) mode, enter your component values, and instantly get frequency, period, duty cycle, and timing intervals.",
+  "field": {
+    "mode": "Timer Mode",
+    "r1": "Resistor R1 (Ω)",
+    "r2": "Resistor R2 (Ω)",
+    "r2NotUsed": "not used in monostable",
+    "capacitor": "Capacitor C (μF)",
+    "vcc": "Supply Voltage Vcc (V)"
+  },
+  "placeholder": {
+    "resistance": "e.g., 10000",
+    "capacitance": "e.g., 10",
+    "voltage": "e.g., 5",
+    "notApplicable": "N/A"
+  },
+  "type": {
+    "astable": "Astable (Oscillator)",
+    "astable_desc": "Generates a continuous square-wave output. Both R1 and R2 are required. Duty cycle is always >50% with standard component placement.",
+    "monostable": "Monostable (One-shot)",
+    "monostable_desc": "Generates a single output pulse of fixed width when triggered. Only R1 and C are required; R2 is not used."
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "load1HzAstable": "Load 1 Hz Astable",
+    "load10kHzAstable": "Load 10 kHz Astable",
+    "load1sMonostable": "Load 1 s Monostable"
+  },
+  "error": {
+    "invalid": "Please enter positive values for R1, C, and (in astable mode) R2."
+  },
+  "result": {
+    "heading": "555 Timer Results",
+    "frequency": "Frequency",
+    "period": "Period",
+    "tHigh": "Output High Time (t_H)",
+    "tLow": "Output Low Time (t_L)",
+    "dutyCycle": "Duty Cycle",
+    "pulseWidth": "Pulse Width",
+    "formulaNote": "Astable: f = 1.44 / ((R1 + 2×R2) × C). Monostable: T = 1.1 × R1 × C. Component values in ohms and farads."
+  },
+  "about": {
+    "heading": "About the 555 Timer Calculator",
+    "body": "The 555 timer IC is one of the most iconic and widely used integrated circuits in the history of electronics. Introduced by Signetics in 1972, this single 8-pin chip has been manufactured in the billions and remains a staple component for hobbyists, students, and professional engineers alike. Its name comes from the three 5 kΩ resistors in its internal voltage-divider network, which set the two comparator threshold voltages that drive its timing behaviour.\n\nThe 555 can operate in two fundamental modes. In astable mode, the output continuously oscillates between high and low, generating a square wave at a frequency and duty cycle determined by the external resistors R1 and R2 and the capacitor C. The timing capacitor alternately charges through R1 and R2 to two-thirds of the supply voltage, then discharges through R2 alone back to one-third of the supply voltage. The charge and discharge times are governed by the RC time constant and follow the exponential capacitor charging equation.\n\nThe formulas for astable mode are: t_H = 0.693 × (R1 + R2) × C, t_L = 0.693 × R2 × C, and the total period T = t_H + t_L. Frequency is f = 1 / T = 1.44 / ((R1 + 2×R2) × C). The duty cycle — the fraction of each period that the output is high — equals (R1 + R2) / (R1 + 2×R2) × 100 %. Because both R1 and R2 contribute to the high time but only R2 contributes to the low time, the duty cycle in standard astable mode is always greater than 50 %. To achieve near-50 % or lower duty cycles, a diode modification is required.\n\nIn monostable mode, the 555 acts as a one-shot timer. When a negative trigger pulse is applied to pin 2, the output goes high for a precisely determined pulse width, then returns low and remains there until triggered again. The pulse width is T = 1.1 × R1 × C seconds. This mode is used for debouncing switches, generating precise delays, extending pulses, and triggering other circuits after a fixed interval.\n\nPractical component selection requires attention to value ranges. Resistors should generally fall between 1 kΩ and 10 MΩ — values below 1 kΩ can draw excessive current from the output stage, while values above 10 MΩ introduce noise susceptibility. Capacitors from 100 pF to thousands of microfarads are usable, giving a total timing range from nanoseconds to many minutes. For stable timing, use a 0.01 µF decoupling capacitor between the control voltage pin (pin 5) and ground.\n\nCommon applications for astable circuits include LED flashers, tone generators, clock signals for logic circuits, and pulse-width modulation. Monostable applications include switch debouncing, electronic door timers, pulse stretchers, and missing-pulse detectors. The 555 timer's combination of wide supply range (5–15 V), output current drive (up to 200 mA), temperature stability, and low cost makes it irreplaceable in both educational and professional electronics."
+  },
+  "examples": {
+    "heading": "555 timer circuit examples",
+    "intro": "Common configurations with typical component values and calculated output parameters.",
+    "colInput": "Configuration",
+    "colOutput": "Output",
+    "colNote": "Application",
+    "items": [
+      {
+        "input": "Astable: R1 = 10 kΩ, R2 = 10 kΩ, C = 47 µF, Vcc = 5 V",
+        "output": "f ≈ 1.02 Hz, duty ≈ 66.7%",
+        "note": "Classic 1 Hz LED flasher — component values widely available, produces visible blink rate."
+      },
+      {
+        "input": "Astable: R1 = 480 Ω, R2 = 480 Ω, C = 0.1 µF, Vcc = 5 V",
+        "output": "f ≈ 10 kHz, duty ≈ 66.7%",
+        "note": "Audio-range tone generator; can drive a piezo speaker directly for alarms or beep feedback."
+      },
+      {
+        "input": "Monostable: R1 = 100 kΩ, C = 10 µF, Vcc = 5 V",
+        "output": "T ≈ 1.1 s pulse",
+        "note": "One-second one-shot timer — useful for debouncing, relay activation, or timed indication."
+      },
+      {
+        "input": "Monostable: R1 = 91 kΩ, C = 1 µF, Vcc = 12 V",
+        "output": "T ≈ 100 ms pulse",
+        "note": "Short 100 ms delay circuit — suitable for switch debouncing and pulse stretching."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the 555 Timer Calculator",
+    "steps": [
+      "Select the operating mode: Astable (Oscillator) for a continuous square wave, or Monostable (One-shot) for a single timed pulse.",
+      "Enter the value of Resistor R1 in ohms. For astable mode also enter R2 in ohms. Recommended range is 1 kΩ to 10 MΩ for both resistors.",
+      "Enter the capacitor value C in microfarads (µF). Values from 0.001 µF to 10 000 µF cover timing ranges from nanoseconds to minutes.",
+      "Optionally enter the supply voltage Vcc (typically 5–15 V). Vcc does not affect frequency or timing but is useful for documentation.",
+      "Click Calculate to see frequency, period, high/low times, and duty cycle (astable) or pulse width (monostable). Use the preset buttons to load classic circuit examples instantly."
+    ]
+  },
+  "faq": {
+    "heading": "555 Timer Calculator FAQ",
+    "items": [
+      {
+        "q": "Why is astable duty cycle always greater than 50%?",
+        "a": "In standard astable mode the capacitor charges through both R1 and R2 but discharges only through R2. This means the high time always includes R1's contribution, making it longer than the low time. To achieve a 50% duty cycle you need to either use a very small R1 relative to R2 or add a diode across R2 to separate charge and discharge paths."
+      },
+      {
+        "q": "What component values give the most accurate timing?",
+        "a": "For the most accurate timing, use metal-film resistors (±1 % tolerance) and low-leakage electrolytic or film capacitors. The standard 555 has a timing accuracy of ±1 % under ideal conditions, but component tolerances and temperature effects can degrade this. For precision timing below ±0.1 %, consider the CMOS 555 variant (e.g., TLC555) with precision components."
+      },
+      {
+        "q": "What is the difference between the 555 and the CMOS 555?",
+        "a": "The original bipolar 555 draws about 10–15 mA quiescent current and can source or sink up to 200 mA output current. The CMOS 555 (e.g., TLC555, LMC555) draws only a few microamps quiescent current, making it ideal for battery-powered applications. The CMOS version also works at lower supply voltages (down to 1.5 V) and offers somewhat better timing accuracy."
+      },
+      {
+        "q": "How do I calculate the frequency for a specific target?",
+        "a": "Rearrange the astable formula: for a target frequency f, choose C first (typically 0.1 µF for audio-range, 10 µF for human-visible rates), then solve for (R1 + 2×R2) = 1.44 / (f × C). Split the total resistance between R1 and R2 based on your desired duty cycle, keeping R1 ≥ 1 kΩ to protect the discharge pin."
+      },
+      {
+        "q": "Can the 555 timer drive an LED directly?",
+        "a": "Yes. The 555 output (pin 3) can source or sink up to 200 mA, which is more than enough to drive an LED directly. Always add a current-limiting resistor in series (typically 470 Ω–1 kΩ for 5–12 V supplies) to prevent burning out the LED. The LED can be connected between the output and ground (LED on when output is high) or between Vcc and the output (LED on when output is low)."
+      },
+      {
+        "q": "Why is a 0.01 µF decoupling capacitor recommended on pin 5?",
+        "a": "Pin 5 is the control voltage input of the 555, connected to the internal voltage-divider. Noise on the supply rail can couple into this pin and shift the comparator thresholds, causing timing jitter. A 0.01 µF ceramic capacitor from pin 5 to ground bypasses high-frequency noise and is a standard best-practice inclusion in nearly all 555 timer circuits."
+      }
+    ]
+  }
+}
