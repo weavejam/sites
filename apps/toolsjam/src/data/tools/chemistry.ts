@@ -6,39 +6,39 @@ export const tools: ToolEntry[] = [
     category: "chemistry",
     slugs: {
       en: "ph-calculator",
-      "zh-CN": "ph-jisuanqi-suanjian-huanchong-rongye",
-      "zh-TW": "ph-jisuanqi-suanjian-huanchong-rongye",
-      ja: "ph-keisanki-sansei-base-buffer",
-      ko: "ph-gyeongsangi-san-base-beobeo",
-      es: "calculadora-ph-acidos-bases-tampon",
-      fr: "calculateur-ph-acides-bases-tampons",
-      de: "ph-rechner-sauren-basen-pufferloesungen",
-      pt: "calculadora-ph-acidos-bases-tampao",
-      ru: "kalkulyator-ph-kisloty-osnovaniya-bufery"
+      "zh-CN": "ph-ji-suan-qi-suan-jian-he-huan-chong-ye",
+      "zh-TW": "ph-ji-suan-qi-suan-jian-he-huan-chong-ye",
+      ja: "ph-keisanki",
+      ko: "ph-gyesan-gi",
+      es: "calculadora-ph",
+      fr: "calcul-ph",
+      de: "ph-rechner",
+      pt: "calculadora-ph",
+      ru: "kalkulyator-ph"
     },
     titles: {
       en: "pH Calculator - Acids, Bases & Buffer Solutions",
-      "zh-CN": "pH 计算器 - 酸碱与缓冲溶液",
-      "zh-TW": "pH 計算器 - 酸鹼與緩衝溶液",
+      "zh-CN": "pH计算器：酸、碱与缓冲液",
+      "zh-TW": "pH計算器：酸、鹼與緩衝液",
       ja: "pH計算機 - 酸・塩基・緩衝液",
-      ko: "pH 계산기 - 산, 염기, 완충 용액",
-      es: "Calculadora de pH - Ácidos, bases y tampones",
-      fr: "Calculatrice de pH - Acides, bases et tampons",
-      de: "pH-Rechner - Säuren, Basen und Puffer",
-      pt: "Calculadora de pH - Ácidos, bases e tampões",
-      ru: "Калькулятор pH - кислоты, основания и буферы"
+      ko: "pH 계산기 - 산, 염기, 완충용액",
+      es: "Calculadora de pH: ácidos, bases y tampones",
+      fr: "Calculateur de pH : acides, bases et tampons",
+      de: "pH-Rechner: Säuren, Basen und Puffer",
+      pt: "Calculadora de pH: ácidos, bases e tampões",
+      ru: "Калькулятор pH: кислоты, основания и буферы"
     },
     descriptions: {
       en: "pH calculator for acids, bases, and buffer solutions. Find pH, pOH, [H+], and [OH-] with Henderson-Hasselbalch steps in seconds.",
-      "zh-CN": "酸碱与缓冲溶液 pH 计算器。用 Henderson-Hasselbalch 公式，秒算 pH、pOH、[H+] 和 [OH-]。",
-      "zh-TW": "酸鹼與緩衝溶液 pH 計算器。用 Henderson-Hasselbalch 公式，秒算 pH、pOH、[H+] 和 [OH-]。",
-      ja: "酸・塩基・緩衝液の pH 計算機。Henderson-Hasselbalch 式で pH、pOH、[H+]、[OH-] をすばやく計算します。",
-      ko: "산, 염기, 완충 용액 pH 계산기. Henderson-Hasselbalch 식으로 pH, pOH, [H+], [OH-]를 빠르게 계산합니다.",
-      es: "Calculadora de pH para ácidos, bases y tampones. Calcula pH, pOH, [H+] y [OH-] con Henderson-Hasselbalch al instante.",
-      fr: "Calculatrice de pH pour acides, bases et tampons. Calculez pH, pOH, [H+] et [OH-] avec Henderson-Hasselbalch en un instant.",
-      de: "pH-Rechner für Säuren, Basen und Puffer. Berechnet pH, pOH, [H+] und [OH-] mit Henderson-Hasselbalch in Sekunden.",
-      pt: "Calculadora de pH para ácidos, bases e tampões. Calcule pH, pOH, [H+] e [OH-] com Henderson-Hasselbalch em segundos.",
-      ru: "Калькулятор pH для кислот, оснований и буферов. Быстро вычисляет pH, pOH, [H+] и [OH-] по формуле Хендерсона-Хассельбаха."
+      "zh-CN": "酸、碱与缓冲液的 pH 计算器。几秒内可求 pH、pOH、[H+] 和 [OH-]，并查看亨德森-哈塞尔巴尔赫步骤。",
+      "zh-TW": "酸、鹼與緩衝液的 pH 計算器。幾秒內可求 pH、pOH、[H+] 和 [OH-]，並查看亨德森-哈塞爾巴赫步驟。",
+      ja: "酸、塩基、緩衝液の pH 計算機。数秒で pH、pOH、[H+]、[OH-] とヘンダーソン-ハッセルバルヒの手順を確認できます。",
+      ko: "산, 염기, 완충용액의 pH 계산기입니다. pH, pOH, [H+], [OH-]와 헨더슨-하셀바흐 과정을 몇 초 안에 확인하세요.",
+      es: "Calculadora de pH para ácidos, bases y tampones. Encuentra pH, pOH, [H+] y [OH-] con pasos de Henderson-Hasselbalch en segundos.",
+      fr: "Calculateur de pH pour les acides, bases et solutions tampons. Trouvez pH, pOH, [H+] et [OH-] avec les étapes de Henderson-Hasselbalch en quelques secondes.",
+      de: "pH-Rechner für Säuren, Basen und Pufferlösungen. Berechne pH, pOH, [H+] und [OH-] mit Henderson-Hasselbalch in Sekunden.",
+      pt: "Calculadora de pH para ácidos, bases e soluções tampão. Encontre pH, pOH, [H+] e [OH-] com passos de Henderson-Hasselbalch em segundos.",
+      ru: "Калькулятор pH для кислот, оснований и буферных растворов. За секунды найдите pH, pOH, [H+] и [OH-] с шагами по Хендерсону-Хассельбалху."
     }
   }
 ];
