@@ -1,0 +1,109 @@
+{
+  "title": "Calculadora de raio de explosão",
+  "tagline": "Calcule o raio da explosão, os efeitos de sobrepressão e as distâncias de segurança para vários cenários explosivos.",
+  "intro": "Informe o rendimento explosivo, a altura de detonação, a distância da explosão, o tipo de explosão e o fator de segurança para calcular sobrepressão, raio da bola de fogo e limites da zona de perigo usando física de explosões comprovada.",
+  "field": {
+    "yield": "Rendimento explosivo (kg TNT)",
+    "height": "Altura de detonação (m)",
+    "distance": "Distância da explosão (m)",
+    "blastType": "Tipo de explosão",
+    "safetyFactor": "Fator de segurança"
+  },
+  "placeholder": {
+    "yield": "ex.: 100",
+    "height": "ex.: 0",
+    "distance": "ex.: 50",
+    "safetyFactor": "ex.: 1.5"
+  },
+  "blastType": {
+    "surface": "Superfície (explosão no solo)",
+    "air": "Explosão aérea",
+    "underground": "Subterrânea"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite valores positivos válidos para rendimento, altura e distância.",
+    "safetyFactor": "O fator de segurança deve ser ≥ 1."
+  },
+  "result": {
+    "heading": "Resultados da análise da explosão",
+    "scaledDistance": "Distância escalada (Z)",
+    "overpressure": "Sobrepressão de pico",
+    "fireballRadius": "Raio da bola de fogo",
+    "lethalRadius": "Raio letal (> 100 kPa)",
+    "dangerRadius": "Raio de perigo (> 34.5 kPa)",
+    "safeRadius": "Distância segura (< 7 kPa)",
+    "category": "Categoria de sobrepressão",
+    "effectiveYield": "Rendimento efetivo",
+    "unitM": "m",
+    "unitKPa": "kPa",
+    "unitKgTNT": "kg TNT",
+    "unitMkg13": "m/kg^(1/3)",
+    "categories": {
+      "safe": "Seguro (< 7 kPa)",
+      "moderate": "Dano moderado (7–34.5 kPa)",
+      "severe": "Dano severo (34.5–100 kPa)",
+      "lethal": "Potencialmente letal (> 100 kPa)"
+    },
+    "formula": "Z = R / W^(1/3)  •  P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³)  •  [Brode, 1955]"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de raio de explosão",
+    "body": "Quando um explosivo detona, ele libera enorme energia em um tempo extremamente curto, criando uma camada de gás altamente comprimido que se expande rapidamente — a onda de choque. Entender a extensão espacial desses efeitos destrutivos é essencial para planejamento de segurança, aplicações militares, investigação de acidentes e engenharia de demolição. A calculadora de raio de explosão implementa a lei de escala da raiz cúbica de Hopkinson–Cranz e o modelo empírico de sobrepressão de Brode para estimar os efeitos da explosão em qualquer distância.\n\nA lei de escala Hopkinson–Cranz (também chamada de escala de raiz cúbica) afirma que ondas de choque de explosivos de tamanhos diferentes, mas com a mesma geometria e composição, são geometricamente semelhantes quando as distâncias são escaladas pela raiz cúbica do peso da carga. A distância escalada é definida como Z = R / W^(1/3), onde R é a distância real em metros e W é a massa equivalente de TNT em quilogramas. O mesmo valor de Z sempre produz a mesma sobrepressão de pico, independentemente do rendimento absoluto — por isso a distância escalada é a variável independente fundamental em todos os modelos empíricos de explosão.\n\nO modelo de sobrepressão de pico usado aqui é a fórmula de Brode (1955): P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³), onde P_atm = 101.325 kPa é a pressão atmosférica padrão. A fórmula fornece uma boa aproximação para Z > 0.1 m/kg^(1/3), cobrindo o regime de campo distante a médio relevante para cálculos de segurança. Perto da bola de fogo (Z < 0.1), o modelo superestima; no campo extremamente distante (Z > 100), a aproximação acústica é mais apropriada.\n\nO rendimento efetivo é ajustado pela geometria da detonação. Uma explosão de superfície concentra a onda de choque hemisférica no hemisfério superior por reflexão do solo, efetivamente dobrando o rendimento: W_eff = 1.8 × W para detonações de superfície. Uma explosão aérea irradia esfericamente com W_eff = W. Uma explosão subterrânea perde energia no acoplamento com o solo, resultando em W_eff ≈ 0.7 × W para o componente de onda aérea.\n\nLimiares de dano principais derivados do modelo de Brode: Z ≈ 1.4 m/kg^(1/3) corresponde a 100 kPa (1 atm de sobrepressão, letal para pessoas sem proteção); Z ≈ 3.0 corresponde a 34.5 kPa (5 psi, o limite convencional da zona de perigo usado em normas de segurança contra explosões); e Z ≈ 12 corresponde a aproximadamente 7 kPa (1 psi, limiar para quebra de vidros e danos estruturais leves). O raio da bola de fogo é estimado com base em dados experimentais como r_fireball ≈ 3.9 × W^(1/3) metros.\n\nO fator de segurança multiplica todos os raios críticos para fornecer margens de projeto. Normas regulatórias para armazenamento e manuseio de explosivos (por exemplo, DoD 6055.9, NATO AASTP-1) normalmente exigem fatores de segurança de 1.5 a 2.0 para edifícios habitados. Os usuários devem sempre consultar as regulamentações aplicáveis e contar com engenheiros de explosivos certificados para qualquer aplicação real."
+  },
+  "examples": {
+    "heading": "Exemplos de raio de explosão",
+    "intro": "A tabela abaixo mostra sobrepressão e distâncias de segurança para cenários explosivos representativos.",
+    "colInput": "Parâmetros",
+    "colOutput": "Resultados principais",
+    "colNote": "Cenário",
+    "loadMilitary": "Carregar carga militar",
+    "loadIndustrial": "Carregar demolição industrial",
+    "loadAirBurst": "Carregar explosão aérea",
+    "items": [
+      {
+        "input": "100 kg TNT, Superfície, R=50 m, SF=1.5",
+        "output": "Z ≈ 8.86 m/kg^(1/3), P_s ≈ 10.1 kPa (moderado), R_danger ≈ 25 m",
+        "note": "Carga explosiva militar"
+      },
+      {
+        "input": "500 kg TNT, Superfície, R=100 m, SF=2.0",
+        "output": "Z ≈ 10.4 m/kg^(1/3), P_s ≈ 8.5 kPa (moderado), R_danger ≈ 57 m",
+        "note": "Demolição controlada de edifício"
+      },
+      {
+        "input": "50 kg TNT, Explosão aérea, h=20 m, R=30 m, SF=1.0",
+        "output": "Z ≈ 9.79 m/kg^(1/3), P_s ≈ 9.1 kPa (moderado), R_danger ≈ 11 m",
+        "note": "Cenário de detonação aérea"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de raio de explosão",
+    "steps": [
+      "Digite o rendimento explosivo em quilogramas equivalentes de TNT. Se estiver usando um explosivo que não seja TNT, multiplique a massa real pelo seu fator de equivalência TNT (por exemplo, C-4 ≈ 1.34, ANFO ≈ 0.82).",
+      "Digite a altura de detonação em metros acima do solo (0 para uma explosão de superfície ao nível do solo).",
+      "Digite a distância até o centro da explosão, em metros, na qual deseja avaliar a sobrepressão.",
+      "Selecione o tipo de explosão: Surface para detonações ao nível do solo (realçadas pela reflexão do solo), Air burst para detonações elevadas ou Underground para explosões subterrâneas.",
+      "Defina o fator de segurança (mínimo 1.0; use 1.5–2.0 para aplicações críticas) e clique em Calcular para ver a sobrepressão, o raio da bola de fogo e todos os raios da zona de perigo."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "q1": "O que é distância escalada e por que ela é útil?",
+    "q1_a": "A distância escalada Z = R / W^(1/3) é uma grandeza adimensional (ou dimensional) que condensa os dados de explosão de cargas de tamanhos diferentes em uma única curva. Um dado valor de Z sempre produz a mesma sobrepressão de pico, independentemente do tamanho absoluto da carga, porque a física de propagação da onda de choque escala com a raiz cúbica da liberação de energia. Isso permite extrapolar dados de cargas pequenas para rendimentos muito maiores.",
+    "q2": "Qual é a diferença entre uma explosão de superfície e uma explosão aérea?",
+    "q2_a": "Numa explosão de superfície, a detonação ocorre no solo ou muito perto dele. A onda refletida se funde quase imediatamente com a onda incidente, criando uma onda hemisférica que equivale efetivamente a uma carga de cerca de 1.8× o rendimento real. Uma explosão aérea ocorre em altitude; a onda esférica incidente atinge o solo e cria uma onda refletida que viaja mais lentamente, formando um Mach stem a grandes distâncias. A energia total é a mesma, mas sua distribuição espacial é diferente.",
+    "q3": "O que a sobrepressão de pico significa na prática?",
+    "q3_a": "A sobrepressão de pico é a pressão instantânea máxima acima da pressão atmosférica ambiente (101.325 kPa) na onda de choque. Em 7 kPa (1 psi), janelas se quebram e pessoas podem se ferir com estilhaços de vidro. Em 34.5 kPa (5 psi), estruturas residenciais sofrem grandes danos estruturais. Em 100 kPa (1 atm), estruturas de concreto e alvenaria colapsam, e pessoas sem proteção enfrentam lesões letais nos pulmões e ouvidos.",
+    "q4": "Quão precisa é a fórmula de sobrepressão de Brode?",
+    "q4_a": "A fórmula de Brode fornece precisão de ordem de grandeza adequada ao planejamento de segurança na faixa Z = 0.2 a 50 m/kg^(1/3). Para projeto de engenharia de precisão, os polinômios de Kingery-Bulmash (1984) são o padrão, cobrindo uma faixa maior e ajustados a um conjunto de dados mais amplo. Para efeitos muito próximos (Z < 0.2), são necessários códigos de simulação hidrodinâmica.",
+    "q5": "O que é o fator de equivalência TNT?",
+    "q5_a": "Explosivos diferentes liberam energias diferentes por quilograma. O fator de equivalência TNT normaliza todos os explosivos para o desempenho do TNT (4.610 MJ/kg). Equivalências comuns: ANFO ≈ 0.82, PETN ≈ 1.27, C-4 (baseado em RDX) ≈ 1.34, TATP ≈ 0.88, pólvora negra ≈ 0.50. Multiplique a massa real da carga pelo seu fator de equivalência para obter a entrada desta calculadora.",
+    "q6": "Esta calculadora pode ser usada para armas nucleares?",
+    "q6_a": "Para grandes explosivos convencionais e pequenos dispositivos nucleares táticos, a escala Hopkinson-Cranz e o modelo de Brode fornecem estimativas iniciais razoáveis, já que a física da explosão é semelhante. No entanto, explosões nucleares envolvem radiação térmica, radiação nuclear e pulsos eletromagnéticos, ausentes em explosões convencionais, e exigem modelos separados. A calculadora não deve ser usada como única fonte para estimar efeitos nucleares."
+  }
+}

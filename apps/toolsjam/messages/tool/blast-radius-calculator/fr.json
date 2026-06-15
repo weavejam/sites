@@ -1,0 +1,109 @@
+{
+  "title": "Calculateur de rayon d’explosion",
+  "tagline": "Calculez le rayon de souffle, les effets de surpression et les distances de sécurité pour divers scénarios explosifs.",
+  "intro": "Saisissez le rendement explosif, la hauteur de détonation, la distance à l’explosion, le type d’explosion et le facteur de sécurité pour calculer la surpression, le rayon de la boule de feu et les limites de la zone de danger à l’aide d’une physique des explosions éprouvée.",
+  "field": {
+    "yield": "Rendement explosif (kg TNT)",
+    "height": "Hauteur de détonation (m)",
+    "distance": "Distance à l’explosion (m)",
+    "blastType": "Type d’explosion",
+    "safetyFactor": "Facteur de sécurité"
+  },
+  "placeholder": {
+    "yield": "ex. 100",
+    "height": "ex. 0",
+    "distance": "ex. 50",
+    "safetyFactor": "ex. 1.5"
+  },
+  "blastType": {
+    "surface": "Surface (explosion au sol)",
+    "air": "Explosion en altitude",
+    "underground": "Souterraine"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs positives valides pour le rendement, la hauteur et la distance.",
+    "safetyFactor": "Le facteur de sécurité doit être ≥ 1."
+  },
+  "result": {
+    "heading": "Résultats de l’analyse de l’explosion",
+    "scaledDistance": "Distance réduite (Z)",
+    "overpressure": "Surpression de pointe",
+    "fireballRadius": "Rayon de la boule de feu",
+    "lethalRadius": "Rayon létal (> 100 kPa)",
+    "dangerRadius": "Rayon de danger (> 34.5 kPa)",
+    "safeRadius": "Distance sûre (< 7 kPa)",
+    "category": "Catégorie de surpression",
+    "effectiveYield": "Rendement effectif",
+    "unitM": "m",
+    "unitKPa": "kPa",
+    "unitKgTNT": "kg TNT",
+    "unitMkg13": "m/kg^(1/3)",
+    "categories": {
+      "safe": "Sûr (< 7 kPa)",
+      "moderate": "Dégâts modérés (7–34.5 kPa)",
+      "severe": "Dégâts sévères (34.5–100 kPa)",
+      "lethal": "Potentiellement mortel (> 100 kPa)"
+    },
+    "formula": "Z = R / W^(1/3)  •  P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³)  •  [Brode, 1955]"
+  },
+  "about": {
+    "heading": "À propos du calculateur de rayon d’explosion",
+    "body": "Lorsqu’un explosif détonne, il libère une énergie énorme en un temps extrêmement court, créant une couche de gaz fortement comprimé en expansion rapide — l’onde de souffle. Comprendre l’étendue spatiale de ses effets destructeurs est essentiel pour la planification de sécurité, les applications militaires, les enquêtes d’accident et l’ingénierie de démolition. Le calculateur de rayon d’explosion implémente la loi d’échelle à racine cubique de Hopkinson–Cranz et le modèle empirique de surpression de Brode pour estimer les effets de souffle à toute distance.\n\nLa loi d’échelle de Hopkinson–Cranz (aussi appelée échelle à racine cubique) stipule que les ondes de souffle issues d’explosifs de tailles différentes mais de même géométrie et composition sont géométriquement semblables lorsque les distances sont mises à l’échelle par la racine cubique du poids de charge. La distance réduite est définie par Z = R / W^(1/3), où R est la distance réelle en mètres et W la masse équivalente TNT en kilogrammes. Une même valeur de Z produit toujours la même surpression de pointe, quelle que soit la charge absolue — c’est ce qui fait de la distance réduite la variable indépendante fondamentale de tous les modèles empiriques de souffle.\n\nLe modèle de surpression de pointe utilisé ici est la formule de Brode (1955) : P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³), où P_atm = 101.325 kPa est la pression atmosphérique standard. Cette formule fournit une bonne approximation pour Z > 0.1 m/kg^(1/3), couvrant le régime de champ lointain à moyen pertinent pour les calculs de sécurité. Près de la boule de feu (Z < 0.1), le modèle surestime ; dans le champ très lointain (Z > 100), l’approximation acoustique est plus appropriée.\n\nLe rendement effectif est ajusté selon la géométrie de détonation. Une explosion de surface concentre l’onde de choc hémisphérique dans l’hémisphère supérieur par réflexion sur le sol, doublant effectivement le rendement : W_eff = 1.8 × W pour les détonations de surface. Une explosion en altitude rayonne de façon sphérique avec W_eff = W. Une explosion souterraine perd de l’énergie dans le couplage au sol, donnant W_eff ≈ 0.7 × W pour la composante de souffle aérien.\n\nSeuils de dommages clés dérivés du modèle de Brode : Z ≈ 1.4 m/kg^(1/3) correspond à 100 kPa (1 atm de surpression, létal pour les personnes non protégées) ; Z ≈ 3.0 correspond à 34.5 kPa (5 psi, la limite conventionnelle de la zone de danger utilisée dans les normes de sécurité des explosions) ; et Z ≈ 12 correspond à environ 7 kPa (1 psi, seuil de bris des vitres et de dommages structurels mineurs). Le rayon de la boule de feu est estimé à partir de données expérimentales par r_fireball ≈ 3.9 × W^(1/3) mètres.\n\nLe facteur de sécurité multiplie tous les rayons critiques afin de fournir des marges de conception. Les normes réglementaires de stockage et de manipulation des explosifs (p. ex. DoD 6055.9, NATO AASTP-1) imposent généralement des facteurs de sécurité de 1.5 à 2.0 pour les bâtiments habités. Les utilisateurs doivent toujours consulter la réglementation applicable et faire appel à des ingénieurs en explosifs certifiés pour toute application réelle."
+  },
+  "examples": {
+    "heading": "Exemples de rayon d’explosion",
+    "intro": "Le tableau ci-dessous présente la surpression et les distances de sécurité pour des scénarios explosifs représentatifs.",
+    "colInput": "Paramètres",
+    "colOutput": "Résultats clés",
+    "colNote": "Scénario",
+    "loadMilitary": "Charger une charge militaire",
+    "loadIndustrial": "Charger une démolition industrielle",
+    "loadAirBurst": "Charger une explosion aérienne",
+    "items": [
+      {
+        "input": "100 kg TNT, Surface, R=50 m, SF=1.5",
+        "output": "Z ≈ 8.86 m/kg^(1/3), P_s ≈ 10.1 kPa (modéré), R_danger ≈ 25 m",
+        "note": "Charge explosive militaire"
+      },
+      {
+        "input": "500 kg TNT, Surface, R=100 m, SF=2.0",
+        "output": "Z ≈ 10.4 m/kg^(1/3), P_s ≈ 8.5 kPa (modéré), R_danger ≈ 57 m",
+        "note": "Démolition contrôlée d’un bâtiment"
+      },
+      {
+        "input": "50 kg TNT, Explosion aérienne, h=20 m, R=30 m, SF=1.0",
+        "output": "Z ≈ 9.79 m/kg^(1/3), P_s ≈ 9.1 kPa (modéré), R_danger ≈ 11 m",
+        "note": "Scénario de détonation en altitude"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de rayon d’explosion",
+    "steps": [
+      "Saisissez le rendement explosif en kilogrammes équivalent TNT. Si vous utilisez un explosif autre que le TNT, multipliez la masse réelle par son facteur d’équivalence TNT (par exemple C-4 ≈ 1.34, ANFO ≈ 0.82).",
+      "Saisissez la hauteur de détonation en mètres au-dessus du sol (0 pour une explosion de surface au niveau du sol).",
+      "Saisissez la distance au centre de l’explosion, en mètres, à laquelle vous souhaitez évaluer la surpression.",
+      "Sélectionnez le type d’explosion : Surface pour une détonation au niveau du sol (renforcée par la réflexion du sol), Air burst pour une détonation en altitude, ou Underground pour une explosion souterraine.",
+      "Définissez le facteur de sécurité (minimum 1.0 ; utilisez 1.5–2.0 pour les applications critiques) puis cliquez sur Calculer pour afficher la surpression, le rayon de la boule de feu et tous les rayons des zones de danger."
+    ]
+  },
+  "faq": {
+    "heading": "Foire aux questions",
+    "q1": "Qu’est-ce que la distance réduite et pourquoi est-elle utile ?",
+    "q1_a": "La distance réduite Z = R / W^(1/3) est une grandeur sans dimension (ou à dimension) qui condense les données d’explosion de charges de tailles différentes sur une seule courbe. Une valeur donnée de Z produit toujours la même surpression de pointe, quelle que soit la taille absolue de la charge, car la physique de propagation de l’onde de souffle évolue avec la racine cubique de l’énergie libérée. Cela permet d’extrapoler des données de petites charges à des rendements bien plus élevés.",
+    "q2": "Quelle est la différence entre une explosion de surface et une explosion aérienne ?",
+    "q2_a": "Dans une explosion de surface, la détonation se produit au sol ou tout près. L’onde réfléchie fusionne presque immédiatement avec l’onde incidente, créant une onde hémisphérique équivalente à une charge d’environ 1.8× le rendement réel. Une explosion aérienne se produit en altitude ; l’onde sphérique incidente atteint le sol et crée une onde réfléchie qui se déplace plus lentement, formant un Mach stem à grande distance. L’énergie totale est la même, mais sa répartition spatiale diffère.",
+    "q3": "Que signifie la surpression de pointe en pratique ?",
+    "q3_a": "La surpression de pointe est la pression instantanée maximale au-dessus de la pression atmosphérique ambiante (101.325 kPa) dans l’onde de souffle. À 7 kPa (1 psi), les vitres se brisent et les personnes peuvent être blessées par des éclats de verre. À 34.5 kPa (5 psi), les bâtiments résidentiels subissent de graves dommages structurels. À 100 kPa (1 atm), les structures en béton et en maçonnerie s’effondrent et les personnes non protégées risquent des lésions pulmonaires et auditives mortelles.",
+    "q4": "Quelle est la précision de la formule de surpression de Brode ?",
+    "q4_a": "La formule de Brode fournit une précision d’ordre de grandeur adaptée à la planification de sécurité dans la plage Z = 0.2 à 50 m/kg^(1/3). Pour la conception d’ingénierie de précision, les polynômes de Kingery-Bulmash (1984) sont la référence, car ils couvrent une plage plus large et sont ajustés sur un jeu de données plus important. Pour les effets très proches (Z < 0.2), des codes de simulation hydrodynamique sont nécessaires.",
+    "q5": "Qu’est-ce que le facteur d’équivalence TNT ?",
+    "q5_a": "Différents explosifs libèrent des énergies différentes par kilogramme. Le facteur d’équivalence TNT normalise tous les explosifs par rapport aux performances du TNT (4.610 MJ/kg). Équivalences courantes : ANFO ≈ 0.82, PETN ≈ 1.27, C-4 (à base de RDX) ≈ 1.34, TATP ≈ 0.88, poudre noire ≈ 0.50. Multipliez la masse réelle de la charge par son facteur d’équivalence pour obtenir l’entrée de ce calculateur.",
+    "q6": "Ce calculateur peut-il être utilisé pour les armes nucléaires ?",
+    "q6_a": "Pour les gros explosifs conventionnels et les petits dispositifs nucléaires tactiques, l’échelle Hopkinson-Cranz et le modèle de Brode donnent des estimations initiales raisonnables, car la physique du souffle est similaire. En revanche, les explosions nucléaires impliquent un rayonnement thermique, un rayonnement nucléaire et des impulsions électromagnétiques, absents des explosions conventionnelles, et nécessitent des modèles distincts. Le calculateur ne doit pas être utilisé comme source unique pour l’estimation des effets nucléaires."
+  }
+}

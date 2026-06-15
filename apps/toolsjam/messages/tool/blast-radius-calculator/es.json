@@ -1,0 +1,109 @@
+{
+  "title": "Calculadora de radio de explosión",
+  "tagline": "Calcula el radio de la explosión, los efectos de sobrepresión y las distancias de seguridad para distintos escenarios explosivos.",
+  "intro": "Introduce el rendimiento explosivo, la altura de detonación, la distancia a la explosión, el tipo de explosión y el factor de seguridad para calcular la sobrepresión, el radio de la bola de fuego y los límites de la zona de peligro con física de explosiones probada.",
+  "field": {
+    "yield": "Rendimiento explosivo (kg TNT)",
+    "height": "Altura de detonación (m)",
+    "distance": "Distancia a la explosión (m)",
+    "blastType": "Tipo de explosión",
+    "safetyFactor": "Factor de seguridad"
+  },
+  "placeholder": {
+    "yield": "p. ej., 100",
+    "height": "p. ej., 0",
+    "distance": "p. ej., 50",
+    "safetyFactor": "p. ej., 1.5"
+  },
+  "blastType": {
+    "surface": "Superficie (explosión en el suelo)",
+    "air": "Explosión aérea",
+    "underground": "Subterránea"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce valores positivos válidos para rendimiento, altura y distancia.",
+    "safetyFactor": "El factor de seguridad debe ser ≥ 1."
+  },
+  "result": {
+    "heading": "Resultados del análisis de la explosión",
+    "scaledDistance": "Distancia escalada (Z)",
+    "overpressure": "Sobrepresión máxima",
+    "fireballRadius": "Radio de la bola de fuego",
+    "lethalRadius": "Radio letal (> 100 kPa)",
+    "dangerRadius": "Radio de peligro (> 34.5 kPa)",
+    "safeRadius": "Distancia segura (< 7 kPa)",
+    "category": "Categoría de sobrepresión",
+    "effectiveYield": "Rendimiento efectivo",
+    "unitM": "m",
+    "unitKPa": "kPa",
+    "unitKgTNT": "kg TNT",
+    "unitMkg13": "m/kg^(1/3)",
+    "categories": {
+      "safe": "Seguro (< 7 kPa)",
+      "moderate": "Daño moderado (7–34.5 kPa)",
+      "severe": "Daño grave (34.5–100 kPa)",
+      "lethal": "Potencialmente letal (> 100 kPa)"
+    },
+    "formula": "Z = R / W^(1/3)  •  P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³)  •  [Brode, 1955]"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de radio de explosión",
+    "body": "Cuando un explosivo detona, libera una enorme cantidad de energía en un tiempo extremadamente corto, creando una envolvente de gas altamente comprimido que se expande rápidamente: la onda expansiva. Comprender el alcance espacial de sus efectos destructivos es esencial para la planificación de seguridad, aplicaciones militares, investigación de accidentes e ingeniería de demolición. La calculadora implementa la ley de escala de raíz cúbica de Hopkinson-Cranz y el modelo empírico de sobrepresión de Brode para estimar los efectos de la explosión a cualquier distancia.\n\nLa ley de escala de Hopkinson-Cranz (también llamada escala de raíz cúbica) establece que las ondas expansivas de explosivos de distinto tamaño, pero con la misma geometría y composición, son geométricamente similares cuando las distancias se escalan por la raíz cúbica del peso de la carga. La distancia escalada se define como Z = R / W^(1/3), donde R es la distancia real en metros y W es la masa equivalente de TNT en kilogramos. El mismo valor de Z produce la misma sobrepresión máxima independientemente del rendimiento absoluto; por eso la distancia escalada es la variable independiente fundamental en todos los modelos empíricos de explosión.\n\nEl modelo de sobrepresión máxima usado aquí es la fórmula de Brode (1955): P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³), donde P_atm = 101.325 kPa es la presión atmosférica estándar. La fórmula ofrece una buena aproximación para Z > 0.1 m/kg^(1/3), cubriendo el régimen de campo lejano a medio relevante para cálculos de seguridad. Cerca de la bola de fuego (Z < 0.1) el modelo sobreestima; en el campo extremadamente lejano (Z > 100) es más apropiada la aproximación acústica.\n\nEl rendimiento efectivo se ajusta según la geometría de la detonación. Una explosión en superficie concentra la onda de choque hemisférica en el hemisferio superior por reflexión del suelo, duplicando efectivamente el rendimiento: W_eff = 1.8 × W para detonaciones en superficie. Una explosión aérea se irradia esféricamente con W_eff = W. Una explosión subterránea pierde energía en el acoplamiento con el suelo, dando W_eff ≈ 0.7 × W para el componente de onda aérea.\n\nUmbrales de daño clave derivados del modelo de Brode: Z ≈ 1.4 m/kg^(1/3) corresponde a 100 kPa (1 atm de sobrepresión, letal para personas sin protección); Z ≈ 3.0 corresponde a 34.5 kPa (5 psi, el límite convencional de la zona de peligro usado en normas de seguridad ante explosiones); y Z ≈ 12 corresponde a aproximadamente 7 kPa (1 psi, umbral de rotura de ventanas y daños estructurales menores). El radio de la bola de fuego se estima a partir de datos experimentales como r_fireball ≈ 3.9 × W^(1/3) metros.\n\nEl factor de seguridad multiplica todos los radios críticos para proporcionar márgenes de diseño. Las normas regulatorias para el almacenamiento y manipulación de explosivos (p. ej., DoD 6055.9, NATO AASTP-1) suelen exigir factores de seguridad de 1.5 a 2.0 para edificios habitados. Los usuarios deben consultar siempre la normativa aplicable y recurrir a ingenieros de explosivos certificados para cualquier aplicación real."
+  },
+  "examples": {
+    "heading": "Ejemplos de radio de explosión",
+    "intro": "La tabla siguiente muestra la sobrepresión y las distancias de seguridad para escenarios explosivos representativos.",
+    "colInput": "Parámetros",
+    "colOutput": "Resultados clave",
+    "colNote": "Escenario",
+    "loadMilitary": "Cargar carga militar",
+    "loadIndustrial": "Cargar demolición industrial",
+    "loadAirBurst": "Cargar explosión aérea",
+    "items": [
+      {
+        "input": "100 kg TNT, Superficie, R=50 m, SF=1.5",
+        "output": "Z ≈ 8.86 m/kg^(1/3), P_s ≈ 10.1 kPa (moderado), R_danger ≈ 25 m",
+        "note": "Carga explosiva militar"
+      },
+      {
+        "input": "500 kg TNT, Superficie, R=100 m, SF=2.0",
+        "output": "Z ≈ 10.4 m/kg^(1/3), P_s ≈ 8.5 kPa (moderado), R_danger ≈ 57 m",
+        "note": "Demolición controlada de edificios"
+      },
+      {
+        "input": "50 kg TNT, Explosión aérea, h=20 m, R=30 m, SF=1.0",
+        "output": "Z ≈ 9.79 m/kg^(1/3), P_s ≈ 9.1 kPa (moderado), R_danger ≈ 11 m",
+        "note": "Escenario de detonación aérea"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de radio de explosión",
+    "steps": [
+      "Introduce el rendimiento explosivo en kilogramos equivalentes de TNT. Si usas un explosivo que no sea TNT, multiplica la masa real por su factor de equivalencia TNT (por ejemplo, C-4 ≈ 1.34, ANFO ≈ 0.82).",
+      "Introduce la altura de detonación en metros sobre el suelo (0 para una explosión en superficie a nivel del suelo).",
+      "Introduce la distancia desde el centro de la explosión en metros a la que deseas evaluar la sobrepresión.",
+      "Selecciona el tipo de explosión: Surface para detonaciones a nivel del suelo (reforzadas por la reflexión del terreno), Air burst para detonaciones elevadas o Underground para explosiones subterráneas.",
+      "Define el factor de seguridad (mínimo 1.0; usa 1.5–2.0 para aplicaciones críticas) y haz clic en Calcular para ver la sobrepresión, el radio de la bola de fuego y todos los radios de la zona de peligro."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "q1": "¿Qué es la distancia escalada y por qué es útil?",
+    "q1_a": "La distancia escalada Z = R / W^(1/3) es una cantidad adimensional (o con dimensión) que comprime los datos de explosión de cargas de distintos tamaños en una sola curva. Un valor dado de Z siempre produce la misma sobrepresión máxima, independientemente del tamaño absoluto de la carga, porque la física de propagación de la onda expansiva escala con la raíz cúbica de la liberación de energía. Esto permite extrapolar datos de cargas pequeñas a rendimientos mucho mayores.",
+    "q2": "¿Cuál es la diferencia entre una explosión en superficie y una explosión aérea?",
+    "q2_a": "En una explosión en superficie, la detonación ocurre en el suelo o muy cerca de él. La onda reflejada se fusiona casi de inmediato con la incidente, creando una explosión hemisférica que equivale efectivamente a una carga de unas 1.8 veces el rendimiento real. Una explosión aérea ocurre a cierta altitud; la onda esférica incidente llega al suelo y crea una onda reflejada que viaja más lentamente, formando un Mach stem a grandes distancias. La energía total es la misma, pero su distribución espacial cambia.",
+    "q3": "¿Qué significa la sobrepresión máxima en la práctica?",
+    "q3_a": "La sobrepresión máxima es la presión instantánea máxima por encima de la presión atmosférica ambiente (101.325 kPa) en la onda expansiva. A 7 kPa (1 psi), las ventanas se rompen y las personas pueden resultar heridas por vidrio proyectado. A 34.5 kPa (5 psi), las estructuras residenciales sufren daños estructurales importantes. A 100 kPa (1 atm), las estructuras de hormigón y mampostería colapsan y las personas sin protección se enfrentan a lesiones letales en pulmones y oídos.",
+    "q4": "¿Qué precisión tiene la fórmula de sobrepresión de Brode?",
+    "q4_a": "La fórmula de Brode proporciona una precisión de orden de magnitud adecuada para la planificación de seguridad en el rango Z = 0.2 a 50 m/kg^(1/3). Para diseño de ingeniería de precisión, los polinomios de Kingery-Bulmash (1984) son el estándar, ya que cubren un rango mayor y se ajustan a un conjunto de datos más amplio. Para efectos muy próximos (Z < 0.2) se requieren códigos de simulación hidrodinámica.",
+    "q5": "¿Qué es el factor de equivalencia TNT?",
+    "q5_a": "Distintos explosivos liberan distintas energías por kilogramo. El factor de equivalencia TNT normaliza todos los explosivos según el rendimiento del TNT (4.610 MJ/kg). Equivalencias comunes: ANFO ≈ 0.82, PETN ≈ 1.27, C-4 (basado en RDX) ≈ 1.34, TATP ≈ 0.88, pólvora negra ≈ 0.50. Multiplica la masa real de la carga por su factor de equivalencia para obtener la entrada de esta calculadora.",
+    "q6": "¿Se puede usar esta calculadora para armas nucleares?",
+    "q6_a": "Para explosivos convencionales grandes y pequeños dispositivos nucleares tácticos, la escala Hopkinson-Cranz y el modelo de Brode dan estimaciones iniciales razonables, ya que la física de la explosión es similar. Sin embargo, las explosiones nucleares implican radiación térmica, radiación nuclear y pulsos electromagnéticos, que no existen en explosiones convencionales y requieren modelos aparte. La calculadora no debe usarse como única fuente para estimar efectos nucleares."
+  }
+}

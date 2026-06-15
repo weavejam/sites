@@ -1,0 +1,109 @@
+{
+  "title": "Explosionsradius-Rechner",
+  "tagline": "Berechnen Sie Explosionsradius, Überdruckeffekte und Sicherheitsabstände für verschiedene Explosionsszenarien.",
+  "intro": "Geben Sie Sprengstoffmenge, Detonationshöhe, Entfernung zur Explosion, Explosionstyp und Sicherheitsfaktor ein, um Überdruck, Feuerballradius und Gefahrenzonengrenzen mit bewährter Explosionsphysik zu berechnen.",
+  "field": {
+    "yield": "Sprengstoffmenge (kg TNT)",
+    "height": "Detonationshöhe (m)",
+    "distance": "Entfernung zur Explosion (m)",
+    "blastType": "Explosionstyp",
+    "safetyFactor": "Sicherheitsfaktor"
+  },
+  "placeholder": {
+    "yield": "z. B. 100",
+    "height": "z. B. 0",
+    "distance": "z. B. 50",
+    "safetyFactor": "z. B. 1.5"
+  },
+  "blastType": {
+    "surface": "Oberfläche (Bodenexplosion)",
+    "air": "Luftdetonation",
+    "underground": "Unterirdisch"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie gültige positive Werte für Menge, Höhe und Entfernung ein.",
+    "safetyFactor": "Der Sicherheitsfaktor muss ≥ 1 sein."
+  },
+  "result": {
+    "heading": "Ergebnisse der Explosionsanalyse",
+    "scaledDistance": "Skalierte Entfernung (Z)",
+    "overpressure": "Spitzenüberdruck",
+    "fireballRadius": "Feuerballradius",
+    "lethalRadius": "Tödlicher Radius (> 100 kPa)",
+    "dangerRadius": "Gefahrenradius (> 34.5 kPa)",
+    "safeRadius": "Sicherheitsabstand (< 7 kPa)",
+    "category": "Überdruckkategorie",
+    "effectiveYield": "Effektive Menge",
+    "unitM": "m",
+    "unitKPa": "kPa",
+    "unitKgTNT": "kg TNT",
+    "unitMkg13": "m/kg^(1/3)",
+    "categories": {
+      "safe": "Sicher (< 7 kPa)",
+      "moderate": "Mäßige Schäden (7–34.5 kPa)",
+      "severe": "Schwere Schäden (34.5–100 kPa)",
+      "lethal": "Potentiell tödlich (> 100 kPa)"
+    },
+    "formula": "Z = R / W^(1/3)  •  P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³)  •  [Brode, 1955]"
+  },
+  "about": {
+    "heading": "Über den Explosionsradius-Rechner",
+    "body": "Wenn ein Sprengstoff detoniert, wird in extrem kurzer Zeit enorme Energie freigesetzt und eine sich rasch ausdehnende Hülle aus hoch komprimiertem Gas erzeugt — die Druckwelle. Das räumliche Ausmaß dieser zerstörerischen Wirkung zu verstehen, ist für Sicherheitsplanung, militärische Anwendungen, Unfalluntersuchungen und Sprengtechnik wesentlich. Der Explosionsradius-Rechner verwendet das Hopkinson–Cranz-Wurzelgesetz und das empirische Überdruckmodell von Brode, um Explosionseffekte in jeder Entfernung zu schätzen.\n\nDas Hopkinson–Cranz-Skalierungsgesetz (auch Wurzelskalierung genannt) besagt, dass Druckwellen von Sprengstoffen unterschiedlicher Größe, aber gleicher Geometrie und Zusammensetzung geometrisch ähnlich sind, wenn Entfernungen mit der Kubikwurzel der Ladungsmasse skaliert werden. Die skalierte Entfernung ist definiert als Z = R / W^(1/3), wobei R die tatsächliche Entfernung in Metern und W die TNT-Äquivalentmasse in Kilogramm ist. Derselbe Z-Wert erzeugt immer denselben Spitzenüberdruck, unabhängig von der absoluten Menge — deshalb ist die skalierte Entfernung die grundlegende unabhängige Variable aller empirischen Explosionsmodelle.\n\nDas hier verwendete Spitzenüberdruckmodell ist die Brode-Formel (1955): P_s = P_atm × (0.84/Z + 0.27/Z² + 0.70/Z³), wobei P_atm = 101.325 kPa der Standardatmosphärendruck ist. Die Formel liefert für Z > 0.1 m/kg^(1/3) eine gute Näherung und deckt den für Sicherheitsrechnungen relevanten Fern- bis Mittelbereich ab. Nahe dem Feuerball (Z < 0.1) überschätzt das Modell; im extremen Fernfeld (Z > 100) ist die akustische Näherung geeigneter.\n\nDie effektive Menge wird an die Detonationsgeometrie angepasst. Eine Bodenexplosion konzentriert die halbkugelförmige Stoßwelle durch Bodenreflexion in die obere Halbkugel und verdoppelt damit effektiv die Menge: W_eff = 1.8 × W für Bodenexplosionen. Eine Luftdetonation strahlt kugelförmig mit W_eff = W. Eine unterirdische Explosion verliert Energie an die Kopplung mit dem Boden, sodass für den Luftstoßanteil W_eff ≈ 0.7 × W gilt.\n\nWichtige Schadensschwellen aus dem Brode-Modell: Z ≈ 1.4 m/kg^(1/3) entspricht 100 kPa (1 atm Überdruck, tödlich für ungeschützte Personen); Z ≈ 3.0 entspricht 34.5 kPa (5 psi, die in Explosionssicherheitsnormen übliche Gefahrenzonengrenze); und Z ≈ 12 entspricht etwa 7 kPa (1 psi, Schwelle für Fensterschäden und leichte Strukturschäden). Der Feuerballradius wird aus experimentellen Daten mit r_fireball ≈ 3.9 × W^(1/3) Metern geschätzt.\n\nDer Sicherheitsfaktor multipliziert alle kritischen Radien, um Planungsreserven bereitzustellen. Vorschriften für Lagerung und Handhabung von Explosivstoffen (z. B. DoD 6055.9, NATO AASTP-1) verlangen für bewohnte Gebäude typischerweise Sicherheitsfaktoren von 1.5 bis 2.0. Anwender sollten stets die geltenden Vorschriften prüfen und für reale Anwendungen zertifizierte Sprengstoffingenieure hinzuziehen."
+  },
+  "examples": {
+    "heading": "Beispiele für den Explosionsradius",
+    "intro": "Die folgende Tabelle zeigt Überdruck und Sicherheitsabstände für repräsentative Explosionsszenarien.",
+    "colInput": "Parameter",
+    "colOutput": "Wichtige Ergebnisse",
+    "colNote": "Szenario",
+    "loadMilitary": "Militärische Ladung laden",
+    "loadIndustrial": "Industriellen Abriss laden",
+    "loadAirBurst": "Luftdetonation laden",
+    "items": [
+      {
+        "input": "100 kg TNT, Oberfläche, R=50 m, SF=1.5",
+        "output": "Z ≈ 8.86 m/kg^(1/3), P_s ≈ 10.1 kPa (mäßig), R_danger ≈ 25 m",
+        "note": "Militärische Sprengladung"
+      },
+      {
+        "input": "500 kg TNT, Oberfläche, R=100 m, SF=2.0",
+        "output": "Z ≈ 10.4 m/kg^(1/3), P_s ≈ 8.5 kPa (mäßig), R_danger ≈ 57 m",
+        "note": "Kontrollierter Gebäuderückbau"
+      },
+      {
+        "input": "50 kg TNT, Luftdetonation, h=20 m, R=30 m, SF=1.0",
+        "output": "Z ≈ 9.79 m/kg^(1/3), P_s ≈ 9.1 kPa (mäßig), R_danger ≈ 11 m",
+        "note": "Luftdetonationsszenario"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Explosionsradius-Rechner",
+    "steps": [
+      "Geben Sie die Sprengstoffmenge in TNT-Äquivalenten ein. Wenn Sie einen anderen Sprengstoff verwenden, multiplizieren Sie die tatsächliche Masse mit seinem TNT-Äquivalenzfaktor (z. B. C-4 ≈ 1.34, ANFO ≈ 0.82).",
+      "Geben Sie die Detonationshöhe in Metern über dem Boden ein (0 für eine Bodenexplosion auf Bodenniveau).",
+      "Geben Sie die Entfernung vom Explosionszentrum in Metern ein, an der Sie den Überdruck bewerten möchten.",
+      "Wählen Sie den Explosionstyp: Surface für Bodenexplosionen (durch Bodenreflexion verstärkt), Air burst für erhöhte Detonationen oder Underground für unterirdische Explosionen.",
+      "Legen Sie den Sicherheitsfaktor fest (mindestens 1.0; für sicherheitskritische Anwendungen 1.5–2.0 verwenden) und klicken Sie auf Berechnen, um Überdruck, Feuerballradius und alle Gefahrenzonenradien anzuzeigen."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "q1": "Was ist skalierte Entfernung und warum ist sie nützlich?",
+    "q1_a": "Die skalierte Entfernung Z = R / W^(1/3) ist eine dimensionslose (oder dimensionsbehaftete) Größe, die Explosionsdaten unterschiedlich großer Ladungen auf eine einzige Kurve reduziert. Ein bestimmter Z-Wert erzeugt immer denselben Spitzenüberdruck, unabhängig von der absoluten Größe der Ladung, weil die Physik der Druckwellenausbreitung mit der Kubikwurzel der Energiefreisetzung skaliert. Dadurch lassen sich Daten kleiner Ladungen auf deutlich größere Mengen extrapolieren.",
+    "q2": "Was ist der Unterschied zwischen einer Bodenexplosion und einer Luftdetonation?",
+    "q2_a": "Bei einer Bodenexplosion erfolgt die Detonation auf oder sehr nahe am Boden. Die reflektierte Stoßwelle verschmilzt nahezu sofort mit der einfallenden Welle und erzeugt eine halbkugelförmige Explosion, die effektiv etwa dem 1.8-Fachen der tatsächlichen Menge entspricht. Eine Luftdetonation findet in der Höhe statt; die einfallende kugelförmige Welle trifft auf den Boden und erzeugt eine reflektierte Welle, die sich langsamer fortbewegt und in großen Entfernungen einen Mach-Stem bildet. Die Gesamtenergie ist gleich, aber ihre räumliche Verteilung unterscheidet sich.",
+    "q3": "Was bedeutet Spitzenüberdruck in der Praxis?",
+    "q3_a": "Spitzenüberdruck ist der maximale momentane Druck über dem Umgebungsatmosphärendruck (101.325 kPa) in der Druckwelle. Bei 7 kPa (1 psi) zerbrechen Fenster und Menschen können durch Glasverletzungen verletzt werden. Bei 34.5 kPa (5 psi) erleiden Wohngebäude erhebliche Strukturschäden. Bei 100 kPa (1 atm) stürzen Beton- und Mauerwerkskonstruktionen ein, und ungeschützte Personen sind tödlichen Lungen- und Ohrverletzungen ausgesetzt.",
+    "q4": "Wie genau ist die Brode-Überdruckformel?",
+    "q4_a": "Die Brode-Formel liefert im Bereich Z = 0.2 bis 50 m/kg^(1/3) eine Größenordnungsgenauigkeit, die für die Sicherheitsplanung geeignet ist. Für präzise technische Auslegung sind die Kingery-Bulmash-Polynome (1984) der Standard, da sie einen größeren Bereich abdecken und an einen umfangreicheren Datensatz angepasst sind. Für sehr nahe Effekte (Z < 0.2) sind hydrodynamische Simulationscodes erforderlich.",
+    "q5": "Was ist der TNT-Äquivalenzfaktor?",
+    "q5_a": "Unterschiedliche Sprengstoffe setzen pro Kilogramm unterschiedliche Energiemengen frei. Der TNT-Äquivalenzfaktor normiert alle Sprengstoffe auf die Leistung von TNT (4.610 MJ/kg). Häufige Äquivalenzen: ANFO ≈ 0.82, PETN ≈ 1.27, C-4 (RDX-basiert) ≈ 1.34, TATP ≈ 0.88, Schwarzpulver ≈ 0.50. Multiplizieren Sie die tatsächliche Ladungsmasse mit ihrem Äquivalenzfaktor, um den Eingabewert für diesen Rechner zu erhalten.",
+    "q6": "Kann dieser Rechner für Kernwaffen verwendet werden?",
+    "q6_a": "Für große konventionelle Explosivstoffe und kleine taktische Nukleargeräte liefern die Hopkinson-Cranz-Skalierung und das Brode-Modell vernünftige erste Abschätzungen, da die Explosionsphysik ähnlich ist. Nukleare Explosionen umfassen jedoch thermische Strahlung, Kernstrahlung und elektromagnetische Impulse, die bei konventionellen Explosionen fehlen und separate Modelle erfordern. Der Rechner sollte nicht als alleinige Quelle für die Abschätzung nuklearer Effekte verwendet werden."
+  }
+}
