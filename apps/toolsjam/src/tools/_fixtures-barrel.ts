@@ -24,6 +24,11 @@ import { fixtures as f_dice_probability_calculator } from "@/tools/dice-probabil
 import { fixtures as f_dice_roller_calculator } from "@/tools/dice-roller-calculator.fixtures";
 import { fixtures as f_dispersion_calculator } from "@/tools/dispersion-calculator.fixtures";
 import { fixtures as f_dot_plot_calculator } from "@/tools/dot-plot-calculator.fixtures";
+import { fixtures as f_electric_field_calculator } from "@/tools/electric-field-calculator.fixtures";
+import { fixtures as f_electric_motor_torque_calculator } from "@/tools/electric-motor-torque-calculator.fixtures";
+import { fixtures as f_electric_potential_calculator } from "@/tools/electric-potential-calculator.fixtures";
+import { fixtures as f_electrical_mobility_calculator } from "@/tools/electrical-mobility-calculator.fixtures";
+import { fixtures as f_electrical_power_calculator } from "@/tools/electrical-power-calculator.fixtures";
 import { fixtures as f_empirical_rule_calculator } from "@/tools/empirical-rule-calculator.fixtures";
 import { fixtures as f_error_propagation_calculator } from "@/tools/error-propagation-calculator.fixtures";
 import { fixtures as f_expanded_form_calculator } from "@/tools/expanded-form-calculator.fixtures";
@@ -163,6 +168,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "dice-roller-calculator": f_dice_roller_calculator,
   "dispersion-calculator": f_dispersion_calculator,
   "dot-plot-calculator": f_dot_plot_calculator,
+  "electric-field-calculator": f_electric_field_calculator,
+  "electric-motor-torque-calculator": f_electric_motor_torque_calculator,
+  "electric-potential-calculator": f_electric_potential_calculator,
+  "electrical-mobility-calculator": f_electrical_mobility_calculator,
+  "electrical-power-calculator": f_electrical_power_calculator,
   "empirical-rule-calculator": f_empirical_rule_calculator,
   "error-propagation-calculator": f_error_propagation_calculator,
   "expanded-form-calculator": f_expanded_form_calculator,
