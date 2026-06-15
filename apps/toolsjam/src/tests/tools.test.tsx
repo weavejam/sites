@@ -51,8 +51,9 @@ function renderTool(toolId: string) {
   if (!Comp) throw new Error(`no component for ${toolId}`);
   const tMsgs = enByToolId.get(toolId);
   if (!tMsgs) throw new Error(`no en messages for ${toolId}`);
+  const messages = { tool: { [toolId]: tMsgs } } as unknown as Record<string, unknown>;
   return render(
-    <NextIntlClientProvider locale="en" messages={{ tool: { [toolId]: tMsgs } }}>
+    <NextIntlClientProvider locale="en" messages={messages}>
       <Comp locale="en" />
     </NextIntlClientProvider>,
   );
