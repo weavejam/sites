@@ -6,7 +6,12 @@ import type { ToolFixture } from "@/tools/fixture";
 import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } from "@/tools/a1c-calculator-hemoglobin-a1c-to-average-blood-sugar.fixtures";
 import { fixtures as f_acres_per_hour_calculator } from "@/tools/acres-per-hour-calculator.fixtures";
 import { fixtures as f_acres_to_hectares_converter } from "@/tools/acres-to-hectares-converter.fixtures";
+import { fixtures as f_air_pressure_at_altitude_calculator } from "@/tools/air-pressure-at-altitude-calculator.fixtures";
+import { fixtures as f_alfven_velocity_calculator } from "@/tools/alfven-velocity-calculator.fixtures";
+import { fixtures as f_alien_civilization_calculator } from "@/tools/alien-civilization-calculator.fixtures";
 import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-frequency-calculator.fixtures";
+import { fixtures as f_angle_of_banking_calculator } from "@/tools/angle-of-banking-calculator.fixtures";
+import { fixtures as f_angle_of_repose_calculator } from "@/tools/angle-of-repose-calculator.fixtures";
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
@@ -210,7 +215,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
   "acres-per-hour-calculator": f_acres_per_hour_calculator,
   "acres-to-hectares-converter": f_acres_to_hectares_converter,
+  "air-pressure-at-altitude-calculator": f_air_pressure_at_altitude_calculator,
+  "alfven-velocity-calculator": f_alfven_velocity_calculator,
+  "alien-civilization-calculator": f_alien_civilization_calculator,
   "allele-frequency-calculator": f_allele_frequency_calculator,
+  "angle-of-banking-calculator": f_angle_of_banking_calculator,
+  "angle-of-repose-calculator": f_angle_of_repose_calculator,
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
