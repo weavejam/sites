@@ -26,6 +26,7 @@ import { fixtures as f_alien_civilization_calculator } from "@/tools/alien-civil
 import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-frequency-calculator.fixtures";
 import { fixtures as f_amdahls_law_calculator } from "@/tools/amdahls-law-calculator.fixtures";
 import { fixtures as f_angle_of_banking_calculator } from "@/tools/angle-of-banking-calculator.fixtures";
+import { fixtures as f_angle_of_impact_calculator } from "@/tools/angle-of-impact-calculator.fixtures";
 import { fixtures as f_angle_of_repose_calculator } from "@/tools/angle-of-repose-calculator.fixtures";
 import { fixtures as f_angle_of_twist_calculator } from "@/tools/angle-of-twist-calculator.fixtures";
 import { fixtures as f_angular_acceleration_calculator } from "@/tools/angular-acceleration-calculator.fixtures";
@@ -34,6 +35,10 @@ import { fixtures as f_angular_frequency_calculator } from "@/tools/angular-freq
 import { fixtures as f_angular_momentum_calculator } from "@/tools/angular-momentum-calculator.fixtures";
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
+import { fixtures as f_antipode_calculator } from "@/tools/antipode-calculator.fixtures";
+import { fixtures as f_aquarium_calculator } from "@/tools/aquarium-calculator.fixtures";
+import { fixtures as f_aquarium_glass_thickness_calculator } from "@/tools/aquarium-glass-thickness-calculator.fixtures";
+import { fixtures as f_aspect_ratio_calculator } from "@/tools/aspect-ratio-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
 import { fixtures as f_black_hole_collision_calculator } from "@/tools/black-hole-collision-calculator.fixtures";
 import { fixtures as f_black_hole_temperature_calculator } from "@/tools/black-hole-temperature-calculator.fixtures";
@@ -340,6 +345,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "allele-frequency-calculator": f_allele_frequency_calculator,
   "amdahls-law-calculator": f_amdahls_law_calculator,
   "angle-of-banking-calculator": f_angle_of_banking_calculator,
+  "angle-of-impact-calculator": f_angle_of_impact_calculator,
   "angle-of-repose-calculator": f_angle_of_repose_calculator,
   "angle-of-twist-calculator": f_angle_of_twist_calculator,
   "angular-acceleration-calculator": f_angular_acceleration_calculator,
@@ -348,6 +354,10 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "angular-momentum-calculator": f_angular_momentum_calculator,
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
+  "antipode-calculator": f_antipode_calculator,
+  "aquarium-calculator": f_aquarium_calculator,
+  "aquarium-glass-thickness-calculator": f_aquarium_glass_thickness_calculator,
+  "aspect-ratio-calculator": f_aspect_ratio_calculator,
   "basal-area-calculator": f_basal_area_calculator,
   "black-hole-collision-calculator": f_black_hole_collision_calculator,
   "black-hole-temperature-calculator": f_black_hole_temperature_calculator,
