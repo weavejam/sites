@@ -1,0 +1,117 @@
+{
+  "title": "LFSR Calculator - Linear Feedback Shift Register",
+  "tagline": "Generate pseudo-random binary sequences using a Linear Feedback Shift Register with customizable seed and feedback taps.",
+  "intro": "Enter the register length, initial seed, feedback tap positions, LFSR type, and number of iterations, then click Generate Sequence.",
+  "field": {
+    "registerLength": "Register Length",
+    "seed": "Initial Seed",
+    "seedHint": "Binary string representing the initial state (1s and 0s only)",
+    "taps": "Feedback Taps",
+    "tapsHint": "Comma-separated tap positions starting from 1",
+    "type": "LFSR Type",
+    "iterations": "Iterations",
+    "iterationsHint": "Number of shift operations to perform"
+  },
+  "placeholder": {
+    "registerLength": "e.g. 4",
+    "seed": "e.g. 1000",
+    "taps": "e.g. 4, 3",
+    "iterations": "e.g. 15"
+  },
+  "type": {
+    "fibonacci": "Fibonacci LFSR",
+    "galois": "Galois LFSR"
+  },
+  "button": {
+    "generate": "Generate Sequence",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalidSeed": "Seed must be a binary string of 0s and 1s matching the register length.",
+    "invalidTaps": "Taps must be positive integers within the register length range.",
+    "invalidLength": "Register length must be a positive integer (2–30 recommended).",
+    "invalidIterations": "Iterations must be a positive integer."
+  },
+  "result": {
+    "heading": "Generated Sequence",
+    "outputBit": "Output Bits",
+    "states": "Register States",
+    "period": "Sequence Period",
+    "isMaximal": "Maximal Length",
+    "yes": "Yes",
+    "no": "No",
+    "moreStates": "more"
+  },
+  "about": {
+    "heading": "About the LFSR Calculator",
+    "body": "A Linear Feedback Shift Register (LFSR) is a shift register whose input bit is a linear function (XOR) of some of its previous state bits. At each clock cycle, the register shifts all bits by one position, the new input bit is computed by XOR-ing the bits at specific positions called feedback taps, and the output is the bit shifted out. The resulting binary sequence appears random but is entirely deterministic, repeating with a period that depends on the register length and the choice of taps.\n\nLFSRs are used extensively in digital communications, cryptography, built-in self-test (BIST) circuits, spread-spectrum systems, and pseudo-random number generation. Because an LFSR with n stages can produce a sequence of at most 2ⁿ − 1 bits before repeating (the all-zeros state is excluded), and because this maximum-length sequence can be achieved with carefully chosen primitive polynomial taps, LFSRs are an efficient hardware implementation of pseudo-randomness.\n\nThere are two common LFSR architectures. In the Fibonacci (external feedback) LFSR, the feedback bit is computed from a fixed set of tap positions, and this bit is fed into the leftmost stage while all other stages shift right. The output is taken from the rightmost stage. In the Galois (internal feedback) LFSR, the feedback bit is XOR-ed directly into multiple intermediate stages rather than being fed back to the input alone. Galois LFSRs are faster in hardware because all XOR operations happen in parallel rather than in series.\n\nA maximal-length LFSR — one that cycles through all 2ⁿ − 1 non-zero states before repeating — requires a primitive polynomial as the feedback polynomial. The tap positions correspond to the non-zero coefficients of this polynomial. For a 4-bit LFSR with taps at positions 4 and 3, the primitive polynomial is x⁴ + x³ + 1, and the LFSR cycles through all 15 non-zero states.\n\nThis calculator lets you explore any combination of register length, seed, tap positions, and LFSR type. You can verify whether your chosen taps produce a maximal-length sequence by checking the period in the results — if the period equals 2ⁿ − 1, the taps form a primitive polynomial. Use the examples provided to see well-known maximal-length configurations.\n\nApplications of LFSRs span many domains. In Wi-Fi and Bluetooth, LFSRs provide the spreading codes for frequency hopping and direct-sequence spread spectrum. In storage and communications, CRC (cyclic redundancy check) circuits are implemented as LFSRs. In cryptographic stream ciphers, LFSRs form the core primitive (though modern ciphers combine multiple LFSRs with non-linear components to prevent linear cryptanalysis). In chip testing, LFSR-based signature analysis compresses test response data into a compact signature."
+  },
+  "examples": {
+    "heading": "LFSR Examples",
+    "intro": "Common LFSR configurations demonstrating maximal-length sequences and different register sizes.",
+    "colInput": "Configuration",
+    "colOutput": "Period",
+    "colNote": "Description",
+    "items": [
+      {
+        "input": "4-bit, seed=1000, taps=[4,3], Fibonacci",
+        "output": "15 (maximal)",
+        "note": "Primitive polynomial x⁴+x³+1. Cycles through all 15 non-zero 4-bit states."
+      },
+      {
+        "input": "8-bit, seed=10110001, taps=[8,6,5,4], Fibonacci",
+        "output": "255 (maximal)",
+        "note": "Standard 8-bit Fibonacci LFSR used in cryptographic applications."
+      },
+      {
+        "input": "5-bit, seed=10101, taps=[5,3], Galois",
+        "output": "31 (maximal)",
+        "note": "Internal feedback Galois LFSR with faster parallel XOR operations."
+      },
+      {
+        "input": "3-bit, seed=110, taps=[3,2], Fibonacci",
+        "output": "7 (maximal)",
+        "note": "Simple 3-bit LFSR — ideal for educational exploration of the concept."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the LFSR Calculator",
+    "steps": [
+      "Set the Register Length to the desired number of bits (e.g., 4 for a 4-bit LFSR).",
+      "Enter the Initial Seed as a binary string of 0s and 1s with length equal to the register length (e.g., 1000). Avoid the all-zeros state — it causes the LFSR to lock up.",
+      "Enter the Feedback Taps as comma-separated positions (e.g., 4, 3). Tap positions count from 1 at the leftmost stage.",
+      "Choose the LFSR Type: Fibonacci (external feedback) or Galois (internal feedback).",
+      "Set the number of Iterations and click Generate Sequence to see the output bit stream and register states at each step."
+    ]
+  },
+  "faq": {
+    "heading": "LFSR Calculator FAQ",
+    "items": [
+      {
+        "q": "What is a maximal-length LFSR?",
+        "a": "A maximal-length LFSR cycles through all 2ⁿ − 1 possible non-zero states before repeating. This requires the feedback polynomial (defined by the tap positions) to be a primitive polynomial over GF(2). For a 4-bit LFSR, the maximum period is 15; for an 8-bit LFSR it is 255. Maximal-length sequences (called m-sequences) have excellent pseudo-random properties."
+      },
+      {
+        "q": "Why is the all-zeros state excluded?",
+        "a": "If all register bits are zero, the XOR feedback always produces zero, and the register stays stuck at all zeros forever. This is why the initial seed must not be all zeros. For the same reason, the maximal period is 2ⁿ − 1 rather than 2ⁿ."
+      },
+      {
+        "q": "What is the difference between Fibonacci and Galois LFSR?",
+        "a": "In a Fibonacci LFSR, the feedback bit is XOR-ed from all tap positions and fed into the first stage; all other stages simply shift. In a Galois LFSR, the feedback bit is XOR-ed directly into multiple intermediate stages in parallel. Both produce the same sequence (for equivalent polynomials) but Galois is faster in hardware because XOR operations are parallel."
+      },
+      {
+        "q": "How do I choose the right tap positions?",
+        "a": "To get a maximal-length sequence, the tap positions must correspond to a primitive polynomial over GF(2). Tables of primitive polynomials for common register lengths are widely published. For example, for n=4 the primitive polynomial x⁴+x³+1 gives taps [4,3]; for n=8, the polynomial x⁸+x⁶+x⁵+x⁴+1 gives taps [8,6,5,4]."
+      },
+      {
+        "q": "Are LFSR sequences truly random?",
+        "a": "No — LFSR sequences are deterministic and entirely predictable from the seed and tap positions. They are called pseudo-random because they pass many statistical randomness tests and appear random to an observer who does not know the configuration. For cryptographic use, LFSRs must be combined with non-linear components to resist linear cryptanalysis."
+      },
+      {
+        "q": "What is a CRC and how does it relate to LFSRs?",
+        "a": "A Cyclic Redundancy Check (CRC) is an error-detecting code computed by dividing a message polynomial by a generator polynomial over GF(2) and appending the remainder. The division process is equivalent to running the message bits through an LFSR defined by the generator polynomial. Standard CRC-32 uses a specific 32-bit primitive polynomial, and its hardware implementation is a 32-stage LFSR."
+      }
+    ]
+  }
+}
