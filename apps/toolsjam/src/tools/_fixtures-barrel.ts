@@ -7,6 +7,11 @@ import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } fr
 import { fixtures as f_acres_per_hour_calculator } from "@/tools/acres-per-hour-calculator.fixtures";
 import { fixtures as f_acres_to_hectares_converter } from "@/tools/acres-to-hectares-converter.fixtures";
 import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-frequency-calculator.fixtures";
+import { fixtures as f_angle_of_twist_calculator } from "@/tools/angle-of-twist-calculator.fixtures";
+import { fixtures as f_angular_acceleration_calculator } from "@/tools/angular-acceleration-calculator.fixtures";
+import { fixtures as f_angular_displacement_calculator } from "@/tools/angular-displacement-calculator.fixtures";
+import { fixtures as f_angular_frequency_calculator } from "@/tools/angular-frequency-calculator.fixtures";
+import { fixtures as f_angular_momentum_calculator } from "@/tools/angular-momentum-calculator.fixtures";
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
@@ -216,6 +221,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "acres-per-hour-calculator": f_acres_per_hour_calculator,
   "acres-to-hectares-converter": f_acres_to_hectares_converter,
   "allele-frequency-calculator": f_allele_frequency_calculator,
+  "angle-of-twist-calculator": f_angle_of_twist_calculator,
+  "angular-acceleration-calculator": f_angular_acceleration_calculator,
+  "angular-displacement-calculator": f_angular_displacement_calculator,
+  "angular-frequency-calculator": f_angular_frequency_calculator,
+  "angular-momentum-calculator": f_angular_momentum_calculator,
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
