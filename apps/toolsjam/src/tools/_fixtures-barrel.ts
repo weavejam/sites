@@ -226,8 +226,13 @@ import { fixtures as f_raid_calculator } from "@/tools/raid-calculator.fixtures"
 import { fixtures as f_rain_to_snow_calculator } from "@/tools/rain-to-snow-calculator.fixtures";
 import { fixtures as f_rainfall_calculator } from "@/tools/rainfall-calculator.fixtures";
 import { fixtures as f_ram_latency_calculator } from "@/tools/ram-latency-calculator.fixtures";
+import { fixtures as f_rational_zeros_calculator } from "@/tools/rational-zeros-calculator.fixtures";
+import { fixtures as f_rationalize_denominator_calculator } from "@/tools/rationalize-denominator-calculator.fixtures";
+import { fixtures as f_ratios_of_directed_line_segments_calculator } from "@/tools/ratios-of-directed-line-segments-calculator.fixtures";
 import { fixtures as f_rayleigh_distribution_calculator } from "@/tools/rayleigh-distribution-calculator.fixtures";
+import { fixtures as f_reciprocal_calculator } from "@/tools/reciprocal-calculator.fixtures";
 import { fixtures as f_recruitment_process_duration_calculator } from "@/tools/recruitment-process-duration-calculator.fixtures";
+import { fixtures as f_rectangular_prism_calculator } from "@/tools/rectangular-prism-calculator.fixtures";
 import { fixtures as f_relative_error_calculator } from "@/tools/relative-error-calculator.fixtures";
 import { fixtures as f_relative_frequency_calculator } from "@/tools/relative-frequency-calculator.fixtures";
 import { fixtures as f_relative_risk_calculator } from "@/tools/relative-risk-calculator.fixtures";
@@ -575,8 +580,13 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "rain-to-snow-calculator": f_rain_to_snow_calculator,
   "rainfall-calculator": f_rainfall_calculator,
   "ram-latency-calculator": f_ram_latency_calculator,
+  "rational-zeros-calculator": f_rational_zeros_calculator,
+  "rationalize-denominator-calculator": f_rationalize_denominator_calculator,
+  "ratios-of-directed-line-segments-calculator": f_ratios_of_directed_line_segments_calculator,
   "rayleigh-distribution-calculator": f_rayleigh_distribution_calculator,
+  "reciprocal-calculator": f_reciprocal_calculator,
   "recruitment-process-duration-calculator": f_recruitment_process_duration_calculator,
+  "rectangular-prism-calculator": f_rectangular_prism_calculator,
   "relative-error-calculator": f_relative_error_calculator,
   "relative-frequency-calculator": f_relative_frequency_calculator,
   "relative-risk-calculator": f_relative_risk_calculator,
