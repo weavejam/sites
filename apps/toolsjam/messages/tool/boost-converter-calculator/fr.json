@@ -1,0 +1,119 @@
+{
+  "title": "Calculateur de convertisseur élévateur – conception DC-DC step-up",
+  "tagline": "Calculez le rapport cyclique, le courant d’inductance, le courant d’entrée et le rendement pour les circuits convertisseurs élévateurs.",
+  "intro": "Saisissez la tension d’entrée, la tension de sortie, la fréquence de découpage, la valeur d’inductance et le courant de charge pour concevoir votre convertisseur DC-DC élévateur.",
+  "field": {
+    "inputVoltage": "Tension d’entrée (Vin)",
+    "outputVoltage": "Tension de sortie (Vout)",
+    "switchingFrequency": "Fréquence de découpage (f)",
+    "inductorValue": "Valeur de l’inductance (L)",
+    "loadCurrent": "Courant de charge (Iout)"
+  },
+  "placeholder": {
+    "inputVoltage": "ex. 3.7",
+    "outputVoltage": "ex. 5",
+    "switchingFrequency": "ex. 500000",
+    "inductorValue": "ex. 0.000047",
+    "loadCurrent": "ex. 0.5"
+  },
+  "unit": {
+    "inputVoltage": "V",
+    "outputVoltage": "V",
+    "switchingFrequency": "Hz",
+    "inductorValue": "H",
+    "loadCurrent": "A"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs.",
+    "voltageRatio": "La tension de sortie doit être supérieure à la tension d’entrée pour un convertisseur élévateur.",
+    "dutyCycle": "Le rapport cyclique doit être compris entre 0 et 1. Vérifiez les valeurs de Vin et Vout."
+  },
+  "result": {
+    "heading": "Résultats",
+    "dutyCycle": "Rapport cyclique (D)",
+    "dutyCyclePercent": "Rapport cyclique (%)",
+    "inputCurrent": "Courant d’entrée moyen (Iin)",
+    "inductorRipple": "Ondulation du courant d’inductance (ΔIL)",
+    "inductorPeak": "Courant de crête de l’inductance (IL_peak)",
+    "outputPower": "Puissance de sortie (Pout)",
+    "inputPower": "Puissance d’entrée (Pin, idéale)"
+  },
+  "about": {
+    "heading": "À propos du calculateur de convertisseur élévateur",
+    "body": "Un convertisseur élévateur, aussi appelé convertisseur step-up, est une topologie d’alimentation à découpage DC-DC qui produit une tension de sortie supérieure à sa tension d’entrée. C’est l’une des trois topologies fondamentales de convertisseurs non isolés en électronique de puissance, avec les convertisseurs buck (abaisseur) et buck-boost. Les convertisseurs élévateurs sont omniprésents dans les appareils alimentés par batterie, les drivers LED, l’électronique automobile, les systèmes solaires et toute application où la tension d’alimentation disponible est inférieure à la tension requise par la charge.\n\nLe convertisseur élévateur de base se compose d’une inductance, d’un interrupteur (généralement un MOSFET), d’une diode, d’un condensateur de sortie et d’un circuit de commande. Pendant le temps de conduction de l’interrupteur (durée D×T_s, où D est le rapport cyclique et T_s = 1/f la période de découpage), le courant monte dans l’inductance, stockant de l’énergie dans son champ magnétique. Pendant le temps de blocage ((1−D)×T_s), l’interrupteur s’ouvre et l’inductance libère son énergie stockée à travers la diode vers le condensateur de sortie et la charge, ce qui élève la tension au-dessus du niveau d’entrée.\n\nEn mode de conduction continue (CCM), où le courant d’inductance ne retombe jamais à zéro, le rapport de conversion idéal est Vout/Vin = 1/(1−D). En isolant D, on obtient D = 1 − Vin/Vout. Par exemple, pour élever 3.7 V à 5 V, le rapport cyclique est 1 − 3.7/5 = 0.26, soit 26%. Comme le rapport cyclique tend vers 1 lorsque le rapport de conversion augmente, des rapports très élevés deviennent peu pratiques en raison des limites de temporisation de l’interrupteur et de l’augmentation des pertes par conduction.\n\nL’ondulation du courant d’inductance ΔIL = Vin × D / (L × f) détermine l’amplitude des oscillations du courant autour de sa valeur moyenne. Une inductance L plus grande ou une fréquence de découpage f plus élevée réduit l’ondulation, ce qui améliore le rendement et diminue l’ondulation de la tension de sortie. Le courant de crête de l’inductance IL_peak = Iin + ΔIL/2 ne doit pas dépasser le courant de saturation nominal de l’inductance. Dans un convertisseur idéal sans pertes, la puissance d’entrée Pin = Vin × Iin est égale à la puissance de sortie Pout = Vout × Iout, donc le courant moyen d’entrée est Iin = Pout/Vin.\n\nLes convertisseurs réels présentent des pertes dues à la résistance à l’état passant du MOSFET, à la chute de tension directe de la diode, à la résistance série de l’inductance et aux pertes de commutation, donc le rendement réel η < 100%. Ce calculateur suppose des composants idéaux ; multipliez le courant d’entrée idéal par 1/η pour une estimation réaliste.\n\nCet outil est essentiel pour les ingénieurs en électronique de puissance, les passionnés et les étudiants qui conçoivent des circuits convertisseurs élévateurs pour la gestion de batteries, les objets IoT, l’éclairage LED ou les applications d’énergie renouvelable."
+  },
+  "examples": {
+    "heading": "Exemples de conception de convertisseur élévateur",
+    "intro": "Scénarios pratiques illustrant les calculs de paramètres d’un convertisseur élévateur.",
+    "loadBattery": "Batterie 3.7 V → 5 V",
+    "loadAutomotive": "Automobile 12 V → 24 V",
+    "loadSolar": "Solaire MPPT 8 V → 18 V",
+    "colOutput": "Résultats clés",
+    "colNote": "Application",
+    "items": [
+      {
+        "input": "Vin = 3.7 V, Vout = 5 V, f = 500 kHz, L = 47 µH, Iout = 0.5 A",
+        "output": "D = 26%, ΔIL ≈ 0.041 A, Iin ≈ 0.676 A",
+        "note": "Batterie Li-ion vers USB 5 V. Un faible rapport cyclique et une fréquence élevée gardent l’ondulation faible."
+      },
+      {
+        "input": "Vin = 12 V, Vout = 24 V, f = 100 kHz, L = 100 µH, Iout = 2 A",
+        "output": "D = 50%, ΔIL ≈ 0.6 A, Iin ≈ 4 A",
+        "note": "Conversion automobile 12 V vers 24 V. Un rapport cyclique de 50% est la limite pratique maximale pour de nombreux contrôleurs."
+      },
+      {
+        "input": "Vin = 8 V, Vout = 18 V, f = 200 kHz, L = 68 µH, Iout = 1.5 A",
+        "output": "D ≈ 55.6%, ΔIL ≈ 0.327 A, Iin ≈ 3.375 A",
+        "note": "Application solaire MPPT. La sortie suit la tension du bus tandis que l’entrée suit la tension MPP du panneau."
+      },
+      {
+        "input": "Vin = 5 V, Vout = 36 V, f = 300 kHz, L = 33 µH, Iout = 0.3 A",
+        "output": "D ≈ 86.1%, ΔIL ≈ 0.435 A, Iin ≈ 2.16 A",
+        "note": "Driver LED haute luminosité. Rapport cyclique très élevé ; le détarage et le routage PCB sont critiques à ce rapport."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de convertisseur élévateur",
+    "steps": [
+      "Entrez la tension d’entrée (Vin) — la tension d’alimentation DC fournie par votre batterie ou source.",
+      "Entrez la tension de sortie (Vout) — la sortie requise ; elle doit être supérieure à Vin pour une topologie élévatrice.",
+      "Entrez la fréquence de découpage (f) en Hz — des fréquences plus élevées permettent des inductances plus petites, mais augmentent les pertes de commutation.",
+      "Entrez la valeur d’inductance (L) en henrys et le courant de charge (Iout) en ampères pour la conception de votre circuit.",
+      "Cliquez sur Calculer pour voir le rapport cyclique, l’ondulation du courant d’inductance, le courant de crête de l’inductance et la puissance d’entrée/sortie."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du convertisseur élévateur",
+    "items": [
+      {
+        "q": "Qu’est-ce que le rapport cyclique dans un convertisseur élévateur ?",
+        "a": "Le rapport cyclique D est la fraction de la période de découpage pendant laquelle le MOSFET est passant. Pour un convertisseur élévateur idéal, D = 1 − Vin/Vout. Par exemple, pour élever 5 V à 12 V, on obtient D = 1 − 5/12 ≈ 58.3%. Un rapport cyclique plus élevé correspond à un rapport d’élévation plus grand."
+      },
+      {
+        "q": "Qu’est-ce que l’ondulation du courant d’inductance et pourquoi est-ce important ?",
+        "a": "L’ondulation du courant d’inductance ΔIL est la variation crête-à-crête du courant traversant l’inductance à chaque cycle de découpage. Une ondulation excessive peut saturer l’inductance, augmenter les pertes dans le noyau et amplifier l’ondulation de la tension de sortie. Les concepteurs visent généralement une ondulation inférieure à 20–30% du courant moyen d’inductance en choisissant un L et un f appropriés."
+      },
+      {
+        "q": "Qu’est-ce que le mode de conduction continue (CCM) ?",
+        "a": "En CCM, le courant d’inductance ne tombe jamais à zéro pendant le cycle de découpage. La formule d’élévation Vout = Vin/(1−D) s’applique en CCM. En dessous d’un courant de charge critique, le convertisseur passe en mode de conduction discontinue (DCM), où le courant atteint zéro pendant une partie du cycle et le rapport de conversion change. Ce calculateur suppose le CCM."
+      },
+      {
+        "q": "Comment choisir la valeur d’inductance pour un convertisseur élévateur ?",
+        "a": "Choisissez l’inductance pour maintenir l’ondulation ΔIL entre 20 et 30% du courant moyen d’entrée : L = Vin × D / (ΔIL × f). Une inductance plus grande réduit l’ondulation mais augmente la taille et le coût. Vérifiez toujours que le courant de crête d’inductance (Iin + ΔIL/2) reste inférieur à la saturation de l’inductance avec une marge."
+      },
+      {
+        "q": "Pourquoi le rendement d’un convertisseur élévateur est-il inférieur à 100% ?",
+        "a": "Les convertisseurs élévateurs réels dissipent de l’énergie dans la résistance à l’état passant du MOSFET (pertes I²R), les transitions de commutation du MOSFET, la chute de tension directe de la diode, les pertes cuivre et noyau de l’inductance, ainsi que la puissance de commande de grille. Les rendements typiques vont de 85% à 97% selon le point de fonctionnement. Le redressement synchrone (remplacer la diode par un second MOSFET) récupère la majeure partie des pertes de diode."
+      },
+      {
+        "q": "Quel est le rapport cyclique pratique maximal ?",
+        "a": "La plupart des circuits intégrés de commande de convertisseur élévateur limitent le rapport cyclique maximal à environ 80–95% afin de garantir que l’interrupteur ait le temps de se couper et que l’inductance transfère l’énergie. Des rapports cycliques très élevés (proches de 1) amplifient aussi les tolérances des composants et rendent le convertisseur plus sensible aux perturbations. En pratique, les convertisseurs élévateurs sont rarement utilisés au-delà d’un rapport de tension de 10:1."
+      }
+    ]
+  }
+}

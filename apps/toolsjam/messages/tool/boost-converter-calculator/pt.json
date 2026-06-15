@@ -1,0 +1,119 @@
+{
+  "title": "Calculadora de conversor elevador – projeto DC-DC step-up",
+  "tagline": "Calcule ciclo de trabalho, corrente do indutor, corrente de entrada e eficiência para circuitos conversores elevadores.",
+  "intro": "Insira a tensão de entrada, a tensão de saída, a frequência de chaveamento, o valor do indutor e a corrente de carga para projetar seu conversor DC-DC elevador.",
+  "field": {
+    "inputVoltage": "Tensão de entrada (Vin)",
+    "outputVoltage": "Tensão de saída (Vout)",
+    "switchingFrequency": "Frequência de chaveamento (f)",
+    "inductorValue": "Valor do indutor (L)",
+    "loadCurrent": "Corrente de carga (Iout)"
+  },
+  "placeholder": {
+    "inputVoltage": "ex.: 3.7",
+    "outputVoltage": "ex.: 5",
+    "switchingFrequency": "ex.: 500000",
+    "inductorValue": "ex.: 0.000047",
+    "loadCurrent": "ex.: 0.5"
+  },
+  "unit": {
+    "inputVoltage": "V",
+    "outputVoltage": "V",
+    "switchingFrequency": "Hz",
+    "inductorValue": "H",
+    "loadCurrent": "A"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira números positivos válidos em todos os campos.",
+    "voltageRatio": "A tensão de saída deve ser maior que a tensão de entrada em um conversor elevador.",
+    "dutyCycle": "O ciclo de trabalho deve estar entre 0 e 1. Verifique os valores de Vin e Vout."
+  },
+  "result": {
+    "heading": "Resultados",
+    "dutyCycle": "Ciclo de trabalho (D)",
+    "dutyCyclePercent": "Ciclo de trabalho (%)",
+    "inputCurrent": "Corrente média de entrada (Iin)",
+    "inductorRipple": "Ripple da corrente do indutor (ΔIL)",
+    "inductorPeak": "Corrente de pico do indutor (IL_peak)",
+    "outputPower": "Potência de saída (Pout)",
+    "inputPower": "Potência de entrada (Pin, ideal)"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de conversor elevador",
+    "body": "Um conversor elevador, também chamado de conversor step-up, é uma topologia de fonte chaveada DC-DC que produz uma tensão de saída maior que a tensão de entrada. É uma das três topologias fundamentais de conversores não isolados em eletrônica de potência, junto com os conversores buck (abaixador) e buck-boost. Conversores elevadores são onipresentes em dispositivos alimentados por bateria, drivers de LED, eletrônica automotiva, sistemas de energia solar e qualquer aplicação em que a tensão disponível seja menor que a tensão exigida pela carga.\n\nO conversor elevador básico consiste em um indutor, uma chave (normalmente um MOSFET), um diodo, um capacitor de saída e um circuito de controle. Durante o tempo ligado da chave (duração D×T_s, onde D é o ciclo de trabalho e T_s = 1/f é o período de chaveamento), a corrente se acumula no indutor, armazenando energia em seu campo magnético. Durante o tempo desligado ((1−D)×T_s), a chave abre e o indutor libera sua energia armazenada através do diodo para o capacitor de saída e a carga, elevando a tensão acima do nível de entrada.\n\nNo modo de condução contínua (CCM), em que a corrente do indutor nunca cai a zero, a relação ideal de conversão é Vout/Vin = 1/(1−D). Resolvendo para o ciclo de trabalho, obtém-se D = 1 − Vin/Vout. Por exemplo, para elevar 3.7 V para 5 V, o ciclo de trabalho é 1 − 3.7/5 = 0.26 ou 26%. Como o ciclo de trabalho se aproxima de 1 conforme a relação de conversão aumenta, relações muito altas se tornam impraticáveis devido a limitações de temporização da chave e ao aumento das perdas por condução.\n\nO ripple da corrente do indutor ΔIL = Vin × D / (L × f) determina o quanto a corrente do indutor oscila ao redor do seu valor médio. Indutância L maior ou frequência de chaveamento f mais alta reduzem o ripple, melhorando a eficiência e reduzindo o ripple de tensão de saída. A corrente de pico do indutor IL_peak = Iin + ΔIL/2 não deve exceder a corrente de saturação nominal do indutor. Em um conversor ideal sem perdas, a potência de entrada Pin = Vin × Iin é igual à potência de saída Pout = Vout × Iout, então a corrente média de entrada é Iin = Pout/Vin.\n\nConversores reais têm perdas por resistência de condução do MOSFET, queda de tensão direta do diodo, resistência série do indutor e perdas de chaveamento, portanto a eficiência real η é menor que 100%. Esta calculadora assume componentes ideais; multiplique a corrente ideal de entrada por 1/η para uma estimativa realista.\n\nEsta ferramenta é essencial para engenheiros de eletrônica de potência, entusiastas e estudantes que projetam circuitos conversores elevadores para gerenciamento de baterias, dispositivos IoT, iluminação LED ou aplicações de energia renovável."
+  },
+  "examples": {
+    "heading": "Exemplos de projeto de conversor elevador",
+    "intro": "Cenários práticos que ilustram cálculos de parâmetros de conversores elevadores.",
+    "loadBattery": "Bateria 3.7 V → 5 V",
+    "loadAutomotive": "Automotivo 12 V → 24 V",
+    "loadSolar": "Solar MPPT 8 V → 18 V",
+    "colOutput": "Resultados principais",
+    "colNote": "Aplicação",
+    "items": [
+      {
+        "input": "Vin = 3.7 V, Vout = 5 V, f = 500 kHz, L = 47 µH, Iout = 0.5 A",
+        "output": "D = 26%, ΔIL ≈ 0.041 A, Iin ≈ 0.676 A",
+        "note": "Bateria de íon-lítio para USB 5 V. Ciclo de trabalho baixo e alta frequência mantêm o ripple pequeno."
+      },
+      {
+        "input": "Vin = 12 V, Vout = 24 V, f = 100 kHz, L = 100 µH, Iout = 2 A",
+        "output": "D = 50%, ΔIL ≈ 0.6 A, Iin ≈ 4 A",
+        "note": "Conversão automotiva de 12 V para 24 V. 50% de ciclo de trabalho é o limite prático para muitos controladores."
+      },
+      {
+        "input": "Vin = 8 V, Vout = 18 V, f = 200 kHz, L = 68 µH, Iout = 1.5 A",
+        "output": "D ≈ 55.6%, ΔIL ≈ 0.327 A, Iin ≈ 3.375 A",
+        "note": "Aplicação solar MPPT. A saída acompanha a tensão do barramento enquanto a entrada segue a tensão de MPP do painel."
+      },
+      {
+        "input": "Vin = 5 V, Vout = 36 V, f = 300 kHz, L = 33 µH, Iout = 0.3 A",
+        "output": "D ≈ 86.1%, ΔIL ≈ 0.435 A, Iin ≈ 2.16 A",
+        "note": "Driver de LED de alto brilho. Ciclo de trabalho muito alto; derating e layout de PCB são críticos nessa relação."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de conversor elevador",
+    "steps": [
+      "Insira a Tensão de entrada (Vin) — a tensão DC da sua bateria ou fonte.",
+      "Insira a Tensão de saída (Vout) — a saída desejada; deve ser maior que Vin para uma topologia elevadora.",
+      "Insira a Frequência de chaveamento (f) em Hz — frequências mais altas permitem indutores menores, mas aumentam as perdas de chaveamento.",
+      "Insira o Valor do indutor (L) em henries e a Corrente de carga (Iout) em amperes para o projeto do circuito.",
+      "Clique em Calcular para ver o ciclo de trabalho, o ripple da corrente do indutor, a corrente de pico do indutor e a potência de entrada/saída."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ do conversor elevador",
+    "items": [
+      {
+        "q": "O que é o ciclo de trabalho em um conversor elevador?",
+        "a": "O ciclo de trabalho D é a fração do período de chaveamento durante a qual o MOSFET fica ligado. Para um conversor elevador ideal, D = 1 − Vin/Vout. Por exemplo, elevar de 5 V para 12 V dá D = 1 − 5/12 ≈ 58.3%. Ciclos de trabalho maiores correspondem a relações de elevação maiores."
+      },
+      {
+        "q": "O que é o ripple da corrente do indutor e por que importa?",
+        "a": "O ripple da corrente do indutor ΔIL é a variação pico a pico da corrente no indutor em cada ciclo de chaveamento. Ripple excessivo pode saturar o indutor, aumentar as perdas no núcleo e amplificar o ripple da tensão de saída. Os projetistas normalmente buscam ripple abaixo de 20–30% da corrente média do indutor escolhendo L e f adequados."
+      },
+      {
+        "q": "O que é o modo de condução contínua (CCM)?",
+        "a": "No CCM, a corrente do indutor nunca cai a zero durante o ciclo de chaveamento. A fórmula de conversão Vout = Vin/(1−D) se aplica no CCM. Abaixo de uma corrente de carga crítica, o conversor entra em modo de condução descontínua (DCM), em que a corrente zera por parte do ciclo e a relação de conversão muda. Esta calculadora assume CCM."
+      },
+      {
+        "q": "Como escolher o valor do indutor para um conversor elevador?",
+        "a": "Escolha o indutor para manter o ripple ΔIL entre 20–30% da corrente média de entrada: L = Vin × D / (ΔIL × f). Um L maior reduz o ripple, mas aumenta o tamanho e o custo. Verifique sempre se a corrente de pico do indutor (Iin + ΔIL/2) fica abaixo da corrente de saturação do indutor com margem."
+      },
+      {
+        "q": "Por que a eficiência de um conversor elevador é menor que 100%?",
+        "a": "Conversores elevadores reais perdem energia na resistência de condução do MOSFET (perdas I²R), nas transições de chaveamento do MOSFET, na queda direta do diodo, nas perdas de cobre e núcleo do indutor e na potência de acionamento de gate. Eficiências típicas variam de 85% a 97%, dependendo do ponto de operação. A retificação síncrona (substituir o diodo por um segundo MOSFET) recupera a maior parte da perda do diodo."
+      },
+      {
+        "q": "Qual é o ciclo de trabalho prático máximo?",
+        "a": "A maioria dos CIs controladores de conversor elevador limita o ciclo de trabalho máximo a cerca de 80–95% para garantir tempo suficiente para a chave desligar e o indutor transferir energia. Ciclos de trabalho muito altos (próximos de 1) também ampliam tolerâncias de componentes e tornam o conversor mais sensível a perturbações. Na prática, conversores elevadores raramente são usados acima de uma relação de tensão de 10:1."
+      }
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "title": "Calculadora de convertidor elevador – diseño DC-DC step-up",
+  "tagline": "Calcula ciclo de trabajo, corriente del inductor, corriente de entrada y eficiencia para circuitos convertidores elevadores.",
+  "intro": "Introduce voltaje de entrada, voltaje de salida, frecuencia de conmutación, valor del inductor y corriente de carga para diseñar tu convertidor DC-DC elevador.",
+  "field": {
+    "inputVoltage": "Voltaje de entrada (Vin)",
+    "outputVoltage": "Voltaje de salida (Vout)",
+    "switchingFrequency": "Frecuencia de conmutación (f)",
+    "inductorValue": "Valor del inductor (L)",
+    "loadCurrent": "Corriente de carga (Iout)"
+  },
+  "placeholder": {
+    "inputVoltage": "p. ej. 3.7",
+    "outputVoltage": "p. ej. 5",
+    "switchingFrequency": "p. ej. 500000",
+    "inductorValue": "p. ej. 0.000047",
+    "loadCurrent": "p. ej. 0.5"
+  },
+  "unit": {
+    "inputVoltage": "V",
+    "outputVoltage": "V",
+    "switchingFrequency": "Hz",
+    "inductorValue": "H",
+    "loadCurrent": "A"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce números positivos válidos en todos los campos.",
+    "voltageRatio": "El voltaje de salida debe ser mayor que el de entrada en un convertidor elevador.",
+    "dutyCycle": "El ciclo de trabajo debe estar entre 0 y 1. Revisa los valores de Vin y Vout."
+  },
+  "result": {
+    "heading": "Resultados",
+    "dutyCycle": "Ciclo de trabajo (D)",
+    "dutyCyclePercent": "Ciclo de trabajo (%)",
+    "inputCurrent": "Corriente media de entrada (Iin)",
+    "inductorRipple": "Rizado de corriente del inductor (ΔIL)",
+    "inductorPeak": "Corriente pico del inductor (IL_peak)",
+    "outputPower": "Potencia de salida (Pout)",
+    "inputPower": "Potencia de entrada (Pin, ideal)"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de convertidor elevador",
+    "body": "Un convertidor elevador, también llamado convertidor step-up, es una topología de fuente conmutada DC-DC que genera un voltaje de salida mayor que su voltaje de entrada. Es una de las tres topologías fundamentales de convertidores no aislados en electrónica de potencia, junto con los convertidores buck (reductor) y buck-boost. Los convertidores elevadores son ubicuos en dispositivos alimentados por batería, controladores LED, electrónica automotriz, sistemas de energía solar y cualquier aplicación en la que la tensión disponible sea menor que la requerida por la carga.\n\nEl convertidor elevador básico consta de un inductor, un interruptor (normalmente un MOSFET), un diodo, un condensador de salida y un circuito de control. Durante el tiempo de encendido del interruptor (duración D×T_s, donde D es el ciclo de trabajo y T_s = 1/f es el periodo de conmutación), la corriente aumenta en el inductor y almacena energía en su campo magnético. Durante el tiempo de apagado ((1−D)×T_s), el interruptor se abre y el inductor libera su energía almacenada a través del diodo hacia el condensador de salida y la carga, elevando el voltaje por encima del nivel de entrada.\n\nEn modo de conducción continua (CCM), donde la corriente del inductor nunca cae a cero, la relación ideal de conversión de voltaje es Vout/Vin = 1/(1−D). Al despejar, el ciclo de trabajo resulta D = 1 − Vin/Vout. Por ejemplo, para elevar de 3.7 V a 5 V, el ciclo de trabajo es 1 − 3.7/5 = 0.26 o 26%. Como el ciclo de trabajo se acerca a 1 a medida que aumenta la relación de conversión, las relaciones muy altas se vuelven poco prácticas debido a las limitaciones de temporización del interruptor y al aumento de las pérdidas por conducción.\n\nEl rizado de corriente del inductor ΔIL = Vin × D / (L × f) determina cuánto oscila la corriente del inductor alrededor de su valor medio. Una inductancia L mayor o una frecuencia de conmutación f más alta reducen el rizado, mejorando la eficiencia y disminuyendo el rizado del voltaje de salida. La corriente pico del inductor IL_peak = Iin + ΔIL/2 no debe superar la corriente de saturación nominal del inductor. En un convertidor ideal sin pérdidas, la potencia de entrada Pin = Vin × Iin es igual a la potencia de salida Pout = Vout × Iout, por lo que la corriente media de entrada es Iin = Pout/Vin.\n\nLos convertidores reales tienen pérdidas por la resistencia en conducción del MOSFET, la caída de tensión directa del diodo, la resistencia serie del inductor y las pérdidas de conmutación, por lo que la eficiencia real η < 100%. Esta calculadora asume componentes ideales; multiplica la corriente ideal de entrada por 1/η para una estimación realista.\n\nEsta herramienta es esencial para ingenieros de electrónica de potencia, aficionados y estudiantes que diseñan circuitos convertidores elevadores para gestión de baterías, dispositivos IoT, iluminación LED o aplicaciones de energía renovable."
+  },
+  "examples": {
+    "heading": "Ejemplos de diseño de convertidor elevador",
+    "intro": "Escenarios prácticos que ilustran cálculos de parámetros de un convertidor elevador.",
+    "loadBattery": "Batería 3.7 V → 5 V",
+    "loadAutomotive": "Automotriz 12 V → 24 V",
+    "loadSolar": "Solar MPPT 8 V → 18 V",
+    "colOutput": "Resultados clave",
+    "colNote": "Aplicación",
+    "items": [
+      {
+        "input": "Vin = 3.7 V, Vout = 5 V, f = 500 kHz, L = 47 µH, Iout = 0.5 A",
+        "output": "D = 26%, ΔIL ≈ 0.041 A, Iin ≈ 0.676 A",
+        "note": "Batería de ion-litio a USB 5 V. Un ciclo de trabajo bajo y una frecuencia alta mantienen pequeño el rizado."
+      },
+      {
+        "input": "Vin = 12 V, Vout = 24 V, f = 100 kHz, L = 100 µH, Iout = 2 A",
+        "output": "D = 50%, ΔIL ≈ 0.6 A, Iin ≈ 4 A",
+        "note": "Conversión automotriz de 12 V a 24 V. Un 50% de ciclo de trabajo es el límite práctico máximo para muchos controladores."
+      },
+      {
+        "input": "Vin = 8 V, Vout = 18 V, f = 200 kHz, L = 68 µH, Iout = 1.5 A",
+        "output": "D ≈ 55.6%, ΔIL ≈ 0.327 A, Iin ≈ 3.375 A",
+        "note": "Aplicación solar MPPT. La salida sigue el voltaje del bus mientras la entrada sigue el voltaje MPP del panel."
+      },
+      {
+        "input": "Vin = 5 V, Vout = 36 V, f = 300 kHz, L = 33 µH, Iout = 0.3 A",
+        "output": "D ≈ 86.1%, ΔIL ≈ 0.435 A, Iin ≈ 2.16 A",
+        "note": "Controlador LED de alta luminosidad. Ciclo de trabajo muy alto; el derating y el diseño del PCB son críticos a esta relación."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de convertidor elevador",
+    "steps": [
+      "Introduce Voltaje de entrada (Vin): la tensión de alimentación DC de tu batería o fuente.",
+      "Introduce Voltaje de salida (Vout): la salida requerida; debe ser mayor que Vin para una topología elevadora.",
+      "Introduce Frecuencia de conmutación (f) en Hz: frecuencias más altas permiten inductores más pequeños, pero aumentan las pérdidas de conmutación.",
+      "Introduce el Valor del inductor (L) en henrios y la Corriente de carga (Iout) en amperios para el diseño de tu circuito.",
+      "Haz clic en Calcular para ver el ciclo de trabajo, el rizado de corriente del inductor, la corriente pico del inductor y la potencia de entrada/salida."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre convertidores elevadores",
+    "items": [
+      {
+        "q": "¿Qué es el ciclo de trabajo en un convertidor elevador?",
+        "a": "El ciclo de trabajo D es la fracción del periodo de conmutación durante la cual el MOSFET está encendido. Para un convertidor elevador ideal, D = 1 − Vin/Vout. Por ejemplo, elevar de 5 V a 12 V da D = 1 − 5/12 ≈ 58.3%. Un ciclo de trabajo mayor corresponde a una relación de elevación más grande."
+      },
+      {
+        "q": "¿Qué es el rizado de corriente del inductor y por qué importa?",
+        "a": "El rizado de corriente del inductor ΔIL es la variación pico a pico de la corriente a través del inductor en cada ciclo de conmutación. Un rizado excesivo puede saturar el inductor, aumentar las pérdidas en el núcleo y amplificar el rizado del voltaje de salida. Normalmente se busca un rizado inferior al 20–30% de la corriente media del inductor eligiendo un L y f adecuados."
+      },
+      {
+        "q": "¿Qué es el modo de conducción continua (CCM)?",
+        "a": "En CCM la corriente del inductor nunca cae a cero durante el ciclo de conmutación. La fórmula de conversión elevadora Vout = Vin/(1−D) se aplica en CCM. Por debajo de una corriente de carga crítica, el convertidor entra en modo de conducción discontinua (DCM), donde la corriente llega a cero durante parte del ciclo y la relación de conversión cambia. Esta calculadora asume CCM."
+      },
+      {
+        "q": "¿Cómo elijo el valor del inductor para un convertidor elevador?",
+        "a": "Elige el inductor para mantener el rizado de corriente ΔIL dentro del 20–30% de la corriente media de entrada: L = Vin × D / (ΔIL × f). Un L mayor reduce el rizado, pero aumenta el tamaño y el costo. Verifica siempre que la corriente pico del inductor (Iin + ΔIL/2) quede por debajo de la corriente de saturación especificada, con margen."
+      },
+      {
+        "q": "¿Por qué la eficiencia de un convertidor elevador es menor que 100%?",
+        "a": "Los convertidores elevadores reales pierden energía en la resistencia de conducción del MOSFET (pérdidas I²R), las transiciones de conmutación del MOSFET, la caída de tensión directa del diodo, las pérdidas de cobre y núcleo del inductor, y la potencia de control de compuerta. Las eficiencias típicas van de 85% a 97% según el punto de operación. La rectificación síncrona (reemplazar el diodo por un segundo MOSFET) recupera la mayor parte de la pérdida del diodo."
+      },
+      {
+        "q": "¿Cuál es el ciclo de trabajo práctico máximo?",
+        "a": "La mayoría de los controladores IC de convertidor elevador limitan el ciclo de trabajo máximo a alrededor de 80–95% para asegurar que el interruptor tenga tiempo de apagarse y el inductor transfiera energía. Ciclos de trabajo muy altos (cercanos a 1) también amplifican las tolerancias de los componentes y hacen al convertidor más sensible a perturbaciones. En la práctica, los convertidores elevadores rara vez se usan por encima de una relación de voltaje de 10:1."
+      }
+    ]
+  }
+}

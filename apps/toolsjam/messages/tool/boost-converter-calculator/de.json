@@ -1,0 +1,119 @@
+{
+  "title": "Aufwärtswandler-Rechner – DC-DC-Step-up-Auslegung",
+  "tagline": "Berechnen Sie Tastgrad, Induktorstrom, Eingangsstrom und Wirkungsgrad für Aufwärtswandler-Schaltungen.",
+  "intro": "Geben Sie Eingangsspannung, Ausgangsspannung, Schaltfrequenz, Induktivitätswert und Laststrom ein, um Ihren DC-DC-Aufwärtswandler auszulegen.",
+  "field": {
+    "inputVoltage": "Eingangsspannung (Vin)",
+    "outputVoltage": "Ausgangsspannung (Vout)",
+    "switchingFrequency": "Schaltfrequenz (f)",
+    "inductorValue": "Induktivitätswert (L)",
+    "loadCurrent": "Laststrom (Iout)"
+  },
+  "placeholder": {
+    "inputVoltage": "z. B. 3.7",
+    "outputVoltage": "z. B. 5",
+    "switchingFrequency": "z. B. 500000",
+    "inductorValue": "z. B. 0.000047",
+    "loadCurrent": "z. B. 0.5"
+  },
+  "unit": {
+    "inputVoltage": "V",
+    "outputVoltage": "V",
+    "switchingFrequency": "Hz",
+    "inductorValue": "H",
+    "loadCurrent": "A"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie in allen Feldern gültige positive Zahlen ein.",
+    "voltageRatio": "Die Ausgangsspannung muss bei einem Aufwärtswandler größer als die Eingangsspannung sein.",
+    "dutyCycle": "Der Tastgrad muss zwischen 0 und 1 liegen. Prüfen Sie die Werte von Vin und Vout."
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "dutyCycle": "Tastgrad (D)",
+    "dutyCyclePercent": "Tastgrad (%)",
+    "inputCurrent": "Mittlerer Eingangsstrom (Iin)",
+    "inductorRipple": "Induktorstrom-Rippel (ΔIL)",
+    "inductorPeak": "Induktor-Spitzenstrom (IL_peak)",
+    "outputPower": "Ausgangsleistung (Pout)",
+    "inputPower": "Eingangsleistung (Pin, ideal)"
+  },
+  "about": {
+    "heading": "Über den Aufwärtswandler-Rechner",
+    "body": "Ein Aufwärtswandler, auch Step-up-Wandler genannt, ist eine DC-DC-Schaltnetzteil-Topologie, die eine Ausgangsspannung erzeugt, die höher ist als die Eingangsspannung. Er ist eine der drei grundlegenden nicht isolierten Wandler-Topologien der Leistungselektronik, neben dem Abwärtswandler (Buck) und dem Buck-Boost-Wandler. Aufwärtswandler sind allgegenwärtig in batteriebetriebenen Geräten, LED-Treibern, Automobilelektronik, Solarsystemen und allen Anwendungen, in denen die verfügbare Versorgungsspannung niedriger ist als die benötigte Lastspannung.\n\nDer grundlegende Aufwärtswandler besteht aus einer Induktivität, einem Schalter (typischerweise einem MOSFET), einer Diode, einem Ausgangskondensator und einer Steuerschaltung. Während der Einschaltzeit des Schalters (D×T_s, wobei D der Tastgrad und T_s = 1/f die Schaltperiode ist) baut sich Strom in der Induktivität auf und speichert Energie in ihrem Magnetfeld. Während der Ausschaltzeit ((1−D)×T_s) öffnet der Schalter, und die Induktivität gibt ihre gespeicherte Energie über die Diode an den Ausgangskondensator und die Last ab, wodurch die Spannung über das Eingangsniveau angehoben wird.\n\nIm kontinuierlichen Stromfluss (CCM), bei dem der Induktorstrom nie auf Null fällt, ist das ideale Spannungsübersetzungsverhältnis Vout/Vin = 1/(1−D). Nach Umstellen ergibt sich D = 1 − Vin/Vout. Zum Beispiel beträgt der Tastgrad beim Anheben von 3.7 V auf 5 V 1 − 3.7/5 = 0.26 oder 26%. Da sich der Tastgrad mit steigendem Übersetzungsverhältnis 1 nähert, werden sehr hohe Übersetzungen aufgrund von Schaltzeitbeschränkungen und steigenden Leitverlusten unpraktisch.\n\nDer Induktorstrom-Rippel ΔIL = Vin × D / (L × f) bestimmt, wie stark der Induktorstrom um seinen Mittelwert schwingt. Größere Induktivität L oder höhere Schaltfrequenz f verringern den Rippel, verbessern den Wirkungsgrad und reduzieren die Ausgangsspannungswelligkeit. Der Induktor-Spitzenstrom IL_peak = Iin + ΔIL/2 darf den Sättigungsstrom des Induktors nicht überschreiten. In einem idealen verlustfreien Wandler gilt Pin = Vin × Iin = Pout = Vout × Iout, daher ist der mittlere Eingangsstrom Iin = Pout/Vin.\n\nReale Wandler haben Verluste durch MOSFET-Leitwiderstand, Dioden-Flussspannung, Serienwiderstand der Induktivität und Schaltverluste, daher liegt der tatsächliche Wirkungsgrad η unter 100%. Dieser Rechner geht von idealen Bauteilen aus; multiplizieren Sie den idealen Eingangsstrom für eine realistische Abschätzung mit 1/η.\n\nDieses Werkzeug ist unverzichtbar für Leistungselektronik-Ingenieure, Bastler und Studierende, die Aufwärtswandler für Batteriemanagement, IoT-Geräte, LED-Beleuchtung oder erneuerbare Energiesysteme auslegen."
+  },
+  "examples": {
+    "heading": "Auslegungsbeispiele für Aufwärtswandler",
+    "intro": "Praxisnahe Szenarien zur Veranschaulichung der Parameterberechnung von Aufwärtswandlern.",
+    "loadBattery": "Batterie 3.7 V → 5 V",
+    "loadAutomotive": "Automobil 12 V → 24 V",
+    "loadSolar": "Solar MPPT 8 V → 18 V",
+    "colOutput": "Wichtige Ergebnisse",
+    "colNote": "Anwendung",
+    "items": [
+      {
+        "input": "Vin = 3.7 V, Vout = 5 V, f = 500 kHz, L = 47 µH, Iout = 0.5 A",
+        "output": "D = 26%, ΔIL ≈ 0.041 A, Iin ≈ 0.676 A",
+        "note": "Li-Ionen-Akku auf USB 5 V. Niedriger Tastgrad und hohe Frequenz halten den Rippel klein."
+      },
+      {
+        "input": "Vin = 12 V, Vout = 24 V, f = 100 kHz, L = 100 µH, Iout = 2 A",
+        "output": "D = 50%, ΔIL ≈ 0.6 A, Iin ≈ 4 A",
+        "note": "Automobilumsetzung von 12 V auf 24 V. 50% Tastgrad ist für viele Controller das praktische Maximum."
+      },
+      {
+        "input": "Vin = 8 V, Vout = 18 V, f = 200 kHz, L = 68 µH, Iout = 1.5 A",
+        "output": "D ≈ 55.6%, ΔIL ≈ 0.327 A, Iin ≈ 3.375 A",
+        "note": "Solar-MPPT-Anwendung. Der Ausgang folgt der Busspannung, während der Eingang der MPP-Spannung des Moduls folgt."
+      },
+      {
+        "input": "Vin = 5 V, Vout = 36 V, f = 300 kHz, L = 33 µH, Iout = 0.3 A",
+        "output": "D ≈ 86.1%, ΔIL ≈ 0.435 A, Iin ≈ 2.16 A",
+        "note": "LED-Treiber mit hoher Helligkeit. Sehr hoher Tastgrad; Derating und Leiterplattenlayout sind bei diesem Verhältnis entscheidend."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Aufwärtswandler-Rechner",
+    "steps": [
+      "Geben Sie die Eingangsspannung (Vin) ein — die DC-Versorgungsspannung Ihrer Batterie oder Quelle.",
+      "Geben Sie die Ausgangsspannung (Vout) ein — die gewünschte Ausgangsspannung; sie muss bei einer Aufwärts-Topologie größer als Vin sein.",
+      "Geben Sie die Schaltfrequenz (f) in Hz ein — höhere Frequenzen erlauben kleinere Induktivitäten, erhöhen aber die Schaltverluste.",
+      "Geben Sie den Induktivitätswert (L) in Henry und den Laststrom (Iout) in Ampere für Ihre Schaltungsauslegung ein.",
+      "Klicken Sie auf Berechnen, um Tastgrad, Induktor-Rippelstrom, Induktor-Spitzenstrom sowie Eingangs-/Ausgangsleistung zu sehen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Aufwärtswandler",
+    "items": [
+      {
+        "q": "Was ist der Tastgrad bei einem Aufwärtswandler?",
+        "a": "Der Tastgrad D ist der Anteil der Schaltperiode, während dessen der MOSFET eingeschaltet ist. Für einen idealen Aufwärtswandler gilt D = 1 − Vin/Vout. Beim Anheben von 5 V auf 12 V ergibt sich beispielsweise D = 1 − 5/12 ≈ 58.3%. Höhere Tastgrade entsprechen größeren Spannungsanhebungsverhältnissen."
+      },
+      {
+        "q": "Was ist der Induktorstrom-Rippel und warum ist er wichtig?",
+        "a": "Der Induktorstrom-Rippel ΔIL ist die Spitze-zu-Spitze-Variation des Stroms durch die Induktivität in jedem Schaltzyklus. Zu hoher Rippel kann den Induktor sättigen, die Kernverluste erhöhen und die Ausgangsspannungswelligkeit verstärken. Designer zielen typischerweise darauf ab, den Rippel unter 20–30% des mittleren Induktorstroms zu halten, indem sie geeignetes L und f wählen."
+      },
+      {
+        "q": "Was ist der kontinuierliche Stromfluss (CCM)?",
+        "a": "Im CCM fällt der Induktorstrom während des Schaltzyklus nie auf Null. Die Aufwärts-Formel Vout = Vin/(1−D) gilt im CCM. Unterhalb eines kritischen Laststroms geht der Wandler in den diskontinuierlichen Stromfluss (DCM) über, bei dem der Strom für einen Teil des Zyklus auf Null fällt und sich das Spannungsübersetzungsverhältnis ändert. Dieser Rechner geht von CCM aus."
+      },
+      {
+        "q": "Wie wähle ich den Induktivitätswert für einen Aufwärtswandler?",
+        "a": "Wählen Sie die Induktivität so, dass der Stromrippel ΔIL innerhalb von 20–30% des mittleren Eingangsstroms bleibt: L = Vin × D / (ΔIL × f). Größeres L reduziert den Rippel, erhöht aber Größe und Kosten. Stellen Sie immer sicher, dass der Induktor-Spitzenstrom (Iin + ΔIL/2) mit ausreichender Reserve unter dem Sättigungsstrom der Induktivität liegt."
+      },
+      {
+        "q": "Warum ist der Wirkungsgrad eines Aufwärtswandlers kleiner als 100%?",
+        "a": "Reale Aufwärtswandler verlieren Energie durch den MOSFET-Leitwiderstand (I²R-Verluste), MOSFET-Schaltübergänge, die Vorwärtsspannung der Diode, Kupfer- und Kernverluste der Induktivität sowie die Gate-Treiberleistung. Typische Wirkungsgrade liegen je nach Arbeitspunkt zwischen 85% und 97%. Mit synchroner Gleichrichtung (Ersetzen der Diode durch einen zweiten MOSFET) lässt sich der Großteil des Diodenverlusts zurückgewinnen."
+      },
+      {
+        "q": "Was ist der maximal praktikable Tastgrad?",
+        "a": "Die meisten Aufwärtswandler-ICs begrenzen den maximalen Tastgrad auf etwa 80–95%, damit der Schalter genug Zeit zum Abschalten hat und die Induktivität Energie übertragen kann. Sehr hohe Tastgrade nahe 1 verstärken außerdem Bauteiltoleranzen und machen den Wandler störanfälliger. In der Praxis werden Aufwärtswandler selten über ein Spannungsverhältnis von 10:1 hinaus eingesetzt."
+      }
+    ]
+  }
+}
