@@ -163,6 +163,11 @@ import { fixtures as f_generic_rectangle_calculator } from "@/tools/generic-rect
 import { fixtures as f_gpa_calculator } from "@/tools/gpa-calculator.fixtures";
 import { fixtures as f_gpa_calculator_pakistan } from "@/tools/gpa-calculator-pakistan.fixtures";
 import { fixtures as f_grade_calculator } from "@/tools/grade-calculator.fixtures";
+import { fixtures as f_gram_schmidt_calculator } from "@/tools/gram-schmidt-calculator.fixtures";
+import { fixtures as f_graphing_inequalities_on_a_number_line_calculator } from "@/tools/graphing-inequalities-on-a-number-line-calculator.fixtures";
+import { fixtures as f_graphing_quadratic_inequalities_calculator } from "@/tools/graphing-quadratic-inequalities-calculator.fixtures";
+import { fixtures as f_great_circle_calculator } from "@/tools/great-circle-calculator.fixtures";
+import { fixtures as f_greater_than_or_less_than_calculator } from "@/tools/greater-than-or-less-than-calculator.fixtures";
 import { fixtures as f_gsd_calculator_ground_sample_distance } from "@/tools/gsd-calculator-ground-sample-distance.fixtures";
 import { fixtures as f_guitar_string_tension_calculator } from "@/tools/guitar-string-tension-calculator.fixtures";
 import { fixtures as f_hypothesis_testing_calculator } from "@/tools/hypothesis-testing-calculator.fixtures";
@@ -572,6 +577,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "gpa-calculator": f_gpa_calculator,
   "gpa-calculator-pakistan": f_gpa_calculator_pakistan,
   "grade-calculator": f_grade_calculator,
+  "gram-schmidt-calculator": f_gram_schmidt_calculator,
+  "graphing-inequalities-on-a-number-line-calculator": f_graphing_inequalities_on_a_number_line_calculator,
+  "graphing-quadratic-inequalities-calculator": f_graphing_quadratic_inequalities_calculator,
+  "great-circle-calculator": f_great_circle_calculator,
+  "greater-than-or-less-than-calculator": f_greater_than_or_less_than_calculator,
   "gsd-calculator-ground-sample-distance": f_gsd_calculator_ground_sample_distance,
   "guitar-string-tension-calculator": f_guitar_string_tension_calculator,
   "hypothesis-testing-calculator": f_hypothesis_testing_calculator,

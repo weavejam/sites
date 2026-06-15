@@ -4120,12 +4120,205 @@ export const tools: ToolEntry[] = [
         pt: "",
         ru: ""
       }
+    },
+  {
+    id: "gram-schmidt-calculator",
+    category: "math",
+    slugs: {
+      en: "gram-schmidt-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Gram-Schmidt Orthogonalization Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Gram-Schmidt calculator converts linearly independent vectors into an orthogonal and orthonormal basis. Handles any dimension and dependent vectors.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
-
-
-
-
-
-
-
+  },
+  {
+    id: "graphing-inequalities-on-a-number-line-calculator",
+    category: "math",
+    slugs: {
+      en: "graphing-inequalities-on-a-number-line-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Graphing Inequalities on a Number Line Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Number line inequality calculator that graphs simple and compound inequalities with open/closed circles, shading direction, and interval notation instantly.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "graphing-quadratic-inequalities-calculator",
+    category: "math",
+    slugs: {
+      en: "graphing-quadratic-inequalities-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Graphing Quadratic Inequalities Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Quadratic inequalities calculator: enter a, b, c and sign to get roots, discriminant, vertex, parabola direction, and solution set in interval notation.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "great-circle-calculator",
+    category: "math",
+    slugs: {
+      en: "great-circle-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Great Circle Calculator - Shortest Earth Distance",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Great circle distance calculator using the Haversine formula. Enter two lat/lon coordinates to get surface distance in km, miles, or nautical miles.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "greater-than-or-less-than-calculator",
+    category: "math",
+    slugs: {
+      en: "greater-than-or-less-than-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Greater Than or Less Than Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Greater than or less than calculator to compare any two numbers — integers, decimals, or negatives — and instantly display the correct symbol >, <, or =.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  }
 ];
