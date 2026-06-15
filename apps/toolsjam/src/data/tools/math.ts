@@ -8,7 +8,7 @@ export const tools: ToolEntry[] = [
       en: "percentage-calculator",
       "zh-CN": "baifenbi-jisuanqi",
       "zh-TW": "baifenbi-jisuanqi",
-      ja: "pasento-keisanki",
+      ja: "pasento-keisan",
       ko: "baekbun-yul-gyesangi",
       es: "calculadora-porcentajes",
       fr: "calculateur-pourcentage",
@@ -18,8 +18,8 @@ export const tools: ToolEntry[] = [
     },
     titles: {
       en: "Percentage Calculator - Calculate Percent of a Number",
-      "zh-CN": "百分比计算器 - 计算一个数的百分之几",
-      "zh-TW": "百分比計算機 - 計算一個數的百分之幾",
+      "zh-CN": "百分比计算器 - 计算数字的百分比",
+      "zh-TW": "百分比計算器 - 計算數字的百分比",
       ja: "パーセント計算機 - 数値の割合を計算",
       ko: "백분율 계산기 - 숫자의 퍼센트 계산",
       es: "Calculadora de porcentajes - calcula porcentajes",
@@ -30,15 +30,15 @@ export const tools: ToolEntry[] = [
     },
     descriptions: {
       en: "Percentage calculator for X% of Y, percent change, discounts, tips, tax, and reverse percentages. Get clear answers with formulas instantly.",
-      "zh-CN": "百分比计算器可计算 X% 的 Y、百分比变化、折扣、小费、税费和反向百分比，立即给出清晰答案和公式。",
-      "zh-TW": "百分比計算機可計算 X% 的 Y、百分比變化、折扣、小費、稅費與反向百分比，立即取得清楚答案與公式。",
-      ja: "X% of Y、増減率、割引、チップ、税金、逆算まで対応。式付きでパーセント計算の答えをすぐに確認できます。",
-      ko: "X% of Y, 증감률, 할인, 팁, 세금, 역산 백분율을 공식과 함께 즉시 계산하는 백분율 계산기입니다.",
-      es: "Calculadora de porcentajes para X% de Y, cambios porcentuales, descuentos, propinas, impuestos y porcentajes inversos, con fórmulas claras al instante.",
-      fr: "Calculez X% de Y, variations, remises, pourboires, taxes et pourcentages inversés, avec des formules claires instantanément.",
-      de: "Prozentrechner für X% von Y, prozentuale Änderung, Rabatte, Trinkgeld, Steuern und umgekehrte Prozente – sofort mit klaren Formeln.",
-      pt: "Calculadora de porcentagem para X% de Y, variação percentual, descontos, gorjetas, impostos e porcentagens inversas, com fórmulas claras na hora.",
-      ru: "Калькулятор процентов для X% от Y, изменений, скидок, чаевых, налогов и обратных процентов. Мгновенный ответ с понятными формулами."
+      "zh-CN": "百分比计算器可计算 X% 的 Y、百分比变化、折扣、小费、税费和反向百分比，并即时给出公式和清晰结果。",
+      "zh-TW": "百分比計算器可計算 X% 的 Y、百分比變化、折扣、小費、稅金與反向百分比，立即提供清楚答案與公式。",
+      ja: "X% of Y、増減率、割引、チップ、税金、逆算に対応するパーセント計算機。式付きで結果をすぐ確認できます。",
+      ko: "X% of Y, 증감률, 할인, 팁, 세금, 역백분율을 계산하는 백분율 계산기입니다. 공식과 명확한 답을 즉시 확인하세요.",
+      es: "Calculadora de porcentajes para X% de Y, cambios, descuentos, propinas, impuestos y porcentajes inversos. Resultados claros con fórmulas al instante.",
+      fr: "Calculateur de pourcentage pour X% de Y, variation, remises, pourboires, taxes et pourcentages inverses. Résultats clairs avec formules.",
+      de: "Prozentrechner für X% von Y, prozentuale Änderung, Rabatte, Trinkgeld, Steuern und Rückwärtsrechnung. Sofort klare Ergebnisse mit Formel.",
+      pt: "Calculadora de porcentagem para X% de Y, variação percentual, descontos, gorjetas, impostos e porcentagens inversas. Respostas com fórmulas.",
+      ru: "Калькулятор процентов для X% от Y, изменения, скидок, чаевых, налогов и обратных процентов. Мгновенные ответы с формулами."
     }
   },
   {
