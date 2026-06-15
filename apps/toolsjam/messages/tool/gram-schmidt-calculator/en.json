@@ -1,0 +1,86 @@
+{
+  "title": "Gram-Schmidt Orthogonalization Calculator",
+  "tagline": "Convert any set of linearly independent vectors into an orthogonal or orthonormal basis using the Gram-Schmidt process.",
+  "intro": "Enter your vectors below, one per line, with components separated by commas or spaces. The calculator will apply the Gram-Schmidt process to produce both an orthogonal basis and an orthonormal basis.",
+  "field": {
+    "vectors": "Input Vectors",
+    "vectorsPlaceholder": "e.g.\n1, 1, 0\n1, 0, 1\n0, 1, 1"
+  },
+  "button": {
+    "calculate": "Calculate Basis",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "orthogonal": "Orthogonal Basis",
+    "orthonormal": "Orthonormal Basis",
+    "vector": "v{n}",
+    "rank": "Rank: {rank} (input had {count} vectors)",
+    "dependent": "Note: some vectors were linearly dependent and were omitted."
+  },
+  "error": {
+    "empty": "Please enter at least one vector.",
+    "inconsistent": "All vectors must have the same number of components.",
+    "invalid": "Invalid input. Use numbers separated by commas or spaces, one vector per line."
+  },
+  "about": {
+    "heading": "About the Gram-Schmidt Calculator",
+    "body": "The Gram-Schmidt process is one of the most important algorithms in linear algebra. Given a set of linearly independent vectors, it systematically produces a new set of vectors that are mutually orthogonal — meaning every pair of vectors in the output has a dot product of zero. When each of those orthogonal vectors is additionally divided by its own length to produce a unit vector, the result is called an orthonormal basis. Orthonormal bases are the gold standard in linear algebra because they simplify nearly every computation that involves projections, rotations, reflections, and decompositions.\n\nThe algorithm proceeds inductively. The first output vector is simply the first input vector, unchanged. The second output vector is the second input vector with its projection onto the first output vector subtracted out — this ensures that the second output is perpendicular to the first. The third output is the third input vector with its projections onto both of the first two outputs removed. In general, the k-th output vector is the k-th input vector minus the sum of its projections onto all previous output vectors. The formula for the projection of vector v onto an already-orthogonalized vector u is (v·u / u·u) × u, where · denotes the dot product.\n\nIf, during this process, the result of subtracting all projections is the zero vector, the input vector was linearly dependent on the preceding ones and is simply discarded. The calculator handles this automatically and reports the rank of the input set — that is, the number of truly independent vectors. In practice, a small numerical threshold is used to catch vectors that are nearly zero due to floating-point rounding.\n\nThe orthonormal basis is obtained by dividing each orthogonal output vector by its Euclidean norm (the square root of its dot product with itself). The result is a set of unit vectors, each of length exactly 1, pointing in mutually perpendicular directions. This orthonormal set forms what is called an orthonormal frame for the subspace spanned by the original inputs.\n\nApplications of the Gram-Schmidt process span virtually every quantitative field. In numerical linear algebra it underlies QR decomposition, which is used to solve least-squares problems and compute eigenvalues. In signal processing, it is used to construct orthogonal filter banks and to separate independent signal components. In quantum mechanics, the state space of a quantum system is a Hilbert space and physical observables correspond to orthonormal bases of eigenvectors. In statistics and machine learning, principal component analysis (PCA) can be understood as finding an orthonormal basis aligned with the directions of maximum variance in a dataset. In computer graphics, building a camera or object frame requires three mutually perpendicular unit vectors, a task naturally solved by Gram-Schmidt.\n\nThis calculator accepts vectors of any dimension, handles linearly dependent inputs gracefully, and reports both the intermediate orthogonal vectors and the final orthonormal vectors side by side so you can see every step of the transformation."
+  },
+  "examples": {
+    "heading": "Gram-Schmidt Examples",
+    "intro": "Three worked examples showing the orthogonalization process in 2D, 3D, and for a dependent set.",
+    "colInput": "Input Vectors",
+    "colOutput": "Orthonormal Basis",
+    "colNote": "Notes",
+    "load2d": "Load 2D example",
+    "load3d": "Load 3D example",
+    "items": [
+      {
+        "input": "v1 = (1, 0), v2 = (1, 1)",
+        "output": "e1 = (1, 0), e2 = (0, 1)",
+        "note": "Standard 2D case. v2 minus its projection onto v1 gives (0,1), which is already a unit vector."
+      },
+      {
+        "input": "v1 = (1, 1, 0), v2 = (1, 0, 1), v3 = (0, 1, 1)",
+        "output": "e1 ≈ (0.707, 0.707, 0), e2 ≈ (0.408, −0.408, 0.816), e3 ≈ (−0.577, 0.577, 0.577)",
+        "note": "Classic 3D orthonormalization. All three input vectors are independent, yielding a full orthonormal basis for ℝ³."
+      },
+      {
+        "input": "v1 = (1, 2, 3), v2 = (2, 4, 6), v3 = (1, 0, 0)",
+        "output": "e1 ≈ (0.267, 0.535, 0.802), e2 ≈ (0.964, −0.148, −0.222)",
+        "note": "v2 is a scalar multiple of v1 (linearly dependent) and is discarded. The rank is 2, not 3."
+      },
+      {
+        "input": "v1 = (3, 1), v2 = (2, 2)",
+        "output": "e1 ≈ (0.949, 0.316), e2 ≈ (−0.316, 0.949)",
+        "note": "2D example with non-integer components. The output vectors are perpendicular unit vectors."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Gram-Schmidt Calculator",
+    "steps": [
+      "Enter your vectors in the text area, one vector per line, with components separated by commas or spaces (e.g., '1, 2, 3' or '1 2 3').",
+      "Make sure all vectors have the same number of components — the dimension is inferred automatically from the first line.",
+      "Click 'Calculate Basis'. The calculator applies the Gram-Schmidt process and shows both the orthogonal basis and the orthonormal basis.",
+      "Check the rank reported in the results. If it is smaller than the number of input vectors, some inputs were linearly dependent and were skipped.",
+      "Use the Reset button to clear the input and start a new calculation."
+    ]
+  },
+  "faq": {
+    "heading": "Gram-Schmidt Calculator FAQ",
+    "q1": "What is the Gram-Schmidt process?",
+    "q1_a": "The Gram-Schmidt process is an algorithm that takes a set of linearly independent vectors and produces a set of mutually orthogonal vectors that span the same subspace. Optionally, each orthogonal vector can be normalized to unit length to produce an orthonormal basis.",
+    "q2": "What is the difference between orthogonal and orthonormal?",
+    "q2_a": "An orthogonal set has vectors whose pairwise dot products are all zero — the vectors are perpendicular to each other. An orthonormal set additionally requires each vector to have length 1 (a unit vector). Every orthonormal set is orthogonal, but not vice versa.",
+    "q3": "What happens if my input vectors are linearly dependent?",
+    "q3_a": "When a vector is linearly dependent on the earlier vectors, subtracting its projections yields the zero vector, which cannot be normalized. The calculator detects this and omits that vector. The reported rank will be less than the number of input vectors.",
+    "q4": "What is QR decomposition and how does it relate?",
+    "q4_a": "QR decomposition factors a matrix A into a product Q·R, where Q has orthonormal columns and R is upper triangular. The Gram-Schmidt process is one of the classical methods for computing Q. This factorization is widely used for solving least-squares problems and in numerical eigenvalue algorithms.",
+    "q5": "How many dimensions can I use?",
+    "q5_a": "The calculator has no hard dimension limit beyond memory and floating-point precision. Vectors of 2, 3, 4, or more components are all supported. Enter each vector on its own line with the same number of components.",
+    "q6": "Why do the results look slightly different from hand calculations?",
+    "q6_a": "The calculator uses IEEE-754 double-precision floating-point arithmetic, which can introduce tiny rounding errors. Results are rounded to a fixed number of decimal places for display. For exact symbolic answers, use a computer algebra system such as Wolfram Alpha or a symbolic Python library."
+  }
+}
