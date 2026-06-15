@@ -1,6 +1,206 @@
 import type { ToolEntry } from "@/data/tools";
 export const tools: ToolEntry[] = [
   {
+    id: "3d-render-calculator",
+    category: "other",
+    slugs: {
+      en: "3d-render-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "3D Render Calculator - Estimate Render Times",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Estimate 3D render times by polygon count, texture resolution, lighting, and hardware specs. Optimize scenes and plan project timelines efficiently.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "4-3-aspect-ratio-calculator",
+    category: "other",
+    slugs: {
+      en: "4-3-aspect-ratio-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "4:3 Aspect Ratio Calculator - Traditional Display Dimensions",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate width, height, diagonal, and pixel density for 4:3 displays. Convert pixels, inches, cm, and mm for classic monitors and legacy screen formats.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "act-score-calculator",
+    category: "other",
+    slugs: {
+      en: "act-score-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "ACT Score Calculator - Composite & Subscores",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate your ACT composite, ELA, and STEM subscores from English, Math, Reading, Science, and Writing scores. See your approximate national percentile.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "age-on-other-planets-calculator",
+    category: "other",
+    slugs: {
+      en: "age-on-other-planets-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Age on Other Planets Calculator - Planetary Age",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate your age on Mercury, Venus, Mars, Jupiter, Saturn, Uranus, or Neptune by orbital period. Discover how many planetary years you have lived.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "amdahls-law-calculator",
+    category: "other",
+    slugs: {
+      en: "amdahls-law-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Amdahl's Law Calculator - Parallel Speedup & Efficiency",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate parallel speedup, max theoretical speedup, and efficiency using Amdahl's Law. Plan multi-processor systems and find serial-fraction bottlenecks.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
     id: "easter-calculator",
     category: "other",
     slugs: {

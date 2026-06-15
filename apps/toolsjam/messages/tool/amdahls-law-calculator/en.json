@@ -1,0 +1,92 @@
+{
+  "title": "Amdahl's Law Calculator - Parallel Speedup & Efficiency",
+  "tagline": "Calculate parallel speedup, maximum theoretical speedup, execution time, and parallel efficiency using Amdahl's Law for multi-processor systems.",
+  "intro": "Enter the serial fraction of your program, the number of processors, and the original execution time to compute speedup and efficiency.",
+  "field": {
+    "serialFraction": "Serial Fraction (p)",
+    "numProcessors": "Number of Processors (n)",
+    "execTime": "Original Execution Time (seconds)"
+  },
+  "placeholder": {
+    "serialFraction": "0–1, e.g. 0.1",
+    "numProcessors": "e.g. 8",
+    "execTime": "e.g. 3600"
+  },
+  "button": {
+    "calculate": "Calculate Speedup",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid values: serial fraction must be 0–1, processors must be ≥ 1, and execution time must be > 0.",
+    "zeroSerial": "A serial fraction of 0 means the entire program is parallelizable — maximum speedup equals the number of processors."
+  },
+  "result": {
+    "heading": "Amdahl's Law Results",
+    "speedup": "Speedup S({n}): {value}×",
+    "maxSpeedup": "Maximum Speedup (n→∞): {value}×",
+    "parallelTime": "Parallel Execution Time: {value} s",
+    "efficiency": "Parallel Efficiency: {value}%",
+    "formula": "S(n) = 1 / (p + (1 − p) / n)"
+  },
+  "about": {
+    "heading": "About Amdahl's Law",
+    "body": "Amdahl's Law, formulated by computer architect Gene Amdahl in 1967, describes the theoretical speedup achievable when parallelizing a computation across multiple processors. It is one of the most important and widely cited principles in parallel computing because it sets a hard upper bound on the performance gains that adding processors can provide — regardless of how many processors you add.\n\nThe law starts from a simple observation: any real-world program consists of two parts. One part is inherently serial — it must execute sequentially because each step depends on the result of the previous step. The other part is parallelizable — it can be divided into independent tasks and executed simultaneously on multiple processors. Amdahl's Law formalizes the relationship between these two parts.\n\nThe formula is: S(n) = 1 / (p + (1 − p) / n), where S is the speedup, p is the fraction of the program that must run serially (between 0 and 1), n is the number of processors, and (1 − p) is the parallelizable fraction. As n grows toward infinity, the term (1 − p) / n approaches zero, and the speedup approaches 1/p — the maximum theoretical speedup. This maximum is determined entirely by the serial fraction and cannot be exceeded no matter how many processors are used.\n\nThe implications are dramatic. If 10% of a program must run serially (p = 0.1), the maximum speedup is 1/0.1 = 10×, no matter how many processors are deployed. If 20% is serial, the maximum is 5×. If 50% is serial, the maximum is only 2×. Adding more processors beyond a certain point produces diminishing returns because the serial portion becomes the bottleneck — a concept sometimes called \"Amdahl's ceiling.\"\n\nConsider a concrete example: a program takes 3,600 seconds on a single core, with 80% of the work parallelizable (p = 0.2). With 8 processors, the speedup is S(8) = 1 / (0.2 + 0.8/8) = 1 / (0.2 + 0.1) = 1 / 0.3 = 3.33×. The parallel execution time is 3600 / 3.33 = 1080 seconds. With 16 processors, S(16) = 1 / (0.2 + 0.8/16) = 1 / (0.2 + 0.05) = 4×, and time drops to 900 seconds. Doubling from 8 to 16 processors only improves performance by 20% because the serial 20% dominates.\n\nParallel efficiency is the speedup divided by the number of processors, expressed as a percentage: E = S(n)/n × 100%. It measures how well each additional processor is being used. Perfect efficiency (100%) would mean each processor is fully utilized — a theoretical ideal. In practice, efficiency falls as more processors are added because the serial fraction wastes processor time. When efficiency drops below 50%, adding more processors costs more in hardware than it saves in time.\n\nAmdahl's Law assumes that the serial fraction p remains constant regardless of problem size. Gustafson's Law (1988) offers a complementary perspective: for larger problem sizes, a greater fraction of the work becomes parallelizable, and efficiency stays higher as processor counts increase. The two laws together give a complete picture of parallel scaling — Amdahl's Law is pessimistic but describes the fixed-problem-size scenario accurately, while Gustafson's Law is optimistic and applies when problem size grows with the processor count.\n\nPractical applications of Amdahl's Law include CPU and GPU architecture design, cloud computing resource provisioning, algorithm analysis for high-performance computing, and estimating the return on investment for adding processors to an existing system. Identifying and reducing the serial fraction of a computation — through better algorithms, reducing synchronization overhead, or redesigning data structures — is the most effective way to push Amdahl's ceiling higher."
+  },
+  "examples": {
+    "heading": "Amdahl's Law examples",
+    "intro": "Different parallelism scenarios showing how the serial fraction constrains maximum achievable speedup.",
+    "colInput": "Parameters",
+    "colOutput": "Speedup",
+    "colNote": "Notes",
+    "loadParallel": "Load embarrassingly parallel example",
+    "loadModerate": "Load moderate parallelism example",
+    "loadSerial": "Load high-serial-fraction example",
+    "items": [
+      {
+        "input": "p=0.05, n=8, T=1000 s",
+        "output": "5.93×",
+        "note": "Low serial fraction (5%). S(8) = 1/(0.05+0.95/8) = 1/0.1688 = 5.93×. Maximum speedup = 1/0.05 = 20×. Near-linear scaling at 8 processors."
+      },
+      {
+        "input": "p=0.2, n=16, T=3600 s",
+        "output": "4×",
+        "note": "20% serial fraction. S(16) = 1/(0.2+0.8/16) = 1/0.25 = 4×. Parallel time = 900 s. Maximum speedup is limited to 5×."
+      },
+      {
+        "input": "p=0.5, n=8, T=1000 s",
+        "output": "1.6×",
+        "note": "High serial fraction (50%). Even with 8 processors, speedup is only 1.6×. Maximum speedup is 2× regardless of processor count."
+      },
+      {
+        "input": "p=0.1, n=32, T=7200 s",
+        "output": "7.8×",
+        "note": "10% serial fraction, 32 processors. S(32) = 1/(0.1+0.9/32) ≈ 7.8×. Maximum speedup = 10×. Adding more processors yields minimal gains beyond ~16."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the Amdahl's Law calculator",
+    "steps": [
+      "Enter the serial fraction p — the proportion of your program that must run sequentially. Use a value between 0 (fully parallel) and 1 (fully serial). For example, if 15% of your program is serial, enter 0.15.",
+      "Enter the number of processors n — the count of parallel processing units (cores, threads, nodes) you are using or planning to use.",
+      "Enter the original execution time in seconds on a single processor. This is used to calculate the actual parallel execution time.",
+      "Click Calculate Speedup to see the speedup ratio S(n), the maximum theoretical speedup (1/p), the parallel execution time, and the parallel efficiency.",
+      "Adjust the processor count to explore diminishing returns — try doubling n and observe how speedup changes relative to doubling the hardware cost."
+    ]
+  },
+  "faq": {
+    "heading": "Amdahl's Law FAQ",
+    "q1": "What does the serial fraction represent in practice?",
+    "q1_a": "The serial fraction p includes all parts of a program that cannot be parallelized: sequential initialization and teardown, data loading from disk, synchronization barriers between parallel phases, inter-process communication overhead, and sections with data dependencies where step N must complete before step N+1 can begin. Even small serial fractions — like 5–10% — can dramatically cap the maximum achievable speedup.",
+    "q2": "What is the difference between Amdahl's Law and Gustafson's Law?",
+    "q2_a": "Amdahl's Law assumes a fixed problem size — you want to solve the same problem faster by adding processors. Gustafson's Law assumes you use additional processors to solve a larger problem in the same time. Amdahl's Law gives a pessimistic speedup ceiling for fixed workloads; Gustafson's Law shows that parallel efficiency stays high as problem size grows. Both perspectives are correct in their respective contexts.",
+    "q3": "Can speedup ever exceed 1/p in practice?",
+    "q3_a": "Superlinear speedup — speedup exceeding n — is occasionally observed due to cache effects: when a problem is split across multiple processors, each processor's data fits in its private cache, eliminating slow main-memory accesses. However, superlinear speedup cannot exceed the Amdahl limit 1/p in the asymptotic sense and is always explained by hardware effects not captured in the theoretical model.",
+    "q4": "What is parallel efficiency and why does it matter?",
+    "q4_a": "Parallel efficiency E = S(n)/n × 100% measures the fraction of each processor's capacity being productively used. An efficiency of 100% means every added processor contributes exactly proportionally to speedup — a theoretical ideal. Efficiency below 50% suggests that the overhead of coordination and the bottleneck of the serial fraction are consuming more than half the added capacity, making additional processors a poor investment.",
+    "q5": "How can I reduce the serial fraction of my program?",
+    "q5_a": "Common techniques include: using lock-free data structures to reduce synchronization barriers, redesigning algorithms to eliminate data dependencies between steps, pipelining sequential initialization work with parallel computation, using asynchronous I/O to overlap data loading with processing, and profiling to find the actual bottlenecks rather than guessing. Even halving the serial fraction doubles the maximum achievable speedup.",
+    "q6": "Does Amdahl's Law apply to GPU computing?",
+    "q6_a": "Yes. GPUs have thousands of shader cores but a significant serial overhead for kernel launches, data transfers between CPU and GPU memory, and sequential setup code. A GPU program where data transfer and setup constitute 20% of total time cannot exceed 5× speedup over CPU regardless of GPU compute performance. Minimizing CPU-GPU data transfer and maximizing kernel occupancy are the GPU equivalents of reducing the serial fraction."
+  }
+}

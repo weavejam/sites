@@ -1,0 +1,109 @@
+{
+  "title": "3D Render Calculator - Estimate Render Times",
+  "tagline": "Estimate 3D scene render times based on polygon count, texture resolution, lighting, and hardware specifications to plan your projects efficiently.",
+  "intro": "Enter your scene parameters and hardware specs below to get an estimated render time for your 3D project.",
+  "field": {
+    "polygonCount": "Polygon Count",
+    "textureResolution": "Texture Resolution (px)",
+    "numTextures": "Number of Textures",
+    "numLights": "Number of Lights",
+    "renderQuality": "Render Quality",
+    "cpuCores": "CPU Cores",
+    "gpuMem": "GPU Memory (GB)",
+    "complexity": "Scene Complexity Factor"
+  },
+  "quality": {
+    "Low": "Low",
+    "Medium": "Medium",
+    "High": "High",
+    "Ultra": "Ultra"
+  },
+  "placeholder": {
+    "polygonCount": "e.g. 1000000",
+    "textureResolution": "e.g. 2048",
+    "numTextures": "e.g. 10",
+    "numLights": "e.g. 5",
+    "cpuCores": "e.g. 8",
+    "gpuMem": "e.g. 8",
+    "complexity": "1.0"
+  },
+  "button": {
+    "calculate": "Calculate Render Time",
+    "reset": "Reset"
+  },
+  "duration": {
+    "lessThanOneMin": "< 1 min",
+    "minutes": "{min} min",
+    "hours": "{hours} hr",
+    "hoursMinutes": "{hours} hr {min} min"
+  },
+  "error": {
+    "invalid": "Please enter valid positive numbers in all required fields.",
+    "complexity": "Scene complexity must be between 0.1 and 10."
+  },
+  "result": {
+    "heading": "Estimated Render Time",
+    "value": "{time}",
+    "breakdown": "Breakdown: polygons {poly}, textures {tex}, lights {light}"
+  },
+  "about": {
+    "heading": "About the 3D Render Calculator",
+    "body": "3D rendering is the process of converting a three-dimensional scene description into a two-dimensional image. It is one of the most computationally demanding tasks in computer graphics, requiring careful planning to manage project timelines and resource costs. The 3D render calculator helps artists, animators, and technical directors estimate how long a render will take based on the key factors that drive render complexity.\n\nThe most fundamental driver of render time is polygon count. Modern scenes can contain anywhere from a few thousand polygons for a simple product visualization to hundreds of millions of polygons in a feature-film visual-effects shot. Each polygon requires geometric processing, intersection tests for shadows and reflections, and shading calculations. As polygon counts grow, render time increases roughly with the square root of the count in well-optimized engines — but poorly optimized scenes can see linear or superlinear growth.\n\nTexture memory and resolution are equally important. A single 4K texture (4096 × 4096 pixels) occupies 64 MB of uncompressed RGBA data, and a production scene may use dozens or hundreds of textures for color, normal, roughness, metallic, and displacement channels. Sampling these textures during rendering requires both GPU memory bandwidth and cache efficiency. When textures exceed the GPU's VRAM, the renderer must page data from system RAM, which can dramatically slow down rendering.\n\nLighting complexity adds further time. Each light source in a scene requires additional ray casts for shadow testing and contributes to the global illumination solution. Area lights, HDRi environment maps, and physically based sky models are far more expensive than simple point lights because they require multiple samples per lighting calculation to produce smooth, noise-free results.\n\nRender quality settings control the number of samples per pixel used in path-tracing or ray-tracing engines. Low quality settings use few samples and produce noisy images quickly; Ultra quality uses many samples and produces clean images slowly. The relationship is roughly linear — doubling the sample count doubles the render time while halving the noise level.\n\nHardware specifications determine how fast the underlying calculations execute. CPU core count affects how many rays or tiles can be processed in parallel. GPU memory determines whether textures fit entirely on-chip or require slower memory transfers. Modern render engines like Arnold, V-Ray, Cycles, and Octane are optimized to take advantage of multi-core CPUs and GPU acceleration, so upgrading hardware has a direct and measurable impact on render times.\n\nThe scene complexity factor in this calculator captures everything not covered by the other parameters — material complexity, ray bounce depth, subsurface scattering, volumetric effects, motion blur, and depth of field. A complexity of 1.0 represents a standard scene with solid-surface materials and no volumetrics. Values above 1.5 indicate scenes with participating media, high-bounce path tracing, or complex procedural materials.\n\nUsing this calculator gives you a ballpark estimate, not an exact prediction. Real-world render times depend heavily on the specific renderer, scene layout, material networks, and how well assets are optimized. Use the estimates to compare different configurations and identify the biggest bottlenecks in your scene — then optimize those areas first for the greatest improvement in render performance."
+  },
+  "examples": {
+    "heading": "3D render time examples",
+    "intro": "Common scenes across different complexity levels showing how hardware and scene parameters affect estimated render times.",
+    "colInput": "Scene",
+    "colOutput": "Est. Time",
+    "colNote": "Key parameters",
+    "loadSimple": "Load simple scene",
+    "loadComplex": "Load complex scene",
+    "items": [
+      {
+        "input": "Simple product visualization",
+        "output": "~11 min",
+        "note": "50K polygons, 1024 px textures × 5, 3 lights, Medium quality, 8 cores / 8 GB GPU"
+      },
+      {
+        "input": "Architectural interior render",
+        "output": "~3 hrs",
+        "note": "2M polygons, 4096 px textures × 25, 12 lights, High quality, 16 cores / 16 GB GPU, complexity 1.8"
+      },
+      {
+        "input": "Feature film VFX shot",
+        "output": "~10 hrs",
+        "note": "5M polygons, 8192 px textures × 50, 20 lights, Ultra quality, 32 cores / 32 GB GPU, complexity 2.5"
+      },
+      {
+        "input": "Optimized game cinematic",
+        "output": "~1 hr",
+        "note": "1M polygons, 2048 px textures × 15, 6 lights, High quality, 12 cores / 12 GB GPU, complexity 1.2"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the 3D render calculator",
+    "steps": [
+      "Enter the polygon count of your scene — you can find this in your 3D application's scene statistics or render log.",
+      "Set the texture resolution (in pixels) and the number of individual texture maps your scene uses across all materials.",
+      "Enter the number of active lights in your scene and choose the render quality setting that matches your output requirements.",
+      "Specify your CPU core count and GPU memory (in GB), then set the scene complexity factor (1.0 for standard scenes, higher for volumes or complex materials).",
+      "Click Calculate Render Time to see the estimated render duration. Adjust parameters to explore how hardware upgrades or scene optimizations affect the total time."
+    ]
+  },
+  "faq": {
+    "heading": "3D render calculator FAQ",
+    "q1": "How accurate are these render time estimates?",
+    "q1_a": "The estimates are approximations based on a parametric model of how render complexity scales with the key inputs. They are useful for comparing configurations and planning project timelines, but actual render times can vary by 50–300% depending on the specific renderer, scene layout, material complexity, and optimization level. Always benchmark your actual scene on your hardware for precise timing.",
+    "q2": "Why does doubling the texture resolution have such a large impact?",
+    "q2_a": "Texture resolution scales quadratically — doubling from 2K to 4K increases pixel count by 4×, not 2×. A 4096 × 4096 texture contains 16 million pixels compared to 4 million for a 2048 × 2048 texture. Multiply this by dozens of texture channels and the memory and sampling load grows rapidly, which is why texture resolution is one of the biggest levers in render optimization.",
+    "q3": "What does the scene complexity factor represent?",
+    "q3_a": "The complexity factor captures effects not modeled by the other parameters — ray bounce depth, subsurface scattering, volumetric fog, motion blur, depth of field, and complex procedural materials. A value of 1.0 represents a clean scene with Principled BSDF materials, no volumetrics, and standard bounces. Scenes with participating media, high-bounce GI, or hair shaders typically need values of 1.5–3.0.",
+    "q4": "Does adding more GPU memory always speed up rendering?",
+    "q4_a": "More GPU memory primarily helps when your textures and geometry exceed the card's VRAM, causing slow memory transfers from system RAM. If all your assets fit in VRAM, adding more memory has no effect on render speed. Render speed scales more directly with GPU compute throughput (CUDA cores, RT cores, or shader processors) than with memory size alone.",
+    "q5": "How can I reduce render times without buying new hardware?",
+    "q5_a": "The most effective optimizations are: reducing polygon count with LOD techniques, baking textures to lower resolutions for distant objects, replacing complex area lights with simpler lighting rigs, lowering ray bounce counts for secondary bounces, using adaptive sampling to skip already-converged pixels, and splitting renders into multiple passes. Each of these can reduce render time by 20–60% with minimal visual impact.",
+    "q6": "What is the difference between CPU and GPU rendering?",
+    "q6_a": "CPU renderers (like Arnold CPU, V-Ray CPU, and Cycles CPU) use many-core processors with large caches, which handle complex branching and high memory bandwidth well — ideal for scenes with complex shaders and huge datasets. GPU renderers (like Octane, Redshift, Cycles GPU) exploit thousands of shader cores for massively parallel ray processing, delivering much faster results for scenes that fit in VRAM. Hybrid CPU+GPU rendering combines both for maximum throughput."
+  }
+}
