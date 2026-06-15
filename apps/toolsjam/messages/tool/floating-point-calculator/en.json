@@ -1,0 +1,100 @@
+{
+  "title": "Floating Point Calculator",
+  "tagline": "Convert decimal numbers to IEEE 754 binary representation and analyze precision.",
+  "intro": "Enter any decimal number and select a precision format to see its IEEE 754 binary representation, exponent, mantissa, and rounding error.",
+  "field": {
+    "decimal": "Decimal Number",
+    "precision": "Precision Type"
+  },
+  "placeholder": {
+    "decimal": "e.g. 3.14159 or 1.23e-10"
+  },
+  "type": {
+    "single": "Single Precision (32-bit)",
+    "double": "Double Precision (64-bit)"
+  },
+  "button": {
+    "calculate": "Convert",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter a valid decimal number (e.g. 3.14, -0.5, 1.23e-10)."
+  },
+  "result": {
+    "heading": "IEEE 754 Representation",
+    "special": "Special Value",
+    "sign": "Sign Bit",
+    "positive": "positive",
+    "negative": "negative",
+    "exponentBits": "Exponent Bits",
+    "biasedExp": "stored biased value",
+    "actualExp": "actual exponent",
+    "mantissaBits": "Mantissa Bits",
+    "fullBinary": "Full Binary Representation",
+    "storedValue": "Stored Value",
+    "roundingError": "Rounding Error",
+    "exact": "0 (exact)"
+  },
+  "formula": "Value = (-1)^sign × (1 + mantissa) × 2^(exponent − bias)  |  Single: bias=127, 8-bit exp, 23-bit mantissa  |  Double: bias=1023, 11-bit exp, 52-bit mantissa",
+  "about": {
+    "heading": "About the Floating Point Calculator",
+    "body": "The Floating Point Calculator converts decimal numbers into their IEEE 754 binary floating-point representation and displays the complete bit-level breakdown including sign, exponent, and mantissa. Understanding floating-point representation is fundamental for computer scientists, software engineers, numerical analysts, and anyone who works with computers at a level where arithmetic precision matters.\n\nThe IEEE 754 standard, published by the Institute of Electrical and Electronics Engineers in 1985 and revised in 2008, defines the format for floating-point arithmetic used in virtually all modern processors and programming languages including C, C++, Java, Python, and JavaScript. The standard specifies two primary formats: single precision (32-bit) and double precision (64-bit).\n\nA 32-bit single-precision float consists of three fields: 1 sign bit, 8 exponent bits, and 23 mantissa (significand) bits. The sign bit is 0 for positive numbers and 1 for negative. The exponent is stored with a bias of 127, meaning the actual exponent is the stored value minus 127, which allows both positive and negative exponents to be represented using unsigned integers. The mantissa stores the fractional bits of the normalized significand, with an implicit leading 1 (the hidden bit) providing one extra bit of effective precision.\n\nA 64-bit double-precision float uses 1 sign bit, 11 exponent bits (bias of 1023), and 52 mantissa bits, providing approximately 15–17 significant decimal digits of precision compared to single precision's 6–7 digits. Double precision is the default floating-point type in most programming languages.\n\nA key insight is that many seemingly simple decimal numbers — like 0.1 — cannot be represented exactly in binary floating-point. The decimal 0.1 in binary is the repeating fraction 0.0001100110011..., which must be truncated to fit in 23 or 52 mantissa bits. This truncation introduces a tiny rounding error, which is why 0.1 + 0.2 does not equal exactly 0.3 in most programming languages. This calculator shows you the exact stored value and the rounding error for any decimal number you enter, making it an invaluable debugging and learning tool for anyone working with numerical computations."
+  },
+  "examples": {
+    "heading": "Examples",
+    "intro": "Click any button below to load a well-known numeric constant.",
+    "colInput": "Decimal Input",
+    "colOutput": "Precision & Notes",
+    "colNote": "Significance",
+    "loadPi": "Pi (π)",
+    "loadOnetenth": "0.1 (Single)",
+    "loadE": "Euler's e",
+    "items": [
+      {
+        "input": "3.141592653589793 (Double)",
+        "output": "Sign: 0 · Exp: 1 · Exact digits: ~15",
+        "note": "π — irrational, stored with tiny rounding error"
+      },
+      {
+        "input": "0.1 (Single)",
+        "output": "Sign: 0 · Stored: 0.100000001490116 · Error: ~1.49e-9",
+        "note": "Classic rounding error example"
+      },
+      {
+        "input": "2.718281828459045 (Double)",
+        "output": "Sign: 0 · Exp: 1 · Exact digits: ~15",
+        "note": "Euler's number e"
+      },
+      {
+        "input": "1.23e-10 (Single)",
+        "output": "Sign: 0 · Normalized · Small positive value",
+        "note": "Tests small-number precision in single format"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use This Calculator",
+    "steps": [
+      "Choose your precision format — Single (32-bit) for embedded/GPU applications, Double (64-bit) for scientific computing.",
+      "Enter any decimal number in the input field. Scientific notation is accepted (e.g., 1.23e-10 or 6.022e23).",
+      "Click 'Convert' to see the full IEEE 754 breakdown: sign bit, exponent bits (with biased and actual values), and mantissa bits.",
+      "Review the stored value — the exact decimal the computer uses — and compare it to your input to see any rounding error.",
+      "Use the example buttons to explore how well-known constants like π, e, or 0.1 are represented in binary floating-point."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "q1": "Why can't 0.1 be represented exactly in floating point?",
+    "q1_a": "The decimal 0.1 in binary is an infinitely repeating fraction (0.000110011001100...), just like 1/3 is a repeating decimal. Since a float has a fixed number of bits, the fraction must be truncated, introducing a tiny rounding error. This is why 0.1 + 0.2 in most languages equals approximately 0.30000000000000004 rather than exactly 0.3.",
+    "q2": "What is the bias in the exponent field?",
+    "q2_a": "The bias is a fixed offset added to the actual exponent before it is stored. Single precision uses a bias of 127 and double precision uses 1023. If the actual exponent is 3, the stored value is 3 + 127 = 130 for single precision. This biased representation allows exponents to range from −126 to +127 (single) or −1022 to +1023 (double) while using only unsigned integer storage.",
+    "q3": "What is the hidden bit?",
+    "q3_a": "For normalized floating-point numbers, the leading bit of the mantissa is always 1 and is not stored — it is implied. This 'hidden' or 'implicit' bit effectively gives single precision 24 bits of mantissa precision (23 stored + 1 hidden) and double precision 53 bits (52 stored + 1 hidden). Denormalized numbers near zero have an implicit leading 0 instead.",
+    "q4": "What are special IEEE 754 values?",
+    "q4_a": "IEEE 754 defines several special values: positive and negative zero (distinguished by the sign bit), positive and negative infinity (all exponent bits set, all mantissa bits zero), and NaN — Not a Number (all exponent bits set, at least one mantissa bit set). These allow graceful handling of overflow, division by zero, and undefined operations without crashing programs.",
+    "q5": "When should I use single versus double precision?",
+    "q5_a": "Use double precision (64-bit) for scientific computing, financial calculations, and any application requiring more than 7 decimal digits of accuracy. Use single precision (32-bit) when memory or performance is constrained — GPUs process single-precision floats much faster, and mobile/embedded systems often prefer 32-bit for efficiency. The rounding errors in single precision can accumulate significantly in iterative algorithms.",
+    "q6": "How do I avoid floating-point precision errors in my code?",
+    "q6_a": "For equality comparisons, use a tolerance (epsilon) rather than exact equality: |a − b| < 1e-9 instead of a === b. For financial calculations, consider using integer arithmetic (e.g., store amounts in cents) or a dedicated decimal library. For scientific computing, use compensated summation algorithms like Kahan summation to reduce accumulated rounding errors in large sums."
+  }
+}
