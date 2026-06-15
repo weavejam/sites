@@ -1,10 +1,10 @@
 {
-  "title": "Calculadora de temperatura de anillamiento - herramienta de cebadores PCR",
-  "tagline": "Calcula la temperatura óptima de anillamiento PCR a partir de secuencias de ADN de cebadores usando la regla de Wallace, la fórmula de contenido GC o el método termodinámico del vecino más cercano.",
-  "intro": "Introduce la secuencia del cebador directo (y opcionalmente la del reverso), ajusta las concentraciones de sal y ADN, elige un método de cálculo y obtén al instante la temperatura de anillamiento recomendada.",
+  "title": "Calculadora de temperatura de annealing PCR",
+  "tagline": "Calcula la temperatura óptima de annealing PCR a partir de secuencias de ADN de cebadores usando la regla de Wallace, la fórmula de contenido GC o el método termodinámico de vecinos más cercanos.",
+  "intro": "Introduce la secuencia del cebador directo (y, opcionalmente, la del inverso), define las concentraciones de sal y ADN, elige un método de cálculo y obtén al instante la temperatura de annealing recomendada.",
   "field": {
     "forwardPrimer": "Secuencia del cebador directo",
-    "reversePrimer": "Secuencia del cebador reverso (opcional)",
+    "reversePrimer": "Secuencia del cebador inverso (opcional)",
     "salt": "Concentración de sal (mM)",
     "dna": "Concentración de ADN (nM)",
     "method": "Método de cálculo"
@@ -12,7 +12,7 @@
   "type": {
     "wallaceRule": "Regla de Wallace",
     "gcContent": "Contenido GC",
-    "nearestNeighbor": "Vecino más cercano"
+    "nearestNeighbor": "Vecinos más cercanos"
   },
   "placeholder": {
     "primerSeq": "p. ej. ATGGAGCTGAAGCAGCAGATCC",
@@ -23,21 +23,21 @@
     "reset": "Restablecer valores"
   },
   "error": {
-    "invalid": "Introduce una secuencia válida de al menos 10 bases y concentraciones positivas válidas de sal y ADN."
+    "invalid": "Introduce una secuencia de cebador válida de al menos 10 bases y concentraciones positivas válidas de sal y ADN."
   },
   "result": {
     "heading": "Resultados de temperatura",
-    "annealingTemp": "Temperatura de anillamiento recomendada (Ta)",
-    "tmForward": "Tm — cebador directo",
-    "tmReverse": "Tm — cebador reverso",
-    "formula": "Ta = Tm más baja − 5°C. El método del vecino más cercano usa parámetros de SantaLucia 1998 con corrección por sal."
+    "annealingTemp": "Temperatura de annealing recomendada (Ta)",
+    "tmForward": "Tm — Cebador directo",
+    "tmReverse": "Tm — Cebador inverso",
+    "formula": "Ta = Tm más baja − 5°C. El método de vecinos más cercanos usa parámetros de SantaLucia 1998 con corrección por sal."
   },
   "about": {
-    "heading": "Acerca de la calculadora de temperatura de anillamiento",
-    "body": "La calculadora de temperatura de anillamiento predice la temperatura óptima de anillamiento PCR (Ta) para un par de cebadores de oligonucleótidos a partir de sus secuencias de ADN y las condiciones de la reacción. Ajustar correctamente la temperatura de anillamiento es una de las decisiones más importantes en el diseño experimental de PCR: si es demasiado baja aparecen productos inespecíficos; si es demasiado alta, los cebadores no se unen con eficiencia, lo que reduce el rendimiento o incluso elimina la amplificación. La calculadora elimina las conjeturas aplicando modelos termodinámicos establecidos para darte un punto de partida fiable antes de usar el termociclador.\n\nLa temperatura de fusión (Tm) de un cebador es la temperatura a la que la mitad de los dúplex cebador-plantilla se disocian en cadenas simples. La temperatura de anillamiento suele fijarse 5°C por debajo de la Tm más baja del par de cebadores, quedando: Ta = min(Tm_forward, Tm_reverse) − 5°C. Esta regla equilibra la unión específica con una extensión eficiente y es la convención usada por la mayoría de laboratorios de biología molecular del mundo.\n\nLa calculadora ofrece tres métodos de predicción de Tm con distinta precisión y aplicabilidad. La regla de Wallace (Tm = 2°C × (A+T) + 4°C × (G+C)) es la estimación más simple y rápida. Es razonablemente precisa para cebadores de menos de unas 20 bases y sigue siendo útil como comprobación rápida, pero ignora las interacciones de apilamiento vecino y no corrige por sal. Úsala cuando necesites una estimación rápida y aproximada.\n\nEl método de contenido GC (Tm = 69.3 + 41 × GC_fraction − 650/n) es la fórmula de Marmur-Doty-Schildkraut adaptada a oligonucleótidos cortos. Incorpora la longitud del cebador (n) y la fracción GC, ofreciendo una mejor estimación que la regla de Wallace en el rango típico de 18–30 bases. Sigue siendo una aproximación porque trata todos los pares de bases del mismo tipo como termodinámicamente equivalentes.\n\nEl método del vecino más cercano (SantaLucia 1998) es el más preciso y el que usan herramientas comerciales de diseño de cebadores como Primer3 y OligoCalc. Calcula ΔH y ΔS sumando las contribuciones de entalpía y entropía de cada par dinucleotídico consecutivo a lo largo del cebador y aplica la fórmula termodinámica Tm = ΔH / (ΔS + R × ln(CT)) − 273.15, donde R es la constante de los gases y CT es la concentración total de hebras. Luego se aplica una corrección por sal mediante Tm_corrected = Tm + 16.6 × log10([Na+]/1000). Este método es el estándar de referencia para cebadores de cualquier longitud y contenido GC, especialmente para secuencias ricas en GC o en AT que se desvían mucho de la composición media.\n\nLa concentración de sal importa porque los cationes monovalentes estabilizan el dúplex de ADN al neutralizar la repulsión entre los grupos fosfato cargados negativamente. A mayor concentración de sal, mayor Tm; a menor concentración, menor Tm. El valor predeterminado de 50 mM de Na⁺ es adecuado para tampones PCR estándar. La concentración de ADN (cebador) afecta la Tm mediante el término ln(CT) en la fórmula del vecino más cercano; el valor predeterminado de 250 nM es típico en reacciones PCR. Ajustar estos valores a tus condiciones reales mejorará la precisión de la predicción."
+    "heading": "Acerca de la calculadora de temperatura de annealing",
+    "body": "La calculadora de temperatura de annealing predice la temperatura óptima de annealing PCR (Ta) para un par de cebadores oligonucleotídicos según sus secuencias de ADN y las condiciones de reacción. Elegir la temperatura correcta de annealing es una de las decisiones más importantes en el diseño experimental de PCR: si es demasiado baja aparecen productos inespecíficos; si es demasiado alta, los cebadores no se unen con eficiencia, lo que reduce el rendimiento o elimina por completo la amplificación. La calculadora elimina esa incertidumbre aplicando modelos termodinámicos establecidos para ofrecer un punto de partida fiable antes de usar el termociclador.\n\nLa temperatura de fusión (Tm) de un cebador es la temperatura a la que la mitad de los dúplex cebador-molde se han disociado en cadenas sencillas. La temperatura de annealing suele fijarse 5°C por debajo de la Tm más baja del par de cebadores: Ta = min(Tm_forward, Tm_reverse) − 5°C. Esta regla equilibra la unión específica con la extensión eficiente y es la convención utilizada por la mayoría de los laboratorios de biología molecular del mundo.\n\nLa calculadora ofrece tres métodos de predicción de Tm con distinta precisión y aplicabilidad. La regla de Wallace (Tm = 2°C × (A+T) + 4°C × (G+C)) es la estimación más simple y rápida. Es razonablemente precisa para cebadores de menos de unas 20 bases y sigue siendo útil para una comprobación rápida de plausibilidad, pero ignora las interacciones de apilamiento de vecinos más cercanos y no corrige por sal. Úsala cuando necesites una estimación aproximada rápida.\n\nEl método de contenido GC (Tm = 69.3 + 41 × GC_fraction − 650/n) es la fórmula de Marmur-Doty-Schildkraut adaptada a oligonucleótidos cortos. Incorpora la longitud del cebador (n) y la fracción GC, por lo que ofrece una estimación mejor que la regla de Wallace en el rango típico de 18–30 bases. Aun así es una aproximación, porque trata todos los pares de bases del mismo tipo como termodinámicamente equivalentes.\n\nEl método de vecinos más cercanos (SantaLucia 1998) es el enfoque más preciso y el que utilizan herramientas comerciales de diseño de cebadores como Primer3 y OligoCalc. Calcula ΔH y ΔS sumando las contribuciones de entalpía y entropía de cada par de dinucleótidos consecutivos a lo largo del cebador, y luego aplica la fórmula termodinámica Tm = ΔH / (ΔS + R × ln(CT)) − 273.15, donde R es la constante de los gases y CT es la concentración total de cadenas. Después se aplica una corrección por sal con la fórmula: Tm_corrected = Tm + 16.6 × log10([Na+]/1000). Este método es el estándar de referencia para cebadores de cualquier longitud y contenido GC, especialmente secuencias ricas en GC o AT que se apartan mucho de la composición media.\n\nLa concentración de sal importa porque los cationes monovalentes estabilizan el dúplex de ADN al neutralizar la repulsión entre los grupos fosfato cargados negativamente. Las concentraciones de sal más altas elevan la Tm; las más bajas la reducen. El valor predeterminado de 50 mM Na⁺ es adecuado para tampones estándar de PCR. La concentración de ADN (cebador) afecta a la Tm mediante el término ln(CT) de la fórmula de vecinos más cercanos; el valor predeterminado de 250 nM es típico en reacciones de PCR. Ajustar estos valores a tus condiciones reales de reacción mejora la precisión de la predicción."
   },
   "examples": {
-    "heading": "Ejemplos de temperatura de anillamiento PCR",
+    "heading": "Ejemplos de temperatura de annealing PCR",
     "intro": "Secuencias de cebadores de ejemplo que ilustran distintas composiciones GC y rangos de longitud en los tres métodos de cálculo.",
     "colInput": "Secuencia del cebador",
     "colOutput": "Ta (°C)",
@@ -46,12 +46,12 @@
       {
         "input": "ATGGAGCTGAAGCAGCAGATCC (22 bp, 54.5% GC)",
         "output": "Ta ≈ 58°C",
-        "note": "Cebador estándar de amplificación génica. Método del vecino más cercano. Sal 50 mM, cebador 250 nM."
+        "note": "Cebador estándar para amplificación génica. Método de vecinos más cercanos. Sal 50 mM, cebador 250 nM."
       },
       {
         "input": "GCGCGCGGATCCATGAAGCTG (21 bp, 71.4% GC)",
         "output": "Ta ≈ 67°C",
-        "note": "Cebador con alto contenido GC; requiere una temperatura de anillamiento elevada. Método de contenido GC. Sal 75 mM."
+        "note": "Cebador de alto GC; requiere una temperatura de annealing elevada. Método de contenido GC. Sal 75 mM."
       },
       {
         "input": "ATCGATCGATCG (12 bp, 50% GC)",
@@ -61,46 +61,46 @@
       {
         "input": "TTGACGATCATGAGCTTGGC (20 bp, 50% GC)",
         "output": "Ta ≈ 52°C",
-        "note": "Condición de baja sal (25 mM). Una menor concentración de sal reduce la Tm respecto a las condiciones estándar de 50 mM."
+        "note": "Condición de baja sal (25 mM). Una sal más baja reduce la Tm frente a las condiciones estándar de 50 mM."
       }
     ]
   },
   "howto": {
-    "heading": "Cómo usar la calculadora de temperatura de anillamiento",
+    "heading": "Cómo usar la calculadora de temperatura de annealing",
     "steps": [
-      "Introduce la secuencia de ADN del cebador directo en el primer campo (dirección 5’ a 3’). Solo se usan las bases ATGC; las bases ambiguas y los espacios se ignoran.",
-      "Introduce opcionalmente la secuencia del cebador reverso. Si se proporciona, Ta se basa en la menor de las dos Tm del par de cebadores.",
-      "Ajusta la concentración de sal (predeterminado 50 mM NaCl) y la concentración de ADN/cebador (predeterminado 250 nM). Usa las condiciones reales de tu reacción para obtener la mejor precisión.",
-      "Elige un método de cálculo: Regla de Wallace para una estimación rápida, Contenido GC para una precisión moderada o Vecino más cercano (SantaLucia 1998) para el resultado más preciso.",
-      "Haz clic en Calcular temperatura. El panel de resultados mostrará la temperatura de anillamiento recomendada (Ta) y los valores de Tm de cada cebador con estadísticas de composición de bases."
+      "Introduce la secuencia de ADN del cebador directo en el primer campo (dirección 5’ a 3’). Solo se usan bases ATGC; las bases ambiguas y los espacios se ignoran.",
+      "Opcionalmente, introduce la secuencia del cebador inverso. Si se proporciona, la Ta se basa en la menor de las dos Tm del par de cebadores.",
+      "Define la concentración de sal (50 mM NaCl por defecto) y la concentración de ADN/cebador (250 nM por defecto). Usa tus condiciones reales de reacción para obtener la mejor precisión.",
+      "Elige un método de cálculo: regla de Wallace para una estimación rápida, contenido GC para precisión moderada o vecinos más cercanos (SantaLucia 1998) para el resultado más preciso.",
+      "Haz clic en Calcular temperatura. El panel de resultados muestra la temperatura de annealing recomendada (Ta) y los valores individuales de Tm de cada cebador con estadísticas de composición de bases."
     ]
   },
   "faq": {
-    "heading": "Preguntas frecuentes sobre la calculadora de temperatura de anillamiento",
+    "heading": "Preguntas frecuentes sobre la calculadora de temperatura de annealing",
     "items": [
       {
         "q": "¿Cuál es la diferencia entre Tm y Ta?",
-        "a": "Tm (temperatura de fusión) es la temperatura a la que el 50% de los dúplex cebador-plantilla se disocian en cadenas simples; es una propiedad del propio cebador y de las condiciones de reacción. Ta (temperatura de anillamiento) es la temperatura usada en el termociclador de PCR durante la fase de anillamiento. Ta suele fijarse 5°C por debajo de la Tm más baja del par de cebadores para asegurar una unión eficiente y específica."
+        "a": "Tm (temperatura de fusión) es la temperatura a la que el 50% de los dúplex cebador-molde se disocian en cadenas sencillas; es una propiedad del propio cebador y de las condiciones de reacción. Ta (temperatura de annealing) es la temperatura usada en el termociclador durante el paso de annealing. La Ta suele fijarse 5°C por debajo de la Tm más baja del par de cebadores para asegurar una unión eficiente y específica."
       },
       {
         "q": "¿Qué método de cálculo debo usar?",
-        "a": "Para la mayoría del trabajo de PCR en laboratorio, el método del Vecino más cercano (SantaLucia 1998) es el más preciso y el recomendado por NCBI Primer-BLAST y Primer3. Usa la Regla de Wallace solo para cebadores muy cortos (menos de 14 bases) o para una comprobación rápida. Usa el método de Contenido GC cuando quieras algo un poco más preciso que Wallace pero todavía más rápido que NN, por ejemplo durante el cribado inicial de cebadores."
+        "a": "Para la mayoría de trabajos de PCR en laboratorio, el método de vecinos más cercanos (SantaLucia 1998) es el más preciso y el recomendado por NCBI Primer-BLAST y Primer3. Usa la regla de Wallace solo para cebadores muy cortos (menos de 14 bases) o para una comprobación rápida. Usa el método de contenido GC cuando quieras algo un poco más preciso que Wallace pero aún más rápido que NN, por ejemplo durante el cribado inicial de cebadores."
       },
       {
-        "q": "¿Por qué falla mi PCR incluso cuando uso la temperatura de anillamiento calculada?",
-        "a": "La Ta calculada es un punto de partida, no una garantía. El rendimiento real de la PCR también depende de la especificidad del cebador (compruébalo con BLAST), de los dímeros y horquillas de cebadores (compruébalo con OligoAnalyzer), de la estructura secundaria del molde, de la concentración de Mg2⁺, de la procesividad de la polimerasa y de la velocidad de rampa del termociclador. Si la temperatura calculada no funciona, prueba una PCR en gradiente entre ±2–10°C alrededor de Ta, o reduce la temperatura de anillamiento en incrementos de 2°C."
+        "q": "¿Por qué falla mi PCR aunque use la temperatura de annealing calculada?",
+        "a": "La Ta calculada es un punto de partida, no una garantía. El rendimiento real de la PCR también depende de la especificidad del cebador (comprobar con BLAST), dímeros y horquillas de cebadores (comprobar con OligoAnalyzer), estructura secundaria del molde, concentración de Mg2⁺, procesividad de la polimerasa y velocidades de rampa del termociclador. Si la temperatura calculada no funciona, prueba una PCR en gradiente que cubra ±2–10°C alrededor de la Ta, o reduce la temperatura de annealing en incrementos de 2°C."
       },
       {
-        "q": "¿Cómo afecta la concentración de sal a la temperatura de anillamiento?",
-        "a": "Las concentraciones más altas de sales monovalentes (Na⁺, K⁺) estabilizan la doble hélice de ADN al apantallar la repulsión entre los fosfatos cargados negativamente, elevando la Tm. Pasar de 25 mM a 100 mM de NaCl suele aumentar la Tm en 2–3°C. Los tampones PCR estándar contienen 50–75 mM de KCl más Mg2⁺; introduce la concentración equivalente de Na⁺ para obtener mejores resultados con la corrección por sal del método del vecino más cercano."
+        "q": "¿Cómo afecta la concentración de sal a la temperatura de annealing?",
+        "a": "Las concentraciones más altas de sal monovalente (Na⁺, K⁺) estabilizan la doble hélice de ADN al apantallar el esqueleto fosfato cargado negativamente, lo que eleva la Tm. Pasar de 25 mM a 100 mM NaCl suele elevar la Tm en 2–3°C. Los tampones estándar de PCR contienen 50–75 mM KCl más Mg2⁺; introduce la concentración equivalente de Na⁺ para obtener mejores resultados con la corrección de sal de vecinos más cercanos."
       },
       {
-        "q": "¿Qué debo hacer si los cebadores del par tienen Tm muy diferentes?",
-        "a": "Cuando los dos cebadores difieren en más de 5°C en Tm, considera rediseñar el cebador de menor Tm para que sea más largo o más rico en GC y así acercar los valores. Un gran desajuste de Tm hace que uno de los cebadores se una con menos eficiencia a la Ta elegida, lo que puede reducir el rendimiento y favorecer productos de un solo extremo. Como compromiso, a veces puedes usar un protocolo de PCR descendente que empiece por encima de la Tm más alta y baje gradualmente a lo largo del rango de temperatura de anillamiento."
+        "q": "¿Qué debo hacer con cebadores que tienen valores de Tm muy diferentes?",
+        "a": "Cuando los dos cebadores de un par difieren en Tm en más de 5°C, considera rediseñar el cebador de menor Tm para que sea más largo o más rico en GC y así acercar los valores. Una gran discrepancia de Tm hace que un cebador se una con menor eficiencia a la Ta elegida, lo que puede reducir el rendimiento y favorecer productos de un solo lado. Como compromiso, a veces puede usarse un protocolo de PCR touch-down que empieza por encima de la Tm más alta y desciende por el rango de temperaturas de annealing."
       },
       {
-        "q": "¿El Tm del cebador cambia en presencia de DMSO u otros aditivos?",
-        "a": "Sí. El DMSO desestabiliza la doble hélice y reduce la Tm aproximadamente 0.5–1.0°C por cada 1% de DMSO añadido. La betaína, el glicerol y la formamida también reducen la Tm. Estos aditivos se usan para amplificar plantillas ricas en GC o estructuradas; cuando estén presentes, reduce tu Ta aproximadamente en la misma cantidad. La calculadora no modela los efectos de los aditivos, así que ajusta Ta manualmente si tu reacción incluye cosolventes."
+        "q": "¿Cambia la Tm del cebador en presencia de DMSO u otros aditivos?",
+        "a": "Sí. El DMSO desestabiliza la doble hélice y reduce la Tm aproximadamente 0.5–1.0°C por cada porcentaje de DMSO añadido. La betaína, el glicerol y la formamida también reducen la Tm. Estos aditivos se usan para amplificar moldes ricos en GC o estructurados; cuando están presentes, reduce la Ta aproximadamente en la misma magnitud. La calculadora no modela los efectos de aditivos, así que ajusta la Ta manualmente si tu reacción incluye cosolventes."
       }
     ]
   }

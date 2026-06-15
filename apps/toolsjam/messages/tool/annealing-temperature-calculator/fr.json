@@ -1,18 +1,18 @@
 {
-  "title": "Calculateur de température d’hybridation - outil d’amorces PCR",
-  "tagline": "Calculez la température d’hybridation PCR optimale à partir de séquences d’ADN d’amorces en utilisant la règle de Wallace, la formule de contenu GC ou la méthode thermodynamique du voisin le plus proche.",
-  "intro": "Saisissez la séquence de votre amorce avant (et éventuellement celle de l’amorce inverse), réglez les concentrations de sel et d’ADN, choisissez une méthode de calcul et obtenez instantanément la température d’hybridation recommandée.",
+  "title": "Calculateur de température d’hybridation PCR",
+  "tagline": "Calculez la température d’hybridation PCR optimale à partir de séquences d’ADN d’amorces avec la règle de Wallace, la formule de teneur en GC ou la méthode thermodynamique des plus proches voisins.",
+  "intro": "Saisissez la séquence de l’amorce sens (et éventuellement l’amorce antisens), définissez les concentrations de sel et d’ADN, choisissez une méthode de calcul et obtenez instantanément la température d’hybridation recommandée.",
   "field": {
-    "forwardPrimer": "Séquence de l’amorce avant",
-    "reversePrimer": "Séquence de l’amorce inverse (facultatif)",
+    "forwardPrimer": "Séquence de l’amorce sens",
+    "reversePrimer": "Séquence de l’amorce antisens (facultatif)",
     "salt": "Concentration en sel (mM)",
-    "dna": "Concentration en ADN (nM)",
+    "dna": "Concentration d’ADN (nM)",
     "method": "Méthode de calcul"
   },
   "type": {
     "wallaceRule": "Règle de Wallace",
     "gcContent": "Teneur en GC",
-    "nearestNeighbor": "Voisin le plus proche"
+    "nearestNeighbor": "Plus proches voisins"
   },
   "placeholder": {
     "primerSeq": "ex. ATGGAGCTGAAGCAGCAGATCC",
@@ -23,35 +23,35 @@
     "reset": "Réinitialiser les valeurs"
   },
   "error": {
-    "invalid": "Veuillez saisir une séquence d’amorce valide d’au moins 10 bases, ainsi que des concentrations positives valides en sel et en ADN."
+    "invalid": "Veuillez saisir une séquence d’amorce valide d’au moins 10 bases, ainsi que des concentrations positives valides de sel et d’ADN."
   },
   "result": {
     "heading": "Résultats de température",
     "annealingTemp": "Température d’hybridation recommandée (Ta)",
-    "tmForward": "Tm — amorce avant",
-    "tmReverse": "Tm — amorce inverse",
-    "formula": "Ta = Tm la plus basse − 5°C. La méthode du voisin le plus proche utilise les paramètres de SantaLucia 1998 avec correction du sel."
+    "tmForward": "Tm — Amorce sens",
+    "tmReverse": "Tm — Amorce antisens",
+    "formula": "Ta = Tm la plus basse − 5°C. La méthode des plus proches voisins utilise les paramètres SantaLucia 1998 avec correction saline."
   },
   "about": {
     "heading": "À propos du calculateur de température d’hybridation",
-    "body": "Le calculateur de température d’hybridation prédit la température d’hybridation PCR optimale (Ta) pour une paire d’amorces oligonucléotidiques à partir de leurs séquences d’ADN et des conditions de réaction. Définir la bonne température d’hybridation est l’une des décisions les plus importantes lors de la conception d’une PCR : trop basse, des produits non spécifiques apparaissent ; trop élevée, les amorces ne se lient pas efficacement, ce qui réduit le rendement ou empêche totalement l’amplification. Ce calculateur élimine les approximations en appliquant des modèles thermodynamiques établis pour vous fournir un point de départ fiable avant d’utiliser le thermocycleur.\n\nLa température de fusion (Tm) d’une amorce est la température à laquelle la moitié des duplex amorce-matrice se dissocient en brins simples. La température d’hybridation est généralement fixée 5°C en dessous de la Tm la plus basse de la paire d’amorces, soit : Ta = min(Tm_forward, Tm_reverse) − 5°C. Cette règle équilibre la liaison spécifique et l’extension efficace, et constitue la convention utilisée par la plupart des laboratoires de biologie moléculaire dans le monde.\n\nLe calculateur propose trois méthodes de prédiction de Tm avec des niveaux de précision et d’applicabilité différents. La règle de Wallace (Tm = 2°C × (A+T) + 4°C × (G+C)) est l’estimation la plus simple et la plus rapide. Elle est raisonnablement précise pour les amorces de moins d’environ 20 bases et reste utile pour une vérification rapide, mais elle ignore les interactions d’empilement voisin et n’applique pas de correction de sel. Utilisez-la pour une estimation rapide et approximative.\n\nLa méthode de contenu GC (Tm = 69.3 + 41 × GC_fraction − 650/n) est la formule de Marmur-Doty-Schildkraut adaptée aux courts oligonucléotides. Elle intègre la longueur de l’amorce (n) et la fraction GC, ce qui donne une meilleure estimation que la règle de Wallace sur la plage typique de 18 à 30 bases. Il s’agit toutefois d’une approximation, car elle traite toutes les paires de bases d’un même type comme thermodynamiquement équivalentes.\n\nLa méthode du voisin le plus proche (SantaLucia 1998) est l’approche la plus précise et celle utilisée par des outils commerciaux de conception d’amorces comme Primer3 et OligoCalc. Elle calcule ΔH et ΔS en additionnant les contributions d’enthalpie et d’entropie de chaque paire de dinucléotides consécutifs le long de l’amorce, puis applique la formule thermodynamique Tm = ΔH / (ΔS + R × ln(CT)) − 273.15, où R est la constante des gaz et CT la concentration totale des brins. Une correction de sel est ensuite appliquée avec Tm_corrected = Tm + 16.6 × log10([Na+]/1000). Cette méthode est la référence pour des amorces de toute longueur et de tout contenu GC, en particulier les séquences très riches en GC ou en AT qui s’écartent fortement de la composition moyenne.\n\nLa concentration en sel est importante car les cations monovalents stabilisent le duplex d’ADN en neutralisant la répulsion entre les groupements phosphate chargés négativement. Des concentrations plus élevées augmentent la Tm ; des concentrations plus faibles la diminuent. La valeur par défaut de 50 mM de Na⁺ convient aux tampons PCR standards. La concentration en ADN (amorce) influence la Tm via le terme ln(CT) dans la formule du voisin le plus proche ; la valeur par défaut de 250 nM est typique des réactions PCR. Ajuster ces valeurs à vos conditions réelles améliore la précision de la prédiction."
+    "body": "Le calculateur de température d’hybridation prédit la température d’hybridation PCR optimale (Ta) pour une paire d’amorces oligonucléotidiques à partir de leurs séquences d’ADN et des conditions de réaction. Définir la bonne température d’hybridation est l’une des décisions les plus importantes dans la conception expérimentale d’une PCR : trop basse, elle favorise des produits non spécifiques ; trop élevée, elle empêche les amorces de se lier efficacement, ce qui réduit le rendement ou supprime totalement l’amplification. Le calculateur élimine cette part d’incertitude en appliquant des modèles thermodynamiques établis afin de fournir un point de départ fiable avant d’utiliser un thermocycleur.\n\nLa température de fusion (Tm) d’une amorce est la température à laquelle la moitié des duplex amorce-matrice sont dissociés en simples brins. La température d’hybridation est généralement fixée 5°C sous la Tm la plus basse de la paire d’amorces, soit : Ta = min(Tm_forward, Tm_reverse) − 5°C. Cette règle équilibre la liaison spécifique et l’extension efficace ; c’est la convention utilisée par la plupart des laboratoires de biologie moléculaire dans le monde.\n\nLe calculateur propose trois méthodes de prédiction de Tm, avec des niveaux de précision et des domaines d’application différents. La règle de Wallace (Tm = 2°C × (A+T) + 4°C × (G+C)) est l’estimation la plus simple et la plus rapide. Elle est raisonnablement précise pour des amorces de moins d’environ 20 bases et reste utile pour une vérification rapide, mais elle ignore les interactions d’empilement des plus proches voisins et ne corrige pas l’effet du sel. Utilisez-la lorsque vous avez besoin d’une estimation grossière rapide.\n\nLa méthode de teneur en GC (Tm = 69.3 + 41 × GC_fraction − 650/n) est la formule de Marmur-Doty-Schildkraut adaptée aux courts oligonucléotides. Elle intègre la longueur de l’amorce (n) et la fraction GC, ce qui donne une meilleure estimation que la règle de Wallace dans la plage habituelle de 18–30 bases. Elle reste toutefois approximative, car elle traite toutes les paires de bases d’un même type comme thermodynamiquement équivalentes.\n\nLa méthode des plus proches voisins (SantaLucia 1998) est l’approche la plus précise et celle utilisée par les outils commerciaux de conception d’amorces comme Primer3 et OligoCalc. Elle calcule ΔH et ΔS en additionnant les contributions d’enthalpie et d’entropie de chaque paire de dinucléotides consécutifs le long de l’amorce, puis applique la formule thermodynamique Tm = ΔH / (ΔS + R × ln(CT)) − 273.15, où R est la constante des gaz et CT la concentration totale de brins. Une correction saline est ensuite appliquée avec la formule : Tm_corrected = Tm + 16.6 × log10([Na+]/1000). Cette méthode est la référence pour des amorces de toute longueur et de toute teneur en GC, en particulier les séquences riches en GC ou en AT qui s’écartent nettement de la composition moyenne.\n\nLa concentration en sel est importante, car les cations monovalents stabilisent le duplex d’ADN en neutralisant la répulsion entre les groupes phosphate chargés négativement. Des concentrations plus élevées en sel augmentent la Tm ; des concentrations plus faibles la diminuent. La valeur par défaut de 50 mM Na⁺ convient aux tampons PCR standards. La concentration d’ADN (amorce) influence la Tm via le terme ln(CT) de la formule des plus proches voisins ; la valeur par défaut de 250 nM est typique des réactions PCR. Ajuster ces valeurs à vos conditions réelles de réaction améliorera la précision de la prédiction."
   },
   "examples": {
     "heading": "Exemples de température d’hybridation PCR",
-    "intro": "Séquences d’amorces d’exemple illustrant différentes compositions en GC et différentes longueurs pour les trois méthodes de calcul.",
-    "colInput": "Séquence d’amorce",
+    "intro": "Séquences d’amorces exemples illustrant différentes compositions en GC et plages de longueur pour les trois méthodes de calcul.",
+    "colInput": "Séquence de l’amorce",
     "colOutput": "Ta (°C)",
     "colNote": "Détails",
     "items": [
       {
         "input": "ATGGAGCTGAAGCAGCAGATCC (22 bp, 54.5% GC)",
         "output": "Ta ≈ 58°C",
-        "note": "Amorce standard d’amplification génique. Méthode du voisin le plus proche. Sel 50 mM, amorce 250 nM."
+        "note": "Amorce standard d’amplification génique. Méthode des plus proches voisins. Sel 50 mM, amorce 250 nM."
       },
       {
         "input": "GCGCGCGGATCCATGAAGCTG (21 bp, 71.4% GC)",
         "output": "Ta ≈ 67°C",
-        "note": "Amorce riche en GC ; nécessite une température d’hybridation plus élevée. Méthode de contenu GC. Sel 75 mM."
+        "note": "Amorce riche en GC ; nécessite une température d’hybridation élevée. Méthode de teneur en GC. Sel 75 mM."
       },
       {
         "input": "ATCGATCGATCG (12 bp, 50% GC)",
@@ -61,18 +61,18 @@
       {
         "input": "TTGACGATCATGAGCTTGGC (20 bp, 50% GC)",
         "output": "Ta ≈ 52°C",
-        "note": "Condition de faible sel (25 mM). Une concentration en sel plus faible diminue la Tm par rapport aux conditions standard à 50 mM."
+        "note": "Condition de faible salinité (25 mM). Un sel plus faible réduit la Tm par rapport aux conditions standards à 50 mM."
       }
     ]
   },
   "howto": {
     "heading": "Comment utiliser le calculateur de température d’hybridation",
     "steps": [
-      "Saisissez la séquence d’ADN de l’amorce avant dans le premier champ (sens 5’ vers 3’). Seules les bases ATGC sont utilisées ; les bases ambiguës et les espaces sont ignorés.",
-      "Saisissez éventuellement la séquence de l’amorce inverse. Si elle est fournie, Ta est calculée à partir de la plus faible des deux valeurs de Tm.",
-      "Réglez la concentration en sel (par défaut 50 mM NaCl) et la concentration en ADN/amorce (par défaut 250 nM). Utilisez les conditions réelles de votre réaction pour une meilleure précision.",
-      "Choisissez une méthode de calcul : règle de Wallace pour une estimation rapide, contenu GC pour une précision intermédiaire, ou voisin le plus proche (SantaLucia 1998) pour le résultat le plus précis.",
-      "Cliquez sur Calculer la température. Le panneau de résultats affiche la température d’hybridation recommandée (Ta) ainsi que les valeurs de Tm de chaque amorce avec les statistiques de composition en bases."
+      "Saisissez la séquence d’ADN de l’amorce sens dans le premier champ (direction 5’ vers 3’). Seules les bases ATGC sont utilisées ; les bases ambiguës et les espaces sont ignorés.",
+      "Saisissez éventuellement la séquence de l’amorce antisens. Si elle est fournie, la Ta est basée sur la plus basse des deux valeurs de Tm de la paire d’amorces.",
+      "Définissez la concentration en sel (50 mM NaCl par défaut) et la concentration d’ADN/amorce (250 nM par défaut). Utilisez vos conditions réelles de réaction pour une précision optimale.",
+      "Choisissez une méthode de calcul : règle de Wallace pour une estimation rapide, teneur en GC pour une précision modérée, ou plus proches voisins (SantaLucia 1998) pour le résultat le plus précis.",
+      "Cliquez sur Calculer la température. Le panneau de résultats affiche la température d’hybridation recommandée (Ta), ainsi que les valeurs individuelles de Tm de chaque amorce et les statistiques de composition en bases."
     ]
   },
   "faq": {
@@ -80,27 +80,27 @@
     "items": [
       {
         "q": "Quelle est la différence entre Tm et Ta ?",
-        "a": "Tm (température de fusion) est la température à laquelle 50 % des duplex amorce-matrice se dissocient en brins simples ; c’est une propriété de l’amorce elle-même et des conditions de réaction. Ta (température d’hybridation) est la température utilisée dans le thermocycleur PCR pendant l’étape d’hybridation. Ta est généralement fixée 5°C en dessous de la Tm la plus basse de la paire d’amorces afin d’assurer une liaison efficace et spécifique."
+        "a": "Tm (température de fusion) est la température à laquelle 50% des duplex amorce-matrice sont dissociés en simples brins ; c’est une propriété de l’amorce elle-même et des conditions de réaction. Ta (température d’hybridation) est la température utilisée dans le thermocycleur PCR pendant l’étape d’hybridation. La Ta est généralement fixée 5°C sous la Tm la plus basse de la paire d’amorces afin d’assurer une liaison efficace et spécifique."
       },
       {
         "q": "Quelle méthode de calcul dois-je utiliser ?",
-        "a": "Pour la plupart des travaux PCR en laboratoire, la méthode du voisin le plus proche (SantaLucia 1998) est la plus précise et celle recommandée par NCBI Primer-BLAST et Primer3. N’utilisez la règle de Wallace que pour des amorces très courtes (moins de 14 bases) ou pour une vérification rapide. Utilisez la méthode de contenu GC lorsque vous voulez quelque chose d’un peu plus précis que Wallace mais encore plus rapide que NN, par exemple lors du criblage initial des amorces."
+        "a": "Pour la plupart des PCR en laboratoire, la méthode des plus proches voisins (SantaLucia 1998) est la plus précise et celle recommandée par NCBI Primer-BLAST et Primer3. Utilisez la règle de Wallace uniquement pour des amorces très courtes (moins de 14 bases) ou pour une vérification rapide. Utilisez la méthode de teneur en GC si vous voulez une méthode un peu plus précise que Wallace mais encore plus rapide que NN, par exemple lors du criblage initial d’amorces."
       },
       {
         "q": "Pourquoi ma PCR échoue-t-elle même avec la température d’hybridation calculée ?",
-        "a": "La Ta calculée est un point de départ, pas une garantie. Les performances réelles de la PCR dépendent aussi de la spécificité des amorces (à vérifier avec BLAST), des dimères et des structures en épingle à cheveux (à vérifier avec OligoAnalyzer), de la structure secondaire du matrice, de la concentration en Mg2⁺, de la processivité de la polymérase et des vitesses de montée en température du thermocycleur. Si la température calculée ne fonctionne pas, essayez une PCR en gradient sur ±2–10°C autour de Ta, ou réduisez la température d’hybridation par paliers de 2°C."
+        "a": "La Ta calculée est un point de départ, pas une garantie. Les performances réelles de la PCR dépendent aussi de la spécificité des amorces (à vérifier avec BLAST), des dimères et structures en épingle (à vérifier avec OligoAnalyzer), de la structure secondaire de la matrice, de la concentration en Mg2⁺, de la processivité de la polymérase et des vitesses de rampe du thermocycleur. Si la température calculée ne fonctionne pas, essayez une PCR en gradient couvrant ±2–10°C autour de la Ta, ou abaissez la température d’hybridation par paliers de 2°C."
       },
       {
         "q": "Comment la concentration en sel affecte-t-elle la température d’hybridation ?",
-        "a": "Des concentrations plus élevées en sels monovalents (Na⁺, K⁺) stabilisent la double hélice d’ADN en écrantant la répulsion des phosphates chargés négativement, ce qui augmente la Tm. Passer de 25 mM à 100 mM de NaCl augmente généralement la Tm de 2 à 3°C. Les tampons PCR standard contiennent 50–75 mM de KCl ainsi que du Mg2⁺ ; entrez la concentration équivalente en Na⁺ pour obtenir de meilleurs résultats avec la correction de sel de la méthode du voisin le plus proche."
+        "a": "Des concentrations plus élevées de sels monovalents (Na⁺, K⁺) stabilisent la double hélice d’ADN en écrantant le squelette phosphate chargé négativement, ce qui augmente la Tm. Passer de 25 mM à 100 mM NaCl augmente généralement la Tm de 2–3°C. Les tampons PCR standards contiennent 50–75 mM KCl plus Mg2⁺ ; saisissez la concentration équivalente en Na⁺ pour obtenir les meilleurs résultats avec la correction saline des plus proches voisins."
       },
       {
-        "q": "Que faire si les amorces d’une paire ont des Tm très différentes ?",
-        "a": "Lorsque les deux amorces diffèrent de plus de 5°C en Tm, envisagez de redessiner l’amorce à plus faible Tm pour la rendre plus longue ou plus riche en GC afin de rapprocher les valeurs. Un écart important de Tm fait qu’une des amorces se lie moins efficacement à la Ta choisie, ce qui peut réduire le rendement et favoriser des produits à un seul côté. En compromis, vous pouvez parfois utiliser un protocole PCR en touchdown qui démarre au-dessus de la Tm la plus élevée et descend progressivement sur la plage de température d’hybridation."
+        "q": "Que faire si deux amorces ont des Tm très différentes ?",
+        "a": "Lorsque les deux amorces d’une paire diffèrent de plus de 5°C en Tm, envisagez de redessiner l’amorce à Tm plus faible pour qu’elle soit plus longue ou plus riche en GC afin de rapprocher les valeurs. Un fort décalage de Tm fait qu’une amorce se lie moins efficacement à la Ta choisie, ce qui peut réduire le rendement et favoriser des produits unilatéraux. Comme compromis, vous pouvez parfois utiliser un protocole de PCR touch-down qui commence au-dessus de la Tm la plus élevée puis descend progressivement dans la plage de températures d’hybridation."
       },
       {
-        "q": "La Tm des amorces change-t-elle en présence de DMSO ou d’autres additifs ?",
-        "a": "Oui. Le DMSO déstabilise la double hélice et abaisse la Tm d’environ 0.5–1.0°C par pourcentage de DMSO ajouté. La bétaïne, le glycérol et le formamide abaissent également la Tm. Ces additifs sont utilisés pour amplifier des matrices riches en GC ou structurées ; lorsqu’ils sont présents, réduisez votre Ta d’une valeur similaire. Le calculateur ne modélise pas les effets des additifs, donc ajustez Ta manuellement si votre réaction contient des co-solvants."
+        "q": "La Tm d’une amorce change-t-elle en présence de DMSO ou d’autres additifs ?",
+        "a": "Oui. Le DMSO déstabilise la double hélice et abaisse la Tm d’environ 0.5–1.0°C par pourcentage de DMSO ajouté. La bétaïne, le glycérol et le formamide abaissent également la Tm. Ces additifs sont utilisés pour amplifier des matrices riches en GC ou structurées ; lorsqu’ils sont présents, réduisez votre Ta d’environ la même valeur. Le calculateur ne modélise pas les effets des additifs, ajustez donc manuellement la Ta si votre réaction contient des cosolvants."
       }
     ]
   }
