@@ -1,0 +1,100 @@
+{
+  "title": "Knickrechner - Euler-Knicklast und Spannung",
+  "tagline": "Berechnen Sie die kritische Knicklast, Knickspannung und den Sicherheitsfaktor schlanker Stützen mit der Euler-Formel.",
+  "intro": "Geben Sie Material-, Geometrie- und Randbedingungsparameter ein, um zu prüfen, ob ein Bauteil gegen Knickversagen sicher ist.",
+  "field": {
+    "appliedLoad": "Aufgebrachte Last (N)",
+    "length": "Länge (m)",
+    "modulus": "Elastizitätsmodul (GPa)",
+    "momentOfInertia": "Flächenträgheitsmoment (m⁴)",
+    "effectiveLengthFactor": "Knicklängenbeiwert (K)",
+    "area": "Querschnittsfläche (m²)"
+  },
+  "placeholder": {
+    "appliedLoad": "z. B. 75000",
+    "length": "z. B. 4.5",
+    "modulus": "z. B. 200",
+    "momentOfInertia": "z. B. 0.00015",
+    "effectiveLengthFactor": "z. B. 0.7",
+    "area": "z. B. 0.012"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte füllen Sie alle Felder mit gültigen positiven Zahlen aus."
+  },
+  "result": {
+    "heading": "Ergebnisse der Knickanalyse",
+    "criticalLoad": "Kritische Knicklast (Pcr)",
+    "bucklingStress": "Knickspannung",
+    "safetyFactor": "Sicherheitsfaktor",
+    "effectiveLength": "Knicklänge (Le)",
+    "status": {
+      "safe": "SICHER — Die aufgebrachte Last liegt unter der kritischen Knicklast.",
+      "unsafe": "NICHT SICHER — Die aufgebrachte Last überschreitet die kritische Knicklast!"
+    }
+  },
+  "about": {
+    "heading": "Über den Knickrechner",
+    "body": "Strukturelles Knicken ist ein plötzliches Versagen, bei dem ein schlankes Druckglied seitlich ausweicht, statt sich weiter elastisch zu verkürzen. Es ist bei Stützen und Streben entscheidend, weil es weit unterhalb der Streckgrenze auftreten kann.\n\nDie Grundlage ist die Euler-Formel von Leonhard Euler aus dem Jahr 1757. Die kritische Knicklast einer ideal elastischen Stütze lautet:\n\nPcr = (π² × E × I) / (K × L)²\n\nE ist der Elastizitätsmodul, I das Flächenträgheitsmoment um die Biegeachse, K der Knicklängenbeiwert und L die ungestützte Länge. K×L ist die Knicklänge Le.\n\nK beschreibt die Lagerung: 0.5 eingespannt-eingespannt, 0.7 eingespannt-gelenkig, 1.0 gelenkig-gelenkig und 2.0 eingespannt-frei. Ein kleineres K erhöht die kritische Last stark; beidseitige Einspannung kann die Traglast gegenüber beidseitiger Gelenklagerung vervierfachen.\n\nDie Knickspannung ist σcr = Pcr / A. Liegt sie über der Streckgrenze, fließt das Bauteil vor dem elastischen Knicken; dann sind inelastische Normformeln wie AISC 360 oder Eurocode 3 zu verwenden.\n\nDer Sicherheitsfaktor ist SF = Pcr / P. Übliche Werte liegen je nach Anwendung und Norm zwischen 1.5 und 3.0; unter 1.0 ist das Bauteil bereits geknickt.\n\nEuler setzt ein gerades, zentrisch belastetes, homogenes, isotropes und elastisches Bauteil mit kleinen Verformungen voraus. Reale Imperfektionen, Exzentrizitäten und Eigenspannungen reduzieren die tatsächliche Knicktragfähigkeit, weshalb Normen Abminderungen und Sicherheitsbeiwerte verlangen.\n\nKnicken ist ein kritischer Nachweis für Stahlstützen, Flugzeugrahmen, Raketen, Hydraulikzylinder, Fahrradrahmen, Brückenfachwerke und weitgespannte Konstruktionen. Der Schlankheitsgrad KL/r mit r = √(I/A) ist der Schlüsselparameter: je höher, desto knickanfälliger."
+  },
+  "examples": {
+    "heading": "Beispiele für den Knickrechner",
+    "intro": "Repräsentative Stützenentwürfe zeigen den Einfluss von Material, Geometrie und Endbedingungen.",
+    "colInput": "Stützenparameter",
+    "colOutput": "Kritische Last (Pcr)",
+    "colNote": "Endbedingungen und Hinweise",
+    "loadSteelColumn": "Beispiel Stahl eingespannt-gelenkig laden",
+    "loadAluminum": "Beispiel Aluminium gelenkig-gelenkig laden",
+    "loadCantilever": "Kragstützenbeispiel laden",
+    "items": [
+      {
+        "input": "Stahl, L=4.5 m, E=200 GPa, I=0.00015 m⁴, K=0.7, A=0.012 m², P=75,000 N",
+        "output": "Pcr ≈ 29,841 kN",
+        "note": "Eingespannt-gelenkig (K=0.7). Sicherheitsfaktor ≈ 398. Die Stütze ist für 75 kN deutlich sicher."
+      },
+      {
+        "input": "Aluminium, L=2.8 m, E=70 GPa, I=0.00008 m⁴, K=1.0, A=0.008 m², P=25,000 N",
+        "output": "Pcr ≈ 7,050 kN",
+        "note": "Gelenkig-gelenkig (K=1.0). Sicherheitsfaktor ≈ 282. Aluminium erfordert wegen des niedrigeren Moduls sorgfältigere Geometrie."
+      },
+      {
+        "input": "Beton, L=3.2 m, E=30 GPa, I=0.00025 m⁴, K=0.5, A=0.025 m², P=120,000 N",
+        "output": "Pcr ≈ 28,915 kN",
+        "note": "Eingespannt-eingespannt (K=0.5). Diese Lagerung vervierfacht Pcr gegenüber einer gelenkig-gelenkigen Stütze."
+      },
+      {
+        "input": "Stahl, L=6.0 m, E=200 GPa, I=0.00005 m⁴, K=2.0, A=0.006 m², P=15,000 N",
+        "output": "Pcr ≈ 685 kN",
+        "note": "Eingespannt-freie Kragstütze (K=2.0). Das freie Ende reduziert die Tragfähigkeit stark; die Knicklänge beträgt 12 m. Sicherheitsfaktor ≈ 46."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Knickrechner",
+    "steps": [
+      "Geben Sie die Drucklast in Newton (N) ein.",
+      "Geben Sie Länge und Elastizitätsmodul ein: 200 GPa für Stahl, 70 GPa für Aluminium, 25–40 GPa für Beton.",
+      "Geben Sie das kleinste Flächenträgheitsmoment in m⁴ und die Querschnittsfläche in m² ein; verwenden Sie die schwache Achse.",
+      "Wählen Sie K: 0.5 eingespannt-eingespannt, 0.7 eingespannt-gelenkig, 1.0 gelenkig-gelenkig, 2.0 eingespannt-frei.",
+      "Klicken Sie auf 'Berechnen', um Knicklast, Knickspannung, Knicklänge und Sicherheitsfaktor zu sehen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Knickrechner",
+    "q1": "Was ist der Knicklängenbeiwert K?",
+    "q1_a": "K berücksichtigt die Endlagerung und skaliert die reale Länge auf eine äquivalente gelenkig-gelenkige Stütze. Falsche K-Werte verursachen große Fehler.",
+    "q2": "Wann gilt die Euler-Formel nicht?",
+    "q2_a": "Sie gilt nur für schlanke Stützen im elastischen Bereich. Für gedrungene Bauteile sind inelastische Normformeln wie AISC oder Eurocode 3 maßgebend.",
+    "q3": "Welcher Sicherheitsfaktor ist erforderlich?",
+    "q3_a": "Er hängt von Norm, Last und Versagensfolge ab. Für den Vorentwurf sind 2.0–3.0 gegenüber der Euler-Knicklast konservativ.",
+    "q4": "Warum hängt Knicken von E und nicht von der Streckgrenze ab?",
+    "q4_a": "Euler-Knicken ist Stabilitätsversagen. E bestimmt die Biegesteifigkeit; die Streckgrenze zählt erst, wenn die kritische Spannung Fy überschreitet.",
+    "q5": "Was ist der Schlankheitsgrad?",
+    "q5_a": "KL/r ist der dimensionslose Maßstab für Knickanfälligkeit. Je höher er ist, desto leichter knickt ein Bauteil.",
+    "q6": "Gilt Euler-Knicken auch für Träger?",
+    "q6_a": "Träger können Biegedrillknicken erleiden, ein verwandtes, aber anderes Phänomen. Dieser Rechner behandelt nur axial gedrückte Stützen."
+  }
+}

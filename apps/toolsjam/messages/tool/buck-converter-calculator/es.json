@@ -1,0 +1,99 @@
+{
+  "title": "Calculadora de convertidor buck – diseño DC-DC reductor",
+  "tagline": "Calcula el ciclo de trabajo, la corriente de rizado del inductor, el rizado de tensión de salida y la eficiencia de circuitos convertidores buck (reductores) DC-DC.",
+  "intro": "Introduce la tensión de entrada, la tensión de salida, la frecuencia de conmutación, el valor del inductor, la corriente de carga y la ESR del condensador para analizar tu diseño buck.",
+  "field": {
+    "vin": "Tensión de entrada (Vin)",
+    "vout": "Tensión de salida (Vout)",
+    "freq": "Frecuencia de conmutación (Hz)",
+    "inductance": "Valor del inductor (H)",
+    "iout": "Corriente de carga (A)",
+    "esr": "ESR del condensador de salida (Ω)"
+  },
+  "placeholder": {
+    "vin": "p. ej., 24",
+    "vout": "p. ej., 12",
+    "freq": "p. ej., 100000",
+    "inductance": "p. ej., 0.0001",
+    "iout": "p. ej., 2",
+    "esr": "p. ej., 0.01"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Rellena todos los campos con números positivos válidos.",
+    "voutExceedsVin": "En un convertidor buck, la tensión de salida debe ser menor que la tensión de entrada.",
+    "vinZero": "La tensión de entrada debe ser mayor que cero."
+  },
+  "result": {
+    "heading": "Resultados del convertidor buck",
+    "dutyCycle": "Ciclo de trabajo (D)",
+    "rippleCurrent": "Corriente de rizado del inductor (ΔIL)",
+    "peakCurrent": "Corriente pico del inductor",
+    "outputRipple": "Rizado de tensión de salida (ΔVout)",
+    "efficiency": "Eficiencia estimada"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de convertidor buck",
+    "body": "Un convertidor buck es una topología de fuente de alimentación conmutada DC-DC que reduce la tensión desde una entrada más alta hasta una salida más baja, manteniendo una alta eficiencia. Es uno de los bloques fundamentales de la electrónica de potencia y se encuentra prácticamente en todos los dispositivos electrónicos, desde smartphones y portátiles hasta sistemas automotrices y equipos industriales.\n\nEl convertidor buck funciona según el principio de modulación por ancho de pulso (PWM). Un transistor de conmutación (normalmente un MOSFET) se enciende y apaga a alta frecuencia. Cuando el interruptor está encendido, la corriente fluye desde la entrada a través de un inductor hacia la salida, almacenando energía en el campo magnético del inductor. Cuando el interruptor se apaga, el inductor mantiene el flujo de corriente hacia la carga a través de un diodo de rueda libre (o un MOSFET síncrono en diseños modernos). El condensador de salida suaviza la forma de onda de tensión resultante.\n\nLa relación fundamental en modo de conducción continua (CCM) es: Vout = D × Vin, donde D es el ciclo de trabajo, es decir, la fracción de cada periodo de conmutación durante la cual el interruptor principal está encendido. Al despejar, D = Vout / Vin. Un ciclo de trabajo del 50% significa que la salida es la mitad de la entrada; uno del 25% significa que la salida es una cuarta parte de la entrada, y así sucesivamente.\n\nEl inductor es el elemento central de almacenamiento de energía. El rizado pico a pico de la corriente del inductor es: ΔIL = (Vin − Vout) × D / (f × L), donde f es la frecuencia de conmutación en Hz y L es la inductancia en henrios. Esta corriente de rizado circula por el condensador de salida y su resistencia serie equivalente (ESR), generando un rizado de tensión de salida aproximadamente igual a ΔIL × ESR. Mantener la corriente de rizado en torno al 20–40% de la corriente media de salida es una guía de diseño común que equilibra el tamaño del inductor con el ruido de salida.\n\nLa frecuencia de conmutación es una decisión clave de diseño. Frecuencias más altas permiten inductores y condensadores más pequeños, reduciendo el tamaño físico y el coste del convertidor. Sin embargo, las pérdidas de conmutación en el MOSFET y el diodo aumentan con la frecuencia, reduciendo la eficiencia. Una frecuencia entre 100 kHz y 1 MHz es habitual en muchas aplicaciones. Para diseños de muy alta eficiencia o alta potencia, pueden ser preferibles frecuencias más bajas (50–100 kHz) con componentes físicamente más grandes.\n\nLa eficiencia de un convertidor buck está limitada principalmente por las pérdidas de conducción (I²R en el MOSFET y el inductor), las pérdidas de conmutación (energía perdida cada vez que el transistor se enciende y se apaga) y las pérdidas del núcleo del inductor. Los convertidores buck síncronos modernos con MOSFET de bajo RDS(on) pueden alcanzar eficiencias superiores al 95%, y a veces acercarse al 99% en diseños optimizados. El ciclo de trabajo también afecta la eficiencia: operar con ciclos muy alejados del 50% (muy altos o muy bajos) tiende a reducir la eficiencia frente al rango medio.\n\nErrores de diseño frecuentes incluyen seleccionar un inductor sin comprobar su corriente de saturación (si el inductor se satura, la tensión de salida colapsa), ignorar la corriente de rizado RMS admisible del condensador de salida (un rizado excesivo causa calentamiento y fallo prematuro del condensador) y un mal diseño de PCB que crea grandes lazos de corriente de alta frecuencia (provocando EMI y pérdidas de eficiencia). En operación práctica y estable, el ciclo de trabajo normalmente debe mantenerse entre el 10% y el 90%."
+  },
+  "examples": {
+    "heading": "Ejemplos de diseño de convertidores buck",
+    "intro": "Diseños representativos que muestran pares típicos de tensión de entrada/salida, frecuencias de conmutación y los ciclos de trabajo y valores de rizado resultantes.",
+    "colInput": "Parámetros de diseño",
+    "colOutput": "Ciclo de trabajo",
+    "colNote": "Aplicación",
+    "loadAutomotive": "Cargar ejemplo automotriz 24V→12V",
+    "loadBattery": "Cargar ejemplo de batería reductora",
+    "loadIndustrial": "Cargar ejemplo industrial",
+    "items": [
+      {
+        "input": "Vin=24 V, Vout=12 V, f=100 kHz, L=100 μH, Iout=2 A, ESR=10 mΩ",
+        "output": "D = 50%",
+        "note": "Conversión automotriz de 24V a 12V. Corriente de rizado ≈ 0.6 A, rizado de salida ≈ 6 mV. Común para alimentar electrónica de 12V desde el sistema eléctrico de un camión de 24V."
+      },
+      {
+        "input": "Vin=48 V, Vout=5 V, f=500 kHz, L=47 μH, Iout=1 A, ESR=5 mΩ",
+        "output": "D ≈ 10.4%",
+        "note": "Reducción desde batería para microcontroladores y sensores. La alta frecuencia de conmutación permite un inductor compacto de 47 μH y mantiene el rizado de salida por debajo de 10 mV."
+      },
+      {
+        "input": "Vin=400 V, Vout=24 V, f=50 kHz, L=1 mH, Iout=10 A, ESR=20 mΩ",
+        "output": "D = 6%",
+        "note": "Fuente industrial fuera de línea. El bajo ciclo de trabajo requiere un diseño cuidadoso del controlador de compuerta del MOSFET para lograr conmutación fiable con un tiempo de encendido muy corto."
+      },
+      {
+        "input": "Vin=12 V, Vout=3.3 V, f=300 kHz, L=33 μH, Iout=0.5 A, ESR=8 mΩ",
+        "output": "D ≈ 27.5%",
+        "note": "Rail de alimentación para circuito lógico de 3.3 V en dispositivo portátil, alimentado desde un pack Li-ion de una celda o un adaptador de 12 V."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de convertidor buck",
+    "steps": [
+      "Introduce la tensión de entrada (Vin), es decir, la tensión DC disponible para el convertidor, y la tensión de salida deseada (Vout). En una topología buck, Vout debe ser menor que Vin.",
+      "Introduce la frecuencia de conmutación en Hz (por ejemplo, 100000 para 100 kHz). Las frecuencias más altas permiten componentes más pequeños, pero aumentan las pérdidas de conmutación.",
+      "Introduce el valor del inductor en henrios (por ejemplo, 0.0001 para 100 μH) y la corriente de carga en amperios. Estos valores determinan la corriente de rizado del inductor.",
+      "Introduce la ESR (resistencia serie equivalente) del condensador de salida en ohmios. Este valor fija directamente el rizado de tensión de salida.",
+      "Haz clic en “Calcular” para ver el ciclo de trabajo, la corriente de rizado del inductor, la corriente pico del inductor, el rizado de tensión de salida y la eficiencia estimada. Ajusta los parámetros hasta que todos los valores cumplan tus objetivos de diseño."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre convertidores buck",
+    "q1": "¿Qué es el ciclo de trabajo de un convertidor buck?",
+    "q1_a": "El ciclo de trabajo D es la fracción de cada periodo de conmutación durante la cual el interruptor principal está cerrado (encendido). En un convertidor buck ideal que opera en modo de conducción continua (CCM), D = Vout / Vin. Por tanto, una salida de 12 V desde una entrada de 24 V requiere un ciclo de trabajo del 50%. En la práctica, las pérdidas de eficiencia hacen que el ciclo de trabajo real sea ligeramente superior al ideal.",
+    "q2": "¿Qué ocurre si el ciclo de trabajo es demasiado alto o demasiado bajo?",
+    "q2_a": "Los ciclos de trabajo extremadamente altos (por encima de ~90%) dejan muy poco tiempo de apagado, lo que dificulta que el diodo o el MOSFET síncrono conduzcan y reinicien el inductor. Los ciclos muy bajos (por debajo de ~10%) requieren tiempos de encendido muy cortos, difíciles de controlar con fiabilidad. Ambos extremos reducen la eficiencia y la estabilidad. Los diseños prácticos apuntan a ciclos entre el 10% y el 90%.",
+    "q3": "¿Cómo afecta la frecuencia de conmutación al tamaño del inductor?",
+    "q3_a": "Para una especificación dada de corriente de rizado, la inductancia requerida es L = (Vin − Vout) × D / (f × ΔIL). Duplicar la frecuencia de conmutación reduce a la mitad la inductancia requerida, y viceversa. Por eso las frecuencias altas permiten inductores más pequeños y ligeros, una razón clave por la que los CI de potencia modernos operan a cientos de kilohercios o incluso megahercios. La contrapartida es el aumento de las pérdidas de conmutación.",
+    "q4": "¿Qué es el rizado de tensión de salida y cómo lo reduzco?",
+    "q4_a": "El rizado de tensión de salida es una pequeña variación AC superpuesta a la salida DC. Lo causa principalmente la corriente de rizado del inductor al circular por la ESR del condensador: ΔVout ≈ ΔIL × ESR. Para reducirlo, usa un condensador con menor ESR, aumenta la inductancia (reduce ΔIL) o sube la frecuencia de conmutación. Los condensadores cerámicos tienen ESR muy baja y se prefieren en diseños de bajo rizado.",
+    "q5": "¿Qué es el modo de conducción continua frente al discontinuo?",
+    "q5_a": "En modo de conducción continua (CCM), la corriente del inductor nunca llega a cero durante el ciclo de conmutación. En modo de conducción discontinua (DCM), la corriente del inductor llega a cero antes del siguiente encendido del interruptor. Esta calculadora asume CCM, el modo de operación más común en convertidores bien diseñados bajo carga normal. El DCM aparece con cargas ligeras y modifica la relación entre ciclo de trabajo y tensión.",
+    "q6": "¿Qué tan eficiente es un convertidor buck frente a un regulador lineal?",
+    "q6_a": "Un convertidor buck es mucho más eficiente que un regulador lineal (LDO) cuando hay grandes diferencias de tensión. Un regulador lineal disipa todo el exceso de tensión como calor, con una eficiencia de solo Vout / Vin (por ejemplo, 3.3 V desde 12 V produce apenas 27.5%). Un buck bien diseñado suele lograr 85–98% de eficiencia independientemente de la relación de tensiones, por lo que es la opción preferida cuando importan la disipación térmica o la autonomía de batería."
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "title": "Calculateur de flambement - charge critique et contrainte d'Euler",
+  "tagline": "Calculez la charge critique de flambement, la contrainte de flambement et le facteur de sécurité des poteaux élancés avec la formule d'Euler.",
+  "intro": "Saisissez les paramètres du matériau, de la géométrie et des conditions aux limites afin de déterminer si un élément structural est sûr vis-à-vis du flambement.",
+  "field": {
+    "appliedLoad": "Charge appliquée (N)",
+    "length": "Longueur (m)",
+    "modulus": "Module d'élasticité (GPa)",
+    "momentOfInertia": "Moment d'inertie (m⁴)",
+    "effectiveLengthFactor": "Coefficient de longueur effective (K)",
+    "area": "Aire de la section (m²)"
+  },
+  "placeholder": {
+    "appliedLoad": "p. ex. 75000",
+    "length": "p. ex. 4.5",
+    "modulus": "p. ex. 200",
+    "momentOfInertia": "p. ex. 0.00015",
+    "effectiveLengthFactor": "p. ex. 0.7",
+    "area": "p. ex. 0.012"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez remplir tous les champs avec des nombres positifs valides."
+  },
+  "result": {
+    "heading": "Résultats de l'analyse de flambement",
+    "criticalLoad": "Charge critique de flambement (Pcr)",
+    "bucklingStress": "Contrainte de flambement",
+    "safetyFactor": "Facteur de sécurité",
+    "effectiveLength": "Longueur effective (Le)",
+    "status": {
+      "safe": "SÛR — La charge appliquée est inférieure à la charge critique de flambement.",
+      "unsafe": "NON SÛR — La charge appliquée dépasse la charge critique de flambement !"
+    }
+  },
+  "about": {
+    "heading": "À propos du calculateur de flambement",
+    "body": "Le flambement structural est un mode de rupture soudain dans lequel un élément élancé comprimé se déforme latéralement au lieu de continuer à se raccourcir élastiquement. Il est essentiel dans la conception des poteaux et des entretoises, car il peut apparaître à des contraintes très inférieures à la limite d'élasticité du matériau.\n\nLa base théorique est la formule d'Euler, établie par Leonhard Euler en 1757. La charge critique de flambement d'un poteau élastique idéal est :\n\nPcr = (π² × E × I) / (K × L)²\n\noù E est le module d'élasticité, I le moment d'inertie de la section autour de l'axe de flexion, K le coefficient de longueur effective lié aux conditions d'extrémité, et L la longueur non contreventée. K×L est la longueur effective Le.\n\nK décrit les appuis : 0.5 pour encastré-encastré, 0.7 pour encastré-articulé, 1.0 pour articulé-articulé et 2.0 pour encastré-libre en console. Plus K est faible, plus la charge critique augmente ; un poteau encastré aux deux extrémités peut porter quatre fois la charge d'un poteau articulé-articulé identique.\n\nLa contrainte de flambement est σcr = Pcr / A. Si elle dépasse la limite d'élasticité, l'élément plastifie avant de flamber et il faut utiliser des formules de flambement inélastique issues de codes comme l'AISC 360 ou l'Eurocode 3.\n\nLe facteur de sécurité est SF = Pcr / P, P étant la charge appliquée. Des valeurs de 1.5 à 3.0 sont courantes selon l'application, le code et les conséquences d'une rupture. Une valeur inférieure à 1.0 signifie que l'élément a déjà flambé.\n\nLa formule d'Euler suppose un élément droit, centré, homogène, isotrope, élastique et à petites déformations. Les imperfections, charges excentrées et contraintes résiduelles réduisent la capacité réelle, d'où les coefficients de réduction et facteurs de sécurité prescrits par les normes.\n\nLe flambement est une vérification critique pour les bâtiments en acier, fuselages, fusées, vérins hydrauliques, cadres de vélo, ponts et structures de grande portée. L'élancement KL/r, avec r = √(I/A), est le paramètre clé : plus il est élevé, plus le membre est sensible au flambement."
+  },
+  "examples": {
+    "heading": "Exemples du calculateur de flambement",
+    "intro": "Exemples représentatifs montrant l'effet du matériau, de la géométrie et des conditions d'extrémité sur la charge critique.",
+    "colInput": "Paramètres du poteau",
+    "colOutput": "Charge critique (Pcr)",
+    "colNote": "Conditions d'extrémité et notes",
+    "loadSteelColumn": "Charger l'exemple acier encastré-articulé",
+    "loadAluminum": "Charger l'exemple aluminium articulé-articulé",
+    "loadCantilever": "Charger l'exemple en console",
+    "items": [
+      {
+        "input": "Acier, L=4.5 m, E=200 GPa, I=0.00015 m⁴, K=0.7, A=0.012 m², P=75,000 N",
+        "output": "Pcr ≈ 29,841 kN",
+        "note": "Encasté-articulé (K=0.7). Facteur de sécurité ≈ 398. Le poteau est largement sûr pour la charge de 75 kN."
+      },
+      {
+        "input": "Aluminium, L=2.8 m, E=70 GPa, I=0.00008 m⁴, K=1.0, A=0.008 m², P=25,000 N",
+        "output": "Pcr ≈ 7,050 kN",
+        "note": "Articulé-articulé (K=1.0). Facteur de sécurité ≈ 282. Le module plus faible de l'aluminium exige une géométrie plus soignée que l'acier."
+      },
+      {
+        "input": "Béton, L=3.2 m, E=30 GPa, I=0.00025 m⁴, K=0.5, A=0.025 m², P=120,000 N",
+        "output": "Pcr ≈ 28,915 kN",
+        "note": "Encasté-encastré (K=0.5). Cette condition quadruple Pcr par rapport à un poteau articulé-articulé identique."
+      },
+      {
+        "input": "Acier, L=6.0 m, E=200 GPa, I=0.00005 m⁴, K=2.0, A=0.006 m², P=15,000 N",
+        "output": "Pcr ≈ 685 kN",
+        "note": "Console encastrée-libre (K=2.0). L'extrémité libre réduit fortement la résistance ; la longueur effective est 12 m. Facteur de sécurité ≈ 46."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de flambement",
+    "steps": [
+      "Saisissez la charge de compression appliquée en newtons (N).",
+      "Saisissez la longueur du poteau en mètres et le module d'élasticité en GPa : 200 pour l'acier, 70 pour l'aluminium, 25–40 pour le béton.",
+      "Saisissez le moment d'inertie minimal en m⁴ et l'aire de section en m² ; utilisez l'axe faible.",
+      "Choisissez K selon les extrémités : 0.5 encastré-encastré, 0.7 encastré-articulé, 1.0 articulé-articulé, 2.0 encastré-libre.",
+      "Cliquez sur 'Calculer' pour afficher Pcr, la contrainte, la longueur effective et le facteur de sécurité."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de flambement",
+    "q1": "Qu'est-ce que le coefficient de longueur effective K ?",
+    "q1_a": "K tient compte des retenues d'extrémité et transforme la longueur réelle en longueur équivalente d'un poteau articulé-articulé. Il vaut 0.5, 0.7, 1.0 ou 2.0 selon les appuis.",
+    "q2": "Quand la formule d'Euler ne s'applique-t-elle pas ?",
+    "q2_a": "Elle ne vaut que pour les poteaux élancés flambant dans le domaine élastique. Pour les éléments courts ou trapus, utilisez les formules inélastiques des codes AISC ou Eurocode 3.",
+    "q3": "Quel facteur de sécurité faut-il pour concevoir un poteau ?",
+    "q3_a": "Il dépend du code, du chargement et des conséquences d'une rupture. En pré-dimensionnement, 2.0–3.0 contre la charge critique d'Euler est un départ conservateur.",
+    "q4": "Pourquoi le flambement dépend-il de E et non de la limite d'élasticité ?",
+    "q4_a": "Le flambement d'Euler est un phénomène de stabilité élastique. E gouverne la rigidité en flexion ; la limite d'élasticité intervient seulement si la contrainte critique dépasse Fy.",
+    "q5": "Qu'est-ce que l'élancement et pourquoi est-il important ?",
+    "q5_a": "L'élancement KL/r mesure la sensibilité au flambement. Plus il est élevé, plus un élément est susceptible de flamber à faible contrainte.",
+    "q6": "Le flambement d'Euler s'applique-t-il aussi aux poutres ?",
+    "q6_a": "Les poutres peuvent subir un déversement latéral-torsionnel, phénomène lié mais différent. Ce calculateur couvre uniquement les colonnes en compression axiale."
+  }
+}

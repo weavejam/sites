@@ -1,0 +1,99 @@
+{
+  "title": "Calculateur de convertisseur buck – conception abaisseur DC-DC",
+  "tagline": "Calculez le rapport cyclique, le courant d’ondulation de l’inductance, l’ondulation de tension de sortie et le rendement des circuits convertisseurs buck (abaisseurs) DC-DC.",
+  "intro": "Saisissez la tension d’entrée, la tension de sortie, la fréquence de commutation, la valeur de l’inductance, le courant de charge et l’ESR du condensateur pour analyser votre conception buck.",
+  "field": {
+    "vin": "Tension d’entrée (Vin)",
+    "vout": "Tension de sortie (Vout)",
+    "freq": "Fréquence de commutation (Hz)",
+    "inductance": "Valeur de l’inductance (H)",
+    "iout": "Courant de charge (A)",
+    "esr": "ESR du condensateur de sortie (Ω)"
+  },
+  "placeholder": {
+    "vin": "p. ex. 24",
+    "vout": "p. ex. 12",
+    "freq": "p. ex. 100000",
+    "inductance": "p. ex. 0.0001",
+    "iout": "p. ex. 2",
+    "esr": "p. ex. 0.01"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez remplir tous les champs avec des nombres positifs valides.",
+    "voutExceedsVin": "Pour un convertisseur buck, la tension de sortie doit être inférieure à la tension d’entrée.",
+    "vinZero": "La tension d’entrée doit être supérieure à zéro."
+  },
+  "result": {
+    "heading": "Résultats du convertisseur buck",
+    "dutyCycle": "Rapport cyclique (D)",
+    "rippleCurrent": "Courant d’ondulation de l’inductance (ΔIL)",
+    "peakCurrent": "Courant de crête de l’inductance",
+    "outputRipple": "Ondulation de tension de sortie (ΔVout)",
+    "efficiency": "Rendement estimé"
+  },
+  "about": {
+    "heading": "À propos du calculateur de convertisseur buck",
+    "body": "Un convertisseur buck est une topologie d’alimentation à découpage DC-DC qui abaisse la tension d’une entrée plus élevée vers une sortie plus basse tout en conservant un haut rendement. C’est l’un des blocs les plus fondamentaux de l’électronique de puissance, présent dans pratiquement tous les appareils électroniques, des smartphones et ordinateurs portables aux systèmes automobiles et équipements industriels.\n\nLe convertisseur buck fonctionne selon le principe de la modulation de largeur d’impulsion (PWM). Un transistor de commutation (généralement un MOSFET) s’allume et s’éteint à haute fréquence. Lorsque l’interrupteur est passant, le courant circule de l’entrée vers la sortie à travers une inductance, stockant de l’énergie dans le champ magnétique de celle-ci. Lorsque l’interrupteur se bloque, l’inductance maintient le courant vers la charge via une diode de roue libre (ou un MOSFET synchrone dans les conceptions modernes). Le condensateur de sortie lisse la forme d’onde de tension résultante.\n\nLa relation fondamentale en mode de conduction continue (CCM) est : Vout = D × Vin, où D est le rapport cyclique, c’est-à-dire la fraction de chaque période de commutation pendant laquelle l’interrupteur principal est passant. En réarrangeant, on obtient D = Vout / Vin. Un rapport cyclique de 50% signifie que la sortie vaut la moitié de l’entrée ; 25% signifie qu’elle vaut un quart de l’entrée, et ainsi de suite.\n\nL’inductance est l’élément central de stockage d’énergie. L’ondulation crête à crête du courant d’inductance est : ΔIL = (Vin − Vout) × D / (f × L), où f est la fréquence de commutation en Hz et L l’inductance en henrys. Ce courant d’ondulation traverse le condensateur de sortie et sa résistance série équivalente (ESR), générant une ondulation de tension de sortie approximativement égale à ΔIL × ESR. Maintenir le courant d’ondulation autour de 20–40% du courant de sortie moyen est une règle de conception courante qui équilibre la taille de l’inductance et le bruit de sortie.\n\nLa fréquence de commutation est un compromis de conception essentiel. Des fréquences plus élevées permettent d’utiliser des inductances et condensateurs plus petits, réduisant la taille physique et le coût du convertisseur. Cependant, les pertes de commutation dans le MOSFET et la diode augmentent avec la fréquence, ce qui diminue le rendement. Une fréquence comprise entre 100 kHz et 1 MHz est courante dans de nombreuses applications. Pour les conceptions à très haut rendement ou forte puissance, des fréquences plus basses (50–100 kHz) avec des composants physiquement plus grands peuvent être préférables.\n\nLe rendement d’un convertisseur buck est principalement limité par les pertes de conduction (I²R dans le MOSFET et l’inductance), les pertes de commutation (énergie perdue à chaque allumage et extinction du transistor) et les pertes dans le noyau de l’inductance. Les convertisseurs buck synchrones modernes avec MOSFET à faible RDS(on) peuvent atteindre des rendements supérieurs à 95%, parfois proches de 99% dans des conceptions optimisées. Le rapport cyclique influe également sur le rendement : un fonctionnement à des rapports très éloignés de 50% (très élevés ou très faibles) tend à réduire le rendement par rapport à la zone médiane.\n\nLes pièges de conception courants incluent le choix d’une inductance sans vérifier son courant de saturation (si l’inductance sature, la tension de sortie s’effondre), la négligence du courant d’ondulation RMS admissible du condensateur de sortie (une ondulation excessive provoque un échauffement et une défaillance prématurée du condensateur) et une mauvaise implantation PCB créant de grandes boucles de courant haute fréquence (source d’EMI et de pertes de rendement). Le rapport cyclique doit généralement rester entre 10% et 90% pour un fonctionnement pratique et stable."
+  },
+  "examples": {
+    "heading": "Exemples de conception de convertisseurs buck",
+    "intro": "Conceptions représentatives montrant des paires typiques de tensions d’entrée/sortie, des fréquences de commutation et les rapports cycliques et valeurs d’ondulation obtenus.",
+    "colInput": "Paramètres de conception",
+    "colOutput": "Rapport cyclique",
+    "colNote": "Application",
+    "loadAutomotive": "Charger l’exemple automobile 24V→12V",
+    "loadBattery": "Charger l’exemple d’abaisseur sur batterie",
+    "loadIndustrial": "Charger l’exemple industriel",
+    "items": [
+      {
+        "input": "Vin=24 V, Vout=12 V, f=100 kHz, L=100 μH, Iout=2 A, ESR=10 mΩ",
+        "output": "D = 50%",
+        "note": "Conversion automobile 24V vers 12V. Courant d’ondulation ≈ 0.6 A, ondulation de sortie ≈ 6 mV. Courant pour alimenter de l’électronique 12V depuis le système électrique 24V d’un camion."
+      },
+      {
+        "input": "Vin=48 V, Vout=5 V, f=500 kHz, L=47 μH, Iout=1 A, ESR=5 mΩ",
+        "output": "D ≈ 10.4%",
+        "note": "Abaisseur sur batterie pour microcontrôleurs et capteurs. La fréquence de commutation élevée permet une inductance compacte de 47 μH tout en maintenant l’ondulation de sortie sous 10 mV."
+      },
+      {
+        "input": "Vin=400 V, Vout=24 V, f=50 kHz, L=1 mH, Iout=10 A, ESR=20 mΩ",
+        "output": "D = 6%",
+        "note": "Alimentation industrielle hors ligne. Le faible rapport cyclique exige une conception soignée de la commande de grille du MOSFET pour obtenir une commutation fiable avec un temps ON très court."
+      },
+      {
+        "input": "Vin=12 V, Vout=3.3 V, f=300 kHz, L=33 μH, Iout=0.5 A, ESR=8 mΩ",
+        "output": "D ≈ 27.5%",
+        "note": "Rail d’alimentation d’appareil portable pour un circuit logique 3.3 V alimenté par un pack Li-ion monocellule ou un adaptateur 12 V."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de convertisseur buck",
+    "steps": [
+      "Saisissez la tension d’entrée (Vin), c’est-à-dire la tension d’alimentation DC disponible pour le convertisseur, ainsi que la tension de sortie souhaitée (Vout). Pour une topologie buck, Vout doit être inférieure à Vin.",
+      "Saisissez la fréquence de commutation en Hz (par exemple 100000 pour 100 kHz). Des fréquences plus élevées permettent des composants plus petits, mais augmentent les pertes de commutation.",
+      "Saisissez la valeur de l’inductance en henrys (par exemple 0.0001 pour 100 μH) et le courant de charge en ampères. Ces valeurs déterminent le courant d’ondulation de l’inductance.",
+      "Saisissez l’ESR (résistance série équivalente) du condensateur de sortie en ohms. Elle fixe directement l’ondulation de tension de sortie.",
+      "Cliquez sur « Calculer » pour voir le rapport cyclique, le courant d’ondulation de l’inductance, le courant de crête de l’inductance, l’ondulation de tension de sortie et le rendement estimé. Ajustez les paramètres jusqu’à ce que toutes les valeurs atteignent vos objectifs de conception."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur le convertisseur buck",
+    "q1": "Qu’est-ce que le rapport cyclique d’un convertisseur buck ?",
+    "q1_a": "Le rapport cyclique D est la fraction de chaque période de commutation pendant laquelle l’interrupteur principal est fermé (passant). Dans un convertisseur buck idéal en mode de conduction continue (CCM), D = Vout / Vin. Une sortie de 12 V à partir d’une entrée de 24 V nécessite donc un rapport cyclique de 50%. En pratique, les pertes de rendement font que le rapport cyclique réel est légèrement supérieur à la valeur idéale.",
+    "q2": "Que se passe-t-il si le rapport cyclique est trop élevé ou trop faible ?",
+    "q2_a": "Des rapports cycliques extrêmement élevés (au-dessus d’environ 90%) laissent très peu de temps OFF, ce qui complique la conduction de la diode ou du MOSFET synchrone et la réinitialisation de l’inductance. Des rapports très faibles (sous environ 10%) exigent des temps ON très courts, difficiles à piloter de façon fiable. Ces deux extrêmes réduisent le rendement et la stabilité. Les conceptions pratiques visent des rapports cycliques entre 10% et 90%.",
+    "q3": "Comment la fréquence de commutation affecte-t-elle la taille de l’inductance ?",
+    "q3_a": "Pour une spécification donnée de courant d’ondulation, l’inductance requise est L = (Vin − Vout) × D / (f × ΔIL). Doubler la fréquence de commutation divise par deux l’inductance requise, et inversement. Des fréquences plus élevées permettent donc des inductances plus petites et plus légères, l’une des principales raisons pour lesquelles les circuits intégrés de puissance modernes fonctionnent à des centaines de kilohertz, voire en mégahertz. Le compromis est l’augmentation des pertes de commutation.",
+    "q4": "Qu’est-ce que l’ondulation de tension de sortie et comment la réduire ?",
+    "q4_a": "L’ondulation de tension de sortie est une petite variation AC superposée à la sortie DC. Elle est principalement causée par le courant d’ondulation de l’inductance traversant l’ESR du condensateur : ΔVout ≈ ΔIL × ESR. Pour la réduire, utilisez un condensateur à plus faible ESR, augmentez l’inductance (ce qui réduit ΔIL) ou augmentez la fréquence de commutation. Les condensateurs céramiques ont une ESR très faible et sont préférés pour les conceptions à faible ondulation.",
+    "q5": "Quelle est la différence entre conduction continue et discontinue ?",
+    "q5_a": "En mode de conduction continue (CCM), le courant dans l’inductance n’atteint jamais zéro pendant le cycle de commutation. En mode de conduction discontinue (DCM), le courant dans l’inductance atteint zéro avant le prochain allumage de l’interrupteur. Ce calculateur suppose le CCM, qui est le mode le plus courant pour les convertisseurs bien conçus sous charge normale. Le DCM apparaît à faible charge et modifie la relation entre rapport cyclique et tension.",
+    "q6": "Quel est le rendement d’un convertisseur buck par rapport à un régulateur linéaire ?",
+    "q6_a": "Un convertisseur buck est bien plus efficace qu’un régulateur linéaire (LDO) lorsque les écarts de tension sont importants. Un régulateur linéaire dissipe tout l’excès de tension sous forme de chaleur, avec un rendement limité à Vout / Vin (par exemple, 3.3 V à partir de 12 V ne donne que 27.5%). Un buck bien conçu atteint généralement 85–98% de rendement quel que soit le rapport de tension, ce qui en fait le choix privilégié dès que la dissipation thermique ou l’autonomie de batterie compte."
+  }
+}

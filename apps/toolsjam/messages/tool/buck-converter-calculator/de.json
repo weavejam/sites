@@ -1,0 +1,99 @@
+{
+  "title": "Buck-Wandler-Rechner – DC-DC-Abwärtsdesign",
+  "tagline": "Berechnen Sie Tastgrad, Induktor-Rippelstrom, Ausgangsrippelspannung und Wirkungsgrad von DC-DC-Buck-(Abwärts-)Wandlerschaltungen.",
+  "intro": "Geben Sie Eingangsspannung, Ausgangsspannung, Schaltfrequenz, Induktivitätswert, Laststrom und Kondensator-ESR ein, um Ihr Buck-Wandler-Design zu analysieren.",
+  "field": {
+    "vin": "Eingangsspannung (Vin)",
+    "vout": "Ausgangsspannung (Vout)",
+    "freq": "Schaltfrequenz (Hz)",
+    "inductance": "Induktivitätswert (H)",
+    "iout": "Laststrom (A)",
+    "esr": "ESR des Ausgangskondensators (Ω)"
+  },
+  "placeholder": {
+    "vin": "z. B. 24",
+    "vout": "z. B. 12",
+    "freq": "z. B. 100000",
+    "inductance": "z. B. 0.0001",
+    "iout": "z. B. 2",
+    "esr": "z. B. 0.01"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte füllen Sie alle Felder mit gültigen positiven Zahlen aus.",
+    "voutExceedsVin": "Bei einem Buck-Wandler muss die Ausgangsspannung kleiner als die Eingangsspannung sein.",
+    "vinZero": "Die Eingangsspannung muss größer als null sein."
+  },
+  "result": {
+    "heading": "Buck-Wandler-Ergebnisse",
+    "dutyCycle": "Tastgrad (D)",
+    "rippleCurrent": "Induktor-Rippelstrom (ΔIL)",
+    "peakCurrent": "Spitzenstrom des Induktors",
+    "outputRipple": "Ausgangsspannungsrippel (ΔVout)",
+    "efficiency": "Geschätzter Wirkungsgrad"
+  },
+  "about": {
+    "heading": "Über den Buck-Wandler-Rechner",
+    "body": "Ein Buck-Wandler ist eine DC-DC-Schaltnetzteil-Topologie, die eine höhere Eingangsspannung auf eine niedrigere Ausgangsspannung heruntersetzt und dabei einen hohen Wirkungsgrad beibehält. Er ist einer der grundlegendsten Bausteine der Leistungselektronik und findet sich praktisch in jedem elektronischen Gerät, von Smartphones und Laptops bis zu Automobilsystemen und Industrieanlagen.\n\nDer Buck-Wandler arbeitet nach dem Prinzip der Pulsweitenmodulation (PWM). Ein Schalttransistor (meist ein MOSFET) wird mit hoher Frequenz ein- und ausgeschaltet. Wenn der Schalter eingeschaltet ist, fließt Strom vom Eingang durch einen Induktor zum Ausgang, wobei Energie im Magnetfeld des Induktors gespeichert wird. Wenn der Schalter ausgeschaltet wird, hält der Induktor den Stromfluss über eine Freilaufdiode (oder in modernen Designs über einen synchronen MOSFET) zur Last aufrecht. Der Ausgangskondensator glättet die entstehende Spannungswellenform.\n\nDie grundlegende Beziehung im kontinuierlichen Leitungsmodus (CCM) lautet: Vout = D × Vin, wobei D der Tastgrad ist – der Anteil jeder Schaltperiode, in dem der Hauptschalter eingeschaltet ist. Umgestellt ergibt sich D = Vout / Vin. Ein Tastgrad von 50% bedeutet, dass die Ausgangsspannung halb so groß wie die Eingangsspannung ist; 25% bedeutet ein Viertel der Eingangsspannung usw.\n\nDer Induktor ist das zentrale Energiespeicherelement. Der Spitze-Spitze-Rippelstrom des Induktors beträgt: ΔIL = (Vin − Vout) × D / (f × L), wobei f die Schaltfrequenz in Hz und L die Induktivität in Henry ist. Dieser Rippelstrom fließt durch den Ausgangskondensator und dessen äquivalenten Serienwiderstand (ESR) und erzeugt eine Ausgangsrippelspannung, die ungefähr ΔIL × ESR entspricht. Den Rippelstrom auf etwa 20–40% des durchschnittlichen Ausgangsstroms zu begrenzen, ist eine gängige Designrichtlinie, die Induktorgröße und Ausgangsrauschen ausbalanciert.\n\nDie Schaltfrequenz ist ein zentraler Designkompromiss. Höhere Frequenzen erlauben kleinere Induktoren und Kondensatoren und reduzieren damit Baugröße und Kosten des Wandlers. Allerdings steigen die Schaltverluste in MOSFET und Diode mit der Frequenz, wodurch der Wirkungsgrad sinkt. Für viele Anwendungen sind 100 kHz bis 1 MHz üblich. Für sehr hohe Wirkungsgrade oder hohe Leistungen können niedrigere Frequenzen (50–100 kHz) mit physisch größeren Bauteilen vorzuziehen sein.\n\nDer Wirkungsgrad eines Buck-Wandlers wird hauptsächlich durch Leitungsverluste (I²R in MOSFET und Induktor), Schaltverluste (Energieverlust bei jedem Ein- und Ausschalten des Transistors) und Kernverluste des Induktors begrenzt. Moderne synchrone Buck-Wandler mit MOSFETs mit niedrigem RDS(on) können Wirkungsgrade über 95% erreichen, in optimierten Designs manchmal nahe 99%. Auch der Tastgrad beeinflusst den Wirkungsgrad: Betrieb bei Tastgraden weit entfernt von 50% (sehr hoch oder sehr niedrig) verringert den Wirkungsgrad tendenziell gegenüber dem mittleren Bereich.\n\nHäufige Designfehler sind: Auswahl eines Induktors ohne Prüfung seines Sättigungsstroms (sättigt der Induktor, bricht die Ausgangsspannung ein), Vernachlässigung des zulässigen RMS-Rippelstroms des Ausgangskondensators (übermäßiger Rippel verursacht Erwärmung und frühzeitigen Ausfall des Kondensators) sowie schlechtes PCB-Layout mit großen Hochfrequenz-Stromschleifen (verursacht EMI und Wirkungsgradverluste). Für einen praktischen, stabilen Betrieb sollte der Tastgrad typischerweise zwischen 10% und 90% liegen."
+  },
+  "examples": {
+    "heading": "Buck-Wandler-Designbeispiele",
+    "intro": "Repräsentative Designs mit typischen Eingang-/Ausgangsspannungspaaren, Schaltfrequenzen sowie den resultierenden Tastgraden und Rippelwerten.",
+    "colInput": "Designparameter",
+    "colOutput": "Tastgrad",
+    "colNote": "Anwendung",
+    "loadAutomotive": "Automobil-Beispiel 24V→12V laden",
+    "loadBattery": "Batterie-Abwärtsbeispiel laden",
+    "loadIndustrial": "Industriebeispiel laden",
+    "items": [
+      {
+        "input": "Vin=24 V, Vout=12 V, f=100 kHz, L=100 μH, Iout=2 A, ESR=10 mΩ",
+        "output": "D = 50%",
+        "note": "Automobile 24V-zu-12V-Wandlung. Rippelstrom ≈ 0.6 A, Ausgangsrippel ≈ 6 mV. Üblich zur Versorgung von 12V-Elektronik aus einem 24V-Lkw-Bordnetz."
+      },
+      {
+        "input": "Vin=48 V, Vout=5 V, f=500 kHz, L=47 μH, Iout=1 A, ESR=5 mΩ",
+        "output": "D ≈ 10.4%",
+        "note": "Batterie-Abwärtswandlung für Mikrocontroller und Sensoren. Die hohe Schaltfrequenz ermöglicht einen kompakten 47-μH-Induktor und hält den Ausgangsrippel unter 10 mV."
+      },
+      {
+        "input": "Vin=400 V, Vout=24 V, f=50 kHz, L=1 mH, Iout=10 A, ESR=20 mΩ",
+        "output": "D = 6%",
+        "note": "Industrielles Offline-Netzteil. Der niedrige Tastgrad erfordert ein sorgfältiges MOSFET-Gate-Drive-Design, um bei der sehr kurzen Einschaltzeit zuverlässiges Schalten zu erreichen."
+      },
+      {
+        "input": "Vin=12 V, Vout=3.3 V, f=300 kHz, L=33 μH, Iout=0.5 A, ESR=8 mΩ",
+        "output": "D ≈ 27.5%",
+        "note": "Versorgungsschiene für eine 3.3-V-Logikschaltung in einem tragbaren Gerät, gespeist aus einem einzelligen Li-Ion-Pack oder einem 12-V-Adapter."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Buck-Wandler-Rechner",
+    "steps": [
+      "Geben Sie die Eingangsspannung (Vin) – die für den Wandler verfügbare DC-Versorgungsspannung – und die gewünschte Ausgangsspannung (Vout) ein. Bei einer Buck-Topologie muss Vout kleiner als Vin sein.",
+      "Geben Sie die Schaltfrequenz in Hz ein (z. B. 100000 für 100 kHz). Höhere Frequenzen erlauben kleinere Bauteile, erhöhen aber die Schaltverluste.",
+      "Geben Sie den Induktivitätswert in Henry (z. B. 0.0001 für 100 μH) und den Laststrom in Ampere ein. Diese Werte bestimmen den Induktor-Rippelstrom.",
+      "Geben Sie den ESR (äquivalenten Serienwiderstand) des Ausgangskondensators in Ohm ein. Er legt den Ausgangsspannungsrippel direkt fest.",
+      "Klicken Sie auf „Berechnen“, um Tastgrad, Induktor-Rippelstrom, Induktor-Spitzenstrom, Ausgangsspannungsrippel und geschätzten Wirkungsgrad zu sehen. Passen Sie die Parameter an, bis alle Werte Ihre Designziele erfüllen."
+    ]
+  },
+  "faq": {
+    "heading": "Buck-Wandler FAQ",
+    "q1": "Was ist der Tastgrad eines Buck-Wandlers?",
+    "q1_a": "Der Tastgrad D ist der Anteil jeder Schaltperiode, in dem der Hauptschalter geschlossen (eingeschaltet) ist. In einem idealen Buck-Wandler im kontinuierlichen Leitungsmodus (CCM) gilt D = Vout / Vin. Eine 12-V-Ausgangsspannung aus einer 24-V-Eingangsspannung erfordert daher einen Tastgrad von 50%. In der Praxis führen Wirkungsgradverluste dazu, dass der tatsächliche Tastgrad etwas höher als der Idealwert ist.",
+    "q2": "Was passiert, wenn der Tastgrad zu hoch oder zu niedrig ist?",
+    "q2_a": "Extrem hohe Tastgrade (über ~90%) lassen sehr wenig Ausschaltzeit, wodurch es für Diode oder synchronen MOSFET schwierig wird, zu leiten und den Induktor zurückzusetzen. Sehr niedrige Tastgrade (unter ~10%) erfordern sehr kurze Einschaltzeiten, die schwer zuverlässig anzusteuern sind. Beide Extreme verringern Wirkungsgrad und Stabilität. Praktische Designs zielen auf Tastgrade zwischen 10% und 90%.",
+    "q3": "Wie beeinflusst die Schaltfrequenz die Induktorgröße?",
+    "q3_a": "Für eine gegebene Rippelstromspezifikation gilt für die erforderliche Induktivität L = (Vin − Vout) × D / (f × ΔIL). Eine Verdopplung der Schaltfrequenz halbiert die erforderliche Induktivität und umgekehrt. Höhere Frequenzen erlauben daher kleinere, leichtere Induktoren – ein Hauptgrund, warum moderne Leistungs-ICs mit Hunderten Kilohertz oder sogar Megahertz arbeiten. Der Kompromiss sind höhere Schaltverluste.",
+    "q4": "Was ist Ausgangsspannungsrippel und wie reduziere ich ihn?",
+    "q4_a": "Ausgangsspannungsrippel ist eine kleine AC-Schwankung auf der DC-Ausgangsspannung. Er wird hauptsächlich durch den Induktor-Rippelstrom verursacht, der durch den ESR des Kondensators fließt: ΔVout ≈ ΔIL × ESR. Zur Reduzierung verwenden Sie einen Kondensator mit niedrigerem ESR, erhöhen die Induktivität (reduziert ΔIL) oder erhöhen die Schaltfrequenz. Keramikkondensatoren haben sehr niedrigen ESR und werden für rippelarme Designs bevorzugt.",
+    "q5": "Was ist kontinuierlicher im Vergleich zu diskontinuierlichem Leitungsmodus?",
+    "q5_a": "Im kontinuierlichen Leitungsmodus (CCM) erreicht der Induktorstrom während des Schaltzyklus nie null. Im diskontinuierlichen Leitungsmodus (DCM) erreicht der Induktorstrom vor dem nächsten Einschalten des Schalters null. Dieser Rechner nimmt CCM an, den häufigsten Betriebsmodus gut ausgelegter Wandler unter normaler Last. DCM tritt bei leichter Last auf und verändert die Beziehung zwischen Tastgrad und Spannung.",
+    "q6": "Wie effizient ist ein Buck-Wandler im Vergleich zu einem Linearregler?",
+    "q6_a": "Ein Buck-Wandler ist bei großen Spannungsdifferenzen deutlich effizienter als ein Linearregler (LDO). Ein Linearregler verheizt die gesamte überschüssige Spannung, was nur einen Wirkungsgrad von Vout / Vin ergibt (z. B. liefern 3.3 V aus 12 V nur 27.5% Wirkungsgrad). Ein gut ausgelegter Buck-Wandler erreicht typischerweise 85–98% Wirkungsgrad unabhängig vom Spannungsverhältnis und ist daher die bevorzugte Wahl, wenn Wärmeabfuhr oder Batterielaufzeit wichtig sind."
+  }
+}

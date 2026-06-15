@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de flambagem - carga crítica e tensão de Euler",
+  "tagline": "Calcule a carga crítica de flambagem, a tensão de flambagem e o fator de segurança de colunas esbeltas usando a fórmula de Euler.",
+  "intro": "Informe os parâmetros de material, geometria e condições de contorno para determinar se um elemento estrutural é seguro contra falha por flambagem.",
+  "field": {
+    "appliedLoad": "Carga aplicada (N)",
+    "length": "Comprimento (m)",
+    "modulus": "Módulo de elasticidade (GPa)",
+    "momentOfInertia": "Momento de inércia (m⁴)",
+    "effectiveLengthFactor": "Fator de comprimento efetivo (K)",
+    "area": "Área da seção transversal (m²)"
+  },
+  "placeholder": {
+    "appliedLoad": "ex.: 75000",
+    "length": "ex.: 4.5",
+    "modulus": "ex.: 200",
+    "momentOfInertia": "ex.: 0.00015",
+    "effectiveLengthFactor": "ex.: 0.7",
+    "area": "ex.: 0.012"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Preencha todos os campos com números positivos válidos."
+  },
+  "result": {
+    "heading": "Resultados da análise de flambagem",
+    "criticalLoad": "Carga crítica de flambagem (Pcr)",
+    "bucklingStress": "Tensão de flambagem",
+    "safetyFactor": "Fator de segurança",
+    "effectiveLength": "Comprimento efetivo (Le)",
+    "status": {
+      "safe": "SEGURO — A carga aplicada está abaixo da carga crítica de flambagem.",
+      "unsafe": "INSEGURO — A carga aplicada excede a carga crítica de flambagem!"
+    }
+  },
+  "about": {
+    "heading": "Sobre a calculadora de flambagem",
+    "body": "A flambagem estrutural é uma falha súbita em que um elemento esbelto sob compressão se desloca lateralmente em vez de continuar encurtando elasticamente. Ela é essencial no projeto de colunas e escoras, pois pode ocorrer com tensões muito menores que a resistência ao escoamento.\n\nA base teórica é a fórmula de Euler, derivada por Leonhard Euler em 1757. A carga crítica de flambagem de uma coluna elástica ideal é:\n\nPcr = (π² × E × I) / (K × L)²\n\nE é o módulo de elasticidade, I o momento de inércia da seção em relação ao eixo de flexão, K o fator de comprimento efetivo e L o comprimento sem apoio. K×L é o comprimento efetivo Le.\n\nK representa as extremidades: 0.5 para engastado-engastado, 0.7 para engastado-articulado, 1.0 para articulado-articulado e 2.0 para engastado-livre em balanço. Quanto menor K, maior a carga crítica; uma coluna engastada nas duas pontas pode suportar quatro vezes a carga de uma articulada-articulada idêntica.\n\nA tensão de flambagem é σcr = Pcr / A. Se ela exceder a resistência ao escoamento, o elemento escoa antes de flambar e devem ser usadas fórmulas inelásticas de normas como AISC 360 ou Eurocode 3.\n\nO fator de segurança é SF = Pcr / P. Valores típicos variam de 1.5 a 3.0 conforme aplicação, norma e consequência da falha. Abaixo de 1.0, o elemento já flambou.\n\nA fórmula de Euler assume elemento reto, carga centrada, material homogêneo e isotrópico, comportamento elástico e pequenas deflexões. Imperfeições, excentricidades e tensões residuais reduzem a capacidade real, por isso as normas usam fatores de redução e segurança.\n\nA flambagem é crítica em edifícios de aço, fuselagens, foguetes, hastes hidráulicas, bicicletas, pontes e estruturas de grandes vãos. O índice KL/r, com r = √(I/A), indica a suscetibilidade: quanto maior, mais propenso à flambagem."
+  },
+  "examples": {
+    "heading": "Exemplos da calculadora de flambagem",
+    "intro": "Projetos representativos mostrando como material, geometria e extremidades afetam a carga crítica.",
+    "colInput": "Parâmetros da coluna",
+    "colOutput": "Carga crítica (Pcr)",
+    "colNote": "Condições de extremidade e notas",
+    "loadSteelColumn": "Carregar exemplo de aço engastado-articulado",
+    "loadAluminum": "Carregar exemplo de alumínio articulado-articulado",
+    "loadCantilever": "Carregar exemplo em balanço",
+    "items": [
+      {
+        "input": "Aço, L=4.5 m, E=200 GPa, I=0.00015 m⁴, K=0.7, A=0.012 m², P=75,000 N",
+        "output": "Pcr ≈ 29,841 kN",
+        "note": "Engastado-articulado (K=0.7). Fator de segurança ≈ 398. A coluna é segura para 75 kN."
+      },
+      {
+        "input": "Alumínio, L=2.8 m, E=70 GPa, I=0.00008 m⁴, K=1.0, A=0.008 m², P=25,000 N",
+        "output": "Pcr ≈ 7,050 kN",
+        "note": "Articulado-articulado (K=1.0). Fator de segurança ≈ 282. O alumínio exige geometria mais cuidadosa que o aço."
+      },
+      {
+        "input": "Concreto, L=3.2 m, E=30 GPa, I=0.00025 m⁴, K=0.5, A=0.025 m², P=120,000 N",
+        "output": "Pcr ≈ 28,915 kN",
+        "note": "Engastado-engastado (K=0.5). Essa condição quadruplica Pcr em relação a uma coluna articulada-articulada igual."
+      },
+      {
+        "input": "Aço, L=6.0 m, E=200 GPa, I=0.00005 m⁴, K=2.0, A=0.006 m², P=15,000 N",
+        "output": "Pcr ≈ 685 kN",
+        "note": "Balanço engastado-livre (K=2.0). A extremidade livre reduz a resistência; o comprimento efetivo é 12 m. Fator de segurança ≈ 46."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de flambagem",
+    "steps": [
+      "Informe a carga compressiva aplicada em newtons (N).",
+      "Informe comprimento e módulo de elasticidade: 200 GPa para aço, 70 GPa para alumínio e 25–40 GPa para concreto.",
+      "Informe o menor momento de inércia em m⁴ e a área em m²; use o eixo fraco.",
+      "Selecione K: 0.5 engastado-engastado, 0.7 engastado-articulado, 1.0 articulado-articulado ou 2.0 engastado-livre.",
+      "Clique em 'Calcular' para ver carga crítica, tensão, comprimento efetivo e fator de segurança."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ da calculadora de flambagem",
+    "q1": "O que é o fator de comprimento efetivo K?",
+    "q1_a": "K considera as restrições nas extremidades e transforma o comprimento real em uma coluna articulada-articulada equivalente. Escolher K errado causa grandes erros.",
+    "q2": "Quando a fórmula de Euler não se aplica?",
+    "q2_a": "Ela só vale para colunas esbeltas que flambam no regime elástico. Para membros curtos ou robustos, use fórmulas inelásticas de normas como AISC ou Eurocode 3.",
+    "q3": "Qual fator de segurança é necessário?",
+    "q3_a": "Depende da norma, carga e consequência da falha. Para projeto preliminar, 2.0–3.0 contra a carga crítica de Euler é conservador.",
+    "q4": "Por que a flambagem depende de E e não do escoamento?",
+    "q4_a": "A flambagem de Euler é um fenômeno de estabilidade elástica. E governa a rigidez à flexão; o escoamento importa apenas quando a tensão crítica excede Fy.",
+    "q5": "O que é índice de esbeltez?",
+    "q5_a": "KL/r mede a suscetibilidade à flambagem. Quanto maior o índice, mais facilmente o elemento flamba.",
+    "q6": "A flambagem de Euler também se aplica a vigas?",
+    "q6_a": "Vigas podem sofrer flambagem lateral com torção, fenômeno relacionado mas diferente. Este cálculo trata apenas colunas em compressão axial."
+  }
+}

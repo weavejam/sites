@@ -1,0 +1,99 @@
+{
+  "title": "Calculadora de conversor buck – projeto redutor DC-DC",
+  "tagline": "Calcule o ciclo de trabalho, a corrente de ripple do indutor, o ripple de tensão de saída e a eficiência de circuitos conversores buck (redutores) DC-DC.",
+  "intro": "Insira tensão de entrada, tensão de saída, frequência de chaveamento, valor do indutor, corrente de carga e ESR do capacitor para analisar seu projeto de conversor buck.",
+  "field": {
+    "vin": "Tensão de entrada (Vin)",
+    "vout": "Tensão de saída (Vout)",
+    "freq": "Frequência de chaveamento (Hz)",
+    "inductance": "Valor do indutor (H)",
+    "iout": "Corrente de carga (A)",
+    "esr": "ESR do capacitor de saída (Ω)"
+  },
+  "placeholder": {
+    "vin": "ex.: 24",
+    "vout": "ex.: 12",
+    "freq": "ex.: 100000",
+    "inductance": "ex.: 0.0001",
+    "iout": "ex.: 2",
+    "esr": "ex.: 0.01"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Preencha todos os campos com números positivos válidos.",
+    "voutExceedsVin": "Em um conversor buck, a tensão de saída deve ser menor que a tensão de entrada.",
+    "vinZero": "A tensão de entrada deve ser maior que zero."
+  },
+  "result": {
+    "heading": "Resultados do conversor buck",
+    "dutyCycle": "Ciclo de trabalho (D)",
+    "rippleCurrent": "Corrente de ripple do indutor (ΔIL)",
+    "peakCurrent": "Corrente de pico do indutor",
+    "outputRipple": "Ripple de tensão de saída (ΔVout)",
+    "efficiency": "Eficiência estimada"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de conversor buck",
+    "body": "Um conversor buck é uma topologia de fonte chaveada DC-DC que reduz a tensão de uma entrada mais alta para uma saída mais baixa, mantendo alta eficiência. Ele é um dos blocos mais fundamentais da eletrônica de potência e está presente em praticamente todos os dispositivos eletrônicos, de smartphones e notebooks a sistemas automotivos e equipamentos industriais.\n\nO conversor buck opera pelo princípio de modulação por largura de pulso (PWM). Um transistor de chaveamento (geralmente um MOSFET) liga e desliga em alta frequência. Quando a chave está ligada, a corrente flui da entrada através de um indutor até a saída, armazenando energia no campo magnético do indutor. Quando a chave desliga, o indutor mantém o fluxo de corrente para a carga por meio de um diodo de roda livre (ou um MOSFET síncrono em projetos modernos). O capacitor de saída suaviza a forma de onda de tensão resultante.\n\nA relação fundamental no modo de condução contínua (CCM) é: Vout = D × Vin, em que D é o ciclo de trabalho, ou seja, a fração de cada período de chaveamento em que a chave principal está ligada. Rearranjando, D = Vout / Vin. Um ciclo de trabalho de 50% significa que a saída é metade da entrada; 25% significa que a saída é um quarto da entrada, e assim por diante.\n\nO indutor é o elemento central de armazenamento de energia. O ripple pico a pico da corrente do indutor é: ΔIL = (Vin − Vout) × D / (f × L), em que f é a frequência de chaveamento em Hz e L é a indutância em henrys. Essa corrente de ripple flui pelo capacitor de saída e por sua resistência série equivalente (ESR), gerando um ripple de tensão de saída aproximadamente igual a ΔIL × ESR. Manter a corrente de ripple em cerca de 20–40% da corrente média de saída é uma diretriz comum de projeto que equilibra tamanho do indutor e ruído de saída.\n\nA frequência de chaveamento é uma troca importante de projeto. Frequências mais altas permitem indutores e capacitores menores, reduzindo o tamanho físico e o custo do conversor. Porém, as perdas de chaveamento no MOSFET e no diodo aumentam com a frequência, reduzindo a eficiência. Uma frequência entre 100 kHz e 1 MHz é comum em muitas aplicações. Para projetos de altíssima eficiência ou alta potência, frequências mais baixas (50–100 kHz) com componentes fisicamente maiores podem ser preferíveis.\n\nA eficiência de um conversor buck é limitada principalmente por perdas de condução (I²R no MOSFET e no indutor), perdas de chaveamento (energia perdida a cada vez que o transistor liga e desliga) e perdas no núcleo do indutor. Conversores buck síncronos modernos com MOSFETs de baixo RDS(on) podem atingir eficiências acima de 95%, às vezes se aproximando de 99% em projetos otimizados. O ciclo de trabalho também afeta a eficiência: operar com ciclos muito distantes de 50% (muito altos ou muito baixos) tende a reduzir a eficiência em relação à faixa intermediária.\n\nArmadilhas comuns de projeto incluem escolher um indutor sem verificar sua corrente de saturação (se o indutor saturar, a tensão de saída colapsa), ignorar a corrente de ripple RMS nominal do capacitor de saída (ripple excessivo causa aquecimento e falha prematura do capacitor) e layout de PCB ruim que cria grandes laços de corrente de alta frequência (causando EMI e perdas de eficiência). Para operação prática e estável, o ciclo de trabalho normalmente deve ficar entre 10% e 90%."
+  },
+  "examples": {
+    "heading": "Exemplos de projeto de conversor buck",
+    "intro": "Projetos representativos mostrando pares típicos de tensão de entrada/saída, frequências de chaveamento e os ciclos de trabalho e valores de ripple resultantes.",
+    "colInput": "Parâmetros de projeto",
+    "colOutput": "Ciclo de trabalho",
+    "colNote": "Aplicação",
+    "loadAutomotive": "Carregar exemplo automotivo 24V→12V",
+    "loadBattery": "Carregar exemplo de redução por bateria",
+    "loadIndustrial": "Carregar exemplo industrial",
+    "items": [
+      {
+        "input": "Vin=24 V, Vout=12 V, f=100 kHz, L=100 μH, Iout=2 A, ESR=10 mΩ",
+        "output": "D = 50%",
+        "note": "Conversão automotiva de 24V para 12V. Corrente de ripple ≈ 0.6 A, ripple de saída ≈ 6 mV. Comum para alimentar eletrônicos de 12V a partir do sistema elétrico de 24V de um caminhão."
+      },
+      {
+        "input": "Vin=48 V, Vout=5 V, f=500 kHz, L=47 μH, Iout=1 A, ESR=5 mΩ",
+        "output": "D ≈ 10.4%",
+        "note": "Redução de bateria para microcontroladores e sensores. A alta frequência de chaveamento permite um indutor compacto de 47 μH enquanto mantém o ripple de saída abaixo de 10 mV."
+      },
+      {
+        "input": "Vin=400 V, Vout=24 V, f=50 kHz, L=1 mH, Iout=10 A, ESR=20 mΩ",
+        "output": "D = 6%",
+        "note": "Fonte industrial off-line. O baixo ciclo de trabalho exige projeto cuidadoso do drive de gate do MOSFET para alcançar chaveamento confiável com tempo ligado muito curto."
+      },
+      {
+        "input": "Vin=12 V, Vout=3.3 V, f=300 kHz, L=33 μH, Iout=0.5 A, ESR=8 mΩ",
+        "output": "D ≈ 27.5%",
+        "note": "Trilho de alimentação de dispositivo portátil para um circuito lógico de 3.3 V alimentado por uma bateria Li-ion de uma célula ou adaptador de 12 V."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de conversor buck",
+    "steps": [
+      "Insira a tensão de entrada (Vin), a tensão DC disponível para o conversor, e a tensão de saída desejada (Vout). Em uma topologia buck, Vout deve ser menor que Vin.",
+      "Insira a frequência de chaveamento em Hz (por exemplo, 100000 para 100 kHz). Frequências mais altas permitem componentes menores, mas aumentam as perdas de chaveamento.",
+      "Insira o valor do indutor em henrys (por exemplo, 0.0001 para 100 μH) e a corrente de carga em ampères. Esses valores determinam a corrente de ripple do indutor.",
+      "Insira o ESR (resistência série equivalente) do capacitor de saída em ohms. Isso define diretamente o ripple de tensão de saída.",
+      "Clique em “Calcular” para ver o ciclo de trabalho, a corrente de ripple do indutor, a corrente de pico do indutor, o ripple de tensão de saída e a eficiência estimada. Ajuste os parâmetros até que todos os valores atendam às metas do seu projeto."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sobre conversor buck",
+    "q1": "O que é o ciclo de trabalho de um conversor buck?",
+    "q1_a": "O ciclo de trabalho D é a fração de cada período de chaveamento em que a chave principal está fechada (ligada). Em um conversor buck ideal operando em modo de condução contínua (CCM), D = Vout / Vin. Assim, uma saída de 12 V a partir de uma entrada de 24 V requer ciclo de trabalho de 50%. Na prática, perdas de eficiência fazem o ciclo real ser ligeiramente maior que o valor ideal.",
+    "q2": "O que acontece se o ciclo de trabalho for muito alto ou muito baixo?",
+    "q2_a": "Ciclos de trabalho extremamente altos (acima de ~90%) deixam muito pouco tempo desligado, dificultando a condução do diodo ou MOSFET síncrono e a reinicialização do indutor. Ciclos muito baixos (abaixo de ~10%) exigem tempos ligados muito curtos, difíceis de acionar com confiabilidade. Ambos os extremos reduzem eficiência e estabilidade. Projetos práticos miram ciclos entre 10% e 90%.",
+    "q3": "Como a frequência de chaveamento afeta o tamanho do indutor?",
+    "q3_a": "Para uma especificação dada de corrente de ripple, a indutância necessária é L = (Vin − Vout) × D / (f × ΔIL). Dobrar a frequência de chaveamento reduz pela metade a indutância necessária, e vice-versa. Frequências mais altas permitem indutores menores e mais leves, uma das principais razões pelas quais CIs de potência modernos operam a centenas de quilohertz ou até megahertz. A contrapartida é o aumento das perdas de chaveamento.",
+    "q4": "O que é ripple de tensão de saída e como reduzi-lo?",
+    "q4_a": "O ripple de tensão de saída é uma pequena variação AC sobreposta à saída DC. Ele é causado principalmente pela corrente de ripple do indutor fluindo pelo ESR do capacitor: ΔVout ≈ ΔIL × ESR. Para reduzi-lo, use um capacitor com menor ESR, aumente a indutância (reduz ΔIL) ou eleve a frequência de chaveamento. Capacitores cerâmicos têm ESR muito baixo e são preferidos em projetos de baixo ripple.",
+    "q5": "O que é modo de condução contínua versus descontínua?",
+    "q5_a": "No modo de condução contínua (CCM), a corrente do indutor nunca chega a zero durante o ciclo de chaveamento. No modo de condução descontínua (DCM), a corrente do indutor chega a zero antes do próximo acionamento da chave. Esta calculadora assume CCM, o modo mais comum em conversores bem projetados sob carga normal. O DCM ocorre em cargas leves e altera a relação entre ciclo de trabalho e tensão.",
+    "q6": "Quão eficiente é um conversor buck em comparação com um regulador linear?",
+    "q6_a": "Um conversor buck é muito mais eficiente que um regulador linear (LDO) quando há grandes diferenças de tensão. Um regulador linear dissipa todo o excesso de tensão como calor, com eficiência de apenas Vout / Vin (por exemplo, 3.3 V a partir de 12 V rende só 27.5%). Um buck bem projetado normalmente atinge 85–98% de eficiência independentemente da razão de tensão, tornando-se a escolha preferida quando dissipação de calor ou vida útil da bateria importam."
+  }
+}

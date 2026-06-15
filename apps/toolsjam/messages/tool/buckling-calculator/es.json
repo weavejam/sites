@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de pandeo - carga crítica y esfuerzo de Euler",
+  "tagline": "Calcula la carga crítica de pandeo, el esfuerzo de pandeo y el factor de seguridad de columnas esbeltas con la fórmula de Euler.",
+  "intro": "Introduce los parámetros del material, la geometría y las condiciones de borde para determinar si un elemento estructural es seguro frente al fallo por pandeo.",
+  "field": {
+    "appliedLoad": "Carga aplicada (N)",
+    "length": "Longitud (m)",
+    "modulus": "Módulo de elasticidad (GPa)",
+    "momentOfInertia": "Momento de inercia (m⁴)",
+    "effectiveLengthFactor": "Factor de longitud efectiva (K)",
+    "area": "Área de la sección transversal (m²)"
+  },
+  "placeholder": {
+    "appliedLoad": "p. ej., 75000",
+    "length": "p. ej., 4.5",
+    "modulus": "p. ej., 200",
+    "momentOfInertia": "p. ej., 0.00015",
+    "effectiveLengthFactor": "p. ej., 0.7",
+    "area": "p. ej., 0.012"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Completa todos los campos con números positivos válidos."
+  },
+  "result": {
+    "heading": "Resultados del análisis de pandeo",
+    "criticalLoad": "Carga crítica de pandeo (Pcr)",
+    "bucklingStress": "Esfuerzo de pandeo",
+    "safetyFactor": "Factor de seguridad",
+    "effectiveLength": "Longitud efectiva (Le)",
+    "status": {
+      "safe": "SEGURO — La carga aplicada está por debajo de la carga crítica de pandeo.",
+      "unsafe": "NO SEGURO — La carga aplicada supera la carga crítica de pandeo."
+    }
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de pandeo",
+    "body": "El pandeo estructural es un modo de fallo repentino que ocurre cuando un elemento esbelto sometido a compresión se desvía lateralmente en lugar de seguir acortándose de forma elástica. Es fundamental en el diseño de columnas y puntales porque puede producirse con esfuerzos muy inferiores al límite elástico del material, lo que lo distingue de una falla simple por compresión.\n\nLa base teórica del análisis de pandeo es la fórmula de Euler, derivada por primera vez por el matemático suizo Leonhard Euler en 1757. La carga crítica de pandeo —la fuerza de compresión a la que una columna elástica ideal pasa de equilibrio estable a inestable— es:\n\nPcr = (π² × E × I) / (K × L)²\n\ndonde E es el módulo de elasticidad (módulo de Young) del material, I es el segundo momento de área (momento de inercia) de la sección respecto al eje de flexión, K es el factor de longitud efectiva que considera las condiciones de borde en los extremos, y L es la longitud real no arriostrada del elemento. La cantidad K×L se denomina longitud efectiva, Le.\n\nEl factor de longitud efectiva K representa las condiciones de borde en cada extremo: K = 0.5 para empotrado-empotrado (ambos extremos totalmente restringidos), K = 0.7 para empotrado-articulado (un extremo empotrado y otro articulado, el caso más común en la práctica), K = 1.0 para articulado-articulado (ambos extremos libres para girar) y K = 2.0 para empotrado-libre (voladizo, un extremo empotrado y el otro completamente libre). Un K menor aumenta mucho la carga crítica: una columna empotrada-empotrada puede soportar cuatro veces la carga de una columna articulada-articulada idéntica.\n\nEl esfuerzo de pandeo es σcr = Pcr / A, donde A es el área de la sección transversal. Si σcr supera el límite elástico del material, el elemento plastificaría antes de pandear, por lo que la fórmula de Euler deja de gobernar y deben usarse fórmulas de pandeo inelástico de normas como AISC 360 o Eurocode 3.\n\nEl factor de seguridad frente al pandeo se define como SF = Pcr / P, donde P es la carga aplicada real. Los factores de seguridad de diseño suelen estar entre 1.5 y 3.0, según la aplicación, la norma y las consecuencias de la falla. Un factor de seguridad inferior a 1.0 significa que el elemento ya ha pandeado.\n\nLa fórmula de Euler supone un elemento perfectamente recto, cargado céntricamente, homogéneo, isótropo, con comportamiento elástico y pequeñas deformaciones. Las columnas reales se apartan de estas hipótesis por imperfecciones iniciales, carga excéntrica, tensiones residuales de fabricación y excentricidad de la carga. Estos efectos reducen la capacidad real de pandeo por debajo de la predicción de Euler, por eso las normas aplican factores de reducción y exigen factores de seguridad.\n\nEl pandeo es una comprobación crítica en columnas de edificios de acero, cuadernas de fuselajes de aeronaves, cuerpos de cohetes, vástagos de cilindros hidráulicos, cuadros de bicicleta y muchas otras estructuras. En cerchas de puentes y estructuras de gran luz, los miembros comprimidos del cordón superior siempre deben verificarse frente al pandeo. La relación de esbeltez KL/r (donde r = √(I/A) es el radio de giro) es un parámetro adimensional clave: valores mayores indican miembros más propensos al pandeo."
+  },
+  "examples": {
+    "heading": "Ejemplos de la calculadora de pandeo",
+    "intro": "Diseños representativos de columnas que muestran cómo el material, la geometría y las condiciones de extremo afectan la carga crítica de pandeo.",
+    "colInput": "Parámetros de la columna",
+    "colOutput": "Carga crítica (Pcr)",
+    "colNote": "Condiciones de extremo y notas",
+    "loadSteelColumn": "Cargar ejemplo de acero empotrado-articulado",
+    "loadAluminum": "Cargar ejemplo de aluminio articulado-articulado",
+    "loadCantilever": "Cargar ejemplo de voladizo",
+    "items": [
+      {
+        "input": "Acero, L=4.5 m, E=200 GPa, I=0.00015 m⁴, K=0.7, A=0.012 m², P=75,000 N",
+        "output": "Pcr ≈ 29,841 kN",
+        "note": "Empotrado-articulado (K=0.7). Factor de seguridad ≈ 398. La columna está muy dentro de los límites seguros para la carga aplicada de 75 kN."
+      },
+      {
+        "input": "Aluminio, L=2.8 m, E=70 GPa, I=0.00008 m⁴, K=1.0, A=0.008 m², P=25,000 N",
+        "output": "Pcr ≈ 7,050 kN",
+        "note": "Articulado-articulado (K=1.0). Factor de seguridad ≈ 282. El menor módulo del aluminio exige un diseño geométrico más cuidadoso que el acero para lograr una resistencia al pandeo equivalente."
+      },
+      {
+        "input": "Hormigón, L=3.2 m, E=30 GPa, I=0.00025 m⁴, K=0.5, A=0.025 m², P=120,000 N",
+        "output": "Pcr ≈ 28,915 kN",
+        "note": "Empotrado-empotrado (K=0.5). La condición empotrado-empotrado cuadruplica Pcr frente a una columna articulada-articulada del mismo tamaño y material."
+      },
+      {
+        "input": "Acero, L=6.0 m, E=200 GPa, I=0.00005 m⁴, K=2.0, A=0.006 m², P=15,000 N",
+        "output": "Pcr ≈ 685 kN",
+        "note": "Voladizo empotrado-libre (K=2.0). El extremo libre reduce drásticamente la resistencia al pandeo: la longitud efectiva es 12 m para esta columna de 6 m. Factor de seguridad ≈ 46."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de pandeo",
+    "steps": [
+      "Introduce la carga compresiva aplicada en newtons (N). Es la fuerza real que debe soportar la columna.",
+      "Introduce la longitud de la columna en metros (m) y el módulo de elasticidad del material en gigapascales (GPa). Usa 200 GPa para acero, 70 GPa para aluminio y 25–40 GPa para hormigón.",
+      "Introduce el segundo momento de área mínimo (momento de inercia) en m⁴ y el área de sección en m². Usa el valor I del eje débil, porque el pandeo ocurre alrededor del eje con menor I.",
+      "Selecciona el factor de longitud efectiva K según las condiciones de extremo: 0.5 para empotrado-empotrado, 0.7 para empotrado-articulado, 1.0 para articulado-articulado o 2.0 para empotrado-libre (voladizo).",
+      "Haz clic en 'Calcular' para ver la carga crítica de pandeo, el esfuerzo de pandeo, la longitud efectiva y el factor de seguridad. Las normas de diseño estructural suelen exigir un factor de seguridad mayor que 1.5–3."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de pandeo",
+    "q1": "¿Qué es el factor de longitud efectiva K?",
+    "q1_a": "El factor de longitud efectiva K considera las condiciones de restricción en los extremos de una columna. Escala la longitud real para obtener una columna articulada-articulada equivalente que pandearía con la misma carga. K=0.5 para ambos extremos empotrados, K=0.7 para un extremo empotrado y otro articulado, K=1.0 para ambos extremos articulados y K=2.0 para un extremo empotrado y el otro completamente libre. Elegir mal K es una fuente común de errores importantes en cálculos de pandeo.",
+    "q2": "¿Cuándo no se aplica la fórmula de Euler?",
+    "q2_a": "La fórmula de Euler solo es válida para columnas esbeltas donde el pandeo ocurre en el rango elástico, antes de que el material fluya. El punto de transición se define por la relación de esbeltez KL/r: para acero estructural (Fy ≈ 250 MPa, E = 200 GPa), el pandeo elástico de Euler gobierna por encima de aproximadamente KL/r = 89. En miembros más cortos y robustos gobierna el pandeo inelástico o la fluencia directa por compresión, y deben usarse fórmulas de normas de diseño (AISC, Eurocode 3).",
+    "q3": "¿Qué factor de seguridad se requiere para diseñar columnas?",
+    "q3_a": "El factor de seguridad requerido depende de la norma, el tipo de carga y las consecuencias de la falla. En el diseño por factores de carga y resistencia (LRFD) de AISC, se aplica un factor de resistencia de 0.9 a la capacidad nominal de pandeo. En el diseño por esfuerzos admisibles (ASD), el factor de seguridad efectivo suele ser 1.67–1.92 frente al pandeo. Para diseño preliminar, un factor de 2.0–3.0 respecto a la carga crítica de Euler es un punto de partida razonable y conservador.",
+    "q4": "¿Por qué el pandeo depende de E (módulo) y no del límite elástico?",
+    "q4_a": "El pandeo de Euler es un fenómeno de estabilidad (equilibrio elástico), no de resistencia. La columna pandea porque alcanza un equilibrio inestable antes de que el material fluya. El módulo E gobierna la rigidez a flexión de la columna: un material más rígido resiste mejor la deflexión lateral. El límite elástico solo importa si el esfuerzo crítico supera Fy; entonces gobierna el pandeo inelástico y la resistencia sí es relevante.",
+    "q5": "¿Qué es la relación de esbeltez y por qué importa?",
+    "q5_a": "La relación de esbeltez es KL/r, donde r = √(I/A) es el radio de giro. Es el indicador adimensional clave de la susceptibilidad al pandeo. Relaciones de esbeltez más altas significan miembros más propensos al pandeo. Las columnas largas y delgadas (KL/r alto) pandean a esfuerzos bajos, muy por debajo de la fluencia, mientras que las columnas cortas y robustas (KL/r bajo) fallan por fluencia o aplastamiento. Las normas usan KL/r para determinar qué fórmula de pandeo aplicar.",
+    "q6": "¿El pandeo de Euler se aplica también a vigas?",
+    "q6_a": "Sí, un fenómeno relacionado llamado pandeo lateral-torsional (LTB) afecta a vigas sometidas a flexión. Cuando una viga no arriostrada se carga en el plano de su eje fuerte, puede pandear lateralmente y torcerse, de forma similar al pandeo de columnas pero con flexión y torsión. Esta calculadora solo aborda el pandeo de columnas (compresión axial). El pandeo lateral-torsional requiere ecuaciones distintas que incluyen la constante torsional y la constante de alabeo de la sección."
+  }
+}
