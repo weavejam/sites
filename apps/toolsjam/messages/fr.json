@@ -12161,6 +12161,285 @@
         "q6": "Puis-je l’utiliser pour des événements binaires aléatoires autres que les pièces ?",
         "q6_a": "Oui, tant que chaque essai est indépendant et que la probabilité de succès est de 50 %. Exemples : la probabilité qu’une équipe de basket à 50 % de victoires enchaîne 5 victoires, la probabilité qu’un capteur binaire lise la même valeur k fois d’affilée, ou le nombre attendu de décisions de type pièce avant qu’une marche aléatoire atteigne un côté k fois consécutives. Les mathématiques sont identiques pour tous les processus binaires indépendants 50/50."
       }
+    },
+    "dice-probability-calculator": {
+      "title": "Calculateur de probabilité de dés - exact et au moins",
+      "tagline": "Calculez la probabilité exacte de n’importe quel résultat de lancer de dés — somme exacte, au moins ou au plus — pour jusqu’à 10 dés avec n’importe quel nombre de faces.",
+      "intro": "Saisissez le nombre de dés, le nombre de faces par dé et votre somme cible, puis choisissez si vous voulez la probabilité exacte, au moins ou au plus.",
+      "type": {
+        "exact": "Somme exacte",
+        "atLeast": "Au moins",
+        "atMost": "Au plus"
+      },
+      "field": {
+        "calcType": "Type de calcul",
+        "numberOfDice": "Nombre de dés",
+        "sidesPerDie": "Faces par dé",
+        "targetSum": "Somme cible"
+      },
+      "placeholder": {
+        "dice": "1–10",
+        "targetSum": "Saisir la somme cible"
+      },
+      "button": {
+        "calculate": "Calculer la probabilité",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des valeurs valides : 1–10 dés, au moins 2 faces et une somme cible positive.",
+        "range": "La somme cible doit être comprise entre {min} (minimum) et {max} (maximum) pour cette configuration de dés."
+      },
+      "result": {
+        "heading": "Probabilité",
+        "fraction": "{favorable} issues favorables sur {total} au total ({fraction})",
+        "summary": "{n} dés × d{s}, {type} {target}"
+      },
+      "about": {
+        "heading": "À propos du calculateur de probabilité de dés",
+        "body": "La probabilité des dés est un sujet fondamental à la fois en mathématiques récréatives et en théorie formelle des probabilités. Chaque fois que vous lancez un dé équilibré, chaque face a la même probabilité de se retrouver au-dessus : pour un dé standard à six faces, elle est de 1/6 pour chaque résultat. Lorsque vous lancez plusieurs dés et additionnez les résultats, le nombre de façons d’atteindre chaque total possible suit une distribution caractéristique, nettement non uniforme et fortement en forme de cloche avec trois dés ou plus.\n\nLe calculateur de probabilité de dés utilise une approche de convolution par programmation dynamique pour compter le nombre exact de façons d’obtenir chaque somme possible. En partant d’un seul résultat de 0 avec 1 façon, il itère sur chaque dé et étend la distribution en considérant chaque valeur de face possible. Cela produit un décompte exact des issues favorables pour toute somme cible. En divisant par le nombre total d’issues — simplement (faces par dé) élevé à la puissance (nombre de dés) — on obtient la probabilité sous forme de fraction décimale entre 0 et 1.\n\nLe calculateur prend en charge trois types de requêtes de probabilité. La probabilité exacte répond à « Quelle est la probabilité que le total des dés soit exactement T ? » — utile lorsqu’une règle de jeu de société exige d’obtenir un nombre précis. La probabilité au moins répond à « Quelle est la probabilité que le total des dés soit T ou plus ? » — pertinente dans les jeux de rôle où il faut un score minimum pour réussir. La probabilité au plus répond à « Quelle est la probabilité que le total des dés soit T ou moins ? » — utile pour les évaluations de risque et les calculs de seuil.\n\nConnaître la probabilité théorique d’un résultat de dés est précieux pour la conception de jeux, la stratégie, l’éducation et l’analyse des jeux d’argent. Par exemple, en lançant deux dés standard à six faces, la somme 7 a la probabilité la plus élevée (6 sur 36, soit 16,67 %), car six combinaisons la produisent : (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Les sommes aux extrêmes — 2 (snake eyes) ou 12 (boxcars) — n’ont qu’une combinaison chacune, ce qui leur donne une probabilité de seulement 1/36 (≈ 2,78 %). Comprendre cette distribution est au cœur de nombreuses stratégies de jeux de société et de casino.\n\nAu-delà des dés à six faces, le calculateur gère les dés polyédriques courants dans les jeux de rôle sur table : d4, d8, d10, d12 et d20. La distribution des sommes change fortement avec le nombre de faces. Un seul d20 produit une distribution uniforme ; deux dés d20 produisent une distribution triangulaire ; trois ou plus produisent une courbe de plus en plus en cloche. Cette convergence vers une distribution normale illustre concrètement le théorème central limite en action."
+      },
+      "examples": {
+        "heading": "Exemples de probabilité de dés",
+        "intro": "Trois scénarios illustrant les calculs de probabilité exacte, au moins et au plus.",
+        "colInput": "Scénario",
+        "colOutput": "Probabilité",
+        "colNote": "Explication",
+        "loadSingle": "Un d6 — obtenir un 4",
+        "loadLucky7": "Deux d6 — somme = 7",
+        "loadHighRoll": "Trois d6 — somme ≥ 16",
+        "items": [
+          {
+            "input": "1 dé, d6, somme exacte = 4",
+            "output": "16.6667%",
+            "note": "Une issue favorable (face affichant 4) sur 6 au total. P = 1/6."
+          },
+          {
+            "input": "2 dés, d6, somme exacte = 7",
+            "output": "16.6667%",
+            "note": "Six combinaisons produisent une somme de 7 sur 36 au total : (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). P = 6/36 = 1/6."
+          },
+          {
+            "input": "3 dés, d6, somme au moins = 16",
+            "output": "4.6296%",
+            "note": "10 combinaisons sur 216 au total produisent une somme de 16 ou plus. P = 10/216 ≈ 4.63%."
+          },
+          {
+            "input": "2 dés, d6, somme au plus = 4",
+            "output": "16.6667%",
+            "note": "Les sommes de 2 (1 façon), 3 (2 façons) et 4 (3 façons) donnent 6 issues favorables sur 36. P = 6/36 = 1/6."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de probabilité de dés",
+        "steps": [
+          "Choisissez le type de calcul : Somme exacte pour un total précis, Au moins pour un seuil minimal ou Au plus pour un seuil maximal.",
+          "Saisissez le nombre de dés (1–10) dans le premier champ. Plus il y a de dés, plus la distribution se rapproche d’une courbe en cloche.",
+          "Sélectionnez le nombre de faces par dé dans la liste déroulante (d4, d6, d8, d10, d12 ou d20).",
+          "Saisissez la somme cible qui vous intéresse. La plage valide s’affiche si vous entrez une valeur hors plage.",
+          "Cliquez sur Calculer la probabilité. Le résultat affiche la probabilité en pourcentage, la fraction des issues favorables sur les issues totales et la fraction simplifiée."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la probabilité des dés",
+        "q1": "Pourquoi 7 est-il la somme la plus courante avec deux dés à six faces ?",
+        "q1_a": "Il existe 6 combinaisons qui produisent une somme de 7 sur 36 issues totales, ce qui lui donne la probabilité la plus élevée : 1/6 ≈ 16,67 %. Les sommes 6 et 8 sont les suivantes les plus fréquentes (5/36 chacune), tandis que 2 et 12 sont les plus rares, à 1/36 chacune. Cette distribution asymétrique explique pourquoi le craps, Monopoly et de nombreux autres jeux de dés tournent autour du nombre 7.",
+        "q2": "Quelle est la différence entre probabilité « exacte », « au moins » et « au plus » ?",
+        "q2_a": "La probabilité exacte donne la chance que le total soit précisément égal au nombre cible. La probabilité au moins donne la chance que le total soit supérieur ou égal à la cible — utile lorsqu’il faut un lancer minimum pour réussir. La probabilité au plus donne la chance que le total soit inférieur ou égal à la cible — utile lorsque vous voulez rester sous un seuil.",
+        "q3": "Comment le nombre de dés affecte-t-il la forme de la distribution ?",
+        "q3_a": "Avec un seul dé, la distribution est parfaitement uniforme : chaque face est également probable. Avec deux dés, la distribution devient triangulaire et atteint un pic au milieu. Avec trois dés ou plus, elle devient en forme de cloche et ressemble de plus en plus à une distribution normale, conséquence directe du théorème central limite. Cela signifie que les sommes extrêmes deviennent exponentiellement plus rares à mesure que vous ajoutez des dés.",
+        "q4": "Puis-je utiliser ce calculateur pour des dés non standard ?",
+        "q4_a": "Le calculateur prend en charge d4, d6, d8, d10, d12 et d20 — les dés polyédriques standard utilisés dans la plupart des jeux sur table. Ils couvrent la grande majorité des dés réels. Si vous avez besoin de probabilités pour un dé ayant un nombre de faces différent, utilisez les formules standard : issues totales = sides^n, et comptez les issues favorables avec la même logique de convolution que celle appliquée en interne par le calculateur.",
+        "q5": "Le calcul de probabilité est-il exact ou approximatif ?",
+        "q5_a": "Le calcul est exact et utilise l’arithmétique entière. Le calculateur compte chaque combinaison possible par programmation dynamique (convolution de fonctions génératrices), puis divise par le nombre total d’issues. Il n’y a ni échantillonnage, ni simulation, ni approximation. Le pourcentage affiché est arrondi à quatre décimales pour la lisibilité, mais la fraction sous-jacente est exacte.",
+        "q6": "Comment utiliser la probabilité des dés dans une stratégie de jeu ?",
+        "q6_a": "Connaître la probabilité de chaque résultat vous permet de prendre des décisions éclairées. Dans Les Colons de Catane, placer des colonies sur des hexagones marqués 6 et 8 donne la fréquence de production de ressources la plus élevée, car chacun correspond à une chance de 5/36 avec deux d6. Dans les combats de Donjons & Dragons, connaître la probabilité d’obtenir 15 ou plus sur un d20 (P = 6/20 = 30 %) vous aide à évaluer le risque avant de tenter une action risquée."
+      }
+    },
+    "dice-roller-calculator": {
+      "title": "Calculateur de dés - Lancer et analyser les statistiques",
+      "tagline": "Simulez le lancer de plusieurs dés et affichez instantanément l’analyse statistique, notamment la moyenne, la médiane, le mode, l’écart type et la distribution complète des fréquences.",
+      "intro": "Définissez le nombre de dés, le nombre de faces par dé et le nombre de lancers à simuler, puis cliquez sur Lancer les dés pour voir les résultats et les statistiques.",
+      "field": {
+        "numberOfDice": "Nombre de dés",
+        "diceSides": "Faces du dé",
+        "numberOfRolls": "Nombre de lancers"
+      },
+      "placeholder": {
+        "dice": "1–10",
+        "rolls": "1–10000"
+      },
+      "button": {
+        "roll": "Lancer les dés",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des valeurs valides : 1–10 dés, au moins 2 faces et 1–10,000 lancers."
+      },
+      "result": {
+        "heading": "Statistiques des lancers",
+        "mean": "Moyenne",
+        "median": "Médiane",
+        "mode": "Mode",
+        "stdDev": "Écart type",
+        "min": "Min.",
+        "max": "Max.",
+        "freqHeading": "Distribution des fréquences",
+        "colValue": "Somme",
+        "colCount": "Nombre",
+        "colPct": "% de fréquence"
+      },
+      "about": {
+        "heading": "À propos du calculateur de dés",
+        "body": "Un calculateur de dés est un outil numérique qui simule le lancer de dés physiques à l’aide de nombres pseudoaléatoires. Chaque lancer d’un dé équitable à n faces peut être modélisé comme une variable aléatoire uniformément distribuée prenant des valeurs entières de 1 à n avec la même probabilité 1/n. Lorsque plusieurs dés sont lancés et additionnés, la distribution résultante dépend du nombre de dés et du nombre de faces : avec un seul dé, la distribution est uniforme, avec deux elle est triangulaire, et avec trois dés ou plus elle se rapproche d’une courbe en cloche conformément au théorème central limite.\n\nEn exécutant un grand nombre de lancers simulés et en enregistrant les résultats, vous obtenez une distribution de fréquences empirique que vous pouvez comparer directement à la distribution de probabilité théorique. C’est un moyen puissant de comprendre à quelle vitesse les distributions réelles convergent vers leurs équivalents théoriques : même 100 lancers de deux dés à six faces montrent un pic net sur 7, tandis que 10,000 lancers produisent un tableau de fréquences très proche des probabilités théoriques.\n\nLe résumé statistique fourni par ce calculateur inclut la moyenne (somme moyenne sur l’ensemble des lancers), la médiane (la valeur centrale lorsque toutes les sommes sont triées), le mode (la ou les sommes les plus fréquentes), l’écart type (une mesure de dispersion autour de la moyenne) ainsi que les valeurs minimale et maximale observées. Ensemble, ces statistiques offrent une vue complète de la distribution en peu d’espace.\n\nPour un dé équitable à n faces, la valeur espérée théorique (moyenne) est (n+1)/2, la variance est (n²−1)/12 et l’écart type est sqrt((n²−1)/12). Pour plusieurs dés, la valeur espérée est additive (n×(s+1)/2, où n est le nombre de dés et s le nombre de faces par dé), et la variance est également additive, donc l’écart type croît comme sqrt(n)×sigma_single. Ce calculateur utilise la simulation plutôt qu’un calcul exact, les résultats varieront donc légèrement d’une exécution à l’autre — mais avec 1,000 lancers ou plus, les statistiques de l’échantillon convergent très près des valeurs théoriques.\n\nLes usages pratiques du calculateur de dés couvrent le développement de jeux, l’enseignement des statistiques et la recherche en probabilité. Les concepteurs de jeux l’utilisent pour vérifier que les mécaniques produisent les courbes de difficulté et l’équilibre souhaités. Les enseignants en statistiques s’en servent pour illustrer le théorème central limite sans demander aux élèves de faire les calculs à la main. Les joueurs de jeux de rôle sur table l’utilisent pour comprendre les profils de probabilité de différentes combinaisons de dés avant de choisir leur build. Et les étudiants en probabilité l’emploient comme laboratoire pratique pour des notions comme l’espérance, la variance et la loi des grands nombres."
+      },
+      "examples": {
+        "heading": "Exemples de calculateur de dés",
+        "intro": "Trois scénarios de simulation illustrant l’évolution de la distribution des fréquences selon différentes configurations de dés.",
+        "colInput": "Configuration",
+        "colOutput": "Moyenne attendue",
+        "colNote": "Cas d’usage",
+        "loadSingle": "1×d6, 100 lancers",
+        "loadTwo": "2×d6, 500 lancers",
+        "loadD20": "1×d20, 200 lancers",
+        "items": [
+          {
+            "input": "1 dé, d6, 100 lancers",
+            "output": "Moyenne ≈ 3.5",
+            "note": "Distribution uniforme de 1 à 6. Moyenne attendue = 3.5, écart type ≈ 1.71. Chaque valeur apparaît environ 16–17 fois sur 100 lancers."
+          },
+          {
+            "input": "2 dés, d6, 500 lancers",
+            "output": "Moyenne ≈ 7.0",
+            "note": "Distribution triangulaire avec un pic sur 7. Moyenne attendue = 7, écart type ≈ 2.42. La somme 7 apparaît environ 83 fois (16.7%) sur 500 lancers."
+          },
+          {
+            "input": "1 dé, d20, 200 lancers",
+            "output": "Moyenne ≈ 10.5",
+            "note": "Distribution uniforme de 1 à 20. Moyenne attendue = 10.5, écart type ≈ 5.77. Chaque valeur apparaît environ 10 fois sur 200 lancers."
+          },
+          {
+            "input": "5 dés, d8, 1000 lancers",
+            "output": "Moyenne ≈ 22.5",
+            "note": "Courbe en cloche proche de la normale centrée sur 22.5. Moyenne attendue = 5×4.5 = 22.5, écart type ≈ 4.33. Illustre clairement le théorème central limite."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de dés",
+        "steps": [
+          "Définissez le nombre de dés (1–10) pour préciser combien de dés sont lancés à chaque étape de simulation.",
+          "Sélectionnez le nombre de faces dans la liste déroulante (d4, d6, d8, d10, d12 ou d20) pour choisir le type de dé.",
+          "Saisissez le nombre de lancers (1–10,000) pour définir combien de lancers indépendants la simulation effectuera.",
+          "Cliquez sur Lancer les dés. Comme la simulation utilise l’aléatoire, chaque exécution produit des résultats légèrement différents — cliquez à nouveau pour relancer.",
+          "Consultez le résumé statistique (moyenne, médiane, mode, écart type, min., max.) et le tableau de distribution des fréquences pour analyser les résultats."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ du calculateur de dés",
+        "q1": "Pourquoi la moyenne change-t-elle légèrement à chaque lancer ?",
+        "q1_a": "Chaque simulation utilise une séquence différente de nombres pseudoaléatoires, donc les statistiques d’échantillon fluctuent autour de la valeur théorique attendue. Avec seulement 10–20 lancers, la variation peut être importante ; avec 1,000 lancers, la moyenne de l’échantillon se situe généralement à quelques dixièmes de la moyenne théorique ; avec 10,000 lancers, elle se trouve en général à un centième près. Cette convergence illustre la loi des grands nombres.",
+        "q2": "Que m’indique l’écart type sur mes lancers ?",
+        "q2_a": "L’écart type mesure la dispersion des sommes autour de la moyenne. Un écart type faible signifie que la plupart des lancers se regroupent près de la moyenne ; un écart type élevé indique une plus grande diversité de résultats. Pour un d6, l’écart type théorique est d’environ 1.71 ; pour deux d6, il est d’environ 2.42 (sqrt(2)×1.71 ≈ 2.42). Quand on ajoute des dés, l’écart type augmente, mais moins vite que la moyenne, donc le coefficient de variation diminue.",
+        "q3": "Qu’est-ce que le tableau de distribution des fréquences ?",
+        "q3_a": "Le tableau de distribution des fréquences affiche chaque somme apparue au moins une fois, le nombre de fois où elle est apparue et sa fréquence observée en pourcentage du total des lancers. Cela vous permet de comparer directement les résultats empiriques aux probabilités théoriques. Pour deux d6, la somme 7 devrait apparaître environ 16.67% du temps ; des échantillons plus grands se rapprocheront davantage de cette valeur théorique.",
+        "q4": "Combien de lancers faut-il pour une estimation précise ?",
+        "q4_a": "Pour une vue d’ensemble, 100 lancers suffisent généralement à voir la forme de la distribution. Pour des estimations de fréquence plus précises, utilisez 1,000 lancers ou plus. À 10,000 lancers, les fréquences de l’échantillon sont généralement à moins de 0.5 point de pourcentage des probabilités théoriques pour des dés standard à six faces. Le nombre exact dépend du nombre de résultats possibles et de la précision souhaitée.",
+        "q5": "Puis-je l’utiliser pour des démonstrations pédagogiques ?",
+        "q5_a": "Oui, c’est l’un de ses usages les plus courants. Cliquer plusieurs fois sur Lancer les dés et comparer les histogrammes obtenus est une excellente démonstration pratique de la loi des grands nombres. Augmenter le nombre de dés de 1 à 5 tout en gardant le nombre de lancers constant montre clairement le théorème central limite, car la distribution passe d’une forme uniforme à une forme proche de la normale.",
+        "q6": "Pourquoi le mode affiche-t-il parfois plusieurs valeurs ?",
+        "q6_a": "Le mode est la valeur la plus fréquemment observée dans l’échantillon. Lorsque deux sommes ou plus sont ex æquo avec la fréquence la plus élevée, elles sont toutes affichées comme modes. C’est courant avec de petits échantillons. Pour deux dés à six faces avec 1,000 lancers, le mode est presque toujours 7 ; mais avec 20 lancers, n’importe quelle somme peut apparaître 3–4 fois et plusieurs modes peuvent apparaître simultanément."
+      }
+    },
+    "dispersion-calculator": {
+      "title": "Calculateur de dispersion - Variance, écart-type et IQR",
+      "tagline": "Calculez l’ensemble des mesures de dispersion statistique — étendue, variance, écart-type, IQR, coefficient de variation et MAD — à partir de n’importe quel jeu de données.",
+      "intro": "Saisissez vos nombres sous forme de liste séparée par des virgules et cliquez sur Calculer pour voir instantanément toutes les statistiques de dispersion et de tendance centrale.",
+      "field": {
+        "data": "Données (nombres séparés par des virgules)"
+      },
+      "placeholder": {
+        "data": "ex. 12, 15, 14, 10, 18, 11"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir au moins 2 nombres valides séparés par des virgules."
+      },
+      "result": {
+        "heading": "Résultats de dispersion",
+        "count": "Nombre",
+        "mean": "Moyenne",
+        "median": "Médiane",
+        "range": "Étendue",
+        "sampleVariance": "Variance de l’échantillon",
+        "populationVariance": "Variance de la population",
+        "sampleStdDev": "Écart-type de l’échantillon",
+        "populationStdDev": "Écart-type de la population",
+        "q1": "Q1 (25e percentile)",
+        "q3": "Q3 (75e percentile)",
+        "iqr": "IQR",
+        "cv": "Coefficient de variation",
+        "mad": "Écart absolu médian"
+      },
+      "about": {
+        "heading": "À propos du calculateur de dispersion",
+        "body": "La dispersion statistique décrit à quel point les valeurs d’un jeu de données sont étalées. Alors que les mesures de tendance centrale — moyenne, médiane et mode — indiquent où se situe le centre d’une distribution, les mesures de dispersion montrent à quelle distance les valeurs individuelles s’éloignent de ce centre. Deux jeux de données peuvent partager la même moyenne tout en ayant des distributions très différentes ; ce sont les mesures de dispersion qui révèlent cette différence.\n\nL’étendue est la mesure de dispersion la plus simple : la différence entre la plus grande et la plus petite valeur. Elle est facile à calculer et à interpréter, mais elle est sensible aux valeurs aberrantes car elle dépend entièrement des deux extrêmes et ignore tout le reste.\n\nLa variance mesure la moyenne des écarts au carré par rapport à la moyenne. La variance de l’échantillon divise la somme des écarts au carré par (n−1) — avec la correction de Bessel pour fournir une estimation non biaisée de la variance de la population lorsqu’on travaille sur un échantillon. La variance de la population divise par n et n’est appropriée que lorsque votre jeu de données correspond à l’ensemble de la population d’intérêt. L’écart-type est la racine carrée de la variance, exprimée dans les mêmes unités que les données d’origine.\n\nL’écart interquartile (IQR) mesure l’étendue des 50 % centraux des données. Il se calcule comme Q3 − Q1, où Q1 est le 25e percentile et Q3 le 75e percentile. Comme il ignore les 25 % inférieurs et supérieurs, l’IQR résiste mieux aux valeurs aberrantes et constitue la mesure de dispersion privilégiée pour les distributions asymétriques.\n\nLe coefficient de variation (CV) exprime l’écart-type de l’échantillon en pourcentage de la moyenne, ce qui en fait une mesure sans dimension permettant de comparer la variabilité relative de jeux de données mesurés dans des unités ou à des échelles différentes. Un CV de 10 % signifie que l’écart-type représente 10 % de la moyenne — un repère utile pour comparer la précision des mesures entre expériences.\n\nL’écart absolu médian (MAD) est la médiane des écarts absolus à la médiane. Il est encore plus robuste aux valeurs aberrantes que l’IQR et est utilisé en statistique robuste et en détection d’anomalies. Comme l’IQR, la MAD résiste aux valeurs extrêmes et fournit une mesure fiable de la dispersion pour les jeux de données à queues lourdes ou asymétriques."
+      },
+      "examples": {
+        "heading": "Exemples du calculateur de dispersion",
+        "intro": "Trois jeux de données réels illustrant différents profils de dispersion.",
+        "colInput": "Jeu de données",
+        "colOutput": "Indicateurs clés",
+        "colNote": "Interprétation",
+        "loadScores": "Charger les notes",
+        "loadStocks": "Charger les rendements boursiers",
+        "loadQuality": "Charger le contrôle qualité",
+        "items": [
+          {
+            "input": "85, 92, 78, 88, 76, 95, 89, 72",
+            "output": "Moyenne=84.375, ET≈8.19, IQR=12.25",
+            "note": "Notes d’un contrôle en classe. CV≈9.71 % indique une dispersion relative modérée. Un IQR de 12.25 montre que les 50 % centraux des élèves ont obtenu des scores dans une plage de 12 points."
+          },
+          {
+            "input": "1.2, -0.5, 2.1, 0.8, -1.9, 1.5, 2.5, -0.2, 0.3, 1.7, -1.1, 2.3",
+            "output": "Moyenne=0.725, ET≈1.40, IQR=2.075",
+            "note": "Rendements mensuels d’actions (%). Un CV élevé (>100 %) reflète une volatilité importante par rapport à la faible moyenne positive."
+          },
+          {
+            "input": "502, 499, 505, 498, 501, 503, 497, 500",
+            "output": "Moyenne=500.625, ET≈2.67, CV≈0.53%",
+            "note": "Poids des produits (g) dans un lot de contrôle qualité. Un CV très faible confirme une fabrication très régulière autour de l’objectif de 500 g."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de dispersion",
+        "steps": [
+          "Saisissez ou collez vos valeurs dans la zone de texte, séparées par des virgules, des espaces ou des retours à la ligne.",
+          "Cliquez sur Calculer. Le calculateur analyse les nombres et ignore tout jeton non numérique.",
+          "Consultez les mesures de tendance centrale (nombre, moyenne, médiane) pour comprendre où se situe le centre de vos données.",
+          "Vérifiez les métriques de dispersion : l’étendue pour la portée globale, l’écart-type pour l’écart moyen par rapport à la moyenne et l’IQR pour l’étalement des 50 % centraux.",
+          "Utilisez le coefficient de variation pour comparer la variabilité relative entre différents jeux de données, et la MAD pour une mesure robuste de la dispersion résistante aux valeurs aberrantes."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ du calculateur de dispersion",
+        "q1": "Quand dois-je utiliser l’IQR plutôt que l’écart-type ?",
+        "q1_a": "Utilisez l’IQR lorsque vos données sont asymétriques, contiennent des valeurs aberrantes ou proviennent d’une distribution non normale. L’IQR ne considère que les 50 % centraux des données et n’est pas affecté par les valeurs extrêmes. L’écart-type prend toutes les valeurs en compte, donc une seule valeur aberrante peut le gonfler fortement. Pour des données normalement distribuées sans valeurs aberrantes, les deux mesures sont informatives.",
+        "q2": "Quelle est la différence entre variance d’échantillon et variance de population ?",
+        "q2_a": "La variance de population divise la somme des écarts au carré par n (l’effectif total), ce qui convient lorsque vous disposez des données de toute la population. La variance d’échantillon divise par n−1 (correction de Bessel), ce qui corrige le biais lors de l’estimation de la variance de population à partir d’un échantillon. Pour les grands échantillons, la différence est négligeable ; pour les petits échantillons (n < 30), elle compte davantage.",
+        "q3": "Que m’indique le coefficient de variation ?",
+        "q3_a": "Le coefficient de variation (CV) exprime l’écart-type en pourcentage de la moyenne, ce qui fournit une mesure de variabilité relative indépendante de l’échelle. Un CV de 5 % signifie que les données sont relativement homogènes ; un CV de 50 % signifie une forte variabilité par rapport à la moyenne. Le CV est particulièrement utile pour comparer la variabilité de mesures exprimées dans des unités différentes, par exemple la régularité de deux procédés de fabrication.",
+        "q4": "Comment se calcule l’écart absolu médian (MAD) ?",
+        "q4_a": "Le MAD est la médiane des écarts absolus à la médiane : MAD = median(|xi − median(x)|). Il est plus résistant aux valeurs aberrantes que l’écart-type, car il utilise la médiane des écarts plutôt que leur moyenne. Une estimation robuste courante de l’écart-type est 1.4826 × MAD, ce qui est égal à l’écart-type pour une distribution normale.",
+        "q5": "Pourquoi la moyenne et la médiane peuvent-elles différer fortement ?",
+        "q5_a": "Lorsque la moyenne et la médiane diffèrent sensiblement, la distribution est asymétrique. Une moyenne beaucoup plus grande que la médiane indique une asymétrie à droite (quelques valeurs très grandes tirent la moyenne vers le haut). Une moyenne beaucoup plus petite que la médiane indique une asymétrie à gauche. Dans les distributions asymétriques, la médiane est généralement une meilleure mesure de tendance centrale que la moyenne, et l’IQR une meilleure mesure de dispersion que l’écart-type.",
+        "q6": "Puis-je utiliser ce calculateur pour de très grands jeux de données ?",
+        "q6_a": "Le calculateur gère n’importe quelle taille de jeu de données que vous pouvez saisir, mais les très grandes entrées peuvent être plus lentes à analyser. Pour de meilleures performances, utilisez des valeurs séparées par des virgules sur une seule ligne ou réparties sur plusieurs lignes. Les calculs utilisent des algorithmes numériquement stables qui évitent les débordements et les sous-flux pour les plages de données courantes. Si vous analysez des millions de valeurs, un outil statistique dédié comme R ou pandas en Python sera plus efficace."
+      }
     }
   }
 }

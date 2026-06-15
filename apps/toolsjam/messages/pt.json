@@ -12161,6 +12161,285 @@
         "q6": "Posso usar isso para eventos binários aleatórios que não sejam moedas?",
         "q6_a": "Sim, desde que cada tentativa seja independente e tenha 50% de probabilidade de sucesso. Exemplos: a probabilidade de um time de basquete com 50% de vitórias conseguir uma racha de 5 jogos, a probabilidade de um sensor binário ler o mesmo valor k vezes seguidas, ou o número esperado de decisões tipo moeda antes de uma caminhada aleatória atingir um lado k vezes consecutivas. A matemática é idêntica para todos os processos binários independentes de 50/50."
       }
+    },
+    "dice-probability-calculator": {
+      "title": "Calculadora de probabilidade de dados - exata e ao menos",
+      "tagline": "Calcule a probabilidade exata de qualquer resultado ao rolar dados — soma exata, ao menos ou no máximo — para até 10 dados com qualquer número de faces.",
+      "intro": "Informe o número de dados, as faces por dado e a soma-alvo; depois escolha se deseja a probabilidade exata, ao menos ou no máximo.",
+      "type": {
+        "exact": "Soma exata",
+        "atLeast": "Ao menos",
+        "atMost": "No máximo"
+      },
+      "field": {
+        "calcType": "Tipo de cálculo",
+        "numberOfDice": "Número de dados",
+        "sidesPerDie": "Faces por dado",
+        "targetSum": "Soma-alvo"
+      },
+      "placeholder": {
+        "dice": "1–10",
+        "targetSum": "Digite a soma-alvo"
+      },
+      "button": {
+        "calculate": "Calcular probabilidade",
+        "reset": "Redefinir"
+      },
+      "error": {
+        "invalid": "Digite valores válidos: 1–10 dados, pelo menos 2 faces e uma soma-alvo positiva.",
+        "range": "A soma-alvo deve estar entre {min} (mínimo) e {max} (máximo) para esta configuração de dados."
+      },
+      "result": {
+        "heading": "Probabilidade",
+        "fraction": "{favorable} resultados favoráveis de {total} no total ({fraction})",
+        "summary": "{n} dados × d{s}, {type} {target}"
+      },
+      "about": {
+        "heading": "Sobre a calculadora de probabilidade de dados",
+        "body": "A probabilidade com dados é um tema fundamental tanto na matemática recreativa quanto na teoria formal da probabilidade. Sempre que você rola um dado justo, cada face tem a mesma probabilidade de ficar voltada para cima — em um dado padrão de seis faces, isso é 1/6 para cada resultado. Quando você rola vários dados e soma os resultados, o número de formas de chegar a cada total possível segue uma distribuição característica, claramente não uniforme e fortemente em forma de sino com três ou mais dados.\n\nA calculadora de probabilidade de dados usa uma abordagem de convolução com programação dinâmica para contar o número exato de formas de obter cada soma possível. Partindo de um único resultado de 0 com 1 forma, ela itera por cada dado e expande a distribuição considerando cada valor de face possível. Isso produz uma contagem exata dos resultados favoráveis para qualquer soma-alvo. Ao dividir pelo número total de resultados — que é simplesmente (faces por dado) elevado à potência (número de dados) — obtém-se a probabilidade como uma fração decimal entre 0 e 1.\n\nA calculadora aceita três tipos de consultas de probabilidade. A probabilidade exata responde “Qual é a probabilidade de o total dos dados ser exatamente T?” — útil quando uma regra de jogo de tabuleiro exige atingir um número específico. A probabilidade de ao menos responde “Qual é a probabilidade de o total dos dados ser T ou mais?” — relevante em RPGs, quando você precisa de uma pontuação mínima para ter sucesso. A probabilidade de no máximo responde “Qual é a probabilidade de o total dos dados ser T ou menos?” — útil para avaliações de risco e cálculos de limite.\n\nConhecer a probabilidade teórica de um resultado nos dados é valioso para design de jogos, estratégia, educação e análise de apostas. Por exemplo, ao rolar dois dados padrão de seis faces, a soma 7 tem a maior probabilidade (6 de 36, ou 16,67%) porque há seis combinações que a produzem: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). As somas nos extremos — 2 (snake eyes) ou 12 (boxcars) — têm apenas uma combinação cada, dando a elas uma probabilidade de apenas 1/36 (≈ 2,78%). Entender essa distribuição é o núcleo de muitas estratégias de jogos de tabuleiro e cassino.\n\nAlém dos dados de seis faces, a calculadora lida com dados poliédricos comuns em RPGs de mesa: d4, d8, d10, d12 e d20. A distribuição das somas muda significativamente com o número de faces. Um único d20 produz uma distribuição uniforme; dois dados d20 produzem uma distribuição triangular; três ou mais produzem uma curva cada vez mais em forma de sino. Essa convergência para uma distribuição normal é uma ilustração concreta do Teorema Central do Limite em ação."
+      },
+      "examples": {
+        "heading": "Exemplos de probabilidade de dados",
+        "intro": "Três cenários que ilustram cálculos de probabilidade exata, ao menos e no máximo.",
+        "colInput": "Cenário",
+        "colOutput": "Probabilidade",
+        "colNote": "Explicação",
+        "loadSingle": "Um d6 — rolar um 4",
+        "loadLucky7": "Dois d6 — soma = 7",
+        "loadHighRoll": "Três d6 — soma ≥ 16",
+        "items": [
+          {
+            "input": "1 dado, d6, soma exata = 4",
+            "output": "16.6667%",
+            "note": "Um resultado favorável (face mostrando 4) de 6 no total. P = 1/6."
+          },
+          {
+            "input": "2 dados, d6, soma exata = 7",
+            "output": "16.6667%",
+            "note": "Seis combinações produzem soma 7 de 36 no total: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). P = 6/36 = 1/6."
+          },
+          {
+            "input": "3 dados, d6, soma ao menos = 16",
+            "output": "4.6296%",
+            "note": "10 combinações de 216 no total produzem soma 16 ou maior. P = 10/216 ≈ 4.63%."
+          },
+          {
+            "input": "2 dados, d6, soma no máximo = 4",
+            "output": "16.6667%",
+            "note": "As somas 2 (1 forma), 3 (2 formas) e 4 (3 formas) dão 6 resultados favoráveis de 36. P = 6/36 = 1/6."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora de probabilidade de dados",
+        "steps": [
+          "Escolha o tipo de cálculo: Soma exata para um total específico, Ao menos para um limite mínimo ou No máximo para um limite máximo.",
+          "Informe o número de dados (1–10) no primeiro campo. Mais dados deslocam a distribuição em direção a uma curva em forma de sino.",
+          "Selecione o número de faces por dado no menu suspenso (d4, d6, d8, d10, d12 ou d20).",
+          "Digite a soma-alvo de seu interesse. O intervalo válido será mostrado se você inserir um valor fora da faixa.",
+          "Clique em Calcular probabilidade. O resultado mostra a probabilidade como porcentagem, a fração de resultados favoráveis sobre o total e a fração simplificada."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes sobre probabilidade de dados",
+        "q1": "Por que 7 é a soma mais comum para dois dados de seis faces?",
+        "q1_a": "Há 6 combinações que produzem soma 7 entre 36 resultados totais, dando a ela a maior probabilidade: 1/6 ≈ 16,67%. As somas 6 e 8 são as próximas mais comuns (5/36 cada), enquanto 2 e 12 são as mais raras, com 1/36 cada. Essa distribuição assimétrica é o motivo pelo qual craps, Monopoly e muitos outros jogos de dados giram em torno do número 7.",
+        "q2": "Qual é a diferença entre probabilidade 'exata', 'ao menos' e 'no máximo'?",
+        "q2_a": "A probabilidade exata dá a chance de o total ser precisamente igual ao número-alvo. A probabilidade de ao menos dá a chance de o total ser maior ou igual ao alvo — útil quando você precisa de uma rolagem mínima para ter sucesso. A probabilidade de no máximo dá a chance de o total ser menor ou igual ao alvo — útil quando você quer ficar abaixo de um limite.",
+        "q3": "Como o número de dados afeta o formato da distribuição?",
+        "q3_a": "Com um único dado, a distribuição é perfeitamente uniforme — cada face é igualmente provável. Com dois dados, a distribuição se torna triangular, com pico no ponto médio. Com três ou mais dados, ela se torna em forma de sino e se parece cada vez mais com uma distribuição normal, uma consequência direta do Teorema Central do Limite. Isso significa que somas extremas se tornam exponencialmente mais raras conforme você adiciona mais dados.",
+        "q4": "Posso usar esta calculadora para dados não padrão?",
+        "q4_a": "A calculadora aceita d4, d6, d8, d10, d12 e d20 — os dados poliédricos padrão usados na maioria dos jogos de mesa. Eles cobrem a grande maioria dos dados do mundo real. Se você precisa de probabilidades para um dado com outro número de faces, use as fórmulas padrão: resultados totais = sides^n, e conte os resultados favoráveis usando a mesma lógica de convolução que a calculadora aplica internamente.",
+        "q5": "O cálculo da probabilidade é exato ou aproximado?",
+        "q5_a": "O cálculo é exato usando aritmética inteira. A calculadora conta cada combinação possível com programação dinâmica (convolução de funções geradoras) e depois divide pelo número total de resultados. Não há amostragem, simulação ou aproximação. A porcentagem exibida é arredondada para quatro casas decimais para facilitar a leitura, mas a fração subjacente é exata.",
+        "q6": "Como posso usar probabilidade de dados na estratégia de jogo?",
+        "q6_a": "Conhecer a probabilidade de cada resultado permite tomar decisões informadas. Em Catan, colocar assentamentos em hexágonos marcados com 6 e 8 oferece a maior frequência de produção de recursos, porque cada um corresponde a uma chance de 5/36 com dois d6. No combate de Dungeons & Dragons, saber a probabilidade de rolar 15 ou mais em um d20 (P = 6/20 = 30%) ajuda a avaliar o risco ao decidir se vale tentar uma ação arriscada."
+      }
+    },
+    "dice-roller-calculator": {
+      "title": "Calculadora de dados - Lance e analise estatísticas",
+      "tagline": "Simule o lançamento de vários dados e veja instantaneamente a análise estatística, incluindo média, mediana, moda, desvio padrão e distribuição completa de frequência.",
+      "intro": "Defina o número de dados, as faces por dado e quantos lançamentos simular, depois clique em Lançar dados para ver os resultados e as estatísticas.",
+      "field": {
+        "numberOfDice": "Número de dados",
+        "diceSides": "Faces do dado",
+        "numberOfRolls": "Número de lançamentos"
+      },
+      "placeholder": {
+        "dice": "1–10",
+        "rolls": "1–10000"
+      },
+      "button": {
+        "roll": "Lançar dados",
+        "reset": "Redefinir"
+      },
+      "error": {
+        "invalid": "Insira valores válidos: 1–10 dados, pelo menos 2 faces e 1–10,000 lançamentos."
+      },
+      "result": {
+        "heading": "Estatísticas do lançamento",
+        "mean": "Média",
+        "median": "Mediana",
+        "mode": "Moda",
+        "stdDev": "Desvio padrão",
+        "min": "Mín.",
+        "max": "Máx.",
+        "freqHeading": "Distribuição de frequência",
+        "colValue": "Soma",
+        "colCount": "Contagem",
+        "colPct": "Frequência %"
+      },
+      "about": {
+        "heading": "Sobre a calculadora de dados",
+        "body": "Uma calculadora de dados é uma ferramenta digital que simula o lançamento de dados físicos usando geração de números pseudoaleatórios. Cada lançamento de um dado justo com n faces pode ser modelado como uma variável aleatória uniformemente distribuída que assume valores inteiros de 1 a n com a mesma probabilidade 1/n. Quando vários dados são lançados e somados, a distribuição resultante depende do número de dados e das faces: com um dado a distribuição é uniforme, com dois é triangular e, com três ou mais, aproxima-se de uma curva em sino conforme o Teorema Central do Limite.\n\nExecutar um grande número de lançamentos simulados e registrar os resultados fornece uma distribuição empírica de frequência que você pode comparar diretamente com a distribuição teórica de probabilidade. É uma forma poderosa de entender a velocidade com que distribuições reais convergem para seus equivalentes teóricos — mesmo 100 lançamentos de dois dados de seis faces mostram um pico claro em 7, enquanto 10,000 lançamentos produzem uma tabela de frequências muito próxima das probabilidades teóricas.\n\nO resumo estatístico gerado por esta calculadora inclui a média (média das somas em todos os lançamentos), a mediana (o valor central ao ordenar todas as somas), a moda (a soma ou somas mais frequentes), o desvio padrão (uma medida de dispersão em torno da média) e os valores mínimo e máximo observados. Juntas, essas estatísticas oferecem um retrato completo da distribuição em pouco espaço.\n\nPara um dado justo de n faces, o valor esperado teórico (média) é (n+1)/2, a variância é (n²−1)/12 e o desvio padrão é sqrt((n²−1)/12). Para vários dados, o valor esperado é aditivo (n×(s+1)/2, em que n é o número de dados e s é o número de faces por dado), e a variância também é aditiva, então o desvio padrão cresce como sqrt(n)×sigma_single. Esta calculadora usa simulação em vez de cálculo exato, então os resultados variam um pouco entre execuções — mas com 1,000 lançamentos ou mais, as estatísticas amostrais convergem muito perto dos valores teóricos.\n\nOs usos práticos da calculadora de dados abrangem desenvolvimento de jogos, educação estatística e pesquisa em probabilidade. Designers de jogos a usam para verificar se as mecânicas produzem as curvas de dificuldade e o equilíbrio pretendidos. Professores de estatística a usam para demonstrar o Teorema Central do Limite sem exigir cálculos manuais dos alunos. Jogadores de RPG de mesa a usam para entender os perfis de probabilidade de diferentes combinações de dados antes de escolher seus personagens. E estudantes de probabilidade a usam como um laboratório prático para conceitos como valor esperado, variância e lei dos grandes números."
+      },
+      "examples": {
+        "heading": "Exemplos da calculadora de dados",
+        "intro": "Três cenários de simulação mostrando como a distribuição de frequência muda com diferentes configurações de dados.",
+        "colInput": "Configuração",
+        "colOutput": "Média esperada",
+        "colNote": "Caso de uso",
+        "loadSingle": "1×d6, 100 lançamentos",
+        "loadTwo": "2×d6, 500 lançamentos",
+        "loadD20": "1×d20, 200 lançamentos",
+        "items": [
+          {
+            "input": "1 dado, d6, 100 lançamentos",
+            "output": "Média ≈ 3.5",
+            "note": "Distribuição uniforme de 1 a 6. Média esperada = 3.5, desvio padrão ≈ 1.71. Cada valor aparece cerca de 16–17 vezes em 100 lançamentos."
+          },
+          {
+            "input": "2 dados, d6, 500 lançamentos",
+            "output": "Média ≈ 7.0",
+            "note": "Distribuição triangular com pico em 7. Média esperada = 7, desvio padrão ≈ 2.42. A soma 7 aparece cerca de 83 vezes (16.7%) em 500 lançamentos."
+          },
+          {
+            "input": "1 dado, d20, 200 lançamentos",
+            "output": "Média ≈ 10.5",
+            "note": "Distribuição uniforme de 1 a 20. Média esperada = 10.5, desvio padrão ≈ 5.77. Cada valor aparece cerca de 10 vezes em 200 lançamentos."
+          },
+          {
+            "input": "5 dados, d8, 1000 lançamentos",
+            "output": "Média ≈ 22.5",
+            "note": "Curva em sino quase normal centrada em 22.5. Média esperada = 5×4.5 = 22.5, desvio padrão ≈ 4.33. Ilustra claramente o Teorema Central do Limite."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora de dados",
+        "steps": [
+          "Defina o número de dados (1–10) para especificar quantos dados serão lançados em cada etapa da simulação.",
+          "Selecione as faces do dado no menu suspenso (d4, d6, d8, d10, d12 ou d20) para escolher o tipo de dado.",
+          "Digite o número de lançamentos (1–10,000) para definir quantos lançamentos independentes a simulação realizará.",
+          "Clique em Lançar dados. Como a simulação usa aleatoriedade, cada execução produz resultados um pouco diferentes — clique novamente para lançar outra vez.",
+          "Revise o resumo estatístico (média, mediana, moda, desvio padrão, mínimo, máximo) e a tabela de distribuição de frequência para analisar os resultados."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes sobre a calculadora de dados",
+        "q1": "Por que a média muda um pouco a cada lançamento?",
+        "q1_a": "Cada simulação usa uma sequência diferente de números pseudoaleatórios, então as estatísticas amostrais oscilam em torno do valor esperado teórico. Com apenas 10–20 lançamentos a variação pode ser grande; com 1,000 lançamentos, a média amostral costuma ficar a poucos décimos da média teórica; com 10,000 lançamentos, normalmente fica dentro de uma centésima. Essa convergência é a lei dos grandes números em ação.",
+        "q2": "O que o desvio padrão me diz sobre meus lançamentos?",
+        "q2_a": "O desvio padrão mede a dispersão das somas em torno da média. Um desvio pequeno significa que a maioria dos lançamentos fica bem próxima da média; um grande indica uma faixa mais ampla de resultados. Para um d6, o desvio padrão teórico é de cerca de 1.71; para dois d6, é de cerca de 2.42 (sqrt(2)×1.71 ≈ 2.42). À medida que você adiciona dados, o desvio padrão cresce, mas mais lentamente que a média, então o coeficiente de variação diminui.",
+        "q3": "O que é a tabela de distribuição de frequência?",
+        "q3_a": "A tabela de distribuição de frequência mostra cada soma que ocorreu pelo menos uma vez, quantas vezes ocorreu e sua frequência observada como porcentagem do total de lançamentos. Isso permite comparar diretamente os resultados empíricos com as probabilidades teóricas. Para dois d6, a soma 7 deve aparecer cerca de 16.67% do tempo; amostras maiores tendem a ficar mais próximas desse valor teórico.",
+        "q4": "Quantos lançamentos preciso para uma estimativa precisa?",
+        "q4_a": "Para uma noção geral, 100 lançamentos normalmente bastam para ver o formato da distribuição. Para estimativas de frequência mais precisas, use 1,000 ou mais lançamentos. Com 10,000 lançamentos, as frequências amostrais costumam ficar dentro de 0.5 ponto percentual das probabilidades teóricas para dados padrão de seis faces. O número exato depende da quantidade de resultados possíveis e da precisão desejada.",
+        "q5": "Posso usar isso em demonstrações educacionais?",
+        "q5_a": "Sim, esse é um dos usos mais comuns. Clicar em Lançar dados várias vezes e comparar os histogramas resultantes é uma excelente demonstração prática da lei dos grandes números. Aumentar o número de dados de 1 para 5 mantendo os lançamentos constantes é uma demonstração visual clara do Teorema Central do Limite, pois a distribuição passa de uniforme para quase normal.",
+        "q6": "Por que a moda às vezes mostra vários valores?",
+        "q6_a": "A moda é o valor que aparece com mais frequência na amostra. Quando duas ou mais somas empatam na maior frequência, todas são mostradas como modas. Isso é comum em amostras pequenas. Com dois dados de seis faces e 1,000 lançamentos, a moda quase sempre é 7; mas com 20 lançamentos, qualquer soma pode aparecer 3–4 vezes e várias modas podem surgir ao mesmo tempo."
+      }
+    },
+    "dispersion-calculator": {
+      "title": "Calculadora de dispersão - Variância, desvio padrão e IQR",
+      "tagline": "Calcule o conjunto completo de medidas de dispersão estatística — amplitude, variância, desvio padrão, IQR, coeficiente de variação e MAD — a partir de qualquer conjunto numérico.",
+      "intro": "Digite seus números em uma lista separada por vírgulas e clique em Calcular para ver instantaneamente todas as estatísticas de dispersão e tendência central.",
+      "field": {
+        "data": "Dados (números separados por vírgulas)"
+      },
+      "placeholder": {
+        "data": "ex.: 12, 15, 14, 10, 18, 11"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Limpar"
+      },
+      "error": {
+        "invalid": "Digite pelo menos 2 números válidos separados por vírgulas."
+      },
+      "result": {
+        "heading": "Resultados de dispersão",
+        "count": "Contagem",
+        "mean": "Média",
+        "median": "Mediana",
+        "range": "Amplitude",
+        "sampleVariance": "Variância amostral",
+        "populationVariance": "Variância populacional",
+        "sampleStdDev": "Desvio padrão amostral",
+        "populationStdDev": "Desvio padrão populacional",
+        "q1": "Q1 (percentil 25)",
+        "q3": "Q3 (percentil 75)",
+        "iqr": "IQR",
+        "cv": "Coeficiente de variação",
+        "mad": "Desvio absoluto mediano"
+      },
+      "about": {
+        "heading": "Sobre a calculadora de dispersão",
+        "body": "A dispersão estatística descreve o quanto os valores de um conjunto de dados estão espalhados. Enquanto as medidas de tendência central — média, mediana e moda — mostram onde está o centro de uma distribuição, as medidas de dispersão mostram o quanto os pontos individuais se afastam desse centro. Dois conjuntos de dados podem ter a mesma média e, ainda assim, distribuições muito diferentes; são as medidas de dispersão que revelam essa diferença.\n\nA amplitude é a medida de dispersão mais simples: a diferença entre o maior e o menor valor. É fácil de calcular e interpretar, mas é sensível a outliers porque depende inteiramente dos dois valores extremos e ignora tudo o que está entre eles.\n\nA variância mede o desvio quadrático médio em relação à média. A variância amostral divide a soma dos desvios quadráticos por (n−1) — usando a correção de Bessel para fornecer uma estimativa não viesada da variância populacional quando se trabalha com uma amostra. A variância populacional divide por n e só é apropriada quando seu conjunto de dados é a população inteira de interesse. O desvio padrão é a raiz quadrada da variância, expresso nas mesmas unidades dos dados originais.\n\nA faixa interquartílica (IQR) mede a dispersão dos 50% centrais dos dados. Ela é calculada como Q3 − Q1, em que Q1 é o percentil 25 e Q3 é o percentil 75. Como ignora os 25% inferiores e superiores dos valores, o IQR é resistente a outliers e é a medida de dispersão preferida para distribuições assimétricas.\n\nO coeficiente de variação (CV) expressa o desvio padrão amostral como porcentagem da média, tornando-o uma medida sem dimensão que permite comparar a variabilidade relativa de conjuntos medidos em unidades ou escalas diferentes. Um CV de 10% significa que o desvio padrão é 10% da média — um parâmetro útil para comparar a precisão de medições entre experimentos.\n\nO desvio absoluto mediano (MAD) é a mediana dos desvios absolutos em relação à mediana. Ele é ainda mais robusto a outliers do que o IQR e é usado em estatística robusta e detecção de anomalias. Como o IQR, o MAD é resistente a valores extremos e fornece uma medida confiável de dispersão para conjuntos com caudas pesadas ou distribuições assimétricas."
+      },
+      "examples": {
+        "heading": "Exemplos da calculadora de dispersão",
+        "intro": "Três conjuntos de dados reais que ilustram padrões diferentes de dispersão.",
+        "colInput": "Conjunto de dados",
+        "colOutput": "Métricas principais",
+        "colNote": "Interpretação",
+        "loadScores": "Carregar notas da prova",
+        "loadStocks": "Carregar retornos de ações",
+        "loadQuality": "Carregar controle de qualidade",
+        "items": [
+          {
+            "input": "85, 92, 78, 88, 76, 95, 89, 72",
+            "output": "Média=84.375, DP≈8.19, IQR=12.25",
+            "note": "Notas de uma prova em turma. CV≈9.71% indica dispersão relativa moderada. Um IQR de 12.25 mostra que os 50% centrais dos alunos ficaram dentro de uma faixa de 12 pontos."
+          },
+          {
+            "input": "1.2, -0.5, 2.1, 0.8, -1.9, 1.5, 2.5, -0.2, 0.3, 1.7, -1.1, 2.3",
+            "output": "Média=0.725, DP≈1.40, IQR=2.075",
+            "note": "Retornos mensais de ações (%). Um CV alto (>100%) reflete volatilidade significativa em relação à pequena média positiva."
+          },
+          {
+            "input": "502, 499, 505, 498, 501, 503, 497, 500",
+            "output": "Média=500.625, DP≈2.67, CV≈0.53%",
+            "note": "Pesos de produto (g) em um lote de controle de qualidade. Um CV muito baixo confirma consistência de fabricação muito próxima da meta de 500 g."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Como usar a calculadora de dispersão",
+        "steps": [
+          "Digite ou cole seus valores na área de texto, separados por vírgulas, espaços ou quebras de linha.",
+          "Clique em Calcular. A calculadora analisa os números e ignora qualquer token não numérico.",
+          "Verifique as medidas de tendência central (contagem, média, mediana) para entender onde seus dados estão concentrados.",
+          "Confira as métricas de dispersão: amplitude para a variação total, desvio padrão para o desvio médio em relação à média e IQR para a dispersão dos 50% centrais.",
+          "Use o coeficiente de variação para comparar a variabilidade relativa entre diferentes conjuntos de dados e o MAD como uma medida robusta de dispersão resistente a outliers."
+        ]
+      },
+      "faq": {
+        "heading": "Perguntas frequentes da calculadora de dispersão",
+        "q1": "Quando devo usar o IQR em vez do desvio padrão?",
+        "q1_a": "Use o IQR quando seus dados forem assimétricos, contiverem outliers ou vierem de uma distribuição não normal. O IQR considera apenas os 50% centrais dos dados e não é afetado por valores extremos. O desvio padrão considera todos os valores, então um único outlier pode inflá-lo bastante. Para dados normalmente distribuídos e sem outliers, ambas as medidas são informativas.",
+        "q2": "Qual é a diferença entre variância amostral e variância populacional?",
+        "q2_a": "A variância populacional divide a soma dos desvios quadráticos por n (o total de observações) e é apropriada quando você tem dados de toda a população. A variância amostral divide por n−1 (correção de Bessel), o que corrige o viés ao estimar a variância populacional a partir de uma amostra. Para amostras grandes, a diferença é desprezível; para amostras pequenas (n < 30), ela importa mais.",
+        "q3": "O que o coeficiente de variação me diz?",
+        "q3_a": "O coeficiente de variação (CV) expressa o desvio padrão como porcentagem da média, fornecendo uma medida de variabilidade relativa independente de escala. Um CV de 5% significa que os dados são relativamente consistentes; um CV de 50% significa alta variabilidade em relação à média. O CV é especialmente útil para comparar a variabilidade de medições em unidades diferentes, como a consistência de dois processos de fabricação.",
+        "q4": "Como o desvio absoluto mediano (MAD) é calculado?",
+        "q4_a": "O MAD é a mediana dos desvios absolutos em relação à mediana: MAD = median(|xi − median(x)|). Ele é mais resistente a outliers do que o desvio padrão porque usa a mediana dos desvios em vez da média. Uma estimativa robusta de desvio padrão muito usada é 1.4826 × MAD, que é igual ao desvio padrão para uma distribuição normal.",
+        "q5": "Por que a média e a mediana podem diferir bastante?",
+        "q5_a": "Quando a média e a mediana diferem bastante, a distribuição é assimétrica. Uma média muito maior que a mediana indica assimetria à direita (alguns valores muito altos puxam a média para cima). Uma média muito menor que a mediana indica assimetria à esquerda. Em distribuições assimétricas, a mediana costuma ser uma medida de tendência central melhor do que a média, e o IQR costuma ser uma medida de dispersão melhor do que o desvio padrão.",
+        "q6": "Posso usar esta calculadora com conjuntos de dados muito grandes?",
+        "q6_a": "A calculadora lida com qualquer tamanho de conjunto que você consiga inserir, mas entradas muito grandes podem demorar para ser analisadas. Para melhor desempenho, use valores separados por vírgulas em uma única linha ou distribuídos em várias linhas. Os cálculos usam algoritmos numericamente estáveis que evitam overflow e underflow para faixas típicas de dados. Se você estiver analisando milhões de valores, um pacote estatístico dedicado como R ou pandas do Python será mais eficiente."
+      }
     }
   }
 }

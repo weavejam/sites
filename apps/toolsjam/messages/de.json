@@ -12161,6 +12161,285 @@
         "q6": "Kann ich das für andere binäre Zufallsereignisse als Münzen verwenden?",
         "q6_a": "Ja, solange jeder Versuch unabhängig ist und die Erfolgswahrscheinlichkeit 50 % beträgt. Beispiele sind die Wahrscheinlichkeit, dass ein Basketballteam mit 50 % Gewinnchance 5 Spiele in Folge gewinnt, ein binärer Sensor denselben Wert k-mal in Folge misst oder die erwartete Anzahl von Münzentscheidungen, bis ein Random Walk eine Seite k-mal hintereinander erreicht. Die Mathematik ist für alle unabhängigen 50/50-binären Prozesse identisch."
       }
+    },
+    "dice-probability-calculator": {
+      "title": "Würfel-Wahrscheinlichkeitsrechner - exakt und mindestens",
+      "tagline": "Berechne die exakte Wahrscheinlichkeit beliebiger Würfelergebnisse — exakte Summe, mindestens oder höchstens — für bis zu 10 Würfel mit beliebiger Seitenzahl.",
+      "intro": "Gib die Anzahl der Würfel, die Seiten pro Würfel und deine Zielsumme ein und wähle dann, ob du die exakte, mindestens- oder höchstens-Wahrscheinlichkeit berechnen möchtest.",
+      "type": {
+        "exact": "Exakte Summe",
+        "atLeast": "Mindestens",
+        "atMost": "Höchstens"
+      },
+      "field": {
+        "calcType": "Berechnungstyp",
+        "numberOfDice": "Anzahl der Würfel",
+        "sidesPerDie": "Seiten pro Würfel",
+        "targetSum": "Zielsumme"
+      },
+      "placeholder": {
+        "dice": "1–10",
+        "targetSum": "Zielsumme eingeben"
+      },
+      "button": {
+        "calculate": "Wahrscheinlichkeit berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte gib gültige Werte ein: 1–10 Würfel, mindestens 2 Seiten und eine positive Zielsumme.",
+        "range": "Die Zielsumme muss für diese Würfelkonfiguration zwischen {min} (Minimum) und {max} (Maximum) liegen."
+      },
+      "result": {
+        "heading": "Wahrscheinlichkeit",
+        "fraction": "{favorable} günstige Ergebnisse von insgesamt {total} ({fraction})",
+        "summary": "{n} Würfel × d{s}, {type} {target}"
+      },
+      "about": {
+        "heading": "Über den Würfel-Wahrscheinlichkeitsrechner",
+        "body": "Würfelwahrscheinlichkeit ist ein grundlegendes Thema sowohl in der Unterhaltungsmathematik als auch in der formalen Wahrscheinlichkeitstheorie. Jedes Mal, wenn du einen fairen Würfel wirfst, hat jede Seite die gleiche Wahrscheinlichkeit, oben zu landen — bei einem standardmäßigen sechsseitigen Würfel beträgt sie für jedes Ergebnis 1/6. Wenn du mehrere Würfel wirfst und die Ergebnisse addierst, folgt die Anzahl der Wege zu jeder möglichen Summe einer charakteristischen Verteilung, die deutlich nicht gleichförmig ist und bei drei oder mehr Würfeln stark glockenförmig wird.\n\nDer Würfel-Wahrscheinlichkeitsrechner verwendet einen Faltungsansatz mit dynamischer Programmierung, um die exakte Anzahl der Wege zu zählen, mit denen jede mögliche Summe erzielt werden kann. Ausgehend von einem einzigen Ergebnis 0 mit 1 Möglichkeit iteriert er über jeden Würfel und erweitert die Verteilung, indem jeder mögliche Seitenwert berücksichtigt wird. So entsteht eine exakte Anzahl günstiger Ergebnisse für jede Zielsumme. Die Division durch die Gesamtzahl der Ergebnisse — einfach (Seiten pro Würfel) hoch (Anzahl der Würfel) — ergibt die Wahrscheinlichkeit als Dezimalbruch zwischen 0 und 1.\n\nDer Rechner unterstützt drei Arten von Wahrscheinlichkeitsabfragen. Die exakte Wahrscheinlichkeit beantwortet: „Wie groß ist die Wahrscheinlichkeit, dass die Würfelsumme genau T beträgt?“ — nützlich, wenn eine Brettspielregel eine bestimmte Zahl verlangt. Die mindestens-Wahrscheinlichkeit beantwortet: „Wie groß ist die Wahrscheinlichkeit, dass die Würfelsumme T oder mehr beträgt?“ — relevant in Rollenspielen, wenn ein Mindestwert zum Erfolg nötig ist. Die höchstens-Wahrscheinlichkeit beantwortet: „Wie groß ist die Wahrscheinlichkeit, dass die Würfelsumme T oder weniger beträgt?“ — nützlich für Risikobewertungen und Schwellenwertberechnungen.\n\nDie theoretische Wahrscheinlichkeit eines Würfelergebnisses zu kennen, ist wertvoll für Spieldesign, Strategie, Unterricht und Glücksspielanalyse. Beim Wurf von zwei standardmäßigen sechsseitigen Würfeln hat beispielsweise die Summe 7 die höchste Wahrscheinlichkeit (6 von 36, also 16,67 %), weil es sechs Kombinationen gibt, die sie erzeugen: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Summen an den Extremen — 2 (Snake Eyes) oder 12 (Boxcars) — haben jeweils nur eine Kombination und damit eine Wahrscheinlichkeit von nur 1/36 (≈ 2,78 %). Diese Verteilung zu verstehen, ist der Kern vieler Brettspiel- und Casino-Strategien.\n\nNeben sechsseitigen Würfeln verarbeitet der Rechner auch polyedrische Würfel, wie sie in Pen-&-Paper-Rollenspielen üblich sind: d4, d8, d10, d12 und d20. Die Verteilung der Summen ändert sich stark mit der Anzahl der Seiten. Ein einzelner d20 erzeugt eine Gleichverteilung; zwei d20-Würfel erzeugen eine Dreiecksverteilung; drei oder mehr erzeugen eine zunehmend glockenförmige Kurve. Diese Konvergenz zur Normalverteilung ist eine konkrete Veranschaulichung des Zentralen Grenzwertsatzes in Aktion."
+      },
+      "examples": {
+        "heading": "Beispiele zur Würfelwahrscheinlichkeit",
+        "intro": "Drei Szenarien, die Berechnungen für exakte, mindestens- und höchstens-Wahrscheinlichkeiten zeigen.",
+        "colInput": "Szenario",
+        "colOutput": "Wahrscheinlichkeit",
+        "colNote": "Erklärung",
+        "loadSingle": "Ein d6 — eine 4 würfeln",
+        "loadLucky7": "Zwei d6 — Summe = 7",
+        "loadHighRoll": "Drei d6 — Summe ≥ 16",
+        "items": [
+          {
+            "input": "1 Würfel, d6, exakte Summe = 4",
+            "output": "16.6667%",
+            "note": "Ein günstiges Ergebnis (Seite zeigt 4) von insgesamt 6. P = 1/6."
+          },
+          {
+            "input": "2 Würfel, d6, exakte Summe = 7",
+            "output": "16.6667%",
+            "note": "Sechs Kombinationen ergeben eine Summe von 7 aus insgesamt 36: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). P = 6/36 = 1/6."
+          },
+          {
+            "input": "3 Würfel, d6, Summe mindestens = 16",
+            "output": "4.6296%",
+            "note": "10 Kombinationen von insgesamt 216 ergeben eine Summe von 16 oder mehr. P = 10/216 ≈ 4.63%."
+          },
+          {
+            "input": "2 Würfel, d6, Summe höchstens = 4",
+            "output": "16.6667%",
+            "note": "Die Summen 2 (1 Möglichkeit), 3 (2 Möglichkeiten) und 4 (3 Möglichkeiten) ergeben 6 günstige Ergebnisse von 36. P = 6/36 = 1/6."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwendest du den Würfel-Wahrscheinlichkeitsrechner",
+        "steps": [
+          "Wähle den Berechnungstyp: Exakte Summe für eine bestimmte Summe, Mindestens für einen Mindestschwellenwert oder Höchstens für einen Höchstschwellenwert.",
+          "Gib im ersten Feld die Anzahl der Würfel (1–10) ein. Mehr Würfel verschieben die Verteilung in Richtung einer Glockenkurve.",
+          "Wähle im Dropdown die Anzahl der Seiten pro Würfel aus (d4, d6, d8, d10, d12 oder d20).",
+          "Gib die Zielsumme ein, die dich interessiert. Der gültige Bereich wird angezeigt, wenn du einen Wert außerhalb des Bereichs eingibst.",
+          "Klicke auf Wahrscheinlichkeit berechnen. Das Ergebnis zeigt die Wahrscheinlichkeit als Prozentsatz, den Bruch der günstigen Ergebnisse über allen Ergebnissen und den gekürzten Bruch."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zur Würfelwahrscheinlichkeit",
+        "q1": "Warum ist 7 die häufigste Summe bei zwei sechsseitigen Würfeln?",
+        "q1_a": "Es gibt 6 Kombinationen, die aus 36 Gesamtergebnissen eine Summe von 7 erzeugen. Damit hat sie die höchste Wahrscheinlichkeit von 1/6 ≈ 16,67 %. Die Summen 6 und 8 sind die nächsthäufigen (je 5/36), während 2 und 12 mit je 1/36 am seltensten sind. Diese asymmetrische Verteilung ist der Grund, warum Craps, Monopoly und viele andere Würfelspiele um die Zahl 7 kreisen.",
+        "q2": "Was ist der Unterschied zwischen „exakt“, „mindestens“ und „höchstens“?",
+        "q2_a": "Die exakte Wahrscheinlichkeit gibt die Chance an, dass die Summe genau der Zielzahl entspricht. Die mindestens-Wahrscheinlichkeit gibt die Chance an, dass die Summe größer oder gleich dem Ziel ist — nützlich, wenn du einen Mindestwurf zum Erfolg brauchst. Die höchstens-Wahrscheinlichkeit gibt die Chance an, dass die Summe kleiner oder gleich dem Ziel ist — nützlich, wenn du unter einem Schwellenwert bleiben möchtest.",
+        "q3": "Wie beeinflusst die Anzahl der Würfel die Form der Verteilung?",
+        "q3_a": "Mit einem einzelnen Würfel ist die Verteilung vollkommen gleichförmig — jede Seite ist gleich wahrscheinlich. Mit zwei Würfeln wird die Verteilung dreieckig und erreicht in der Mitte ihren Höhepunkt. Mit drei oder mehr Würfeln wird sie glockenförmig und ähnelt zunehmend einer Normalverteilung, als direkte Folge des Zentralen Grenzwertsatzes. Das bedeutet, dass extreme Summen exponentiell seltener werden, je mehr Würfel du hinzufügst.",
+        "q4": "Kann ich diesen Rechner für nicht standardmäßige Würfel verwenden?",
+        "q4_a": "Der Rechner unterstützt d4, d6, d8, d10, d12 und d20 — die standardmäßigen polyedrischen Würfel, die in den meisten Tabletop-Spielen verwendet werden. Sie decken die große Mehrheit realer Würfel ab. Wenn du Wahrscheinlichkeiten für einen Würfel mit einer anderen Seitenzahl benötigst, verwende die Standardformeln: Gesamtergebnisse = sides^n, und zähle günstige Ergebnisse mit derselben Faltungslogik, die der Rechner intern anwendet.",
+        "q5": "Ist die Wahrscheinlichkeitsberechnung exakt oder nur näherungsweise?",
+        "q5_a": "Die Berechnung ist exakt und verwendet Ganzzahlarithmetik. Der Rechner zählt jede mögliche Kombination mit dynamischer Programmierung (Faltung erzeugender Funktionen) und dividiert dann durch die Gesamtzahl der Ergebnisse. Es werden keine Stichproben, Simulationen oder Näherungen verwendet. Der angezeigte Prozentsatz wird zur Lesbarkeit auf vier Dezimalstellen gerundet, der zugrunde liegende Bruch ist jedoch exakt.",
+        "q6": "Wie kann ich Würfelwahrscheinlichkeit in der Spielstrategie nutzen?",
+        "q6_a": "Wenn du die Wahrscheinlichkeit jedes Ergebnisses kennst, kannst du fundierte Entscheidungen treffen. In Die Siedler von Catan bringt das Platzieren von Siedlungen auf Feldern mit 6 und 8 die höchste Häufigkeit der Rohstoffproduktion, weil jede Zahl bei zwei d6 einer Chance von 5/36 entspricht. Im Kampf bei Dungeons & Dragons hilft dir die Wahrscheinlichkeit, mit einem d20 eine 15 oder höher zu würfeln (P = 6/20 = 30 %), das Risiko einzuschätzen, bevor du eine riskante Aktion versuchst."
+      }
+    },
+    "dice-roller-calculator": {
+      "title": "Würfelrechner - Würfeln und Statistiken analysieren",
+      "tagline": "Simuliere das Werfen mehrerer Würfel und sieh sofort die statistische Auswertung mit Mittelwert, Median, Modus, Standardabweichung und vollständiger Häufigkeitsverteilung.",
+      "intro": "Lege die Anzahl der Würfel, die Seiten pro Würfel und die zu simulierenden Würfe fest und klicke dann auf Würfeln, um Ergebnisse und Statistiken anzuzeigen.",
+      "field": {
+        "numberOfDice": "Anzahl der Würfel",
+        "diceSides": "Würfelseiten",
+        "numberOfRolls": "Anzahl der Würfe"
+      },
+      "placeholder": {
+        "dice": "1–10",
+        "rolls": "1–10000"
+      },
+      "button": {
+        "roll": "Würfeln",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte gültige Werte eingeben: 1–10 Würfel, mindestens 2 Seiten und 1–10,000 Würfe."
+      },
+      "result": {
+        "heading": "Wurfstatistik",
+        "mean": "Mittelwert",
+        "median": "Median",
+        "mode": "Modus",
+        "stdDev": "Std.-Abw.",
+        "min": "Min.",
+        "max": "Max.",
+        "freqHeading": "Häufigkeitsverteilung",
+        "colValue": "Summe",
+        "colCount": "Anzahl",
+        "colPct": "Häufigkeit %"
+      },
+      "about": {
+        "heading": "Über den Würfelrechner",
+        "body": "Ein Würfelrechner ist ein digitales Werkzeug, das das Werfen physischer Würfel mithilfe von Pseudozufallszahlen simuliert. Ein Wurf eines fairen n-seitigen Würfels lässt sich als gleichverteilte Zufallsvariable modellieren, die ganzzahlige Werte von 1 bis n mit gleicher Wahrscheinlichkeit 1/n annimmt. Werden mehrere Würfel geworfen und addiert, hängt die resultierende Verteilung von der Anzahl der Würfel und der Seitenzahl ab: Bei einem Würfel ist die Verteilung gleichmäßig, bei zwei ist sie dreieckig, und bei drei oder mehr nähert sie sich gemäß dem zentralen Grenzwertsatz einer Glockenkurve an.\n\nWenn man eine große Anzahl simulierter Würfe ausführt und die Ergebnisse aufzeichnet, erhält man eine empirische Häufigkeitsverteilung, die sich direkt mit der theoretischen Wahrscheinlichkeitsverteilung vergleichen lässt. So lässt sich gut verstehen, wie schnell reale Verteilungen zu ihren theoretischen Gegenstücken konvergieren — schon 100 Würfe mit zwei sechsseitigen Würfeln zeigen einen deutlichen Peak bei 7, während 10,000 Würfe eine Häufigkeitstabelle liefern, die den theoretischen Wahrscheinlichkeiten sehr nahe kommt.\n\nDie statistische Zusammenfassung dieses Rechners umfasst den Mittelwert (Durchschnitt aller Summen), den Median (den mittleren Wert nach Sortierung aller Summen), den Modus (die am häufigsten vorkommende Summe oder die häufigsten Summen), die Standardabweichung (ein Maß für die Streuung um den Mittelwert) sowie die beobachteten Minimal- und Maximalwerte. Zusammen geben diese Kennzahlen ein vollständiges Bild der Verteilung auf kleinem Raum.\n\nFür einen fairen n-seitigen Würfel beträgt der theoretische Erwartungswert (Mittelwert) (n+1)/2, die Varianz (n²−1)/12 und die Standardabweichung sqrt((n²−1)/12). Bei mehreren Würfeln ist der Erwartungswert additiv (n×(s+1)/2, wobei n die Anzahl der Würfel und s die Seiten pro Würfel ist), und die Varianz ist ebenfalls additiv, sodass die Standardabweichung wie sqrt(n)×sigma_single wächst. Dieser Rechner verwendet Simulation statt exakter Berechnung, daher variieren die Ergebnisse von Lauf zu Lauf leicht — mit 1,000 oder mehr Würfen nähern sich die Stichprobenstatistiken jedoch sehr stark den theoretischen Werten an.\n\nPraktische Einsatzbereiche für den Würfelrechner reichen von Spieleentwicklung über Statistikunterricht bis zur Wahrscheinlichkeitsforschung. Spieledesigner nutzen ihn, um zu prüfen, ob ihre Mechaniken die gewünschten Schwierigkeitskurven und die Balance erzeugen. Statistiklehrkräfte setzen ihn ein, um den zentralen Grenzwertsatz zu demonstrieren, ohne dass Studierende alles von Hand berechnen müssen. Tabletop-RPG-Spieler verwenden ihn, um Wahrscheinlichkeitsprofile verschiedener Würfelkombinationen vor der Charakterwahl zu verstehen. Und Studierende der Wahrscheinlichkeitstheorie nutzen ihn als praktisches Labor für Konzepte wie Erwartungswert, Varianz und Gesetz der großen Zahlen."
+      },
+      "examples": {
+        "heading": "Würfelrechner-Beispiele",
+        "intro": "Drei Simulationsszenarien, die zeigen, wie sich die Häufigkeitsverteilung mit unterschiedlichen Würfelkonfigurationen verändert.",
+        "colInput": "Konfiguration",
+        "colOutput": "Erwarteter Mittelwert",
+        "colNote": "Anwendungsfall",
+        "loadSingle": "1×d6, 100 Würfe",
+        "loadTwo": "2×d6, 500 Würfe",
+        "loadD20": "1×d20, 200 Würfe",
+        "items": [
+          {
+            "input": "1 Würfel, d6, 100 Würfe",
+            "output": "Mittelwert ≈ 3.5",
+            "note": "Gleichverteilung von 1 bis 6. Erwarteter Mittelwert = 3.5, Standardabweichung ≈ 1.71. Jeder Wert erscheint in 100 Würfen ungefähr 16–17 Mal."
+          },
+          {
+            "input": "2 Würfel, d6, 500 Würfe",
+            "output": "Mittelwert ≈ 7.0",
+            "note": "Dreieckige Verteilung mit Spitze bei 7. Erwarteter Mittelwert = 7, Standardabweichung ≈ 2.42. Die Summe 7 erscheint in 500 Würfen etwa 83 Mal (16.7%)."
+          },
+          {
+            "input": "1 Würfel, d20, 200 Würfe",
+            "output": "Mittelwert ≈ 10.5",
+            "note": "Gleichverteilung von 1 bis 20. Erwarteter Mittelwert = 10.5, Standardabweichung ≈ 5.77. Jeder Wert erscheint in 200 Würfen ungefähr 10 Mal."
+          },
+          {
+            "input": "5 Würfel, d8, 1000 Würfe",
+            "output": "Mittelwert ≈ 22.5",
+            "note": "Nahezu normale Glockenkurve mit Zentrum bei 22.5. Erwarteter Mittelwert = 5×4.5 = 22.5, Standardabweichung ≈ 4.33. Verdeutlicht den zentralen Grenzwertsatz sehr gut."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwendest du den Würfelrechner",
+        "steps": [
+          "Lege die Anzahl der Würfel (1–10) fest, um zu bestimmen, wie viele Würfel pro Simulationsschritt geworfen werden.",
+          "Wähle im Dropdown die Würfelseiten (d4, d6, d8, d10, d12 oder d20), um den Würfeltyp festzulegen.",
+          "Gib die Anzahl der Würfe (1–10,000) ein, um festzulegen, wie viele unabhängige Würfe die Simulation ausführt.",
+          "Klicke auf Würfeln. Da die Simulation Zufall verwendet, liefert jeder Lauf leicht andere Ergebnisse — klicke erneut, um neu zu würfeln.",
+          "Prüfe die statistische Zusammenfassung (Mittelwert, Median, Modus, Standardabweichung, Min., Max.) und die Häufigkeitstabelle, um die Ergebnisse zu analysieren."
+        ]
+      },
+      "faq": {
+        "heading": "Würfelrechner-FAQ",
+        "q1": "Warum ändert sich der Mittelwert bei jedem Wurf leicht?",
+        "q1_a": "Jeder Simulationslauf nutzt eine andere Folge von Pseudozufallszahlen, daher schwanken die Stichprobenstatistiken um den theoretischen Erwartungswert. Bei nur 10–20 Würfen kann die Abweichung groß sein; bei 1,000 Würfen liegt der Stichprobenmittelwert meist innerhalb weniger Zehntel des theoretischen Mittelwerts; bei 10,000 Würfen ist er normalerweise auf ein Hundertstel genau. Diese Annäherung ist das Gesetz der großen Zahlen in Aktion.",
+        "q2": "Was sagt mir die Standardabweichung über meine Würfe?",
+        "q2_a": "Die Standardabweichung misst die Streuung der Summen um den Mittelwert. Eine kleine Standardabweichung bedeutet, dass die meisten Würfe eng um den Durchschnitt liegen; eine große bedeutet eine breite Ergebnisstreuung. Für einen einzelnen d6 beträgt die theoretische Standardabweichung etwa 1.71; für zwei d6 etwa 2.42 (sqrt(2)×1.71 ≈ 2.42). Mit mehr Würfeln wächst die Standardabweichung zwar, aber langsamer als der Mittelwert, daher sinkt der Variationskoeffizient.",
+        "q3": "Was ist die Häufigkeitsverteilungstabelle?",
+        "q3_a": "Die Häufigkeitsverteilungstabelle zeigt jede Summe, die mindestens einmal vorkam, wie oft sie vorkam und ihre beobachtete Häufigkeit in Prozent aller Würfe. So kannst du empirische Ergebnisse direkt mit theoretischen Wahrscheinlichkeiten vergleichen. Bei zwei d6 sollte die Summe 7 etwa 16.67% der Zeit erscheinen; größere Stichproben nähern sich diesem theoretischen Wert an.",
+        "q4": "Wie viele Würfe brauche ich für eine genaue Schätzung?",
+        "q4_a": "Für einen groben Eindruck reichen meist 100 Würfe, um die Form der Verteilung zu sehen. Für genauere Häufigkeitsschätzungen solltest du 1,000 oder mehr Würfe verwenden. Bei 10,000 Würfen liegen die Stichprobenhäufigkeiten bei Standard-Sechserwürfeln typischerweise innerhalb von 0.5 Prozentpunkten der theoretischen Wahrscheinlichkeiten. Die genaue Zahl hängt von der Anzahl möglicher Ergebnisse und der gewünschten Genauigkeit ab.",
+        "q5": "Kann ich das für Unterricht und Präsentationen nutzen?",
+        "q5_a": "Ja, das ist einer der häufigsten Einsatzfälle. Mehrfach auf Würfeln klicken und die resultierenden Histogramme vergleichen ist eine hervorragende anschauliche Demonstration des Gesetzes der großen Zahlen. Wenn du die Anzahl der Würfel von 1 auf 5 erhöhst und die Würfe konstant hältst, zeigt das sehr anschaulich den zentralen Grenzwertsatz, da sich die Verteilung von gleichmäßig zu nahezu normal verschiebt.",
+        "q6": "Warum zeigt der Modus manchmal mehrere Werte?",
+        "q6_a": "Der Modus ist der Wert, der in der Stichprobe am häufigsten vorkommt. Wenn zwei oder mehr Summen gleich oft am häufigsten vorkommen, werden alle als Modi angezeigt. Das ist bei kleinen Stichproben häufig. Bei zwei sechsseitigen Würfeln und 1,000 Würfen ist der Modus fast immer 7, aber bei 20 Würfen kann jede Summe 3–4 Mal auftreten, sodass mehrere Modi gleichzeitig möglich sind."
+      }
+    },
+    "dispersion-calculator": {
+      "title": "Streuungsrechner - Varianz, Standardabweichung & IQR",
+      "tagline": "Berechnen Sie das volle Spektrum statistischer Streuungsmaße — Spannweite, Varianz, Standardabweichung, IQR, Variationskoeffizient und MAD — für beliebige numerische Datensätze.",
+      "intro": "Geben Sie Ihre Zahlen als kommagetrennte Liste ein und klicken Sie auf Berechnen, um alle Streuungs- und Lagekennzahlen sofort zu sehen.",
+      "field": {
+        "data": "Daten (durch Kommas getrennte Zahlen)"
+      },
+      "placeholder": {
+        "data": "z. B. 12, 15, 14, 10, 18, 11"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie mindestens 2 gültige Zahlen ein, getrennt durch Kommas."
+      },
+      "result": {
+        "heading": "Streuungswerte",
+        "count": "Anzahl",
+        "mean": "Mittelwert",
+        "median": "Median",
+        "range": "Spannweite",
+        "sampleVariance": "Stichprobenvarianz",
+        "populationVariance": "Populationsvarianz",
+        "sampleStdDev": "Stichproben-Standardabweichung",
+        "populationStdDev": "Populations-Standardabweichung",
+        "q1": "Q1 (25. Perzentil)",
+        "q3": "Q3 (75. Perzentil)",
+        "iqr": "IQR",
+        "cv": "Variationskoeffizient",
+        "mad": "Median der absoluten Abweichungen"
+      },
+      "about": {
+        "heading": "Über den Streuungsrechner",
+        "body": "Statistische Streuung beschreibt, wie weit die Werte in einem Datensatz auseinanderliegen. Während Lagemaße — Mittelwert, Median und Modus — zeigen, wo das Zentrum einer Verteilung liegt, geben Streuungsmaße an, wie stark einzelne Datenpunkte von diesem Zentrum abweichen. Zwei Datensätze können denselben Mittelwert haben und trotzdem völlig unterschiedliche Verteilungen aufweisen; Streuungsmaße machen diesen Unterschied sichtbar.\n\nDie Spannweite ist das einfachste Streuungsmaß: die Differenz zwischen dem größten und dem kleinsten Wert. Sie ist leicht zu berechnen und zu interpretieren, reagiert aber empfindlich auf Ausreißer, da sie ausschließlich von den beiden Extremwerten abhängt und alles dazwischen ignoriert.\n\nDie Varianz misst die mittlere quadrierte Abweichung vom Mittelwert. Die Stichprobenvarianz teilt die Summe der quadrierten Abweichungen durch (n−1) — mit Bessel-Korrektur, um bei einer Stichprobe eine unverzerrte Schätzung der Populationsvarianz zu erhalten. Die Populationsvarianz teilt durch n und ist nur dann angemessen, wenn Ihr Datensatz die gesamte interessierende Population darstellt. Die Standardabweichung ist die Quadratwurzel der Varianz und wird in denselben Einheiten wie die Originaldaten angegeben.\n\nDer Interquartilsabstand (IQR) misst die Streuung der mittleren 50 % der Daten. Er wird als Q3 − Q1 berechnet, wobei Q1 das 25. Perzentil und Q3 das 75. Perzentil ist. Da er die unteren und oberen 25 % der Werte ignoriert, ist der IQR ausreißerrobust und das bevorzugte Streuungsmaß für schiefe Verteilungen.\n\nDer Variationskoeffizient (VK) drückt die Stichproben-Standardabweichung als Prozentsatz des Mittelwerts aus und ist damit ein dimensionsloses Maß, mit dem Sie die relative Variabilität von Datensätzen in unterschiedlichen Einheiten oder Maßstäben vergleichen können. Ein VK von 10 % bedeutet, dass die Standardabweichung 10 % des Mittelwerts beträgt — ein nützlicher Richtwert für den Vergleich der Messpräzision zwischen Experimenten.\n\nDie Median der absoluten Abweichungen (MAD) ist der Median der absoluten Abweichungen vom Median. Er ist noch robuster gegenüber Ausreißern als der IQR und wird in robuster Statistik und Anomalieerkennung verwendet. Wie der IQR ist auch der MAD unempfindlich gegenüber Extremwerten und liefert ein verlässliches Streuungsmaß für Datensätze mit schweren Tails oder schiefen Verteilungen."
+      },
+      "examples": {
+        "heading": "Beispiele für den Streuungsrechner",
+        "intro": "Drei reale Datensätze, die unterschiedliche Streuungsmuster veranschaulichen.",
+        "colInput": "Datensatz",
+        "colOutput": "Wichtige Kennzahlen",
+        "colNote": "Interpretation",
+        "loadScores": "Testnoten laden",
+        "loadStocks": "Aktienrenditen laden",
+        "loadQuality": "Qualitätskontrolle laden",
+        "items": [
+          {
+            "input": "85, 92, 78, 88, 76, 95, 89, 72",
+            "output": "Mittelwert=84.375, SD≈8.19, IQR=12.25",
+            "note": "Klassenarbeit. VK≈9.71 % zeigt eine mittlere relative Streuung. Ein IQR von 12.25 bedeutet, dass die mittleren 50 % der Schüler innerhalb eines 12-Punkte-Bereichs lagen."
+          },
+          {
+            "input": "1.2, -0.5, 2.1, 0.8, -1.9, 1.5, 2.5, -0.2, 0.3, 1.7, -1.1, 2.3",
+            "output": "Mittelwert=0.725, SD≈1.40, IQR=2.075",
+            "note": "Monatliche Aktienrenditen (%). Ein hoher VK (>100 %) spiegelt eine erhebliche Volatilität im Verhältnis zum kleinen positiven Mittelwert wider."
+          },
+          {
+            "input": "502, 499, 505, 498, 501, 503, 497, 500",
+            "output": "Mittelwert=500.625, SD≈2.67, VK≈0.53%",
+            "note": "Produktgewichte (g) in einer Qualitätskontrollcharge. Ein sehr niedriger VK bestätigt eine enge Fertigungskonsistenz rund um das Ziel von 500 g."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Streuungsrechner",
+        "steps": [
+          "Geben Sie Ihre Datenwerte in das Textfeld ein oder fügen Sie sie ein, getrennt durch Kommas, Leerzeichen oder Zeilenumbrüche.",
+          "Klicken Sie auf Berechnen. Der Rechner parst die Zahlen und ignoriert nicht-numerische Tokens.",
+          "Prüfen Sie die Lagekennzahlen (Anzahl, Mittelwert, Median), um zu sehen, wo Ihre Daten zentriert sind.",
+          "Prüfen Sie die Streuungskennzahlen: Spannweite für die Gesamtstreuung, Standardabweichung für die durchschnittliche Abweichung vom Mittelwert und IQR für die Streuung der mittleren 50 %.",
+          "Nutzen Sie den Variationskoeffizienten, um die relative Variabilität verschiedener Datensätze zu vergleichen, und den MAD als robuste, ausreißerresistente Streuungskennzahl."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zum Streuungsrechner",
+        "q1": "Wann sollte ich den IQR statt der Standardabweichung verwenden?",
+        "q1_a": "Verwenden Sie den IQR, wenn Ihre Daten schief sind, Ausreißer enthalten oder aus einer nicht-normalen Verteilung stammen. Der IQR betrachtet nur die mittleren 50 % der Daten und wird von Extremwerten nicht beeinflusst. Die Standardabweichung berücksichtigt alle Werte, sodass ein Ausreißer sie stark vergrößern kann. Bei normalverteilten Daten ohne Ausreißer sind beide Maße informativ.",
+        "q2": "Was ist der Unterschied zwischen Stichprobenvarianz und Populationsvarianz?",
+        "q2_a": "Die Populationsvarianz teilt die Summe der quadrierten Abweichungen durch n (die Gesamtzahl) und ist passend, wenn Sie Daten für die gesamte Population haben. Die Stichprobenvarianz teilt durch n−1 (Bessel-Korrektur), um die Verzerrung bei der Schätzung der Populationsvarianz aus einer Stichprobe zu korrigieren. Bei großen Stichproben ist der Unterschied vernachlässigbar; bei kleinen Stichproben (n < 30) ist er wichtiger.",
+        "q3": "Was sagt mir der Variationskoeffizient?",
+        "q3_a": "Der Variationskoeffizient (VK) drückt die Standardabweichung als Prozentsatz des Mittelwerts aus und liefert damit ein skalierungsunabhängiges Maß für die relative Variabilität. Ein VK von 5 % bedeutet, dass die Daten relativ konsistent sind; ein VK von 50 % bedeutet eine hohe Variabilität im Verhältnis zum Durchschnitt. VK ist besonders nützlich, um Messwerte in unterschiedlichen Einheiten zu vergleichen, etwa die Konsistenz zweier Fertigungsprozesse.",
+        "q4": "Wie wird die mediane absolute Abweichung (MAD) berechnet?",
+        "q4_a": "Der MAD ist der Median der absoluten Abweichungen vom Median: MAD = median(|xi − median(x)|). Er ist gegenüber Ausreißern robuster als die Standardabweichung, weil er den Median der Abweichungen statt des Mittelwerts verwendet. Eine häufig genutzte robuste Schätzung der Standardabweichung ist 1.4826 × MAD, was bei einer Normalverteilung der Standardabweichung entspricht.",
+        "q5": "Warum können Mittelwert und Median deutlich auseinanderliegen?",
+        "q5_a": "Wenn Mittelwert und Median deutlich voneinander abweichen, ist die Verteilung schief. Ein viel größerer Mittelwert als Median deutet auf Rechtsschiefe hin (einige sehr große Werte ziehen den Mittelwert nach oben). Ein viel kleinerer Mittelwert als Median deutet auf Linksschiefe hin. Bei schiefen Verteilungen ist der Median meist das bessere Lagemaß, und der IQR ist oft ein besseres Streuungsmaß als die Standardabweichung.",
+        "q6": "Kann ich diesen Rechner für sehr große Datensätze verwenden?",
+        "q6_a": "Der Rechner verarbeitet jede Datensatzgröße, die Sie eingeben können, aber sehr große Eingaben können langsamer geparst werden. Für beste Leistung verwenden Sie kommagetrennte Werte in einer einzigen Zeile oder über mehrere Zeilen verteilt. Die Berechnungen nutzen numerisch stabile Algorithmen, die bei typischen Datenbereichen Über- und Unterläufe vermeiden. Wenn Sie Millionen von Werten analysieren, ist ein spezielles Statistikpaket wie R oder Python pandas effizienter."
+      }
     }
   }
 }

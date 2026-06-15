@@ -12161,6 +12161,285 @@
         "q6": "¿Puedo usar esto para eventos binarios aleatorios que no sean monedas?",
         "q6_a": "Sí, siempre que cada prueba sea independiente y tenga una probabilidad de éxito del 50%. Ejemplos: la probabilidad de que un equipo de baloncesto con 50% de victorias consiga una racha de 5 partidos ganados, la probabilidad de que un sensor binario lea el mismo valor k veces seguidas, o el número esperado de decisiones tipo moneda antes de que un paseo aleatorio alcance un lado k veces consecutivas. La matemática es idéntica para todos los procesos binarios independientes 50/50."
       }
+    },
+    "dice-probability-calculator": {
+      "title": "Calculadora de probabilidad de dados - exacta y al menos",
+      "tagline": "Calcula la probabilidad exacta de cualquier resultado al tirar dados: suma exacta, al menos o como máximo, para hasta 10 dados con cualquier número de caras.",
+      "intro": "Introduce el número de dados, las caras por dado y la suma objetivo; luego elige si quieres la probabilidad exacta, de al menos o de como máximo.",
+      "type": {
+        "exact": "Suma exacta",
+        "atLeast": "Al menos",
+        "atMost": "Como máximo"
+      },
+      "field": {
+        "calcType": "Tipo de cálculo",
+        "numberOfDice": "Número de dados",
+        "sidesPerDie": "Caras por dado",
+        "targetSum": "Suma objetivo"
+      },
+      "placeholder": {
+        "dice": "1–10",
+        "targetSum": "Introduce la suma objetivo"
+      },
+      "button": {
+        "calculate": "Calcular probabilidad",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce valores válidos: 1–10 dados, al menos 2 caras y una suma objetivo positiva.",
+        "range": "La suma objetivo debe estar entre {min} (mínimo) y {max} (máximo) para esta configuración de dados."
+      },
+      "result": {
+        "heading": "Probabilidad",
+        "fraction": "{favorable} resultados favorables de {total} en total ({fraction})",
+        "summary": "{n} dados × d{s}, {type} {target}"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de probabilidad de dados",
+        "body": "La probabilidad con dados es un tema fundamental tanto en las matemáticas recreativas como en la teoría formal de la probabilidad. Cada vez que lanzas un dado justo, cada cara tiene la misma probabilidad de quedar hacia arriba; en un dado estándar de seis caras, esa probabilidad es 1/6 para cada resultado. Cuando lanzas varios dados y sumas los resultados, el número de formas de alcanzar cada total posible sigue una distribución característica, claramente no uniforme y marcadamente acampanada con tres o más dados.\n\nLa calculadora de probabilidad de dados utiliza un enfoque de convolución con programación dinámica para contar el número exacto de formas de obtener cada suma posible. A partir de un único resultado de 0 con 1 forma, itera por cada dado y amplía la distribución considerando cada valor de cara posible. Esto produce un recuento exacto de resultados favorables para cualquier suma objetivo. Al dividirlo por el número total de resultados, que es simplemente (caras por dado) elevado a (número de dados), se obtiene la probabilidad como una fracción decimal entre 0 y 1.\n\nLa calculadora admite tres tipos de consultas de probabilidad. La probabilidad exacta responde: “¿Cuál es la probabilidad de que el total de los dados sea exactamente T?”; útil cuando una regla de juego exige alcanzar un número específico. La probabilidad de al menos responde: “¿Cuál es la probabilidad de que el total sea T o más?”; relevante en juegos de rol cuando necesitas una puntuación mínima para tener éxito. La probabilidad de como máximo responde: “¿Cuál es la probabilidad de que el total sea T o menos?”; útil para evaluaciones de riesgo y cálculos de umbral.\n\nConocer la probabilidad teórica de un resultado con dados es valioso para el diseño de juegos, la estrategia, la educación y el análisis de apuestas. Por ejemplo, al lanzar dos dados estándar de seis caras, la suma 7 tiene la probabilidad más alta (6 de 36, o 16,67%) porque hay seis combinaciones que la producen: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Las sumas de los extremos, 2 (ojos de serpiente) o 12 (boxcars), solo tienen una combinación cada una, lo que les da una probabilidad de apenas 1/36 (≈ 2,78%). Comprender esta distribución es la base de muchas estrategias de juegos de mesa y casino.\n\nAdemás de los dados de seis caras, la calculadora maneja dados poliédricos comunes en los juegos de rol de mesa: d4, d8, d10, d12 y d20. La distribución de las sumas cambia de forma significativa con el número de caras. Un solo d20 produce una distribución uniforme; dos dados d20 producen una distribución triangular; tres o más producen una curva cada vez más acampanada. Esta convergencia hacia una distribución normal es una ilustración concreta del Teorema Central del Límite en acción."
+      },
+      "examples": {
+        "heading": "Ejemplos de probabilidad de dados",
+        "intro": "Tres escenarios que ilustran cálculos de probabilidad exacta, de al menos y de como máximo.",
+        "colInput": "Escenario",
+        "colOutput": "Probabilidad",
+        "colNote": "Explicación",
+        "loadSingle": "Un d6 — sacar un 4",
+        "loadLucky7": "Dos d6 — suma = 7",
+        "loadHighRoll": "Tres d6 — suma ≥ 16",
+        "items": [
+          {
+            "input": "1 dado, d6, suma exacta = 4",
+            "output": "16.6667%",
+            "note": "Un resultado favorable (cara mostrando 4) de 6 en total. P = 1/6."
+          },
+          {
+            "input": "2 dados, d6, suma exacta = 7",
+            "output": "16.6667%",
+            "note": "Seis combinaciones producen una suma de 7 de 36 en total: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). P = 6/36 = 1/6."
+          },
+          {
+            "input": "3 dados, d6, suma al menos = 16",
+            "output": "4.6296%",
+            "note": "10 combinaciones de 216 en total producen una suma de 16 o más. P = 10/216 ≈ 4.63%."
+          },
+          {
+            "input": "2 dados, d6, suma como máximo = 4",
+            "output": "16.6667%",
+            "note": "Las sumas de 2 (1 forma), 3 (2 formas) y 4 (3 formas) dan 6 resultados favorables de 36. P = 6/36 = 1/6."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de probabilidad de dados",
+        "steps": [
+          "Elige el tipo de cálculo: Suma exacta para un total específico, Al menos para un umbral mínimo o Como máximo para un umbral máximo.",
+          "Introduce el número de dados (1–10) en el primer campo. Más dados desplazan la distribución hacia una curva de campana.",
+          "Selecciona el número de caras por dado en el desplegable (d4, d6, d8, d10, d12 o d20).",
+          "Introduce la suma objetivo que te interesa. Si escribes un valor fuera de rango, se mostrará el rango válido.",
+          "Haz clic en Calcular probabilidad. El resultado muestra la probabilidad como porcentaje, la fracción de resultados favorables sobre el total y la fracción simplificada."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre probabilidad de dados",
+        "q1": "¿Por qué 7 es la suma más común con dos dados de seis caras?",
+        "q1_a": "Hay 6 combinaciones que producen una suma de 7 entre 36 resultados totales, lo que le da la mayor probabilidad: 1/6 ≈ 16,67%. Las sumas 6 y 8 son las siguientes más comunes (5/36 cada una), mientras que 2 y 12 son las más raras, con 1/36 cada una. Esta distribución asimétrica explica por qué los craps, Monopoly y muchos otros juegos de dados giran alrededor del número 7.",
+        "q2": "¿Cuál es la diferencia entre probabilidad 'exacta', 'al menos' y 'como máximo'?",
+        "q2_a": "La probabilidad exacta da la posibilidad de que el total sea precisamente igual al número objetivo. La probabilidad de al menos da la posibilidad de que el total sea mayor o igual que el objetivo, útil cuando necesitas una tirada mínima para tener éxito. La probabilidad de como máximo da la posibilidad de que el total sea menor o igual que el objetivo, útil cuando quieres mantenerte por debajo de un umbral.",
+        "q3": "¿Cómo afecta el número de dados a la forma de la distribución?",
+        "q3_a": "Con un solo dado, la distribución es perfectamente uniforme: cada cara tiene la misma probabilidad. Con dos dados, la distribución se vuelve triangular y alcanza su pico en el punto medio. Con tres o más dados se vuelve acampanada y se parece cada vez más a una distribución normal, una consecuencia directa del Teorema Central del Límite. Esto significa que las sumas extremas se vuelven exponencialmente más raras a medida que agregas más dados.",
+        "q4": "¿Puedo usar esta calculadora para dados no estándar?",
+        "q4_a": "La calculadora admite d4, d6, d8, d10, d12 y d20: los dados poliédricos estándar usados en la mayoría de los juegos de mesa. Cubren la gran mayoría de los dados reales. Si necesitas probabilidades para un dado con otro número de caras, usa las fórmulas estándar: resultados totales = sides^n, y cuenta los resultados favorables con la misma lógica de convolución que aplica internamente la calculadora.",
+        "q5": "¿El cálculo de probabilidad es exacto o aproximado?",
+        "q5_a": "El cálculo es exacto y utiliza aritmética entera. La calculadora cuenta cada combinación posible mediante programación dinámica (convolución de funciones generadoras) y luego divide por el número total de resultados. No intervienen muestreo, simulación ni aproximación. El porcentaje mostrado se redondea a cuatro decimales para facilitar la lectura, pero la fracción subyacente es exacta.",
+        "q6": "¿Cómo puedo usar la probabilidad de dados en la estrategia de juego?",
+        "q6_a": "Conocer la probabilidad de cada resultado te permite tomar decisiones informadas. En Catan, colocar asentamientos en hexágonos etiquetados con 6 y 8 da la mayor frecuencia de producción de recursos porque cada uno corresponde a una probabilidad de 5/36 con dos d6. En el combate de Dungeons & Dragons, conocer la probabilidad de sacar 15 o más en un d20 (P = 6/20 = 30%) te ayuda a calibrar el riesgo al decidir si intentar una acción arriesgada."
+      }
+    },
+    "dice-roller-calculator": {
+      "title": "Calculadora de dados - Tira y analiza estadísticas",
+      "tagline": "Simula tiradas de varios dados y ve al instante el análisis estadístico, incluida la media, la mediana, la moda, la desviación estándar y la distribución completa de frecuencias.",
+      "intro": "Configura el número de dados, las caras por dado y cuántas tiradas simular, luego haz clic en Tirar dados para ver los resultados y las estadísticas.",
+      "field": {
+        "numberOfDice": "Número de dados",
+        "diceSides": "Caras del dado",
+        "numberOfRolls": "Número de tiradas"
+      },
+      "placeholder": {
+        "dice": "1–10",
+        "rolls": "1–10000"
+      },
+      "button": {
+        "roll": "Tirar dados",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce valores válidos: 1–10 dados, al menos 2 caras y 1–10,000 tiradas."
+      },
+      "result": {
+        "heading": "Estadísticas de la tirada",
+        "mean": "Media",
+        "median": "Mediana",
+        "mode": "Moda",
+        "stdDev": "Desv. est.",
+        "min": "Mín.",
+        "max": "Máx.",
+        "freqHeading": "Distribución de frecuencias",
+        "colValue": "Suma",
+        "colCount": "Recuento",
+        "colPct": "% de frecuencia"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de dados",
+        "body": "Una calculadora de dados es una herramienta digital que simula el lanzamiento de dados físicos mediante generación de números pseudoaleatorios. Cada tirada de un dado justo de n caras se modela como una variable aleatoria con distribución uniforme que toma valores enteros de 1 a n con la misma probabilidad 1/n. Cuando se lanzan varios dados y se suman, la distribución resultante depende del número de dados y de sus caras: con un dado la distribución es uniforme, con dos es triangular y con tres o más se aproxima a una curva de campana según el Teorema Central del Límite.\n\nEjecutar un gran número de tiradas simuladas y registrar los resultados te da una distribución empírica de frecuencias que puedes comparar directamente con la distribución teórica. Es una forma potente de entender con qué rapidez las distribuciones reales convergen hacia sus equivalentes teóricos: incluso 100 tiradas de dos dados de seis caras muestran un pico claro en 7, mientras que 10,000 tiradas producen una tabla de frecuencias que coincide muy de cerca con las probabilidades teóricas.\n\nEl resumen estadístico que genera esta calculadora incluye la media (promedio de todas las sumas), la mediana (el valor central al ordenar todas las sumas), la moda (la suma o sumas más frecuentes), la desviación estándar (una medida de dispersión alrededor de la media) y los valores mínimo y máximo observados. Juntos, estos estadísticos te ofrecen una visión completa de la distribución en poco espacio.\n\nPara un dado justo de n caras, el valor esperado teórico (media) es (n+1)/2, la varianza es (n²−1)/12 y la desviación estándar es sqrt((n²−1)/12). Para varios dados, el valor esperado es aditivo (n×(s+1)/2, donde n es el número de dados y s las caras por dado), y la varianza también es aditiva, así que la desviación estándar crece como sqrt(n)×sigma_single. Esta calculadora usa simulación en lugar de cálculo exacto, por lo que los resultados variarán ligeramente entre ejecuciones; sin embargo, con 1,000 o más tiradas, las estadísticas muestrales convergen muy cerca de los valores teóricos.\n\nLos usos prácticos de la calculadora abarcan desarrollo de juegos, educación estadística e investigación en probabilidad. Los diseñadores de juegos la usan para verificar que la mecánica produzca las curvas de dificultad y el equilibrio deseados. Los profesores de estadística la usan para demostrar el Teorema Central del Límite sin que el alumnado tenga que calcular a mano. Los jugadores de rol de mesa la usan para entender los perfiles de probabilidad de distintas combinaciones de dados antes de elegir sus configuraciones. Y quienes estudian probabilidad la usan como un laboratorio práctico para conceptos como valor esperado, varianza y ley de los grandes números."
+      },
+      "examples": {
+        "heading": "Ejemplos de la calculadora de dados",
+        "intro": "Tres escenarios de simulación que ilustran cómo cambia la distribución de frecuencias con distintas configuraciones de dados.",
+        "colInput": "Configuración",
+        "colOutput": "Media esperada",
+        "colNote": "Caso de uso",
+        "loadSingle": "1×d6, 100 tiradas",
+        "loadTwo": "2×d6, 500 tiradas",
+        "loadD20": "1×d20, 200 tiradas",
+        "items": [
+          {
+            "input": "1 dado, d6, 100 tiradas",
+            "output": "Media ≈ 3.5",
+            "note": "Distribución uniforme de 1 a 6. Media esperada = 3.5, desviación estándar ≈ 1.71. Cada valor aparece unas 16–17 veces en 100 tiradas."
+          },
+          {
+            "input": "2 dados, d6, 500 tiradas",
+            "output": "Media ≈ 7.0",
+            "note": "Distribución triangular con pico en 7. Media esperada = 7, desviación estándar ≈ 2.42. La suma 7 aparece unas 83 veces (16.7%) en 500 tiradas."
+          },
+          {
+            "input": "1 dado, d20, 200 tiradas",
+            "output": "Media ≈ 10.5",
+            "note": "Distribución uniforme de 1 a 20. Media esperada = 10.5, desviación estándar ≈ 5.77. Cada valor aparece unas 10 veces en 200 tiradas."
+          },
+          {
+            "input": "5 dados, d8, 1000 tiradas",
+            "output": "Media ≈ 22.5",
+            "note": "Curva de campana casi normal centrada en 22.5. Media esperada = 5×4.5 = 22.5, desviación estándar ≈ 4.33. Ilustra con claridad el Teorema Central del Límite."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de dados",
+        "steps": [
+          "Define el número de dados (1–10) para especificar cuántos se lanzan en cada paso de la simulación.",
+          "Selecciona las caras del dado en el menú desplegable (d4, d6, d8, d10, d12 o d20) para elegir el tipo de dado.",
+          "Introduce el número de tiradas (1–10,000) para fijar cuántas tiradas independientes realizará la simulación.",
+          "Haz clic en Tirar dados. Como la simulación usa aleatoriedad, cada ejecución produce resultados ligeramente distintos; vuelve a pulsar para repetir la tirada.",
+          "Revisa el resumen estadístico (media, mediana, moda, desviación estándar, mínimo, máximo) y la tabla de distribución de frecuencias para analizar los resultados."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes sobre la calculadora de dados",
+        "q1": "¿Por qué la media cambia un poco en cada tirada?",
+        "q1_a": "Cada simulación usa una secuencia distinta de números pseudoaleatorios, así que las estadísticas muestrales fluctúan alrededor del valor esperado teórico. Con solo 10–20 tiradas la variación puede ser grande; con 1,000 tiradas, la media muestral suele quedar a unas pocas décimas de la media teórica; con 10,000 tiradas, normalmente se sitúa dentro de una centésima. Esa convergencia es la ley de los grandes números en acción.",
+        "q2": "¿Qué me dice la desviación estándar sobre mis tiradas?",
+        "q2_a": "La desviación estándar mide la dispersión de las sumas alrededor de la media. Una desviación pequeña significa que la mayoría de las tiradas se agrupan cerca del promedio; una grande indica un rango más amplio de resultados. Para un d6, la desviación estándar teórica es de aproximadamente 1.71; para dos d6, es de aproximadamente 2.42 (sqrt(2)×1.71 ≈ 2.42). Al añadir más dados, la desviación estándar crece, pero más despacio que la media, por lo que el coeficiente de variación disminuye.",
+        "q3": "¿Qué es la tabla de distribución de frecuencias?",
+        "q3_a": "La tabla de distribución de frecuencias muestra cada suma que apareció al menos una vez, cuántas veces apareció y su frecuencia observada como porcentaje del total de tiradas. Esto te permite comparar directamente los resultados empíricos con las probabilidades teóricas. Para dos d6, la suma 7 debería aparecer alrededor del 16.67% de las veces; con muestras más grandes, el porcentaje se acercará más a ese valor teórico.",
+        "q4": "¿Cuántas tiradas necesito para una estimación precisa?",
+        "q4_a": "Para una idea general, 100 tiradas suelen bastar para ver la forma de la distribución. Para estimaciones de frecuencia más precisas, usa 1,000 o más tiradas. Con 10,000 tiradas, las frecuencias muestrales suelen quedar dentro de 0.5 puntos porcentuales de las probabilidades teóricas para dados estándar de seis caras. El número exacto depende del número de resultados posibles y de la precisión deseada.",
+        "q5": "¿Puedo usar esto para demostraciones educativas?",
+        "q5_a": "Sí, es uno de sus usos más comunes. Pulsar Tirar dados varias veces y comparar los histogramas resultantes es una excelente demostración práctica de la ley de los grandes números. Aumentar el número de dados de 1 a 5 manteniendo constante el número de tiradas ofrece una clara demostración visual del Teorema Central del Límite, ya que la distribución pasa de uniforme a casi normal.",
+        "q6": "¿Por qué la moda a veces muestra varios valores?",
+        "q6_a": "La moda es el valor que más veces aparece en la muestra. Cuando dos o más sumas empatan con la frecuencia más alta, todas se muestran como modas. Esto es común con muestras pequeñas. Con dos dados de seis caras y 1,000 tiradas, la moda casi siempre es 7; pero con 20 tiradas, cualquier suma puede aparecer 3–4 veces y varias modas pueden aparecer a la vez."
+      }
+    },
+    "dispersion-calculator": {
+      "title": "Calculadora de dispersión - Varianza, DE e IQR",
+      "tagline": "Calcula todas las medidas de dispersión estadísticas — rango, varianza, desviación estándar, IQR, coeficiente de variación y MAD — a partir de cualquier conjunto numérico.",
+      "intro": "Introduce tus números como una lista separada por comas y haz clic en Calcular para ver al instante todas las estadísticas de dispersión y tendencia central.",
+      "field": {
+        "data": "Datos (números separados por comas)"
+      },
+      "placeholder": {
+        "data": "p. ej. 12, 15, 14, 10, 18, 11"
+      },
+      "button": {
+        "calculate": "Calcular",
+        "reset": "Restablecer"
+      },
+      "error": {
+        "invalid": "Introduce al menos 2 números válidos separados por comas."
+      },
+      "result": {
+        "heading": "Resultados de dispersión",
+        "count": "Cantidad",
+        "mean": "Media",
+        "median": "Mediana",
+        "range": "Rango",
+        "sampleVariance": "Varianza muestral",
+        "populationVariance": "Varianza poblacional",
+        "sampleStdDev": "Desviación estándar muestral",
+        "populationStdDev": "Desviación estándar poblacional",
+        "q1": "Q1 (percentil 25)",
+        "q3": "Q3 (percentil 75)",
+        "iqr": "IQR",
+        "cv": "Coeficiente de variación",
+        "mad": "Desviación absoluta mediana"
+      },
+      "about": {
+        "heading": "Acerca de la calculadora de dispersión",
+        "body": "La dispersión estadística describe cuán extendidos están los valores de un conjunto de datos. Mientras que las medidas de tendencia central — media, mediana y moda — indican dónde está el centro de una distribución, las medidas de dispersión muestran cuánto se alejan los datos de ese centro. Dos conjuntos de datos pueden tener la misma media y, sin embargo, distribuciones muy diferentes; las medidas de dispersión son las que revelan esa diferencia.\n\nEl rango es la medida de dispersión más simple: la diferencia entre el valor mayor y el menor. Es fácil de calcular e interpretar, pero es sensible a los valores atípicos porque depende por completo de los dos extremos e ignora todo lo que hay entre ellos.\n\nLa varianza mide la desviación cuadrática media respecto a la media. La varianza muestral divide la suma de las desviaciones cuadráticas entre (n−1), usando la corrección de Bessel para obtener una estimación insesgada de la varianza poblacional cuando se trabaja con una muestra. La varianza poblacional divide entre n y solo es apropiada cuando tu conjunto de datos es toda la población de interés. La desviación estándar es la raíz cuadrada de la varianza y se expresa en las mismas unidades que los datos originales.\n\nEl rango intercuartílico (IQR) mide la dispersión del 50% central de los datos. Se calcula como Q3 − Q1, donde Q1 es el percentil 25 y Q3 el percentil 75. Como ignora el 25% inferior y el 25% superior de los valores, el IQR resiste mejor los valores atípicos y es la medida de dispersión preferida para distribuciones sesgadas.\n\nEl coeficiente de variación (CV) expresa la desviación estándar muestral como porcentaje de la media, convirtiéndolo en una medida sin dimensiones que permite comparar la variabilidad relativa de conjuntos medidos en distintas unidades o escalas. Un CV del 10% significa que la desviación estándar equivale al 10% de la media, una referencia útil para comparar la precisión de mediciones entre experimentos.\n\nLa desviación absoluta mediana (MAD) es la mediana de las desviaciones absolutas respecto a la mediana. Es aún más robusta frente a valores atípicos que el IQR y se usa en estadística robusta y detección de anomalías. Como el IQR, la MAD resiste los valores extremos y ofrece una medida fiable de la dispersión en conjuntos con colas pesadas o distribuciones sesgadas."
+      },
+      "examples": {
+        "heading": "Ejemplos de la calculadora de dispersión",
+        "intro": "Tres conjuntos de datos reales que ilustran distintos patrones de dispersión.",
+        "colInput": "Conjunto de datos",
+        "colOutput": "Métricas clave",
+        "colNote": "Interpretación",
+        "loadScores": "Cargar notas de examen",
+        "loadStocks": "Cargar rendimientos bursátiles",
+        "loadQuality": "Cargar control de calidad",
+        "items": [
+          {
+            "input": "85, 92, 78, 88, 76, 95, 89, 72",
+            "output": "Media=84.375, DE≈8.19, IQR=12.25",
+            "note": "Notas de un examen de clase. CV≈9.71% indica una dispersión relativa moderada. Un IQR de 12.25 muestra que el 50% central de los estudiantes obtuvo resultados dentro de un margen de 12 puntos."
+          },
+          {
+            "input": "1.2, -0.5, 2.1, 0.8, -1.9, 1.5, 2.5, -0.2, 0.3, 1.7, -1.1, 2.3",
+            "output": "Media=0.725, DE≈1.40, IQR=2.075",
+            "note": "Rendimientos mensuales de acciones (%). Un CV alto (>100%) refleja una volatilidad considerable en relación con la pequeña media positiva."
+          },
+          {
+            "input": "502, 499, 505, 498, 501, 503, 497, 500",
+            "output": "Media=500.625, DE≈2.67, CV≈0.53%",
+            "note": "Pesos de producto (g) en un lote de control de calidad. Un CV muy bajo confirma una consistencia de fabricación muy ajustada alrededor del objetivo de 500 g."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Cómo usar la calculadora de dispersión",
+        "steps": [
+          "Escribe o pega tus valores en el área de texto, separados por comas, espacios o saltos de línea.",
+          "Haz clic en Calcular. La calculadora analiza los números e ignora cualquier token no numérico.",
+          "Revisa las medidas de tendencia central (cantidad, media, mediana) para ver dónde se centra tu datos.",
+          "Comprueba las métricas de dispersión: rango para la amplitud total, desviación estándar para la desviación media respecto a la media e IQR para la dispersión del 50% central.",
+          "Usa el coeficiente de variación para comparar la variabilidad relativa entre distintos conjuntos de datos y la MAD como una medida robusta de dispersión resistente a valores atípicos."
+        ]
+      },
+      "faq": {
+        "heading": "Preguntas frecuentes de la calculadora de dispersión",
+        "q1": "¿Cuándo debo usar el IQR en lugar de la desviación estándar?",
+        "q1_a": "Usa el IQR cuando tus datos estén sesgados, contengan valores atípicos o provengan de una distribución no normal. El IQR solo considera el 50% central de los datos y no se ve afectado por valores extremos. La desviación estándar toma todos los valores en cuenta, así que un solo atípico puede inflarla mucho. En datos normalmente distribuidos y sin atípicos, ambas medidas son informativas.",
+        "q2": "¿Cuál es la diferencia entre varianza muestral y varianza poblacional?",
+        "q2_a": "La varianza poblacional divide la suma de las desviaciones cuadráticas entre n (el total de observaciones), y es apropiada cuando dispones de toda la población. La varianza muestral divide entre n−1 (corrección de Bessel), lo que corrige el sesgo al estimar la varianza poblacional a partir de una muestra. Para muestras grandes la diferencia es despreciable; para muestras pequeñas (n < 30) importa más.",
+        "q3": "¿Qué me dice el coeficiente de variación?",
+        "q3_a": "El coeficiente de variación (CV) expresa la desviación estándar como porcentaje de la media, ofreciendo una medida de variabilidad relativa independiente de la escala. Un CV del 5% significa que los datos son relativamente consistentes; uno del 50% indica mucha variabilidad respecto a su promedio. Es especialmente útil para comparar mediciones en distintas unidades, como la consistencia de dos procesos de fabricación.",
+        "q4": "¿Cómo se calcula la desviación absoluta mediana (MAD)?",
+        "q4_a": "La MAD es la mediana de las desviaciones absolutas respecto a la mediana: MAD = median(|xi − median(x)|). Es más resistente a los valores atípicos que la desviación estándar porque usa la mediana de las desviaciones en lugar de la media. Una estimación robusta de la desviación estándar muy utilizada es 1.4826 × MAD, que coincide con la desviación estándar para una distribución normal.",
+        "q5": "¿Por qué la media y la mediana pueden diferir tanto?",
+        "q5_a": "Cuando la media y la mediana difieren mucho, la distribución está sesgada. Una media mucho mayor que la mediana indica sesgo a la derecha (unos pocos valores muy grandes empujan la media hacia arriba). Una media mucho menor que la mediana indica sesgo a la izquierda. En distribuciones sesgadas, la mediana suele ser mejor medida de tendencia central que la media, y el IQR suele ser mejor medida de dispersión que la desviación estándar.",
+        "q6": "¿Puedo usar esta calculadora con conjuntos de datos muy grandes?",
+        "q6_a": "La calculadora puede manejar cualquier tamaño de conjunto que puedas introducir, aunque las entradas muy grandes pueden tardar en analizarse. Para un mejor rendimiento, usa valores separados por comas en una sola línea o distribúyelos en varias líneas. Los cálculos usan algoritmos numéricamente estables que evitan desbordamientos y pérdidas de precisión en rangos de datos típicos. Si analizas millones de valores, un paquete estadístico dedicado como R o pandas de Python será más eficiente."
+      }
     }
   }
 }
