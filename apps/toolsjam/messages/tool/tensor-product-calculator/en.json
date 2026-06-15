@@ -1,0 +1,89 @@
+{
+  "title": "Tensor Product Calculator",
+  "tagline": "Compute the tensor product (outer product) of two vectors and display the result as a matrix or flattened vector.",
+  "intro": "Enter two vectors as comma-separated or space-separated numbers, choose an output format, and click Calculate.",
+  "field": {
+    "firstVector": "First Vector (u)",
+    "firstVectorPlaceholder": "e.g., 1, 2, 3",
+    "secondVector": "Second Vector (v)",
+    "secondVectorPlaceholder": "e.g., 4, 5",
+    "resultFormat": "Result Format",
+    "matrix": "Matrix Format",
+    "flattened": "Flattened Vector"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Tensor Product Result",
+    "tensorProduct": "Tensor Product (u \u2297 v)",
+    "dimensions": "Matrix Dimensions",
+    "flattenedVector": "Flattened Vector"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers in both vector fields.",
+    "empty": "Both vectors must contain at least one number."
+  },
+  "about": {
+    "heading": "About the tensor product calculator",
+    "body": "The tensor product, also called the outer product in the context of vectors, is a fundamental operation in linear algebra that takes two vectors and produces a matrix. Given a vector u with m components and a vector v with n components, their tensor product u ⊗ v is an m × n matrix in which the element at row i and column j equals uᵢ multiplied by vⱼ. This is in sharp contrast to the dot product, which reduces two vectors to a single scalar, or the cross product, which applies only to three-dimensional vectors and yields another vector.\n\nMathematically, if u = [u₁, u₂, …, uₘ] and v = [v₁, v₂, …, vₙ], then (u ⊗ v)ᵢⱼ = uᵢvⱼ for every valid pair (i, j). The computation has time complexity O(mn), making it efficient even for moderately large vectors. The tensor product is bilinear — scaling either vector scales the result by the same factor, and it distributes over vector addition.\n\nThe tensor product is not commutative: u ⊗ v and v ⊗ u are different matrices (one is m × n, the other is n × m) unless m = n and some special relationship holds. The first vector always determines the rows and the second always determines the columns. This asymmetry matters especially when applying the operation in physics or machine learning, where the order carries physical or semantic meaning.\n\nIn quantum mechanics, tensor products are indispensable for describing composite systems. When two quantum systems are combined, the state space of the composite system is the tensor product of the individual state spaces. For example, a two-qubit system has a 4-dimensional state space that is the tensor product of two 2-dimensional qubit spaces. Quantum entanglement arises precisely when a composite state cannot be written as a simple tensor product of individual states.\n\nIn machine learning and data science, tensor products (and their higher-order generalisations, called tensors) underlie the attention mechanism in Transformer models, the feature cross operations in recommendation systems, and separable convolutions in image processing. A Gaussian blur kernel, for instance, is the tensor product of a 1-D horizontal Gaussian filter with a 1-D vertical Gaussian filter, enabling efficient separable computation.\n\nIn signal processing, representing multidimensional filters as tensor products of 1-D filters enables significant computational savings. The flattened vector representation produced by this calculator is particularly useful when feeding the result into a subsequent operation that expects a 1-D input, such as a fully connected neural network layer."
+  },
+  "examples": {
+    "heading": "Tensor product examples",
+    "intro": "Four worked examples showing different vector dimensions and output formats.",
+    "colInput": "Vectors",
+    "colOutput": "Result",
+    "colNote": "Notes",
+    "loadExample1": "Load 2D × 2D example",
+    "loadExample2": "Load 3D × 2D example",
+    "loadExample3": "Load unit vectors example",
+    "items": [
+      {
+        "input": "u = [1, 2], v = [3, 4]",
+        "output": "[[3, 4], [6, 8]]",
+        "note": "2 × 2 matrix. Entry (1,1) = 1×3 = 3; entry (2,2) = 2×4 = 8."
+      },
+      {
+        "input": "u = [1, 2, 3], v = [4, 5]",
+        "output": "[[4, 5], [8, 10], [12, 15]]",
+        "note": "3 × 2 matrix showing that the vectors may have different lengths."
+      },
+      {
+        "input": "u = [1, 0], v = [0, 1]",
+        "output": "[[0, 1], [0, 0]]  |  flattened: [0, 1, 0, 0]",
+        "note": "Outer product of standard basis vectors. Non-zero entry appears only at row 1, col 2."
+      },
+      {
+        "input": "u = [2, 3], v = [1, 4]",
+        "output": "[[2, 8], [3, 12]]",
+        "note": "General 2 × 2 case. Each row of the result is v scaled by the corresponding component of u."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the tensor product calculator",
+    "steps": [
+      "Enter the components of the first vector u as comma-separated or space-separated numbers, for example: 1, 2, 3.",
+      "Enter the components of the second vector v in the same format. The two vectors may have different numbers of components.",
+      "Select the output format: 'Matrix Format' shows the result as a grid of rows and columns; 'Flattened Vector' shows all elements in a single row.",
+      "Click Calculate. The result matrix (or flattened list) is displayed together with the matrix dimensions.",
+      "Click Reset to clear all fields and start a new calculation."
+    ]
+  },
+  "faq": {
+    "heading": "Tensor product calculator FAQ",
+    "q1": "What is the difference between a tensor product and a dot product?",
+    "q1_a": "The dot product takes two vectors of equal length and returns a single number (a scalar) by summing the products of corresponding components. The tensor product takes two vectors of any lengths and returns a matrix: every component of the first vector is multiplied by every component of the second. The tensor product preserves all information from both vectors, while the dot product collapses it to one number.",
+    "q2": "Do the two vectors have to be the same length?",
+    "q2_a": "No. The vectors may have different numbers of components. If u has m components and v has n components, the result is an m × n matrix. This is one of the reasons the tensor product is more general than operations like the dot product, which requires equal lengths.",
+    "q3": "Is the tensor product commutative?",
+    "q3_a": "No. The tensor product u ⊗ v is generally different from v ⊗ u. The first vector always indexes the rows, and the second always indexes the columns, so swapping the order transposes and potentially reshapes the result matrix.",
+    "q4": "What does the flattened vector format represent?",
+    "q4_a": "The flattened vector is simply the m × n result matrix read row by row into a single list of mn numbers. It is useful when you need to pass the tensor product as a 1-D input to another computation, such as a machine learning model that expects a fixed-size feature vector.",
+    "q5": "How is the tensor product used in quantum computing?",
+    "q5_a": "In quantum mechanics, the state of a multi-particle system is described by the tensor product of the individual particle states. For two qubits each in state [a, b] and [c, d], the combined system state is their tensor product, a 4-component vector. This formalism is what gives quantum computers their exponentially growing state space.",
+    "q6": "What is the connection to the Kronecker product?",
+    "q6_a": "The Kronecker product is a generalisation of the tensor product for matrices. When the inputs are vectors (treated as column matrices), the tensor product u ⊗ v equals the Kronecker product of u (column) with vᵀ (row), producing the same m × n matrix. For general matrices the Kronecker product creates a block matrix."
+  }
+}
