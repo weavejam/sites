@@ -1,0 +1,113 @@
+{
+  "title": "Paritätsbit-Rechner",
+  "tagline": "Berechnen Sie gerade oder ungerade Paritätsbits für Binärdaten und prüfen Sie empfangene Daten auf Ein-Bit-Übertragungsfehler.",
+  "intro": "Geben Sie Binärdaten ein, wählen Sie gerade oder ungerade Parität, und erhalten Sie sofort das Paritätsbit, den vollständigen Übertragungsstring und optional die Validierung der empfangenen Daten.",
+  "type": {
+    "even": "Gerade Parität",
+    "odd": "Ungerade Parität"
+  },
+  "field": {
+    "binaryData": "Binärdaten",
+    "parityType": "Paritätstyp",
+    "receivedData": "Empfangene Daten (zur Validierung)",
+    "placeholder": {
+      "binaryData": "z. B. 1010 oder 11001100",
+      "receivedData": "z. B. 10100 (enthält das Paritätsbit)"
+    }
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "onesCount": "Anzahl der 1en in den Daten",
+    "parityBit": "Paritätsbit",
+    "transmissionString": "Übertragungsstring (Daten + Paritätsbit)",
+    "validationHeading": "Validierungsergebnis",
+    "valid": "Gültig — Paritätsprüfung bestanden, kein Fehler erkannt.",
+    "invalid": "Fehler erkannt — Paritätsprüfung fehlgeschlagen, vermutlich wurde ein Bit gekippt."
+  },
+  "error": {
+    "invalidBinary": "Binärdaten dürfen nur 0 und 1 enthalten.",
+    "invalidReceived": "Empfangene Daten dürfen nur 0 und 1 enthalten.",
+    "emptyData": "Bitte Binärdaten eingeben."
+  },
+  "about": {
+    "heading": "Über den Paritätsbit-Rechner",
+    "body": "Fehlererkennung ist ein Grundpfeiler zuverlässiger digitaler Kommunikation. Immer wenn Daten über einen störanfälligen Kanal übertragen werden — sei es ein USB-Kabel, eine WLAN-Verbindung, ein Festplatten-Lesekopf oder eine Satellitenverbindung über große Distanz — besteht die Wahrscheinlichkeit, dass ein Bit unterwegs beschädigt wird. Die Paritätsprüfung ist der einfachste Mechanismus, um solche Fehler zu erkennen, und obwohl sie alt ist, bleibt sie in eingebetteten Systemen, seriellen Kommunikationsprotokollen und in der Informatikausbildung relevant.\n\nEin Paritätsbit ist ein einzelnes Bit, das an einen Datenblock angehängt wird. Sein Wert wird so gewählt, dass die Gesamtanzahl der 1-Bits im Block (einschließlich des Paritätsbits) einer bestimmten Regel entspricht. Bei gerader Parität muss die Gesamtzahl der 1en gerade sein. Bei ungerader Parität muss sie ungerade sein. Der Sender wendet die Regel an, überträgt Daten plus Paritätsbit, und der Empfänger zählt die 1en erneut. Verstößt die Anzahl gegen die Regel, wurde mindestens ein Bit beschädigt.\n\nBerechnung des geraden Paritätsbits: Zählen Sie die 1en in den Originaldaten. Ist die Anzahl bereits gerade, ist das Paritätsbit 0 (keine zusätzliche 1 nötig). Ist die Anzahl ungerade, ist das Paritätsbit 1 (um die Summe gerade zu machen). Bei ungerader Parität ist die Logik umgekehrt: Ist die Anzahl bereits ungerade, ist das Paritätsbit 0; ist die Anzahl gerade, ist das Paritätsbit 1.\n\nBeispiel mit gerader Parität: data = 1011. Es enthält drei 1en — ungerade. Um die Gesamtzahl gerade zu machen, gerade Paritätsbit = 1. Übertragungsstring: 10111. Der Empfänger zählt vier 1en — gerade — und erklärt die Nachricht für gültig. Wurde ein Bit gekippt und der Empfänger erhält 10110, zählt er drei 1en — ungerade — und meldet einen Fehler.\n\nBeispiel mit ungerader Parität: data = 1011. Drei 1en — bereits ungerade. Um die Gesamtzahl ungerade zu halten, ungerade Paritätsbit = 0. Übertragungsstring: 10110. Der Empfänger zählt drei 1en — ungerade — und erklärt die Nachricht für gültig. Wurde ein Bit gekippt und der Empfänger erhält 11110, zählt er vier 1en — gerade — und meldet einen Fehler.\n\nSowohl gerade als auch ungerade Parität erkennen jeden Ein-Bit-Fehler. Beide übersehen Zwei-Bit-Fehler, da das Kippen von zwei Bits die Parität erhält. Für stärkere Fehlererkennung bei mehreren Bits verwenden Ingenieure leistungsfähigere Codes: Hamming-Codes können außerdem Ein-Bit-Fehler korrigieren; CRC (Cyclic Redundancy Check) erkennt Burst-Fehler; Reed-Solomon-Codes werden in Speichermedien wie CDs und QR-Codes verwendet.\n\nDieser Rechner unterstützt beide Paritätsarten in einer einzigen Oberfläche. Er prüft, ob die Eingabe binär ist, berechnet das Paritätsbit, erzeugt den Übertragungsstring und validiert optional einen empfangenen String, indem er prüft, ob die Gesamtzahl der 1en der erwarteten Paritätsregel entspricht."
+  },
+  "examples": {
+    "heading": "Beispiele für Paritätsbits",
+    "intro": "Berechnungen für gerade und ungerade Paritätsbits bei verschiedenen Binäreingaben.",
+    "colInput": "Binärdaten",
+    "colOutput": "Paritätsbit (gerade / ungerade)",
+    "colNote": "Übertragungsstring",
+    "items": [
+      {
+        "input": "1010",
+        "output": "0 (gerade) / 1 (ungerade)",
+        "note": "Zwei 1en: gerade → 0; für eine ungerade Gesamtzahl → 1"
+      },
+      {
+        "input": "1110",
+        "output": "1 (gerade) / 0 (ungerade)",
+        "note": "Drei 1en: braucht gerade Gesamtzahl → 1; bereits ungerade → 0"
+      },
+      {
+        "input": "11001100",
+        "output": "0 (gerade) / 1 (ungerade)",
+        "note": "Vier 1en (gerade): gerade Parität = 0; ungerade Parität = 1"
+      },
+      {
+        "input": "10110100",
+        "output": "0 (gerade) / 1 (ungerade)",
+        "note": "Vier 1en (gerade): gerade Parität = 0 (bereits gerade); ungerade Parität = 1 (um die Gesamtzahl ungerade zu machen)"
+      },
+      {
+        "input": "1111111",
+        "output": "1 (gerade) / 0 (ungerade)",
+        "note": "Sieben 1en (ungerade): gerade Parität = 1; ungerade Parität = 0"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Paritätsbit-Rechner",
+    "steps": [
+      "Geben Sie die Binärzeichenfolge im Feld Binärdaten ein — nur 0 und 1 sind zulässig.",
+      "Wählen Sie im Paritätstyp-Auswahlfeld Gerade Parität oder Ungerade Parität.",
+      "Klicken Sie auf Berechnen, um das Paritätsbit, die Gesamtzahl der 1en und den vollständigen Übertragungsstring anzuzeigen.",
+      "Optional können Sie einen empfangenen String (Daten + Paritätsbit) in Empfangene Daten einfügen und anhand der gewählten Paritätsregel validieren.",
+      "Klicken Sie auf Zurücksetzen, um alle Felder zu leeren und eine neue Berechnung zu starten."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Was ist ein Paritätsbit?",
+        "a": "Ein Paritätsbit ist ein zusätzliches Bit, das an einen Block von Binärdaten angehängt wird. Sein Wert wird so gesetzt, dass die Gesamtzahl der 1en in der kombinierten Folge einer Paritätsregel entspricht — entweder gerade (die Gesamtzahl der 1en ist gerade) oder ungerade (die Gesamtzahl der 1en ist ungerade). Damit kann der Empfänger Ein-Bit-Übertragungsfehler erkennen."
+      },
+      {
+        "q": "Worin liegt der Unterschied zwischen gerader und ungerader Parität?",
+        "a": "Gerade Parität stellt sicher, dass die Gesamtzahl der 1-Bits (Daten + Paritätsbit) gerade ist; ungerade Parität stellt sicher, dass sie ungerade ist. Beide erkennen jeden Ein-Bit-Fehler gleich gut. Ungerade Parität wird manchmal bevorzugt, weil sie bei allen Null-Datenbits ein von Null verschiedenes Paritätsbit garantiert und so festhängende Null-Fehler besser erkennbar macht."
+      },
+      {
+        "q": "Kann Parität Mehrbitfehler erkennen?",
+        "a": "Parität kann jede ungerade Anzahl von Bitfehlern (1, 3, 5, ...) erkennen, übersieht aber jede gerade Anzahl gleichzeitiger Fehler (2, 4, ...). In der Praxis sind Zwei-Bit-Fehler selten, aber möglich. Für stärkeren Schutz verwenden Sie Hamming-Codes, CRC oder Reed-Solomon-Codes."
+      },
+      {
+        "q": "Wo wird Paritätsprüfung in realen Systemen verwendet?",
+        "a": "Parität wird in DRAM-Speicher verwendet (ECC-Speicher nutzt erweiterte Parität/Hamming-Codes), in serieller Kommunikation (UART-Paritätsbit in RS-232 und RS-485), in IDE- und SCSI-Speicherschnittstellen sowie in vielen eingebetteten Protokollen. Sie ist auch ein grundlegendes Konzept in Informatik- und Digitaltechnik-Kursen."
+      },
+      {
+        "q": "Warum steht das Paritätsbit am Ende der Daten?",
+        "a": "Dieser Rechner hängt das Paritätsbit an das Ende des Datenstrings an, was in einfachen Rahmungen die gebräuchlichste Konvention ist. Einige Protokolle (etwa bestimmte UART-Konfigurationen) verwenden das Paritätsbit als separates Rahmenfeld. Die Bitposition beeinflusst nicht die Fehlererkennung, sondern nur das Protokoll-Frame."
+      },
+      {
+        "q": "Wie hängt Parität mit Hamming-Codes zusammen?",
+        "a": "Ein Hamming-Code kann als Satz mehrerer Paritätsbits verstanden werden, die jeweils unterschiedliche Teilmengen der Datenbits abdecken. Während ein einzelnes Paritätsbit nur Fehler erkennen kann, können Hamming-Codes durch Eingrenzen der fehlerhaften Bitposition einen Ein-Bit-Fehler sowohl erkennen als auch korrigieren. Deshalb werden sie häufig in ECC-Speicher und Datenspeichern eingesetzt."
+      }
+    ]
+  }
+}

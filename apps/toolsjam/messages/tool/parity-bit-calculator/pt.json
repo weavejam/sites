@@ -1,0 +1,113 @@
+{
+  "title": "Calculadora de bit de paridade",
+  "tagline": "Calcule bits de paridade par ou ímpar para dados binários e valide dados recebidos para detectar erros de transmissão de um único bit.",
+  "intro": "Digite dados binários, escolha paridade par ou ímpar e obtenha instantaneamente o bit de paridade, a string de transmissão completa e a validação opcional dos dados recebidos.",
+  "type": {
+    "even": "Paridade par",
+    "odd": "Paridade ímpar"
+  },
+  "field": {
+    "binaryData": "Dados binários",
+    "parityType": "Tipo de paridade",
+    "receivedData": "Dados recebidos (para validação)",
+    "placeholder": {
+      "binaryData": "ex.: 1010 ou 11001100",
+      "receivedData": "ex.: 10100 (inclui o bit de paridade)"
+    }
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultado",
+    "onesCount": "Número de 1 nos dados",
+    "parityBit": "Bit de paridade",
+    "transmissionString": "String de transmissão (dados + bit de paridade)",
+    "validationHeading": "Resultado da validação",
+    "valid": "Válido — a verificação de paridade foi aprovada e nenhum erro foi detectado.",
+    "invalid": "Erro detectado — a verificação de paridade falhou; provavelmente ocorreu uma inversão de bit."
+  },
+  "error": {
+    "invalidBinary": "Os dados binários devem conter apenas 0 e 1.",
+    "invalidReceived": "Os dados recebidos devem conter apenas 0 e 1.",
+    "emptyData": "Digite dados binários."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de bit de paridade",
+    "body": "A detecção de erros é um pilar da comunicação digital confiável. Sempre que os dados são transmitidos por um canal ruidoso — seja um cabo USB, um link Wi‑Fi, a cabeça de leitura de um disco rígido ou uma conexão via satélite de longa distância — existe a possibilidade de um bit ser corrompido durante o trajeto. A verificação de paridade é o mecanismo mais simples para detectar esse tipo de erro e, apesar da idade, continua relevante em sistemas embarcados, protocolos de comunicação serial e no ensino de ciência da computação.\n\nUm bit de paridade é um bit único adicionado a um bloco de dados. Seu valor é escolhido para que o número total de bits 1 no bloco (incluindo o próprio bit de paridade) siga uma regra específica. Na paridade par, o total de 1 deve ser par. Na paridade ímpar, o total de 1 deve ser ímpar. O emissor aplica a regra, transmite os dados com o bit de paridade e o receptor conta os 1 novamente. Se a contagem violar a regra, pelo menos um bit foi corrompido.\n\nCálculo do bit de paridade par: conte os 1 nos dados originais. Se a contagem já for par, o bit de paridade é 0 (nenhum 1 adicional é necessário). Se a contagem for ímpar, o bit de paridade é 1 (para tornar o total par). Na paridade ímpar, a lógica é invertida: se a contagem já for ímpar, o bit de paridade é 0; se a contagem for par, o bit de paridade é 1.\n\nExemplo com paridade par: data = 1011. Ele contém três 1 — ímpar. Para tornar o total par, bit de paridade par = 1. String de transmissão: 10111. O receptor conta quatro 1 — par — e declara a mensagem válida. Se um bit for invertido e o receptor receber 10110, ele conta três 1 — ímpar — e sinaliza um erro.\n\nExemplo com paridade ímpar: data = 1011. Três 1 — já é ímpar. Para manter o total ímpar, bit de paridade ímpar = 0. String de transmissão: 10110. O receptor conta três 1 — ímpar — e declara válida. Se um bit for invertido e o receptor receber 11110, ele conta quatro 1 — par — e sinaliza um erro.\n\nTanto a paridade par quanto a ímpar detectam qualquer erro de um único bit. Ambas deixam passar erros de dois bits, já que inverter dois bits preserva a paridade. Para detecção mais forte de erros múltiplos, engenheiros usam códigos mais poderosos: códigos de Hamming também podem corrigir um erro de um bit; CRC (Verificação de Redundância Cíclica) detecta erros em rajada; e códigos Reed-Solomon são usados em mídias como CDs e códigos QR.\n\nEsta calculadora suporta os dois tipos de paridade em uma única interface. Ela valida se a entrada é binária, calcula o bit de paridade, gera a string de transmissão e, opcionalmente, valida uma string recebida verificando se a contagem total de 1 corresponde à regra de paridade esperada."
+  },
+  "examples": {
+    "heading": "Exemplos de bits de paridade",
+    "intro": "Cálculos de bits de paridade par e ímpar para várias entradas binárias.",
+    "colInput": "Dados binários",
+    "colOutput": "Bit de paridade (par / ímpar)",
+    "colNote": "String de transmissão",
+    "items": [
+      {
+        "input": "1010",
+        "output": "0 (par) / 1 (ímpar)",
+        "note": "Dois 1: par → 0; para total ímpar → 1"
+      },
+      {
+        "input": "1110",
+        "output": "1 (par) / 0 (ímpar)",
+        "note": "Três 1: precisa de total par → 1; já é ímpar → 0"
+      },
+      {
+        "input": "11001100",
+        "output": "0 (par) / 1 (ímpar)",
+        "note": "Quatro 1 (par): paridade par = 0; paridade ímpar = 1"
+      },
+      {
+        "input": "10110100",
+        "output": "0 (par) / 1 (ímpar)",
+        "note": "Quatro 1 (par): paridade par = 0 (já é par); paridade ímpar = 1 (para tornar o total ímpar)"
+      },
+      {
+        "input": "1111111",
+        "output": "1 (par) / 0 (ímpar)",
+        "note": "Sete 1 (ímpar): paridade par = 1; paridade ímpar = 0"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de bit de paridade",
+    "steps": [
+      "Digite a sequência binária no campo Dados binários — apenas 0 e 1 são aceitos.",
+      "Escolha Paridade par ou Paridade ímpar no seletor Tipo de paridade.",
+      "Clique em Calcular para ver o bit de paridade, a contagem total de 1 e a string de transmissão completa.",
+      "Opcionalmente, cole uma string recebida (dados + bit de paridade) em Dados recebidos para validá-la pela regra de paridade selecionada.",
+      "Clique em Redefinir para limpar todos os campos e iniciar um novo cálculo."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "items": [
+      {
+        "q": "O que é um bit de paridade?",
+        "a": "Um bit de paridade é um bit adicional anexado a um bloco de dados binários. Seu valor é definido para que o número total de 1 na sequência combinada siga uma regra de paridade — par (o total de 1 é par) ou ímpar (o total de 1 é ímpar). Isso permite que o receptor detecte erros de transmissão de um único bit."
+      },
+      {
+        "q": "Qual é a diferença entre paridade par e ímpar?",
+        "a": "A paridade par garante que a contagem total de bits 1 (dados + bit de paridade) seja par; a paridade ímpar garante que seja ímpar. Ambas detectam qualquer erro de um único bit com a mesma eficiência. A paridade ímpar às vezes é preferida porque garante um bit de paridade não zero quando todos os bits de dados são zero, ajudando a detectar falhas travadas em zero."
+      },
+      {
+        "q": "A paridade pode detectar erros de múltiplos bits?",
+        "a": "A paridade pode detectar qualquer número ímpar de erros de bit (1, 3, 5, ...) mas não detecta qualquer número par de erros simultâneos (2, 4, ...). Na prática, erros de dois bits são raros, mas possíveis. Para proteção mais forte, use códigos de Hamming, CRC ou códigos Reed-Solomon."
+      },
+      {
+        "q": "Onde a verificação de paridade é usada em sistemas reais?",
+        "a": "A paridade é usada em memória DRAM (memória ECC usa paridade estendida/códigos de Hamming), em comunicação serial (bit de paridade UART em RS-232 e RS-485), em interfaces de armazenamento IDE e SCSI e em muitos protocolos embarcados. Também é um conceito fundamental ensinado em ciência da computação e eletrônica digital."
+      },
+      {
+        "q": "Por que o bit de paridade fica no final dos dados?",
+        "a": "Esta calculadora anexa o bit de paridade ao final da string de dados, que é a convenção mais comum em formatos simples de enquadramento. Alguns protocolos (como certas configurações de UART) usam o bit de paridade como um campo separado da trama. A posição do bit não afeta a capacidade de detecção de erros, apenas o enquadramento do protocolo."
+      },
+      {
+        "q": "Como a paridade se relaciona com os códigos de Hamming?",
+        "a": "Um código de Hamming pode ser visto como um conjunto de vários bits de paridade, cada um cobrindo um subconjunto diferente dos bits de dados. Enquanto um único bit de paridade só detecta erros, os códigos de Hamming podem detectar e corrigir um erro de um bit ao triangularem qual posição está com defeito. Isso os torna amplamente usados em memória ECC e em armazenamento de dados."
+      }
+    ]
+  }
+}

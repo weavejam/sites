@@ -1,0 +1,113 @@
+{
+  "title": "Calculateur de bit de parité",
+  "tagline": "Calculez des bits de parité paire ou impaire pour des données binaires et validez les données reçues afin de détecter les erreurs de transmission d’un seul bit.",
+  "intro": "Saisissez des données binaires, choisissez une parité paire ou impaire, et obtenez instantanément le bit de parité, la chaîne de transmission complète et la validation optionnelle des données reçues.",
+  "type": {
+    "even": "Parité paire",
+    "odd": "Parité impaire"
+  },
+  "field": {
+    "binaryData": "Données binaires",
+    "parityType": "Type de parité",
+    "receivedData": "Données reçues (pour validation)",
+    "placeholder": {
+      "binaryData": "p. ex. 1010 ou 11001100",
+      "receivedData": "p. ex. 10100 (inclut le bit de parité)"
+    }
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultat",
+    "onesCount": "Nombre de 1 dans les données",
+    "parityBit": "Bit de parité",
+    "transmissionString": "Chaîne de transmission (données + bit de parité)",
+    "validationHeading": "Résultat de la validation",
+    "valid": "Valide — la vérification de parité est passée, aucune erreur détectée.",
+    "invalid": "Erreur détectée — la vérification de parité a échoué, un basculement de bit a probablement eu lieu."
+  },
+  "error": {
+    "invalidBinary": "Les données binaires doivent contenir uniquement des 0 et des 1.",
+    "invalidReceived": "Les données reçues doivent contenir uniquement des 0 et des 1.",
+    "emptyData": "Veuillez saisir des données binaires."
+  },
+  "about": {
+    "heading": "À propos du calculateur de bit de parité",
+    "body": "La détection d’erreurs est un pilier des communications numériques fiables. Dès lors que des données sont transmises sur un canal bruité — qu’il s’agisse d’un câble USB, d’un lien Wi‑Fi, d’une tête de lecture de disque dur ou d’une liaison satellite longue distance — il existe une probabilité qu’un bit soit corrompu pendant le trajet. La vérification de parité est le mécanisme le plus simple pour détecter ce type d’erreur et, malgré son ancienneté, elle reste pertinente dans les systèmes embarqués, les protocoles de communication série et l’enseignement de l’informatique.\n\nUn bit de parité est un bit unique ajouté à un bloc de données. Sa valeur est choisie de façon à ce que le nombre total de bits à 1 dans le bloc (y compris le bit de parité lui-même) respecte une règle précise. En parité paire, le total de 1 doit être pair. En parité impaire, le total de 1 doit être impair. L’émetteur applique la règle, transmet les données avec le bit de parité, puis le récepteur recompte les 1. Si le total ne respecte pas la règle, au moins un bit a été corrompu.\n\nCalcul du bit de parité paire : comptez les 1 dans les données d’origine. Si le total est déjà pair, le bit de parité vaut 0 (aucun 1 supplémentaire n’est nécessaire). Si le total est impair, le bit de parité vaut 1 (pour rendre le total pair). Pour la parité impaire, la logique est inversée : si le total est déjà impair, le bit de parité vaut 0 ; si le total est pair, le bit de parité vaut 1.\n\nExemple avec parité paire : data = 1011. Il contient trois 1 — impair. Pour rendre le total pair, le bit de parité paire = 1. Chaîne de transmission : 10111. Le récepteur compte quatre 1 — pair — et déclare le message valide. Si un bit a été inversé et que le récepteur reçoit 10110, il compte trois 1 — impair — et signale une erreur.\n\nExemple avec parité impaire : data = 1011. Trois 1 — déjà impair. Pour conserver un total impair, le bit de parité impaire = 0. Chaîne de transmission : 10110. Le récepteur compte trois 1 — impair — et déclare le message valide. Si un bit a été inversé et que le récepteur reçoit 11110, il compte quatre 1 — pair — et signale une erreur.\n\nLa parité paire et la parité impaire détectent toutes deux n’importe quelle erreur d’un seul bit. Elles ne détectent pas les erreurs de deux bits, car inverser deux bits préserve la parité. Pour une détection plus robuste des erreurs multiples, on utilise des codes plus puissants : les codes de Hamming peuvent aussi corriger une erreur d’un bit ; le CRC (contrôle de redondance cyclique) détecte les erreurs en rafale ; et les codes Reed-Solomon sont utilisés sur des supports comme les CD et les QR codes.\n\nCe calculateur prend en charge les deux types de parité dans une seule interface. Il vérifie que l’entrée est binaire, calcule le bit de parité, génère la chaîne de transmission et peut aussi valider une chaîne reçue en vérifiant si le nombre total de 1 correspond à la règle de parité attendue."
+  },
+  "examples": {
+    "heading": "Exemples de bits de parité",
+    "intro": "Calculs de bits de parité paire et impaire pour différentes entrées binaires.",
+    "colInput": "Données binaires",
+    "colOutput": "Bit de parité (pair / impair)",
+    "colNote": "Chaîne de transmission",
+    "items": [
+      {
+        "input": "1010",
+        "output": "0 (pair) / 1 (impair)",
+        "note": "Deux 1 : pair → 0 ; pour un total impair → 1"
+      },
+      {
+        "input": "1110",
+        "output": "1 (pair) / 0 (impair)",
+        "note": "Trois 1 : besoin d’un total pair → 1 ; déjà impair → 0"
+      },
+      {
+        "input": "11001100",
+        "output": "0 (pair) / 1 (impair)",
+        "note": "Quatre 1 (pair) : parité paire = 0 ; parité impaire = 1"
+      },
+      {
+        "input": "10110100",
+        "output": "0 (pair) / 1 (impair)",
+        "note": "Quatre 1 (pair) : parité paire = 0 (déjà pair) ; parité impaire = 1 (pour rendre le total impair)"
+      },
+      {
+        "input": "1111111",
+        "output": "1 (pair) / 0 (impair)",
+        "note": "Sept 1 (impair) : parité paire = 1 ; parité impaire = 0"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de bit de parité",
+    "steps": [
+      "Saisissez la chaîne binaire dans le champ Données binaires — seuls les 0 et les 1 sont acceptés.",
+      "Choisissez Parité paire ou Parité impaire dans le sélecteur Type de parité.",
+      "Cliquez sur Calculer pour afficher le bit de parité, le nombre total de 1 et la chaîne de transmission complète.",
+      "Vous pouvez également coller une chaîne reçue (données + bit de parité) dans Données reçues pour la valider selon la règle de parité choisie.",
+      "Cliquez sur Réinitialiser pour effacer tous les champs et recommencer un nouveau calcul."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Qu’est-ce qu’un bit de parité ?",
+        "a": "Un bit de parité est un bit supplémentaire ajouté à un bloc de données binaires. Sa valeur est définie de façon à ce que le nombre total de 1 dans la séquence combinée respecte une règle de parité — paire (le total de 1 est pair) ou impaire (le total de 1 est impair). Il permet au récepteur de détecter les erreurs de transmission d’un seul bit."
+      },
+      {
+        "q": "Quelle est la différence entre parité paire et parité impaire ?",
+        "a": "La parité paire garantit que le nombre total de bits à 1 (données + bit de parité) est pair ; la parité impaire garantit qu’il est impair. Les deux détectent aussi bien toute erreur d’un seul bit. La parité impaire est parfois préférée car elle garantit un bit de parité non nul lorsque tous les bits de données sont à zéro, ce qui aide à détecter les défauts bloqués à zéro."
+      },
+      {
+        "q": "La parité peut-elle détecter des erreurs de plusieurs bits ?",
+        "a": "La parité peut détecter tout nombre impair d’erreurs de bit (1, 3, 5, …) mais manque tout nombre pair d’erreurs simultanées (2, 4, …). En pratique, les erreurs de deux bits sont rares mais possibles. Pour une protection plus forte, utilisez des codes de Hamming, le CRC ou les codes Reed-Solomon."
+      },
+      {
+        "q": "Où la vérification de parité est-elle utilisée dans les systèmes réels ?",
+        "a": "La parité est utilisée dans la mémoire DRAM (la mémoire ECC utilise une parité étendue/des codes de Hamming), dans les communications série (bit de parité UART en RS-232 et RS-485), dans les interfaces de stockage IDE et SCSI, ainsi que dans de nombreux protocoles embarqués. C’est aussi un concept fondamental enseigné en informatique et en électronique numérique."
+      },
+      {
+        "q": "Pourquoi le bit de parité est-il placé à la fin des données ?",
+        "a": "Ce calculateur ajoute le bit de parité à la fin de la chaîne de données, ce qui est la convention la plus courante dans les formats de trame simples. Certains protocoles (comme certaines configurations UART) utilisent le bit de parité comme champ de trame séparé. L’emplacement du bit n’affecte pas la capacité de détection d’erreurs, seulement l’encapsulation du protocole."
+      },
+      {
+        "q": "Quel est le lien entre parité et codes de Hamming ?",
+        "a": "Un code de Hamming peut être vu comme un ensemble de plusieurs bits de parité, chacun couvrant un sous-ensemble différent des bits de données. Alors qu’un seul bit de parité ne peut que détecter les erreurs, les codes de Hamming peuvent détecter et corriger une erreur d’un seul bit en triangulant la position fautive. C’est pourquoi ils sont largement utilisés en mémoire ECC et dans le stockage de données."
+      }
+    ]
+  }
+}
