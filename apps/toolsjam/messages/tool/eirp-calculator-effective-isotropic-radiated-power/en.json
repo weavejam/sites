@@ -1,0 +1,107 @@
+{
+  "title": "EIRP Calculator – Effective Isotropic Radiated Power",
+  "tagline": "Calculate Effective Isotropic Radiated Power (EIRP) from transmitter power, cable loss, and antenna gain for RF, Wi-Fi, and satellite systems.",
+  "intro": "Enter the transmitter output power, total cable and connector loss, and antenna gain in dBi to get EIRP in dBm and watts.",
+  "field": {
+    "power": "Transmitter Power",
+    "powerUnit": "Power Unit",
+    "cableLoss": "Cable & Connector Loss (dB)",
+    "antennaGain": "Antenna Gain (dBi)"
+  },
+  "placeholder": {
+    "power": "Enter power value",
+    "cableLoss": "Enter loss in dB",
+    "antennaGain": "Enter gain in dBi"
+  },
+  "powerUnit": {
+    "W": "W",
+    "dBm": "dBm"
+  },
+  "button": {
+    "calculate": "Calculate EIRP",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "EIRP Result",
+    "eirpDbm": "EIRP (dBm)",
+    "eirpW": "EIRP (W)",
+    "eirpDbW": "EIRP (dBW)",
+    "netGain": "Net Gain (Antenna Gain − Cable Loss)"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers for all fields.",
+    "negativePower": "Transmitter power in watts must be greater than zero."
+  },
+  "about": {
+    "heading": "About the EIRP Calculator",
+    "body": "Effective Isotropic Radiated Power (EIRP) is the single most important figure of merit for a transmitting antenna system. It tells you how much power an isotropic antenna would need to radiate in order to produce the same signal strength in the direction of maximum gain as your actual system. EIRP is the product of the transmitter power delivered to the antenna and the antenna's gain relative to an isotropic radiator, after subtracting any cable, connector, and splitter losses between the transmitter output port and the antenna input port.\n\nThe formula in logarithmic (dB) form is: EIRP (dBm) = P_tx (dBm) − L_cable (dB) + G_antenna (dBi). Converting transmitter power to dBm from watts is straightforward: P(dBm) = 10 × log₁₀(P_watts × 1000). Converting the EIRP result back to watts: P(W) = 10^(EIRP_dBm / 10) / 1000. The dBW form is simply EIRP(dBW) = EIRP(dBm) − 30.\n\nEIRP matters because regulatory bodies—the FCC in the United States, ETSI in Europe, and their equivalents worldwide—specify maximum EIRP limits for every type of wireless device. Wi-Fi access points operating in the 2.4 GHz band are typically limited to 100 mW (20 dBm) EIRP in Europe. VSAT satellite terminals must meet EIRP flux-density limits to avoid interfering with adjacent satellites. FM broadcast stations are licensed by power and antenna height, which together determine EIRP and the coverage area.\n\nFor wireless link budgets, EIRP is the starting point. It drives the free-space path loss calculation, the received signal level at the far end, and ultimately the link margin—the safety factor against fading and interference. A 3 dB increase in EIRP doubles the received power or, equivalently, extends the range by a factor of √2 under free-space conditions. Engineers designing cellular base stations, point-to-point microwave links, RFID readers, and radar systems all rely on EIRP as the common currency for comparing transmit-side performance.\n\nHigh-gain antennas are a particularly cost-effective way to increase EIRP because their gain comes free of regulatory scrutiny in many applications—a 20 dBi parabolic dish adds 20 dB to EIRP without increasing transmitter power, heat dissipation, or battery drain. Cable loss, on the other hand, is pure waste: every dB of insertion loss forces the transmitter to work harder or the coverage to shrink. Minimising cable run length, using low-loss cable types, and ensuring that connectors are properly torqued and weatherproofed are standard practices for maintaining high EIRP in field deployments.\n\nThis calculator accepts transmitter power in either watts or dBm and returns EIRP in dBm, dBW, and watts simultaneously, giving you the flexibility to work in whichever unit system your regulatory filing, data sheet, or link-budget spreadsheet requires."
+  },
+  "examples": {
+    "heading": "EIRP Calculator Examples",
+    "intro": "Three realistic wireless system scenarios showing how transmitter power, cable loss, and antenna gain combine into EIRP.",
+    "colInput": "System",
+    "colOutput": "EIRP",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "Wi-Fi AP: P_tx = 100 mW (0.1 W), cable loss = 3 dB, antenna gain = 3 dBi",
+        "output": "20.0 dBm = 100 mW",
+        "note": "P_tx = 20 dBm; EIRP = 20 − 3 + 3 = 20 dBm. This exactly meets the EU 20 dBm indoor EIRP limit for 2.4 GHz Wi-Fi."
+      },
+      {
+        "input": "FM transmitter: P_tx = 1000 W, cable loss = 2 dB, antenna gain = 6 dBi",
+        "output": "64.0 dBm ≈ 2512 W",
+        "note": "P_tx = 10 × log₁₀(1 000 000) = 60 dBm exactly. EIRP = 60 − 2 + 6 = 64.0 dBm. A typical community FM station; coverage radius ~20 km in flat terrain."
+      },
+      {
+        "input": "Small VSAT terminal: P_tx = 1 W, cable loss = 0.5 dB, antenna gain = 14 dBi (0.3 m dish)",
+        "output": "43.5 dBm ≈ 22.4 W",
+        "note": "P_tx = 30 dBm; EIRP = 30 − 0.5 + 14 = 43.5 dBm. Compact VSAT terminal with a small dish meeting typical satellite flux-density limits."
+      },
+      {
+        "input": "Bluetooth LE: P_tx = 1 mW (0 dBm), cable loss = 0 dB, antenna gain = 0 dBi (chip antenna)",
+        "output": "0 dBm = 1 mW",
+        "note": "Minimum-complexity BLE design. Class 3 device; typical indoor range 1–10 m."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the EIRP Calculator",
+    "steps": [
+      "Enter the transmitter output power and select the unit — watts (W) for direct power readings from a data sheet, or dBm for values taken from a spectrum analyser or link-budget table.",
+      "Enter the total cable and connector loss in dB. Include all sources between the transmitter output port and the antenna feed point: coax cable, connectors, lightning arrestors, and splitters.",
+      "Enter the antenna gain in dBi. Use the manufacturer's rated gain at your operating frequency and the polarisation angle of your link.",
+      "Click Calculate EIRP. The tool returns EIRP in dBm, dBW, and watts. Check the result against the applicable regulatory EIRP limit for your frequency band and country.",
+      "To maximise EIRP within the regulatory limit, increase antenna gain or reduce cable loss — both are more cost-effective than increasing transmitter power, which raises heat dissipation and power consumption."
+    ]
+  },
+  "faq": {
+    "heading": "EIRP Calculator FAQ",
+    "items": [
+      {
+        "q": "What is the difference between EIRP and ERP?",
+        "a": "EIRP (Effective Isotropic Radiated Power) references gain relative to an isotropic antenna (dBi), while ERP (Effective Radiated Power) references gain relative to a half-wave dipole (dBd). Because a dipole has 2.15 dBi of gain, ERP is always 2.15 dB lower than EIRP for the same system. Broadcasting regulators often use ERP, while microwave and satellite engineers use EIRP."
+      },
+      {
+        "q": "How do I convert transmitter power from watts to dBm?",
+        "a": "Use P(dBm) = 10 × log₁₀(P_watts × 1000). For example, 1 W = 10 × log₁₀(1000) = 30 dBm; 0.1 W = 20 dBm; 10 W = 40 dBm. Conversely, P(W) = 10^(P_dBm/10) / 1000."
+      },
+      {
+        "q": "Why does cable loss reduce EIRP?",
+        "a": "Any passive element between the transmitter output and the antenna absorbs some of the transmitted power as heat. Every 1 dB of cable loss reduces EIRP by 1 dB — equivalent to halving EIRP for every 3 dB of cable loss. Using shorter, larger-diameter low-loss cable and minimising connector count directly improves EIRP."
+      },
+      {
+        "q": "What EIRP limits apply to Wi-Fi equipment?",
+        "a": "Limits vary by country and band. In the EU under ETSI EN 300 328, 2.4 GHz indoor Wi-Fi is limited to 100 mW (20 dBm) EIRP; outdoor 5 GHz channels are limited to 200 mW (23 dBm). The FCC Part 15 rules for the US allow up to 1 W (30 dBm) transmit power but cap EIRP at around 36 dBm for point-to-multipoint systems."
+      },
+      {
+        "q": "How does EIRP relate to link budget?",
+        "a": "EIRP is the starting point of a link budget: Received Power = EIRP − Free-Space Path Loss + Receive Antenna Gain − Receive System Losses. A higher EIRP directly improves received signal strength or allows you to maintain the same link margin over a longer distance. Every 6 dB increase in EIRP doubles the communication range under free-space path loss conditions."
+      },
+      {
+        "q": "Can I increase EIRP by using a higher-gain antenna beyond the regulatory limit?",
+        "a": "No. Regulators limit total EIRP, not transmitter power alone. If a regulatory filing caps EIRP at 36 dBm and you switch from a 6 dBi antenna to a 10 dBi antenna, you must reduce your transmitter power by 4 dB to stay within the limit. Using an antenna with higher gain than permitted without reducing transmitter power is an illegal modification that can result in fines and equipment seizure."
+      }
+    ]
+  }
+}

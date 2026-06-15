@@ -29,6 +29,11 @@ import { fixtures as f_dipole_calculator } from "@/tools/dipole-calculator.fixtu
 import { fixtures as f_dipole_moment_calculator } from "@/tools/dipole-moment-calculator.fixtures";
 import { fixtures as f_dispersion_calculator } from "@/tools/dispersion-calculator.fixtures";
 import { fixtures as f_dot_plot_calculator } from "@/tools/dot-plot-calculator.fixtures";
+import { fixtures as f_effectiveness_ntu_calculator } from "@/tools/effectiveness-ntu-calculator.fixtures";
+import { fixtures as f_efficiency_calculator } from "@/tools/efficiency-calculator.fixtures";
+import { fixtures as f_eirp_calculator_effective_isotropic_radiated_power } from "@/tools/eirp-calculator-effective-isotropic-radiated-power.fixtures";
+import { fixtures as f_elastic_constants_calculator } from "@/tools/elastic-constants-calculator.fixtures";
+import { fixtures as f_elastic_potential_energy_calculator } from "@/tools/elastic-potential-energy-calculator.fixtures";
 import { fixtures as f_electric_field_calculator } from "@/tools/electric-field-calculator.fixtures";
 import { fixtures as f_electric_motor_torque_calculator } from "@/tools/electric-motor-torque-calculator.fixtures";
 import { fixtures as f_electric_potential_calculator } from "@/tools/electric-potential-calculator.fixtures";
@@ -178,6 +183,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "dipole-moment-calculator": f_dipole_moment_calculator,
   "dispersion-calculator": f_dispersion_calculator,
   "dot-plot-calculator": f_dot_plot_calculator,
+  "effectiveness-ntu-calculator": f_effectiveness_ntu_calculator,
+  "efficiency-calculator": f_efficiency_calculator,
+  "eirp-calculator-effective-isotropic-radiated-power": f_eirp_calculator_effective_isotropic_radiated_power,
+  "elastic-constants-calculator": f_elastic_constants_calculator,
+  "elastic-potential-energy-calculator": f_elastic_potential_energy_calculator,
   "electric-field-calculator": f_electric_field_calculator,
   "electric-motor-torque-calculator": f_electric_motor_torque_calculator,
   "electric-potential-calculator": f_electric_potential_calculator,
