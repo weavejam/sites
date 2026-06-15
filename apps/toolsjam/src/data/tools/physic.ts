@@ -3244,4 +3244,205 @@ export const tools: ToolEntry[] = [
 
 
 
+  ,
+  {
+    id: "bohr-model-calculator",
+    category: "physic",
+    slugs: {
+      en: "bohr-model-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Bohr Model Calculator – Electron Energy & Orbit Radius",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Bohr model calculator: compute electron energy levels, orbital radius, velocity, and de Broglie wavelength for any atom using the Bohr atomic model.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "boltzmann-factor-calculator",
+    category: "physic",
+    slugs: {
+      en: "boltzmann-factor-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Boltzmann Factor Calculator for Statistical Physics",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Boltzmann factor calculator: compute e^(−E/kT), thermal energy kT, and state occupation probabilities for statistical mechanics and thermodynamics.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "boost-converter-calculator",
+    category: "physic",
+    slugs: {
+      en: "boost-converter-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Boost Converter Calculator – DC-DC Step-Up Voltage Design",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Boost converter calculator: find duty cycle, inductor ripple, peak current, and power for DC-DC step-up circuits in power electronics design.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "boyles-law-calculator",
+    category: "physic",
+    slugs: {
+      en: "boyles-law-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Boyle's Law Calculator – Gas Pressure and Volume",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Boyle's Law calculator: solve P₁V₁ = P₂V₂ for any unknown gas pressure or volume at constant temperature. Ideal for chemistry and physics problems.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "braggs-law-calculator",
+    category: "physic",
+    slugs: {
+      en: "braggs-law-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Bragg's Law Calculator – X-ray Diffraction & Crystal Spacing",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Bragg's Law calculator: solve nλ = 2d sin θ for X-ray wavelength, crystal plane spacing, Bragg angle, or diffraction order in crystallography.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  }
 ];

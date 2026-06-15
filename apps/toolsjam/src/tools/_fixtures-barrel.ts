@@ -10,6 +10,11 @@ import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-freque
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_bohr_model_calculator } from "@/tools/bohr-model-calculator.fixtures";
+import { fixtures as f_boltzmann_factor_calculator } from "@/tools/boltzmann-factor-calculator.fixtures";
+import { fixtures as f_boost_converter_calculator } from "@/tools/boost-converter-calculator.fixtures";
+import { fixtures as f_boyles_law_calculator } from "@/tools/boyles-law-calculator.fixtures";
+import { fixtures as f_braggs_law_calculator } from "@/tools/braggs-law-calculator.fixtures";
 import { fixtures as f_capacitive_reactance_calculator } from "@/tools/capacitive-reactance-calculator.fixtures";
 import { fixtures as f_capacitive_transformerless_power_supply_calculator } from "@/tools/capacitive-transformerless-power-supply-calculator.fixtures";
 import { fixtures as f_capacitor_calculator } from "@/tools/capacitor-calculator.fixtures";
@@ -189,6 +194,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "bohr-model-calculator": f_bohr_model_calculator,
+  "boltzmann-factor-calculator": f_boltzmann_factor_calculator,
+  "boost-converter-calculator": f_boost_converter_calculator,
+  "boyles-law-calculator": f_boyles_law_calculator,
+  "braggs-law-calculator": f_braggs_law_calculator,
   "capacitive-reactance-calculator": f_capacitive_reactance_calculator,
   "capacitive-transformerless-power-supply-calculator": f_capacitive_transformerless_power_supply_calculator,
   "capacitor-calculator": f_capacitor_calculator,
