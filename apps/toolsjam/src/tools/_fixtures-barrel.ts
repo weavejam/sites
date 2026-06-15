@@ -270,6 +270,11 @@ import { fixtures as f_trajectory_calculator } from "@/tools/trajectory-calculat
 import { fixtures as f_transformer_sizing_calculator } from "@/tools/transformer-sizing-calculator.fixtures";
 import { fixtures as f_transistor_biasing_calculator } from "@/tools/transistor-biasing-calculator.fixtures";
 import { fixtures as f_transmission_calculator } from "@/tools/transmission-calculator.fixtures";
+import { fixtures as f_triangle_area_calculator } from "@/tools/triangle-area-calculator.fixtures";
+import { fixtures as f_triangle_height_calculator } from "@/tools/triangle-height-calculator.fixtures";
+import { fixtures as f_triangle_inequality_theorem_calculator } from "@/tools/triangle-inequality-theorem-calculator.fixtures";
+import { fixtures as f_triangular_numbers_calculator } from "@/tools/triangular-numbers-calculator.fixtures";
+import { fixtures as f_triangular_prism_calculator } from "@/tools/triangular-prism-calculator.fixtures";
 import { fixtures as f_tukey_hsd_calculator } from "@/tools/tukey-hsd-calculator.fixtures";
 import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-envelopes-paradox-calculator.fixtures";
 import { fixtures as f_uniform_distribution_calculator } from "@/tools/uniform-distribution-calculator.fixtures";
@@ -584,6 +589,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "transformer-sizing-calculator": f_transformer_sizing_calculator,
   "transistor-biasing-calculator": f_transistor_biasing_calculator,
   "transmission-calculator": f_transmission_calculator,
+  "triangle-area-calculator": f_triangle_area_calculator,
+  "triangle-height-calculator": f_triangle_height_calculator,
+  "triangle-inequality-theorem-calculator": f_triangle_inequality_theorem_calculator,
+  "triangular-numbers-calculator": f_triangular_numbers_calculator,
+  "triangular-prism-calculator": f_triangular_prism_calculator,
   "tukey-hsd-calculator": f_tukey_hsd_calculator,
   "two-envelopes-paradox-calculator": f_two_envelopes_paradox_calculator,
   "uniform-distribution-calculator": f_uniform_distribution_calculator,
