@@ -1,0 +1,112 @@
+{
+  "title": "Calculateur du facteur de compressibilité – facteur Z pour gaz réels",
+  "tagline": "Calculez le facteur Z pour mesurer l'écart d'un gaz réel par rapport au comportement d'un gaz idéal à partir de la pression et des propriétés critiques.",
+  "intro": "Saisissez la pression de fonctionnement, la température, ainsi que la pression critique et la température critique du gaz pour calculer le facteur de compressibilité (facteur Z), la pression réduite et la température réduite.",
+  "field": {
+    "pressure": "Pression (P)",
+    "temperature": "Température (T, K)",
+    "critPressure": "Pression critique (Pc)",
+    "critTemp": "Température critique (Tc, K)"
+  },
+  "placeholder": {
+    "pressure": "p. ex. 100.0",
+    "temperature": "p. ex. 300.0",
+    "critPressure": "p. ex. 33.6",
+    "critTemp": "p. ex. 126.2"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs positives valides pour les quatre champs."
+  },
+  "result": {
+    "heading": "Résultat",
+    "z": "Facteur de compressibilité Z = {value}",
+    "reducedPressure": "Pression réduite Pr = P/Pc = {value}",
+    "reducedTemp": "Température réduite Tr = T/Tc = {value}",
+    "behavior": {
+      "below": "Z < 1 : les forces attractives dominent — le gaz occupe moins de volume que l'idéal.",
+      "above": "Z > 1 : les forces répulsives dominent — le gaz occupe plus de volume que l'idéal.",
+      "ideal": "Z ≈ 1 : comportement proche de l'idéal."
+    }
+  },
+  "formula": "Z ≈ 1 + B₀·Pr/Tr, où B₀ = 0.083 − 0.422/Tr¹·⁶ (corrélation de Pitzer-Curl)",
+  "about": {
+    "heading": "À propos du calculateur du facteur de compressibilité",
+    "body": "Le facteur de compressibilité, couramment appelé facteur Z, est une grandeur sans dimension qui mesure à quel point un gaz réel s'écarte du comportement d'un gaz idéal dans des conditions données de pression et de température. Il est défini par Z = PV/(nRT), où P est la pression, V le volume, n le nombre de moles, R la constante universelle des gaz et T la température absolue en Kelvin. Pour un gaz idéal, Z vaut exactement 1. Pour les gaz réels, Z peut être supérieur ou inférieur à 1 selon l'effet moléculaire dominant.\n\nLorsque Z est inférieur à 1, les forces intermoléculaires attractives dominent et le gaz occupe moins de volume que ne le prévoit la loi des gaz idéaux. C'est courant à pression modérée et à des températures pas trop éloignées du point critique. Lorsque Z est supérieur à 1, les forces répulsives et le volume fini des molécules deviennent dominants, ce qui se produit généralement à très haute pression. Le point critique d'un gaz — défini par sa pression critique (Pc) et sa température critique (Tc) — est le point où les phases liquide et vapeur deviennent indiscernables, et les écarts au comportement idéal sont les plus marqués.\n\nCe calculateur utilise la corrélation virielle tronquée de Pitzer-Curl pour estimer le facteur Z : Z ≈ 1 + B₀·Pr/Tr, avec Pr = P/Pc comme pression réduite, Tr = T/Tc comme température réduite, et B₀ = 0.083 − 0.422/Tr^1.6 comme fonction du deuxième coefficient du viriel. Cette corrélation suit le principe des états correspondants, selon lequel tous les gaz simples se comportent de manière similaire lorsqu'on les compare aux mêmes conditions réduites. L'approche convient pour des estimations rapides et des usages pédagogiques à pression modérée et à des températures bien au-dessus du point critique.\n\nPour les applications d'ingénierie qui exigent une plus grande précision — en particulier près du point critique ou à très haute pression — il est recommandé d'utiliser des équations d'état cubiques plus avancées, comme Peng-Robinson ou Soave-Redlich-Kwong, car elles décrivent mieux le comportement non idéal sur une large plage de conditions.\n\nConnaître le facteur Z est essentiel dans de nombreux contextes d'ingénierie. Dans la conception des gazoducs, les ingénieurs doivent tenir compte du comportement réel du gaz pour estimer correctement la capacité et les pertes de charge. En ingénierie des réservoirs pétroliers, le facteur Z est central pour les calculs de gaz en place et les prévisions de production. En conception de procédés chimiques, il influence le dimensionnement des réacteurs, la conception des échangeurs de chaleur et les calculs des équipements de séparation. Les ingénieurs environnementaux utilisent aussi des corrélations du facteur Z pour modéliser le comportement des gaz à effet de serre et des composants atmosphériques selon différentes conditions de pression et de température."
+  },
+  "examples": {
+    "heading": "Exemples de facteur de compressibilité",
+    "intro": "Gaz courants à différentes conditions de fonctionnement montrant les écarts du facteur Z par rapport au comportement idéal.",
+    "colInput": "Gaz et conditions",
+    "colOutput": "Facteur Z",
+    "colNote": "Comportement",
+    "loadMethane": "Charger le méthane (standard)",
+    "loadNitrogen": "Charger l'azote (haute pression)",
+    "loadCO2": "Charger le CO₂ (près du critique)",
+    "loadH2": "Charger H₂ (temp. élevée, Z>1)",
+    "items": [
+      {
+        "input": "Méthane : P=1.0 atm, T=298 K, Pc=45.99 atm, Tc=190.56 K",
+        "output": "Z ≈ 0.998",
+        "note": "Comportement quasi idéal aux conditions standard ; Pr est très faible, donc la loi des gaz idéaux est une excellente approximation."
+      },
+      {
+        "input": "Azote : P=100 atm, T=300 K, Pc=33.6 atm, Tc=126.2 K",
+        "output": "Z ≈ 0.976",
+        "note": "Écart modéré à haute pression ; les forces attractives réduisent légèrement le volume par rapport à la prédiction idéale."
+      },
+      {
+        "input": "CO₂ : P=70 atm, T=304 K, Pc=73.8 atm, Tc=304.2 K",
+        "output": "Z ≈ 0.68",
+        "note": "Comportement fortement non idéal près du point critique ; une forte déviation de la loi des gaz idéaux est attendue ici."
+      },
+      {
+        "input": "Hydrogène : P=100 atm, T=150 K, Pc=12.8 atm, Tc=33.2 K",
+        "output": "Z ≈ 1.08",
+        "note": "Z > 1 à température élevée relativement au point critique, car les interactions répulsives dominent sur les forces attractives."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur du facteur de compressibilité",
+    "steps": [
+      "Identifiez le gaz concerné et relevez sa pression critique (Pc) et sa température critique (Tc) dans des tables thermodynamiques ou des références d'ingénierie.",
+      "Saisissez la pression de fonctionnement (P) et la température (T en Kelvin) du gaz. Utilisez la même unité de pression pour P et Pc.",
+      "Saisissez la pression critique (Pc) et la température critique (Tc, en Kelvin) du gaz. Valeurs courantes : méthane Pc=45.99 atm Tc=190.56 K, azote Pc=33.6 atm Tc=126.2 K.",
+      "Cliquez sur Calculer. Le calculateur détermine la pression réduite Pr=P/Pc, la température réduite Tr=T/Tc et le facteur de compressibilité Z à l'aide de la corrélation de Pitzer-Curl.",
+      "Interprétez le résultat : Z≈1 signifie un comportement proche de l'idéal, Z<1 signifie que les forces attractives dominent, Z>1 signifie que les forces répulsives ou les effets de volume moléculaire dominent."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur le facteur de compressibilité",
+    "items": [
+      {
+        "q": "Que signifie un facteur de compressibilité Z = 1 ?",
+        "a": "Un facteur de compressibilité Z = 1 signifie que le gaz se comporte exactement comme un gaz idéal dans ces conditions. Le volume réel occupé par le gaz est égal au volume prédit par la loi des gaz idéaux PV = nRT. En pratique, Z = 1 est approché à basse pression et à haute température, où les forces intermoléculaires et le volume moléculaire sont négligeables par rapport à l'énergie thermique des molécules."
+      },
+      {
+        "q": "Pourquoi Z est-il parfois supérieur à 1 ?",
+        "a": "Z > 1 se produit lorsque les forces intermoléculaires répulsives ou le volume physique fini des molécules font occuper au gaz plus d'espace qu'un gaz idéal à la même pression et température. Cela arrive généralement à très haute pression, lorsque les molécules sont tellement proches que leur propre volume et les interactions répulsives deviennent significatifs. L'hydrogène et l'hélium présentent Z > 1 même à pression modérée car leurs attractions moléculaires sont très faibles."
+      },
+      {
+        "q": "Qu'est-ce que la pression critique et la température critique ?",
+        "a": "La pression critique (Pc) et la température critique (Tc) définissent le point critique d'une substance — l'ensemble unique de conditions où les phases liquide et vapeur deviennent indiscernables. Au-dessus de la température critique, aucune pression ne peut liquéfier le gaz. Ce sont des propriétés thermodynamiques fondamentales de chaque gaz et elles figurent dans les ouvrages de génie chimique. Les propriétés réduites Pr = P/Pc et Tr = T/Tc sont utilisées dans les corrélations généralisées."
+      },
+      {
+        "q": "Quelle corrélation ce calculateur utilise-t-il ?",
+        "a": "Ce calculateur utilise la corrélation virielle tronquée de Pitzer-Curl : Z ≈ 1 + B₀·Pr/Tr, où B₀ = 0.083 − 0.422/Tr^1.6. Il s'agit d'une approximation du premier ordre adaptée aux gaz simples (faible facteur acentrique) à pression modérée. Pour plus de précision, surtout près du point critique ou à très haute pression, il faut utiliser des équations d'état cubiques comme Peng-Robinson ou Soave-Redlich-Kwong."
+      },
+      {
+        "q": "Comment le facteur Z est-il utilisé en ingénierie du gaz naturel ?",
+        "a": "En ingénierie du gaz naturel, le facteur Z apparaît dans la loi du gaz réel : PV = ZnRT. Il sert à calculer la densité du gaz, les volumes de gaz en place aux conditions du réservoir et à corriger les mesures de débit. Les ingénieurs de pipelines utilisent les facteurs Z pour déterminer la quantité de gaz pouvant circuler dans une conduite à des conditions de pression et de température données. Une estimation précise du facteur Z est essentielle pour les mesures de transfert de garde et les calculs de réserves."
+      },
+      {
+        "q": "Puis-je utiliser une autre unité de pression que atm ?",
+        "a": "Oui. Le calcul utilise la pression réduite Pr = P/Pc ; tant que vous utilisez la même unité de pression pour la pression de fonctionnement et la pression critique, toute unité cohérente convient — atm, bar, MPa ou psi. De même, la température de fonctionnement et la température critique doivent être en Kelvin. Ne mélangez jamais les unités entre les deux saisies de pression ou entre les deux saisies de température."
+      }
+    ]
+  }
+}
