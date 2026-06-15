@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de punto flotante",
+  "tagline": "Convierte números decimales a representación binaria IEEE 754 y analiza la precisión.",
+  "intro": "Introduce cualquier número decimal y selecciona un formato de precisión para ver su representación binaria IEEE 754, exponente, mantisa y error de redondeo.",
+  "field": {
+    "decimal": "Número decimal",
+    "precision": "Tipo de precisión"
+  },
+  "placeholder": {
+    "decimal": "p. ej., 3.14159 o 1.23e-10"
+  },
+  "type": {
+    "single": "Precisión simple (32 bits)",
+    "double": "Precisión doble (64 bits)"
+  },
+  "button": {
+    "calculate": "Convertir",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce un número decimal válido (p. ej., 3.14, -0.5, 1.23e-10)."
+  },
+  "result": {
+    "heading": "Representación IEEE 754",
+    "special": "Valor especial",
+    "sign": "Bit de signo",
+    "positive": "positivo",
+    "negative": "negativo",
+    "exponentBits": "Bits del exponente",
+    "biasedExp": "valor sesgado almacenado",
+    "actualExp": "exponente real",
+    "mantissaBits": "Bits de la mantisa",
+    "fullBinary": "Representación binaria completa",
+    "storedValue": "Valor almacenado",
+    "roundingError": "Error de redondeo",
+    "exact": "0 (exacto)"
+  },
+  "formula": "Valor = (-1)^sign × (1 + mantissa) × 2^(exponent − bias)  |  Simple: bias=127, exponente de 8 bits, mantisa de 23 bits  |  Doble: bias=1023, exponente de 11 bits, mantisa de 52 bits",
+  "about": {
+    "heading": "Acerca de la calculadora de punto flotante",
+    "body": "La calculadora de punto flotante convierte números decimales en su representación binaria de punto flotante IEEE 754 y muestra el desglose completo a nivel de bits, incluido signo, exponente y mantisa. Entender la representación en punto flotante es fundamental para científicos de la computación, ingenieros de software, analistas numéricos y cualquier persona que trabaje con ordenadores en contextos donde la precisión aritmética importa.\n\nEl estándar IEEE 754, publicado por el Institute of Electrical and Electronics Engineers en 1985 y revisado en 2008, define el formato de aritmética de punto flotante que utilizan prácticamente todos los procesadores y lenguajes modernos, incluidos C, C++, Java, Python y JavaScript. El estándar especifica dos formatos principales: precisión simple (32 bits) y precisión doble (64 bits).\n\nUn float de precisión simple de 32 bits consta de tres campos: 1 bit de signo, 8 bits de exponente y 23 bits de mantisa (significando). El bit de signo es 0 para números positivos y 1 para negativos. El exponente se almacena con un sesgo de 127, lo que significa que el exponente real es el valor almacenado menos 127, permitiendo representar exponentes positivos y negativos usando enteros sin signo. La mantisa almacena los bits fraccionarios del significando normalizado, con un 1 inicial implícito (el bit oculto) que proporciona un bit extra de precisión efectiva.\n\nUn float de precisión doble de 64 bits usa 1 bit de signo, 11 bits de exponente (sesgo de 1023) y 52 bits de mantisa, proporcionando aproximadamente 15–17 dígitos decimales significativos frente a los 6–7 dígitos de la precisión simple. La precisión doble es el tipo de punto flotante predeterminado en la mayoría de los lenguajes de programación.\n\nUna idea clave es que muchos números decimales aparentemente sencillos, como 0.1, no pueden representarse exactamente en punto flotante binario. El decimal 0.1 en binario es la fracción periódica 0.0001100110011..., que debe truncarse para encajar en 23 o 52 bits de mantisa. Ese truncamiento introduce un pequeño error de redondeo, razón por la cual 0.1 + 0.2 no es exactamente 0.3 en la mayoría de los lenguajes. Esta calculadora te muestra el valor almacenado exacto y el error de redondeo de cualquier número decimal que introduzcas, convirtiéndola en una herramienta invaluable para depuración y aprendizaje."
+  },
+  "examples": {
+    "heading": "Ejemplos",
+    "intro": "Haz clic en cualquiera de los botones de abajo para cargar una constante numérica conocida.",
+    "colInput": "Entrada decimal",
+    "colOutput": "Precisión y notas",
+    "colNote": "Importancia",
+    "loadPi": "Pi (π)",
+    "loadOnetenth": "0.1 (simple)",
+    "loadE": "Número e de Euler",
+    "items": [
+      {
+        "input": "3.141592653589793 (doble)",
+        "output": "Signo: 0 · Exp: 1 · Dígitos exactos: ~15",
+        "note": "π — irracional, almacenado con un pequeño error de redondeo"
+      },
+      {
+        "input": "0.1 (simple)",
+        "output": "Signo: 0 · Almacenado: 0.100000001490116 · Error: ~1.49e-9",
+        "note": "Ejemplo clásico de error de redondeo"
+      },
+      {
+        "input": "2.718281828459045 (doble)",
+        "output": "Signo: 0 · Exp: 1 · Dígitos exactos: ~15",
+        "note": "Número e de Euler"
+      },
+      {
+        "input": "1.23e-10 (simple)",
+        "output": "Signo: 0 · Normalizado · Valor positivo pequeño",
+        "note": "Prueba la precisión de números pequeños en formato simple"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar esta calculadora",
+    "steps": [
+      "Elige tu formato de precisión: simple (32 bits) para aplicaciones integradas o GPU, doble (64 bits) para computación científica.",
+      "Introduce cualquier número decimal en el campo de entrada. Se acepta notación científica (p. ej., 1.23e-10 o 6.022e23).",
+      "Haz clic en 'Convertir' para ver el desglose completo IEEE 754: bit de signo, bits del exponente (con valores sesgado y real) y bits de la mantisa.",
+      "Revisa el valor almacenado —el decimal exacto que usa el ordenador— y compáralo con tu entrada para ver cualquier error de redondeo.",
+      "Usa los botones de ejemplo para explorar cómo constantes conocidas como π, e o 0.1 se representan en punto flotante binario."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "q1": "¿Por qué 0.1 no se puede representar exactamente en punto flotante?",
+    "q1_a": "El decimal 0.1 en binario es una fracción periódica infinita (0.000110011001100...), igual que 1/3 es un decimal repetido. Como un float tiene un número fijo de bits, la fracción debe truncarse, introduciendo un pequeño error de redondeo. Por eso 0.1 + 0.2 en la mayoría de los lenguajes da aproximadamente 0.30000000000000004 en lugar de 0.3 exacto.",
+    "q2": "¿Qué es el sesgo en el campo del exponente?",
+    "q2_a": "El sesgo es un desplazamiento fijo que se suma al exponente real antes de almacenarlo. La precisión simple usa un sesgo de 127 y la doble usa 1023. Si el exponente real es 3, el valor almacenado para simple es 3 + 127 = 130. Esta representación sesgada permite rangos de exponentes de −126 a +127 (simple) o de −1022 a +1023 (doble) usando solo enteros sin signo.",
+    "q3": "¿Qué es el bit oculto?",
+    "q3_a": "En los números de punto flotante normalizados, el bit inicial de la mantisa siempre es 1 y no se almacena: se sobreentiende. Ese bit 'oculto' o 'implícito' da a la precisión simple 24 bits de precisión de mantisa (23 almacenados + 1 oculto) y a la doble 53 bits (52 almacenados + 1 oculto). Los números desnormalizados cerca de cero tienen un 0 inicial implícito.",
+    "q4": "¿Qué valores especiales define IEEE 754?",
+    "q4_a": "IEEE 754 define varios valores especiales: cero positivo y cero negativo (distinguidos por el bit de signo), infinito positivo y negativo (todos los bits del exponente en 1 y todos los bits de la mantisa en 0), y NaN — Not a Number (todos los bits del exponente en 1 y al menos un bit de la mantisa en 1). Estos valores permiten manejar desbordamientos, divisiones por cero y operaciones indefinidas sin que los programas se bloqueen.",
+    "q5": "¿Cuándo debo usar precisión simple frente a doble?",
+    "q5_a": "Usa precisión doble (64 bits) para computación científica, cálculos financieros y cualquier aplicación que requiera más de 7 dígitos decimales de precisión. Usa precisión simple (32 bits) cuando la memoria o el rendimiento sean limitados: las GPU procesan floats de precisión simple mucho más rápido, y los sistemas móviles o embebidos suelen preferir 32 bits por eficiencia. Los errores de redondeo en precisión simple pueden acumularse significativamente en algoritmos iterativos.",
+    "q6": "¿Cómo evito errores de precisión de punto flotante en mi código?",
+    "q6_a": "Para comparaciones de igualdad, usa una tolerancia (epsilon) en lugar de igualdad exacta: |a − b| < 1e-9 en vez de a === b. Para cálculos financieros, considera usar aritmética entera (por ejemplo, guardar importes en centavos) o una biblioteca decimal dedicada. Para computación científica, usa algoritmos de suma compensada como la suma de Kahan para reducir los errores de redondeo acumulados en sumas grandes."
+  }
+}

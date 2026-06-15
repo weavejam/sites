@@ -1,0 +1,100 @@
+{
+  "title": "Calculatrice de nombres à virgule flottante",
+  "tagline": "Convertissez des nombres décimaux en représentation binaire IEEE 754 et analysez la précision.",
+  "intro": "Saisissez n’importe quel nombre décimal et choisissez un format de précision pour voir sa représentation binaire IEEE 754, son exposant, sa mantisse et son erreur d’arrondi.",
+  "field": {
+    "decimal": "Nombre décimal",
+    "precision": "Type de précision"
+  },
+  "placeholder": {
+    "decimal": "ex. 3.14159 ou 1.23e-10"
+  },
+  "type": {
+    "single": "Précision simple (32 bits)",
+    "double": "Précision double (64 bits)"
+  },
+  "button": {
+    "calculate": "Convertir",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir un nombre décimal valide (ex. 3.14, -0.5, 1.23e-10)."
+  },
+  "result": {
+    "heading": "Représentation IEEE 754",
+    "special": "Valeur spéciale",
+    "sign": "Bit de signe",
+    "positive": "positif",
+    "negative": "négatif",
+    "exponentBits": "Bits de l’exposant",
+    "biasedExp": "valeur biaisée stockée",
+    "actualExp": "exposant réel",
+    "mantissaBits": "Bits de la mantisse",
+    "fullBinary": "Représentation binaire complète",
+    "storedValue": "Valeur stockée",
+    "roundingError": "Erreur d’arrondi",
+    "exact": "0 (exact)"
+  },
+  "formula": "Valeur = (-1)^sign × (1 + mantissa) × 2^(exponent − bias)  |  Simple : bias=127, exposant 8 bits, mantisse 23 bits  |  Double : bias=1023, exposant 11 bits, mantisse 52 bits",
+  "about": {
+    "heading": "À propos de la calculatrice de nombres à virgule flottante",
+    "body": "La calculatrice de nombres à virgule flottante convertit des nombres décimaux en représentation binaire à virgule flottante IEEE 754 et affiche la décomposition complète au niveau des bits, notamment le signe, l’exposant et la mantisse. Comprendre la représentation en virgule flottante est fondamental pour les informaticiens, les ingénieurs logiciels, les analystes numériques et toute personne qui travaille avec des ordinateurs dans des contextes où la précision des calculs compte.\n\nLa norme IEEE 754, publiée par l’Institute of Electrical and Electronics Engineers en 1985 puis révisée en 2008, définit le format de l’arithmétique en virgule flottante utilisé par pratiquement tous les processeurs et langages modernes, notamment C, C++, Java, Python et JavaScript. Elle spécifie deux formats principaux : la précision simple (32 bits) et la précision double (64 bits).\n\nUn float simple précision de 32 bits se compose de trois champs : 1 bit de signe, 8 bits d’exposant et 23 bits de mantisse (significand). Le bit de signe vaut 0 pour les nombres positifs et 1 pour les nombres négatifs. L’exposant est stocké avec un biais de 127, ce qui signifie que l’exposant réel est la valeur stockée moins 127, permettant de représenter des exposants positifs et négatifs avec des entiers non signés. La mantisse stocke les bits fractionnaires du significand normalisé, avec un 1 de tête implicite (le bit caché) fournissant un bit supplémentaire de précision effective.\n\nUn float double précision de 64 bits utilise 1 bit de signe, 11 bits d’exposant (biais de 1023) et 52 bits de mantisse, offrant environ 15 à 17 chiffres décimaux significatifs contre 6 à 7 chiffres pour la précision simple. La précision double est le type flottant par défaut dans la plupart des langages de programmation.\n\nUn point essentiel est que de nombreux nombres décimaux apparemment simples — comme 0.1 — ne peuvent pas être représentés exactement en virgule flottante binaire. Le décimal 0.1 en binaire est la fraction périodique 0.0001100110011..., qui doit être tronquée pour tenir dans 23 ou 52 bits de mantisse. Cette troncature introduit une minuscule erreur d’arrondi, ce qui explique pourquoi 0.1 + 0.2 n’est pas exactement égal à 0.3 dans la plupart des langages. Cette calculatrice affiche la valeur stockée exacte et l’erreur d’arrondi pour n’importe quel nombre décimal que vous saisissez, ce qui en fait un outil de débogage et d’apprentissage inestimable pour toute personne travaillant sur des calculs numériques."
+  },
+  "examples": {
+    "heading": "Exemples",
+    "intro": "Cliquez sur n’importe quel bouton ci-dessous pour charger une constante numérique connue.",
+    "colInput": "Entrée décimale",
+    "colOutput": "Précision et notes",
+    "colNote": "Importance",
+    "loadPi": "Pi (π)",
+    "loadOnetenth": "0.1 (simple)",
+    "loadE": "Nombre e d’Euler",
+    "items": [
+      {
+        "input": "3.141592653589793 (double)",
+        "output": "Signe: 0 · Exp: 1 · Chiffres exacts: ~15",
+        "note": "π — irrationnel, stocké avec une minuscule erreur d’arrondi"
+      },
+      {
+        "input": "0.1 (simple)",
+        "output": "Signe: 0 · Stocké: 0.100000001490116 · Erreur: ~1.49e-9",
+        "note": "Exemple classique d’erreur d’arrondi"
+      },
+      {
+        "input": "2.718281828459045 (double)",
+        "output": "Signe: 0 · Exp: 1 · Chiffres exacts: ~15",
+        "note": "Nombre e d’Euler"
+      },
+      {
+        "input": "1.23e-10 (simple)",
+        "output": "Signe: 0 · Normalisé · Petite valeur positive",
+        "note": "Teste la précision des petits nombres en format simple"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser cette calculatrice",
+    "steps": [
+      "Choisissez votre format de précision — simple (32 bits) pour les applications embarquées ou GPU, double (64 bits) pour le calcul scientifique.",
+      "Saisissez n’importe quel nombre décimal dans le champ de saisie. La notation scientifique est acceptée (par ex. 1.23e-10 ou 6.022e23).",
+      "Cliquez sur « Convertir » pour voir la décomposition complète IEEE 754 : bit de signe, bits d’exposant (avec valeurs biaisée et réelle) et bits de mantisse.",
+      "Examinez la valeur stockée — le décimal exact utilisé par l’ordinateur — et comparez-la à votre saisie pour voir l’éventuelle erreur d’arrondi.",
+      "Utilisez les boutons d’exemple pour explorer la manière dont des constantes connues comme π, e ou 0.1 sont représentées en virgule flottante binaire."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "q1": "Pourquoi 0.1 ne peut-il pas être représenté exactement en virgule flottante ?",
+    "q1_a": "Le décimal 0.1 en binaire est une fraction périodique infinie (0.000110011001100...), tout comme 1/3 est un décimal périodique. Comme un float dispose d’un nombre fixe de bits, la fraction doit être tronquée, ce qui introduit une minuscule erreur d’arrondi. C’est pourquoi, dans la plupart des langages, 0.1 + 0.2 vaut environ 0.30000000000000004 plutôt que 0.3 exactement.",
+    "q2": "Qu’est-ce que le biais dans le champ de l’exposant ?",
+    "q2_a": "Le biais est un décalage fixe ajouté à l’exposant réel avant son stockage. La précision simple utilise un biais de 127 et la précision double utilise 1023. Si l’exposant réel vaut 3, la valeur stockée est 3 + 127 = 130 en simple précision. Cette représentation biaisée permet de couvrir des exposants de −126 à +127 (simple) ou de −1022 à +1023 (double) tout en n’utilisant que des entiers non signés.",
+    "q3": "Qu’est-ce que le bit caché ?",
+    "q3_a": "Pour les nombres normalisés, le premier bit de la mantisse est toujours 1 et n’est pas stocké — il est implicite. Ce bit « caché » ou « implicite » donne à la précision simple 24 bits de précision de mantisse (23 stockés + 1 caché) et à la précision double 53 bits (52 stockés + 1 caché). Les nombres dénormalisés proches de zéro ont un 0 de tête implicite.",
+    "q4": "Quelles sont les valeurs spéciales IEEE 754 ?",
+    "q4_a": "IEEE 754 définit plusieurs valeurs spéciales : zéro positif et zéro négatif (distingués par le bit de signe), infini positif et infini négatif (tous les bits d’exposant à 1, tous les bits de mantisse à 0), et NaN — Not a Number (tous les bits d’exposant à 1, au moins un bit de mantisse à 1). Ces valeurs permettent de gérer proprement les dépassements, les divisions par zéro et les opérations indéfinies sans faire planter les programmes.",
+    "q5": "Quand faut-il utiliser la précision simple ou double ?",
+    "q5_a": "Utilisez la précision double (64 bits) pour le calcul scientifique, les calculs financiers et toute application nécessitant plus de 7 chiffres décimaux de précision. Utilisez la précision simple (32 bits) lorsque la mémoire ou les performances sont limitées — les GPU traitent les float simple précision beaucoup plus vite, et les systèmes mobiles ou embarqués préfèrent souvent le 32 bits pour des raisons d’efficacité. Les erreurs d’arrondi en simple précision peuvent s’accumuler de façon importante dans les algorithmes itératifs.",
+    "q6": "Comment éviter les erreurs de précision en virgule flottante dans mon code ?",
+    "q6_a": "Pour les comparaisons d’égalité, utilisez une tolérance (epsilon) plutôt qu’une égalité exacte : |a − b| < 1e-9 au lieu de a === b. Pour les calculs financiers, envisagez l’arithmétique entière (par exemple stocker les montants en centimes) ou une bibliothèque décimale dédiée. Pour le calcul scientifique, utilisez des algorithmes de sommation compensée comme la sommation de Kahan afin de réduire les erreurs d’arrondi accumulées dans les grandes sommes."
+  }
+}

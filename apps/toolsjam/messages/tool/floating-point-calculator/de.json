@@ -1,0 +1,100 @@
+{
+  "title": "Gleitkomma-Rechner",
+  "tagline": "Dezimalzahlen in IEEE-754-Binärdarstellung umwandeln und die Genauigkeit analysieren.",
+  "intro": "Gib eine beliebige Dezimalzahl ein und wähle ein Genauigkeitsformat, um ihre IEEE-754-Binärdarstellung, den Exponenten, die Mantisse und den Rundungsfehler zu sehen.",
+  "field": {
+    "decimal": "Dezimalzahl",
+    "precision": "Genauigkeitstyp"
+  },
+  "placeholder": {
+    "decimal": "z. B. 3.14159 oder 1.23e-10"
+  },
+  "type": {
+    "single": "Einfachpräzision (32 Bit)",
+    "double": "Doppelpräzision (64 Bit)"
+  },
+  "button": {
+    "calculate": "Umwandeln",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gib eine gültige Dezimalzahl ein (z. B. 3.14, -0.5, 1.23e-10)."
+  },
+  "result": {
+    "heading": "IEEE-754-Darstellung",
+    "special": "Sonderwert",
+    "sign": "Vorzeichenbit",
+    "positive": "positiv",
+    "negative": "negativ",
+    "exponentBits": "Exponentenbits",
+    "biasedExp": "gespeicherter Bias-Wert",
+    "actualExp": "tatsächlicher Exponent",
+    "mantissaBits": "Mantissenbits",
+    "fullBinary": "Komplette Binärdarstellung",
+    "storedValue": "Gespeicherter Wert",
+    "roundingError": "Rundungsfehler",
+    "exact": "0 (exakt)"
+  },
+  "formula": "Wert = (-1)^sign × (1 + mantissa) × 2^(exponent − bias)  |  Einfach: bias=127, 8-Bit-Exponent, 23-Bit-Mantisse  |  Doppel: bias=1023, 11-Bit-Exponent, 52-Bit-Mantisse",
+  "about": {
+    "heading": "Über den Gleitkomma-Rechner",
+    "body": "Der Gleitkomma-Rechner wandelt Dezimalzahlen in ihre IEEE-754-Binärdarstellung um und zeigt die vollständige bitweise Aufschlüsselung einschließlich Vorzeichen, Exponent und Mantisse. Das Verständnis der Gleitkommadarstellung ist grundlegend für Informatiker, Softwareentwickler, Numeriker und alle, die mit Computern dort arbeiten, wo arithmetische Genauigkeit wichtig ist.\n\nDer IEEE-754-Standard, 1985 vom Institute of Electrical and Electronics Engineers veröffentlicht und 2008 überarbeitet, definiert das Format der Gleitkommaarithmetik, das in praktisch allen modernen Prozessoren und Programmiersprachen wie C, C++, Java, Python und JavaScript verwendet wird. Der Standard beschreibt zwei Hauptformate: Einfachpräzision (32 Bit) und Doppelpräzision (64 Bit).\n\nEine 32-Bit-Einfachpräzisions-Gleitkommazahl besteht aus drei Feldern: 1 Vorzeichenbit, 8 Exponentenbits und 23 Mantissen- (Signifikand-) Bits. Das Vorzeichenbit ist 0 für positive Zahlen und 1 für negative. Der Exponent wird mit einem Bias von 127 gespeichert, das heißt, der tatsächliche Exponent ist der gespeicherte Wert minus 127. Dadurch lassen sich positive und negative Exponenten mit vorzeichenlosen Ganzzahlen darstellen. Die Mantisse speichert die Bruchteile des normalisierten Signifikands, wobei eine implizite führende 1 (das versteckte Bit) ein zusätzliches effektives Genauigkeitsbit liefert.\n\nEine 64-Bit-Doppelpräzisions-Gleitkommazahl verwendet 1 Vorzeichenbit, 11 Exponentenbits (Bias 1023) und 52 Mantissenbits und liefert etwa 15–17 signifikante Dezimalstellen im Vergleich zu 6–7 Stellen bei Einfachpräzision. Doppelpräzision ist in den meisten Programmiersprachen der Standard-Gleitkommatyp.\n\nEine wichtige Erkenntnis ist, dass viele scheinbar einfache Dezimalzahlen — wie 0.1 — in binärer Gleitkommadarstellung nicht exakt darstellbar sind. Die Dezimalzahl 0.1 ist binär der periodische Bruch 0.0001100110011..., der gekürzt werden muss, um in 23 oder 52 Mantissenbits zu passen. Diese Kürzung erzeugt einen winzigen Rundungsfehler, weshalb 0.1 + 0.2 in den meisten Programmiersprachen nicht exakt 0.3 ergibt. Dieser Rechner zeigt dir den exakten gespeicherten Wert und den Rundungsfehler für jede eingegebene Dezimalzahl und ist damit ein unverzichtbares Werkzeug zum Debuggen und Lernen."
+  },
+  "examples": {
+    "heading": "Beispiele",
+    "intro": "Klicke auf eine beliebige Schaltfläche unten, um eine bekannte Zahl zu laden.",
+    "colInput": "Dezimaleingabe",
+    "colOutput": "Genauigkeit & Hinweise",
+    "colNote": "Bedeutung",
+    "loadPi": "Pi (π)",
+    "loadOnetenth": "0.1 (Einfach)",
+    "loadE": "Eulersche Zahl e",
+    "items": [
+      {
+        "input": "3.141592653589793 (Doppel)",
+        "output": "Vorzeichen: 0 · Exp: 1 · Exakte Stellen: ~15",
+        "note": "π — irrational, mit winzigem Rundungsfehler gespeichert"
+      },
+      {
+        "input": "0.1 (Einfach)",
+        "output": "Vorzeichen: 0 · Gespeichert: 0.100000001490116 · Fehler: ~1.49e-9",
+        "note": "Klassisches Beispiel für einen Rundungsfehler"
+      },
+      {
+        "input": "2.718281828459045 (Doppel)",
+        "output": "Vorzeichen: 0 · Exp: 1 · Exakte Stellen: ~15",
+        "note": "Eulersche Zahl e"
+      },
+      {
+        "input": "1.23e-10 (Einfach)",
+        "output": "Vorzeichen: 0 · Normalisiert · Kleiner positiver Wert",
+        "note": "Testet die Genauigkeit kleiner Zahlen im Einfachformat"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du diesen Rechner",
+    "steps": [
+      "Wähle dein Genauigkeitsformat — Einfachpräzision (32 Bit) für Embedded- oder GPU-Anwendungen, Doppelpräzision (64 Bit) für wissenschaftliche Berechnungen.",
+      "Gib eine beliebige Dezimalzahl in das Eingabefeld ein. Wissenschaftliche Schreibweise wird unterstützt (z. B. 1.23e-10 oder 6.022e23).",
+      "Klicke auf „Umwandeln“, um die vollständige IEEE-754-Aufschlüsselung zu sehen: Vorzeichenbit, Exponentenbits (mit Bias- und Istwert) und Mantissenbits.",
+      "Prüfe den gespeicherten Wert — die exakte Dezimalzahl, die der Computer verwendet — und vergleiche ihn mit deiner Eingabe, um Rundungsfehler zu erkennen.",
+      "Nutze die Beispielschaltflächen, um zu sehen, wie bekannte Konstanten wie π, e oder 0.1 in binärer Gleitkommadarstellung dargestellt werden."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "q1": "Warum kann 0.1 in Gleitkommazahlen nicht exakt dargestellt werden?",
+    "q1_a": "Die Dezimalzahl 0.1 ist im Binärsystem ein unendlich periodischer Bruch (0.000110011001100...), genauso wie 1/3 eine periodische Dezimalzahl ist. Da ein float nur eine feste Bitanzahl hat, muss der Bruch abgeschnitten werden, wodurch ein winziger Rundungsfehler entsteht. Deshalb ergibt 0.1 + 0.2 in den meisten Sprachen ungefähr 0.30000000000000004 statt exakt 0.3.",
+    "q2": "Was ist der Bias im Exponentenfeld?",
+    "q2_a": "Der Bias ist ein fester Offset, der vor dem Speichern zum tatsächlichen Exponenten addiert wird. Einfachpräzision verwendet einen Bias von 127, Doppelpräzision 1023. Wenn der tatsächliche Exponent 3 ist, lautet der gespeicherte Wert in Einfachpräzision 3 + 127 = 130. Diese bias-basierte Darstellung erlaubt Exponenten von −126 bis +127 (einfach) bzw. −1022 bis +1023 (doppelt) mit vorzeichenlosen Ganzzahlen.",
+    "q3": "Was ist das versteckte Bit?",
+    "q3_a": "Bei normalisierten Gleitkommazahlen ist das führende Bit der Mantisse immer 1 und wird nicht gespeichert — es ist implizit. Dieses „versteckte“ oder „implizite“ Bit verleiht der Einfachpräzision effektiv 24 Mantissenbits (23 gespeichert + 1 versteckt) und der Doppelpräzision 53 Bits (52 gespeichert + 1 versteckt). Denormalisierte Zahlen nahe null haben stattdessen eine implizite führende 0.",
+    "q4": "Welche Sonderwerte definiert IEEE 754?",
+    "q4_a": "IEEE 754 definiert mehrere Sonderwerte: positive und negative Null (durch das Vorzeichenbit unterschieden), positive und negative Unendlichkeit (alle Exponentenbits gesetzt, alle Mantissenbits null) sowie NaN — Not a Number (alle Exponentenbits gesetzt, mindestens ein Mantissenbit gesetzt). Diese Werte ermöglichen eine robuste Behandlung von Überlauf, Division durch null und undefinierten Operationen, ohne Programme abstürzen zu lassen.",
+    "q5": "Wann sollte ich Einfach- statt Doppelpräzision verwenden?",
+    "q5_a": "Verwende Doppelpräzision (64 Bit) für wissenschaftliche Berechnungen, Finanzrechnungen und alle Anwendungen, die mehr als 7 Dezimalstellen Genauigkeit benötigen. Nutze Einfachpräzision (32 Bit), wenn Speicher oder Leistung knapp sind — GPUs verarbeiten Einzelpräzisions-Floats deutlich schneller, und mobile bzw. eingebettete Systeme bevorzugen oft 32 Bit aus Effizienzgründen. Die Rundungsfehler in Einfachpräzision können sich in iterativen Algorithmen deutlich aufsummieren.",
+    "q6": "Wie vermeide ich Gleitkomma-Genauigkeitsfehler in meinem Code?",
+    "q6_a": "Verwende bei Gleichheitsvergleichen eine Toleranz (epsilon) statt exakter Gleichheit: |a − b| < 1e-9 statt a === b. Für Finanzberechnungen solltest du Ganzzahlarithmetik in Betracht ziehen (z. B. Beträge in Cent speichern) oder eine spezialisierte Dezimalbibliothek verwenden. Für wissenschaftliche Berechnungen helfen kompensierte Summationsverfahren wie die Kahan-Summation, um kumulierte Rundungsfehler in großen Summen zu reduzieren."
+  }
+}
