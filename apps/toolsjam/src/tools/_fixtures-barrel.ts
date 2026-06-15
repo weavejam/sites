@@ -138,6 +138,11 @@ import { fixtures as f_index_of_qualitative_variation_calculator } from "@/tools
 import { fixtures as f_inverse_normal_distribution_calculator } from "@/tools/inverse-normal-distribution-calculator.fixtures";
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
 import { fixtures as f_loan_calculator } from "@/tools/loan-calculator.fixtures";
+import { fixtures as f_mm_to_carat_conversion } from "@/tools/mm-to-carat-conversion.fixtures";
+import { fixtures as f_music_duration_calculator } from "@/tools/music-duration-calculator.fixtures";
+import { fixtures as f_music_interval_calculator } from "@/tools/music-interval-calculator.fixtures";
+import { fixtures as f_music_scale_calculator } from "@/tools/music-scale-calculator.fixtures";
+import { fixtures as f_music_transposition_calculator } from "@/tools/music-transposition-calculator.fixtures";
 import { fixtures as f_odds_ratio_calculator } from "@/tools/odds-ratio-calculator.fixtures";
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
 import { fixtures as f_outlier_calculator } from "@/tools/outlier-calculator.fixtures";
@@ -397,6 +402,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "inverse-normal-distribution-calculator": f_inverse_normal_distribution_calculator,
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
   "loan-calculator": f_loan_calculator,
+  "mm-to-carat-conversion": f_mm_to_carat_conversion,
+  "music-duration-calculator": f_music_duration_calculator,
+  "music-interval-calculator": f_music_interval_calculator,
+  "music-scale-calculator": f_music_scale_calculator,
+  "music-transposition-calculator": f_music_transposition_calculator,
   "odds-ratio-calculator": f_odds_ratio_calculator,
   "ohms-law-calculator": f_ohms_law_calculator,
   "outlier-calculator": f_outlier_calculator,

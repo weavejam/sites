@@ -1199,9 +1199,40 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "mm-to-carat-conversion",
+    category: "other",
+    slugs: { en: "mm-to-carat-conversion", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: { en: "MM to Carat Conversion Calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    descriptions: { en: "Convert gemstone dimensions from millimeters to carat weight. Free calculator for jewelry makers, gemologists, and diamond buyers. Accurate weight estimation.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
+  },
+  {
+    id: "music-duration-calculator",
+    category: "other",
+    slugs: { en: "music-duration-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: { en: "Music Duration Calculator - Song Length from BPM", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    descriptions: { en: "Calculate music duration, song length, and track timing from BPM, tempo, and time signature. Free tool for musicians, DJs, and music producers.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
+  },
+  {
+    id: "music-interval-calculator",
+    category: "other",
+    slugs: { en: "music-interval-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: { en: "Music Interval Calculator - Note Distances", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    descriptions: { en: "Calculate musical intervals between two notes instantly. Learn interval names, semitone distances, and music theory concepts for composition and ear training.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
+  },
+  {
+    id: "music-scale-calculator",
+    category: "other",
+    slugs: { en: "music-scale-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: { en: "Music Scale Calculator - Scales and Modes", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    descriptions: { en: "Calculate musical scales, modes, and intervals. Learn major, minor, pentatonic, blues scales for any root note. Free tool for composition and music theory.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
+  },
+  {
+    id: "music-transposition-calculator",
+    category: "other",
+    slugs: { en: "music-transposition-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: { en: "Music Transposition Calculator - Key Converter", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    descriptions: { en: "Transpose musical notes and keys instantly. Convert between different keys, calculate semitone differences, and learn music transposition for any instrument.", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" }
   }
-
-
-
-
 ];
