@@ -1,0 +1,110 @@
+{
+  "title": "Calculadora de capacitores en serie",
+  "tagline": "Calcula la capacitancia equivalente, la carga, la distribución de voltaje y la energía almacenada de hasta cuatro capacitores en serie.",
+  "intro": "Ingresa los valores de capacitancia de dos a cuatro capacitores y el voltaje total aplicado para calcular la capacitancia equivalente, la carga, el voltaje en cada capacitor y la energía total.",
+  "field": {
+    "c1": "Capacitor 1 (F)",
+    "c2": "Capacitor 2 (F)",
+    "c3": "Capacitor 3 (F) — opcional",
+    "c4": "Capacitor 4 (F) — opcional",
+    "totalVoltage": "Voltaje total aplicado (V)"
+  },
+  "placeholder": {
+    "capacitor": "p. ej. 0.000001",
+    "optional": "deja en blanco si no se usa",
+    "voltage": "p. ej. 10"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultados",
+    "ceq": "Capacitancia equivalente",
+    "charge": "Carga (Q)",
+    "energy": "Energía total almacenada",
+    "voltageDistribution": "Distribución de voltaje",
+    "v1": "V₁ en C₁",
+    "v2": "V₂ en C₂",
+    "v3": "V₃ en C₃",
+    "v4": "V₄ en C₄"
+  },
+  "error": {
+    "invalid": "Ingresa números positivos válidos para al menos C₁, C₂ y el voltaje total."
+  },
+  "examples": {
+    "heading": "Ejemplos resueltos",
+    "intro": "Haz clic en un ejemplo para cargarlo en la calculadora.",
+    "colInput": "Configuración de capacitores",
+    "colOutput": "Resultados calculados",
+    "colNote": "Aplicación",
+    "loadTwoEqual": "Dos capacitores iguales",
+    "loadVoltageDivider": "Divisor de voltaje",
+    "loadHighVoltage": "Alto voltaje (4×)",
+    "items": [
+      {
+        "input": "C₁ = C₂ = 1 μF, V = 10 V",
+        "output": "Ceq = 0.5 μF, V₁ = V₂ = 5 V, Q = 5 μC, E = 25 μJ",
+        "note": "Dos capacitores iguales reducen a la mitad la capacitancia y comparten el voltaje por igual: clásico en circuitos dobladores de voltaje."
+      },
+      {
+        "input": "C₁ = 1 μF, C₂ = 2 μF, C₃ = 3 μF, V = 15 V",
+        "output": "Ceq ≈ 0.545 μF, V₁ ≈ 8.18 V, V₂ ≈ 4.09 V, V₃ ≈ 2.73 V",
+        "note": "Divisor de voltaje: el capacitor más pequeño recibe mayor voltaje, confirmando que V ∝ 1/C."
+      },
+      {
+        "input": "C₁ = C₂ = C₃ = C₄ = 1 μF, V = 100 V",
+        "output": "Ceq = 0.25 μF, cada capacitor ve 25 V, E = 1.25 mJ",
+        "note": "Cuatro capacitores en serie distribuyen 100 V entre cuatro componentes de 25 V: una técnica estándar de alto voltaje."
+      },
+      {
+        "input": "C₁ = 1 μF, C₂ = 5 μF, V = 24 V",
+        "output": "Ceq ≈ 0.833 μF, V₁ = 20 V, V₂ = 4 V, Q = 20 μC",
+        "note": "Capacitores desiguales: el capacitor de 1 μF domina y toma el 83 % del voltaje aplicado."
+      }
+    ]
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de capacitores en serie",
+    "body": "Cuando los capacitores se conectan en serie —de extremo a extremo en un solo camino de corriente— se comportan de manera muy diferente a las conexiones en paralelo. Entender el comportamiento de los capacitores en serie es esencial para diseñar divisores de voltaje, aplicaciones de alto voltaje y circuitos de acoplamiento de CA.\n\nLa propiedad fundamental de los capacitores en serie es que todos transportan la misma carga Q. Cuando se energiza el circuito, la carga se acumula en la placa del primer capacitor, induciendo una carga igual y opuesta en su segunda placa, lo que a su vez induce carga en el capacitor adyacente, y así sucesivamente. Como la misma carga Q aparece en todos los capacitores, el voltaje en cada uno es V_i = Q / C_i. Por eso, los capacitores de menor capacitancia desarrollan mayor voltaje, y esa es la idea clave para diseñar divisores de voltaje.\n\nLa capacitancia equivalente (total) de n capacitores en serie se obtiene con la suma recíproca: 1/Ceq = 1/C₁ + 1/C₂ + ... + 1/Cₙ. En otras palabras, Ceq siempre es menor que el capacitor individual más pequeño. Esto se entiende físicamente porque en serie aumenta la separación efectiva entre placas (la suma de todas las separaciones), mientras el área de las placas permanece igual, reduciendo la capacitancia. Para dos capacitores, la fórmula se simplifica a Ceq = C₁C₂/(C₁+C₂), a veces llamada regla del producto sobre la suma.\n\nLa carga total almacenada es Q = Ceq × V_total. Una vez conocida Q, el voltaje en cada capacitor es V_i = Q / C_i, y la suma V₁ + V₂ + ... debe igualar V_total, lo cual sirve como verificación. La energía total almacenada es E = ½ × Ceq × V_total², que coincide con la suma de las energías individuales ½ × C_i × V_i², ya que todas las cargas son iguales.\n\nLas aplicaciones prácticas incluyen: (1) divisores de voltaje para circuitos de medición de precisión y acondicionamiento de señales, donde la relación de capacitores define la fracción de voltaje de salida. (2) aplicaciones de alto voltaje donde la tensión de un solo capacitor no basta: apilar en serie distribuye el voltaje. (3) acoplamiento de CA (capacitores de bloqueo) en circuitos de audio y comunicaciones, donde la combinación en serie crea una respuesta pasa-altas. (4) circuitos con capacitores conmutados en electrónica de potencia, donde las configuraciones serie y paralelo se alternan dinámicamente para lograr conversión de voltaje.\n\nUna consideración práctica crítica es el balance de voltaje. En un circuito real, las tolerancias de los componentes, las corrientes de fuga y los efectos parásitos pueden provocar una distribución desigual del voltaje, superando potencialmente la tensión nominal de un capacitor. En arreglos de alto voltaje en serie, se colocan resistencias de igualación (normalmente de 1 MΩ a 10 MΩ) en paralelo con cada capacitor para garantizar el balance de voltaje en corriente continua a largo plazo."
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de capacitores en serie",
+    "steps": [
+      "Ingresa la capacitancia del primer capacitor (C₁) en faradios. Para microfaradios usa 0.000001 (o 1e-6); para nanofaradios usa 0.000000001 (o 1e-9).",
+      "Ingresa la capacitancia del segundo capacitor (C₂). Al menos C₁ y C₂ son obligatorios; C₃ y C₄ son opcionales y pueden dejarse en blanco para usar una serie de dos o tres capacitores.",
+      "Ingresa el voltaje total aplicado sobre toda la combinación en serie. Ese es el voltaje de alimentación que verá el circuito.",
+      "Haz clic en Calcular. Los resultados mostrarán la capacitancia equivalente, la carga compartida, la energía almacenada y la distribución de voltaje en cada capacitor individual.",
+      "Verifica que el voltaje en cada capacitor no exceda su valor nominal. Si alguno recibe más voltaje del que puede soportar, aumenta su capacitancia, usa un componente de mayor tensión nominal o agrega resistencias de igualación para el balance en CC."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Por qué la capacitancia equivalente es menor que la del capacitor más pequeño?",
+        "a": "En una conexión en serie, el efecto físico equivale a aumentar la separación total entre placas manteniendo constante el área de las placas. Como la capacitancia C = ε₀εᵣA/d disminuye al aumentar la distancia d, una mayor separación total implica una capacitancia total menor. Matemáticamente, la suma recíproca 1/Ceq = 1/C₁ + 1/C₂ + ... siempre produce un Ceq menor que cualquier término individual."
+      },
+      {
+        "q": "¿Cómo se distribuye el voltaje entre capacitores en serie?",
+        "a": "El voltaje se distribuye de forma inversamente proporcional a la capacitancia: V_i = Q / C_i, donde Q es la carga común. Un capacitor con la mitad de capacitancia recibe el doble de voltaje. En capacitores iguales, el voltaje se comparte por igual. En capacitores desiguales, el más pequeño domina: limita la capacitancia total y toma la mayor parte del voltaje. Siempre verifica que el voltaje calculado en cada capacitor esté por debajo de su tensión nominal."
+      },
+      {
+        "q": "¿Qué es la carga Q y por qué es la misma en todos los capacitores?",
+        "a": "En serie, los capacitores forman un solo lazo sin caminos ramificados para la carga. La carga se acumula en las placas externas de la combinación en serie, y la inducción electrostática fuerza cargas iguales y opuestas en todas las placas internas. Como resultado, cada capacitor almacena exactamente la misma carga Q = Ceq × V_total. Esta propiedad de carga compartida define las conexiones en serie, a diferencia de las conexiones en paralelo, donde el voltaje se comparte pero la carga se suma."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre conexiones de capacitores en serie y en paralelo?",
+        "a": "En serie, la capacitancia disminuye (Ceq < el menor C), la carga se comparte y el voltaje se suma. En paralelo, la capacitancia se suma (Ceq = C₁ + C₂ + ...), el voltaje se comparte por igual y las cargas se suman. Las conexiones en serie se usan cuando necesitas soportar voltajes más altos o construir un divisor de voltaje. Las conexiones en paralelo se usan cuando necesitas más capacitancia total o menor resistencia serie equivalente."
+      },
+      {
+        "q": "¿Los capacitores en serie aumentan el almacenamiento de energía?",
+        "a": "No. Los capacitores en serie reducen la capacitancia total, lo que disminuye el almacenamiento de energía a un mismo voltaje (E = ½CV²). Si necesitas más energía almacenada, la conexión en paralelo es la opción correcta. La conexión en serie sacrifica densidad de energía a cambio de mayor capacidad de manejo de voltaje y funcionalidad de divisor de voltaje."
+      },
+      {
+        "q": "¿Por qué los circuitos de alto voltaje usan capacitores en serie?",
+        "a": "Si el voltaje requerido supera la tensión nominal de los capacitores disponibles, conectarlos en serie distribuye el voltaje para que ninguno exceda su límite. Por ejemplo, cuatro capacitores de 25 V en serie pueden soportar 100 V en total. En la práctica, se agregan resistencias de balance en paralelo para asegurar que el voltaje en CC se comparta por igual a pesar de las tolerancias y diferencias de fuga."
+      }
+    ]
+  }
+}

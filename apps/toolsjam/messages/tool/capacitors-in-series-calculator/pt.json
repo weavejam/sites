@@ -1,0 +1,110 @@
+{
+  "title": "Calculadora de capacitores em série",
+  "tagline": "Calcule a capacitância equivalente, a carga, a distribuição de tensão e a energia armazenada para até quatro capacitores em série.",
+  "intro": "Insira os valores de capacitância de dois a quatro capacitores e a tensão total aplicada para calcular a capacitância equivalente, a carga, a tensão em cada capacitor e a energia total.",
+  "field": {
+    "c1": "Capacitor 1 (F)",
+    "c2": "Capacitor 2 (F)",
+    "c3": "Capacitor 3 (F) — opcional",
+    "c4": "Capacitor 4 (F) — opcional",
+    "totalVoltage": "Tensão total aplicada (V)"
+  },
+  "placeholder": {
+    "capacitor": "ex.: 0.000001",
+    "optional": "deixe em branco se não usar",
+    "voltage": "ex.: 10"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultados",
+    "ceq": "Capacitância equivalente",
+    "charge": "Carga (Q)",
+    "energy": "Energia total armazenada",
+    "voltageDistribution": "Distribuição de tensão",
+    "v1": "V₁ em C₁",
+    "v2": "V₂ em C₂",
+    "v3": "V₃ em C₃",
+    "v4": "V₄ em C₄"
+  },
+  "error": {
+    "invalid": "Digite números positivos válidos para pelo menos C₁, C₂ e a tensão total."
+  },
+  "examples": {
+    "heading": "Exemplos resolvidos",
+    "intro": "Clique em um exemplo para carregá-lo na calculadora.",
+    "colInput": "Configuração dos capacitores",
+    "colOutput": "Resultados calculados",
+    "colNote": "Aplicação",
+    "loadTwoEqual": "Dois capacitores iguais",
+    "loadVoltageDivider": "Divisor de tensão",
+    "loadHighVoltage": "Alta tensão (4×)",
+    "items": [
+      {
+        "input": "C₁ = C₂ = 1 μF, V = 10 V",
+        "output": "Ceq = 0.5 μF, V₁ = V₂ = 5 V, Q = 5 μC, E = 25 μJ",
+        "note": "Dois capacitores iguais dividem a capacitância pela metade e compartilham a tensão igualmente — clássico em circuitos dobradores de tensão."
+      },
+      {
+        "input": "C₁ = 1 μF, C₂ = 2 μF, C₃ = 3 μF, V = 15 V",
+        "output": "Ceq ≈ 0.545 μF, V₁ ≈ 8.18 V, V₂ ≈ 4.09 V, V₃ ≈ 2.73 V",
+        "note": "Divisor de tensão: o capacitor menor recebe a tensão maior, confirmando que V ∝ 1/C."
+      },
+      {
+        "input": "C₁ = C₂ = C₃ = C₄ = 1 μF, V = 100 V",
+        "output": "Ceq = 0.25 μF, cada capacitor recebe 25 V, E = 1.25 mJ",
+        "note": "Quatro capacitores em série distribuem 100 V entre quatro componentes de 25 V — uma técnica padrão de alta tensão."
+      },
+      {
+        "input": "C₁ = 1 μF, C₂ = 5 μF, V = 24 V",
+        "output": "Ceq ≈ 0.833 μF, V₁ = 20 V, V₂ = 4 V, Q = 20 μC",
+        "note": "Capacitores desiguais: o capacitor de 1 μF domina e recebe 83 % da tensão aplicada."
+      }
+    ]
+  },
+  "about": {
+    "heading": "Sobre a calculadora de capacitores em série",
+    "body": "Quando os capacitores são ligados em série — ponta a ponta em um único caminho de corrente — eles se comportam de forma muito diferente das conexões em paralelo. Entender o comportamento de capacitores em série é essencial para projetar divisores de tensão, aplicações de alta tensão e circuitos de acoplamento AC.\n\nA propriedade fundamental dos capacitores em série é que todos carregam a mesma carga Q. Quando o circuito é energizado, a carga se acumula na placa do primeiro capacitor, induzindo uma carga igual e oposta na sua segunda placa, que por sua vez induz carga no capacitor adjacente, e assim por diante. Como a mesma carga Q aparece em todos os capacitores, a tensão em cada um é V_i = Q / C_i. Capacitores de menor capacitância, portanto, desenvolvem maior tensão — a ideia-chave para o projeto de divisores de tensão.\n\nA capacitância equivalente (total) de n capacitores em série é dada pela soma dos recíprocos: 1/Ceq = 1/C₁ + 1/C₂ + ... + 1/Cₙ. Em outras palavras, Ceq é sempre menor que o menor capacitor individual. Isso pode ser entendido fisicamente: em série, o espaçamento efetivo entre placas aumenta (a soma de todos os espaçamentos), enquanto a área das placas permanece a mesma, reduzindo a capacitância. Para dois capacitores, a fórmula simplifica para Ceq = C₁C₂/(C₁+C₂), às vezes chamada de regra do produto sobre a soma.\n\nA carga total armazenada é Q = Ceq × V_total. Depois de conhecer Q, a tensão em cada capacitor é V_i = Q / C_i, e a soma V₁ + V₂ + ... deve igualar V_total — uma verificação útil. A energia total armazenada é E = ½ × Ceq × V_total², o que é igual à soma das energias individuais ½ × C_i × V_i², já que todas as cargas são iguais.\n\nAs aplicações práticas incluem: (1) divisores de tensão para circuitos de medição de precisão e condicionamento de sinal, onde a razão entre capacitores define a fração da tensão de saída. (2) Aplicações de alta tensão em que a tensão nominal de um único capacitor é insuficiente — o empilhamento em série distribui a tensão. (3) Acoplamento AC (capacitores de bloqueio) em circuitos de áudio e comunicação, onde a combinação em série cria uma resposta passa-altas. (4) Circuitos com capacitores chaveados em eletrônica de potência, nos quais as configurações série e paralelo são alternadas dinamicamente para obter conversão de tensão.\n\nUma consideração prática crítica é o balanceamento de tensão. Em um circuito real, tolerâncias dos componentes, correntes de fuga e efeitos parasitas podem causar distribuição desigual da tensão — potencialmente excedendo a tensão nominal de um capacitor. Em pilhas de alta tensão em série, resistores de equalização (tipicamente de 1 MΩ a 10 MΩ) são colocados em paralelo com cada capacitor para garantir o balanceamento de tensão em CC a longo prazo."
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de capacitores em série",
+    "steps": [
+      "Digite a capacitância do primeiro capacitor (C₁) em farads. Para microfarads use 0.000001 (ou 1e-6); para nanofarads use 0.000000001 (ou 1e-9).",
+      "Digite a capacitância do segundo capacitor (C₂). Pelo menos C₁ e C₂ são obrigatórios; C₃ e C₄ são opcionais — deixe-os em branco para usar uma série de dois ou três capacitores.",
+      "Digite a tensão total aplicada sobre toda a combinação em série. Essa é a tensão de alimentação que o circuito verá.",
+      "Clique em Calcular. Os resultados mostram a capacitância equivalente, a carga compartilhada, a energia armazenada e a distribuição de tensão em cada capacitor individual.",
+      "Verifique se a tensão em cada capacitor não excede sua tensão nominal. Se algum receber mais tensão do que pode suportar, aumente sua capacitância, use um componente com maior tensão nominal ou adicione resistores de equalização para o balanceamento em CC."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "items": [
+      {
+        "q": "Por que a capacitância equivalente é menor que a do menor capacitor?",
+        "a": "Em uma conexão em série, o efeito físico equivale a aumentar o espaçamento total entre as placas mantendo a área constante. Como a capacitância C = ε₀εᵣA/d diminui quando a distância d aumenta, um espaçamento total maior significa uma capacitância total menor. Matematicamente, a soma dos recíprocos 1/Ceq = 1/C₁ + 1/C₂ + ... sempre produz um Ceq menor que qualquer termo individual."
+      },
+      {
+        "q": "Como a tensão é distribuída entre capacitores em série?",
+        "a": "A tensão se distribui inversamente à capacitância: V_i = Q / C_i, onde Q é a carga comum. Um capacitor com metade da capacitância recebe o dobro da tensão. Para capacitores iguais, a tensão é compartilhada igualmente. Para capacitores desiguais, o menor domina — ele limita a capacitância total e recebe a maior parcela da tensão. Sempre verifique se a tensão calculada em cada capacitor está abaixo da sua tensão nominal."
+      },
+      {
+        "q": "O que é a carga Q e por que ela é a mesma em todos os capacitores?",
+        "a": "Em série, os capacitores formam um único laço sem caminhos ramificados para a carga. A carga se acumula nas placas externas da combinação em série, e a indução eletrostática força cargas iguais e opostas em todas as placas internas. Como resultado, cada capacitor armazena exatamente a mesma carga Q = Ceq × V_total. Essa propriedade de carga compartilhada define as conexões em série, ao contrário das conexões em paralelo, onde a tensão é compartilhada e a carga se soma."
+      },
+      {
+        "q": "Qual é a diferença entre conexões em série e em paralelo?",
+        "a": "Em série, a capacitância diminui (Ceq < o menor C), a carga é compartilhada e a tensão se soma. Em paralelo, a capacitância se soma (Ceq = C₁ + C₂ + ...), a tensão é compartilhada igualmente e as cargas se somam. Conexões em série são usadas quando você precisa suportar tensões mais altas ou construir um divisor de tensão. Conexões em paralelo são usadas quando você precisa de mais capacitância total ou de menor resistência série equivalente."
+      },
+      {
+        "q": "Capacitores em série aumentam o armazenamento de energia?",
+        "a": "Não — conexões em série reduzem a capacitância total, o que diminui o armazenamento de energia na mesma tensão (E = ½CV²). Se você precisa de mais energia armazenada, a conexão em paralelo é a escolha certa. A série sacrifica densidade de energia em troca de maior capacidade de suportar tensão e funcionalidade de divisor de tensão."
+      },
+      {
+        "q": "Por que circuitos de alta tensão usam capacitores em série?",
+        "a": "Se a tensão necessária excede a tensão nominal dos capacitores disponíveis, conectá-los em série distribui a tensão para que nenhum capacitor ultrapasse seu limite. Por exemplo, quatro capacitores de 25 V em série podem suportar 100 V no total. Na prática, resistores de balanceamento são adicionados em paralelo para garantir que a tensão em CC seja compartilhada igualmente, apesar de tolerâncias e diferenças de fuga."
+      }
+    ]
+  }
+}

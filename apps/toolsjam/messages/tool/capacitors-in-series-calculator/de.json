@@ -1,0 +1,110 @@
+{
+  "title": "Kondensatoren in Reihe Rechner",
+  "tagline": "Berechnet die Ersatzkapazität, die Ladung, die Spannungsverteilung und die gespeicherte Energie für bis zu vier Kondensatoren in Reihe.",
+  "intro": "Geben Sie die Kapazitätswerte von zwei bis vier Kondensatoren und die insgesamt angelegte Spannung ein, um Ersatzkapazität, Ladung, Spannung an jedem Kondensator und die Gesamtenergie zu berechnen.",
+  "field": {
+    "c1": "Kondensator 1 (F)",
+    "c2": "Kondensator 2 (F)",
+    "c3": "Kondensator 3 (F) — optional",
+    "c4": "Kondensator 4 (F) — optional",
+    "totalVoltage": "Gesamt angelegte Spannung (V)"
+  },
+  "placeholder": {
+    "capacitor": "z. B. 0.000001",
+    "optional": "leer lassen, wenn unbenutzt",
+    "voltage": "z. B. 10"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "ceq": "Ersatzkapazität",
+    "charge": "Ladung (Q)",
+    "energy": "Gesamte gespeicherte Energie",
+    "voltageDistribution": "Spannungsverteilung",
+    "v1": "V₁ an C₁",
+    "v2": "V₂ an C₂",
+    "v3": "V₃ an C₃",
+    "v4": "V₄ an C₄"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie gültige positive Zahlen für mindestens C₁, C₂ und die Gesamtspannung ein."
+  },
+  "examples": {
+    "heading": "Durchgerechnete Beispiele",
+    "intro": "Klicken Sie auf ein Beispiel, um es in den Rechner zu laden.",
+    "colInput": "Kondensatoranordnung",
+    "colOutput": "Berechnete Ergebnisse",
+    "colNote": "Anwendung",
+    "loadTwoEqual": "Zwei gleiche Kondensatoren",
+    "loadVoltageDivider": "Spannungsteiler",
+    "loadHighVoltage": "Hochspannung (4×)",
+    "items": [
+      {
+        "input": "C₁ = C₂ = 1 μF, V = 10 V",
+        "output": "Ceq = 0.5 μF, V₁ = V₂ = 5 V, Q = 5 μC, E = 25 μJ",
+        "note": "Zwei gleiche Kondensatoren halbieren die Kapazität und teilen sich die Spannung gleichmäßig — klassisch für Spannungsverdoppler."
+      },
+      {
+        "input": "C₁ = 1 μF, C₂ = 2 μF, C₃ = 3 μF, V = 15 V",
+        "output": "Ceq ≈ 0.545 μF, V₁ ≈ 8.18 V, V₂ ≈ 4.09 V, V₃ ≈ 2.73 V",
+        "note": "Spannungsteiler: Der kleinere Kondensator erhält die höhere Spannung, was V ∝ 1/C bestätigt."
+      },
+      {
+        "input": "C₁ = C₂ = C₃ = C₄ = 1 μF, V = 100 V",
+        "output": "Ceq = 0.25 μF, an jedem Kondensator liegen 25 V an, E = 1.25 mJ",
+        "note": "Vier Kondensatoren in Reihe verteilen 100 V auf vier 25-V-Bauteile — eine Standardtechnik für Hochspannung."
+      },
+      {
+        "input": "C₁ = 1 μF, C₂ = 5 μF, V = 24 V",
+        "output": "Ceq ≈ 0.833 μF, V₁ = 20 V, V₂ = 4 V, Q = 20 μC",
+        "note": "Ungleiche Kondensatoren: Der 1-μF-Kondensator dominiert und übernimmt 83 % der angelegten Spannung."
+      }
+    ]
+  },
+  "about": {
+    "heading": "Über den Kondensatoren-in-Reihe-Rechner",
+    "body": "Wenn Kondensatoren in Reihe geschaltet werden — Ende an Ende in einem einzigen Strompfad — verhalten sie sich sehr anders als bei Parallelschaltung. Das Verständnis des Verhaltens von Reihenschaltungen ist entscheidend für Spannungsteiler, Hochspannungsanwendungen und AC-Kopplungsschaltungen.\n\nDie grundlegende Eigenschaft von Kondensatoren in Reihe ist, dass sie alle dieselbe Ladung Q tragen. Wenn der Stromkreis energisiert wird, sammelt sich Ladung an der ersten Kondensatorplatte an und induziert auf der gegenüberliegenden Platte eine gleich große entgegengesetzte Ladung, die wiederum den benachbarten Kondensator beeinflusst, und so weiter. Da auf jedem Kondensator dieselbe Ladung Q vorhanden ist, gilt für die Spannung an jedem Kondensator V_i = Q / C_i. Kleinere Kapazitäten erzeugen daher höhere Spannungen — der zentrale Zusammenhang für den Spannungsteiler.\n\nDie Ersatzkapazität von n in Reihe geschalteten Kondensatoren ergibt sich aus der Kehrwertsumme: 1/Ceq = 1/C₁ + 1/C₂ + ... + 1/Cₙ. Anders gesagt ist Ceq immer kleiner als der kleinste Einzelkondensator. Physikalisch lässt sich das so verstehen: In Reihe vergrößert sich der effektive Plattenabstand (die Summe aller einzelnen Abstände), während die Plattenfläche gleich bleibt, wodurch die Kapazität sinkt. Für zwei Kondensatoren vereinfacht sich die Formel zu Ceq = C₁C₂/(C₁+C₂), manchmal als Produkt-durch-Summe-Regel bezeichnet.\n\nDie insgesamt gespeicherte Ladung ist Q = Ceq × V_total. Ist Q bekannt, ergibt sich die Spannung an jedem Kondensator zu V_i = Q / C_i, und die Summe V₁ + V₂ + ... muss V_total ergeben — ein nützlicher Plausibilitätscheck. Die gesamte gespeicherte Energie ist E = ½ × Ceq × V_total², was der Summe der Einzelenergien ½ × C_i × V_i² entspricht, da alle Ladungen gleich sind.\n\nPraktische Anwendungen sind: (1) Spannungsteiler für Präzisionsmessschaltungen und Signalaufbereitung, bei denen das Kondensatorverhältnis den Ausgangsspannungsanteil bestimmt. (2) Hochspannungsanwendungen, bei denen die Spannungsfestigkeit eines einzelnen Kondensators nicht ausreicht — die Reihenschaltung verteilt die Spannung. (3) AC-Kopplung (Sperrkondensatoren) in Audio- und Kommunikationsschaltungen, wo die Reihenkombination eine Hochpasswirkung erzeugt. (4) Schaltkondensatorschaltungen in der Leistungselektronik, bei denen Reihen- und Parallelschaltungen dynamisch umgeschaltet werden, um Spannungswandlung zu erreichen.\n\nEin wichtiger praktischer Punkt ist der Spannungsausgleich. In realen Schaltungen können Bauteiltoleranzen, Leckströme und parasitäre Effekte zu ungleichmäßiger Spannungsverteilung führen — und so die Nennspannung eines Kondensators überschreiten. Für Hochspannungs-Reihenschaltungen werden typischerweise Ausgleichswiderstände (meist 1 MΩ bis 10 MΩ) parallel zu jedem Kondensator geschaltet, um einen langfristigen Gleichspannungs-Ausgleich sicherzustellen."
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Kondensatoren-in-Reihe-Rechner",
+    "steps": [
+      "Geben Sie die Kapazität des ersten Kondensators (C₁) in Farad ein. Für Mikrofarad verwenden Sie 0.000001 (oder 1e-6), für Nanofarad 0.000000001 (oder 1e-9).",
+      "Geben Sie die Kapazität des zweiten Kondensators (C₂) ein. Mindestens C₁ und C₂ sind erforderlich; C₃ und C₄ sind optional — lassen Sie sie leer, um zwei oder drei Kondensatoren in Reihe zu verwenden.",
+      "Geben Sie die gesamte angelegte Spannung über der Reihenschaltung ein. Das ist die Versorgungsspannung, die die Schaltung sieht.",
+      "Klicken Sie auf Berechnen. Die Ergebnisse zeigen Ersatzkapazität, gemeinsame Ladung, gespeicherte Energie und die Spannungsverteilung über jeden einzelnen Kondensator.",
+      "Prüfen Sie, dass die Spannung an jedem Kondensator seine Nennspannung nicht überschreitet. Wenn ein Kondensator mehr Spannung abbekommt als zulässig, erhöhen Sie seine Kapazität, verwenden Sie ein Bauteil mit höherer Spannungsfestigkeit oder fügen Sie Ausgleichswiderstände für den DC-Ausgleich hinzu."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Warum ist die Ersatzkapazität kleiner als der kleinste Kondensator?",
+        "a": "Bei einer Reihenschaltung entspricht der physikalische Effekt einer Vergrößerung des gesamten Plattenabstands bei konstanter Plattenfläche. Da die Kapazität C = ε₀εᵣA/d mit zunehmendem Abstand d kleiner wird, bedeutet ein größerer Gesamtabstand eine kleinere Gesamtkapazität. Mathematisch erzeugt die Kehrwertsumme 1/Ceq = 1/C₁ + 1/C₂ + ... stets ein Ceq, das kleiner ist als jeder Einzelwert."
+      },
+      {
+        "q": "Wie verteilt sich die Spannung auf Kondensatoren in Reihe?",
+        "a": "Die Spannung verteilt sich umgekehrt proportional zur Kapazität: V_i = Q / C_i, wobei Q die gemeinsame Ladung ist. Ein Kondensator mit halber Kapazität erhält die doppelte Spannung. Bei gleichen Kondensatoren wird die Spannung gleichmäßig geteilt. Bei ungleichen Kondensatoren dominiert der kleinste Kondensator — er begrenzt die Gesamtkapazität und übernimmt den größten Spannungsanteil. Prüfen Sie immer, dass die berechnete Spannung an jedem Kondensator unter seiner Nennspannung bleibt."
+      },
+      {
+        "q": "Was ist die Ladung Q und warum ist sie bei allen Kondensatoren gleich?",
+        "a": "In Reihe bilden die Kondensatoren einen einzigen Kreis ohne Verzweigungen für die Ladung. Ladung sammelt sich an den äußeren Platten der Reihenschaltung, und die elektrostatische Induktion erzwingt auf allen inneren Platten gleich große entgegengesetzte Ladungen. Daher speichert jeder Kondensator exakt dieselbe Ladung Q = Ceq × V_total. Diese gemeinsame Ladung ist das definierende Merkmal von Reihenschaltungen, im Gegensatz zu Parallelschaltungen, bei denen die Spannung geteilt, aber die Ladung addiert wird."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen Reihen- und Parallelschaltung von Kondensatoren?",
+        "a": "In Reihe sinkt die Kapazität (Ceq < kleinster C), die Ladung wird geteilt und die Spannung addiert sich. In Parallel schaltet sich die Kapazität zusammen (Ceq = C₁ + C₂ + ...), die Spannung wird gleich geteilt und die Ladungen addieren sich. Reihenschaltungen nutzt man, wenn höhere Spannungen verarbeitet oder ein Spannungsteiler aufgebaut werden soll. Parallelschaltungen nutzt man, wenn mehr Gesamtkapazität oder ein niedrigerer äquivalenter Serienwiderstand benötigt wird."
+      },
+      {
+        "q": "Speichern Kondensatoren in Reihe mehr Energie?",
+        "a": "Nein — Reihenschaltungen verringern die Gesamtkapazität und damit bei gleicher Spannung die gespeicherte Energie (E = ½CV²). Wenn Sie mehr Energie speichern müssen, ist die Parallelschaltung die richtige Wahl. Die Reihenschaltung opfert Energiedichte zugunsten höherer Spannungsfestigkeit und Spannungsteiler-Funktionalität."
+      },
+      {
+        "q": "Warum verwenden Hochspannungsschaltungen Kondensatoren in Reihe?",
+        "a": "Wenn die benötigte Spannung über der Nennspannung verfügbarer Kondensatoren liegt, verteilt eine Reihenschaltung die Spannung so, dass kein einzelner Kondensator sein Limit überschreitet. Vier 25-V-Kondensatoren in Reihe können beispielsweise 100 V insgesamt verkraften. In der Praxis werden parallel Ausgleichswiderstände ergänzt, damit sich die Gleichspannung trotz Toleranzen und Leckunterschieden gleichmäßig verteilt."
+      }
+    ]
+  }
+}

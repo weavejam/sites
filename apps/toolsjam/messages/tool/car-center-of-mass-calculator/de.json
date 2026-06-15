@@ -1,0 +1,108 @@
+{
+  "title": "Auto-Schwerpunkt-Rechner",
+  "tagline": "Berechnen Sie den 3D-Schwerpunkt (CG) jedes Fahrzeugs, indem Sie Bauteile mit ihren Massen und Koordinaten hinzufügen — wichtig für Handling, Sicherheit und Motorsporttechnik.",
+  "intro": "Fügen Sie Fahrzeugkomponenten (Motor, Fahrer, Kraftstoff, Ladung, Ballast) mit ihrer Masse und ihren (X, Y, Z)-Koordinaten relativ zu Ihrem gewählten Ursprung hinzu. Klicken Sie auf Berechnen, um die Gesamtmasse und den Schwerpunkt zu ermitteln.",
+  "field": {
+    "mass": "Masse (kg)",
+    "x": "X (m)",
+    "y": "Y (m)",
+    "z": "Z (m)"
+  },
+  "placeholder": {
+    "mass": "kg",
+    "coord": "m"
+  },
+  "button": {
+    "addComponent": "Komponente hinzufügen",
+    "remove": "Entfernen",
+    "calculate": "CG berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "totalMass": "Gesamtmasse",
+    "components": "Verwendete Komponenten",
+    "cgHeading": "Koordinaten des Schwerpunkts (CG)",
+    "cgX": "CG X",
+    "cgY": "CG Y",
+    "cgZ": "CG Z"
+  },
+  "error": {
+    "invalid": "Bitte mindestens eine Komponente mit positiver Masse und gültigen X-, Y- und Z-Koordinaten eingeben."
+  },
+  "examples": {
+    "heading": "Rechenbeispiele",
+    "intro": "Klicken Sie auf ein Beispiel, um eine vordefinierte Fahrzeugkonfiguration zu laden.",
+    "colInput": "Fahrzeugmodell",
+    "colOutput": "Schwerpunkt",
+    "colNote": "Interpretation",
+    "loadSedan": "Familienlimousine",
+    "loadRaceCar": "Rennwagen",
+    "loadTruck": "Transport-Lkw",
+    "items": [
+      {
+        "input": "Limousine: Fahrgestell 1200 kg @ (1.2, 0, 0.5), Fahrer 75 kg @ (1.5, −0.4, 0.9), Beifahrer 75 kg @ (1.5, 0.4, 0.9), Gepäck 25 kg @ (2.8, 0, 0.7)",
+        "output": "Gesamt = 1375 kg, CG ≈ (1.26, 0, 0.55) m",
+        "note": "Der Schwerpunkt liegt weit vorne und niedrig, typisch für frontlastige Limousinen. Leicht vor der Mitte des Radstands fördert er Untersteuern und ein stabiles Alltagsfahrverhalten."
+      },
+      {
+        "input": "Rennwagen: Fahrgestell 500 kg @ (1.0, 0, 0.25), Fahrer 70 kg @ (1.3, 0.1, 0.6), Heckballast 50 kg @ (2.5, 0, 0.2)",
+        "output": "Gesamt = 620 kg, CG ≈ (1.15, 0.01, 0.29) m",
+        "note": "Die sehr niedrige CG-Höhe (0.29 m) und die nahezu zentrale X-Position optimieren die Kurvenstabilität. Der Heckballast verschiebt die Gewichtsverteilung in Richtung Neutralbalance."
+      },
+      {
+        "input": "Transport-Lkw: Kabine 2000 kg @ (1.5, 0, 1.0), Fahrer 80 kg @ (1.0, −0.5, 1.5), Ladung 1500 kg @ (4.0, 0.5, 1.2)",
+        "output": "Gesamt = 3580 kg, CG ≈ (2.54, 0.20, 1.09) m",
+        "note": "Ein hoher CG (1.09 m) und eine nach hinten versetzte X-Position (2.54 m) spiegeln einen beladenen Lkw wider. Ein hoher CG senkt die Kippgrenze; ein außermittiges Y deutet auf asymmetrische Beladung hin."
+      },
+      {
+        "input": "Sportwagen: Karosserie 1300 kg @ (1.4, 0, 0.4), Fahrer 60 kg @ (1.5, −0.3, 0.7), Kraftstoff 40 kg @ (2.2, 0, 0.3)",
+        "output": "Gesamt = 1400 kg, CG ≈ (1.43, −0.01, 0.41) m",
+        "note": "Ein niedriger CG (0.41 m) und eine nahezu symmetrische Y-Verteilung zeigen einen gut ausbalancierten Sportwagen. Ein CG nahe dem geometrischen Zentrum verbessert das Einlenkverhalten."
+      }
+    ]
+  },
+  "about": {
+    "heading": "Über den Auto-Schwerpunkt-Rechner",
+    "body": "Der Schwerpunkt (CoM) — im Kontext eines homogenen Gravitationsfeldes auch als Schwerpunkt (CG) bezeichnet — ist der Punkt eines Körpers, an dem für die translatorische Dynamik die gesamte Masse angesetzt werden kann. Bei einer komplexen Baugruppe wie einem Fahrzeug wird er als massengewichteter Mittelwert aller Komponenten berechnet.\n\nDie mathematische Formel ist einfach: CG_x = (Σ m_i × x_i) / M_total, und entsprechend für Y und Z, wobei m_i die Masse jeder Komponente ist, (x_i, y_i, z_i) ihre Position relativ zum gewählten Bezugspunkt und M_total die Summe aller Massen. Dieser Rechner löst alle drei Gleichungen gleichzeitig.\n\nDas Koordinatensystem können Sie selbst festlegen. Eine gängige Konvention für Fahrzeuge ist: Ursprung im Mittelpunkt der Vorderachse auf Bodenhöhe; X nach hinten; Y nach rechts (aus Fahrersicht); Z nach oben. So lassen sich CG-Höhe (Z) und Vorder-/Hinterachsbalance (X relativ zum Radstand) sofort ablesen.\n\nDie Längsposition des CG (X-Koordinate relativ zum Radstand) bestimmt die statische Achslastverteilung. Ein CG bei 40 % des Radstands von der Vorderachse bedeutet, dass 60 % des Gewichts auf den Vorderrädern liegen — typisch für Fahrzeuge mit Frontmotor und Frontantrieb. Renningenieure zielen häufig auf eine 50/50-Verteilung oder passen sie gezielt an, um das gewünschte Handling zu erreichen.\n\nDie Höhe des CG (Z-Koordinate) ist wohl die sicherheitskritischste Größe. Ein niedrigerer CG verringert die Tendenz zum Überschlag in Kurven und reduziert die Lastverlagerung zwischen Innen- und Außenrädern. Deshalb haben Supersportwagen flache Böden und Rennwagen schwere Komponenten wie Batterien und Tanks möglichst tief eingebaut.\n\nDie seitliche Position des CG (Y-Koordinate) beeinflusst die Links-Rechts-Gewichtsverteilung. Rennteams messen dies mit Corner-Weight-Waagen sehr genau und fügen Ballast hinzu, um die Radlasten links und rechts anzugleichen und so ein konsistentes Verhalten in Links- und Rechtskurven zu erzielen. Straßenfahrzeuge werden möglichst symmetrisch ausgelegt, obwohl Fahrerposition und asymmetrische Tankanordnung kleine Abweichungen verursachen können.\n\nÜber Pkw hinaus ist die CG-Berechnung entscheidend für: Nutzfahrzeuge und Busse (Überschlagschutz, Lastgrenzen); Flugzeuge (Längsstabilität — der CG muss innerhalb des Flugbereichs liegen); Schiffe (die metazentrische Höhe bestimmt die Krängungsstabilität); und Maschinen (Krane, Gabelstapler müssen den CG unterhalb der Kippkante haben)."
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Auto-Schwerpunkt-Rechner",
+    "steps": [
+      "Legen Sie vor der Eingabe einen Ursprung des Koordinatensystems fest. Eine praktische Wahl: Ursprung im Mittelpunkt der Vorderachse auf Bodenhöhe, X nach hinten, Y nach rechts, Z nach oben.",
+      "Tragen Sie für jedes wichtige Fahrzeugbauteil (Motor, Fahrgestell/Karosserie, Getriebe, Fahrer, Beifahrer, Kraftstoff, Ladung, Batterie, Ballast) die Masse in Kilogramm und die geschätzte Schwerpunktposition (X, Y, Z) in Metern relativ zum Ursprung ein.",
+      "Klicken Sie auf Komponente hinzufügen, um weitere Zeilen anzulegen. Für ein genaues Ergebnis sollten die eingegebenen Komponenten zusammen mindestens 90 % der Fahrzeugmasse abdecken.",
+      "Klicken Sie auf CG berechnen. Das Ergebnis zeigt Gesamtmasse und die (X, Y, Z)-Koordinaten des gesamten Schwerpunkts. Der Z-Wert ist die CG-Höhe; X geteilt durch den Radstand ergibt den Prozentanteil der Hinterachslast.",
+      "Nutzen Sie die Beispielschaltflächen, um vordefinierte Konfigurationen für Limousine, Rennwagen und Lkw zu laden und zu sehen, wie sich der CG bei veränderter Massenverteilung verschiebt. Entfernen Sie beim Rennwagen-Beispiel den Heckballast, um zu sehen, wie sich der CG nach vorne bewegt."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Was ist der Unterschied zwischen Schwerpunkt und Schwerpunktlage?",
+        "a": "Der Schwerpunkt wird ausschließlich durch die Massenverteilung definiert. Der Schwerpunkt im Sinn der Gewichtskraft ist der Punkt, an dem das resultierende Gravitationsmoment null ist. In einem homogenen Gravitationsfeld — eine für Fahrzeuge auf der Erde gültige Näherung — sind diese beiden Punkte identisch. In der Fahrzeugdynamik werden die Begriffe austauschbar verwendet. Sie unterscheiden sich nur in stark inhomogenen Feldern, etwa in der Nähe sehr massereicher Körper in der Orbitalmechanik."
+      },
+      {
+        "q": "Wie genau müssen meine Komponentenmassen sein?",
+        "a": "Die Genauigkeit des berechneten CG spiegelt direkt die Genauigkeit Ihrer Eingabedaten wider. Für Hauptkomponenten wie Motorblock, Fahrgestell oder Batteriepack liegen meist Herstellerspezifikationen vor, die auf wenige Prozent genau sind. Für verteilte Massen wie Kabelbäume oder Innenverkleidungen verwenden Sie geschätzte Durchschnittswerte. In der Praxis liefert eine Gesamtgenauigkeit von ±5 % bei den Komponentenmassen meist eine CG-Position auf wenige Zentimeter genau — ausreichend für die meisten technischen Entscheidungen."
+      },
+      {
+        "q": "Wie wirkt sich die CG-Höhe auf die Überschlagsicherheit aus?",
+        "a": "Die Kippgrenze — die Querbeschleunigung, bei der ein Fahrzeug zu kippen beginnt — entspricht näherungsweise der halben Spurweite geteilt durch die CG-Höhe (g × T / (2h), wobei T die Spurweite und h die CG-Höhe ist). Ein niedrigerer CG oder eine breitere Spur erhöhen diese Grenze. Eine Senkung der CG-Höhe um 10 cm bei einem Fahrzeug mit 1 m CG-Höhe und 1,6 m Spurweite erhöht die Kippgrenze um etwa 10 % — ein deutlicher Sicherheitsgewinn."
+      },
+      {
+        "q": "Warum fügen Renningenieure Ballast hinzu, um den CG anzupassen?",
+        "a": "Moderne Rennreglements schreiben ein Mindestgewicht vor, und Rennwagen werden oft leichter als dieses Minimum gebaut. Der Gewichtsüberschuss wird als strategisch platzierter Ballast ergänzt — schwere Metallblöcke, die an bestimmten Stellen verschraubt werden. Durch die Ballastposition können Ingenieure den CG präzise verschieben, um die Vorder-/Hinterachslastverteilung zu optimieren (für Balance beim Beschleunigen, Bremsen und in Kurven) und die CG-Höhe zu minimieren (für maximale Seitenstabilität)."
+      },
+      {
+        "q": "Wie lege ich einen guten Ursprung des Koordinatensystems fest?",
+        "a": "Die Wahl des Ursprungs ändert das physikalische Ergebnis nicht — nur die Zahlenwerte der Koordinaten. Ein praktischer Ursprung vereinfacht jedoch die Dateneingabe. Bei Autos ist der Ursprung im Mittelpunkt der Vorderachse auf Bodenhöhe üblich, weil: (1) Radstand und Spurweite direkt ablesbar sind; (2) die CG-Höhe einfach dem Z-Wert entspricht; (3) die Vorder-/Hinterachslast sofort als CG_X / Radstand erkennbar ist. Ein symmetrisch auf der Fahrzeugmitte liegender Y-Ursprung macht positive und negative Y-Werte als links und rechts klar interpretierbar."
+      },
+      {
+        "q": "Kann ich den Rechner auch außerhalb von Fahrzeugen verwenden?",
+        "a": "Ja — die Formel des gewichteten Mittelwerts gilt für jedes Punktmassensystem. Sie können sie für Flugzeug-Beladungsplanung (CG relativ zum Neutralpunkt), Kranstabilität (CG innerhalb der Standfläche), Roboterarm-Balance oder jedes technische Problem nutzen, das die massengewichtete Mittelposition einer Komponentenmenge benötigt. Definieren Sie einfach ein passendes Koordinatensystem und geben Sie Masse und Position jeder Komponente ein."
+      }
+    ]
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "title": "Calculateur de condensateurs en série",
+  "tagline": "Calcule la capacité équivalente, la charge, la répartition de la tension et l’énergie stockée pour jusqu’à quatre condensateurs en série.",
+  "intro": "Saisissez les valeurs de capacité de deux à quatre condensateurs et la tension totale appliquée pour calculer la capacité équivalente, la charge, la tension sur chaque condensateur et l’énergie totale.",
+  "field": {
+    "c1": "Condensateur 1 (F)",
+    "c2": "Condensateur 2 (F)",
+    "c3": "Condensateur 3 (F) — facultatif",
+    "c4": "Condensateur 4 (F) — facultatif",
+    "totalVoltage": "Tension totale appliquée (V)"
+  },
+  "placeholder": {
+    "capacitor": "ex. 0.000001",
+    "optional": "laissez vide si non utilisé",
+    "voltage": "ex. 10"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats",
+    "ceq": "Capacité équivalente",
+    "charge": "Charge (Q)",
+    "energy": "Énergie totale stockée",
+    "voltageDistribution": "Répartition de la tension",
+    "v1": "V₁ aux bornes de C₁",
+    "v2": "V₂ aux bornes de C₂",
+    "v3": "V₃ aux bornes de C₃",
+    "v4": "V₄ aux bornes de C₄"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides pour au moins C₁, C₂ et la tension totale."
+  },
+  "examples": {
+    "heading": "Exemples détaillés",
+    "intro": "Cliquez sur un exemple pour le charger dans le calculateur.",
+    "colInput": "Configuration des condensateurs",
+    "colOutput": "Résultats calculés",
+    "colNote": "Application",
+    "loadTwoEqual": "Deux condensateurs égaux",
+    "loadVoltageDivider": "Diviseur de tension",
+    "loadHighVoltage": "Haute tension (4×)",
+    "items": [
+      {
+        "input": "C₁ = C₂ = 1 μF, V = 10 V",
+        "output": "Ceq = 0.5 μF, V₁ = V₂ = 5 V, Q = 5 μC, E = 25 μJ",
+        "note": "Deux condensateurs égaux divisent la capacité par deux et se partagent la tension à parts égales — un cas classique des circuits doubleurs de tension."
+      },
+      {
+        "input": "C₁ = 1 μF, C₂ = 2 μF, C₃ = 3 μF, V = 15 V",
+        "output": "Ceq ≈ 0.545 μF, V₁ ≈ 8.18 V, V₂ ≈ 4.09 V, V₃ ≈ 2.73 V",
+        "note": "Diviseur de tension : le condensateur le plus petit reçoit la tension la plus élevée, ce qui confirme que V ∝ 1/C."
+      },
+      {
+        "input": "C₁ = C₂ = C₃ = C₄ = 1 μF, V = 100 V",
+        "output": "Ceq = 0.25 μF, chaque condensateur voit 25 V, E = 1.25 mJ",
+        "note": "Quatre condensateurs en série répartissent 100 V sur quatre composants de 25 V — une technique haute tension standard."
+      },
+      {
+        "input": "C₁ = 1 μF, C₂ = 5 μF, V = 24 V",
+        "output": "Ceq ≈ 0.833 μF, V₁ = 20 V, V₂ = 4 V, Q = 20 μC",
+        "note": "Condensateurs inégaux : le condensateur de 1 μF domine et prend 83 % de la tension appliquée."
+      }
+    ]
+  },
+  "about": {
+    "heading": "À propos du calculateur de condensateurs en série",
+    "body": "Lorsqu’ils sont connectés en série — bout à bout dans un seul chemin de courant — les condensateurs se comportent très différemment d’une connexion en parallèle. Comprendre le comportement des condensateurs en série est essentiel pour la conception de diviseurs de tension, les applications haute tension et les circuits de couplage AC.\n\nLa propriété fondamentale des condensateurs en série est qu’ils portent tous la même charge Q. Lorsque le circuit est alimenté, la charge s’accumule sur la première plaque du condensateur, induisant une charge égale et opposée sur l’autre plaque, puis sur le condensateur adjacent, et ainsi de suite. Comme la même charge Q apparaît sur chaque condensateur, la tension à ses bornes est V_i = Q / C_i. Les condensateurs de plus faible capacité développent donc une tension plus élevée, ce qui est l’idée clé pour la conception de diviseurs de tension.\n\nLa capacité équivalente (totale) de n condensateurs en série est donnée par la somme des inverses : 1/Ceq = 1/C₁ + 1/C₂ + ... + 1/Cₙ. Autrement dit, Ceq est toujours inférieure à la plus petite capacité individuelle. On peut l’expliquer physiquement : en série, l’écartement effectif des plaques augmente (la somme de tous les écarts), tandis que l’aire des plaques reste la même, ce qui réduit la capacité. Pour deux condensateurs, la formule se simplifie en Ceq = C₁C₂/(C₁+C₂), parfois appelée règle du produit sur la somme.\n\nLa charge totale stockée est Q = Ceq × V_total. Une fois Q connu, la tension sur chaque condensateur est V_i = Q / C_i, et la somme V₁ + V₂ + ... doit être égale à V_total — un contrôle utile. L’énergie totale stockée est E = ½ × Ceq × V_total², identique à la somme des énergies individuelles ½ × C_i × V_i² puisque toutes les charges sont égales.\n\nLes applications pratiques incluent : (1) les diviseurs de tension pour les circuits de mesure de précision et de conditionnement du signal, où le rapport des condensateurs fixe la fraction de tension de sortie. (2) Les applications haute tension où la tension nominale d’un seul condensateur est insuffisante — l’empilement en série répartit la tension. (3) Le couplage AC (condensateurs de blocage) dans les circuits audio et de communication, où la combinaison en série crée une réponse passe-haut. (4) Les circuits à condensateurs commutés en électronique de puissance, où les configurations série et parallèle sont commutées dynamiquement pour obtenir une conversion de tension.\n\nUn point pratique crucial est l’équilibrage de tension. Dans un circuit réel, les tolérances des composants, les courants de fuite et les effets parasites peuvent provoquer une répartition inégale de la tension — avec le risque de dépasser la tension nominale d’un condensateur. Pour les empilements haute tension en série, on place généralement des résistances d’équilibrage (souvent de 1 MΩ à 10 MΩ) en parallèle sur chaque condensateur afin d’assurer un équilibrage DC durable."
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de condensateurs en série",
+    "steps": [
+      "Saisissez la capacité du premier condensateur (C₁) en farads. Pour des microfarads, utilisez 0.000001 (ou 1e-6) ; pour des nanofarads, utilisez 0.000000001 (ou 1e-9).",
+      "Saisissez la capacité du second condensateur (C₂). C₁ et C₂ sont obligatoires ; C₃ et C₄ sont facultatifs — laissez-les vides pour utiliser une série de deux ou trois condensateurs.",
+      "Saisissez la tension totale appliquée à l’ensemble de la série. C’est la tension d’alimentation que verra le circuit.",
+      "Cliquez sur Calculer. Les résultats affichent la capacité équivalente, la charge partagée, l’énergie stockée et la répartition de la tension sur chaque condensateur.",
+      "Vérifiez que la tension sur chaque condensateur ne dépasse pas sa tension nominale. Si l’un d’eux reçoit plus de tension qu’il ne peut supporter, augmentez sa capacité, utilisez un composant plus robuste ou ajoutez des résistances d’équilibrage pour le DC."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Pourquoi la capacité équivalente est-elle inférieure à celle du plus petit condensateur ?",
+        "a": "Dans une connexion en série, l’effet physique revient à augmenter l’écartement total des plaques tout en gardant leur surface constante. Comme la capacité C = ε₀εᵣA/d diminue lorsque la distance d augmente, un écart total plus grand signifie une capacité totale plus faible. Mathématiquement, la somme des inverses 1/Ceq = 1/C₁ + 1/C₂ + ... produit toujours un Ceq inférieur à n’importe quel terme individuel."
+      },
+      {
+        "q": "Comment la tension se répartit-elle sur des condensateurs en série ?",
+        "a": "La tension se répartit inversement à la capacité : V_i = Q / C_i, où Q est la charge commune. Un condensateur avec deux fois moins de capacité reçoit deux fois plus de tension. Pour des condensateurs égaux, la tension est partagée équitablement. Pour des condensateurs inégaux, le plus petit domine — il limite la capacité totale et prend la plus grande part de tension. Vérifiez toujours que la tension calculée sur chaque condensateur reste inférieure à sa tension nominale."
+      },
+      {
+        "q": "Qu’est-ce que la charge Q et pourquoi est-elle identique sur tous les condensateurs ?",
+        "a": "En série, les condensateurs forment une seule boucle sans branchement pour la charge. La charge s’accumule sur les plaques externes de l’ensemble, et l’induction électrostatique force des charges égales et opposées sur toutes les plaques internes. Ainsi, chaque condensateur stocke exactement la même charge Q = Ceq × V_total. Cette propriété de charge commune définit la connexion en série, contrairement au parallèle où la tension est partagée mais la charge s’additionne."
+      },
+      {
+        "q": "Quelle est la différence entre des condensateurs en série et en parallèle ?",
+        "a": "En série, la capacité diminue (Ceq < la plus petite C), la charge est partagée et les tensions s’additionnent. En parallèle, la capacité s’additionne (Ceq = C₁ + C₂ + ...), la tension est partagée également et les charges s’additionnent. Les connexions en série sont utilisées quand il faut supporter une tension plus élevée ou réaliser un diviseur de tension. Les connexions en parallèle sont utilisées quand on veut plus de capacité totale ou une résistance série équivalente plus faible."
+      },
+      {
+        "q": "Les condensateurs en série ajoutent-ils de l’énergie stockée ?",
+        "a": "Non — la connexion en série réduit la capacité totale, ce qui diminue l’énergie stockée à tension égale (E = ½CV²). Si vous avez besoin de plus d’énergie stockée, la connexion en parallèle est la bonne solution. La série sacrifie la densité d’énergie au profit d’une meilleure tenue en tension et d’une fonction de diviseur de tension."
+      },
+      {
+        "q": "Pourquoi les circuits haute tension utilisent-ils des condensateurs en série ?",
+        "a": "Si la tension requise dépasse la tension nominale des condensateurs disponibles, les connecter en série répartit la tension de sorte qu’aucun condensateur ne dépasse sa limite. Par exemple, quatre condensateurs de 25 V en série peuvent supporter 100 V au total. En pratique, on ajoute des résistances d’équilibrage en parallèle pour garantir un partage uniforme de la tension continue malgré les tolérances et les différences de fuite."
+      }
+    ]
+  }
+}
