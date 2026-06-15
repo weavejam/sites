@@ -33,8 +33,6 @@ import { spawnSync, spawn } from "node:child_process";
 import {
   existsSync,
   mkdirSync,
-  readdirSync,
-  readFileSync,
   rmSync,
   rmdirSync,
   statSync,
@@ -78,11 +76,42 @@ function parseArgs(): Args {
 
 // --- identifying tools that need translation -----------------------------
 
+// Path of DATA_DIR relative to repo root, used to list/read files at origin/main
+// without touching the main repo's working tree.
+const DATA_DIR_REL = path.relative(MAIN_REPO, DATA_DIR).replace(/\\/g, "/");
+
+function gitShowAtRef(ref: string, relPath: string): string | null {
+  const r = spawnSync("git", ["show", `${ref}:${relPath}`], {
+    cwd: MAIN_REPO, encoding: "utf8", windowsHide: true, maxBuffer: 32 * 1024 * 1024,
+  });
+  if (r.status !== 0) return null;
+  return r.stdout;
+}
+
+function gitListTreeFiles(ref: string, dirRel: string): string[] {
+  const r = spawnSync("git", ["ls-tree", "--name-only", ref, `${dirRel}/`], {
+    cwd: MAIN_REPO, encoding: "utf8", windowsHide: true,
+  });
+  if (r.status !== 0) return [];
+  return r.stdout
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((p) => path.posix.basename(p));
+}
+
+function fetchOriginMain(): void {
+  // Only updates .git/refs — does NOT touch the main repo working tree.
+  spawnSync("git", ["fetch", "origin", "main"], { cwd: MAIN_REPO, stdio: "ignore", windowsHide: true });
+}
+
 function findNeedsTranslate(): string[] {
+  fetchOriginMain();
   const need: string[] = [];
-  for (const file of readdirSync(DATA_DIR)) {
+  const files = gitListTreeFiles("origin/main", DATA_DIR_REL);
+  for (const file of files) {
     if (!file.endsWith(".ts") || file === "index.ts") continue;
-    const src = readFileSync(path.join(DATA_DIR, file), "utf8");
+    const src = gitShowAtRef("origin/main", `${DATA_DIR_REL}/${file}`);
+    if (!src) continue;
     const entryRe =
       /\{\s*id:\s*"([^"]+)"[\s\S]*?slugs:\s*\{([^}]*)\}[\s\S]*?titles:\s*\{([^}]*)\}[\s\S]*?descriptions:\s*\{([^}]*)\}/g;
     let m: RegExpExecArray | null;
