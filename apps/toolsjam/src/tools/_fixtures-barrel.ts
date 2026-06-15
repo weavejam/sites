@@ -175,6 +175,11 @@ import { fixtures as f_great_circle_calculator } from "@/tools/great-circle-calc
 import { fixtures as f_greater_than_or_less_than_calculator } from "@/tools/greater-than-or-less-than-calculator.fixtures";
 import { fixtures as f_gsd_calculator_ground_sample_distance } from "@/tools/gsd-calculator-ground-sample-distance.fixtures";
 import { fixtures as f_guitar_string_tension_calculator } from "@/tools/guitar-string-tension-calculator.fixtures";
+import { fixtures as f_hadamard_product_calculator } from "@/tools/hadamard-product-calculator.fixtures";
+import { fixtures as f_half_angle_calculator } from "@/tools/half-angle-calculator.fixtures";
+import { fixtures as f_harmonic_mean_calculator } from "@/tools/harmonic-mean-calculator.fixtures";
+import { fixtures as f_harmonic_number_calculator } from "@/tools/harmonic-number-calculator.fixtures";
+import { fixtures as f_herons_formula_calculator } from "@/tools/herons-formula-calculator.fixtures";
 import { fixtures as f_hypothesis_testing_calculator } from "@/tools/hypothesis-testing-calculator.fixtures";
 import { fixtures as f_impact_factor_calculator } from "@/tools/impact-factor-calculator.fixtures";
 import { fixtures as f_impedance_matching_calculator } from "@/tools/impedance-matching-calculator.fixtures";
@@ -594,6 +599,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "greater-than-or-less-than-calculator": f_greater_than_or_less_than_calculator,
   "gsd-calculator-ground-sample-distance": f_gsd_calculator_ground_sample_distance,
   "guitar-string-tension-calculator": f_guitar_string_tension_calculator,
+  "hadamard-product-calculator": f_hadamard_product_calculator,
+  "half-angle-calculator": f_half_angle_calculator,
+  "harmonic-mean-calculator": f_harmonic_mean_calculator,
+  "harmonic-number-calculator": f_harmonic_number_calculator,
+  "herons-formula-calculator": f_herons_formula_calculator,
   "hypothesis-testing-calculator": f_hypothesis_testing_calculator,
   "impact-factor-calculator": f_impact_factor_calculator,
   "impedance-matching-calculator": f_impedance_matching_calculator,
