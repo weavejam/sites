@@ -260,6 +260,10 @@ import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-
 import { fixtures as f_streaming_bitrate_calculator } from "@/tools/streaming-bitrate-calculator.fixtures";
 import { fixtures as f_streaming_services_royalties_calculator } from "@/tools/streaming-services-royalties-calculator.fixtures";
 import { fixtures as f_sunbathing_calculator } from "@/tools/sunbathing-calculator.fixtures";
+import { fixtures as f_tangent_of_a_circle_calculator } from "@/tools/tangent-of-a-circle-calculator.fixtures";
+import { fixtures as f_tensor_product_calculator } from "@/tools/tensor-product-calculator.fixtures";
+import { fixtures as f_terminating_decimals_calculator } from "@/tools/terminating-decimals-calculator.fixtures";
+import { fixtures as f_tetrahedron_volume_calculator } from "@/tools/tetrahedron-volume-calculator.fixtures";
 import { fixtures as f_thermal_energy_calculator } from "@/tools/thermal-energy-calculator.fixtures";
 import { fixtures as f_thermal_equilibrium_calculator } from "@/tools/thermal-equilibrium-calculator.fixtures";
 import { fixtures as f_thermal_expansion_calculator } from "@/tools/thermal-expansion-calculator.fixtures";
@@ -267,6 +271,7 @@ import { fixtures as f_thermal_resistance_calculator } from "@/tools/thermal-res
 import { fixtures as f_thermal_stress_calculator } from "@/tools/thermal-stress-calculator.fixtures";
 import { fixtures as f_thin_film_optical_coating_calculator } from "@/tools/thin-film-optical-coating-calculator.fixtures";
 import { fixtures as f_thin_lens_equation_calculator } from "@/tools/thin-lens-equation-calculator.fixtures";
+import { fixtures as f_three_dimensional_distance_calculator } from "@/tools/three-dimensional-distance-calculator.fixtures";
 import { fixtures as f_three_phase_calculator } from "@/tools/three-phase-calculator.fixtures";
 import { fixtures as f_thrust_to_weight_ratio_calculator } from "@/tools/thrust-to-weight-ratio-calculator.fixtures";
 import { fixtures as f_time_dilation_calculator } from "@/tools/time-dilation-calculator.fixtures";
@@ -584,6 +589,10 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "streaming-bitrate-calculator": f_streaming_bitrate_calculator,
   "streaming-services-royalties-calculator": f_streaming_services_royalties_calculator,
   "sunbathing-calculator": f_sunbathing_calculator,
+  "tangent-of-a-circle-calculator": f_tangent_of_a_circle_calculator,
+  "tensor-product-calculator": f_tensor_product_calculator,
+  "terminating-decimals-calculator": f_terminating_decimals_calculator,
+  "tetrahedron-volume-calculator": f_tetrahedron_volume_calculator,
   "thermal-energy-calculator": f_thermal_energy_calculator,
   "thermal-equilibrium-calculator": f_thermal_equilibrium_calculator,
   "thermal-expansion-calculator": f_thermal_expansion_calculator,
@@ -591,6 +600,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "thermal-stress-calculator": f_thermal_stress_calculator,
   "thin-film-optical-coating-calculator": f_thin_film_optical_coating_calculator,
   "thin-lens-equation-calculator": f_thin_lens_equation_calculator,
+  "three-dimensional-distance-calculator": f_three_dimensional_distance_calculator,
   "three-phase-calculator": f_three_phase_calculator,
   "thrust-to-weight-ratio-calculator": f_thrust_to_weight_ratio_calculator,
   "time-dilation-calculator": f_time_dilation_calculator,

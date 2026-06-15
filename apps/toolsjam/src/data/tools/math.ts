@@ -720,5 +720,205 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "tangent-of-a-circle-calculator",
+    category: "math",
+    slugs: {
+      en: "tangent-of-a-circle-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Tangent Line to a Circle Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Find the tangent line equation for a circle at any point on its circumference. Returns general and slope-intercept forms with step-by-step results.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "tensor-product-calculator",
+    category: "math",
+    slugs: {
+      en: "tensor-product-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Tensor Product Calculator - Compute Outer Product of Vectors",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate the tensor (outer) product of two vectors instantly. Displays results as a matrix or flattened vector. Free online tool for linear algebra.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "terminating-decimals-calculator",
+    category: "math",
+    slugs: {
+      en: "terminating-decimals-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Terminating Decimals Calculator - Check Fractions",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Determine if a fraction produces a terminating or repeating decimal. Shows prime factorization of the denominator and the simplified fraction instantly.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "tetrahedron-volume-calculator",
+    category: "math",
+    slugs: {
+      en: "tetrahedron-volume-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Tetrahedron Volume Calculator - Regular & Irregular Shapes",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate tetrahedron volume from edge length (regular) or base area and height (any shape). Fast, accurate, and free online geometry calculator.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "three-dimensional-distance-calculator",
+    category: "math",
+    slugs: {
+      en: "three-dimensional-distance-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "3D Distance Calculator - Two Points in 3D Space",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate the Euclidean distance between two points in 3D space using the 3D distance formula. Handles negative coordinates. Free, fast, and accurate.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
 ];
