@@ -1,0 +1,136 @@
+{
+  "title": "Calculadora de entropía de contraseñas - Analiza la seguridad",
+  "tagline": "Calcula la entropía de la contraseña en bits, evalúa su nivel de fuerza y estima el tiempo de ataque por fuerza bruta según el conjunto de caracteres y la longitud.",
+  "intro": "Introduce una contraseña para detectar automáticamente sus clases de caracteres, o especifica manualmente el tamaño del conjunto de caracteres y la longitud. La puntuación de entropía muestra qué tan resistente es la contraseña frente a ataques por fuerza bruta.",
+  "field": {
+    "password": "Contraseña",
+    "charsetSize": "Tamaño del conjunto de caracteres",
+    "passwordLength": "Longitud de la contraseña",
+    "mode": "Modo de análisis"
+  },
+  "placeholder": {
+    "password": "Escribe tu contraseña aquí",
+    "charsetSize": "p. ej., 72",
+    "length": "p. ej., 12"
+  },
+  "type": {
+    "auto": "Detección automática desde la contraseña",
+    "manual": "Manual (tamaño del conjunto + longitud)"
+  },
+  "label": {
+    "lowercase": "Minúsculas (a–z)",
+    "uppercase": "Mayúsculas (A–Z)",
+    "digits": "Dígitos (0–9)",
+    "symbols": "Símbolos (!@#…)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer",
+    "show": "Mostrar",
+    "hide": "Ocultar"
+  },
+  "error": {
+    "empty": "Introduce una contraseña o especifica el tamaño del conjunto y la longitud.",
+    "invalidManual": "El tamaño del conjunto y la longitud deben ser enteros positivos."
+  },
+  "result": {
+    "heading": "Análisis de entropía",
+    "entropy": "Entropía",
+    "entropyUnit": "bits",
+    "strength": "Fuerza",
+    "poolSize": "Conjunto de caracteres",
+    "length": "Longitud",
+    "crackTime": "Tiempo estimado de descifrado",
+    "charClasses": "Clases de caracteres detectadas"
+  },
+  "strength": {
+    "veryWeak": "Muy débil",
+    "weak": "Débil",
+    "reasonable": "Aceptable",
+    "strong": "Fuerte",
+    "veryStrong": "Muy fuerte"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de entropía de contraseñas",
+    "body": "La entropía de una contraseña mide cuán impredecible es, expresada en bits. Cuanto mayor es la entropía, más intentos necesita un atacante para descifrar la contraseña por fuerza bruta. La fórmula es sencilla: entropía H = L × log₂(N), donde L es la longitud de la contraseña y N es el tamaño del conjunto de caracteres del que se toma cada símbolo.\n\nEl tamaño del conjunto depende de las clases de caracteres utilizadas. Las letras minúsculas (a–z) aportan 26 caracteres. Las mayúsculas (A–Z) añaden otros 26. Los dígitos decimales (0–9) aportan 10. Los símbolos de teclado estándar como !, @, #, $, %, ^, &, *, (, ) y similares aportan aproximadamente 32 caracteres. Una contraseña que usa las cuatro clases tiene un conjunto de unas 94 caracteres, lo que da la máxima entropía por carácter.\n\nComo referencia práctica, un conjunto de 94 caracteres con una longitud de 12 caracteres produce aproximadamente 78.7 bits de entropía. Los profesionales de seguridad suelen considerar 60 bits como el mínimo para una contraseña fuerte y 80 bits como muy fuerte frente a adversarios a nivel estatal. Las NIST Digital Identity Guidelines (SP 800-63B) se alejaron de las reglas de complejidad en favor de la longitud, y este cálculo muestra por qué: añadir un carácter a una contraseña con 94 caracteres posibles vale más que cambiar una letra por un símbolo.\n\nLas estimaciones de tiempo de descifrado asumen un ataque moderno basado en GPU a unas 10 mil millones (10^10) de intentos por segundo, lo que es realista para funciones hash rápidas como MD5. Para algoritmos más lentos y con uso intensivo de memoria como bcrypt, Argon2 o scrypt, la tasa efectiva baja a millones o incluso miles por segundo, por lo que los tiempos mostrados son muy conservadores.\n\nLos cálculos de entropía asumen que cada carácter se elige de forma independiente y uniforme al azar. Las contraseñas elegidas por personas suelen incumplir esta suposición: palabras de diccionario, patrones de teclado y sustituciones predecibles reducen la entropía efectiva muy por debajo del máximo teórico. Por tanto, la entropía calculada es un límite superior para contraseñas creadas por usuarios y una cifra exacta solo para contraseñas verdaderamente aleatorias generadas por un gestor de contraseñas."
+  },
+  "examples": {
+    "heading": "Ejemplos de entropía de contraseñas",
+    "intro": "Tres contraseñas de complejidad creciente que muestran cómo la entropía y el tiempo de descifrado escalan con la longitud y la diversidad de caracteres.",
+    "colInput": "Perfil de contraseña",
+    "colOutput": "Entropía",
+    "colNote": "Fuerza / Tiempo de descifrado",
+    "items": [
+      {
+        "input": "8 caracteres, solo dígitos (conjunto = 10)",
+        "output": "26.6 bits",
+        "note": "Muy débil. Una contraseña tipo PIN de 8 dígitos tiene menos de 100 millones de combinaciones y puede descifrarse en menos de un segundo con cualquier equipo moderno."
+      },
+      {
+        "input": "10 caracteres, solo minúsculas (conjunto = 26)",
+        "output": "47.0 bits",
+        "note": "Aceptable. Una contraseña de 10 letras minúsculas tiene unas 141 billones de combinaciones. A 10 mil millones de intentos por segundo, tardaría unas 4 horas en agotarse."
+      },
+      {
+        "input": "14 caracteres, mayúsculas + minúsculas + dígitos + símbolos (conjunto = 94)",
+        "output": "91.8 bits",
+        "note": "Muy fuerte. Más de 10²⁷ combinaciones. Incluso a 10¹⁰ intentos por segundo, una búsqueda exhaustiva tardaría más que la edad del universo."
+      },
+      {
+        "input": "16 caracteres, mayúsculas + minúsculas + dígitos (conjunto = 62)",
+        "output": "95.3 bits",
+        "note": "Muy fuerte. Quitar símbolos pero añadir dos caracteres más aún logra más de 95 bits de entropía, lo que demuestra que la longitud suele importar más que la complejidad."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de entropía de contraseñas",
+    "steps": [
+      "Escribe o pega tu contraseña en el campo Contraseña. La calculadora detectará automáticamente qué clases de caracteres están presentes y ajustará el tamaño del conjunto en consecuencia.",
+      "Cambia al modo Manual si prefieres indicar directamente el tamaño del conjunto de caracteres y la longitud de la contraseña sin introducir la contraseña real.",
+      "Haz clic en Calcular para ver la entropía en bits, la valoración de fuerza, las clases de caracteres detectadas y el tiempo estimado de descifrado por fuerza bruta.",
+      "Para mejorar una contraseña débil, prueba a añadir más clases de caracteres o a aumentar la longitud: la entropía se actualiza al instante para que veas el impacto.",
+      "Haz clic en Restablecer para borrar todas las entradas y empezar un nuevo análisis."
+    ]
+  },
+  "crackTime": {
+    "lessThan1s": "menos de 1 segundo",
+    "seconds": "{n} segundos",
+    "minutes": "{n} minutos",
+    "hours": "{n} horas",
+    "days": "{n} días",
+    "years": "{n} años",
+    "thousandYears": "{n} mil años",
+    "billionYears": "{n} mil millones de años",
+    "universe": "más que la edad del universo"
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de entropía de contraseñas",
+    "items": [
+      {
+        "q": "¿Qué valor de entropía es bueno para una contraseña?",
+        "a": "Los profesionales de seguridad suelen considerar 60 bits como una base para cuentas en línea y 80 bits o más como fuerte. NIST SP 800-63B recomienda contraseñas de al menos 8 caracteres, pero enfatiza la longitud por encima de la complejidad. Una contraseña de 12 caracteres con mayúsculas, minúsculas, dígitos y símbolos alcanza unos 78 bits, bastante dentro del rango fuerte para la mayoría de los casos."
+      },
+      {
+        "q": "¿La entropía garantiza la seguridad de la contraseña?",
+        "a": "La entropía mide la imprevisibilidad teórica suponiendo una selección aleatoria de caracteres. Las contraseñas elegidas por personas suelen quedar muy por debajo del máximo teórico porque se usan palabras de diccionario, nombres, fechas y patrones predecibles. Un gestor de contraseñas que genere contraseñas realmente aleatorias consigue la entropía completa que muestra esta calculadora; una contraseña creada por una persona de la misma longitud probablemente tendrá una entropía efectiva mucho menor."
+      },
+      {
+        "q": "¿Por qué los símbolos influyen tanto en la entropía?",
+        "a": "Añadir una clase de símbolos amplía el conjunto de unos 62 caracteres (mayúsculas, minúsculas y dígitos) a unos 94 caracteres. Cada carácter pasa entonces a aportar log₂(94) ≈ 6.55 bits en lugar de log₂(62) ≈ 5.95 bits, una ganancia de 0.6 bits por carácter. En una contraseña de 12 caracteres eso equivale a unos 7 bits extra, aproximadamente como añadir un carácter más. La longitud y la clase de caracteres importan ambas."
+      },
+      {
+        "q": "¿Cómo se estima el tiempo de descifrado?",
+        "a": "El tiempo de descifrado asume que el atacante realiza una búsqueda exhaustiva a 10 mil millones (10^10) de intentos por segundo, lo que refleja la capacidad actual de GPU frente a hashes rápidos como MD5 o SHA-1. Frente a hashes lentos como bcrypt (cost 12) o Argon2, la tasa efectiva baja a unas 10,000–100,000 por segundo, por lo que los tiempos mostrados son límites inferiores muy conservadores."
+      },
+      {
+        "q": "¿Debería incluir la contraseña real en esta calculadora?",
+        "a": "Todos los cálculos de entropía se ejecutan completamente en tu navegador; no se envía ningún dato a un servidor. Sin embargo, para mayor precaución, puedes usar el modo Manual para introducir solo el tamaño del conjunto y la longitud sin revelar la contraseña. El resultado de entropía es idéntico en ambos casos porque depende solo de la longitud y del tamaño del conjunto."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre entropía y las valoraciones de fuerza?",
+        "a": "La entropía es una cantidad matemática precisa medida en bits. Las valoraciones como Muy débil, Débil, Aceptable, Fuerte y Muy fuerte son etiquetas cualitativas que traducen rangos de entropía a un juicio legible. Los límites usados aquí son: menos de 28 bits = Muy débil, 28–35 bits = Débil, 36–59 bits = Aceptable, 60–127 bits = Fuerte y 128 bits o más = Muy fuerte."
+      }
+    ]
+  }
+}

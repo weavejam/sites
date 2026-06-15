@@ -1,0 +1,117 @@
+{
+  "title": "Calculateur RAID de capacité - Capacité et tolérance aux pannes",
+  "tagline": "Calculez la capacité de stockage utile, la tolérance aux pannes et les performances estimées pour des configurations RAID 0, 1, 5, 6 et 10.",
+  "intro": "Sélectionnez un niveau RAID, saisissez le nombre de disques et leur taille, puis cliquez sur Calculer pour afficher la capacité utile, l'efficacité et la tolérance aux pannes.",
+  "field": {
+    "raidLevel": "Niveau RAID",
+    "numDisks": "Nombre de disques",
+    "diskSize": "Taille du disque (GB)",
+    "diskSpeed": "Vitesse du disque (RPM)",
+    "interfaceSpeed": "Vitesse de l'interface (Gbps)"
+  },
+  "raidLevel": {
+    "RAID 0": "RAID 0 — Striping",
+    "RAID 1": "RAID 1 — Mirroring",
+    "RAID 5": "RAID 5 — Parité distribuée",
+    "RAID 6": "RAID 6 — Double parité",
+    "RAID 10": "RAID 10 — Miroir + bande"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs.",
+    "minDisks": "Ce niveau RAID nécessite un nombre minimum de disques.",
+    "minDisksRAID1": "RAID 1 nécessite au moins 2 disques.",
+    "minDisksRAID5": "RAID 5 nécessite au moins 3 disques.",
+    "minDisksRAID6": "RAID 6 nécessite au moins 4 disques.",
+    "minDisksRAID10": "RAID 10 nécessite au moins 4 disques (nombre pair).",
+    "oddRAID10": "RAID 10 nécessite un nombre pair de disques."
+  },
+  "result": {
+    "heading": "Résultats de la configuration RAID",
+    "usableCapacity": "Capacité utile",
+    "rawCapacity": "Capacité brute",
+    "efficiency": "Efficacité de stockage",
+    "faultTolerance": "Tolérance aux pannes",
+    "readSpeed": "Vitesse de lecture estimée",
+    "writeSpeed": "Vitesse d'écriture estimée",
+    "drives": "disque(s)",
+    "tb": "TB",
+    "gb": "GB",
+    "mbs": "MB/s"
+  },
+  "about": {
+    "heading": "À propos du calculateur de stockage RAID",
+    "body": "RAID signifie Redundant Array of Independent Disks. Introduite à l'origine en 1988, c'est une technologie de stockage qui combine plusieurs disques physiques en une seule unité logique pour améliorer les performances, la fiabilité, ou les deux, selon le niveau RAID choisi. Un calculateur RAID aide les administrateurs système et les planificateurs IT à déterminer exactement combien d'espace utilisable une configuration donnée fournira et combien de pannes de disque le tableau peut supporter avant une perte de données.\n\nRAID 0 utilise le striping : les données sont réparties en parallèle sur tous les disques, ce qui fait évoluer les vitesses de lecture et d'écriture presque linéairement avec le nombre de disques. En revanche, la défaillance d'un seul disque détruit l'ensemble du tableau. RAID 0 ne convient qu'aux données non critiques où la vitesse est la seule priorité, par exemple les volumes de travail temporaires pour le montage vidéo.\n\nRAID 1 duplique les données sur des paires de disques. Chaque écriture est copiée sur deux disques ou plus, de sorte que le tableau peut survivre à la panne de tous les disques sauf un. La capacité utile équivaut à la taille d'un seul disque, ce qui donne 50 % d'efficacité dans une configuration à deux disques. Les performances en lecture peuvent être améliorées en lisant simultanément depuis plusieurs miroirs, ce qui rend RAID 1 excellent pour les volumes système et de démarrage.\n\nRAID 5 répartit les informations de parité sur tous les disques, ce qui permet de tolérer la panne d'un seul disque. La capacité utile est (n − 1) × disk_size, avec une bonne efficacité. La configuration minimale requiert trois disques. Les performances en lecture sont élevées — presque équivalentes à RAID 0 — mais les performances en écriture souffrent, car chaque écriture nécessite de lire les anciennes données et la parité, de calculer la nouvelle parité, puis d'écrire les deux. RAID 5 est une solution polyvalente populaire pour les NAS et les serveurs de fichiers.\n\nRAID 6 étend RAID 5 en ajoutant un second bloc de parité indépendant, ce qui permet de supporter deux pannes de disque simultanées. La capacité utile est (n − 2) × disk_size et il faut au minimum quatre disques. RAID 6 est recommandé avec des disques de grande capacité, lorsqu'une reconstruction après une panne peut prendre de nombreuses heures pendant lesquelles le risque statistique d'une deuxième panne est significatif.\n\nRAID 10 (également écrit RAID 1+0) combine le mirroring et le striping. Les paires de disques sont d'abord dupliquées, puis les miroirs sont ensuite assemblés en bandes. La capacité utile représente 50 % de la capacité brute. Il offre d'excellentes performances en lecture et en écriture tout en tolérant une panne de disque par paire miroir. RAID 10 est le choix privilégié pour les bases de données à forte transaction, les serveurs de messagerie et toute application nécessitant à la fois un fort débit et une redondance solide.\n\nCe calculateur estime la capacité utile, l'efficacité de stockage, la tolérance aux pannes (nombre de disques pouvant tomber en panne sans perte de données) et les vitesses séquentielles de lecture/écriture en fonction du RPM des disques et de la bande passante de l'interface. Les estimations de débit sont approximatives — les performances réelles dépendent du cache du contrôleur, de la profondeur de file, de la surcharge du système de fichiers et du profil de charge. Utilisez les résultats pour la planification et le budget, pas pour le benchmarking."
+  },
+  "examples": {
+    "heading": "Exemples de configuration RAID",
+    "intro": "Quatre scénarios de déploiement courants montrant la capacité et la tolérance aux pannes.",
+    "colInput": "Configuration",
+    "colOutput": "Capacité utile",
+    "colNote": "Tolérance aux pannes",
+    "items": [
+      {
+        "input": "RAID 1, 2 × 2 TB",
+        "output": "2 TB",
+        "note": "50 % d'efficacité. Supporte 1 panne de disque. Idéal pour les disques système/données d'un serveur domestique."
+      },
+      {
+        "input": "RAID 0, 2 × 1 TB",
+        "output": "2 TB",
+        "note": "100 % d'efficacité. Aucune tolérance aux pannes. Réservé au stockage temporaire haute vitesse."
+      },
+      {
+        "input": "RAID 5, 4 × 2 TB",
+        "output": "6 TB",
+        "note": "75 % d'efficacité. Supporte 1 panne de disque. Bon équilibre pour un NAS de petite entreprise."
+      },
+      {
+        "input": "RAID 10, 6 × 4 TB",
+        "output": "12 TB",
+        "note": "50 % d'efficacité. Garantie d'1 panne de disque par paire miroir sans perte de données. Idéal pour les charges de base de données."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de stockage RAID",
+    "steps": [
+      "Sélectionnez le niveau RAID dans la liste déroulante. RAID 0 et 1 sont les plus simples ; RAID 5 et 6 offrent une protection par parité ; RAID 10 combine les deux approches.",
+      "Saisissez le nombre de disques que vous prévoyez d'utiliser. RAID 5 nécessite au moins 3 disques, RAID 6 au moins 4, et RAID 10 au moins 4 (nombre pair obligatoire).",
+      "Indiquez la taille individuelle du disque en GB. Pour des tableaux de tailles mixtes, utilisez la taille du plus petit disque ; les plus grands ne seront utilisés qu'à hauteur de cette taille.",
+      "Vous pouvez aussi saisir la vitesse du disque en RPM et la vitesse de l'interface en Gbps pour obtenir des estimations de débit en lecture/écriture.",
+      "Cliquez sur Calculer pour voir la capacité utile, l'efficacité de stockage, la tolérance aux pannes et les estimations de vitesse. Cliquez sur Réinitialiser pour recommencer avec une autre configuration."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de stockage RAID",
+    "items": [
+      {
+        "q": "Quelle est la capacité utile d'un RAID 5 avec quatre disques de 2 TB ?",
+        "a": "La capacité utile du RAID 5 = (n − 1) × disk_size = 3 × 2 TB = 6 TB. Un disque est utilisé pour la parité distribuée. L'efficacité de stockage est de 75 %. Le tableau peut survivre exactement à 1 panne de disque avant que les données ne soient en danger."
+      },
+      {
+        "q": "Combien de pannes de disque différents niveaux RAID peuvent-ils supporter ?",
+        "a": "RAID 0 supporte 0 panne. RAID 1 supporte n − 1 pannes (tous les disques sauf un peuvent tomber en panne). RAID 5 supporte exactement 1 panne. RAID 6 supporte exactement 2 pannes simultanées. RAID 10 supporte une panne par paire miroir — dans un RAID 10 à quatre disques, cela signifie qu'un disque de chaque paire peut tomber en panne simultanément."
+      },
+      {
+        "q": "Le RAID peut-il remplacer les sauvegardes ?",
+        "a": "Non. Le RAID ne protège que contre les pannes matérielles de disque. Il ne protège pas contre les suppressions accidentelles, les ransomwares, la corruption de fichiers, les pannes de contrôleur ou les catastrophes physiques affectant l'ensemble du serveur. Le RAID et les sauvegardes répondent à des besoins différents et doivent toujours être utilisés ensemble. Une règle courante est la règle 3-2-1 : trois copies des données, sur deux types de supports différents, avec une copie hors site."
+      },
+      {
+        "q": "Pourquoi le RAID 5 subit-il une pénalité en écriture ?",
+        "a": "Chaque écriture RAID 5 nécessite quatre opérations d'E/S : lire les anciennes données, lire l'ancienne parité, écrire les nouvelles données, écrire la nouvelle parité. Ce cycle 'read-modify-write' limite le débit en écriture, surtout pour les petites écritures aléatoires. Les contrôleurs RAID matériels avec cache d'écriture non volatil atténuent fortement cela, ce qui explique pourquoi les tableaux RAID 5 de niveau serveur avec cache secouru par batterie peuvent encore offrir de solides performances en écriture."
+      },
+      {
+        "q": "Quelle est la différence entre RAID 5 et RAID 6 ?",
+        "a": "Les deux répartissent la parité sur les disques, mais RAID 6 utilise deux calculs de parité indépendants (P et Q), ce qui permet de supporter deux pannes de disque simultanées. RAID 6 requiert au minimum quatre disques et utilise (n − 2) × disk_size d'espace utile. La protection par double parité est particulièrement précieuse sur de grands tableaux de disques de grande capacité, où la reconstruction après la première panne peut prendre 24 heures ou plus."
+      },
+      {
+        "q": "Comment RAID 10 se compare-t-il à RAID 5 pour les bases de données ?",
+        "a": "RAID 10 est généralement préféré pour les charges de bases de données, car il n'a pas de pénalité d'écriture : les écritures sont envoyées en parallèle vers les paires miroir. RAID 5 introduit la surcharge read-modify-write à chaque petite écriture, qui est le schéma d'E/S dominant dans les bases de données transactionnelles. RAID 10 utilise 50 % de la capacité brute contre 75 % pour RAID 5, donc le surcoût est le compromis pour un meilleur débit en écriture et des reconstructions plus rapides."
+      }
+    ]
+  }
+}

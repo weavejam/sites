@@ -1,0 +1,136 @@
+{
+  "title": "Calculadora de entropia de senha - Analise a força",
+  "tagline": "Calcule a entropia da senha em bits, avalie o nível de força e estime o tempo de quebra por força bruta com base na composição do conjunto de caracteres e no tamanho da senha.",
+  "intro": "Digite uma senha para detectar automaticamente suas classes de caracteres, ou informe manualmente o tamanho do conjunto de caracteres e o comprimento. A pontuação de entropia mostra quão resistente a senha é a ataques de força bruta.",
+  "field": {
+    "password": "Senha",
+    "charsetSize": "Tamanho do conjunto de caracteres",
+    "passwordLength": "Comprimento da senha",
+    "mode": "Modo de análise"
+  },
+  "placeholder": {
+    "password": "Digite sua senha aqui",
+    "charsetSize": "ex.: 72",
+    "length": "ex.: 12"
+  },
+  "type": {
+    "auto": "Detecção automática pela senha",
+    "manual": "Manual (tamanho do conjunto + comprimento)"
+  },
+  "label": {
+    "lowercase": "Minúsculas (a–z)",
+    "uppercase": "Maiúsculas (A–Z)",
+    "digits": "Dígitos (0–9)",
+    "symbols": "Símbolos (!@#…)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir",
+    "show": "Mostrar",
+    "hide": "Ocultar"
+  },
+  "error": {
+    "empty": "Digite uma senha ou informe o tamanho do conjunto e o comprimento.",
+    "invalidManual": "O tamanho do conjunto e o comprimento devem ser inteiros positivos."
+  },
+  "result": {
+    "heading": "Análise de entropia",
+    "entropy": "Entropia",
+    "entropyUnit": "bits",
+    "strength": "Força",
+    "poolSize": "Conjunto de caracteres",
+    "length": "Comprimento",
+    "crackTime": "Tempo estimado de quebra",
+    "charClasses": "Classes de caracteres detectadas"
+  },
+  "strength": {
+    "veryWeak": "Muito fraca",
+    "weak": "Fraca",
+    "reasonable": "Razoável",
+    "strong": "Forte",
+    "veryStrong": "Muito forte"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de entropia de senha",
+    "body": "A entropia de senha mede o quão imprevisível uma senha é, em bits. Quanto maior a entropia, mais tentativas um atacante precisa fazer para quebrar a senha por força bruta. A fórmula é simples: entropia H = L × log₂(N), onde L é o comprimento da senha e N é o tamanho do conjunto de caracteres do qual cada caractere é escolhido.\n\nO tamanho do conjunto depende das classes de caracteres usadas. Letras minúsculas (a–z) contribuem com 26 caracteres. Letras maiúsculas (A–Z) adicionam mais 26. Dígitos decimais (0–9) contribuem com 10. Símbolos padrão de teclado como !, @, #, $, %, ^, &, *, (, ) e similares contribuem com aproximadamente 32 caracteres. Uma senha que usa as quatro classes tem um conjunto de cerca de 94 caracteres — isso dá a maior entropia por caractere.\n\nComo referência prática, um conjunto de 94 caracteres com 12 caracteres de comprimento gera aproximadamente 78.7 bits de entropia. Profissionais de segurança geralmente consideram 60 bits como o mínimo para uma senha forte e 80 bits como muito forte contra adversários de nível estatal. As NIST Digital Identity Guidelines (SP 800-63B) deixaram de lado regras de complexidade em favor do comprimento, e o cálculo mostra por quê: adicionar um caractere a uma senha com conjunto de 94 caracteres vale mais do que trocar uma letra por um símbolo.\n\nAs estimativas de tempo de quebra assumem um ataque moderno baseado em GPU a aproximadamente 10 bilhões (10^10) de tentativas por segundo, o que é realista para funções de hash rápidas como MD5. Para algoritmos mais lentos e com uso intensivo de memória como bcrypt, Argon2 ou scrypt, a taxa efetiva cai para milhões ou até milhares por segundo, tornando os tempos exibidos extremamente conservadores.\n\nOs cálculos de entropia assumem que cada caractere é escolhido de forma independente e uniformemente ao acaso. Senhas criadas por humanos frequentemente violam essa suposição — palavras de dicionário, padrões de teclado e substituições previsíveis reduzem a entropia efetiva muito abaixo do máximo teórico. Assim, a entropia calculada é um limite superior para senhas escolhidas pelo usuário e um valor exato apenas para senhas aleatórias criptograficamente geradas por um gerenciador de senhas."
+  },
+  "examples": {
+    "heading": "Exemplos de entropia de senha",
+    "intro": "Três senhas de complexidade crescente mostram como a entropia e o tempo de quebra escalam com o comprimento e a diversidade de caracteres.",
+    "colInput": "Perfil da senha",
+    "colOutput": "Entropia",
+    "colNote": "Força / Tempo de quebra",
+    "items": [
+      {
+        "input": "8 caracteres, apenas dígitos (conjunto = 10)",
+        "output": "26.6 bits",
+        "note": "Muito fraca. Uma senha estilo PIN de 8 dígitos tem menos de 100 milhões de combinações — quebrável em menos de um segundo por qualquer computador moderno."
+      },
+      {
+        "input": "10 caracteres, apenas minúsculas (conjunto = 26)",
+        "output": "47.0 bits",
+        "note": "Razoável. Uma senha de 10 letras minúsculas tem cerca de 141 trilhões de combinações. A 10 bilhões de tentativas por segundo, leva aproximadamente 4 horas para esgotar."
+      },
+      {
+        "input": "14 caracteres, maiúsculas + minúsculas + dígitos + símbolos (conjunto = 94)",
+        "output": "91.8 bits",
+        "note": "Muito forte. Mais de 10²⁷ combinações. Mesmo a 10¹⁰ tentativas por segundo, uma busca exaustiva levaria mais tempo que a idade do universo."
+      },
+      {
+        "input": "16 caracteres, maiúsculas + minúsculas + dígitos (conjunto = 62)",
+        "output": "95.3 bits",
+        "note": "Muito forte. Remover símbolos e adicionar dois caracteres ainda alcança mais de 95 bits de entropia — mostrando que comprimento muitas vezes importa mais do que complexidade."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de entropia de senha",
+    "steps": [
+      "Digite ou cole sua senha no campo Senha. A calculadora detecta automaticamente quais classes de caracteres estão presentes e ajusta o tamanho do conjunto de acordo.",
+      "Mude para o modo Manual se preferir informar diretamente o tamanho do conjunto de caracteres e o comprimento da senha sem digitar a senha real.",
+      "Clique em Calcular para ver a entropia em bits, a classificação de força, as classes de caracteres detectadas e o tempo estimado de quebra por força bruta.",
+      "Para melhorar uma senha fraca, tente adicionar mais classes de caracteres ou aumentar o comprimento — a exibição de entropia é atualizada imediatamente para mostrar o impacto.",
+      "Clique em Redefinir para limpar todas as entradas e iniciar uma nova análise."
+    ]
+  },
+  "crackTime": {
+    "lessThan1s": "menos de 1 segundo",
+    "seconds": "{n} segundos",
+    "minutes": "{n} minutos",
+    "hours": "{n} horas",
+    "days": "{n} dias",
+    "years": "{n} anos",
+    "thousandYears": "{n} mil anos",
+    "billionYears": "{n} bilhões de anos",
+    "universe": "mais do que a idade do universo"
+  },
+  "faq": {
+    "heading": "FAQ da calculadora de entropia de senha",
+    "items": [
+      {
+        "q": "Qual é um bom valor de entropia para uma senha?",
+        "a": "Profissionais de segurança geralmente tratam 60 bits como uma base para contas online e 80 bits ou mais como forte. O NIST SP 800-63B recomenda senhas com pelo menos 8 caracteres, mas enfatiza comprimento em vez de complexidade. Uma senha de 12 caracteres usando maiúsculas, minúsculas, dígitos e símbolos atinge cerca de 78 bits — bem dentro da faixa forte para a maioria dos casos."
+      },
+      {
+        "q": "A entropia garante a segurança da senha?",
+        "a": "A entropia mede a imprevisibilidade teórica assumindo seleção aleatória de caracteres. Senhas escolhidas por humanos frequentemente ficam muito abaixo do máximo teórico porque usam palavras de dicionário, nomes, datas e padrões previsíveis. Um gerenciador de senhas que gera senhas verdadeiramente aleatórias atinge a entropia total mostrada por esta calculadora; uma senha escolhida por uma pessoa com o mesmo comprimento provavelmente terá entropia efetiva muito menor."
+      },
+      {
+        "q": "Por que os símbolos importam tanto para a entropia?",
+        "a": "Adicionar uma classe de símbolos expande o conjunto de cerca de 62 caracteres (maiúsculas, minúsculas e dígitos) para cerca de 94 caracteres. Cada caractere passa então a carregar log₂(94) ≈ 6.55 bits em vez de log₂(62) ≈ 5.95 bits — um ganho de 0.6 bit por caractere. Em uma senha de 12 caracteres, isso representa cerca de 7 bits extras, aproximadamente equivalente a um caractere adicional. Comprimento e classe de caracteres importam."
+      },
+      {
+        "q": "Como o tempo de quebra é estimado?",
+        "a": "O tempo de quebra assume que um atacante faz uma busca exaustiva a 10 bilhões (10^10) de tentativas por segundo, o que reflete a capacidade atual de GPU contra hashes rápidos como MD5 ou SHA-1. Contra hashes lentos como bcrypt (cost 12) ou Argon2, a taxa efetiva cai para cerca de 10,000–100,000 por segundo, tornando os tempos exibidos limites inferiores muito conservadores."
+      },
+      {
+        "q": "Devo inserir a senha real nesta calculadora?",
+        "a": "Todos os cálculos de entropia rodam totalmente no seu navegador — nenhum dado é enviado para um servidor. Ainda assim, para mais cautela, você pode usar o modo Manual para informar apenas o tamanho do conjunto e o comprimento, sem revelar a senha. O resultado de entropia é idêntico em ambos os casos, porque depende apenas do comprimento e do tamanho do conjunto."
+      },
+      {
+        "q": "Qual é a diferença entre entropia e classificação de força?",
+        "a": "Entropia é uma quantidade matemática precisa medida em bits. Classificações como Muito fraca, Fraca, Razoável, Forte e Muito forte são rótulos qualitativos que traduzem faixas de entropia em uma avaliação legível. Os limites usados aqui são: abaixo de 28 bits = Muito fraca, 28–35 bits = Fraca, 36–59 bits = Razoável, 60–127 bits = Forte e 128 bits ou mais = Muito forte."
+      }
+    ]
+  }
+}

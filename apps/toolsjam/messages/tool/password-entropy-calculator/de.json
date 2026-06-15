@@ -1,0 +1,136 @@
+{
+  "title": "Passwort-Entropie-Rechner - Passwortstärke analysieren",
+  "tagline": "Berechnen Sie die Passwortentropie in Bits, bewerten Sie die Stärke und schätzen Sie die Brute-Force-Knackzeit anhand von Zeichensatz und Passwortlänge.",
+  "intro": "Geben Sie ein Passwort ein, um die enthaltenen Zeichenklassen automatisch zu erkennen, oder legen Sie Zeichensatzgröße und Länge manuell fest. Der Entropiewert zeigt, wie widerstandsfähig das Passwort gegen Brute-Force-Angriffe ist.",
+  "field": {
+    "password": "Passwort",
+    "charsetSize": "Größe des Zeichenpools",
+    "passwordLength": "Passwortlänge",
+    "mode": "Analysemodus"
+  },
+  "placeholder": {
+    "password": "Passwort hier eingeben",
+    "charsetSize": "z. B. 72",
+    "length": "z. B. 12"
+  },
+  "type": {
+    "auto": "Automatisch aus dem Passwort",
+    "manual": "Manuell (Poolgröße + Länge)"
+  },
+  "label": {
+    "lowercase": "Kleinbuchstaben (a–z)",
+    "uppercase": "Großbuchstaben (A–Z)",
+    "digits": "Ziffern (0–9)",
+    "symbols": "Symbole (!@#…)"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen",
+    "show": "Anzeigen",
+    "hide": "Ausblenden"
+  },
+  "error": {
+    "empty": "Bitte ein Passwort eingeben oder Poolgröße und Länge angeben.",
+    "invalidManual": "Poolgröße und Länge müssen beide positive ganze Zahlen sein."
+  },
+  "result": {
+    "heading": "Entropieanalyse",
+    "entropy": "Entropie",
+    "entropyUnit": "Bits",
+    "strength": "Stärke",
+    "poolSize": "Zeichenpool",
+    "length": "Länge",
+    "crackTime": "Geschätzte Knackzeit",
+    "charClasses": "Erkannte Zeichenklassen"
+  },
+  "strength": {
+    "veryWeak": "Sehr schwach",
+    "weak": "Schwach",
+    "reasonable": "Ausreichend",
+    "strong": "Stark",
+    "veryStrong": "Sehr stark"
+  },
+  "about": {
+    "heading": "Über den Passwort-Entropie-Rechner",
+    "body": "Passwortentropie misst, wie unvorhersehbar ein Passwort ist, und wird in Bits angegeben. Je höher die Entropie, desto mehr Versuche benötigt ein Angreifer, um das Passwort per Brute Force zu knacken. Die Formel ist einfach: Entropie H = L × log₂(N), wobei L die Passwortlänge und N die Größe des Zeichenpools ist, aus dem jedes Zeichen stammt.\n\nDie Größe des Zeichenpools hängt von den verwendeten Zeichenklassen ab. Kleinbuchstaben (a–z) liefern 26 Zeichen. Großbuchstaben (A–Z) fügen weitere 26 hinzu. Dezimalziffern (0–9) liefern 10. Standard-Sonderzeichen der Tastatur wie !, @, #, $, %, ^, &, *, (, ) und ähnliche Zeichen liefern ungefähr 32 Zeichen. Ein Passwort mit allen vier Klassen hat einen Pool von rund 94 Zeichen — das ergibt die maximale Entropie pro Zeichen.\n\nAls praxisnaher Richtwert ergeben 94 Zeichenpool und 12 Zeichen Länge etwa 78.7 Bits Entropie. Sicherheitsexperten betrachten 60 Bits meist als Minimum für ein starkes Passwort und 80 Bits als sehr stark gegen staatsnahe Angreifer. Die NIST Digital Identity Guidelines (SP 800-63B) haben sich von Komplexitätsregeln hin zu Länge orientiert, und die Rechnung zeigt warum: Ein zusätzliches Zeichen in einem Passwort mit 94er Pool bringt mehr als der Austausch eines Buchstabens gegen ein Symbol.\n\nDie Knackzeit schätzt einen modernen GPU-basierten Angriff mit etwa 10 Milliarden (10^10) Versuchen pro Sekunde, was für schnelle Hashfunktionen wie MD5 realistisch ist. Bei langsameren, speicherharten Verfahren wie bcrypt, Argon2 oder scrypt sinkt die effektive Rate auf Millionen oder sogar Tausende Versuche pro Sekunde, sodass die angezeigten Zeiten äußerst konservativ sind.\n\nDie Entropieberechnung setzt voraus, dass jedes Zeichen unabhängig und gleichverteilt zufällig gewählt wird. Von Menschen gewählte Passwörter verletzen diese Annahme oft — Wörterbuchwörter, Tastaturmuster und vorhersehbare Ersetzungen senken die effektive Entropie weit unter das theoretische Maximum. Der berechnete Wert ist daher eine Obergrenze für selbst gewählte Passwörter und nur für kryptografisch zufällige Passwörter aus einem Passwort-Manager exakt."
+  },
+  "examples": {
+    "heading": "Beispiele für Passwortentropie",
+    "intro": "Drei Passwörter mit zunehmender Komplexität zeigen, wie Entropie und Knackzeit mit Länge und Zeichenvielfalt skalieren.",
+    "colInput": "Passwortprofil",
+    "colOutput": "Entropie",
+    "colNote": "Stärke / Knackzeit",
+    "items": [
+      {
+        "input": "8 Zeichen, nur Ziffern (Pool = 10)",
+        "output": "26.6 Bits",
+        "note": "Sehr schwach. Ein PIN-artiges Passwort aus 8 Ziffern hat weniger als 100 Millionen Kombinationen — von jedem modernen Computer in unter einer Sekunde knackbar."
+      },
+      {
+        "input": "10 Zeichen, nur Kleinbuchstaben (Pool = 26)",
+        "output": "47.0 Bits",
+        "note": "Ausreichend. Ein 10-stelliges Passwort nur aus Kleinbuchstaben hat etwa 141 Billionen Kombinationen. Bei 10 Milliarden Versuchen pro Sekunde dauert das Ausprobieren rund 4 Stunden."
+      },
+      {
+        "input": "14 Zeichen, Groß- und Kleinbuchstaben + Ziffern + Symbole (Pool = 94)",
+        "output": "91.8 Bits",
+        "note": "Sehr stark. Über 10²⁷ Kombinationen. Selbst bei 10¹⁰ Versuchen pro Sekunde würde eine vollständige Suche länger dauern als das Alter des Universums."
+      },
+      {
+        "input": "16 Zeichen, Groß- und Kleinbuchstaben + Ziffern (Pool = 62)",
+        "output": "95.3 Bits",
+        "note": "Sehr stark. Auch ohne Symbole werden mit zwei zusätzlichen Zeichen mehr als 95 Bits Entropie erreicht — ein gutes Beispiel dafür, dass Länge oft wichtiger ist als Komplexität."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Passwort-Entropie-Rechner",
+    "steps": [
+      "Geben Sie Ihr Passwort in das Passwortfeld ein oder fügen Sie es ein. Der Rechner erkennt automatisch die vorhandenen Zeichenklassen und setzt die Poolgröße entsprechend.",
+      "Wechseln Sie in den manuellen Modus, wenn Sie lieber Zeichensatzgröße und Passwortlänge direkt angeben möchten, ohne das eigentliche Passwort einzugeben.",
+      "Klicken Sie auf Berechnen, um Entropie in Bits, Stärke, erkannte Zeichenklassen und die geschätzte Brute-Force-Knackzeit zu sehen.",
+      "Um ein schwaches Passwort zu verbessern, fügen Sie weitere Zeichenklassen hinzu oder erhöhen Sie die Länge — die Entropieanzeige aktualisiert sich sofort.",
+      "Klicken Sie auf Zurücksetzen, um alle Eingaben zu löschen und eine neue Analyse zu starten."
+    ]
+  },
+  "crackTime": {
+    "lessThan1s": "weniger als 1 Sekunde",
+    "seconds": "{n} Sekunden",
+    "minutes": "{n} Minuten",
+    "hours": "{n} Stunden",
+    "days": "{n} Tage",
+    "years": "{n} Jahre",
+    "thousandYears": "{n} Tausend Jahre",
+    "billionYears": "{n} Milliarden Jahre",
+    "universe": "länger als das Alter des Universums"
+  },
+  "faq": {
+    "heading": "FAQ zum Passwort-Entropie-Rechner",
+    "items": [
+      {
+        "q": "Welcher Entropiewert ist gut für ein Passwort?",
+        "a": "Sicherheitsexperten betrachten 60 Bits meist als Basis für Online-Konten und 80 Bits oder mehr als stark. NIST SP 800-63B empfiehlt Passwörter mit mindestens 8 Zeichen, betont aber Länge statt Komplexität. Ein 12-stelliges Passwort mit Groß- und Kleinbuchstaben, Ziffern und Symbolen erreicht etwa 78 Bits — für die meisten Zwecke klar im starken Bereich."
+      },
+      {
+        "q": "Garantiert Entropie die Passwortsicherheit?",
+        "a": "Entropie misst die theoretische Unvorhersagbarkeit bei zufälliger Zeichenauswahl. Von Menschen gewählte Passwörter liegen oft deutlich unter dem theoretischen Maximum, weil Wörterbuchwörter, Namen, Daten und vorhersehbare Muster verwendet werden. Ein Passwort-Manager, der wirklich zufällige Passwörter erzeugt, erreicht die volle hier angezeigte Entropie; ein von Hand gewähltes Passwort gleicher Länge hat wahrscheinlich eine viel geringere effektive Entropie."
+      },
+      {
+        "q": "Warum sind Symbole für die Entropie so wichtig?",
+        "a": "Das Hinzufügen einer Symbolklasse erweitert den Pool von etwa 62 Zeichen (Groß-/Kleinbuchstaben + Ziffern) auf etwa 94 Zeichen. Jedes Zeichen trägt dann log₂(94) ≈ 6.55 Bits statt log₂(62) ≈ 5.95 Bits bei — ein Gewinn von 0.6 Bits pro Zeichen. Bei einem 12-stelligen Passwort sind das rund 7 zusätzliche Bits, also ungefähr so viel wie ein zusätzliches Zeichen. Länge und Zeichenklassen sind beide wichtig."
+      },
+      {
+        "q": "Wie wird die Knackzeit geschätzt?",
+        "a": "Die Knackzeit geht von einer vollständigen Brute-Force-Suche mit 10 Milliarden (10^10) Versuchen pro Sekunde aus, was die heutige GPU-Leistung gegen schnelle Hashes wie MD5 oder SHA-1 ungefähr abbildet. Gegen langsame Hashes wie bcrypt (cost 12) oder Argon2 sinkt die effektive Rate auf etwa 10,000–100,000 pro Sekunde, sodass die angezeigten Zeiten sehr konservative Untergrenzen sind."
+      },
+      {
+        "q": "Soll ich mein echtes Passwort in diesen Rechner eingeben?",
+        "a": "Alle Entropieberechnungen laufen vollständig in Ihrem Browser — es werden keine Daten an einen Server gesendet. Wenn Sie besonders vorsichtig sein möchten, können Sie den manuellen Modus verwenden und nur Poolgröße und Länge eingeben, ohne das Passwort selbst preiszugeben. Das Ergebnis ist in beiden Fällen identisch, da die Entropie nur von Länge und Poolgröße abhängt."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen Entropie und Passwortstärke?",
+        "a": "Entropie ist eine präzise mathematische Größe in Bits. Stärke-Kategorien wie Sehr schwach, Schwach, Ausreichend, Stark und Sehr stark sind qualitative Labels, die Entropiebereiche in eine lesbare Bewertung übersetzen. Die hier verwendeten Grenzen sind: unter 28 Bits = Sehr schwach, 28–35 Bits = Schwach, 36–59 Bits = Ausreichend, 60–127 Bits = Stark und 128 Bits oder mehr = Sehr stark."
+      }
+    ]
+  }
+}

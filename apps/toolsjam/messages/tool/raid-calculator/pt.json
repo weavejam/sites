@@ -1,0 +1,117 @@
+{
+  "title": "Calculadora RAID de capacidade - Capacidade e tolerância a falhas",
+  "tagline": "Calcule a capacidade útil de armazenamento, a tolerância a falhas e o desempenho estimado para configurações RAID 0, 1, 5, 6 e 10.",
+  "intro": "Selecione um nível RAID, informe a quantidade de discos e o tamanho deles e clique em Calcular para ver a capacidade útil, a eficiência e a tolerância a falhas.",
+  "field": {
+    "raidLevel": "Nível RAID",
+    "numDisks": "Número de discos",
+    "diskSize": "Tamanho do disco (GB)",
+    "diskSpeed": "Velocidade do disco (RPM)",
+    "interfaceSpeed": "Velocidade da interface (Gbps)"
+  },
+  "raidLevel": {
+    "RAID 0": "RAID 0 — Striping",
+    "RAID 1": "RAID 1 — Espelhamento",
+    "RAID 5": "RAID 5 — Paridade distribuída",
+    "RAID 6": "RAID 6 — Paridade dupla",
+    "RAID 10": "RAID 10 — Espelho + Stripe"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Informe números positivos válidos em todos os campos.",
+    "minDisks": "Este nível RAID exige um número mínimo de discos.",
+    "minDisksRAID1": "RAID 1 requer pelo menos 2 discos.",
+    "minDisksRAID5": "RAID 5 requer pelo menos 3 discos.",
+    "minDisksRAID6": "RAID 6 requer pelo menos 4 discos.",
+    "minDisksRAID10": "RAID 10 requer pelo menos 4 discos (número par).",
+    "oddRAID10": "RAID 10 requer um número par de discos."
+  },
+  "result": {
+    "heading": "Resultados da configuração RAID",
+    "usableCapacity": "Capacidade útil",
+    "rawCapacity": "Capacidade bruta",
+    "efficiency": "Eficiência de armazenamento",
+    "faultTolerance": "Tolerância a falhas",
+    "readSpeed": "Velocidade de leitura estimada",
+    "writeSpeed": "Velocidade de gravação estimada",
+    "drives": "disco(s)",
+    "tb": "TB",
+    "gb": "GB",
+    "mbs": "MB/s"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de armazenamento RAID",
+    "body": "RAID significa Redundant Array of Independent Disks. Introduzida originalmente em 1988, é uma tecnologia de armazenamento que combina vários discos físicos em uma única unidade lógica para melhorar o desempenho, a confiabilidade ou ambos, dependendo do nível RAID escolhido. Uma calculadora RAID ajuda administradores de sistemas e planejadores de TI a determinar exatamente quanto espaço utilizável uma configuração fornecerá e quantas falhas de disco a matriz pode suportar antes de perder dados.\n\nRAID 0 usa striping: os dados são divididos entre todos os discos em paralelo, então as velocidades de leitura e gravação escalam quase linearmente com a quantidade de discos. No entanto, a falha de um único disco destrói toda a matriz. RAID 0 é apropriado apenas para dados não críticos em que a velocidade é a única prioridade — por exemplo, volumes temporários para edição de vídeo.\n\nRAID 1 espelha os dados entre pares de discos. Cada gravação é duplicada em dois ou mais discos, então a matriz pode sobreviver à falha de todos, exceto um disco. A capacidade útil equivale ao tamanho de um único disco, resultando em 50% de eficiência em uma configuração de dois discos. O desempenho de leitura pode ser melhorado lendo de vários espelhos ao mesmo tempo, tornando o RAID 1 excelente para volumes de sistema operacional e boot.\n\nRAID 5 distribui informações de paridade por todos os discos, permitindo tolerar a falha de um único disco. A capacidade útil é (n − 1) × disk_size, com boa eficiência. A configuração mínima exige três discos. O desempenho de leitura é alto — quase equivalente ao RAID 0 — mas o de gravação sofre porque cada gravação exige ler os dados e a paridade antigos, calcular a nova paridade e gravar ambos. RAID 5 é uma solução de uso geral popular para NAS e servidores de arquivos.\n\nRAID 6 amplia o RAID 5 adicionando um segundo bloco de paridade independente, permitindo suportar duas falhas simultâneas de disco. A capacidade útil é (n − 2) × disk_size e exige no mínimo quatro discos. RAID 6 é recomendado ao usar discos de alta capacidade, quando uma reconstrução após uma falha pode levar muitas horas e a chance estatística de uma segunda falha nesse período é significativa.\n\nRAID 10 (também escrito RAID 1+0) combina espelhamento e striping. Os pares de discos são espelhados primeiro e depois os espelhos são distribuídos em stripe. A capacidade útil é 50% da capacidade bruta. Ele oferece excelente desempenho de leitura e gravação, tolerando uma falha de disco por par espelhado. RAID 10 é a escolha preferida para bancos de dados de alta transação, servidores de e-mail e qualquer aplicativo que exija alto throughput e forte redundância.\n\nEsta calculadora estima capacidade útil, eficiência de armazenamento, tolerância a falhas (número de discos que podem falhar sem perda de dados) e velocidades sequenciais de leitura/gravação com base no RPM dos discos e na largura de banda da interface. As estimativas de throughput são aproximadas — o desempenho real depende do cache do controlador, profundidade de fila, sobrecarga do sistema de arquivos e padrão de carga de trabalho. Use os resultados para planejamento e orçamento, não para benchmarking."
+  },
+  "examples": {
+    "heading": "Exemplos de configuração RAID",
+    "intro": "Quatro cenários comuns de implantação mostrando capacidade e tolerância a falhas.",
+    "colInput": "Configuração",
+    "colOutput": "Capacidade útil",
+    "colNote": "Tolerância a falhas",
+    "items": [
+      {
+        "input": "RAID 1, 2 × 2 TB",
+        "output": "2 TB",
+        "note": "50% de eficiência. Suporta 1 falha de disco. Ideal para discos de sistema/dados em servidor doméstico."
+      },
+      {
+        "input": "RAID 0, 2 × 1 TB",
+        "output": "2 TB",
+        "note": "100% de eficiência. Sem tolerância a falhas. Melhor apenas para armazenamento temporário de alta velocidade."
+      },
+      {
+        "input": "RAID 5, 4 × 2 TB",
+        "output": "6 TB",
+        "note": "75% de eficiência. Suporta 1 falha de disco. Bom equilíbrio para NAS de pequena empresa."
+      },
+      {
+        "input": "RAID 10, 6 × 4 TB",
+        "output": "12 TB",
+        "note": "50% de eficiência. Garante 1 falha de unidade por par espelhado sem perda de dados. Melhor para bancos de dados."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de armazenamento RAID",
+    "steps": [
+      "Selecione o nível RAID no menu suspenso. RAID 0 e 1 são os mais simples; RAID 5 e 6 oferecem proteção por paridade; RAID 10 combina as duas abordagens.",
+      "Informe o número de discos que pretende usar. RAID 5 requer pelo menos 3, RAID 6 pelo menos 4 e RAID 10 pelo menos 4 (deve ser par).",
+      "Informe o tamanho individual do disco em GB. Para arrays com tamanhos mistos, use o tamanho do disco menor — os maiores serão usados apenas até esse tamanho.",
+      "Opcionalmente, informe a velocidade do disco em RPM e a velocidade da interface em Gbps para obter estimativas de throughput de leitura/gravação.",
+      "Clique em Calcular para ver capacidade útil, eficiência de armazenamento, tolerância a falhas e estimativas de velocidade. Clique em Redefinir para começar novamente com outra configuração."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre a calculadora RAID",
+    "items": [
+      {
+        "q": "Qual é a capacidade útil de RAID 5 com quatro discos de 2 TB?",
+        "a": "Capacidade útil do RAID 5 = (n − 1) × disk_size = 3 × 2 TB = 6 TB. Um disco de espaço é usado para paridade distribuída. A eficiência de armazenamento é de 75%. A matriz pode sobreviver exatamente a 1 falha de disco antes de os dados ficarem em risco."
+      },
+      {
+        "q": "Quantas falhas de disco diferentes níveis RAID podem suportar?",
+        "a": "RAID 0 suporta 0 falhas. RAID 1 suporta n − 1 falhas (todos, exceto um disco, podem falhar). RAID 5 suporta exatamente 1 falha. RAID 6 suporta exatamente 2 falhas simultâneas. RAID 10 suporta uma falha por par espelhado — em um RAID 10 de quatro discos, isso significa que um disco de cada par pode falhar ao mesmo tempo."
+      },
+      {
+        "q": "RAID substitui backups?",
+        "a": "Não. RAID protege apenas contra falhas de hardware do disco. Não protege contra exclusão acidental, ransomware, corrupção de arquivos, falha do controlador ou desastres físicos que afetem todo o servidor. RAID e backups têm finalidades diferentes e devem ser usados juntos. Uma diretriz comum é a regra 3-2-1: três cópias dos dados, em dois tipos diferentes de mídia, com uma cópia fora do local."
+      },
+      {
+        "q": "Por que RAID 5 tem penalidade de gravação?",
+        "a": "Cada gravação em RAID 5 exige quatro operações de I/O: ler os dados antigos, ler a paridade antiga, gravar os dados novos e gravar a nova paridade. Esse ciclo de 'read-modify-write' limita o throughput de gravação, especialmente em gravações aleatórias pequenas. Controladores RAID de hardware com cache de write-back não volátil mitigam isso significativamente, e é por isso que arrays RAID 5 de nível servidor com cache com bateria ainda podem entregar bom desempenho de gravação."
+      },
+      {
+        "q": "Qual é a diferença entre RAID 5 e RAID 6?",
+        "a": "Ambos distribuem paridade pelos discos, mas RAID 6 usa dois cálculos de paridade independentes (P e Q), permitindo duas falhas simultâneas de disco. RAID 6 exige no mínimo quatro discos e usa (n − 2) × disk_size de espaço útil. A proteção de paridade dupla é especialmente valiosa em arrays grandes de discos de alta capacidade, onde a reconstrução após a primeira falha pode levar 24 horas ou mais."
+      },
+      {
+        "q": "Como RAID 10 se compara ao RAID 5 para bancos de dados?",
+        "a": "RAID 10 é geralmente preferido para cargas de banco de dados porque não tem penalidade de gravação — as gravações vão para pares espelhados em paralelo. RAID 5 introduz a sobrecarga de read-modify-write em cada gravação pequena, que é o padrão de I/O dominante em bancos de dados transacionais. RAID 10 usa 50% da capacidade bruta contra 75% do RAID 5, então o custo extra é a troca por melhor throughput de gravação e tempos de reconstrução mais rápidos."
+      }
+    ]
+  }
+}

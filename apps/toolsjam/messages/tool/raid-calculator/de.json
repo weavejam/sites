@@ -1,0 +1,117 @@
+{
+  "title": "RAID-Kapazitätsrechner - Kapazität und Ausfallsicherheit",
+  "tagline": "Berechnen Sie die nutzbare Speicherkapazität, Ausfallsicherheit und geschätzte Leistung für RAID 0-, 1-, 5-, 6- und 10-Konfigurationen.",
+  "intro": "Wählen Sie ein RAID-Level, geben Sie die Anzahl der Laufwerke und deren Größe ein und klicken Sie dann auf Berechnen, um nutzbare Kapazität, Effizienz und Ausfallsicherheit anzuzeigen.",
+  "field": {
+    "raidLevel": "RAID-Level",
+    "numDisks": "Anzahl der Laufwerke",
+    "diskSize": "Laufwerksgröße (GB)",
+    "diskSpeed": "Laufwerkstempo (RPM)",
+    "interfaceSpeed": "Schnittstellengeschwindigkeit (Gbps)"
+  },
+  "raidLevel": {
+    "RAID 0": "RAID 0 — Striping",
+    "RAID 1": "RAID 1 — Spiegelung",
+    "RAID 5": "RAID 5 — Verteilte Parität",
+    "RAID 6": "RAID 6 — Doppelparität",
+    "RAID 10": "RAID 10 — Spiegel + Stripe"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie für alle Felder gültige positive Zahlen ein.",
+    "minDisks": "Dieses RAID-Level erfordert eine Mindestanzahl an Laufwerken.",
+    "minDisksRAID1": "RAID 1 benötigt mindestens 2 Laufwerke.",
+    "minDisksRAID5": "RAID 5 benötigt mindestens 3 Laufwerke.",
+    "minDisksRAID6": "RAID 6 benötigt mindestens 4 Laufwerke.",
+    "minDisksRAID10": "RAID 10 benötigt mindestens 4 Laufwerke (gerade Anzahl).",
+    "oddRAID10": "RAID 10 erfordert eine gerade Anzahl von Laufwerken."
+  },
+  "result": {
+    "heading": "RAID-Konfigurationsergebnisse",
+    "usableCapacity": "Nutzbare Kapazität",
+    "rawCapacity": "Rohkapazität",
+    "efficiency": "Speichereffizienz",
+    "faultTolerance": "Ausfallsicherheit",
+    "readSpeed": "Geschätzte Lesegeschwindigkeit",
+    "writeSpeed": "Geschätzte Schreibgeschwindigkeit",
+    "drives": "Laufwerk(e)",
+    "tb": "TB",
+    "gb": "GB",
+    "mbs": "MB/s"
+  },
+  "about": {
+    "heading": "Über den RAID-Speicherechner",
+    "body": "RAID steht für Redundant Array of Independent Disks. Die Technik wurde 1988 eingeführt und kombiniert mehrere physische Laufwerke zu einer einzigen logischen Einheit, um je nach gewähltem RAID-Level Leistung, Zuverlässigkeit oder beides zu verbessern. Ein RAID-Rechner hilft Systemadministratoren und IT-Planern, genau zu bestimmen, wie viel nutzbarer Speicher eine bestimmte Konfiguration liefert und wie viele Laufwerksausfälle das Array überstehen kann, bevor Daten verloren gehen.\n\nRAID 0 verwendet Striping: Daten werden parallel über alle Laufwerke verteilt, sodass Lese- und Schreibgeschwindigkeiten nahezu linear mit der Laufwerksanzahl skalieren. Allerdings zerstört bereits der Ausfall eines einzigen Laufwerks das gesamte Array. RAID 0 eignet sich nur für nicht kritische Daten, bei denen Geschwindigkeit die einzige Priorität ist — etwa Scratch-Volumes für die Videobearbeitung.\n\nRAID 1 spiegelt Daten über Laufwerkspaare. Jeder Schreibvorgang wird auf zwei oder mehr Laufwerke dupliziert, sodass das Array den Ausfall aller bis auf ein Laufwerk überstehen kann. Die nutzbare Kapazität entspricht der Größe eines einzelnen Laufwerks, was bei einem Zwei-Laufwerk-Setup 50 % Effizienz ergibt. Die Lesefähigkeit kann verbessert werden, indem gleichzeitig von mehreren Spiegeln gelesen wird; deshalb ist RAID 1 hervorragend für Betriebssystem- und Boot-Volumes geeignet.\n\nRAID 5 verteilt Paritätsinformationen über alle Laufwerke und kann so den Ausfall eines Laufwerks verkraften. Die nutzbare Kapazität beträgt (n − 1) × disk_size und bietet eine gute Effizienz. Die Mindestkonfiguration erfordert drei Laufwerke. Die Lesegeschwindigkeit ist hoch — nahezu vergleichbar mit RAID 0 — aber die Schreibleistung leidet, weil jeder Schreibvorgang das Lesen alter Daten und Parität, das Berechnen neuer Parität und das Schreiben beider erfordert. RAID 5 ist eine beliebte Allzwecklösung für NAS- und Dateiserver-Workloads.\n\nRAID 6 erweitert RAID 5 um einen zweiten unabhängigen Paritätsblock und erlaubt dadurch zwei gleichzeitige Laufwerksausfälle. Die nutzbare Kapazität beträgt (n − 2) × disk_size und erfordert mindestens vier Laufwerke. RAID 6 wird empfohlen, wenn große Laufwerke verwendet werden, bei denen ein Rebuild nach einem Ausfall viele Stunden dauern kann, in denen ein zweiter Ausfall statistisch relevant ist.\n\nRAID 10 (auch RAID 1+0 geschrieben) kombiniert Spiegelung und Striping. Laufwerkspaare werden zuerst gespiegelt und dann gemeinsam gestreift. Die nutzbare Kapazität beträgt 50 % der Rohkapazität. Es bietet hervorragende Lese- und Schreibleistung und toleriert einen Laufwerksausfall pro Spiegelpaar. RAID 10 ist die bevorzugte Wahl für transaktionsintensive Datenbanken, Mailserver und jede Anwendung, die sowohl hohen Durchsatz als auch starke Redundanz benötigt.\n\nDieser Rechner berechnet nutzbare Kapazität, Speichereffizienz, Ausfallsicherheit (Anzahl der Laufwerke, die ohne Datenverlust ausfallen können) und geschätzte sequenzielle Lese-/Schreibgeschwindigkeiten basierend auf Laufwerks-RPM und Schnittstellenbandbreite. Die Durchsatzwerte sind Näherungen — die tatsächliche Leistung hängt vom Controller-Cache, der Queue-Tiefe, dem Dateisystem-Overhead und dem Workload-Muster ab. Verwenden Sie die Ergebnisse für Planung und Budgetierung, nicht zum Benchmarking."
+  },
+  "examples": {
+    "heading": "RAID-Konfigurationsbeispiele",
+    "intro": "Vier typische Einsatzszenarien mit Kapazitäts- und Ausfallsicherheitswerten.",
+    "colInput": "Konfiguration",
+    "colOutput": "Nutzbare Kapazität",
+    "colNote": "Ausfallsicherheit",
+    "items": [
+      {
+        "input": "RAID 1, 2 × 2 TB",
+        "output": "2 TB",
+        "note": "50 % Effizienz. Übersteht 1 Laufwerksausfall. Ideal für OS-/Datenträger in Heimservern."
+      },
+      {
+        "input": "RAID 0, 2 × 1 TB",
+        "output": "2 TB",
+        "note": "100 % Effizienz. Keine Ausfallsicherheit. Nur für schnellen Scratch-Speicher geeignet."
+      },
+      {
+        "input": "RAID 5, 4 × 2 TB",
+        "output": "6 TB",
+        "note": "75 % Effizienz. Übersteht 1 Laufwerksausfall. Gute Balance für kleine NAS-Systeme."
+      },
+      {
+        "input": "RAID 10, 6 × 4 TB",
+        "output": "12 TB",
+        "note": "50 % Effizienz. Ein Laufwerksausfall pro Spiegelpaar ohne Datenverlust ist abgesichert. Am besten für Datenbank-Workloads."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den RAID-Speicherechner",
+    "steps": [
+      "Wählen Sie das RAID-Level aus dem Dropdown. RAID 0 und 1 sind am einfachsten; RAID 5 und 6 bieten Paritätsschutz; RAID 10 kombiniert beide Ansätze.",
+      "Geben Sie die Anzahl der geplanten Laufwerke ein. RAID 5 benötigt mindestens 3, RAID 6 mindestens 4 und RAID 10 mindestens 4 (gerade Anzahl erforderlich).",
+      "Geben Sie die Größe eines einzelnen Laufwerks in GB ein. Bei gemischten Laufwerksgrößen verwenden Sie die Größe des kleinsten Laufwerks — größere Laufwerke werden nur bis zu dieser Größe genutzt.",
+      "Optional können Sie Laufwerkstempo (RPM) und Schnittstellengeschwindigkeit (Gbps) eingeben, um geschätzte Lese-/Schreibdurchsätze zu erhalten.",
+      "Klicken Sie auf Berechnen, um nutzbare Kapazität, Speichereffizienz, Ausfallsicherheit und Geschwindigkeitswerte anzuzeigen. Klicken Sie auf Zurücksetzen, um mit einer anderen Konfiguration neu zu beginnen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum RAID-Speicherechner",
+    "items": [
+      {
+        "q": "Wie hoch ist die nutzbare Kapazität von RAID 5 mit vier 2-TB-Laufwerken?",
+        "a": "RAID-5-Nutzkapazität = (n − 1) × disk_size = 3 × 2 TB = 6 TB. Ein Laufwerksanteil wird für verteilte Parität verwendet. Die Speichereffizienz beträgt 75 %. Das Array kann genau 1 Laufwerksausfall überstehen, bevor Daten gefährdet sind."
+      },
+      {
+        "q": "Wie viele Laufwerksausfälle können verschiedene RAID-Level überstehen?",
+        "a": "RAID 0 übersteht 0 Ausfälle. RAID 1 übersteht n − 1 Ausfälle (alle außer einem Laufwerk können ausfallen). RAID 5 übersteht genau 1 Ausfall. RAID 6 übersteht genau 2 gleichzeitige Ausfälle. RAID 10 übersteht einen Ausfall pro Spiegelpaar — bei einem RAID 10 mit vier Laufwerken kann also jeweils ein Laufwerk aus jedem Paar gleichzeitig ausfallen."
+      },
+      {
+        "q": "Ist RAID ein Ersatz für Backups?",
+        "a": "Nein. RAID schützt nur vor Hardwareausfällen einzelner Laufwerke. Es schützt nicht vor versehentlichem Löschen, Ransomware, Dateibeschädigung, Controller-Ausfällen oder physischen Katastrophen, die den gesamten Server betreffen. RAID und Backups erfüllen unterschiedliche Zwecke und sollten immer gemeinsam eingesetzt werden. Eine gängige Richtlinie ist die 3-2-1-Regel: drei Kopien der Daten, auf zwei unterschiedlichen Medientypen, mit einer Kopie außerhalb des Standorts."
+      },
+      {
+        "q": "Warum hat RAID 5 eine Schreibstrafe?",
+        "a": "Jeder RAID-5-Schreibvorgang benötigt vier I/O-Operationen: alte Daten lesen, alte Parität lesen, neue Daten schreiben, neue Parität schreiben. Dieser 'Read-Modify-Write'-Zyklus begrenzt den Schreibdurchsatz, insbesondere bei kleinen zufälligen Schreibvorgängen. Hardware-RAID-Controller mit nichtflüchtigem Write-Back-Cache mindern das deutlich, weshalb serverseitige RAID-5-Arrays mit batteriegepuffertem Cache dennoch starke Schreibleistung liefern können."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen RAID 5 und RAID 6?",
+        "a": "Beide verteilen Parität über die Laufwerke, aber RAID 6 verwendet zwei unabhängige Paritätsberechnungen (P und Q) und erlaubt dadurch zwei gleichzeitige Laufwerksausfälle. RAID 6 benötigt mindestens vier Laufwerke und verwendet (n − 2) × disk_size an nutzbarem Speicher. Der Doppelparitätsschutz ist besonders wertvoll bei großen Arrays aus hochkapazitiven Laufwerken, bei denen ein Rebuild nach dem ersten Ausfall 24 Stunden oder länger dauern kann."
+      },
+      {
+        "q": "Wie verhält sich RAID 10 im Vergleich zu RAID 5 bei Datenbanken?",
+        "a": "RAID 10 wird für Datenbank-Workloads meist bevorzugt, weil es keine Schreibstrafe hat — Schreibvorgänge gehen parallel an gespiegelte Paare. RAID 5 führt bei jedem kleinen Schreibvorgang den Read-Modify-Write-Overhead ein, der bei transaktionalen Datenbanken das dominante I/O-Muster ist. RAID 10 nutzt 50 % der Rohkapazität gegenüber 75 % bei RAID 5, sodass die Mehrkosten ein Trade-off für besseren Schreibdurchsatz und schnellere Rebuilds sind."
+      }
+    ]
+  }
+}

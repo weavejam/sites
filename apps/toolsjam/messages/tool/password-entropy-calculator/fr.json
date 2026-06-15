@@ -1,0 +1,136 @@
+{
+  "title": "Calculateur d’entropie de mot de passe - Analyse de robustesse",
+  "tagline": "Calculez l’entropie d’un mot de passe en bits, évaluez son niveau de robustesse et estimez le temps de cassage par force brute selon la composition du jeu de caractères et la longueur.",
+  "intro": "Saisissez un mot de passe pour détecter automatiquement ses classes de caractères, ou indiquez manuellement la taille du jeu de caractères et la longueur. Le score d’entropie montre la résistance du mot de passe aux attaques par force brute.",
+  "field": {
+    "password": "Mot de passe",
+    "charsetSize": "Taille du jeu de caractères",
+    "passwordLength": "Longueur du mot de passe",
+    "mode": "Mode d’analyse"
+  },
+  "placeholder": {
+    "password": "Saisissez votre mot de passe ici",
+    "charsetSize": "ex. 72",
+    "length": "ex. 12"
+  },
+  "type": {
+    "auto": "Détection automatique depuis le mot de passe",
+    "manual": "Manuel (taille du jeu + longueur)"
+  },
+  "label": {
+    "lowercase": "Minuscules (a–z)",
+    "uppercase": "Majuscules (A–Z)",
+    "digits": "Chiffres (0–9)",
+    "symbols": "Symboles (!@#…)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser",
+    "show": "Afficher",
+    "hide": "Masquer"
+  },
+  "error": {
+    "empty": "Veuillez saisir un mot de passe ou indiquer la taille du jeu et la longueur.",
+    "invalidManual": "La taille du jeu et la longueur doivent toutes deux être des entiers positifs."
+  },
+  "result": {
+    "heading": "Analyse de l’entropie",
+    "entropy": "Entropie",
+    "entropyUnit": "bits",
+    "strength": "Robustesse",
+    "poolSize": "Jeu de caractères",
+    "length": "Longueur",
+    "crackTime": "Temps de cassage estimé",
+    "charClasses": "Classes de caractères détectées"
+  },
+  "strength": {
+    "veryWeak": "Très faible",
+    "weak": "Faible",
+    "reasonable": "Correcte",
+    "strong": "Forte",
+    "veryStrong": "Très forte"
+  },
+  "about": {
+    "heading": "À propos du calculateur d’entropie de mot de passe",
+    "body": "L’entropie d’un mot de passe mesure son imprévisibilité, exprimée en bits. Plus l’entropie est élevée, plus un attaquant devra faire d’essais pour casser le mot de passe par force brute. La formule est simple : H = L × log₂(N), où L est la longueur du mot de passe et N la taille du jeu de caractères dont chaque caractère est tiré.\n\nLa taille du jeu dépend des classes de caractères utilisées. Les minuscules (a–z) apportent 26 caractères. Les majuscules (A–Z) ajoutent 26 caractères. Les chiffres décimaux (0–9) apportent 10 caractères. Les symboles standard du clavier comme !, @, #, $, %, ^, &, *, (, ) et autres caractères similaires apportent environ 32 caractères. Un mot de passe utilisant les quatre classes dispose d’un jeu d’environ 94 caractères, ce qui donne l’entropie maximale par caractère.\n\nÀ titre de repère, un jeu de 94 caractères avec une longueur de 12 caractères produit environ 78.7 bits d’entropie. Les professionnels de la sécurité considèrent généralement 60 bits comme le minimum pour un mot de passe fort et 80 bits comme très fort face à des adversaires de niveau étatique. Les NIST Digital Identity Guidelines (SP 800-63B) ont abandonné les règles de complexité au profit de la longueur, et ce calcul explique pourquoi : ajouter un caractère à un mot de passe issu d’un jeu de 94 caractères vaut souvent plus que remplacer une lettre par un symbole.\n\nLes estimations de temps de cassage supposent une attaque moderne sur GPU à environ 10 milliards (10^10) d’essais par seconde, ce qui est réaliste pour des fonctions de hachage rapides comme MD5. Pour des algorithmes plus lents et gourmands en mémoire comme bcrypt, Argon2 ou scrypt, le débit effectif tombe à des millions, voire des milliers, d’essais par seconde, ce qui rend les temps affichés extrêmement conservateurs.\n\nLes calculs d’entropie supposent que chaque caractère est tiré indépendamment et uniformément au hasard. Les mots de passe choisis par des humains ne respectent souvent pas cette hypothèse — mots du dictionnaire, motifs de clavier et substitutions prévisibles réduisent l’entropie effective bien en dessous du maximum théorique. L’entropie calculée est donc une borne supérieure pour les mots de passe choisis par l’utilisateur, et une valeur exacte seulement pour des mots de passe aléatoires cryptographiquement générés par un gestionnaire de mots de passe."
+  },
+  "examples": {
+    "heading": "Exemples d’entropie de mot de passe",
+    "intro": "Trois mots de passe de complexité croissante montrent comment l’entropie et le temps de cassage évoluent avec la longueur et la diversité des caractères.",
+    "colInput": "Profil du mot de passe",
+    "colOutput": "Entropie",
+    "colNote": "Robustesse / Temps de cassage",
+    "items": [
+      {
+        "input": "8 caractères, chiffres uniquement (jeu = 10)",
+        "output": "26.6 bits",
+        "note": "Très faible. Un mot de passe de type PIN à 8 chiffres compte moins de 100 millions de combinaisons — cassable en moins d’une seconde par n’importe quel ordinateur moderne."
+      },
+      {
+        "input": "10 caractères, minuscules uniquement (jeu = 26)",
+        "output": "47.0 bits",
+        "note": "Correcte. Un mot de passe de 10 lettres minuscules compte environ 141 000 milliards de combinaisons. À 10 milliards d’essais par seconde, il faut environ 4 heures pour tout épuiser."
+      },
+      {
+        "input": "14 caractères, majuscules + minuscules + chiffres + symboles (jeu = 94)",
+        "output": "91.8 bits",
+        "note": "Très forte. Plus de 10²⁷ combinaisons. Même à 10¹⁰ essais par seconde, une recherche exhaustive prendrait plus de temps que l’âge de l’univers."
+      },
+      {
+        "input": "16 caractères, majuscules + minuscules + chiffres (jeu = 62)",
+        "output": "95.3 bits",
+        "note": "Très forte. Supprimer les symboles tout en ajoutant deux caractères permet encore d’atteindre plus de 95 bits d’entropie — preuve que la longueur compte souvent plus que la complexité."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur d’entropie de mot de passe",
+    "steps": [
+      "Saisissez ou collez votre mot de passe dans le champ Mot de passe. Le calculateur détecte automatiquement les classes de caractères présentes et ajuste la taille du jeu de caractères en conséquence.",
+      "Passez en mode Manuel si vous préférez indiquer directement la taille du jeu de caractères et la longueur du mot de passe sans saisir le mot de passe réel.",
+      "Cliquez sur Calculer pour voir l’entropie en bits, la note de robustesse, les classes de caractères détectées et le temps de cassage par force brute estimé.",
+      "Pour renforcer un mot de passe faible, essayez d’ajouter des classes de caractères ou d’augmenter la longueur — l’affichage de l’entropie se met à jour immédiatement.",
+      "Cliquez sur Réinitialiser pour effacer toutes les entrées et lancer une nouvelle analyse."
+    ]
+  },
+  "crackTime": {
+    "lessThan1s": "moins d’1 seconde",
+    "seconds": "{n} secondes",
+    "minutes": "{n} minutes",
+    "hours": "{n} heures",
+    "days": "{n} jours",
+    "years": "{n} ans",
+    "thousandYears": "{n} mille ans",
+    "billionYears": "{n} milliards d’années",
+    "universe": "plus long que l’âge de l’univers"
+  },
+  "faq": {
+    "heading": "FAQ du calculateur d’entropie de mot de passe",
+    "items": [
+      {
+        "q": "Quelle est une bonne valeur d’entropie pour un mot de passe ?",
+        "a": "Les professionnels de la sécurité considèrent généralement 60 bits comme une base pour les comptes en ligne et 80 bits ou plus comme une valeur forte. NIST SP 800-63B recommande des mots de passe d’au moins 8 caractères, tout en mettant l’accent sur la longueur plutôt que sur la complexité. Un mot de passe de 12 caractères utilisant majuscules, minuscules, chiffres et symboles atteint environ 78 bits — largement dans la zone forte pour la plupart des usages."
+      },
+      {
+        "q": "L’entropie garantit-elle la sécurité d’un mot de passe ?",
+        "a": "L’entropie mesure l’imprévisibilité théorique en supposant une sélection aléatoire des caractères. Les mots de passe choisis par des humains sont souvent bien en dessous du maximum théorique, car ils utilisent des mots du dictionnaire, des noms, des dates et des motifs prévisibles. Un gestionnaire de mots de passe qui génère de vrais mots de passe aléatoires atteint toute l’entropie affichée par ce calculateur ; un mot de passe choisi par un humain de même longueur a probablement une entropie effective bien plus faible."
+      },
+      {
+        "q": "Pourquoi les symboles comptent-ils autant pour l’entropie ?",
+        "a": "Ajouter une classe de symboles fait passer le jeu d’environ 62 caractères (majuscules + minuscules + chiffres) à environ 94 caractères. Chaque caractère apporte alors log₂(94) ≈ 6.55 bits au lieu de log₂(62) ≈ 5.95 bits — un gain de 0.6 bit par caractère. Sur un mot de passe de 12 caractères, cela représente environ 7 bits supplémentaires, soit à peu près l’équivalent d’un caractère de plus. La longueur et la classe de caractères comptent toutes deux."
+      },
+      {
+        "q": "Comment le temps de cassage est-il estimé ?",
+        "a": "Le temps de cassage suppose qu’un attaquant effectue une recherche exhaustive à 10 milliards (10^10) d’essais par seconde, ce qui reflète la capacité actuelle des GPU contre des hachages rapides comme MD5 ou SHA-1. Pour des hachages lents comme bcrypt (cost 12) ou Argon2, le débit effectif tombe autour de 10,000–100,000 essais par seconde, ce qui fait des temps affichés des bornes inférieures très conservatrices."
+      },
+      {
+        "q": "Dois-je saisir mon vrai mot de passe dans ce calculateur ?",
+        "a": "Tous les calculs d’entropie s’exécutent entièrement dans votre navigateur — aucune donnée n’est envoyée à un serveur. Toutefois, pour plus de prudence, vous pouvez utiliser le mode Manuel pour saisir uniquement la taille du jeu et la longueur sans révéler le mot de passe. Le résultat d’entropie est identique dans les deux cas, car il ne dépend que de la longueur et de la taille du jeu."
+      },
+      {
+        "q": "Quelle est la différence entre l’entropie et les niveaux de robustesse ?",
+        "a": "L’entropie est une quantité mathématique précise mesurée en bits. Les niveaux de robustesse comme Very Weak, Weak, Reasonable, Strong et Very Strong sont des libellés qualitatifs qui traduisent des plages d’entropie en verdicts lisibles. Les seuils utilisés ici sont : moins de 28 bits = Very Weak, 28–35 bits = Weak, 36–59 bits = Reasonable, 60–127 bits = Strong, et 128 bits ou plus = Very Strong."
+      }
+    ]
+  }
+}
