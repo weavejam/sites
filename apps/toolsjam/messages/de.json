@@ -10670,6 +10670,491 @@
           }
         ]
       }
+    },
+    "water-heating-calculator": {
+      "title": "Wassererwärmungs-Rechner: Energie, Zeit und Kosten",
+      "tagline": "Berechnen Sie die benötigte Energie, Aufheizzeit, Kosten und CO₂-Emissionen, um Wasser von einer Start- auf eine Zieltemperatur zu erwärmen.",
+      "intro": "Geben Sie Wasservolumen, Temperaturen, Heizleistung, Wirkungsgrad und Energiekosten ein, um Heizenergie, Zeit und Gesamtkosten zu berechnen.",
+      "type": {
+        "liters": "L",
+        "gallons": "gal"
+      },
+      "field": {
+        "volume": "Wasservolumen",
+        "initialTemp": "Starttemperatur (°C)",
+        "targetTemp": "Zieltemperatur (°C)",
+        "power": "Heizleistung (kW)",
+        "efficiency": "Wirkungsgrad (%)",
+        "costPerKwh": "Energiekosten ($/kWh)"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "result": {
+        "heading": "Ergebnisse der Wassererwärmung",
+        "heatEnergy": "Benötigte Wärmeenergie: {value} kWh",
+        "actualEnergy": "Tatsächlicher Energieeinsatz: {value} kWh",
+        "heatingTime": "Aufheizzeit: {value}",
+        "cost": "Gesamtkosten: ${value}",
+        "co2": "CO₂-Äquivalent: {value} kg"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie in allen Feldern gültige positive Zahlen ein.",
+        "tempRange": "Die Zieltemperatur muss höher als die Starttemperatur sein."
+      },
+      "formula": "E = m·c·ΔT / 3,600,000 kWh | E_actual = E / efficiency | t = E_actual / power",
+      "unit": {
+        "hours": "h",
+        "minutes": "min"
+      },
+      "about": {
+        "heading": "Über den Wassererwärmungs-Rechner",
+        "body": "Das Erwärmen von Wasser ist einer der energieintensivsten Prozesse in Wohn- und Gewerbegebäuden und macht in Haushalten typischerweise 15–20% des gesamten Energieverbrauchs aus. Zu wissen, wie viel Energie, Zeit und Kosten für das Erwärmen eines bestimmten Wasservolumens nötig sind, ist entscheidend für die Auswahl des passenden Warmwasserbereiters, die Optimierung der Energieeffizienz und die Senkung der Nebenkosten.\n\nDie Grundformel für die Wassererwärmung basiert auf der spezifischen Wärmekapazität von Wasser: Q = m × c × ΔT. Dabei ist Q die Wärmeenergie in Joule, m die Masse in Kilogramm (bei Wasser bei Raumtemperatur gleich dem Volumen in Litern), c die spezifische Wärmekapazität von Wasser (4186 J/(kg·K)) und ΔT die Temperaturerhöhung in Grad Celsius. Die Umrechnung von Joule in Kilowattstunden (1 kWh = 3,600,000 J) ergibt Q_kWh = volume_L × 4186 × ΔT / 3,600,000.\n\nDer tatsächliche Energieverbrauch liegt über dem theoretischen Minimum, weil kein Heizsystem zu 100% effizient ist. Elektrische Widerstandsheizungen haben Wirkungsgrade von 95–100% (der größte Teil der elektrischen Energie wird in Wärme umgewandelt). Gas-Warmwasserbereiter erreichen wegen Abgasverlusten typischerweise 60–80%. Wärmepumpen werden mit einer Leistungszahl (COP) von 2–4 beschrieben. Das bedeutet, dass sie durch Entzug von Wärmeenergie aus Luft oder Erdreich 200–400% der verbrauchten elektrischen Energie als Wärme liefern können. Geben Sie in diesem Rechner den Wärmepumpen-Wirkungsgrad als 200%, 300% usw. ein.\n\nDie Aufheizzeit hängt von der Heizleistung ab: t = E_actual / P_kW. Ein elektrisches 3-kW-Heizelement, das 200 Liter von 10°C auf 60°C erwärmt, benötigt etwa 12.9 kWh tatsächliche Energie und rund 4.3 Stunden. Eine höhere Heizleistung verkürzt die Zeit proportional: Ein 6-kW-Element würde dasselbe in 2.15 Stunden erreichen.\n\nDas CO₂-Äquivalent in diesem Rechner verwendet den durchschnittlichen Emissionsfaktor des Stromnetzes von 0.233 kg CO₂/kWh (britischer Netzdurchschnitt 2023). Dieser Faktor variiert stark nach Land und Energiemix: Französischer Strom aus Kernenergie liegt bei etwa 0.05 kg/kWh; das kohlelastige australische Netz bei etwa 0.67 kg/kWh. Bei Gas-Warmwasserbereitern multiplizieren Sie mit dem Gas-Emissionsfaktor (für Erdgas etwa 0.184 kg CO₂/kWh), nicht mit dem Stromfaktor.\n\nStrategien zur Kostenoptimierung sind unter anderem: Nutzung von Niedertarifstrom für nächtliches Aufheizen; Auswahl der richtigen Gerätegröße (überdimensionierte Geräte takten häufiger und verlieren mehr Bereitschaftswärme); Einstellung des Warmwasserthermostats auf 60°C (Mindestwert zur Legionellenprävention) statt 70–80°C; Dämmung von Warmwasserleitungen und Speichern; sowie Austausch alter Widerstandsheizungen durch Wärmepumpen-Warmwasserbereiter, die den Energieverbrauch für Warmwasser um 60–70% senken können."
+      },
+      "examples": {
+        "heading": "Beispiele zur Wassererwärmung",
+        "intro": "Typische Heizszenarien mit Energie, Zeit und Kosten für verschiedene Anwendungen.",
+        "colInput": "Szenario / Volumen / Temperaturen / Heizer",
+        "colOutput": "Energie / Zeit",
+        "colNote": "Kosten",
+        "items": [
+          {
+            "input": "Haushalt: 200L, 10→60°C, 3kW, 90%, $0.15/kWh",
+            "output": "Wärme=11.63 kWh, Tatsächlich=12.92 kWh, Zeit≈4h 18m",
+            "note": "$1.94. Typisches Szenario für einen elektrischen Nachtspeicher-Warmwasserbereiter."
+          },
+          {
+            "input": "Gewerbe: 1000L, 15→80°C, 15kW, 85%, $0.12/kWh",
+            "output": "Wärme=75.6 kWh, Tatsächlich=88.9 kWh, Zeit≈5h 56m",
+            "note": "$10.67. Morgendliches Aufheizen eines Restaurant- oder Hotelkessels."
+          },
+          {
+            "input": "Wärmepumpe: 150L, 12→55°C, 2.5kW, 300%, $0.18/kWh",
+            "output": "Wärme=7.50 kWh, Tatsächlich=2.50 kWh, Zeit≈1h 0m",
+            "note": "$0.45. Eine Wärmepumpe mit COP=3 liefert dreimal so viel Wärme wie elektrische Eingangsenergie."
+          },
+          {
+            "input": "Solar-Zusatzheizung: 300L, 20→65°C, 4kW, 95%, $0.14/kWh",
+            "output": "Wärme=15.7 kWh, Tatsächlich=16.5 kWh, Zeit≈4h 8m",
+            "note": "$2.31. Elektrische Nachheizung für einen solar vorgewärmten Warmwasserspeicher."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Wassererwärmungs-Rechner",
+        "steps": [
+          "Geben Sie das Wasservolumen ein und wählen Sie die Einheit (L für Liter oder gal für US-Gallonen). 1 US-Gallone = 3.785 Liter.",
+          "Geben Sie die Starttemperatur (aktuelle Wassertemperatur) und die Zieltemperatur (gewünschte Warmwassertemperatur) in Grad Celsius ein.",
+          "Geben Sie die Heizleistung in Kilowatt ein. Übliche Werte: 1.5–3 kW (Haushalts-Heizelement), 5–15 kW (Gewerbe), 2–4 kW (Wärmepumpe).",
+          "Geben Sie den Wirkungsgrad als Prozentwert ein. Widerstandsheizungen: 95–100%. Gasgeräte: 60–80%. Wärmepumpen: 200–400% (COP × 100).",
+          "Geben Sie Ihre Energiekosten pro Kilowattstunde ein. Klicken Sie auf Berechnen, um benötigte Wärmeenergie, tatsächlichen Energieeinsatz, Aufheizzeit (Stunden und Minuten), Gesamtkosten und CO₂-Äquivalent zu sehen."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zur Wassererwärmung",
+        "q1": "Wie viel Energie wird zum Erwärmen von Wasser benötigt?",
+        "q1_a": "Die benötigte Energie beträgt Q = volume_L × 4186 × ΔT / 3,600,000 kWh. Zum Beispiel erfordert das Erwärmen von 100 Litern um 50°C: 100 × 4186 × 50 / 3,600,000 ≈ 5.81 kWh Wärmeenergie. Die tatsächlich verbrauchte Energie hängt vom Wirkungsgrad des Heizgeräts ab: Ein Gasgerät mit 85% Wirkungsgrad würde 5.81 / 0.85 ≈ 6.84 kWh Gasenergie verbrauchen.",
+        "q2": "Wie lange dauert es, einen 200L-Warmwasserspeicher aufzuheizen?",
+        "q2_a": "Mit einem elektrischen 3-kW-Heizelement und 90% Wirkungsgrad von 10°C auf 60°C: Energie = 200 × 4186 × 50 / 3,600,000 = 11.63 kWh Wärme; tatsächlich = 11.63/0.9 = 12.92 kWh; Zeit = 12.92/3 = 4.31 Stunden (etwa 4 Stunden 18 Minuten). Ein 6-kW-Element würde dies auf etwa 2h 9m halbieren.",
+        "q3": "Was ist Heizwirkungsgrad und warum ist er wichtig?",
+        "q3_a": "Der Heizwirkungsgrad ist das Verhältnis von nutzbarer Wärme, die an das Wasser abgegeben wird, zur insgesamt verbrauchten Energie. Elektrische Widerstandsheizungen sind nahezu 100% effizient (der gesamte Strom wird zu Wärme). Gasgeräte verlieren 20–40% über Abgase. Wärmepumpen haben Wirkungsgrade über 100% (als COP angegeben), weil sie Wärme bewegen statt erzeugen: Ein COP von 3 bedeutet 3 kWh Wärme pro 1 kWh Strom. Der Wirkungsgrad bestimmt die tatsächlichen Energiekosten und den CO₂-Fußabdruck.",
+        "q4": "Auf welche Temperatur sollte ich meinen Warmwasserbereiter einstellen?",
+        "q4_a": "Aus Gesundheits- und Sicherheitsgründen sollten Warmwasserbereiter auf mindestens 60°C eingestellt sein, um Legionellenwachstum zu verhindern. Für die Abgabe an Zapfstellen mischen thermostatische Mischventile das heiße Wasser auf 50–55°C herunter, um Verbrühungen zu vermeiden. Eine Thermostateinstellung über 60°C verschwendet Energie ohne zusätzlichen Sicherheitsnutzen. Wärmepumpen-Warmwasserbereiter müssen möglicherweise regelmäßig einen 65°C-Hygienezyklus ausführen, da sie aus Effizienzgründen meist bei niedrigeren Temperaturen arbeiten.",
+        "q5": "Was kostet Wassererwärmung mit Strom im Vergleich zu Gas?",
+        "q5_a": "Kosten = (Wärmeenergie / Wirkungsgrad) × Brennstoffkosten pro Einheit. Für 200L, 10→60°C: Wärmeenergie = 11.63 kWh. Strom bei 98% Wirkungsgrad und $0.25/kWh: 11.63/0.98 × 0.25 = $2.97. Gas bei 75% Wirkungsgrad und $0.05/kWh äquivalent: 11.63/0.75 × 0.05 = $0.78. Obwohl Gas pro kWh günstiger ist, kostet eine Wärmepumpe mit 300% COP: 11.63/3 × 0.25 = $0.97 und ist trotz höherer Strompreise oft günstiger als Gas.",
+        "q6": "Wie hoch ist das CO₂-Äquivalent der Wassererwärmung?",
+        "q6_a": "CO₂-Emissionen hängen von der Energiequelle und der CO₂-Intensität des Stromnetzes ab. Dieser Rechner verwendet 0.233 kg CO₂/kWh, den durchschnittlichen britischen Netzfaktor. In Frankreich (überwiegend Kernenergie) liegen die Emissionen bei etwa 0.05 kg/kWh; in Australien (kohlelastig) bei etwa 0.67 kg/kWh. Zur Senkung der Emissionen durch Warmwasser: Solarthermie installieren (eliminiert 60–80% der Heizenergie), Wärmepumpen-Warmwasserbereiter nutzen, Speicher und Leitungen dämmen und Ökostromtarife wählen."
+      }
+    },
+    "torsional-stiffness-calculator": {
+      "title": "Torsionssteifigkeit Rechner – Schubspannung und Drehmoment",
+      "tagline": "Berechnen Sie aus Schubmodul, Länge und Durchmesser die Torsionssteifigkeit, maximale Schubspannung und Verformungsenergie runder Wellen.",
+      "intro": "Geben Sie Geometrie und Materialeigenschaften Ihrer Welle ein, um Torsionssteifigkeit, maximale Schubspannung, polares Flächenträgheitsmoment und Verformungsenergie sofort zu berechnen.",
+      "formula": "K = G·J/L | J = πd⁴/32 | τ_max = T·(d/2)/J | U = T²·L/(2·G·J)",
+      "field": {
+        "crossSectionType": "Querschnittstyp",
+        "torque": "Anliegendes Drehmoment (N·m)",
+        "angle": "Verdrehwinkel (rad)",
+        "shearModulus": "Schubmodul G (GPa)",
+        "length": "Länge (m)",
+        "diameter": "Durchmesser (m)"
+      },
+      "type": {
+        "circular": "Rund"
+      },
+      "placeholder": {
+        "torque": "z. B. 1500",
+        "angle": "z. B. 0.05",
+        "shearModulus": "z. B. 80",
+        "length": "z. B. 1.5",
+        "diameter": "z. B. 0.03"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie in allen Feldern gültige positive Zahlen ein."
+      },
+      "result": {
+        "heading": "Ergebnisse",
+        "stiffness": "Torsionssteifigkeit (analytisch K=GJ/L): {value} N·m/rad",
+        "stiffnessMeasured": "Torsionssteifigkeit (gemessen K=T/θ): {value} N·m/rad",
+        "shearStress": "Maximale Schubspannung: {value} MPa",
+        "polarMoment": "Polares Flächenträgheitsmoment: {value} m⁴",
+        "strainEnergy": "Verformungsenergie: {value} J"
+      },
+      "about": {
+        "heading": "Über den Torsionssteifigkeit-Rechner",
+        "body": "Torsionssteifigkeit ist eine grundlegende mechanische Eigenschaft, die beschreibt, wie stark sich ein Bauteil bei einem Torsionsmoment, also einem Drehmoment, gegen Winkelverformung wehrt. Ingenieurinnen und Ingenieure, die mit rotierenden Wellen, Antriebssystemen, Präzisionsinstrumenten und Tragstrukturen arbeiten, verlassen sich auf genaue Torsionssteifigkeitsberechnungen, um zuverlässige, sichere und effiziente Auslegungen zu erreichen.\n\nDie Grundbeziehung ist einfach: Die Torsionssteifigkeit K ist das Produkt aus dem Schubmodul des Materials G und dem polaren Flächenträgheitsmoment des Querschnitts J, geteilt durch die Bauteillänge L. Als K = G·J/L geschrieben, erfasst diese Formel zwei unabhängige Beiträge — den werkstoffbedingten Widerstand gegen Schubverformung und den geometrischen Beitrag durch die Verteilung des Materials um die Drehachse.\n\nFür einen massiven Kreisquerschnitt gilt J = πd⁴/32, wobei d der Durchmesser ist. Die vierte Potenz des Durchmessers bedeutet, dass eine Verdopplung des Durchmessers die Torsionssteifigkeit um den Faktor 16 erhöht — die Geometrie ist also enorm wichtig. Deshalb sind massive dicke Wellen deutlich steifer als schlanke Stäbe aus demselben Material, und warum Hohlprofile im Luft- und Raumfahrtbereich so attraktiv sind, wo Gewicht minimiert und Steifigkeit erhalten werden muss.\n\nDer Schubmodul G ist eine Materialkonstante. Stahl hat G ≈ 79–80 GPa, Aluminiumlegierungen liegen bei 26–30 GPa, Messing bei etwa 38–42 GPa, Titan typischerweise bei 40–45 GPa und technische Polymere sind mit 1–5 GPa deutlich niedriger. Das richtige Material und den passenden Querschnitt zu wählen, um ein Steifigkeitsziel zu erreichen, ist eine der häufigsten Aufgaben im Maschinenbau.\n\nNeben der Steifigkeit berechnet dieser Rechner auch die maximale Schubspannung τ_max = T·r/J sowie die Verformungsenergie U = T²·L/(2·G·J). Die maximale Schubspannung entscheidet darüber, ob eine Welle unter dem anliegenden Drehmoment plastisch wird oder bricht, und muss mit der Schubstreckgrenze des Materials verglichen werden (bei duktilen Metallen etwa 0.577 × der Zugstreckgrenze). Die Verformungsenergie zeigt, wie viel elastische Energie im verdrehten Bauteil gespeichert ist — wichtig für Ermüdungsanalysen und für das Verständnis des dynamischen Verhaltens unter zyklischer Belastung.\n\nPraktische Anwendungen reichen von Kardanwellen im Automobilbau, die das Motordrehmoment auf die Räder übertragen, über Turbinenwellen in Gasturbinen, die enorme Drehmomente ohne übermäßige Verdrehung aushalten müssen, bis zu Spindeln in Werkzeugmaschinen, bei denen schon kleinste Winkelabweichungen die Oberflächengüte verschlechtern, sowie Torsionsstäben in Fahrzeugaufhängungen. In jedem Fall müssen Steifigkeit, Gewicht, Kosten und Festigkeit so ausbalanciert werden, dass die Auslegung über die gesamte Lebensdauer zuverlässig funktioniert."
+      },
+      "examples": {
+        "heading": "Beispiele für Torsionssteifigkeit",
+        "intro": "Drei durchgerechnete Szenarien für gängige Werkstoffe und Anwendungen.",
+        "colInput": "Eingabe",
+        "colOutput": "Torsionssteifigkeit",
+        "colNote": "Anwendung",
+        "loadSteel": "Stahlwelle",
+        "loadAluminum": "Aluminiumwelle",
+        "loadBrass": "Messingwelle",
+        "items": [
+          {
+            "input": "Stahlwelle: T=1500 N·m, θ=0.05 rad, G=80 GPa, L=1.5 m, d=0.03 m",
+            "output": "K ≈ 4,241 N·m/rad, τ_max ≈ 283 MPa",
+            "note": "Typische Kardanwelle im Automobilbau. K = G·J/L mit J = πd⁴/32 = 7.95 × 10⁻⁸ m⁴; die Schubspannung ergibt sich aus τ = T·r/J."
+          },
+          {
+            "input": "Aluminiumwelle: T=800 N·m, θ=0.08 rad, G=26 GPa, L=2.0 m, d=0.04 m",
+            "output": "K ≈ 3,267 N·m/rad, τ_max ≈ 63.6 MPa",
+            "note": "Leichte Antriebswelle für die Luftfahrt. Der geringere Schubmodul von Aluminium erfordert einen größeren Durchmesser für eine ähnliche Steifigkeit."
+          },
+          {
+            "input": "Messingwelle: T=200 N·m, θ=0.02 rad, G=40 GPa, L=0.5 m, d=0.01 m",
+            "output": "K ≈ 78.5 N·m/rad, τ_max ≈ 1019 MPa",
+            "note": "Präzisionswelle mit kleinem Durchmesser. Die sehr hohe Schubspannung überschreitet die übliche Festigkeit von Messing — Durchmesser erhöhen oder Drehmoment reduzieren."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Torsionssteifigkeit-Rechner",
+        "steps": [
+          "Wählen Sie den Querschnittstyp. Der Rechner unterstützt derzeit massive Kreisquerschnitte, die den Großteil aller Wellenkonstruktionen abdecken.",
+          "Geben Sie das anliegende Drehmoment in Newtonmetern (N·m) und den erwarteten Verdrehwinkel in Radiant ein. Diese Werte werden für Schubspannung und Verformungsenergie benötigt.",
+          "Geben Sie den Schubmodul G Ihres Materials in Gigapascal (GPa) ein. Verwenden Sie 80 für unlegierten Stahl, 26–30 für Aluminiumlegierungen, 40 für Messing oder schlagen Sie im Werkstoffdatenblatt nach.",
+          "Geben Sie die Bauteillänge in Metern und den Wellendurchmesser in Metern ein. Denken Sie daran, dass das polare Flächenträgheitsmoment mit d⁴ skaliert, sodass schon kleine Durchmesseränderungen große Auswirkungen haben.",
+          "Klicken Sie auf Berechnen, um Torsionssteifigkeit (N·m/rad), maximale Schubspannung (MPa), polares Flächenträgheitsmoment (m⁴) und Verformungsenergie (J) anzuzeigen. Vergleichen Sie die Schubspannung vor der endgültigen Auslegung mit der zulässigen Schubspannung des Materials."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zur Torsionssteifigkeit",
+        "q1": "Was ist der Unterschied zwischen Torsionssteifigkeit und Torsionsfestigkeit?",
+        "q1_a": "Die Torsionssteifigkeit (K, in N·m/rad) beschreibt, wie stark sich ein Bauteil pro angelegtem Drehmoment verdreht — sie ist ein Maß für die Steifigkeit. Die Torsionsfestigkeit ist das maximale Drehmoment, das das Bauteil aufnehmen kann, bevor es plastisch wird oder bricht. Ein Bauteil kann steif, aber spröde sein, oder flexibel, aber zäh; beide Eigenschaften müssen in der Konstruktion getrennt bewertet werden.",
+        "q2": "Warum hat der Durchmesser so großen Einfluss auf die Torsionssteifigkeit?",
+        "q2_a": "Weil das polare Flächenträgheitsmoment J = πd⁴/32 mit der vierten Potenz des Durchmessers skaliert. Eine Verdopplung des Durchmessers erhöht J — und damit K — um den Faktor 16. Deshalb ist die Querschnittsgröße der stärkste Hebel bei der Wellenkonstruktion, deutlich wichtiger als Materialwahl oder Länge.",
+        "q3": "Welchen Schubmodul sollte ich für Stahl verwenden?",
+        "q3_a": "Die meisten Kohlenstoff- und legierten Stähle haben G im Bereich von 78–82 GPa. Ein Standard-Designwert ist 80 GPa. Nichtrostende Stähle liegen etwas darunter, etwa bei 73–77 GPa. Prüfen Sie für sicherheitskritische Bauteile immer das spezifische Werkstoffdatenblatt.",
+        "q4": "Wie wandle ich den Verdrehwinkel von Grad in Radiant um?",
+        "q4_a": "Multiplizieren Sie die Gradzahl mit π/180 (etwa 0.01745). Beispiel: 5° = 5 × 0.01745 ≈ 0.0873 rad. Der Rechner verlangt Radiant, weil die Schubspannungs- und Verformungsenergieformeln das SI-Radiantensystem verwenden.",
+        "q5": "Was ist Verformungsenergie in einer verdrehten Welle?",
+        "q5_a": "Die Verformungsenergie U = T²L/(2GJ) ist die elastische Energie, die in der Welle gespeichert wird, wenn sie durch das Drehmoment T verdreht wird. Sie entspricht der Arbeit, die das Drehmoment während der Verdrehung verrichtet. Das Verständnis der Verformungsenergie ist für Ermüdungsanalysen wichtig, weil sie direkt mit der zyklischen Belastung der Welle zusammenhängt, und auch zur Beurteilung der Stoßfestigkeit.",
+        "q6": "Kann dieser Rechner Hohlkreisquerschnitte behandeln?",
+        "q6_a": "Der aktuelle Rechner deckt massive Kreisquerschnitte ab. Für Hohlkreisquerschnitte (Rohre) ersetzen Sie J durch π(D⁴ − d⁴)/32, wobei D der Außendurchmesser und d der Innendurchmesser ist. Hohlquerschnitte bieten ein hervorragendes Verhältnis von Steifigkeit zu Gewicht, weshalb sie in der Luft- und Raumfahrt sowie bei Fahrradrahmen bevorzugt werden."
+      }
+    },
+    "trajectory-calculator": {
+      "title": "Flugbahn-Rechner – Wurfweite und Höhe bei der Schrägbewegung",
+      "tagline": "Berechnen Sie horizontale Wurfweite, maximale Höhe und Flugzeit für jedes Projektil aus Anfangsgeschwindigkeit, Abwurfwinkel und Starthöhe.",
+      "intro": "Geben Sie Anfangsgeschwindigkeit, Abwurfwinkel (0–90°) und Starthöhe ein. Wählen Sie metrische (m, m/s) oder imperiale (ft, ft/s) Einheiten für eine sofortige Bahn-Analyse.",
+      "formula": "R = v₀ₓ·t | H_max = h + v₀y²/(2g) | t = (v₀y + √(v₀y² + 2gh))/g | v₀ₓ = v₀·cos α | v₀y = v₀·sin α",
+      "field": {
+        "units": "Einheiten",
+        "velocity": "Anfangsgeschwindigkeit ({unit})",
+        "angle": "Abwurfwinkel (°)",
+        "height": "Starthöhe ({unit})"
+      },
+      "type": {
+        "metric": "Metrisch (m, m/s)",
+        "imperial": "Imperial (ft, ft/s)"
+      },
+      "placeholder": {
+        "velocity": "z. B. 100",
+        "angle": "z. B. 45",
+        "height": "z. B. 0"
+      },
+      "button": {
+        "calculate": "Flugbahn berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Geben Sie eine positive Geschwindigkeit, einen Winkel zwischen 0° und 90° sowie eine nicht negative Höhe ein."
+      },
+      "result": {
+        "heading": "Flugbahnergebnisse",
+        "range": "Horizontale Wurfweite: {value} {unit}",
+        "maxHeight": "Maximale Höhe: {value} {unit}",
+        "timeOfFlight": "Flugzeit: {value} s",
+        "vx": "Horizontale Geschwindigkeit: {value} {unit}",
+        "vy": "Anfängliche Vertikalgeschwindigkeit: {value} {unit}"
+      },
+      "about": {
+        "heading": "Über den Flugbahn-Rechner",
+        "body": "Die Wurfbewegung ist eines der am besten untersuchten Probleme der klassischen Mechanik. Wird ein Objekt unter dem Einfluss der Gravitation allein in die Luft geworfen — bei Vernachlässigung des Luftwiderstands — folgt seine Bahn einem glatten parabelförmigen Verlauf, der als Flugbahn bezeichnet wird. Dieser Rechner verwendet die standardmäßigen kinematischen Gleichungen der Wurfbewegung, um die drei Größen zu berechnen, die Ingenieure, Sportler und Physiker am häufigsten benötigen: maximale Höhe, horizontale Wurfweite und gesamte Flugzeit.\n\nDie Bewegung lässt sich in zwei unabhängige Komponenten zerlegen. In horizontaler Richtung gibt es keine Beschleunigung (ohne Luftwiderstand), daher bewegt sich das Objekt während des gesamten Fluges mit konstanter horizontaler Geschwindigkeit v₀ₓ = v₀·cos α. In vertikaler Richtung erfährt das Objekt eine konstante nach unten gerichtete Beschleunigung g — auf der Erdoberfläche in metrischen Einheiten etwa 9.81 m/s² bzw. in imperialen Einheiten 32.2 ft/s². Die vertikale Geschwindigkeit zu jedem Zeitpunkt ist v_y = v₀y − g·t, wobei v₀y = v₀·sin α.\n\nWird das Objekt aus der Höhe h über der Landeoberfläche gestartet, erhält man die Flugzeit durch Lösen der quadratischen Gleichung 0 = h + v₀y·t − ½g·t². Die positive Lösung ergibt t = (v₀y + √(v₀y² + 2gh))/g. Die horizontale Wurfweite folgt direkt als R = v₀ₓ·t. Die maximale Höhe wird erreicht, wenn die Vertikalgeschwindigkeit null wird, also bei t_peak = v₀y/g; daraus ergibt sich H_max = h + v₀y²/(2g).\n\nEine oft zitierte Faustregel besagt, dass der optimale Abwurfwinkel für maximale Weite 45° beträgt. Das gilt jedoch nur, wenn Abwurf- und Landehöhe gleich sind. Wird aus einer erhöhten Position gestartet — etwa mit einer Kanone auf einem Hügel —, liegt der optimale Winkel unter 45°. Wird dagegen auf ein höheres Landeziel geschossen, liegt er über 45°. Dieser Rechner deckt alle drei Fälle über die Eingabe der Starthöhe ab.\n\nDie praktischen Anwendungen sind vielfältig: In der Sportwissenschaft wird die Bahnanalyse zur Optimierung von Schüssen, Würfen und Abschlägen verwendet; Ballistiker wenden dieselben Gleichungen auf Artillerie, Raketen und Handfeuerwaffen an; Entwickler von Spielen und Simulationen nutzen die Wurfphysik für realistische Objektbewegungen; und Sicherheitsingenieure berechnen in Explosionsszenarien die Wurfweite von Splittern. Der Wechsel zwischen metrischen und imperialen Einheiten macht den Rechner sowohl in Forschungsumgebungen als auch in Ländern mit US-Gewohnheitseinheiten nützlich."
+      },
+      "examples": {
+        "heading": "Beispiele für den Flugbahn-Rechner",
+        "intro": "Drei Szenarien mit metrischen und imperialen Einheiten unter verschiedenen Startbedingungen.",
+        "colInput": "Eingabe",
+        "colOutput": "Wurfweite",
+        "colNote": "Hinweise",
+        "loadCannonball": "Kanonenkugel-Beispiel laden",
+        "loadGolf": "Golf-Abschlag-Beispiel laden",
+        "loadBaseball": "Baseball-Wurf-Beispiel laden",
+        "items": [
+          {
+            "input": "v₀=100 m/s, α=30°, h=0 m (metrisch)",
+            "output": "Wurfweite ≈ 882.9 m, H_max ≈ 127.4 m",
+            "note": "Klassisches Kanonenkugel-Szenario. Bei 30° beträgt die Wurfweite 882.9 m und die maximale Höhe 127.4 m; die Flugzeit liegt bei 10.19 s."
+          },
+          {
+            "input": "v₀=70 m/s, α=15°, h=0.05 m (metrisch)",
+            "output": "Wurfweite ≈ 249.9 m, H_max ≈ 16.8 m",
+            "note": "Golf-Abschlag. Driver werden typischerweise mit 9–15° gestartet; ein flacher Winkel tauscht Höhe gegen Distanz auf dem Fairway."
+          },
+          {
+            "input": "v₀=90 ft/s, α=45°, h=6 ft (imperial)",
+            "output": "Wurfweite ≈ 257.4 ft, H_max ≈ 68.9 ft",
+            "note": "Baseball-Wurf aus 6 ft Höhe. In imperialen Einheiten werden Wurfweite und Höhe direkt in Fuß angezeigt, was den Feldvergleich erleichtert."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Flugbahn-Rechner",
+        "steps": [
+          "Wählen Sie Ihr bevorzugtes Einheitensystem — metrisch (Meter, m/s) oder imperial (Fuß, ft/s). Die Gravitation wird automatisch auf 9.81 m/s² bzw. 32.2 ft/s² gesetzt.",
+          "Geben Sie die Anfangsgeschwindigkeit ein, also die Geschwindigkeit, mit der das Objekt den Abwurfpunkt verlässt. Sie muss positiv sein.",
+          "Geben Sie den Abwurfwinkel in Grad zwischen 0° und 90° ein. 0° bedeutet rein horizontaler Abwurf, 90° bedeutet senkrecht nach oben.",
+          "Geben Sie die Starthöhe ein — den vertikalen Abstand über dem Boden, an dem das Objekt landet. Verwenden Sie 0 für eine ebene Fläche und eine positive Zahl für einen erhöhten Abwurfpunkt.",
+          "Klicken Sie auf Flugbahn berechnen. Der Rechner gibt horizontale Wurfweite, maximale Höhe, Flugzeit sowie horizontale und vertikale Geschwindigkeitskomponenten aus."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zum Flugbahn-Rechner",
+        "q1": "Warum ist 45° nicht immer der optimale Abwurfwinkel?",
+        "q1_a": "Die 45°-Regel gilt nur, wenn Abwurf- und Landehöhe identisch sind. Liegt der Abwurfpunkt über dem Landepunkt, ist der optimale Winkel kleiner als 45°. Wird auf einen höheren Landepunkt geworfen, ist er größer als 45°. Das genaue Optimum erhält man, indem man die Wurfweitenformel nach dem Winkel ableitet und den Ausdruck gleich null setzt.",
+        "q2": "Beeinflusst Luftwiderstand die Ergebnisse?",
+        "q2_a": "Dieser Rechner verwendet ideale Gleichungen der Wurfbewegung ohne Luftwiderstand. In der Realität verringert Luftwiderstand Reichweite und maximale Höhe — bei leichten oder schnellen Projektilen wie Golfbällen, Geschossen oder Federbällen manchmal deutlich. Für technische Berechnungen mit Widerstand ist eine numerische Integration mit einem Widerstandskoeffizienten erforderlich.",
+        "q3": "Was ist der Unterschied zwischen Flugzeit und Zeit bis zur maximalen Höhe?",
+        "q3_a": "Die Zeit bis zur maximalen Höhe ist t_peak = v₀y/g, also der Moment, in dem die Vertikalgeschwindigkeit null wird und das Objekt in vertikaler Richtung kurz stillsteht. Die Flugzeit ist die gesamte Zeit bis zur Landung und entspricht t_peak plus der Abwärtszeit zurück zur Landehöhe. Ist die Starthöhe null, dauert der Abstieg genau so lange wie der Aufstieg.",
+        "q4": "Wie kann ich das Ergebnis in Kilometer oder Meilen umrechnen?",
+        "q4_a": "Das metrische Ergebnis ist in Metern; teilen Sie durch 1000 für Kilometer. Das imperiale Ergebnis ist in Fuß; teilen Sie durch 5280 für Meilen oder durch 3.281, um Fuß in Meter umzuwandeln. Die Geschwindigkeitskomponenten sind in m/s (metrisch) bzw. ft/s (imperial); multiplizieren Sie m/s mit 3.6 für km/h oder mit 2.237 für mph.",
+        "q5": "Kann ich den Rechner für horizontal geworfene Objekte nutzen?",
+        "q5_a": "Ja — setzen Sie den Abwurfwinkel auf 0°. Bei einem horizontalen Abwurf ist die anfängliche Vertikalgeschwindigkeit null, daher wird die Flugzeit vollständig durch die Starthöhe bestimmt: t = √(2h/g). Die horizontale Wurfweite ist dann einfach v₀ × t. Das ist der klassische Fall von Objekten, die von einem Tisch fallen oder von einer Klippe springen.",
+        "q6": "Welche Gravitationskonstante verwendet der Rechner?",
+        "q6_a": "Für metrische Berechnungen verwendet der Rechner g = 9.81 m/s², die standardmäßige Erdbeschleunigung auf Meereshöhe. Für imperiale Berechnungen verwendet er g = 32.2 ft/s². Beide Werte sind für die meisten Anwendungen an der Erdoberfläche ausreichend genau. Berechnungen auf anderen Planeten oder in großer Höhe erfordern einen anderen g-Wert."
+      }
+    },
+    "transformer-sizing-calculator": {
+      "title": "Transformator-Rechner - erforderliche kVA",
+      "tagline": "Berechnen Sie die richtige kVA-Nennleistung des Transformators aus Lastleistung, Leistungsfaktor, Wirkungsgrad, Umgebungstemperatur und Sicherheitsfaktor.",
+      "intro": "Geben Sie Lastleistung, Leistungsfaktor, Wirkungsgrad, Temperaturbedingungen und Sicherheitsreserve ein, um die minimale und empfohlene Transformatorgröße in kVA zu bestimmen.",
+      "formula": "kVA = kW / (PF × η) × Dauerlastfaktor × (1 + SF/100) / Temperatur-Derating",
+      "field": {
+        "loadPower": "Lastleistung (kW)",
+        "powerFactor": "Leistungsfaktor (0–1)",
+        "ambientTemp": "Umgebungstemperatur (°C)",
+        "safetyFactor": "Sicherheitsfaktor (%)",
+        "efficiency": "Transformatorwirkungsgrad (%)",
+        "loadType": "Lastart",
+        "phaseType": "Phasenart"
+      },
+      "type": {
+        "loadType": {
+          "continuous": "Dauerlast",
+          "non-continuous": "Nicht kontinuierlich"
+        },
+        "phaseType": {
+          "single": "Einphasig",
+          "three": "Dreiphasig"
+        }
+      },
+      "placeholder": {
+        "loadPower": "z. B. 150",
+        "powerFactor": "z. B. 0.85",
+        "ambientTemp": "z. B. 25",
+        "safetyFactor": "z. B. 20",
+        "efficiency": "z. B. 96"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie gültige Werte ein. Der Leistungsfaktor muss 0–1 betragen, der Wirkungsgrad 0–100%, und alle Felder müssen positiv sein."
+      },
+      "result": {
+        "heading": "Ergebnisse der Transformator-Dimensionierung",
+        "recommended": "Empfohlene Standardgröße: {value} kVA",
+        "required": "Berechneter Bedarf: {value} kVA",
+        "apparentPower": "Scheinleistung (vor Derating): {value} kVA",
+        "tempDerate": "Angewendetes Temperatur-Derating: {value}%"
+      },
+      "about": {
+        "heading": "Über den Transformator-Dimensionierungsrechner",
+        "body": "Die Transformator-Dimensionierung ist der Prozess, die passende kVA-Nennleistung (Kilovoltampere) für einen Leistungstransformator anhand der elektrischen Last auszuwählen, die er versorgen muss. Eine korrekte Dimensionierung ist entscheidend: Ein unterdimensionierter Transformator überhitzt und fällt vorzeitig aus, während ein überdimensionierter Transformator Kapital, Stellfläche und Energie durch erhöhte Leerlaufverluste im Kern verschwendet.\n\nDer erste Schritt besteht darin, den Unterschied zwischen Wirkleistung und Scheinleistung zu verstehen. Wirkleistung, gemessen in Kilowatt (kW), ist die tatsächlich von ohmschen Lasten wie Heizgeräten und Glühlampen verbrauchte Leistung. Scheinleistung, gemessen in Kilovoltampere (kVA), umfasst sowohl Wirkleistung als auch Blindleistung, also die schwingende Energie, die induktive Lasten wie Motoren und Leuchtstofflampen-Vorschaltgeräte aufnehmen und zurückgeben. Das Verhältnis zwischen beiden ist der Leistungsfaktor (PF): kVA = kW ÷ PF. Eine Last mit einem Leistungsfaktor von 0.8 benötigt 25% mehr Transformatorleistung als eine rein ohmsche Last gleicher Wattzahl.\n\nAuch der Wirkungsgrad des Transformators ist relevant. Selbst ein Transformator mit 97% Wirkungsgrad gibt 3% der übertragenen Leistung als Wärme ab. Das bedeutet, dass die Quelle 100/97 ≈ 1.031 Mal die abgegebene Last liefern muss. Bei großen Industrietransformatoren ist dieser Aufschlag klein, darf aber bei knappen Dimensionierungsrechnungen nicht ignoriert werden.\n\nDie Lastart beeinflusst die Dimensionierung über die Dauerlastregel, die weithin aus dem National Electrical Code (NEC) und ähnlichen Normen weltweit übernommen wurde. Eine kontinuierlich betriebene Last (definiert als eine Last, die drei oder mehr Stunden bei Nennstrom läuft) wird auf 80% der Nennkapazität des Transformators begrenzt; entsprechend muss der Transformator auf 125% der kVA der Dauerlast dimensioniert werden. Nicht kontinuierliche Lasten erfordern dieses Derating nicht.\n\nDie Umgebungstemperatur verringert die Transformatorleistung. Die meisten Verteiltransformatoren sind für eine maximale Umgebungstemperatur von 40°C ausgelegt. Oberhalb von 40°C sinkt die zulässige Belastung grob um 1% pro zusätzlichem Grad. In heißen Klimazonen kann daher ein deutlich größerer Transformator erforderlich sein, als die Last allein nahelegt.\n\nSchließlich wenden Ingenieure einen Sicherheitsfaktor an — typischerweise 15–30% —, um zukünftiges Lastwachstum, Messunsicherheiten, Oberschwingungsverzerrungen durch Frequenzumrichter und elektronische Geräte sowie unerwartete Spitzenlasten zu berücksichtigen. Der Rechner addiert alle diese Korrekturen und rundet anschließend auf die nächste Standard-kVA-Nennleistung aus der branchenüblichen Liste bevorzugter Größen auf (5, 7.5, 10, 15, 25, 37.5, 50, 75, 100, 167, 250, 333, 500 kVA und größer)."
+      },
+      "examples": {
+        "heading": "Beispiele zur Transformator-Dimensionierung",
+        "intro": "Drei praxisnahe Szenarien zeigen, wie Lastart, Temperatur und Sicherheitsfaktoren die endgültige kVA-Auswahl des Transformators beeinflussen.",
+        "colInput": "Lastbedingungen",
+        "colOutput": "Empfohlene kVA",
+        "colNote": "Hinweise",
+        "loadOffice": "Last Bürogebäude",
+        "loadIndustrial": "Last Industriebetrieb",
+        "loadResidential": "Last Wohnanlage",
+        "items": [
+          {
+            "input": "150 kW, PF=0.85, Dauerlast, 25°C, 20% Sicherheit, 96% Wirk., dreiphasig",
+            "output": "333 kVA",
+            "note": "Gewerbebüro: Scheinleistung ≈ 183.8 kVA; Dauerlastfaktor 125% und Sicherheitsfaktor 20% → Bedarf ≈ 275.7 kVA; die nächste Standardgröße ist 333 kVA."
+          },
+          {
+            "input": "500 kW, PF=0.75, Dauerlast, 35°C, 25% Sicherheit, 95% Wirk., dreiphasig",
+            "output": "1500 kVA",
+            "note": "Industriebetrieb mit schlechtem Leistungsfaktor. Scheinleistung ≈ 701.8 kVA; Dauerlast- und Sicherheitsfaktoren → Bedarf ≈ 1096.5 kVA; der nächste Standard ist 1500 kVA."
+          },
+          {
+            "input": "75 kW, PF=0.90, nicht kontinuierlich, 20°C, 15% Sicherheit, 97% Wirk., einphasig",
+            "output": "100 kVA",
+            "note": "Wohnanlage mit nicht kontinuierlicher Last. Scheinleistung ≈ 85.9 kVA; 15% Sicherheit → Bedarf ≈ 98.8 kVA; die nächste Standardgröße ist 100 kVA."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Transformator-Dimensionierungsrechner",
+        "steps": [
+          "Geben Sie die gesamte Wirklastleistung in Kilowatt (kW) ein. Bei einer bestehenden Anlage lesen Sie sie von einem Leistungsmesser ab; bei neuen Auslegungen addieren Sie die Typenschildleistungen aller angeschlossenen Geräte.",
+          "Geben Sie den Leistungsfaktor Ihrer Last ein. Verwenden Sie 0.9–1.0 für ohmsche Lasten, 0.7–0.85 für gemischte Motor- und Beleuchtungslasten, und prüfen Sie Gerätedatenblätter für genaue Werte.",
+          "Geben Sie die Umgebungstemperatur in °C ein. Oberhalb von 40°C wendet der Rechner automatisch Temperatur-Derating an.",
+          "Geben Sie den Sicherheitsfaktor in Prozent (typischerweise 15–30%) und den Transformatorwirkungsgrad (meist 95–98%) ein. Wählen Sie Dauerlast oder nicht kontinuierliche Last sowie einphasige oder dreiphasige Konfiguration.",
+          "Klicken Sie auf Berechnen, um die berechnete erforderliche kVA-Leistung und die empfohlene nächste Standardgröße des Transformators für die Bestellung zu sehen."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zur Transformator-Dimensionierung",
+        "q1": "Was ist der Unterschied zwischen kVA und kW bei der Transformator-Dimensionierung?",
+        "q1_a": "kW ist die von der Last verbrauchte Wirkleistung; kVA ist die Scheinleistung, die der Transformator liefern muss, einschließlich Blindleistung. Bei Lasten mit einem Leistungsfaktor unter 1.0 muss der Transformator nach dem kVA-Wert und nicht nach dem kW-Wert dimensioniert werden. Eine Last von 100 kW bei 0.8 PF erfordert einen Transformator, der 125 kVA liefern kann.",
+        "q2": "Warum benötigen Dauerlasten einen Dimensionierungsfaktor von 125%?",
+        "q2_a": "Elektrovorschriften (z. B. NEC Article 210 in den USA) legen fest, dass Leiter und Transformatoren bei Dauerlasten — also Lasten, die drei oder mehr Stunden laufen — nicht über 80% ihrer Nennkapazität belastet werden dürfen. Dieses 80%-Maximum entspricht der 125%-Dimensionierungsregel. Sie bietet thermische Reserve, verhindert Isolationsabbau und verlängert die Lebensdauer der Geräte.",
+        "q3": "Wie beeinflusst ein höherer Leistungsfaktor die Transformatorgröße?",
+        "q3_a": "Ein höherer Leistungsfaktor reduziert die erforderlichen Transformator-kVA für dieselbe kW-Last. Eine Verbesserung des Leistungsfaktors von 0.7 auf 0.9 senkt die erforderlichen kVA um etwa 22%, wodurch ein kleinerer und günstigerer Transformator gewählt werden kann. Aus diesem Grund werden in Industriebetrieben häufig Kondensatoren zur Leistungsfaktorkorrektur installiert.",
+        "q4": "Welche Standardgrößen für Transformatoren in kVA gibt es?",
+        "q4_a": "Übliche Nennleistungen von Verteiltransformatoren sind 5, 7.5, 10, 15, 25, 37.5, 50, 75, 100, 167, 250, 333, 500, 667 und 1000 kVA, weitergehend mit 1500, 2000 und 2500 kVA. Wählen Sie immer die nächste Größe oberhalb Ihrer berechneten Anforderung, um ausreichende Kapazität sicherzustellen.",
+        "q5": "Wie wirkt sich die Umgebungstemperatur auf die Transformator-Dimensionierung aus?",
+        "q5_a": "Die meisten Transformatoren sind für eine maximale Umgebungstemperatur von 40°C ausgelegt. Oberhalb von 40°C steigen Kern- und Wicklungstemperaturen, wodurch die Isolationsalterung beschleunigt wird. Als Faustregel halbiert jeder Anstieg der Wicklungstemperatur um 10°C die Isolationslebensdauer. Der Rechner wendet zur Kompensation ein Derating von etwa 1% pro Grad über 40°C an.",
+        "q6": "Sollte ich zukünftiges Lastwachstum im Sicherheitsfaktor berücksichtigen?",
+        "q6_a": "Ja. Ein Sicherheitsfaktor von 20–30% deckt normalerweise sowohl Messunsicherheit als auch kurzfristiges Lastwachstum ab. Bei längeren Planungshorizonten (10–20 Jahre) ist es üblich, einen Transformator eine Standardgröße größer zu wählen, als die unmittelbare Berechnung nahelegt. Eine Überdimensionierung um eine Standardstufe kostet relativ wenig, vermeidet aber einen teuren Austausch, wenn die Last schneller wächst als erwartet."
+      }
+    },
+    "transistor-biasing-calculator": {
+      "title": "Transistor-Bias-Rechner – DC-Arbeitspunkt",
+      "tagline": "Berechnen Sie den DC-Arbeitspunkt, den Kollektorstrom, die Spannungsverstärkung und den Stabilitätsfaktor von Transistorschaltungen mit Spannungsteiler-Bias.",
+      "intro": "Geben Sie Versorgungsspannung, Widerstandswerte, Stromverstärkung β und Basis-Emitter-Spannung ein, um einen Gegentakt-Verstärker mit Spannungsteiler-Bias zu analysieren.",
+      "formula": "Vb = Vcc·R2/(R1+R2) | Ic = β·Ib | Vc = Vcc − Ic·Rc | Vce = Vc − Ve | Av = −(Rc‖RL)/(Re + re) wobei re = 26 mV/Ic",
+      "field": {
+        "vcc": "Versorgungsspannung Vcc (V)",
+        "r1": "Basiswiderstand R1 (Ω)",
+        "r2": "Basiswiderstand R2 (Ω)",
+        "rc": "Kollektorwiderstand Rc (Ω)",
+        "re": "Emitterwiderstand Re (Ω)",
+        "rl": "Lastwiderstand RL (Ω)",
+        "beta": "Stromverstärkung β (hFE)",
+        "vbe": "Basis-Emitter-Spannung Vbe (V)"
+      },
+      "placeholder": {
+        "vcc": "z. B. 12",
+        "r1": "z. B. 22000",
+        "r2": "z. B. 4700",
+        "rc": "z. B. 2200",
+        "re": "z. B. 1000",
+        "rl": "z. B. 10000",
+        "beta": "z. B. 100",
+        "vbe": "z. B. 0.7"
+      },
+      "button": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen"
+      },
+      "error": {
+        "invalid": "Bitte geben Sie für alle Felder gültige positive Werte ein. Vbe liegt bei Siliziumtransistoren typischerweise bei 0,6–0,7 V."
+      },
+      "result": {
+        "heading": "DC-Arbeitspunkt",
+        "vb": "Basis-Spannung Vb: {value} V",
+        "ve": "Emitter-Spannung Ve: {value} V",
+        "vc": "Kollektor-Spannung Vc: {value} V",
+        "vce": "Kollektor-Emitter-Spannung Vce: {value} V",
+        "ic": "Kollektorstrom Ic: {value} mA",
+        "ib": "Basisstrom Ib: {value} μA",
+        "voltageGain": "Spannungsverstärkung |Av|: {value}",
+        "stabilityFactor": "Stabilitätsfaktor S: {value}"
+      },
+      "about": {
+        "heading": "Über den Transistor-Bias-Rechner",
+        "body": "Transistor-Biasing ist der Prozess, einen stabilen DC-Arbeitspunkt — den Ruhestrom- oder Q-Punkt — für einen Bipolartransistor-Verstärker (BJT) festzulegen. Ohne korrekte Biasierung arbeitet der Transistor im Sperrbereich (kein Stromfluss) oder in Sättigung (Maximalstrom), wodurch lineare Verstärkung unmöglich wird. Eine korrekte Biasierung legt den Q-Punkt nahe der Mitte des aktiven Bereichs, sodass das Ausgangssignal symmetrisch ober- und unterhalb des Ruheniveaus ohne Verzerrung schwingen kann.\n\nDieser Rechner verwendet die Spannungsteiler-Bias-Schaltung, die in Praxis die am weitesten verbreitete Bias-Methode ist. Zwei Widerstände, R1 und R2, bilden einen resistiven Spannungsteiler von der Versorgungsschiene Vcc nach Masse. Der Knoten zwischen R1 und R2 legt die Basisspannung fest: Vb = Vcc × R2/(R1+R2), vorausgesetzt, der Spannungsteiler ist steif (d. h. der Teilerstrom ist viel größer als der Basisstrom). Die Emitterspsnnung ergibt sich zu Ve = Vb − Vbe, wobei Vbe bei Silizium-NPN-Transistoren bei Raumtemperatur etwa 0,7 V beträgt.\n\nDer Emitterstrom fließt durch den Emitterwiderstand Re und stellt Ve = Ie × Re ein. Da Ic ≈ Ie bei großem β ist, gilt näherungsweise Ic = Ve/Re für den Kollektorstrom. Die Kollektorspannung ist Vc = Vcc − Ic×Rc, und die Kollektor-Emitter-Spannung ist Vce = Vc − Ve. Damit der Transistor im aktiven Bereich bleibt, muss Vce positiv und größer als die Sättigungsspannung sein (typisch 0,2–0,3 V).\n\nDie Spannungsverstärkung der Emitterschaltung wird durch das Verhältnis zwischen der AC-Kollektorlast und der effektiven Emitterimpedanz bestimmt. Die AC-Kollektorlast ist Rc parallel zu RL (dem externen Lastwiderstand). Die effektive Emitterimpedanz ist Re plus der intrinsische Emitterwiderstand re = VT/Ic, wobei VT bei Raumtemperatur etwa 26 mV beträgt. Der Betrag der Verstärkung lautet |Av| = (Rc‖RL)/(Re + re).\n\nDer Stabilitätsfaktor S quantifiziert, wie gut das Bias-Netzwerk den Arbeitspunkt gegenüber Transistorparameter-Änderungen stabilisiert, vor allem gegenüber β-Änderungen durch Temperatur oder Streuung zwischen Bauteilen. Niedrigere Stabilitätsfaktoren (idealerweise unter 10) bedeuten eine stabilere Schaltung. Spannungsteiler-Bias mit großem Emitterwiderstand erreicht durch negative Rückkopplung einen niedrigen S: Jede Tendenz zu steigendem Ic erhöht Ve, senkt dadurch Vbe und somit Ib und wirkt so dem ursprünglichen Anstieg von Ic teilweise entgegen.\n\nPraktische Designregeln: Wählen Sie Ic für Kleinverstärker im Bereich von 1–10 mA; setzen Sie Vc etwa auf die Hälfte von Vcc, um maximalen unverzerrten Ausgangshub zu erhalten; halten Sie den Stabilitätsfaktor unter 10; und prüfen Sie, dass Vce unter Worst-Case-Bedingungen mit maximalem β und maximaler Temperatur über der Sättigungsspannung bleibt."
+      },
+      "examples": {
+        "heading": "Transistor-Bias-Beispiele",
+        "intro": "Drei Emitterschaltungs-Konfigurationen mit Arbeitspunkt- und Verstärkungsberechnung.",
+        "colInput": "Schaltungsparameter",
+        "colOutput": "Wichtige Ergebnisse",
+        "colNote": "Anwendung",
+        "loadStandard": "Standard-Bias-Last",
+        "loadHighGain": "Hochverstärkende Bias-Last",
+        "loadAudio": "Audio-Stufen-Last",
+        "items": [
+          {
+            "input": "Vcc=12V, R1=22kΩ, R2=4.7kΩ, Rc=2.2kΩ, Re=1kΩ, RL=10kΩ, β=100, Vbe=0.7V",
+            "output": "Ic≈1.35 mA, Vc≈9.04V, Vce≈7.68V, |Av|≈1.77",
+            "note": "Klassische Spannungsteiler-Bias-Schaltung. Der Q-Punkt liegt nahe der halben Versorgung, mit mittlerer Verstärkung. Geeignet als universelle Kleinverstärkerstufe."
+          },
+          {
+            "input": "Vcc=15V, R1=15kΩ, R2=3kΩ, Rc=3.3kΩ, Re=500Ω, RL=15kΩ, β=150, Vbe=0.7V",
+            "output": "Ic≈3.46 mA, Vc≈3.58V, Vce≈1.84V, |Av|≈5.33",
+            "note": "Hochverstärkende Konfiguration. Das niedrige Vce nähert sich der Sättigung — erwägen Sie, Rc zu verringern oder Vcc zu erhöhen, um mehr Ausgangshub zu erhalten."
+          },
+          {
+            "input": "Vcc=18V, R1=18kΩ, R2=3.9kΩ, Rc=1.8kΩ, Re=820Ω, RL=8.2kΩ, β=120, Vbe=0.7V",
+            "output": "Ic≈2.94 mA, Vc≈12.72V, Vce≈10.29V, |Av|≈1.78",
+            "note": "Ausgangsstufe eines Audioverstärkers. Die höhere Vcc sorgt für größeren Ausgangshub; RL ist auf typische Lautsprecherimpedanzen abgestimmt."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "So verwenden Sie den Transistor-Bias-Rechner",
+        "steps": [
+          "Geben Sie die Versorgungsspannung Vcc in Volt ein. Das ist die positive Versorgungsschiene, die die Schaltung speist; bei Kleinverstärker-BJT-Stufen liegt sie typischerweise bei 5–24 V.",
+          "Geben Sie die vier Widerstandswerte in Ohm ein: R1 und R2 bilden den Basisspannungsteiler; Rc ist der Kollektorwiderstand, der Spannungsverstärkung und Ausgangsimpedanz bestimmt; Re ist der Emitterwiderstand, der den Arbeitspunkt stabilisiert.",
+          "Geben Sie den Lastwiderstand RL in Ohm ein. Er stellt die Impedanz dar, die der Verstärker antreibt — z. B. die Eingangsimpedanz der nächsten Stufe oder eine Lautsprecherlast.",
+          "Geben Sie die Stromverstärkung β des Transistors (hFE, aus dem Datenblatt) und die Basis-Emitter-Spannung Vbe ein (0,6–0,7 V für Silizium, 0,2–0,3 V für Germanium).",
+          "Klicken Sie auf Berechnen. Prüfen Sie, dass Vce positiv und über der Sättigung ist, dass Ic in einem praktischen Bereich liegt (1–10 mA für Kleinverstärkerstufen) und dass der Stabilitätsfaktor S unter 10 liegt, um eine gute Temperaturstabilität zu erhalten."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ zur Transistor-Biasierung",
+        "q1": "Was ist der Q-Punkt und warum ist er wichtig?",
+        "q1_a": "Der Q-Punkt (Ruhepunkt) ist der DC-Arbeitszustand des Transistors ohne angelegtes AC-Signal. Er wird durch das Paar (Ic, Vce) definiert. Ein Q-Punkt nahe der Mitte des aktiven Bereichs maximiert den unverzerrten Ausgangshub. Liegt der Q-Punkt zu nahe an Sperrung oder Sättigung, kommt es zu Clipping — die Ausgangswellenform wird an einem oder beiden Spitzenwerten abgeflacht.",
+        "q2": "Warum wird Spannungsteiler-Bias gegenüber Fixed Bias bevorzugt?",
+        "q2_a": "Fixed Bias legt den Basisstrom direkt über einen einzelnen Widerstand aus der Versorgung fest, sodass Ic proportional zu β ist. Da β stark mit Temperatur und von Transistor zu Transistor variiert (oft 2:1 oder mehr), driftet der Q-Punkt unvorhersehbar. Spannungsteiler-Bias fügt einen Emitterwiderstand hinzu, der negative Rückkopplung liefert und Ic nahezu konstant hält, unabhängig von β-Änderungen — sofern der Spannungsteiler ausreichend steif ist.",
+        "q3": "Was ist der intrinsische Emitterwiderstand re?",
+        "q3_a": "Der intrinsische Emitterwiderstand re = VT/Ic ≈ 26 mV / Ic (mit Ic in Ampere) entsteht aus der Physik der vorwärtsgepolten Basis-Emitter-Strecke. Er ist der Kleinsignalwiderstand, den man vom Emitteranschluss aus sieht. Bei Ic = 1 mA beträgt re ≈ 26 Ω. Bei höheren Kollektorströmen sinkt re, wodurch die Spannungsverstärkung steigt. Er muss in Verstärkungsberechnungen berücksichtigt werden, wenn Re im Verhältnis zu re klein ist.",
+        "q4": "Wie wähle ich R1 und R2 für eine gegebene Basisspannung?",
+        "q4_a": "Bestimmen Sie zuerst die gewünschte Basisspannung Vb = Ve + Vbe, wobei Ve zur guten Stabilität typischerweise auf 10–20 % von Vcc gesetzt wird. Wählen Sie dann den Teilerstrom so, dass er mindestens 10-mal größer als der Basisstrom Ib = Ic/β ist, damit der Teiler steif genug ist. Berechnen Sie aus Teilerstrom und Vb R2 = Vb/I_div und R1 = (Vcc − Vb)/I_div. Runden Sie auf die nächstliegenden Normwerte.",
+        "q5": "Was sagt mir der Stabilitätsfaktor S?",
+        "q5_a": "Der Stabilitätsfaktor S ist ein Maß für die Änderung des Kollektorstroms in Bezug auf Änderungen des Sperrsättigungsstroms des Transistors (bzw. die Empfindlichkeit gegenüber β-Änderungen). Ein niedrigerer S bedeutet bessere Stabilität. Spannungsteiler-Bias mit ausreichender Emittergegenkopplung erreicht typischerweise S < 5, während Fixed Bias S = β + 1 hat und damit 100 oder mehr betragen kann.",
+        "q6": "Wie erhöhe ich die Spannungsverstärkung, ohne den Q-Punkt wesentlich zu verändern?",
+        "q6_a": "Überbrücken Sie den Emitterwiderstand Re mit einem großen Kondensator. Bei AC-Signalfrequenzen kurzschließt der Kondensator Re, sodass die Kleinsignalverstärkung auf Av ≈ Rc‖RL / re steigt und deutlich höher wird. Die DC-Biasierung wird weiterhin durch den vollen Re-Wert bestimmt, wodurch die Stabilität erhalten bleibt, während die AC-Verstärkung vom überbrückten niederohmigen Pfad profitiert. Das ist Standard in Audio-Vorstufen."
+      }
     }
   }
 }

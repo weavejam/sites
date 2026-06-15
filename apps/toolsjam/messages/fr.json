@@ -10670,6 +10670,491 @@
           }
         ]
       }
+    },
+    "water-heating-calculator": {
+      "title": "Calculateur de chauffage de l'eau - énergie, temps et coût",
+      "tagline": "Calculez l'énergie nécessaire, le temps de chauffe, le coût et les émissions de CO₂ pour chauffer de l'eau d'une température initiale à une température cible.",
+      "intro": "Saisissez le volume d'eau, les températures, la puissance du chauffe-eau, le rendement et le coût de l'énergie pour calculer l'énergie de chauffe, le temps et le coût total.",
+      "type": {
+        "liters": "L",
+        "gallons": "gal"
+      },
+      "field": {
+        "volume": "Volume d'eau",
+        "initialTemp": "Température initiale (°C)",
+        "targetTemp": "Température cible (°C)",
+        "power": "Puissance du chauffe-eau (kW)",
+        "efficiency": "Rendement (%)",
+        "costPerKwh": "Coût de l'énergie ($/kWh)"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "result": {
+        "heading": "Résultats du chauffage de l'eau",
+        "heatEnergy": "Énergie thermique requise : {value} kWh",
+        "actualEnergy": "Énergie réelle consommée : {value} kWh",
+        "heatingTime": "Temps de chauffe : {value}",
+        "cost": "Coût total : ${value}",
+        "co2": "Équivalent CO₂ : {value} kg"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs.",
+        "tempRange": "La température cible doit être supérieure à la température initiale."
+      },
+      "formula": "E = m·c·ΔT / 3,600,000 kWh | E_actual = E / efficiency | t = E_actual / power",
+      "unit": {
+        "hours": "h",
+        "minutes": "min"
+      },
+      "about": {
+        "heading": "À propos du calculateur de chauffage de l'eau",
+        "body": "Le chauffage de l'eau est l'un des usages les plus énergivores dans les bâtiments résidentiels et commerciaux, représentant généralement 15–20% de la consommation totale d'énergie des logements. Comprendre l'énergie, le temps et le coût nécessaires pour chauffer un volume d'eau donné est essentiel pour choisir le bon chauffe-eau, optimiser l'efficacité énergétique et réduire les factures.\n\nLa formule fondamentale du chauffage de l'eau repose sur la capacité thermique massique de l'eau : Q = m × c × ΔT, où Q est l'énergie thermique en joules, m la masse en kilogrammes (égale au volume en litres pour l'eau à température ambiante), c la capacité thermique massique de l'eau (4186 J/(kg·K)) et ΔT l'élévation de température en degrés Celsius. La conversion des joules en kilowattheures (1 kWh = 3,600,000 J) donne Q_kWh = volume_L × 4186 × ΔT / 3,600,000.\n\nLa consommation réelle d'énergie est supérieure au minimum théorique, car aucun système de chauffage n'est efficace à 100%. Les chauffe-eau électriques à résistance affichent des rendements de 95–100% (la majeure partie de l'énergie électrique est convertie en chaleur). Les chauffe-eau à gaz ont généralement un rendement de 60–80% en raison des pertes par les fumées. Les pompes à chaleur sont décrites par un coefficient de performance (COP) de 2–4, ce qui signifie qu'elles peuvent fournir sous forme de chaleur 200–400% de l'énergie électrique consommée en extrayant de l'énergie thermique de l'air ou du sol. Dans ce calculateur, saisissez le rendement d'une pompe à chaleur sous la forme 200%, 300%, etc.\n\nLe temps de chauffe dépend de la puissance du chauffe-eau : t = E_actual / P_kW. Une résistance électrique de 3 kW chauffant 200 litres de 10°C à 60°C nécessite environ 12.9 kWh d'énergie réelle et prend approximativement 4.3 heures. Augmenter la puissance réduit le temps proportionnellement : une résistance de 6 kW obtiendrait le même résultat en 2.15 heures.\n\nL'équivalent CO₂ de ce calculateur utilise le facteur moyen d'émission de l'électricité du réseau, soit 0.233 kg CO₂/kWh (moyenne du réseau britannique 2023). Ce facteur varie fortement selon le pays et le mix énergétique : l'électricité française issue du nucléaire est d'environ 0.05 kg/kWh ; le réseau australien fortement charbonné est d'environ 0.67 kg/kWh. Pour les chauffe-eau à gaz, multipliez par le facteur d'émission du gaz (environ 0.184 kg CO₂/kWh pour le gaz naturel), et non par le facteur électrique.\n\nLes stratégies d'optimisation des coûts comprennent : utiliser les tarifs heures creuses pour chauffer la nuit ; choisir la bonne taille de chauffe-eau (les appareils surdimensionnés cyclent davantage et perdent plus de chaleur en veille) ; régler les thermostats de chauffe-eau à 60°C (minimum pour prévenir la légionellose) plutôt qu'à 70–80°C ; isoler les tuyaux d'eau chaude et les ballons de stockage ; et remplacer les anciens chauffe-eau à résistance par des chauffe-eau thermodynamiques, qui peuvent réduire la consommation d'énergie pour l'eau chaude de 60–70%."
+      },
+      "examples": {
+        "heading": "Exemples de chauffage de l'eau",
+        "intro": "Scénarios typiques montrant l'énergie, le temps et le coût pour différentes applications.",
+        "colInput": "Scénario / Volume / Températures / Chauffe-eau",
+        "colOutput": "Énergie / Temps",
+        "colNote": "Coût",
+        "items": [
+          {
+            "input": "Domestique : 200L, 10→60°C, 3kW, 90%, $0.15/kWh",
+            "output": "Chaleur=11.63 kWh, Réel=12.92 kWh, Temps≈4h 18m",
+            "note": "$1.94. Scénario typique de chauffe-eau électrique à accumulation nocturne."
+          },
+          {
+            "input": "Commercial : 1000L, 15→80°C, 15kW, 85%, $0.12/kWh",
+            "output": "Chaleur=75.6 kWh, Réel=88.9 kWh, Temps≈5h 56m",
+            "note": "$10.67. Mise en température matinale d'une chaudière de restaurant ou d'hôtel."
+          },
+          {
+            "input": "Pompe à chaleur : 150L, 12→55°C, 2.5kW, 300%, $0.18/kWh",
+            "output": "Chaleur=7.50 kWh, Réel=2.50 kWh, Temps≈1h 0m",
+            "note": "$0.45. Une pompe à chaleur COP=3 fournit 3 fois plus de chaleur que l'énergie électrique consommée."
+          },
+          {
+            "input": "Appoint solaire : 300L, 20→65°C, 4kW, 95%, $0.14/kWh",
+            "output": "Chaleur=15.7 kWh, Réel=16.5 kWh, Temps≈4h 8m",
+            "note": "$2.31. Appoint électrique pour un ballon d'eau préchauffée par le solaire."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de chauffage de l'eau",
+        "steps": [
+          "Saisissez le volume d'eau et sélectionnez l'unité (L pour litres ou gal pour gallons américains). 1 gallon américain = 3.785 litres.",
+          "Saisissez la température initiale (température actuelle de l'eau) et la température cible (température souhaitée de l'eau chaude) en degrés Celsius.",
+          "Saisissez la puissance du chauffe-eau en kilowatts. Valeurs courantes : 1.5–3 kW (résistance domestique), 5–15 kW (commercial), 2–4 kW (pompe à chaleur).",
+          "Saisissez le rendement en pourcentage. Chauffe-eau à résistance : 95–100%. Chauffe-eau à gaz : 60–80%. Pompes à chaleur : 200–400% (COP × 100).",
+          "Saisissez votre coût de l'énergie par kilowattheure. Cliquez sur Calculer pour voir l'énergie thermique requise, l'énergie réelle consommée, le temps de chauffe (heures et minutes), le coût total et l'équivalent CO₂."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur le chauffage de l'eau",
+        "q1": "Quelle énergie faut-il pour chauffer de l'eau ?",
+        "q1_a": "L'énergie requise est Q = volume_L × 4186 × ΔT / 3,600,000 kWh. Par exemple, chauffer 100 litres de 50°C nécessite 100 × 4186 × 50 / 3,600,000 ≈ 5.81 kWh d'énergie thermique. L'énergie réellement consommée dépend du rendement du chauffe-eau : un chauffe-eau à gaz efficace à 85% consommerait 5.81 / 0.85 ≈ 6.84 kWh d'énergie gaz.",
+        "q2": "Combien de temps faut-il pour chauffer un ballon d'eau chaude de 200L ?",
+        "q2_a": "Avec une résistance électrique de 3 kW et 90% de rendement, de 10°C à 60°C : énergie = 200 × 4186 × 50 / 3,600,000 = 11.63 kWh de chaleur ; réel = 11.63/0.9 = 12.92 kWh ; temps = 12.92/3 = 4.31 heures (environ 4 heures 18 minutes). Une résistance de 6 kW diviserait ce temps par deux, à environ 2h 9m.",
+        "q3": "Qu'est-ce que le rendement de chauffage et pourquoi est-il important ?",
+        "q3_a": "Le rendement de chauffage est le rapport entre la chaleur utile transmise à l'eau et l'énergie totale consommée. Les chauffe-eau électriques à résistance sont presque efficaces à 100% (toute l'électricité devient chaleur). Les chauffe-eau à gaz perdent 20–40% par les fumées. Les pompes à chaleur ont un rendement supérieur à 100% (exprimé en COP), car elles déplacent la chaleur au lieu de la produire : un COP de 3 signifie 3 kWh de chaleur pour 1 kWh d'électricité. Le rendement détermine le coût énergétique réel et l'empreinte carbone.",
+        "q4": "À quelle température dois-je régler mon chauffe-eau ?",
+        "q4_a": "Pour la santé et la sécurité, les chauffe-eau doivent être réglés à au moins 60°C afin d'empêcher la prolifération de Legionella. Pour l'alimentation des robinets, les mitigeurs thermostatiques mélangent l'eau chaude pour la ramener à 50–55°C et éviter les brûlures. Régler le thermostat au-dessus de 60°C gaspille de l'énergie sans gain de sécurité. Les chauffe-eau thermodynamiques peuvent devoir effectuer périodiquement un cycle sanitaire à 65°C, car ils fonctionnent généralement à des températures plus basses pour l'efficacité.",
+        "q5": "Combien coûte le chauffage de l'eau à l'électricité par rapport au gaz ?",
+        "q5_a": "Coût = (énergie thermique / rendement) × coût du combustible par unité. Pour 200L, 10→60°C : énergie thermique = 11.63 kWh. Électricité à 98% de rendement et $0.25/kWh : 11.63/0.98 × 0.25 = $2.97. Gaz à 75% de rendement et équivalent $0.05/kWh : 11.63/0.75 × 0.05 = $0.78. Même si le gaz est moins cher par kWh, un chauffe-eau thermodynamique à COP 300% : 11.63/3 × 0.25 = $0.97, souvent moins cher que le gaz malgré un prix de l'électricité plus élevé.",
+        "q6": "Quel est l'équivalent CO₂ du chauffage de l'eau ?",
+        "q6_a": "Les émissions de CO₂ dépendent de la source d'énergie et de l'intensité carbone du réseau. Ce calculateur utilise 0.233 kg CO₂/kWh, l'intensité moyenne du réseau britannique. En France (majoritairement nucléaire), les émissions sont d'environ 0.05 kg/kWh ; en Australie (forte part de charbon), environ 0.67 kg/kWh. Pour réduire les émissions liées à l'eau chaude : installez des panneaux solaires thermiques (éliminent 60–80% de l'énergie de chauffage), utilisez un chauffe-eau thermodynamique, isolez les ballons et les tuyaux, et choisissez des offres d'électricité renouvelable."
+      }
+    },
+    "torsional-stiffness-calculator": {
+      "title": "Calculatrice de rigidité en torsion – contrainte de cisaillement et couple",
+      "tagline": "Calculez la rigidité en torsion, la contrainte de cisaillement maximale et l’énergie de déformation des arbres circulaires à partir du module de cisaillement, de la longueur et du diamètre.",
+      "intro": "Saisissez la géométrie de votre arbre et les propriétés du matériau pour calculer instantanément la rigidité en torsion, la contrainte de cisaillement maximale, le moment quadratique polaire et l’énergie de déformation.",
+      "formula": "K = G·J/L | J = πd⁴/32 | τ_max = T·(d/2)/J | U = T²·L/(2·G·J)",
+      "field": {
+        "crossSectionType": "Type de section",
+        "torque": "Couple appliqué (N·m)",
+        "angle": "Angle de torsion (rad)",
+        "shearModulus": "Module de cisaillement G (GPa)",
+        "length": "Longueur (m)",
+        "diameter": "Diamètre (m)"
+      },
+      "type": {
+        "circular": "Circulaire"
+      },
+      "placeholder": {
+        "torque": "ex. 1500",
+        "angle": "ex. 0.05",
+        "shearModulus": "ex. 80",
+        "length": "ex. 1.5",
+        "diameter": "ex. 0.03"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des nombres positifs valides dans tous les champs."
+      },
+      "result": {
+        "heading": "Résultats",
+        "stiffness": "Rigidité en torsion (analytique K=GJ/L) : {value} N·m/rad",
+        "stiffnessMeasured": "Rigidité en torsion (mesurée K=T/θ) : {value} N·m/rad",
+        "shearStress": "Contrainte de cisaillement maximale : {value} MPa",
+        "polarMoment": "Moment quadratique polaire : {value} m⁴",
+        "strainEnergy": "Énergie de déformation : {value} J"
+      },
+      "about": {
+        "heading": "À propos de la calculatrice de rigidité en torsion",
+        "body": "La rigidité en torsion est une propriété mécanique fondamentale qui quantifie la résistance d’un élément structurel à la déformation angulaire lorsqu’il est soumis à un moment de torsion, ou couple. Les ingénieurs qui travaillent sur des arbres rotatifs, des systèmes d’entraînement, des instruments de précision et des structures s’appuient sur des calculs précis de rigidité en torsion pour garantir des conceptions fiables, sûres et efficaces.\n\nLa relation de base est simple : la rigidité en torsion K est égale au produit du module de cisaillement du matériau G et du moment quadratique polaire de la section J, divisé par la longueur du composant L. Écrit K = G·J/L, ce principe traduit deux contributions indépendantes : la résistance intrinsèque du matériau à la déformation par cisaillement et la contribution géométrique liée à la répartition de la matière autour de l’axe de rotation.\n\nPour une section circulaire pleine, le moment quadratique polaire est J = πd⁴/32, où d est le diamètre. Cette dépendance à la puissance quatre signifie que doubler le diamètre augmente la rigidité en torsion d’un facteur 16 — la géométrie compte énormément. C’est pourquoi des arbres pleins et épais sont bien plus rigides que des tiges élancées du même matériau, et pourquoi les sections circulaires creuses sont si intéressantes en aéronautique, où il faut réduire le poids tout en conservant la rigidité.\n\nLe module de cisaillement G est une constante matériau. L’acier a un G ≈ 79–80 GPa, les alliages d’aluminium se situent autour de 26–30 GPa, le laiton autour de 38–42 GPa, le titane typiquement entre 40–45 GPa, et les polymères techniques sont bien plus faibles, à 1–5 GPa. Choisir le bon matériau et la bonne section pour atteindre une cible de rigidité est l’une des tâches les plus courantes en conception mécanique.\n\nAu-delà de la rigidité, cette calculatrice calcule aussi la contrainte de cisaillement maximale τ_max = T·r/J et l’énergie de déformation U = T²·L/(2·G·J). La contrainte de cisaillement maximale détermine si un arbre va se plastifier ou casser sous le couple appliqué, et doit être comparée à la limite d’élasticité au cisaillement du matériau (environ 0.577 × la limite d’élasticité en traction pour les métaux ductiles). L’énergie de déformation indique combien d’énergie élastique est stockée dans l’élément tordu — une donnée importante pour les calculs de durée de vie en fatigue et pour comprendre la réponse dynamique sous charges cycliques.\n\nLes applications pratiques vont des arbres de transmission automobiles qui transmettent le couple du moteur aux roues, aux arbres de turbines à gaz qui doivent résister à des couples énormes sans torsion excessive, en passant par les broches de machines-outils où de très faibles déflexions angulaires dégradent l’état de surface, et les barres de torsion des suspensions de véhicules. Dans chaque cas, le concepteur équilibre rigidité, poids, coût et résistance pour obtenir des performances fiables pendant toute la durée de vie prévue du produit."
+      },
+      "examples": {
+        "heading": "Exemples de rigidité en torsion",
+        "intro": "Trois scénarios résolus couvrant des matériaux et des applications courants.",
+        "colInput": "Entrée",
+        "colOutput": "Rigidité en torsion",
+        "colNote": "Application",
+        "loadSteel": "Arbre en acier",
+        "loadAluminum": "Arbre en aluminium",
+        "loadBrass": "Arbre en laiton",
+        "items": [
+          {
+            "input": "Arbre en acier : T=1500 N·m, θ=0.05 rad, G=80 GPa, L=1.5 m, d=0.03 m",
+            "output": "K ≈ 4,241 N·m/rad, τ_max ≈ 283 MPa",
+            "note": "Arbre de transmission automobile typique. K = G·J/L avec J = πd⁴/32 = 7.95 × 10⁻⁸ m⁴ ; la contrainte de cisaillement est donnée par τ = T·r/J."
+          },
+          {
+            "input": "Arbre en aluminium : T=800 N·m, θ=0.08 rad, G=26 GPa, L=2.0 m, d=0.04 m",
+            "output": "K ≈ 3,267 N·m/rad, τ_max ≈ 63.6 MPa",
+            "note": "Arbre de transmission léger pour l’aéronautique. Le faible module de cisaillement de l’aluminium impose un diamètre plus grand pour une rigidité comparable."
+          },
+          {
+            "input": "Arbre en laiton : T=200 N·m, θ=0.02 rad, G=40 GPa, L=0.5 m, d=0.01 m",
+            "output": "K ≈ 78.5 N·m/rad, τ_max ≈ 1019 MPa",
+            "note": "Arbre de précision de petit diamètre. La contrainte de cisaillement est très élevée et dépasse la résistance typique du laiton — augmentez le diamètre ou réduisez le couple."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser la calculatrice de rigidité en torsion",
+        "steps": [
+          "Sélectionnez le type de section. La calculatrice prend actuellement en charge les sections circulaires pleines, qui couvrent l’immense majorité des arbres mécaniques.",
+          "Saisissez le couple appliqué en newton-mètres (N·m) et l’angle de torsion attendu en radians. Ces valeurs servent au calcul de la contrainte de cisaillement et de l’énergie de déformation.",
+          "Saisissez le module de cisaillement G de votre matériau en gigapascals (GPa). Utilisez 80 pour l’acier au carbone, 26–30 pour les alliages d’aluminium, 40 pour le laiton, ou consultez la fiche matière.",
+          "Saisissez la longueur du composant en mètres et le diamètre de l’arbre en mètres. N’oubliez pas que le moment quadratique polaire varie comme d⁴, donc de petits changements de diamètre ont un fort effet.",
+          "Cliquez sur Calculer pour voir la rigidité en torsion (N·m/rad), la contrainte de cisaillement maximale (MPa), le moment quadratique polaire (m⁴) et l’énergie de déformation (J). Comparez la contrainte de cisaillement à la valeur admissible du matériau avant de finaliser la conception."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la rigidité en torsion",
+        "q1": "Quelle est la différence entre rigidité en torsion et résistance en torsion ?",
+        "q1_a": "La rigidité en torsion (K, en N·m/rad) décrit la quantité de torsion d’un composant par unité de couple appliqué — c’est une mesure de raideur. La résistance en torsion correspond au couple maximal que le composant peut supporter avant de se plastifier ou de rompre. Un composant peut être rigide mais fragile, ou souple mais tenace ; ces deux propriétés doivent être évaluées séparément en conception.",
+        "q2": "Pourquoi le diamètre influence-t-il autant la rigidité en torsion ?",
+        "q2_a": "Parce que le moment quadratique polaire J = πd⁴/32 varie avec la quatrième puissance du diamètre. Doubler le diamètre augmente J — et donc K — d’un facteur 16. Cela fait de la taille de la section le levier le plus puissant dans la conception d’arbres, bien plus influent que le choix du matériau ou la longueur.",
+        "q3": "Quel module de cisaillement dois-je utiliser pour l’acier ?",
+        "q3_a": "La plupart des aciers au carbone et alliés ont un G compris entre 78 et 82 GPa. Une valeur de conception courante est 80 GPa. Les aciers inoxydables sont légèrement plus bas, autour de 73–77 GPa. Vérifiez toujours la fiche technique du matériau exact pour les composants critiques.",
+        "q4": "Comment convertir un angle de torsion des degrés en radians ?",
+        "q4_a": "Multipliez les degrés par π/180 (environ 0.01745). Par exemple, 5° = 5 × 0.01745 ≈ 0.0873 rad. La calculatrice exige l’angle en radians car les formules de contrainte de cisaillement et d’énergie de déformation utilisent le système SI en radians.",
+        "q5": "Qu’est-ce que l’énergie de déformation stockée dans un arbre tordu ?",
+        "q5_a": "L’énergie de déformation U = T²L/(2GJ) est l’énergie élastique stockée dans l’arbre lorsqu’il est tordu par le couple T. Elle est égale au travail fourni par le couple pendant la torsion. Comprendre cette énergie est important pour l’analyse en fatigue, car elle est directement liée aux charges cycliques subies par l’arbre, et pour évaluer la résistance aux chocs.",
+        "q6": "Cette calculatrice peut-elle gérer des sections circulaires creuses ?",
+        "q6_a": "La calculatrice actuelle couvre les sections circulaires pleines. Pour des sections circulaires creuses (tubes), remplacez J par π(D⁴ − d⁴)/32, où D est le diamètre extérieur et d le diamètre intérieur. Les sections creuses offrent un excellent rapport rigidité/poids, ce qui explique leur usage en aéronautique et dans la conception de cadres de vélo."
+      }
+    },
+    "trajectory-calculator": {
+      "title": "Calculateur de trajectoire – portée et hauteur du mouvement parabolique",
+      "tagline": "Calculez la portée horizontale, la hauteur maximale et le temps de vol de tout projectile à partir de sa vitesse initiale, de son angle de tir et de sa hauteur de départ.",
+      "intro": "Saisissez la vitesse initiale, l’angle de tir (0–90°) et la hauteur initiale. Choisissez les unités métriques (m, m/s) ou impériales (ft, ft/s) pour analyser instantanément la trajectoire.",
+      "formula": "R = v₀ₓ·t | H_max = h + v₀y²/(2g) | t = (v₀y + √(v₀y² + 2gh))/g | v₀ₓ = v₀·cos α | v₀y = v₀·sin α",
+      "field": {
+        "units": "Unités",
+        "velocity": "Vitesse initiale ({unit})",
+        "angle": "Angle de tir (°)",
+        "height": "Hauteur initiale ({unit})"
+      },
+      "type": {
+        "metric": "Métrique (m, m/s)",
+        "imperial": "Impérial (ft, ft/s)"
+      },
+      "placeholder": {
+        "velocity": "ex. 100",
+        "angle": "ex. 45",
+        "height": "ex. 0"
+      },
+      "button": {
+        "calculate": "Calculer la trajectoire",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Entrez une vitesse positive, un angle entre 0° et 90° et une hauteur non négative."
+      },
+      "result": {
+        "heading": "Résultats de la trajectoire",
+        "range": "Portée horizontale : {value} {unit}",
+        "maxHeight": "Hauteur maximale : {value} {unit}",
+        "timeOfFlight": "Temps de vol : {value} s",
+        "vx": "Vitesse horizontale : {value} {unit}",
+        "vy": "Vitesse verticale initiale : {value} {unit}"
+      },
+      "about": {
+        "heading": "À propos du calculateur de trajectoire",
+        "body": "Le mouvement balistique est l’un des problèmes les plus étudiés en mécanique classique. Lorsqu’un objet est lancé dans l’air sous l’effet de la seule gravité — en négligeant la résistance de l’air — sa trajectoire dessine un arc parabolique lisse appelé trajectoire. Ce calculateur utilise les équations cinématiques standard du mouvement de projectile pour déterminer les trois grandeurs qui intéressent le plus les ingénieurs, les sportifs et les physiciens : la hauteur maximale, la portée horizontale et le temps total de vol.\n\nLe mouvement se décompose en deux composantes indépendantes. Dans la direction horizontale, il n’y a pas d’accélération (en négligeant la traînée) : l’objet se déplace donc à vitesse horizontale constante v₀ₓ = v₀·cos α pendant tout le vol. Dans la direction verticale, l’objet subit une accélération constante vers le bas g — égale à 9.81 m/s² près de la surface de la Terre en unités métriques, ou 32.2 ft/s² en unités impériales. La vitesse verticale à un instant donné est v_y = v₀y − g·t, où v₀y = v₀·sin α.\n\nLorsque l’objet est lancé depuis une hauteur h au-dessus de la surface d’atterrissage, le temps de vol se détermine en résolvant le second degré : 0 = h + v₀y·t − ½g·t². La racine positive donne t = (v₀y + √(v₀y² + 2gh))/g. La portée horizontale s’en déduit immédiatement : R = v₀ₓ·t. La hauteur maximale est atteinte lorsque la vitesse verticale devient nulle, à t_peak = v₀y/g ; en remplaçant, on obtient H_max = h + v₀y²/(2g).\n\nUne règle souvent citée veut que l’angle de lancement optimal pour une portée maximale soit 45°. Ce n’est vrai que si la hauteur de départ et la hauteur d’arrivée sont identiques. Si le projectile est lancé depuis une altitude au-dessus du point d’arrivée — par exemple un canon sur une colline — l’angle optimal est inférieur à 45°. À l’inverse, si le tir vise un point d’arrivée plus élevé, l’angle optimal dépasse 45°. Ce calculateur gère ces trois cas grâce à la saisie de la hauteur initiale.\n\nLes applications pratiques sont nombreuses : les sciences du sport utilisent l’analyse de trajectoire pour optimiser les tirs, les lancers et les frappes ; les ingénieurs balisticiens appliquent les mêmes équations à l’artillerie, aux missiles et aux armes légères ; les développeurs de jeux vidéo et de simulations s’appuient sur la physique des projectiles pour des mouvements réalistes ; et les ingénieurs sécurité calculent la distance de projection des fragments lors d’explosions. Le sélecteur métrique/impérial rend le calculateur utile aussi bien en recherche que dans les pays utilisant le système impérial."
+      },
+      "examples": {
+        "heading": "Exemples du calculateur de trajectoire",
+        "intro": "Trois scénarios illustrant les unités métriques et impériales selon différentes conditions de tir.",
+        "colInput": "Entrée",
+        "colOutput": "Portée",
+        "colNote": "Notes",
+        "loadCannonball": "Charger l’exemple du boulet de canon",
+        "loadGolf": "Charger l’exemple de drive au golf",
+        "loadBaseball": "Charger l’exemple de lancer de baseball",
+        "items": [
+          {
+            "input": "v₀=100 m/s, α=30°, h=0 m (métrique)",
+            "output": "Portée ≈ 882.9 m, H_max ≈ 127.4 m",
+            "note": "Cas classique du boulet de canon. À 30°, la portée est de 882.9 m et la hauteur maximale de 127.4 m ; le temps de vol est de 10.19 s."
+          },
+          {
+            "input": "v₀=70 m/s, α=15°, h=0.05 m (métrique)",
+            "output": "Portée ≈ 249.9 m, H_max ≈ 16.8 m",
+            "note": "Drive de golf. Les clubs de driver lancent généralement entre 9 et 15° ; un angle faible privilégie la distance sur un fairway plat."
+          },
+          {
+            "input": "v₀=90 ft/s, α=45°, h=6 ft (impérial)",
+            "output": "Portée ≈ 257.4 ft, H_max ≈ 68.9 ft",
+            "note": "Lancer de baseball depuis 6 ft au-dessus du sol. Les unités impériales affichent la portée et la hauteur en pieds pour une comparaison directe sur le terrain."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de trajectoire",
+        "steps": [
+          "Sélectionnez le système d’unités souhaité — Métrique (mètres, m/s) ou Impérial (pieds, ft/s). La gravité est automatiquement réglée à 9.81 m/s² ou 32.2 ft/s².",
+          "Saisissez la vitesse initiale (la vitesse à laquelle l’objet quitte le point de lancement) sous forme de nombre positif.",
+          "Saisissez l’angle de tir en degrés entre 0° et 90°. 0° signifie un tir purement horizontal, 90° un tir vertical vers le haut.",
+          "Saisissez la hauteur initiale — la distance verticale au-dessus du niveau du sol où l’objet atterrira. Utilisez 0 pour une surface plane et un nombre positif pour un point de lancement surélevé.",
+          "Cliquez sur Calculer la trajectoire. Le calculateur renvoie la portée horizontale, la hauteur maximale, le temps de vol ainsi que les composantes horizontale et verticale de la vitesse."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ du calculateur de trajectoire",
+        "q1": "Pourquoi 45° n’est-il pas toujours l’angle de lancement optimal ?",
+        "q1_a": "La règle des 45° ne s’applique que lorsque la hauteur de départ et la hauteur d’arrivée sont identiques. Si vous tirez depuis une position plus élevée que le point d’arrivée, l’angle optimal est inférieur à 45°. Si vous tirez vers un point d’arrivée plus élevé, l’angle optimal est supérieur à 45°. L’optimum exact se déduit en dérivant la formule de portée par rapport à l’angle et en annulant le résultat.",
+        "q2": "La résistance de l’air influence-t-elle les résultats ?",
+        "q2_a": "Ce calculateur utilise les équations idéales du mouvement de projectile sans traînée. En réalité, la résistance de l’air réduit la portée et la hauteur maximale — parfois fortement pour des projectiles légers ou rapides comme des balles de golf, des balles ou des navettes. Pour un travail d’ingénierie nécessitant la traînée, il faut une intégration numérique avec un terme de coefficient de traînée.",
+        "q3": "Quelle est la différence entre le temps de vol et le temps pour atteindre la hauteur maximale ?",
+        "q3_a": "Le temps pour atteindre la hauteur maximale est t_peak = v₀y/g, l’instant où la vitesse verticale atteint zéro et où l’objet est momentanément immobile verticalement. Le temps de vol est le temps total avant l’atterrissage, soit t_peak plus le temps de descente jusqu’à l’altitude de réception. Lorsque la hauteur initiale est nulle, la descente dure exactement aussi longtemps que la montée.",
+        "q4": "Comment convertir le résultat en kilomètres ou en miles ?",
+        "q4_a": "Le résultat métrique est en mètres ; divisez par 1000 pour obtenir des kilomètres. Le résultat impérial est en pieds ; divisez par 5280 pour obtenir des miles, ou par 3.281 pour convertir les pieds en mètres. Les composantes de vitesse sont en m/s (métrique) ou ft/s (impérial) ; multipliez les m/s par 3.6 pour les km/h ou par 2.237 pour les mph.",
+        "q5": "Puis-je l’utiliser pour des objets lancés horizontalement ?",
+        "q5_a": "Oui — réglez l’angle de tir à 0°. Avec un lancement horizontal, la vitesse verticale initiale est nulle, donc le temps de vol dépend entièrement de la hauteur initiale : t = √(2h/g). La portée horizontale est alors simplement v₀ × t. C’est le cas classique d’objets qui quittent une table ou sautent d’une falaise.",
+        "q6": "Quelle constante gravitationnelle le calculateur utilise-t-il ?",
+        "q6_a": "Pour les calculs métriques, le calculateur utilise g = 9.81 m/s², l’accélération gravitationnelle standard au niveau de la mer. Pour les calculs impériaux, il utilise g = 32.2 ft/s². Ces deux valeurs sont suffisamment précises pour la plupart des applications à la surface de la Terre. Des calculs sur d’autres planètes ou à haute altitude nécessiteraient une valeur différente de g."
+      }
+    },
+    "transformer-sizing-calculator": {
+      "title": "Calculateur de transformateur - kVA requis",
+      "tagline": "Calculez la puissance nominale kVA correcte du transformateur à partir de la charge, du facteur de puissance, du rendement, de la température ambiante et du facteur de sécurité.",
+      "intro": "Saisissez la puissance de charge, le facteur de puissance, le rendement, les conditions de température et la marge de sécurité pour déterminer la taille minimale et recommandée du transformateur en kVA.",
+      "formula": "kVA = kW / (PF × η) × facteur_continu × (1 + SF/100) / derating_temp",
+      "field": {
+        "loadPower": "Puissance de charge (kW)",
+        "powerFactor": "Facteur de puissance (0–1)",
+        "ambientTemp": "Température ambiante (°C)",
+        "safetyFactor": "Facteur de sécurité (%)",
+        "efficiency": "Rendement du transformateur (%)",
+        "loadType": "Type de charge",
+        "phaseType": "Type de phase"
+      },
+      "type": {
+        "loadType": {
+          "continuous": "Continue",
+          "non-continuous": "Non continue"
+        },
+        "phaseType": {
+          "single": "Monophasé",
+          "three": "Triphasé"
+        }
+      },
+      "placeholder": {
+        "loadPower": "p. ex. 150",
+        "powerFactor": "p. ex. 0.85",
+        "ambientTemp": "p. ex. 25",
+        "safetyFactor": "p. ex. 20",
+        "efficiency": "p. ex. 96"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des valeurs valides. Le facteur de puissance doit être compris entre 0 et 1, le rendement entre 0 et 100%, et tous les champs doivent être positifs."
+      },
+      "result": {
+        "heading": "Résultats du dimensionnement du transformateur",
+        "recommended": "Taille standard recommandée : {value} kVA",
+        "required": "Valeur requise calculée : {value} kVA",
+        "apparentPower": "Puissance apparente (avant déclassement) : {value} kVA",
+        "tempDerate": "Déclassement de température appliqué : {value}%"
+      },
+      "about": {
+        "heading": "À propos du calculateur de dimensionnement de transformateur",
+        "body": "Le dimensionnement d'un transformateur consiste à choisir la puissance nominale appropriée en kVA (kilovoltampères) pour un transformateur de puissance, en fonction de la charge électrique qu'il doit alimenter. Un bon dimensionnement est essentiel : un transformateur sous-dimensionné surchauffe et tombe en panne prématurément, tandis qu'un transformateur surdimensionné gaspille du capital, de l'espace au sol et de l'énergie à cause de pertes à vide plus élevées dans le noyau.\n\nLa première étape consiste à comprendre la distinction entre puissance active et puissance apparente. La puissance active, mesurée en kilowatts (kW), est la puissance réellement consommée par les charges résistives comme les chauffages et les lampes à incandescence. La puissance apparente, mesurée en kilovoltampères (kVA), inclut à la fois la puissance active et la puissance réactive, c'est-à-dire l'énergie oscillante absorbée et renvoyée par les charges inductives comme les moteurs et les ballasts fluorescents. Le rapport entre les deux est le facteur de puissance (PF) : kVA = kW ÷ PF. Une charge avec un facteur de puissance de 0.8 nécessite 25% de capacité de transformateur en plus qu'une charge purement résistive de même puissance en watts.\n\nLe rendement du transformateur compte également. Même un transformateur nominalement efficace à 97% dissipe 3% de la puissance transmise sous forme de chaleur, ce qui signifie que la source doit fournir 100/97 ≈ 1.031 fois la charge livrée. Pour les grands transformateurs industriels, ce surcroît est faible, mais il ne peut pas être ignoré dans des calculs de dimensionnement serrés.\n\nLe type de charge influence le dimensionnement via la règle de charge continue, largement adoptée à partir du National Electrical Code (NEC) et de normes similaires dans le monde. Une charge fonctionnant en continu (définie comme une charge fonctionnant trois heures ou plus au courant nominal) est limitée à 80% de la capacité nominale du transformateur ; autrement dit, le transformateur doit être dimensionné à 125% des kVA de la charge continue. Les charges non continues n'exigent pas ce déclassement.\n\nLa température ambiante dégrade les performances du transformateur. La plupart des transformateurs de distribution sont nominalement prévus pour une température ambiante maximale de 40°C. Au-delà de 40°C, la charge admissible diminue d'environ 1% par degré supplémentaire. Dans les climats chauds, cela peut nécessiter un transformateur sensiblement plus grand que ce que la seule charge suggère.\n\nEnfin, les ingénieurs appliquent un facteur de sécurité — généralement 15–30% — pour tenir compte de la croissance future de la charge, des incertitudes de mesure, de la distorsion harmonique due aux variateurs de fréquence et aux équipements électroniques, ainsi que des pointes de demande inattendues. Le calculateur additionne toutes ces corrections, puis arrondit à la puissance nominale kVA standard supérieure dans la liste industrielle des tailles préférées (5, 7.5, 10, 15, 25, 37.5, 50, 75, 100, 167, 250, 333, 500 kVA et plus)."
+      },
+      "examples": {
+        "heading": "Exemples de dimensionnement de transformateur",
+        "intro": "Trois scénarios réels illustrant l'effet du type de charge, de la température et des facteurs de sécurité sur le choix final des kVA du transformateur.",
+        "colInput": "Conditions de charge",
+        "colOutput": "kVA recommandés",
+        "colNote": "Notes",
+        "loadOffice": "Charge d'immeuble de bureaux",
+        "loadIndustrial": "Charge d'usine industrielle",
+        "loadResidential": "Charge de résidence collective",
+        "items": [
+          {
+            "input": "150 kW, PF=0.85, continue, 25°C, sécurité 20%, rend. 96%, triphasé",
+            "output": "333 kVA",
+            "note": "Bureaux commerciaux : puissance apparente ≈ 183.8 kVA ; facteur continu de 125% et facteur de sécurité de 20% → requis ≈ 275.7 kVA ; la taille standard suivante est 333 kVA."
+          },
+          {
+            "input": "500 kW, PF=0.75, continue, 35°C, sécurité 25%, rend. 95%, triphasé",
+            "output": "1500 kVA",
+            "note": "Usine industrielle avec mauvais facteur de puissance. Puissance apparente ≈ 701.8 kVA ; facteurs continu et de sécurité → requis ≈ 1096.5 kVA ; le standard suivant est 1500 kVA."
+          },
+          {
+            "input": "75 kW, PF=0.90, non continue, 20°C, sécurité 15%, rend. 97%, monophasé",
+            "output": "100 kVA",
+            "note": "Résidence collective avec charge non continue. Puissance apparente ≈ 85.9 kVA ; sécurité 15% → requis ≈ 98.8 kVA ; la taille standard suivante est 100 kVA."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de dimensionnement de transformateur",
+        "steps": [
+          "Saisissez la puissance active totale de la charge en kilowatts (kW). Pour une installation existante, lisez-la sur un wattmètre ; pour une nouvelle conception, additionnez les puissances indiquées sur les plaques signalétiques de tous les équipements raccordés.",
+          "Saisissez le facteur de puissance de votre charge. Utilisez 0.9–1.0 pour les charges résistives, 0.7–0.85 pour les charges mixtes moteurs et éclairage, et consultez les fiches techniques des équipements pour des valeurs précises.",
+          "Saisissez la température ambiante en °C. Au-dessus de 40°C, le calculateur applique automatiquement le déclassement de température.",
+          "Saisissez le pourcentage de facteur de sécurité (généralement 15–30%) et le rendement du transformateur (souvent 95–98%). Sélectionnez le type de charge continue ou non continue et la configuration monophasée ou triphasée.",
+          "Cliquez sur Calculer pour afficher les kVA requis calculés et la taille standard supérieure recommandée du transformateur à spécifier lors de la commande."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur le dimensionnement de transformateur",
+        "q1": "Quelle est la différence entre kVA et kW dans le dimensionnement d'un transformateur ?",
+        "q1_a": "Le kW est la puissance active consommée par la charge ; le kVA est la puissance apparente que le transformateur doit fournir, incluant la puissance réactive. Pour les charges dont le facteur de puissance est inférieur à 1.0, le transformateur doit être dimensionné selon les kVA, et non selon les kW. Une charge de 100 kW à 0.8 PF nécessite un transformateur capable de fournir 125 kVA.",
+        "q2": "Pourquoi les charges continues exigent-elles un facteur de dimensionnement de 125% ?",
+        "q2_a": "Les codes électriques (comme l'article 210 du NEC aux États-Unis) précisent que les conducteurs et transformateurs ne doivent pas être chargés au-delà de 80% de leur capacité nominale pour les charges continues, c'est-à-dire les charges fonctionnant trois heures ou plus. Ce maximum de 80% correspond à la règle de dimensionnement de 125%. Il fournit une marge thermique qui évite la dégradation de l'isolation et prolonge la durée de vie de l'équipement.",
+        "q3": "Comment un facteur de puissance plus élevé affecte-t-il la taille du transformateur ?",
+        "q3_a": "Un facteur de puissance plus élevé réduit les kVA de transformateur requis pour la même charge en kW. Améliorer le facteur de puissance de 0.7 à 0.9 réduit les kVA requis d'environ 22%, ce qui peut permettre de choisir un transformateur plus petit et moins coûteux. Des condensateurs de correction du facteur de puissance sont souvent installés sur les sites industriels pour cette raison.",
+        "q4": "Quelles tailles standard de transformateurs en kVA sont disponibles ?",
+        "q4_a": "Les puissances courantes des transformateurs de distribution incluent 5, 7.5, 10, 15, 25, 37.5, 50, 75, 100, 167, 250, 333, 500, 667 et 1000 kVA, puis 1500, 2000 et 2500 kVA. Sélectionnez toujours la taille immédiatement supérieure à votre besoin calculé afin d'assurer une capacité suffisante.",
+        "q5": "Comment la température ambiante affecte-t-elle le dimensionnement du transformateur ?",
+        "q5_a": "La plupart des transformateurs sont prévus pour une température ambiante maximale de 40°C. Au-dessus de 40°C, les températures du noyau et des enroulements augmentent, accélérant le vieillissement de l'isolation. En règle pratique, chaque hausse de 10°C de la température des enroulements divise par deux la durée de vie de l'isolation. Le calculateur applique un déclassement d'environ 1% par degré au-dessus de 40°C pour compenser.",
+        "q6": "Dois-je inclure la croissance future de la charge dans le facteur de sécurité ?",
+        "q6_a": "Oui. Un facteur de sécurité de 20–30% couvre généralement à la fois l'incertitude de mesure et la croissance de charge à court terme. Pour des horizons de planification plus longs (10–20 ans), il est courant de choisir un transformateur d'une taille standard supérieure au résultat du calcul immédiat. Surdimensionner un transformateur d'un seul palier standard coûte relativement peu, mais évite un remplacement coûteux si la charge augmente plus vite que prévu."
+      }
+    },
+    "transistor-biasing-calculator": {
+      "title": "Calculateur de polarisation du transistor – point DC",
+      "tagline": "Calculez le point de fonctionnement DC, le courant collecteur, le gain en tension et le facteur de stabilité des circuits à polarisation par pont diviseur.",
+      "intro": "Saisissez la tension d'alimentation, les valeurs des résistances, le gain en courant β et la tension base-émetteur pour analyser un amplificateur à émetteur commun avec polarisation par pont diviseur.",
+      "formula": "Vb = Vcc·R2/(R1+R2) | Ic = β·Ib | Vc = Vcc − Ic·Rc | Vce = Vc − Ve | Av = −(Rc‖RL)/(Re + re) où re = 26 mV/Ic",
+      "field": {
+        "vcc": "Tension d'alimentation Vcc (V)",
+        "r1": "Résistance de base R1 (Ω)",
+        "r2": "Résistance de base R2 (Ω)",
+        "rc": "Résistance de collecteur Rc (Ω)",
+        "re": "Résistance d'émetteur Re (Ω)",
+        "rl": "Résistance de charge RL (Ω)",
+        "beta": "Gain en courant β (hFE)",
+        "vbe": "Tension base-émetteur Vbe (V)"
+      },
+      "placeholder": {
+        "vcc": "ex. 12",
+        "r1": "ex. 22000",
+        "r2": "ex. 4700",
+        "rc": "ex. 2200",
+        "re": "ex. 1000",
+        "rl": "ex. 10000",
+        "beta": "ex. 100",
+        "vbe": "ex. 0.7"
+      },
+      "button": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser"
+      },
+      "error": {
+        "invalid": "Veuillez saisir des valeurs positives valides pour tous les champs. Vbe est généralement de 0,6 à 0,7 V pour les transistors au silicium."
+      },
+      "result": {
+        "heading": "Point de fonctionnement DC",
+        "vb": "Tension de base Vb : {value} V",
+        "ve": "Tension d'émetteur Ve : {value} V",
+        "vc": "Tension de collecteur Vc : {value} V",
+        "vce": "Tension collecteur-émetteur Vce : {value} V",
+        "ic": "Courant collecteur Ic : {value} mA",
+        "ib": "Courant de base Ib : {value} μA",
+        "voltageGain": "Gain en tension |Av| : {value}",
+        "stabilityFactor": "Facteur de stabilité S : {value}"
+      },
+      "about": {
+        "heading": "À propos du calculateur de polarisation du transistor",
+        "body": "La polarisation d'un transistor consiste à établir un point de fonctionnement DC stable — le point de repos, ou point Q — pour un amplificateur à transistor bipolaire (BJT). Sans polarisation correcte, le transistor fonctionne en coupure (aucun courant) ou en saturation (courant maximal), rendant l'amplification linéaire impossible. Une polarisation adéquate place le point Q près du centre de la région active, ce qui permet au signal de sortie de swinguer symétriquement au-dessus et au-dessous du niveau de repos sans distorsion.\n\nCe calculateur implémente la configuration à pont diviseur, la méthode de polarisation la plus utilisée dans les circuits pratiques. Deux résistances, R1 et R2, forment un diviseur résistif entre l'alimentation Vcc et la masse. Le nœud entre R1 et R2 fixe la tension de base : Vb = Vcc × R2/(R1+R2), en supposant que le diviseur est rigide (c'est-à-dire que le courant du diviseur est bien supérieur au courant de base). La tension d'émetteur suit avec Ve = Vb − Vbe, où Vbe ≈ 0,7 V pour les transistors NPN au silicium à température ambiante.\n\nLe courant d'émetteur traverse la résistance d'émetteur Re, établissant Ve = Ie × Re. Comme Ic ≈ Ie pour un β élevé, le courant collecteur est approximativement Ic = Ve/Re. La tension de collecteur est Vc = Vcc − Ic×Rc, et la tension collecteur-émetteur est Vce = Vc − Ve. Pour que le transistor reste dans la région active, Vce doit être positif et supérieur à la tension de saturation (généralement 0,2 à 0,3 V).\n\nLe gain en tension de l'étage à émetteur commun est déterminé par le rapport entre la charge collecteur en AC et l'impédance d'émetteur effective. La charge collecteur en AC est Rc en parallèle avec RL (la résistance de charge externe). L'impédance d'émetteur effective est Re plus la résistance intrinsèque d'émetteur re = VT/Ic, avec VT ≈ 26 mV à température ambiante. Le gain en valeur absolue est |Av| = (Rc‖RL)/(Re + re).\n\nLe facteur de stabilité S mesure dans quelle mesure le réseau de polarisation stabilise le point de fonctionnement face aux variations des paramètres du transistor, principalement les changements de β liés à la température ou aux différences entre composants. Plus le facteur de stabilité est faible (idéalement inférieur à 10), plus la conception est stable. La polarisation par pont diviseur avec une grande résistance d'émetteur obtient un faible S grâce à la contre-réaction négative : toute tendance à augmenter Ic fait monter Ve, ce qui réduit Vbe et donc Ib, compensant en partie l'augmentation initiale de Ic.\n\nConseils de conception pratiques : choisissez Ic dans la plage 1 à 10 mA pour les amplificateurs petit signal ; placez Vc à environ la moitié de Vcc pour obtenir la plus grande excursion de sortie sans distorsion ; maintenez le facteur de stabilité sous 10 ; et vérifiez que Vce reste au-dessus de la tension de saturation dans les pires conditions de β maximal et de température maximale."
+      },
+      "examples": {
+        "heading": "Exemples de polarisation du transistor",
+        "intro": "Trois configurations d'amplificateur à émetteur commun montrant les calculs du point de fonctionnement et du gain.",
+        "colInput": "Paramètres du circuit",
+        "colOutput": "Résultats clés",
+        "colNote": "Application",
+        "loadStandard": "Charge de polarisation standard",
+        "loadHighGain": "Charge de polarisation à fort gain",
+        "loadAudio": "Charge d'étage audio",
+        "items": [
+          {
+            "input": "Vcc=12V, R1=22kΩ, R2=4.7kΩ, Rc=2.2kΩ, Re=1kΩ, RL=10kΩ, β=100, Vbe=0.7V",
+            "output": "Ic≈1.35 mA, Vc≈9.04V, Vce≈7.68V, |Av|≈1.77",
+            "note": "Polarisation standard par pont diviseur. Le point Q est proche du milieu de l'alimentation, avec un gain modéré. Convient comme étage d'amplification petit signal polyvalent."
+          },
+          {
+            "input": "Vcc=15V, R1=15kΩ, R2=3kΩ, Rc=3.3kΩ, Re=500Ω, RL=15kΩ, β=150, Vbe=0.7V",
+            "output": "Ic≈3.46 mA, Vc≈3.58V, Vce≈1.84V, |Av|≈5.33",
+            "note": "Configuration à fort gain. Le Vce faible s'approche de la saturation — envisagez de réduire Rc ou d'augmenter Vcc pour une excursion de sortie plus large."
+          },
+          {
+            "input": "Vcc=18V, R1=18kΩ, R2=3.9kΩ, Rc=1.8kΩ, Re=820Ω, RL=8.2kΩ, β=120, Vbe=0.7V",
+            "output": "Ic≈2.94 mA, Vc≈12.72V, Vce≈10.29V, |Av|≈1.78",
+            "note": "Étape de sortie pour amplificateur audio. Une Vcc plus élevée offre une excursion de sortie plus large ; RL correspond à l'impédance typique d'un haut-parleur."
+          }
+        ]
+      },
+      "howto": {
+        "heading": "Comment utiliser le calculateur de polarisation du transistor",
+        "steps": [
+          "Saisissez la tension d'alimentation Vcc en volts. Il s'agit du rail positif qui alimente le circuit ; pour les étages BJT petit signal, elle est généralement comprise entre 5 et 24 V.",
+          "Saisissez les quatre valeurs de résistance en ohms : R1 et R2 forment le diviseur de base ; Rc est la résistance de collecteur qui définit le gain en tension et l'impédance de sortie ; Re est la résistance d'émetteur qui stabilise le point de polarisation.",
+          "Saisissez la résistance de charge RL en ohms. Elle représente l'impédance que l'amplificateur pilote — par exemple l'impédance d'entrée de l'étage suivant ou une charge de haut-parleur.",
+          "Saisissez le gain en courant β du transistor (hFE, issu de la fiche technique) et la tension base-émetteur Vbe (0,6 à 0,7 V pour le silicium, 0,2 à 0,3 V pour le germanium).",
+          "Cliquez sur Calculer. Vérifiez que Vce est positif et supérieur à la saturation, que Ic se situe dans une plage pratique (1 à 10 mA pour les étages petit signal), et que le facteur de stabilité S est inférieur à 10 pour une bonne stabilité thermique."
+        ]
+      },
+      "faq": {
+        "heading": "FAQ sur la polarisation du transistor",
+        "q1": "Qu'est-ce que le point Q et pourquoi est-il important ?",
+        "q1_a": "Le point Q (point de repos) est l'état de fonctionnement DC du transistor lorsqu'aucun signal AC n'est appliqué. Il est défini par le couple (Ic, Vce). Placer le point Q près du centre de la région active maximise l'excursion de sortie sans distorsion. Un point Q trop proche de la coupure ou de la saturation provoque un écrêtage — la forme d'onde de sortie est aplatie à un ou aux deux pics.",
+        "q2": "Pourquoi la polarisation par pont diviseur est-elle préférée à la polarisation fixe ?",
+        "q2_a": "La polarisation fixe règle le courant de base directement depuis l'alimentation via une seule résistance, ce qui rend Ic proportionnel à β. Comme β varie fortement avec la température et d'un transistor à l'autre (souvent 2:1 ou plus), le point Q dérive de manière imprévisible. La polarisation par pont diviseur ajoute une résistance d'émetteur qui fournit une contre-réaction négative, maintenant Ic à peu près constant indépendamment des variations de β, à condition que le diviseur soit suffisamment rigide.",
+        "q3": "Qu'est-ce que la résistance intrinsèque d'émetteur re ?",
+        "q3_a": "La résistance intrinsèque d'émetteur re = VT/Ic ≈ 26 mV / Ic (avec Ic en ampères) provient de la physique de la jonction base-émetteur polarisée en direct. C'est la petite résistance signal vue en regardant dans la borne émetteur. À Ic = 1 mA, re ≈ 26 Ω. Quand le courant collecteur augmente, re diminue, ce qui accroît le gain en tension. Elle doit être prise en compte dans les calculs de gain lorsque Re est faible par rapport à re.",
+        "q4": "Comment choisir R1 et R2 pour une tension de base donnée ?",
+        "q4_a": "Commencez par déterminer la tension de base souhaitée Vb = Ve + Vbe, où Ve est généralement fixé à 10 à 20 % de Vcc pour une bonne stabilité. Choisissez ensuite un courant de pont au moins 10 fois supérieur au courant de base Ib = Ic/β, afin que le diviseur soit suffisamment rigide. À partir du courant de pont et de Vb, calculez R2 = Vb/I_div et R1 = (Vcc − Vb)/I_div. Arrondissez aux valeurs normalisées les plus proches.",
+        "q5": "Que m'indique le facteur de stabilité S ?",
+        "q5_a": "Le facteur de stabilité S approxime le rapport entre la variation du courant collecteur et la variation du courant de saturation inverse du transistor (ou, en pratique, sa sensibilité aux variations de β). Plus S est faible, meilleure est la stabilité. Une polarisation par pont diviseur avec une dégénérescence d'émetteur suffisante atteint généralement S < 5, contre S = β + 1 pour une polarisation fixe, qui peut dépasser 100.",
+        "q6": "Comment augmenter le gain en tension sans changer sensiblement le point Q ?",
+        "q6_a": "Contournez la résistance d'émetteur Re avec un gros condensateur. Aux fréquences du signal AC, le condensateur court-circuite Re, donc le gain petit signal monte à Av ≈ Rc‖RL / re, bien plus élevé. La polarisation DC reste définie par la valeur totale de Re, ce qui préserve la stabilité, tandis que le gain AC profite du chemin à faible impédance contourné. C'est la technique standard des étages de préamplification audio."
+      }
     }
   }
 }
