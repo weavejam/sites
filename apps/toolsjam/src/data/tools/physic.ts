@@ -1646,39 +1646,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "differential-pressure-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "cha-ya-ji-suan-qi",
+      "zh-TW": "cha-ya-ji-suan-qi",
+      ja: "saatsu-keisanki",
+      ko: "chaap-gyesangi",
+      es: "calculadora-presion-diferencial",
+      fr: "calculateur-pression-differentielle",
+      de: "differenzdruck-rechner",
+      pt: "calculadora-pressao-diferencial",
+      ru: "kalkulyator-perepada-davleniya"
     },
     titles: {
       en: "Differential Pressure Calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "差压计算器",
+      "zh-TW": "差壓計算器",
+      ja: "差圧計算機",
+      ko: "차압 계산기",
+      es: "Calculadora de presión diferencial",
+      fr: "Calculateur de pression différentielle",
+      de: "Differenzdruck-Rechner",
+      pt: "Calculadora de pressão diferencial",
+      ru: "Калькулятор перепада давления"
     },
     descriptions: {
       en: "Calculate differential pressure across valves, filters, and pipes. Includes dynamic pressure from fluid density and flow velocity for HVAC and engineering.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算阀门、过滤器和管道两端的差压。包含基于流体密度与流速的动压，适用于 HVAC 与工程计算。",
+      "zh-TW": "計算閥門、過濾器與管路兩端的差壓。包含由流體密度與流速求得的動壓，適用於 HVAC 與工程計算。",
+      ja: "バルブ、フィルター、配管の差圧を計算。流体密度と流速から動圧も求め、HVAC や工学用途に対応します。",
+      ko: "밸브, 필터, 배관의 차압을 계산합니다. 유체 밀도와 유속으로 구한 동압을 포함해 HVAC 및 엔지니어링에 활용할 수 있습니다.",
+      es: "Calcula la presión diferencial en válvulas, filtros y tuberías, con presión dinámica por densidad y velocidad del fluido para HVAC e ingeniería.",
+      fr: "Calculez la pression différentielle dans les vannes, filtres et tuyaux, avec pression dynamique selon densité et vitesse du fluide.",
+      de: "Berechnen Sie Differenzdruck an Ventilen, Filtern und Rohren inklusive dynamischem Druck aus Fluiddichte und Strömungsgeschwindigkeit.",
+      pt: "Calcule a pressão diferencial em válvulas, filtros e tubos, com pressão dinâmica por densidade e velocidade do fluido para HVAC e engenharia.",
+      ru: "Рассчитайте перепад давления на клапанах, фильтрах и трубах, включая динамическое давление по плотности и скорости потока."
     }
   },
   {
@@ -1686,39 +1686,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "diffraction-grating-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "yanshe-guangzha-jisuanqi",
+      "zh-TW": "yanshe-guangzha-jisuanqi",
+      ja: "kaisetsu-koushi-keisanki",
+      ko: "hoijeol-gyeokja-gyesangi",
+      es: "calculadora-red-difraccion",
+      fr: "calculateur-reseau-diffraction",
+      de: "beugungsgitter-rechner",
+      pt: "calculadora-rede-difracao",
+      ru: "difrakcionnaya-reshetka-kalkulyator"
     },
     titles: {
       en: "Diffraction Grating Calculator – Angle, Wavelength & Spacing",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "光栅计算器：角度、波长与间距",
+      "zh-TW": "光柵計算器：角度、波長與間距",
+      ja: "回折格子計算機：角度・波長・間隔",
+      ko: "회절격자 계산기: 각도, 파장, 간격",
+      es: "Calculadora de red de difracción: ángulo, longitud y paso",
+      fr: "Calculateur de réseau de diffraction : angle, longueur, pas",
+      de: "Beugungsgitter-Rechner: Winkel, Wellenlänge, Abstand",
+      pt: "Calculadora de rede de difração: ângulo, comprimento, espaçamento",
+      ru: "Калькулятор дифракционной решётки: угол, длина, шаг"
     },
     descriptions: {
       en: "Calculate diffraction angle, wavelength, or grating spacing using d·sin(θ)=mλ. Supports any order and groove density for optics, spectroscopy, and physics.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "使用 d·sin(θ)=mλ 计算衍射角、波长或光栅间距，支持任意级次和线密度，适用于光学、光谱学与物理。",
+      "zh-TW": "使用 d·sin(θ)=mλ 計算繞射角、波長或光柵間距，支援任意級次與線密度，適用於光學、光譜學與物理。",
+      ja: "d·sin(θ)=mλ を使って回折角、波長、格子間隔を計算。任意の次数と線密度に対応し、光学・分光学・物理に最適。",
+      ko: "d·sin(θ)=mλ로 회절각, 파장, 격자 간격을 계산합니다. 모든 차수와 선밀도를 지원하며 광학, 분광학, 물리에 적합합니다.",
+      es: "Calcula el ángulo de difracción, la longitud de onda o el paso de la red con d·sin(θ)=mλ. Compatible con cualquier orden y densidad de líneas.",
+      fr: "Calculez l’angle de diffraction, la longueur d’onde ou le pas du réseau avec d·sin(θ)=mλ. Prend en charge tout ordre et toute densité de traits.",
+      de: "Berechnen Sie Beugungswinkel, Wellenlänge oder Gitterabstand mit d·sin(θ)=mλ. Unterstützt jede Ordnung und Liniendichte.",
+      pt: "Calcule ângulo de difração, comprimento de onda ou espaçamento da rede usando d·sin(θ)=mλ. Suporta qualquer ordem e densidade de linhas.",
+      ru: "Вычисляйте угол дифракции, длину волны или шаг решётки по d·sin(θ)=mλ. Поддерживаются любой порядок и плотность штрихов."
     }
   },
   {
@@ -1726,39 +1726,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "diopter-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "qu-guang-du-ji-suan-qi",
+      "zh-TW": "qu-guang-du-ji-suan-qi",
+      ja: "dioputa-keisanki",
+      ko: "diopteo-gyesangi",
+      es: "calculadora-dioptrias",
+      fr: "calculateur-dioptries",
+      de: "dioptrien-rechner",
+      pt: "calculadora-dioptrias",
+      ru: "kalkulyator-dioptriy"
     },
     titles: {
       en: "Diopter Calculator – Lens Power & Focal Length Converter",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "屈光度计算器 - 镜片度数与焦距换算",
+      "zh-TW": "屈光度計算器 - 鏡片度數與焦距換算",
+      ja: "ディオプター計算機 - レンズ度数と焦点距離変換",
+      ko: "디옵터 계산기 - 렌즈 도수와 초점거리 변환",
+      es: "Calculadora de dioptrías y potencia de lentes",
+      fr: "Calculateur de dioptries et puissance de lentille",
+      de: "Dioptrien-Rechner für Linsenstärke und Brennweite",
+      pt: "Calculadora de dioptrias e potência de lentes",
+      ru: "Калькулятор диоптрий и оптической силы линз"
     },
     descriptions: {
       en: "Convert focal length to diopters or diopters to focal length instantly. Supports m, cm, mm, inches and multi-lens combinations for optics and eyewear.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "快速将焦距换算为屈光度，或将屈光度换算为焦距。支持 m、cm、mm、英寸及多镜片组合。",
+      "zh-TW": "快速將焦距換算為屈光度，或將屈光度換算為焦距。支援 m、cm、mm、英寸與多鏡片組合。",
+      ja: "焦点距離からディオプターへ、またはディオプターから焦点距離へ即時変換。m、cm、mm、インチ、複数レンズに対応。",
+      ko: "초점거리를 디옵터로, 디옵터를 초점거리로 즉시 변환하세요. m, cm, mm, 인치와 다중 렌즈 조합을 지원합니다.",
+      es: "Convierte distancia focal a dioptrías o dioptrías a distancia focal al instante. Admite m, cm, mm, pulgadas y combinaciones de lentes.",
+      fr: "Convertissez instantanément distance focale en dioptries ou dioptries en distance focale. Prend en charge m, cm, mm, pouces et lentilles multiples.",
+      de: "Brennweite in Dioptrien oder Dioptrien in Brennweite sofort umrechnen. Unterstützt m, cm, mm, Zoll und Mehrlinsen-Kombinationen.",
+      pt: "Converta distância focal em dioptrias ou dioptrias em distância focal instantaneamente. Suporta m, cm, mm, polegadas e múltiplas lentes.",
+      ru: "Мгновенно переводите фокусное расстояние в диоптрии и обратно. Поддержка m, cm, mm, дюймов и комбинаций линз."
     }
   },
   {
@@ -1766,39 +1766,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "dipole-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "oujixiantianxian-jisuanqi-zhangdu-zudang",
+      "zh-TW": "oujixiantianxian-jisuanqi-zhangdu-zudang",
+      ja: "daiporu-antena-keisanki",
+      ko: "daipol-antena-gyesan-gi",
+      es: "calculadora-antena-dipolo",
+      fr: "calculateur-antenne-dipole",
+      de: "dipolantenne-rechner",
+      pt: "calculadora-antena-dipolo",
+      ru: "dipolnaya-antenna-kalkulyator"
     },
     titles: {
       en: "Dipole Antenna Calculator – Length, Wavelength & Impedance",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "偶极天线计算器",
+      "zh-TW": "偶極天線計算機",
+      ja: "ダイポールアンテナ計算機",
+      ko: "다이폴 안테나 계산기",
+      es: "Calculadora de antena dipolo",
+      fr: "Calculateur d’antenne dipôle",
+      de: "Dipolantenne-Rechner",
+      pt: "Calculadora de antena dipolo",
+      ru: "Калькулятор дипольной антенны"
     },
     descriptions: {
       en: "Calculate dipole antenna total length, arm size, and impedance for any frequency. Supports half-wave and quarter-wave designs with customisable velocity factor.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算任意频率下偶极天线的总长度、臂长和阻抗，支持半波与四分之一波设计，并可自定义速度因子。",
+      "zh-TW": "計算任意頻率下偶極天線的總長度、臂長與阻抗，支援半波與四分之一波設計，並可自訂速度因子。",
+      ja: "任意の周波数でダイポールアンテナの全長、アーム長、インピーダンスを計算。半波・1/4波と速度係数に対応。",
+      ko: "임의의 주파수에서 다이폴 안테나의 전체 길이, 각 팔 길이, 임피던스를 계산합니다. 반파 및 1/4파와 속도 계수를 지원합니다.",
+      es: "Calcula la longitud total, los brazos y la impedancia de una antena dipolo para cualquier frecuencia. Incluye media onda, cuarto de onda y factor de velocidad.",
+      fr: "Calculez la longueur totale, les bras et l’impédance d’une antenne dipôle pour toute fréquence. Demi-onde, quart d’onde et facteur de vitesse.",
+      de: "Berechnen Sie Gesamt­länge, Schenkellänge und Impedanz einer Dipolantenne für jede Frequenz. Unterstützt Halb- und Viertelwelle mit Geschwindigkeitsfaktor.",
+      pt: "Calcule o comprimento total, os braços e a impedância de uma antena dipolo para qualquer frequência. Suporta meia onda, quarto de onda e fator de velocidade.",
+      ru: "Рассчитайте общую длину, длину плеч и импеданс дипольной антенны для любой частоты. Поддерживает полуволновые, четвертьволновые схемы и коэффициент укорочения."
     }
   },
   {
@@ -3441,8 +3441,4 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   }
-
-
-
-
 ];
