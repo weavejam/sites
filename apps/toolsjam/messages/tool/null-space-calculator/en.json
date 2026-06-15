@@ -1,0 +1,99 @@
+{
+  "title": "Null Space Calculator - Find Matrix Kernel & Basis Vectors",
+  "tagline": "Find the null space (kernel) of any matrix up to 4×4, calculate basis vectors, rank, and nullity using Gauss-Jordan elimination.",
+  "intro": "Select the matrix dimensions, fill in the entries, and click Calculate to find all basis vectors of the null space and the rank of the matrix.",
+  "formula": "Method: Reduce A to RREF via Gauss-Jordan elimination, then read off basis vectors for each free variable.",
+  "field": {
+    "size": "Matrix Size",
+    "matrixLabel": "Matrix Entries",
+    "cell": "Row {row}, Column {col}"
+  },
+  "button": {
+    "calculate": "Calculate Null Space",
+    "example1": "Load 2×3 Example",
+    "example2": "Load Rank-Deficient 3×3",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please fill in all matrix cells with valid numbers."
+  },
+  "result": {
+    "heading": "Result",
+    "rank": "Rank",
+    "nullity": "Nullity",
+    "trivial": "The null space contains only the zero vector (trivial null space). The matrix has full column rank.",
+    "basisLabel": "Null space basis vectors:"
+  },
+  "about": {
+    "heading": "About the null space calculator",
+    "body": "The null space of a matrix A (also called the kernel of A) is the set of all vectors x that satisfy the homogeneous equation Ax = 0. Geometrically, it is the set of all vectors that the linear transformation represented by A maps to the zero vector. The null space is always a subspace of the domain space, and its dimension is called the nullity of the matrix.\n\nThe rank-nullity theorem is one of the central results of linear algebra: for an m × n matrix A, rank(A) + nullity(A) = n. This means that rank and nullity together always add up to the number of columns. A matrix with full column rank (rank = n) has a trivial null space containing only the zero vector. When the rank is less than n, the null space has positive dimension equal to n − rank, and there are infinitely many vectors satisfying Ax = 0.\n\nTo compute the null space, this calculator uses Gauss-Jordan elimination to reduce A to its Reduced Row Echelon Form (RREF). In RREF, each non-zero row has a leading 1 (pivot) and every other entry in that column is zero. The columns containing pivots correspond to basic variables; the remaining columns correspond to free variables. For each free variable, one can set it to 1 and all other free variables to 0, then back-substitute to find the values of the basic variables. The resulting vector is a basis vector of the null space.\n\nThe null space has important applications throughout applied mathematics and engineering. In linear systems of equations, the null space tells you about the non-uniqueness of solutions: if Ax = b has one solution x₀, then the general solution is x₀ plus any element of the null space. In control theory, the null space of a controllability matrix reveals uncontrollable modes. In signal processing, the null space of a measurement matrix identifies signals that are invisible to the sensor array. In chemistry, the null space of the stoichiometric matrix gives all conservation laws of a reaction network.\n\nFor numerical stability, this calculator uses partial pivoting during Gaussian elimination and treats any value smaller than 1e-10 in absolute value as zero. This makes the algorithm robust for matrices with integer or rational entries encountered in typical coursework and engineering problems. Enter any numbers — integers, decimals, or fractions expressed as decimals — and the calculator immediately returns the rank, nullity, and a complete set of null space basis vectors."
+  },
+  "examples": {
+    "heading": "Null space examples",
+    "intro": "Four examples spanning different matrix shapes and null space dimensions.",
+    "colInput": "Matrix",
+    "colOutput": "Null Space Basis",
+    "colNote": "Explanation",
+    "items": [
+      {
+        "input": "2×3: [[1,2,3],[4,5,6]]",
+        "output": "v1 = [1, −2, 1]",
+        "note": "Rank 2, nullity 1. One free variable produces one basis vector. Verify: 1·1 + 2·(−2) + 3·1 = 0 and 4·1 + 5·(−2) + 6·1 = 0."
+      },
+      {
+        "input": "3×3 Identity [[1,0,0],[0,1,0],[0,0,1]]",
+        "output": "Trivial (zero vector only)",
+        "note": "Full rank matrix: rank = 3, nullity = 0. The only solution to Ix = 0 is x = 0."
+      },
+      {
+        "input": "3×3 rank-deficient: [[1,2,3],[2,4,6],[1,1,2]]",
+        "output": "v1 = [−1, −1, 1]",
+        "note": "Rank 2, nullity 1. Rows 1 and 2 are linearly dependent (row 2 = 2×row 1). RREF yields pivot columns 0 and 1, free column 2; back-substitution gives v = [−1, −1, 1]."
+      },
+      {
+        "input": "2×2 zero matrix [[0,0],[0,0]]",
+        "output": "v1 = [1,0], v2 = [0,1]",
+        "note": "Rank 0, nullity 2. Every vector satisfies Ax = 0, so the entire R² is the null space with standard basis."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the null space calculator",
+    "steps": [
+      "Select the matrix dimensions (rows × columns) using the size buttons. Available sizes range from 2×2 to 4×4, including non-square matrices like 2×3 and 3×4.",
+      "Enter the matrix entries in the grid. Each cell accepts any real number including decimals and negatives. Leave blank cells will trigger an error.",
+      "Click Calculate Null Space. The result shows the rank, nullity, and all basis vectors of the null space.",
+      "Use the Load Example buttons to pre-fill classic examples: a 2×3 matrix with one-dimensional null space, or a rank-deficient 3×3 matrix.",
+      "Click Reset to clear all cells while keeping the current matrix size, or change the size selector to start fresh with a different matrix dimension."
+    ]
+  },
+  "faq": {
+    "heading": "Null space calculator FAQ",
+    "items": [
+      {
+        "q": "What is the null space of a matrix?",
+        "a": "The null space of a matrix A is the set of all vectors x such that Ax equals the zero vector. It represents all directions in the input space that the linear transformation A collapses to zero. The null space is always a subspace (it contains the zero vector, and is closed under addition and scalar multiplication). Its dimension, called the nullity, measures how much information A loses during the transformation."
+      },
+      {
+        "q": "How does Gauss-Jordan elimination find the null space?",
+        "a": "The algorithm converts A to Reduced Row Echelon Form (RREF) by applying row operations. In RREF, pivot columns and free columns are easily identified. For each free variable (non-pivot column), setting that variable to 1 and all others to 0, then solving back for the pivot variables, yields one null space basis vector. The complete null space is the span of all such vectors."
+      },
+      {
+        "q": "What does it mean if the null space is trivial?",
+        "a": "A trivial null space contains only the zero vector. This happens when the matrix has full column rank — every column is a pivot column and there are no free variables. For the equation Ax = 0, the unique solution is x = 0. A square matrix with trivial null space is invertible; a non-square matrix with trivial null space has the equation Ax = b with at most one solution for any b."
+      },
+      {
+        "q": "What is the rank-nullity theorem?",
+        "a": "The rank-nullity theorem states that for an m × n matrix A: rank(A) + nullity(A) = n, where n is the number of columns. Rank is the dimension of the column space (number of linearly independent columns), and nullity is the dimension of the null space. They are complementary: increasing rank decreases nullity and vice versa. This theorem is fundamental to understanding linear maps and systems of equations."
+      },
+      {
+        "q": "Can a non-square matrix have a null space?",
+        "a": "Yes. Any matrix where the number of columns exceeds the rank has a non-trivial null space. For a wide matrix with more columns than rows (m < n), the rank can be at most m, so nullity ≥ n − m > 0, guaranteeing a non-trivial null space. Tall matrices (more rows than columns) can still have a trivial null space if their columns are linearly independent."
+      },
+      {
+        "q": "Why might the basis vectors contain decimal values?",
+        "a": "When the matrix has non-integer entries or when back-substitution produces fractions, the null space basis vectors will have decimal components. This is mathematically correct — the null space is defined over the real numbers, not just integers. You can scale any basis vector by any non-zero constant and get an equally valid basis vector, so if you prefer integer components, multiply the vector by the LCM of its denominators."
+      }
+    ]
+  }
+}

@@ -187,10 +187,15 @@ import { fixtures as f_music_interval_calculator } from "@/tools/music-interval-
 import { fixtures as f_music_scale_calculator } from "@/tools/music-scale-calculator.fixtures";
 import { fixtures as f_music_transposition_calculator } from "@/tools/music-transposition-calculator.fixtures";
 import { fixtures as f_nanowrimo_calculator } from "@/tools/nanowrimo-calculator.fixtures";
+import { fixtures as f_natural_log_calculator } from "@/tools/natural-log-calculator.fixtures";
+import { fixtures as f_negative_log_calculator } from "@/tools/negative-log-calculator.fixtures";
 import { fixtures as f_nether_portal_calculator } from "@/tools/nether-portal-calculator.fixtures";
 import { fixtures as f_new_year_countdown_calculator } from "@/tools/new-year-countdown-calculator.fixtures";
 import { fixtures as f_new_years_resolutions_calculator } from "@/tools/new-years-resolutions-calculator.fixtures";
+import { fixtures as f_nor_calculator } from "@/tools/nor-calculator.fixtures";
 import { fixtures as f_note_frequency_calculator } from "@/tools/note-frequency-calculator.fixtures";
+import { fixtures as f_null_space_calculator } from "@/tools/null-space-calculator.fixtures";
+import { fixtures as f_octagon_calculator } from "@/tools/octagon-calculator.fixtures";
 import { fixtures as f_odd_parity_bit_calculator } from "@/tools/odd-parity-bit-calculator.fixtures";
 import { fixtures as f_odds_ratio_calculator } from "@/tools/odds-ratio-calculator.fixtures";
 import { fixtures as f_ohms_law_calculator } from "@/tools/ohms-law-calculator.fixtures";
@@ -556,10 +561,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "music-scale-calculator": f_music_scale_calculator,
   "music-transposition-calculator": f_music_transposition_calculator,
   "nanowrimo-calculator": f_nanowrimo_calculator,
+  "natural-log-calculator": f_natural_log_calculator,
+  "negative-log-calculator": f_negative_log_calculator,
   "nether-portal-calculator": f_nether_portal_calculator,
   "new-year-countdown-calculator": f_new_year_countdown_calculator,
   "new-years-resolutions-calculator": f_new_years_resolutions_calculator,
+  "nor-calculator": f_nor_calculator,
   "note-frequency-calculator": f_note_frequency_calculator,
+  "null-space-calculator": f_null_space_calculator,
+  "octagon-calculator": f_octagon_calculator,
   "odd-parity-bit-calculator": f_odd_parity_bit_calculator,
   "odds-ratio-calculator": f_odds_ratio_calculator,
   "ohms-law-calculator": f_ohms_law_calculator,
