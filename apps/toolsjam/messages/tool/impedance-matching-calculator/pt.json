@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de casamento de impedância - VSWR e potência",
+  "tagline": "Calcule VSWR, coeficiente de reflexão e eficiência de transferência de potência entre impedâncias de fonte e carga em sistemas RF e de antenas.",
+  "intro": "Informe as impedâncias da fonte e da carga (partes real e imaginária) para calcular parâmetros essenciais de casamento, incluindo VSWR, coeficiente de reflexão e eficiência de transferência de potência.",
+  "field": {
+    "sourceReal": "Impedância da fonte (real) Ω",
+    "sourceImag": "Impedância da fonte (imaginária) Ω",
+    "loadReal": "Impedância da carga (real) Ω",
+    "loadImag": "Impedância da carga (imaginária) Ω",
+    "frequency": "Frequência (MHz)",
+    "lineImpedance": "Impedância da linha de transmissão Ω",
+    "lineLength": "Comprimento da linha (m)"
+  },
+  "placeholder": {
+    "sourceReal": "ex.: 50",
+    "sourceImag": "ex.: 0",
+    "loadReal": "ex.: 75",
+    "loadImag": "ex.: 0",
+    "frequency": "ex.: 1000",
+    "lineImpedance": "ex.: 50",
+    "lineLength": "ex.: 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira números válidos para as impedâncias da fonte e da carga.",
+    "zeroSource": "A parte real da impedância da fonte não pode ser zero."
+  },
+  "result": {
+    "heading": "Resultados",
+    "reflectionCoeff": "Coeficiente de reflexão |Γ|",
+    "vswr": "VSWR",
+    "returnLoss": "Perda de retorno (dB)",
+    "powerTransfer": "Eficiência de transferência de potência (%)",
+    "mismatchLoss": "Perda por descasamento (dB)",
+    "perfectMatch": "Casamento perfeito — sem reflexões",
+    "goodMatch": "Bom casamento (VSWR < 2)",
+    "poorMatch": "Casamento ruim (VSWR ≥ 2)"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de casamento de impedância",
+    "body": "O casamento de impedância é um conceito fundamental em engenharia elétrica e projeto de RF. Quando a energia elétrica viaja de uma fonte para uma carga, a quantidade de potência entregue à carga depende de forma crítica de quão próxima a impedância da fonte está da impedância da carga. Um descasamento faz com que parte do sinal seja refletida de volta para a fonte, desperdiçando energia e podendo causar interferência, distorção do sinal ou até danos ao equipamento em aplicações de alta potência.\n\nO coeficiente de reflexão Γ (gama) é o principal parâmetro que quantifica um descasamento de impedância. Ele é um número complexo definido como Γ = (Z_L − Z_S) / (Z_L + Z_S), em que Z_L é a impedância da carga e Z_S é a impedância da fonte, ambas expressas como números complexos com partes real (resistiva) e imaginária (reativa). A magnitude |Γ| varia de 0 (casamento perfeito, sem reflexão) a 1 (reflexão total, sem transferência de potência).\n\nA razão de onda estacionária de tensão (VSWR) é um número real positivo derivado do coeficiente de reflexão: VSWR = (1 + |Γ|) / (1 − |Γ|). Um VSWR de 1:1 indica casamento de impedância perfeito, com toda a potência entregue à carga. Um VSWR de 2:1 significa que aproximadamente 11% da potência incidente é refletida. Um VSWR acima de 3:1 geralmente é considerado um casamento ruim e pode degradar significativamente o desempenho do sistema. Na prática, a maioria dos sistemas RF busca VSWR ≤ 2:1.\n\nA perda de retorno é expressa em decibéis e representa quanto da potência incidente é refletida: RL = −20 × log₁₀(|Γ|) dB. Um valor maior de perda de retorno significa menos potência refletida e melhor casamento. Uma perda de retorno de 20 dB corresponde a apenas 1% da potência refletida, o que é excelente para a maioria das aplicações.\n\nA eficiência de transferência de potência mede qual fração da potência disponível da fonte realmente chega à carga: eficiência = (1 − |Γ|²) × 100%. Uma perda por descasamento de 0.5 dB corresponde a cerca de 11% de potência perdida por reflexão, algo audível em sistemas de áudio e significativo em sistemas de comunicação.\n\nNa prática, o casamento de impedância é obtido com redes de componentes passivos — redes L, redes T ou redes pi — ou técnicas de linha de transmissão, como transformadores de quarto de onda e casamento por stub. A calculadora de casamento de impedância ajuda engenheiros de RF, projetistas de antenas e profissionais de telecomunicações a identificar rapidamente se o sistema atende aos requisitos de casamento e a quantificar a penalidade causada por qualquer descasamento."
+  },
+  "examples": {
+    "heading": "Exemplos de casamento de impedância",
+    "intro": "Cenários RF comuns mostrando como os valores de impedância da fonte e da carga se traduzem em VSWR e eficiência de transferência de potência.",
+    "colInput": "Cenário",
+    "colOutput": "VSWR / eficiência",
+    "colNote": "Interpretação",
+    "items": [
+      {
+        "input": "Fonte de 50Ω → carga de 50Ω (casamento perfeito)",
+        "output": "VSWR 1.00 / 100%",
+        "note": "Sem reflexões. Toda a potência disponível chega à carga. Ideal para sistemas de cabo coaxial em qualquer frequência."
+      },
+      {
+        "input": "Fonte de 50Ω → carga de 75Ω (casamento de antena)",
+        "output": "VSWR 1.50 / 96%",
+        "note": "|Γ| = 0.2. Apenas 4% da potência é refletida. Aceitável para a maioria dos sistemas de transmissão e vídeo sem rede de casamento."
+      },
+      {
+        "input": "Fonte de 50Ω → carga de 100−50jΩ (carga reativa)",
+        "output": "VSWR ≈ 2.62 / 80%",
+        "note": "|Γ| ≈ 0.447. Cerca de 20% da potência é refletida. Uma rede de casamento é recomendada para frequências acima de 100 MHz para melhorar a eficiência."
+      },
+      {
+        "input": "Fonte de 50Ω → carga de 25+30jΩ (RF de alta frequência)",
+        "output": "VSWR ≈ 2.87 / 77%",
+        "note": "|Γ| ≈ 0.483. Em 10 GHz, cerca de 23% da potência é refletida. Ajuste por stub ou uma rede L é necessário para reduzir o VSWR abaixo de 2:1."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de casamento de impedância",
+    "steps": [
+      "Insira as partes real (resistiva) e imaginária (reativa) da impedância da fonte em ohms. Para uma fonte puramente resistiva de 50Ω, insira 50 e 0.",
+      "Insira as partes real e imaginária da impedância da carga. Um valor imaginário positivo é indutivo; um valor negativo é capacitivo.",
+      "Opcionalmente, informe frequência, impedância da linha de transmissão e comprimento da linha para uma análise de sistema mais completa.",
+      "Clique em Calcular para ver o coeficiente de reflexão, VSWR, perda de retorno e eficiência de transferência de potência.",
+      "Use os resultados para decidir se uma rede de casamento é necessária e compare diferentes pares de impedância para encontrar o melhor compromisso de projeto."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre casamento de impedância",
+    "q1": "Qual é o VSWR ideal para um sistema RF?",
+    "q1_a": "Um VSWR de 1:1 é ideal, mas raramente é alcançado na prática. A maioria dos engenheiros de RF considera VSWR ≤ 2:1 aceitável, o que corresponde a um coeficiente de reflexão de 0.33 e a uma perda de retorno de cerca de 9.5 dB. Para aplicações de alto desempenho ou potência, é comum uma especificação mais rigorosa de VSWR ≤ 1.5:1.",
+    "q2": "Por que o descasamento de impedância é importante em sistemas RF?",
+    "q2_a": "O descasamento desperdiça potência de transmissão, reduz a sensibilidade do receptor e pode causar reflexões de sinal que criam ondas estacionárias na linha de transmissão. Em transmissores de alta potência, a potência refletida pode danificar o estágio de saída. Em equipamentos de medição de precisão, reflexões adicionam incerteza ao resultado da medição.",
+    "q3": "Qual é a diferença entre perda de retorno e perda por descasamento?",
+    "q3_a": "A perda de retorno mede a razão entre potência refletida e potência incidente em dB (quanto maior, melhor). A perda por descasamento mede a redução no ganho disponível causada pelo descasamento — quanto menos potência chega à carga em comparação com um sistema perfeitamente casado. Ambas derivam do coeficiente de reflexão, mas respondem a perguntas diferentes.",
+    "q4": "Como faço o casamento de impedância na prática?",
+    "q4_a": "Técnicas comuns incluem redes L, redes T ou redes pi de indutores e capacitores; transformadores de linha de transmissão de quarto de onda; e sintonizadores de stub simples ou duplos. A escolha depende da faixa de frequência, requisito de largura de banda, nível de potência e restrições de tamanho físico do projeto.",
+    "q5": "O sinal da parte imaginária da impedância importa?",
+    "q5_a": "Sim. Uma parte imaginária positiva indica impedância indutiva (a corrente atrasa em relação à tensão), enquanto uma parte imaginária negativa indica impedância capacitiva (a corrente adianta em relação à tensão). O sinal afeta a fase do coeficiente de reflexão e o tipo de rede de casamento necessária, embora a magnitude da reflexão e o VSWR dependam apenas de |Γ|.",
+    "q6": "Esta calculadora lida com linhas de transmissão complexas com perdas?",
+    "q6_a": "A calculadora atual usa teoria de linhas de transmissão sem perdas, precisa para a maioria dos cenários práticos em frequências RF com comprimentos de linha curtos a moderados. Para linhas muito longas ou em frequências de ondas milimétricas, onde perdas no condutor e no dielétrico são significativas, seria necessária uma ferramenta de simulação mais detalhada que inclua a constante de atenuação."
+  }
+}

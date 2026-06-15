@@ -1,0 +1,100 @@
+{
+  "title": "Calculateur d’adaptation d’impédance - VSWR et puissance",
+  "tagline": "Calculez le VSWR, le coefficient de réflexion et le rendement de transfert de puissance entre impédances de source et de charge pour les systèmes RF et d’antennes.",
+  "intro": "Saisissez les impédances de source et de charge (parties réelle et imaginaire) pour calculer les principaux paramètres d’adaptation, notamment le VSWR, le coefficient de réflexion et le rendement de transfert de puissance.",
+  "field": {
+    "sourceReal": "Impédance de source (réelle) Ω",
+    "sourceImag": "Impédance de source (imaginaire) Ω",
+    "loadReal": "Impédance de charge (réelle) Ω",
+    "loadImag": "Impédance de charge (imaginaire) Ω",
+    "frequency": "Fréquence (MHz)",
+    "lineImpedance": "Impédance de ligne de transmission Ω",
+    "lineLength": "Longueur de ligne (m)"
+  },
+  "placeholder": {
+    "sourceReal": "p. ex. 50",
+    "sourceImag": "p. ex. 0",
+    "loadReal": "p. ex. 75",
+    "loadImag": "p. ex. 0",
+    "frequency": "p. ex. 1000",
+    "lineImpedance": "p. ex. 50",
+    "lineLength": "p. ex. 5"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres valides pour les impédances de source et de charge.",
+    "zeroSource": "La partie réelle de l’impédance de source ne peut pas être nulle."
+  },
+  "result": {
+    "heading": "Résultats",
+    "reflectionCoeff": "Coefficient de réflexion |Γ|",
+    "vswr": "VSWR",
+    "returnLoss": "Perte de retour (dB)",
+    "powerTransfer": "Rendement de transfert de puissance (%)",
+    "mismatchLoss": "Perte de désadaptation (dB)",
+    "perfectMatch": "Adaptation parfaite — aucune réflexion",
+    "goodMatch": "Bonne adaptation (VSWR < 2)",
+    "poorMatch": "Mauvaise adaptation (VSWR ≥ 2)"
+  },
+  "about": {
+    "heading": "À propos du calculateur d’adaptation d’impédance",
+    "body": "L’adaptation d’impédance est un concept fondamental en génie électrique et en conception RF. Lorsque l’énergie électrique se propage d’une source vers une charge, la quantité de puissance délivrée à la charge dépend de manière critique de la proximité entre l’impédance de source et l’impédance de charge. Une désadaptation provoque la réflexion d’une partie du signal vers la source, ce qui gaspille de l’énergie et peut causer des interférences, une distorsion du signal, voire endommager l’équipement dans les applications de forte puissance.\n\nLe coefficient de réflexion Γ (gamma) est le principal paramètre qui quantifie une désadaptation d’impédance. C’est un nombre complexe défini par Γ = (Z_L − Z_S) / (Z_L + Z_S), où Z_L est l’impédance de charge et Z_S l’impédance de source, toutes deux exprimées comme des nombres complexes avec une partie réelle (résistive) et une partie imaginaire (réactive). Sa magnitude |Γ| varie de 0 (adaptation parfaite, aucune réflexion) à 1 (réflexion totale, aucun transfert de puissance).\n\nLe rapport d’ondes stationnaires en tension (VSWR) est un nombre réel positif dérivé du coefficient de réflexion : VSWR = (1 + |Γ|) / (1 − |Γ|). Un VSWR de 1:1 indique une adaptation d’impédance parfaite, avec toute la puissance délivrée à la charge. Un VSWR de 2:1 signifie qu’environ 11 % de la puissance incidente est réfléchie. Un VSWR supérieur à 3:1 est généralement considéré comme une mauvaise adaptation et peut dégrader fortement les performances du système. En pratique, la plupart des systèmes RF visent VSWR ≤ 2:1.\n\nLa perte de retour est exprimée en décibels et indique quelle part de la puissance incidente est réfléchie : RL = −20 × log₁₀(|Γ|) dB. Une valeur de perte de retour plus élevée signifie moins de puissance réfléchie et une meilleure adaptation. Une perte de retour de 20 dB correspond à seulement 1 % de puissance réfléchie, ce qui est excellent pour la plupart des applications.\n\nLe rendement de transfert de puissance mesure la fraction de la puissance disponible de la source qui atteint réellement la charge : rendement = (1 − |Γ|²) × 100 %. Une perte de désadaptation de 0.5 dB correspond à environ 11 % de puissance perdue par réflexion, ce qui est audible dans les systèmes audio et significatif dans les systèmes de communication.\n\nEn pratique, l’adaptation d’impédance est réalisée à l’aide de réseaux de composants passifs — réseaux en L, en T ou en pi — ou de techniques de lignes de transmission comme les transformateurs quart d’onde et l’adaptation par stub. Le calculateur d’adaptation d’impédance aide les ingénieurs RF, les concepteurs d’antennes et les professionnels des télécommunications à vérifier rapidement si leur système respecte les exigences d’adaptation et à quantifier la pénalité liée à toute désadaptation."
+  },
+  "examples": {
+    "heading": "Exemples d’adaptation d’impédance",
+    "intro": "Scénarios RF courants montrant comment les valeurs d’impédance de source et de charge se traduisent en VSWR et en rendement de transfert de puissance.",
+    "colInput": "Scénario",
+    "colOutput": "VSWR / rendement",
+    "colNote": "Interprétation",
+    "items": [
+      {
+        "input": "Source 50Ω → charge 50Ω (adaptation parfaite)",
+        "output": "VSWR 1.00 / 100%",
+        "note": "Aucune réflexion. Toute la puissance disponible atteint la charge. Idéal pour les systèmes à câble coaxial à toute fréquence."
+      },
+      {
+        "input": "Source 50Ω → charge 75Ω (adaptation d’antenne)",
+        "output": "VSWR 1.50 / 96%",
+        "note": "|Γ| = 0.2. Seulement 4 % de la puissance est réfléchie. Acceptable pour la plupart des systèmes de diffusion et vidéo sans réseau d’adaptation."
+      },
+      {
+        "input": "Source 50Ω → charge 100−50jΩ (charge réactive)",
+        "output": "VSWR ≈ 2.62 / 80%",
+        "note": "|Γ| ≈ 0.447. Environ 20 % de la puissance est réfléchie. Un réseau d’adaptation est recommandé au-dessus de 100 MHz pour améliorer le rendement."
+      },
+      {
+        "input": "Source 50Ω → charge 25+30jΩ (RF haute fréquence)",
+        "output": "VSWR ≈ 2.87 / 77%",
+        "note": "|Γ| ≈ 0.483. À 10 GHz, environ 23 % de la puissance est réfléchie. Un réglage par stub ou un réseau en L est nécessaire pour ramener le VSWR sous 2:1."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur d’adaptation d’impédance",
+    "steps": [
+      "Saisissez les parties réelle (résistive) et imaginaire (réactive) de l’impédance de source en ohms. Pour une source purement résistive de 50Ω, saisissez 50 et 0.",
+      "Saisissez les parties réelle et imaginaire de l’impédance de charge. Une valeur imaginaire positive est inductive ; une valeur négative est capacitive.",
+      "Vous pouvez aussi saisir la fréquence, l’impédance de ligne de transmission et la longueur de ligne pour une analyse système plus complète.",
+      "Cliquez sur Calculer pour afficher le coefficient de réflexion, le VSWR, la perte de retour et le rendement de transfert de puissance.",
+      "Utilisez les résultats pour déterminer si un réseau d’adaptation est nécessaire et comparez différentes paires d’impédances afin de trouver le meilleur compromis de conception."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur l’adaptation d’impédance",
+    "q1": "Quel est le VSWR idéal pour un système RF ?",
+    "q1_a": "Un VSWR de 1:1 est idéal, mais rarement atteint en pratique. La plupart des ingénieurs RF considèrent VSWR ≤ 2:1 comme acceptable, ce qui correspond à un coefficient de réflexion de 0.33 et à une perte de retour d’environ 9.5 dB. Pour les applications de haute performance ou de puissance, une spécification plus stricte de VSWR ≤ 1.5:1 est courante.",
+    "q2": "Pourquoi la désadaptation d’impédance est-elle importante dans les systèmes RF ?",
+    "q2_a": "La désadaptation gaspille la puissance d’émission, réduit la sensibilité du récepteur et peut provoquer des réflexions de signal qui créent des ondes stationnaires sur la ligne de transmission. Dans les émetteurs de forte puissance, la puissance réfléchie peut endommager l’étage de sortie. Dans les équipements de mesure de précision, les réflexions ajoutent de l’incertitude au résultat de mesure.",
+    "q3": "Quelle est la différence entre perte de retour et perte de désadaptation ?",
+    "q3_a": "La perte de retour mesure le rapport entre puissance réfléchie et puissance incidente en dB (plus elle est élevée, mieux c’est). La perte de désadaptation mesure la réduction du gain disponible due à la désadaptation — autrement dit, la puissance en moins qui atteint la charge par rapport à un système parfaitement adapté. Les deux sont dérivées du coefficient de réflexion, mais répondent à des questions différentes.",
+    "q4": "Comment réalise-t-on l’adaptation d’impédance en pratique ?",
+    "q4_a": "Les techniques courantes incluent les réseaux en L, en T ou en pi composés d’inductances et de condensateurs ; les transformateurs de ligne de transmission quart d’onde ; et les syntoniseurs à stub simple ou double. Le choix dépend de la plage de fréquences, de l’exigence de bande passante, du niveau de puissance et des contraintes de taille physique du design.",
+    "q5": "Le signe de la partie imaginaire de l’impédance est-il important ?",
+    "q5_a": "Oui. Une partie imaginaire positive indique une impédance inductive (le courant est en retard sur la tension), tandis qu’une partie imaginaire négative indique une impédance capacitive (le courant est en avance sur la tension). Le signe affecte la phase du coefficient de réflexion et le type de réseau d’adaptation nécessaire, même si la magnitude de la réflexion et le VSWR ne dépendent que de |Γ|.",
+    "q6": "Ce calculateur peut-il traiter des lignes de transmission complexes avec pertes ?",
+    "q6_a": "Le calculateur actuel utilise la théorie des lignes de transmission sans pertes, précise pour la plupart des scénarios pratiques aux fréquences RF avec des longueurs de ligne courtes à modérées. Pour des lignes très longues ou aux fréquences millimétriques où les pertes conductrices et diélectriques sont importantes, un outil de simulation plus détaillé incluant la constante d’atténuation serait nécessaire."
+  }
+}

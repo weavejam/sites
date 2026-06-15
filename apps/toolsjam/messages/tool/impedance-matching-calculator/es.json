@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de adaptación de impedancias - VSWR y potencia",
+  "tagline": "Calcula el VSWR, el coeficiente de reflexión y la eficiencia de transferencia de potencia entre impedancias de fuente y carga en sistemas RF y de antenas.",
+  "intro": "Introduce las impedancias de fuente y carga (partes real e imaginaria) para calcular parámetros clave de adaptación, como VSWR, coeficiente de reflexión y eficiencia de transferencia de potencia.",
+  "field": {
+    "sourceReal": "Impedancia de fuente (real) Ω",
+    "sourceImag": "Impedancia de fuente (imaginaria) Ω",
+    "loadReal": "Impedancia de carga (real) Ω",
+    "loadImag": "Impedancia de carga (imaginaria) Ω",
+    "frequency": "Frecuencia (MHz)",
+    "lineImpedance": "Impedancia de línea de transmisión Ω",
+    "lineLength": "Longitud de línea (m)"
+  },
+  "placeholder": {
+    "sourceReal": "p. ej. 50",
+    "sourceImag": "p. ej. 0",
+    "loadReal": "p. ej. 75",
+    "loadImag": "p. ej. 0",
+    "frequency": "p. ej. 1000",
+    "lineImpedance": "p. ej. 50",
+    "lineLength": "p. ej. 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce números válidos para las impedancias de fuente y carga.",
+    "zeroSource": "La parte real de la impedancia de fuente no puede ser cero."
+  },
+  "result": {
+    "heading": "Resultados",
+    "reflectionCoeff": "Coeficiente de reflexión |Γ|",
+    "vswr": "VSWR",
+    "returnLoss": "Pérdida de retorno (dB)",
+    "powerTransfer": "Eficiencia de transferencia de potencia (%)",
+    "mismatchLoss": "Pérdida por desadaptación (dB)",
+    "perfectMatch": "Adaptación perfecta — sin reflexiones",
+    "goodMatch": "Buena adaptación (VSWR < 2)",
+    "poorMatch": "Mala adaptación (VSWR ≥ 2)"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de adaptación de impedancias",
+    "body": "La adaptación de impedancias es un concepto fundamental en ingeniería eléctrica y diseño RF. Cuando la energía eléctrica viaja de una fuente a una carga, la cantidad de potencia entregada a la carga depende de forma crítica de lo bien que la impedancia de la fuente coincida con la impedancia de la carga. Una desadaptación hace que una parte de la señal se refleje hacia la fuente, desperdiciando energía y pudiendo causar interferencias, distorsión de señal o incluso daños en equipos en aplicaciones de alta potencia.\n\nEl coeficiente de reflexión Γ (gamma) es el parámetro principal que cuantifica una desadaptación de impedancia. Es un número complejo definido como Γ = (Z_L − Z_S) / (Z_L + Z_S), donde Z_L es la impedancia de carga y Z_S es la impedancia de fuente, ambas expresadas como números complejos con partes real (resistiva) e imaginaria (reactiva). La magnitud |Γ| va de 0 (adaptación perfecta, sin reflexión) a 1 (reflexión total, sin transferencia de potencia).\n\nLa relación de onda estacionaria de tensión (VSWR) es un número real positivo derivado del coeficiente de reflexión: VSWR = (1 + |Γ|) / (1 − |Γ|). Un VSWR de 1:1 indica una adaptación de impedancia perfecta, con toda la potencia entregada a la carga. Un VSWR de 2:1 significa que aproximadamente el 11% de la potencia incidente se refleja. Un VSWR superior a 3:1 suele considerarse una mala adaptación y puede degradar significativamente el rendimiento del sistema. En la práctica, la mayoría de los sistemas RF apuntan a VSWR ≤ 2:1.\n\nLa pérdida de retorno se expresa en decibelios y representa cuánta potencia incidente se refleja: RL = −20 × log₁₀(|Γ|) dB. Un valor mayor de pérdida de retorno significa menos potencia reflejada y una mejor adaptación. Una pérdida de retorno de 20 dB corresponde a solo un 1% de potencia reflejada, lo cual es excelente para la mayoría de las aplicaciones.\n\nLa eficiencia de transferencia de potencia mide qué fracción de la potencia disponible de la fuente llega realmente a la carga: eficiencia = (1 − |Γ|²) × 100%. Una pérdida por desadaptación de 0.5 dB corresponde a aproximadamente un 11% de potencia perdida por reflexión, algo audible en sistemas de audio y significativo en sistemas de comunicación.\n\nEn la práctica, la adaptación de impedancias se consigue mediante redes de componentes pasivos —redes L, redes T o redes pi— o técnicas de líneas de transmisión como transformadores de cuarto de onda y adaptación con stubs. La calculadora de adaptación de impedancias ayuda a ingenieros RF, diseñadores de antenas y profesionales de telecomunicaciones a identificar rápidamente si su sistema cumple los requisitos de adaptación y a cuantificar la penalización de cualquier desadaptación."
+  },
+  "examples": {
+    "heading": "Ejemplos de adaptación de impedancias",
+    "intro": "Escenarios RF comunes que muestran cómo los valores de impedancia de fuente y carga se traducen en VSWR y eficiencia de transferencia de potencia.",
+    "colInput": "Escenario",
+    "colOutput": "VSWR / eficiencia",
+    "colNote": "Interpretación",
+    "items": [
+      {
+        "input": "Fuente de 50Ω → carga de 50Ω (adaptación perfecta)",
+        "output": "VSWR 1.00 / 100%",
+        "note": "Sin reflexiones. Toda la potencia disponible llega a la carga. Ideal para sistemas de cable coaxial a cualquier frecuencia."
+      },
+      {
+        "input": "Fuente de 50Ω → carga de 75Ω (adaptación de antena)",
+        "output": "VSWR 1.50 / 96%",
+        "note": "|Γ| = 0.2. Solo se refleja el 4% de la potencia. Aceptable para la mayoría de sistemas de radiodifusión y vídeo sin red de adaptación."
+      },
+      {
+        "input": "Fuente de 50Ω → carga de 100−50jΩ (carga reactiva)",
+        "output": "VSWR ≈ 2.62 / 80%",
+        "note": "|Γ| ≈ 0.447. Se refleja alrededor del 20% de la potencia. Se recomienda una red de adaptación para frecuencias superiores a 100 MHz a fin de mejorar la eficiencia."
+      },
+      {
+        "input": "Fuente de 50Ω → carga de 25+30jΩ (RF de alta frecuencia)",
+        "output": "VSWR ≈ 2.87 / 77%",
+        "note": "|Γ| ≈ 0.483. A 10 GHz, se refleja cerca del 23% de la potencia. Se requiere ajuste con stub o una red L para llevar el VSWR por debajo de 2:1."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de adaptación de impedancias",
+    "steps": [
+      "Introduce las partes real (resistiva) e imaginaria (reactiva) de la impedancia de fuente en ohmios. Para una fuente puramente resistiva de 50Ω, introduce 50 y 0.",
+      "Introduce las partes real e imaginaria de la impedancia de carga. Un valor imaginario positivo es inductivo; uno negativo es capacitivo.",
+      "Opcionalmente, introduce frecuencia, impedancia de línea de transmisión y longitud de línea para un análisis de sistema más completo.",
+      "Haz clic en Calcular para ver el coeficiente de reflexión, el VSWR, la pérdida de retorno y la eficiencia de transferencia de potencia.",
+      "Usa los resultados para decidir si se necesita una red de adaptación y compara diferentes pares de impedancias para encontrar el mejor compromiso de diseño."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre adaptación de impedancias",
+    "q1": "¿Cuál es el VSWR ideal para un sistema RF?",
+    "q1_a": "Un VSWR de 1:1 es ideal, pero rara vez se logra en la práctica. La mayoría de los ingenieros RF consideran aceptable VSWR ≤ 2:1, lo que corresponde a un coeficiente de reflexión de 0.33 y una pérdida de retorno de unos 9.5 dB. En aplicaciones de alto rendimiento o potencia, es común una especificación más estricta de VSWR ≤ 1.5:1.",
+    "q2": "¿Por qué importa la desadaptación de impedancias en sistemas RF?",
+    "q2_a": "La desadaptación desperdicia potencia de transmisión, reduce la sensibilidad del receptor y puede causar reflexiones de señal que crean ondas estacionarias en la línea de transmisión. En transmisores de alta potencia, la potencia reflejada puede dañar la etapa de salida. En equipos de medición de precisión, las reflexiones añaden incertidumbre al resultado de la medición.",
+    "q3": "¿Cuál es la diferencia entre pérdida de retorno y pérdida por desadaptación?",
+    "q3_a": "La pérdida de retorno mide la relación entre potencia reflejada y potencia incidente en dB (cuanto mayor, mejor). La pérdida por desadaptación mide la reducción de ganancia disponible debida a la desadaptación: cuánta menos potencia llega a la carga en comparación con un sistema perfectamente adaptado. Ambas se derivan del coeficiente de reflexión, pero responden a preguntas distintas.",
+    "q4": "¿Cómo se consigue la adaptación de impedancias en la práctica?",
+    "q4_a": "Las técnicas comunes incluyen redes L, redes T o redes pi de inductores y condensadores; transformadores de línea de transmisión de cuarto de onda; y sintonizadores de stub simples o dobles. La elección depende del rango de frecuencia, el requisito de ancho de banda, el nivel de potencia y las restricciones de tamaño físico del diseño.",
+    "q5": "¿Importa el signo de la parte imaginaria de la impedancia?",
+    "q5_a": "Sí. Una parte imaginaria positiva indica una impedancia inductiva (la corriente se retrasa respecto a la tensión), mientras que una parte imaginaria negativa indica una impedancia capacitiva (la corriente se adelanta a la tensión). El signo afecta a la fase del coeficiente de reflexión y al tipo de red de adaptación necesaria, aunque la magnitud de la reflexión y el VSWR dependen solo de |Γ|.",
+    "q6": "¿Puede esta calculadora manejar líneas de transmisión complejas con pérdidas?",
+    "q6_a": "La calculadora actual usa teoría de líneas de transmisión sin pérdidas, precisa para la mayoría de escenarios prácticos en frecuencias RF con longitudes de línea cortas o moderadas. Para líneas muy largas o frecuencias de ondas milimétricas donde las pérdidas del conductor y del dieléctrico son significativas, se necesitaría una herramienta de simulación más detallada que incluya la constante de atenuación."
+  }
+}

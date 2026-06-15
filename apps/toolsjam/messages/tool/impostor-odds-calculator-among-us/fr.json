@@ -1,0 +1,95 @@
+{
+  "title": "Calculateur de probabilité d'imposteur - Among Us",
+  "tagline": "Calculez la probabilité qu'un joueur précis soit un imposteur dans Among Us selon le nombre total de joueurs, d'imposteurs et de joueurs vivants.",
+  "intro": "Saisissez le nombre total de joueurs, le nombre d'imposteurs, les joueurs vivants et combien vous trouvez suspects pour voir les probabilités exactes d'imposteur.",
+  "field": {
+    "totalPlayers": "Nombre total de joueurs",
+    "numImpostors": "Nombre d'imposteurs",
+    "alivePlayers": "Joueurs vivants",
+    "suspiciousPlayers": "Joueurs suspects"
+  },
+  "placeholder": {
+    "totalPlayers": "ex. 10",
+    "numImpostors": "ex. 2",
+    "alivePlayers": "ex. 8",
+    "suspiciousPlayers": "ex. 3"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des entiers positifs valides dans tous les champs.",
+    "impostorsExceedAlive": "Le nombre d'imposteurs ne peut pas dépasser le nombre de joueurs vivants.",
+    "suspiciousExceedAlive": "Le nombre de joueurs suspects ne peut pas dépasser le nombre de joueurs vivants.",
+    "impostorsExceedTotal": "Le nombre d'imposteurs ne peut pas dépasser le nombre total de joueurs."
+  },
+  "result": {
+    "heading": "Résultats",
+    "baseOdds": "Probabilité de base d'être imposteur (n'importe quel joueur)",
+    "suspiciousOdds": "Prob. qu'il y ait au moins 1 imposteur parmi les suspects",
+    "crewOdds": "Prob. qu'un joueur aléatoire soit un équipier",
+    "impostorRatio": "Ratio d'imposteurs",
+    "safeToVote": "La majorité du groupe suspect est probablement des imposteurs — envisagez de voter.",
+    "cautious": "Moins de la moitié du groupe suspect est probablement des imposteurs — votez avec prudence.",
+    "endGame": "Situation de fin de partie : les imposteurs peuvent égaler ou dépasser les équipiers."
+  },
+  "about": {
+    "heading": "À propos du calculateur de probabilité d'imposteur Among Us",
+    "body": "Among Us est un jeu de déduction sociale dans lequel un petit nombre d'imposteurs se cache parmi un groupe plus large d'équipiers. Les équipiers tentent d'accomplir des tâches et d'identifier les imposteurs ; les imposteurs tentent de saboter et d'éliminer les équipiers sans être détectés. Comme le jeu repose entièrement sur une information incomplète et un raisonnement probabiliste, comprendre les mathématiques sous-jacentes peut améliorer sensiblement vos décisions stratégiques.\n\nLa probabilité la plus fondamentale dans Among Us est la probabilité de base d'être imposteur : la chance qu'un joueur choisi au hasard soit un imposteur. Il s'agit simplement du nombre d'imposteurs survivants divisé par le nombre de joueurs vivants. Dans une partie standard à 10 joueurs avec 2 imposteurs et 8 joueurs encore en vie, le taux de base est de 2/8 = 25 %. Cette base éclaire chaque déduction que vous faites pendant une réunion.\n\nLorsque vous désignez un groupe de joueurs suspects — par exemple 3 personnes au comportement étrange — vous pouvez vous demander : quelle est la probabilité qu'au moins l'un de ces trois soit imposteur ? C'est un problème de probabilité hypergéométrique. La formule calcule le complément de l'événement où les trois suspects seraient tous des équipiers, compte tenu de la population connue d'imposteurs et d'équipiers. Une probabilité supérieure à 50 % suggère qu'un vote est mathématiquement justifié ; en dessous de 50 %, vous avez plus de chances d'éjecter un équipier innocent qu'un véritable imposteur.\n\nLa situation de fin de partie est particulièrement critique dans Among Us. Lorsque les imposteurs égalent les équipiers en nombre, les équipiers perdent le vote : ils ne peuvent plus éliminer un imposteur à la majorité, même avec une information parfaite. Savoir quand la partie atteint ce point de bascule, et agir avant, est l'une des idées stratégiques les plus importantes que ce calculateur peut fournir.\n\nLes mathématiques combinatoires expliquent aussi pourquoi éjecter trop tôt un équipier est si coûteux. Chaque mauvais vote retire un équipier, réduit le nombre de votes disponibles pour la majorité et accélère la course vers la parité avec les imposteurs. À l'inverse, l'élimination correcte d'un imposteur modifie fortement le paysage probabiliste, rendant les joueurs restants proportionnellement plus sûrs en moyenne.\n\nMême si le calculateur ne remplace pas l'observation, la vérification des tâches et la communication entre joueurs, il vous donne une base mathématique précise pour vos décisions. Utilisez-le pour comprendre à quel point les probabilités changent lorsque des joueurs sont éliminés, à quel point votre liste de suspects doit se resserrer avant qu'un vote soit statistiquement pertinent, et à quel point la partie est proche d'une victoire des imposteurs."
+  },
+  "examples": {
+    "heading": "Exemples de probabilité d'imposteur Among Us",
+    "intro": "Scénarios de jeu montrant comment le nombre de joueurs et les informations modifient la probabilité qu'un joueur suspect soit un imposteur.",
+    "colInput": "État de la partie",
+    "colOutput": "Probabilité de base d'imposteur",
+    "colNote": "Lecture stratégique",
+    "items": [
+      {
+        "input": "10 joueurs, 2 imposteurs, 10 vivants, 0 suspects",
+        "output": "20 % par joueur",
+        "note": "Début de partie sans information. Chaque joueur a une chance sur cinq d'être imposteur. Concentrez-vous sur les tâches et la collecte de preuves avant le premier vote."
+      },
+      {
+        "input": "10 joueurs, 2 imposteurs, 8 vivants, 3 suspects",
+        "output": "25 % de base ; ~64 % d'au moins 1 dans le groupe",
+        "note": "Milieu de partie. P(au moins 1 imposteur parmi 3) = 1 − C(6,3)/C(8,3) = 1 − 20/56 ≈ 64 %. Voter est statistiquement justifié avec 64 % de chances d'attraper un imposteur."
+      },
+      {
+        "input": "6 joueurs, 1 imposteur, 6 vivants, 2 suspects",
+        "output": "Base ~17 % ; ~33 % d'au moins 1 dans le groupe",
+        "note": "Petite partie avec 1 imposteur. La probabilité que l'imposteur soit dans le duo suspect n'est que de 1/3. Mieux vaut rassembler davantage de preuves avant de voter."
+      },
+      {
+        "input": "10 joueurs, 2 imposteurs, 4 vivants, 2 suspects",
+        "output": "50 % de base — fin de partie",
+        "note": "Situation critique de fin de partie. Les imposteurs représentent 2 des 4 joueurs restants. Si les suspects sont les bonnes cibles, les équipiers doivent agir immédiatement pour éviter de perdre par parité."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de probabilité d'imposteur",
+    "steps": [
+      "Saisissez le nombre total de joueurs dans le lobby au début de la partie (généralement 4 à 15).",
+      "Saisissez le nombre d'imposteurs configuré pour la partie (généralement 1, 2 ou 3).",
+      "Saisissez le nombre de joueurs actuellement vivants — mettez-le à jour à chaque élimination.",
+      "Saisissez le nombre de joueurs que vous trouvez actuellement suspects pour voir la probabilité qu'au moins l'un d'eux soit un imposteur.",
+      "Utilisez les résultats pour guider vos votes : une probabilité supérieure à 50 % pour le groupe suspect appuie un vote, tandis qu'en dessous de 50 % il vaut mieux attendre davantage de preuves."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la probabilité d'imposteur Among Us",
+    "q1": "Comment la probabilité de base d'imposteur est-elle calculée ?",
+    "q1_a": "La probabilité de base est simplement imposteurs ÷ joueurs vivants. S'il reste 2 imposteurs parmi 8 joueurs vivants, chaque joueur a 25 % de chances d'être un imposteur. Cette base change à chaque expulsion, qu'il s'agisse d'un imposteur ou d'un équipier.",
+    "q2": "Que signifie la probabilité du groupe suspect ?",
+    "q2_a": "C'est la probabilité qu'au moins un des joueurs signalés soit un imposteur, calculée à l'aide de la distribution hypergéométrique. Elle répond à la question : « Si je vote ce groupe, quelle est la probabilité d'éjecter au moins un imposteur ? » Un résultat supérieur à 50 % signifie que le vote est statistiquement solide ; en dessous de 50 %, vous risquez davantage de gaspiller votre vote.",
+    "q3": "Quand les imposteurs gagnent-ils par défaut dans Among Us ?",
+    "q3_a": "Les imposteurs gagnent lorsque leur nombre atteint ou dépasse celui des équipiers survivants, car ils peuvent alors bloquer tout vote visant à en éjecter un des leurs. À ce moment-là, les équipiers ne peuvent plus gagner par le vote seul. Reconnaître tôt cette condition de fin de partie — et agir avant qu'elle n'arrive — est une compétence tactique cruciale.",
+    "q4": "Ce calculateur tient-il compte des tâches ou des sabotages ?",
+    "q4_a": "Non. Le calculateur se concentre sur les probabilités de vote basées sur les effectifs. Gagner en complétant les tâches est une condition de victoire parallèle qui ne dépend pas du nombre d'imposteurs de la même manière. Quand les équipiers sont proches de terminer toutes les tâches, le calcul change et pousser la complétion des tâches peut être plus sûr que des votes risqués.",
+    "q5": "Le calculateur peut-il aider à analyser les auto-signalements ?",
+    "q5_a": "Indirectement oui. Si un joueur signale un corps et devient fortement suspect, mettre à jour le nombre de suspects avec cette personne incluse montre comment la probabilité évolue. Combiné aux observations sur l'avancement des tâches, le calculateur vous aide à déterminer si l'auto-signalement ressemble à un comportement d'imposteur ou à de la malchance pour un équipier.",
+    "q6": "Quels sont les nombres d'imposteurs typiques selon la taille du lobby ?",
+    "q6_a": "Dans Among Us standard, on utilise 1 imposteur pour 4 à 6 joueurs, 2 imposteurs pour 7 à 9 joueurs et 3 imposteurs pour 10 à 15 joueurs. Mettre trop d'imposteurs dans un petit lobby rend la victoire quasi impossible pour les équipiers ; en mettre trop peu dans un grand lobby crée des taux de base par joueur très faibles et augmente l'importance de la collecte de preuves."
+  }
+}
