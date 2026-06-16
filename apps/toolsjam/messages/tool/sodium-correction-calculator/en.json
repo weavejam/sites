@@ -1,0 +1,129 @@
+{
+  "title": "Sodium Correction Calculator",
+  "tagline": "Calculate sodium deficit, required infusion volume, and correction time for hyponatremia and hypernatremia.",
+  "intro": "Enter the patient's current and target sodium levels, weight, and sex to compute the sodium deficit, infusion volume, and estimated correction time.",
+  "field": {
+    "currentSodium": "Current Sodium Level",
+    "currentSodiumUnit": "mEq/L",
+    "desiredSodium": "Desired Sodium Level",
+    "desiredSodiumUnit": "mEq/L",
+    "weight": "Patient Weight",
+    "weightUnit": "kg",
+    "gender": "Gender",
+    "correctionRate": "Correction Rate",
+    "fluidType": "Fluid Type",
+    "placeholder": {
+      "currentSodium": "e.g., 125",
+      "desiredSodium": "e.g., 135",
+      "weight": "e.g., 70"
+    }
+  },
+  "gender": {
+    "male": "Male",
+    "female": "Female"
+  },
+  "correctionRate": {
+    "conservative": "Conservative (0.5 mEq/L/hr)",
+    "moderate": "Moderate (1.0 mEq/L/hr)",
+    "aggressive": "Aggressive (2.0 mEq/L/hr)"
+  },
+  "fluidType": {
+    "ns": "Normal Saline (0.9% NaCl) — 154 mEq/L",
+    "hts": "Hypertonic Saline (3% NaCl) — 513 mEq/L",
+    "halfNs": "Half Normal Saline (0.45% NaCl) — 77 mEq/L"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "tbw": "Total Body Water (TBW)",
+    "tbwUnit": "L",
+    "deficit": "Sodium Deficit",
+    "deficitUnit": "mEq",
+    "volume": "Infusion Volume",
+    "volumeUnit": "mL",
+    "time": "Estimated Correction Time",
+    "timeUnit": "hours",
+    "rate": "Infusion Rate",
+    "rateUnit": "mL/hr"
+  },
+  "error": {
+    "invalid": "Please enter valid values for all required fields.",
+    "sameNa": "Current and desired sodium levels must be different.",
+    "fluidNa": "The selected fluid cannot correct sodium in the desired direction. For hyponatremia, use a fluid with sodium above the current level. For hypernatremia, use a hypotonic fluid with sodium below the current level."
+  },
+  "about": {
+    "heading": "About the Sodium Correction Calculator",
+    "body": "Dysnatremia — abnormal sodium concentration in the blood — is one of the most common electrolyte disorders encountered in clinical medicine. Both hyponatremia (serum sodium below 135 mEq/L) and hypernatremia (above 145 mEq/L) carry significant morbidity and mortality if untreated or corrected too rapidly. This calculator provides a systematic, formula-driven approach to planning sodium replacement or removal therapy.\n\nThe foundation of the calculation is the Adrogue-Madias formula, which estimates the change in serum sodium produced by one litre of a given infusion fluid: ΔNa = (Fluid Na − Serum Na) ÷ (TBW + 1). However, for practical clinical planning the sodium deficit approach is equally useful: Sodium Deficit (mEq) = TBW × (Desired Na − Current Na), where TBW is total body water estimated from body weight and sex. For adult males TBW is approximately 60% of body weight; for adult females it is approximately 50%, reflecting differences in lean body mass and adipose tissue distribution.\n\nOnce the deficit is known, the required volume of the chosen infusion fluid is: Volume (mL) = Sodium Deficit ÷ (Fluid Na concentration − Current Na). The infusion rate is then determined by dividing this volume by the target correction time, which itself is calculated from the magnitude of the sodium change divided by the chosen correction rate.\n\nCorrection rate selection is critical to patient safety. In chronic hyponatremia (present for more than 48 hours), rapid correction risks osmotic demyelination syndrome (ODS), a devastating neurological complication. The generally accepted safe limit is no more than 8–10 mEq/L per 24 hours, corresponding to a conservative rate of about 0.5 mEq/L per hour. In acute symptomatic hyponatremia (duration under 48 hours) — particularly when the patient has seizures or coma — faster initial correction up to 1–2 mEq/L per hour for the first one to two hours may be acceptable to prevent brain herniation, with subsequent slowing once symptoms resolve.\n\nFor hypernatremia, the guiding principle is gradual free-water replacement. The correction rate should generally not exceed 0.5 mEq/L per hour (approximately 10–12 mEq/L per 24 hours) to avoid cerebral oedema from the rapid shift of water into brain cells that have adapted to a hyperosmolar environment.\n\nFluid type matters as much as rate. Hypertonic saline (3% NaCl, sodium content 513 mEq/L) is used to raise sodium in severe hyponatremia. Normal saline (0.9% NaCl, 154 mEq/L) is appropriate for mild to moderate cases. Half-normal saline (0.45% NaCl, 77 mEq/L) or free water solutions are used to lower sodium in hypernatremia.\n\nThis calculator is a clinical decision-support tool. Individual patient factors — ongoing losses, renal function, diuretic use, and comorbidities — may substantially alter fluid and electrolyte requirements. All treatment plans should be implemented under the supervision of a qualified clinician with frequent laboratory monitoring."
+  },
+  "examples": {
+    "heading": "Examples",
+    "intro": "Clinical scenarios illustrating sodium correction calculations for common electrolyte disorders.",
+    "colInput": "Patient Parameters",
+    "colOutput": "Key Results",
+    "colNote": "Clinical notes",
+    "items": [
+      {
+        "input": "Na 130 → 135, M, 70 kg, Conservative, NS",
+        "output": "Deficit 210 mEq, Volume 8750 mL, Rate 875 mL/hr, Time 10 hr",
+        "note": "Mild hyponatremia — NS requires a large volume (8.75 L) because its Na is only 24 mEq/L above serum; consider HTS for a smaller volume."
+      },
+      {
+        "input": "Na 115 → 125, F, 65 kg, Moderate, 3% NaCl",
+        "output": "Deficit 325 mEq, Volume 817 mL, Rate 82 mL/hr, Time 10 hr",
+        "note": "Severe hyponatremia — hypertonic saline is volume-efficient; monitor serum sodium every 2–4 hours."
+      },
+      {
+        "input": "Na 155 → 145, M, 80 kg, Conservative, 0.45% NaCl",
+        "output": "Deficit −480 mEq, Volume 6154 mL, Rate 308 mL/hr, Time 20 hr",
+        "note": "Hypernatremia — gradual correction with hypotonic fluid over ~20 hours to prevent cerebral oedema."
+      },
+      {
+        "input": "Na 120 → 130, F, 60 kg, Aggressive, 3% NaCl",
+        "output": "Deficit 300 mEq, Volume 763 mL, Rate 153 mL/hr, Time 5 hr",
+        "note": "Acute severe hyponatremia with symptoms — aggressive initial correction, then reassess and slow down."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use this calculator",
+    "steps": [
+      "Enter the patient's current measured serum sodium level in mEq/L.",
+      "Enter the desired (target) sodium level based on clinical guidelines — typically 135 mEq/L for hyponatremia or 140–145 mEq/L for hypernatremia.",
+      "Enter the patient's body weight in kilograms and select the biological sex for accurate TBW estimation.",
+      "Select a correction rate (Conservative 0.5, Moderate 1.0, or Aggressive 2.0 mEq/L/hr) appropriate to the acuity and symptom severity.",
+      "Choose the infusion fluid type and click Calculate. Review the deficit, volume, and infusion rate before implementing any treatment."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "What is the maximum safe correction rate for chronic hyponatremia?",
+        "a": "For chronic hyponatremia (present for more than 48 hours), the widely accepted limit is 8–10 mEq/L per 24 hours to prevent osmotic demyelination syndrome. Some guidelines allow up to 12 mEq/L per 24 hours in patients at low risk of ODS. Exceeding these limits, especially in alcoholics and malnourished patients, substantially increases the risk of this irreversible neurological complication."
+      },
+      {
+        "q": "How is total body water estimated?",
+        "a": "TBW is estimated as 60% of body weight for males and 50% for females, based on population-average body composition data. These factors reflect the higher lean-to-fat ratio in males, since lean tissue contains more water than adipose tissue. In elderly or obese patients TBW may be proportionally lower, so the calculator may overestimate correction volumes in these groups."
+      },
+      {
+        "q": "When should hypertonic saline be used?",
+        "a": "Hypertonic saline (3% NaCl) is indicated for severe symptomatic hyponatremia — when the patient has seizures, altered consciousness, or herniation signs — regardless of chronicity. The goal is a rapid initial rise of 1–2 mEq/L per hour for the first hour or two to reverse brain oedema, followed by a return to conservative correction rates once acute symptoms resolve."
+      },
+      {
+        "q": "Why does the infusion volume for hypernatremia look so large?",
+        "a": "In hypernatremia the goal is to provide free water (not sodium) to dilute the elevated sodium concentration. Hypotonic fluids have a sodium content well below the serum level, so the numerator of the volume formula is large. A 10 mEq/L correction in an 80 kg male with baseline Na of 155 requires distributing free water across a TBW of 48 L, resulting in volumes that can exceed several litres over 24 hours."
+      },
+      {
+        "q": "Do ongoing losses affect the calculated infusion volume?",
+        "a": "Yes, significantly. The calculator estimates the volume needed to correct the static deficit, but patients with ongoing losses (diarrhoea, nasogastric drainage, fever, insensible losses, diuretics) will require additional replacement. Frequent reassessment of serum sodium — ideally every 4–6 hours during active correction — is essential to adjust the infusion rate."
+      },
+      {
+        "q": "Is this calculator suitable for paediatric patients?",
+        "a": "The standard adult TBW factors (0.6 for males, 0.5 for females) do not apply to children, who have proportionally higher TBW (0.7–0.75 of body weight in infants). Paediatric sodium correction requires age-specific TBW estimates and weight-based infusion rate calculations. This calculator is designed for adults only; a paediatrician or paediatric intensivist should guide correction in children."
+      }
+    ]
+  }
+}

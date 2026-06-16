@@ -360,6 +360,86 @@ export const tools: ToolEntry[] = [
       en: "Wells Score calculator for pulmonary embolism assesses PE pretest probability using 7 validated clinical criteria to guide D-dimer and imaging decisions.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "sodium-change-calculator-in-hypertriglyceridemia",
+    category: "health",
+    slugs: {
+      en: "sodium-change-calculator-in-hypertriglyceridemia",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Sodium Change Calculator in Hypertriglyceridemia",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Sodium change calculator corrects pseudohyponatremia in hypertriglyceridemia using the 0.002 mEq/L per mg/dL lipid-interference formula.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "sodium-correction-calculator",
+    category: "health",
+    slugs: {
+      en: "sodium-correction-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Sodium Correction Calculator – Hyponatremia & Hypernatremia",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Sodium correction calculator computes deficit, infusion volume, and correction time for hyponatremia and hypernatremia using TBW-based formulas.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "sodium-correction-rate-calculator-for-hypo-and-hypernatremia",
+    category: "health",
+    slugs: {
+      en: "sodium-correction-rate-calculator-for-hypo-and-hypernatremia",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Sodium Correction Rate Calculator – Hypo & Hypernatremia",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Sodium correction rate calculator provides guideline-based safe correction rates for hyponatremia and hypernatremia based on duration, severity, and fluid type.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "sodium-deficit-calculator",
+    category: "health",
+    slugs: {
+      en: "sodium-deficit-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Sodium Deficit Calculator – Body Fat Adjusted TBW Formula",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Sodium deficit calculator uses body-fat-adjusted TBW to compute mEq deficit, sodium mass, and NaCl equivalent for hyponatremia replacement planning.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "sodium-in-salt-calculator",
+    category: "health",
+    slugs: {
+      en: "sodium-in-salt-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Sodium in Salt Calculator – Track Daily Sodium Intake",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Sodium in salt calculator shows mg of sodium in table, sea, kosher, and Himalayan salt by weight and tracks your daily recommended sodium limit percentage.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
 
 
