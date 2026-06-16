@@ -2226,6 +2226,71 @@ export const tools: ToolEntry[] = [
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
   },
+  {
+    id: "hematocrit-to-hemoglobin-ratio-calculator",
+    category: "health",
+    slugs: { en: "hematocrit-to-hemoglobin-ratio-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "Hematocrit to Hemoglobin Ratio Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Hematocrit to hemoglobin ratio calculator computes Hct/Hgb ratio from CBC results to assess red blood cell quality and detect anemia or polycythemia.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "homa-ir-calculator-insulin-resistance",
+    category: "health",
+    slugs: { en: "homa-ir-calculator-insulin-resistance", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "HOMA-IR Calculator – Insulin Resistance Assessment",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "HOMA-IR calculator estimates insulin resistance from fasting glucose and insulin. Supports mg/dL, mmol/L, μU/mL, and pmol/L with risk classification.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "hot-car-calculator",
+    category: "health",
+    slugs: { en: "hot-car-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "Hot Car Calculator – Parked Car Interior Temperature",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Hot car calculator predicts parked vehicle interior temperature from outside heat, sunlight, car color, and tinting to assess danger for children and pets.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "hsi-calculator-heaviness-of-smoking-index",
+    category: "health",
+    slugs: { en: "hsi-calculator-heaviness-of-smoking-index", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "HSI Calculator – Heaviness of Smoking Index",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "HSI calculator scores nicotine dependence using time to first cigarette and daily cigarette count. Get evidence-based cessation strategy recommendations.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "hydroxychloroquine-dose-calculator",
+    category: "health",
+    slugs: { en: "hydroxychloroquine-dose-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "Hydroxychloroquine Dose Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Hydroxychloroquine dose calculator computes safe daily dose by weight or BSA with automatic max-dose capping for lupus, arthritis, and malaria therapy.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
 
 
 
