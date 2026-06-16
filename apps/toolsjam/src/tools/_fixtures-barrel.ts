@@ -400,6 +400,7 @@ import { fixtures as f_slant_height_calculator } from "@/tools/slant-height-calc
 import { fixtures as f_slope_calculator } from "@/tools/slope-calculator.fixtures";
 import { fixtures as f_smp_x_distribution_calculator } from "@/tools/smp-x-distribution-calculator.fixtures";
 import { fixtures as f_snowman_calculator } from "@/tools/snowman-calculator.fixtures";
+import { fixtures as f_sofa_score_calculator } from "@/tools/sofa-score-calculator.fixtures";
 import { fixtures as f_speaker_box_calculator } from "@/tools/speaker-box-calculator.fixtures";
 import { fixtures as f_spearmans_correlation_calculator } from "@/tools/spearmans-correlation-calculator.fixtures";
 import { fixtures as f_specific_gas_constant_calculator } from "@/tools/specific-gas-constant-calculator.fixtures";
@@ -407,10 +408,14 @@ import { fixtures as f_specific_gravity_calculator } from "@/tools/specific-grav
 import { fixtures as f_specific_heat_calculator } from "@/tools/specific-heat-calculator.fixtures";
 import { fixtures as f_specific_impulse_calculator } from "@/tools/specific-impulse-calculator.fixtures";
 import { fixtures as f_speed_of_light_calculator } from "@/tools/speed-of-light-calculator.fixtures";
+import { fixtures as f_sperm_analysis_calculator } from "@/tools/sperm-analysis-calculator.fixtures";
 import { fixtures as f_standard_deviation_calculator } from "@/tools/standard-deviation-calculator.fixtures";
 import { fixtures as f_standard_deviation_index_calculator } from "@/tools/standard-deviation-index-calculator.fixtures";
 import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/tools/standard-deviation-of-sample-mean-calculator.fixtures";
+import { fixtures as f_standard_drink_calculator } from "@/tools/standard-drink-calculator.fixtures";
 import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
+import { fixtures as f_stillbirth_risk_calculator } from "@/tools/stillbirth-risk-calculator.fixtures";
+import { fixtures as f_stop_bang_calculator } from "@/tools/stop-bang-calculator.fixtures";
 import { fixtures as f_streaming_bitrate_calculator } from "@/tools/streaming-bitrate-calculator.fixtures";
 import { fixtures as f_streaming_services_royalties_calculator } from "@/tools/streaming-services-royalties-calculator.fixtures";
 import { fixtures as f_subtracting_fractions_calculator } from "@/tools/subtracting-fractions-calculator.fixtures";
@@ -904,6 +909,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "slope-calculator": f_slope_calculator,
   "smp-x-distribution-calculator": f_smp_x_distribution_calculator,
   "snowman-calculator": f_snowman_calculator,
+  "sofa-score-calculator": f_sofa_score_calculator,
   "speaker-box-calculator": f_speaker_box_calculator,
   "spearmans-correlation-calculator": f_spearmans_correlation_calculator,
   "specific-gas-constant-calculator": f_specific_gas_constant_calculator,
@@ -911,10 +917,14 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "specific-heat-calculator": f_specific_heat_calculator,
   "specific-impulse-calculator": f_specific_impulse_calculator,
   "speed-of-light-calculator": f_speed_of_light_calculator,
+  "sperm-analysis-calculator": f_sperm_analysis_calculator,
   "standard-deviation-calculator": f_standard_deviation_calculator,
   "standard-deviation-index-calculator": f_standard_deviation_index_calculator,
   "standard-deviation-of-sample-mean-calculator": f_standard_deviation_of_sample_mean_calculator,
+  "standard-drink-calculator": f_standard_drink_calculator,
   "standard-error-calculator": f_standard_error_calculator,
+  "stillbirth-risk-calculator": f_stillbirth_risk_calculator,
+  "stop-bang-calculator": f_stop_bang_calculator,
   "streaming-bitrate-calculator": f_streaming_bitrate_calculator,
   "streaming-services-royalties-calculator": f_streaming_services_royalties_calculator,
   "subtracting-fractions-calculator": f_subtracting_fractions_calculator,
