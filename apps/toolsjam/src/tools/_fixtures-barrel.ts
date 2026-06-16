@@ -464,7 +464,12 @@ import { fixtures as f_watt_converter } from "@/tools/watt-converter.fixtures";
 import { fixtures as f_watt_hour_calculator } from "@/tools/watt-hour-calculator.fixtures";
 import { fixtures as f_watts_to_amps_calculator } from "@/tools/watts-to-amps-calculator.fixtures";
 import { fixtures as f_weibull_distribution_calculator } from "@/tools/weibull-distribution-calculator.fixtures";
+import { fixtures as f_weight_gain_calculator } from "@/tools/weight-gain-calculator.fixtures";
+import { fixtures as f_weight_loss_percentage_calculator } from "@/tools/weight-loss-percentage-calculator.fixtures";
+import { fixtures as f_weight_percentile_calculator } from "@/tools/weight-percentile-calculator.fixtures";
+import { fixtures as f_weight_watchers_points_calculator } from "@/tools/weight-watchers-points-calculator.fixtures";
 import { fixtures as f_weighted_mean_calculator } from "@/tools/weighted-mean-calculator.fixtures";
+import { fixtures as f_wells_score_calculator_for_pulmonary_embolism } from "@/tools/wells-score-calculator-for-pulmonary-embolism.fixtures";
 import { fixtures as f_wheatstone_bridge_calculator } from "@/tools/wheatstone-bridge-calculator.fixtures";
 import { fixtures as f_white_christmas_calculator } from "@/tools/white-christmas-calculator.fixtures";
 import { fixtures as f_wiens_law_calculator } from "@/tools/wiens-law-calculator.fixtures";
@@ -943,7 +948,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "watt-hour-calculator": f_watt_hour_calculator,
   "watts-to-amps-calculator": f_watts_to_amps_calculator,
   "weibull-distribution-calculator": f_weibull_distribution_calculator,
+  "weight-gain-calculator": f_weight_gain_calculator,
+  "weight-loss-percentage-calculator": f_weight_loss_percentage_calculator,
+  "weight-percentile-calculator": f_weight_percentile_calculator,
+  "weight-watchers-points-calculator": f_weight_watchers_points_calculator,
   "weighted-mean-calculator": f_weighted_mean_calculator,
+  "wells-score-calculator-for-pulmonary-embolism": f_wells_score_calculator_for_pulmonary_embolism,
   "wheatstone-bridge-calculator": f_wheatstone_bridge_calculator,
   "white-christmas-calculator": f_white_christmas_calculator,
   "wiens-law-calculator": f_wiens_law_calculator,
