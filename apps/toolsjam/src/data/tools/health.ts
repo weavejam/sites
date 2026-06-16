@@ -2226,15 +2226,84 @@ export const tools: ToolEntry[] = [
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
   },
-
-
-
-
-
-
-
-
-
-
-
+  {
+    id: "head-circumference-percentile-calculator",
+    category: "health",
+    slugs: {
+      en: "head-circumference-percentile-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Head Circumference Percentile Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Head circumference percentile calculator uses CDC growth charts to assess brain development and detect potential growth abnormalities in children.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "heart-failure-life-expectancy-calculator",
+    category: "health",
+    slugs: {
+      en: "heart-failure-life-expectancy-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Heart Failure Life Expectancy Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Heart failure life expectancy calculator estimates survival probability using ejection fraction, NYHA class, and comorbidities. Get personalized prognosis.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "heart-score-calculator",
+    category: "health",
+    slugs: {
+      en: "heart-score-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Heart Score Calculator – Cardiovascular Risk Assessment",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Heart score calculator assesses cardiovascular risk using blood pressure, cholesterol, BMI, and lifestyle factors. Get your risk score and recommendations.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "height-calculator",
+    category: "health",
+    slugs: {
+      en: "height-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Height Calculator – Convert Height Units & Health Metrics",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Height calculator converts cm, m, feet, and inches instantly. Calculate BMI and ideal weight range for comprehensive health assessment.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "height-percentile-calculator",
+    category: "health",
+    slugs: {
+      en: "height-percentile-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Height Percentile Calculator by Age and Gender",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Height percentile calculator uses CDC growth charts to rank your height by age and gender. Get z-score, percentile, and growth category assessment instantly.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
 ];
