@@ -166,12 +166,17 @@ import { fixtures as f_density_altitude_calculator } from "@/tools/density-altit
 import { fixtures as f_density_calculator } from "@/tools/density-calculator.fixtures";
 import { fixtures as f_descartes_rule_of_signs_calculator } from "@/tools/descartes-rule-of-signs-calculator.fixtures";
 import { fixtures as f_dew_point_calculator } from "@/tools/dew-point-calculator.fixtures";
+import { fixtures as f_diabetes_risk_calculator } from "@/tools/diabetes-risk-calculator.fixtures";
+import { fixtures as f_diabetic_ketoacidosis_calculator } from "@/tools/diabetic-ketoacidosis-calculator.fixtures";
 import { fixtures as f_diagonalize_matrix_calculator } from "@/tools/diagonalize-matrix-calculator.fixtures";
 import { fixtures as f_diamond_problem_calculator } from "@/tools/diamond-problem-calculator.fixtures";
+import { fixtures as f_dic_syndrome_calculator } from "@/tools/dic-syndrome-calculator.fixtures";
 import { fixtures as f_dice_probability_calculator } from "@/tools/dice-probability-calculator.fixtures";
 import { fixtures as f_dice_roller_calculator } from "@/tools/dice-roller-calculator.fixtures";
+import { fixtures as f_diet_risk_score_calculator } from "@/tools/diet-risk-score-calculator.fixtures";
 import { fixtures as f_differential_pressure_calculator } from "@/tools/differential-pressure-calculator.fixtures";
 import { fixtures as f_diffraction_grating_calculator } from "@/tools/diffraction-grating-calculator.fixtures";
+import { fixtures as f_diffuse_large_b_cell_lymphoma_prognosis_calculator } from "@/tools/diffuse-large-b-cell-lymphoma-prognosis-calculator.fixtures";
 import { fixtures as f_digit_sum_calculator } from "@/tools/digit-sum-calculator.fixtures";
 import { fixtures as f_diopter_calculator } from "@/tools/diopter-calculator.fixtures";
 import { fixtures as f_dipole_calculator } from "@/tools/dipole-calculator.fixtures";
@@ -780,12 +785,17 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "density-calculator": f_density_calculator,
   "descartes-rule-of-signs-calculator": f_descartes_rule_of_signs_calculator,
   "dew-point-calculator": f_dew_point_calculator,
+  "diabetes-risk-calculator": f_diabetes_risk_calculator,
+  "diabetic-ketoacidosis-calculator": f_diabetic_ketoacidosis_calculator,
   "diagonalize-matrix-calculator": f_diagonalize_matrix_calculator,
   "diamond-problem-calculator": f_diamond_problem_calculator,
+  "dic-syndrome-calculator": f_dic_syndrome_calculator,
   "dice-probability-calculator": f_dice_probability_calculator,
   "dice-roller-calculator": f_dice_roller_calculator,
+  "diet-risk-score-calculator": f_diet_risk_score_calculator,
   "differential-pressure-calculator": f_differential_pressure_calculator,
   "diffraction-grating-calculator": f_diffraction_grating_calculator,
+  "diffuse-large-b-cell-lymphoma-prognosis-calculator": f_diffuse_large_b_cell_lymphoma_prognosis_calculator,
   "digit-sum-calculator": f_digit_sum_calculator,
   "diopter-calculator": f_diopter_calculator,
   "dipole-calculator": f_dipole_calculator,

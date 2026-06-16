@@ -3450,9 +3450,87 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "diabetes-risk-calculator",
+    category: "health",
+    slugs: {
+      en: "diabetes-risk-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Diabetes Risk Calculator – Type 2 Diabetes Assessment",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Diabetes risk calculator scores Type 2 diabetes risk using age, BMI, family history, activity, blood pressure, and lifestyle factors. Free, instant result.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "diabetic-ketoacidosis-calculator",
+    category: "health",
+    slugs: {
+      en: "diabetic-ketoacidosis-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Diabetic Ketoacidosis Calculator – Anion Gap & DKA Severity",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Diabetic ketoacidosis calculator computes anion gap, delta ratio, corrected sodium, and osmolal gap to classify DKA severity for emergency management.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "dic-syndrome-calculator",
+    category: "health",
+    slugs: {
+      en: "dic-syndrome-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "DIC Syndrome Calculator – ISTH Overt DIC Score",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "DIC syndrome calculator applies the ISTH overt DIC score using platelets, D-dimer, PT, and fibrinogen to assess disseminated intravascular coagulation severity.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "diet-risk-score-calculator",
+    category: "health",
+    slugs: {
+      en: "diet-risk-score-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Diet Risk Score Calculator – Nutritional Health Assessment",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Diet risk score calculator evaluates nutritional health risk from diet quality, BMI, activity, smoking, alcohol, and chronic disease history. Free and instant.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "diffuse-large-b-cell-lymphoma-prognosis-calculator",
+    category: "health",
+    slugs: {
+      en: "diffuse-large-b-cell-lymphoma-prognosis-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "DLBCL Prognosis Calculator – IPI Score & Survival",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "DLBCL prognosis calculator computes IPI and R-IPI scores with 5-year survival estimates to guide treatment planning for diffuse large B-cell lymphoma.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
-
-
 
 
 
