@@ -80,11 +80,16 @@ import { fixtures as f_carnot_efficiency_calculator } from "@/tools/carnot-effic
 import { fixtures as f_centrifugal_force_calculator } from "@/tools/centrifugal-force-calculator.fixtures";
 import { fixtures as f_centrifuge_calculator } from "@/tools/centrifuge-calculator.fixtures";
 import { fixtures as f_centripetal_force_calculator } from "@/tools/centripetal-force-calculator.fixtures";
+import { fixtures as f_cholesky_decomposition_calculator } from "@/tools/cholesky-decomposition-calculator.fixtures";
 import { fixtures as f_chord_finder } from "@/tools/chord-finder.fixtures";
 import { fixtures as f_chord_inversion_calculator } from "@/tools/chord-inversion-calculator.fixtures";
+import { fixtures as f_chord_length_calculator } from "@/tools/chord-length-calculator.fixtures";
 import { fixtures as f_chord_progression_generator } from "@/tools/chord-progression-generator.fixtures";
 import { fixtures as f_chord_transposer } from "@/tools/chord-transposer.fixtures";
 import { fixtures as f_christmas_countdown_calculator } from "@/tools/christmas-countdown-calculator.fixtures";
+import { fixtures as f_circle_calculator } from "@/tools/circle-calculator.fixtures";
+import { fixtures as f_circle_theorems_calculator } from "@/tools/circle-theorems-calculator.fixtures";
+import { fixtures as f_circumference_calculator } from "@/tools/circumference-calculator.fixtures";
 import { fixtures as f_coefficient_of_variation_calculator } from "@/tools/coefficient-of-variation-calculator.fixtures";
 import { fixtures as f_cohens_d_calculator } from "@/tools/cohens-d-calculator.fixtures";
 import { fixtures as f_coin_flip_probability_calculator } from "@/tools/coin-flip-probability-calculator.fixtures";
@@ -539,11 +544,16 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "centrifugal-force-calculator": f_centrifugal_force_calculator,
   "centrifuge-calculator": f_centrifuge_calculator,
   "centripetal-force-calculator": f_centripetal_force_calculator,
+  "cholesky-decomposition-calculator": f_cholesky_decomposition_calculator,
   "chord-finder": f_chord_finder,
   "chord-inversion-calculator": f_chord_inversion_calculator,
+  "chord-length-calculator": f_chord_length_calculator,
   "chord-progression-generator": f_chord_progression_generator,
   "chord-transposer": f_chord_transposer,
   "christmas-countdown-calculator": f_christmas_countdown_calculator,
+  "circle-calculator": f_circle_calculator,
+  "circle-theorems-calculator": f_circle_theorems_calculator,
+  "circumference-calculator": f_circumference_calculator,
   "coefficient-of-variation-calculator": f_coefficient_of_variation_calculator,
   "cohens-d-calculator": f_cohens_d_calculator,
   "coin-flip-probability-calculator": f_coin_flip_probability_calculator,
