@@ -253,6 +253,11 @@ import { fixtures as f_hadamard_product_calculator } from "@/tools/hadamard-prod
 import { fixtures as f_half_angle_calculator } from "@/tools/half-angle-calculator.fixtures";
 import { fixtures as f_harmonic_mean_calculator } from "@/tools/harmonic-mean-calculator.fixtures";
 import { fixtures as f_harmonic_number_calculator } from "@/tools/harmonic-number-calculator.fixtures";
+import { fixtures as f_head_circumference_percentile_calculator } from "@/tools/head-circumference-percentile-calculator.fixtures";
+import { fixtures as f_heart_failure_life_expectancy_calculator } from "@/tools/heart-failure-life-expectancy-calculator.fixtures";
+import { fixtures as f_heart_score_calculator } from "@/tools/heart-score-calculator.fixtures";
+import { fixtures as f_height_calculator } from "@/tools/height-calculator.fixtures";
+import { fixtures as f_height_percentile_calculator } from "@/tools/height-percentile-calculator.fixtures";
 import { fixtures as f_hematocrit_to_hemoglobin_ratio_calculator } from "@/tools/hematocrit-to-hemoglobin-ratio-calculator.fixtures";
 import { fixtures as f_herons_formula_calculator } from "@/tools/herons-formula-calculator.fixtures";
 import { fixtures as f_homa_ir_calculator_insulin_resistance } from "@/tools/homa-ir-calculator-insulin-resistance.fixtures";
@@ -837,6 +842,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "half-angle-calculator": f_half_angle_calculator,
   "harmonic-mean-calculator": f_harmonic_mean_calculator,
   "harmonic-number-calculator": f_harmonic_number_calculator,
+  "head-circumference-percentile-calculator": f_head_circumference_percentile_calculator,
+  "heart-failure-life-expectancy-calculator": f_heart_failure_life_expectancy_calculator,
+  "heart-score-calculator": f_heart_score_calculator,
+  "height-calculator": f_height_calculator,
+  "height-percentile-calculator": f_height_percentile_calculator,
   "hematocrit-to-hemoglobin-ratio-calculator": f_hematocrit_to_hemoglobin_ratio_calculator,
   "herons-formula-calculator": f_herons_formula_calculator,
   "homa-ir-calculator-insulin-resistance": f_homa_ir_calculator_insulin_resistance,
