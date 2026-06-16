@@ -1,0 +1,119 @@
+{
+  "title": "Konditionszahl-Rechner für Matrizen",
+  "tagline": "Berechnen Sie die Konditionszahl einer 2×2- oder 3×3-Matrix mit 1-Norm, Unendlich-Norm oder Frobenius-Norm. Diagnostizieren Sie die numerische Stabilität von linearen Systemen sofort.",
+  "intro": "Wählen Sie Matrixgröße und Norm, geben Sie die Einträge ein, und der Rechner liefert κ(A) = ‖A‖ · ‖A⁻¹‖ samt einer Einordnung, wie gut die Matrix konditioniert ist.",
+  "field": {
+    "size": "Matrixgröße",
+    "norm": "Normtyp",
+    "matrix": "Matrixeinträge",
+    "cell11": "(1,1)",
+    "cell12": "(1,2)",
+    "cell13": "(1,3)",
+    "cell21": "(2,1)",
+    "cell22": "(2,2)",
+    "cell23": "(2,3)",
+    "cell31": "(3,1)",
+    "cell32": "(3,2)",
+    "cell33": "(3,3)"
+  },
+  "placeholder": {
+    "number": "0"
+  },
+  "type": {
+    "size2": "2 × 2",
+    "size3": "3 × 3",
+    "norm1": "1-Norm (maximale Spaltensumme)",
+    "normInf": "Unendlich-Norm (maximale Zeilensumme)",
+    "normFro": "Frobenius-Norm"
+  },
+  "button": {
+    "calculate": "Konditionszahl berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte füllen Sie jeden Matrixeintrag mit einer gültigen Zahl aus.",
+    "singular": "Die Matrix ist singulär (Determinante ≈ 0). Ihre Konditionszahl ist unendlich."
+  },
+  "result": {
+    "heading": "Konditionszahl",
+    "kappa": "κ(A) = {value}",
+    "normA": "‖A‖ = {value}",
+    "normInv": "‖A⁻¹‖ = {value}",
+    "det": "det(A) = {value}",
+    "interpretWell": "Gut konditionierte Matrix (κ < 100). Numerische Lösungen von Ax = b sollten zuverlässig sein.",
+    "interpretModerate": "Mittelmäßig konditioniert (100 ≤ κ ≤ 1000). In Gleitkommarechnungen ist mit etwas Genauigkeitsverlust zu rechnen.",
+    "interpretIll": "Schlecht konditionierte Matrix (κ > 1000). Kleine Störungen in den Daten können zu großen Fehlern in der Lösung führen."
+  },
+  "about": {
+    "heading": "Über den Konditionszahl-Rechner",
+    "body": "Die Konditionszahl einer invertierbaren Matrix A ist definiert als κ(A) = ‖A‖ · ‖A⁻¹‖, wobei ‖·‖ eine beliebige kompatible Matrixnorm bezeichnet. Sie misst, wie stark der relative Fehler in der Lösung x eines linearen Systems A·x = b durch einen relativen Fehler in b verstärkt werden kann. Anschaulich gilt: Eine Matrix mit kleiner Konditionszahl ist gut konditioniert — kleine Eingabefehler erzeugen kleine Ausgabefehler. Eine Matrix mit großer Konditionszahl ist schlecht konditioniert — selbst winzige Rundungsfehler in Gleitkommazahlen können zu stark ungenauen Lösungen führen.\n\nDieser Rechner unterstützt 2 × 2- und 3 × 3-Matrizen sowie drei der am häufigsten verwendeten Matrixnormen. Die 1-Norm ist die maximale absolute Spaltensumme, ‖A‖₁ = max_j Σᵢ |aᵢⱼ|. Die Unendlich-Norm ist die maximale absolute Zeilensumme, ‖A‖∞ = max_i Σⱼ |aᵢⱼ|. Die Frobenius-Norm ist die Quadratwurzel aus der Summe der Quadrate aller Einträge, ‖A‖_F = √(Σᵢⱼ |aᵢⱼ|²), und entspricht dem euklidischen Vektor-Normanalogon für Matrizen. Für 2 × 2-Matrizen wird die Inverse analytisch als A⁻¹ = (1/det A) · [[d, −b], [−c, a]] berechnet. Für 3 × 3-Matrizen wird die Kofaktor-(Adjungierten-)Formel verwendet.\n\nKonditionszahlen sind zentral in der numerischen linearen Algebra. Wenn Sie ein lineares System auf einem Computer per LU-Zerlegung oder Gauß-Elimination lösen, ist der relative Fehler der berechneten Lösung ungefähr durch κ(A) · ε nach oben beschränkt, wobei ε die Maschinenpräzision ist (bei IEEE-754 Double-Precision etwa 10⁻¹⁶). Eine Konditionszahl von 10⁶ bedeutet daher, dass Sie allein durch Rundung bis zu sechs Stellen Genauigkeit verlieren können. Als Faustregel gelten Matrizen mit κ < 100 als gut konditioniert, solche mit κ zwischen 100 und 1000 als mäßig konditioniert, und alles über 10³ als schlecht konditioniert und mit Vorsicht zu behandeln.\n\nEs gibt einige wichtige Einschränkungen. Die Konditionszahl hängt von der gewählten Norm ab, daher sind mit verschiedenen Normen berechnete Werte nicht direkt vergleichbar, auch wenn sie meist nur um einen kleinen konstanten Faktor auseinanderliegen. Die 2-Norm-(Spektralnorm-)Konditionszahl, definiert über Singularwerte, ist theoretisch am natürlichsten, aber aufwendiger zu berechnen und hier nicht verfügbar. Eine singuläre Matrix hat Determinante exakt null, keine Inverse und eine unendliche Konditionszahl; der Rechner erkennt diesen Fall explizit.\n\nNutzen Sie dieses Tool immer dann, wenn Sie prüfen möchten, ob eine kleine lineare Gleichung numerisch sicher invertierbar ist, wenn Sie grundlegende numerische Analysis lehren oder als schnellen Plausibilitätscheck vor dem Lösen eines Systems in einer größeren Simulation oder einer Machine-Learning-Pipeline."
+  },
+  "examples": {
+    "heading": "Rechenbeispiele",
+    "intro": "Einige anschauliche Matrizen vom gut konditionierten bis zum schlecht konditionierten Bereich.",
+    "colInput": "Matrix (2×2 oder 3×3)",
+    "colOutput": "Konditionszahl",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "[[1, 0], [0, 1]],  1-norm",
+        "output": "κ = 1",
+        "note": "Die Einheitsmatrix ist perfekt konditioniert. Ihre Konditionszahl ist in jeder Standardnorm 1."
+      },
+      {
+        "input": "[[2, 1], [1, 3]],  Frobenius",
+        "output": "κ ≈ 3.0",
+        "note": "Eine symmetrisch positiv definite Matrix mit kleiner Konditionszahl. Lineare Systeme damit lassen sich leicht präzise lösen."
+      },
+      {
+        "input": "[[1, 1], [1, 1.0001]],  infinity-norm",
+        "output": "κ ≈ 40004",
+        "note": "Nahezu singuläre Matrix. Kleine Störungen im Eintrag (2,2) führen zu stark unterschiedlichen Lösungen."
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 10]],  1-norm",
+        "output": "κ ≈ 380",
+        "note": "Eine mäßig konditionierte 3×3-Matrix. In einfacher Gleitkommaarithmetik ist mit etwas Genauigkeitsverlust zu rechnen."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Konditionszahl-Rechner",
+    "steps": [
+      "Wählen Sie die Matrixgröße, entweder 2 × 2 oder 3 × 3.",
+      "Wählen Sie die zu verwendende Norm — 1-Norm, Unendlich-Norm oder Frobenius-Norm.",
+      "Geben Sie jeden Matrixeintrag in das passende Feld des Rasters ein.",
+      "Klicken Sie auf Konditionszahl berechnen. Das Ergebnisfeld zeigt κ(A), die Matrixnorm, die Inversennorm, die Determinante und eine verständliche Einordnung.",
+      "Klicken Sie auf Zurücksetzen, um alle Eingaben zu löschen und mit einer neuen Matrix zu beginnen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zur Konditionszahl",
+    "items": [
+      {
+        "q": "Was sagt mir die Konditionszahl?",
+        "a": "Sie begrenzt, wie stark ein relativer Fehler auf der rechten Seite b eines linearen Systems A·x = b in der Lösung x verstärkt werden kann. Eine Konditionszahl von 10^k bedeutet, dass Sie allein durch Rundung bis zu k Stellen Genauigkeit verlieren können."
+      },
+      {
+        "q": "Was ist eine „gute“ Konditionszahl?",
+        "a": "Werte unter 100 gelten im Allgemeinen als gut konditioniert, 100–1000 als mäßig und über 1000 als schlecht konditioniert. Die Schwellen hängen von der arithmetischen Präzision und der gewünschten Genauigkeit des Endergebnisses ab."
+      },
+      {
+        "q": "Welche Norm sollte ich verwenden?",
+        "a": "Die 1-Norm und die Unendlich-Norm sind günstig zu berechnen und liefern sehr ähnliche Informationen; die Frobenius-Norm ist ebenfalls einfach und ist das Matrizenanalogon zur euklidischen Vektornorm. Die Spektral- (2-Norm-) Konditionszahl ist theoretisch am natürlichsten, aber rechenaufwendiger und hier nicht verfügbar."
+      },
+      {
+        "q": "Warum ist meine Matrix als singulär markiert?",
+        "a": "Eine Matrix ist singulär, wenn ihre Determinante null ist (oder numerisch nicht von null zu unterscheiden, unter 10⁻¹⁰). Singuläre Matrizen haben keine Inverse, daher ist die Konditionszahl unendlich und das lineare System A·x = b hat entweder keine oder unendlich viele Lösungen."
+      },
+      {
+        "q": "Hängt die Konditionszahl von der rechten Seite b ab?",
+        "a": "Nein. Die Konditionszahl hängt nur von der Matrix A ab. Sie liefert eine Worst-Case-Schranke für die Verstärkung des relativen Fehlers in b, unabhängig vom konkreten b."
+      },
+      {
+        "q": "Kann die Konditionszahl kleiner als 1 sein?",
+        "a": "Nein. Für jede kompatible Matrixnorm gilt κ(A) = ‖A‖ · ‖A⁻¹‖ ≥ ‖A · A⁻¹‖ = ‖I‖ ≥ 1. Der Minimalwert 1 wird von orthogonalen (bzw. in der 2-Norm unitären) Matrizen erreicht."
+      }
+    ]
+  }
+}

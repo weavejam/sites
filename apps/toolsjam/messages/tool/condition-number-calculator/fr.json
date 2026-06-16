@@ -1,0 +1,119 @@
+{
+  "title": "Calculateur du nombre de condition des matrices",
+  "tagline": "Calculez le nombre de condition d'une matrice 2×2 ou 3×3 à l'aide de la norme 1, de la norme infinie ou de la norme de Frobenius. Diagnostiquez instantanément la stabilité numérique des systèmes linéaires.",
+  "intro": "Choisissez la taille de la matrice et la norme, saisissez les coefficients, et le calculateur renvoie κ(A) = ‖A‖ · ‖A⁻¹‖ avec une interprétation du degré de conditionnement de la matrice.",
+  "field": {
+    "size": "Taille de la matrice",
+    "norm": "Type de norme",
+    "matrix": "Coefficients de la matrice",
+    "cell11": "(1,1)",
+    "cell12": "(1,2)",
+    "cell13": "(1,3)",
+    "cell21": "(2,1)",
+    "cell22": "(2,2)",
+    "cell23": "(2,3)",
+    "cell31": "(3,1)",
+    "cell32": "(3,2)",
+    "cell33": "(3,3)"
+  },
+  "placeholder": {
+    "number": "0"
+  },
+  "type": {
+    "size2": "2 × 2",
+    "size3": "3 × 3",
+    "norm1": "Norme 1 (somme maximale des colonnes)",
+    "normInf": "Norme infinie (somme maximale des lignes)",
+    "normFro": "Norme de Frobenius"
+  },
+  "button": {
+    "calculate": "Calculer le nombre de condition",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez renseigner chaque coefficient de la matrice avec un nombre valide.",
+    "singular": "La matrice est singulière (déterminant ≈ 0). Son nombre de condition est infini."
+  },
+  "result": {
+    "heading": "Nombre de condition",
+    "kappa": "κ(A) = {value}",
+    "normA": "‖A‖ = {value}",
+    "normInv": "‖A⁻¹‖ = {value}",
+    "det": "det(A) = {value}",
+    "interpretWell": "Matrice bien conditionnée (κ < 100). Les solutions numériques de Ax = b devraient être fiables.",
+    "interpretModerate": "Conditionnement modéré (100 ≤ κ ≤ 1000). Une certaine perte de précision est à prévoir en calcul en virgule flottante.",
+    "interpretIll": "Matrice mal conditionnée (κ > 1000). De petites perturbations dans les données peuvent entraîner de grandes erreurs dans la solution."
+  },
+  "about": {
+    "heading": "À propos du calculateur de nombre de condition",
+    "body": "Le nombre de condition d'une matrice inversible A est défini par κ(A) = ‖A‖ · ‖A⁻¹‖, où ‖·‖ désigne toute norme matricielle compatible. Il mesure dans quelle proportion l'erreur relative sur le second membre b d'un système linéaire A·x = b peut être amplifiée dans la solution x. Intuitivement, une matrice de petit nombre de condition est bien conditionnée : de petites erreurs d'entrée produisent de petites erreurs de sortie. Une matrice de grand nombre de condition est mal conditionnée : même un arrondi microscopique en virgule flottante peut conduire à des solutions très inexactes.\n\nCe calculateur prend en charge les matrices 2 × 2 et 3 × 3 ainsi que trois des normes matricielles les plus utilisées. La norme 1 est la somme absolue maximale par colonne, ‖A‖₁ = max_j Σᵢ |aᵢⱼ|. La norme infinie est la somme absolue maximale par ligne, ‖A‖∞ = max_i Σⱼ |aᵢⱼ|. La norme de Frobenius est la racine carrée de la somme des carrés de tous les coefficients, ‖A‖_F = √(Σᵢⱼ |aᵢⱼ|²), et constitue l'analogue matriciel de la norme euclidienne vectorielle. Pour les matrices 2 × 2, l'inverse est calculé analytiquement par A⁻¹ = (1/det A) · [[d, −b], [−c, a]]. Pour les matrices 3 × 3, on utilise la formule des cofacteurs (matrice adjointe).\n\nLes nombres de condition sont centraux en algèbre linéaire numérique. Lorsque vous résolvez un système linéaire sur un ordinateur avec une décomposition LU ou une élimination de Gauss, l'erreur relative de la solution calculée est bornée approximativement par κ(A) · ε, où ε est la précision machine (environ 10⁻¹⁶ en double précision IEEE-754). Ainsi, un nombre de condition de 10⁶ signifie que vous pouvez perdre jusqu'à six chiffres de précision à cause du seul arrondi. En règle générale, les matrices avec κ < 100 sont considérées comme bien conditionnées, celles avec κ entre 100 et 1000 sont moyennement conditionnées, et tout ce qui dépasse 10³ est mal conditionné et doit être abordé avec prudence.\n\nQuelques réserves importantes. Le nombre de condition dépend du choix de la norme, donc les valeurs calculées avec des normes différentes ne sont pas directement comparables, même si elles restent en général du même ordre de grandeur. Le nombre de condition en norme 2 (norme spectrale), défini à l'aide des valeurs singulières, est le plus naturel théoriquement mais il est plus coûteux à calculer et n'est pas proposé ici. Une matrice singulière a un déterminant exactement nul, n'a pas d'inverse et possède un nombre de condition infini ; le calculateur détecte explicitement ce cas.\n\nUtilisez cet outil chaque fois que vous voulez vérifier si une petite matrice est sûre à inverser numériquement, pour enseigner l'analyse numérique de base, ou comme contrôle rapide avant de résoudre un système dans une simulation plus grande ou un pipeline de machine learning."
+  },
+  "examples": {
+    "heading": "Exemples détaillés",
+    "intro": "Quelques matrices illustratives, allant de bien conditionnées à mal conditionnées.",
+    "colInput": "Matrice (2×2 ou 3×3)",
+    "colOutput": "Nombre de condition",
+    "colNote": "Remarques",
+    "items": [
+      {
+        "input": "[[1, 0], [0, 1]],  1-norm",
+        "output": "κ = 1",
+        "note": "La matrice identité est parfaitement conditionnée. Son nombre de condition vaut 1 pour toute norme standard."
+      },
+      {
+        "input": "[[2, 1], [1, 3]],  Frobenius",
+        "output": "κ ≈ 3.0",
+        "note": "Une matrice symétrique définie positive avec un petit nombre de condition. Les systèmes linéaires qui l'impliquent sont faciles à résoudre précisément."
+      },
+      {
+        "input": "[[1, 1], [1, 1.0001]],  infinity-norm",
+        "output": "κ ≈ 40004",
+        "note": "Matrice presque singulière. De très petites perturbations sur l'entrée (2,2) produiront des solutions très différentes."
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 10]],  1-norm",
+        "output": "κ ≈ 380",
+        "note": "Une matrice 3×3 moyennement conditionnée. Il faut s'attendre à une certaine perte de précision en simple précision flottante."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de nombre de condition",
+    "steps": [
+      "Choisissez la taille de la matrice, 2 × 2 ou 3 × 3.",
+      "Sélectionnez la norme à utiliser — norme 1, norme infinie ou norme de Frobenius.",
+      "Saisissez chaque coefficient dans la case correspondante de la grille.",
+      "Cliquez sur Calculer le nombre de condition. Le panneau de résultats affiche κ(A), la norme de la matrice, la norme de l'inverse, le déterminant et une interprétation en langage clair.",
+      "Cliquez sur Réinitialiser pour effacer toutes les entrées et repartir avec une nouvelle matrice."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur le nombre de condition",
+    "items": [
+      {
+        "q": "Que m'indique le nombre de condition ?",
+        "a": "Il borne l'amplification possible d'une erreur relative sur le second membre b d'un système linéaire A·x = b dans la solution x. Un nombre de condition de 10^k signifie que vous pouvez perdre jusqu'à k chiffres de précision à cause du seul arrondi."
+      },
+      {
+        "q": "Quel est un « bon » nombre de condition ?",
+        "a": "Les valeurs inférieures à 100 sont généralement considérées comme bien conditionnées, 100–1000 est modéré, et au-dessus de 1000 c'est mal conditionné. Les seuils dépendent de la précision de l'arithmétique et du niveau de précision recherché dans le résultat final."
+      },
+      {
+        "q": "Quelle norme dois-je utiliser ?",
+        "a": "La norme 1 et la norme infinie sont peu coûteuses à calculer et donnent des informations très proches ; la norme de Frobenius est également simple et constitue l'analogue matriciel de la norme euclidienne vectorielle. Le nombre de condition spectral (norme 2) est le plus naturel théoriquement mais il est plus coûteux et n'est pas proposé ici."
+      },
+      {
+        "q": "Pourquoi ma matrice est-elle marquée singulière ?",
+        "a": "Une matrice est singulière lorsque son déterminant est nul (ou numériquement indiscernable de zéro, en dessous de 10⁻¹⁰). Les matrices singulières n'ont pas d'inverse, donc leur nombre de condition est infini et le système A·x = b n'a soit aucune solution, soit une infinité de solutions."
+      },
+      {
+        "q": "Le nombre de condition dépend-il du second membre b ?",
+        "a": "Non. Le nombre de condition ne dépend que de la matrice A. Il fournit une borne de pire cas sur l'amplification de l'erreur relative dans b, indépendamment du b choisi."
+      },
+      {
+        "q": "Le nombre de condition peut-il être inférieur à 1 ?",
+        "a": "Non. Pour toute norme matricielle compatible, κ(A) = ‖A‖ · ‖A⁻¹‖ ≥ ‖A · A⁻¹‖ = ‖I‖ ≥ 1. La valeur minimale 1 est atteinte par les matrices orthogonales (ou unitaires pour la norme 2)."
+      }
+    ]
+  }
+}

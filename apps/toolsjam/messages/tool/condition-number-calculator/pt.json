@@ -1,0 +1,119 @@
+{
+  "title": "Calculadora de número de condição de matrizes",
+  "tagline": "Calcule o número de condição de uma matriz 2×2 ou 3×3 usando a norma 1, a norma infinito ou a norma de Frobenius. Diagnostique a estabilidade numérica de sistemas lineares imediatamente.",
+  "intro": "Escolha o tamanho da matriz e a norma, insira os valores e a calculadora retorna κ(A) = ‖A‖ · ‖A⁻¹‖ junto com uma interpretação de quão bem condicionada a matriz está.",
+  "field": {
+    "size": "Tamanho da matriz",
+    "norm": "Tipo de norma",
+    "matrix": "Valores da matriz",
+    "cell11": "(1,1)",
+    "cell12": "(1,2)",
+    "cell13": "(1,3)",
+    "cell21": "(2,1)",
+    "cell22": "(2,2)",
+    "cell23": "(2,3)",
+    "cell31": "(3,1)",
+    "cell32": "(3,2)",
+    "cell33": "(3,3)"
+  },
+  "placeholder": {
+    "number": "0"
+  },
+  "type": {
+    "size2": "2 × 2",
+    "size3": "3 × 3",
+    "norm1": "Norma 1 (maior soma por coluna)",
+    "normInf": "Norma infinito (maior soma por linha)",
+    "normFro": "Norma de Frobenius"
+  },
+  "button": {
+    "calculate": "Calcular número de condição",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Preencha cada entrada da matriz com um número válido.",
+    "singular": "A matriz é singular (determinante ≈ 0). Seu número de condição é infinito."
+  },
+  "result": {
+    "heading": "Número de condição",
+    "kappa": "κ(A) = {value}",
+    "normA": "‖A‖ = {value}",
+    "normInv": "‖A⁻¹‖ = {value}",
+    "det": "det(A) = {value}",
+    "interpretWell": "Matriz bem condicionada (κ < 100). As soluções numéricas de Ax = b devem ser confiáveis.",
+    "interpretModerate": "Condicionamento moderado (100 ≤ κ ≤ 1000). É esperado algum perda de precisão em cálculos de ponto flutuante.",
+    "interpretIll": "Matriz mal condicionada (κ > 1000). Pequenas perturbações nos dados podem gerar grandes erros na solução."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de número de condição",
+    "body": "O número de condição de uma matriz invertível A é definido por κ(A) = ‖A‖ · ‖A⁻¹‖, onde ‖·‖ denota qualquer norma matricial compatível. Ele mede o quanto o erro relativo na solução x de um sistema linear A·x = b pode ser amplificado por um erro relativo em b. Intuitivamente, uma matriz com número de condição pequeno é bem condicionada: pequenos erros de entrada produzem pequenos erros de saída. Uma matriz com número de condição grande é mal condicionada: até mesmo um arredondamento microscópico em ponto flutuante pode produzir soluções muito imprecisas.\n\nEsta calculadora suporta matrizes 2 × 2 e 3 × 3 e três das normas matriciais mais usadas. A norma 1 é a maior soma absoluta das colunas, ‖A‖₁ = max_j Σᵢ |aᵢⱼ|. A norma infinito é a maior soma absoluta das linhas, ‖A‖∞ = max_i Σⱼ |aᵢⱼ|. A norma de Frobenius é a raiz quadrada da soma dos quadrados de todos os elementos, ‖A‖_F = √(Σᵢⱼ |aᵢⱼ|²), e é o análogo matricial da norma euclidiana de vetores. Para matrizes 2 × 2, a inversa é calculada analiticamente como A⁻¹ = (1/det A) · [[d, −b], [−c, a]]. Para matrizes 3 × 3, usa-se a fórmula dos cofatores (adjunta).\n\nNúmeros de condição são centrais na álgebra linear numérica. Quando você resolve um sistema linear no computador usando decomposição LU ou eliminação de Gauss, o erro relativo na solução calculada é limitado aproximadamente por κ(A) · ε, onde ε é a precisão de máquina (cerca de 10⁻¹⁶ em dupla precisão IEEE-754). Portanto, um número de condição de 10⁶ significa que você pode perder até seis dígitos de precisão apenas por arredondamento. Como regra prática, matrizes com κ < 100 são consideradas bem condicionadas, aquelas com κ entre 100 e 1000 são moderadamente condicionadas, e qualquer coisa acima de 10³ é mal condicionada e deve ser tratada com cuidado.\n\nHá algumas ressalvas importantes. O número de condição depende da norma escolhida, então valores calculados com normas diferentes não são diretamente comparáveis, embora normalmente estejam dentro de um pequeno fator constante. O número de condição da norma 2 (norma espectral), definido por valores singulares, é o mais natural teoricamente, mas é mais caro de calcular e não é oferecido aqui. Uma matriz singular tem determinante exatamente zero, não tem inversa e possui número de condição infinito; a calculadora detecta esse caso explicitamente.\n\nUse esta ferramenta sempre que precisar verificar se uma pequena matriz pode ser invertida numericamente com segurança, ao ensinar análise numérica introdutória ou como uma checagem rápida antes de resolver um sistema em uma simulação maior ou em um pipeline de machine learning."
+  },
+  "examples": {
+    "heading": "Exemplos resolvidos",
+    "intro": "Algumas matrizes ilustrativas que cobrem o intervalo de bem condicionadas a mal condicionadas.",
+    "colInput": "Matriz (2×2 ou 3×3)",
+    "colOutput": "Número de condição",
+    "colNote": "Observações",
+    "items": [
+      {
+        "input": "[[1, 0], [0, 1]],  1-norm",
+        "output": "κ = 1",
+        "note": "A matriz identidade é perfeitamente condicionada. Seu número de condição é 1 em qualquer norma padrão."
+      },
+      {
+        "input": "[[2, 1], [1, 3]],  Frobenius",
+        "output": "κ ≈ 3.0",
+        "note": "Uma matriz simétrica definida positiva com número de condição pequeno. Sistemas lineares com ela são fáceis de resolver com precisão."
+      },
+      {
+        "input": "[[1, 1], [1, 1.0001]],  infinity-norm",
+        "output": "κ ≈ 40004",
+        "note": "Matriz quase singular. Pequenas perturbações no elemento (2,2) produzirão soluções drasticamente diferentes."
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 10]],  1-norm",
+        "output": "κ ≈ 380",
+        "note": "Uma matriz 3×3 moderadamente condicionada. É esperado alguma perda de precisão em ponto flutuante simples."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de número de condição",
+    "steps": [
+      "Escolha o tamanho da matriz, 2 × 2 ou 3 × 3.",
+      "Selecione a norma que deseja usar — norma 1, norma infinito ou norma de Frobenius.",
+      "Digite cada entrada da matriz na célula correspondente da grade.",
+      "Clique em Calcular número de condição. O painel de resultado mostra κ(A), a norma da matriz, a norma da inversa, o determinante e uma interpretação em linguagem simples.",
+      "Clique em Redefinir para limpar todas as entradas e começar uma nova matriz."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre número de condição",
+    "items": [
+      {
+        "q": "O que o número de condição me diz?",
+        "a": "Ele limita o quanto um erro relativo no lado direito b de um sistema linear A·x = b pode ser amplificado na solução x. Um número de condição de 10^k significa que você pode perder até k dígitos de precisão apenas por arredondamento."
+      },
+      {
+        "q": "Qual é um número de condição “bom”?",
+        "a": "Valores abaixo de 100 geralmente são considerados bem condicionados, 100–1000 é moderado e acima de 1000 é mal condicionado. Os limites dependem da precisão da aritmética e da exatidão que você precisa na resposta final."
+      },
+      {
+        "q": "Qual norma devo usar?",
+        "a": "A norma 1 e a norma infinito são baratas de calcular e trazem informações muito parecidas; a norma de Frobenius também é simples e é o análogo matricial da norma euclidiana de vetores. O número de condição espectral (norma 2) é o mais natural teoricamente, mas é mais caro e não é oferecido aqui."
+      },
+      {
+        "q": "Por que minha matriz foi marcada como singular?",
+        "a": "Uma matriz é singular quando seu determinante é zero (ou numericamente indistinguível de zero, abaixo de 10⁻¹⁰). Matrizes singulares não têm inversa, então o número de condição é infinito e o sistema A·x = b não tem solução ou tem infinitas soluções."
+      },
+      {
+        "q": "O número de condição depende do lado direito b?",
+        "a": "Não. O número de condição depende apenas da matriz A. Ele fornece um limite de pior caso para a amplificação do erro relativo em b, independentemente do b específico escolhido."
+      },
+      {
+        "q": "O número de condição pode ser menor que 1?",
+        "a": "Não. Para qualquer norma matricial compatível, κ(A) = ‖A‖ · ‖A⁻¹‖ ≥ ‖A · A⁻¹‖ = ‖I‖ ≥ 1. O valor mínimo 1 é atingido por matrizes ortogonais (ou unitárias na norma 2)."
+      }
+    ]
+  }
+}
