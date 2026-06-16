@@ -1,0 +1,99 @@
+{
+  "title": "Calculadora de espacio nulo - núcleo y base",
+  "tagline": "Encuentra el espacio nulo (núcleo) de cualquier matriz de hasta 4×4 y calcula vectores base, rango y nulidad con eliminación de Gauss-Jordan.",
+  "intro": "Selecciona las dimensiones de la matriz, completa las entradas y haz clic en Calcular para obtener todos los vectores base del espacio nulo y el rango de la matriz.",
+  "formula": "Método: reduce A a RREF mediante eliminación de Gauss-Jordan y luego lee los vectores base para cada variable libre.",
+  "field": {
+    "size": "Tamaño de la matriz",
+    "matrixLabel": "Entradas de la matriz",
+    "cell": "Fila {row}, columna {col}"
+  },
+  "button": {
+    "calculate": "Calcular espacio nulo",
+    "example1": "Cargar ejemplo 2×3",
+    "example2": "Cargar 3×3 con rango deficiente",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Completa todas las celdas de la matriz con números válidos."
+  },
+  "result": {
+    "heading": "Resultado",
+    "rank": "Rango",
+    "nullity": "Nulidad",
+    "trivial": "El espacio nulo contiene solo el vector cero (espacio nulo trivial). La matriz tiene rango columna completo.",
+    "basisLabel": "Vectores base del espacio nulo:"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de espacio nulo",
+    "body": "El espacio nulo de una matriz A (también llamado núcleo de A) es el conjunto de todos los vectores x que satisfacen la ecuación homogénea Ax = 0. Geométricamente, es el conjunto de todos los vectores que la transformación lineal representada por A lleva al vector cero. El espacio nulo siempre es un subespacio del espacio de dominio, y su dimensión se llama nulidad de la matriz.\n\nEl teorema rango-nulidad es uno de los resultados centrales del álgebra lineal: para una matriz m × n A, rank(A) + nullity(A) = n. Esto significa que rango y nulidad siempre suman el número de columnas. Una matriz con rango columna completo (rank = n) tiene un espacio nulo trivial que contiene solo el vector cero. Cuando el rango es menor que n, el espacio nulo tiene dimensión positiva igual a n − rank, y hay infinitos vectores que satisfacen Ax = 0.\n\nPara calcular el espacio nulo, esta calculadora usa eliminación de Gauss-Jordan para reducir A a su Forma Echelon Reducida por Filas (RREF). En RREF, cada fila no nula tiene un 1 líder (pivote) y todo otro elemento en esa columna es cero. Las columnas con pivotes corresponden a variables básicas; las restantes corresponden a variables libres. Para cada variable libre, se puede fijar en 1 y poner las demás variables libres en 0, luego resolver hacia atrás para obtener los valores de las variables básicas. El vector resultante es un vector base del espacio nulo.\n\nEl espacio nulo tiene aplicaciones importantes en matemáticas aplicadas e ingeniería. En sistemas lineales, el espacio nulo te dice cuándo las soluciones no son únicas: si Ax = b tiene una solución x₀, entonces la solución general es x₀ más cualquier elemento del espacio nulo. En teoría de control, el espacio nulo de una matriz de controlabilidad revela modos incontrolables. En procesamiento de señales, el espacio nulo de una matriz de medición identifica señales invisibles para el arreglo de sensores. En química, el espacio nulo de la matriz estequiométrica da todas las leyes de conservación de una red de reacciones.\n\nPara estabilidad numérica, esta calculadora usa pivoteo parcial durante la eliminación gaussiana y trata cualquier valor con magnitud menor que 1e-10 como cero. Esto hace que el algoritmo sea robusto para matrices con entradas enteras o racionales típicas de cursos y problemas de ingeniería. Ingresa cualquier número —enteros, decimales o fracciones expresadas como decimales— y la calculadora devuelve al instante el rango, la nulidad y un conjunto completo de vectores base del espacio nulo."
+  },
+  "examples": {
+    "heading": "Ejemplos de espacio nulo",
+    "intro": "Cuatro ejemplos que cubren distintas formas de matriz y dimensiones del espacio nulo.",
+    "colInput": "Matriz",
+    "colOutput": "Base del espacio nulo",
+    "colNote": "Explicación",
+    "items": [
+      {
+        "input": "2×3: [[1,2,3],[4,5,6]]",
+        "output": "v1 = [1, −2, 1]",
+        "note": "Rango 2, nulidad 1. Una variable libre produce un vector base. Verifica: 1·1 + 2·(−2) + 3·1 = 0 y 4·1 + 5·(−2) + 6·1 = 0."
+      },
+      {
+        "input": "3×3 Identity [[1,0,0],[0,1,0],[0,0,1]]",
+        "output": "Trivial (solo el vector cero)",
+        "note": "Matriz de rango completo: rank = 3, nullity = 0. La única solución a Ix = 0 es x = 0."
+      },
+      {
+        "input": "3×3 rank-deficient: [[1,2,3],[2,4,6],[1,1,2]]",
+        "output": "v1 = [−1, −1, 1]",
+        "note": "Rango 2, nulidad 1. Las filas 1 y 2 son linealmente dependientes (fila 2 = 2×fila 1). La RREF da columnas pivote 0 y 1, y columna libre 2; la sustitución hacia atrás produce v = [−1, −1, 1]."
+      },
+      {
+        "input": "2×2 zero matrix [[0,0],[0,0]]",
+        "output": "v1 = [1,0], v2 = [0,1]",
+        "note": "Rango 0, nulidad 2. Todo vector satisface Ax = 0, así que todo R² es el espacio nulo con la base estándar."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de espacio nulo",
+    "steps": [
+      "Selecciona las dimensiones de la matriz (filas × columnas) con los botones de tamaño. Hay opciones de 2×2 a 4×4, incluidas matrices no cuadradas como 2×3 y 3×4.",
+      "Ingresa las entradas de la matriz en la cuadrícula. Cada celda acepta cualquier número real, incluidos decimales y negativos. Dejar celdas vacías activará un error.",
+      "Haz clic en Calcular espacio nulo. El resultado mostrará el rango, la nulidad y todos los vectores base del espacio nulo.",
+      "Usa los botones Cargar ejemplo para rellenar ejemplos clásicos: una matriz 2×3 con espacio nulo unidimensional o una matriz 3×3 con rango deficiente.",
+      "Haz clic en Restablecer para borrar todas las celdas manteniendo el tamaño actual de la matriz, o cambia el selector de tamaño para empezar con otra dimensión."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre espacio nulo",
+    "items": [
+      {
+        "q": "¿Qué es el espacio nulo de una matriz?",
+        "a": "El espacio nulo de una matriz A es el conjunto de todos los vectores x tales que Ax es el vector cero. Representa todas las direcciones del espacio de entrada que la transformación lineal A colapsa a cero. El espacio nulo siempre es un subespacio (contiene el vector cero y es cerrado bajo suma y multiplicación por escalares). Su dimensión, llamada nulidad, mide cuánta información pierde A durante la transformación."
+      },
+      {
+        "q": "¿Cómo encuentra el espacio nulo la eliminación de Gauss-Jordan?",
+        "a": "El algoritmo convierte A a Forma Echelon Reducida por Filas (RREF) aplicando operaciones por filas. En RREF, las columnas pivote y las columnas libres se identifican fácilmente. Para cada variable libre (columna no pivote), fijarla en 1 y las demás en 0, y luego resolver hacia atrás para las variables pivote, produce un vector base del espacio nulo. El espacio nulo completo es el span de todos esos vectores."
+      },
+      {
+        "q": "¿Qué significa que el espacio nulo sea trivial?",
+        "a": "Un espacio nulo trivial contiene solo el vector cero. Esto ocurre cuando la matriz tiene rango columna completo: cada columna es pivote y no hay variables libres. Para la ecuación Ax = 0, la única solución es x = 0. Una matriz cuadrada con espacio nulo trivial es invertible; una matriz no cuadrada con espacio nulo trivial tiene la ecuación Ax = b con a lo sumo una solución para cualquier b."
+      },
+      {
+        "q": "¿Qué es el teorema rango-nulidad?",
+        "a": "El teorema rango-nulidad establece que para una matriz m × n A: rank(A) + nullity(A) = n, donde n es el número de columnas. El rango es la dimensión del espacio columna (número de columnas linealmente independientes), y la nulidad es la dimensión del espacio nulo. Son complementarios: al aumentar el rango disminuye la nulidad y viceversa. Este teorema es fundamental para entender aplicaciones lineales y sistemas de ecuaciones."
+      },
+      {
+        "q": "¿Puede una matriz no cuadrada tener espacio nulo?",
+        "a": "Sí. Cualquier matriz cuyo número de columnas exceda su rango tiene un espacio nulo no trivial. Para una matriz ancha con más columnas que filas (m < n), el rango puede ser como máximo m, así que la nulidad ≥ n − m > 0, garantizando un espacio nulo no trivial. Las matrices altas (más filas que columnas) también pueden tener espacio nulo trivial si sus columnas son linealmente independientes."
+      },
+      {
+        "q": "¿Por qué los vectores base pueden contener decimales?",
+        "a": "Cuando la matriz tiene entradas no enteras o cuando la sustitución hacia atrás produce fracciones, los vectores base del espacio nulo tendrán componentes decimales. Esto es matemáticamente correcto: el espacio nulo se define sobre los números reales, no solo sobre los enteros. Puedes multiplicar cualquier vector base por una constante no nula y obtener otro vector base válido, así que si prefieres componentes enteros, multiplica el vector por el m.c.m. de sus denominadores."
+      }
+    ]
+  }
+}

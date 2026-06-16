@@ -1,0 +1,99 @@
+{
+  "title": "Calculateur d’espace nul - noyau et base",
+  "tagline": "Trouvez l’espace nul (noyau) de toute matrice jusqu’à 4×4 et calculez les vecteurs de base, le rang et la nullité avec l’élimination de Gauss-Jordan.",
+  "intro": "Sélectionnez les dimensions de la matrice, remplissez les entrées puis cliquez sur Calculer pour obtenir tous les vecteurs de base de l’espace nul et le rang de la matrice.",
+  "formula": "Méthode : réduire A en RREF par élimination de Gauss-Jordan, puis lire les vecteurs de base pour chaque variable libre.",
+  "field": {
+    "size": "Taille de la matrice",
+    "matrixLabel": "Entrées de la matrice",
+    "cell": "Ligne {row}, colonne {col}"
+  },
+  "button": {
+    "calculate": "Calculer l’espace nul",
+    "example1": "Charger l’exemple 2×3",
+    "example2": "Charger le 3×3 de rang déficient",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez remplir toutes les cases de la matrice avec des nombres valides."
+  },
+  "result": {
+    "heading": "Résultat",
+    "rank": "Rang",
+    "nullity": "Nullité",
+    "trivial": "L’espace nul contient uniquement le vecteur nul (espace nul trivial). La matrice a un rang colonne complet.",
+    "basisLabel": "Vecteurs de base de l’espace nul :"
+  },
+  "about": {
+    "heading": "À propos du calculateur d’espace nul",
+    "body": "L’espace nul d’une matrice A (également appelé noyau de A) est l’ensemble de tous les vecteurs x qui satisfont l’équation homogène Ax = 0. Géométriquement, c’est l’ensemble des vecteurs que la transformation linéaire représentée par A envoie vers le vecteur nul. L’espace nul est toujours un sous-espace de l’espace de départ, et sa dimension s’appelle la nullité de la matrice.\n\nLe théorème rang-nullité est l’un des résultats centraux de l’algèbre linéaire : pour une matrice m × n A, rank(A) + nullity(A) = n. Cela signifie que le rang et la nullité s’additionnent toujours au nombre de colonnes. Une matrice de rang colonne complet (rank = n) a un espace nul trivial contenant uniquement le vecteur nul. Lorsque le rang est inférieur à n, l’espace nul a une dimension positive égale à n − rank, et il existe une infinité de vecteurs satisfaisant Ax = 0.\n\nPour calculer l’espace nul, ce calculateur utilise l’élimination de Gauss-Jordan pour réduire A sous sa forme échelonnée réduite (RREF). En RREF, chaque ligne non nulle possède un 1 directeur (pivot) et tous les autres éléments de cette colonne sont nuls. Les colonnes contenant des pivots correspondent aux variables de base ; les autres colonnes correspondent aux variables libres. Pour chaque variable libre, on peut la fixer à 1 et mettre toutes les autres variables libres à 0, puis résoudre par substitution arrière pour trouver les valeurs des variables de base. Le vecteur obtenu est un vecteur de base de l’espace nul.\n\nL’espace nul a des applications importantes en mathématiques appliquées et en ingénierie. Dans les systèmes linéaires, l’espace nul indique la non-unicité des solutions : si Ax = b admet une solution x₀, alors la solution générale est x₀ plus n’importe quel élément de l’espace nul. En théorie du contrôle, l’espace nul d’une matrice de contrôlabilité révèle les modes incontrôlables. En traitement du signal, l’espace nul d’une matrice de mesure identifie les signaux invisibles pour le réseau de capteurs. En chimie, l’espace nul de la matrice stœchiométrique donne toutes les lois de conservation d’un réseau de réactions.\n\nPour la stabilité numérique, ce calculateur utilise un pivot partiel pendant l’élimination gaussienne et considère toute valeur d’une valeur absolue inférieure à 1e-10 comme nulle. Cela rend l’algorithme robuste pour les matrices à coefficients entiers ou rationnels rencontrées dans les cours et problèmes d’ingénierie. Saisissez n’importe quels nombres — entiers, décimaux ou fractions exprimées en décimales — et le calculateur renvoie immédiatement le rang, la nullité et un ensemble complet de vecteurs de base de l’espace nul."
+  },
+  "examples": {
+    "heading": "Exemples d’espace nul",
+    "intro": "Quatre exemples couvrant différentes formes de matrices et dimensions d’espace nul.",
+    "colInput": "Matrice",
+    "colOutput": "Base de l’espace nul",
+    "colNote": "Explication",
+    "items": [
+      {
+        "input": "2×3: [[1,2,3],[4,5,6]]",
+        "output": "v1 = [1, −2, 1]",
+        "note": "Rang 2, nullité 1. Une variable libre produit un vecteur de base. Vérifiez : 1·1 + 2·(−2) + 3·1 = 0 et 4·1 + 5·(−2) + 6·1 = 0."
+      },
+      {
+        "input": "3×3 Identity [[1,0,0],[0,1,0],[0,0,1]]",
+        "output": "Trivial (vecteur nul uniquement)",
+        "note": "Matrice de rang complet : rank = 3, nullity = 0. La seule solution à Ix = 0 est x = 0."
+      },
+      {
+        "input": "3×3 rank-deficient: [[1,2,3],[2,4,6],[1,1,2]]",
+        "output": "v1 = [−1, −1, 1]",
+        "note": "Rang 2, nullité 1. Les lignes 1 et 2 sont linéairement dépendantes (ligne 2 = 2×ligne 1). La RREF donne les colonnes pivots 0 et 1, la colonne libre 2 ; la substitution arrière donne v = [−1, −1, 1]."
+      },
+      {
+        "input": "2×2 zero matrix [[0,0],[0,0]]",
+        "output": "v1 = [1,0], v2 = [0,1]",
+        "note": "Rang 0, nullité 2. Tout vecteur satisfait Ax = 0, donc tout R² est l’espace nul avec la base standard."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur d’espace nul",
+    "steps": [
+      "Sélectionnez les dimensions de la matrice (lignes × colonnes) à l’aide des boutons de taille. Les tailles disponibles vont de 2×2 à 4×4, y compris des matrices non carrées comme 2×3 et 3×4.",
+      "Saisissez les entrées de la matrice dans la grille. Chaque case accepte n’importe quel nombre réel, y compris les décimales et les négatifs. Laisser des cases vides déclenchera une erreur.",
+      "Cliquez sur Calculer l’espace nul. Le résultat affiche le rang, la nullité et tous les vecteurs de base de l’espace nul.",
+      "Utilisez les boutons Charger l’exemple pour préremplir des exemples classiques : une matrice 2×3 avec un espace nul de dimension 1, ou une matrice 3×3 de rang déficient.",
+      "Cliquez sur Réinitialiser pour effacer toutes les cases tout en conservant la taille actuelle de la matrice, ou changez le sélecteur de taille pour repartir avec une autre dimension."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur l’espace nul",
+    "items": [
+      {
+        "q": "Qu’est-ce que l’espace nul d’une matrice ?",
+        "a": "L’espace nul d’une matrice A est l’ensemble de tous les vecteurs x tels que Ax soit le vecteur nul. Il représente toutes les directions de l’espace d’entrée que la transformation linéaire A écrase à zéro. L’espace nul est toujours un sous-espace (il contient le vecteur nul et est stable par addition et multiplication scalaire). Sa dimension, appelée nullité, mesure la quantité d’information que A perd pendant la transformation."
+      },
+      {
+        "q": "Comment l’élimination de Gauss-Jordan trouve-t-elle l’espace nul ?",
+        "a": "L’algorithme transforme A en forme échelonnée réduite (RREF) en appliquant des opérations sur les lignes. En RREF, les colonnes pivots et les colonnes libres sont faciles à identifier. Pour chaque variable libre (colonne non pivot), fixer cette variable à 1 et toutes les autres à 0, puis résoudre les variables pivots par substitution arrière, donne un vecteur de base de l’espace nul. L’espace nul complet est l’espace engendré par tous ces vecteurs."
+      },
+      {
+        "q": "Que signifie un espace nul trivial ?",
+        "a": "Un espace nul trivial contient uniquement le vecteur nul. Cela se produit lorsque la matrice a un rang colonne complet — chaque colonne est une colonne pivot et il n’y a pas de variables libres. Pour l’équation Ax = 0, la solution unique est x = 0. Une matrice carrée avec un espace nul trivial est inversible ; une matrice non carrée avec un espace nul trivial a l’équation Ax = b avec au plus une solution pour tout b."
+      },
+      {
+        "q": "Qu’est-ce que le théorème rang-nullité ?",
+        "a": "Le théorème rang-nullité affirme que pour une matrice m × n A : rank(A) + nullity(A) = n, où n est le nombre de colonnes. Le rang est la dimension de l’espace colonne (nombre de colonnes linéairement indépendantes), et la nullité est la dimension de l’espace nul. Ils sont complémentaires : quand le rang augmente, la nullité diminue, et inversement. Ce théorème est fondamental pour comprendre les applications linéaires et les systèmes d’équations."
+      },
+      {
+        "q": "Une matrice non carrée peut-elle avoir un espace nul ?",
+        "a": "Oui. Toute matrice dont le nombre de colonnes dépasse le rang a un espace nul non trivial. Pour une matrice large avec plus de colonnes que de lignes (m < n), le rang est au plus m, donc nullité ≥ n − m > 0, ce qui garantit un espace nul non trivial. Les matrices hautes (plus de lignes que de colonnes) peuvent aussi avoir un espace nul trivial si leurs colonnes sont linéairement indépendantes."
+      },
+      {
+        "q": "Pourquoi les vecteurs de base peuvent-ils contenir des décimales ?",
+        "a": "Lorsque la matrice contient des valeurs non entières ou que la substitution arrière produit des fractions, les vecteurs de base de l’espace nul auront des composantes décimales. C’est mathématiquement correct : l’espace nul est défini sur les réels, pas seulement sur les entiers. Vous pouvez multiplier n’importe quel vecteur de base par une constante non nulle et obtenir un autre vecteur de base valide ; si vous préférez des composantes entières, multipliez le vecteur par le PPCM de ses dénominateurs."
+      }
+    ]
+  }
+}

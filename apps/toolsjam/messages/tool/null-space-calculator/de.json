@@ -1,0 +1,99 @@
+{
+  "title": "Nullraum-Rechner - Kern und Basisvektoren",
+  "tagline": "Finde den Nullraum (Kern) jeder Matrix bis 4×4 und berechne Basisvektoren, Rang und Nullität mit dem Gauss-Jordan-Verfahren.",
+  "intro": "Wähle die Matrixdimensionen, fülle die Einträge aus und klicke auf Berechnen, um alle Basisvektoren des Nullraums und den Rang der Matrix zu erhalten.",
+  "formula": "Methode: Reduziere A per Gauss-Jordan-Elimination auf RREF und lies dann die Basisvektoren für jede freie Variable ab.",
+  "field": {
+    "size": "Matrixgröße",
+    "matrixLabel": "Matrixeinträge",
+    "cell": "Zeile {row}, Spalte {col}"
+  },
+  "button": {
+    "calculate": "Nullraum berechnen",
+    "example1": "2×3-Beispiel laden",
+    "example2": "Rangdefizientes 3×3 laden",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte fülle alle Matrixfelder mit gültigen Zahlen aus."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "rank": "Rang",
+    "nullity": "Nullität",
+    "trivial": "Der Nullraum enthält nur den Nullvektor (trivialer Nullraum). Die Matrix hat vollen Spaltenrang.",
+    "basisLabel": "Basisvektoren des Nullraums:"
+  },
+  "about": {
+    "heading": "Über den Nullraum-Rechner",
+    "body": "Der Nullraum einer Matrix A (auch Kern von A genannt) ist die Menge aller Vektoren x, die die homogene Gleichung Ax = 0 erfüllen. Geometrisch ist es die Menge aller Vektoren, die die durch A dargestellte lineare Abbildung auf den Nullvektor abbildet. Der Nullraum ist immer ein Unterraum des Definitionsraums, und seine Dimension heißt Nullität der Matrix.\n\nDer Rang-Nullitätssatz ist eines der zentralen Ergebnisse der linearen Algebra: Für eine m × n-Matrix A gilt rank(A) + nullity(A) = n. Das bedeutet, dass Rang und Nullität zusammen immer die Anzahl der Spalten ergeben. Eine Matrix mit vollem Spaltenrang (rank = n) hat einen trivialen Nullraum, der nur den Nullvektor enthält. Ist der Rang kleiner als n, hat der Nullraum die positive Dimension n − rank, und es gibt unendlich viele Vektoren, die Ax = 0 erfüllen.\n\nUm den Nullraum zu berechnen, verwendet dieser Rechner das Gauss-Jordan-Verfahren, um A in die reduzierte Zeilenstufenform (RREF) zu überführen. In der RREF hat jede von null verschiedene Zeile eine führende 1 (Pivot), und alle anderen Einträge in dieser Spalte sind null. Die Spalten mit Pivots entsprechen Basisvariablen; die übrigen Spalten entsprechen freien Variablen. Für jede freie Variable setzt man sie auf 1 und alle anderen freien Variablen auf 0 und bestimmt dann per Rücksubstitution die Basisvariablen. Der resultierende Vektor ist ein Basisvektor des Nullraums.\n\nDer Nullraum hat wichtige Anwendungen in angewandter Mathematik und Ingenieurwesen. Bei linearen Gleichungssystemen zeigt der Nullraum die Nicht-Eindeutigkeit von Lösungen: Hat Ax = b eine Lösung x₀, dann ist die allgemeine Lösung x₀ plus beliebige Elemente des Nullraums. In der Regelungstechnik zeigt der Nullraum einer Steuerbarkeitsmatrix nicht steuerbare Modi. In der Signalverarbeitung identifiziert der Nullraum einer Messmatrix Signale, die für das Sensorarray unsichtbar sind. In der Chemie liefert der Nullraum der stöchiometrischen Matrix alle Erhaltungssätze eines Reaktionsnetzwerks.\n\nFür numerische Stabilität verwendet dieser Rechner beim Gaußschen Eliminationsverfahren partielle Pivotisierung und behandelt jeden Betrag kleiner als 1e-10 als null. Dadurch ist der Algorithmus für Matrizen mit ganzzahligen oder rationalen Einträgen aus typischen Kurs- und Ingenieuraufgaben robust. Gib beliebige Zahlen ein — ganze Zahlen, Dezimalzahlen oder als Dezimalzahlen geschriebene Brüche — und der Rechner gibt sofort Rang, Nullität und eine vollständige Menge von Basisvektoren des Nullraums zurück."
+  },
+  "examples": {
+    "heading": "Nullraum-Beispiele",
+    "intro": "Vier Beispiele für verschiedene Matrixformen und Nullraumdimensionen.",
+    "colInput": "Matrix",
+    "colOutput": "Nullraum-Basis",
+    "colNote": "Erklärung",
+    "items": [
+      {
+        "input": "2×3: [[1,2,3],[4,5,6]]",
+        "output": "v1 = [1, −2, 1]",
+        "note": "Rang 2, Nullität 1. Eine freie Variable liefert einen Basisvektor. Prüfung: 1·1 + 2·(−2) + 3·1 = 0 und 4·1 + 5·(−2) + 6·1 = 0."
+      },
+      {
+        "input": "3×3 Identity [[1,0,0],[0,1,0],[0,0,1]]",
+        "output": "Trivial (nur Nullvektor)",
+        "note": "Volle Rangmatrix: rank = 3, nullity = 0. Die einzige Lösung von Ix = 0 ist x = 0."
+      },
+      {
+        "input": "3×3 rank-deficient: [[1,2,3],[2,4,6],[1,1,2]]",
+        "output": "v1 = [−1, −1, 1]",
+        "note": "Rang 2, Nullität 1. Zeile 1 und 2 sind linear abhängig (Zeile 2 = 2×Zeile 1). Die RREF liefert Pivotspalten 0 und 1 sowie freie Spalte 2; Rücksubstitution ergibt v = [−1, −1, 1]."
+      },
+      {
+        "input": "2×2 zero matrix [[0,0],[0,0]]",
+        "output": "v1 = [1,0], v2 = [0,1]",
+        "note": "Rang 0, Nullität 2. Jeder Vektor erfüllt Ax = 0, also ist ganz R² der Nullraum mit der Standardbasis."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So benutzt du den Nullraum-Rechner",
+    "steps": [
+      "Wähle die Matrixdimensionen (Zeilen × Spalten) mit den Größen-Buttons. Verfügbar sind 2×2 bis 4×4 sowie nichtquadratische Matrizen wie 2×3 und 3×4.",
+      "Gib die Matrixeinträge im Raster ein. Jedes Feld akzeptiert beliebige reelle Zahlen, einschließlich Dezimalzahlen und negativer Zahlen. Leere Felder lösen einen Fehler aus.",
+      "Klicke auf Nullraum berechnen. Das Ergebnis zeigt Rang, Nullität und alle Basisvektoren des Nullraums.",
+      "Mit den Beispiel-Buttons kannst du klassische Beispiele vorfüllen: eine 2×3-Matrix mit eindimensionalem Nullraum oder eine rangdefiziente 3×3-Matrix.",
+      "Klicke auf Zurücksetzen, um alle Felder zu leeren und die aktuelle Matrixgröße beizubehalten, oder ändere den Größenwähler, um mit einer anderen Dimension neu zu beginnen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Nullraum-Rechner",
+    "items": [
+      {
+        "q": "Was ist der Nullraum einer Matrix?",
+        "a": "Der Nullraum einer Matrix A ist die Menge aller Vektoren x, für die Ax der Nullvektor ist. Er beschreibt alle Richtungen im Eingaberaum, die die lineare Abbildung A auf null zusammenklappt. Der Nullraum ist immer ein Unterraum (er enthält den Nullvektor und ist unter Addition und Skalarmultiplikation abgeschlossen). Seine Dimension, die Nullität, misst, wie viel Information A bei der Transformation verliert."
+      },
+      {
+        "q": "Wie findet Gauss-Jordan-Elimination den Nullraum?",
+        "a": "Der Algorithmus wandelt A durch Zeilenoperationen in die reduzierte Zeilenstufenform (RREF) um. In der RREF lassen sich Pivotspalten und freie Spalten leicht erkennen. Für jede freie Variable (Nicht-Pivot-Spalte) setzt man diese Variable auf 1 und alle anderen auf 0 und löst dann die Pivotvariablen per Rücksubstitution. Das ergibt einen Basisvektor des Nullraums. Der gesamte Nullraum ist der Spann all dieser Vektoren."
+      },
+      {
+        "q": "Was bedeutet ein trivialer Nullraum?",
+        "a": "Ein trivialer Nullraum enthält nur den Nullvektor. Das passiert, wenn die Matrix vollen Spaltenrang hat — jede Spalte ist eine Pivotspalte und es gibt keine freien Variablen. Für die Gleichung Ax = 0 ist die einzige Lösung x = 0. Eine quadratische Matrix mit trivialem Nullraum ist invertierbar; eine nichtquadratische Matrix mit trivialem Nullraum hat für jedes b die Gleichung Ax = b mit höchstens einer Lösung."
+      },
+      {
+        "q": "Was ist der Rang-Nullitätssatz?",
+        "a": "Der Rang-Nullitätssatz besagt für eine m × n-Matrix A: rank(A) + nullity(A) = n, wobei n die Spaltenzahl ist. Der Rang ist die Dimension des Spaltenraums (Anzahl linear unabhängiger Spalten), und die Nullität ist die Dimension des Nullraums. Beide sind komplementär: Wenn der Rang steigt, sinkt die Nullität, und umgekehrt. Dieser Satz ist grundlegend zum Verständnis linearer Abbildungen und Gleichungssysteme."
+      },
+      {
+        "q": "Kann eine nichtquadratische Matrix einen Nullraum haben?",
+        "a": "Ja. Jede Matrix, deren Spaltenzahl den Rang übersteigt, hat einen nichttrivialen Nullraum. Bei einer breiten Matrix mit mehr Spalten als Zeilen (m < n) kann der Rang höchstens m sein, also gilt Nullität ≥ n − m > 0, wodurch ein nichttrivialer Nullraum garantiert ist. Hohe Matrizen (mehr Zeilen als Spalten) können ebenfalls einen trivialen Nullraum haben, wenn ihre Spalten linear unabhängig sind."
+      },
+      {
+        "q": "Warum können die Basisvektoren Dezimalzahlen enthalten?",
+        "a": "Wenn die Matrix nichtganzzahlige Einträge hat oder die Rücksubstitution Brüche erzeugt, enthalten die Basisvektoren des Nullraums Dezimalanteile. Das ist mathematisch korrekt — der Nullraum ist über den reellen Zahlen definiert, nicht nur über den ganzen Zahlen. Jeden Basisvektor kann man mit einer von null verschiedenen Zahl multiplizieren und erhält wieder einen gültigen Basisvektor. Wenn du lieber ganzzahlige Komponenten möchtest, multipliziere den Vektor mit dem kleinsten gemeinsamen Vielfachen der Nenner."
+      }
+    ]
+  }
+}

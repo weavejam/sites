@@ -1,0 +1,99 @@
+{
+  "title": "Calculadora de espaço nulo - núcleo e base",
+  "tagline": "Encontre o espaço nulo (núcleo) de qualquer matriz até 4×4 e calcule vetores de base, posto e nulidade com eliminação de Gauss-Jordan.",
+  "intro": "Selecione as dimensões da matriz, preencha os valores e clique em Calcular para encontrar todos os vetores de base do espaço nulo e o posto da matriz.",
+  "formula": "Método: reduza A à RREF via eliminação de Gauss-Jordan e então leia os vetores de base para cada variável livre.",
+  "field": {
+    "size": "Tamanho da matriz",
+    "matrixLabel": "Entradas da matriz",
+    "cell": "Linha {row}, coluna {col}"
+  },
+  "button": {
+    "calculate": "Calcular espaço nulo",
+    "example1": "Carregar exemplo 2×3",
+    "example2": "Carregar 3×3 com posto deficiente",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Preencha todas as células da matriz com números válidos."
+  },
+  "result": {
+    "heading": "Resultado",
+    "rank": "Posto",
+    "nullity": "Nulidade",
+    "trivial": "O espaço nulo contém apenas o vetor zero (espaço nulo trivial). A matriz tem posto de coluna completo.",
+    "basisLabel": "Vetores de base do espaço nulo:"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de espaço nulo",
+    "body": "O espaço nulo de uma matriz A (também chamado de núcleo de A) é o conjunto de todos os vetores x que satisfazem a equação homogênea Ax = 0. Geometricamente, é o conjunto de todos os vetores que a transformação linear representada por A leva ao vetor zero. O espaço nulo é sempre um subespaço do espaço de domínio, e sua dimensão é chamada de nulidade da matriz.\n\nO teorema posto-nulidade é um dos resultados centrais da álgebra linear: para uma matriz m × n A, rank(A) + nullity(A) = n. Isso significa que posto e nulidade sempre somam o número de colunas. Uma matriz com posto de coluna completo (rank = n) tem um espaço nulo trivial contendo apenas o vetor zero. Quando o posto é menor que n, o espaço nulo tem dimensão positiva igual a n − rank, e existem infinitos vetores que satisfazem Ax = 0.\n\nPara calcular o espaço nulo, esta calculadora usa eliminação de Gauss-Jordan para reduzir A à Forma Escalonada Reduzida por Linhas (RREF). Na RREF, cada linha não nula tem um 1 líder (pivô) e todo outro elemento nessa coluna é zero. As colunas com pivôs correspondem a variáveis básicas; as demais correspondem a variáveis livres. Para cada variável livre, pode-se defini-la como 1 e colocar as outras variáveis livres como 0, então resolver de volta para encontrar os valores das variáveis básicas. O vetor resultante é um vetor de base do espaço nulo.\n\nO espaço nulo tem aplicações importantes em matemática aplicada e engenharia. Em sistemas lineares, o espaço nulo mostra a não unicidade das soluções: se Ax = b tem uma solução x₀, então a solução geral é x₀ somada a qualquer elemento do espaço nulo. Em teoria de controle, o espaço nulo de uma matriz de controlabilidade revela modos incontroláveis. Em processamento de sinais, o espaço nulo de uma matriz de medição identifica sinais invisíveis para a rede de sensores. Em química, o espaço nulo da matriz estequiométrica fornece todas as leis de conservação de uma rede de reações.\n\nPara estabilidade numérica, esta calculadora usa pivotamento parcial durante a eliminação gaussiana e trata qualquer valor com módulo menor que 1e-10 como zero. Isso torna o algoritmo robusto para matrizes com entradas inteiras ou racionais encontradas em cursos e problemas de engenharia. Digite quaisquer números — inteiros, decimais ou frações expressas como decimais — e a calculadora retorna imediatamente o posto, a nulidade e um conjunto completo de vetores de base do espaço nulo."
+  },
+  "examples": {
+    "heading": "Exemplos de espaço nulo",
+    "intro": "Quatro exemplos cobrindo diferentes formatos de matriz e dimensões do espaço nulo.",
+    "colInput": "Matriz",
+    "colOutput": "Base do espaço nulo",
+    "colNote": "Explicação",
+    "items": [
+      {
+        "input": "2×3: [[1,2,3],[4,5,6]]",
+        "output": "v1 = [1, −2, 1]",
+        "note": "Posto 2, nulidade 1. Uma variável livre produz um vetor de base. Verifique: 1·1 + 2·(−2) + 3·1 = 0 e 4·1 + 5·(−2) + 6·1 = 0."
+      },
+      {
+        "input": "3×3 Identity [[1,0,0],[0,1,0],[0,0,1]]",
+        "output": "Trivial (somente o vetor zero)",
+        "note": "Matriz de posto completo: rank = 3, nullity = 0. A única solução de Ix = 0 é x = 0."
+      },
+      {
+        "input": "3×3 rank-deficient: [[1,2,3],[2,4,6],[1,1,2]]",
+        "output": "v1 = [−1, −1, 1]",
+        "note": "Posto 2, nulidade 1. As linhas 1 e 2 são linearmente dependentes (linha 2 = 2×linha 1). A RREF fornece colunas pivô 0 e 1, e coluna livre 2; a substituição para trás resulta em v = [−1, −1, 1]."
+      },
+      {
+        "input": "2×2 zero matrix [[0,0],[0,0]]",
+        "output": "v1 = [1,0], v2 = [0,1]",
+        "note": "Posto 0, nulidade 2. Todo vetor satisfaz Ax = 0, então todo R² é o espaço nulo com a base padrão."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de espaço nulo",
+    "steps": [
+      "Selecione as dimensões da matriz (linhas × colunas) usando os botões de tamanho. As opções vão de 2×2 a 4×4, incluindo matrizes não quadradas como 2×3 e 3×4.",
+      "Digite as entradas da matriz na grade. Cada célula aceita qualquer número real, incluindo decimais e negativos. Deixar células em branco gerará um erro.",
+      "Clique em Calcular espaço nulo. O resultado mostrará o posto, a nulidade e todos os vetores de base do espaço nulo.",
+      "Use os botões de Carregar exemplo para preencher exemplos clássicos: uma matriz 2×3 com espaço nulo unidimensional ou uma matriz 3×3 com posto deficiente.",
+      "Clique em Redefinir para limpar todas as células mantendo o tamanho atual da matriz, ou mude o seletor de tamanho para começar com outra dimensão."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre espaço nulo",
+    "items": [
+      {
+        "q": "O que é o espaço nulo de uma matriz?",
+        "a": "O espaço nulo de uma matriz A é o conjunto de todos os vetores x tais que Ax seja o vetor zero. Ele representa todas as direções do espaço de entrada que a transformação linear A colapsa para zero. O espaço nulo é sempre um subespaço (contém o vetor zero e é fechado sob adição e multiplicação por escalar). Sua dimensão, chamada nulidade, mede quanta informação A perde durante a transformação."
+      },
+      {
+        "q": "Como a eliminação de Gauss-Jordan encontra o espaço nulo?",
+        "a": "O algoritmo converte A para a Forma Escalonada Reduzida por Linhas (RREF) aplicando operações de linha. Na RREF, colunas pivô e colunas livres são fáceis de identificar. Para cada variável livre (coluna não pivô), fixá-la em 1 e todas as outras em 0, e depois resolver para as variáveis pivô, produz um vetor de base do espaço nulo. O espaço nulo completo é o span de todos esses vetores."
+      },
+      {
+        "q": "O que significa um espaço nulo trivial?",
+        "a": "Um espaço nulo trivial contém apenas o vetor zero. Isso acontece quando a matriz tem posto de coluna completo — cada coluna é pivô e não há variáveis livres. Para a equação Ax = 0, a solução única é x = 0. Uma matriz quadrada com espaço nulo trivial é invertível; uma matriz não quadrada com espaço nulo trivial tem a equação Ax = b com no máximo uma solução para qualquer b."
+      },
+      {
+        "q": "O que é o teorema posto-nulidade?",
+        "a": "O teorema posto-nulidade afirma que, para uma matriz m × n A: rank(A) + nullity(A) = n, onde n é o número de colunas. O posto é a dimensão do espaço coluna (número de colunas linearmente independentes), e a nulidade é a dimensão do espaço nulo. Eles são complementares: aumentar o posto diminui a nulidade e vice-versa. Esse teorema é fundamental para entender aplicações lineares e sistemas de equações."
+      },
+      {
+        "q": "Uma matriz não quadrada pode ter espaço nulo?",
+        "a": "Sim. Qualquer matriz cujo número de colunas exceda o posto tem um espaço nulo não trivial. Para uma matriz larga com mais colunas que linhas (m < n), o posto pode ser no máximo m, então nulidade ≥ n − m > 0, garantindo um espaço nulo não trivial. Matrizes altas (mais linhas que colunas) também podem ter espaço nulo trivial se suas colunas forem linearmente independentes."
+      },
+      {
+        "q": "Por que os vetores de base podem conter decimais?",
+        "a": "Quando a matriz tem entradas não inteiras ou quando a substituição para trás produz frações, os vetores de base do espaço nulo terão componentes decimais. Isso é matematicamente correto — o espaço nulo é definido sobre os números reais, não apenas sobre os inteiros. Você pode multiplicar qualquer vetor de base por uma constante não nula e obter outro vetor de base válido; se preferir componentes inteiros, multiplique o vetor pelo MMC dos denominadores."
+      }
+    ]
+  }
+}
