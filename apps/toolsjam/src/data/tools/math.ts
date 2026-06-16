@@ -846,39 +846,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "trapezoid-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "ti-xing-ji-suan-qi",
+      "zh-TW": "ti-xing-ji-suan-qi",
+      ja: "daikei-keisanki",
+      ko: "sadarikkol-gyesangi",
+      es: "calculadora-trapecio",
+      fr: "calculateur-trapeze",
+      de: "trapez-rechner",
+      pt: "calculadora-trapezio",
+      ru: "kalkulyator-trapetsii"
     },
     titles: {
       en: "Trapezoid Calculator - Area, Perimeter, Height",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "梯形计算器 - 面积、周长、高度",
+      "zh-TW": "梯形計算器 - 面積、周長、高度",
+      ja: "台形計算機 - 面積・周長・高さ",
+      ko: "사다리꼴 계산기 - 넓이, 둘레, 높이",
+      es: "Calculadora de trapecio - área, perímetro y altura",
+      fr: "Calculateur de trapèze - aire, périmètre, hauteur",
+      de: "Trapez-Rechner - Fläche, Umfang, Höhe",
+      pt: "Calculadora de trapézio - área, perímetro e altura",
+      ru: "Калькулятор трапеции - площадь, периметр, высота"
     },
     descriptions: {
       en: "Calculate the area, perimeter, height, or base of a trapezoid. Enter known values and choose what to find. Instant results with clear formulas.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "计算梯形的面积、周长、高度或底边。输入已知值并选择要求的项目，即可获得清晰公式和即时结果。",
+      "zh-TW": "計算梯形的面積、周長、高度或底邊。輸入已知值並選擇要求項目，即可取得清楚公式與即時結果。",
+      ja: "台形の面積、周長、高さ、底辺を計算します。既知の値と求めたい項目を入力すれば、公式付きで結果をすぐに表示します。",
+      ko: "사다리꼴의 넓이, 둘레, 높이 또는 밑변을 계산하세요. 알려진 값을 입력하고 구할 항목을 선택하면 공식과 결과가 즉시 표시됩니다.",
+      es: "Calcula el área, perímetro, altura o base de un trapecio. Ingresa los valores conocidos, elige qué hallar y obtén resultados al instante con fórmulas claras.",
+      fr: "Calculez l’aire, le périmètre, la hauteur ou une base d’un trapèze. Saisissez les valeurs connues et obtenez un résultat instantané avec les formules.",
+      de: "Berechnen Sie Fläche, Umfang, Höhe oder Grundseite eines Trapezes. Bekannte Werte eingeben, Ziel wählen und sofort Ergebnisse mit klaren Formeln erhalten.",
+      pt: "Calcule área, perímetro, altura ou base de um trapézio. Informe os valores conhecidos, escolha o que encontrar e veja resultados instantâneos com fórmulas claras.",
+      ru: "Рассчитайте площадь, периметр, высоту или основание трапеции. Введите известные значения и получите мгновенный результат с понятными формулами."
     }
   },
   {
@@ -886,39 +886,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "triangle-angle-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "san-jiao-xing-jiao-du-ji-suan-qi",
+      "zh-TW": "san-jiao-xing-jiao-du-ji-suan-qi",
+      ja: "sankakkei-kakudo-keisanki",
+      ko: "samgak-hyeong-gakdo-gyesangi",
+      es: "calculadora-angulos-triangulo",
+      fr: "calculatrice-angles-triangle",
+      de: "dreieck-winkel-rechner",
+      pt: "calculadora-angulo-triangulo",
+      ru: "kalkulyator-uglov-treugolnika"
     },
     titles: {
       en: "Triangle Angle Calculator - SSS and AA Methods",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "三角形角度计算器",
+      "zh-TW": "三角形角度計算器",
+      ja: "三角形角度計算機",
+      ko: "삼각형 각도 계산기",
+      es: "Calculadora de ángulos de triángulo",
+      fr: "Calculatrice d’angles de triangle",
+      de: "Dreieck-Winkelrechner",
+      pt: "Calculadora de ângulos do triângulo",
+      ru: "Калькулятор углов треугольника"
     },
     descriptions: {
       en: "Find missing triangle angles from two known angles or three side lengths using SSS and AA methods. All angles in degrees with instant results.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "使用 AA 或 SSS 方法，根据已知两角或三边快速求出三角形缺失角度，结果以度显示。",
+      "zh-TW": "使用 AA 或 SSS 方法，依已知兩角或三邊快速求出三角形缺少的角度，結果以度顯示。",
+      ja: "AA または SSS で、既知の2角または3辺から三角形の不足角をすばやく求めます。結果はすべて度表示です。",
+      ko: "AA 또는 SSS 방식으로, 두 각이나 세 변을 이용해 삼각형의 빠진 각을 구합니다. 모든 결과는 도 단위입니다.",
+      es: "Calcula ángulos faltantes de un triángulo a partir de dos ángulos o tres lados con los métodos AA y SSS. Resultados en grados.",
+      fr: "Trouvez les angles manquants d’un triangle à partir de deux angles ou de trois côtés avec les méthodes AA et SSS. Résultats en degrés.",
+      de: "Fehlende Dreieckswinkel aus zwei Winkeln oder drei Seiten mit AA- und SSS-Methode berechnen. Alle Ergebnisse in Grad.",
+      pt: "Encontre ângulos faltantes de um triângulo a partir de dois ângulos ou três lados com os métodos AA e SSS. Resultados em graus.",
+      ru: "Найдите неизвестные углы треугольника по двум углам или трём сторонам с методами AA и SSS. Все результаты в градусах."
     }
   },
   {
@@ -7326,15 +7326,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "30-60-90-triangle-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "30-60-90 Triangle Calculator - Special Right Triangle",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "30-60-90 triangle calculator finds all sides from one known side using the exact 1 : √3 : 2 ratio. Fast, accurate results for geometry and engineering.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -7342,15 +7366,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "45-45-90-triangle-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "45-45-90 Triangle Calculator - Isosceles Right Triangle",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "45-45-90 triangle calculator finds all sides from one known side using the exact 1 : 1 : √2 ratio. Instant results for geometry, design, and woodworking.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -7358,15 +7406,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "absolute-change-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Absolute Change Calculator - Calculate the Difference",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Absolute change calculator computes the difference between any two values. Enter initial and final values to see how much a quantity increased or decreased.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -7374,15 +7446,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "absolute-value-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Absolute Value Calculator - Find |x| Instantly",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Absolute value calculator finds |x| for any number instantly. Understand distance from zero on the number line with clear formula and worked examples.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -7390,15 +7486,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "absolute-value-equation-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Absolute Value Equation Calculator - Solve |ax+b|=c",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Solve absolute value equations |ax+b|=c instantly. Find no solution, one solution, or two solutions with clear step-by-step results.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -7406,15 +7526,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "absolute-value-inequalities-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Absolute Value Inequalities Calculator - Solve |ax+b|<c",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Solve absolute value inequalities like |ax+b|<c and |ax+b|>c online. Get bounded or unbounded solution sets instantly with correct interval notation.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -7422,15 +7566,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "adding-and-subtracting-fractions-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Adding and Subtracting Fractions Calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Add or subtract any two fractions with automatic simplification to lowest terms. Finds the LCD and shows step-by-step solutions for any fraction problem.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -7438,15 +7606,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "adding-and-subtracting-polynomials-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Adding and Subtracting Polynomials Calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Add or subtract polynomial expressions with like terms combined automatically. Get results in simplified standard form for algebra students and professionals.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -7454,18 +7646,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "addition-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Addition Calculator - Add Multiple Numbers Instantly",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate the sum of up to four numbers instantly. Supports integers, decimals, and negatives. Shows total, average, and count for quick multi-number addition.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   }
-
-
-
 ];
