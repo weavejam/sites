@@ -1,0 +1,104 @@
+{
+  "title": "Angle Calculator - Vectors, Points & Slope",
+  "tagline": "Calculate angles between vectors, at a vertex defined by three points, or from a coordinate slope — all in degrees and radians.",
+  "intro": "Choose a calculation method, enter the required values, and click Calculate to get the angle plus supporting details.",
+  "field": {
+    "method": "Calculation Method",
+    "methodVectors": "Angle Between Vectors",
+    "methodPoints": "Angle at Three Points",
+    "methodSlope": "Angle from Slope",
+    "vectorA": "Vector A",
+    "vectorB": "Vector B",
+    "ax": "Ax",
+    "ay": "Ay",
+    "bx": "Bx",
+    "by": "By",
+    "pointA": "Point A",
+    "pointB": "Point B (Vertex)",
+    "pointC": "Point C",
+    "x1": "x₁",
+    "y1": "y₁",
+    "x2": "x₂",
+    "y2": "y₂",
+    "x3": "x₃",
+    "y3": "y₃",
+    "coordX": "x",
+    "coordY": "y",
+    "placeholder": "Enter value"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "fillAll": "Please fill in all required fields.",
+    "zeroVector": "One of the direction vectors is a zero vector. The angle is undefined.",
+    "zeroCoord": "Both x and y cannot be zero. Enter a non-zero coordinate."
+  },
+  "result": {
+    "heading": "Result",
+    "angleDeg": "Angle (Degrees)",
+    "angleRad": "Angle (Radians)",
+    "dotProduct": "Dot Product",
+    "cosTheta": "cos(θ)",
+    "unitRad": "rad"
+  },
+  "about": {
+    "heading": "About the angle calculator",
+    "body": "Angles are among the most fundamental measurements in mathematics, physics, and engineering. They quantify the amount of rotation between two rays sharing a common endpoint and are measured in degrees (where a full turn is 360°) or radians (where a full turn is 2π ≈ 6.283). The angle calculator on this page provides three distinct methods for computing angles, each suited to a different type of geometric problem.\n\nThe first method, angle between two vectors, is the most general and uses the dot product formula: θ = arccos((A · B) / (|A| × |B|)). The dot product A · B equals Ax·Bx + Ay·By for 2D vectors. The magnitudes |A| and |B| are the Euclidean lengths of the vectors. This method measures the angular separation between two directional quantities placed at a common origin, yielding a result in the range [0°, 180°]. It is the standard approach in linear algebra, physics (work, torque, projection), and computer graphics (lighting, reflection, refraction).\n\nThe second method, angle at three points, finds the interior angle at a vertex point B formed by rays BA and BC. It first constructs two direction vectors — one from B to A and one from B to C — and then applies the dot product formula to those vectors. This method is used in computational geometry, robotics path planning, and any context where you have explicit coordinate positions rather than direction vectors. For example, given three GPS coordinates, this method finds the bearing angle at the middle point.\n\nThe third method, angle from coordinate slope, computes the angle that a line from the origin to a point (x, y) makes with the positive x-axis. Mathematically this is θ = arctan(y/x), but the implementation uses the atan2 function to handle all four quadrants correctly and return results in the full [−180°, 180°] range. This is the standard polar angle or argument of a complex number, and it appears in polar coordinate conversions, signal phase analysis, and navigation bearing calculations.\n\nAll three methods express results in both degrees and radians so you can apply them directly in any formula regardless of the unit convention being used. Degrees are more intuitive for geometric reasoning; radians are required in calculus, Fourier analysis, and most programming math functions. The identity rad = deg × π / 180 converts between the two, and this calculator displays both simultaneously to eliminate conversion errors."
+  },
+  "examples": {
+    "heading": "Angle calculator examples",
+    "intro": "Three worked examples covering all calculation methods.",
+    "colInput": "Input",
+    "colOutput": "Angle",
+    "colNote": "Method & Notes",
+    "items": [
+      {
+        "input": "A=(3,4), B=(1,0)",
+        "output": "≈53.13°",
+        "note": "Vector method. Dot product = 3. |A|=5, |B|=1. cos(θ)=3/5. arccos(0.6)≈53.13°."
+      },
+      {
+        "input": "Points A(1,0), B(0,0), C(1,1)",
+        "output": "45°",
+        "note": "Three-point method. Vectors from B(0,0): BA=(1,0), BC=(1,1). Dot=1, |BA|=1, |BC|=√2. cos=1/√2 → arccos(0.707)=45°."
+      },
+      {
+        "input": "x=1, y=1",
+        "output": "45°",
+        "note": "Slope method. Line from origin to (1,1) makes 45° with the positive x-axis. arctan(1/1)=45°."
+      },
+      {
+        "input": "A=(1,0), B=(0,1)",
+        "output": "90°",
+        "note": "Vector method. Perpendicular unit vectors. Dot product=0, so θ=90°."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the angle calculator",
+    "steps": [
+      "Select the calculation method: 'Angle Between Vectors' for directional vectors, 'Angle at Three Points' for a vertex formed by three coordinates, or 'Angle from Slope' for the polar angle of a point.",
+      "Enter the required values. For vectors, fill in the x and y components of both A and B. For three points, enter the coordinates of A, B (vertex), and C. For slope, enter the x and y coordinates.",
+      "Click Calculate. The result appears below with the angle in both degrees and radians, along with supporting details such as dot product and cosine value.",
+      "Use the three-point method when you have positions on a map, blueprint, or coordinate system and need the angle at a specific vertex.",
+      "Click Reset to clear all fields and start a new calculation."
+    ]
+  },
+  "faq": {
+    "heading": "Angle calculator FAQ",
+    "q1": "What is the difference between the three calculation methods?",
+    "q1_a": "The vector method measures the angular separation between two directions given as component vectors. The three-point method measures the angle at a vertex using three coordinate positions — it internally creates direction vectors from the vertex to the other two points. The slope method computes the polar angle of a point relative to the positive x-axis, which is equivalent to the angle a line from the origin makes with the horizontal.",
+    "q2": "Why do I get a result between 0° and 180° for vector angles?",
+    "q2_a": "The arccos function in the dot-product formula returns values only in [0°, 180°]. This gives the smaller of the two supplementary angles that vectors can form, which is the conventional geometric definition of the angle between two vectors. If you need a signed or full-360° angle, use the atan2 function with the cross product to determine orientation.",
+    "q3": "How does the three-point method work internally?",
+    "q3_a": "Given points A, B (vertex), and C, the calculator computes two direction vectors: u = A − B (from the vertex to point A) and v = C − B (from the vertex to point C). It then applies the dot product formula to u and v exactly as in the vector method. The result is the interior angle at vertex B, which is always in [0°, 180°].",
+    "q4": "What does the slope method calculate exactly?",
+    "q4_a": "The slope method computes θ = atan2(y, x), which is the angle that the line segment from the origin (0,0) to the point (x, y) makes with the positive x-axis. Results range from −180° to 180°: positive values mean the point is above the x-axis, negative values mean it is below. This is the standard polar angle and is identical to the phase angle of the complex number x + yi.",
+    "q5": "Can I use this calculator for 3D vectors?",
+    "q5_a": "This particular calculator uses 2D inputs for simplicity. For full 3D vector angle calculations including an z component, use the dedicated Angle Between Two Vectors Calculator which supports both 2D and 3D vectors. The underlying formula is the same; you simply extend the dot product and magnitude calculations to include the z components.",
+    "q6": "How accurate are the angle results?",
+    "q6_a": "The calculator uses JavaScript's native Math.acos and Math.atan2 functions, which provide double-precision floating-point accuracy (about 15–16 significant digits). The cosine argument is clamped to [−1, 1] before calling arccos to prevent domain errors for vectors that are nearly parallel or antiparallel. Results are displayed to four decimal places in degrees and six in radians."
+  }
+}
