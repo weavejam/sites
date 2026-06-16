@@ -413,6 +413,7 @@ import { fixtures as f_standard_deviation_of_sample_mean_calculator } from "@/to
 import { fixtures as f_standard_error_calculator } from "@/tools/standard-error-calculator.fixtures";
 import { fixtures as f_streaming_bitrate_calculator } from "@/tools/streaming-bitrate-calculator.fixtures";
 import { fixtures as f_streaming_services_royalties_calculator } from "@/tools/streaming-services-royalties-calculator.fixtures";
+import { fixtures as f_stroke_volume_calculator } from "@/tools/stroke-volume-calculator.fixtures";
 import { fixtures as f_subtracting_fractions_calculator } from "@/tools/subtracting-fractions-calculator.fixtures";
 import { fixtures as f_subtraction_calculator } from "@/tools/subtraction-calculator.fixtures";
 import { fixtures as f_sum_and_difference_identities_calculator } from "@/tools/sum-and-difference-identities-calculator.fixtures";
@@ -425,8 +426,10 @@ import { fixtures as f_surface_area_calculator } from "@/tools/surface-area-calc
 import { fixtures as f_surface_area_of_a_hemisphere_calculator } from "@/tools/surface-area-of-a-hemisphere-calculator.fixtures";
 import { fixtures as f_surface_area_of_a_triangular_prism_calculator } from "@/tools/surface-area-of-a-triangular-prism-calculator.fixtures";
 import { fixtures as f_tangent_of_a_circle_calculator } from "@/tools/tangent-of-a-circle-calculator.fixtures";
+import { fixtures as f_tdee_calculator_total_daily_energy_expenditure } from "@/tools/tdee-calculator-total-daily-energy-expenditure.fixtures";
 import { fixtures as f_tensor_product_calculator } from "@/tools/tensor-product-calculator.fixtures";
 import { fixtures as f_terminating_decimals_calculator } from "@/tools/terminating-decimals-calculator.fixtures";
+import { fixtures as f_testosterone_to_estradiol_ratio_calculator } from "@/tools/testosterone-to-estradiol-ratio-calculator.fixtures";
 import { fixtures as f_tetrahedron_volume_calculator } from "@/tools/tetrahedron-volume-calculator.fixtures";
 import { fixtures as f_thermal_energy_calculator } from "@/tools/thermal-energy-calculator.fixtures";
 import { fixtures as f_thermal_equilibrium_calculator } from "@/tools/thermal-equilibrium-calculator.fixtures";
@@ -438,6 +441,8 @@ import { fixtures as f_thin_lens_equation_calculator } from "@/tools/thin-lens-e
 import { fixtures as f_three_dimensional_distance_calculator } from "@/tools/three-dimensional-distance-calculator.fixtures";
 import { fixtures as f_three_phase_calculator } from "@/tools/three-phase-calculator.fixtures";
 import { fixtures as f_thrust_to_weight_ratio_calculator } from "@/tools/thrust-to-weight-ratio-calculator.fixtures";
+import { fixtures as f_ti_rads_calculator } from "@/tools/ti-rads-calculator.fixtures";
+import { fixtures as f_tidal_volume_calculator } from "@/tools/tidal-volume-calculator.fixtures";
 import { fixtures as f_time_dilation_calculator } from "@/tools/time-dilation-calculator.fixtures";
 import { fixtures as f_time_percentage_calculator } from "@/tools/time-percentage-calculator.fixtures";
 import { fixtures as f_torsional_stiffness_calculator } from "@/tools/torsional-stiffness-calculator.fixtures";
@@ -917,6 +922,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "standard-error-calculator": f_standard_error_calculator,
   "streaming-bitrate-calculator": f_streaming_bitrate_calculator,
   "streaming-services-royalties-calculator": f_streaming_services_royalties_calculator,
+  "stroke-volume-calculator": f_stroke_volume_calculator,
   "subtracting-fractions-calculator": f_subtracting_fractions_calculator,
   "subtraction-calculator": f_subtraction_calculator,
   "sum-and-difference-identities-calculator": f_sum_and_difference_identities_calculator,
@@ -929,8 +935,10 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "surface-area-of-a-hemisphere-calculator": f_surface_area_of_a_hemisphere_calculator,
   "surface-area-of-a-triangular-prism-calculator": f_surface_area_of_a_triangular_prism_calculator,
   "tangent-of-a-circle-calculator": f_tangent_of_a_circle_calculator,
+  "tdee-calculator-total-daily-energy-expenditure": f_tdee_calculator_total_daily_energy_expenditure,
   "tensor-product-calculator": f_tensor_product_calculator,
   "terminating-decimals-calculator": f_terminating_decimals_calculator,
+  "testosterone-to-estradiol-ratio-calculator": f_testosterone_to_estradiol_ratio_calculator,
   "tetrahedron-volume-calculator": f_tetrahedron_volume_calculator,
   "thermal-energy-calculator": f_thermal_energy_calculator,
   "thermal-equilibrium-calculator": f_thermal_equilibrium_calculator,
@@ -942,6 +950,8 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "three-dimensional-distance-calculator": f_three_dimensional_distance_calculator,
   "three-phase-calculator": f_three_phase_calculator,
   "thrust-to-weight-ratio-calculator": f_thrust_to_weight_ratio_calculator,
+  "ti-rads-calculator": f_ti_rads_calculator,
+  "tidal-volume-calculator": f_tidal_volume_calculator,
   "time-dilation-calculator": f_time_dilation_calculator,
   "time-percentage-calculator": f_time_percentage_calculator,
   "torsional-stiffness-calculator": f_torsional_stiffness_calculator,
