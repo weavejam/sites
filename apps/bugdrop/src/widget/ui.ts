@@ -412,6 +412,7 @@ export function injectStyles(shadow: ShadowRoot, config: WidgetConfig) {
     /* Modal */
     .bd-modal {
       background: var(--bd-bg-primary);
+      color: var(--bd-text-primary);
       border-radius: var(--bd-radius-lg);
       border: var(--bd-border-style);
       box-shadow: var(--bd-shadow-lg), var(--bd-shadow-glow);
@@ -1217,11 +1218,13 @@ export function injectStyles(shadow: ShadowRoot, config: WidgetConfig) {
         gap: 4px !important;
         padding: 8px !important;
         min-width: 0;
+        color: var(--bd-text-primary);
       }
 
       .bd-category-option span {
         font-size: 0.85rem !important;
         white-space: nowrap;
+        color: var(--bd-text-primary);
       }
 
       .bd-textarea {
