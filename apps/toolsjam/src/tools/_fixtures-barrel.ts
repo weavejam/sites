@@ -280,6 +280,11 @@ import { fixtures as f_long_addition_calculator } from "@/tools/long-addition-ca
 import { fixtures as f_long_division_calculator } from "@/tools/long-division-calculator.fixtures";
 import { fixtures as f_long_multiplication_calculator } from "@/tools/long-multiplication-calculator.fixtures";
 import { fixtures as f_long_subtraction_calculator } from "@/tools/long-subtraction-calculator.fixtures";
+import { fixtures as f_luteal_phase_calculator } from "@/tools/luteal-phase-calculator.fixtures";
+import { fixtures as f_lv_calculator } from "@/tools/lv-calculator.fixtures";
+import { fixtures as f_macro_calculator } from "@/tools/macro-calculator.fixtures";
+import { fixtures as f_maddreys_discriminant_function_calculator } from "@/tools/maddreys-discriminant-function-calculator.fixtures";
+import { fixtures as f_maintenance_calorie_calculator } from "@/tools/maintenance-calorie-calculator.fixtures";
 import { fixtures as f_matched_betting_calculator } from "@/tools/matched-betting-calculator.fixtures";
 import { fixtures as f_matrix_addition_and_subtraction_calculator } from "@/tools/matrix-addition-and-subtraction-calculator.fixtures";
 import { fixtures as f_matrix_by_scalar_calculator } from "@/tools/matrix-by-scalar-calculator.fixtures";
@@ -844,6 +849,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "long-division-calculator": f_long_division_calculator,
   "long-multiplication-calculator": f_long_multiplication_calculator,
   "long-subtraction-calculator": f_long_subtraction_calculator,
+  "luteal-phase-calculator": f_luteal_phase_calculator,
+  "lv-calculator": f_lv_calculator,
+  "macro-calculator": f_macro_calculator,
+  "maddreys-discriminant-function-calculator": f_maddreys_discriminant_function_calculator,
+  "maintenance-calorie-calculator": f_maintenance_calorie_calculator,
   "matched-betting-calculator": f_matched_betting_calculator,
   "matrix-addition-and-subtraction-calculator": f_matrix_addition_and_subtraction_calculator,
   "matrix-by-scalar-calculator": f_matrix_by_scalar_calculator,
