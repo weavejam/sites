@@ -6492,4 +6492,85 @@ export const tools: ToolEntry[] = [
 
 
 
+,
+  {
+    id: "absolute-value-equation-calculator",
+    category: "math",
+    slugs: {
+      en: "absolute-value-equation-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Absolute Value Equation Calculator - Solve |ax+b|=c",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Solve absolute value equations |ax+b|=c instantly. Find no solution, one solution, or two solutions with clear step-by-step results.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "absolute-value-inequalities-calculator",
+    category: "math",
+    slugs: {
+      en: "absolute-value-inequalities-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Absolute Value Inequalities Calculator - Solve |ax+b|<c",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Solve absolute value inequalities like |ax+b|<c and |ax+b|>c online. Get bounded or unbounded solution sets instantly with correct interval notation.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "adding-and-subtracting-fractions-calculator",
+    category: "math",
+    slugs: {
+      en: "adding-and-subtracting-fractions-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Adding and Subtracting Fractions Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Add or subtract any two fractions with automatic simplification to lowest terms. Finds the LCD and shows step-by-step solutions for any fraction problem.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "adding-and-subtracting-polynomials-calculator",
+    category: "math",
+    slugs: {
+      en: "adding-and-subtracting-polynomials-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Adding and Subtracting Polynomials Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Add or subtract polynomial expressions with like terms combined automatically. Get results in simplified standard form for algebra students and professionals.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "addition-calculator",
+    category: "math",
+    slugs: {
+      en: "addition-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Addition Calculator - Add Multiple Numbers Instantly",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate the sum of up to four numbers instantly. Supports integers, decimals, and negatives. Shows total, average, and count for quick multi-number addition.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  }
 ];
