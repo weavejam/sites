@@ -1,0 +1,87 @@
+{
+  "title": "Rechner zur Matrixdiagonalisierung",
+  "tagline": "Finde Eigenwerte, Eigenvektoren und die Diagonalisierung P⁻¹AP = D für 2×2- und 3×3-Matrizen.",
+  "intro": "Gib die Zeilen der Matrix mit Semikolons getrennt und die Elemente mit Kommas getrennt ein. Eine 2×2-Matrix [[3,1],[0,2]] wird zum Beispiel als 3,1;0,2 eingegeben.",
+  "field": {
+    "matrix": "Matrix (Zeilen durch Semikolons getrennt)"
+  },
+  "placeholder": {
+    "matrix": "z. B. 3,1;0,2 oder 1,2,0;3,1,2;0,1,1"
+  },
+  "button": {
+    "diagonalize": "Diagonalisieren",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnis der Diagonalisierung",
+    "eigenvalues": "Eigenwerte",
+    "eigenvectors": "Eigenvektoren",
+    "matrixP": "Matrix P (Eigenvektoren als Spalten)",
+    "matrixD": "Diagonalmatrix D",
+    "notDiagonalizable": "Diese Matrix ist über den reellen Zahlen nicht diagonalisierbar (komplexe oder doppelte Eigenwerte mit zu wenigen Eigenvektoren).",
+    "verified": "Verifikation: P⁻¹AP = D ✓"
+  },
+  "error": {
+    "invalid": "Bitte gib eine gültige 2×2- oder 3×3-Matrix ein. Verwende das Format Zeile1;Zeile2 mit kommagetrennten Werten.",
+    "nonSquare": "Es werden nur quadratische Matrizen (2×2 oder 3×3) unterstützt.",
+    "sizeMismatch": "Jede Zeile muss gleich viele Elemente enthalten."
+  },
+  "about": {
+    "heading": "Über die Matrixdiagonalisierung",
+    "body": "Die Matrixdiagonalisierung ist ein grundlegender Prozess der linearen Algebra, der eine quadratische Matrix A durch eine Ähnlichkeitstransformation in eine Diagonalmatrix D überführt. Die Beziehung lautet P⁻¹AP = D, wobei P die Matrix der Eigenvektoren und D die Diagonalmatrix mit den Eigenwerten auf der Hauptdiagonalen ist.\n\nEin Eigenwert λ einer quadratischen Matrix A ist ein Skalar, der det(A − λI) = 0 erfüllt, wobei I die Einheitsmatrix ist. Diese Gleichung heißt charakteristische Gleichung von A, und das Polynom det(A − λI) ist das charakteristische Polynom. Für eine 2×2-Matrix ergibt sich eine quadratische, für eine 3×3-Matrix eine kubische Gleichung. Die Eigenwerte sind die Nullstellen dieses Polynoms.\n\nFür jeden Eigenwert λ sind die zugehörigen Eigenvektoren die nichttrivialen Lösungen von (A − λI)v = 0. Die Menge aller Lösungen (einschließlich des Nullvektors) bildet den Eigenraum zu λ. Eine Matrix ist genau dann diagonalisierbar, wenn sie genügend linear unabhängige Eigenvektoren besitzt, um eine vollständige Basis zu bilden — äquivalent dazu muss für jeden Eigenwert die geometrische Vielfachheit der algebraischen Vielfachheit entsprechen.\n\nDie Diagonalmatrix D enthält die Eigenwerte auf der Hauptdiagonalen und sonst Nullen. Die Transformationsmatrix P hat die zugehörigen Eigenvektoren als Spalten, in derselben Reihenfolge wie die Eigenwerte in D. Ist P invertierbar (was bei diagonalisierbaren Matrizen der Fall ist), können wir die Beziehung P⁻¹AP = D überprüfen.\n\nDiagonalisierung ist äußerst nützlich, weil Diagonalmatrizen leicht zu handhaben sind. Das Berechnen von Potenzen einer Diagonalmatrix ist trivial: D^n hebt einfach jeden Diagonaleintrag auf die n-te Potenz. Dadurch lässt sich A^n für große n als P D^n P⁻¹ berechnen, was weit effizienter ist als wiederholte Matrixmultiplikation. Das hat direkte Anwendungen bei der Berechnung von Fibonacci-Zahlen, der Modellierung von Populationswachstum mit Leslie-Matrizen und dem Lösen von Differentialgleichungssystemen.\n\nIn Datenwissenschaft und Statistik beruht die Hauptkomponentenanalyse (PCA) direkt auf Diagonalisierung. Die Kovarianzmatrix eines Datensatzes ist symmetrisch und daher stets mit reellen Eigenwerten diagonalisierbar. Die Eigenvektoren definieren die Hauptkomponenten — die Richtungen maximaler Varianz — und die Eigenwerte zeigen, wie viel Varianz jede Komponente erklärt.\n\nIn der Quantenmechanik liefert die Diagonalisierung der Hamilton-Matrix die Energieniveaus und Eigenzustände eines physikalischen Systems. Im Maschinenbau werden Eigenfrequenzen und Modenformen vibrierender Strukturen durch Diagonalisierung der Steifigkeits- und Massenmatrizen bestimmt.\n\nNicht jede Matrix ist diagonalisierbar. Matrizen mit mehrfachen Eigenwerten können je nach ausreichender Anzahl von Eigenvektoren diagonalisierbar sein oder nicht. Rotationsmatrizen in 2D haben komplexe Eigenwerte und können über den reellen Zahlen nicht diagonalisiert werden. In solchen Fällen bietet die Jordansche Normalform die nächstliegende Darstellung zur Diagonalform."
+  },
+  "examples": {
+    "heading": "Beispiele zur Diagonalisierung",
+    "intro": "Durchgerechnete Beispiele zeigen, wie verschiedene Matrizen diagonalisierbar sind.",
+    "colInput": "Matrix",
+    "colOutput": "Eigenwerte",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "3,1;0,2  (2×2 obere Dreiecksmatrix)",
+        "output": "λ₁ = 3, λ₂ = 2",
+        "note": "Obere Dreiecksmatrizen haben ihre Eigenwerte auf der Diagonalen. P = [[1,1],[0,−1]], D = [[3,0],[0,2]]."
+      },
+      {
+        "input": "2,1;1,2  (2×2 symmetrisch)",
+        "output": "λ₁ = 3, λ₂ = 1",
+        "note": "Symmetrische Matrizen sind immer mit reellen Eigenwerten diagonalisierbar. Die Eigenvektoren sind orthogonal: [1,1] und [1,−1]."
+      },
+      {
+        "input": "4,1;0,4  (2×2 defekt)",
+        "output": "λ = 4 (wiederholt)",
+        "note": "Wiederholter Eigenwert mit nur einem linear unabhängigen Eigenvektor — nicht diagonalisierbar. Jordan-Form erforderlich."
+      },
+      {
+        "input": "1,0,0;0,2,0;0,0,3  (3×3 diagonal)",
+        "output": "λ₁ = 1, λ₂ = 2, λ₃ = 3",
+        "note": "Eine Diagonalmatrix ist bereits in diagonalisierter Form. P = I, D ist die Matrix A selbst."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Rechner zur Matrixdiagonalisierung",
+    "steps": [
+      "Gib deine Matrix mit Semikolons zur Trennung der Zeilen und Kommas zwischen den Elementen ein. Für eine 2×2-Matrix [[a,b],[c,d]] tippe a,b;c,d.",
+      "Klicke auf Diagonalisieren. Der Rechner bestimmt das charakteristische Polynom, findet die Eigenwerte und löst anschließend die Eigenvektoren.",
+      "Sieh dir den Bereich Eigenwerte an, um alle Eigenwerte λ deiner Matrix zu sehen.",
+      "Im Bereich Matrix P werden die Eigenvektoren als Spalten angezeigt, und in der Diagonalmatrix D stehen die Eigenwerte auf der Diagonalen.",
+      "Wenn die Matrix nicht diagonalisierbar ist (komplexe oder zu wenige Eigenvektoren), wird erklärt, warum eine reelle Diagonalisierung nicht möglich ist."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zur Matrixdiagonalisierung",
+    "q1": "Was bedeutet es, wenn eine Matrix diagonalisierbar ist?",
+    "q1_a": "Eine quadratische Matrix A ist diagonalisierbar, wenn es eine invertierbare Matrix P gibt, so dass P⁻¹AP = D gilt, wobei D diagonal ist. Äquivalent dazu muss A n linear unabhängige Eigenvektoren besitzen, wobei n ihre Größe ist. Dies gilt, wenn für jeden Eigenwert die geometrische Vielfachheit der algebraischen Vielfachheit entspricht.",
+    "q2": "Was sind Eigenwerte und Eigenvektoren?",
+    "q2_a": "Ein Eigenwert λ ist ein Skalar, für den Av = λv eine nichttriviale Lösung v besitzt. Der Vektor v ist der zugehörige Eigenvektor. Geometrisch sind Eigenvektoren Richtungen, die die Abbildung A nur streckt oder spiegelt (um λ skaliert), ohne zu drehen. Eigenwerte erhält man durch Lösen von det(A − λI) = 0.",
+    "q3": "Warum ist Matrixdiagonalisierung nützlich?",
+    "q3_a": "Diagonalmatrizen sind leicht zu handhaben. Das Berechnen der n-ten Potenz einer Diagonalmatrix erfordert nur das Potenzieren jedes Diagonaleintrags. So ist A^n = P D^n P⁻¹ effizient. Diagonalisierung entkoppelt auch Gleichungssysteme und vereinfacht Differentialgleichungen, Populationsmodelle und Graphanalysen.",
+    "q4": "Wann ist eine Matrix nicht diagonalisierbar?",
+    "q4_a": "Eine Matrix ist nicht diagonalisierbar, wenn die geometrische Vielfachheit eines Eigenwerts kleiner als seine algebraische Vielfachheit ist — der Eigenraum ist also zu klein. Außerdem kann eine Matrix mit komplexen Eigenwerten (etwa eine 2D-Rotation) über den reellen Zahlen nicht mit reellen Matrizen diagonalisiert werden.",
+    "q5": "Was ist der Unterschied zwischen algebraischer und geometrischer Vielfachheit?",
+    "q5_a": "Die algebraische Vielfachheit eines Eigenwerts gibt an, wie oft er als Nullstelle des charakteristischen Polynoms vorkommt. Die geometrische Vielfachheit ist die Dimension des zugehörigen Eigenraums (Anzahl linear unabhängiger Eigenvektoren). Für die Diagonalisierbarkeit müssen beide für jeden Eigenwert gleich sein.",
+    "q6": "Können alle symmetrischen Matrizen diagonalisiert werden?",
+    "q6_a": "Ja. Der Spektralsatz garantiert, dass jede reelle symmetrische Matrix mit einer orthogonalen Matrix P diagonalisiert werden kann (wobei P⁻¹ = Pᵀ gilt), und alle Eigenwerte sind reell. Deshalb beruhen PCA und viele andere Verfahren in Statistik und Physik auf symmetrischen Matrizen."
+  }
+}

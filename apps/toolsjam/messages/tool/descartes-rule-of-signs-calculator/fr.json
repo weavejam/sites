@@ -1,0 +1,88 @@
+{
+  "title": "Calculateur de la règle des signes",
+  "tagline": "Comptez les changements de signe des coefficients du polynôme pour prévoir le nombre de racines réelles positives et négatives.",
+  "intro": "Saisissez les coefficients du polynôme dans l’ordre décroissant des degrés, séparés par des virgules, puis cliquez sur Analyser.",
+  "field": {
+    "coefficients": "Coefficients (ordre décroissant)"
+  },
+  "placeholder": {
+    "coefficients": "ex. 1,-3,2 pour x²-3x+2"
+  },
+  "button": {
+    "analyze": "Analyser les signes",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Analyse des signes",
+    "polynomial": "Polynôme",
+    "positiveHeading": "Racines réelles positives (f(x))",
+    "negativeHeading": "Racines réelles négatives (f(−x))",
+    "signChanges": "Changements de signe",
+    "possibleCounts": "Nombre possibles",
+    "coeffSigns": "Signes des coefficients",
+    "noChanges": "0 (aucune racine réelle positive)",
+    "or": "ou"
+  },
+  "error": {
+    "invalid": "Veuillez saisir au moins deux nombres séparés par des virgules comme coefficients.",
+    "allZero": "Tous les coefficients sont nuls. Veuillez saisir un polynôme valide."
+  },
+  "about": {
+    "heading": "À propos de la règle des signes de Descartes",
+    "body": "La règle des signes de Descartes est un théorème classique de l’algèbre, publié pour la première fois par René Descartes dans son ouvrage La Géométrie en 1637. Cette règle fournit une borne supérieure rapide du nombre de racines réelles positives et négatives qu’un polynôme peut avoir, simplement en observant les signes de ses coefficients, sans calculer les racines elles-mêmes.\n\nPour les racines positives, le nombre de racines réelles positives d’un polynôme f(x) à coefficients réels est égal au nombre de changements de signe dans la suite des coefficients non nuls, ou bien inférieur à ce nombre d’une quantité paire. Chaque diminution de 2 correspond à une paire de racines complexes conjuguées remplaçant une paire de racines réelles.\n\nPour appliquer la règle aux racines négatives, remplacez −x à x dans le polynôme pour former f(−x), puis comptez les changements de signe dans la suite de coefficients obtenue. Ce décompte donne le nombre maximal de racines réelles négatives, lui aussi réductible par nombres pairs.\n\nPar exemple, considérons f(x) = x³ − 2x² + 5x − 3. Les coefficients, dans l’ordre, sont 1, −2, 5, −3. En lisant les signes : +, −, +, −, on obtient trois changements de signe (+ vers −, − vers +, + vers −). Donc f(x) a soit 3, soit 1 racine réelle positive. Pour f(−x) = −x³ − 2x² − 5x − 3, les signes sont −, −, −, −, ce qui donne 0 changement de signe et donc 0 racine réelle négative.\n\nPoint subtil important : les coefficients nuls (termes absents du polynôme) sont ignorés lors du comptage des changements de signe. Seuls les coefficients non nuls participent à la suite de signes. Cela signifie que x⁴ − x² + 1 s’analyse avec les coefficients [1, −1, 1], et non [1, 0, −1, 0, 1].\n\nLa règle est puissante parce qu’elle est trivialement calculable : il suffit d’inspecter les signes, pas de calculer les racines. C’est donc une première étape idéale dans l’analyse des polynômes : si la règle indique qu’un polynôme a au plus une racine positive, vous pouvez concentrer vos efforts numériques en conséquence.\n\nCependant, la règle ne donne qu’une borne supérieure, pas un compte exact. Un polynôme peut avoir moins de racines positives ou négatives que le maximum, car des paires de racines complexes conjuguées peuvent « remplacer » des paires de racines réelles. La règle ne dit rien non plus sur la valeur absolue ou la multiplicité des racines, et elle ne détecte pas les racines complexes.\n\nEn pratique, la règle de Descartes s’emploie avec d’autres techniques comme le théorème des racines rationnelles, le théorème de Sturm ou des méthodes numériques. Les ingénieurs l’utilisent pour l’analyse de stabilité des systèmes de commande, les économistes pour borner les équilibres dans les modèles de marché, et les mathématiciens comme outil pédagogique pour relier la structure algébrique des polynômes à leur comportement géométrique."
+  },
+  "examples": {
+    "heading": "Exemples d’analyse des signes",
+    "intro": "Des exemples pas à pas montrant comment les changements de signe prédisent le nombre de racines.",
+    "colInput": "Coefficients",
+    "colOutput": "Racines positives",
+    "colNote": "Racines négatives",
+    "items": [
+      {
+        "input": "1, −3, 2  →  f(x) = x²−3x+2",
+        "output": "2 ou 0",
+        "note": "Signes +−+ → 2 changements. f(−x) signes ++ : 0 changement → 0 racine négative. Racines réelles : x=1, x=2."
+      },
+      {
+        "input": "1, −2, 5, −3  →  f(x) = x³−2x²+5x−3",
+        "output": "3 ou 1",
+        "note": "Signes +−+− → 3 changements. f(−x) = −x³−2x²−5x−3, signes −−−− : 0 changement → 0 racine négative."
+      },
+      {
+        "input": "1, 0, −1  →  f(x) = x²−1",
+        "output": "1",
+        "note": "Signes des coefficients non nuls +− : 1 changement → exactement 1 racine positive. f(−x) = x²−1, signes +− : 1 changement → 1 racine négative. Racines : x=1, x=−1."
+      },
+      {
+        "input": "1, 1, 1  →  f(x) = x²+x+1",
+        "output": "0",
+        "note": "Signes +++ : 0 changement → 0 racine positive. f(−x) = x²−x+1, signes +−+ : 2 changements → 2 ou 0 racine négative. Racines complexes uniquement."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de la règle des signes de Descartes",
+    "steps": [
+      "Écrivez votre polynôme sous forme standard, avec les termes dans l’ordre décroissant des degrés (la plus grande puissance en premier).",
+      "Listez les coefficients de chaque terme, en ajoutant 0 pour les puissances manquantes, séparés par des virgules. Par exemple, x³ − 2x² + 5x − 3 devient 1,-2,5,-3.",
+      "Cliquez sur Analyser les signes. Le calculateur compte séparément les changements de signe dans la suite des coefficients pour f(x) et pour f(−x).",
+      "Lisez la section Racines réelles positives pour voir le nombre maximum de racines réelles positives et tous les nombres possibles (réduits de 2 en 2).",
+      "Lisez la section Racines réelles négatives pour l’analyse correspondante de f(−x) afin d’obtenir des bornes sur les racines réelles négatives."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la règle des signes de Descartes",
+    "q1": "Que signifie un changement de signe dans la règle de Descartes ?",
+    "q1_a": "Un changement de signe se produit lorsque deux coefficients non nuls consécutifs du polynôme ont des signes opposés. Par exemple, dans la suite +, −, +, −, il y a trois changements de signe. Les coefficients nuls sont entièrement ignorés lors du balayage des signes.",
+    "q2": "Pourquoi le nombre réel de racines peut-il être inférieur au nombre de changements de signe ?",
+    "q2_a": "Chaque fois qu’une paire de racines complexes conjuguées existe, elle « remplace » deux racines réelles. Comme les racines complexes viennent par paires pour les polynômes à coefficients réels, la réduction par rapport au maximum est toujours un nombre pair (2, 4, 6, …). C’est pourquoi les nombres possibles de racines positives sont le nombre de changements de signe moins 0, 2, 4, etc.",
+    "q3": "Comment appliquer la règle aux racines négatives ?",
+    "q3_a": "Remplacez chaque x par −x dans le polynôme pour former f(−x). Cela inverse le signe de chaque terme contenant une variable de degré impair. Comptez ensuite les changements de signe dans la nouvelle suite de coefficients. Le résultat donne le nombre maximal de racines réelles négatives du polynôme f(x) original.",
+    "q4": "Faut-il inclure les coefficients nuls quand on compte les changements de signe ?",
+    "q4_a": "Non. Les coefficients nuls sont ignorés. Seuls les signes des coefficients non nuls comptent. Le polynôme x⁴ − x² + 1 a pour coefficients non nuls [1, −1, 1], ce qui donne deux changements de signe (positif/négatif/positif), et non quatre changements de la suite complète à cinq termes.",
+    "q5": "La règle fonctionne-t-elle pour tous les polynômes ?",
+    "q5_a": "La règle s’applique à tout polynôme à coefficients réels. Elle ne s’applique pas aux polynômes à coefficients complexes. Elle ne fournit pas non plus d’information sur les racines complexes — seulement sur les racines réelles positives et négatives. Le degré du polynôme donne le nombre total de racines (en comptant la multiplicité et les racines complexes) via le théorème fondamental de l’algèbre.",
+    "q6": "Que signifie une prédiction de 0 racine positive ?",
+    "q6_a": "S’il y a zéro changement de signe dans la suite des coefficients de f(x), le polynôme n’a aucune racine réelle positive. Toutes les racines réelles sont alors négatives, nulles, ou le polynôme n’a aucune racine réelle. Vous pouvez ensuite utiliser l’analyse de f(−x) pour vérifier les racines négatives, et toutes les racines restantes doivent être complexes."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "title": "Calculadora de diagonalización de matrices",
+  "tagline": "Encuentra valores propios, vectores propios y la diagonalización P⁻¹AP = D para matrices 2×2 y 3×3.",
+  "intro": "Ingresa las filas de la matriz separadas por punto y coma y los elementos por comas. Por ejemplo, una matriz 2×2 [[3,1],[0,2]] se ingresa como 3,1;0,2.",
+  "field": {
+    "matrix": "Matriz (filas separadas por punto y coma)"
+  },
+  "placeholder": {
+    "matrix": "p. ej. 3,1;0,2 o 1,2,0;3,1,2;0,1,1"
+  },
+  "button": {
+    "diagonalize": "Diagonalizar",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultado de la diagonalización",
+    "eigenvalues": "Valores propios",
+    "eigenvectors": "Vectores propios",
+    "matrixP": "Matriz P (vectores propios como columnas)",
+    "matrixD": "Matriz diagonal D",
+    "notDiagonalizable": "Esta matriz no es diagonalizable sobre los números reales (valores propios complejos o repetidos con vectores propios insuficientes).",
+    "verified": "Verificación: P⁻¹AP = D ✓"
+  },
+  "error": {
+    "invalid": "Ingresa una matriz válida de 2×2 o 3×3. Usa el formato fila1;fila2 con valores separados por comas.",
+    "nonSquare": "Solo se admiten matrices cuadradas (2×2 o 3×3).",
+    "sizeMismatch": "Cada fila debe tener la misma cantidad de elementos."
+  },
+  "about": {
+    "heading": "Acerca de la diagonalización de matrices",
+    "body": "La diagonalización de matrices es un proceso fundamental en álgebra lineal que transforma una matriz cuadrada A en una matriz diagonal D mediante una transformación de similitud. La relación se expresa como P⁻¹AP = D, donde P es la matriz de vectores propios y D es la matriz diagonal que contiene los valores propios.\n\nUn valor propio λ de una matriz cuadrada A es un escalar que satisface det(A − λI) = 0, donde I es la matriz identidad. Esta ecuación se llama ecuación característica de A, y el polinomio det(A − λI) es el polinomio característico. Para una matriz 2×2, esto produce una cuadrática; para una matriz 3×3, una cúbica. Los valores propios son las raíces de ese polinomio.\n\nPara cada valor propio λ, los vectores propios correspondientes son las soluciones no nulas de (A − λI)v = 0. El conjunto de todas las soluciones (incluido el vector cero) forma el subespacio propio correspondiente a λ. Una matriz es diagonalizable si y solo si tiene suficientes vectores propios linealmente independientes para formar una base completa; equivalentemente, la multiplicidad geométrica debe igualar la multiplicidad algebraica para cada valor propio.\n\nLa matriz diagonal D tiene los valores propios en su diagonal principal y ceros en el resto de las posiciones. La matriz de transformación P tiene los vectores propios correspondientes como columnas, en el mismo orden que los valores propios en D. Cuando P es invertible (lo cual ocurre cuando A es diagonalizable), podemos verificar la relación P⁻¹AP = D.\n\nLa diagonalización es muy útil porque las matrices diagonales son fáciles de manejar. Calcular potencias de una matriz diagonal es trivial: D^n solo eleva cada entrada diagonal a la n-ésima potencia. Esto significa que calcular A^n para n grandes se convierte en P D^n P⁻¹, mucho más eficiente que multiplicar matrices repetidamente. Tiene aplicaciones directas en el cálculo de números de Fibonacci, el modelado del crecimiento poblacional con matrices de Leslie y la resolución de sistemas de ecuaciones diferenciales.\n\nEn ciencia de datos y estadística, el Análisis de Componentes Principales (PCA) depende directamente de la diagonalización. La matriz de covarianza de un conjunto de datos es simétrica, por lo que siempre es diagonalizable con valores propios reales. Los vectores propios definen los componentes principales —las direcciones de mayor varianza— y los valores propios indican cuánta varianza explica cada componente.\n\nEn mecánica cuántica, la diagonalización de la matriz Hamiltoniana da los niveles de energía y los estados propios de un sistema físico. En ingeniería mecánica, las frecuencias naturales y las formas modales de estructuras vibratorias se obtienen diagonalizando las matrices de rigidez y masa del sistema.\n\nNo todas las matrices son diagonalizables. Las matrices con valores propios repetidos pueden o no ser diagonalizables según si cada valor propio repetido tiene un subespacio propio completo. Las matrices de rotación en 2D tienen valores propios complejos y no pueden diagonalizarse sobre los números reales. En esos casos, la forma canónica de Jordan ofrece la aproximación más cercana a una forma diagonal."
+  },
+  "examples": {
+    "heading": "Ejemplos de diagonalización",
+    "intro": "Ejemplos resueltos que muestran cómo se diagonalizan distintas matrices.",
+    "colInput": "Matriz",
+    "colOutput": "Valores propios",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "3,1;0,2  (2×2 triangular superior)",
+        "output": "λ₁ = 3, λ₂ = 2",
+        "note": "Las matrices triangulares superiores tienen sus valores propios en la diagonal. P = [[1,1],[0,−1]], D = [[3,0],[0,2]]."
+      },
+      {
+        "input": "2,1;1,2  (2×2 simétrica)",
+        "output": "λ₁ = 3, λ₂ = 1",
+        "note": "Las matrices simétricas siempre son diagonalizables con valores propios reales. Los vectores propios son ortogonales: [1,1] y [1,−1]."
+      },
+      {
+        "input": "4,1;0,4  (2×2 defectuosa)",
+        "output": "λ = 4 (repetido)",
+        "note": "Valor propio repetido con solo un vector propio linealmente independiente: no es diagonalizable. Se necesita forma de Jordan."
+      },
+      {
+        "input": "1,0,0;0,2,0;0,0,3  (3×3 diagonal)",
+        "output": "λ₁ = 1, λ₂ = 2, λ₃ = 3",
+        "note": "Una matriz diagonal ya está en forma diagonalizada. P = I, D es la propia A."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de diagonalización de matrices",
+    "steps": [
+      "Ingresa tu matriz usando punto y coma para separar filas y comas para separar elementos dentro de cada fila. Para una matriz 2×2 [[a,b],[c,d]], escribe a,b;c,d.",
+      "Haz clic en Diagonalizar. La calculadora calcula el polinomio característico, encuentra los valores propios y luego resuelve los vectores propios.",
+      "Revisa la sección de Valores propios para ver todos los valores propios λ de tu matriz.",
+      "Lee la sección Matriz P para ver los vectores propios como columnas y la Matriz diagonal D para ver los valores propios en la diagonal.",
+      "Si la matriz no es diagonalizable (valores propios complejos o vectores propios insuficientes), aparecerá un mensaje explicando por qué no es posible la diagonalización real."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre diagonalización de matrices",
+    "q1": "¿Qué significa que una matriz sea diagonalizable?",
+    "q1_a": "Una matriz cuadrada A es diagonalizable si existe una matriz invertible P tal que P⁻¹AP = D, donde D es diagonal. Equivalentemente, A debe tener n vectores propios linealmente independientes, donde n es su tamaño. Esto ocurre cuando la multiplicidad geométrica de cada valor propio coincide con su multiplicidad algebraica.",
+    "q2": "¿Qué son los valores propios y los vectores propios?",
+    "q2_a": "Un valor propio λ es un escalar tal que Av = λv tiene una solución no nula v. El vector v es el vector propio correspondiente. Geométricamente, los vectores propios son direcciones que la transformación A solo estira o invierte (escala por λ), sin rotar. Los valores propios se encuentran resolviendo det(A − λI) = 0.",
+    "q3": "¿Por qué es útil la diagonalización de matrices?",
+    "q3_a": "Las matrices diagonales son fáciles de manipular. Calcular la n-ésima potencia de una matriz diagonal solo requiere elevar cada entrada diagonal a la n-ésima potencia. Así, A^n = P D^n P⁻¹ es eficiente. La diagonalización también desacopla sistemas de ecuaciones, simplificando ecuaciones diferenciales, modelos de población y análisis de grafos.",
+    "q4": "¿Cuándo una matriz no es diagonalizable?",
+    "q4_a": "Una matriz no es diagonalizable cuando la multiplicidad geométrica de un valor propio es menor que su multiplicidad algebraica; es decir, el subespacio propio es demasiado pequeño. Además, sobre los números reales, una matriz con valores propios complejos (como una rotación en 2D) no puede diagonalizarse con matrices reales.",
+    "q5": "¿Cuál es la diferencia entre multiplicidad algebraica y geométrica?",
+    "q5_a": "La multiplicidad algebraica de un valor propio es cuántas veces aparece como raíz del polinomio característico. La multiplicidad geométrica es la dimensión del subespacio propio correspondiente (número de vectores propios linealmente independientes). La diagonalización exige que ambas sean iguales para cada valor propio.",
+    "q6": "¿Todas las matrices simétricas pueden diagonalizarse?",
+    "q6_a": "Sí. El Teorema Espectral garantiza que toda matriz simétrica real es diagonalizable usando una matriz ortogonal P (donde P⁻¹ = Pᵀ), y todos los valores propios son reales. Esta propiedad explica por qué PCA y muchas otras técnicas en estadística y física dependen de matrices simétricas."
+  }
+}

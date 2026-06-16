@@ -1,0 +1,87 @@
+{
+  "title": "Calculateur de diagonalisation de matrices",
+  "tagline": "Trouvez les valeurs propres, vecteurs propres et la diagonalisation P⁻¹AP = D pour des matrices 2×2 et 3×3.",
+  "intro": "Saisissez les lignes de la matrice séparées par des points-virgules et les éléments par des virgules. Par exemple, une matrice 2×2 [[3,1],[0,2]] se saisit ainsi : 3,1;0,2.",
+  "field": {
+    "matrix": "Matrice (lignes séparées par des points-virgules)"
+  },
+  "placeholder": {
+    "matrix": "ex. 3,1;0,2 ou 1,2,0;3,1,2;0,1,1"
+  },
+  "button": {
+    "diagonalize": "Diagonaliser",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultat de la diagonalisation",
+    "eigenvalues": "Valeurs propres",
+    "eigenvectors": "Vecteurs propres",
+    "matrixP": "Matrice P (vecteurs propres en colonnes)",
+    "matrixD": "Matrice diagonale D",
+    "notDiagonalizable": "Cette matrice n’est pas diagonalisable sur les réels (valeurs propres complexes ou valeurs propres répétées avec vecteurs propres insuffisants).",
+    "verified": "Vérification : P⁻¹AP = D ✓"
+  },
+  "error": {
+    "invalid": "Veuillez saisir une matrice 2×2 ou 3×3 valide. Utilisez le format ligne1;ligne2 avec des valeurs séparées par des virgules.",
+    "nonSquare": "Seules les matrices carrées (2×2 ou 3×3) sont prises en charge.",
+    "sizeMismatch": "Chaque ligne doit contenir le même nombre d’éléments."
+  },
+  "about": {
+    "heading": "À propos de la diagonalisation des matrices",
+    "body": "La diagonalisation des matrices est un processus fondamental de l’algèbre linéaire qui transforme une matrice carrée A en une matrice diagonale D par une transformation de similitude. La relation s’écrit P⁻¹AP = D, où P est la matrice des vecteurs propres et D la matrice diagonale contenant les valeurs propres.\n\nUne valeur propre λ d’une matrice carrée A est un scalaire vérifiant det(A − λI) = 0, où I est la matrice identité. Cette équation est appelée équation caractéristique de A, et le polynôme det(A − λI) est le polynôme caractéristique. Pour une matrice 2×2, on obtient un polynôme du second degré ; pour une matrice 3×3, un polynôme du troisième degré. Les valeurs propres sont les racines de ce polynôme.\n\nPour chaque valeur propre λ, les vecteurs propres correspondants sont les solutions non nulles de (A − λI)v = 0. L’ensemble de toutes les solutions (y compris le vecteur nul) forme l’espace propre associé à λ. Une matrice est diagonalisable si et seulement si elle possède suffisamment de vecteurs propres linéairement indépendants pour former une base complète — autrement dit, la multiplicité géométrique doit être égale à la multiplicité algébrique pour chaque valeur propre.\n\nLa matrice diagonale D contient les valeurs propres sur sa diagonale principale et des zéros ailleurs. La matrice de transformation P a pour colonnes les vecteurs propres correspondants, dans le même ordre que les valeurs propres dans D. Lorsque P est inversible (ce qui est le cas quand A est diagonalisable), on peut vérifier la relation P⁻¹AP = D.\n\nLa diagonalisation est extrêmement utile, car les matrices diagonales sont faciles à manipuler. Calculer les puissances d’une matrice diagonale est trivial : D^n revient simplement à élever chaque élément diagonal à la puissance n. Ainsi, calculer A^n pour de grands n devient P D^n P⁻¹, bien plus efficace qu’une multiplication matricielle répétée. Cela s’applique directement au calcul des nombres de Fibonacci, à la modélisation de la croissance des populations avec les matrices de Leslie et à la résolution de systèmes d’équations différentielles.\n\nEn science des données et en statistiques, l’analyse en composantes principales (ACP) repose directement sur la diagonalisation. La matrice de covariance d’un jeu de données est symétrique, donc toujours diagonalisable avec des valeurs propres réelles. Les vecteurs propres définissent les composantes principales — les directions de variance maximale — et les valeurs propres indiquent la part de variance expliquée par chaque composante.\n\nEn mécanique quantique, la diagonalisation de la matrice hamiltonienne donne les niveaux d’énergie et les états propres d’un système physique. En ingénierie mécanique, les fréquences propres et les formes modales des structures vibrantes sont obtenues en diagonalisant les matrices de rigidité et de masse du système.\n\nToutes les matrices ne sont pas diagonalisables. Les matrices à valeurs propres répétées peuvent ou non être diagonalisables selon que chaque valeur propre répétée dispose d’un espace propre complet. Les matrices de rotation en 2D ont des valeurs propres complexes et ne peuvent pas être diagonalisées sur les nombres réels. Dans ce cas, la forme canonique de Jordan fournit l’approximation la plus proche d’une forme diagonale."
+  },
+  "examples": {
+    "heading": "Exemples de diagonalisation",
+    "intro": "Exemples détaillés montrant comment différentes matrices se diagonalent.",
+    "colInput": "Matrice",
+    "colOutput": "Valeurs propres",
+    "colNote": "Remarques",
+    "items": [
+      {
+        "input": "3,1;0,2  (2×2 triangulaire supérieure)",
+        "output": "λ₁ = 3, λ₂ = 2",
+        "note": "Les matrices triangulaires supérieures ont leurs valeurs propres sur la diagonale. P = [[1,1],[0,−1]], D = [[3,0],[0,2]]."
+      },
+      {
+        "input": "2,1;1,2  (2×2 symétrique)",
+        "output": "λ₁ = 3, λ₂ = 1",
+        "note": "Les matrices symétriques sont toujours diagonalisables avec des valeurs propres réelles. Les vecteurs propres sont orthogonaux : [1,1] et [1,−1]."
+      },
+      {
+        "input": "4,1;0,4  (2×2 défectueuse)",
+        "output": "λ = 4 (répétée)",
+        "note": "Valeur propre répétée avec un seul vecteur propre linéairement indépendant — pas de diagonalisation possible. La forme de Jordan est nécessaire."
+      },
+      {
+        "input": "1,0,0;0,2,0;0,0,3  (3×3 diagonale)",
+        "output": "λ₁ = 1, λ₂ = 2, λ₃ = 3",
+        "note": "Une matrice diagonale est déjà sous forme diagonalisée. P = I, D est la matrice A elle-même."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de diagonalisation de matrices",
+    "steps": [
+      "Saisissez votre matrice en séparant les lignes par des points-virgules et les éléments de chaque ligne par des virgules. Pour une matrice 2×2 [[a,b],[c,d]], tapez a,b;c,d.",
+      "Cliquez sur Diagonaliser. Le calculateur détermine le polynôme caractéristique, trouve les valeurs propres, puis résout les vecteurs propres.",
+      "Consultez la section Valeurs propres pour voir toutes les valeurs propres λ de votre matrice.",
+      "Lisez la section Matrice P pour voir les vecteurs propres en colonnes, et la Matrice diagonale D pour voir les valeurs propres sur la diagonale.",
+      "Si la matrice n’est pas diagonalisable (valeurs propres complexes ou vecteurs propres insuffisants), un message explique pourquoi la diagonalisation réelle est impossible."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la diagonalisation des matrices",
+    "q1": "Que signifie qu’une matrice est diagonalisable ?",
+    "q1_a": "Une matrice carrée A est diagonalisable s’il existe une matrice inversible P telle que P⁻¹AP = D, où D est diagonale. Autrement dit, A doit posséder n vecteurs propres linéairement indépendants, où n est sa taille. Cela se produit lorsque la multiplicité géométrique de chaque valeur propre est égale à sa multiplicité algébrique.",
+    "q2": "Que sont les valeurs propres et les vecteurs propres ?",
+    "q2_a": "Une valeur propre λ est un scalaire tel que Av = λv admet une solution non nulle v. Le vecteur v est le vecteur propre correspondant. Géométriquement, les vecteurs propres sont des directions que la transformation A ne fait qu’étirer ou inverser (mise à l’échelle par λ), sans rotation. Les valeurs propres se trouvent en résolvant det(A − λI) = 0.",
+    "q3": "Pourquoi la diagonalisation est-elle utile ?",
+    "q3_a": "Les matrices diagonales sont faciles à manipuler. Calculer la n-ième puissance d’une matrice diagonale revient simplement à élever chaque élément diagonal à la puissance n. Ainsi, A^n = P D^n P⁻¹ est efficace. La diagonalisation découple aussi les systèmes d’équations, ce qui simplifie les équations différentielles, les modèles de population et l’analyse des graphes.",
+    "q4": "Quand une matrice n’est-elle pas diagonalisable ?",
+    "q4_a": "Une matrice n’est pas diagonalisable lorsqu’une valeur propre a une multiplicité géométrique inférieure à sa multiplicité algébrique — autrement dit, l’espace propre est trop petit. De plus, sur les réels, une matrice ayant des valeurs propres complexes (comme une rotation en 2D) ne peut pas être diagonalisée à l’aide de matrices réelles.",
+    "q5": "Quelle est la différence entre multiplicité algébrique et géométrique ?",
+    "q5_a": "La multiplicité algébrique d’une valeur propre est le nombre de fois où elle apparaît comme racine du polynôme caractéristique. La multiplicité géométrique est la dimension de l’espace propre correspondant (nombre de vecteurs propres linéairement indépendants). La diagonalisation exige que ces deux valeurs soient égales pour chaque valeur propre.",
+    "q6": "Toutes les matrices symétriques peuvent-elles être diagonalisées ?",
+    "q6_a": "Oui. Le théorème spectral garantit que toute matrice symétrique réelle est diagonalisable à l’aide d’une matrice orthogonale P (où P⁻¹ = Pᵀ), et toutes les valeurs propres sont réelles. C’est pourquoi l’ACP et de nombreuses autres méthodes en statistique et en physique reposent sur les matrices symétriques."
+  }
+}
