@@ -6400,7 +6400,88 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "binary-fraction-converter",
+    category: "math",
+    slugs: {
+      en: "binary-fraction-converter",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Binary Fraction Converter - Binary to Decimal Fractions",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Convert binary fractions to decimal and decimal fractions to binary with step-by-step explanations. Supports configurable fractional precision up to 32 bits.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "binary-multiplication-calculator",
+    category: "math",
+    slugs: {
+      en: "binary-multiplication-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Binary Multiplication Calculator - Multiply Binary Numbers",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Multiply binary numbers with step-by-step partial products and decimal conversion. Ideal for learning binary arithmetic and digital electronics.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "binary-subtraction-calculator",
+    category: "math",
+    slugs: {
+      en: "binary-subtraction-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Binary Subtraction Calculator - Borrowing & Two's Complement",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Subtract binary numbers using standard borrowing or two's complement with step-by-step solutions and decimal equivalents. Free online binary arithmetic tool.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "binomial-coefficient-calculator",
+    category: "math",
+    slugs: {
+      en: "binomial-coefficient-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Binomial Coefficient Calculator - C(n,k) Combinations",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate binomial coefficients C(n,k) for combinatorics, probability, and Pascal's triangle. Enter n and k to get the exact combination count with formula.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "bit-shift-calculator",
+    category: "math",
+    slugs: {
+      en: "bit-shift-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Bit Shift Calculator - Binary Left & Right Shift Operations",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Perform left shift, logical right shift, and arithmetic right shift on integers. Results shown in binary, decimal, and hexadecimal with instant calculations.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
+
 
 
 
