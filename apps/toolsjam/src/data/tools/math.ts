@@ -3922,205 +3922,205 @@ export const tools: ToolEntry[] = [
     }
   },
   {
-      id: "lagrange-error-bound-calculator",
-      category: "math",
-      slugs: {
-        en: "lagrange-error-bound-calculator",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      titles: {
-        en: "Lagrange Error Bound Calculator - Taylor Polynomial Error",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      descriptions: {
-        en: "Calculate the Lagrange error bound for Taylor polynomial approximations. Instantly find the maximum truncation error with M, n, a, and x.",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      }
+    id: "lagrange-error-bound-calculator",
+    category: "math",
+    slugs: {
+      en: "lagrange-error-bound-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
+    titles: {
+      en: "Lagrange Error Bound Calculator - Taylor Polynomial Error",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate the Lagrange error bound for Taylor polynomial approximations. Instantly find the maximum truncation error with M, n, a, and x.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
   {
-      id: "lateral-area-trapezoidal-prism-calculator",
-      category: "math",
-      slugs: {
-        en: "lateral-area-trapezoidal-prism-calculator",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      titles: {
-        en: "Lateral Area of Trapezoidal Prism Calculator",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      descriptions: {
-        en: "Calculate the lateral surface area of a trapezoidal prism. Enter bases, non-parallel sides, and prism height for instant results with formula.",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      }
+    id: "lateral-area-trapezoidal-prism-calculator",
+    category: "math",
+    slugs: {
+      en: "lateral-area-trapezoidal-prism-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
+    titles: {
+      en: "Lateral Area of Trapezoidal Prism Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate the lateral surface area of a trapezoidal prism. Enter bases, non-parallel sides, and prism height for instant results with formula.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
   {
-      id: "latus-rectum-calculator",
-      category: "math",
-      slugs: {
-        en: "latus-rectum-calculator",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      titles: {
-        en: "Latus Rectum Calculator - Parabola, Ellipse, Hyperbola",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      descriptions: {
-        en: "Find the latus rectum length for any conic section. Supports parabola (4p), ellipse, and hyperbola (2b\u00b2/a) with instant formula results.",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      }
+    id: "latus-rectum-calculator",
+    category: "math",
+    slugs: {
+      en: "latus-rectum-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
+    titles: {
+      en: "Latus Rectum Calculator - Parabola, Ellipse, Hyperbola",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Find the latus rectum length for any conic section. Supports parabola (4p), ellipse, and hyperbola (2b²/a) with instant formula results.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
   {
-      id: "law-of-cosines-calculator",
-      category: "math",
-      slugs: {
-        en: "law-of-cosines-calculator",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      titles: {
-        en: "Law of Cosines Calculator - Solve Any Triangle (SAS/SSS)",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      descriptions: {
-        en: "Solve any triangle using the law of cosines. Find a missing side (SAS) or a missing angle (SSS) instantly with formula verification.",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      }
+    id: "law-of-cosines-calculator",
+    category: "math",
+    slugs: {
+      en: "law-of-cosines-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
+    titles: {
+      en: "Law of Cosines Calculator - Solve Any Triangle (SAS/SSS)",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Solve any triangle using the law of cosines. Find a missing side (SAS) or a missing angle (SSS) instantly with formula verification.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
   {
-      id: "law-of-sines-calculator",
-      category: "math",
-      slugs: {
-        en: "law-of-sines-calculator",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      titles: {
-        en: "Law of Sines Calculator - Solve Triangles (AAS, ASA, SSA)",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      },
-      descriptions: {
-        en: "Solve triangles with the law of sines for AAS, ASA, and SSA cases. Handles the ambiguous SSA case automatically. Get all sides and angles.",
-        "zh-CN": "",
-        "zh-TW": "",
-        ja: "",
-        ko: "",
-        es: "",
-        fr: "",
-        de: "",
-        pt: "",
-        ru: ""
-      }
+    id: "law-of-sines-calculator",
+    category: "math",
+    slugs: {
+      en: "law-of-sines-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
+    titles: {
+      en: "Law of Sines Calculator - Solve Triangles (AAS, ASA, SSA)",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Solve triangles with the law of sines for AAS, ASA, and SSA cases. Handles the ambiguous SSA case automatically. Get all sides and angles.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
   {
     id: "gram-schmidt-calculator",
     category: "math",
@@ -4322,204 +4322,204 @@ export const tools: ToolEntry[] = [
     }
   },
   {
-       id: "equation-of-a-circle-calculator",
-       category: "math",
-       slugs: {
-         en: "equation-of-a-circle-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Equation of a Circle Calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Generate circle equations in standard and general forms from center and radius. Calculate area and circumference instantly.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "equation-of-a-circle-calculator",
+    category: "math",
+    slugs: {
+      en: "equation-of-a-circle-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Equation of a Circle Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Generate circle equations in standard and general forms from center and radius. Calculate area and circumference instantly.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-       id: "equation-of-a-sphere-calculator",
-       category: "math",
-       slugs: {
-         en: "equation-of-a-sphere-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Equation of a Sphere Calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Generate 3D sphere equations in standard form from center coordinates and radius with correct sign handling and expanded form.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "equation-of-a-sphere-calculator",
+    category: "math",
+    slugs: {
+      en: "equation-of-a-sphere-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Equation of a Sphere Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Generate 3D sphere equations in standard form from center coordinates and radius with correct sign handling and expanded form.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-       id: "equilateral-triangle-calculator",
-       category: "math",
-       slugs: {
-         en: "equilateral-triangle-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Equilateral Triangle Calculator - Area, Perimeter & Height",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Calculate area, perimeter, height, inradius, and circumradius of any equilateral triangle from side length using exact formulas.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "equilateral-triangle-calculator",
+    category: "math",
+    slugs: {
+      en: "equilateral-triangle-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Equilateral Triangle Calculator - Area, Perimeter & Height",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate area, perimeter, height, inradius, and circumradius of any equilateral triangle from side length using exact formulas.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-       id: "equivalent-fractions-calculator",
-       category: "math",
-       slugs: {
-         en: "equivalent-fractions-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Equivalent Fractions Calculator - Find Equal Fractions",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Find equivalent fractions, simplified form, and decimal value for any fraction. Supports target denominator for specific conversions.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "equivalent-fractions-calculator",
+    category: "math",
+    slugs: {
+      en: "equivalent-fractions-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Equivalent Fractions Calculator - Find Equal Fractions",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Find equivalent fractions, simplified form, and decimal value for any fraction. Supports target denominator for specific conversions.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-       id: "error-function-calculator",
-       category: "math",
-       slugs: {
-         en: "error-function-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Error Function Calculator - Compute erf(x) & erfc(x)",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Calculate erf(x), erfc(x), and inverse error functions with high precision for statistics, physics, and engineering applications.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "error-function-calculator",
+    category: "math",
+    slugs: {
+      en: "error-function-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Error Function Calculator - Compute erf(x) & erfc(x)",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate erf(x), erfc(x), and inverse error functions with high precision for statistics, physics, and engineering applications.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
     id: "hadamard-product-calculator",
@@ -4922,404 +4922,404 @@ export const tools: ToolEntry[] = [
     }
   },
   {
-   id: "dot-product-calculator",
-   category: "math",
-   slugs: {
-     en: "dot-product-calculator",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   titles: {
-     en: "Dot Product Calculator - 2D & 3D Vector Dot Product",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   descriptions: {
-     en: "Dot product calculator for 2D and 3D vectors. Computes scalar product, angle between vectors, and magnitudes — essential for linear algebra and physics.",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   }
+    id: "dot-product-calculator",
+    category: "math",
+    slugs: {
+      en: "dot-product-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Dot Product Calculator - 2D & 3D Vector Dot Product",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Dot product calculator for 2D and 3D vectors. Computes scalar product, angle between vectors, and magnitudes — essential for linear algebra and physics.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-   id: "double-angle-formula-calculator",
-   category: "math",
-   slugs: {
-     en: "double-angle-formula-calculator",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   titles: {
-     en: "Double Angle Formula Calculator - sin cos tan 2x",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   descriptions: {
-     en: "Double angle formula calculator for sin(2x), cos(2x), and tan(2x) in degrees or radians. Instant trig identity results for students and engineers.",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   }
+    id: "double-angle-formula-calculator",
+    category: "math",
+    slugs: {
+      en: "double-angle-formula-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Double Angle Formula Calculator - sin cos tan 2x",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Double angle formula calculator for sin(2x), cos(2x), and tan(2x) in degrees or radians. Instant trig identity results for students and engineers.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-   id: "doubling-time-calculator",
-   category: "math",
-   slugs: {
-     en: "doubling-time-calculator",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   titles: {
-     en: "Doubling Time Calculator - Investment & Population Growth",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   descriptions: {
-     en: "Doubling time calculator using exact logarithm formula and Rule of 72. Find how long investments, populations, or any growth rate takes to double.",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   }
+    id: "doubling-time-calculator",
+    category: "math",
+    slugs: {
+      en: "doubling-time-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Doubling Time Calculator - Investment & Population Growth",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Doubling time calculator using exact logarithm formula and Rule of 72. Find how long investments, populations, or any growth rate takes to double.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-   id: "e-calculator",
-   category: "math",
-   slugs: {
-     en: "e-calculator",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   titles: {
-     en: "e Calculator - Euler's Number, e^x & ln(x)",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   descriptions: {
-     en: "e calculator for Euler's number, e^x exponential functions, and natural logarithms ln(x). Get precise results with Taylor series and step-by-step solutions.",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   }
+    id: "e-calculator",
+    category: "math",
+    slugs: {
+      en: "e-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "e Calculator - Euler's Number, e^x & ln(x)",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "e calculator for Euler's number, e^x exponential functions, and natural logarithms ln(x). Get precise results with Taylor series and step-by-step solutions.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-   id: "egyptian-fractions-calculator",
-   category: "math",
-   slugs: {
-     en: "egyptian-fractions-calculator",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   titles: {
-     en: "Egyptian Fractions Calculator - Unit Fraction Decomposition",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   },
-   descriptions: {
-     en: "Egyptian fractions calculator converts any fraction into a sum of distinct unit fractions using the greedy algorithm — with step-by-step greedy decomposition.",
-     "zh-CN": "",
-     "zh-TW": "",
-     ja: "",
-     ko: "",
-     es: "",
-     fr: "",
-     de: "",
-     pt: "",
-     ru: ""
-   }
+    id: "egyptian-fractions-calculator",
+    category: "math",
+    slugs: {
+      en: "egyptian-fractions-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Egyptian Fractions Calculator - Unit Fraction Decomposition",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Egyptian fractions calculator converts any fraction into a sum of distinct unit fractions using the greedy algorithm — with step-by-step greedy decomposition.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-       id: "direct-variation-calculator",
-       category: "math",
-       slugs: {
-         en: "direct-variation-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Direct Variation Calculator - Solve y = kx Problems",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Calculate the constant of variation k, find unknown x or y values in direct variation equations y = kx, and explore proportional relationships.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "direct-variation-calculator",
+    category: "math",
+    slugs: {
+      en: "direct-variation-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Direct Variation Calculator - Solve y = kx Problems",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate the constant of variation k, find unknown x or y values in direct variation equations y = kx, and explore proportional relationships.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-       id: "direction-of-the-vector-calculator",
-       category: "math",
-       slugs: {
-         en: "direction-of-the-vector-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Direction of a Vector Calculator - Angles & Cosines",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Calculate direction angles, direction cosines, and unit vectors for 2D and 3D vectors. Find the angle a vector makes with each coordinate axis instantly.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "direction-of-the-vector-calculator",
+    category: "math",
+    slugs: {
+      en: "direction-of-the-vector-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Direction of a Vector Calculator - Angles & Cosines",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate direction angles, direction cosines, and unit vectors for 2D and 3D vectors. Find the angle a vector makes with each coordinate axis instantly.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-       id: "discriminant-calculator",
-       category: "math",
-       slugs: {
-         en: "discriminant-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Discriminant Calculator - Quadratic Root Analysis",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Calculate the discriminant b² − 4ac of any quadratic equation ax² + bx + c = 0. Determine root nature — real, repeated, or complex — instantly.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "discriminant-calculator",
+    category: "math",
+    slugs: {
+      en: "discriminant-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Discriminant Calculator - Quadratic Root Analysis",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate the discriminant b² − 4ac of any quadratic equation ax² + bx + c = 0. Determine root nature — real, repeated, or complex — instantly.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-       id: "distance-formula-calculator",
-       category: "math",
-       slugs: {
-         en: "distance-formula-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Distance Formula Calculator - 2D and 3D Distance",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Calculate Euclidean distance between two points in 2D or 3D space using the distance formula. Fast, accurate results with the formula shown.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "distance-formula-calculator",
+    category: "math",
+    slugs: {
+      en: "distance-formula-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Distance Formula Calculator - 2D and 3D Distance",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate Euclidean distance between two points in 2D or 3D space using the distance formula. Fast, accurate results with the formula shown.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
-       id: "distance-from-point-to-plane-calculator",
-       category: "math",
-       slugs: {
-         en: "distance-from-point-to-plane-calculator",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       titles: {
-         en: "Distance from Point to Plane Calculator - 3D Geometry",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       },
-       descriptions: {
-         en: "Calculate the perpendicular distance from a point to a plane in 3D space using the formula |ax₀+by₀+cz₀+d|/√(a²+b²+c²). Step-by-step results.",
-         "zh-CN": "",
-         "zh-TW": "",
-         ja: "",
-         ko: "",
-         es: "",
-         fr: "",
-         de: "",
-         pt: "",
-         ru: ""
-       }
+    id: "distance-from-point-to-plane-calculator",
+    category: "math",
+    slugs: {
+      en: "distance-from-point-to-plane-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Distance from Point to Plane Calculator - 3D Geometry",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Calculate the perpendicular distance from a point to a plane in 3D space using the formula |ax₀+by₀+cz₀+d|/√(a²+b²+c²). Step-by-step results.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   },
   {
     id: "decimal-to-percent-converter",
@@ -5926,15 +5926,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "complex-root-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Complex Root Calculator - N-th Roots via De Moivre",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate all n-th roots of any complex number with De Moivre's Theorem. Polar form, principal root, and every conjugate root in one click.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -5942,15 +5966,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "condense-logarithms-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Condense Logarithms Calculator - Combine Log Expressions",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Condense logarithm sums, differences, and scalar multiples into a single logarithm using product, quotient, and power rules. Supports any base.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -5958,15 +6006,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "condition-number-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Condition Number Calculator - Matrix Stability",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Compute the condition number of 2x2 or 3x3 matrices in the 1-norm, infinity-norm, or Frobenius norm. Diagnose numerical stability instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -5974,15 +6046,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "conic-sections-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Conic Sections Calculator - Identify Conics by Discriminant",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Identify circle, ellipse, parabola, or hyperbola from the general equation Ax^2+Bxy+Cy^2+Dx+Ey+F=0 using the discriminant. Step-by-step result.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -5990,15 +6086,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "consecutive-integers-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Consecutive Integers Calculator - Sequences and Sums",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Generate consecutive integer sequences, find a sequence with a target sum, or analyze a list. Returns sequence, sum, average, and count instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6406,15 +6526,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "binary-fraction-converter",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Binary Fraction Converter - Binary to Decimal Fractions",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Convert binary fractions to decimal and decimal fractions to binary with step-by-step explanations. Supports configurable fractional precision up to 32 bits.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6422,15 +6566,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "binary-multiplication-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Binary Multiplication Calculator - Multiply Binary Numbers",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Multiply binary numbers with step-by-step partial products and decimal conversion. Ideal for learning binary arithmetic and digital electronics.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6438,15 +6606,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "binary-subtraction-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Binary Subtraction Calculator - Borrowing & Two's Complement",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Subtract binary numbers using standard borrowing or two's complement with step-by-step solutions and decimal equivalents. Free online binary arithmetic tool.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6454,15 +6646,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "binomial-coefficient-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Binomial Coefficient Calculator - C(n,k) Combinations",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate binomial coefficients C(n,k) for combinatorics, probability, and Pascal's triangle. Enter n and k to get the exact combination count with formula.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6470,15 +6686,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "bit-shift-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Bit Shift Calculator - Binary Left & Right Shift Operations",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Perform left shift, logical right shift, and arithmetic right shift on integers. Results shown in binary, decimal, and hexadecimal with instant calculations.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6486,15 +6726,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "bitwise-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Bitwise Calculator - AND, OR, XOR, NOT, Shift Operations",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Free bitwise calculator for AND, OR, XOR, NOT, left shift, and right shift. Supports decimal, binary, and hex input with instant multi-format results.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6502,15 +6766,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "box-method-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Box Method Calculator - Visualize Polynomial Multiplication",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Multiply binomials visually using the box method. See every partial product in a grid and the fully expanded polynomial expression instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6518,15 +6806,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "catenary-curve-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Catenary Curve Calculator - Hanging Chain and Cable Sag",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate catenary curve sag height, slope, arc length, and tension for hanging cables. Uses the hyperbolic cosine formula with step-by-step results.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6534,15 +6846,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "ceiling-function-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Ceiling Function Calculator - Round Up to Nearest Integer",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Ceiling function calculator finds the smallest integer greater than or equal to x. Handles positive, negative, and decimal inputs with instant results.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   },
   {
@@ -6550,27 +6886,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "center-of-mass-calculator",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     titles: {
       en: "Center of Mass Calculator - Multi-Point Mass System",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     },
     descriptions: {
       en: "Calculate center of mass for point masses in 2D. Enter mass and x,y coordinates, get centroid position using the weighted average formula instantly.",
-      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
 ];
