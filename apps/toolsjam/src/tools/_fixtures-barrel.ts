@@ -347,8 +347,13 @@ import { fixtures as f_percentage_of_a_percentage_calculator } from "@/tools/per
 import { fixtures as f_percentage_point_calculator } from "@/tools/percentage-point-calculator.fixtures";
 import { fixtures as f_perfect_cube_calculator } from "@/tools/perfect-cube-calculator.fixtures";
 import { fixtures as f_perfect_square_calculator } from "@/tools/perfect-square-calculator.fixtures";
+import { fixtures as f_pf_ratio_calculator } from "@/tools/pf-ratio-calculator.fixtures";
 import { fixtures as f_ph_calculator } from "@/tools/ph-calculator.fixtures";
+import { fixtures as f_pisa_calculator } from "@/tools/pisa-calculator.fixtures";
+import { fixtures as f_plasma_osmolality_calculator } from "@/tools/plasma-osmolality-calculator.fixtures";
+import { fixtures as f_plasma_volume_calculator } from "@/tools/plasma-volume-calculator.fixtures";
 import { fixtures as f_poisson_distribution_calculator } from "@/tools/poisson-distribution-calculator.fixtures";
+import { fixtures as f_pokemon_go_weight_loss_calculator } from "@/tools/pokemon-go-weight-loss-calculator.fixtures";
 import { fixtures as f_poker_odds_calculator } from "@/tools/poker-odds-calculator.fixtures";
 import { fixtures as f_polynomial_regression_calculator } from "@/tools/polynomial-regression-calculator.fixtures";
 import { fixtures as f_pooled_standard_deviation_calculator } from "@/tools/pooled-standard-deviation-calculator.fixtures";
@@ -906,8 +911,13 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "percentage-point-calculator": f_percentage_point_calculator,
   "perfect-cube-calculator": f_perfect_cube_calculator,
   "perfect-square-calculator": f_perfect_square_calculator,
+  "pf-ratio-calculator": f_pf_ratio_calculator,
   "ph-calculator": f_ph_calculator,
+  "pisa-calculator": f_pisa_calculator,
+  "plasma-osmolality-calculator": f_plasma_osmolality_calculator,
+  "plasma-volume-calculator": f_plasma_volume_calculator,
   "poisson-distribution-calculator": f_poisson_distribution_calculator,
+  "pokemon-go-weight-loss-calculator": f_pokemon_go_weight_loss_calculator,
   "poker-odds-calculator": f_poker_odds_calculator,
   "polynomial-regression-calculator": f_polynomial_regression_calculator,
   "pooled-standard-deviation-calculator": f_pooled_standard_deviation_calculator,
