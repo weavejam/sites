@@ -1,0 +1,105 @@
+{
+  "title": "Calculatrice d'alimentation capacitive sans transformateur",
+  "tagline": "Concevez des alimentations capacitatives sans transformateur — calculez la réactance du condensateur de chute, le courant de sortie DC et la puissance dissipée par la Zener.",
+  "intro": "Saisissez la tension d'entrée AC, la fréquence, la valeur du condensateur de chute, la résistance de charge et la tension Zener pour concevoir une alimentation AC-DC compacte sans transformateur.",
+  "field": {
+    "acVoltage": "Tension d'entrée AC (VAC)",
+    "frequency": "Fréquence AC (Hz)",
+    "capacitor": "Valeur du condensateur (μF)",
+    "loadResistance": "Résistance de charge (Ω)",
+    "zenerVoltage": "Tension de la diode Zener (V)"
+  },
+  "placeholder": {
+    "acVoltage": "ex. 230",
+    "frequency": "ex. 50",
+    "capacitor": "ex. 1",
+    "loadResistance": "ex. 1000",
+    "zenerVoltage": "ex. 5"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats",
+    "xc": "Réactance du condensateur (Xc)",
+    "peakVoltage": "Tension de crête AC",
+    "capCurrent": "Courant du condensateur (RMS)",
+    "dcOutput": "Tension de sortie DC",
+    "loadCurrent": "Courant de charge DC",
+    "zenerCurrent": "Courant Zener",
+    "zenerPower": "Dissipation de puissance Zener"
+  },
+  "formula": "Xc = 1/(2πfC)  |  Vout = Vzener  |  Iload = Vzener/Rload  |  Pzener = Vzener × Izener",
+  "error": {
+    "invalid": "Veuillez saisir des valeurs positives valides dans tous les champs.",
+    "overload": "Avertissement : le courant de charge dépasse le courant disponible — réduisez la charge ou augmentez la valeur du condensateur."
+  },
+  "about": {
+    "heading": "À propos de la calculatrice d'alimentation capacitive sans transformateur",
+    "body": "Une alimentation capacitive sans transformateur (aussi appelée circuit à condensateur chute de tension) est une méthode compacte et peu coûteuse pour convertir la tension secteur AC en une tension DC plus basse sans utiliser de transformateur. Elle est largement utilisée dans les applications de faible puissance comme les voyants LED, les alimentations simples pour microcontrôleurs et les circuits de télécommande, où le courant requis est généralement inférieur à 50 mA et où l'isolation du secteur est assurée par d'autres moyens (par exemple un optocoupleur ou un routage PCB très soigné).\n\nLe circuit fonctionne sur un principe simple : un condensateur en série (le condensateur de chute) agit comme une impédance réactive qui limite le courant sans dissiper de puissance. Comme l'impédance d'un condensateur est purement réactive (Xc = 1/(2πfC)), il fait chuter une grande partie de la tension secteur avec très peu de perte d'énergie. Le condensateur relié au secteur est suivi d'une diode de redressement (ou d'un pont) et d'une diode Zener qui bloque la sortie à la tension DC souhaitée, en absorbant tout courant excédentaire.\n\nLa réactance du condensateur de chute se calcule avec Xc = 1 / (2π × f × C), où f est la fréquence secteur (50 ou 60 Hz) et C la capacité en farads. Le courant RMS disponible est approximativement Irms ≈ Vac / Xc (formule simplifiée, en supposant que le condensateur domine l'impédance). Le courant DC disponible après redressement est à peu près Idc ≈ 0.9 × Irms pour un pont de diodes. La tension de sortie DC est bloquée à la tension Zener (Vout = Vzener). Le courant de charge vaut Iload = Vout / Rload, et la Zener doit absorber le courant excédentaire Iz = Idc – Iload, en dissipant une puissance Pz = Vzener × Iz.\n\nLa sécurité est primordiale avec les alimentations sans transformateur : le circuit de sortie est directement connecté au secteur et n'est pas isolé. Tout point côté sortie peut se retrouver au potentiel secteur par rapport à la terre. Cette topologie ne doit donc être utilisée que dans des boîtiers entièrement isolés, sans partie métallique accessible reliée à la sortie, et le produit doit respecter les normes de sécurité applicables (IEC 60335, etc.). Pour les applications nécessitant une isolation galvanique — par exemple tout circuit pouvant être touché par l'utilisateur — un transformateur secteur adapté ou une alimentation à découpage isolée est obligatoire.\n\nLe condensateur lui-même doit être prévu pour une tension AC secteur continue et doit être de type sécurité : un condensateur classe X2 (275 VAC, pour connexion en parallèle sur le secteur) est le bon composant. Les condensateurs électrolytiques ne doivent jamais être utilisés à cet endroit. La tension nominale doit être d'au moins 400 V DC ou 250 V AC pour le secteur 230 V, ou 250 V DC / 165 V AC pour le secteur 120 V.\n\nÉtapes de conception typiques : choisissez la tension de sortie requise (= tension Zener), estimez le courant de charge maximal, calculez la capacité nécessaire avec C = Idc / (2π × f × Vac × 0.9), puis sélectionnez la valeur normalisée la plus proche. Vérifiez toujours que la dissipation Zener Pz = Vzener × (Idc_max – Iload_min) reste dans la puissance nominale de la Zener, avec une marge confortable d'au moins 50 %."
+  },
+  "examples": {
+    "heading": "Exemples calculés",
+    "intro": "Trois scénarios de conception montrant comment la valeur du condensateur, la charge et la tension Zener interagissent dans une alimentation sans transformateur.",
+    "colInput": "Paramètres de conception",
+    "colOutput": "Résultats clés",
+    "colNote": "Remarques",
+    "items": [
+      {
+        "input": "Vac=230V, f=50Hz, C=1μF, Rload=1kΩ, Vzener=5V",
+        "output": "Xc≈3183Ω, Irms≈72mA, Vout=5V, Iload=5mA, Iz≈60mA",
+        "note": "Alimentation LED 5V simple sur secteur 230V/50Hz. Utilisez un condensateur X2 de 1μF ; la Zener doit dissiper environ 300mW."
+      },
+      {
+        "input": "Vac=120V, f=60Hz, C=2.2μF, Rload=470Ω, Vzener=12V",
+        "output": "Xc≈1208Ω, Irms≈99mA, Vout=12V, Iload≈26mA, Iz≈63mA",
+        "note": "Alimentation 12V sur secteur 120V/60Hz. Une valeur de condensateur plus élevée fournit davantage de courant ; la Zener dissipe environ 756mW."
+      },
+      {
+        "input": "Vac=230V, f=50Hz, C=0.47μF, Rload=4700Ω, Vzener=3.3V",
+        "output": "Xc≈6772Ω, Irms≈34mA, Vout=3.3V, Iload≈0.7mA, Iz≈30mA",
+        "note": "Alimentation 3.3V à faible courant pour microcontrôleur. La charge est très faible et la Zener absorbe la majeure partie du courant disponible."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice",
+    "steps": [
+      "Saisissez la tension secteur AC (RMS). La plupart des pays d'Europe et d'Asie utilisent 230 V, l'Amérique du Nord 120 V. Vérifiez la norme locale.",
+      "Saisissez la fréquence AC : 50 Hz (Europe, Asie, Afrique, Amérique du Sud) ou 60 Hz (Amérique du Nord, Japon).",
+      "Saisissez la valeur du condensateur de chute en microfarads (μF). C'est le condensateur en série relié directement au secteur ; il doit être un condensateur de sécurité X2 adapté à la tension secteur.",
+      "Saisissez la résistance de charge en ohms, ou calculez-la comme Vout / Iload. Saisissez ensuite la tension de la diode Zener — ce sera votre tension DC régulée.",
+      "Cliquez sur Calculer. Examinez le courant et la puissance Zener. Si le courant Zener est négatif, la charge est trop élevée ; augmentez la valeur du condensateur. Appliquez toujours une marge de 50 % sur la puissance nominale de la Zener."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ",
+    "items": [
+      {
+        "q": "Une alimentation capacitive sans transformateur est-elle sûre ?",
+        "a": "Le circuit de sortie est directement relié au secteur et n'est pas isolé électriquement ; le toucher peut être mortel. Ces circuits ne sont sûrs que lorsqu'ils sont entièrement enfermés dans des boîtiers isolés et ne comportent aucun contact métallique accessible. Pour toute application où l'utilisateur peut toucher la sortie — y compris via USB ou une prise audio — un transformateur ou une SMPS isolée est nécessaire."
+      },
+      {
+        "q": "Quel type de condensateur doit être utilisé côté secteur ?",
+        "a": "Seul un condensateur en polypropylène métallisé de classe X2, certifié de sécurité, convient pour être connecté en parallèle sur le secteur. Les condensateurs X2 sont conçus pour tomber en panne en circuit ouvert, et non en court-circuit. Les condensateurs électrolytiques, céramiques standards et films non certifiés ne doivent jamais être utilisés à cet emplacement, car une panne peut provoquer un incendie ou un choc électrique."
+      },
+      {
+        "q": "Pourquoi le courant disponible est-il si faible ?",
+        "a": "La réactance du condensateur de chute Xc = 1/(2πfC) est très élevée à la fréquence secteur pour de petites capacités. Par exemple, 1 μF à 50 Hz donne Xc ≈ 3183 Ω, ce qui limite le courant à environ 72 mA RMS sur une alimentation 230 V. C'est une limite fondamentale de cette topologie : elle ne convient qu'aux applications de faible puissance, typiquement sous 50 à 100 mA."
+      },
+      {
+        "q": "Comment choisir la bonne diode Zener ?",
+        "a": "Choisissez une tension Zener égale à la tension DC de sortie souhaitée. La Zener doit supporter la dissipation la plus défavorable, qui se produit à charge minimale : Pz_max = Vzener × (Idc_max – Iload_min). Choisissez une Zener dont la puissance nominale est au moins deux fois supérieure pour plus de fiabilité. Les valeurs courantes sont 5.1 V, 5.6 V, 9.1 V et 12 V en boîtiers 1 W ou 500 mW."
+      },
+      {
+        "q": "Que se passe-t-il si la charge demande plus de courant que le condensateur ne peut en fournir ?",
+        "a": "Si le courant de charge dépasse le courant DC disponible fourni par le condensateur, la tension de sortie chutera sous la tension Zener et la régulation sera perdue. L'alimentation ne peut pas fournir plus que Idc_max ≈ 0.9 × Vac / Xc. Pour augmenter le courant disponible, utilisez un condensateur plus grand (doubler C double à peu près le courant). La calculatrice vous avertit lorsque la charge dépasse la capacité de l'alimentation."
+      },
+      {
+        "q": "Puis-je utiliser un redresseur demi-onde à la place d'un pont de diodes ?",
+        "a": "Oui. Un redresseur demi-onde utilise une seule diode au lieu de quatre, ce qui réduit le coût et le nombre de composants. Cependant, le courant DC disponible est environ la moitié de celui d'un pont (Idc ≈ 0.45 × Irms en demi-onde contre 0.9 × Irms avec un pont complet). Cette calculatrice modélise l'approximation du pont ; si vous utilisez une conception demi-onde, divisez les résultats de courant par deux."
+      }
+    ]
+  }
+}

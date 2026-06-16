@@ -1,0 +1,105 @@
+{
+  "title": "Kapazitives Netzteil ohne Transformator berechnen",
+  "tagline": "Kapazitive Netzteile ohne Transformator entwerfen — Reaktanz des Abwärtskondensators, Gleichstrom-Ausgangsstrom und Zener-Verlustleistung berechnen.",
+  "intro": "Geben Sie AC-Eingangsspannung, Frequenz, Kondensatorwert, Lastwiderstand und Zenerspannung ein, um ein kompaktes AC-DC-Netzteil ohne Transformator zu entwerfen.",
+  "field": {
+    "acVoltage": "AC-Eingangsspannung (VAC)",
+    "frequency": "AC-Frequenz (Hz)",
+    "capacitor": "Kondensatorwert (μF)",
+    "loadResistance": "Lastwiderstand (Ω)",
+    "zenerVoltage": "Zenerdiodenspannung (V)"
+  },
+  "placeholder": {
+    "acVoltage": "z. B. 230",
+    "frequency": "z. B. 50",
+    "capacitor": "z. B. 1",
+    "loadResistance": "z. B. 1000",
+    "zenerVoltage": "z. B. 5"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "xc": "Kondensatorreaktanz (Xc)",
+    "peakVoltage": "AC-Spitzenwert",
+    "capCurrent": "Kondensatorstrom (RMS)",
+    "dcOutput": "DC-Ausgangsspannung",
+    "loadCurrent": "DC-Laststrom",
+    "zenerCurrent": "Zenerstrom",
+    "zenerPower": "Zener-Verlustleistung"
+  },
+  "formula": "Xc = 1/(2πfC)  |  Vout = Vzener  |  Iload = Vzener/Rload  |  Pzener = Vzener × Izener",
+  "error": {
+    "invalid": "Bitte geben Sie in allen Feldern gültige positive Werte ein.",
+    "overload": "Warnung: Der Laststrom überschreitet den verfügbaren Strom — Last reduzieren oder Kondensatorwert erhöhen."
+  },
+  "about": {
+    "heading": "Über den Rechner für kapazitive Netzteile ohne Transformator",
+    "body": "Ein kapazitives Netzteil ohne Transformator (auch Kondensator-Netzteil oder Kapazitiver Vorwiderstand genannt) ist eine kompakte, kostengünstige Methode, um Netzwechselspannung in eine niedrigere Gleichspannung umzuwandeln, ohne einen Transformator zu verwenden. Es wird häufig in Niedrigleistungsanwendungen wie LED-Anzeigen, einfachen Mikrocontroller-Versorgungen und Fernbedienungsschaltungen eingesetzt, bei denen der Strombedarf typischerweise unter 50 mA liegt und die Netztrennung auf andere Weise erfolgt (zum Beispiel mit einem Optokoppler oder durch sorgfältiges PCB-Layout).\n\nDie Schaltung arbeitet nach einem einfachen Prinzip: Ein in Reihe liegender Kondensator (der Abwärtskondensator) wirkt als reaktive Impedanz und begrenzt den Strom, ohne Leistung zu verheizen. Da die Impedanz eines Kondensators rein reaktiv ist (Xc = 1/(2πfC)), fällt ein großer Teil der Netzspannung mit sehr wenig Energieverlust ab. Auf den netzseitigen Kondensator folgen eine Gleichrichterdiode (oder Brückengleichrichter) und eine Zenerdiode, die die Ausgangsspannung auf den gewünschten DC-Wert klemmt und überschüssigen Strom aufnimmt.\n\nDie Reaktanz des Abwärtskondensators wird mit Xc = 1 / (2π × f × C) berechnet, wobei f die Netzfrequenz (50 oder 60 Hz) und C die Kapazität in Farad ist. Der verfügbare RMS-Strom beträgt näherungsweise Irms ≈ Vac / Xc (vereinfachte Annahme, dass der Kondensator die Impedanz dominiert). Der nach der Gleichrichtung verfügbare DC-Strom liegt für einen Brückengleichrichter grob bei Idc ≈ 0.9 × Irms. Die DC-Ausgangsspannung wird auf die Zenerspannung geklemmt (Vout = Vzener). Der Laststrom ist Iload = Vout / Rload, und die Zener muss den überschüssigen Strom Iz = Idc – Iload aufnehmen und dabei die Leistung Pz = Vzener × Iz verheizen.\n\nSicherheit ist bei trafolosen Netzteilen entscheidend: Die Ausgangsschaltung ist direkt mit dem Netz verbunden und nicht galvanisch getrennt. Jeder Punkt auf der Ausgangsseite kann gegenüber Erde Netzpotential führen. Daher darf diese Topologie nur in vollständig isolierten Gehäusen verwendet werden, in denen keine zugänglichen Metallteile mit dem Ausgang verbunden sind, und das Produkt muss die relevanten Sicherheitsnormen (IEC 60335 usw.) erfüllen. Für Anwendungen, bei denen galvanische Trennung erforderlich ist — etwa jede Schaltung, die vom Benutzer berührt werden kann — ist ein geeigneter Netztransformator oder ein isoliertes Schaltnetzteil zwingend erforderlich.\n\nDer Kondensator selbst muss für dauerhafte AC-Netzspannung ausgelegt und sicherheitszertifiziert sein: Ein X2-Kondensator (275-VAC-Nennwert für den Einsatz direkt über dem Netz) ist das richtige Bauteil. Elektrolytkondensatoren dürfen an dieser Stelle niemals verwendet werden. Die Spannungsfestigkeit sollte bei 230-V-Netz mindestens 400 V DC oder 250 V AC betragen, bei 120-V-Netz mindestens 250 V DC oder 165 V AC.\n\nTypische Auslegungsschritte: gewünschte Ausgangsspannung festlegen (= Zenerspannung), maximalen Laststrom abschätzen, die benötigte Kapazität mit C = Idc / (2π × f × Vac × 0.9) berechnen und dann den nächstliegenden Normwert wählen. Prüfen Sie immer, dass die Zener-Verlustleistung Pz = Vzener × (Idc_max – Iload_min) unterhalb der Nennleistung der Zener liegt, mit einem komfortablen Derating von mindestens 50 %."
+  },
+  "examples": {
+    "heading": "Durchgerechnete Beispiele",
+    "intro": "Drei Auslegungsszenarien zeigen, wie Kondensatorwert, Last und Zenerspannung in einem trafolosen Netzteil zusammenwirken.",
+    "colInput": "Auslegungsparameter",
+    "colOutput": "Wichtige Ergebnisse",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "Vac=230V, f=50Hz, C=1μF, Rload=1kΩ, Vzener=5V",
+        "output": "Xc≈3183Ω, Irms≈72mA, Vout=5V, Iload=5mA, Iz≈60mA",
+        "note": "Einfache 5-V-LED-Versorgung am 230-V/50-Hz-Netz. Verwenden Sie einen X2-Kondensator mit 1μF; die Zener muss etwa 300 mW verkraften."
+      },
+      {
+        "input": "Vac=120V, f=60Hz, C=2.2μF, Rload=470Ω, Vzener=12V",
+        "output": "Xc≈1208Ω, Irms≈99mA, Vout=12V, Iload≈26mA, Iz≈63mA",
+        "note": "12-V-Versorgung am 120-V/60-Hz-Netz. Ein größerer Kondensator liefert mehr Strom; die Zener verheizt etwa 756 mW."
+      },
+      {
+        "input": "Vac=230V, f=50Hz, C=0.47μF, Rload=4700Ω, Vzener=3.3V",
+        "output": "Xc≈6772Ω, Irms≈34mA, Vout=3.3V, Iload≈0.7mA, Iz≈30mA",
+        "note": "Niedrigstromige 3,3-V-Mikrocontroller-Versorgung. Die Last ist sehr klein; die Zener nimmt den größten Teil des verfügbaren Stroms auf."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Rechner",
+    "steps": [
+      "Geben Sie die AC-Netzspannung (RMS) ein. In den meisten europäischen und asiatischen Ländern sind 230 V üblich, in Nordamerika 120 V. Prüfen Sie den örtlichen Netzstandard.",
+      "Geben Sie die AC-Frequenz ein: 50 Hz (Europa, Asien, Afrika, Südamerika) oder 60 Hz (Nordamerika, Japan).",
+      "Geben Sie den Wert des Abwärtskondensators in Mikrofarad (μF) ein. Das ist der in Reihe geschaltete Kondensator direkt am Netz; er muss ein X2-Sicherheitskondensator für Netzspannung sein.",
+      "Geben Sie den Lastwiderstand in Ohm ein oder berechnen Sie ihn als Vout / Iload. Geben Sie anschließend die Zenerdiodenspannung ein — das ist Ihre geregelte DC-Ausgangsspannung.",
+      "Klicken Sie auf Berechnen. Prüfen Sie Zenerstrom und Verlustleistung. Ist der Zenerstrom negativ, ist die Last zu hoch; erhöhen Sie den Kondensatorwert. Wenden Sie bei der Zener-Nennleistung immer ein Derating von 50 % an."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Ist ein kapazitives Netzteil ohne Transformator sicher?",
+        "a": "Die Ausgangsschaltung ist direkt mit dem Netz verbunden und nicht elektrisch getrennt, daher kann eine Berührung tödlich sein. Solche Schaltungen sind nur dann sicher, wenn sie vollständig in isolierten Gehäusen eingeschlossen sind und keine zugänglichen Metallteile mit dem Ausgang verbunden sind. Für alle Anwendungen, bei denen der Benutzer den Ausgang berühren könnte — einschließlich USB oder Audiobuchsen — ist ein Netztransformator oder ein isoliertes Schaltnetzteil erforderlich."
+      },
+      {
+        "q": "Welcher Kondensatortyp muss auf der Netzseite verwendet werden?",
+        "a": "Nur ein sicherheitszertifizierter metallisierter Polypropylenkondensator der Klasse X2 ist für den Anschluss direkt über dem Netz geeignet. X2-Kondensatoren sind so ausgelegt, dass sie sicher offen statt kurzschließend ausfallen. Elektrolytkondensatoren, Standard-Keramikkondensatoren und nicht sicherheitszertifizierte Folienkondensatoren dürfen hier niemals verwendet werden, da ein Ausfall Brand oder Stromschlag verursachen kann."
+      },
+      {
+        "q": "Warum ist der verfügbare Strom so klein?",
+        "a": "Die Reaktanz des Abwärtskondensators Xc = 1/(2πfC) ist bei Netzfrequenz für kleine Kapazitäten sehr hoch. 1 μF bei 50 Hz ergibt zum Beispiel Xc ≈ 3183 Ω und begrenzt den Strom einer 230-V-Versorgung auf etwa 72 mA RMS. Das ist eine grundlegende Einschränkung dieser Topologie — sie eignet sich nur für Niedrigleistungsanwendungen unter etwa 50–100 mA."
+      },
+      {
+        "q": "Wie wähle ich die richtige Zenerdiode aus?",
+        "a": "Wählen Sie eine Zenerspannung, die Ihrer gewünschten DC-Ausgangsspannung entspricht. Die Zener muss die schlimmste Verlustleistung verkraften, die bei Minimal-Last auftritt: Pz_max = Vzener × (Idc_max – Iload_min). Wählen Sie für Zuverlässigkeit eine Zener mit mindestens der doppelten Nennleistung dieses Werts. Übliche Werte sind 5,1 V, 5,6 V, 9,1 V und 12 V in 1-W- oder 500-mW-Gehäusen."
+      },
+      {
+        "q": "Was passiert, wenn die Last mehr Strom zieht, als der Kondensator liefern kann?",
+        "a": "Wenn der Laststrom den vom Kondensator verfügbaren DC-Strom überschreitet, fällt die Ausgangsspannung unter die Zenerspannung und wird unreguliert. Das Netzteil kann nicht mehr als Idc_max ≈ 0.9 × Vac / Xc liefern. Um den verfügbaren Strom zu erhöhen, verwenden Sie einen größeren Kondensator (eine Verdopplung von C verdoppelt den Strom ungefähr). Der Rechner warnt Sie, wenn die Last die Leistungsfähigkeit des Netzteils überschreitet."
+      },
+      {
+        "q": "Kann ich statt eines Brückengleichrichters eine Halbwellen-Gleichrichtung verwenden?",
+        "a": "Ja. Eine Halbwellen-Gleichrichtung benötigt nur eine einzige Diode statt vier, was Kosten und Bauteilzahl reduziert. Der verfügbare DC-Strom ist jedoch etwa halb so groß wie bei einem Brückengleichrichter (Idc ≈ 0.45 × Irms bei Halbwelle gegenüber 0.9 × Irms bei Vollbrücke). Dieser Rechner verwendet die Brückengleichrichter-Näherung; halbieren Sie die Stromwerte, wenn Sie eine Halbwellen-Auslegung verwenden."
+      }
+    ]
+  }
+}

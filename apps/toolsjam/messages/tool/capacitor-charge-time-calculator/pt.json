@@ -1,0 +1,101 @@
+{
+  "title": "Calculadora de tempo de carga de capacitor – circuito RC",
+  "tagline": "Calcule o tempo para um capacitor carregar até uma tensão alvo em um circuito RC usando t = −RC × ln(1 − Vc/Vs).",
+  "intro": "Insira capacitância, resistência em série, tensão de alimentação e tensão alvo para obter o tempo de carga, a constante RC e marcos de 1τ a 5τ.",
+  "field": {
+    "capacitance": "Capacitância (F)",
+    "resistance": "Resistência (Ω)",
+    "supplyVoltage": "Tensão de alimentação (V)",
+    "targetVoltage": "Tensão alvo (V)"
+  },
+  "placeholder": {
+    "capacitance": "e.g. 0.001",
+    "resistance": "e.g. 10000",
+    "supplyVoltage": "e.g. 12",
+    "targetVoltage": "e.g. 7.56"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultados",
+    "timeConstant": "Constante de tempo RC (τ)",
+    "chargeTime": "Tempo de carga (t)",
+    "tauMultiple": "Tempo em unidades τ",
+    "chargePercent": "Alvo como % de Vs",
+    "tauReference": "Tensão em múltiplos τ padrão"
+  },
+  "formula": "t = −R × C × ln(1 − Vc/Vs)  |  τ = R × C  |  V(t) = Vs × (1 − e^(−t/τ))",
+  "error": {
+    "invalid": "Insira valores positivos válidos para todos os quatro campos.",
+    "targetExceedsSupply": "A tensão alvo deve ser menor que a tensão de alimentação — um capacitor só carrega assintoticamente em direção a Vs."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de tempo de carga de capacitor",
+    "body": "Quando um capacitor carrega por um resistor em série a partir de uma fonte constante, sua tensão sobe exponencialmente por Vc(t) = Vs × (1 − e^(−t/τ)), com τ = R × C. τ é o tempo para chegar a cerca de 63.2% de Vs. Rearranjando, t = −τ × ln(1 − Vc/Vs) = −R × C × ln(1 − Vc/Vs). Como a curva é assintótica, não há tempo finito para atingir exatamente 100% de Vs; em 5τ chega a cerca de 99.3% de Vs e é considerada carregada. Com R em ohms e C em farads, τ fica em segundos, de τ = 1 kΩ × 1 pF a τ = 1 MΩ × 1 mF. Pontos padrão: 1τ → 63.2%, 2τ → 86.5%, 3τ → 95.0%, 4τ → 98.2%, 5τ → 99.3% de Vs. Circuitos RC são usados em temporizadores 555 e filtros; f₃dB = 1 / (2π × R × C). A corrente é I(t) = (Vs/R) × e^(−t/τ), a carga Q = C × Vs e a energia E = ½ × C × Vs². De E_source = C × Vs², metade se dissipa no resistor e metade fica armazenada. A descarga segue Vc(t) = V0 × e^(−t/τ) com a mesma τ."
+  },
+  "examples": {
+    "heading": "Exemplos resolvidos",
+    "intro": "Três cenários RC mostram como o tempo de carga varia com resistência, capacitância e tensão alvo.",
+    "colInput": "Valores do circuito",
+    "colOutput": "Resultado do tempo de carga",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "C = 1 mF = 0.001 F, R = 10 kΩ, Vs = 12 V, Vc = 7.56 V (63%)",
+        "output": "τ = 10 s, t ≈ 10.0 s (≈1τ)",
+        "note": "Carregar até 63.2% da tensão de alimentação sempre leva exatamente 1τ, ponto clássico de referência."
+      },
+      {
+        "input": "C = 100 μF = 1×10⁻⁴ F, R = 47 kΩ, Vs = 5 V, Vc = 4.75 V (95%)",
+        "output": "τ = 4.7 s, t ≈ 14.1 s (≈3τ)",
+        "note": "Carregar até 95% leva aproximadamente 3τ, regra prática para considerar o capacitor carregado."
+      },
+      {
+        "input": "C = 10 nF = 1×10⁻⁸ F, R = 1 kΩ, Vs = 3.3 V, Vc = 2.0 V",
+        "output": "τ = 10 μs, t ≈ 9.32 μs",
+        "note": "Temporização digital rápida: 10 nF / 1 kΩ fornece 10 μs para circuitos de detecção de limiar."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de tempo de carga de capacitor",
+    "steps": [
+      "Insira a capacitância em farads (F). Converta unidades comuns: 1 μF = 1×10⁻⁶ F, 1 nF = 1×10⁻⁹ F, 1 mF = 1×10⁻³ F.",
+      "Insira a resistência em série em ohms (Ω), incluindo resistência interna da fonte e resistor em série.",
+      "Insira a tensão de alimentação e a tensão alvo; a alvo deve ser menor que a alimentação.",
+      "Clique em Calcular para ver τ, o tempo até o alvo e tensões de referência (1τ, 2τ, 3τ, 5τ).",
+      "Use o múltiplo de τ para validar: tempo / τ > 3 está perto de 95%; > 5 está praticamente carregado."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "items": [
+      {
+        "q": "Por que o capacitor nunca carrega totalmente até a tensão de alimentação?",
+        "a": "Vc(t) = Vs × (1 − e^(−t/τ)) é uma aproximação exponencial e só alcança Vs em t = ∞. Após 5τ, a lacuna é cerca de 0.67% de Vs."
+      },
+      {
+        "q": "O que é a constante de tempo RC?",
+        "a": "τ = R × C mede a rapidez de resposta: subir a 63.2% de Vs ou decair a 36.8% do valor inicial. Também é 1/(2π × f₃dB)."
+      },
+      {
+        "q": "Como a resistência afeta o tempo de carga?",
+        "a": "O tempo é proporcional à resistência; dobrar R dobra τ e o tempo. R menor carrega mais rápido, mas aumenta Ipeak = Vs/R."
+      },
+      {
+        "q": "O que acontece com a energia durante a carga?",
+        "a": "De E_source = C × Vs², E = ½ × C × Vs² fica no capacitor e a outra metade se dissipa como calor no resistor."
+      },
+      {
+        "q": "Posso usar esta calculadora para descarga?",
+        "a": "A descarga usa Vc(t) = V0 × e^(−t/τ) com τ = RC. De V0 até Vt: t = −τ × ln(Vt/V0)."
+      },
+      {
+        "q": "Quais constantes RC são típicas?",
+        "a": "De 1 kΩ × 1 pF = 1 ps a 10 MΩ × 100 μF = 1000 s ≈ 17 min, em 555, debounce, acoplamento de áudio e filtros de alimentação."
+      }
+    ]
+  }
+}

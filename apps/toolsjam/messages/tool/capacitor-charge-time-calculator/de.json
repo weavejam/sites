@@ -1,0 +1,101 @@
+{
+  "title": "Kondensator-Ladezeitrechner – RC-Schaltung",
+  "tagline": "Berechne mit t = −RC × ln(1 − Vc/Vs), wie lange ein Kondensator in einer RC-Schaltung bis zur Zielspannung lädt.",
+  "intro": "Gib Kapazität, Serienwiderstand, Versorgungsspannung und Zielspannung ein, um Ladezeit, RC-Zeitkonstante und Spannungsmarken von 1τ bis 5τ zu erhalten.",
+  "field": {
+    "capacitance": "Kapazität (F)",
+    "resistance": "Widerstand (Ω)",
+    "supplyVoltage": "Versorgungsspannung (V)",
+    "targetVoltage": "Zielspannung (V)"
+  },
+  "placeholder": {
+    "capacitance": "e.g. 0.001",
+    "resistance": "e.g. 10000",
+    "supplyVoltage": "e.g. 12",
+    "targetVoltage": "e.g. 7.56"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "timeConstant": "RC-Zeitkonstante (τ)",
+    "chargeTime": "Ladezeit (t)",
+    "tauMultiple": "Zeit in τ-Einheiten",
+    "chargePercent": "Ziel als % von Vs",
+    "tauReference": "Spannung bei Standard-τ-Vielfachen"
+  },
+  "formula": "t = −R × C × ln(1 − Vc/Vs)  |  τ = R × C  |  V(t) = Vs × (1 − e^(−t/τ))",
+  "error": {
+    "invalid": "Bitte gib für alle vier Felder gültige positive Werte ein.",
+    "targetExceedsSupply": "Die Zielspannung muss kleiner als die Versorgungsspannung sein — ein Kondensator lädt sich nur asymptotisch in Richtung Vs."
+  },
+  "about": {
+    "heading": "Über den Kondensator-Ladezeitrechner",
+    "body": "Wird ein Kondensator über einen Serienwiderstand aus einer konstanten Quelle geladen, steigt seine Spannung exponentiell nach Vc(t) = Vs × (1 − e^(−t/τ)), mit τ = R × C. τ ist die Zeit bis etwa 63.2% von Vs. Umgestellt ergibt sich t = −τ × ln(1 − Vc/Vs) = −R × C × ln(1 − Vc/Vs). Da die Kurve asymptotisch ist, wird 100% von Vs nie in endlicher Zeit erreicht; bei 5τ sind es etwa 99.3% von Vs und praktisch voll geladen. Mit R in Ohm und C in Farad ist τ in Sekunden, von τ = 1 kΩ × 1 pF bis τ = 1 MΩ × 1 mF. Standardpunkte: 1τ → 63.2%, 2τ → 86.5%, 3τ → 95.0%, 4τ → 98.2%, 5τ → 99.3% von Vs. RC-Schaltungen werden in 555-Timern und Filtern genutzt; f₃dB = 1 / (2π × R × C). Der Strom ist I(t) = (Vs/R) × e^(−t/τ), die Ladung Q = C × Vs und die Energie E = ½ × C × Vs². Von E_source = C × Vs² wird die Hälfte im Widerstand verheizt und die Hälfte gespeichert. Entladung folgt Vc(t) = V0 × e^(−t/τ) mit derselben τ."
+  },
+  "examples": {
+    "heading": "Durchgerechnete Beispiele",
+    "intro": "Drei RC-Szenarien zeigen, wie die Ladezeit mit Widerstand, Kapazität und Zielspannung skaliert.",
+    "colInput": "Schaltungswerte",
+    "colOutput": "Ladezeitergebnis",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "C = 1 mF = 0.001 F, R = 10 kΩ, Vs = 12 V, Vc = 7.56 V (63%)",
+        "output": "τ = 10 s, t ≈ 10.0 s (≈1τ)",
+        "note": "Das Laden auf 63.2% der Versorgungsspannung dauert immer genau 1τ, ein klassischer Bezugspunkt."
+      },
+      {
+        "input": "C = 100 μF = 1×10⁻⁴ F, R = 47 kΩ, Vs = 5 V, Vc = 4.75 V (95%)",
+        "output": "τ = 4.7 s, t ≈ 14.1 s (≈3τ)",
+        "note": "95% Ladung benötigt etwa 3τ, die Faustregel für praktisch geladen."
+      },
+      {
+        "input": "C = 10 nF = 1×10⁻⁸ F, R = 1 kΩ, Vs = 3.3 V, Vc = 2.0 V",
+        "output": "τ = 10 μs, t ≈ 9.32 μs",
+        "note": "Schnelle digitale Zeitgebung: 10 nF / 1 kΩ ergibt 10 μs für Schwellwertdetektoren."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Kondensator-Ladezeitrechner",
+    "steps": [
+      "Gib die Kapazität in Farad (F) ein. Rechne Einheiten um: 1 μF = 1×10⁻⁶ F, 1 nF = 1×10⁻⁹ F, 1 mF = 1×10⁻³ F.",
+      "Gib den Serienwiderstand in Ohm (Ω) ein, einschließlich Innenwiderstand der Quelle und Serienwiderstand.",
+      "Gib Versorgungs- und Zielspannung ein; die Zielspannung muss kleiner sein.",
+      "Klicke Berechnen, um τ, die Ladezeit bis zum Ziel und Referenzspannungen (1τ, 2τ, 3τ, 5τ) zu sehen.",
+      "Prüfe mit dem τ-Vielfachen: Ladezeit / τ > 3 liegt nahe 95%; > 5 ist praktisch voll geladen."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Warum lädt sich der Kondensator nie vollständig auf die Versorgungsspannung?",
+        "a": "Vc(t) = Vs × (1 − e^(−t/τ)) ist eine exponentielle Annäherung und erreicht Vs nur bei t = ∞. Nach 5τ bleibt etwa 0.67% von Vs Lücke."
+      },
+      {
+        "q": "Was ist die RC-Zeitkonstante?",
+        "a": "τ = R × C beschreibt die Reaktionsgeschwindigkeit: Anstieg auf 63.2% von Vs oder Abfall auf 36.8% des Anfangswerts. Sie entspricht 1/(2π × f₃dB)."
+      },
+      {
+        "q": "Wie beeinflusst der Widerstand die Ladezeit?",
+        "a": "Die Zeit ist proportional zum Widerstand; doppeltes R bedeutet doppeltes τ und doppelte Zeit. Kleineres R lädt schneller, erhöht aber Ipeak = Vs/R."
+      },
+      {
+        "q": "Was passiert beim Laden mit der Energie?",
+        "a": "Von E_source = C × Vs² wird E = ½ × C × Vs² im Kondensator gespeichert und die andere Hälfte im Serienwiderstand als Wärme dissipiert."
+      },
+      {
+        "q": "Kann ich diesen Rechner für Entladung nutzen?",
+        "a": "Entladung nutzt Vc(t) = V0 × e^(−t/τ) mit τ = RC. Von V0 nach Vt gilt t = −τ × ln(Vt/V0)."
+      },
+      {
+        "q": "Welche typischen RC-Zeitkonstanten gibt es?",
+        "a": "Von 1 kΩ × 1 pF = 1 ps bis 10 MΩ × 100 μF = 1000 s ≈ 17 min, in 555-Timern, Entprellung, Audio-Kopplung und Netzteilfiltern."
+      }
+    ]
+  }
+}

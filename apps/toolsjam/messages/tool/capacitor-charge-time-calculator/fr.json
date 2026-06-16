@@ -1,0 +1,101 @@
+{
+  "title": "Calculateur de temps de charge de condensateur – circuit RC",
+  "tagline": "Calculez le temps nécessaire pour qu’un condensateur atteigne une tension cible dans un circuit RC avec t = −RC × ln(1 − Vc/Vs).",
+  "intro": "Saisissez la capacité, la résistance série, la tension d’alimentation et la tension cible pour obtenir le temps de charge, la constante RC et les jalons de 1τ à 5τ.",
+  "field": {
+    "capacitance": "Capacité (F)",
+    "resistance": "Résistance (Ω)",
+    "supplyVoltage": "Tension d’alimentation (V)",
+    "targetVoltage": "Tension cible (V)"
+  },
+  "placeholder": {
+    "capacitance": "e.g. 0.001",
+    "resistance": "e.g. 10000",
+    "supplyVoltage": "e.g. 12",
+    "targetVoltage": "e.g. 7.56"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats",
+    "timeConstant": "Constante de temps RC (τ)",
+    "chargeTime": "Temps de charge (t)",
+    "tauMultiple": "Temps en unités τ",
+    "chargePercent": "Cible en % de Vs",
+    "tauReference": "Tension aux multiples τ standard"
+  },
+  "formula": "t = −R × C × ln(1 − Vc/Vs)  |  τ = R × C  |  V(t) = Vs × (1 − e^(−t/τ))",
+  "error": {
+    "invalid": "Veuillez saisir des valeurs positives valides pour les quatre champs.",
+    "targetExceedsSupply": "La tension cible doit être inférieure à la tension d’alimentation — un condensateur ne se charge qu’asymptotiquement vers Vs."
+  },
+  "about": {
+    "heading": "À propos du calculateur de temps de charge de condensateur",
+    "body": "Lorsqu’un condensateur se charge depuis une source constante à travers une résistance série, sa tension augmente exponentiellement selon Vc(t) = Vs × (1 − e^(−t/τ)), avec τ = R × C. τ est le temps pour atteindre environ 63.2% de Vs. En isolant le temps, t = −τ × ln(1 − Vc/Vs) = −R × C × ln(1 − Vc/Vs). La courbe étant asymptotique, il n’existe pas de temps fini pour atteindre exactement 100% de Vs; à 5τ on atteint environ 99.3% de Vs, considéré comme chargé. Avec R en ohms et C en farads, τ est en secondes, de τ = 1 kΩ × 1 pF à τ = 1 MΩ × 1 mF. Les repères sont 1τ → 63.2%, 2τ → 86.5%, 3τ → 95.0%, 4τ → 98.2%, 5τ → 99.3% de Vs. Les circuits RC servent aux temporisateurs 555 et aux filtres; f₃dB = 1 / (2π × R × C). Le courant vaut I(t) = (Vs/R) × e^(−t/τ), la charge Q = C × Vs et l’énergie E = ½ × C × Vs². Sur E_source = C × Vs², la moitié est dissipée dans la résistance et la moitié stockée. La décharge suit Vc(t) = V0 × e^(−t/τ) avec la même τ."
+  },
+  "examples": {
+    "heading": "Exemples détaillés",
+    "intro": "Trois scénarios RC montrent comment le temps de charge varie avec la résistance, la capacité et la tension cible.",
+    "colInput": "Valeurs du circuit",
+    "colOutput": "Résultat du temps de charge",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "C = 1 mF = 0.001 F, R = 10 kΩ, Vs = 12 V, Vc = 7.56 V (63%)",
+        "output": "τ = 10 s, t ≈ 10.0 s (≈1τ)",
+        "note": "Charger à 63.2% de la tension d’alimentation prend toujours exactement 1τ, repère classique."
+      },
+      {
+        "input": "C = 100 μF = 1×10⁻⁴ F, R = 47 kΩ, Vs = 5 V, Vc = 4.75 V (95%)",
+        "output": "τ = 4.7 s, t ≈ 14.1 s (≈3τ)",
+        "note": "Charger à 95% prend environ 3τ, règle pratique pour un condensateur pratiquement chargé."
+      },
+      {
+        "input": "C = 10 nF = 1×10⁻⁸ F, R = 1 kΩ, Vs = 3.3 V, Vc = 2.0 V",
+        "output": "τ = 10 μs, t ≈ 9.32 μs",
+        "note": "Temporisation numérique rapide : 10 nF / 1 kΩ donne 10 μs pour les détecteurs de seuil."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de temps de charge de condensateur",
+    "steps": [
+      "Saisissez la capacité en farads (F). Convertissez les unités courantes : 1 μF = 1×10⁻⁶ F, 1 nF = 1×10⁻⁹ F, 1 mF = 1×10⁻³ F.",
+      "Saisissez la résistance série en ohms (Ω), incluant la résistance interne de l’alimentation et toute résistance série.",
+      "Saisissez la tension d’alimentation et la tension cible; la cible doit être inférieure à l’alimentation.",
+      "Cliquez sur Calculer pour voir τ, le temps jusqu’à la cible et les tensions de référence (1τ, 2τ, 3τ, 5τ).",
+      "Utilisez le multiple de τ pour valider : temps / τ > 3 est proche de 95%; > 5 est pratiquement chargé."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Pourquoi le condensateur ne se charge-t-il jamais complètement à la tension d’alimentation ?",
+        "a": "Vc(t) = Vs × (1 − e^(−t/τ)) est une approche exponentielle et n’atteint Vs qu’à t = ∞. Après 5τ, l’écart est environ 0.67% de Vs."
+      },
+      {
+        "q": "Qu’est-ce que la constante de temps RC ?",
+        "a": "τ = R × C mesure la vitesse de réponse : montée à 63.2% de Vs ou décroissance à 36.8% de la valeur initiale. Elle vaut aussi 1/(2π × f₃dB)."
+      },
+      {
+        "q": "Comment la résistance affecte-t-elle le temps de charge ?",
+        "a": "Le temps est proportionnel à la résistance; doubler R double τ et le temps. Un R plus faible charge plus vite mais augmente Ipeak = Vs/R."
+      },
+      {
+        "q": "Que devient l’énergie pendant la charge ?",
+        "a": "Sur E_source = C × Vs², E = ½ × C × Vs² est stockée dans le condensateur et l’autre moitié dissipée en chaleur dans la résistance."
+      },
+      {
+        "q": "Puis-je utiliser ce calculateur pour la décharge ?",
+        "a": "La décharge utilise Vc(t) = V0 × e^(−t/τ) avec τ = RC. De V0 à Vt : t = −τ × ln(Vt/V0)."
+      },
+      {
+        "q": "Quelles sont les constantes RC typiques ?",
+        "a": "De 1 kΩ × 1 pF = 1 ps à 10 MΩ × 100 μF = 1000 s ≈ 17 min, dans les 555, l’anti-rebond, l’audio et les filtres d’alimentation."
+      }
+    ]
+  }
+}

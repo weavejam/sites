@@ -1,0 +1,105 @@
+{
+  "title": "Calculadora de fuente capacitiva sin transformador",
+  "tagline": "Diseña fuentes capacitivas sin transformador — calcula la reactancia del condensador de caída, la corriente de salida DC y la potencia disipada por el zener.",
+  "intro": "Introduce el voltaje de entrada AC, la frecuencia, el valor del condensador de caída, la resistencia de carga y la tensión del zener para diseñar una fuente AC-DC compacta sin transformador.",
+  "field": {
+    "acVoltage": "Voltaje de entrada AC (VAC)",
+    "frequency": "Frecuencia AC (Hz)",
+    "capacitor": "Valor del condensador (μF)",
+    "loadResistance": "Resistencia de carga (Ω)",
+    "zenerVoltage": "Tensión del diodo Zener (V)"
+  },
+  "placeholder": {
+    "acVoltage": "p. ej., 230",
+    "frequency": "p. ej., 50",
+    "capacitor": "p. ej., 1",
+    "loadResistance": "p. ej., 1000",
+    "zenerVoltage": "p. ej., 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar"
+  },
+  "result": {
+    "heading": "Resultados",
+    "xc": "Reactancia del condensador (Xc)",
+    "peakVoltage": "Voltaje pico AC",
+    "capCurrent": "Corriente del condensador (RMS)",
+    "dcOutput": "Voltaje de salida DC",
+    "loadCurrent": "Corriente de carga DC",
+    "zenerCurrent": "Corriente del Zener",
+    "zenerPower": "Disipación de potencia del Zener"
+  },
+  "formula": "Xc = 1/(2πfC)  |  Vout = Vzener  |  Iload = Vzener/Rload  |  Pzener = Vzener × Izener",
+  "error": {
+    "invalid": "Introduce valores positivos válidos en todos los campos.",
+    "overload": "Advertencia: la corriente de carga supera la corriente disponible: reduce la carga o aumenta el valor del condensador."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de fuente capacitiva sin transformador",
+    "body": "Una fuente capacitiva sin transformador (también llamada circuito con condensador de caída) es un método compacto y de bajo costo para convertir la tensión AC de red en una tensión DC más baja sin usar un transformador. Se utiliza mucho en aplicaciones de baja potencia como indicadores LED, fuentes sencillas para microcontroladores y circuitos de control remoto, donde la corriente requerida suele ser inferior a 50 mA y el aislamiento de la red se resuelve por otros medios (por ejemplo, con un optoacoplador o mediante un diseño cuidadoso de la placa).\n\nEl circuito funciona con un principio simple: un condensador en serie (el condensador de caída) actúa como una impedancia reactiva que limita la corriente sin disipar potencia. Como la impedancia de un condensador es puramente reactiva (Xc = 1/(2πfC)), deja caer una parte importante de la tensión de red con muy poca pérdida de energía. Después del condensador conectado a la red se coloca un diodo rectificador (o un puente) y un diodo Zener que fija la salida al voltaje DC deseado, absorbiendo cualquier exceso de corriente.\n\nLa reactancia del condensador de caída se calcula como Xc = 1 / (2π × f × C), donde f es la frecuencia de red (50 o 60 Hz) y C es la capacitancia en faradios. La corriente RMS disponible de la fuente es aproximadamente Irms ≈ Vac / Xc (simplificado, suponiendo que el condensador domina la impedancia). La corriente DC disponible tras la rectificación es aproximadamente Idc ≈ 0.9 × Irms para un puente rectificador. La tensión de salida DC se fija al valor del Zener (Vout = Vzener). La corriente de carga es Iload = Vout / Rload, y el Zener debe absorber cualquier corriente sobrante Iz = Idc – Iload, disipando una potencia Pz = Vzener × Iz.\n\nLa seguridad es fundamental en las fuentes sin transformador: el circuito de salida está conectado directamente a la red y no está aislado. Cualquier punto del lado de salida puede estar a potencial de red respecto a tierra. Por eso, esta topología solo debe usarse dentro de carcasas totalmente aisladas, sin metal accesible conectado a la salida, y el producto debe cumplir las normas de seguridad aplicables (IEC 60335, etc.). Para aplicaciones que requieran aislamiento galvánico —como cualquier circuito que pueda tocar el usuario— es obligatorio un transformador de red adecuado o una fuente conmutada aislada.\n\nEl propio condensador debe estar clasificado para tensión AC continua de red y debe ser de tipo de seguridad: un condensador clase X2 (275 VAC, para conexión en paralelo con la red) es el componente correcto. Nunca se deben usar condensadores electrolíticos en esta posición. La tensión nominal debe ser al menos 400 V DC o 250 V AC para red de 230 V, o 250 V DC / 165 V AC para red de 120 V.\n\nPasos típicos de diseño: elige el voltaje de salida requerido (= tensión del zener), estima la corriente máxima de carga, calcula la capacitancia necesaria con C = Idc / (2π × f × Vac × 0.9), y luego selecciona el valor comercial más cercano. Verifica siempre que la disipación del zener Pz = Vzener × (Idc_max – Iload_min) esté dentro de la potencia nominal del zener, con un margen cómodo de al menos 50 %."
+  },
+  "examples": {
+    "heading": "Ejemplos resueltos",
+    "intro": "Tres escenarios de diseño que muestran cómo interactúan el valor del condensador, la carga y la tensión del zener en una fuente sin transformador.",
+    "colInput": "Parámetros de diseño",
+    "colOutput": "Resultados clave",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "Vac=230V, f=50Hz, C=1μF, Rload=1kΩ, Vzener=5V",
+        "output": "Xc≈3183Ω, Irms≈72mA, Vout=5V, Iload=5mA, Iz≈60mA",
+        "note": "Fuente LED sencilla de 5V para red de 230V/50Hz. Usa un condensador X2 de 1μF; el zener debe disipar unos 300mW."
+      },
+      {
+        "input": "Vac=120V, f=60Hz, C=2.2μF, Rload=470Ω, Vzener=12V",
+        "output": "Xc≈1208Ω, Irms≈99mA, Vout=12V, Iload≈26mA, Iz≈63mA",
+        "note": "Fuente de 12V en red de 120V/60Hz. Un condensador de mayor valor proporciona más corriente; el zener disipa unos 756mW."
+      },
+      {
+        "input": "Vac=230V, f=50Hz, C=0.47μF, Rload=4700Ω, Vzener=3.3V",
+        "output": "Xc≈6772Ω, Irms≈34mA, Vout=3.3V, Iload≈0.7mA, Iz≈30mA",
+        "note": "Fuente de 3.3V para microcontrolador de baja corriente. La carga es muy pequeña y el zener absorbe la mayor parte de la corriente disponible."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora",
+    "steps": [
+      "Introduce el voltaje de red AC (RMS). Para la mayoría de los países europeos y asiáticos se usa 230 V, y para Norteamérica 120 V. Comprueba la norma local.",
+      "Introduce la frecuencia AC: 50 Hz (Europa, Asia, África, Sudamérica) o 60 Hz (Norteamérica, Japón).",
+      "Introduce el valor del condensador de caída en microfaradios (μF). Este es el condensador en serie conectado directamente a la red; debe ser un condensador de seguridad X2 apto para tensión de red.",
+      "Introduce la resistencia de carga en ohmios, o calcúlala como Vout / Iload. Después introduce la tensión del diodo Zener: ese será tu voltaje DC regulado.",
+      "Haz clic en Calcular. Revisa la corriente y la potencia del zener. Si la corriente del zener es negativa, la carga es demasiado alta; aumenta el valor del condensador. Aplica siempre un derating del 50 % a la potencia nominal del zener."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Es segura una fuente capacitiva sin transformador?",
+        "a": "El circuito de salida está conectado directamente a la red y no está aislado eléctricamente, por lo que puede ser letal tocarlo. Estos circuitos solo son seguros cuando están totalmente encerrados en carcasas aisladas y no tienen contactos metálicos accesibles. Para cualquier aplicación en la que el usuario pueda tocar la salida —incluidos USB o conectores de audio— se requiere una fuente con transformador o una SMPS aislada."
+      },
+      {
+        "q": "¿Qué tipo de condensador debe usarse en el lado de red?",
+        "a": "Solo es adecuado un condensador de polipropileno metalizado de clase X2 con certificación de seguridad para conexión en paralelo con la red. Los condensadores X2 están diseñados para fallar de forma segura (circuito abierto) y no en cortocircuito. Nunca se deben usar condensadores electrolíticos, cerámicos estándar ni condensadores de película sin certificación de seguridad, porque un fallo puede causar incendio o descarga eléctrica."
+      },
+      {
+        "q": "¿Por qué la corriente disponible es tan baja?",
+        "a": "La reactancia del condensador de caída Xc = 1/(2πfC) es muy alta a frecuencia de red cuando la capacitancia es pequeña. Por ejemplo, 1 μF a 50 Hz da Xc ≈ 3183 Ω, lo que limita la corriente a unos 72 mA RMS en una fuente de 230 V. Es una limitación fundamental de esta topología: solo sirve para aplicaciones de baja potencia por debajo de unos 50–100 mA."
+      },
+      {
+        "q": "¿Cómo elijo el diodo Zener correcto?",
+        "a": "Elige una tensión Zener igual a tu voltaje DC de salida deseado. El Zener debe soportar la peor disipación, que ocurre con carga mínima y corriente Zener máxima: Pz_max = Vzener × (Idc_max – Iload_min). Selecciona un Zener con potencia nominal al menos el doble de ese valor para mayor fiabilidad. Las opciones comunes son Zener de 5.1 V, 5.6 V, 9.1 V y 12 V en encapsulados de 1 W o 500 mW."
+      },
+      {
+        "q": "¿Qué pasa si la carga consume más corriente de la que puede entregar el condensador?",
+        "a": "Si la corriente de carga supera la corriente DC disponible del condensador, el voltaje de salida caerá por debajo de la tensión Zener y dejará de regular. La fuente no puede entregar más de Idc_max ≈ 0.9 × Vac / Xc. Para aumentar la corriente disponible, usa un condensador más grande (duplicar C aproximadamente duplica la corriente). La calculadora avisa cuando la carga supera la capacidad de la fuente."
+      },
+      {
+        "q": "¿Puedo usar un rectificador de media onda en lugar de un puente?",
+        "a": "Sí. Un rectificador de media onda usa un solo diodo en lugar de cuatro, lo que reduce el costo y el número de componentes. Sin embargo, la corriente DC disponible es aproximadamente la mitad que con un puente rectificador (Idc ≈ 0.45 × Irms en media onda frente a 0.9 × Irms con puente completo). Esta calculadora modela la aproximación de puente rectificador; si usas media onda, divide los resultados de corriente entre dos."
+      }
+    ]
+  }
+}

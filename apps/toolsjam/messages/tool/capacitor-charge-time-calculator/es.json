@@ -1,0 +1,101 @@
+{
+  "title": "Calculadora de tiempo de carga de condensador – circuito RC",
+  "tagline": "Calcula el tiempo para que un condensador se cargue hasta un voltaje objetivo en un circuito RC usando t = −RC × ln(1 − Vc/Vs).",
+  "intro": "Introduce capacitancia, resistencia en serie, voltaje de alimentación y voltaje objetivo para obtener el tiempo de carga, la constante RC y los hitos de 1τ a 5τ.",
+  "field": {
+    "capacitance": "Capacitancia (F)",
+    "resistance": "Resistencia (Ω)",
+    "supplyVoltage": "Voltaje de alimentación (V)",
+    "targetVoltage": "Voltaje objetivo (V)"
+  },
+  "placeholder": {
+    "capacitance": "e.g. 0.001",
+    "resistance": "e.g. 10000",
+    "supplyVoltage": "e.g. 12",
+    "targetVoltage": "e.g. 7.56"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultados",
+    "timeConstant": "Constante de tiempo RC (τ)",
+    "chargeTime": "Tiempo de carga (t)",
+    "tauMultiple": "Tiempo en unidades τ",
+    "chargePercent": "Objetivo como % de Vs",
+    "tauReference": "Voltaje en múltiplos τ estándar"
+  },
+  "formula": "t = −R × C × ln(1 − Vc/Vs)  |  τ = R × C  |  V(t) = Vs × (1 − e^(−t/τ))",
+  "error": {
+    "invalid": "Introduce valores positivos válidos en los cuatro campos.",
+    "targetExceedsSupply": "El voltaje objetivo debe ser menor que el voltaje de alimentación; un condensador solo puede cargarse asintóticamente hacia Vs."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de tiempo de carga de condensador",
+    "body": "Cuando un condensador se carga desde una fuente constante a través de una resistencia en serie, su voltaje sube exponencialmente según Vc(t) = Vs × (1 − e^(−t/τ)), con τ = R × C. τ es el tiempo para alcanzar aproximadamente 63.2% de Vs. Al despejar, t = −τ × ln(1 − Vc/Vs) = −R × C × ln(1 − Vc/Vs). Como la curva es asintótica, no hay tiempo finito para llegar exactamente a 100% de Vs; a 5τ se alcanza cerca de 99.3% de Vs y se considera cargado. Con R en ohmios y C en faradios, τ está en segundos; va desde τ = 1 kΩ × 1 pF hasta τ = 1 MΩ × 1 mF. Los puntos estándar son 1τ → 63.2%, 2τ → 86.5%, 3τ → 95.0%, 4τ → 98.2%, 5τ → 99.3% de Vs. Los circuitos RC se usan en temporizadores 555 y filtros; f₃dB = 1 / (2π × R × C). La corriente es I(t) = (Vs/R) × e^(−t/τ), la carga Q = C × Vs y la energía E = ½ × C × Vs². De E_source = C × Vs², la mitad se disipa en la resistencia y la mitad queda almacenada. La descarga usa Vc(t) = V0 × e^(−t/τ) con la misma τ."
+  },
+  "examples": {
+    "heading": "Ejemplos resueltos",
+    "intro": "Tres escenarios RC muestran cómo el tiempo de carga cambia con resistencia, capacitancia y voltaje objetivo.",
+    "colInput": "Valores del circuito",
+    "colOutput": "Resultado del tiempo de carga",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "C = 1 mF = 0.001 F, R = 10 kΩ, Vs = 12 V, Vc = 7.56 V (63%)",
+        "output": "τ = 10 s, t ≈ 10.0 s (≈1τ)",
+        "note": "Cargar al 63.2% del voltaje de alimentación siempre tarda exactamente 1τ, punto clásico de referencia."
+      },
+      {
+        "input": "C = 100 μF = 1×10⁻⁴ F, R = 47 kΩ, Vs = 5 V, Vc = 4.75 V (95%)",
+        "output": "τ = 4.7 s, t ≈ 14.1 s (≈3τ)",
+        "note": "Cargar al 95% tarda aproximadamente 3τ, regla práctica para considerar el condensador cargado."
+      },
+      {
+        "input": "C = 10 nF = 1×10⁻⁸ F, R = 1 kΩ, Vs = 3.3 V, Vc = 2.0 V",
+        "output": "τ = 10 μs, t ≈ 9.32 μs",
+        "note": "Temporización digital rápida: 10 nF / 1 kΩ da 10 μs para circuitos de detección de umbral."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de tiempo de carga de condensador",
+    "steps": [
+      "Introduce la capacitancia en faradios (F). Convierte unidades comunes: 1 μF = 1×10⁻⁶ F, 1 nF = 1×10⁻⁹ F, 1 mF = 1×10⁻³ F.",
+      "Introduce la resistencia en serie en ohmios (Ω), incluida la resistencia interna de la fuente y cualquier resistor en serie.",
+      "Introduce el voltaje de alimentación y el voltaje objetivo; el objetivo debe ser menor que la alimentación.",
+      "Haz clic en Calcular para ver τ, el tiempo hasta el objetivo y voltajes de referencia en (1τ, 2τ, 3τ, 5τ).",
+      "Usa el múltiplo de τ para validar: tiempo / τ > 3 está cerca de 95%; > 5 está prácticamente cargado."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Por qué el condensador nunca se carga por completo al voltaje de alimentación?",
+        "a": "Vc(t) = Vs × (1 − e^(−t/τ)) es una aproximación exponencial y solo alcanza Vs en t = ∞. Tras 5τ la brecha es aproximadamente 0.67% de Vs."
+      },
+      {
+        "q": "¿Qué es la constante de tiempo RC?",
+        "a": "τ = R × C mide la rapidez de respuesta: subir a 63.2% de Vs o decaer a 36.8% del valor inicial. También equivale a 1/(2π × f₃dB)."
+      },
+      {
+        "q": "¿Cómo afecta la resistencia al tiempo de carga?",
+        "a": "El tiempo es proporcional a la resistencia; duplicar R duplica τ y el tiempo. Un R menor carga más rápido, pero aumenta Ipeak = Vs/R."
+      },
+      {
+        "q": "¿Qué ocurre con la energía durante la carga?",
+        "a": "De E_source = C × Vs², E = ½ × C × Vs² se almacena en el condensador y la otra mitad se disipa como calor en la resistencia."
+      },
+      {
+        "q": "¿Puedo usar esta calculadora para descarga?",
+        "a": "La descarga usa Vc(t) = V0 × e^(−t/τ) con τ = RC. Para V0 a Vt: t = −τ × ln(Vt/V0)."
+      },
+      {
+        "q": "¿Cuáles son constantes RC típicas?",
+        "a": "Van de 1 kΩ × 1 pF = 1 ps a 10 MΩ × 100 μF = 1000 s ≈ 17 min, en temporizadores 555, antirrebote, audio y filtros de alimentación."
+      }
+    ]
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "title": "Calculadora de fonte capacitiva sem transformador",
+  "tagline": "Projete fontes capacitivas sem transformador — calcule a reatância do capacitor de queda, a corrente de saída CC e a dissipação no zener.",
+  "intro": "Informe a tensão de entrada CA, a frequência, o valor do capacitor de queda, a resistência da carga e a tensão do zener para projetar uma fonte CA-CC compacta sem transformador.",
+  "field": {
+    "acVoltage": "Tensão de entrada CA (VAC)",
+    "frequency": "Frequência CA (Hz)",
+    "capacitor": "Valor do capacitor (μF)",
+    "loadResistance": "Resistência de carga (Ω)",
+    "zenerVoltage": "Tensão do diodo zener (V)"
+  },
+  "placeholder": {
+    "acVoltage": "ex.: 230",
+    "frequency": "ex.: 50",
+    "capacitor": "ex.: 1",
+    "loadResistance": "ex.: 1000",
+    "zenerVoltage": "ex.: 5"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultados",
+    "xc": "Reatância do capacitor (Xc)",
+    "peakVoltage": "Tensão de pico CA",
+    "capCurrent": "Corrente do capacitor (RMS)",
+    "dcOutput": "Tensão de saída CC",
+    "loadCurrent": "Corrente de carga CC",
+    "zenerCurrent": "Corrente do zener",
+    "zenerPower": "Dissipação de potência no zener"
+  },
+  "formula": "Xc = 1/(2πfC)  |  Vout = Vzener  |  Iload = Vzener/Rload  |  Pzener = Vzener × Izener",
+  "error": {
+    "invalid": "Insira valores positivos válidos em todos os campos.",
+    "overload": "Aviso: a corrente da carga excede a corrente disponível — reduza a carga ou aumente o valor do capacitor."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de fonte capacitiva sem transformador",
+    "body": "Uma fonte capacitiva sem transformador (também chamada de circuito com capacitor de queda) é um método compacto e de baixo custo para converter a tensão CA da rede em uma tensão CC mais baixa sem usar transformador. É amplamente usada em aplicações de baixa potência, como indicadores LED, fontes simples para microcontroladores e circuitos de controle remoto, nas quais a corrente necessária costuma ficar abaixo de 50 mA e o isolamento da rede é tratado por outros meios (por exemplo, com um optoacoplador ou por um layout cuidadoso da placa).\n\nO circuito funciona com um princípio simples: um capacitor em série (o capacitor de queda) atua como uma impedância reativa que limita a corrente sem dissipar potência. Como a impedância de um capacitor é puramente reativa (Xc = 1/(2πfC)), ele reduz uma parte significativa da tensão da rede com pouquíssima perda de energia. O capacitor ligado à rede é seguido por um diodo retificador (ou ponte) e um diodo zener que limita a saída na tensão CC desejada, absorvendo qualquer corrente excedente.\n\nA reatância do capacitor de queda é calculada como Xc = 1 / (2π × f × C), onde f é a frequência da rede (50 ou 60 Hz) e C é a capacitância em farads. A corrente RMS disponível da fonte é aproximadamente Irms ≈ Vac / Xc (simplificado, assumindo que o capacitor domina a impedância). A corrente CC disponível após a retificação é aproximadamente Idc ≈ 0.9 × Irms para uma ponte retificadora. A tensão de saída CC é limitada à tensão do zener (Vout = Vzener). A corrente de carga é Iload = Vout / Rload, e o zener precisa absorver qualquer corrente excedente Iz = Idc – Iload, dissipando potência Pz = Vzener × Iz.\n\nA segurança é fundamental em fontes sem transformador: o circuito de saída está conectado diretamente à rede e não é isolado. Qualquer ponto do lado de saída pode estar em potencial de rede em relação ao terra. Portanto, essa topologia só deve ser usada dentro de gabinetes totalmente isolados, sem metal acessível conectado à saída, e o produto precisa atender às normas de segurança aplicáveis (IEC 60335, etc.). Em aplicações que exigem isolamento galvânico — como qualquer circuito que possa ser tocado pelo usuário — é obrigatório usar um transformador de rede adequado ou uma fonte chaveada isolada.\n\nO próprio capacitor deve ser classificado para tensão AC contínua da rede e precisa ser do tipo de segurança: um capacitor classe X2 (275 VAC, para uso em paralelo com a rede) é o componente correto. Capacitores eletrolíticos nunca devem ser usados nessa posição. A tensão nominal deve ser de pelo menos 400 V DC ou 250 V AC para rede de 230 V, ou 250 V DC / 165 V AC para rede de 120 V.\n\nEtapas típicas de projeto: escolha a tensão de saída necessária (= tensão do zener), estime a corrente máxima da carga, calcule a capacitância necessária com C = Idc / (2π × f × Vac × 0.9) e então selecione o valor comercial mais próximo. Sempre verifique se a dissipação do zener Pz = Vzener × (Idc_max – Iload_min) está dentro da potência nominal do zener, com uma margem confortável de pelo menos 50%."
+  },
+  "examples": {
+    "heading": "Exemplos resolvidos",
+    "intro": "Três cenários de projeto mostrando como o valor do capacitor, a carga e a tensão do zener interagem em uma fonte sem transformador.",
+    "colInput": "Parâmetros de projeto",
+    "colOutput": "Resultados principais",
+    "colNote": "Observações",
+    "items": [
+      {
+        "input": "Vac=230V, f=50Hz, C=1μF, Rload=1kΩ, Vzener=5V",
+        "output": "Xc≈3183Ω, Irms≈72mA, Vout=5V, Iload=5mA, Iz≈60mA",
+        "note": "Fonte simples de 5V para LED em rede de 230V/50Hz. Use um capacitor X2 de 1μF; o zener deve dissipar cerca de 300mW."
+      },
+      {
+        "input": "Vac=120V, f=60Hz, C=2.2μF, Rload=470Ω, Vzener=12V",
+        "output": "Xc≈1208Ω, Irms≈99mA, Vout=12V, Iload≈26mA, Iz≈63mA",
+        "note": "Fonte de 12V em rede de 120V/60Hz. Um capacitor de maior valor fornece mais corrente; o zener dissipa cerca de 756mW."
+      },
+      {
+        "input": "Vac=230V, f=50Hz, C=0.47μF, Rload=4700Ω, Vzener=3.3V",
+        "output": "Xc≈6772Ω, Irms≈34mA, Vout=3.3V, Iload≈0.7mA, Iz≈30mA",
+        "note": "Fonte de 3.3V para microcontrolador de baixa corrente. A carga é muito pequena e o zener absorve a maior parte da corrente disponível."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora",
+    "steps": [
+      "Informe a tensão da rede CA (RMS). Na maioria dos países europeus e asiáticos usa-se 230 V, e na América do Norte 120 V. Verifique o padrão local.",
+      "Informe a frequência CA: 50 Hz (Europa, Ásia, África, América do Sul) ou 60 Hz (América do Norte, Japão).",
+      "Informe o valor do capacitor de queda em microfarads (μF). Este é o capacitor em série ligado diretamente à rede; ele deve ser um capacitor de segurança X2 para tensão de rede.",
+      "Informe a resistência de carga em ohms ou calcule-a como Vout / Iload. Depois informe a tensão do diodo zener — essa será a sua saída CC regulada.",
+      "Clique em Calcular. Revise a corrente e a dissipação no zener. Se a corrente do zener for negativa, a carga está pesada demais; aumente o valor do capacitor. Aplique sempre uma redução de 50% na potência nominal do zener."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "items": [
+      {
+        "q": "Uma fonte capacitiva sem transformador é segura?",
+        "a": "O circuito de saída está ligado diretamente à rede e não é isolado eletricamente, então tocá-lo pode ser fatal. Esses circuitos só são seguros quando totalmente fechados em gabinetes isolados e sem contatos metálicos acessíveis. Para qualquer aplicação em que o usuário possa tocar a saída — inclusive via USB ou conectores de áudio — é necessária uma fonte com transformador ou uma SMPS isolada."
+      },
+      {
+        "q": "Que tipo de capacitor deve ser usado no lado da rede?",
+        "a": "Somente um capacitor de polipropileno metalizado classe X2 com certificação de segurança é adequado para conexão em paralelo com a rede. Capacitores X2 são projetados para falhar com segurança em circuito aberto, e não em curto. Capacitores eletrolíticos, cerâmicos comuns e filmes sem certificação de segurança nunca devem ser usados nessa posição, pois a falha pode causar incêndio ou choque elétrico."
+      },
+      {
+        "q": "Por que a corrente disponível é tão pequena?",
+        "a": "A reatância do capacitor de queda Xc = 1/(2πfC) é muito alta na frequência da rede para capacitâncias pequenas. Por exemplo, 1 μF a 50 Hz resulta em Xc ≈ 3183 Ω, limitando a corrente de uma fonte de 230 V para cerca de 72 mA RMS. É uma limitação fundamental dessa topologia — ela serve apenas para aplicações de baixa potência, abaixo de aproximadamente 50 a 100 mA."
+      },
+      {
+        "q": "Como escolho o zener correto?",
+        "a": "Escolha uma tensão de zener igual à tensão CC de saída desejada. O zener deve suportar a pior dissipação, que ocorre na carga mínima: Pz_max = Vzener × (Idc_max – Iload_min). Para confiabilidade, escolha um zener com potência nominal pelo menos o dobro desse valor. Opções comuns são zeners de 5.1 V, 5.6 V, 9.1 V e 12 V em encapsulamentos de 1 W ou 500 mW."
+      },
+      {
+        "q": "O que acontece se a carga consumir mais corrente do que o capacitor pode fornecer?",
+        "a": "Se a corrente de carga exceder a corrente CC disponível do capacitor, a tensão de saída cairá abaixo da tensão do zener e deixará de ser regulada. A fonte não consegue fornecer mais do que Idc_max ≈ 0.9 × Vac / Xc. Para aumentar a corrente disponível, use um capacitor maior (dobrar C praticamente dobra a corrente). A calculadora avisa quando a carga excede a capacidade da fonte."
+      },
+      {
+        "q": "Posso usar um retificador de meia onda em vez de uma ponte?",
+        "a": "Sim. Um retificador de meia onda usa apenas um diodo em vez de quatro, reduzindo custo e quantidade de componentes. Porém, a corrente CC disponível é cerca de metade da obtida com uma ponte retificadora (Idc ≈ 0.45 × Irms em meia onda contra 0.9 × Irms na ponte completa). Esta calculadora modela a aproximação de ponte retificadora; se você usar meia onda, divida os resultados de corrente por dois."
+      }
+    ]
+  }
+}
