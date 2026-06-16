@@ -355,7 +355,12 @@ import { fixtures as f_ppi_calculator_pixels_per_inch } from "@/tools/ppi-calcul
 import { fixtures as f_projector_calculator } from "@/tools/projector-calculator.fixtures";
 import { fixtures as f_propagation_delay_calculator } from "@/tools/propagation-delay-calculator.fixtures";
 import { fixtures as f_pte_score_calculator } from "@/tools/pte-score-calculator.fixtures";
+import { fixtures as f_pvr_calculator_pulmonary_vascular_resistance } from "@/tools/pvr-calculator-pulmonary-vascular-resistance.fixtures";
 import { fixtures as f_pyramid_block_calculator } from "@/tools/pyramid-block-calculator.fixtures";
+import { fixtures as f_qp_qs_calculator } from "@/tools/qp-qs-calculator.fixtures";
+import { fixtures as f_qsofa_score_calculator } from "@/tools/qsofa-score-calculator.fixtures";
+import { fixtures as f_qtc_calculator } from "@/tools/qtc-calculator.fixtures";
+import { fixtures as f_quarantine_activity_calculator } from "@/tools/quarantine-activity-calculator.fixtures";
 import { fixtures as f_quaternion_calculator } from "@/tools/quaternion-calculator.fixtures";
 import { fixtures as f_queueing_theory_calculator } from "@/tools/queueing-theory-calculator.fixtures";
 import { fixtures as f_quotient_calculator } from "@/tools/quotient-calculator.fixtures";
@@ -889,7 +894,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "projector-calculator": f_projector_calculator,
   "propagation-delay-calculator": f_propagation_delay_calculator,
   "pte-score-calculator": f_pte_score_calculator,
+  "pvr-calculator-pulmonary-vascular-resistance": f_pvr_calculator_pulmonary_vascular_resistance,
   "pyramid-block-calculator": f_pyramid_block_calculator,
+  "qp-qs-calculator": f_qp_qs_calculator,
+  "qsofa-score-calculator": f_qsofa_score_calculator,
+  "qtc-calculator": f_qtc_calculator,
+  "quarantine-activity-calculator": f_quarantine_activity_calculator,
   "quaternion-calculator": f_quaternion_calculator,
   "queueing-theory-calculator": f_queueing_theory_calculator,
   "quotient-calculator": f_quotient_calculator,
