@@ -45,6 +45,7 @@ import { fixtures as f_binary_multiplication_calculator } from "@/tools/binary-m
 import { fixtures as f_binary_subtraction_calculator } from "@/tools/binary-subtraction-calculator.fixtures";
 import { fixtures as f_binomial_coefficient_calculator } from "@/tools/binomial-coefficient-calculator.fixtures";
 import { fixtures as f_bit_shift_calculator } from "@/tools/bit-shift-calculator.fixtures";
+import { fixtures as f_bitwise_calculator } from "@/tools/bitwise-calculator.fixtures";
 import { fixtures as f_black_hole_collision_calculator } from "@/tools/black-hole-collision-calculator.fixtures";
 import { fixtures as f_black_hole_temperature_calculator } from "@/tools/black-hole-temperature-calculator.fixtures";
 import { fixtures as f_blackbody_radiation_calculator } from "@/tools/blackbody-radiation-calculator.fixtures";
@@ -53,6 +54,7 @@ import { fixtures as f_bmep_calculator_brake_mean_effective_pressure_calculator 
 import { fixtures as f_bohr_model_calculator } from "@/tools/bohr-model-calculator.fixtures";
 import { fixtures as f_boltzmann_factor_calculator } from "@/tools/boltzmann-factor-calculator.fixtures";
 import { fixtures as f_boost_converter_calculator } from "@/tools/boost-converter-calculator.fixtures";
+import { fixtures as f_box_method_calculator } from "@/tools/box-method-calculator.fixtures";
 import { fixtures as f_boyles_law_calculator } from "@/tools/boyles-law-calculator.fixtures";
 import { fixtures as f_braggs_law_calculator } from "@/tools/braggs-law-calculator.fixtures";
 import { fixtures as f_breaker_size_calculator } from "@/tools/breaker-size-calculator.fixtures";
@@ -82,6 +84,9 @@ import { fixtures as f_car_crash_calculator } from "@/tools/car-crash-calculator
 import { fixtures as f_car_jump_distance_calculator } from "@/tools/car-jump-distance-calculator.fixtures";
 import { fixtures as f_carburetor_cfm_calculator } from "@/tools/carburetor-cfm-calculator.fixtures";
 import { fixtures as f_carnot_efficiency_calculator } from "@/tools/carnot-efficiency-calculator.fixtures";
+import { fixtures as f_catenary_curve_calculator } from "@/tools/catenary-curve-calculator.fixtures";
+import { fixtures as f_ceiling_function_calculator } from "@/tools/ceiling-function-calculator.fixtures";
+import { fixtures as f_center_of_mass_calculator } from "@/tools/center-of-mass-calculator.fixtures";
 import { fixtures as f_centrifugal_force_calculator } from "@/tools/centrifugal-force-calculator.fixtures";
 import { fixtures as f_centrifuge_calculator } from "@/tools/centrifuge-calculator.fixtures";
 import { fixtures as f_centripetal_force_calculator } from "@/tools/centripetal-force-calculator.fixtures";
@@ -519,6 +524,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "binary-subtraction-calculator": f_binary_subtraction_calculator,
   "binomial-coefficient-calculator": f_binomial_coefficient_calculator,
   "bit-shift-calculator": f_bit_shift_calculator,
+  "bitwise-calculator": f_bitwise_calculator,
   "black-hole-collision-calculator": f_black_hole_collision_calculator,
   "black-hole-temperature-calculator": f_black_hole_temperature_calculator,
   "blackbody-radiation-calculator": f_blackbody_radiation_calculator,
@@ -527,6 +533,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "bohr-model-calculator": f_bohr_model_calculator,
   "boltzmann-factor-calculator": f_boltzmann_factor_calculator,
   "boost-converter-calculator": f_boost_converter_calculator,
+  "box-method-calculator": f_box_method_calculator,
   "boyles-law-calculator": f_boyles_law_calculator,
   "braggs-law-calculator": f_braggs_law_calculator,
   "breaker-size-calculator": f_breaker_size_calculator,
@@ -556,6 +563,9 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "car-jump-distance-calculator": f_car_jump_distance_calculator,
   "carburetor-cfm-calculator": f_carburetor_cfm_calculator,
   "carnot-efficiency-calculator": f_carnot_efficiency_calculator,
+  "catenary-curve-calculator": f_catenary_curve_calculator,
+  "ceiling-function-calculator": f_ceiling_function_calculator,
+  "center-of-mass-calculator": f_center_of_mass_calculator,
   "centrifugal-force-calculator": f_centrifugal_force_calculator,
   "centrifuge-calculator": f_centrifuge_calculator,
   "centripetal-force-calculator": f_centripetal_force_calculator,

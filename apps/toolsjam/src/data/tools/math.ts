@@ -6480,7 +6480,88 @@ export const tools: ToolEntry[] = [
       en: "Perform left shift, logical right shift, and arithmetic right shift on integers. Results shown in binary, decimal, and hexadecimal with instant calculations.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "bitwise-calculator",
+    category: "math",
+    slugs: {
+      en: "bitwise-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Bitwise Calculator - AND, OR, XOR, NOT, Shift Operations",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Free bitwise calculator for AND, OR, XOR, NOT, left shift, and right shift. Supports decimal, binary, and hex input with instant multi-format results.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "box-method-calculator",
+    category: "math",
+    slugs: {
+      en: "box-method-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Box Method Calculator - Visualize Polynomial Multiplication",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Multiply binomials visually using the box method. See every partial product in a grid and the fully expanded polynomial expression instantly.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "catenary-curve-calculator",
+    category: "math",
+    slugs: {
+      en: "catenary-curve-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Catenary Curve Calculator - Hanging Chain and Cable Sag",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate catenary curve sag height, slope, arc length, and tension for hanging cables. Uses the hyperbolic cosine formula with step-by-step results.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "ceiling-function-calculator",
+    category: "math",
+    slugs: {
+      en: "ceiling-function-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Ceiling Function Calculator - Round Up to Nearest Integer",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Ceiling function calculator finds the smallest integer greater than or equal to x. Handles positive, negative, and decimal inputs with instant results.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "center-of-mass-calculator",
+    category: "math",
+    slugs: {
+      en: "center-of-mass-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Center of Mass Calculator - Multi-Point Mass System",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate center of mass for point masses in 2D. Enter mass and x,y coordinates, get centroid position using the weighted average formula instantly.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
+
 
 
 
