@@ -228,6 +228,11 @@ import { fixtures as f_exposure_calculator } from "@/tools/exposure-calculator.f
 import { fixtures as f_f_statistic_calculator } from "@/tools/f-statistic-calculator.fixtures";
 import { fixtures as f_f_test_for_equality_of_two_variances_calculator } from "@/tools/f-test-for-equality-of-two-variances-calculator.fixtures";
 import { fixtures as f_false_positive_paradox_calculator } from "@/tools/false-positive-paradox-calculator.fixtures";
+import { fixtures as f_fetal_weight_percentile_calculator } from "@/tools/fetal-weight-percentile-calculator.fixtures";
+import { fixtures as f_feurea_calculator_acute_kidney_injury_cause_differentiation } from "@/tools/feurea-calculator-acute-kidney-injury-cause-differentiation.fixtures";
+import { fixtures as f_fev1_fvc_ratio_calculator } from "@/tools/fev1-fvc-ratio-calculator.fixtures";
+import { fixtures as f_ffmi_calculator_fat_free_mass_index } from "@/tools/ffmi-calculator-fat-free-mass-index.fixtures";
+import { fixtures as f_fib_4_calculator } from "@/tools/fib-4-calculator.fixtures";
 import { fixtures as f_film_calculator } from "@/tools/film-calculator.fixtures";
 import { fixtures as f_final_grade_calculator } from "@/tools/final-grade-calculator.fixtures";
 import { fixtures as f_fishers_exact_test_calculator } from "@/tools/fishers-exact-test-calculator.fixtures";
@@ -832,6 +837,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "f-statistic-calculator": f_f_statistic_calculator,
   "f-test-for-equality-of-two-variances-calculator": f_f_test_for_equality_of_two_variances_calculator,
   "false-positive-paradox-calculator": f_false_positive_paradox_calculator,
+  "fetal-weight-percentile-calculator": f_fetal_weight_percentile_calculator,
+  "feurea-calculator-acute-kidney-injury-cause-differentiation": f_feurea_calculator_acute_kidney_injury_cause_differentiation,
+  "fev1-fvc-ratio-calculator": f_fev1_fvc_ratio_calculator,
+  "ffmi-calculator-fat-free-mass-index": f_ffmi_calculator_fat_free_mass_index,
+  "fib-4-calculator": f_fib_4_calculator,
   "film-calculator": f_film_calculator,
   "final-grade-calculator": f_final_grade_calculator,
   "fishers-exact-test-calculator": f_fishers_exact_test_calculator,
