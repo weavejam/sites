@@ -3050,7 +3050,208 @@ export const tools: ToolEntry[] = [
       en: "Fundal height calculator uses McDonald's rule to assess fetal growth, compare measurements to gestational age, and track growth rate across prenatal visits.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "fetal-weight-percentile-calculator",
+    category: "health",
+    slugs: {
+      en: "fetal-weight-percentile-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Fetal Weight Percentile Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Fetal weight percentile calculator uses gestational age and estimated fetal weight to rank growth against Hadlock standards. Identify SGA, AGA, or LGA status.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "feurea-calculator-acute-kidney-injury-cause-differentiation",
+    category: "health",
+    slugs: {
+      en: "feurea-calculator-acute-kidney-injury-cause-differentiation",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "FEUrea Calculator: Acute Kidney Injury Cause Differentiation",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "FEUrea calculator computes fractional excretion of urea to differentiate prerenal from intrinsic acute kidney injury. Essential nephrology diagnostic tool.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "fev1-fvc-ratio-calculator",
+    category: "health",
+    slugs: {
+      en: "fev1-fvc-ratio-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "FEV1/FVC Ratio Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "FEV1/FVC ratio calculator assesses pulmonary function and detects obstructive lung disease. Enter spirometry values to diagnose COPD and airway obstruction.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "ffmi-calculator-fat-free-mass-index",
+    category: "health",
+    slugs: {
+      en: "ffmi-calculator-fat-free-mass-index",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "FFMI Calculator: Fat-Free Mass Index",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "FFMI calculator measures fat-free mass index from weight, height, and body fat percentage. Track muscle mass for athletes, bodybuilders, fitness enthusiasts.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "fib-4-calculator",
+    category: "health",
+    slugs: {
+      en: "fib-4-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "FIB-4 Calculator: Liver Fibrosis Assessment",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "FIB-4 calculator scores liver fibrosis non-invasively using age, AST, ALT, and platelet count. Screen for advanced fibrosis in chronic liver disease.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
+
 
 
 
