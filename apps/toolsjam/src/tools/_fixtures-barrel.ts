@@ -110,15 +110,20 @@ import { fixtures as f_centrifugal_force_calculator } from "@/tools/centrifugal-
 import { fixtures as f_centrifuge_calculator } from "@/tools/centrifuge-calculator.fixtures";
 import { fixtures as f_centripetal_force_calculator } from "@/tools/centripetal-force-calculator.fixtures";
 import { fixtures as f_cholesky_decomposition_calculator } from "@/tools/cholesky-decomposition-calculator.fixtures";
+import { fixtures as f_cholesterol_ratio_calculator } from "@/tools/cholesterol-ratio-calculator.fixtures";
+import { fixtures as f_cholesterol_units_converter } from "@/tools/cholesterol-units-converter.fixtures";
 import { fixtures as f_chord_finder } from "@/tools/chord-finder.fixtures";
 import { fixtures as f_chord_inversion_calculator } from "@/tools/chord-inversion-calculator.fixtures";
 import { fixtures as f_chord_length_calculator } from "@/tools/chord-length-calculator.fixtures";
 import { fixtures as f_chord_progression_generator } from "@/tools/chord-progression-generator.fixtures";
 import { fixtures as f_chord_transposer } from "@/tools/chord-transposer.fixtures";
 import { fixtures as f_christmas_countdown_calculator } from "@/tools/christmas-countdown-calculator.fixtures";
+import { fixtures as f_cigarette_calculator } from "@/tools/cigarette-calculator.fixtures";
 import { fixtures as f_circle_calculator } from "@/tools/circle-calculator.fixtures";
 import { fixtures as f_circle_theorems_calculator } from "@/tools/circle-theorems-calculator.fixtures";
 import { fixtures as f_circumference_calculator } from "@/tools/circumference-calculator.fixtures";
+import { fixtures as f_ciwa_calculator } from "@/tools/ciwa-calculator.fixtures";
+import { fixtures as f_clomid_ovulation_calculator } from "@/tools/clomid-ovulation-calculator.fixtures";
 import { fixtures as f_coefficient_of_variation_calculator } from "@/tools/coefficient-of-variation-calculator.fixtures";
 import { fixtures as f_cofunction_calculator } from "@/tools/cofunction-calculator.fixtures";
 import { fixtures as f_cohens_d_calculator } from "@/tools/cohens-d-calculator.fixtures";
@@ -724,15 +729,20 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "centrifuge-calculator": f_centrifuge_calculator,
   "centripetal-force-calculator": f_centripetal_force_calculator,
   "cholesky-decomposition-calculator": f_cholesky_decomposition_calculator,
+  "cholesterol-ratio-calculator": f_cholesterol_ratio_calculator,
+  "cholesterol-units-converter": f_cholesterol_units_converter,
   "chord-finder": f_chord_finder,
   "chord-inversion-calculator": f_chord_inversion_calculator,
   "chord-length-calculator": f_chord_length_calculator,
   "chord-progression-generator": f_chord_progression_generator,
   "chord-transposer": f_chord_transposer,
   "christmas-countdown-calculator": f_christmas_countdown_calculator,
+  "cigarette-calculator": f_cigarette_calculator,
   "circle-calculator": f_circle_calculator,
   "circle-theorems-calculator": f_circle_theorems_calculator,
   "circumference-calculator": f_circumference_calculator,
+  "ciwa-calculator": f_ciwa_calculator,
+  "clomid-ovulation-calculator": f_clomid_ovulation_calculator,
   "coefficient-of-variation-calculator": f_coefficient_of_variation_calculator,
   "cofunction-calculator": f_cofunction_calculator,
   "cohens-d-calculator": f_cohens_d_calculator,
