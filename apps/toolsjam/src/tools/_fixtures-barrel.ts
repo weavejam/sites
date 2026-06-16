@@ -253,7 +253,12 @@ import { fixtures as f_hadamard_product_calculator } from "@/tools/hadamard-prod
 import { fixtures as f_half_angle_calculator } from "@/tools/half-angle-calculator.fixtures";
 import { fixtures as f_harmonic_mean_calculator } from "@/tools/harmonic-mean-calculator.fixtures";
 import { fixtures as f_harmonic_number_calculator } from "@/tools/harmonic-number-calculator.fixtures";
+import { fixtures as f_hematocrit_to_hemoglobin_ratio_calculator } from "@/tools/hematocrit-to-hemoglobin-ratio-calculator.fixtures";
 import { fixtures as f_herons_formula_calculator } from "@/tools/herons-formula-calculator.fixtures";
+import { fixtures as f_homa_ir_calculator_insulin_resistance } from "@/tools/homa-ir-calculator-insulin-resistance.fixtures";
+import { fixtures as f_hot_car_calculator } from "@/tools/hot-car-calculator.fixtures";
+import { fixtures as f_hsi_calculator_heaviness_of_smoking_index } from "@/tools/hsi-calculator-heaviness-of-smoking-index.fixtures";
+import { fixtures as f_hydroxychloroquine_dose_calculator } from "@/tools/hydroxychloroquine-dose-calculator.fixtures";
 import { fixtures as f_hypothesis_testing_calculator } from "@/tools/hypothesis-testing-calculator.fixtures";
 import { fixtures as f_ibuprofen_dosage_calculator } from "@/tools/ibuprofen-dosage-calculator.fixtures";
 import { fixtures as f_ich_score_calculator } from "@/tools/ich-score-calculator.fixtures";
@@ -832,7 +837,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "half-angle-calculator": f_half_angle_calculator,
   "harmonic-mean-calculator": f_harmonic_mean_calculator,
   "harmonic-number-calculator": f_harmonic_number_calculator,
+  "hematocrit-to-hemoglobin-ratio-calculator": f_hematocrit_to_hemoglobin_ratio_calculator,
   "herons-formula-calculator": f_herons_formula_calculator,
+  "homa-ir-calculator-insulin-resistance": f_homa_ir_calculator_insulin_resistance,
+  "hot-car-calculator": f_hot_car_calculator,
+  "hsi-calculator-heaviness-of-smoking-index": f_hsi_calculator_heaviness_of_smoking_index,
+  "hydroxychloroquine-dose-calculator": f_hydroxychloroquine_dose_calculator,
   "hypothesis-testing-calculator": f_hypothesis_testing_calculator,
   "ibuprofen-dosage-calculator": f_ibuprofen_dosage_calculator,
   "ich-score-calculator": f_ich_score_calculator,
