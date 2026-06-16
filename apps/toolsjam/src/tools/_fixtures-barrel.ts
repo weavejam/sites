@@ -255,6 +255,11 @@ import { fixtures as f_harmonic_mean_calculator } from "@/tools/harmonic-mean-ca
 import { fixtures as f_harmonic_number_calculator } from "@/tools/harmonic-number-calculator.fixtures";
 import { fixtures as f_herons_formula_calculator } from "@/tools/herons-formula-calculator.fixtures";
 import { fixtures as f_hypothesis_testing_calculator } from "@/tools/hypothesis-testing-calculator.fixtures";
+import { fixtures as f_ibuprofen_dosage_calculator } from "@/tools/ibuprofen-dosage-calculator.fixtures";
+import { fixtures as f_ich_score_calculator } from "@/tools/ich-score-calculator.fixtures";
+import { fixtures as f_ich_volume_calculator } from "@/tools/ich-volume-calculator.fixtures";
+import { fixtures as f_ideal_weight_calculator } from "@/tools/ideal-weight-calculator.fixtures";
+import { fixtures as f_iifym_calculator_if_it_fits_your_macros } from "@/tools/iifym-calculator-if-it-fits-your-macros.fixtures";
 import { fixtures as f_impact_factor_calculator } from "@/tools/impact-factor-calculator.fixtures";
 import { fixtures as f_impedance_matching_calculator } from "@/tools/impedance-matching-calculator.fixtures";
 import { fixtures as f_implied_probability_calculator } from "@/tools/implied-probability-calculator.fixtures";
@@ -829,6 +834,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "harmonic-number-calculator": f_harmonic_number_calculator,
   "herons-formula-calculator": f_herons_formula_calculator,
   "hypothesis-testing-calculator": f_hypothesis_testing_calculator,
+  "ibuprofen-dosage-calculator": f_ibuprofen_dosage_calculator,
+  "ich-score-calculator": f_ich_score_calculator,
+  "ich-volume-calculator": f_ich_volume_calculator,
+  "ideal-weight-calculator": f_ideal_weight_calculator,
+  "iifym-calculator-if-it-fits-your-macros": f_iifym_calculator_if_it_fits_your_macros,
   "impact-factor-calculator": f_impact_factor_calculator,
   "impedance-matching-calculator": f_impedance_matching_calculator,
   "implied-probability-calculator": f_implied_probability_calculator,
