@@ -5006,39 +5006,39 @@ export const tools: ToolEntry[] = [
     category: "physic",
     slugs: {
       en: "air-density-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "kong-qi-mi-du-ji-suan-qi",
+      "zh-TW": "kong-qi-mi-du-ji-suan-qi",
+      ja: "kuuki-mitsudo-keisan",
+      ko: "gonggi-mildo-gyesangi",
+      es: "calculadora-densidad-aire",
+      fr: "calculateur-densite-air",
+      de: "luftdichte-rechner",
+      pt: "calculadora-densidade-do-ar",
+      ru: "kalkulyator-plotnosti-vozdukha"
     },
     titles: {
       en: "Air Density Calculator – Temperature, Pressure & Humidity",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "空气密度计算器：温度、气压与湿度",
+      "zh-TW": "空氣密度計算器：溫度、氣壓與濕度",
+      ja: "空気密度計算機：温度・気圧・湿度",
+      ko: "공기 밀도 계산기: 온도·기압·습도",
+      es: "Calculadora de densidad del aire: temperatura, presión y humedad",
+      fr: "Calculateur de densité de l’air : température, pression et humidité",
+      de: "Luftdichte-Rechner: Temperatur, Druck und Feuchte",
+      pt: "Calculadora de densidade do ar: temperatura, pressão e umidade",
+      ru: "Калькулятор плотности воздуха: температура, давление и влажность"
     },
     descriptions: {
       en: "Air density calculator: compute atmospheric air density from temperature, pressure, and humidity using the ideal gas law with vapour pressure correction.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "空气密度计算器：用理想气体定律和水汽压修正，根据温度、气压和湿度计算大气空气密度。",
+      "zh-TW": "空氣密度計算器：以理想氣體定律與水汽壓修正，依溫度、氣壓與濕度計算大氣空氣密度。",
+      ja: "空気密度計算機：理想気体の法則と水蒸気圧補正で、温度・気圧・湿度から大気の空気密度を計算します。",
+      ko: "공기 밀도 계산기: 이상기체법칙과 수증기압 보정을 사용해 온도, 기압, 습도로 대기 공기 밀도를 계산합니다.",
+      es: "Calcula la densidad del aire con la ley de los gases ideales y corrección por presión de vapor, según temperatura, presión y humedad.",
+      fr: "Calculez la densité de l’air avec la loi des gaz parfaits et la correction de pression de vapeur, selon la température, la pression et l’humidité.",
+      de: "Luftdichte-Rechner: Berechnen Sie die atmosphärische Luftdichte aus Temperatur, Druck und Feuchte mit dem idealen Gasgesetz und Dampfdruckkorrektur.",
+      pt: "Calcule a densidade do ar com a lei dos gases ideais e correção de pressão de vapor, usando temperatura, pressão e umidade.",
+      ru: "Калькулятор плотности воздуха: рассчитывает плотность атмосферы по температуре, давлению и влажности с поправкой на парциальное давление водяного пара."
     }
   }
 ];
