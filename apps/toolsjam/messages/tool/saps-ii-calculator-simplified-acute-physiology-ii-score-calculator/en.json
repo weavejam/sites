@@ -1,0 +1,149 @@
+{
+  "title": "SAPS II Calculator – ICU Severity & Mortality Score",
+  "tagline": "Score 15 ICU severity variables and estimate hospital mortality risk with the SAPS II critical care prediction model.",
+  "intro": "Enter physiology, chronic health, and admission data to calculate a SAPS II score and predicted mortality percentage.",
+  "formula": "Formula: add points from age, vital signs, oxygen saturation, arterial pH, sodium, potassium, creatinine, bilirubin, white blood cell count, Glasgow Coma Scale, chronic disease, and admission type. Predicted mortality uses logit = -7.7631 + 0.0737 × SAPS II + 0.9971 × ln(SAPS II + 1), then probability = e^logit ÷ (1 + e^logit).",
+  "field": {
+    "age": "Age (years)",
+    "temperature": "Temperature (°C)",
+    "systolicBloodPressure": "Systolic Blood Pressure (mmHg)",
+    "heartRate": "Heart Rate (beats/min)",
+    "respiratoryRate": "Respiratory Rate (breaths/min)",
+    "oxygenSaturation": "Oxygen Saturation (%)",
+    "arterialPh": "Arterial pH",
+    "sodium": "Sodium (mEq/L)",
+    "potassium": "Potassium (mEq/L)",
+    "creatinine": "Creatinine (mg/dL)",
+    "bilirubin": "Bilirubin (mg/dL)",
+    "whiteBloodCellCount": "White Blood Cell Count (×10³/μL)",
+    "glasgowComaScale": "Glasgow Coma Scale (3–15)",
+    "chronicHealthStatus": "Chronic Health Status",
+    "admissionType": "Admission Type"
+  },
+  "placeholder": {
+    "age": "e.g., 55",
+    "temperature": "e.g., 37.0",
+    "systolicBloodPressure": "e.g., 120",
+    "heartRate": "e.g., 85",
+    "respiratoryRate": "e.g., 18",
+    "oxygenSaturation": "e.g., 97",
+    "arterialPh": "e.g., 7.40",
+    "sodium": "e.g., 140",
+    "potassium": "e.g., 4.0",
+    "creatinine": "e.g., 1.0",
+    "bilirubin": "e.g., 0.8",
+    "whiteBloodCellCount": "e.g., 9",
+    "glasgowComaScale": "e.g., 15"
+  },
+  "button": {
+    "calculate": "Calculate SAPS II",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Enter valid values for all fields. Oxygen saturation must be 100 or less and Glasgow Coma Scale must be between 3 and 15."
+  },
+  "result": {
+    "heading": "SAPS II results",
+    "totalScore": "Total SAPS II score",
+    "predictedMortality": "Predicted hospital mortality",
+    "riskCategory": "Risk category",
+    "age": "Age points",
+    "temperature": "Temperature points",
+    "systolicBloodPressure": "Systolic BP points",
+    "heartRate": "Heart rate points",
+    "respiratoryRate": "Respiratory rate points",
+    "oxygenSaturation": "SpO₂ points",
+    "arterialPh": "Arterial pH points",
+    "sodium": "Sodium points",
+    "potassium": "Potassium points",
+    "creatinine": "Creatinine points",
+    "bilirubin": "Bilirubin points",
+    "whiteBloodCellCount": "WBC points",
+    "glasgowComaScale": "GCS points",
+    "chronicHealthStatus": "Chronic health points",
+    "admissionType": "Admission type points"
+  },
+  "category": {
+    "low": "Low predicted mortality",
+    "moderate": "Moderate predicted mortality",
+    "high": "High predicted mortality",
+    "very_high": "Very high predicted mortality"
+  },
+  "about": {
+    "heading": "About the SAPS II calculator",
+    "body": "SAPS II, short for Simplified Acute Physiology Score II, is a severity-of-illness scoring system used in intensive care medicine. It combines 15 variables gathered during the first phase of ICU care to estimate how sick a patient is and to predict the probability of hospital mortality across large populations. The model includes age, core physiologic measurements, selected laboratory values, neurologic status, chronic comorbidity, and the context of admission. Because it summarizes multiple organ systems in one score, SAPS II is commonly used in research, ICU benchmarking, triage discussions, and clinical communication about illness severity.\n\nThis calculator follows the point assignments requested for age, temperature, systolic blood pressure, heart rate, respiratory rate, oxygen saturation, arterial pH, sodium, potassium, creatinine, bilirubin, white blood cell count, Glasgow Coma Scale, chronic health burden, and admission type. After the points are added, the score is transformed through the published logistic equation to estimate predicted mortality. That predicted percentage is useful for understanding how sharply risk rises as physiologic derangement accumulates. The score can help standardize comparisons between patients or between units, especially in datasets where a reproducible ICU severity measure is needed.\n\nAt the bedside, however, SAPS II must be interpreted carefully. It was developed as a population-level prognostic tool, not as a rule that decides treatment for any one person. A patient with a high predicted mortality may still recover with good supportive care, and a patient with a lower score can deteriorate rapidly if clinical conditions change. Performance also depends on how closely a given patient population matches the cohorts in which SAPS II was derived and validated. Local calibration, modern ICU practices, and disease-specific factors can all affect how well the predicted percentage matches real outcomes.\n\nThe calculator is therefore best used for structured severity assessment, education, documentation, and broad prognostic context rather than isolated end-of-life decision-making. It can support case review, quality improvement, and communication across teams by making the scoring transparent and repeatable. Final management decisions should always integrate the patient's trajectory, diagnosis, treatment response, goals of care, and clinician judgment rather than relying on a single severity score alone."
+  },
+  "examples": {
+    "heading": "SAPS II examples",
+    "intro": "Load example ICU profiles to compare lower-risk, severe medical, and complex surgical presentations.",
+    "colInput": "Inputs",
+    "colOutput": "Output",
+    "colNote": "Interpretation",
+    "loadStable": "Load stable ICU example",
+    "loadCritical": "Load critical medical example",
+    "loadOncology": "Load oncology surgical example",
+    "items": [
+      {
+        "input": "Age 55, normal vitals and labs, GCS 15, no chronic disease, scheduled surgery",
+        "output": "SAPS II 5 • predicted mortality 0.4%",
+        "note": "A relatively low-acuity profile with minimal physiologic derangement."
+      },
+      {
+        "input": "Age 72, fever, hypotension, tachycardia, tachypnea, hypoxemia, acidosis, renal and liver dysfunction, emergency medical admission",
+        "output": "SAPS II 79 • predicted mortality 91.9%",
+        "note": "Illustrates how multiorgan failure sharply raises both score and predicted mortality."
+      },
+      {
+        "input": "Age 68, moderate physiologic instability, metastatic cancer, unscheduled surgery",
+        "output": "SAPS II 58 • predicted mortality 64.0%",
+        "note": "Shows how chronic disease burden and urgent surgery can materially shift risk."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the SAPS II calculator",
+    "steps": [
+      "Collect the patient's age, vital signs, key lab values, oxygen saturation, and Glasgow Coma Scale from the initial ICU assessment.",
+      "Enter each measurement exactly as recorded and choose the correct chronic health and admission categories.",
+      "Click Calculate SAPS II to total the point assignments and apply the mortality equation.",
+      "Review both the overall score and the breakdown of contributing variables to understand what is driving severity.",
+      "Use the predicted mortality only as clinical context, not as a stand-alone treatment decision."
+    ]
+  },
+  "faq": {
+    "heading": "SAPS II calculator FAQ",
+    "items": [
+      {
+        "q": "What is SAPS II used for?",
+        "a": "SAPS II is used to quantify ICU illness severity and estimate hospital mortality risk using a standardized set of variables. It is common in critical care research, benchmarking, and structured case review."
+      },
+      {
+        "q": "Does a high predicted mortality mean the patient will die?",
+        "a": "No. The mortality percentage is a statistical prediction derived from large patient cohorts. It describes population-level risk, not certain outcome for an individual patient."
+      },
+      {
+        "q": "Why does the calculator show a point breakdown?",
+        "a": "The breakdown makes it easier to see which organ systems are contributing most to the final score. That transparency helps with education, handoffs, and checking that values were entered correctly."
+      },
+      {
+        "q": "Can SAPS II guide ICU triage by itself?",
+        "a": "It can inform triage discussions, but it should never replace bedside judgment. Diagnosis, trajectory, available treatments, goals of care, and reversibility of illness are all essential."
+      },
+      {
+        "q": "When should SAPS II be calculated?",
+        "a": "It is typically based on the early ICU evaluation and the worst relevant values during the defined scoring window. Consistent timing is important if the score is being used for comparison or audit purposes."
+      }
+    ]
+  },
+  "option": {
+    "none": "None",
+    "cardiovascular": "Cardiovascular disease",
+    "immunocompromised": "Immunocompromised",
+    "metastatic_cancer": "Metastatic cancer",
+    "hematologic_malignancy": "Hematologic malignancy",
+    "AIDS": "AIDS",
+    "scheduled_surgical": "Scheduled surgical",
+    "unscheduled_surgical": "Unscheduled surgical",
+    "emergency_medical": "Emergency medical"
+  }
+}
