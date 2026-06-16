@@ -1,0 +1,107 @@
+{
+  "title": "Calculadora de cota de error de Lagrange",
+  "tagline": "Estima el error máximo de una aproximación con polinomio de Taylor usando el teorema del resto de Lagrange.",
+  "intro": "Introduce los cuatro parámetros de abajo para calcular la cota superior del error de tu aproximación con polinomio de Taylor.",
+  "field": {
+    "maxDerivative": "Valor máximo de |f^(n+1)(z)| (M)",
+    "degree": "Grado del polinomio (n)",
+    "expansionPoint": "Centro de expansión (a)",
+    "approximationPoint": "Punto de aproximación (x)"
+  },
+  "placeholder": {
+    "maxDerivative": "p. ej., 1.6487",
+    "degree": "p. ej., 3",
+    "expansionPoint": "p. ej., 0",
+    "approximationPoint": "p. ej., 0.5"
+  },
+  "button": {
+    "calculate": "Calcular cota de error",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Resultado de la cota de error",
+    "formula": "Fórmula: |Rₙ(x)| ≤ M / (n+1)! × |x − a|ⁿ⁺¹",
+    "bound": "Cota de error ≤ {result}",
+    "computation": "({m} / {factorial}) × {distance} = {result}"
+  },
+  "error": {
+    "invalid": "Introduce números válidos en todos los campos.",
+    "negativeM": "M debe ser un número no negativo.",
+    "negativeDegree": "El grado n debe ser un entero no negativo."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de cota de error de Lagrange",
+    "body": "La cota de error de Lagrange, también llamada teorema del resto de Taylor o resto de Lagrange, da un límite superior riguroso de cuánto puede alejarse un polinomio de Taylor de la función real que aproxima. Cuando sustituyes una función complicada como eˣ, cos(x) o ln(x) por un polinomio de grado n, introduces un error de truncamiento. La cota de Lagrange te dice cuál puede ser el peor error en un intervalo determinado, por lo que resulta imprescindible donde la precisión importa.\n\nLa fórmula es |Rₙ(x)| ≤ M × |x − a|ⁿ⁺¹ / (n+1)!, donde n es el grado del polinomio de Taylor, a es el centro de expansión (el punto alrededor del cual se construye el polinomio), x es el punto concreto donde evalúas la aproximación y M es el valor absoluto máximo de la derivada (n+1)-ésima de la función en el intervalo cerrado entre a y x. La idea clave es que el error disminuye al crecer n, porque el factorial del denominador crece mucho más rápido que la potencia de (x − a) del numerador.\n\nEncontrar M es la parte más exigente del proceso. Debes calcular simbólicamente la derivada (n+1)-ésima de tu función y luego hallar su valor absoluto máximo en el intervalo [a, x] (o [x, a] si x < a). Para funciones bien comportadas como exponenciales y trigonométricas, M suele ser directo: la derivada (n+1)-ésima de eˣ sigue siendo eˣ, así que M = eˣ evaluado en el extremo derecho. Para cos(x), todas las derivadas están acotadas por 1, así que M = 1 siempre es seguro (aunque a menudo puede afinarse). Para otras funciones, basta con diferenciar simbólicamente y analizar brevemente la expresión resultante en el intervalo.\n\nLas aplicaciones prácticas abarcan el análisis numérico, la computación científica y la ingeniería. Siempre que usas una calculadora, un sistema de álgebra computacional o un firmware embebido que evalúa funciones trascendentes mediante polinomios, alguna forma de esta cota opera por debajo para garantizar que el resultado tenga el número de decimales requerido. En física, las aproximaciones polinómicas de funciones de onda, superficies de energía potencial y densidades de probabilidad deben cumplir requisitos de precisión similares. En finanzas, las expansiones en serie de modelos de valoración de opciones dependen de un error de truncamiento controlado.\n\nUn error común es pensar que un polinomio de grado alto siempre da un error pequeño. Aunque un grado mayor suele estrechar la cota, un |x − a| grande puede dominar en funciones con derivadas que crecen rápido. La mejor práctica es elegir el centro de expansión a lo más cerca posible del punto de evaluación x y aumentar n hasta que la cota de error quede por debajo de la tolerancia requerida.\n\nEsta calculadora automatiza la aritmética de la fórmula de Lagrange. Tú proporcionas M (que requiere tu propio análisis de derivadas), n, a y x, y la herramienta calcula al instante la cota superior. El resultado es una garantía: el error absoluto real |f(x) − Pₙ(x)| no puede superar el valor mostrado."
+  },
+  "examples": {
+    "heading": "Ejemplos de cota de error de Lagrange",
+    "intro": "Cuatro aproximaciones clásicas que muestran cómo la cota de error se reduce con mayor grado o intervalos más pequeños.",
+    "colInput": "Función / configuración",
+    "colOutput": "Cota de error",
+    "colNote": "Detalles",
+    "loadEx": "Cargar ejemplo de e^x",
+    "loadCos": "Cargar ejemplo de cos(x)",
+    "loadLn": "Cargar ejemplo de ln(x)",
+    "items": [
+      {
+        "input": "eˣ, n=3, a=0, x=0.5, M=1.6487",
+        "output": "≤ 0.004298",
+        "note": "La 4.ª derivada de eˣ sigue siendo eˣ; el máximo en [0,0.5] es e⁰⋅⁵ ≈ 1.6487. Cota = 1.6487/24 × 0.5⁴."
+      },
+      {
+        "input": "cos(x), n=2, a=0, x=0.1, M=0.09983",
+        "output": "≤ 0.00001664",
+        "note": "La 3.ª derivada de cos(x) es sin(x); el máximo en [0,0.1] es ≈ 0.09983. Cota = 0.09983/6 × 0.1³."
+      },
+      {
+        "input": "ln(x), n=3, a=1, x=1.2, M=6",
+        "output": "≤ 0.0004",
+        "note": "La 4.ª derivada de ln(x) es 6/x⁴; el máximo en [1,1.2] se da en x=1, así que M=6. Cota = 6/24 × 0.2⁴."
+      },
+      {
+        "input": "√x, n=2, a=4, x=4.1, M=0.01172",
+        "output": "≤ 0.0000000195",
+        "note": "La 3.ª derivada de √x es (3/8)x⁻⁵ᴱ²; el máximo se da en x=4, así que M≈0.01172. Cota = 0.01172/6 × 0.1³."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de cota de error de Lagrange",
+    "steps": [
+      "Identifica la función f(x) que estás aproximando, el grado n del polinomio de Taylor, el centro de expansión a y el punto de evaluación x.",
+      "Calcula simbólicamente la derivada (n+1)-ésima de f(x) y luego encuentra su valor absoluto máximo M en el intervalo cerrado entre a y x.",
+      "Introduce M, n, a y x en los cuatro campos y haz clic en “Calcular cota de error”.",
+      "Lee el resultado: el valor mostrado es una cota superior de |f(x) − Pₙ(x)|. El error real es como mucho ese valor.",
+      "Si la cota sigue siendo demasiado grande para tu aplicación, aumenta el grado n o elige un centro de expansión a más cercano a x y vuelve a calcular."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Qué es la cota de error de Lagrange?",
+        "a": "La cota de error de Lagrange es un teorema que garantiza que el error de una aproximación con polinomio de Taylor no supera M × |x − a|ⁿ⁺¹ / (n+1)!, donde M es el valor absoluto máximo de la derivada (n+1)-ésima en el intervalo. Proporciona una estimación rigurosa y calculable del peor caso del error de truncamiento."
+      },
+      {
+        "q": "¿Cómo encuentro el valor de M?",
+        "a": "Deriva tu función n+1 veces y evalúa el valor absoluto de esa derivada en cada punto entre a y x. M es el mayor valor. Para eˣ, la derivada siempre es eˣ, así que M = e elevado al extremo mayor. Para seno y coseno, todas las derivadas están acotadas por 1, por lo que M = 1 siempre es válido (aunque a menudo puede mejorarse)."
+      },
+      {
+        "q": "¿Un grado mayor siempre da una cota de error menor?",
+        "a": "En general sí, porque el (n+1)! del denominador crece más rápido que |x−a|ⁿ⁺¹ en el numerador para la mayoría de las funciones comunes y los intervalos pequeños. Sin embargo, si |x−a| es grande o las derivadas de la función crecen con rapidez, aumentar el grado no siempre ayuda, y un enfoque alternativo (como dividir el intervalo) puede ser más eficaz."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre la cota de error y el error real?",
+        "a": "El error real |f(x) − Pₙ(x)| es la distancia verdadera entre la función y el polinomio en el punto x. La cota de Lagrange es un techo garantizado para ese error. El error real casi siempre es menor que la cota; la cota es una estimación conservadora del peor caso."
+      },
+      {
+        "q": "¿Puedo usar esta calculadora para series de Maclaurin?",
+        "a": "Sí. Una serie de Maclaurin es simplemente una serie de Taylor centrada en a = 0. Introduce 0 en el campo “Centro de expansión (a)” y continúa normalmente. La fórmula y el cálculo son idénticos."
+      },
+      {
+        "q": "¿Cuáles son las aplicaciones reales de la cota de error de Lagrange?",
+        "a": "Se usa en métodos numéricos para certificar la precisión de aproximaciones polinómicas en calculadoras y bibliotecas de software, en análisis de elementos finitos para acotar errores de interpolación, en integración numérica para asegurar que las reglas de cuadratura cumplen la tolerancia, y en sistemas de control para verificar que los modelos linealizados solo se desvían dentro de límites aceptables de la dinámica no lineal real. Dondequiera que una expansión de Taylor reemplace a una función exacta, la cota de Lagrange ofrece la garantía rigurosa que necesitan profesionales y auditores."
+      }
+    ]
+  }
+}

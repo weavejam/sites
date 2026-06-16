@@ -1,0 +1,117 @@
+{
+  "title": "Calculateur LFSR - Registre à décalage linéaire",
+  "tagline": "Générez des séquences binaires pseudo-aléatoires avec un registre à décalage linéaire et des taps de rétroaction personnalisables.",
+  "intro": "Saisissez la longueur du registre, la seed initiale, les positions des taps de rétroaction, le type de LFSR et le nombre d’itérations, puis cliquez sur Générer la séquence.",
+  "field": {
+    "registerLength": "Longueur du registre",
+    "seed": "Seed initiale",
+    "seedHint": "Chaîne binaire représentant l’état initial (0 et 1 uniquement)",
+    "taps": "Taps de rétroaction",
+    "tapsHint": "Positions des taps séparées par des virgules à partir de 1",
+    "type": "Type de LFSR",
+    "iterations": "Itérations",
+    "iterationsHint": "Nombre d’opérations de décalage à effectuer"
+  },
+  "placeholder": {
+    "registerLength": "ex. 4",
+    "seed": "ex. 1000",
+    "taps": "ex. 4, 3",
+    "iterations": "ex. 15"
+  },
+  "type": {
+    "fibonacci": "LFSR Fibonacci",
+    "galois": "LFSR Galois"
+  },
+  "button": {
+    "generate": "Générer la séquence",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalidSeed": "La seed doit être une chaîne binaire de 0 et 1 correspondant à la longueur du registre.",
+    "invalidTaps": "Les taps doivent être des entiers positifs dans la plage de la longueur du registre.",
+    "invalidLength": "La longueur du registre doit être un entier positif (2–30 recommandé).",
+    "invalidIterations": "Les itérations doivent être un entier positif."
+  },
+  "result": {
+    "heading": "Séquence générée",
+    "outputBit": "Bits de sortie",
+    "states": "États du registre",
+    "period": "Période de la séquence",
+    "isMaximal": "Longueur maximale",
+    "yes": "Oui",
+    "no": "Non",
+    "moreStates": "de plus"
+  },
+  "about": {
+    "heading": "À propos du calculateur LFSR",
+    "body": "Un registre à décalage à rétroaction linéaire (LFSR) est un registre à décalage dont le bit d’entrée est une fonction linéaire (XOR) de certains bits de son état précédent. À chaque cycle d’horloge, le registre décale tous ses bits d’une position, le nouveau bit d’entrée est calculé en faisant XOR des bits situés à des positions spécifiques appelées taps de rétroaction, et la sortie est le bit décalé hors du registre. La séquence binaire obtenue semble aléatoire, mais elle est entièrement déterministe et se répète selon une période qui dépend de la longueur du registre et du choix des taps.\n\nLes LFSR sont largement utilisés dans les communications numériques, la cryptographie, les circuits BIST (built-in self-test), les systèmes à étalement de spectre et la génération de nombres pseudo-aléatoires. Comme un LFSR à n étages peut produire au maximum 2ⁿ − 1 bits avant de se répéter (l’état tout à zéro est exclu), et comme cette séquence de longueur maximale peut être obtenue avec des taps de polynômes primitifs soigneusement choisis, les LFSR constituent une implémentation matérielle efficace du pseudo-aléatoire.\n\nIl existe deux architectures courantes de LFSR. Dans le LFSR Fibonacci (rétroaction externe), le bit de rétroaction est calculé à partir d’un ensemble fixe de positions de taps, puis injecté dans l’étage le plus à gauche, tandis que tous les autres étages se décalent vers la droite. La sortie est prise sur l’étage le plus à droite. Dans le LFSR Galois (rétroaction interne), le bit de rétroaction est XORé directement dans plusieurs étages intermédiaires au lieu d’être renvoyé uniquement vers l’entrée. Les LFSR Galois sont plus rapides en matériel parce que toutes les opérations XOR se font en parallèle plutôt qu’en série.\n\nUn LFSR de longueur maximale — c’est-à-dire un LFSR qui parcourt les 2ⁿ − 1 états non nuls avant de se répéter — nécessite un polynôme primitif comme polynôme de rétroaction. Les positions de taps correspondent aux coefficients non nuls de ce polynôme. Pour un LFSR 4 bits avec des taps aux positions 4 et 3, le polynôme primitif est x⁴ + x³ + 1, et le LFSR parcourt les 15 états non nuls.\n\nCe calculateur vous permet d’explorer toute combinaison de longueur de registre, seed, positions de taps et type de LFSR. Vous pouvez vérifier si les taps choisis produisent une séquence de longueur maximale en contrôlant la période dans les résultats — si la période vaut 2ⁿ − 1, les taps forment un polynôme primitif. Utilisez les exemples fournis pour voir des configurations de longueur maximale connues.\n\nLes applications des LFSR couvrent de nombreux domaines. Dans le Wi‑Fi et le Bluetooth, les LFSR fournissent les codes d’étalement pour le saut de fréquence et l’étalement de spectre à séquence directe. Dans le stockage et les communications, les circuits CRC (contrôle de redondance cyclique) sont implémentés comme des LFSR. Dans les chiffrements de flux cryptographiques, les LFSR constituent le primitif central (bien que les chiffrements modernes combinent plusieurs LFSR avec des composants non linéaires pour résister à la cryptanalyse linéaire). Dans le test de puces, l’analyse de signature basée sur LFSR compresse les données de réponse de test en une signature compacte."
+  },
+  "examples": {
+    "heading": "Exemples de LFSR",
+    "intro": "Configurations courantes de LFSR illustrant des séquences de longueur maximale et différentes tailles de registre.",
+    "colInput": "Configuration",
+    "colOutput": "Période",
+    "colNote": "Description",
+    "items": [
+      {
+        "input": "4-bit, seed=1000, taps=[4,3], Fibonacci",
+        "output": "15 (longueur maximale)",
+        "note": "Polynôme primitif x⁴+x³+1. Parcourt les 15 états 4 bits non nuls."
+      },
+      {
+        "input": "8-bit, seed=10110001, taps=[8,6,5,4], Fibonacci",
+        "output": "255 (longueur maximale)",
+        "note": "LFSR Fibonacci 8 bits standard utilisé dans les applications cryptographiques."
+      },
+      {
+        "input": "5-bit, seed=10101, taps=[5,3], Galois",
+        "output": "31 (longueur maximale)",
+        "note": "LFSR Galois à rétroaction interne avec opérations XOR parallèles plus rapides."
+      },
+      {
+        "input": "3-bit, seed=110, taps=[3,2], Fibonacci",
+        "output": "7 (longueur maximale)",
+        "note": "LFSR simple 3 bits, idéal pour explorer le concept à des fins pédagogiques."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur LFSR",
+    "steps": [
+      "Réglez la Longueur du registre sur le nombre de bits souhaité (par exemple, 4 pour un LFSR 4 bits).",
+      "Saisissez la Seed initiale sous forme de chaîne binaire de 0 et 1 de longueur égale à celle du registre (par exemple, 1000). Évitez l’état tout à zéro : il bloque le LFSR.",
+      "Saisissez les Taps de rétroaction sous forme de positions séparées par des virgules (par exemple, 4, 3). Les positions de taps se comptent à partir de 1 à l’étage le plus à gauche.",
+      "Choisissez le Type de LFSR : Fibonacci (rétroaction externe) ou Galois (rétroaction interne).",
+      "Définissez le nombre d’Itérations et cliquez sur Générer la séquence pour voir le flux de bits de sortie et les états du registre à chaque étape."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur LFSR",
+    "items": [
+      {
+        "q": "Qu’est-ce qu’un LFSR de longueur maximale ?",
+        "a": "Un LFSR de longueur maximale parcourt les 2ⁿ − 1 états non nuls possibles avant de se répéter. Cela exige que le polynôme de rétroaction (défini par les positions de taps) soit un polynôme primitif sur GF(2). Pour un LFSR 4 bits, la période maximale est 15 ; pour un LFSR 8 bits, elle est de 255. Les séquences de longueur maximale (appelées m-sequences) présentent d’excellentes propriétés pseudo-aléatoires."
+      },
+      {
+        "q": "Pourquoi l’état tout à zéro est-il exclu ?",
+        "a": "Si tous les bits du registre sont à zéro, la rétroaction XOR produit toujours zéro et le registre reste bloqué à zéro pour toujours. C’est pourquoi la seed initiale ne doit pas être tout à zéro. Pour la même raison, la période maximale est 2ⁿ − 1 et non 2ⁿ."
+      },
+      {
+        "q": "Quelle est la différence entre un LFSR Fibonacci et Galois ?",
+        "a": "Dans un LFSR Fibonacci, le bit de rétroaction est obtenu par XOR de toutes les positions de taps et injecté dans le premier étage ; les autres étages se contentent de se décaler. Dans un LFSR Galois, le bit de rétroaction est XORé directement dans plusieurs étages intermédiaires en parallèle. Les deux produisent la même séquence (pour des polynômes équivalents), mais Galois est plus rapide en matériel car les opérations XOR sont parallèles."
+      },
+      {
+        "q": "Comment choisir les bonnes positions de taps ?",
+        "a": "Pour obtenir une séquence de longueur maximale, les positions de taps doivent correspondre à un polynôme primitif sur GF(2). Les tables de polynômes primitifs pour les longueurs de registre courantes sont largement publiées. Par exemple, pour n=4, le polynôme primitif x⁴+x³+1 donne les taps [4,3] ; pour n=8, le polynôme x⁸+x⁶+x⁵+x⁴+1 donne les taps [8,6,5,4]."
+      },
+      {
+        "q": "Les séquences LFSR sont-elles vraiment aléatoires ?",
+        "a": "Non. Les séquences LFSR sont déterministes et entièrement prévisibles à partir de la seed et des positions de taps. Elles sont dites pseudo-aléatoires parce qu’elles passent de nombreux tests statistiques de hasard et semblent aléatoires à un observateur qui ne connaît pas la configuration. Pour un usage cryptographique, les LFSR doivent être combinés avec des composants non linéaires afin de résister à la cryptanalyse linéaire."
+      },
+      {
+        "q": "Qu’est-ce qu’un CRC et quel est son lien avec les LFSR ?",
+        "a": "Un contrôle de redondance cyclique (CRC) est un code de détection d’erreurs calculé en divisant un polynôme de message par un polynôme générateur sur GF(2), puis en ajoutant le reste. Le processus de division équivaut à faire passer les bits du message dans un LFSR défini par le polynôme générateur. Le CRC-32 standard utilise un polynôme primitif spécifique de 32 bits, et son implémentation matérielle est un LFSR à 32 étages."
+      }
+    ]
+  }
+}

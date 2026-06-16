@@ -1,0 +1,117 @@
+{
+  "title": "LFSR-Rechner - Lineares Schieberegister",
+  "tagline": "Erzeugen Sie pseudorandom binäre Sequenzen mit einem linearen Schieberegister und anpassbaren Feedback-Taps.",
+  "intro": "Geben Sie Registerlänge, Anfangs-Seed, Feedback-Tap-Positionen, LFSR-Typ und Anzahl der Iterationen ein und klicken Sie dann auf Sequenz erzeugen.",
+  "field": {
+    "registerLength": "Registerlänge",
+    "seed": "Anfangs-Seed",
+    "seedHint": "Binärstring, der den Anfangszustand darstellt (nur 1en und 0en)",
+    "taps": "Feedback-Taps",
+    "tapsHint": "Kommagetrennte Tap-Positionen beginnend bei 1",
+    "type": "LFSR-Typ",
+    "iterations": "Iterationen",
+    "iterationsHint": "Anzahl der auszuführenden Schiebeoperationen"
+  },
+  "placeholder": {
+    "registerLength": "z. B. 4",
+    "seed": "z. B. 1000",
+    "taps": "z. B. 4, 3",
+    "iterations": "z. B. 15"
+  },
+  "type": {
+    "fibonacci": "Fibonacci-LFSR",
+    "galois": "Galois-LFSR"
+  },
+  "button": {
+    "generate": "Sequenz erzeugen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalidSeed": "Der Seed muss ein Binärstring aus 0en und 1en sein, der zur Registerlänge passt.",
+    "invalidTaps": "Die Taps müssen positive ganze Zahlen innerhalb der Registerlänge sein.",
+    "invalidLength": "Die Registerlänge muss eine positive ganze Zahl sein (2–30 empfohlen).",
+    "invalidIterations": "Die Iterationen müssen eine positive ganze Zahl sein."
+  },
+  "result": {
+    "heading": "Erzeugte Sequenz",
+    "outputBit": "Ausgabebits",
+    "states": "Registerzustände",
+    "period": "Sequenzperiode",
+    "isMaximal": "Maximale Länge",
+    "yes": "Ja",
+    "no": "Nein",
+    "moreStates": "weitere"
+  },
+  "about": {
+    "heading": "Über den LFSR-Rechner",
+    "body": "Ein Linear Feedback Shift Register (LFSR) ist ein Schieberegister, dessen Eingangsbit eine lineare Funktion (XOR) einiger vorheriger Zustandsbits ist. Bei jedem Takt verschiebt das Register alle Bits um eine Position, das neue Eingangsbit wird durch XOR der Bits an bestimmten Positionen, den sogenannten Feedback-Taps, berechnet, und das Ausgangsbit ist das herausgeschobene Bit. Die resultierende Binärsequenz wirkt zufällig, ist aber vollständig deterministisch und wiederholt sich mit einer Periode, die von Registerlänge und Tap-Auswahl abhängt.\n\nLFSRs werden häufig in digitaler Kommunikation, Kryptografie, BIST-Schaltungen (Built-In Self-Test), Spreizspektrum-Systemen und der Pseudozufallszahlenerzeugung eingesetzt. Da ein n-stufiges LFSR vor der Wiederholung höchstens 2ⁿ − 1 Bits erzeugen kann (der All-Nullen-Zustand ist ausgeschlossen) und diese maximale Folge mit sorgfältig gewählten primitiven Polynom-Taps erreicht werden kann, sind LFSRs eine effiziente Hardware-Implementierung von Pseudorandomität.\n\nEs gibt zwei gängige LFSR-Architekturen. Beim Fibonacci-LFSR (externe Rückkopplung) wird das Feedbackbit aus einer festen Menge von Tap-Positionen berechnet und in die linke Stufe eingespeist, während alle anderen Stufen nach rechts verschieben. Das Ausgangsbit wird von der rechten Stufe entnommen. Beim Galois-LFSR (interne Rückkopplung) wird das Feedbackbit direkt in mehrere Zwischenstufen XOR-verknüpft, statt nur an den Eingang zurückgeführt zu werden. Galois-LFSRs sind in Hardware schneller, weil alle XOR-Operationen parallel und nicht seriell erfolgen.\n\nEin LFSR mit maximaler Länge — also eines, das vor der Wiederholung alle 2ⁿ − 1 nicht nullen Zustände durchläuft — benötigt ein primitives Polynom als Feedback-Polynom. Die Tap-Positionen entsprechen den von null verschiedenen Koeffizienten dieses Polynoms. Für ein 4-Bit-LFSR mit Taps an Position 4 und 3 ist das primitive Polynom x⁴ + x³ + 1, und das LFSR durchläuft alle 15 nicht nullen Zustände.\n\nMit diesem Rechner können Sie beliebige Kombinationen aus Registerlänge, Seed, Tap-Positionen und LFSR-Typ ausprobieren. Sie können prüfen, ob Ihre gewählten Taps eine Folge maximaler Länge erzeugen, indem Sie die Periode in den Ergebnissen betrachten — ist die Periode gleich 2ⁿ − 1, bilden die Taps ein primitives Polynom. Anhand der Beispiele sehen Sie bekannte Konfigurationen mit maximaler Länge.\n\nLFSRs werden in vielen Bereichen eingesetzt. In Wi‑Fi und Bluetooth liefern sie die Spreizcodes für Frequency Hopping und Direct Sequence Spread Spectrum. In Speicher- und Kommunikationssystemen werden CRC-Schaltungen (zyklische Redundanzprüfung) als LFSRs implementiert. In kryptografischen Stromchiffren bilden LFSRs das zentrale Primitive (moderne Chiffren kombinieren jedoch mehrere LFSRs mit nichtlinearen Komponenten, um lineare Kryptanalyse zu erschweren). In der Chipprüfung komprimiert die auf LFSRs basierende Signaturanalyse Testantwortdaten zu einer kompakten Signatur."
+  },
+  "examples": {
+    "heading": "LFSR-Beispiele",
+    "intro": "Gängige LFSR-Konfigurationen mit maximalen Folgen und unterschiedlichen Registergrößen.",
+    "colInput": "Konfiguration",
+    "colOutput": "Periode",
+    "colNote": "Beschreibung",
+    "items": [
+      {
+        "input": "4-bit, seed=1000, taps=[4,3], Fibonacci",
+        "output": "15 (maximal)",
+        "note": "Primitives Polynom x⁴+x³+1. Durchläuft alle 15 nicht nullen 4-Bit-Zustände."
+      },
+      {
+        "input": "8-bit, seed=10110001, taps=[8,6,5,4], Fibonacci",
+        "output": "255 (maximal)",
+        "note": "Standardmäßiges 8-Bit-Fibonacci-LFSR für kryptografische Anwendungen."
+      },
+      {
+        "input": "5-bit, seed=10101, taps=[5,3], Galois",
+        "output": "31 (maximal)",
+        "note": "Intern rückgekoppeltes Galois-LFSR mit schnelleren parallelen XOR-Operationen."
+      },
+      {
+        "input": "3-bit, seed=110, taps=[3,2], Fibonacci",
+        "output": "7 (maximal)",
+        "note": "Einfaches 3-Bit-LFSR, ideal zur anschaulichen Einführung."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den LFSR-Rechner",
+    "steps": [
+      "Stellen Sie die Registerlänge auf die gewünschte Bitanzahl ein (z. B. 4 für ein 4-Bit-LFSR).",
+      "Geben Sie den Anfangs-Seed als Binärstring mit einer Länge ein, die der Registerlänge entspricht (z. B. 1000). Vermeiden Sie den All-Nullen-Zustand — er blockiert das LFSR.",
+      "Geben Sie die Feedback-Taps als kommagetrennte Positionen ein (z. B. 4, 3). Tap-Positionen werden von 1 an der linken Stufe gezählt.",
+      "Wählen Sie den LFSR-Typ: Fibonacci (externe Rückkopplung) oder Galois (interne Rückkopplung).",
+      "Legen Sie die Anzahl der Iterationen fest und klicken Sie auf Sequenz erzeugen, um den Ausgabebitstrom und die Registerzustände bei jedem Schritt zu sehen."
+    ]
+  },
+  "faq": {
+    "heading": "LFSR-Rechner FAQ",
+    "items": [
+      {
+        "q": "Was ist ein LFSR mit maximaler Länge?",
+        "a": "Ein LFSR mit maximaler Länge durchläuft vor der Wiederholung alle 2ⁿ − 1 möglichen nicht nullen Zustände. Dafür muss das Feedback-Polynom (definiert durch die Tap-Positionen) ein primitives Polynom über GF(2) sein. Für ein 4-Bit-LFSR beträgt die maximale Periode 15; für ein 8-Bit-LFSR 255. Folgen maximaler Länge (m-Sequenzen) besitzen sehr gute pseudorandom Eigenschaften."
+      },
+      {
+        "q": "Warum ist der All-Nullen-Zustand ausgeschlossen?",
+        "a": "Wenn alle Registerbits Null sind, erzeugt das XOR-Feedback immer wieder Null, und das Register bleibt für immer bei Null hängen. Deshalb darf der Anfangs-Seed nicht aus Nullen bestehen. Aus demselben Grund ist die maximale Periode 2ⁿ − 1 statt 2ⁿ."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen Fibonacci- und Galois-LFSR?",
+        "a": "Beim Fibonacci-LFSR wird das Feedbackbit aus dem XOR aller Tap-Positionen gebildet und in die erste Stufe eingespeist; alle anderen Stufen verschieben nur. Beim Galois-LFSR wird das Feedbackbit direkt parallel in mehrere Zwischenstufen XOR-verknüpft. Beide erzeugen dieselbe Folge (bei äquivalenten Polynomen), aber Galois ist in Hardware schneller, weil die XOR-Operationen parallel sind."
+      },
+      {
+        "q": "Wie wähle ich die richtigen Tap-Positionen?",
+        "a": "Für eine maximale Folge müssen die Tap-Positionen zu einem primitiven Polynom über GF(2) gehören. Tabellen primitiver Polynome für gängige Registerlängen sind weit verbreitet. Beispiel: Für n=4 liefert das primitive Polynom x⁴+x³+1 die Taps [4,3]; für n=8 liefert das Polynom x⁸+x⁶+x⁵+x⁴+1 die Taps [8,6,5,4]."
+      },
+      {
+        "q": "Sind LFSR-Folgen wirklich zufällig?",
+        "a": "Nein. LFSR-Folgen sind deterministisch und vollständig aus Seed und Tap-Positionen vorhersagbar. Sie heißen pseudorandom, weil sie viele statistische Zufallstests bestehen und für jemanden ohne Kenntnis der Konfiguration zufällig wirken. Für kryptografische Anwendungen müssen LFSRs mit nichtlinearen Komponenten kombiniert werden, um lineare Kryptanalyse zu widerstehen."
+      },
+      {
+        "q": "Was ist eine CRC und wie hängt sie mit LFSRs zusammen?",
+        "a": "Eine zyklische Redundanzprüfung (CRC) ist ein Fehlererkennungscode, der berechnet wird, indem ein Nachrichtenpolynom durch ein Generatorpolynom über GF(2) geteilt und der Rest angehängt wird. Dieser Teilungsprozess entspricht dem Durchlaufen der Nachrichtenbits durch ein vom Generatorpolynom definiertes LFSR. Standard-CRC-32 verwendet ein bestimmtes 32-Bit-primitives Polynom, und die Hardware-Implementierung ist ein 32-stufiges LFSR."
+      }
+    ]
+  }
+}

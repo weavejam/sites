@@ -1,0 +1,107 @@
+{
+  "title": "Rechner für die Lagrange-Fehlergrenze",
+  "tagline": "Schätze den maximalen Fehler einer Taylor-Polynom-Approximation mit dem Lagrange-Restgliedsatz.",
+  "intro": "Gib die vier Parameter unten ein, um die obere Schranke des Fehlers deiner Taylor-Polynom-Approximation zu berechnen.",
+  "field": {
+    "maxDerivative": "Maximalwert von |f^(n+1)(z)| (M)",
+    "degree": "Polynomgrad (n)",
+    "expansionPoint": "Entwicklungspunkt (a)",
+    "approximationPoint": "Approximationspunkt (x)"
+  },
+  "placeholder": {
+    "maxDerivative": "z. B. 1.6487",
+    "degree": "z. B. 3",
+    "expansionPoint": "z. B. 0",
+    "approximationPoint": "z. B. 0.5"
+  },
+  "button": {
+    "calculate": "Fehlergrenze berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnis der Fehlergrenze",
+    "formula": "Formel: |Rₙ(x)| ≤ M / (n+1)! × |x − a|ⁿ⁺¹",
+    "bound": "Fehlergrenze ≤ {result}",
+    "computation": "({m} / {factorial}) × {distance} = {result}"
+  },
+  "error": {
+    "invalid": "Bitte gib in allen Feldern gültige Zahlen ein.",
+    "negativeM": "M muss eine nicht negative Zahl sein.",
+    "negativeDegree": "Der Grad n muss eine nicht negative ganze Zahl sein."
+  },
+  "about": {
+    "heading": "Über den Rechner für die Lagrange-Fehlergrenze",
+    "body": "Die Lagrange-Fehlergrenze, auch Taylor-Restsatz oder Lagrange-Restglied genannt, liefert eine strenge obere Schranke dafür, wie weit ein Taylor-Polynom von der tatsächlichen Funktion abweichen kann, die es approximiert. Wenn du eine komplizierte Funktion wie eˣ, cos(x) oder ln(x) durch ein Polynom vom Grad n ersetzt, entsteht ein Abschneidefehler. Die Lagrange-Schranke zeigt dir, wie groß dieser Fehler im ungünstigsten Fall in einem bestimmten Intervall werden kann, und ist damit überall dort unverzichtbar, wo Präzision zählt.\n\nDie Formel lautet |Rₙ(x)| ≤ M × |x − a|ⁿ⁺¹ / (n+1)!, wobei n der Grad des Taylor-Polynoms ist, a der Entwicklungspunkt (der Punkt, um den das Polynom aufgebaut wird), x der konkrete Punkt ist, an dem du die Approximation auswertest, und M der maximale Betrag der (n+1)-ten Ableitung der Funktion auf dem geschlossenen Intervall zwischen a und x ist. Der entscheidende Punkt ist, dass der Fehler mit wachsendem n kleiner wird, weil die Fakultät im Nenner viel schneller wächst als die Potenz von (x − a) im Zähler.\n\nM zu finden ist der anspruchsvollste Teil des Prozesses. Du musst die (n+1)-te Ableitung deiner Funktion symbolisch berechnen und dann ihren maximalen Absolutwert auf dem Intervall [a, x] (oder [x, a] falls x < a) bestimmen. Bei gutartigen Funktionen wie Exponential- und trigonometrischen Funktionen ist M oft leicht: Die (n+1)-te Ableitung von eˣ ist wieder eˣ, also ist M = eˣ am rechten Randpunkt ausreichend. Für cos(x) sind alle Ableitungen durch 1 beschränkt, daher ist M = 1 immer sicher (auch wenn oft eine schärfere Schranke möglich ist). Bei anderen Funktionen genügt symbolisches Differenzieren und eine kurze Analyse des resultierenden Ausdrucks auf dem Intervall.\n\nDiese Schranke wird in der Numerik, im wissenschaftlichen Rechnen und im Ingenieurwesen häufig verwendet. Immer wenn ein Taschenrechner, ein Computer-Algebra-System oder eine eingebettete Firmware transzendente Funktionen mittels Polynomen auswertet, sorgt in der Regel eine Form dieser Schranke im Hintergrund dafür, dass das Ergebnis die erforderliche Anzahl an Dezimalstellen trifft. In der Physik müssen polynomiale Approximationen von Wellenfunktionen, Potentialflächen und Wahrscheinlichkeitsdichten ähnliche Genauigkeitsanforderungen erfüllen. In der Finanzmathematik hängen Reihenentwicklungen von Optionspreismodellen ebenfalls von kontrolliertem Abschneidefehler ab.\n\nEin verbreitetes Missverständnis ist, dass ein Polynom hohen Grades immer einen kleinen Fehler liefert. Zwar wird die Schranke mit höherem Grad meist enger, aber ein großes |x − a| kann bei Funktionen mit schnell wachsenden Ableitungen dominieren. Die beste Praxis ist, den Entwicklungspunkt a so nah wie möglich an den Auswertungspunkt x zu legen und n zu erhöhen, bis die Fehlergrenze unter deiner geforderten Toleranz liegt.\n\nDieser Rechner automatisiert die Arithmetik der Lagrange-Formel. Du gibst M (dafür brauchst du deine eigene Ableitungsanalyse), n, a und x an, und das Tool berechnet sofort die obere Schranke. Das Ergebnis ist eine Garantie: Der tatsächliche absolute Fehler |f(x) − Pₙ(x)| kann den angezeigten Wert nicht überschreiten."
+  },
+  "examples": {
+    "heading": "Beispiele für die Lagrange-Fehlergrenze",
+    "intro": "Vier klassische Approximationen zeigen, wie die Fehlergrenze mit höherem Grad oder kleineren Intervallen schrumpft.",
+    "colInput": "Funktion / Setup",
+    "colOutput": "Fehlergrenze",
+    "colNote": "Details",
+    "loadEx": "e^x-Beispiel laden",
+    "loadCos": "cos(x)-Beispiel laden",
+    "loadLn": "ln(x)-Beispiel laden",
+    "items": [
+      {
+        "input": "eˣ, n=3, a=0, x=0.5, M=1.6487",
+        "output": "≤ 0.004298",
+        "note": "Die 4. Ableitung von eˣ ist wieder eˣ; das Maximum auf [0,0.5] ist e⁰⋅⁵ ≈ 1.6487. Schranke = 1.6487/24 × 0.5⁴."
+      },
+      {
+        "input": "cos(x), n=2, a=0, x=0.1, M=0.09983",
+        "output": "≤ 0.00001664",
+        "note": "Die 3. Ableitung von cos(x) ist sin(x); das Maximum auf [0,0.1] ist ≈ 0.09983. Schranke = 0.09983/6 × 0.1³."
+      },
+      {
+        "input": "ln(x), n=3, a=1, x=1.2, M=6",
+        "output": "≤ 0.0004",
+        "note": "Die 4. Ableitung von ln(x) ist 6/x⁴; das Maximum auf [1,1.2] liegt bei x=1, also M=6. Schranke = 6/24 × 0.2⁴."
+      },
+      {
+        "input": "√x, n=2, a=4, x=4.1, M=0.01172",
+        "output": "≤ 0.0000000195",
+        "note": "Die 3. Ableitung von √x ist (3/8)x⁻⁵ᴱ²; das Maximum liegt bei x=4, also M≈0.01172. Schranke = 0.01172/6 × 0.1³."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Rechner für die Lagrange-Fehlergrenze",
+    "steps": [
+      "Bestimme die Funktion f(x), die du approximierst, den Grad n des Taylor-Polynoms, den Entwicklungspunkt a und den Auswertungspunkt x.",
+      "Berechne symbolisch die (n+1)-te Ableitung von f(x) und finde dann ihren maximalen Absolutwert M auf dem geschlossenen Intervall zwischen a und x.",
+      "Gib M, n, a und x in die vier Eingabefelder ein und klicke auf „Fehlergrenze berechnen“.",
+      "Lies das Ergebnis ab: Der angezeigte Wert ist eine obere Schranke für |f(x) − Pₙ(x)|. Der tatsächliche Fehler ist höchstens so groß.",
+      "Wenn die Schranke für deine Anwendung noch zu groß ist, erhöhe n oder wähle einen Entwicklungspunkt a, der näher an x liegt, und berechne erneut."
+    ]
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Was ist die Lagrange-Fehlergrenze?",
+        "a": "Die Lagrange-Fehlergrenze ist ein Satz, der garantiert, dass der Fehler einer Taylor-Polynom-Approximation M × |x − a|ⁿ⁺¹ / (n+1)! nicht überschreitet, wobei M der maximale Absolutwert der (n+1)-ten Ableitung auf dem Intervall ist. Sie liefert eine rigorose, berechenbare Worst-Case-Schätzung des Abschneidefehlers."
+      },
+      {
+        "q": "Wie finde ich den Wert von M?",
+        "a": "Leite deine Funktion n+1-mal ab und berechne dann den Absolutwert dieser Ableitung an jedem Punkt zwischen a und x. M ist der größte Wert. Für eˣ ist die Ableitung immer eˣ, also kann M als e zur Potenz des größeren Endpunkts gewählt werden. Für Sinus und Kosinus sind alle Ableitungen durch 1 beschränkt, daher ist M = 1 immer gültig (auch wenn oft eine engere Schranke möglich ist)."
+      },
+      {
+        "q": "Führt ein höherer Grad immer zu einer kleineren Fehlergrenze?",
+        "a": "Im Allgemeinen ja, weil die (n+1)! im Nenner für die meisten gängigen Funktionen und kleine Intervalle schneller wächst als |x−a|ⁿ⁺¹ im Zähler. Wenn |x−a| jedoch groß ist oder die Ableitungen der Funktion schnell wachsen, hilft ein höherer Grad nicht immer, und ein alternativer Ansatz (etwa das Aufteilen des Intervalls) kann wirksamer sein."
+      },
+      {
+        "q": "Worin liegt der Unterschied zwischen Fehlergrenze und tatsächlichem Fehler?",
+        "a": "Der tatsächliche Fehler |f(x) − Pₙ(x)| ist der wahre Abstand zwischen Funktion und Polynom am Punkt x. Die Lagrange-Schranke ist eine garantierte Obergrenze für diesen Fehler. Der tatsächliche Fehler ist fast immer kleiner als die Schranke; die Schranke ist eine konservative Worst-Case-Schätzung."
+      },
+      {
+        "q": "Kann ich diesen Rechner für Maclaurin-Reihen verwenden?",
+        "a": "Ja. Eine Maclaurin-Reihe ist einfach eine Taylor-Reihe mit a = 0 als Entwicklungspunkt. Gib 0 in das Feld „Entwicklungspunkt (a)“ ein und verfahre normal. Formel und Berechnung sind identisch."
+      },
+      {
+        "q": "Welche Praxisanwendungen gibt es für die Lagrange-Fehlergrenze?",
+        "a": "Sie wird in numerischen Verfahren verwendet, um die Genauigkeit polynomieller Approximationen in Taschenrechnern und Softwarebibliotheken zu zertifizieren, in der Finite-Elemente-Analyse zur Begrenzung von Interpolationsfehlern, in der numerischen Integration zur Sicherstellung der Toleranzen von Quadraturregeln und in Regelungssystemen, um zu prüfen, dass linearisierte Modelle nur innerhalb akzeptabler Grenzen von der tatsächlichen nichtlinearen Dynamik abweichen. Überall dort, wo eine Taylor-Entwicklung eine exakte Funktion ersetzt, liefert die Lagrange-Schranke die strenge Garantie, die Praktiker und Prüfer benötigen."
+      }
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "title": "Calculadora LFSR - Registrador de deslocamento linear",
+  "tagline": "Gere sequências binárias pseudoaleatórias usando um registrador de deslocamento linear com seed e taps de feedback personalizáveis.",
+  "intro": "Digite o comprimento do registrador, a seed inicial, as posições dos taps de feedback, o tipo de LFSR e o número de iterações; depois clique em Gerar sequência.",
+  "field": {
+    "registerLength": "Comprimento do registrador",
+    "seed": "Seed inicial",
+    "seedHint": "String binária que representa o estado inicial (apenas 0 e 1)",
+    "taps": "Taps de feedback",
+    "tapsHint": "Posições de taps separadas por vírgula, começando em 1",
+    "type": "Tipo de LFSR",
+    "iterations": "Iterações",
+    "iterationsHint": "Número de operações de deslocamento a executar"
+  },
+  "placeholder": {
+    "registerLength": "ex.: 4",
+    "seed": "ex.: 1000",
+    "taps": "ex.: 4, 3",
+    "iterations": "ex.: 15"
+  },
+  "type": {
+    "fibonacci": "LFSR Fibonacci",
+    "galois": "LFSR Galois"
+  },
+  "button": {
+    "generate": "Gerar sequência",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalidSeed": "A seed deve ser uma string binária de 0s e 1s que corresponda ao comprimento do registrador.",
+    "invalidTaps": "Os taps devem ser inteiros positivos dentro da faixa do comprimento do registrador.",
+    "invalidLength": "O comprimento do registrador deve ser um inteiro positivo (2–30 recomendado).",
+    "invalidIterations": "As iterações devem ser um inteiro positivo."
+  },
+  "result": {
+    "heading": "Sequência gerada",
+    "outputBit": "Bits de saída",
+    "states": "Estados do registrador",
+    "period": "Período da sequência",
+    "isMaximal": "Comprimento máximo",
+    "yes": "Sim",
+    "no": "Não",
+    "moreStates": "mais"
+  },
+  "about": {
+    "heading": "Sobre a calculadora LFSR",
+    "body": "Um registrador de deslocamento com realimentação linear (LFSR) é um registrador de deslocamento cuja entrada é uma função linear (XOR) de alguns de seus bits de estado anteriores. Em cada ciclo de clock, o registrador desloca todos os bits em uma posição, o novo bit de entrada é calculado fazendo XOR dos bits em posições específicas chamadas taps de feedback, e a saída é o bit deslocado para fora. A sequência binária resultante parece aleatória, mas é totalmente determinística e se repete com um período que depende do comprimento do registrador e da escolha dos taps.\n\nLFSRs são amplamente usados em comunicações digitais, criptografia, circuitos BIST (built-in self-test), sistemas de espectro espalhado e geração de números pseudoaleatórios. Como um LFSR de n estágios pode produzir no máximo 2ⁿ − 1 bits antes de repetir (o estado todo zero é excluído), e como essa sequência de comprimento máximo pode ser obtida com taps de polinômios primitivos cuidadosamente escolhidos, os LFSRs são uma implementação de hardware eficiente de pseudoaleatoriedade.\n\nExistem duas arquiteturas comuns de LFSR. No LFSR Fibonacci (feedback externo), o bit de feedback é calculado a partir de um conjunto fixo de posições de taps e então é inserido no estágio mais à esquerda, enquanto os demais estágios deslocam para a direita. A saída é retirada do estágio mais à direita. No LFSR Galois (feedback interno), o bit de feedback é XORado diretamente em vários estágios intermediários, em vez de ser devolvido apenas à entrada. Os LFSRs Galois são mais rápidos em hardware porque todas as operações XOR acontecem em paralelo, e não em série.\n\nUm LFSR de comprimento máximo — aquele que percorre todos os 2ⁿ − 1 estados não nulos antes de repetir — exige um polinômio primitivo como polinômio de feedback. As posições dos taps correspondem aos coeficientes não nulos desse polinômio. Para um LFSR de 4 bits com taps nas posições 4 e 3, o polinômio primitivo é x⁴ + x³ + 1, e o LFSR percorre todos os 15 estados não nulos.\n\nEsta calculadora permite explorar qualquer combinação de comprimento do registrador, seed, posições de taps e tipo de LFSR. Você pode verificar se os taps escolhidos produzem uma sequência de comprimento máximo conferindo o período nos resultados — se o período for igual a 2ⁿ − 1, os taps formam um polinômio primitivo. Use os exemplos fornecidos para ver configurações conhecidas de comprimento máximo.\n\nAs aplicações dos LFSRs abrangem muitos domínios. Em Wi‑Fi e Bluetooth, os LFSRs fornecem os códigos de espalhamento para frequency hopping e direct-sequence spread spectrum. Em armazenamento e comunicações, circuitos CRC (checagem de redundância cíclica) são implementados como LFSRs. Em cifradores de fluxo criptográficos, os LFSRs formam o primitivo central (embora cifradores modernos combinem vários LFSRs com componentes não lineares para resistir à criptanálise linear). Em testes de chips, a análise de assinatura baseada em LFSR comprime os dados de resposta de teste em uma assinatura compacta."
+  },
+  "examples": {
+    "heading": "Exemplos de LFSR",
+    "intro": "Configurações comuns de LFSR demonstrando sequências de comprimento máximo e diferentes tamanhos de registrador.",
+    "colInput": "Configuração",
+    "colOutput": "Período",
+    "colNote": "Descrição",
+    "items": [
+      {
+        "input": "4-bit, seed=1000, taps=[4,3], Fibonacci",
+        "output": "15 (máximo)",
+        "note": "Polinômio primitivo x⁴+x³+1. Percorre todos os 15 estados não nulos de 4 bits."
+      },
+      {
+        "input": "8-bit, seed=10110001, taps=[8,6,5,4], Fibonacci",
+        "output": "255 (máximo)",
+        "note": "LFSR Fibonacci padrão de 8 bits usado em aplicações criptográficas."
+      },
+      {
+        "input": "5-bit, seed=10101, taps=[5,3], Galois",
+        "output": "31 (máximo)",
+        "note": "LFSR Galois com feedback interno e operações XOR paralelas mais rápidas."
+      },
+      {
+        "input": "3-bit, seed=110, taps=[3,2], Fibonacci",
+        "output": "7 (máximo)",
+        "note": "LFSR simples de 3 bits — ideal para explorar o conceito em contexto educacional."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora LFSR",
+    "steps": [
+      "Defina o Comprimento do registrador para a quantidade desejada de bits (por exemplo, 4 para um LFSR de 4 bits).",
+      "Digite a Seed inicial como uma string binária de 0s e 1s com comprimento igual ao do registrador (por exemplo, 1000). Evite o estado todo zero — ele faz o LFSR travar.",
+      "Digite os Taps de feedback como posições separadas por vírgulas (por exemplo, 4, 3). As posições de taps contam a partir de 1 no estágio mais à esquerda.",
+      "Escolha o Tipo de LFSR: Fibonacci (feedback externo) ou Galois (feedback interno).",
+      "Defina o número de Iterações e clique em Gerar sequência para ver o fluxo de bits de saída e os estados do registrador em cada etapa."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ da calculadora LFSR",
+    "items": [
+      {
+        "q": "O que é um LFSR de comprimento máximo?",
+        "a": "Um LFSR de comprimento máximo percorre todos os 2ⁿ − 1 estados não nulos possíveis antes de repetir. Isso exige que o polinômio de feedback (definido pelas posições dos taps) seja um polinômio primitivo sobre GF(2). Para um LFSR de 4 bits, o período máximo é 15; para um LFSR de 8 bits, é 255. Sequências de comprimento máximo (chamadas m-sequences) têm excelentes propriedades pseudoaleatórias."
+      },
+      {
+        "q": "Por que o estado todo zero é excluído?",
+        "a": "Se todos os bits do registrador forem zero, o feedback XOR sempre produz zero, e o registrador fica preso em zero para sempre. É por isso que a seed inicial não deve ser toda zero. Pelo mesmo motivo, o período máximo é 2ⁿ − 1, e não 2ⁿ."
+      },
+      {
+        "q": "Qual é a diferença entre LFSR Fibonacci e Galois?",
+        "a": "Em um LFSR Fibonacci, o bit de feedback é obtido por XOR de todas as posições de taps e é inserido no primeiro estágio; os demais estágios apenas deslocam. Em um LFSR Galois, o bit de feedback é XORado diretamente em vários estágios intermediários em paralelo. Ambos produzem a mesma sequência (para polinômios equivalentes), mas Galois é mais rápido em hardware porque as operações XOR são paralelas."
+      },
+      {
+        "q": "Como escolher as posições de taps corretas?",
+        "a": "Para obter uma sequência de comprimento máximo, as posições de taps devem corresponder a um polinômio primitivo sobre GF(2). Tabelas de polinômios primitivos para comprimentos comuns de registrador são amplamente publicadas. Por exemplo, para n=4 o polinômio primitivo x⁴+x³+1 gera os taps [4,3]; para n=8, o polinômio x⁸+x⁶+x⁵+x⁴+1 gera os taps [8,6,5,4]."
+      },
+      {
+        "q": "As sequências LFSR são realmente aleatórias?",
+        "a": "Não. As sequências LFSR são determinísticas e totalmente previsíveis a partir da seed e das posições de taps. Elas são chamadas de pseudoaleatórias porque passam em muitos testes estatísticos de aleatoriedade e parecem aleatórias para quem não conhece a configuração. Para uso criptográfico, os LFSRs devem ser combinados com componentes não lineares para resistir à criptanálise linear."
+      },
+      {
+        "q": "O que é um CRC e como ele se relaciona com LFSRs?",
+        "a": "Uma checagem de redundância cíclica (CRC) é um código de detecção de erros calculado dividindo-se um polinômio de mensagem por um polinômio gerador sobre GF(2) e anexando o resto. O processo de divisão é equivalente a passar os bits da mensagem por um LFSR definido pelo polinômio gerador. O CRC-32 padrão usa um polinômio primitivo específico de 32 bits, e sua implementação em hardware é um LFSR de 32 estágios."
+      }
+    ]
+  }
+}

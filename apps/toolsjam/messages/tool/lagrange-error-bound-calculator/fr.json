@@ -1,0 +1,107 @@
+{
+  "title": "Calculateur de borne d’erreur de Lagrange",
+  "tagline": "Estimez l’erreur maximale d’une approximation par polynôme de Taylor grâce au théorème du reste de Lagrange.",
+  "intro": "Saisissez les quatre paramètres ci-dessous pour calculer la borne supérieure de l’erreur de votre approximation par polynôme de Taylor.",
+  "field": {
+    "maxDerivative": "Valeur max de |f^(n+1)(z)| (M)",
+    "degree": "Degré du polynôme (n)",
+    "expansionPoint": "Centre de développement (a)",
+    "approximationPoint": "Point d’approximation (x)"
+  },
+  "placeholder": {
+    "maxDerivative": "p. ex. 1.6487",
+    "degree": "p. ex. 3",
+    "expansionPoint": "p. ex. 0",
+    "approximationPoint": "p. ex. 0.5"
+  },
+  "button": {
+    "calculate": "Calculer la borne d’erreur",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultat de la borne d’erreur",
+    "formula": "Formule : |Rₙ(x)| ≤ M / (n+1)! × |x − a|ⁿ⁺¹",
+    "bound": "Borne d’erreur ≤ {result}",
+    "computation": "({m} / {factorial}) × {distance} = {result}"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres valides dans tous les champs.",
+    "negativeM": "M doit être un nombre non négatif.",
+    "negativeDegree": "Le degré n doit être un entier non négatif."
+  },
+  "about": {
+    "heading": "À propos du calculateur de borne d’erreur de Lagrange",
+    "body": "La borne d’erreur de Lagrange, aussi appelée théorème du reste de Taylor ou reste de Lagrange, fournit une limite supérieure rigoureuse de l’écart possible entre un polynôme de Taylor et la fonction réelle qu’il approxime. Lorsque vous remplacez une fonction complexe comme eˣ, cos(x) ou ln(x) par un polynôme de degré n, vous introduisez une erreur de troncature. La borne de Lagrange indique le pire écart possible sur un intervalle donné, ce qui la rend indispensable dès que la précision compte.\n\nLa formule est |Rₙ(x)| ≤ M × |x − a|ⁿ⁺¹ / (n+1)!, où n est le degré du polynôme de Taylor, a est le centre du développement (le point autour duquel le polynôme est construit), x est le point précis où vous évaluez l’approximation, et M est la valeur absolue maximale de la dérivée (n+1)-ième de la fonction sur l’intervalle fermé entre a et x. L’idée clé est que l’erreur diminue quand n augmente, car la factorielle du dénominateur croît beaucoup plus vite que la puissance de (x − a) au numérateur.\n\nTrouver M est la partie la plus exigeante du processus. Il faut calculer symboliquement la dérivée (n+1)-ième de votre fonction, puis trouver sa valeur absolue maximale sur l’intervalle [a, x] (ou [x, a] si x < a). Pour les fonctions bien comportées comme les exponentielles et les fonctions trigonométriques, M est souvent simple : la dérivée (n+1)-ième de eˣ est encore eˣ, donc M = eˣ évalué à l’extrémité droite. Pour cos(x), toutes les dérivées sont bornées par 1, donc M = 1 est toujours sûr (même si une borne plus serrée est souvent possible). Pour d’autres fonctions, une différenciation symbolique et une brève analyse de l’expression obtenue sur l’intervalle suffisent.\n\nLes applications pratiques couvrent l’analyse numérique, le calcul scientifique et l’ingénierie. Chaque fois qu’une calculatrice, un système d’algèbre formelle ou un microcode embarqué évalue des fonctions transcendantes à l’aide de polynômes, une forme de cette borne est utilisée en arrière-plan pour garantir la précision requise. En physique, les approximations polynomiales de fonctions d’onde, de surfaces d’énergie potentielle et de densités de probabilité doivent respecter des exigences de précision similaires. En finance, les développements en série des modèles de tarification d’options reposent aussi sur un contrôle de l’erreur de troncature.\n\nUne idée reçue courante est qu’un polynôme de haut degré donne toujours une petite erreur. Même si un degré plus élevé resserre généralement la borne, un grand |x − a| peut dominer pour des fonctions dont les dérivées croissent rapidement. La meilleure pratique consiste à choisir le centre de développement a aussi près que possible du point d’évaluation x, puis à augmenter n jusqu’à ce que la borne d’erreur passe sous la tolérance requise.\n\nCe calculateur automatise l’arithmétique de la formule de Lagrange. Vous fournissez M (ce qui nécessite votre propre analyse de dérivée), n, a et x, et l’outil calcule instantanément la borne supérieure. Le résultat est une garantie : l’erreur absolue réelle |f(x) − Pₙ(x)| ne peut pas dépasser la valeur affichée."
+  },
+  "examples": {
+    "heading": "Exemples de borne d’erreur de Lagrange",
+    "intro": "Quatre approximations classiques montrant comment la borne d’erreur diminue avec un degré plus élevé ou des intervalles plus petits.",
+    "colInput": "Fonction / configuration",
+    "colOutput": "Borne d’erreur",
+    "colNote": "Détails",
+    "loadEx": "Charger l’exemple de e^x",
+    "loadCos": "Charger l’exemple de cos(x)",
+    "loadLn": "Charger l’exemple de ln(x)",
+    "items": [
+      {
+        "input": "eˣ, n=3, a=0, x=0.5, M=1.6487",
+        "output": "≤ 0.004298",
+        "note": "La 4e dérivée de eˣ est encore eˣ ; le maximum sur [0,0.5] est e⁰⋅⁵ ≈ 1.6487. Borne = 1.6487/24 × 0.5⁴."
+      },
+      {
+        "input": "cos(x), n=2, a=0, x=0.1, M=0.09983",
+        "output": "≤ 0.00001664",
+        "note": "La 3e dérivée de cos(x) est sin(x) ; le maximum sur [0,0.1] est ≈ 0.09983. Borne = 0.09983/6 × 0.1³."
+      },
+      {
+        "input": "ln(x), n=3, a=1, x=1.2, M=6",
+        "output": "≤ 0.0004",
+        "note": "La 4e dérivée de ln(x) est 6/x⁴ ; le maximum sur [1,1.2] est atteint en x=1, donc M=6. Borne = 6/24 × 0.2⁴."
+      },
+      {
+        "input": "√x, n=2, a=4, x=4.1, M=0.01172",
+        "output": "≤ 0.0000000195",
+        "note": "La 3e dérivée de √x est (3/8)x⁻⁵ᴱ² ; le maximum est atteint en x=4, donc M≈0.01172. Borne = 0.01172/6 × 0.1³."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de borne d’erreur de Lagrange",
+    "steps": [
+      "Identifiez la fonction f(x) que vous approximez, le degré n du polynôme de Taylor, le centre de développement a et le point d’évaluation x.",
+      "Calculez symboliquement la dérivée (n+1)-ième de f(x), puis trouvez sa valeur absolue maximale M sur l’intervalle fermé entre a et x.",
+      "Saisissez M, n, a et x dans les quatre champs, puis cliquez sur « Calculer la borne d’erreur ».",
+      "Lisez le résultat : la valeur affichée est une borne supérieure de |f(x) − Pₙ(x)|. L’erreur réelle est au plus égale à cette valeur.",
+      "Si la borne est encore trop élevée pour votre usage, augmentez le degré n ou choisissez un centre de développement a plus proche de x, puis recalculez."
+    ]
+  },
+  "faq": {
+    "heading": "Foire aux questions",
+    "items": [
+      {
+        "q": "Qu’est-ce que la borne d’erreur de Lagrange ?",
+        "a": "La borne d’erreur de Lagrange est un théorème qui garantit que l’erreur d’une approximation par polynôme de Taylor ne dépasse pas M × |x − a|ⁿ⁺¹ / (n+1)!, où M est la valeur absolue maximale de la dérivée (n+1)-ième sur l’intervalle. Elle fournit une estimation rigoureuse et calculable du pire cas de l’erreur de troncature."
+      },
+      {
+        "q": "Comment trouver la valeur de M ?",
+        "a": "Dérivez votre fonction n+1 fois, puis évaluez la valeur absolue de cette dérivée en chaque point entre a et x. M est la plus grande valeur. Pour eˣ, la dérivée est toujours eˣ, donc M peut être pris comme e élevé à l’extrémité la plus grande. Pour le sinus et le cosinus, toutes les dérivées sont bornées par 1, donc M = 1 est toujours valide (même si l’on peut souvent faire mieux)."
+      },
+      {
+        "q": "Un degré plus élevé donne-t-il toujours une borne d’erreur plus petite ?",
+        "a": "En général oui, car le (n+1)! au dénominateur croît plus vite que |x−a|ⁿ⁺¹ au numérateur pour la plupart des fonctions courantes et des intervalles courts. Cependant, si |x−a| est grand ou si les dérivées de la fonction croissent rapidement, augmenter le degré n’aide pas toujours, et une autre approche (comme découper l’intervalle) peut être plus efficace."
+      },
+      {
+        "q": "Quelle est la différence entre la borne d’erreur et l’erreur réelle ?",
+        "a": "L’erreur réelle |f(x) − Pₙ(x)| est la distance exacte entre la fonction et le polynôme au point x. La borne de Lagrange est un plafond garanti pour cette erreur. L’erreur réelle est presque toujours plus petite que la borne ; la borne est une estimation prudente du pire cas."
+      },
+      {
+        "q": "Puis-je utiliser ce calculateur pour les séries de Maclaurin ?",
+        "a": "Oui. Une série de Maclaurin est simplement une série de Taylor centrée en a = 0. Saisissez 0 dans le champ « Centre de développement (a) » et procédez normalement. La formule et le calcul sont identiques."
+      },
+      {
+        "q": "Quelles sont les applications concrètes de la borne d’erreur de Lagrange ?",
+        "a": "Elle est utilisée en méthodes numériques pour certifier la précision des approximations polynomiales dans les calculatrices et les bibliothèques de calcul, en éléments finis pour borner les erreurs d’interpolation, en intégration numérique pour vérifier que les règles de quadrature respectent les tolérances, et en automatique pour s’assurer que les modèles linéarisés ne s’écartent que dans des limites acceptables de la dynamique non linéaire réelle. Partout où un développement de Taylor remplace une fonction exacte, la borne de Lagrange fournit la garantie rigoureuse attendue par les praticiens et les auditeurs."
+      }
+    ]
+  }
+}
