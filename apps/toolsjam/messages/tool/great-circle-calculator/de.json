@@ -1,0 +1,94 @@
+{
+  "title": "Großkreis-Entfernungsrechner - kürzeste Entfernung zwischen zwei Punkten",
+  "tagline": "Berechne die Großkreisentfernung — den kürzesten Weg entlang der Erdoberfläche — zwischen zwei geografischen Koordinaten.",
+  "intro": "Gib Breiten- und Längengrad zweier Punkte auf der Erde ein. Der Rechner verwendet die Haversine-Formel, um die kürzeste Oberflächendistanz zu berechnen.",
+  "field": {
+    "lat1": "Breitengrad (Punkt 1)",
+    "lon1": "Längengrad (Punkt 1)",
+    "lat2": "Breitengrad (Punkt 2)",
+    "lon2": "Längengrad (Punkt 2)",
+    "unit": "Entfernungseinheit",
+    "latPlaceholder": "z. B. 40.7128",
+    "lonPlaceholder": "z. B. -74.0060"
+  },
+  "unit": {
+    "km": "Kilometer (km)",
+    "mi": "Meilen (mi)",
+    "nm": "Seemeilen (nm)"
+  },
+  "button": {
+    "calculate": "Entfernung berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Großkreisentfernung",
+    "distance": "{distance} {unit}",
+    "bearing": "Anfangskurs: {bearing}°",
+    "midpoint": "Mittelpunkt: ({lat}, {lon})"
+  },
+  "error": {
+    "invalidLat": "Der Breitengrad muss zwischen −90 und 90 Grad liegen.",
+    "invalidLon": "Der Längengrad muss zwischen −180 und 180 Grad liegen.",
+    "invalid": "Bitte gib für beide Punkte gültige numerische Koordinaten ein."
+  },
+  "about": {
+    "heading": "Über den Großkreis-Entfernungsrechner",
+    "body": "Ein Großkreis ist der größtmögliche Kreis, der auf der Oberfläche einer Kugel gezeichnet werden kann — der Kreis, dessen Ebene durch den Mittelpunkt der Kugel verläuft. Auf der Erde sind Großkreise die kürzesten Wege zwischen zwei beliebigen Punkten auf der Oberfläche. Flugrouten, Hochseeschifffahrtsrouten und Korridore für Unterseekabel folgen Großkreisen, weil sie die insgesamt zurückgelegte Entfernung minimieren.\n\nDie gebräuchlichste Formel zur Berechnung der Großkreisentfernung ist die Haversine-Formel. Sie wurde im 19. Jahrhundert für die nautische Navigation entwickelt und wird bis heute häufig verwendet, weil sie für alle Entfernungen numerisch stabil ist, auch für sehr kurze, bei denen andere Formeln unter katastrophaler Auslöschung leiden können. Die Haversine-Formel berechnet den Zentriwinkel θ zwischen zwei Punkten auf einer Einheitskugel und multipliziert ihn anschließend mit dem Erdradius, um die Bogenlänge zu erhalten.\n\nDie Formel funktioniert wie folgt. Gegeben seien Punkt 1 bei (φ₁, λ₁) und Punkt 2 bei (φ₂, λ₂) in Dezimalgrad; durch Multiplikation mit π/180 werden sie in Radiant umgerechnet. Berechne Δφ = φ₂ − φ₁ und Δλ = λ₂ − λ₁. Dann gilt a = sin²(Δφ/2) + cos(φ₁)·cos(φ₂)·sin²(Δλ/2) und c = 2·arcsin(√a). Die Großkreisentfernung ist d = R·c, wobei R der mittlere Erdradius ist. Dieser Rechner verwendet R = 6371 km (6371.009 km ist der mittlere Radius nach IUGG), was 3958.8 Meilen oder 3440.1 Seemeilen entspricht.\n\nDer Breitengrad wird in Grad nördlich (+) oder südlich (−) des Äquators gemessen und reicht von −90° (Südpol) bis +90° (Nordpol). Der Längengrad wird in Grad östlich (+) oder westlich (−) des Nullmeridians durch Greenwich, England, gemessen und reicht von −180° bis +180°. Koordinaten werden üblicherweise im Dezimalgradformat angegeben (z. B. wird 40.7128° N, 74.0060° W zu 40.7128, −74.0060).\n\nDer Anfangskurs (oder Vorwärtsazimut) ist die Kompassrichtung, in die man am Startpunkt blicken würde, wenn man der Großkreisroute folgt. Er wird berechnet als θ = atan2(sin(Δλ)·cos(φ₂), cos(φ₁)·sin(φ₂) − sin(φ₁)·cos(φ₂)·cos(Δλ)) und anschließend in einen Kurs im Bereich 0–360° umgewandelt.\n\nDer Mittelpunkt eines Großkreisbogens ist der geografische Punkt, der entlang des kürzesten Oberflächenwegs von beiden Endpunkten gleich weit entfernt ist. Er ist NICHT einfach das arithmetische Mittel der Breiten- und Längengrade — das ergäbe den Mittelpunkt einer Sehne durch die Erde, nicht einen Punkt auf dem Oberflächenbogen. Die korrekte Mittelpunktformel verwendet sphärische Trigonometrie.\n\nDieser Rechner ist nützlich für die Flugroutenplanung, maritime Navigation, Geodatenanalyse, Kartografie und jede Anwendung, die genaue Oberflächendistanzen auf einer Kugel benötigt statt Luftlinien- oder Kartenprojektionsdistanzen."
+  },
+  "examples": {
+    "heading": "Beispiele für Großkreisentfernungen",
+    "intro": "Vier reale Städtepaarungen, die die Großkreisberechnung zeigen.",
+    "colInput": "Städtepaar",
+    "colOutput": "Großkreisentfernung",
+    "colNote": "Hinweise",
+    "loadNYLondon": "New York → London laden",
+    "loadSydTokyo": "Sydney → Tokio laden",
+    "items": [
+      {
+        "input": "New York (40.7128, −74.0060) → London (51.5074, −0.1278)",
+        "output": "≈ 5,570 km / 3,461 mi",
+        "note": "Typische Entfernung eines Transatlantikflugs. Die Flugzeit ostwärts beträgt etwa 7 Stunden."
+      },
+      {
+        "input": "Sydney (−33.8688, 151.2093) → Tokio (35.6895, 139.6917)",
+        "output": "≈ 7,822 km / 4,861 mi",
+        "note": "Wichtiger Luftverkehrskorridor im asiatisch-pazifischen Raum. Die Route krümmt sich nordwärts über den Pazifik."
+      },
+      {
+        "input": "Dubai (25.2770, 55.2962) → Kapstadt (−33.9249, 18.4241)",
+        "output": "≈ 7,648 km / 4,752 mi",
+        "note": "Langstreckenroute nach Afrika, häufig von Airlines genutzt, die die Golfregion mit Südafrika verbinden."
+      },
+      {
+        "input": "Quito (−0.1807, −78.4678) → Singapur (1.3521, 103.8198)",
+        "output": "≈ 19,729 km / 12,259 mi",
+        "note": "Eine sehr lange transozeanische Route über den Äquator, die fast die halbe Erde umspannt."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Großkreis-Entfernungsrechner",
+    "steps": [
+      "Gib Breiten- und Längengrad des Ausgangspunkts (Punkt 1) in Dezimalgrad ein. Verwende negative Werte für südliche Breiten und westliche Längen.",
+      "Gib Breiten- und Längengrad des Zielpunkts (Punkt 2) in Dezimalgrad ein.",
+      "Wähle die gewünschte Entfernungseinheit: Kilometer, Meilen oder Seemeilen.",
+      "Klicke auf „Entfernung berechnen“. Der Rechner wendet die Haversine-Formel an und zeigt Großkreisentfernung, Anfangskurs und Mittelpunktkoordinaten an.",
+      "Mit der Schaltfläche Zurücksetzen leerst du alle Felder; alternativ kannst du eine der Beispielschaltflächen anklicken, um ein vordefiniertes Städtepaar zu laden."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Großkreis-Entfernungsrechner",
+    "q1": "Was ist ein Großkreis?",
+    "q1_a": "Ein Großkreis ist der Schnitt einer Kugel mit einer Ebene, die durch den Mittelpunkt der Kugel verläuft. Auf der Erde ist jeder Längenmeridian ein Großkreis, ebenso der Äquator. Der Großkreisweg zwischen zwei Punkten ist immer die kürzeste Route entlang der Oberfläche.",
+    "q2": "Warum verlaufen Flugrouten auf flachen Karten gekrümmt?",
+    "q2_a": "Auf den meisten flachen Karten (Mercator-Projektion) erscheinen Großkreisrouten gekrümmt, weil gerade Linien auf einer Mercator-Karte Loxodromen sind (konstanter Kompasskurs), keine Großkreise. Großkreisrouten wirken nur in einer gnomonischen Projektion gerade. In Wirklichkeit ist der Großkreisweg die kürzere Route.",
+    "q3": "Was ist die Haversine-Formel?",
+    "q3_a": "Die Haversine-Formel berechnet den Zentriwinkel zwischen zwei Punkten auf einer Kugel mit a = sin²(Δφ/2) + cos φ₁·cos φ₂·sin²(Δλ/2), dann c = 2·arcsin(√a), dann distance = R·c. Sie ist numerisch stabil für sehr kurze ebenso wie für sehr lange Entfernungen.",
+    "q4": "Was ist der Unterschied zwischen Großkreisentfernung und Luftlinienentfernung?",
+    "q4_a": "Die gerade (euklidische) Entfernung schneidet durch das Erdinnere und ist daher kein nutzbarer Weg. Die Großkreisentfernung wird entlang der Kugeloberfläche gemessen und entspricht der tatsächlich kürzesten Route, die ein Fahrzeug auf der Oberfläche oder ein Flugzeug zurücklegen würde.",
+    "q5": "Welchen Erdradius verwendet der Rechner?",
+    "q5_a": "Der Rechner verwendet den mittleren Erdradius von 6371 km (gemäß der International Union of Geodesy and Geophysics, IUGG). Das ist eine Näherung — die Erde ist ein abgeplattetes Sphäroid, daher kann die wahre Entfernung je nach beteiligten Breitengraden um bis zu etwa 0.3% vom Kugelmodell abweichen.",
+    "q6": "Was ist der Anfangskurs?",
+    "q6_a": "Der Anfangskurs (oder Vorwärtsazimut) ist die Kompassrichtung, in die du dich bei Punkt 1 ausrichten musst, um der Großkreisroute zu Punkt 2 zu folgen. Er wird im Uhrzeigersinn von Norden (0°) über Osten (90°), Süden (180°) und Westen (270°) gemessen. Der Kurs ändert sich entlang einer Großkreisroute kontinuierlich."
+  }
+}

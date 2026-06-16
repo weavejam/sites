@@ -1,0 +1,94 @@
+{
+  "title": "Calculateur de grand cercle - distance la plus courte entre deux points",
+  "tagline": "Calculez la distance de grand cercle — le chemin le plus court à la surface de la Terre — entre deux coordonnées géographiques.",
+  "intro": "Saisissez la latitude et la longitude de deux points sur Terre. Le calculateur utilise la formule de Haversine pour déterminer la distance de surface la plus courte.",
+  "field": {
+    "lat1": "Latitude (point 1)",
+    "lon1": "Longitude (point 1)",
+    "lat2": "Latitude (point 2)",
+    "lon2": "Longitude (point 2)",
+    "unit": "Unité de distance",
+    "latPlaceholder": "p. ex. 40.7128",
+    "lonPlaceholder": "p. ex. -74.0060"
+  },
+  "unit": {
+    "km": "Kilomètres (km)",
+    "mi": "Miles (mi)",
+    "nm": "Milles nautiques (nm)"
+  },
+  "button": {
+    "calculate": "Calculer la distance",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Distance de grand cercle",
+    "distance": "{distance} {unit}",
+    "bearing": "Cap initial : {bearing}°",
+    "midpoint": "Point médian : ({lat}, {lon})"
+  },
+  "error": {
+    "invalidLat": "La latitude doit être comprise entre −90 et 90 degrés.",
+    "invalidLon": "La longitude doit être comprise entre −180 et 180 degrés.",
+    "invalid": "Saisissez des coordonnées numériques valides pour les deux points."
+  },
+  "about": {
+    "heading": "À propos du calculateur de grand cercle",
+    "body": "Un grand cercle est le plus grand cercle que l’on puisse tracer à la surface d’une sphère : le cercle dont le plan passe par le centre de la sphère. Sur Terre, les grands cercles sont les chemins les plus courts entre deux points de la surface. Les trajectoires aériennes, les routes maritimes océaniques et les couloirs de câbles sous-marins suivent tous des grands cercles, car ils minimisent la distance totale parcourue.\n\nLa formule la plus courante pour calculer une distance de grand cercle est la formule de Haversine. Développée pour la navigation maritime au XIXe siècle, elle reste très utilisée aujourd’hui, car elle est numériquement stable pour toutes les distances, y compris les très courtes, où d’autres formules peuvent subir une annulation catastrophique. La formule de Haversine calcule l’angle central θ entre deux points sur une sphère unité, puis le multiplie par le rayon de la Terre pour obtenir la longueur de l’arc.\n\nLa formule fonctionne ainsi. Soit le point 1 en (φ₁, λ₁) et le point 2 en (φ₂, λ₂), exprimés en degrés décimaux : convertissez-les en radians en multipliant par π/180. Calculez Δφ = φ₂ − φ₁ et Δλ = λ₂ − λ₁. Puis a = sin²(Δφ/2) + cos(φ₁)·cos(φ₂)·sin²(Δλ/2), et c = 2·arcsin(√a). La distance de grand cercle d = R·c, où R est le rayon moyen de la Terre. Ce calculateur utilise R = 6371 km (6371.009 km est le rayon moyen de l’IUGG), soit 3958.8 miles ou 3440.1 milles nautiques.\n\nLa latitude se mesure en degrés au nord (+) ou au sud (−) de l’équateur, de −90° (pôle Sud) à +90° (pôle Nord). La longitude se mesure en degrés à l’est (+) ou à l’ouest (−) du méridien de Greenwich, en Angleterre, de −180° à +180°. Les coordonnées sont généralement données en degrés décimaux (par exemple, 40.7128° N, 74.0060° W devient 40.7128, −74.0060).\n\nLe cap initial (ou azimut avant) est la direction de boussole à suivre au point de départ si vous parcourez la route de grand cercle. Il est calculé par θ = atan2(sin(Δλ)·cos(φ₂), cos(φ₁)·sin(φ₂) − sin(φ₁)·cos(φ₂)·cos(Δλ)), puis converti en cap dans la plage 0–360°.\n\nLe point médian d’un arc de grand cercle est le point géographique situé à égale distance des deux extrémités le long du plus court chemin de surface. Ce n’est PAS simplement la moyenne arithmétique des latitudes et longitudes : cela donnerait le milieu d’une corde traversant la Terre, et non un point sur l’arc de surface. La formule correcte du point médian utilise la trigonométrie sphérique.\n\nCe calculateur est utile pour la planification de routes aériennes, la navigation maritime, l’analyse géospatiale, la cartographie et toute application nécessitant des distances de surface précises sur une sphère plutôt que des distances en ligne droite ou projetées sur une carte."
+  },
+  "examples": {
+    "heading": "Exemples de distance de grand cercle",
+    "intro": "Quatre paires de villes réelles illustrant le calcul de grand cercle.",
+    "colInput": "Paire de villes",
+    "colOutput": "Distance de grand cercle",
+    "colNote": "Notes",
+    "loadNYLondon": "Charger New York → Londres",
+    "loadSydTokyo": "Charger Sydney → Tokyo",
+    "items": [
+      {
+        "input": "New York (40.7128, −74.0060) → Londres (51.5074, −0.1278)",
+        "output": "≈ 5,570 km / 3,461 mi",
+        "note": "Distance typique d’un vol transatlantique. Le temps de vol vers l’est est d’environ 7 heures."
+      },
+      {
+        "input": "Sydney (−33.8688, 151.2093) → Tokyo (35.6895, 139.6917)",
+        "output": "≈ 7,822 km / 4,861 mi",
+        "note": "Grand couloir aérien Asie-Pacifique. La route s’incurve vers le nord au-dessus du Pacifique."
+      },
+      {
+        "input": "Dubaï (25.2770, 55.2962) → Le Cap (−33.9249, 18.4241)",
+        "output": "≈ 7,648 km / 4,752 mi",
+        "note": "Route africaine long-courrier, fréquemment utilisée par les compagnies reliant le Golfe à l’Afrique du Sud."
+      },
+      {
+        "input": "Quito (−0.1807, −78.4678) → Singapour (1.3521, 103.8198)",
+        "output": "≈ 19,729 km / 12,259 mi",
+        "note": "Très longue route transocéanique traversant l’équateur, couvrant presque la moitié du tour de la Terre."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de grand cercle",
+    "steps": [
+      "Saisissez la latitude et la longitude du point d’origine (point 1) en degrés décimaux. Utilisez des valeurs négatives pour les latitudes sud et les longitudes ouest.",
+      "Saisissez la latitude et la longitude du point de destination (point 2) en degrés décimaux.",
+      "Sélectionnez l’unité de distance souhaitée : kilomètres, miles ou milles nautiques.",
+      "Cliquez sur « Calculer la distance ». Le calculateur applique la formule de Haversine et affiche la distance de grand cercle, le cap initial et les coordonnées du point médian.",
+      "Utilisez le bouton Réinitialiser pour effacer tous les champs, ou cliquez sur l’un des boutons d’exemple pour charger une paire de villes prédéfinie."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de grand cercle",
+    "q1": "Qu’est-ce qu’un grand cercle ?",
+    "q1_a": "Un grand cercle est l’intersection d’une sphère avec un plan passant par le centre de la sphère. Sur Terre, chaque méridien de longitude est un grand cercle, tout comme l’équateur. Le chemin de grand cercle entre deux points est toujours le plus court à la surface.",
+    "q2": "Pourquoi les vols suivent-ils des trajectoires courbes sur les cartes planes ?",
+    "q2_a": "Sur la plupart des cartes planes (projection de Mercator), les routes de grand cercle paraissent courbes parce que les lignes droites sur une carte de Mercator sont des loxodromies (cap constant), et non des grands cercles. Les routes de grand cercle ne paraissent droites que sur une projection gnomonique. En réalité, le chemin de grand cercle est le plus court.",
+    "q3": "Qu’est-ce que la formule de Haversine ?",
+    "q3_a": "La formule de Haversine calcule l’angle central entre deux points sur une sphère avec a = sin²(Δφ/2) + cos φ₁·cos φ₂·sin²(Δλ/2), puis c = 2·arcsin(√a), puis distance = R·c. Elle est numériquement stable pour les distances très courtes comme très longues.",
+    "q4": "Quelle est la différence entre la distance de grand cercle et la distance en ligne droite ?",
+    "q4_a": "La distance en ligne droite (euclidienne) traverse l’intérieur de la Terre, ce qui n’est pas un trajet utilisable. La distance de grand cercle est mesurée à la surface de la sphère et représente le plus court trajet réel qu’un véhicule de surface ou un avion pourrait parcourir.",
+    "q5": "Quel rayon terrestre le calculateur utilise-t-il ?",
+    "q5_a": "Le calculateur utilise le rayon moyen de la Terre, 6371 km (selon l’Union internationale de géodésie et de géophysique, IUGG). Il s’agit d’une approximation : la Terre est un sphéroïde aplati, si bien que la distance réelle peut varier jusqu’à environ 0.3% par rapport au modèle sphérique selon les latitudes concernées.",
+    "q6": "Qu’est-ce que le cap initial ?",
+    "q6_a": "Le cap initial (ou azimut avant) est la direction de boussole à prendre au point 1 pour parcourir la route de grand cercle vers le point 2. Il se mesure dans le sens horaire depuis le nord (0°), en passant par l’est (90°), le sud (180°) et l’ouest (270°). Le cap change continuellement le long d’une route de grand cercle."
+  }
+}

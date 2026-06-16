@@ -1,0 +1,94 @@
+{
+  "title": "Calculadora de gran círculo - distancia más corta entre dos puntos",
+  "tagline": "Calcula la distancia de gran círculo —el camino más corto sobre la superficie terrestre— entre dos coordenadas geográficas.",
+  "intro": "Ingresa la latitud y la longitud de dos puntos de la Tierra. La calculadora usa la fórmula de Haversine para calcular la distancia superficial más corta.",
+  "field": {
+    "lat1": "Latitud (punto 1)",
+    "lon1": "Longitud (punto 1)",
+    "lat2": "Latitud (punto 2)",
+    "lon2": "Longitud (punto 2)",
+    "unit": "Unidad de distancia",
+    "latPlaceholder": "p. ej., 40.7128",
+    "lonPlaceholder": "p. ej., -74.0060"
+  },
+  "unit": {
+    "km": "Kilómetros (km)",
+    "mi": "Millas (mi)",
+    "nm": "Millas náuticas (nm)"
+  },
+  "button": {
+    "calculate": "Calcular distancia",
+    "reset": "Restablecer"
+  },
+  "result": {
+    "heading": "Distancia de gran círculo",
+    "distance": "{distance} {unit}",
+    "bearing": "Rumbo inicial: {bearing}°",
+    "midpoint": "Punto medio: ({lat}, {lon})"
+  },
+  "error": {
+    "invalidLat": "La latitud debe estar entre −90 y 90 grados.",
+    "invalidLon": "La longitud debe estar entre −180 y 180 grados.",
+    "invalid": "Ingresa coordenadas numéricas válidas para ambos puntos."
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de gran círculo",
+    "body": "Un gran círculo es el círculo más grande que puede trazarse sobre la superficie de una esfera: el círculo cuyo plano pasa por el centro de la esfera. En la Tierra, los grandes círculos son las rutas más cortas entre dos puntos de la superficie. Las rutas aéreas, las rutas marítimas oceánicas y los corredores de cables submarinos siguen grandes círculos porque minimizan la distancia total recorrida.\n\nLa fórmula más común para calcular la distancia de gran círculo es la fórmula de Haversine, desarrollada para la navegación náutica en el siglo XIX y todavía muy usada porque es numéricamente estable para todas las distancias, incluidas las muy cortas, donde otras fórmulas pueden sufrir cancelación catastrófica. La fórmula de Haversine calcula el ángulo central θ entre dos puntos de una esfera unitaria y luego lo multiplica por el radio de la Tierra para obtener la longitud del arco.\n\nLa fórmula funciona así. Dado el punto 1 en (φ₁, λ₁) y el punto 2 en (φ₂, λ₂) en grados decimales, se convierten a radianes multiplicando por π/180. Calcula Δφ = φ₂ − φ₁ y Δλ = λ₂ − λ₁. Luego a = sin²(Δφ/2) + cos(φ₁)·cos(φ₂)·sin²(Δλ/2), y c = 2·arcsin(√a). La distancia de gran círculo d = R·c, donde R es el radio medio de la Tierra. Esta calculadora usa R = 6371 km (6371.009 km es el radio medio de la IUGG), equivalente a 3958.8 millas o 3440.1 millas náuticas.\n\nLa latitud se mide en grados al norte (+) o al sur (−) del ecuador, de −90° (Polo Sur) a +90° (Polo Norte). La longitud se mide en grados al este (+) o al oeste (−) del meridiano de Greenwich, Inglaterra, de −180° a +180°. Las coordenadas suelen darse en formato de grados decimales (por ejemplo, 40.7128° N, 74.0060° W se convierte en 40.7128, −74.0060).\n\nEl rumbo inicial (o acimut inicial) es la dirección de brújula hacia la que mirarías en el punto de partida si viajaras por la ruta de gran círculo. Se calcula como θ = atan2(sin(Δλ)·cos(φ₂), cos(φ₁)·sin(φ₂) − sin(φ₁)·cos(φ₂)·cos(Δλ)) y luego se convierte a un rumbo en el rango 0–360°.\n\nEl punto medio de un arco de gran círculo es el punto geográfico equidistante de los dos extremos a lo largo del camino superficial más corto. NO es simplemente el promedio aritmético de las latitudes y longitudes: eso da el punto medio de una cuerda que atraviesa la Tierra, no un punto sobre el arco de la superficie. La fórmula correcta del punto medio usa trigonometría esférica.\n\nEsta calculadora es útil para planificación de rutas aéreas, navegación marítima, análisis geoespacial, cartografía y cualquier aplicación que necesite distancias superficiales precisas sobre una esfera en lugar de distancias en línea recta o proyectadas en un mapa."
+  },
+  "examples": {
+    "heading": "Ejemplos de distancia de gran círculo",
+    "intro": "Cuatro pares de ciudades reales que muestran el cálculo de gran círculo.",
+    "colInput": "Par de ciudades",
+    "colOutput": "Distancia de gran círculo",
+    "colNote": "Notas",
+    "loadNYLondon": "Cargar Nueva York → Londres",
+    "loadSydTokyo": "Cargar Sídney → Tokio",
+    "items": [
+      {
+        "input": "Nueva York (40.7128, −74.0060) → Londres (51.5074, −0.1278)",
+        "output": "≈ 5,570 km / 3,461 mi",
+        "note": "Distancia típica de un vuelo transatlántico. El tiempo de vuelo hacia el este es de unas 7 horas."
+      },
+      {
+        "input": "Sídney (−33.8688, 151.2093) → Tokio (35.6895, 139.6917)",
+        "output": "≈ 7,822 km / 4,861 mi",
+        "note": "Importante corredor aéreo de Asia-Pacífico. La ruta curva hacia el norte sobre el Pacífico."
+      },
+      {
+        "input": "Dubái (25.2770, 55.2962) → Ciudad del Cabo (−33.9249, 18.4241)",
+        "output": "≈ 7,648 km / 4,752 mi",
+        "note": "Ruta africana de largo recorrido, usada con frecuencia por aerolíneas que conectan el Golfo con Sudáfrica."
+      },
+      {
+        "input": "Quito (−0.1807, −78.4678) → Singapur (1.3521, 103.8198)",
+        "output": "≈ 19,729 km / 12,259 mi",
+        "note": "Una ruta transoceánica muy larga que cruza el ecuador y abarca casi media vuelta alrededor de la Tierra."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de gran círculo",
+    "steps": [
+      "Ingresa la latitud y la longitud del punto de origen (punto 1) en grados decimales. Usa valores negativos para latitudes sur y longitudes oeste.",
+      "Ingresa la latitud y la longitud del punto de destino (punto 2) en grados decimales.",
+      "Selecciona la unidad de distancia deseada: kilómetros, millas o millas náuticas.",
+      "Haz clic en “Calcular distancia”. La calculadora aplica la fórmula de Haversine y muestra la distancia de gran círculo, el rumbo inicial y las coordenadas del punto medio.",
+      "Usa el botón Restablecer para borrar todos los campos, o haz clic en uno de los botones de ejemplo para cargar un par de ciudades predefinido."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de gran círculo",
+    "q1": "¿Qué es un gran círculo?",
+    "q1_a": "Un gran círculo es la intersección de una esfera con un plano que pasa por el centro de la esfera. En la Tierra, cada meridiano de longitud es un gran círculo, y también lo es el ecuador. La ruta de gran círculo entre dos puntos siempre es el camino más corto sobre la superficie.",
+    "q2": "¿Por qué los vuelos siguen trayectorias curvas en los mapas planos?",
+    "q2_a": "En la mayoría de los mapas planos (proyección de Mercator), las rutas de gran círculo parecen curvas porque las líneas rectas en un mapa de Mercator son loxodromias (rumbo de brújula constante), no grandes círculos. Las rutas de gran círculo solo se ven rectas en una proyección gnomónica. En realidad, el camino de gran círculo es la ruta más corta.",
+    "q3": "¿Qué es la fórmula de Haversine?",
+    "q3_a": "La fórmula de Haversine calcula el ángulo central entre dos puntos de una esfera con a = sin²(Δφ/2) + cos φ₁·cos φ₂·sin²(Δλ/2), luego c = 2·arcsin(√a), y finalmente distance = R·c. Es numéricamente estable tanto para distancias muy cortas como muy largas.",
+    "q4": "¿Cuál es la diferencia entre distancia de gran círculo y distancia en línea recta?",
+    "q4_a": "La distancia en línea recta (euclidiana) atraviesa el interior de la Tierra, por lo que no es una ruta utilizable. La distancia de gran círculo se mide sobre la superficie de la esfera y representa la ruta real más corta que recorrería un vehículo de superficie o una aeronave.",
+    "q5": "¿Qué radio terrestre usa la calculadora?",
+    "q5_a": "La calculadora usa el radio medio de la Tierra de 6371 km (según la Unión Internacional de Geodesia y Geofísica, IUGG). Es una aproximación: la Tierra es un esferoide oblato, por lo que la distancia real puede variar hasta alrededor de un 0.3% respecto del modelo esférico según las latitudes involucradas.",
+    "q6": "¿Qué es el rumbo inicial?",
+    "q6_a": "El rumbo inicial (o acimut inicial) es la dirección de brújula hacia la que debes orientarte en el punto 1 para recorrer la ruta de gran círculo hacia el punto 2. Se mide en sentido horario desde el norte (0°), pasando por el este (90°), el sur (180°) y el oeste (270°). El rumbo cambia continuamente a lo largo de una ruta de gran círculo."
+  }
+}
