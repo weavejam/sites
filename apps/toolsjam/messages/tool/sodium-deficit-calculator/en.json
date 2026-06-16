@@ -1,0 +1,119 @@
+{
+  "title": "Sodium Deficit Calculator",
+  "tagline": "Calculate total body sodium deficit and replacement requirements for hyponatremia correction.",
+  "intro": "Enter the patient's current and desired sodium levels, body weight, sex, and body fat percentage to compute the total body sodium deficit and the equivalent weight of sodium chloride needed for replacement.",
+  "field": {
+    "currentSodium": "Current Sodium Level",
+    "currentSodiumUnit": "mEq/L",
+    "desiredSodium": "Desired Sodium Level",
+    "desiredSodiumUnit": "mEq/L",
+    "weight": "Patient Weight",
+    "weightUnit": "kg",
+    "gender": "Gender",
+    "bodyFat": "Body Fat Percentage",
+    "bodyFatUnit": "%",
+    "placeholder": {
+      "currentSodium": "e.g., 125",
+      "desiredSodium": "e.g., 140",
+      "weight": "e.g., 70",
+      "bodyFat": "e.g., 20"
+    }
+  },
+  "gender": {
+    "male": "Male",
+    "female": "Female"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "result": {
+    "heading": "Results",
+    "lbm": "Lean Body Mass",
+    "lbmUnit": "kg",
+    "tbw": "Total Body Water",
+    "tbwUnit": "L",
+    "deficitMeq": "Sodium Deficit",
+    "deficitMeqUnit": "mEq",
+    "deficitNa": "Sodium Mass (Na)",
+    "deficitNaUnit": "g",
+    "deficitNaCl": "NaCl Equivalent",
+    "deficitNaClUnit": "g"
+  },
+  "error": {
+    "invalid": "Please enter valid values for all required fields.",
+    "sameNa": "Current and desired sodium levels must be different."
+  },
+  "about": {
+    "heading": "About the Sodium Deficit Calculator",
+    "body": "The sodium deficit is the quantity of sodium (in milliequivalents) that must be administered to raise the serum sodium from its current measured level to a clinical target, accounting for the patient's total body water as the distribution volume for sodium. This calculation is a cornerstone of hyponatremia management, providing the clinician with a starting estimate of how much sodium-containing fluid is required before selecting a specific fluid type and infusion rate.\n\nThe fundamental formula is: Sodium Deficit (mEq) = TBW × (Desired Na − Current Na). Total body water (TBW) is the distribution volume for sodium because sodium is largely an extracellular ion, but corrections occur across total body water due to osmotic equilibration. TBW is typically estimated from body weight and sex: 60% of body weight for adult males and 50% for adult females, reflecting the higher proportion of lean (water-containing) tissue in men.\n\nThis calculator adds a body fat percentage input to refine the TBW estimate. Since adipose tissue is only about 10–15% water (compared with 73% for lean tissue), patients with high body fat have proportionally less total body water per kilogram of body weight. The body-fat-adjusted TBW is computed as: TBW = Lean Body Mass × 0.73, where LBM = weight × (1 − bodyFat/100). This refinement is particularly useful in obese patients, where using unadjusted weight significantly overestimates TBW and consequently inflates the calculated deficit.\n\nOnce the molar sodium deficit is known in milliequivalents, it can be converted to grams of elemental sodium by multiplying by the atomic weight of sodium (23 mg/mEq ÷ 1000 = 0.023 g/mEq). For practical pharmacy and infusion calculations, conversion to grams of sodium chloride is also provided (1 mEq Na = 58.5 mg NaCl, since NaCl has a molecular weight of 58.44 g/mol and one mole dissociates into one equivalent of Na⁺).\n\nIn clinical practice the sodium deficit formula gives a useful first approximation, but actual sodium requirements may differ due to several factors. First, ongoing losses must be replaced separately. Second, the target sodium level should account for clinical safety limits: for chronic hyponatremia the maximum safe rise is 8–10 mEq/L per 24 hours, and the desired sodium for the initial 24-hour period is therefore the current sodium plus 8–10, not the final normal target. Third, the formula assumes a closed system, which is never the case in a living patient with ongoing renal and insensible losses.\n\nFor hypernatremia (high sodium), the formula yields a negative deficit, which represents the excess sodium that must be removed or diluted. In practice this is accomplished by providing free water rather than restricting sodium, and the magnitude of the deficit guides the volume of hypotonic fluid needed.\n\nThis calculator provides educational and clinical decision-support information. All sodium replacement should be implemented under the supervision of a qualified clinician with frequent laboratory monitoring of serum sodium, potassium, and fluid balance."
+  },
+  "examples": {
+    "heading": "Examples",
+    "intro": "Clinical scenarios illustrating sodium deficit calculation with and without body fat adjustment.",
+    "colInput": "Patient Parameters",
+    "colOutput": "Sodium Deficit (mEq)",
+    "colNote": "Clinical context",
+    "items": [
+      {
+        "input": "Na 130→140, M, 70 kg, 20% BF",
+        "output": "409 mEq (≈ 9.4 g Na, ≈ 23.9 g NaCl)",
+        "note": "Mild hyponatremia: LBM 56 kg, TBW 40.9 L. Body-fat-adjusted TBW is lower than unadjusted 42 L, reducing the estimated deficit."
+      },
+      {
+        "input": "Na 115→135, F, 65 kg, 25% BF",
+        "output": "712 mEq (≈ 16.4 g Na, ≈ 41.6 g NaCl)",
+        "note": "Severe hyponatremia: LBM 48.8 kg, TBW 35.6 L. Large deficit requires staged correction over 48+ hours respecting the 8–10 mEq/L/24hr limit."
+      },
+      {
+        "input": "Na 122→132, M, 85 kg, 35% BF",
+        "output": "403 mEq (≈ 9.3 g Na, ≈ 23.6 g NaCl)",
+        "note": "Obese patient: LBM 55.3 kg, TBW 40.3 L vs. unadjusted 51 L — body fat adjustment substantially lowers the calculated deficit."
+      },
+      {
+        "input": "Na 128→140, F, 55 kg, 18% BF",
+        "output": "395 mEq (≈ 9.1 g Na, ≈ 23.1 g NaCl)",
+        "note": "Athletic woman: LBM 45.1 kg, TBW 32.9 L. Low body fat means TBW is close to the unadjusted value; standard correction protocol applies."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use this calculator",
+    "steps": [
+      "Enter the current measured serum sodium level in mEq/L from the patient's laboratory report.",
+      "Enter the desired (target) sodium level — typically 8–10 mEq/L above current for the first 24 hours in chronic hyponatremia.",
+      "Enter the patient's body weight in kilograms and select the biological sex.",
+      "Enter the body fat percentage if known (from DEXA, bioimpedance, or clinical estimate) to refine the TBW calculation.",
+      "Click Calculate. Review the deficit in mEq, grams of Na, and grams of NaCl equivalent. Use these values to select and dose the appropriate infusion fluid."
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "Why does body fat affect the sodium deficit calculation?",
+        "a": "Adipose tissue contains very little water (about 10–15%) compared with lean tissue (about 73%). Patients with high body fat therefore have less total body water per kilogram of body weight. Using unadjusted body weight in obese patients overestimates TBW and inflates the calculated sodium deficit, potentially leading to over-treatment. The body-fat-adjusted formula provides a more accurate estimate of the distribution volume."
+      },
+      {
+        "q": "What is the difference between sodium deficit in mEq and grams?",
+        "a": "Milliequivalents (mEq) are a measure of chemical reacting capacity that accounts for valence, while grams measure mass. For sodium (monovalent), 1 mEq = 23 mg of elemental Na. Clinical infusion fluids are described by their sodium concentration in mEq/L (e.g., normal saline at 154 mEq/L), so using mEq for the deficit allows direct calculation of infusion volumes. The gram equivalents are provided for pharmacists who compound solutions by mass."
+      },
+      {
+        "q": "Should I use the current sodium or the osmolality-corrected sodium?",
+        "a": "Use the directly measured serum sodium from the laboratory. If pseudohyponatremia from hypertriglyceridemia or hyperproteinaemia is suspected, the measured sodium may be artefactually low, and you should first apply a lipid/protein correction before computing the deficit. For hyperosmolar states (e.g., severe hyperglycaemia), the osmolality-corrected sodium should be used to determine whether the sodium disorder is genuine."
+      },
+      {
+        "q": "Can I set the desired sodium to the normal midpoint of 140 mEq/L?",
+        "a": "For acute hyponatremia this is acceptable, but for chronic hyponatremia (present for more than 48 hours) you should NOT aim for full normalisation in 24 hours. The desired sodium for the first 24-hour correction period should typically be current + 8 (conservative) to current + 10 (standard). Full normalisation can be achieved gradually over subsequent days."
+      },
+      {
+        "q": "Does this calculator account for urinary sodium losses?",
+        "a": "No. The formula calculates the static deficit needed to raise serum sodium to the target, assuming a closed compartment. Real patients continuously lose sodium and water through urine, sweat, and respiration. These ongoing losses must be estimated separately and added to the deficit-based replacement. Frequent sodium monitoring and clinical reassessment are the only reliable ways to account for these dynamic factors."
+      },
+      {
+        "q": "Is the NaCl equivalent useful for preparing infusions?",
+        "a": "Yes, particularly for pharmacists preparing custom solutions. The NaCl equivalent (grams) tells you how much NaCl would need to be dissolved if preparing a solution from scratch. In clinical practice, commercially prepared normal saline (0.9% NaCl = 9 g/L) and 3% NaCl (30 g/L) are used, and the calculated volume of fluid is simply the deficit divided by the fluid's sodium concentration in mEq/L."
+      }
+    ]
+  }
+}
