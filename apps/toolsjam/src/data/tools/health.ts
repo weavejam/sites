@@ -2,6 +2,46 @@ import type { ToolEntry } from "@/data/tools";
 
 export const tools: ToolEntry[] = [
   {
+    id: "winters-formula-calculator",
+    category: "health",
+    slugs: {
+      en: "winters-formula-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Winters Formula Calculator - Triple Exponential Smoothing",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Winters Formula calculator applies triple exponential smoothing to forecast time series with trend and seasonal patterns. Free, instant, accurate.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
     id: "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar",
     category: "health",
     slugs: {
