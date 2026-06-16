@@ -1,0 +1,89 @@
+{
+  "title": "Tensorprodukt-Rechner",
+  "tagline": "Berechne das Tensorprodukt (Außenprodukt) zweier Vektoren und zeige das Ergebnis als Matrix oder abgeflachten Vektor an.",
+  "intro": "Gib zwei Vektoren als durch Kommas oder Leerzeichen getrennte Zahlen ein, wähle ein Ausgabeformat und klicke auf Berechnen.",
+  "field": {
+    "firstVector": "Erster Vektor (u)",
+    "firstVectorPlaceholder": "z. B. 1, 2, 3",
+    "secondVector": "Zweiter Vektor (v)",
+    "secondVectorPlaceholder": "z. B. 4, 5",
+    "resultFormat": "Ausgabeformat",
+    "matrix": "Matrixformat",
+    "flattened": "Abgeflachter Vektor"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnis des Tensorprodukts",
+    "tensorProduct": "Tensorprodukt (u ⊗ v)",
+    "dimensions": "Matrixdimensionen",
+    "flattenedVector": "Abgeflachter Vektor"
+  },
+  "error": {
+    "invalid": "Bitte gib in beiden Vektorfeldern gültige Zahlen ein.",
+    "empty": "Beide Vektoren müssen mindestens eine Zahl enthalten."
+  },
+  "about": {
+    "heading": "Über den Tensorprodukt-Rechner",
+    "body": "Das Tensorprodukt, im Vektorkontext auch Außenprodukt genannt, ist eine grundlegende Operation der linearen Algebra, die zwei Vektoren nimmt und eine Matrix erzeugt. Hat der Vektor u m Komponenten und der Vektor v n Komponenten, dann ist ihr Tensorprodukt u ⊗ v eine m × n Matrix, bei der der Eintrag in Zeile i und Spalte j gleich uᵢ mal vⱼ ist. Das steht im deutlichen Gegensatz zum Skalarprodukt, das zwei Vektoren zu einem einzelnen Skalar reduziert, oder zum Kreuzprodukt, das nur auf dreidimensionale Vektoren anwendbar ist und wieder einen Vektor liefert.\n\nMathematisch gilt, wenn u = [u₁, u₂, …, uₘ] und v = [v₁, v₂, …, vₙ], dann ist (u ⊗ v)ᵢⱼ = uᵢvⱼ für jedes gültige Paar (i, j). Die Berechnung hat die Zeitkomplexität O(mn) und ist damit auch für mittelgroße Vektoren effizient. Das Tensorprodukt ist bilinear – wird einer der beiden Vektoren skaliert, skaliert das Ergebnis mit demselben Faktor, und es verteilt sich über die Vektoraddition.\n\nDas Tensorprodukt ist nicht kommutativ: u ⊗ v und v ⊗ u sind im Allgemeinen verschiedene Matrizen (die eine m × n, die andere n × m), außer wenn m = n gilt und eine besondere Beziehung besteht. Der erste Vektor bestimmt immer die Zeilen, der zweite immer die Spalten. Diese Asymmetrie ist besonders in Physik und maschinellem Lernen wichtig, wo die Reihenfolge eine physikalische oder semantische Bedeutung trägt.\n\nIn der Quantenmechanik sind Tensorprodukte unverzichtbar, um zusammengesetzte Systeme zu beschreiben. Wenn zwei Quantensysteme kombiniert werden, ist der Zustandsraum des Gesamtsystems das Tensorprodukt der einzelnen Zustandsräume. Ein Zwei-Qubit-System hat zum Beispiel einen 4-dimensionalen Zustandsraum, der das Tensorprodukt zweier 2-dimensionaler Qubit-Räume ist. Quantenverschränkung entsteht genau dann, wenn sich ein zusammengesetzter Zustand nicht als einfaches Tensorprodukt einzelner Zustände schreiben lässt.\n\nIm maschinellen Lernen und in der Data Science bilden Tensorprodukte (und ihre höherdimensionalen Verallgemeinerungen, sogenannte Tensoren) die Grundlage für den Attention-Mechanismus in Transformer-Modellen, für Feature-Cross-Operationen in Empfehlungssystemen und für separable Faltungen in der Bildverarbeitung. Ein Gauß-Blur-Kernel ist beispielsweise das Tensorprodukt eines 1D-horizontales Gauß-Filters mit einem 1D-vertikalen Gauß-Filter und ermöglicht so eine effiziente separierbare Berechnung.\n\nIn der Signalverarbeitung ermöglicht die Darstellung mehrdimensionaler Filter als Tensorprodukte von 1D-Filtern erhebliche Recheneinsparungen. Die von diesem Rechner erzeugte Darstellung als abgeflachter Vektor ist besonders nützlich, wenn das Ergebnis in eine nachfolgende Operation eingegeben werden soll, die einen 1D-Eingang erwartet, etwa eine voll verbundene Schicht eines neuronalen Netzes."
+  },
+  "examples": {
+    "heading": "Beispiele für Tensorprodukte",
+    "intro": "Vier durchgerechnete Beispiele mit unterschiedlichen Vektor-Dimensionen und Ausgabeformaten.",
+    "colInput": "Vektoren",
+    "colOutput": "Ergebnis",
+    "colNote": "Hinweise",
+    "loadExample1": "Beispiel 2D × 2D laden",
+    "loadExample2": "Beispiel 3D × 2D laden",
+    "loadExample3": "Beispiel mit Einheitsvektoren laden",
+    "items": [
+      {
+        "input": "u = [1, 2], v = [3, 4]",
+        "output": "[[3, 4], [6, 8]]",
+        "note": "2 × 2-Matrix. Eintrag (1,1) = 1×3 = 3; Eintrag (2,2) = 2×4 = 8."
+      },
+      {
+        "input": "u = [1, 2, 3], v = [4, 5]",
+        "output": "[[4, 5], [8, 10], [12, 15]]",
+        "note": "3 × 2-Matrix zeigt, dass die Vektoren unterschiedliche Längen haben dürfen."
+      },
+      {
+        "input": "u = [1, 0], v = [0, 1]",
+        "output": "[[0, 1], [0, 0]]  |  flattened: [0, 1, 0, 0]",
+        "note": "Außenprodukt der Standardbasisvektoren. Der nicht‑null Eintrag erscheint nur in Zeile 1, Spalte 2."
+      },
+      {
+        "input": "u = [2, 3], v = [1, 4]",
+        "output": "[[2, 8], [3, 12]]",
+        "note": "Allgemeiner 2 × 2-Fall. Jede Zeile des Ergebnisses ist v skaliert mit der entsprechenden Komponente von u."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Tensorprodukt-Rechner",
+    "steps": [
+      "Gib die Komponenten des ersten Vektors u als durch Kommas oder Leerzeichen getrennte Zahlen ein, zum Beispiel: 1, 2, 3.",
+      "Gib die Komponenten des zweiten Vektors v im selben Format ein. Die beiden Vektoren dürfen unterschiedlich viele Komponenten haben.",
+      "Wähle das Ausgabeformat: 'Matrix Format' zeigt das Ergebnis als Raster aus Zeilen und Spalten; 'Flattened Vector' zeigt alle Elemente in einer einzigen Zeile.",
+      "Klicke auf Berechnen. Die Ergebnis-Matrix (oder die abgeflachte Liste) wird zusammen mit den Matrixdimensionen angezeigt.",
+      "Klicke auf Zurücksetzen, um alle Felder zu löschen und eine neue Berechnung zu starten."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Tensorprodukt-Rechner",
+    "q1": "Worin unterscheidet sich ein Tensorprodukt von einem Skalarprodukt?",
+    "q1_a": "Das Skalarprodukt nimmt zwei Vektoren gleicher Länge und gibt eine einzige Zahl (einen Skalar) zurück, indem es die Produkte entsprechender Komponenten aufsummiert. Das Tensorprodukt nimmt zwei Vektoren beliebiger Länge und gibt eine Matrix zurück: Jede Komponente des ersten Vektors wird mit jeder Komponente des zweiten multipliziert. Das Tensorprodukt bewahrt alle Informationen beider Vektoren, während das Skalarprodukt sie auf eine Zahl reduziert.",
+    "q2": "Müssen die beiden Vektoren gleich lang sein?",
+    "q2_a": "Nein. Die Vektoren dürfen unterschiedliche Anzahlen von Komponenten haben. Hat u m Komponenten und v n Komponenten, dann ist das Ergebnis eine m × n-Matrix. Das ist einer der Gründe, warum das Tensorprodukt allgemeiner ist als Operationen wie das Skalarprodukt, das gleiche Längen voraussetzt.",
+    "q3": "Ist das Tensorprodukt kommutativ?",
+    "q3_a": "Nein. u ⊗ v ist im Allgemeinen anders als v ⊗ u. Der erste Vektor indexiert immer die Zeilen, der zweite immer die Spalten, daher transponiert ein Vertauschen der Reihenfolge die Ergebnis-Matrix und kann sie auch anders formen.",
+    "q4": "Was bedeutet das Format des abgeflachten Vektors?",
+    "q4_a": "Der abgeflachte Vektor ist einfach die m × n-Ergebnismatrix, zeilenweise zu einer einzigen Liste mit mn Zahlen gelesen. Das ist nützlich, wenn du das Tensorprodukt als 1D-Eingabe an eine weitere Berechnung übergeben musst, etwa an ein Machine-Learning-Modell, das einen festen Merkmalsvektor erwartet.",
+    "q5": "Wie wird das Tensorprodukt im Quantencomputing verwendet?",
+    "q5_a": "In der Quantenmechanik wird der Zustand eines Mehrteilchensystems durch das Tensorprodukt der einzelnen Teilchenzustände beschrieben. Für zwei Qubits im Zustand [a, b] und [c, d] ist der kombinierte Systemzustand ihr Tensorprodukt, also ein Vektor mit 4 Komponenten. Diese Formalisierung ist der Grund für den exponentiell wachsenden Zustandsraum von Quantencomputern.",
+    "q6": "Was ist der Zusammenhang mit dem Kronecker-Produkt?",
+    "q6_a": "Das Kronecker-Produkt ist eine Verallgemeinerung des Tensorprodukts für Matrizen. Wenn die Eingaben Vektoren sind (als Spaltenmatrizen betrachtet), ist u ⊗ v gleich dem Kronecker-Produkt von u (Spalte) mit vᵀ (Zeile) und erzeugt dieselbe m × n-Matrix. Für allgemeine Matrizen erzeugt das Kronecker-Produkt eine Blockmatrix."
+  }
+}
