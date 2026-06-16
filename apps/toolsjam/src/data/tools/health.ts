@@ -286,6 +286,211 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+
+  {
+    id: "timi-score-calculator-for-ua-nstemi",
+    category: "health",
+    slugs: {
+      en: "timi-score-calculator-for-ua-nstemi",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "TIMI Score Calculator for UA/NSTEMI",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "TIMI risk score for UA/NSTEMI calculates 14-day risk of death, MI, or urgent revascularization to guide acute coronary syndrome management.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+
+  {
+    id: "timi-score-for-stemi-calculator",
+    category: "health",
+    slugs: {
+      en: "timi-score-for-stemi-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "TIMI Score for STEMI Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "TIMI STEMI score calculator predicts 30-day mortality risk in ST-elevation myocardial infarction using age, vitals, Killip class, and clinical features.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+
+  {
+    id: "tinetti-calculator",
+    category: "health",
+    slugs: {
+      en: "tinetti-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Tinetti Balance Assessment Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Tinetti calculator assesses fall risk in elderly patients by scoring 17 balance and gait items up to 28 points to guide rehabilitation and prevention.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+
+  {
+    id: "total-body-water-calculator",
+    category: "health",
+    slugs: {
+      en: "total-body-water-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Total Body Water Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Total body water calculator uses the Watson formula to estimate TBW in liters and percentage from age, gender, height, and weight for hydration assessment.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+
+  {
+    id: "tramadol-dosage-calculator",
+    category: "health",
+    slugs: {
+      en: "tramadol-dosage-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Tramadol Dosage Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Tramadol dosage calculator recommends safe single and daily doses adjusted for weight, age, renal function, hepatic status, and pain severity.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
 
 ];

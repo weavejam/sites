@@ -440,10 +440,15 @@ import { fixtures as f_three_phase_calculator } from "@/tools/three-phase-calcul
 import { fixtures as f_thrust_to_weight_ratio_calculator } from "@/tools/thrust-to-weight-ratio-calculator.fixtures";
 import { fixtures as f_time_dilation_calculator } from "@/tools/time-dilation-calculator.fixtures";
 import { fixtures as f_time_percentage_calculator } from "@/tools/time-percentage-calculator.fixtures";
+import { fixtures as f_timi_score_calculator_for_ua_nstemi } from "@/tools/timi-score-calculator-for-ua-nstemi.fixtures";
+import { fixtures as f_timi_score_for_stemi_calculator } from "@/tools/timi-score-for-stemi-calculator.fixtures";
+import { fixtures as f_tinetti_calculator } from "@/tools/tinetti-calculator.fixtures";
 import { fixtures as f_torsional_stiffness_calculator } from "@/tools/torsional-stiffness-calculator.fixtures";
 import { fixtures as f_torus_surface_area_calculator } from "@/tools/torus-surface-area-calculator.fixtures";
 import { fixtures as f_torus_volume_calculator } from "@/tools/torus-volume-calculator.fixtures";
+import { fixtures as f_total_body_water_calculator } from "@/tools/total-body-water-calculator.fixtures";
 import { fixtures as f_trajectory_calculator } from "@/tools/trajectory-calculator.fixtures";
+import { fixtures as f_tramadol_dosage_calculator } from "@/tools/tramadol-dosage-calculator.fixtures";
 import { fixtures as f_transformer_sizing_calculator } from "@/tools/transformer-sizing-calculator.fixtures";
 import { fixtures as f_transistor_biasing_calculator } from "@/tools/transistor-biasing-calculator.fixtures";
 import { fixtures as f_transmission_calculator } from "@/tools/transmission-calculator.fixtures";
@@ -944,10 +949,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "thrust-to-weight-ratio-calculator": f_thrust_to_weight_ratio_calculator,
   "time-dilation-calculator": f_time_dilation_calculator,
   "time-percentage-calculator": f_time_percentage_calculator,
+  "timi-score-calculator-for-ua-nstemi": f_timi_score_calculator_for_ua_nstemi,
+  "timi-score-for-stemi-calculator": f_timi_score_for_stemi_calculator,
+  "tinetti-calculator": f_tinetti_calculator,
   "torsional-stiffness-calculator": f_torsional_stiffness_calculator,
   "torus-surface-area-calculator": f_torus_surface_area_calculator,
   "torus-volume-calculator": f_torus_volume_calculator,
+  "total-body-water-calculator": f_total_body_water_calculator,
   "trajectory-calculator": f_trajectory_calculator,
+  "tramadol-dosage-calculator": f_tramadol_dosage_calculator,
   "transformer-sizing-calculator": f_transformer_sizing_calculator,
   "transistor-biasing-calculator": f_transistor_biasing_calculator,
   "transmission-calculator": f_transmission_calculator,
