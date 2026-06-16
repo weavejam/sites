@@ -736,7 +736,7 @@ function createPullTab(root: HTMLElement, config: WidgetConfig): HTMLElement {
   tab.innerHTML = '<span class="bd-pull-tab-chevron">‹</span>';
   tab.setAttribute('role', 'button');
   tab.setAttribute('tabindex', '0');
-  tab.setAttribute('aria-label', 'Show feedback button');
+  tab.setAttribute('aria-label', t('pullTabAriaLabel', config.i18n));
 
   const handleRestore = () => {
     // Clear dismissed state
@@ -810,14 +810,14 @@ function initWidget(config: WidgetConfig) {
     const trigger = document.createElement('button');
     trigger.className = getTriggerClassName(config);
     appendTriggerContent(trigger, config);
-    trigger.setAttribute('aria-label', 'Report a bug or send feedback');
+    trigger.setAttribute('aria-label', t('triggerAriaLabel', config.i18n));
 
     // Add close button if dismissible
     if (config.buttonDismissible) {
       const closeBtn = document.createElement('button');
       closeBtn.className = 'bd-trigger-close';
       closeBtn.textContent = '×';
-      closeBtn.setAttribute('aria-label', 'Dismiss feedback button');
+      closeBtn.setAttribute('aria-label', t('dismissAriaLabel', config.i18n));
       trigger.appendChild(closeBtn);
 
       // Handle close button click

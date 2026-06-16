@@ -55,6 +55,9 @@ export const DEFAULT_STRINGS = {
   installRequiredMsg: 'BugDrop requires GitHub App installation to create issues.',
   installBtn: 'Install App',
   connectionErrorTitle: 'Connection Error',
+  triggerAriaLabel: 'Report a bug or send feedback',
+  dismissAriaLabel: 'Dismiss feedback button',
+  pullTabAriaLabel: 'Show feedback button',
 } as const;
 
 export type I18nKey = keyof typeof DEFAULT_STRINGS;

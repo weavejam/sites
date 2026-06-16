@@ -42,6 +42,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDrop requires GitHub App installation to create issues.',
     installBtn: 'Install App',
     connectionErrorTitle: 'Connection Error',
+    triggerAriaLabel: 'Report a bug or send feedback',
+    dismissAriaLabel: 'Dismiss feedback button',
+    pullTabAriaLabel: 'Show feedback button',
   },
   'zh-CN': {
     triggerLabel: '反馈',
@@ -83,6 +86,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDrop 需要安装 GitHub App 才能创建 Issue。',
     installBtn: '安装 App',
     connectionErrorTitle: '连接错误',
+    triggerAriaLabel: '报告错误或发送反馈',
+    dismissAriaLabel: '关闭反馈按钮',
+    pullTabAriaLabel: '显示反馈按钮',
   },
   'zh-TW': {
     triggerLabel: '回饋',
@@ -124,6 +130,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDrop 需要安裝 GitHub App 才能建立 Issue。',
     installBtn: '安裝 App',
     connectionErrorTitle: '連線錯誤',
+    triggerAriaLabel: '回報錯誤或傳送回饋',
+    dismissAriaLabel: '關閉回饋按鈕',
+    pullTabAriaLabel: '顯示回饋按鈕',
   },
   ja: {
     triggerLabel: 'フィードバック',
@@ -165,6 +174,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDropはIssueを作成するためにGitHub Appのインストールが必要です。',
     installBtn: 'Appをインストール',
     connectionErrorTitle: '接続エラー',
+    triggerAriaLabel: 'バグを報告するかフィードバックを送る',
+    dismissAriaLabel: 'フィードバックボタンを非表示',
+    pullTabAriaLabel: 'フィードバックボタンを表示',
   },
   ko: {
     triggerLabel: '피드백',
@@ -206,6 +218,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDrop은 Issue 생성을 위해 GitHub App 설치가 필요합니다.',
     installBtn: 'App 설치',
     connectionErrorTitle: '연결 오류',
+    triggerAriaLabel: '버그 보고 또는 피드백 보내기',
+    dismissAriaLabel: '피드백 버튼 닫기',
+    pullTabAriaLabel: '피드백 버튼 표시',
   },
   es: {
     triggerLabel: 'Opinión',
@@ -247,6 +262,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDrop requiere la instalación de una GitHub App para crear issues.',
     installBtn: 'Instalar App',
     connectionErrorTitle: 'Error de conexión',
+    triggerAriaLabel: 'Reportar un error o enviar una opinión',
+    dismissAriaLabel: 'Cerrar botón de opinión',
+    pullTabAriaLabel: 'Mostrar botón de opinión',
   },
   fr: {
     triggerLabel: 'Avis',
@@ -288,6 +306,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDrop nécessite l\'installation d\'une GitHub App pour créer des issues.',
     installBtn: 'Installer l\'App',
     connectionErrorTitle: 'Erreur de connexion',
+    triggerAriaLabel: 'Signaler un bug ou envoyer un avis',
+    dismissAriaLabel: 'Masquer le bouton de feedback',
+    pullTabAriaLabel: 'Afficher le bouton de feedback',
   },
   de: {
     triggerLabel: 'Feedback',
@@ -329,6 +350,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDrop benötigt eine GitHub App-Installation, um Issues zu erstellen.',
     installBtn: 'App installieren',
     connectionErrorTitle: 'Verbindungsfehler',
+    triggerAriaLabel: 'Fehler melden oder Feedback senden',
+    dismissAriaLabel: 'Feedback-Button ausblenden',
+    pullTabAriaLabel: 'Feedback-Button anzeigen',
   },
   pt: {
     triggerLabel: 'Feedback',
@@ -370,6 +394,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDrop requer a instalação de um GitHub App para criar issues.',
     installBtn: 'Instalar App',
     connectionErrorTitle: 'Erro de conexão',
+    triggerAriaLabel: 'Reportar um bug ou enviar feedback',
+    dismissAriaLabel: 'Ocultar botão de feedback',
+    pullTabAriaLabel: 'Mostrar botão de feedback',
   },
   ru: {
     triggerLabel: 'Отзыв',
@@ -411,6 +438,9 @@ const bugdropI18n: Record<string, Record<string, string>> = {
     installRequiredMsg: 'BugDrop требует установки GitHub App для создания issues.',
     installBtn: 'Установить App',
     connectionErrorTitle: 'Ошибка подключения',
+    triggerAriaLabel: 'Сообщить об ошибке или отправить отзыв',
+    dismissAriaLabel: 'Скрыть кнопку обратной связи',
+    pullTabAriaLabel: 'Показать кнопку обратной связи',
   },
 };
 
