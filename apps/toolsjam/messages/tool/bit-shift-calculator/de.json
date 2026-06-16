@@ -1,0 +1,112 @@
+{
+  "title": "Bit-Shift-Rechner",
+  "tagline": "Führt Links-, logische Rechts- und arithmetische Rechtsverschiebungen auf ganzen Zahlen aus, mit Ergebnissen in Binär, Dezimal und Hexadezimal.",
+  "intro": "Gib eine Zahl ein, wähle die Verschiebungsart und die Anzahl der Bits, und sieh das Ergebnis sofort in allen drei Zahlensystemen.",
+  "field": {
+    "inputFormat": "Eingabeformat",
+    "number": "Zahl",
+    "shiftType": "Verschiebungsart",
+    "shiftAmount": "Verschiebung (Bits)",
+    "numberDecimalPlaceholder": "z. B. 5",
+    "numberBinaryPlaceholder": "z. B. 1010",
+    "shiftAmountPlaceholder": "z. B. 2"
+  },
+  "type": {
+    "decimal": "Dezimal",
+    "binary": "Binär",
+    "leftShift": "Linksverschiebung (<<)",
+    "leftShift_desc": "Verschiebt die Bits n Positionen nach links. Entspricht einer Multiplikation der Zahl mit 2ⁿ. Die frei werdenden rechten Bits werden mit Nullen aufgefüllt.",
+    "logicalRightShift": "Logische Rechtsverschiebung (>>>)",
+    "logicalRightShift_desc": "Verschiebt die Bits n Positionen nach rechts und füllt die frei werdenden linken Bits mit Nullen auf. Behandelt die Zahl als vorzeichenlos.",
+    "arithmeticRightShift": "Arithmetische Rechtsverschiebung (>>)",
+    "arithmeticRightShift_desc": "Verschiebt die Bits n Positionen nach rechts und füllt die frei werdenden linken Bits mit dem Vorzeichenbit auf. Erhält das Vorzeichen vorzeichenbehafteter Ganzzahlen."
+  },
+  "button": {
+    "calculate": "Verschiebung berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalidDecimal": "Bitte eine gültige ganze Zahl eingeben (positiv oder negativ).",
+    "invalidBinary": "Bitte eine gültige binäre Ganzzahl nur mit 0 und 1 eingeben.",
+    "invalidShiftAmount": "Die Verschiebung muss eine ganze Zahl zwischen 0 und 31 sein.",
+    "empty": "Bitte eine Zahl und eine Verschiebung eingeben."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "binary": "Binär",
+    "decimal": "Dezimal",
+    "hex": "Hexadezimal"
+  },
+  "about": {
+    "heading": "Über Bit-Verschiebungen",
+    "body": "Bit-Verschiebungen gehören zu den grundlegendsten Operationen in der Programmierung und im digitalen Hardware-Design. Eine Bit-Verschiebung bewegt alle Bits einer binären Zahl um eine bestimmte Anzahl von Positionen nach links oder rechts, verwirft Bits, die an einem Ende herausfallen, und füllt die frei werdenden Positionen am anderen Ende je nach Verschiebungsart auf.\n\nDer Linksverschiebungsoperator (<<) bewegt alle Bits um n Positionen nach links. Die n Bits, die links herausfallen, werden verworfen, und rechts werden n Nullen angefügt. Das Linksverschieben um n ist mathematisch gleichbedeutend mit einer Multiplikation der ganzen Zahl mit 2ⁿ, solange kein Überlauf auftritt. Zum Beispiel ergibt 5 (binär 101), um 2 nach links verschoben, 20 (binär 10100), weil 5 × 4 = 20. Compiler ersetzen eine Multiplikation mit einer Zweierpotenz oft durch eine Linksverschiebung, weil sie in einem einzigen CPU-Takt ausgeführt werden kann.\n\nDie logische Rechtsverschiebung (>>>) bewegt alle Bits um n Positionen nach rechts. Die n Bits, die rechts herausfallen, werden verworfen, und links werden n Nullen angefügt. Dadurch wird die Zahl als vorzeichenlos behandelt und entspricht einer ganzzahligen Division durch 2ⁿ mit Abrunden nach unten. Zum Beispiel ergibt 40 (binär 101000), logisch um 3 nach rechts verschoben, 5 (binär 000101). Logische Rechtsverschiebungen sind die Standardoperation für vorzeichenlose Ganzzahlen in Sprachen wie Java, das aus diesem Grund >>> explizit verwendet.\n\nDie arithmetische Rechtsverschiebung (>>) verschiebt ebenfalls um n Positionen nach rechts, fügt links jedoch nicht Nullen ein, sondern kopiert das Vorzeichenbit — das höchstwertige Bit. Bei einer positiven Zahl (Vorzeichenbit 0) werden Nullen eingefügt und sie verhält sich wie eine logische Verschiebung. Bei einer negativen Zahl (Vorzeichenbit 1 im Zweierkomplement) werden Einsen eingefügt und das negative Vorzeichen bleibt erhalten. Zum Beispiel ergibt −16 (32-Bit-Zweierkomplement: ...11110000), um 2 arithmetisch nach rechts verschoben, −4 (binär ...11111100). Dadurch bleibt das Vorzeichen erhalten, und es entspricht einer vorzeichenbehafteten Division durch 2ⁿ mit Abrunden gegen minus unendlich.\n\nBit-Verschiebungen werden in performancekritischem Code intensiv genutzt. Hash-Funktionen, kryptografische Algorithmen, Bildverarbeitung, Audiocodierung und Netzwerkprotokoll-Parsing setzen aus Effizienzgründen auf Verschiebungen. In der Hardware sind Schieberegister grundlegende Schaltungen, die die Basis für serielle Kommunikationsprotokolle, CRC-Generatoren und lineare Feedback-Schieberegister (LFSR) bilden, die zur Zufallszahlenerzeugung und Datenverschleierung verwendet werden."
+  },
+  "examples": {
+    "heading": "Beispiele für Bit-Verschiebungen",
+    "intro": "Gängige Verschiebungen, die den Zusammenhang zwischen Verschiebung und Multiplikation bzw. Division durch Zweierpotenzen zeigen.",
+    "colInput": "Operation",
+    "colOutput": "Binäres Ergebnis",
+    "colNote": "Dezimaler Check",
+    "items": [
+      {
+        "input": "5 << 2 (Linksverschiebung um 2)",
+        "output": "10100",
+        "note": "5 × 4 = 20 ✓. Eine Linksverschiebung um 2 entspricht der Multiplikation mit 2² = 4."
+      },
+      {
+        "input": "40 >>> 3 (logische Rechtsverschiebung um 3)",
+        "output": "101",
+        "note": "40 ÷ 8 = 5 ✓. Eine logische Rechtsverschiebung um 3 entspricht der vorzeichenlosen Division durch 2³ = 8."
+      },
+      {
+        "input": "−16 >> 2 (arithmetische Rechtsverschiebung um 2)",
+        "output": "11111100 (−4)",
+        "note": "−16 ÷ 4 = −4 ✓. Die arithmetische Verschiebung erhält das Vorzeichenbit, daher bleibt das Ergebnis negativ."
+      },
+      {
+        "input": "Binär 1010 << 1 (Linksverschiebung um 1)",
+        "output": "10100",
+        "note": "Binär 1010 (dezimal 10) wird zu 10100 (dezimal 20). Eine Linksverschiebung um 1 verdoppelt den Wert."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Bit-Shift-Rechner",
+    "steps": [
+      "Wähle das Eingabeformat: 'Dezimal' für eine ganze Zahl im Dezimalsystem (negative Zahlen erlaubt) oder 'Binär' für eine Binärzeichenfolge.",
+      "Gib die Zahl in das Eingabefeld ein. Verwende bei binärer Eingabe nur 0 und 1.",
+      "Wähle die Verschiebungsart: 'Linksverschiebung (<<)' zum Multiplizieren mit einer Zweierpotenz, 'Logische Rechtsverschiebung (>>>)' für vorzeichenlose Division oder 'Arithmetische Rechtsverschiebung (>>)' für vorzeichenbehaftete Division.",
+      "Gib die Verschiebung ein — also die Anzahl der zu verschiebenden Bits (0 bis 31).",
+      "Klicke auf 'Verschiebung berechnen'. Das Ergebnis wird in Binär, Dezimal und Hexadezimal angezeigt."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Bit-Shift-Rechner",
+    "items": [
+      {
+        "q": "Was ist der Unterschied zwischen logischer und arithmetischer Rechtsverschiebung?",
+        "a": "Eine logische Rechtsverschiebung füllt die frei werdenden hohen Bits immer mit Nullen und behandelt den Operanden als vorzeichenlos. Eine arithmetische Rechtsverschiebung füllt die frei werdenden hohen Bits mit einer Kopie des Vorzeichenbits — 0 für positive Zahlen, 1 für negative Zahlen im Zweierkomplement. Für nicht negative Zahlen liefern beide Operationen dasselbe Ergebnis; sie unterscheiden sich nur, wenn der Operand negativ ist. In C/C++ führt der >>-Operator auf vorzeichenbehafteten Typen auf den meisten Architekturen eine arithmetische Rechtsverschiebung aus."
+      },
+      {
+        "q": "Warum entspricht eine Linksverschiebung einer Multiplikation mit einer Zweierpotenz?",
+        "a": "Im Binärsystem steht jede Bitposition für eine Zweierpotenz. Wenn alle Bits um eine Position nach links verschoben werden, verdoppelt sich der Beitrag jedes Bits, also verdoppelt sich der gesamte Wert. Eine Verschiebung um n Positionen nach links multipliziert mit 2ⁿ. Beispiel: 6 (110₂) um 3 nach links verschoben ergibt 110000₂ = 48, und 6 × 8 = 48. Compiler nutzen diese Identität, um teure Multiplikationsbefehle durch günstigere Verschiebungsbefehle zu ersetzen, wenn der Faktor eine konstante Zweierpotenz ist."
+      },
+      {
+        "q": "Was passiert, wenn Bits über das Ende hinaus verschoben werden?",
+        "a": "Bits, die über die Registerbreite hinausgehen, werden einfach verworfen. Bei einer Linksverschiebung werden die überlaufenden hohen Bits abgeschnitten, was unerwartete Ergebnisse verursachen kann, wenn das Ergebnis zu groß für den Zieltyp wird. Bei einer Rechtsverschiebung werden die niedrigen Bits unterhalb von Position 0 verworfen, was dem Abschneiden Richtung Null (logisch) oder Richtung minus unendlich (arithmetisch) entspricht."
+      },
+      {
+        "q": "Kann ich Bit-Verschiebungen zum Dividieren verwenden?",
+        "a": "Ja. Eine logische Rechtsverschiebung um n teilt eine vorzeichenlose Ganzzahl durch 2ⁿ (mit Abschneiden des Nachkommateils). Eine arithmetische Rechtsverschiebung um n teilt eine vorzeichenbehaftete Ganzzahl durch 2ⁿ und rundet gegen minus unendlich. Das ist nicht dasselbe wie die Ganzzahldivision in C für negative Zahlen: −7 >> 1 = −4 (arithmetische Verschiebung), aber −7 / 2 = −3 (C schneidet Richtung Null ab). Verwende die passende Operation je nachdem, ob du Abrunden oder Abschneiden brauchst."
+      },
+      {
+        "q": "Wie groß darf die Verschiebung maximal sein?",
+        "a": "Bei 32-Bit-Ganzzahlen ist eine Verschiebung um 32 oder mehr Stellen in C/C++ undefiniertes Verhalten und wird in Hardware typischerweise modulo 32 behandelt (eine Verschiebung um n ist dasselbe wie um n mod 32). Dieser Rechner unterstützt Verschiebungen von 0 bis 31 Bits und deckt damit den gesamten 32-Bit-Bereich ab. Für größere Verschiebungen benötigst du Mehrwortarithmetik oder einen 64-Bit-Ganzzahltyp."
+      },
+      {
+        "q": "Wie werden Bit-Verschiebungen in echten Programmen verwendet?",
+        "a": "Bit-Verschiebungen kommen in vielen Bereichen vor. Das Packen und Entpacken von Bitfeldern in Ganzzahlen (Netzwerkpaket-Header, Pixelfarbkanäle), schnelles Multiplizieren und Dividieren durch Zweierpotenzen, das Berechnen von Hashwerten, die Implementierung kryptografischer Primitive wie AES und SHA, das Extrahieren von Nibbles und Bytes aus größeren Wörtern sowie das Erzeugen von Bitmasken sind typische Anwendungsfälle. Immer wenn ein Programm bestimmte Bits isolieren oder setzen muss, sind Verschiebungen und bitweise AND/OR-Operationen die Mittel der Wahl."
+      }
+    ]
+  }
+}

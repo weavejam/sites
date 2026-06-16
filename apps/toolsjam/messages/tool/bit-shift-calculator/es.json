@@ -1,0 +1,112 @@
+{
+  "title": "Calculadora de desplazamiento de bits",
+  "tagline": "Aplica desplazamiento a la izquierda, desplazamiento lógico a la derecha y desplazamiento aritmético a enteros, con resultados en binario, decimal y hexadecimal.",
+  "intro": "Introduce un número, elige el tipo y la cantidad de desplazamiento, y ve el resultado en los tres formatos al instante.",
+  "field": {
+    "inputFormat": "Formato de entrada",
+    "number": "Número",
+    "shiftType": "Tipo de desplazamiento",
+    "shiftAmount": "Cantidad de desplazamiento (bits)",
+    "numberDecimalPlaceholder": "p. ej., 5",
+    "numberBinaryPlaceholder": "p. ej., 1010",
+    "shiftAmountPlaceholder": "p. ej., 2"
+  },
+  "type": {
+    "decimal": "Decimal",
+    "binary": "Binario",
+    "leftShift": "Desplazamiento a la izquierda (<<)",
+    "leftShift_desc": "Desplaza los bits a la izquierda n posiciones. Equivale a multiplicar el número por 2ⁿ. Los bits vacíos de la derecha se rellenan con ceros.",
+    "logicalRightShift": "Desplazamiento lógico a la derecha (>>>)",
+    "logicalRightShift_desc": "Desplaza los bits a la derecha n posiciones y rellena con ceros los bits vacíos de la izquierda. Trata el número como sin signo.",
+    "arithmeticRightShift": "Desplazamiento aritmético a la derecha (>>)",
+    "arithmeticRightShift_desc": "Desplaza los bits a la derecha n posiciones y rellena los huecos de la izquierda con el bit de signo. Conserva el signo de los enteros con signo."
+  },
+  "button": {
+    "calculate": "Calcular desplazamiento",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalidDecimal": "Introduce un entero válido (positivo o negativo).",
+    "invalidBinary": "Introduce un entero binario válido usando solo 0 y 1.",
+    "invalidShiftAmount": "La cantidad de desplazamiento debe ser un entero entre 0 y 31.",
+    "empty": "Introduce un número y una cantidad de desplazamiento."
+  },
+  "result": {
+    "heading": "Resultado",
+    "binary": "Binario",
+    "decimal": "Decimal",
+    "hex": "Hexadecimal"
+  },
+  "about": {
+    "heading": "Acerca del desplazamiento de bits",
+    "body": "El desplazamiento de bits es una de las operaciones más fundamentales en la programación y el diseño de hardware digital. Un desplazamiento mueve todos los bits de un número binario una cantidad determinada de posiciones a la izquierda o a la derecha, descartando los bits que salen por un extremo y rellenando las posiciones vacías del otro extremo según el tipo de desplazamiento.\n\nEl operador de desplazamiento a la izquierda (<<) mueve todos los bits a la izquierda n posiciones. Los n bits que salen por la izquierda se descartan y se añaden n ceros a la derecha. Desplazar a la izquierda n posiciones es matemáticamente equivalente a multiplicar el entero por 2ⁿ, siempre que no haya desbordamiento. Por ejemplo, 5 (binario 101) desplazado 2 posiciones a la izquierda da 20 (binario 10100), porque 5 × 4 = 20. Los compiladores suelen reemplazar la multiplicación por una potencia de dos con un desplazamiento a la izquierda porque se ejecuta en un solo ciclo de reloj de la CPU.\n\nEl desplazamiento lógico a la derecha (>>>) mueve todos los bits a la derecha n posiciones. Los n bits que salen por la derecha se descartan y se añaden n ceros a la izquierda. Esto trata el número como sin signo y equivale a dividir por 2ⁿ redondeando hacia abajo. Por ejemplo, 40 (binario 101000) desplazado lógicamente 3 posiciones a la derecha da 5 (binario 000101). En lenguajes como Java, el desplazamiento lógico a la derecha es la operación estándar para enteros sin signo, por eso se usa explícitamente >>>.\n\nEl desplazamiento aritmético a la derecha (>>) también mueve los bits n posiciones a la derecha, pero en lugar de insertar ceros a la izquierda, replica el bit de signo, el bit más significativo. Para un número positivo (bit de signo 0), inserta ceros y se comporta igual que un desplazamiento lógico. Para un número negativo (bit de signo 1 en complemento a dos), inserta unos y conserva el signo negativo. Por ejemplo, −16 (complemento a dos de 32 bits: ...11110000) desplazado aritméticamente 2 posiciones a la derecha da −4 (binario ...11111100). Esto mantiene el signo del número y equivale a dividir un entero con signo por 2ⁿ redondeando hacia menos infinito.\n\nLos desplazamientos de bits se usan ampliamente en código crítico para el rendimiento. Las funciones hash, los algoritmos criptográficos, el procesamiento de imágenes, la codificación de audio y el análisis de protocolos de red dependen de ellos por su eficiencia. En hardware, los registros de desplazamiento son circuitos básicos que sirven de base para protocolos de comunicación serie, generadores CRC y registros de desplazamiento de retroalimentación lineal (LFSR) usados en generación de números aleatorios y aleatorización de datos."
+  },
+  "examples": {
+    "heading": "Ejemplos de desplazamiento de bits",
+    "intro": "Operaciones comunes que muestran la relación entre el desplazamiento y la multiplicación o división por potencias de dos.",
+    "colInput": "Operación",
+    "colOutput": "Resultado binario",
+    "colNote": "Comprobación decimal",
+    "items": [
+      {
+        "input": "5 << 2 (desplazamiento a la izquierda por 2)",
+        "output": "10100",
+        "note": "5 × 4 = 20 ✓. Desplazar 2 posiciones a la izquierda es igual a multiplicar por 2² = 4."
+      },
+      {
+        "input": "40 >>> 3 (desplazamiento lógico a la derecha por 3)",
+        "output": "101",
+        "note": "40 ÷ 8 = 5 ✓. Desplazar 3 posiciones a la derecha lógicamente es igual a dividir sin signo entre 2³ = 8."
+      },
+      {
+        "input": "−16 >> 2 (desplazamiento aritmético a la derecha por 2)",
+        "output": "11111100 (−4)",
+        "note": "−16 ÷ 4 = −4 ✓. El desplazamiento aritmético conserva el bit de signo, así que el resultado sigue siendo negativo."
+      },
+      {
+        "input": "binario 1010 << 1 (desplazamiento a la izquierda por 1)",
+        "output": "10100",
+        "note": "El binario 1010 (10 decimal) pasa a 10100 (20 decimal). Desplazar 1 posición a la izquierda duplica el valor."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de desplazamiento de bits",
+    "steps": [
+      "Elige el formato de entrada: 'Decimal' para introducir un entero en base 10 (se permiten negativos) o 'Binario' para introducir una cadena binaria.",
+      "Introduce el número en el campo de entrada. Para entrada binaria, usa solo 0 y 1.",
+      "Selecciona el tipo de desplazamiento: 'Desplazamiento a la izquierda (<<)' para multiplicar por una potencia de dos, 'Desplazamiento lógico a la derecha (>>>)' para división sin signo, o 'Desplazamiento aritmético a la derecha (>>)' para división con signo.",
+      "Introduce la cantidad de desplazamiento, es decir, el número de posiciones de bits a mover (0 a 31).",
+      "Haz clic en 'Calcular desplazamiento'. El resultado se mostrará en binario, decimal y hexadecimal."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre desplazamiento de bits",
+    "items": [
+      {
+        "q": "¿Cuál es la diferencia entre desplazamiento lógico y aritmético a la derecha?",
+        "a": "Un desplazamiento lógico a la derecha siempre rellena con ceros los bits altos vacíos, tratando el operando como sin signo. Un desplazamiento aritmético a la derecha rellena los bits altos vacíos con una copia del bit de signo: 0 para números positivos y 1 para números negativos en complemento a dos. Para números no negativos, ambas operaciones producen el mismo resultado; solo difieren cuando el operando es negativo. En C/C++, el operador >> sobre tipos con signo realiza un desplazamiento aritmético en la mayoría de las arquitecturas."
+      },
+      {
+        "q": "¿Por qué el desplazamiento a la izquierda equivale a multiplicar por una potencia de dos?",
+        "a": "En binario, cada posición de bit representa una potencia de dos. Desplazar todos los bits una posición a la izquierda duplica la contribución de cada uno, así que el valor total se duplica. Desplazar n posiciones a la izquierda multiplica por 2ⁿ. Por ejemplo, 6 (110₂) desplazado 3 posiciones a la izquierda da 110000₂ = 48, y 6 × 8 = 48. Los compiladores usan esta identidad para reemplazar instrucciones de multiplicación costosas por instrucciones de desplazamiento más baratas cuando el multiplicador es una constante potencia de dos."
+      },
+      {
+        "q": "¿Qué pasa cuando los bits se desplazan fuera del extremo?",
+        "a": "Los bits que sobrepasan el ancho del registro se descartan. En un desplazamiento a la izquierda, los bits altos que desbordan el ancho del registro se eliminan, lo que puede provocar resultados inesperados si el desplazamiento produce un valor demasiado grande para el tipo destino. En un desplazamiento a la derecha, los bits bajos que pasan la posición 0 se descartan, lo que equivale a truncar hacia cero (lógico) o hacia menos infinito (aritmético)."
+      },
+      {
+        "q": "¿Puedo usar desplazamientos de bits para dividir?",
+        "a": "Sí. Un desplazamiento lógico a la derecha por n divide un entero sin signo entre 2ⁿ (truncando la parte fraccionaria). Un desplazamiento aritmético a la derecha por n divide un entero con signo entre 2ⁿ, redondeando hacia menos infinito. Esto no es lo mismo que la división entera de C para números negativos: −7 >> 1 = −4 (desplazamiento aritmético), pero −7 / 2 = −3 (C trunca hacia cero). Usa la operación adecuada según necesites división por piso o truncamiento."
+      },
+      {
+        "q": "¿Cuál es la cantidad máxima de desplazamiento?",
+        "a": "Para enteros de 32 bits, desplazar 32 o más posiciones produce comportamiento indefinido en C/C++ y normalmente se maneja como módulo 32 en hardware (desplazar n es lo mismo que desplazar n mod 32). Esta calculadora admite desplazamientos de 0 a 31 bits, cubriendo todo el rango de 32 bits. Para desplazamientos mayores necesitarías aritmética de múltiples palabras o un tipo entero de 64 bits."
+      },
+      {
+        "q": "¿Cómo se usan los desplazamientos de bits en programas reales?",
+        "a": "Los desplazamientos de bits aparecen en una gran variedad de aplicaciones. Empaquetado y desempaquetado de campos de bits dentro de enteros (cabeceras de paquetes de red, canales de color de píxeles), multiplicación y división rápidas por potencias de dos, cálculo de valores hash, implementación de primitivas criptográficas como AES y SHA, extracción de nibbles y bytes de palabras más grandes, y cálculo de máscaras de bits son usos muy comunes. Siempre que un programa necesite aislar o establecer bits concretos, los desplazamientos y las operaciones bit a bit AND/OR son las herramientas adecuadas."
+      }
+    ]
+  }
+}

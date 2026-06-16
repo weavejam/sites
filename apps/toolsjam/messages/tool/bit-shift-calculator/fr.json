@@ -1,0 +1,112 @@
+{
+  "title": "Calculateur de décalage binaire",
+  "tagline": "Applique un décalage à gauche, un décalage logique à droite et un décalage arithmétique aux entiers, avec résultats en binaire, décimal et hexadécimal.",
+  "intro": "Saisissez un nombre, choisissez le type et le nombre de bits à décaler, puis voyez instantanément le résultat dans les trois formats.",
+  "field": {
+    "inputFormat": "Format d'entrée",
+    "number": "Nombre",
+    "shiftType": "Type de décalage",
+    "shiftAmount": "Nombre de bits à décaler",
+    "numberDecimalPlaceholder": "p. ex. 5",
+    "numberBinaryPlaceholder": "p. ex. 1010",
+    "shiftAmountPlaceholder": "p. ex. 2"
+  },
+  "type": {
+    "decimal": "Décimal",
+    "binary": "Binaire",
+    "leftShift": "Décalage à gauche (<<)",
+    "leftShift_desc": "Décale les bits vers la gauche de n positions. Équivaut à multiplier le nombre par 2ⁿ. Les bits libérés à droite sont remplis avec des zéros.",
+    "logicalRightShift": "Décalage logique à droite (>>>)",
+    "logicalRightShift_desc": "Décale les bits vers la droite de n positions et remplit les bits libérés à gauche avec des zéros. Traite le nombre comme non signé.",
+    "arithmeticRightShift": "Décalage arithmétique à droite (>>)",
+    "arithmeticRightShift_desc": "Décale les bits vers la droite de n positions et remplit les cases libérées à gauche avec le bit de signe. Conserve le signe des entiers signés."
+  },
+  "button": {
+    "calculate": "Calculer le décalage",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalidDecimal": "Veuillez saisir un entier valide (positif ou négatif).",
+    "invalidBinary": "Veuillez saisir un entier binaire valide composé uniquement de 0 et de 1.",
+    "invalidShiftAmount": "Le nombre de bits à décaler doit être un entier entre 0 et 31.",
+    "empty": "Veuillez saisir un nombre et un nombre de bits à décaler."
+  },
+  "result": {
+    "heading": "Résultat",
+    "binary": "Binaire",
+    "decimal": "Décimal",
+    "hex": "Hexadécimal"
+  },
+  "about": {
+    "heading": "À propos du décalage binaire",
+    "body": "Le décalage binaire est l'une des opérations les plus fondamentales en programmation et en conception matérielle numérique. Un décalage déplace tous les bits d'un nombre binaire d'un certain nombre de positions vers la gauche ou la droite, en supprimant les bits qui sortent d'un côté et en remplissant les positions libérées de l'autre côté selon le type de décalage.\n\nL'opérateur de décalage à gauche (<<) déplace tous les bits vers la gauche de n positions. Les n bits qui sortent à gauche sont supprimés et n zéros sont ajoutés à droite. Décaler à gauche de n positions équivaut mathématiquement à multiplier l'entier par 2ⁿ, à condition qu'il n'y ait pas de dépassement. Par exemple, 5 (binaire 101) décalé de 2 vers la gauche donne 20 (binaire 10100), car 5 × 4 = 20. Les compilateurs remplacent souvent une multiplication par une puissance de deux par un décalage à gauche, car cela s'exécute en un seul cycle d'horloge du processeur.\n\nLe décalage logique à droite (>>>) déplace tous les bits vers la droite de n positions. Les n bits qui sortent à droite sont supprimés et n zéros sont ajoutés à gauche. Cela traite le nombre comme non signé et équivaut à une division entière par 2ⁿ, arrondie à l'inférieur. Par exemple, 40 (binaire 101000) décalé logiquement de 3 vers la droite donne 5 (binaire 000101). Les décalages logiques à droite sont l'opération standard pour les entiers non signés dans des langages comme Java, qui utilise explicitement >>> pour cette raison.\n\nLe décalage arithmétique à droite (>>) déplace aussi les bits vers la droite de n positions, mais au lieu d'insérer des zéros à gauche, il recopie le bit de signe, c'est-à-dire le bit le plus significatif. Pour un nombre positif (bit de signe 0), il insère des zéros et se comporte comme un décalage logique. Pour un nombre négatif (bit de signe 1 en complément à deux), il insère des uns, ce qui préserve le signe négatif. Par exemple, −16 (complément à deux sur 32 bits : ...11110000) décalé arithmétiquement de 2 vers la droite donne −4 (binaire ...11111100). Cela conserve le signe du nombre et équivaut à une division entière signée par 2ⁿ, arrondie vers moins l'infini.\n\nLes décalages binaires sont largement utilisés dans le code critique pour les performances. Les fonctions de hachage, les algorithmes cryptographiques, le traitement d'images, l'encodage audio et l'analyse des protocoles réseau s'appuient tous sur les décalages pour gagner en efficacité. En matériel, les registres à décalage sont des circuits fondamentaux qui servent de base aux protocoles de communication série, aux générateurs CRC et aux registres à décalage à rétroaction linéaire (LFSR) utilisés pour la génération de nombres aléatoires et le brouillage des données."
+  },
+  "examples": {
+    "heading": "Exemples de décalage binaire",
+    "intro": "Opérations courantes montrant la relation entre le décalage et la multiplication ou la division par des puissances de deux.",
+    "colInput": "Opération",
+    "colOutput": "Résultat binaire",
+    "colNote": "Vérification décimale",
+    "items": [
+      {
+        "input": "5 << 2 (décalage à gauche de 2)",
+        "output": "10100",
+        "note": "5 × 4 = 20 ✓. Un décalage à gauche de 2 revient à multiplier par 2² = 4."
+      },
+      {
+        "input": "40 >>> 3 (décalage logique à droite de 3)",
+        "output": "101",
+        "note": "40 ÷ 8 = 5 ✓. Un décalage logique à droite de 3 revient à diviser en non signé par 2³ = 8."
+      },
+      {
+        "input": "−16 >> 2 (décalage arithmétique à droite de 2)",
+        "output": "11111100 (−4)",
+        "note": "−16 ÷ 4 = −4 ✓. Le décalage arithmétique conserve le bit de signe, donc le résultat reste négatif."
+      },
+      {
+        "input": "binaire 1010 << 1 (décalage à gauche de 1)",
+        "output": "10100",
+        "note": "Le binaire 1010 (10 décimal) devient 10100 (20 décimal). Un décalage à gauche de 1 double la valeur."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de décalage binaire",
+    "steps": [
+      "Choisissez le format d'entrée : 'Décimal' pour saisir un entier en base 10 (nombres négatifs autorisés), ou 'Binaire' pour saisir une chaîne binaire.",
+      "Saisissez le nombre dans le champ prévu. Pour une entrée binaire, utilisez uniquement 0 et 1.",
+      "Sélectionnez le type de décalage : 'Décalage à gauche (<<)' pour multiplier par une puissance de deux, 'Décalage logique à droite (>>>)' pour une division non signée, ou 'Décalage arithmétique à droite (>>)' pour une division signée.",
+      "Saisissez le nombre de bits à décaler, c'est-à-dire le nombre de positions à déplacer (0 à 31).",
+      "Cliquez sur 'Calculer le décalage'. Le résultat s'affiche en binaire, décimal et hexadécimal."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du calculateur de décalage binaire",
+    "items": [
+      {
+        "q": "Quelle est la différence entre un décalage logique et un décalage arithmétique à droite ?",
+        "a": "Un décalage logique à droite remplit toujours les bits de poids fort libérés avec des zéros, en traitant l'opérande comme non signé. Un décalage arithmétique à droite remplit les bits de poids fort libérés avec une copie du bit de signe — 0 pour les nombres positifs, 1 pour les nombres négatifs en complément à deux. Pour les nombres non négatifs, les deux opérations donnent le même résultat ; elles ne diffèrent que lorsque l'opérande est négatif. En C/C++, l'opérateur >> sur les types signés effectue un décalage arithmétique sur la plupart des architectures."
+      },
+      {
+        "q": "Pourquoi un décalage à gauche équivaut-il à une multiplication par une puissance de deux ?",
+        "a": "En binaire, chaque position de bit représente une puissance de deux. Déplacer tous les bits d'une position vers la gauche double la contribution de chacun, donc la valeur entière double. Décaler à gauche de n positions multiplie par 2ⁿ. Par exemple, 6 (110₂) décalé de 3 vers la gauche donne 110000₂ = 48, et 6 × 8 = 48. Les compilateurs utilisent cette identité pour remplacer des instructions de multiplication coûteuses par des instructions de décalage plus économiques lorsque le multiplicateur est une constante puissance de deux."
+      },
+      {
+        "q": "Que se passe-t-il quand des bits sortent de l'extrémité ?",
+        "a": "Les bits qui dépassent la largeur du registre sont simplement supprimés. Pour un décalage à gauche, les bits de poids fort qui débordent sont perdus, ce qui peut produire un résultat inattendu si le décalage donne une valeur trop grande pour le type cible. Pour un décalage à droite, les bits de poids faible qui passent la position 0 sont supprimés, ce qui équivaut à une troncature vers zéro (logique) ou vers moins l'infini (arithmétique)."
+      },
+      {
+        "q": "Puis-je utiliser les décalages binaires pour diviser ?",
+        "a": "Oui. Un décalage logique à droite de n divise un entier non signé par 2ⁿ (en tronquant la partie fractionnaire). Un décalage arithmétique à droite de n divise un entier signé par 2ⁿ, en arrondissant vers moins l'infini. Cela n'est pas la même chose que la division entière en C pour les nombres négatifs : −7 >> 1 = −4 (décalage arithmétique), alors que −7 / 2 = −3 (troncature vers zéro en C). Choisissez l'opération adaptée selon que vous avez besoin d'un arrondi par défaut ou d'une troncature."
+      },
+      {
+        "q": "Quel est le décalage maximal ?",
+        "a": "Pour les entiers 32 bits, décaler de 32 positions ou plus produit un comportement indéfini en C/C++ et est généralement géré modulo 32 par le matériel (décaler de n revient à décaler de n mod 32). Ce calculateur prend en charge des décalages de 0 à 31 bits, couvrant toute la plage 32 bits. Pour des décalages plus grands, il faut une arithmétique multi-mots ou un entier 64 bits."
+      },
+      {
+        "q": "Comment les décalages binaires sont-ils utilisés dans les programmes réels ?",
+        "a": "Les décalages binaires apparaissent dans de nombreux domaines. L'empaquetage et le dépaquetage de champs de bits dans des entiers (en-têtes de paquets réseau, canaux de couleur des pixels), la multiplication et la division rapides par des puissances de deux, le calcul de hachages, l'implémentation de primitives cryptographiques comme AES et SHA, l'extraction de nibbles et d'octets à partir de mots plus grands, et le calcul de masques de bits sont des usages courants. Dès qu'un programme doit isoler ou définir des bits précis, les décalages et les opérations bit à bit AND/OR sont les outils de choix."
+      }
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "title": "Calculadora de deslocamento de bits",
+  "tagline": "Aplica deslocamento à esquerda, deslocamento lógico à direita e deslocamento aritmético em inteiros, com resultados em binário, decimal e hexadecimal.",
+  "intro": "Digite um número, escolha o tipo e a quantidade de deslocamento, e veja o resultado instantaneamente nos três formatos.",
+  "field": {
+    "inputFormat": "Formato de entrada",
+    "number": "Número",
+    "shiftType": "Tipo de deslocamento",
+    "shiftAmount": "Quantidade de deslocamento (bits)",
+    "numberDecimalPlaceholder": "ex.: 5",
+    "numberBinaryPlaceholder": "ex.: 1010",
+    "shiftAmountPlaceholder": "ex.: 2"
+  },
+  "type": {
+    "decimal": "Decimal",
+    "binary": "Binário",
+    "leftShift": "Deslocamento à esquerda (<<)",
+    "leftShift_desc": "Desloca os bits para a esquerda em n posições. É equivalente a multiplicar o número por 2ⁿ. Os bits liberados à direita são preenchidos com zeros.",
+    "logicalRightShift": "Deslocamento lógico à direita (>>>)",
+    "logicalRightShift_desc": "Desloca os bits para a direita em n posições e preenche com zeros os bits liberados à esquerda. Trata o número como sem sinal.",
+    "arithmeticRightShift": "Deslocamento aritmético à direita (>>)",
+    "arithmeticRightShift_desc": "Desloca os bits para a direita em n posições e preenche os espaços à esquerda com o bit de sinal. Preserva o sinal de inteiros com sinal."
+  },
+  "button": {
+    "calculate": "Calcular deslocamento",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalidDecimal": "Digite um inteiro válido (positivo ou negativo).",
+    "invalidBinary": "Digite um inteiro binário válido usando apenas 0 e 1.",
+    "invalidShiftAmount": "A quantidade de deslocamento deve ser um inteiro entre 0 e 31.",
+    "empty": "Digite um número e uma quantidade de deslocamento."
+  },
+  "result": {
+    "heading": "Resultado",
+    "binary": "Binário",
+    "decimal": "Decimal",
+    "hex": "Hexadecimal"
+  },
+  "about": {
+    "heading": "Sobre deslocamento de bits",
+    "body": "Deslocamento de bits é uma das operações mais fundamentais na programação e no projeto de hardware digital. Um deslocamento move todos os bits de um número binário uma quantidade específica de posições para a esquerda ou para a direita, descartando os bits que saem por uma extremidade e preenchendo as posições vazias da outra extremidade de acordo com o tipo de deslocamento.\n\nO operador de deslocamento à esquerda (<<) move todos os bits para a esquerda em n posições. Os n bits que saem pela esquerda são descartados, e n zeros são adicionados à direita. Deslocar à esquerda em n é matematicamente equivalente a multiplicar o inteiro por 2ⁿ, desde que não haja overflow. Por exemplo, 5 (binário 101) deslocado 2 posições à esquerda resulta em 20 (binário 10100), porque 5 × 4 = 20. Compiladores costumam substituir a multiplicação por uma potência de dois por um deslocamento à esquerda, pois isso pode ser executado em um único ciclo de clock da CPU.\n\nO deslocamento lógico à direita (>>>) move todos os bits para a direita em n posições. Os n bits que saem pela direita são descartados, e n zeros são adicionados à esquerda. Isso trata o número como sem sinal e é equivalente à divisão inteira por 2ⁿ, arredondando para baixo. Por exemplo, 40 (binário 101000) deslocado logicamente 3 posições à direita resulta em 5 (binário 000101). Deslocamentos lógicos à direita são a operação padrão para inteiros sem sinal em linguagens como Java, que usa >>> explicitamente por esse motivo.\n\nO deslocamento aritmético à direita (>>) também move bits para a direita em n posições, mas em vez de inserir zeros à esquerda, ele replica o bit de sinal — o bit mais significativo. Para um número positivo (bit de sinal 0), ele insere zeros, comportando-se como um deslocamento lógico. Para um número negativo (bit de sinal 1 em complemento de dois), ele insere uns, preservando o sinal negativo. Por exemplo, −16 (complemento de dois de 32 bits: ...11110000) deslocado aritmeticamente 2 posições à direita resulta em −4 (binário ...11111100). Isso mantém o sinal do número e é equivalente à divisão inteira com sinal por 2ⁿ, arredondando para menos infinito.\n\nDeslocamentos de bits são usados extensivamente em código crítico para desempenho. Funções hash, algoritmos criptográficos, processamento de imagem, codificação de áudio e análise de protocolos de rede dependem de deslocamentos para eficiência. No hardware, registradores de deslocamento são circuitos fundamentais que servem de base para protocolos de comunicação serial, geradores CRC e registradores de deslocamento com realimentação linear (LFSRs) usados em geração de números aleatórios e embaralhamento de dados."
+  },
+  "examples": {
+    "heading": "Exemplos de deslocamento de bits",
+    "intro": "Operações comuns que mostram a relação entre deslocamento e multiplicação ou divisão por potências de dois.",
+    "colInput": "Operação",
+    "colOutput": "Resultado binário",
+    "colNote": "Verificação decimal",
+    "items": [
+      {
+        "input": "5 << 2 (deslocamento à esquerda por 2)",
+        "output": "10100",
+        "note": "5 × 4 = 20 ✓. Deslocar à esquerda por 2 é o mesmo que multiplicar por 2² = 4."
+      },
+      {
+        "input": "40 >>> 3 (deslocamento lógico à direita por 3)",
+        "output": "101",
+        "note": "40 ÷ 8 = 5 ✓. Deslocar logicamente à direita por 3 é o mesmo que dividir sem sinal por 2³ = 8."
+      },
+      {
+        "input": "−16 >> 2 (deslocamento aritmético à direita por 2)",
+        "output": "11111100 (−4)",
+        "note": "−16 ÷ 4 = −4 ✓. O deslocamento aritmético preserva o bit de sinal, então o resultado continua negativo."
+      },
+      {
+        "input": "binário 1010 << 1 (deslocamento à esquerda por 1)",
+        "output": "10100",
+        "note": "O binário 1010 (10 decimal) vira 10100 (20 decimal). Deslocar à esquerda por 1 dobra o valor."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de deslocamento de bits",
+    "steps": [
+      "Escolha o formato de entrada: 'Decimal' para inserir um inteiro em base 10 (números negativos permitidos) ou 'Binário' para inserir uma string binária.",
+      "Digite o número no campo de entrada. Para entrada binária, use apenas 0 e 1.",
+      "Selecione o tipo de deslocamento: 'Deslocamento à esquerda (<<)' para multiplicar por uma potência de dois, 'Deslocamento lógico à direita (>>>)' para divisão sem sinal ou 'Deslocamento aritmético à direita (>>)' para divisão com sinal.",
+      "Digite a quantidade de deslocamento — o número de posições de bits a mover (0 a 31).",
+      "Clique em 'Calcular deslocamento'. O resultado é exibido em binário, decimal e hexadecimal."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ da calculadora de deslocamento de bits",
+    "items": [
+      {
+        "q": "Qual é a diferença entre deslocamento lógico e aritmético à direita?",
+        "a": "Um deslocamento lógico à direita sempre preenche os bits altos liberados com zeros, tratando o operando como sem sinal. Um deslocamento aritmético à direita preenche os bits altos liberados com uma cópia do bit de sinal — 0 para números positivos, 1 para números negativos em complemento de dois. Para números não negativos, as duas operações produzem o mesmo resultado; elas só diferem quando o operando é negativo. Em C/C++, o operador >> em tipos com sinal realiza um deslocamento aritmético na maioria das arquiteturas."
+      },
+      {
+        "q": "Por que deslocar à esquerda é equivalente a multiplicar por uma potência de dois?",
+        "a": "Em binário, cada posição de bit representa uma potência de dois. Deslocar todos os bits uma posição à esquerda dobra a contribuição de cada um, então o valor inteiro dobra. Deslocar à esquerda em n posições multiplica por 2ⁿ. Por exemplo, 6 (110₂) deslocado 3 posições à esquerda resulta em 110000₂ = 48, e 6 × 8 = 48. Compiladores usam essa identidade para trocar instruções de multiplicação mais caras por instruções de deslocamento mais baratas quando o multiplicador é uma constante potência de dois."
+      },
+      {
+        "q": "O que acontece quando bits saem da extremidade?",
+        "a": "Bits que ultrapassam a largura do registrador são simplesmente descartados. Em um deslocamento à esquerda, os bits altos que extrapolam a largura do registrador são removidos, o que pode causar resultados inesperados se o deslocamento produzir um valor grande demais para o tipo de destino. Em um deslocamento à direita, os bits baixos que passam da posição 0 são descartados, o que equivale a truncar em direção a zero (lógico) ou em direção a menos infinito (aritmético)."
+      },
+      {
+        "q": "Posso usar deslocamentos de bits para dividir?",
+        "a": "Sim. Um deslocamento lógico à direita por n divide um inteiro sem sinal por 2ⁿ (truncando a parte fracionária). Um deslocamento aritmético à direita por n divide um inteiro com sinal por 2ⁿ, arredondando para menos infinito. Isso não é o mesmo que a divisão inteira em C para números negativos: −7 >> 1 = −4 (deslocamento aritmético), mas −7 / 2 = −3 (C trunca em direção a zero). Use a operação apropriada dependendo de precisar de divisão por piso ou truncamento."
+      },
+      {
+        "q": "Qual é a quantidade máxima de deslocamento?",
+        "a": "Para inteiros de 32 bits, deslocar 32 ou mais posições produz comportamento indefinido em C/C++ e normalmente é tratado como módulo 32 no hardware (deslocar n é o mesmo que deslocar n mod 32). Esta calculadora suporta deslocamentos de 0 a 31 bits, cobrindo toda a faixa de 32 bits. Para deslocamentos maiores, você precisaria de aritmética de múltiplas palavras ou de um tipo inteiro de 64 bits."
+      },
+      {
+        "q": "Como os deslocamentos de bits são usados em programas reais?",
+        "a": "Deslocamentos de bits aparecem em uma ampla variedade de aplicações. Empacotamento e desempacotamento de campos de bits em inteiros (cabeçalhos de pacotes de rede, canais de cor de pixels), multiplicação e divisão rápidas por potências de dois, cálculo de valores hash, implementação de primitivas criptográficas como AES e SHA, extração de nibbles e bytes de palavras maiores e cálculo de máscaras de bits são usos comuns. Sempre que um programa precisa isolar ou definir bits específicos, deslocamentos e operações bit a bit AND/OR são as ferramentas escolhidas."
+      }
+    ]
+  }
+}
