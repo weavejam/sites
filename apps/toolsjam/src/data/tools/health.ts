@@ -1600,7 +1600,208 @@ export const tools: ToolEntry[] = [
       en: "PSI pressure converter converts PSI, mmHg, kPa, bar, atm, cmH2O, Pa, and MPa with configurable precision for medical device calibration and respiratory care.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "rmr-calculator-resting-metabolic-rate",
+    category: "health",
+    slugs: {
+      en: "rmr-calculator-resting-metabolic-rate",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "RMR Calculator – Resting Metabolic Rate",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "RMR calculator estimates resting metabolic rate using Mifflin-St Jeor, Harris-Benedict, or Katch-McArdle. Find daily calorie needs at rest and with activity.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "rsbi-calculator-rapid-shallow-breathing-index",
+    category: "health",
+    slugs: {
+      en: "rsbi-calculator-rapid-shallow-breathing-index",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "RSBI Calculator – Rapid Shallow Breathing Index",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "RSBI calculator computes the rapid shallow breathing index from respiratory rate and tidal volume to assess weaning readiness from mechanical ventilation.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "saag-calculator-serum-ascites-albumin-gradient",
+    category: "health",
+    slugs: {
+      en: "saag-calculator-serum-ascites-albumin-gradient",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "SAAG Calculator – Serum Ascites Albumin Gradient",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "SAAG calculator computes the serum-ascites albumin gradient to classify ascites as portal hypertensive or non-portal, guiding faster differential diagnosis.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "saps-ii-calculator-simplified-acute-physiology-ii-score-calculator",
+    category: "health",
+    slugs: {
+      en: "saps-ii-calculator-simplified-acute-physiology-ii-score-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "SAPS II Calculator – ICU Severity & Mortality Score",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "SAPS II calculator scores ICU illness severity from 15 variables and predicts hospital mortality risk to support critical care triage decisions.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "scorad-calculator-scoring-atopic-dermatitis",
+    category: "health",
+    slugs: {
+      en: "scorad-calculator-scoring-atopic-dermatitis",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "SCORAD Calculator – Atopic Dermatitis Severity Score",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "SCORAD calculator assesses atopic dermatitis severity using extent, intensity, and subjective symptoms. Grades eczema mild, moderate, or severe to guide care.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
+
 
 
 
