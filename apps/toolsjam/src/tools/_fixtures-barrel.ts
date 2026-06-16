@@ -239,6 +239,11 @@ import { fixtures as f_gauss_jordan_elimination_calculator } from "@/tools/gauss
 import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calculator.fixtures";
 import { fixtures as f_gcf_calculator_greatest_common_factor } from "@/tools/gcf-calculator-greatest-common-factor.fixtures";
 import { fixtures as f_generic_rectangle_calculator } from "@/tools/generic-rectangle-calculator.fixtures";
+import { fixtures as f_gestational_age_calculator } from "@/tools/gestational-age-calculator.fixtures";
+import { fixtures as f_gfr_calculator_estimated_glomerular_filtration_rate } from "@/tools/gfr-calculator-estimated-glomerular-filtration-rate.fixtures";
+import { fixtures as f_gir_calculator_glucose_infusion_rate } from "@/tools/gir-calculator-glucose-infusion-rate.fixtures";
+import { fixtures as f_glycemic_index_calculator } from "@/tools/glycemic-index-calculator.fixtures";
+import { fixtures as f_glycemic_load_calculator } from "@/tools/glycemic-load-calculator.fixtures";
 import { fixtures as f_gpa_calculator } from "@/tools/gpa-calculator.fixtures";
 import { fixtures as f_gpa_calculator_pakistan } from "@/tools/gpa-calculator-pakistan.fixtures";
 import { fixtures as f_grade_calculator } from "@/tools/grade-calculator.fixtures";
@@ -833,6 +838,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "gcf-and-lcm-calculator": f_gcf_and_lcm_calculator,
   "gcf-calculator-greatest-common-factor": f_gcf_calculator_greatest_common_factor,
   "generic-rectangle-calculator": f_generic_rectangle_calculator,
+  "gestational-age-calculator": f_gestational_age_calculator,
+  "gfr-calculator-estimated-glomerular-filtration-rate": f_gfr_calculator_estimated_glomerular_filtration_rate,
+  "gir-calculator-glucose-infusion-rate": f_gir_calculator_glucose_infusion_rate,
+  "glycemic-index-calculator": f_glycemic_index_calculator,
+  "glycemic-load-calculator": f_glycemic_load_calculator,
   "gpa-calculator": f_gpa_calculator,
   "gpa-calculator-pakistan": f_gpa_calculator_pakistan,
   "grade-calculator": f_grade_calculator,
