@@ -2570,6 +2570,207 @@ export const tools: ToolEntry[] = [
       en: "Height percentile calculator uses CDC growth charts to rank your height by age and gender. Get z-score, percentile, and growth category assessment instantly.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "hand-sanitizer-calculator-coronavirus",
+    category: "health",
+    slugs: {
+      en: "hand-sanitizer-calculator-coronavirus",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Hand Sanitizer Calculator – COVID-19 Effectiveness & Cost",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Hand sanitizer calculator evaluates alcohol concentration effectiveness against COVID-19, cost per use, and days of supply. Free, instant results.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "happiness-calculator",
+    category: "health",
+    slugs: {
+      en: "happiness-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Happiness Calculator – Measure Life Satisfaction Score",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Happiness calculator scores your well-being across 8 life dimensions — relationships, career, health, and more. Get instant insights and recommendations.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "harris-benedict-calculator-basal-metabolic-rate",
+    category: "health",
+    slugs: {
+      en: "harris-benedict-calculator-basal-metabolic-rate",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Harris-Benedict BMR Calculator – Basal Metabolic Rate",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Harris-Benedict BMR calculator computes your basal metabolic rate and daily calorie needs by gender, weight, height, age, and activity level.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "has-bled-calculator",
+    category: "health",
+    slugs: {
+      en: "has-bled-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "HAS-BLED Calculator – Bleeding Risk for Anticoagulation",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "HAS-BLED calculator scores bleeding risk in anticoagulated patients using 8 validated clinical criteria. Guides safe anticoagulation therapy decisions.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "hcg-levels-calculator",
+    category: "health",
+    slugs: {
+      en: "hcg-levels-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "HCG Levels Calculator – Pregnancy Hormone Doubling Time",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "HCG levels calculator computes pregnancy hormone doubling time from two blood test readings and compares with normal early-pregnancy reference ranges.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
+
 
 ];
