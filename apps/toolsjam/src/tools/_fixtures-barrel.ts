@@ -400,6 +400,11 @@ import { fixtures as f_slant_height_calculator } from "@/tools/slant-height-calc
 import { fixtures as f_slope_calculator } from "@/tools/slope-calculator.fixtures";
 import { fixtures as f_smp_x_distribution_calculator } from "@/tools/smp-x-distribution-calculator.fixtures";
 import { fixtures as f_snowman_calculator } from "@/tools/snowman-calculator.fixtures";
+import { fixtures as f_sodium_change_calculator_in_hypertriglyceridemia } from "@/tools/sodium-change-calculator-in-hypertriglyceridemia.fixtures";
+import { fixtures as f_sodium_correction_calculator } from "@/tools/sodium-correction-calculator.fixtures";
+import { fixtures as f_sodium_correction_rate_calculator_for_hypo_and_hypernatremia } from "@/tools/sodium-correction-rate-calculator-for-hypo-and-hypernatremia.fixtures";
+import { fixtures as f_sodium_deficit_calculator } from "@/tools/sodium-deficit-calculator.fixtures";
+import { fixtures as f_sodium_in_salt_calculator } from "@/tools/sodium-in-salt-calculator.fixtures";
 import { fixtures as f_sofa_score_calculator } from "@/tools/sofa-score-calculator.fixtures";
 import { fixtures as f_speaker_box_calculator } from "@/tools/speaker-box-calculator.fixtures";
 import { fixtures as f_spearmans_correlation_calculator } from "@/tools/spearmans-correlation-calculator.fixtures";
@@ -929,6 +934,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "slope-calculator": f_slope_calculator,
   "smp-x-distribution-calculator": f_smp_x_distribution_calculator,
   "snowman-calculator": f_snowman_calculator,
+  "sodium-change-calculator-in-hypertriglyceridemia": f_sodium_change_calculator_in_hypertriglyceridemia,
+  "sodium-correction-calculator": f_sodium_correction_calculator,
+  "sodium-correction-rate-calculator-for-hypo-and-hypernatremia": f_sodium_correction_rate_calculator_for_hypo_and_hypernatremia,
+  "sodium-deficit-calculator": f_sodium_deficit_calculator,
+  "sodium-in-salt-calculator": f_sodium_in_salt_calculator,
   "sofa-score-calculator": f_sofa_score_calculator,
   "speaker-box-calculator": f_speaker_box_calculator,
   "spearmans-correlation-calculator": f_spearmans_correlation_calculator,
