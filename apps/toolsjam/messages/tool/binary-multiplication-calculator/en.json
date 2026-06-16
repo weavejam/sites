@@ -1,0 +1,102 @@
+{
+  "title": "Binary Multiplication Calculator",
+  "tagline": "Multiply binary numbers instantly with step-by-step solutions and automatic decimal conversion.",
+  "intro": "Enter two binary numbers, click Calculate, and see the binary product along with its decimal equivalent.",
+  "field": {
+    "first": "First binary number",
+    "second": "Second binary number",
+    "firstPlaceholder": "e.g. 1011",
+    "secondPlaceholder": "e.g. 101",
+    "showSteps": "Show step-by-step solution"
+  },
+  "button": {
+    "calculate": "Calculate Multiplication",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalidFirst": "First number must contain only binary digits (0 and 1).",
+    "invalidSecond": "Second number must contain only binary digits (0 and 1).",
+    "empty": "Please enter both binary numbers."
+  },
+  "result": {
+    "heading": "Result",
+    "product": "Binary product",
+    "decimal": "Decimal equivalent",
+    "steps": "Step-by-step solution",
+    "stepBit1": "Bit {shift} (1): {a} << {shift} = {partial}",
+    "stepBit0": "Bit {shift} (0): 0× = {zeros}",
+    "stepSum": "Total = {product} (decimal: {dec})"
+  },
+  "about": {
+    "heading": "About binary multiplication",
+    "body": "Binary multiplication follows the same positional logic as decimal long multiplication, but with dramatically simpler individual-digit rules. In decimal, each digit can be 0–9, forcing you to memorize a 10×10 multiplication table. In binary, each digit is either 0 or 1, so the only rules are: 0 × 0 = 0, 0 × 1 = 0, 1 × 0 = 0, and 1 × 1 = 1. The complexity lies not in multiplying individual bits but in correctly shifting and adding the partial products.\n\nThe long multiplication procedure in binary works like this. Write the two numbers, one above the other, designating one as the multiplicand and the other as the multiplier. For each bit of the multiplier, starting from the rightmost (least significant) bit, generate a partial product: if the multiplier bit is 1, the partial product is the multiplicand shifted left by the bit's position; if the bit is 0, the partial product is all zeros. Sum all partial products using binary addition, propagating carries as needed. The final sum is the binary product.\n\nFor example, to multiply 1011 by 101: the rightmost bit of 101 is 1, so the first partial product is 1011 (shifted 0 places). The middle bit is 0, giving 0000 shifted 1 place (effectively 00000 in context). The leftmost bit is 1, so the third partial product is 1011 shifted 2 places, i.e. 101100. Adding 1011 + 0000 + 101100 = 110111, which equals 55 in decimal, confirming that 11 × 5 = 55.\n\nBinary multiplication maps directly to hardware: the shift-and-add algorithm is implemented in every CPU's integer multiply unit and in FPGAs and custom ASICs. Modern processors use optimized variants such as Booth's algorithm, Wallace trees, and Dadda multipliers to reduce the number of partial products and speed up the final addition. Understanding the fundamental shift-and-add process helps software engineers reason about performance, overflow, and the binary representations that underpin all integer arithmetic in computing.\n\nOverflow is a critical concern. If both operands are n-bit integers, their product can require up to 2n bits. A 32-bit × 32-bit multiplication can produce a 64-bit result, and hardware multiply instructions often provide separate high and low halves of the product for precisely this reason. This calculator works with arbitrary-length binary integers and displays the full product without truncation."
+  },
+  "examples": {
+    "heading": "Binary multiplication examples",
+    "intro": "Worked examples covering basic cases, powers of two, and larger operands.",
+    "colInput": "Operation",
+    "colOutput": "Binary result",
+    "colNote": "Decimal check",
+    "items": [
+      {
+        "input": "1011 × 101",
+        "output": "110111",
+        "note": "11 × 5 = 55 ✓. Partial products: 1011 + 000000 + 101100 = 110111."
+      },
+      {
+        "input": "1101 × 1",
+        "output": "1101",
+        "note": "13 × 1 = 13 ✓. Multiplying by 1 always returns the multiplicand unchanged."
+      },
+      {
+        "input": "1000 × 100",
+        "output": "100000",
+        "note": "8 × 4 = 32 ✓. Multiplying by a power of two is equivalent to a left shift."
+      },
+      {
+        "input": "11011 × 1101",
+        "output": "101011111",
+        "note": "27 × 13 = 351 ✓. Larger operands illustrate the full long-multiplication procedure."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the binary multiplication calculator",
+    "steps": [
+      "Enter the first binary number (multiplicand) using only 0s and 1s in the 'First binary number' field.",
+      "Enter the second binary number (multiplier) in the 'Second binary number' field.",
+      "Toggle 'Show step-by-step solution' if you want to see the individual partial products and the addition process.",
+      "Click 'Calculate Multiplication'. The binary product and its decimal equivalent appear in the result box.",
+      "Click Reset to clear both fields and start over with new values."
+    ]
+  },
+  "faq": {
+    "heading": "Binary multiplication FAQ",
+    "items": [
+      {
+        "q": "How does binary multiplication differ from decimal multiplication?",
+        "a": "The algorithm is identical — shift and add partial products — but digit multiplication is trivial in binary: any bit times 0 is 0, and any bit times 1 is itself. This makes binary multiplication easier to implement in hardware, which is why all CPUs perform integer arithmetic in binary. The trade-off is that binary numbers require more digits to represent the same value."
+      },
+      {
+        "q": "Why does multiplying by a power of two equal a left shift?",
+        "a": "In binary, multiplying by 2 is equivalent to appending a zero (shifting all bits one position left), just as multiplying a decimal number by 10 appends a zero. Multiplying by 2ⁿ shifts left by n positions. For example, 101 (5) left-shifted by 2 positions becomes 10100 (20), and 5 × 4 = 20. This is why CPUs and compilers replace multiplication by powers of two with fast shift instructions."
+      },
+      {
+        "q": "Can this calculator multiply numbers with fractional binary parts?",
+        "a": "This calculator works with whole binary integers only. To multiply binary fractions, use integer multiplication on the significand and then adjust the binary point: the product's binary point is placed so that the total number of fractional bits equals the sum of fractional bits in both operands. For example, 1.01 × 10.1 = integer product of 101 × 101 = 11001, with 2+1=3 fractional bits, giving 11.001."
+      },
+      {
+        "q": "What is the maximum size of the result?",
+        "a": "If the multiplicand has m bits and the multiplier has n bits, the product has at most m + n bits. For example, two 4-bit numbers can produce up to an 8-bit result. This calculator handles arbitrary-length inputs and shows the full binary product without truncation."
+      },
+      {
+        "q": "How do I verify a binary multiplication result?",
+        "a": "Convert both operands to decimal, multiply them in decimal, then convert the decimal product back to binary and compare. The decimal equivalent displayed by this calculator performs exactly this check. Alternatively, verify each partial product individually and then check the binary addition column by column."
+      },
+      {
+        "q": "Does the order of the operands matter?",
+        "a": "No. Binary multiplication is commutative: A × B = B × A. However, the number of partial products generated depends on the multiplier's bit count, so swapping operands can change the intermediate steps shown in the step-by-step view while producing the same final product."
+      }
+    ]
+  }
+}

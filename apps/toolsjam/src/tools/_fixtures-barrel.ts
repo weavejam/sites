@@ -40,6 +40,11 @@ import { fixtures as f_aquarium_calculator } from "@/tools/aquarium-calculator.f
 import { fixtures as f_aquarium_glass_thickness_calculator } from "@/tools/aquarium-glass-thickness-calculator.fixtures";
 import { fixtures as f_aspect_ratio_calculator } from "@/tools/aspect-ratio-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
+import { fixtures as f_binary_fraction_converter } from "@/tools/binary-fraction-converter.fixtures";
+import { fixtures as f_binary_multiplication_calculator } from "@/tools/binary-multiplication-calculator.fixtures";
+import { fixtures as f_binary_subtraction_calculator } from "@/tools/binary-subtraction-calculator.fixtures";
+import { fixtures as f_binomial_coefficient_calculator } from "@/tools/binomial-coefficient-calculator.fixtures";
+import { fixtures as f_bit_shift_calculator } from "@/tools/bit-shift-calculator.fixtures";
 import { fixtures as f_black_hole_collision_calculator } from "@/tools/black-hole-collision-calculator.fixtures";
 import { fixtures as f_black_hole_temperature_calculator } from "@/tools/black-hole-temperature-calculator.fixtures";
 import { fixtures as f_blackbody_radiation_calculator } from "@/tools/blackbody-radiation-calculator.fixtures";
@@ -509,6 +514,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "aquarium-glass-thickness-calculator": f_aquarium_glass_thickness_calculator,
   "aspect-ratio-calculator": f_aspect_ratio_calculator,
   "basal-area-calculator": f_basal_area_calculator,
+  "binary-fraction-converter": f_binary_fraction_converter,
+  "binary-multiplication-calculator": f_binary_multiplication_calculator,
+  "binary-subtraction-calculator": f_binary_subtraction_calculator,
+  "binomial-coefficient-calculator": f_binomial_coefficient_calculator,
+  "bit-shift-calculator": f_bit_shift_calculator,
   "black-hole-collision-calculator": f_black_hole_collision_calculator,
   "black-hole-temperature-calculator": f_black_hole_temperature_calculator,
   "blackbody-radiation-calculator": f_blackbody_radiation_calculator,

@@ -1,0 +1,112 @@
+{
+  "title": "Bit Shift Calculator",
+  "tagline": "Perform left shift, logical right shift, and arithmetic right shift on integers, with results in binary, decimal, and hexadecimal.",
+  "intro": "Enter a number, choose the shift type and amount, and see the shifted result across all three number formats instantly.",
+  "field": {
+    "inputFormat": "Input format",
+    "number": "Number",
+    "shiftType": "Shift type",
+    "shiftAmount": "Shift amount (bits)",
+    "numberDecimalPlaceholder": "e.g. 5",
+    "numberBinaryPlaceholder": "e.g. 1010",
+    "shiftAmountPlaceholder": "e.g. 2"
+  },
+  "type": {
+    "decimal": "Decimal",
+    "binary": "Binary",
+    "leftShift": "Left Shift (<<)",
+    "leftShift_desc": "Shift bits left by n positions. Equivalent to multiplying the number by 2ⁿ. Vacated right bits are filled with zeros.",
+    "logicalRightShift": "Right Shift Logical (>>>)",
+    "logicalRightShift_desc": "Shift bits right by n positions and fill vacated left bits with zeros. Treats the number as unsigned.",
+    "arithmeticRightShift": "Right Shift Arithmetic (>>)",
+    "arithmeticRightShift_desc": "Shift bits right by n positions and fill vacated left bits with the sign bit. Preserves the sign for signed integers."
+  },
+  "button": {
+    "calculate": "Calculate Shift",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalidDecimal": "Please enter a valid integer (positive or negative).",
+    "invalidBinary": "Please enter a valid binary integer using only 0s and 1s.",
+    "invalidShiftAmount": "Shift amount must be an integer between 0 and 31.",
+    "empty": "Please enter a number and a shift amount."
+  },
+  "result": {
+    "heading": "Result",
+    "binary": "Binary",
+    "decimal": "Decimal",
+    "hex": "Hexadecimal"
+  },
+  "about": {
+    "heading": "About bit shifting",
+    "body": "Bit shifting is one of the most fundamental operations in computer programming and digital hardware design. A bit shift moves all bits in a binary number a specified number of positions to the left or right, discarding bits that fall off one end and filling the vacated positions at the other end according to the type of shift.\n\nThe left shift operator (<<) moves all bits to the left by n positions. The n bits that fall off the left end are discarded, and n zeros are appended to the right. Left shifting by n is mathematically equivalent to multiplying the integer by 2ⁿ, as long as there is no overflow. For example, 5 (binary 101) left-shifted by 2 gives 20 (binary 10100), because 5 × 4 = 20. Compilers routinely replace multiplication by a power of two with a left shift because it executes in a single CPU clock cycle.\n\nThe logical right shift (>>>) moves all bits to the right by n positions. The n bits that fall off the right end are discarded, and n zeros are appended to the left. This treats the number as unsigned and is equivalent to integer division by 2ⁿ (rounding down). For example, 40 (binary 101000) right-shifted logically by 3 gives 5 (binary 000101). Logical right shifts are the standard operation for unsigned integers in languages like Java (which uses >>> explicitly for this reason).\n\nThe arithmetic right shift (>>) also moves bits right by n positions, but instead of inserting zeros on the left, it replicates the sign bit — the most significant bit. For a positive number (sign bit 0), it inserts zeros, behaving identically to a logical shift. For a negative number (sign bit 1 in two's complement), it inserts ones, preserving the negative sign. For example, −16 (32-bit two's complement: ...11110000) arithmetic right-shifted by 2 gives −4 (binary ...11111100). This maintains the sign of the number and is equivalent to signed integer division by 2ⁿ (rounding toward negative infinity).\n\nBit shifts are used extensively in performance-critical code. Hash functions, cryptographic algorithms, image processing, audio encoding, and network protocol parsing all rely on shifts for efficiency. In hardware, shift registers are foundational circuits that form the basis of serial communication protocols, CRC generators, and linear feedback shift registers (LFSRs) used in random number generation and data scrambling."
+  },
+  "examples": {
+    "heading": "Bit shift examples",
+    "intro": "Common shift operations showing the relationship between shifting and multiplication or division by powers of two.",
+    "colInput": "Operation",
+    "colOutput": "Binary result",
+    "colNote": "Decimal check",
+    "items": [
+      {
+        "input": "5 << 2 (left shift by 2)",
+        "output": "10100",
+        "note": "5 × 4 = 20 ✓. Left shift by 2 is identical to multiplying by 2² = 4."
+      },
+      {
+        "input": "40 >>> 3 (logical right shift by 3)",
+        "output": "101",
+        "note": "40 ÷ 8 = 5 ✓. Logical right shift by 3 is identical to unsigned division by 2³ = 8."
+      },
+      {
+        "input": "−16 >> 2 (arithmetic right shift by 2)",
+        "output": "11111100 (−4)",
+        "note": "−16 ÷ 4 = −4 ✓. Arithmetic shift preserves the sign bit so the result remains negative."
+      },
+      {
+        "input": "1010 binary << 1 (left shift by 1)",
+        "output": "10100",
+        "note": "Binary 1010 (10 decimal) becomes 10100 (20 decimal). Left shift by 1 doubles the value."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the bit shift calculator",
+    "steps": [
+      "Choose the input format: 'Decimal' to enter an integer in base 10 (negative numbers allowed), or 'Binary' to enter a binary string.",
+      "Enter the number in the input field. For binary input, use only 0s and 1s.",
+      "Select the shift type: 'Left Shift (<<)' to multiply by a power of two, 'Right Shift Logical (>>>)' for unsigned division, or 'Right Shift Arithmetic (>>)' for signed division.",
+      "Enter the shift amount — the number of bit positions to shift (0 to 31).",
+      "Click 'Calculate Shift'. The result is displayed in binary, decimal, and hexadecimal."
+    ]
+  },
+  "faq": {
+    "heading": "Bit shift calculator FAQ",
+    "items": [
+      {
+        "q": "What is the difference between logical and arithmetic right shift?",
+        "a": "A logical right shift always fills vacated high bits with zeros, treating the operand as unsigned. An arithmetic right shift fills vacated high bits with a copy of the sign bit — 0 for positive numbers, 1 for negative numbers in two's complement. For non-negative numbers the two operations produce the same result; they differ only when the operand is negative. In C/C++, the >> operator on signed types performs an arithmetic right shift on most architectures."
+      },
+      {
+        "q": "Why is left shift equivalent to multiplication by a power of two?",
+        "a": "In binary, each bit position represents a power of two. Shifting all bits one place to the left doubles every contribution, so the entire value doubles. Shifting left by n positions multiplies by 2ⁿ. For example, 6 (110₂) left-shifted by 3 gives 110000₂ = 48, and 6 × 8 = 48. Compilers use this identity to replace expensive multiply instructions with cheaper shift instructions when the multiplier is a constant power of two."
+      },
+      {
+        "q": "What happens when bits shift off the end?",
+        "a": "Bits that shift beyond the width of the register are simply discarded (lost). For a left shift, the high bits that overflow the register width are dropped, which can cause unexpected results if the shift produces an answer too large to fit in the target type. For a right shift, the low bits that shift past position 0 are discarded, which is equivalent to truncating toward zero (logical) or toward negative infinity (arithmetic)."
+      },
+      {
+        "q": "Can I use bit shifts for division?",
+        "a": "Yes. A logical right shift by n divides an unsigned integer by 2ⁿ (truncating the fractional part). An arithmetic right shift by n divides a signed integer by 2ⁿ, rounding toward negative infinity. These are not the same as C's integer division for negative numbers: −7 >> 1 = −4 (arithmetic shift), but −7 / 2 = −3 (C truncation toward zero). Use the appropriate operation depending on whether you need floor division or truncation."
+      },
+      {
+        "q": "What is the maximum shift amount?",
+        "a": "For 32-bit integers, shifting by 32 or more positions produces undefined behavior in C/C++ and is typically handled modulo 32 in hardware (shift by n is the same as shift by n mod 32). This calculator supports shifts from 0 to 31 bits, covering the full 32-bit range. For larger shifts you would need to use multi-word arithmetic or a 64-bit integer type."
+      },
+      {
+        "q": "How are bit shifts used in real programs?",
+        "a": "Bit shifts appear in a wide range of applications. Packing and unpacking bit fields within integers (network packet headers, pixel color channels), fast multiplication and division by powers of two, computing hash values, implementing cryptographic primitives like AES and SHA, extracting nibbles and bytes from larger words, and computing bitmasks are all common uses. Any time a program needs to isolate or set specific bits, shifts and bitwise AND/OR are the tools of choice."
+      }
+    ]
+  }
+}
