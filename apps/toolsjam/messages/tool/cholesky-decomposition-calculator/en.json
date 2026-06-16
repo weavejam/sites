@@ -1,0 +1,80 @@
+{
+  "title": "Cholesky Decomposition Calculator - Factor Positive Definite Matrices",
+  "tagline": "Decompose any symmetric positive definite matrix into A = L·Lᵀ instantly. Free online Cholesky factorization tool for linear algebra, numerical analysis, and statistics.",
+  "intro": "Enter the elements of a symmetric positive definite matrix, choose its size, and get the lower triangular Cholesky factor L immediately.",
+  "field": {
+    "matrixSize": "Matrix Size",
+    "matrixElements": "Matrix Elements",
+    "matrixHint": "Enter numeric values for each matrix element. The matrix must be symmetric and positive definite."
+  },
+  "button": {
+    "calculate": "Calculate Decomposition",
+    "reset": "Reset Matrix"
+  },
+  "error": {
+    "invalid": "Please fill in all matrix elements with valid numbers.",
+    "notSymmetric": "The matrix is not symmetric. Ensure A[i][j] equals A[j][i] for all positions.",
+    "notPositiveDefinite": "The matrix is not positive definite. All leading principal minors must be positive."
+  },
+  "result": {
+    "heading": "Cholesky Factor L",
+    "formula": "Result matrix L (lower triangular) satisfying A = L·Lᵀ"
+  },
+  "examples": {
+    "loadLabel": "Load a sample matrix:",
+    "load2x2": "2×2 SPD example",
+    "load3x3": "3×3 SPD example",
+    "loadIdentity": "2×2 identity",
+    "heading": "Cholesky decomposition examples",
+    "intro": "Three worked examples showing how the Cholesky factor is computed for matrices of different sizes.",
+    "colInput": "Input Matrix A",
+    "colOutput": "Cholesky Factor L",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "[[4, 2], [2, 3]]",
+        "output": "L = [[2, 0], [1, 1.4142]]",
+        "note": "2×2 symmetric positive definite matrix. L[0][0] = √4 = 2; L[1][0] = 2/2 = 1; L[1][1] = √(3−1) = √2 ≈ 1.4142."
+      },
+      {
+        "input": "[[4, 2, 1], [2, 5, 2], [1, 2, 6]]",
+        "output": "L = [[2, 0, 0], [1, 2, 0], [0.5, 0.75, 2.2776]]",
+        "note": "3×3 positive definite matrix. L[0][0]=2, L[1][0]=1, L[1][1]=2, L[2][0]=0.5, L[2][1]=0.75, L[2][2]=√5.1875≈2.2776. All diagonal entries are positive."
+      },
+      {
+        "input": "[[1, 0], [0, 1]]",
+        "output": "L = [[1, 0], [0, 1]]",
+        "note": "The identity matrix is its own Cholesky factor since I = I·Iᵀ. Useful baseline for verifying calculator accuracy."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the Cholesky decomposition calculator",
+    "steps": [
+      "Select the matrix size (2×2, 3×3, or 4×4) using the size buttons at the top of the calculator.",
+      "Enter all matrix elements in the grid. For a symmetric matrix, make sure A[i][j] equals A[j][i] — the calculator verifies this automatically.",
+      "Click 'Calculate Decomposition'. The lower triangular factor L is displayed in the result grid, with each cell showing the value of L[i][j].",
+      "Verify the result by checking that L × Lᵀ equals your original matrix A. Any numerical discrepancies are due to floating-point rounding.",
+      "Use the sample matrix buttons to load pre-built positive definite matrices and explore how the decomposition works for different inputs."
+    ]
+  },
+  "faq": {
+    "heading": "Cholesky decomposition FAQ",
+    "q1": "What is Cholesky decomposition?",
+    "q1_a": "Cholesky decomposition factors a symmetric positive definite matrix A into the product L·Lᵀ, where L is a lower triangular matrix with positive diagonal entries. Named after French mathematician André-Louis Cholesky, it is roughly twice as efficient as LU decomposition for this class of matrices and is widely used in numerical computing.",
+    "q2": "What does 'positive definite' mean?",
+    "q2_a": "A symmetric matrix A is positive definite if xᵀAx > 0 for every non-zero vector x. Equivalently, all eigenvalues must be strictly positive, or all leading principal minors must be positive. Covariance matrices from statistics are always positive semi-definite and are positive definite when no variable is a perfect linear combination of others.",
+    "q3": "What happens if my matrix is not positive definite?",
+    "q3_a": "The Cholesky algorithm encounters a square root of a non-positive number, which signals the decomposition does not exist in the real-number domain. This calculator detects that condition and reports an error. Check that your matrix is truly symmetric and that all diagonal elements exceed the sum of squared off-diagonal elements in the same row.",
+    "q4": "How is Cholesky decomposition used in practice?",
+    "q4_a": "It is used to solve linear systems Ax = b efficiently, to compute the log-determinant of a covariance matrix (needed for Gaussian likelihood evaluations), to generate correlated random samples in Monte Carlo simulations, and as a building block in Kalman filters and Gaussian process regression. The factor L provides a numerically stable way to work with positive definite systems.",
+    "q5": "Why must the matrix be symmetric?",
+    "q5_a": "The decomposition A = L·Lᵀ is only defined for symmetric matrices because Lᵀ is the transpose of L. A non-symmetric matrix has no such factorization. In practice you can symmetrize a nearly-symmetric matrix by replacing it with (A + Aᵀ)/2 before applying the decomposition.",
+    "q6": "What is the relationship between Cholesky and LU decomposition?",
+    "q6_a": "LU decomposition writes A = L·U with L lower triangular and U upper triangular. For a symmetric positive definite matrix, U = Lᵀ, so Cholesky is a special case of LU that exploits the symmetry to halve the computational work from O(n³/3) to O(n³/6) floating-point operations. Cholesky is also more numerically stable for positive definite systems."
+  },
+  "about": {
+    "heading": "About the Cholesky decomposition calculator",
+    "body": "Cholesky decomposition is one of the most important matrix factorizations in numerical linear algebra. Given a symmetric positive definite matrix A, the decomposition produces a unique lower triangular matrix L with strictly positive diagonal entries such that A = L·Lᵀ. The algorithm, attributed to French artillery officer André-Louis Cholesky (1875–1918), was published posthumously in 1924 and has since become a cornerstone of scientific computing.\n\nThe Cholesky-Banachiewicz algorithm used in this calculator proceeds column by column. For each diagonal entry, it subtracts the sum of squares of all previous entries in the same row from the corresponding diagonal entry of A, then takes the square root. For off-diagonal entries below the diagonal, it subtracts a dot product of previously computed entries and divides by the current diagonal. The computational cost is approximately n³/6 multiplications for an n×n matrix, making it roughly twice as efficient as general LU decomposition for symmetric positive definite inputs.\n\nThe most important prerequisite is that the matrix must be both symmetric and positive definite. Symmetry means A[i][j] = A[j][i] for all pairs (i, j). Positive definiteness means xᵀAx > 0 for every non-zero real vector x, which is equivalent to requiring all eigenvalues to be strictly positive. In the Cholesky algorithm, failure of positive definiteness manifests as an attempt to take the square root of a non-positive number, which is the check this calculator performs.\n\nIn statistics, covariance matrices are always symmetric and positive semi-definite. When no two variables are perfectly collinear, they are strictly positive definite, which means Cholesky decomposition applies directly. The decomposition is used to generate multivariate normal random samples: if z is a vector of independent standard normal variables, then L·z has the covariance matrix A. This technique underpins Monte Carlo simulation of correlated financial assets, climate model ensembles, and structural reliability analyses.\n\nIn machine learning, Gaussian process regression and Bayesian neural networks rely heavily on Cholesky decomposition to invert or log-determinant kernel matrices efficiently. The log-determinant of A equals twice the sum of the logarithms of the diagonal entries of L, which avoids the numerical instability of computing the determinant directly. Kalman filter implementations use the so-called square-root Kalman filter, which propagates the Cholesky factor of the covariance matrix rather than the covariance itself, dramatically improving numerical stability in long-running estimation problems.\n\nThis calculator supports 2×2, 3×3, and 4×4 matrices — the sizes most commonly encountered in classroom exercises, small-scale numerical analysis problems, and prototyping of numerical algorithms. For larger matrices, the same algorithm applies and can be implemented efficiently using BLAS level-3 operations on modern hardware. Whether you are checking homework, verifying a hand-computed decomposition, or exploring the properties of positive definite matrices, this tool provides immediate, accurate Cholesky factors."
+  }
+}
