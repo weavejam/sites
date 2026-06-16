@@ -459,12 +459,17 @@ import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-enve
 import { fixtures as f_uniform_distribution_calculator } from "@/tools/uniform-distribution-calculator.fixtures";
 import { fixtures as f_upper_and_lower_fence_calculator } from "@/tools/upper-and-lower-fence-calculator.fixtures";
 import { fixtures as f_upper_control_limit_calculator } from "@/tools/upper-control-limit-calculator.fixtures";
+import { fixtures as f_urine_output_calculator } from "@/tools/urine-output-calculator.fixtures";
+import { fixtures as f_urr_calculator_urea_reduction_ratio } from "@/tools/urr-calculator-urea-reduction-ratio.fixtures";
 import { fixtures as f_vampire_apocalypse_calculator } from "@/tools/vampire-apocalypse-calculator.fixtures";
 import { fixtures as f_variance_calculator } from "@/tools/variance-calculator.fixtures";
+import { fixtures as f_vbac_calculator_vaginal_birth_after_cesarean_section } from "@/tools/vbac-calculator-vaginal-birth-after-cesarean-section.fixtures";
 import { fixtures as f_venn_diagram_calculator } from "@/tools/venn-diagram-calculator.fixtures";
+import { fixtures as f_venous_blood_ph_calculator } from "@/tools/venous-blood-ph-calculator.fixtures";
 import { fixtures as f_vertical_exaggeration_calculator } from "@/tools/vertical-exaggeration-calculator.fixtures";
 import { fixtures as f_video_file_size_calculator_by_format } from "@/tools/video-file-size-calculator-by-format.fixtures";
 import { fixtures as f_video_frame_size_calculator } from "@/tools/video-frame-size-calculator.fixtures";
+import { fixtures as f_vital_capacity_calculator } from "@/tools/vital-capacity-calculator.fixtures";
 import { fixtures as f_vocal_range_calculator } from "@/tools/vocal-range-calculator.fixtures";
 import { fixtures as f_volt_to_electron_volt_calculator } from "@/tools/volt-to-electron-volt-calculator.fixtures";
 import { fixtures as f_voltage_divider_calculator } from "@/tools/voltage-divider-calculator.fixtures";
@@ -958,12 +963,17 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "uniform-distribution-calculator": f_uniform_distribution_calculator,
   "upper-and-lower-fence-calculator": f_upper_and_lower_fence_calculator,
   "upper-control-limit-calculator": f_upper_control_limit_calculator,
+  "urine-output-calculator": f_urine_output_calculator,
+  "urr-calculator-urea-reduction-ratio": f_urr_calculator_urea_reduction_ratio,
   "vampire-apocalypse-calculator": f_vampire_apocalypse_calculator,
   "variance-calculator": f_variance_calculator,
+  "vbac-calculator-vaginal-birth-after-cesarean-section": f_vbac_calculator_vaginal_birth_after_cesarean_section,
   "venn-diagram-calculator": f_venn_diagram_calculator,
+  "venous-blood-ph-calculator": f_venous_blood_ph_calculator,
   "vertical-exaggeration-calculator": f_vertical_exaggeration_calculator,
   "video-file-size-calculator-by-format": f_video_file_size_calculator_by_format,
   "video-frame-size-calculator": f_video_frame_size_calculator,
+  "vital-capacity-calculator": f_vital_capacity_calculator,
   "vocal-range-calculator": f_vocal_range_calculator,
   "volt-to-electron-volt-calculator": f_volt_to_electron_volt_calculator,
   "voltage-divider-calculator": f_voltage_divider_calculator,
