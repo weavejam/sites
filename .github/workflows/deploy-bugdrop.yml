@@ -1,0 +1,46 @@
+name: Deploy bugdrop feedback worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/bugdrop/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/deploy-bugdrop.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-bugdrop
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install (filtered)
+        run: pnpm install --frozen-lockfile --filter @weavejam/bugdrop...
+
+      - name: Build worker + widget
+        run: |
+          pnpm --filter @weavejam/bugdrop build
+          pnpm --filter @weavejam/bugdrop build:widget
+
+      - name: Deploy to Cloudflare Workers
+        run: pnpm --filter @weavejam/bugdrop deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TOKEN_WORKERS_WEAVEJAM }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

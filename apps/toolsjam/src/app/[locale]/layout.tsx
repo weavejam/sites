@@ -9,6 +9,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { hreflang, isLocale, locales, type Locale } from "@/i18n/locales";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { getBugdropI18n } from "@/lib/bugdrop-i18n";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -59,6 +60,17 @@ export default async function LocaleLayout({
         </NextIntlClientProvider>
         <GoogleAnalytics />
         <AdSenseLoader />
+        {/* BugDrop feedback widget — must not use async or defer */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script
+          src="https://feedback.weavejam.com/widget.js"
+          data-repo="weavejam/sites"
+          data-locale={locale}
+          data-i18n={getBugdropI18n(locale)}
+          data-show-email="true"
+          data-screenshot="optional"
+          data-theme="auto"
+        />
       </body>
     </html>
   );
