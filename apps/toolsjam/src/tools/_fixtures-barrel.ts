@@ -233,7 +233,12 @@ import { fixtures as f_final_grade_calculator } from "@/tools/final-grade-calcul
 import { fixtures as f_fishers_exact_test_calculator } from "@/tools/fishers-exact-test-calculator.fixtures";
 import { fixtures as f_flag_calculator_usa } from "@/tools/flag-calculator-usa.fixtures";
 import { fixtures as f_floating_point_calculator } from "@/tools/floating-point-calculator.fixtures";
+import { fixtures as f_framingham_risk_calculator } from "@/tools/framingham-risk-calculator.fixtures";
+import { fixtures as f_free_testosterone_calculator_with_bioavailable_levels } from "@/tools/free-testosterone-calculator-with-bioavailable-levels.fixtures";
+import { fixtures as f_free_water_deficit_calculator } from "@/tools/free-water-deficit-calculator.fixtures";
 import { fixtures as f_frequency_distribution_calculator } from "@/tools/frequency-distribution-calculator.fixtures";
+import { fixtures as f_fresh_frozen_plasma_dose_calculator } from "@/tools/fresh-frozen-plasma-dose-calculator.fixtures";
+import { fixtures as f_fundal_height_calculator } from "@/tools/fundal-height-calculator.fixtures";
 import { fixtures as f_gamma_function_calculator } from "@/tools/gamma-function-calculator.fixtures";
 import { fixtures as f_gauss_jordan_elimination_calculator } from "@/tools/gauss-jordan-elimination-calculator.fixtures";
 import { fixtures as f_gcf_and_lcm_calculator } from "@/tools/gcf-and-lcm-calculator.fixtures";
@@ -832,7 +837,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "fishers-exact-test-calculator": f_fishers_exact_test_calculator,
   "flag-calculator-usa": f_flag_calculator_usa,
   "floating-point-calculator": f_floating_point_calculator,
+  "framingham-risk-calculator": f_framingham_risk_calculator,
+  "free-testosterone-calculator-with-bioavailable-levels": f_free_testosterone_calculator_with_bioavailable_levels,
+  "free-water-deficit-calculator": f_free_water_deficit_calculator,
   "frequency-distribution-calculator": f_frequency_distribution_calculator,
+  "fresh-frozen-plasma-dose-calculator": f_fresh_frozen_plasma_dose_calculator,
+  "fundal-height-calculator": f_fundal_height_calculator,
   "gamma-function-calculator": f_gamma_function_calculator,
   "gauss-jordan-elimination-calculator": f_gauss_jordan_elimination_calculator,
   "gcf-and-lcm-calculator": f_gcf_and_lcm_calculator,
