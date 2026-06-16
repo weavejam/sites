@@ -15,6 +15,8 @@ import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } fr
 import { fixtures as f_absolute_change_calculator } from "@/tools/absolute-change-calculator.fixtures";
 import { fixtures as f_absolute_humidity_calculator } from "@/tools/absolute-humidity-calculator.fixtures";
 import { fixtures as f_absolute_value_calculator } from "@/tools/absolute-value-calculator.fixtures";
+import { fixtures as f_absolute_value_equation_calculator } from "@/tools/absolute-value-equation-calculator.fixtures";
+import { fixtures as f_absolute_value_inequalities_calculator } from "@/tools/absolute-value-inequalities-calculator.fixtures";
 import { fixtures as f_ac_wattage_calculator } from "@/tools/ac-wattage-calculator.fixtures";
 import { fixtures as f_acceleration_calculator } from "@/tools/acceleration-calculator.fixtures";
 import { fixtures as f_acceleration_in_the_electric_field_calculator } from "@/tools/acceleration-in-the-electric-field-calculator.fixtures";
@@ -22,6 +24,9 @@ import { fixtures as f_acoustic_impedance_calculator } from "@/tools/acoustic-im
 import { fixtures as f_acres_per_hour_calculator } from "@/tools/acres-per-hour-calculator.fixtures";
 import { fixtures as f_acres_to_hectares_converter } from "@/tools/acres-to-hectares-converter.fixtures";
 import { fixtures as f_act_score_calculator } from "@/tools/act-score-calculator.fixtures";
+import { fixtures as f_adding_and_subtracting_fractions_calculator } from "@/tools/adding-and-subtracting-fractions-calculator.fixtures";
+import { fixtures as f_adding_and_subtracting_polynomials_calculator } from "@/tools/adding-and-subtracting-polynomials-calculator.fixtures";
+import { fixtures as f_addition_calculator } from "@/tools/addition-calculator.fixtures";
 import { fixtures as f_adjoint_matrix_calculator } from "@/tools/adjoint-matrix-calculator.fixtures";
 import { fixtures as f_age_on_other_planets_calculator } from "@/tools/age-on-other-planets-calculator.fixtures";
 import { fixtures as f_air_density_calculator } from "@/tools/air-density-calculator.fixtures";
@@ -509,6 +514,8 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "absolute-change-calculator": f_absolute_change_calculator,
   "absolute-humidity-calculator": f_absolute_humidity_calculator,
   "absolute-value-calculator": f_absolute_value_calculator,
+  "absolute-value-equation-calculator": f_absolute_value_equation_calculator,
+  "absolute-value-inequalities-calculator": f_absolute_value_inequalities_calculator,
   "ac-wattage-calculator": f_ac_wattage_calculator,
   "acceleration-calculator": f_acceleration_calculator,
   "acceleration-in-the-electric-field-calculator": f_acceleration_in_the_electric_field_calculator,
@@ -516,6 +523,9 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "acres-per-hour-calculator": f_acres_per_hour_calculator,
   "acres-to-hectares-converter": f_acres_to_hectares_converter,
   "act-score-calculator": f_act_score_calculator,
+  "adding-and-subtracting-fractions-calculator": f_adding_and_subtracting_fractions_calculator,
+  "adding-and-subtracting-polynomials-calculator": f_adding_and_subtracting_polynomials_calculator,
+  "addition-calculator": f_addition_calculator,
   "adjoint-matrix-calculator": f_adjoint_matrix_calculator,
   "age-on-other-planets-calculator": f_age_on_other_planets_calculator,
   "air-density-calculator": f_air_density_calculator,
