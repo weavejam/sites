@@ -3530,7 +3530,208 @@ export const tools: ToolEntry[] = [
       en: "DLBCL prognosis calculator computes IPI and R-IPI scores with 5-year survival estimates to guide treatment planning for diffuse large B-cell lymphoma.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "cholesterol-ratio-calculator",
+    category: "health",
+    slugs: {
+      en: "cholesterol-ratio-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Cholesterol Ratio Calculator – Total/HDL & LDL/HDL Ratios",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Cholesterol ratio calculator computes Total/HDL, LDL/HDL, and Non-HDL values from your lipid panel to assess cardiovascular risk with evidence-based thresholds.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "cholesterol-units-converter",
+    category: "health",
+    slugs: {
+      en: "cholesterol-units-converter",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Cholesterol Units Converter – mg/dL, mmol/L & mg/L",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Cholesterol units converter converts Total, HDL, LDL, and Triglycerides between mg/dL, mmol/L, and mg/L for accurate international lipid panel analysis.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "cigarette-calculator",
+    category: "health",
+    slugs: {
+      en: "cigarette-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Cigarette Calculator – Cost, Health Impact & Quit Savings",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Cigarette calculator estimates daily, monthly, and yearly smoking costs, total nicotine intake, and financial savings from quitting to motivate cessation.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "ciwa-calculator",
+    category: "health",
+    slugs: {
+      en: "ciwa-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "CIWA Calculator – Alcohol Withdrawal Assessment Score",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "CIWA calculator scores alcohol withdrawal severity across 10 clinical criteria to guide safe detoxification management and determine appropriate level of care.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "clomid-ovulation-calculator",
+    category: "health",
+    slugs: {
+      en: "clomid-ovulation-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Clomid Ovulation Calculator – Fertile Window & Cycle Dates",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Clomid ovulation calculator predicts ovulation date, fertile window, and next period based on your cycle length and clomiphene treatment schedule.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
+
 
 
 
