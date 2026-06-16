@@ -526,39 +526,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "triangle-area-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "sanjiao-mianji-jisuanqi",
+      "zh-TW": "sanjiao-mianji-jisuanqi",
+      ja: "sankakkei-menseki-keisan",
+      ko: "samgak-hyeong-myeon-jeok-gyesan-gi",
+      es: "calculadora-area-triangulo",
+      fr: "calculatrice-aire-triangle",
+      de: "dreiecksflaechen-rechner",
+      pt: "calculadora-area-triangulo",
+      ru: "kalkulyator-ploshchadi-treugolnika"
     },
     titles: {
       en: "Triangle Area Calculator - Base Height, Heron's, SAS",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "三角形面积计算器",
+      "zh-TW": "三角形面積計算器",
+      ja: "三角形の面積計算機",
+      ko: "삼각형 면적 계산기",
+      es: "Calculadora de área de triángulo",
+      fr: "Calculatrice d’aire de triangle",
+      de: "Dreiecksflächenrechner",
+      pt: "Calculadora de área de triângulo",
+      ru: "Калькулятор площади треугольника"
     },
     descriptions: {
       en: "Calculate triangle area using base and height, three sides (Heron's formula), or two sides and an angle (SAS). Instant results with formulas shown.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "使用底和高、三边海伦公式或两边一角快速计算三角形面积，并显示公式。",
+      "zh-TW": "使用底和高、三邊海龍公式或兩邊一角快速計算三角形面積，並顯示公式。",
+      ja: "底辺と高さ、3辺のヘロンの公式、2辺と角度で三角形の面積をすばやく計算し、式も表示します。",
+      ko: "밑변과 높이, 세 변의 헤론 공식, 두 변과 각도로 삼각형 면적을 빠르게 계산하고 공식을 표시합니다.",
+      es: "Calcula al instante el área de un triángulo con base y altura, tres lados o dos lados y el ángulo incluido; muestra la fórmula.",
+      fr: "Calculez instantanément l’aire d’un triangle avec base et hauteur, trois côtés ou deux côtés et l’angle compris, avec la formule.",
+      de: "Berechnen Sie die Dreiecksfläche sofort mit Grundseite und Höhe, drei Seiten oder zwei Seiten und eingeschlossenem Winkel; Formel angezeigt.",
+      pt: "Calcule a área de um triângulo pela base e altura, três lados ou dois lados e o ângulo incluído, com a fórmula exibida.",
+      ru: "Быстро вычисляйте площадь треугольника по основанию и высоте, трём сторонам или двум сторонам и углу; формула показана."
     }
   },
   {
@@ -566,39 +566,39 @@ export const tools: ToolEntry[] = [
     category: "math",
     slugs: {
       en: "triangle-height-calculator",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "sanjiao-gaodu-jisuanqi",
+      "zh-TW": "sanjiao-xing-gaodu-ji-suan-qi",
+      ja: "sankakkei-takasa-keisanki",
+      ko: "samgak-hyeong-nop-i-kalkulyeotor",
+      es: "calculadora-altura-triangulo",
+      fr: "calculateur-hauteur-triangle",
+      de: "dreieck-hoehen-rechner",
+      pt: "calculadora-altura-triangulo",
+      ru: "kalkulyator-vysoty-treugolnika"
     },
     titles: {
       en: "Triangle Height Calculator - Find Altitude Instantly",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "三角形高度计算器",
+      "zh-TW": "三角形高度計算器",
+      ja: "三角形の高さ計算器",
+      ko: "삼각형 높이 계산기",
+      es: "Calculadora de altura de triángulos",
+      fr: "Calculateur de hauteur de triangle",
+      de: "Dreieck-Höhenrechner",
+      pt: "Calculadora de altura de triângulo",
+      ru: "Калькулятор высоты треугольника"
     },
     descriptions: {
       en: "Find the altitude of any triangle from area and base, three side lengths, or two sides and an angle. All three heights returned for the three-sides method.",
-      "zh-CN": "",
-      "zh-TW": "",
-      ja: "",
-      ko: "",
-      es: "",
-      fr: "",
-      de: "",
-      pt: "",
-      ru: ""
+      "zh-CN": "从面积和底边、三边或两边夹角快速求三角形高。三边法可一次返回三个高。",
+      "zh-TW": "從面積和底邊、三邊或兩邊夾角快速求三角形高。三邊法可一次回傳三個高。",
+      ja: "面積と底辺、3辺、2辺と角度から三角形の高さを即算。3辺法では3つの高さを一度に表示。",
+      ko: "넓이와 밑변, 세 변, 또는 두 변과 끼인각으로 삼각형 높이를 계산합니다. 세 변 방식은 세 높이를 모두 보여줍니다.",
+      es: "Calcula la altura de cualquier triángulo con área y base, tres lados o dos lados y un ángulo. Con tres lados devuelve las tres alturas.",
+      fr: "Trouvez la hauteur d’un triangle à partir de l’aire et de la base, de trois côtés ou de deux côtés et d’un angle. Trois hauteurs en mode 3 côtés.",
+      de: "Berechne die Höhe jedes Dreiecks aus Fläche und Basis, drei Seiten oder zwei Seiten und Winkel. Bei drei Seiten werden alle drei Höhen angezeigt.",
+      pt: "Calcule a altura de qualquer triângulo a partir da área e da base, de três lados ou de dois lados e um ângulo. No método de três lados, mostra as três alturas.",
+      ru: "Найдите высоту любого треугольника по площади и основанию, трём сторонам или двум сторонам и углу. При трёх сторонах показываются все высоты."
     }
   },
   {
@@ -7121,5 +7121,4 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   }
-
 ];
