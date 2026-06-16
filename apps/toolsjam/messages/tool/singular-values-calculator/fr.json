@@ -1,0 +1,103 @@
+{
+  "title": "Calculateur de valeurs singulières - SVD",
+  "tagline": "Calculez les valeurs singulières de toute matrice réelle grâce à la décomposition SVD — saisissez les lignes séparées par des retours à la ligne et les colonnes par des virgules pour obtenir instantanément toutes les valeurs singulières, le rang et les normes.",
+  "intro": "Saisissez votre matrice pour calculer ses valeurs singulières à l’aide de la décomposition en valeurs singulières (SVD). Le calculateur affiche toutes les valeurs singulières par ordre décroissant ainsi que les propriétés de la matrice.",
+  "formula": "Formule : A = UΣV^T. Les valeurs singulières σᵢ = √(valeurs propres de A^T·A), triées par ordre décroissant.",
+  "field": {
+    "matrix": "Saisie de la matrice",
+    "matrixHint": "Saisissez chaque ligne sur une ligne distincte. Séparez les éléments d’une ligne par des virgules ou des espaces. Toutes les lignes doivent avoir le même nombre de colonnes."
+  },
+  "placeholder": {
+    "matrix": "ex. :\n1, 2\n3, 4"
+  },
+  "button": {
+    "calculate": "Calculer les valeurs singulières",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Format de matrice invalide. Assurez-vous que toutes les lignes ont le même nombre de colonnes et que toutes les valeurs sont numériques."
+  },
+  "result": {
+    "heading": "Résultats SVD",
+    "singularValues": "Valeurs singulières (σ₁ ≥ σ₂ ≥ …)",
+    "rank": "Rang",
+    "frobeniusNorm": "Norme de Frobenius",
+    "spectralNorm": "Norme spectrale (σ₁)",
+    "conditionNumber": "Nombre de condition"
+  },
+  "about": {
+    "heading": "À propos du calculateur de valeurs singulières",
+    "body": "La décomposition en valeurs singulières (SVD) est l’une des factorisations les plus importantes de l’algèbre linéaire. Pour toute matrice réelle m×n A, la SVD écrit A sous la forme A = UΣV^T, où U est une matrice orthogonale m×m, Σ est une matrice diagonale m×n avec des éléments diagonaux non négatifs, et V est une matrice orthogonale n×n. Les éléments diagonaux σ₁ ≥ σ₂ ≥ … ≥ 0 de Σ sont les valeurs singulières de A.\n\nLes valeurs singulières sont toujours des nombres réels non négatifs, même lorsque la matrice d’origine contient des valeurs négatives ou une structure complexe. Elles sont déterminées de façon unique par la matrice — contrairement aux vecteurs U et V, qui peuvent ne pas être uniques lorsque des valeurs singulières se répètent. Le nombre de valeurs singulières non nulles est égal au rang de la matrice, qui mesure la dimension de l’espace colonne (l’ensemble de toutes les sorties possibles de la transformation linéaire représentée par A).\n\nLe lien entre SVD et valeurs propres est précis : les valeurs singulières de A sont les racines carrées des valeurs propres de la matrice symétrique semi-définie positive A^T·A (ou, de manière équivalente, A·A^T pour les vecteurs singuliers gauches). Ce calculateur calcule A^T·A et applique l’algorithme des valeurs propres de Jacobi — une méthode itérative qui annule les éléments hors diagonale d’une matrice symétrique au moyen d’une suite de rotations orthogonales appelées rotations de Givens — pour trouver ses valeurs propres, puis en prend les racines carrées.\n\nLa plus grande valeur singulière σ₁ est égale à la norme spectrale (aussi appelée norme 2 ou norme opérateur) de la matrice — le facteur maximal par lequel la matrice peut étirer un vecteur unitaire. La norme de Frobenius est la racine carrée de la somme des carrés de toutes les valeurs singulières, et elle est également égale à la racine carrée de la somme des carrés de tous les éléments de la matrice. Ces normes ont une portée pratique : la norme de Frobenius est la mesure la plus naturelle de l’énergie totale d’une matrice, tandis que la norme spectrale contrôle la sensibilité aux perturbations.\n\nLe nombre de condition κ = σ₁/σₙ (rapport entre la plus grande et la plus petite valeur singulière) quantifie à quel point la matrice est bien conditionnée pour résoudre des systèmes linéaires. Un nombre de condition proche de 1 signifie que le système est bien conditionné et facile à résoudre avec précision. Un nombre de condition très élevé — par exemple au-dessus de 10⁶ ou 10¹² — signale un système mal conditionné, où de petites perturbations de l’entrée peuvent provoquer de grands changements dans la solution, une source fréquente d’instabilité numérique en calcul scientifique et en apprentissage automatique.\n\nLa SVD a un vaste champ d’applications. En science des données, l’analyse en composantes principales (PCA) — l’outil phare de la réduction de dimension — est mathématiquement équivalente au calcul de la SVD de la matrice de données centrée. Les composantes principales sont les vecteurs singuliers droits V, et la variance expliquée par chaque composante est proportionnelle au carré de la valeur singulière correspondante. En traitement et compression d’images, ne conserver que les k plus grandes valeurs singulières et leurs vecteurs associés produit une approximation de rang k de la matrice d’image qui minimise l’erreur en norme de Frobenius parmi toutes les matrices de rang k — c’est le théorème d’Eckart-Young. Dans les systèmes de recommandation (filtrage collaboratif), la factorisation matricielle via SVD sert à prédire les notes des utilisateurs pour des éléments non vus. En ingénierie, la pseudo-inverse A† = VΣ†U^T fournit la solution des moindres carrés de norme minimale pour les systèmes surdéterminés ou sous-déterminés, ce qui est essentiel en robotique, en théorie du contrôle et en traitement du signal.\n\nPour ce calculateur, les matrices jusqu’à environ 10×10 sont traitées de manière fiable par l’algorithme de Jacobi. Les matrices très grandes ou celles comportant de nombreuses valeurs singulières presque identiques peuvent perdre un peu de précision à cause de l’accumulation des arrondis en virgule flottante, mais les résultats sont exacts à au moins six chiffres significatifs pour des entrées typiques."
+  },
+  "examples": {
+    "heading": "Exemples de valeurs singulières",
+    "intro": "Exemples courants de matrices avec leurs valeurs singulières et leurs propriétés clés.",
+    "colInput": "Matrice",
+    "colOutput": "Valeurs singulières",
+    "colNote": "Propriétés",
+    "load2x2": "Charger un exemple 2×2",
+    "loadDiagonal": "Charger une matrice diagonale",
+    "load2x3": "Charger un exemple 2×3",
+    "items": [
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "output": "σ₁ ≈ 5.4650, σ₂ ≈ 0.3660",
+        "note": "Une matrice 2×2 générale. Rang = 2, nombre de condition ≈ 14.93."
+      },
+      {
+        "input": "[[1, 0, 0], [0, 2, 0], [0, 0, 3]]",
+        "output": "σ₁ = 3, σ₂ = 2, σ₃ = 1",
+        "note": "Matrice diagonale. Les valeurs singulières sont égales aux valeurs absolues des éléments diagonaux."
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6]]",
+        "output": "σ₁ ≈ 9.5080, σ₂ ≈ 0.7729",
+        "note": "Matrice 2×3 de rang 2. La SVD donne min(2,3)=2 valeurs singulières ; elles sont toutes les deux non nulles ici."
+      },
+      {
+        "input": "[[1, 2], [2, 4]]",
+        "output": "σ₁ = 5, σ₂ = 0",
+        "note": "Matrice déficiente en rang (ligne 2 = 2 × ligne 1). L’une des valeurs singulières est nulle."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de valeurs singulières",
+    "steps": [
+      "Saisissez votre matrice dans la zone de texte : mettez chaque ligne sur sa propre ligne et séparez les valeurs d’une ligne par des virgules ou des espaces.",
+      "Vérifiez que toutes les lignes ont le même nombre d’éléments — le calculateur signalera une erreur d’analyse si les longueurs des lignes sont incohérentes.",
+      "Cliquez sur Calculer les valeurs singulières. L’outil calcule A^T·A, applique l’algorithme de Jacobi et affiche toutes les valeurs singulières par ordre décroissant.",
+      "Consultez les propriétés supplémentaires : rang (nombre de valeurs singulières non nulles), norme de Frobenius, norme spectrale (σ₁) et nombre de condition (σ₁/σₙ) si la matrice a un rang colonne complet.",
+      "Utilisez les boutons d’exemple pour charger des matrices préremplies et explorer comment différentes structures matricielles affectent les valeurs singulières."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur les valeurs singulières",
+    "items": [
+      {
+        "q": "Que sont les valeurs singulières ?",
+        "a": "Les valeurs singulières sont des scalaires non négatifs qui mesurent l’ampleur d’une transformation linéaire. Pour une matrice A, les valeurs singulières sont les racines carrées des valeurs propres de A^T·A. Elles décrivent à quel point A étire ou contracte les vecteurs dans différentes directions — la plus grande valeur singulière donne le facteur d’étirement maximal, et la plus petite le facteur minimal."
+      },
+      {
+        "q": "En quoi les valeurs singulières diffèrent-elles des valeurs propres ?",
+        "a": "Les valeurs propres ne sont définies que pour les matrices carrées et peuvent être négatives ou complexes. Les valeurs singulières sont définies pour toute matrice (y compris rectangulaire) et sont toujours des nombres réels non négatifs. Pour les matrices symétriques définies positives, valeurs singulières et valeurs propres coïncident. En général, les valeurs singulières de A sont les racines carrées des valeurs propres de A^T·A."
+      },
+      {
+        "q": "Que m’indique le nombre de condition ?",
+        "a": "Le nombre de condition (σ₁/σₙ) mesure la sensibilité : un petit nombre de condition (proche de 1) signifie que la matrice est bien comportée et que les systèmes linéaires Ax = b peuvent être résolus avec précision. Un grand nombre de condition (>10⁶) indique une quasi-singularité — la matrice est presque déficiente en rang et les solutions peuvent être peu fiables à cause de l’amplification numérique des erreurs d’arrondi."
+      },
+      {
+        "q": "Pourquoi les valeurs singulières sont-elles toujours non négatives ?",
+        "a": "Les valeurs singulières sont définies par σᵢ = √λᵢ, où λᵢ sont les valeurs propres de A^T·A. Comme A^T·A est une matrice semi-définie positive (toutes ses valeurs propres sont ≥ 0), les racines carrées sont toujours des nombres réels non négatifs. Cela vaut pour toute matrice réelle ou complexe A."
+      },
+      {
+        "q": "Quelle est la relation entre SVD et PCA ?",
+        "a": "L’analyse en composantes principales (PCA) est mathématiquement équivalente au calcul de la SVD de la matrice de données centrée. Les vecteurs singuliers droits (les colonnes de V) sont les directions principales (composantes principales). Les valeurs singulières correspondantes sont proportionnelles aux écarts-types dans ces directions — plus précisément, σᵢ/√(m-1) est l’écart-type de la iᵉ composante principale pour une matrice de données à m lignes."
+      },
+      {
+        "q": "Ce calculateur peut-il gérer des matrices rectangulaires ?",
+        "a": "Oui. La SVD est définie pour toute matrice réelle m×n, que m > n, m = n ou m < n. Pour une matrice m×n, le nombre de valeurs singulières est min(m, n). Une matrice m×n avec m > n a au plus n valeurs singulières non nulles ; une matrice avec m < n en a au plus m."
+      }
+    ]
+  }
+}

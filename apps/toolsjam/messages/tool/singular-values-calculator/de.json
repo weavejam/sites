@@ -1,0 +1,103 @@
+{
+  "title": "Singularwert-Rechner - SVD-Matrixzerlegung",
+  "tagline": "Berechnen Sie die Singularwerte jeder reellen Matrix mit der SVD-Zerlegung — Zeilen durch Zeilenumbrüche und Spalten durch Kommas getrennt eingeben, um sofort alle Singularwerte, den Rang und die Normen zu erhalten.",
+  "intro": "Geben Sie Ihre Matrix ein, um ihre Singularwerte mit der Singulärwertzerlegung (SVD) zu berechnen. Der Rechner zeigt alle Singularwerte in absteigender Reihenfolge sowie Matrixeigenschaften an.",
+  "formula": "Formel: A = UΣV^T. Singularwerte σᵢ = √(Eigenwerte von A^T·A), absteigend sortiert.",
+  "field": {
+    "matrix": "Matrixeingabe",
+    "matrixHint": "Geben Sie jede Zeile in eine eigene Zeile ein. Trennen Sie die Elemente einer Zeile mit Kommas oder Leerzeichen. Alle Zeilen müssen die gleiche Anzahl an Spalten haben."
+  },
+  "placeholder": {
+    "matrix": "z. B.:\n1, 2\n3, 4"
+  },
+  "button": {
+    "calculate": "Singularwerte berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Ungültiges Matrixformat. Stellen Sie sicher, dass alle Zeilen gleich viele Spalten haben und alle Werte numerisch sind."
+  },
+  "result": {
+    "heading": "SVD-Ergebnisse",
+    "singularValues": "Singularwerte (σ₁ ≥ σ₂ ≥ …)",
+    "rank": "Rang",
+    "frobeniusNorm": "Frobenius-Norm",
+    "spectralNorm": "Spektralnorm (σ₁)",
+    "conditionNumber": "Konditionszahl"
+  },
+  "about": {
+    "heading": "Über den Singularwert-Rechner",
+    "body": "Die Singulärwertzerlegung (SVD) ist eine der wichtigsten Faktorisierungen in der linearen Algebra. Für jede reelle m×n-Matrix A schreibt die SVD A als A = UΣV^T, wobei U eine m×m orthogonale Matrix ist, Σ eine m×n-Diagonalmatrix mit nichtnegativen Einträgen auf der Diagonale und V eine n×n orthogonale Matrix. Die Diagonaleinträge σ₁ ≥ σ₂ ≥ … ≥ 0 von Σ sind die Singularwerte von A.\n\nSingularwerte sind immer nichtnegative reelle Zahlen, selbst wenn die Ausgangsmatrix negative Einträge oder komplexe Struktur enthält. Sie sind durch die Matrix eindeutig bestimmt — im Gegensatz zu den Vektoren U und V, die bei mehrfachen Singularwerten nicht eindeutig sein können. Die Anzahl der von null verschiedenen Singularwerte entspricht dem Rang der Matrix, der die Dimension des Spaltenraums misst (die Menge aller möglichen Ausgaben der durch A dargestellten linearen Abbildung).\n\nDer Zusammenhang zwischen SVD und Eigenwerten ist präzise: Die Singularwerte von A sind die Quadratwurzeln der Eigenwerte der symmetrisch positiv semidefiniten Matrix A^T·A (bzw. äquivalent A·A^T für die linken Singulärvektoren). Dieser Rechner bildet A^T·A und wendet den Jacobi-Eigenwertalgorithmus an — ein iteratives Verfahren, das die Nebendiagonalelemente einer symmetrischen Matrix durch eine Folge orthogonaler Rotationen, sogenannte Givens-Rotationen, auf Null setzt — um die Eigenwerte zu bestimmen und daraus die Quadratwurzeln zu ziehen.\n\nDer größte Singularwert σ₁ entspricht der Spektralnorm (auch 2-Norm oder Operatornorm genannt) der Matrix — dem maximalen Faktor, um den die Matrix einen Einheitsvektor strecken kann. Die Frobenius-Norm ist die Quadratwurzel aus der Summe aller quadrierten Singularwerte und entspricht zugleich der Quadratwurzel aus der Summe aller quadrierten Matrixeinträge. Diese Normen sind praktisch bedeutsam: Die Frobenius-Norm ist das natürlichste Maß für die gesamte Energie einer Matrix, während die Spektralnorm die Empfindlichkeit gegenüber Störungen kontrolliert.\n\nDie Konditionszahl κ = σ₁/σₙ (Verhältnis des größten zum kleinsten Singularwert) quantifiziert, wie gut konditioniert die Matrix für die Lösung linearer Gleichungssysteme ist. Eine Konditionszahl nahe 1 bedeutet, dass das System gut konditioniert und genau lösbar ist. Eine sehr große Konditionszahl — etwa über 10⁶ oder 10¹² — weist auf ein schlecht konditioniertes System hin, bei dem kleine Störungen der Eingabe große Änderungen in der Lösung verursachen können, eine häufige Quelle numerischer Instabilität in wissenschaftlichem Rechnen und maschinellem Lernen.\n\nSVD hat ein bemerkenswert breites Anwendungsspektrum. In der Datenwissenschaft ist die Hauptkomponentenanalyse (PCA) — das Arbeitspferd der Dimensionsreduktion — mathematisch äquivalent zur SVD der zentrierten Datenmatrix. Die Hauptkomponenten sind die rechten Singulärvektoren V, und die durch jede Komponente erklärte Varianz ist proportional zum Quadrat des zugehörigen Singularwerts. In der Bildverarbeitung und -kompression erzeugt das Beibehalten nur der k größten Singularwerte und ihrer zugehörigen Vektoren eine Rang-k-Approximation der Bildmatrix, die den Fehler in Frobenius-Norm unter allen Rang-k-Matrizen minimiert — das ist der Eckart-Young-Satz. In Empfehlungssystemen (Collaborative Filtering) wird die Matrixfaktorisierung mittels SVD verwendet, um Nutzerbewertungen für unbekannte Elemente vorherzusagen. In der Ingenieurwissenschaft liefert die Pseudoinverse A† = VΣ†U^T die Minimum-Norm-Lösung im kleinsten-Quadrate-Sinn für über- oder unterbestimmte Systeme, was in Robotik, Regelungstheorie und Signalverarbeitung entscheidend ist.\n\nFür diesen Rechner werden Matrizen bis ungefähr 10×10 zuverlässig mit dem Jacobi-Algorithmus verarbeitet. Sehr große Matrizen oder Matrizen mit vielen nahezu identischen Singularwerten können aufgrund kumulierter Gleitkomma-Rundungsfehler etwas an Genauigkeit verlieren, doch die Ergebnisse sind für typische Eingaben mit mindestens sechs signifikanten Stellen genau."
+  },
+  "examples": {
+    "heading": "Singularwert-Beispiele",
+    "intro": "Häufige Matrixbeispiele mit ihren Singularwerten und wichtigen Eigenschaften.",
+    "colInput": "Matrix",
+    "colOutput": "Singularwerte",
+    "colNote": "Eigenschaften",
+    "load2x2": "2×2-Beispiel laden",
+    "loadDiagonal": "Diagonalmatrix laden",
+    "load2x3": "2×3-Beispiel laden",
+    "items": [
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "output": "σ₁ ≈ 5.4650, σ₂ ≈ 0.3660",
+        "note": "Eine allgemeine 2×2-Matrix. Rang = 2, Konditionszahl ≈ 14.93."
+      },
+      {
+        "input": "[[1, 0, 0], [0, 2, 0], [0, 0, 3]]",
+        "output": "σ₁ = 3, σ₂ = 2, σ₃ = 1",
+        "note": "Diagonalmatrix. Die Singularwerte entsprechen den Absolutwerten der Diagonaleinträge."
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6]]",
+        "output": "σ₁ ≈ 9.5080, σ₂ ≈ 0.7729",
+        "note": "2×3-Matrix mit Rang 2. SVD liefert min(2,3)=2 Singularwerte; hier sind beide ungleich null."
+      },
+      {
+        "input": "[[1, 2], [2, 4]]",
+        "output": "σ₁ = 5, σ₂ = 0",
+        "note": "Rangdefiziente Matrix (Zeile 2 = 2 × Zeile 1). Ein Singularwert ist null."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Singularwert-Rechner",
+    "steps": [
+      "Geben Sie Ihre Matrix in das Textfeld ein: jede Zeile in eine eigene Zeile, Elemente innerhalb einer Zeile durch Kommas oder Leerzeichen getrennt.",
+      "Stellen Sie sicher, dass alle Zeilen die gleiche Anzahl an Elementen haben — bei inkonsistenten Zeilenlängen zeigt der Rechner einen Parse-Fehler an.",
+      "Klicken Sie auf Singularwerte berechnen. Das Tool berechnet A^T·A, wendet den Jacobi-Eigenwertalgorithmus an und zeigt alle Singularwerte in absteigender Reihenfolge an.",
+      "Lesen Sie die zusätzlichen Eigenschaften: Rang (Anzahl der von null verschiedenen Singularwerte), Frobenius-Norm, Spektralnorm (σ₁) und Konditionszahl (σ₁/σₙ), falls die Matrix vollen Spaltenrang hat.",
+      "Verwenden Sie die Beispiel-Buttons, um vorgefüllte Matrizen zu laden und zu erkunden, wie unterschiedliche Matrixstrukturen die Singularwerte beeinflussen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zu Singularwerten",
+    "items": [
+      {
+        "q": "Was sind Singularwerte?",
+        "a": "Singularwerte sind nichtnegative Skalare, die die Stärke einer linearen Abbildung erfassen. Für eine Matrix A sind die Singularwerte die Quadratwurzeln der Eigenwerte von A^T·A. Sie beschreiben, wie stark A Vektoren in verschiedenen Richtungen streckt oder staucht — der größte Singularwert gibt den maximalen Streckfaktor, der kleinste den minimalen."
+      },
+      {
+        "q": "Worin unterscheiden sich Singularwerte von Eigenwerten?",
+        "a": "Eigenwerte sind nur für quadratische Matrizen definiert und können negativ oder komplex sein. Singularwerte sind für jede Matrix definiert (auch für rechteckige) und immer nichtnegative reelle Zahlen. Bei symmetrisch positiv definiten Matrizen stimmen Singularwerte und Eigenwerte überein. Im Allgemeinen sind die Singularwerte von A die Quadratwurzeln der Eigenwerte von A^T·A."
+      },
+      {
+        "q": "Was sagt mir die Konditionszahl?",
+        "a": "Die Konditionszahl (σ₁/σₙ) misst die Empfindlichkeit: Eine kleine Konditionszahl (nahe 1) bedeutet, dass die Matrix gutartig ist und lineare Systeme Ax = b genau gelöst werden können. Eine große Konditionszahl (>10⁶) deutet auf nahezu Singularität hin — die Matrix ist fast rangdefizient und Lösungen können wegen numerischer Verstärkung von Rundungsfehlern unzuverlässig sein."
+      },
+      {
+        "q": "Warum sind Singularwerte immer nichtnegativ?",
+        "a": "Singularwerte sind als σᵢ = √λᵢ definiert, wobei λᵢ die Eigenwerte von A^T·A sind. Da A^T·A eine positiv semidefinite Matrix ist (alle Eigenwerte ≥ 0), sind die Quadratwurzeln immer nichtnegative reelle Zahlen. Das gilt für jede reelle oder komplexe Matrix A."
+      },
+      {
+        "q": "Wie hängt SVD mit PCA zusammen?",
+        "a": "Die Hauptkomponentenanalyse (PCA) ist mathematisch äquivalent zur SVD der zentrierten Datenmatrix. Die rechten Singulärvektoren (die Spalten von V) sind die Hauptachsen (Hauptkomponenten). Die zugehörigen Singularwerte sind proportional zu den Standardabweichungen in diesen Richtungen — genauer ist σᵢ/√(m-1) die Standardabweichung der i-ten Hauptkomponente für eine Datenmatrix mit m Zeilen."
+      },
+      {
+        "q": "Kann dieser Rechner rechteckige Matrizen verarbeiten?",
+        "a": "Ja. SVD ist für jede reelle m×n-Matrix definiert, unabhängig davon, ob m > n, m = n oder m < n. Für eine m×n-Matrix ist die Anzahl der Singularwerte min(m, n). Eine m×n-Matrix mit m > n hat höchstens n von null verschiedene Singularwerte; eine mit m < n hat höchstens m von null verschiedene Singularwerte."
+      }
+    ]
+  }
+}

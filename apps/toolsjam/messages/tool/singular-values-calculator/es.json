@@ -1,0 +1,103 @@
+{
+  "title": "Calculadora de valores singulares - SVD",
+  "tagline": "Calcula los valores singulares de cualquier matriz real usando descomposición SVD: introduce filas separadas por saltos de línea y columnas por comas para obtener al instante todos los valores singulares, el rango y las normas.",
+  "intro": "Introduce tu matriz para calcular sus valores singulares mediante descomposición en valores singulares (SVD). La calculadora muestra todos los valores singulares en orden descendente junto con las propiedades de la matriz.",
+  "formula": "Fórmula: A = UΣV^T. Los valores singulares σᵢ = √(autovalores de A^T·A), ordenados de mayor a menor.",
+  "field": {
+    "matrix": "Entrada de matriz",
+    "matrixHint": "Introduce cada fila en una línea separada. Separa los elementos dentro de una fila con comas o espacios. Todas las filas deben tener el mismo número de columnas."
+  },
+  "placeholder": {
+    "matrix": "p. ej.:\n1, 2\n3, 4"
+  },
+  "button": {
+    "calculate": "Calcular valores singulares",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Formato de matriz no válido. Asegúrate de que todas las filas tengan el mismo número de columnas y que todos los valores sean numéricos."
+  },
+  "result": {
+    "heading": "Resultados SVD",
+    "singularValues": "Valores singulares (σ₁ ≥ σ₂ ≥ …)",
+    "rank": "Rango",
+    "frobeniusNorm": "Norma de Frobenius",
+    "spectralNorm": "Norma espectral (σ₁)",
+    "conditionNumber": "Número de condición"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de valores singulares",
+    "body": "La descomposición en valores singulares (SVD) es una de las factorizaciones más importantes del álgebra lineal. Para cualquier matriz real m×n A, la SVD expresa A como A = UΣV^T, donde U es una matriz ortogonal m×m, Σ es una matriz diagonal m×n con entradas no negativas en la diagonal y V es una matriz ortogonal n×n. Las entradas diagonales σ₁ ≥ σ₂ ≥ … ≥ 0 de Σ son los valores singulares de A.\n\nLos valores singulares son siempre números reales no negativos, incluso cuando la matriz original contiene entradas negativas o estructura compleja. Quedan determinados de forma única por la matriz, a diferencia de los vectores U y V, que pueden no ser únicos cuando los valores singulares se repiten. El número de valores singulares no nulos es igual al rango de la matriz, que mide la dimensión del espacio columna (el conjunto de todas las salidas posibles de la transformación lineal representada por A).\n\nLa relación entre SVD y autovalores es precisa: los valores singulares de A son las raíces cuadradas de los autovalores de la matriz simétrica semidefinida positiva A^T·A (o equivalentemente A·A^T para los vectores singulares izquierdos). Esta calculadora calcula A^T·A y aplica el algoritmo de autovalores de Jacobi —un método iterativo que anula los elementos fuera de la diagonal de una matriz simétrica mediante una secuencia de rotaciones ortogonales llamadas rotaciones de Givens— para encontrar sus autovalores y luego toma sus raíces cuadradas.\n\nEl mayor valor singular σ₁ es igual a la norma espectral (también llamada norma 2 o norma operatoria) de la matriz: el máximo factor por el que la matriz puede estirar un vector unitario. La norma de Frobenius es la raíz cuadrada de la suma de todos los valores singulares al cuadrado, y también equivale a la raíz cuadrada de la suma de todos los elementos de la matriz al cuadrado. Estas normas tienen relevancia práctica: la norma de Frobenius es la medida más natural de la energía total de una matriz, mientras que la norma espectral controla la sensibilidad frente a perturbaciones.\n\nEl número de condición κ = σ₁/σₙ (cociente entre el mayor y el menor valor singular) cuantifica qué tan bien condicionada está la matriz para resolver sistemas lineales. Un número de condición cercano a 1 significa que el sistema está bien condicionado y es fácil de resolver con precisión. Un número de condición muy grande —por ejemplo, superior a 10⁶ o 10¹²— indica un sistema mal condicionado, donde pequeñas perturbaciones en la entrada pueden causar grandes cambios en la solución, una fuente común de inestabilidad numérica en computación científica y aprendizaje automático.\n\nLa SVD tiene una amplia gama de aplicaciones. En ciencia de datos, el análisis de componentes principales (PCA), la herramienta principal de la reducción de dimensionalidad, es matemáticamente equivalente a calcular la SVD de la matriz de datos centrada. Los componentes principales son los vectores singulares derechos V, y la varianza explicada por cada componente es proporcional al cuadrado del valor singular correspondiente. En procesamiento y compresión de imágenes, conservar solo los k valores singulares más grandes y sus vectores asociados produce una aproximación de rango k de la matriz de la imagen que minimiza el error en norma de Frobenius entre todas las matrices de rango k; esto es el teorema de Eckart-Young. En sistemas de recomendación (filtrado colaborativo), la factorización matricial mediante SVD se usa para predecir las valoraciones de usuarios para elementos no vistos. En ingeniería, la pseudoinversa A† = VΣ†U^T proporciona la solución de mínimos cuadrados de norma mínima para sistemas sobredeterminados o subdeterminados, lo cual es crítico en robótica, teoría de control y procesamiento de señales.\n\nPara esta calculadora, las matrices de hasta aproximadamente 10×10 se manejan de forma fiable mediante el algoritmo de Jacobi. Las matrices muy grandes o con muchos valores singulares casi duplicados pueden perder algo de precisión debido al redondeo acumulado de coma flotante, pero los resultados son precisos al menos con seis cifras significativas para entradas típicas."
+  },
+  "examples": {
+    "heading": "Ejemplos de valores singulares",
+    "intro": "Ejemplos comunes de matrices con sus valores singulares y propiedades clave.",
+    "colInput": "Matriz",
+    "colOutput": "Valores singulares",
+    "colNote": "Propiedades",
+    "load2x2": "Cargar ejemplo 2×2",
+    "loadDiagonal": "Cargar matriz diagonal",
+    "load2x3": "Cargar ejemplo 2×3",
+    "items": [
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "output": "σ₁ ≈ 5.4650, σ₂ ≈ 0.3660",
+        "note": "Una matriz general 2×2. Rango = 2, número de condición ≈ 14.93."
+      },
+      {
+        "input": "[[1, 0, 0], [0, 2, 0], [0, 0, 3]]",
+        "output": "σ₁ = 3, σ₂ = 2, σ₃ = 1",
+        "note": "Matriz diagonal. Los valores singulares son iguales a los valores absolutos de la diagonal."
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6]]",
+        "output": "σ₁ ≈ 9.5080, σ₂ ≈ 0.7729",
+        "note": "Matriz 2×3 con rango 2. La SVD da min(2,3)=2 valores singulares; ambos son no nulos aquí."
+      },
+      {
+        "input": "[[1, 2], [2, 4]]",
+        "output": "σ₁ = 5, σ₂ = 0",
+        "note": "Matriz deficitaria de rango (fila 2 = 2 × fila 1). Uno de los valores singulares es cero."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de valores singulares",
+    "steps": [
+      "Introduce tu matriz en el área de texto: coloca cada fila en su propia línea y separa los valores de una fila con comas o espacios.",
+      "Verifica que todas las filas tengan el mismo número de elementos; la calculadora mostrará un error de análisis si las longitudes de las filas son inconsistentes.",
+      "Haz clic en Calcular valores singulares. La herramienta calcula A^T·A, aplica el algoritmo de autovalores de Jacobi y muestra todos los valores singulares en orden descendente.",
+      "Lee las propiedades adicionales: rango (número de valores singulares no nulos), norma de Frobenius, norma espectral (σ₁) y número de condición (σ₁/σₙ) si la matriz tiene rango completo por columnas.",
+      "Usa los botones de ejemplo para cargar matrices prellenadas y explorar cómo distintas estructuras matriciales afectan a los valores singulares."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre valores singulares",
+    "items": [
+      {
+        "q": "¿Qué son los valores singulares?",
+        "a": "Los valores singulares son escalares no negativos que capturan la magnitud de una transformación lineal. Para una matriz A, los valores singulares son las raíces cuadradas de los autovalores de A^T·A. Describen cuánto estira o encoge A los vectores en distintas direcciones: el mayor valor singular da el factor máximo de estiramiento y el menor el mínimo."
+      },
+      {
+        "q": "¿En qué se diferencian los valores singulares de los autovalores?",
+        "a": "Los autovalores solo se definen para matrices cuadradas y pueden ser negativos o complejos. Los valores singulares se definen para cualquier matriz (incluidas las rectangulares) y siempre son números reales no negativos. En matrices simétricas definidas positivas, los valores singulares y los autovalores coinciden. En general, los valores singulares de A son las raíces cuadradas de los autovalores de A^T·A."
+      },
+      {
+        "q": "¿Qué me dice el número de condición?",
+        "a": "El número de condición (σ₁/σₙ) mide la sensibilidad: un número de condición pequeño (cercano a 1) significa que la matriz está bien comportada y que los sistemas lineales Ax = b pueden resolverse con precisión. Un número de condición grande (>10⁶) indica casi singularidad: la matriz está casi deficiente de rango y las soluciones pueden ser poco fiables debido a la amplificación numérica de los errores de redondeo."
+      },
+      {
+        "q": "¿Por qué los valores singulares son siempre no negativos?",
+        "a": "Los valores singulares se definen como σᵢ = √λᵢ, donde λᵢ son los autovalores de A^T·A. Como A^T·A es una matriz semidefinida positiva (todos sus autovalores ≥ 0), las raíces cuadradas son siempre números reales no negativos. Esto se cumple para cualquier matriz real o compleja A."
+      },
+      {
+        "q": "¿Cuál es la relación entre SVD y PCA?",
+        "a": "El análisis de componentes principales (PCA) es matemáticamente equivalente a calcular la SVD de la matriz de datos centrada. Los vectores singulares derechos (las columnas de V) son las direcciones principales (componentes principales). Los valores singulares correspondientes son proporcionales a las desviaciones estándar en esas direcciones; concretamente, σᵢ/√(m-1) es la desviación estándar del i-ésimo componente principal para una matriz de datos con m filas."
+      },
+      {
+        "q": "¿Puede esta calculadora manejar matrices rectangulares?",
+        "a": "Sí. La SVD está definida para cualquier matriz real m×n, ya sea m > n, m = n o m < n. Para una matriz m×n, el número de valores singulares es min(m, n). Una matriz m×n con m > n tiene como máximo n valores singulares no nulos; una con m < n tiene como máximo m valores singulares no nulos."
+      }
+    ]
+  }
+}
