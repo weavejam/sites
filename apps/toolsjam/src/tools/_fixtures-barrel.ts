@@ -251,8 +251,13 @@ import { fixtures as f_gsd_calculator_ground_sample_distance } from "@/tools/gsd
 import { fixtures as f_guitar_string_tension_calculator } from "@/tools/guitar-string-tension-calculator.fixtures";
 import { fixtures as f_hadamard_product_calculator } from "@/tools/hadamard-product-calculator.fixtures";
 import { fixtures as f_half_angle_calculator } from "@/tools/half-angle-calculator.fixtures";
+import { fixtures as f_hand_sanitizer_calculator_coronavirus } from "@/tools/hand-sanitizer-calculator-coronavirus.fixtures";
+import { fixtures as f_happiness_calculator } from "@/tools/happiness-calculator.fixtures";
 import { fixtures as f_harmonic_mean_calculator } from "@/tools/harmonic-mean-calculator.fixtures";
 import { fixtures as f_harmonic_number_calculator } from "@/tools/harmonic-number-calculator.fixtures";
+import { fixtures as f_harris_benedict_calculator_basal_metabolic_rate } from "@/tools/harris-benedict-calculator-basal-metabolic-rate.fixtures";
+import { fixtures as f_has_bled_calculator } from "@/tools/has-bled-calculator.fixtures";
+import { fixtures as f_hcg_levels_calculator } from "@/tools/hcg-levels-calculator.fixtures";
 import { fixtures as f_herons_formula_calculator } from "@/tools/herons-formula-calculator.fixtures";
 import { fixtures as f_hypothesis_testing_calculator } from "@/tools/hypothesis-testing-calculator.fixtures";
 import { fixtures as f_ibuprofen_dosage_calculator } from "@/tools/ibuprofen-dosage-calculator.fixtures";
@@ -830,8 +835,13 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "guitar-string-tension-calculator": f_guitar_string_tension_calculator,
   "hadamard-product-calculator": f_hadamard_product_calculator,
   "half-angle-calculator": f_half_angle_calculator,
+  "hand-sanitizer-calculator-coronavirus": f_hand_sanitizer_calculator_coronavirus,
+  "happiness-calculator": f_happiness_calculator,
   "harmonic-mean-calculator": f_harmonic_mean_calculator,
   "harmonic-number-calculator": f_harmonic_number_calculator,
+  "harris-benedict-calculator-basal-metabolic-rate": f_harris_benedict_calculator_basal_metabolic_rate,
+  "has-bled-calculator": f_has_bled_calculator,
+  "hcg-levels-calculator": f_hcg_levels_calculator,
   "herons-formula-calculator": f_herons_formula_calculator,
   "hypothesis-testing-calculator": f_hypothesis_testing_calculator,
   "ibuprofen-dosage-calculator": f_ibuprofen_dosage_calculator,
