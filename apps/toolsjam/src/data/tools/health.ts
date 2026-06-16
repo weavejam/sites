@@ -2970,7 +2970,88 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "framingham-risk-calculator",
+    category: "health",
+    slugs: {
+      en: "framingham-risk-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Framingham Risk Calculator – 10-Year CVD Risk Score",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Framingham Risk Calculator estimates 10-year cardiovascular disease risk using the validated point-scoring algorithm. Free, instant CVD assessment.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "free-testosterone-calculator-with-bioavailable-levels",
+    category: "health",
+    slugs: {
+      en: "free-testosterone-calculator-with-bioavailable-levels",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Free Testosterone Calculator with Bioavailable Levels",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Free testosterone calculator uses the Vermeulen formula to compute free and bioavailable testosterone from total testosterone, SHBG, and albumin values.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "free-water-deficit-calculator",
+    category: "health",
+    slugs: {
+      en: "free-water-deficit-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Free Water Deficit Calculator – Hypernatremia Treatment",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Free water deficit calculator estimates replacement volume for hypernatremia using serum sodium and body weight. Includes safe sodium correction rates.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "fresh-frozen-plasma-dose-calculator",
+    category: "health",
+    slugs: {
+      en: "fresh-frozen-plasma-dose-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Fresh Frozen Plasma Dose Calculator – FFP Dosing Tool",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Fresh frozen plasma dose calculator determines FFP dosage for warfarin reversal and bleeding disorders based on patient weight and clinical indication.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "fundal-height-calculator",
+    category: "health",
+    slugs: {
+      en: "fundal-height-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Fundal Height Calculator – Fetal Growth Assessment Tool",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Fundal height calculator uses McDonald's rule to assess fetal growth, compare measurements to gestational age, and track growth rate across prenatal visits.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
+
 
 
 
