@@ -7320,6 +7320,71 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "30-60-90-triangle-calculator",
+    category: "math",
+    slugs: {
+      en: "30-60-90-triangle-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "30-60-90 Triangle Calculator - Special Right Triangle",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "30-60-90 triangle calculator finds all sides from one known side using the exact 1 : √3 : 2 ratio. Fast, accurate results for geometry and engineering.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "45-45-90-triangle-calculator",
+    category: "math",
+    slugs: {
+      en: "45-45-90-triangle-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "45-45-90 Triangle Calculator - Isosceles Right Triangle",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "45-45-90 triangle calculator finds all sides from one known side using the exact 1 : 1 : √2 ratio. Instant results for geometry, design, and woodworking.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "absolute-change-calculator",
+    category: "math",
+    slugs: {
+      en: "absolute-change-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Absolute Change Calculator - Calculate the Difference",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Absolute change calculator computes the difference between any two values. Enter initial and final values to see how much a quantity increased or decreased.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "absolute-value-calculator",
+    category: "math",
+    slugs: {
+      en: "absolute-value-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Absolute Value Calculator - Find |x| Instantly",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Absolute value calculator finds |x| for any number instantly. Understand distance from zero on the number line with clear formula and worked examples.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
+
 
 ];
