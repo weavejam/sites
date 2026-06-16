@@ -1440,7 +1440,88 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "pvr-calculator-pulmonary-vascular-resistance",
+    category: "health",
+    slugs: {
+      en: "pvr-calculator-pulmonary-vascular-resistance",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "PVR Calculator – Pulmonary Vascular Resistance",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "PVR calculator computes pulmonary vascular resistance in Wood units and dyn·s·cm⁻⁵ from mPAP, PCWP, and cardiac output for hemodynamic assessment.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "qp-qs-calculator",
+    category: "health",
+    slugs: {
+      en: "qp-qs-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "QP/QS Calculator – Quality of Life Assessment",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "QP/QS calculator scores physical, mental, and social health domains to generate Quality Points and a QS wellness category for personal health tracking.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "qsofa-score-calculator",
+    category: "health",
+    slugs: {
+      en: "qsofa-score-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "qSOFA Score Calculator – Sepsis Risk Screening",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "qSOFA score calculator screens for sepsis-related organ failure risk using respiratory rate, systolic blood pressure, and GCS for rapid bedside assessment.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "qtc-calculator",
+    category: "health",
+    slugs: {
+      en: "qtc-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "QTc Calculator – Corrected QT Interval",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "QTc calculator corrects QT interval for heart rate using Bazett, Fridericia, or Framingham formulas to assess cardiac arrhythmia risk from ECG data.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "quarantine-activity-calculator",
+    category: "health",
+    slugs: {
+      en: "quarantine-activity-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Quarantine Activity Calculator – Wellness Planner",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Quarantine activity calculator scores isolation routines across exercise, sleep, and social connection to optimize wellness and productivity during quarantine.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
+
 
 
 
