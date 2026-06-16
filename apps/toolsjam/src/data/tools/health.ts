@@ -81,6 +81,211 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+
+  {
+    id: "urine-output-calculator",
+    category: "health",
+    slugs: {
+      en: "urine-output-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Urine Output Calculator – Kidney Function & Fluid Balance",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Urine output calculator measures mL/kg/hr rates, flags oliguria or polyuria, and tracks fluid balance to assess kidney function and hydration status.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+
+  {
+    id: "urr-calculator-urea-reduction-ratio",
+    category: "health",
+    slugs: {
+      en: "urr-calculator-urea-reduction-ratio",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "URR Calculator – Urea Reduction Ratio for Dialysis",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "URR calculator computes the Urea Reduction Ratio from pre- and post-dialysis BUN levels to assess hemodialysis adequacy against KDOQI targets.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+
+  {
+    id: "vbac-calculator-vaginal-birth-after-cesarean-section",
+    category: "health",
+    slugs: {
+      en: "vbac-calculator-vaginal-birth-after-cesarean-section",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "VBAC Calculator – Vaginal Birth After Cesarean Success",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "VBAC calculator estimates vaginal birth after cesarean success probability using maternal age, delivery history, BMI, and clinical factors for birth planning.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+
+  {
+    id: "venous-blood-ph-calculator",
+    category: "health",
+    slugs: {
+      en: "venous-blood-ph-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Venous Blood pH Calculator – Acid-Base Analysis",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Venous blood pH calculator uses Henderson-Hasselbalch to classify acid-base disorders from VBG parameters including pH, HCO₃⁻, PCO₂, and base excess.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+
+  {
+    id: "vital-capacity-calculator",
+    category: "health",
+    slugs: {
+      en: "vital-capacity-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Vital Capacity Calculator – Pulmonary Function Assessment",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Vital capacity calculator predicts VC using reference equations for age, height, gender, ethnicity, and smoking to support pulmonary function assessment.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
 
 ];
