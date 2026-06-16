@@ -1,0 +1,114 @@
+{
+  "title": "Insulin Dosage Calculator – Meal & Correction Doses",
+  "tagline": "Calculate precise insulin doses for diabetes management using blood glucose levels, carbohydrate intake, insulin-to-carb ratio, and insulin sensitivity factor.",
+  "intro": "Enter your current blood glucose, target glucose, meal carbohydrates, and your personalized insulin factors to compute the recommended dose.",
+  "field": {
+    "currentBG": "Current Blood Glucose (mg/dL)",
+    "targetBG": "Target Blood Glucose (mg/dL)",
+    "carbs": "Carbohydrate Content (grams)",
+    "icr": "Insulin-to-Carb Ratio (ICR) — grams of carbs per 1 unit",
+    "isf": "Insulin Sensitivity Factor (ISF) — mg/dL drop per 1 unit",
+    "iob": "Insulin On Board (IOB) — units already active"
+  },
+  "placeholder": {
+    "currentBG": "e.g., 180",
+    "targetBG": "e.g., 120",
+    "carbs": "e.g., 45",
+    "icr": "e.g., 15",
+    "isf": "e.g., 50",
+    "iob": "e.g., 0"
+  },
+  "button": {
+    "calculate": "Calculate Insulin Dose",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalid": "Please enter valid numbers for current BG, target BG, ICR, and ISF.",
+    "icrZero": "Insulin-to-Carb Ratio (ICR) cannot be zero.",
+    "isfZero": "Insulin Sensitivity Factor (ISF) cannot be zero."
+  },
+  "result": {
+    "heading": "Insulin Dose Recommendation",
+    "mealDose": "Meal Insulin",
+    "correctionDose": "Correction Insulin",
+    "totalDose": "Total Recommended Dose",
+    "units": "units",
+    "note": "Always verify with your healthcare provider. Round to the nearest 0.5 or whole unit depending on your delivery device.",
+    "formula": "Meal insulin = Carbs ÷ ICR  •  Correction = (Current BG − Target BG) ÷ ISF  •  Total = Meal + Correction − IOB"
+  },
+  "about": {
+    "heading": "About the Insulin Dosage Calculator",
+    "body": "Insulin dosing in diabetes management requires balancing two distinct calculations that address different physiological needs. The first is the meal dose, also called bolus insulin, which covers the carbohydrates you are about to eat. The second is the correction dose, which addresses an existing elevation in blood glucose above your personal target. Together, these calculations — minus any active insulin already working from a previous injection — give you a safe starting estimate for the total units to administer.\n\nThe meal insulin component uses the Insulin-to-Carbohydrate Ratio (ICR). The ICR tells you how many grams of carbohydrate one unit of rapid-acting insulin will cover. If your ICR is 1:15, for example, each unit handles 15 grams of carbs. To find your meal dose, you simply divide the total grams of carbohydrate in your meal by your ICR. A 45-gram carbohydrate meal with an ICR of 15 therefore requires 3 units of meal insulin. ICRs are highly individual and are typically established by your diabetes care team through pattern analysis of your glucose responses.\n\nThe correction component uses the Insulin Sensitivity Factor (ISF), sometimes called the correction factor. The ISF describes how many points (in mg/dL) your blood glucose will fall per unit of insulin. If your ISF is 50, each unit drops your glucose by approximately 50 mg/dL. Correction insulin = (current blood glucose − target blood glucose) ÷ ISF. If your current glucose is 180 mg/dL, your target is 120 mg/dL, and your ISF is 50, the correction is (180 − 120) ÷ 50 = 1.2 units.\n\nInsulin on Board (IOB) is the amount of rapid-acting insulin still active from a previous dose. Most rapid-acting analogs have an active window of two to four hours. Failing to account for IOB when stacking correction doses is one of the most common causes of hypoglycemia in intensive insulin therapy. The calculator subtracts IOB from the sum of meal and correction doses; if the result is negative, the recommended dose is zero — meaning the existing active insulin is already more than sufficient.\n\nSeveral important caveats apply to any insulin dose calculator. The ICR and ISF values must be personalized by a healthcare provider or certified diabetes educator; the defaults or rules-of-thumb (such as the Rule of 500 for ICR or the Rule of 1800 for ISF) are starting estimates, not final values. Physical activity, illness, stress, the injection site, timing relative to meals, and the type of insulin all affect real-world glucose responses. Always consult your diabetes care team before acting on a calculated dose, and carry fast-acting carbohydrates to treat unexpected hypoglycemia."
+  },
+  "examples": {
+    "heading": "Insulin Dosage Examples",
+    "intro": "Four realistic scenarios showing meal insulin, correction insulin, and combined doses across common daily situations.",
+    "colInput": "Scenario",
+    "colOutput": "Total Dose",
+    "colNote": "Breakdown",
+    "loadMorning": "Load morning meal + correction example",
+    "loadMeal": "Load meal dose only example",
+    "loadCorrection": "Load correction only example",
+    "items": [
+      {
+        "input": "BG 180, Target 120, Carbs 45g, ICR 15, ISF 50, IOB 0",
+        "output": "4.2 units",
+        "note": "Meal dose: 45 ÷ 15 = 3.0 units. Correction: (180 − 120) ÷ 50 = 1.2 units. Total: 3.0 + 1.2 − 0 = 4.2 units."
+      },
+      {
+        "input": "BG 120, Target 120, Carbs 60g, ICR 15, ISF 50, IOB 0",
+        "output": "4.0 units",
+        "note": "Blood glucose is at target so correction = 0. Meal dose only: 60 ÷ 15 = 4.0 units."
+      },
+      {
+        "input": "BG 220, Target 120, Carbs 0g, ICR 15, ISF 50, IOB 0",
+        "output": "2.0 units",
+        "note": "No carbs, correction only: (220 − 120) ÷ 50 = 2.0 units. Typical evening correction with no meal."
+      },
+      {
+        "input": "BG 100, Target 120, Carbs 30g, ICR 15, ISF 50, IOB 1.5",
+        "output": "0.1 units",
+        "note": "Meal: 30 ÷ 15 = 2.0. Correction: (100 − 120) ÷ 50 = −0.4. IOB: 1.5. Total: 2.0 + (−0.4) − 1.5 = 0.1 units. BG below target and significant IOB reduce the dose to near zero."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to Use the Insulin Dosage Calculator",
+    "steps": [
+      "Enter your current blood glucose reading (in mg/dL) from your glucometer or continuous glucose monitor.",
+      "Enter your target blood glucose — the value your care team has set as your goal (commonly 80–130 mg/dL before meals).",
+      "Enter the total grams of carbohydrate in your upcoming meal. Use a food scale and nutrition labels for accuracy.",
+      "Enter your personalized Insulin-to-Carb Ratio (ICR) and Insulin Sensitivity Factor (ISF). If you are unsure, ask your diabetes care team.",
+      "Enter any Insulin On Board (IOB) — units of rapid-acting insulin still active from a previous dose within the last 2–4 hours — then click Calculate Insulin Dose."
+    ]
+  },
+  "faq": {
+    "heading": "Insulin Dosage Calculator FAQ",
+    "items": [
+      {
+        "q": "What is the Insulin-to-Carb Ratio (ICR)?",
+        "a": "The ICR tells you how many grams of carbohydrate are covered by one unit of rapid-acting insulin. For example, an ICR of 1:15 means one unit covers 15 grams. ICRs vary significantly between individuals and even across different times of the same day (many people need a different ratio at breakfast versus dinner). Your ICR is determined by your diabetes care team based on your glucose pattern data."
+      },
+      {
+        "q": "What is the Insulin Sensitivity Factor (ISF)?",
+        "a": "The ISF, also called the correction factor, is the number of mg/dL by which your blood glucose will drop per unit of rapid-acting insulin. If your ISF is 50, one unit of insulin will lower your glucose by approximately 50 mg/dL. Like the ICR, the ISF is individual and should be established with your healthcare provider. As a rough starting estimate, some clinicians use the Rule of 1800 (1800 ÷ total daily insulin dose), but this must be verified with real glucose data."
+      },
+      {
+        "q": "What is Insulin On Board (IOB) and why does it matter?",
+        "a": "IOB is the amount of rapid-acting insulin still active in your body from a previous injection or pump bolus. Rapid-acting analogs typically remain active for two to four hours. If you inject a correction dose without accounting for active insulin from a recent meal bolus, you risk stacking insulin and causing hypoglycemia. Many insulin pumps track IOB automatically; if you are on multiple daily injections, you need to estimate it based on when you last dosed."
+      },
+      {
+        "q": "Is a calculated insulin dose safe to use without consulting a doctor?",
+        "a": "This calculator is an educational reference tool. Insulin dosing requires personalized factors (ICR, ISF, target BG) established by a qualified diabetes care team. Individual responses to insulin vary based on activity, stress, illness, injection site, and many other factors. Always verify calculated doses with your healthcare provider or certified diabetes educator before making clinical decisions, especially when adjusting to new factors."
+      },
+      {
+        "q": "What should I do if my calculated dose is negative?",
+        "a": "A negative result means the existing active insulin (IOB) already exceeds the combined meal and correction need. In this case, the recommended dose is zero — you should not give additional insulin. This situation often occurs when glucose is at or near target and there is significant IOB remaining. Eating the planned meal is important in this case to prevent hypoglycemia from the active insulin."
+      },
+      {
+        "q": "How do I know my ICR and ISF if I am newly diagnosed?",
+        "a": "Starting ICR and ISF values are typically estimated using formulas such as the Rule of 500 (ICR = 500 ÷ total daily insulin dose) and the Rule of 1800 (ISF = 1800 ÷ total daily insulin dose). These are initial estimates that must be refined through systematic pattern management — testing glucose two hours after meals and tracking corrections over several days. Your diabetes educator will guide you through this titration process."
+      }
+    ]
+  }
+}

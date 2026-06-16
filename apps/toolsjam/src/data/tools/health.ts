@@ -2160,10 +2160,72 @@ export const tools: ToolEntry[] = [
       en: "Estimate median survival in metastatic castration-resistant prostate cancer using a simplified Halabi nomogram scoring model with 7 clinical factors.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
-  }
-
-
-
+  },
+  {
+    id: "inr-calculator",
+    category: "health",
+    slugs: { en: "inr-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "INR Calculator – International Normalized Ratio",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "INR calculator converts prothrombin time and ISI to International Normalized Ratio for monitoring warfarin therapy and blood clotting function.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "insulin-dosage-calculator",
+    category: "health",
+    slugs: { en: "insulin-dosage-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "Insulin Dosage Calculator – Meal & Correction Doses",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Insulin dosage calculator computes meal and correction doses using blood glucose, carb intake, ICR, ISF, and insulin on board for diabetes management.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "iq-percentile-calculator",
+    category: "health",
+    slugs: { en: "iq-percentile-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "IQ Percentile Calculator – Score to Population Rank",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "IQ percentile calculator converts any IQ score to a population percentile using normal distribution statistics, with intelligence classification and context.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "iron-deficiency-calculator",
+    category: "health",
+    slugs: { en: "iron-deficiency-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "Iron Deficiency Calculator – Blood Marker Assessment",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Iron deficiency calculator assesses iron status from hemoglobin, ferritin, transferrin saturation, and TIBC with personalized interpretation and guidance.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "isotretinoin-dose-calculator",
+    category: "health",
+    slugs: { en: "isotretinoin-dose-calculator", "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: "" },
+    titles: {
+      en: "Isotretinoin Dose Calculator – Daily Dose & Duration Planner",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Isotretinoin dose calculator computes daily dose, cumulative target, and treatment duration based on weight and dosing protocol for acne therapy planning.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
 
 
 
