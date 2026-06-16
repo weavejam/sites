@@ -377,10 +377,15 @@ import { fixtures as f_relative_frequency_calculator } from "@/tools/relative-fr
 import { fixtures as f_relative_risk_calculator } from "@/tools/relative-risk-calculator.fixtures";
 import { fixtures as f_relative_risk_reduction_calculator } from "@/tools/relative-risk-reduction-calculator.fixtures";
 import { fixtures as f_relative_standard_deviation_calculator } from "@/tools/relative-standard-deviation-calculator.fixtures";
+import { fixtures as f_reopening_calculator_coronavirus } from "@/tools/reopening-calculator-coronavirus.fixtures";
 import { fixtures as f_reorder_point_calculator } from "@/tools/reorder-point-calculator.fixtures";
 import { fixtures as f_repeated_measures_anova_calculator } from "@/tools/repeated-measures-anova-calculator.fixtures";
 import { fixtures as f_residual_calculator } from "@/tools/residual-calculator.fixtures";
 import { fixtures as f_resolution_scale_calculator } from "@/tools/resolution-scale-calculator.fixtures";
+import { fixtures as f_reverse_due_date_calculator } from "@/tools/reverse-due-date-calculator.fixtures";
+import { fixtures as f_revised_geneva_score_calculator_for_pulmonary_embolism } from "@/tools/revised-geneva-score-calculator-for-pulmonary-embolism.fixtures";
+import { fixtures as f_revised_trauma_score_calculator } from "@/tools/revised-trauma-score-calculator.fixtures";
+import { fixtures as f_rfm_calculator_relative_fat_mass } from "@/tools/rfm-calculator-relative-fat-mass.fixtures";
 import { fixtures as f_risk_calculator } from "@/tools/risk-calculator.fixtures";
 import { fixtures as f_roc_curve_calculator } from "@/tools/roc-curve-calculator.fixtures";
 import { fixtures as f_roulette_payout_calculator } from "@/tools/roulette-payout-calculator.fixtures";
@@ -911,10 +916,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "relative-risk-calculator": f_relative_risk_calculator,
   "relative-risk-reduction-calculator": f_relative_risk_reduction_calculator,
   "relative-standard-deviation-calculator": f_relative_standard_deviation_calculator,
+  "reopening-calculator-coronavirus": f_reopening_calculator_coronavirus,
   "reorder-point-calculator": f_reorder_point_calculator,
   "repeated-measures-anova-calculator": f_repeated_measures_anova_calculator,
   "residual-calculator": f_residual_calculator,
   "resolution-scale-calculator": f_resolution_scale_calculator,
+  "reverse-due-date-calculator": f_reverse_due_date_calculator,
+  "revised-geneva-score-calculator-for-pulmonary-embolism": f_revised_geneva_score_calculator_for_pulmonary_embolism,
+  "revised-trauma-score-calculator": f_revised_trauma_score_calculator,
+  "rfm-calculator-relative-fat-mass": f_rfm_calculator_relative_fat_mass,
   "risk-calculator": f_risk_calculator,
   "roc-curve-calculator": f_roc_curve_calculator,
   "roulette-payout-calculator": f_roulette_payout_calculator,
