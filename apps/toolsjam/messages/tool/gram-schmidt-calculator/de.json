@@ -1,0 +1,86 @@
+{
+  "title": "Gram-Schmidt-Orthogonalisierungsrechner",
+  "tagline": "Wandle beliebige Mengen linear unabhängiger Vektoren mit dem Gram-Schmidt-Verfahren in eine orthogonale oder orthonormale Basis um.",
+  "intro": "Gib deine Vektoren unten ein, einen pro Zeile, mit Komponenten getrennt durch Kommas oder Leerzeichen. Der Rechner wendet das Gram-Schmidt-Verfahren an und erzeugt sowohl eine orthogonale Basis als auch eine orthonormale Basis.",
+  "field": {
+    "vectors": "Eingabevektoren",
+    "vectorsPlaceholder": "z. B.\n1, 1, 0\n1, 0, 1\n0, 1, 1"
+  },
+  "button": {
+    "calculate": "Basis berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "result": {
+    "heading": "Ergebnisse",
+    "orthogonal": "Orthogonale Basis",
+    "orthonormal": "Orthonormale Basis",
+    "vector": "v{n}",
+    "rank": "Rang: {rank} (Eingabe hatte {count} Vektoren)",
+    "dependent": "Hinweis: Einige Vektoren waren linear abhängig und wurden ausgelassen."
+  },
+  "error": {
+    "empty": "Bitte mindestens einen Vektor eingeben.",
+    "inconsistent": "Alle Vektoren müssen die gleiche Anzahl an Komponenten haben.",
+    "invalid": "Ungültige Eingabe. Verwende Zahlen, getrennt durch Kommas oder Leerzeichen, einen Vektor pro Zeile."
+  },
+  "about": {
+    "heading": "Über den Gram-Schmidt-Rechner",
+    "body": "Das Gram-Schmidt-Verfahren ist einer der wichtigsten Algorithmen der linearen Algebra. Aus einer Menge linear unabhängiger Vektoren erzeugt es systematisch eine neue Menge von Vektoren, die paarweise orthogonal sind und denselben Unterraum aufspannen. Werden diese orthogonalen Vektoren zusätzlich durch ihre eigene Länge geteilt, sodass Einheitsvektoren entstehen, spricht man von einer orthonormalen Basis. Orthonormale Basen gelten in der linearen Algebra als Goldstandard, weil sie fast jede Rechnung mit Projektionen, Rotationen, Spiegelungen und Zerlegungen vereinfachen.\n\nDer Algorithmus arbeitet induktiv. Der erste Ausgabvektor ist einfach der erste Eingabevektor, unverändert. Der zweite Ausgabvektor ist der zweite Eingabevektor minus seiner Projektion auf den ersten Ausgabvektor — dadurch steht der zweite senkrecht auf dem ersten. Der dritte Ausgabvektor ist der dritte Eingabevektor mit den Projektionen auf die ersten beiden Ausgabvektoren entfernt. Allgemein ist der k-te Ausgabvektor der k-te Eingabevektor minus der Summe seiner Projektionen auf alle vorherigen Ausgabvektoren. Die Formel für die Projektion von v auf einen bereits orthogonalisierten Vektor u lautet (v·u / u·u) × u, wobei · das Skalarprodukt bezeichnet.\n\nWenn während dieses Prozesses nach dem Abziehen aller Projektionen der Nullvektor entsteht, war der Eingabevektor linear abhängig von den vorherigen und wird einfach verworfen. Der Rechner behandelt das automatisch und gibt den Rang der Eingabemenge aus, also die Anzahl der wirklich unabhängigen Vektoren. In der Praxis wird eine kleine numerische Schwelle verwendet, um Vektoren zu erkennen, die aufgrund von Gleitkomma-Rundung nahezu null sind.\n\nDie orthonormale Basis erhält man, indem man jeden orthogonalen Ausgabvektor durch seine euklidische Norm teilt (die Wurzel aus seinem Skalarprodukt mit sich selbst). Das Ergebnis ist eine Menge von Einheitsvektoren, jeder mit genau Länge 1, die in paarweise senkrechte Richtungen zeigen. Diese orthonormale Menge bildet das, was man einen orthonormalen Rahmen für den von den ursprünglichen Eingaben aufgespannten Unterraum nennt.\n\nAnwendungen des Gram-Schmidt-Verfahrens reichen durch praktisch alle quantitativen Bereiche. In der numerischen linearen Algebra liegt es der QR-Zerlegung zugrunde, die zur Lösung von Least-Squares-Problemen und zur Berechnung von Eigenwerten verwendet wird. In der Signalverarbeitung dient es zum Aufbau orthogonaler Filterbänke und zur Trennung unabhängiger Signalanteile. In der Quantenmechanik ist der Zustandsraum eines Quantensystems ein Hilbertraum, und physikalische Observablen entsprechen orthonormalen Basen von Eigenvektoren. In Statistik und Machine Learning kann die Hauptkomponentenanalyse (PCA) als das Finden einer orthonormalen Basis verstanden werden, die an den Richtungen maximaler Varianz in einem Datensatz ausgerichtet ist. In der Computergrafik erfordert der Aufbau eines Kamera- oder Objektkoordinatensystems drei paarweise senkrechte Einheitsvektoren — eine Aufgabe, die sich mit Gram-Schmidt natürlich lösen lässt.\n\nDieser Rechner akzeptiert Vektoren beliebiger Dimension, behandelt linear abhängige Eingaben elegant und zeigt sowohl die zwischengeschalteten orthogonalen Vektoren als auch die endgültigen orthonormalen Vektoren nebeneinander an, damit du jeden Schritt der Transformation sehen kannst."
+  },
+  "examples": {
+    "heading": "Gram-Schmidt-Beispiele",
+    "intro": "Drei ausgearbeitete Beispiele zeigen das Orthogonalisierungsverfahren in 2D, 3D und für eine abhängige Vektormenge.",
+    "colInput": "Eingabevektoren",
+    "colOutput": "Orthonormale Basis",
+    "colNote": "Hinweise",
+    "load2d": "2D-Beispiel laden",
+    "load3d": "3D-Beispiel laden",
+    "items": [
+      {
+        "input": "v1 = (1, 0), v2 = (1, 1)",
+        "output": "e1 = (1, 0), e2 = (0, 1)",
+        "note": "Standardfall in 2D. v2 minus seiner Projektion auf v1 ergibt (0,1), und das ist bereits ein Einheitsvektor."
+      },
+      {
+        "input": "v1 = (1, 1, 0), v2 = (1, 0, 1), v3 = (0, 1, 1)",
+        "output": "e1 ≈ (0.707, 0.707, 0), e2 ≈ (0.408, −0.408, 0.816), e3 ≈ (−0.577, 0.577, 0.577)",
+        "note": "Klassische 3D-Orthonormalisierung. Alle drei Eingabevektoren sind unabhängig, also entsteht eine vollständige orthonormale Basis für ℝ³."
+      },
+      {
+        "input": "v1 = (1, 2, 3), v2 = (2, 4, 6), v3 = (1, 0, 0)",
+        "output": "e1 ≈ (0.267, 0.535, 0.802), e2 ≈ (0.964, −0.148, −0.222)",
+        "note": "v2 ist ein skalares Vielfaches von v1 (linear abhängig) und wird verworfen. Der Rang ist 2, nicht 3."
+      },
+      {
+        "input": "v1 = (3, 1), v2 = (2, 2)",
+        "output": "e1 ≈ (0.949, 0.316), e2 ≈ (−0.316, 0.949)",
+        "note": "2D-Beispiel mit nicht ganzzahligen Komponenten. Die Ausgabvektoren sind senkrechte Einheitsvektoren."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Gram-Schmidt-Rechner",
+    "steps": [
+      "Gib deine Vektoren im Textfeld ein, einen Vektor pro Zeile, mit durch Kommas oder Leerzeichen getrennten Komponenten (z. B. '1, 2, 3' oder '1 2 3').",
+      "Achte darauf, dass alle Vektoren die gleiche Anzahl an Komponenten haben — die Dimension wird automatisch aus der ersten Zeile abgeleitet.",
+      "Klicke auf „Basis berechnen“. Der Rechner wendet das Gram-Schmidt-Verfahren an und zeigt sowohl die orthogonale als auch die orthonormale Basis an.",
+      "Prüfe den in den Ergebnissen angegebenen Rang. Ist er kleiner als die Anzahl der Eingabevektoren, waren einige Eingaben linear abhängig und wurden übersprungen.",
+      "Mit dem Button „Zurücksetzen“ kannst du die Eingabe löschen und eine neue Berechnung starten."
+    ]
+  },
+  "faq": {
+    "heading": "Gram-Schmidt-Rechner FAQ",
+    "q1": "Was ist das Gram-Schmidt-Verfahren?",
+    "q1_a": "Das Gram-Schmidt-Verfahren ist ein Algorithmus, der eine Menge linear unabhängiger Vektoren nimmt und eine Menge paarweise orthogonaler Vektoren erzeugt, die denselben Unterraum aufspannen. Optional kann jeder orthogonale Vektor auf Einheitslänge normiert werden, um eine orthonormale Basis zu erhalten.",
+    "q2": "Was ist der Unterschied zwischen orthogonal und orthonormal?",
+    "q2_a": "Eine orthogonale Menge hat Vektoren, deren paarweise Skalarprodukte alle null sind — die Vektoren stehen senkrecht zueinander. Eine orthonormale Menge verlangt zusätzlich, dass jeder Vektor die Länge 1 hat (Einheitsvektor). Jede orthonormale Menge ist orthogonal, aber nicht umgekehrt.",
+    "q3": "Was passiert, wenn meine Eingabevektoren linear abhängig sind?",
+    "q3_a": "Ist ein Vektor linear abhängig von den früheren Vektoren, ergibt das Subtrahieren seiner Projektionen den Nullvektor, der nicht normiert werden kann. Der Rechner erkennt das und lässt diesen Vektor weg. Der angegebene Rang ist dann kleiner als die Anzahl der Eingabevektoren.",
+    "q4": "Was ist die QR-Zerlegung und wie hängt sie zusammen?",
+    "q4_a": "Die QR-Zerlegung faktorisiert eine Matrix A als Produkt Q·R, wobei Q orthonormale Spalten besitzt und R obere Dreiecksgestalt hat. Das Gram-Schmidt-Verfahren ist eine der klassischen Methoden zur Berechnung von Q. Diese Faktorisierung wird häufig zum Lösen von Least-Squares-Problemen und in numerischen Eigenwertverfahren verwendet.",
+    "q5": "Wie viele Dimensionen kann ich verwenden?",
+    "q5_a": "Der Rechner hat keine feste Dimensionsgrenze außer durch Speicher und Gleitkomma-Präzision. Vektoren mit 2, 3, 4 oder mehr Komponenten werden unterstützt. Gib jeden Vektor in eine eigene Zeile mit derselben Anzahl an Komponenten ein.",
+    "q6": "Warum sehen die Ergebnisse leicht anders aus als per Hand gerechnet?",
+    "q6_a": "Der Rechner verwendet IEEE-754-Doppelpräzisions-Gleitkommaarithmetik, wodurch winzige Rundungsfehler entstehen können. Zur Anzeige werden die Ergebnisse auf eine feste Anzahl von Dezimalstellen gerundet. Für exakte symbolische Lösungen nutze ein Computeralgebrasystem wie Wolfram Alpha oder eine symbolische Python-Bibliothek."
+  }
+}

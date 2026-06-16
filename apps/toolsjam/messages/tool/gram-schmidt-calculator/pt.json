@@ -1,0 +1,86 @@
+{
+  "title": "Calculadora de ortogonalização de Gram-Schmidt",
+  "tagline": "Converta qualquer conjunto de vetores linearmente independentes em uma base ortogonal ou ortonormal usando o processo de Gram-Schmidt.",
+  "intro": "Digite seus vetores abaixo, um por linha, com os componentes separados por vírgulas ou espaços. A calculadora aplicará o processo de Gram-Schmidt para produzir uma base ortogonal e uma base ortonormal.",
+  "field": {
+    "vectors": "Vetores de entrada",
+    "vectorsPlaceholder": "ex.\n1, 1, 0\n1, 0, 1\n0, 1, 1"
+  },
+  "button": {
+    "calculate": "Calcular base",
+    "reset": "Redefinir"
+  },
+  "result": {
+    "heading": "Resultados",
+    "orthogonal": "Base ortogonal",
+    "orthonormal": "Base ortonormal",
+    "vector": "v{n}",
+    "rank": "Posto: {rank} (a entrada tinha {count} vetores)",
+    "dependent": "Observação: alguns vetores eram linearmente dependentes e foram omitidos."
+  },
+  "error": {
+    "empty": "Digite pelo menos um vetor.",
+    "inconsistent": "Todos os vetores devem ter o mesmo número de componentes.",
+    "invalid": "Entrada inválida. Use números separados por vírgulas ou espaços, um vetor por linha."
+  },
+  "about": {
+    "heading": "Sobre a calculadora de Gram-Schmidt",
+    "body": "O processo de Gram-Schmidt é um dos algoritmos mais importantes da álgebra linear. Dado um conjunto de vetores linearmente independentes, ele produz sistematicamente um novo conjunto de vetores mutuamente ortogonais que geram o mesmo subespaço. Quando cada um desses vetores ortogonais é ainda dividido pelo seu próprio comprimento para se tornar um vetor unitário, o resultado é chamado de base ortonormal. Bases ortonormais são o padrão-ouro na álgebra linear porque simplificam quase todos os cálculos que envolvem projeções, rotações, reflexões e decomposições.\n\nO algoritmo segue de forma indutiva. O primeiro vetor de saída é simplesmente o primeiro vetor de entrada, sem alterações. O segundo vetor de saída é o segundo vetor de entrada com sua projeção sobre o primeiro vetor de saída subtraída — isso garante que o segundo seja perpendicular ao primeiro. O terceiro vetor de saída é o terceiro vetor de entrada com suas projeções sobre os dois primeiros saídas removidas. Em geral, o k-ésimo vetor de saída é o k-ésimo vetor de entrada menos a soma de suas projeções sobre todos os vetores de saída anteriores. A fórmula para a projeção do vetor v sobre um vetor u já ortogonalizado é (v·u / u·u) × u, onde · denota o produto escalar.\n\nSe, durante esse processo, o resultado de subtrair todas as projeções for o vetor zero, o vetor de entrada era linearmente dependente dos anteriores e é simplesmente descartado. A calculadora trata isso automaticamente e mostra o posto do conjunto de entrada — isto é, o número de vetores realmente independentes. Na prática, usa-se um pequeno limite numérico para detectar vetores quase nulos por causa do arredondamento em ponto flutuante.\n\nA base ortonormal é obtida dividindo cada vetor ortogonal de saída pela sua norma euclidiana (a raiz quadrada do seu produto escalar consigo mesmo). O resultado é um conjunto de vetores unitários, cada um com comprimento exatamente 1, apontando em direções mutuamente perpendiculares. Esse conjunto ortonormal forma o que se chama de um referencial ortonormal para o subespaço gerado pelas entradas originais.\n\nAs aplicações do processo de Gram-Schmidt abrangem praticamente todas as áreas quantitativas. Em álgebra linear numérica, ele fundamenta a decomposição QR, usada para resolver problemas de mínimos quadrados e calcular autovalores. Em processamento de sinais, é usado para construir bancos de filtros ortogonais e separar componentes independentes do sinal. Em mecânica quântica, o espaço de estados de um sistema quântico é um espaço de Hilbert e observáveis físicos correspondem a bases ortonormais de autovetores. Em estatística e aprendizado de máquina, a análise de componentes principais (PCA) pode ser entendida como a busca de uma base ortonormal alinhada às direções de maior variância em um conjunto de dados. Em computação gráfica, construir um sistema de câmera ou de objeto exige três vetores unitários mutuamente perpendiculares, tarefa naturalmente resolvida por Gram-Schmidt.\n\nEsta calculadora aceita vetores de qualquer dimensão, lida com entradas linearmente dependentes de forma elegante e mostra lado a lado os vetores ortogonais intermediários e os vetores ortonormais finais para que você veja cada etapa da transformação."
+  },
+  "examples": {
+    "heading": "Exemplos de Gram-Schmidt",
+    "intro": "Três exemplos resolvidos mostrando o processo de ortogonalização em 2D, 3D e para um conjunto dependente.",
+    "colInput": "Vetores de entrada",
+    "colOutput": "Base ortonormal",
+    "colNote": "Observações",
+    "load2d": "Carregar exemplo 2D",
+    "load3d": "Carregar exemplo 3D",
+    "items": [
+      {
+        "input": "v1 = (1, 0), v2 = (1, 1)",
+        "output": "e1 = (1, 0), e2 = (0, 1)",
+        "note": "Caso padrão em 2D. v2 menos sua projeção sobre v1 resulta em (0,1), que já é um vetor unitário."
+      },
+      {
+        "input": "v1 = (1, 1, 0), v2 = (1, 0, 1), v3 = (0, 1, 1)",
+        "output": "e1 ≈ (0.707, 0.707, 0), e2 ≈ (0.408, −0.408, 0.816), e3 ≈ (−0.577, 0.577, 0.577)",
+        "note": "Ortogonalização ortonormal clássica em 3D. Os três vetores de entrada são independentes, gerando uma base ortonormal completa para ℝ³."
+      },
+      {
+        "input": "v1 = (1, 2, 3), v2 = (2, 4, 6), v3 = (1, 0, 0)",
+        "output": "e1 ≈ (0.267, 0.535, 0.802), e2 ≈ (0.964, −0.148, −0.222)",
+        "note": "v2 é um múltiplo escalar de v1 (linearmente dependente) e é descartado. O posto é 2, não 3."
+      },
+      {
+        "input": "v1 = (3, 1), v2 = (2, 2)",
+        "output": "e1 ≈ (0.949, 0.316), e2 ≈ (−0.316, 0.949)",
+        "note": "Exemplo em 2D com componentes não inteiros. Os vetores de saída são vetores unitários perpendiculares."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de Gram-Schmidt",
+    "steps": [
+      "Digite seus vetores na área de texto, um por linha, com os componentes separados por vírgulas ou espaços (por exemplo, '1, 2, 3' ou '1 2 3').",
+      "Certifique-se de que todos os vetores tenham o mesmo número de componentes — a dimensão é inferida automaticamente a partir da primeira linha.",
+      "Clique em 'Calcular base'. A calculadora aplica o processo de Gram-Schmidt e mostra tanto a base ortogonal quanto a base ortonormal.",
+      "Verifique o posto exibido nos resultados. Se for menor que o número de vetores de entrada, alguns eram linearmente dependentes e foram ignorados.",
+      "Use o botão 'Redefinir' para limpar a entrada e iniciar um novo cálculo."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes da calculadora de Gram-Schmidt",
+    "q1": "O que é o processo de Gram-Schmidt?",
+    "q1_a": "O processo de Gram-Schmidt é um algoritmo que recebe um conjunto de vetores linearmente independentes e produz um conjunto de vetores mutuamente ortogonais que geram o mesmo subespaço. Opcionalmente, cada vetor ortogonal pode ser normalizado para comprimento unitário, gerando uma base ortonormal.",
+    "q2": "Qual é a diferença entre ortogonal e ortonormal?",
+    "q2_a": "Um conjunto ortogonal tem vetores cujos produtos escalares par a par são todos zero — os vetores são perpendiculares entre si. Um conjunto ortonormal exige ainda que cada vetor tenha comprimento 1 (vetor unitário). Todo conjunto ortonormal é ortogonal, mas não o contrário.",
+    "q3": "O que acontece se meus vetores de entrada forem linearmente dependentes?",
+    "q3_a": "Quando um vetor é linearmente dependente dos anteriores, subtrair suas projeções resulta no vetor zero, que não pode ser normalizado. A calculadora detecta isso e omite esse vetor. O posto mostrado será menor que o número de vetores de entrada.",
+    "q4": "O que é decomposição QR e como ela se relaciona?",
+    "q4_a": "A decomposição QR fatoriza uma matriz A como o produto Q·R, em que Q tem colunas ortonormais e R é triangular superior. O processo de Gram-Schmidt é um dos métodos clássicos para calcular Q. Essa fatoração é amplamente usada para resolver mínimos quadrados e em algoritmos numéricos de autovalores.",
+    "q5": "Quantas dimensões posso usar?",
+    "q5_a": "A calculadora não tem limite rígido de dimensão além da memória e da precisão em ponto flutuante. Vetores com 2, 3, 4 ou mais componentes são suportados. Digite cada vetor em sua própria linha com o mesmo número de componentes.",
+    "q6": "Por que os resultados parecem um pouco diferentes dos cálculos à mão?",
+    "q6_a": "A calculadora usa aritmética de ponto flutuante de dupla precisão IEEE-754, o que pode introduzir pequenos erros de arredondamento. Os resultados são arredondados para um número fixo de casas decimais para exibição. Para respostas simbólicas exatas, use um sistema algébrico computacional como o Wolfram Alpha ou uma biblioteca simbólica em Python."
+  }
+}

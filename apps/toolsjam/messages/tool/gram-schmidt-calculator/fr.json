@@ -1,0 +1,86 @@
+{
+  "title": "Calculatrice d’orthogonalisation de Gram-Schmidt",
+  "tagline": "Convertissez n’importe quel ensemble de vecteurs linéairement indépendants en base orthogonale ou orthonormale grâce au procédé de Gram-Schmidt.",
+  "intro": "Saisissez vos vecteurs ci-dessous, un par ligne, avec les composantes séparées par des virgules ou des espaces. La calculatrice appliquera le procédé de Gram-Schmidt pour produire à la fois une base orthogonale et une base orthonormale.",
+  "field": {
+    "vectors": "Vecteurs d’entrée",
+    "vectorsPlaceholder": "ex.\n1, 1, 0\n1, 0, 1\n0, 1, 1"
+  },
+  "button": {
+    "calculate": "Calculer la base",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats",
+    "orthogonal": "Base orthogonale",
+    "orthonormal": "Base orthonormale",
+    "vector": "v{n}",
+    "rank": "Rang : {rank} (l’entrée comportait {count} vecteurs)",
+    "dependent": "Remarque : certains vecteurs étaient linéairement dépendants et ont été omis."
+  },
+  "error": {
+    "empty": "Veuillez saisir au moins un vecteur.",
+    "inconsistent": "Tous les vecteurs doivent avoir le même nombre de composantes.",
+    "invalid": "Entrée invalide. Utilisez des nombres séparés par des virgules ou des espaces, un vecteur par ligne."
+  },
+  "about": {
+    "heading": "À propos de la calculatrice de Gram-Schmidt",
+    "body": "Le procédé de Gram-Schmidt est l’un des algorithmes les plus importants de l’algèbre linéaire. Étant donné un ensemble de vecteurs linéairement indépendants, il produit systématiquement un nouvel ensemble de vecteurs mutuellement orthogonaux qui engendrent le même sous-espace. Lorsque chacun de ces vecteurs orthogonaux est en plus divisé par sa propre longueur pour devenir un vecteur unitaire, on obtient une base orthonormale. Les bases orthonormales sont la référence en algèbre linéaire, car elles simplifient presque tous les calculs impliquant des projections, des rotations, des réflexions et des décompositions.\n\nL’algorithme procède de manière inductive. Le premier vecteur de sortie est simplement le premier vecteur d’entrée, inchangé. Le deuxième vecteur de sortie est le deuxième vecteur d’entrée dont on a retranché la projection sur le premier vecteur de sortie — cela garantit que le deuxième est perpendiculaire au premier. Le troisième vecteur de sortie est le troisième vecteur d’entrée dont on a retiré les projections sur les deux premiers vecteurs de sortie. En général, le k-ième vecteur de sortie est le k-ième vecteur d’entrée moins la somme de ses projections sur tous les vecteurs de sortie précédents. La formule de projection d’un vecteur v sur un vecteur u déjà orthogonalisé est (v·u / u·u) × u, où · désigne le produit scalaire.\n\nSi, au cours de ce processus, le résultat après soustraction de toutes les projections est le vecteur nul, cela signifie que le vecteur d’entrée était linéairement dépendant des précédents et il est simplement supprimé. La calculatrice le gère automatiquement et affiche le rang de l’ensemble d’entrée, c’est-à-dire le nombre de vecteurs réellement indépendants. En pratique, un petit seuil numérique est utilisé pour détecter les vecteurs presque nuls dus à l’arrondi en virgule flottante.\n\nLa base orthonormale est obtenue en divisant chaque vecteur orthogonal de sortie par sa norme euclidienne (la racine carrée de son produit scalaire avec lui-même). Le résultat est un ensemble de vecteurs unitaires, tous de longueur exactement 1, pointant dans des directions mutuellement perpendiculaires. Cet ensemble orthonormal forme ce qu’on appelle un repère orthonormal pour le sous-espace engendré par les entrées d’origine.\n\nLes applications du procédé de Gram-Schmidt couvrent pratiquement tous les domaines quantitatifs. En algèbre linéaire numérique, il sous-tend la décomposition QR, utilisée pour résoudre des problèmes de moindres carrés et calculer des valeurs propres. En traitement du signal, il sert à construire des banques de filtres orthogonales et à séparer des composantes indépendantes du signal. En mécanique quantique, l’espace des états d’un système quantique est un espace de Hilbert et les observables physiques correspondent à des bases orthonormales de vecteurs propres. En statistiques et en apprentissage automatique, l’analyse en composantes principales (ACP) peut être comprise comme la recherche d’une base orthonormale alignée sur les directions de variance maximale d’un jeu de données. En infographie, la construction d’un repère de caméra ou d’objet requiert trois vecteurs unitaires mutuellement perpendiculaires, tâche que Gram-Schmidt résout naturellement.\n\nCette calculatrice accepte des vecteurs de toute dimension, gère proprement les entrées linéairement dépendantes et affiche côte à côte les vecteurs orthogonaux intermédiaires et les vecteurs orthonormaux finaux pour que vous puissiez voir chaque étape de la transformation."
+  },
+  "examples": {
+    "heading": "Exemples de Gram-Schmidt",
+    "intro": "Trois exemples détaillés montrant le processus d’orthogonalisation en 2D, 3D et pour un ensemble dépendant.",
+    "colInput": "Vecteurs d’entrée",
+    "colOutput": "Base orthonormale",
+    "colNote": "Remarques",
+    "load2d": "Charger l’exemple 2D",
+    "load3d": "Charger l’exemple 3D",
+    "items": [
+      {
+        "input": "v1 = (1, 0), v2 = (1, 1)",
+        "output": "e1 = (1, 0), e2 = (0, 1)",
+        "note": "Cas 2D standard. v2 moins sa projection sur v1 donne (0,1), qui est déjà un vecteur unitaire."
+      },
+      {
+        "input": "v1 = (1, 1, 0), v2 = (1, 0, 1), v3 = (0, 1, 1)",
+        "output": "e1 ≈ (0.707, 0.707, 0), e2 ≈ (0.408, −0.408, 0.816), e3 ≈ (−0.577, 0.577, 0.577)",
+        "note": "Orthogonalisation orthonormale classique en 3D. Les trois vecteurs d’entrée sont indépendants, ce qui donne une base orthonormale complète de ℝ³."
+      },
+      {
+        "input": "v1 = (1, 2, 3), v2 = (2, 4, 6), v3 = (1, 0, 0)",
+        "output": "e1 ≈ (0.267, 0.535, 0.802), e2 ≈ (0.964, −0.148, −0.222)",
+        "note": "v2 est un multiple scalaire de v1 (linéairement dépendant) et est donc supprimé. Le rang est 2, et non 3."
+      },
+      {
+        "input": "v1 = (3, 1), v2 = (2, 2)",
+        "output": "e1 ≈ (0.949, 0.316), e2 ≈ (−0.316, 0.949)",
+        "note": "Exemple 2D avec des composantes non entières. Les vecteurs de sortie sont des vecteurs unitaires perpendiculaires."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice de Gram-Schmidt",
+    "steps": [
+      "Saisissez vos vecteurs dans la zone de texte, un vecteur par ligne, avec les composantes séparées par des virgules ou des espaces (par exemple '1, 2, 3' ou '1 2 3').",
+      "Assurez-vous que tous les vecteurs ont le même nombre de composantes — la dimension est déduite automatiquement de la première ligne.",
+      "Cliquez sur « Calculer la base ». La calculatrice applique le procédé de Gram-Schmidt et affiche la base orthogonale ainsi que la base orthonormale.",
+      "Vérifiez le rang indiqué dans les résultats. S’il est inférieur au nombre de vecteurs d’entrée, certains étaient linéairement dépendants et ont été ignorés.",
+      "Utilisez le bouton « Réinitialiser » pour effacer l’entrée et lancer un nouveau calcul."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ de la calculatrice de Gram-Schmidt",
+    "q1": "Qu’est-ce que le procédé de Gram-Schmidt ?",
+    "q1_a": "Le procédé de Gram-Schmidt est un algorithme qui prend un ensemble de vecteurs linéairement indépendants et produit un ensemble de vecteurs mutuellement orthogonaux engendrant le même sous-espace. On peut aussi normaliser chaque vecteur orthogonal à longueur unitaire pour obtenir une base orthonormale.",
+    "q2": "Quelle est la différence entre orthogonal et orthonormal ?",
+    "q2_a": "Un ensemble orthogonal possède des vecteurs dont les produits scalaires deux à deux sont tous nuls — les vecteurs sont perpendiculaires entre eux. Un ensemble orthonormal exige en plus que chaque vecteur ait une longueur de 1 (vecteur unitaire). Tout ensemble orthonormal est orthogonal, mais l’inverse n’est pas vrai.",
+    "q3": "Que se passe-t-il si mes vecteurs d’entrée sont linéairement dépendants ?",
+    "q3_a": "Lorsqu’un vecteur est linéairement dépendant des précédents, la soustraction de ses projections donne le vecteur nul, qui ne peut pas être normalisé. La calculatrice le détecte et omet ce vecteur. Le rang affiché sera inférieur au nombre de vecteurs d’entrée.",
+    "q4": "Qu’est-ce que la décomposition QR et quel est le lien ?",
+    "q4_a": "La décomposition QR factorise une matrice A en un produit Q·R, où Q a des colonnes orthonormales et R est triangulaire supérieure. Le procédé de Gram-Schmidt est l’une des méthodes classiques pour calculer Q. Cette factorisation est largement utilisée pour résoudre des problèmes de moindres carrés et dans les algorithmes numériques de valeurs propres.",
+    "q5": "Combien de dimensions puis-je utiliser ?",
+    "q5_a": "La calculatrice n’a pas de limite stricte de dimension au-delà de la mémoire et de la précision en virgule flottante. Les vecteurs à 2, 3, 4 composantes ou plus sont tous pris en charge. Saisissez chaque vecteur sur sa propre ligne avec le même nombre de composantes.",
+    "q6": "Pourquoi les résultats diffèrent-ils légèrement des calculs à la main ?",
+    "q6_a": "La calculatrice utilise l’arithmétique en virgule flottante double précision IEEE-754, ce qui peut introduire de très petites erreurs d’arrondi. Les résultats sont arrondis à un nombre fixe de décimales pour l’affichage. Pour des réponses symboliques exactes, utilisez un système de calcul formel comme Wolfram Alpha ou une bibliothèque Python symbolique."
+  }
+}
