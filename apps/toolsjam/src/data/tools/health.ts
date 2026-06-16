@@ -1240,6 +1240,86 @@ export const tools: ToolEntry[] = [
       en: "Sodium in salt calculator shows mg of sodium in table, sea, kosher, and Himalayan salt by weight and tracks your daily recommended sodium limit percentage.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "protein-calculator",
+    category: "health",
+    slugs: {
+      en: "protein-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Protein Calculator - Daily Protein Requirements",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Protein calculator estimates daily protein intake by body weight, activity level, fitness goal, and age. Built for athletes, dieters, and older adults.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "protein-creatinine-ratio-calculator",
+    category: "health",
+    slugs: {
+      en: "protein-creatinine-ratio-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Protein Creatinine Ratio Calculator - Kidney Function",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Protein creatinine ratio calculator computes urine PCR from spot protein and creatinine values to screen for proteinuria and assess kidney function.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "psa-density-calculator",
+    category: "health",
+    slugs: {
+      en: "psa-density-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "PSA Density Calculator - Prostate Cancer Risk Assessment",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "PSA density calculator divides PSA level by prostate volume to improve prostate cancer screening accuracy and reduce unnecessary biopsies from benign BPH.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "psa-doubling-time-calculator",
+    category: "health",
+    slugs: {
+      en: "psa-doubling-time-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "PSA Doubling Time Calculator - Cancer Progression",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "PSA doubling time calculator uses two serial PSA measurements to estimate prostate cancer growth rate and classify disease kinetics from slow to very rapid.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "psi-calculator",
+    category: "health",
+    slugs: {
+      en: "psi-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "PSI Calculator - Pressure Unit Converter for Medical Use",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "PSI pressure converter converts PSI, mmHg, kPa, bar, atm, cmH2O, Pa, and MPa with configurable precision for medical device calibration and respiratory care.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
 
 
