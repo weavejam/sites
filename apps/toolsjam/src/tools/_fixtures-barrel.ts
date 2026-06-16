@@ -382,17 +382,22 @@ import { fixtures as f_repeated_measures_anova_calculator } from "@/tools/repeat
 import { fixtures as f_residual_calculator } from "@/tools/residual-calculator.fixtures";
 import { fixtures as f_resolution_scale_calculator } from "@/tools/resolution-scale-calculator.fixtures";
 import { fixtures as f_risk_calculator } from "@/tools/risk-calculator.fixtures";
+import { fixtures as f_rmr_calculator_resting_metabolic_rate } from "@/tools/rmr-calculator-resting-metabolic-rate.fixtures";
 import { fixtures as f_roc_curve_calculator } from "@/tools/roc-curve-calculator.fixtures";
 import { fixtures as f_roulette_payout_calculator } from "@/tools/roulette-payout-calculator.fixtures";
 import { fixtures as f_round_to_the_nearest_thousand_calculator } from "@/tools/round-to-the-nearest-thousand-calculator.fixtures";
 import { fixtures as f_rounding_calculator } from "@/tools/rounding-calculator.fixtures";
 import { fixtures as f_rsa_calculator } from "@/tools/rsa-calculator.fixtures";
+import { fixtures as f_rsbi_calculator_rapid_shallow_breathing_index } from "@/tools/rsbi-calculator-rapid-shallow-breathing-index.fixtures";
 import { fixtures as f_rse_calculator_relative_standard_error } from "@/tools/rse-calculator-relative-standard-error.fixtures";
+import { fixtures as f_saag_calculator_serum_ascites_albumin_gradient } from "@/tools/saag-calculator-serum-ascites-albumin-gradient.fixtures";
 import { fixtures as f_sample_size_calculator } from "@/tools/sample-size-calculator.fixtures";
 import { fixtures as f_sampling_distribution_of_the_sample_proportion_calculator } from "@/tools/sampling-distribution-of-the-sample-proportion-calculator.fixtures";
 import { fixtures as f_sampling_error_calculator } from "@/tools/sampling-error-calculator.fixtures";
+import { fixtures as f_saps_ii_calculator_simplified_acute_physiology_ii_score_calculator } from "@/tools/saps-ii-calculator-simplified-acute-physiology-ii-score-calculator.fixtures";
 import { fixtures as f_scatter_plot_calculator } from "@/tools/scatter-plot-calculator.fixtures";
 import { fixtures as f_scientific_notation_calculator } from "@/tools/scientific-notation-calculator.fixtures";
+import { fixtures as f_scorad_calculator_scoring_atopic_dermatitis } from "@/tools/scorad-calculator-scoring-atopic-dermatitis.fixtures";
 import { fixtures as f_simplifying_radicals_calculator } from "@/tools/simplifying-radicals-calculator.fixtures";
 import { fixtures as f_sine_calculator } from "@/tools/sine-calculator.fixtures";
 import { fixtures as f_singular_values_calculator } from "@/tools/singular-values-calculator.fixtures";
@@ -906,17 +911,22 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "residual-calculator": f_residual_calculator,
   "resolution-scale-calculator": f_resolution_scale_calculator,
   "risk-calculator": f_risk_calculator,
+  "rmr-calculator-resting-metabolic-rate": f_rmr_calculator_resting_metabolic_rate,
   "roc-curve-calculator": f_roc_curve_calculator,
   "roulette-payout-calculator": f_roulette_payout_calculator,
   "round-to-the-nearest-thousand-calculator": f_round_to_the_nearest_thousand_calculator,
   "rounding-calculator": f_rounding_calculator,
   "rsa-calculator": f_rsa_calculator,
+  "rsbi-calculator-rapid-shallow-breathing-index": f_rsbi_calculator_rapid_shallow_breathing_index,
   "rse-calculator-relative-standard-error": f_rse_calculator_relative_standard_error,
+  "saag-calculator-serum-ascites-albumin-gradient": f_saag_calculator_serum_ascites_albumin_gradient,
   "sample-size-calculator": f_sample_size_calculator,
   "sampling-distribution-of-the-sample-proportion-calculator": f_sampling_distribution_of_the_sample_proportion_calculator,
   "sampling-error-calculator": f_sampling_error_calculator,
+  "saps-ii-calculator-simplified-acute-physiology-ii-score-calculator": f_saps_ii_calculator_simplified_acute_physiology_ii_score_calculator,
   "scatter-plot-calculator": f_scatter_plot_calculator,
   "scientific-notation-calculator": f_scientific_notation_calculator,
+  "scorad-calculator-scoring-atopic-dermatitis": f_scorad_calculator_scoring_atopic_dermatitis,
   "simplifying-radicals-calculator": f_simplifying_radicals_calculator,
   "sine-calculator": f_sine_calculator,
   "singular-values-calculator": f_singular_values_calculator,
