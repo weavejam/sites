@@ -260,9 +260,14 @@ import { fixtures as f_impedance_matching_calculator } from "@/tools/impedance-m
 import { fixtures as f_implied_probability_calculator } from "@/tools/implied-probability-calculator.fixtures";
 import { fixtures as f_impostor_odds_calculator_among_us } from "@/tools/impostor-odds-calculator-among-us.fixtures";
 import { fixtures as f_index_of_qualitative_variation_calculator } from "@/tools/index-of-qualitative-variation-calculator.fixtures";
+import { fixtures as f_inr_calculator } from "@/tools/inr-calculator.fixtures";
+import { fixtures as f_insulin_dosage_calculator } from "@/tools/insulin-dosage-calculator.fixtures";
 import { fixtures as f_inverse_normal_distribution_calculator } from "@/tools/inverse-normal-distribution-calculator.fixtures";
 import { fixtures as f_ip_subnet_calculator } from "@/tools/ip-subnet-calculator.fixtures";
+import { fixtures as f_iq_percentile_calculator } from "@/tools/iq-percentile-calculator.fixtures";
 import { fixtures as f_iqr_calculator_interquartile_range } from "@/tools/iqr-calculator-interquartile-range.fixtures";
+import { fixtures as f_iron_deficiency_calculator } from "@/tools/iron-deficiency-calculator.fixtures";
+import { fixtures as f_isotretinoin_dose_calculator } from "@/tools/isotretinoin-dose-calculator.fixtures";
 import { fixtures as f_kd_calculator_kill_death_ratio } from "@/tools/kd-calculator-kill-death-ratio.fixtures";
 import { fixtures as f_lagrange_error_bound_calculator } from "@/tools/lagrange-error-bound-calculator.fixtures";
 import { fixtures as f_lateral_area_trapezoidal_prism_calculator } from "@/tools/lateral-area-trapezoidal-prism-calculator.fixtures";
@@ -829,9 +834,14 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "implied-probability-calculator": f_implied_probability_calculator,
   "impostor-odds-calculator-among-us": f_impostor_odds_calculator_among_us,
   "index-of-qualitative-variation-calculator": f_index_of_qualitative_variation_calculator,
+  "inr-calculator": f_inr_calculator,
+  "insulin-dosage-calculator": f_insulin_dosage_calculator,
   "inverse-normal-distribution-calculator": f_inverse_normal_distribution_calculator,
   "ip-subnet-calculator": f_ip_subnet_calculator,
+  "iq-percentile-calculator": f_iq_percentile_calculator,
   "iqr-calculator-interquartile-range": f_iqr_calculator_interquartile_range,
+  "iron-deficiency-calculator": f_iron_deficiency_calculator,
+  "isotretinoin-dose-calculator": f_isotretinoin_dose_calculator,
   "kd-calculator-kill-death-ratio": f_kd_calculator_kill_death_ratio,
   "lagrange-error-bound-calculator": f_lagrange_error_bound_calculator,
   "lateral-area-trapezoidal-prism-calculator": f_lateral_area_trapezoidal_prism_calculator,
