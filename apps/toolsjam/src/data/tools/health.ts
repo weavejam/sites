@@ -41,7 +41,6 @@ export const tools: ToolEntry[] = [
       ru: "Переводите гликированный гемоглобин A1C в расчетный средний сахар eAG в mg/dL и mmol/L для отслеживания диабета."
     }
   },
-  
   {
     id: "winters-formula-calculator",
     category: "health",
@@ -82,7 +81,6 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   },
-
   {
     id: "urine-output-calculator",
     category: "health",
@@ -123,7 +121,6 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   },
-
   {
     id: "urr-calculator-urea-reduction-ratio",
     category: "health",
@@ -164,7 +161,6 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   },
-
   {
     id: "vbac-calculator-vaginal-birth-after-cesarean-section",
     category: "health",
@@ -205,7 +201,6 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   },
-
   {
     id: "venous-blood-ph-calculator",
     category: "health",
@@ -246,7 +241,6 @@ export const tools: ToolEntry[] = [
       ru: ""
     }
   },
-
   {
     id: "vital-capacity-calculator",
     category: "health",
@@ -286,6 +280,87 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "weight-gain-calculator",
+    category: "health",
+    slugs: {
+      en: "weight-gain-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Weight Gain Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Weight gain calculator uses the Mifflin-St Jeor equation to estimate daily calorie surplus, macros, and weeks to target for healthy weight gain.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "weight-loss-percentage-calculator",
+    category: "health",
+    slugs: {
+      en: "weight-loss-percentage-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Weight Loss Percentage Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Weight loss percentage calculator shows how much body weight you have lost as a percentage, plus BMI change and weekly rate from start to current weight.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "weight-percentile-calculator",
+    category: "health",
+    slugs: {
+      en: "weight-percentile-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Weight Percentile Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Weight percentile calculator ranks your weight relative to peers by age and gender using BMI analysis and population reference data for health insights.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "weight-watchers-points-calculator",
+    category: "health",
+    slugs: {
+      en: "weight-watchers-points-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Weight Watchers Points Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Weight Watchers points calculator computes SmartPoints or PointsPlus for any food from its nutrition label to support your daily WW budget tracking.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "wells-score-calculator-for-pulmonary-embolism",
+    category: "health",
+    slugs: {
+      en: "wells-score-calculator-for-pulmonary-embolism",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Wells Score Calculator for Pulmonary Embolism",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Wells Score calculator for pulmonary embolism assesses PE pretest probability using 7 validated clinical criteria to guide D-dimer and imaging decisions.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
+
 
 ];
