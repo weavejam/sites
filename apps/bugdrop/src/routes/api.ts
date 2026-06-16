@@ -73,8 +73,16 @@ api.use('*', async (c, next) => {
       if (!origin) return '*';
       // Wildcard allows all
       if (originList.includes('*')) return origin;
-      // Check if origin is in whitelist
-      return originList.includes(origin) ? origin : null;
+      // Check exact match or wildcard subdomain pattern (e.g. *.weavejam.com)
+      const matched = originList.some(allowed => {
+        if (allowed === origin) return true;
+        if (allowed.startsWith('*.')) {
+          const suffix = allowed.slice(1); // e.g. ".weavejam.com"
+          return origin.endsWith(suffix);
+        }
+        return false;
+      });
+      return matched ? origin : null;
     },
     allowMethods: ['GET', 'POST', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
