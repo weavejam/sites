@@ -1,0 +1,89 @@
+{
+  "title": "Calculateur de similarité cosinus - Analyse de similarité vectorielle",
+  "tagline": "Calculez instantanément la similarité cosinus entre deux vecteurs. Une valeur de 1 signifie même direction, 0 perpendiculaire et −1 direction opposée.",
+  "intro": "Saisissez deux vecteurs numériques de même longueur, séparés par des virgules ou des espaces, puis cliquez sur Calculer pour voir la similarité cosinus et les métriques associées.",
+  "field": {
+    "vectorA": "Premier vecteur (A)",
+    "vectorB": "Deuxième vecteur (B)",
+    "hint": "Saisissez des nombres séparés par des virgules ou des espaces"
+  },
+  "placeholder": {
+    "vector": "ex. 1, 2, 3"
+  },
+  "button": {
+    "calculate": "Calculer la similarité",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des valeurs numériques valides dans les deux champs de vecteur.",
+    "dimensionMismatch": "Les deux vecteurs doivent avoir le même nombre de dimensions.",
+    "zeroVector": "La similarité cosinus n'est pas définie pour un vecteur nul."
+  },
+  "result": {
+    "heading": "Similarité cosinus",
+    "dotProduct": "Produit scalaire",
+    "magnitudeA": "|A|",
+    "magnitudeB": "|B|"
+  },
+  "about": {
+    "heading": "À propos du calculateur de similarité cosinus",
+    "body": "La similarité cosinus est l'une des mesures de similarité les plus utilisées entre deux vecteurs non nuls dans un espace multidimensionnel. Contrairement à la distance euclidienne, qui mesure l'écart entre deux points, la similarité cosinus se concentre exclusivement sur l'orientation des vecteurs — plus précisément sur le cosinus de l'angle qui les sépare. Elle est donc particulièrement utile lorsque la magnitude n'est pas importante mais que la direction compte, par exemple pour comparer des documents de longueurs différentes ou des profils de préférences d'utilisateurs ayant des niveaux d'activité variés.\n\nLa formule est simple : cos(θ) = (A · B) / (‖A‖ × ‖B‖), où A · B est le produit scalaire des deux vecteurs, et ‖A‖ et ‖B‖ sont leurs magnitudes euclidiennes (normes). Le produit scalaire se calcule en multipliant les éléments correspondants puis en additionnant les résultats. La magnitude d'un vecteur est la racine carrée de la somme des carrés de ses composantes.\n\nLe résultat se situe toujours dans l'intervalle [−1, 1]. Une similarité cosinus de 1 signifie que les deux vecteurs pointent exactement dans la même direction — ils sont parfaitement alignés. Une valeur de 0 signifie qu'ils sont perpendiculaires (orthogonaux) — il n'y a aucune corrélation dans leur orientation. Une valeur de −1 signifie qu'ils pointent exactement dans des directions opposées. En pratique, de nombreuses applications ne considèrent que des caractéristiques non négatives (comme les fréquences de mots ou les comptes d'évaluations), auquel cas la similarité est contrainte à [0, 1].\n\nEn traitement du langage naturel et en recherche d'information, la similarité cosinus est la méthode standard pour comparer des documents textuels représentés sous forme de vecteurs TF-IDF ou bag-of-words. Comme les longs documents ont naturellement des vecteurs de plus grande magnitude, une comparaison brute par produit scalaire leur serait indûment favorable. En normalisant par le produit des magnitudes, la similarité cosinus élimine ce biais de longueur et se concentre uniquement sur la composition proportionnelle des termes.\n\nLes systèmes de recommandation utilisent la similarité cosinus pour faire correspondre des vecteurs de préférences d'utilisateurs. Si deux utilisateurs ont noté des éléments similaires avec un enthousiasme relatif comparable — même si l'un a noté beaucoup plus d'éléments au total — leur similarité cosinus sera élevée, ce qui suggère des goûts communs. La même logique s'applique à la reconnaissance d'images, où les vecteurs descripteurs de caractéristiques issus de réseaux neuronaux sont comparés avec la similarité cosinus pour trouver des images visuellement proches.\n\nAvec ce calculateur, vous pouvez saisir des vecteurs de n'importe quelle longueur, à condition qu'ils aient le même nombre de dimensions. Séparez les valeurs par des virgules ou des espaces. Le calculateur affiche la similarité cosinus, le produit scalaire et la magnitude de chaque vecteur afin que vous puissiez vérifier le calcul étape par étape."
+  },
+  "examples": {
+    "heading": "Exemples de similarité cosinus",
+    "intro": "Trois scénarios représentatifs montrant différents niveaux de similarité vectorielle.",
+    "colInput": "Vecteurs",
+    "colOutput": "Similarité",
+    "colNote": "Interprétation",
+    "loadIdentical": "Charger l'exemple de même direction",
+    "loadOrthogonal": "Charger l'exemple orthogonal",
+    "loadParallel": "Charger l'exemple parallèle à l'échelle",
+    "items": [
+      {
+        "input": "A = [1, 2, 3], B = [2, 4, 6]",
+        "output": "1.000000",
+        "note": "B est un multiple scalaire de A (même direction). La similarité cosinus = 1 quel que soit le facteur d'échelle."
+      },
+      {
+        "input": "A = [1, 0, 0], B = [0, 1, 0]",
+        "output": "0.000000",
+        "note": "Les vecteurs de base standard sont perpendiculaires. Produit scalaire = 0, donc similarité cosinus = 0."
+      },
+      {
+        "input": "A = [5, 3, 0, 2], B = [4, 2, 1, 3]",
+        "output": "0.947758",
+        "note": "Forte similarité typique dans les comparaisons de documents ou de préférences d'utilisateurs où la plupart des dimensions se recoupent. A·B=32, |A|=√38≈6.164, |B|=√30≈5.477."
+      },
+      {
+        "input": "A = [1, 0], B = [-1, 0]",
+        "output": "-1.000000",
+        "note": "Les vecteurs pointant exactement dans des directions opposées donnent une similarité cosinus = −1."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de similarité cosinus",
+    "steps": [
+      "Saisissez le premier vecteur dans le champ « Premier vecteur (A) » en utilisant des nombres séparés par des virgules ou des espaces, par exemple : 1, 2, 3.",
+      "Saisissez le deuxième vecteur dans le champ « Deuxième vecteur (B) ». Il doit contenir le même nombre d'éléments que le premier vecteur.",
+      "Cliquez sur « Calculer la similarité ». Le panneau de résultats affiche le score de similarité cosinus, le produit scalaire et la magnitude de chaque vecteur.",
+      "Utilisez les boutons d'exemple sous le tableau pour charger instantanément des paires de vecteurs prédéfinies et voir comment fonctionne le calcul.",
+      "Cliquez sur « Réinitialiser » pour effacer tous les champs et recommencer un nouveau calcul."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la similarité cosinus",
+    "q1": "Que signifie une similarité cosinus de 0.85 ?",
+    "q1_a": "Cela signifie que l'angle entre les deux vecteurs est d'environ 31,8 degrés, ce qui indique un fort degré de similarité directionnelle. En analyse de texte, cela suggère généralement que les deux documents partagent une grande proportion de leurs termes clés avec des fréquences relatives similaires. Dans la plupart des applications, les valeurs supérieures à 0,7 sont considérées comme très similaires.",
+    "q2": "Pourquoi la similarité cosinus est-elle préférée à la distance euclidienne pour le texte ?",
+    "q2_a": "La distance euclidienne est sensible à la magnitude des vecteurs, donc un document long et un document court traitant des mêmes sujets paraîtront très différents simplement parce que le plus long a des valeurs de comptage de termes plus élevées. La similarité cosinus normalise la magnitude et se concentre uniquement sur l'angle, ce qui permet de comparer des documents quelle que soit leur longueur. Cette invariance à la longueur est la principale raison pour laquelle la similarité cosinus domine les applications textuelles.",
+    "q3": "La similarité cosinus peut-elle être négative ?",
+    "q3_a": "Oui, la similarité cosinus va de −1 à 1. Une valeur négative signifie que l'angle entre les vecteurs est supérieur à 90 degrés : les vecteurs s'éloignent davantage l'un de l'autre qu'ils ne se rapprochent. Dans les applications qui n'utilisent que des caractéristiques non négatives (comptages de mots, notes), toutes les similarités se situent dans [0, 1], mais avec des caractéristiques signées comme des notes centrées réduites ou des scores de sentiment, des similarités négatives sont possibles et pertinentes.",
+    "q4": "Que se passe-t-il lorsqu'un vecteur est entièrement nul ?",
+    "q4_a": "La similarité cosinus est mathématiquement indéfinie lorsque l'un des vecteurs est un vecteur nul, car une division par zéro se produit lors de la normalisation. Ce calculateur renvoie une erreur dans ce cas. En pratique, un vecteur nul en traitement de texte signifie généralement qu'un document ne contenait aucun terme du vocabulaire, ce qui est rarement utile pour comparer des similarités.",
+    "q5": "Combien de dimensions les vecteurs peuvent-ils avoir ?",
+    "q5_a": "Ce calculateur prend en charge des vecteurs de toute longueur, limitée uniquement par les performances du navigateur. En pratique, les applications réelles utilisent couramment des milliers, voire des millions de dimensions (par exemple, des espaces d'intégration de mots). La formule mathématique reste identique quelle que soit la dimension. Les deux vecteurs doivent avoir exactement le même nombre d'éléments pour que le calcul soit valide.",
+    "q6": "La similarité cosinus est-elle la même chose que la corrélation ?",
+    "q6_a": "La similarité cosinus et la corrélation de Pearson sont étroitement liées, mais pas identiques. La corrélation de Pearson centre d'abord chaque vecteur sur sa moyenne (soustrait la moyenne de ses éléments) avant de calculer la similarité cosinus des vecteurs centrés. Si vos vecteurs sont déjà centrés, les deux mesures donnent le même résultat. Pour des vecteurs de caractéristiques bruts non centrés, la similarité cosinus et la corrélation diffèrent généralement."
+  }
+}
