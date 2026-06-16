@@ -1600,15 +1600,85 @@ export const tools: ToolEntry[] = [
       en: "PSI pressure converter converts PSI, mmHg, kPa, bar, atm, cmH2O, Pa, and MPa with configurable precision for medical device calibration and respiratory care.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "paracetamol-dosage-calculator",
+    category: "health",
+    slugs: {
+      en: "paracetamol-dosage-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Paracetamol Dosage Calculator by Weight & Form",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate safe paracetamol (acetaminophen) doses for children and adults by weight, age, and form. Get mg dose, ml volume, or tablet count instantly.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "parkland-formula-calculator",
+    category: "health",
+    slugs: {
+      en: "parkland-formula-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Parkland Formula Calculator – Burn Fluid Resuscitation",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate burn injury fluid requirements using the Parkland Formula (4 mL×kg×%TBSA). Get 24-hour totals, 8-hour and 16-hour rates for emergency burn care.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "peak-flow-calculator-estimated-peak-expiratory-flow",
+    category: "health",
+    slugs: {
+      en: "peak-flow-calculator-estimated-peak-expiratory-flow",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Peak Flow Calculator – Estimated Peak Expiratory Flow",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate predicted peak expiratory flow (PEF) in L/min by age, height, gender, ethnicity, and smoking status for asthma and COPD respiratory assessment.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "pearl-index-calculator",
+    category: "health",
+    slugs: {
+      en: "pearl-index-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Pearl Index Calculator – Comprehensive Health Score",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate your Pearl Index wellness score using vital signs, BMI, cholesterol, blood sugar, lifestyle, and family history for a comprehensive health assessment.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "pecarn-calculator",
+    category: "health",
+    slugs: {
+      en: "pecarn-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "PECARN Calculator – Pediatric Head Trauma Risk",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Use the PECARN pediatric head trauma rule to assess ciTBI risk in children and guide CT scan decisions. Evidence-based risk stratification for emergency care.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
-
-
-
-
-
-
-
-
-
-
 ];

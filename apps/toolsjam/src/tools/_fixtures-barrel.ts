@@ -325,9 +325,11 @@ import { fixtures as f_p_hat_calculator } from "@/tools/p-hat-calculator.fixture
 import { fixtures as f_p_value_calculator } from "@/tools/p-value-calculator.fixtures";
 import { fixtures as f_paired_samples_t_test_calculator } from "@/tools/paired-samples-t-test-calculator.fixtures";
 import { fixtures as f_pallet_calculator } from "@/tools/pallet-calculator.fixtures";
+import { fixtures as f_paracetamol_dosage_calculator } from "@/tools/paracetamol-dosage-calculator.fixtures";
 import { fixtures as f_parallel_line_calculator } from "@/tools/parallel-line-calculator.fixtures";
 import { fixtures as f_parity_bit_calculator } from "@/tools/parity-bit-calculator.fixtures";
 import { fixtures as f_parity_calculator } from "@/tools/parity-calculator.fixtures";
+import { fixtures as f_parkland_formula_calculator } from "@/tools/parkland-formula-calculator.fixtures";
 import { fixtures as f_partial_fraction_decomposition_calculator } from "@/tools/partial-fraction-decomposition-calculator.fixtures";
 import { fixtures as f_partial_products_calculator } from "@/tools/partial-products-calculator.fixtures";
 import { fixtures as f_pascals_triangle_calculator } from "@/tools/pascals-triangle-calculator.fixtures";
@@ -335,6 +337,9 @@ import { fixtures as f_password_entropy_calculator } from "@/tools/password-entr
 import { fixtures as f_pay_gap_calculator } from "@/tools/pay-gap-calculator.fixtures";
 import { fixtures as f_pcb_impedance_calculator } from "@/tools/pcb-impedance-calculator.fixtures";
 import { fixtures as f_pcb_trace_current_calculator } from "@/tools/pcb-trace-current-calculator.fixtures";
+import { fixtures as f_peak_flow_calculator_estimated_peak_expiratory_flow } from "@/tools/peak-flow-calculator-estimated-peak-expiratory-flow.fixtures";
+import { fixtures as f_pearl_index_calculator } from "@/tools/pearl-index-calculator.fixtures";
+import { fixtures as f_pecarn_calculator } from "@/tools/pecarn-calculator.fixtures";
 import { fixtures as f_pentagon_calculator } from "@/tools/pentagon-calculator.fixtures";
 import { fixtures as f_percentage_calculator } from "@/tools/percentage-calculator.fixtures";
 import { fixtures as f_percentage_increase_calculator } from "@/tools/percentage-increase-calculator.fixtures";
@@ -874,9 +879,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "p-value-calculator": f_p_value_calculator,
   "paired-samples-t-test-calculator": f_paired_samples_t_test_calculator,
   "pallet-calculator": f_pallet_calculator,
+  "paracetamol-dosage-calculator": f_paracetamol_dosage_calculator,
   "parallel-line-calculator": f_parallel_line_calculator,
   "parity-bit-calculator": f_parity_bit_calculator,
   "parity-calculator": f_parity_calculator,
+  "parkland-formula-calculator": f_parkland_formula_calculator,
   "partial-fraction-decomposition-calculator": f_partial_fraction_decomposition_calculator,
   "partial-products-calculator": f_partial_products_calculator,
   "pascals-triangle-calculator": f_pascals_triangle_calculator,
@@ -884,6 +891,9 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "pay-gap-calculator": f_pay_gap_calculator,
   "pcb-impedance-calculator": f_pcb_impedance_calculator,
   "pcb-trace-current-calculator": f_pcb_trace_current_calculator,
+  "peak-flow-calculator-estimated-peak-expiratory-flow": f_peak_flow_calculator_estimated_peak_expiratory_flow,
+  "pearl-index-calculator": f_pearl_index_calculator,
+  "pecarn-calculator": f_pecarn_calculator,
   "pentagon-calculator": f_pentagon_calculator,
   "percentage-calculator": f_percentage_calculator,
   "percentage-increase-calculator": f_percentage_increase_calculator,
