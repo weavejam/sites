@@ -1,0 +1,119 @@
+{
+  "title": "Binary Subtraction Calculator",
+  "tagline": "Perform binary subtraction with standard borrowing or two's complement, showing step-by-step solutions and decimal equivalents.",
+  "intro": "Enter the minuend and subtrahend as binary numbers, choose your calculation method, and see the result instantly.",
+  "field": {
+    "minuend": "Minuend (first number)",
+    "subtrahend": "Subtrahend (second number)",
+    "minuendPlaceholder": "e.g. 1101",
+    "subtrahendPlaceholder": "e.g. 101",
+    "method": "Calculation method",
+    "showSteps": "Show step-by-step process"
+  },
+  "type": {
+    "standardBorrowing": "Standard Borrowing",
+    "standardBorrowing_desc": "Subtract column by column from right to left, borrowing from higher-order bits when needed — the classic pencil-and-paper method.",
+    "twosComplement": "Two's Complement",
+    "twosComplement_desc": "Negate the subtrahend using two's complement and add it to the minuend — the method used by all modern processors."
+  },
+  "button": {
+    "calculate": "Calculate Subtraction",
+    "reset": "Reset All Fields"
+  },
+  "error": {
+    "invalidMinuend": "Minuend must contain only binary digits (0 and 1).",
+    "invalidSubtrahend": "Subtrahend must contain only binary digits (0 and 1).",
+    "empty": "Please enter both binary numbers.",
+    "negative": "Standard borrowing result is negative (minuend < subtrahend). Use two's complement mode for signed results."
+  },
+  "result": {
+    "heading": "Result",
+    "difference": "Binary difference",
+    "decimal": "Decimal equivalent",
+    "steps": "Step-by-step solution",
+    "stepNegativeFlag": "Minuend ({a}) < Subtrahend ({b}): result is negative.",
+    "stepAbsDiff": "|{decA} − {decB}| = {abs} = {bin}₂",
+    "stepMinuend": "Minuend: {a} (decimal {decA})",
+    "stepSubtrahend": "Subtrahend: {b} (decimal {decB})",
+    "stepSubtractColumns": "Subtract column by column right to left, borrowing as needed.",
+    "stepDifference": "Difference: {bin} (decimal {dec})",
+    "stepSubtrahendPadded": "Subtrahend padded: {b}",
+    "stepOnesComp": "One's complement: {ones}",
+    "stepTwosComp": "Two's complement: {twos}",
+    "stepMinuendPadded": "Minuend padded: {a}",
+    "stepSumResult": "Sum: {a} + {twos} = {sum} → discard carry → {result}",
+    "stepDecResult": "Decimal result: {dec}"
+  },
+  "about": {
+    "heading": "About binary subtraction",
+    "body": "Binary subtraction is one of the four fundamental binary arithmetic operations and is performed in two principal ways: the standard borrowing method and the two's complement method. Understanding both is valuable for computer science students, digital electronics designers, and anyone working at the bit level.\n\nThe standard borrowing method mirrors decimal long subtraction. You align the two binary numbers by their rightmost bits and subtract column by column from right to left. When the top digit is smaller than the bottom digit (i.e., you need to subtract 1 from 0), you borrow from the next higher-order column, temporarily setting it one position lower and adding 2 to the current position — the binary equivalent of borrowing 10 in decimal. The process continues until all columns are processed. This method is intuitive and easy to verify by hand.\n\nThe two's complement method is how virtually every modern processor and microcontroller actually implements subtraction in hardware. To subtract B from A, first compute the two's complement of B: flip all bits of B (one's complement) and then add 1. Then add A and the two's complement of B using standard binary addition. Any carry out of the most significant bit is discarded. The result is A − B in two's complement representation. This approach is preferred in hardware because it eliminates the need for a separate subtraction circuit — an adder suffices for both addition and subtraction.\n\nTwo's complement is also the universal standard for representing signed integers in computer hardware. In an n-bit two's complement system, positive numbers are represented normally, while negative numbers are represented as their two's complement. The range for n-bit signed two's complement integers is −2^(n−1) to 2^(n−1) − 1. For 8-bit integers, that is −128 to 127. This representation makes overflow detection straightforward: overflow occurs when the carry into the sign bit differs from the carry out of it.\n\nBoth methods yield the same result for cases where the minuend is greater than or equal to the subtrahend. When the minuend is smaller, the standard borrowing method would require a negative leading borrow, while the two's complement method naturally produces the correct signed result within the bit width. This calculator handles both scenarios and will flag when the result would be negative in standard borrowing mode."
+  },
+  "examples": {
+    "heading": "Binary subtraction examples",
+    "intro": "Practice examples demonstrating both the standard borrowing and two's complement methods.",
+    "colInput": "Operation",
+    "colOutput": "Binary result",
+    "colNote": "Decimal check",
+    "items": [
+      {
+        "input": "1101 − 101 (Standard Borrowing)",
+        "output": "1000",
+        "note": "13 − 5 = 8 ✓. No borrowing needed in the high bits; borrow occurs in the ones column."
+      },
+      {
+        "input": "10010 − 1011 (Standard Borrowing)",
+        "output": "111",
+        "note": "18 − 11 = 7 ✓. Multiple borrows required across four columns."
+      },
+      {
+        "input": "1100 − 111 (Two's Complement)",
+        "output": "101",
+        "note": "12 − 7 = 5 ✓. Two's complement of 0111 is 1001; 1100 + 1001 = 10101; discard carry → 0101."
+      },
+      {
+        "input": "11110000 − 10101011 (Standard Borrowing)",
+        "output": "1000101",
+        "note": "240 − 171 = 69 ✓. A complex multi-borrow subtraction across eight binary digits."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the binary subtraction calculator",
+    "steps": [
+      "Enter the minuend (the number to subtract from) in the first field using only binary digits 0 and 1.",
+      "Enter the subtrahend (the number to subtract) in the second field.",
+      "Choose the calculation method: 'Standard Borrowing' for the classic column-by-column approach, or 'Two's Complement' for the processor-style method.",
+      "Toggle 'Show step-by-step process' to see the intermediate steps, borrows, or two's complement transformation.",
+      "Click 'Calculate Subtraction' to see the binary difference and its decimal equivalent."
+    ]
+  },
+  "faq": {
+    "heading": "Binary subtraction FAQ",
+    "items": [
+      {
+        "q": "What is borrowing in binary subtraction?",
+        "a": "Borrowing in binary subtraction is the process of taking a unit from a higher-order bit when the current bit position cannot satisfy the subtraction (i.e., subtracting 1 from 0). You borrow 1 from the next higher column, which adds 2 (binary 10) to the current column, turning 0 − 1 into 10 − 1 = 1. This is the exact binary counterpart of borrowing 10 in decimal subtraction."
+      },
+      {
+        "q": "What is two's complement and why is it used?",
+        "a": "Two's complement is a method of representing signed integers in binary and also a subtraction technique. To compute the two's complement of a number, flip all its bits (producing the one's complement) and then add 1. Processors use two's complement because it allows the same adder hardware to handle both addition and subtraction — subtracting B from A is the same as adding A to the two's complement of B. It also means there is only one representation of zero, avoiding the ambiguity of the older sign-magnitude and one's complement formats."
+      },
+      {
+        "q": "What happens when the result is negative?",
+        "a": "If the minuend is smaller than the subtrahend, the true result is negative. In standard borrowing mode, the calculator flags this situation because the result cannot be represented as a positive binary string. In two's complement mode, the result is represented correctly as a negative two's complement number, and the calculator displays the signed decimal equivalent."
+      },
+      {
+        "q": "How is binary subtraction used inside a CPU?",
+        "a": "CPUs implement subtraction using the two's complement method with an Arithmetic Logic Unit (ALU). The ALU contains an adder, and a single control signal inverts the subtrahend's bits and sets the carry-in to 1, effectively adding the two's complement. This means no separate subtraction circuit is needed, saving transistors and simplifying the design. The carry-out from the most significant bit is used to detect overflow."
+      },
+      {
+        "q": "Is the result different when I change the method?",
+        "a": "For cases where the minuend is greater than or equal to the subtrahend, both methods always produce the same final numerical result, just via different intermediate steps. The standard borrowing method works directly on the original digits; the two's complement method negates the subtrahend first, then adds. Both yield the same correct difference."
+      },
+      {
+        "q": "Can I subtract a larger binary number from a smaller one?",
+        "a": "Yes, but the result is negative. In standard borrowing mode this calculator will show a warning since a positive binary string cannot represent the negative result. Switch to two's complement mode to handle negative differences: the result will be the two's complement encoding of the negative value, and the signed decimal equivalent will be displayed with a minus sign."
+      }
+    ]
+  }
+}

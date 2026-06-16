@@ -1,0 +1,105 @@
+{
+  "title": "Binary Fraction Converter",
+  "tagline": "Convert binary fractions to decimal and decimal fractions to binary with step-by-step explanations.",
+  "intro": "Select the conversion direction, enter your value, and instantly get the result with the algorithm explained.",
+  "field": {
+    "type": "Conversion type",
+    "value": "Input value",
+    "precision": "Fractional precision (bits)",
+    "valuePlaceholder": "e.g. 101.101",
+    "decimalPlaceholder": "e.g. 5.625",
+    "precisionPlaceholder": "e.g. 8"
+  },
+  "type": {
+    "binaryToDecimal": "Binary → Decimal",
+    "binaryToDecimal_desc": "Enter a binary fraction (digits 0 and 1 separated by a decimal point) and get the exact decimal equivalent.",
+    "decimalToBinary": "Decimal → Binary",
+    "decimalToBinary_desc": "Enter a decimal fraction and get its binary representation. Choose precision to control how many fractional bits are computed."
+  },
+  "button": {
+    "convert": "Convert",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalidBinary": "Please enter a valid binary number using only 0s, 1s, and a single decimal point.",
+    "invalidDecimal": "Please enter a valid positive decimal number.",
+    "invalidPrecision": "Precision must be a positive integer between 1 and 32."
+  },
+  "result": {
+    "heading": "Result",
+    "decimalValue": "Decimal value",
+    "binaryValue": "Binary value"
+  },
+  "about": {
+    "heading": "About the binary fraction converter",
+    "body": "Binary fractions extend binary integers into the realm of non-integer quantities by using place values that are negative powers of two. Just as the decimal system assigns positions to the right of the decimal point as tenths (10⁻¹), hundredths (10⁻²), thousandths (10⁻³), and so on, the binary system assigns those same positions as halves (2⁻¹ = 0.5), quarters (2⁻² = 0.25), eighths (2⁻³ = 0.125), sixteenths (2⁻⁴ = 0.0625), and so on. Every bit to the right of the binary point represents one of these descending powers of two.\n\nConverting a binary fraction to decimal is straightforward. Split the number at the binary point. Convert the integer part using the standard method: the rightmost bit is 2⁰, the next is 2¹, and so on to the left. For the fractional part, the leftmost bit after the binary point is multiplied by 2⁻¹, the next by 2⁻², and each subsequent bit by successive negative powers. Sum all contributions to get the exact decimal value. For example, 101.101 in binary is (1×4) + (0×2) + (1×1) + (1×0.5) + (0×0.25) + (1×0.125) = 5 + 0.5 + 0.125 = 5.625.\n\nConverting a decimal fraction to binary requires two separate procedures. The integer part is converted by repeated division by 2, recording remainders. The fractional part is converted by repeated multiplication by 2: multiply the fraction by 2, record the integer part of the result (0 or 1) as the next binary digit, then continue with the leftover fractional part. Repeat until the fraction becomes zero or you have reached your desired precision. For 5.625: integer 5 = 101₂; fraction 0.625 × 2 = 1.25 → bit 1; 0.25 × 2 = 0.5 → bit 0; 0.5 × 2 = 1.0 → bit 1; fraction hits zero, so result is 101.101₂.\n\nA critical point to understand is that not all decimal fractions have finite binary representations. Just as 1/3 cannot be written as a terminating decimal, many simple decimal fractions — including 0.1, 0.2, and 0.3 — require infinitely many binary bits to represent exactly. This is the root cause of floating-point rounding errors in computers. The precision setting in this converter controls how many fractional bits are computed; increasing it gives a closer approximation but may never produce an exact result for non-terminating fractions.\n\nBinary fractions are used pervasively in computing. The IEEE 754 standard for floating-point arithmetic encodes single-precision and double-precision numbers as binary fractions with an implicit leading 1 bit and a biased exponent. Digital signal processors represent audio and image data as fixed-point binary fractions called Q-format numbers. Understanding how decimal values map to binary fractions is essential for anyone writing low-level code, working with embedded systems, or debugging numerical precision issues in software."
+  },
+  "examples": {
+    "heading": "Binary fraction conversion examples",
+    "intro": "Common conversions that illustrate both the binary-to-decimal and decimal-to-binary processes.",
+    "colInput": "Input",
+    "colOutput": "Result",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "101.101 (binary)",
+        "output": "5.625 (decimal)",
+        "note": "1×4 + 0×2 + 1×1 + 1×0.5 + 0×0.25 + 1×0.125 = 5.625. A clean conversion with no approximation needed."
+      },
+      {
+        "input": "1010.1101 (binary)",
+        "output": "10.8125 (decimal)",
+        "note": "1×8 + 0×4 + 1×2 + 0×1 + 1×0.5 + 1×0.25 + 0×0.125 + 1×0.0625 = 10.8125."
+      },
+      {
+        "input": "5.625 (decimal)",
+        "output": "101.101 (binary)",
+        "note": "Integer 5 = 101₂. Fraction: 0.625×2=1.25→1, 0.25×2=0.5→0, 0.5×2=1.0→1. Result 101.101₂ is exact."
+      },
+      {
+        "input": "3.375 (decimal)",
+        "output": "11.011 (binary)",
+        "note": "Integer 3 = 11₂. Fraction: 0.375×2=0.75→0, 0.75×2=1.5→1, 0.5×2=1.0→1. Exact in 3 fractional bits."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the binary fraction converter",
+    "steps": [
+      "Choose the conversion direction: select 'Binary → Decimal' to convert a binary fraction to a decimal number, or 'Decimal → Binary' for the reverse.",
+      "Enter your value in the input field. For binary input, use only 0s and 1s with a single decimal point (e.g. 101.101). For decimal input, enter any positive number (e.g. 5.625).",
+      "If converting decimal to binary, set the fractional precision to control how many bits are computed after the binary point (default 8).",
+      "Click Convert. The result appears instantly with the decimal or binary equivalent clearly displayed.",
+      "Click Reset to clear all fields and start a new conversion."
+    ]
+  },
+  "faq": {
+    "heading": "Binary fraction converter FAQ",
+    "items": [
+      {
+        "q": "Why can't 0.1 be represented exactly in binary?",
+        "a": "Because 0.1 in decimal is 1/10, and 10 = 2 × 5. Since 5 is not a power of two, the fraction 1/10 requires infinitely many binary digits. This is analogous to how 1/3 cannot be written as a terminating decimal. Computers store a close approximation in their finite-width floating-point registers, which is why adding 0.1 three times in many programming languages does not give exactly 0.3."
+      },
+      {
+        "q": "How do I convert the fractional part of a decimal number to binary?",
+        "a": "Use repeated doubling: multiply the fractional part by 2, record the integer portion (0 or 1) as the next binary bit, and continue with the remaining fractional part. Repeat until the fraction is zero or you have enough bits. For 0.625: 0.625×2=1.25 → bit 1; 0.25×2=0.5 → bit 0; 0.5×2=1.0 → bit 1, done. Result: .101₂."
+      },
+      {
+        "q": "What is the difference between fixed-point and floating-point binary fractions?",
+        "a": "In fixed-point representation, the binary point sits at a predetermined position, so the number of integer and fractional bits is fixed. In floating-point (such as IEEE 754), the binary point floats: a separate exponent field shifts the significand left or right, allowing a very wide dynamic range at the cost of non-uniform precision. Fixed-point is simpler and faster; floating-point is more flexible for scientific computation."
+      },
+      {
+        "q": "How many binary bits do I need to match a given decimal precision?",
+        "a": "Each additional binary bit roughly adds log₁₀(2) ≈ 0.301 decimal digits of precision. To match d decimal digits you need approximately d / 0.301 ≈ 3.32 × d bits. For example, single-precision IEEE 754 uses 23 fractional bits, giving about 7 decimal significant digits."
+      },
+      {
+        "q": "Can the converter handle pure integers (no decimal point)?",
+        "a": "Yes. If you enter a whole number such as 1011 (binary) or 11 (decimal), the converter treats it as a fraction with a zero fractional part and performs the conversion normally. The result will also have no fractional component."
+      },
+      {
+        "q": "What does the precision setting do when converting decimal to binary?",
+        "a": "Precision sets the maximum number of bits computed after the binary point. A higher precision gives a closer approximation for non-terminating binary fractions. If the fraction terminates before the precision limit, the converter stops early and the result is exact. The maximum supported precision is 32 bits."
+      }
+    ]
+  }
+}
