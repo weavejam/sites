@@ -227,7 +227,12 @@ import { fixtures as f_exponential_regression_calculator } from "@/tools/exponen
 import { fixtures as f_exposure_calculator } from "@/tools/exposure-calculator.fixtures";
 import { fixtures as f_f_statistic_calculator } from "@/tools/f-statistic-calculator.fixtures";
 import { fixtures as f_f_test_for_equality_of_two_variances_calculator } from "@/tools/f-test-for-equality-of-two-variances-calculator.fixtures";
+import { fixtures as f_fagerstrom_test_for_nicotine_dependence_calculator } from "@/tools/fagerstrom-test-for-nicotine-dependence-calculator.fixtures";
 import { fixtures as f_false_positive_paradox_calculator } from "@/tools/false-positive-paradox-calculator.fixtures";
+import { fixtures as f_fat_intake_calculator } from "@/tools/fat-intake-calculator.fixtures";
+import { fixtures as f_fatigue_severity_scale_calculator } from "@/tools/fatigue-severity-scale-calculator.fixtures";
+import { fixtures as f_fena_calculator_fractional_excretion_of_sodium } from "@/tools/fena-calculator-fractional-excretion-of-sodium.fixtures";
+import { fixtures as f_fertility_by_age_calculator } from "@/tools/fertility-by-age-calculator.fixtures";
 import { fixtures as f_film_calculator } from "@/tools/film-calculator.fixtures";
 import { fixtures as f_final_grade_calculator } from "@/tools/final-grade-calculator.fixtures";
 import { fixtures as f_fishers_exact_test_calculator } from "@/tools/fishers-exact-test-calculator.fixtures";
@@ -826,7 +831,12 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "exposure-calculator": f_exposure_calculator,
   "f-statistic-calculator": f_f_statistic_calculator,
   "f-test-for-equality-of-two-variances-calculator": f_f_test_for_equality_of_two_variances_calculator,
+  "fagerstrom-test-for-nicotine-dependence-calculator": f_fagerstrom_test_for_nicotine_dependence_calculator,
   "false-positive-paradox-calculator": f_false_positive_paradox_calculator,
+  "fat-intake-calculator": f_fat_intake_calculator,
+  "fatigue-severity-scale-calculator": f_fatigue_severity_scale_calculator,
+  "fena-calculator-fractional-excretion-of-sodium": f_fena_calculator_fractional_excretion_of_sodium,
+  "fertility-by-age-calculator": f_fertility_by_age_calculator,
   "film-calculator": f_film_calculator,
   "final-grade-calculator": f_final_grade_calculator,
   "fishers-exact-test-calculator": f_fishers_exact_test_calculator,
