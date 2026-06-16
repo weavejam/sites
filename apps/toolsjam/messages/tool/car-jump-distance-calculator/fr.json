@@ -1,0 +1,112 @@
+{
+  "title": "Calculateur de distance de saut de voiture",
+  "tagline": "Calculez la distance de saut, le temps de vol et la hauteur maximale d'une voiture ou de tout projectile lancé depuis une rampe grâce à la physique du mouvement projectile.",
+  "intro": "Saisissez la vitesse initiale, l'angle de lancement et la hauteur de la rampe. La vitesse accepte m/s, km/h et mph, et la hauteur accepte mètres ou pieds.",
+  "field": {
+    "velocity": "Vitesse initiale",
+    "velocityUnit": "Unité de vitesse",
+    "angle": "Angle de lancement (°)",
+    "height": "Hauteur initiale de la rampe",
+    "heightUnit": "Unité de hauteur"
+  },
+  "placeholder": {
+    "velocity": "p. ex. 30",
+    "angle": "p. ex. 20 (0–89°)",
+    "height": "p. ex. 5 (0 pour le niveau du sol)"
+  },
+  "unit": {
+    "ms": "m/s",
+    "kmh": "km/h",
+    "mph": "mph",
+    "m": "m",
+    "ft": "ft"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "result": {
+    "heading": "Résultats",
+    "distance": "Distance de saut",
+    "timeOfFlight": "Temps de vol",
+    "maxHeight": "Hauteur maximale"
+  },
+  "error": {
+    "invalid": "Veuillez saisir une vitesse positive, un angle entre 0° et 89° et une hauteur non négative."
+  },
+  "examples": {
+    "heading": "Exemples détaillés",
+    "intro": "Cliquez sur un exemple pour le charger dans le calculateur.",
+    "colInput": "Scénario",
+    "colOutput": "Résultats",
+    "colNote": "Contexte",
+    "loadMovieStunt": "Saut de cascade au cinéma",
+    "loadTextbook": "Problème de manuel",
+    "loadMotocross": "Rampe de motocross",
+    "items": [
+      {
+        "input": "v = 120 km/h (33.3 m/s), θ = 20°, h = 5 m",
+        "output": "Distance ≈ 84.6 m, temps de vol ≈ 2.70 s, hauteur max. ≈ 11.6 m",
+        "note": "Configuration classique de cascade de cinéma. À 120 km/h, la voiture parcourt assez de distance pour franchir un intervalle entre bâtiments tout en restant relativement horizontale dans les airs."
+      },
+      {
+        "input": "v = 30 m/s, θ = 60°, h = 0 m",
+        "output": "Distance ≈ 79.5 m, temps de vol ≈ 5.30 s, hauteur max. ≈ 34.4 m",
+        "note": "Problème typique de mouvement projectile lancé depuis le sol. Notez qu'à vitesse égale et h = 0, 60° donne une distance inférieure à 30°, car 45° maximise la portée sur terrain plat."
+      },
+      {
+        "input": "v = 80 km/h (22.2 m/s), θ = 45°, h = 2 m",
+        "output": "Distance ≈ 52.3 m, temps de vol ≈ 3.33 s, hauteur max. ≈ 14.6 m",
+        "note": "Rampe de style motocross. 45° donne la portée maximale lorsque les hauteurs de départ et d'arrivée sont identiques, mais une hauteur de départ de 2 m décale l'angle optimal légèrement sous 45°."
+      },
+      {
+        "input": "v = 150 mph (67.1 m/s), θ = 30°, h = 10 ft (3.05 m)",
+        "output": "Distance ≈ 402 m, temps de vol ≈ 6.93 s, hauteur max. ≈ 60.3 m",
+        "note": "Scénario de jeu vidéo en unités impériales. La vitesse énorme produit une distance de saut gigantesque, illustrant à quel point la vitesse domine le calcul de portée."
+      }
+    ]
+  },
+  "about": {
+    "heading": "À propos du calculateur de distance de saut de voiture",
+    "body": "Le mouvement projectile décrit la trajectoire de tout objet lancé dans les airs et soumis uniquement à l'accélération constante de la gravité vers le bas. Une fois qu'une voiture quitte une rampe, sa vitesse horizontale reste constante (si l'on néglige la résistance de l'air), tandis que sa vitesse verticale varie vers le bas au rythme g = 9.81 m/s². La combinaison de ces deux mouvements indépendants produit la trajectoire parabolique familière.\n\nLes trois entrées définissent entièrement la trajectoire. La vitesse initiale v est la vitesse à laquelle la voiture quitte la rampe. L'angle de lancement θ est l'angle de la rampe par rapport à l'horizontale : il détermine comment la vitesse se répartit entre la composante horizontale v_x = v cos θ et la composante verticale v_y = v sin θ. La hauteur initiale h est la distance verticale entre le point de lancement et le sol (la surface d'atterrissage).\n\nLa distance horizontale (portée) vaut R = v_x × t, où t est le temps total de vol. Pour trouver t, on résout l'équation de position verticale : y(t) = h + v_y × t − ½g t² = 0. En posant y = 0, on obtient une équation quadratique : ½g t² − v_y t − h = 0, dont la solution positive est t = (v_y + √(v_y² + 2gh)) / g. En remplaçant t, on obtient la distance de saut.\n\nLa hauteur maximale est atteinte lorsque la vitesse verticale est nulle : v_y − g t_peak = 0, donc t_peak = v_y / g. À cet instant, la hauteur est H_max = h + v_y² / (2g). Notez que si v_y = 0 (lancement horizontal, θ = 0), la hauteur maximale est égale à la hauteur initiale et la voiture commence immédiatement à tomber.\n\nUne idée reçue courante veut que 45° maximise toujours la portée. Ce n'est vrai que lorsque les hauteurs de lancement et d'atterrissage sont égales (h = 0). Lors d'un lancement depuis une hauteur (h > 0), l'angle optimal pour la distance maximale est toujours inférieur à 45°, généralement entre 30° et 44° selon la hauteur. La raison est que la hauteur supplémentaire donne au projectile plus de temps pour se déplacer horizontalement ; un angle plus faible qui convertit davantage de vitesse initiale en vitesse horizontale devient donc avantageux.\n\nCe calculateur ignore la traînée aérodynamique et la rotation du véhicule. Pour de faibles vitesses et de courtes distances, ce modèle est très précis. À très grande vitesse ou pour de grands objets, la résistance de l'air devient importante et la portée réelle sera inférieure au résultat calculé. Dans la coordination de cascades et les essais de véhicules, ces calculs servent de première estimation pour établir des angles de rampe sûrs et les vitesses d'approche nécessaires, avec des modèles en soufflerie ou CFD pour l'ingénierie de précision.\n\nLes applications pratiques incluent : la planification de cascades de cinéma (s'assurer qu'une voiture franchit un intervalle en sécurité), la conception de parcours de motocross et de freestyle (distances de saut et placement des zones d'atterrissage), l'enseignement de la physique (un problème de mouvement projectile concret et parlant) et les moteurs physiques de jeux vidéo (trajectoires de vol réalistes des véhicules)."
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de distance de saut de voiture",
+    "steps": [
+      "Sélectionnez l'unité de vitesse (m/s, km/h ou mph) et saisissez la vitesse initiale : la vitesse à laquelle la voiture quitte la rampe, et non la vitesse avant freinage ou accélération sur la rampe.",
+      "Saisissez l'angle de lancement en degrés. Il s'agit de l'angle de la rampe par rapport au sol horizontal. Des valeurs entre 10° et 45° sont typiques pour les cascades automobiles ; les pilotes de freestyle moto utilisent souvent des rampes plus raides (35°–55°).",
+      "Saisissez la hauteur initiale de la rampe (la hauteur du point de lancement au-dessus de la surface d'atterrissage). Si la voiture décolle et atterrit au même niveau, saisissez 0.",
+      "Sélectionnez l'unité de hauteur (mètres ou pieds), puis cliquez sur Calculer. Les résultats indiquent la distance de saut (portée horizontale), le temps total passé en l'air et la hauteur maximale atteinte.",
+      "Pour comparer différents angles de rampe, cliquez plusieurs fois sur Calculer avec des valeurs d'angle différentes et observez l'évolution de la portée et de la hauteur. Rappelez-vous que 45° maximise la portée uniquement lorsque les hauteurs de lancement et d'atterrissage sont égales."
+    ]
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Pourquoi une rampe plus haute augmente-t-elle la distance de saut ?",
+        "a": "Un point de départ plus haut donne au projectile plus de temps pour se déplacer horizontalement avant de toucher le sol, car il doit tomber plus bas. Le temps de vol augmente selon l'équation quadratique y = h + v_y t − ½g t² ; une valeur h plus grande donne donc une racine positive t plus grande. Comme la distance horizontale est R = v_x × t, plus de temps dans les airs signifie directement plus de distance. C'est pourquoi des rampes surélevées par rapport à la zone d'atterrissage peuvent produire des sauts beaucoup plus longs."
+      },
+      {
+        "q": "45° est-il le meilleur angle pour une distance de saut maximale ?",
+        "a": "Seulement lorsque les hauteurs de lancement et d'atterrissage sont égales (h = 0). À θ = 45°, les composantes horizontale et verticale de la vitesse sont égales, ce qui maximise le produit entre la vitesse de portée et le temps sur terrain plat. Depuis une rampe surélevée (h > 0), l'angle optimal pour la portée maximale est inférieur à 45°, souvent 30°–40°, car un angle plus faible donne une composante horizontale plus grande et la hauteur supplémentaire apporte déjà davantage de temps en l'air."
+      },
+      {
+        "q": "Quelle est la précision de ce calculateur pour de vrais sauts de voiture ?",
+        "a": "Il est très précis pour le cas idéalisé. La principale source d'erreur dans les sauts réels est la traînée aérodynamique, qui réduit la vitesse horizontale pendant le vol. À faible vitesse (moins de 60 km/h) et pour des véhicules denses, la traînée est faible et l'erreur reste sous 5 %. À vitesse plus élevée ou pour des objets plus légers et moins aérodynamiques (motos, etc.), la traînée peut réduire la portée réelle de 10–20 %. La rotation du véhicule et la dynamique de suspension ne sont pas modélisées non plus, mais elles comptent pour des atterrissages sûrs."
+      },
+      {
+        "q": "Quel angle un coordinateur de cascades doit-il utiliser ?",
+        "a": "Les coordinateurs de cascades utilisent généralement des angles faibles (15°–25°) pour garder le véhicule relativement horizontal en vol, ce qui rend l'atterrissage plus sûr et plus prévisible. Un angle raide (> 45°) envoie le véhicule haut dans les airs mais réduit la distance vers l'avant, augmentant le risque d'un atterrissage nez vers le bas. Le choix final équilibre l'effet visuel, la distance requise, la hauteur de la rampe d'atterrissage et le contrôle de l'assiette du véhicule."
+      },
+      {
+        "q": "Puis-je l'utiliser pour d'autres projectiles que des voitures ?",
+        "a": "Oui. Les équations du mouvement projectile s'appliquent à tout objet en chute libre (lorsque la gravité est la seule force significative). Vous pouvez l'utiliser pour des motos, des vélos, des sauteurs à ski, des balles de baseball, des boulets de canon ou tout projectile. Saisissez simplement la vitesse de lancement, l'angle et la hauteur appropriés. La masse de l'objet n'intervient pas dans le mouvement projectile idéal, comme l'a montré Galilée : les objets lourds et légers tombent au même rythme en l'absence de résistance de l'air."
+      },
+      {
+        "q": "Quel est l'effet de la vitesse initiale sur la distance de saut ?",
+        "a": "La distance de saut varie approximativement avec le carré de la vitesse initiale pour les lancements sur terrain plat (R = v² sin(2θ) / g). Doubler la vitesse quadruple la portée théorique. C'est pourquoi les cascades de cinéma exigent un contrôle de vitesse très précis : une augmentation de 10 % de la vitesse d'approche signifie environ 21 % de distance en plus, ce qui peut faire dépasser la zone d'atterrissage. Les coordinateurs mesurent précisément la vitesse d'approche et utilisent des pièges de vitesse à la base de la rampe."
+      }
+    ]
+  }
+}
