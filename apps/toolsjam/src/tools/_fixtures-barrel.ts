@@ -86,12 +86,17 @@ import { fixtures as f_chord_progression_generator } from "@/tools/chord-progres
 import { fixtures as f_chord_transposer } from "@/tools/chord-transposer.fixtures";
 import { fixtures as f_christmas_countdown_calculator } from "@/tools/christmas-countdown-calculator.fixtures";
 import { fixtures as f_coefficient_of_variation_calculator } from "@/tools/coefficient-of-variation-calculator.fixtures";
+import { fixtures as f_cofunction_calculator } from "@/tools/cofunction-calculator.fixtures";
 import { fixtures as f_cohens_d_calculator } from "@/tools/cohens-d-calculator.fixtures";
 import { fixtures as f_coin_flip_probability_calculator } from "@/tools/coin-flip-probability-calculator.fixtures";
 import { fixtures as f_coin_flipper } from "@/tools/coin-flipper.fixtures";
+import { fixtures as f_coin_rotation_paradox } from "@/tools/coin-rotation-paradox.fixtures";
 import { fixtures as f_coin_toss_streak_calculator } from "@/tools/coin-toss-streak-calculator.fixtures";
+import { fixtures as f_collatz_conjecture_calculator } from "@/tools/collatz-conjecture-calculator.fixtures";
+import { fixtures as f_column_space_calculator } from "@/tools/column-space-calculator.fixtures";
 import { fixtures as f_combination_calculator } from "@/tools/combination-calculator.fixtures";
 import { fixtures as f_combined_gas_law_calculator } from "@/tools/combined-gas-law-calculator.fixtures";
+import { fixtures as f_comparing_fractions_calculator } from "@/tools/comparing-fractions-calculator.fixtures";
 import { fixtures as f_compressibility_factor_calculator } from "@/tools/compressibility-factor-calculator.fixtures";
 import { fixtures as f_compton_scattering_calculator } from "@/tools/compton-scattering-calculator.fixtures";
 import { fixtures as f_compton_wavelength_calculator } from "@/tools/compton-wavelength-calculator.fixtures";
@@ -535,12 +540,17 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "chord-transposer": f_chord_transposer,
   "christmas-countdown-calculator": f_christmas_countdown_calculator,
   "coefficient-of-variation-calculator": f_coefficient_of_variation_calculator,
+  "cofunction-calculator": f_cofunction_calculator,
   "cohens-d-calculator": f_cohens_d_calculator,
   "coin-flip-probability-calculator": f_coin_flip_probability_calculator,
   "coin-flipper": f_coin_flipper,
+  "coin-rotation-paradox": f_coin_rotation_paradox,
   "coin-toss-streak-calculator": f_coin_toss_streak_calculator,
+  "collatz-conjecture-calculator": f_collatz_conjecture_calculator,
+  "column-space-calculator": f_column_space_calculator,
   "combination-calculator": f_combination_calculator,
   "combined-gas-law-calculator": f_combined_gas_law_calculator,
+  "comparing-fractions-calculator": f_comparing_fractions_calculator,
   "compressibility-factor-calculator": f_compressibility_factor_calculator,
   "compton-scattering-calculator": f_compton_scattering_calculator,
   "compton-wavelength-calculator": f_compton_wavelength_calculator,

@@ -1,0 +1,106 @@
+{
+  "title": "Column Space Calculator - Find Matrix Basis Vectors",
+  "tagline": "Find the basis vectors, pivot columns, and dimension of a matrix by Gaussian elimination, and test whether a vector belongs to the column space.",
+  "intro": "Choose the matrix size, enter the matrix entries, and optionally add a test vector to check membership in the column space.",
+  "field": {
+    "rows": "Rows",
+    "columns": "Columns",
+    "matrix": "Matrix entries",
+    "matrixCell": "A{row}{col}",
+    "testVector": "Optional test vector",
+    "vectorCell": "b{row}"
+  },
+  "placeholder": {
+    "number": "0",
+    "optionalNumber": "Optional"
+  },
+  "button": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  },
+  "error": {
+    "invalidMatrix": "Please enter a valid number in every matrix cell.",
+    "invalidVector": "If you want to test a vector, fill every vector entry with a valid number."
+  },
+  "result": {
+    "heading": "Result",
+    "rank": "Rank",
+    "dimension": "Dimension of the column space",
+    "pivotColumns": "Pivot columns",
+    "basisVectors": "Basis vectors",
+    "basisVector": "Basis vector {index} (column {column})",
+    "vectorCheck": "Vector membership",
+    "vectorInColumnSpace": "The test vector is in the column space.",
+    "vectorNotInColumnSpace": "The test vector is not in the column space.",
+    "rowEchelon": "Row echelon form",
+    "zeroMatrix": "The zero matrix has no pivot columns, so its column space contains only the zero vector.",
+    "none": "None"
+  },
+  "about": {
+    "heading": "About the column space calculator",
+    "body": "The column space of a matrix is the set of all linear combinations of its columns. In practical terms, it tells you every vector that can be produced by multiplying the matrix by some coefficient vector. This concept appears everywhere in linear algebra: solving systems of equations, understanding transformations, describing image spaces, analyzing rank, and determining whether a target vector can be generated from a given collection of columns. A column space calculator makes these ideas concrete by showing exactly which columns matter and which ones are redundant.\n\nThe key computational idea is Gaussian elimination. When you row reduce a matrix, you expose the pivot columns: the columns where leading nonzero entries appear after elimination. Those pivot positions identify which original columns form a basis for the column space. This is an important detail. The basis vectors must come from the original matrix, not from the transformed row echelon form, because row operations change the columns even though they preserve the linear dependence relationships needed to locate pivots. Once the pivot columns are known, the rank of the matrix is simply the number of pivots, and that rank is also the dimension of the column space.\n\nThis calculator lets you explore both square and rectangular matrices from size 2 to 4 in each dimension. That range is large enough to cover many classroom examples while keeping the interface easy to scan. After entering the matrix, the tool computes the pivot columns, lists the corresponding basis vectors, and displays the reduced matrix so you can inspect the elimination outcome directly. If the matrix has fewer pivots than columns, then some columns are dependent on the others and do not need to appear in the basis.\n\nThe optional test vector adds another useful layer. To decide whether a vector b belongs to the column space of A, you compare the rank of A with the rank of the augmented matrix [A|b]. If the rank stays the same, then b is consistent with the column relations already present in A and therefore lies in the column space. If the rank increases, the vector introduces a new independent direction and is not in the column space. This rank test connects the geometric idea of span with the algebraic structure of linear systems.\n\nWhether you are studying for a linear algebra exam, checking homework, or building intuition about span and rank, a column space calculator saves time and reduces arithmetic mistakes. It also reinforces the conceptual takeaway: the column space is determined by the pivot columns of the original matrix, and its dimension is exactly the rank."
+  },
+  "examples": {
+    "heading": "Column space calculator examples",
+    "intro": "These examples show how pivot columns determine the basis and how the optional vector test uses rank consistency.",
+    "colInput": "Input",
+    "colOutput": "Result",
+    "colNote": "Explanation",
+    "items": [
+      {
+        "input": "A = [[1, 0], [0, 1]]",
+        "output": "Pivot columns 1 and 2, rank 2",
+        "note": "The identity matrix has two independent columns, so the basis is exactly the two original columns and the column space is all of R²."
+      },
+      {
+        "input": "A = [[1, 2, 3], [2, 4, 6], [0, 1, 1]]",
+        "output": "Pivot columns 1 and 2, rank 2",
+        "note": "The third column depends on the first two, so it does not belong to the basis even though it is still part of the original matrix."
+      },
+      {
+        "input": "A = [[1, 0], [0, 1]], b = [4, 5]",
+        "output": "b is in the column space",
+        "note": "Because the matrix spans all of R², every 2-entry vector can be written as a linear combination of the columns."
+      },
+      {
+        "input": "A = [[1, 2], [2, 4]], b = [1, 0]",
+        "output": "b is not in the column space",
+        "note": "The matrix has rank 1, so its column space is only a line in R². The vector [1, 0] does not lie on that line."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the column space calculator",
+    "steps": [
+      "Choose the number of rows and columns for your matrix. The input grid updates immediately to match the size you selected.",
+      "Fill every matrix entry with a number. The calculator uses Gaussian elimination to locate pivot columns and compute the rank.",
+      "If you want to test a vector, enter one value for each row in the optional test vector fields. Leave them blank if you only need the basis.",
+      "Click Calculate to see the pivot columns, the basis vectors taken from the original matrix, the dimension of the column space, and the row echelon form."
+    ]
+  },
+  "faq": {
+    "heading": "Column space calculator FAQ",
+    "items": [
+      {
+        "q": "What is the column space of a matrix?",
+        "a": "The column space is the set of all vectors you can build by taking linear combinations of the matrix columns. It describes every possible output vector of the linear transformation defined by the matrix."
+      },
+      {
+        "q": "Why do the basis vectors come from the original matrix instead of the reduced one?",
+        "a": "Row operations preserve which columns are dependent, so they tell you where the pivots are. However, those operations change the actual column values, so the basis must be taken from the corresponding pivot columns of the original matrix."
+      },
+      {
+        "q": "Is the dimension of the column space the same as the rank?",
+        "a": "Yes. The dimension of the column space equals the number of pivot columns, and that count is the rank of the matrix."
+      },
+      {
+        "q": "How does the vector membership test work?",
+        "a": "The calculator augments the matrix with the test vector and compares ranks before and after augmentation. If the rank does not increase, the vector is in the column space; if the rank increases, it is not."
+      },
+      {
+        "q": "What happens for the zero matrix?",
+        "a": "The zero matrix has rank 0 and no pivot columns, so there are no nonzero basis vectors to display. Its column space contains only the zero vector because every linear combination of zero columns stays zero."
+      }
+    ]
+  }
+}
