@@ -1,0 +1,91 @@
+{
+  "title": "Calculadora RSA - Cifrado y descifrado de clave pública",
+  "tagline": "Genera pares de claves RSA, cifra y descifra mensajes numéricos: una herramienta interactiva para aprender criptografía de clave pública y teoría de números.",
+  "intro": "Introduce dos números primos distintos (p y q), un exponente público (e) y, opcionalmente, un número en texto claro para cifrarlo y descifrarlo con el algoritmo RSA.",
+  "field": {
+    "p": "Primo p",
+    "q": "Primo q",
+    "e": "Exponente público e",
+    "message": "Mensaje (entero para cifrar)"
+  },
+  "placeholder": {
+    "prime": "p. ej., 61",
+    "exponent": "p. ej., 17",
+    "message": "p. ej., 65"
+  },
+  "button": {
+    "generate": "Generar claves y cifrar",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Introduce enteros positivos válidos.",
+    "notPrime": "No es un número primo",
+    "sameFactors": "p y q deben ser primos distintos.",
+    "eNotCoprime": "e debe ser coprimo con φ(n) = (p−1)(q−1).",
+    "eRange": "e debe ser mayor que 1 y menor que φ(n).",
+    "noInverse": "No se pudo calcular el inverso modular de d.",
+    "messageTooLarge": "El mensaje debe ser menor que n (p × q)."
+  },
+  "result": {
+    "heading": "Resultados de clave RSA y cifrado",
+    "n": "Módulo n = p × q",
+    "phi": "φ(n) = (p−1)(q−1)",
+    "e": "Exponente público e",
+    "d": "Clave privada d",
+    "encrypted": "Texto cifrado C",
+    "decrypted": "Texto claro descifrado M"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora RSA",
+    "body": "RSA (Rivest–Shamir–Adleman) es el criptosistema de clave pública más desplegado del mundo. Sustenta HTTPS, el cifrado de correo electrónico, las firmas digitales y la distribución segura de software. Para entender RSA conviene dominar tres conceptos de teoría de números: factorización prima, aritmética modular y la función phi de Euler; esta calculadora los vuelve interactivos y tangibles.\n\nEl proceso de generación de claves RSA comienza seleccionando dos números primos grandes y distintos, p y q. Con fines educativos, esta herramienta trabaja con primos pequeños, pero las implementaciones reales de RSA usan primos con miles de dígitos. El módulo n se calcula como n = p × q. Después se calcula la función phi de Euler φ(n) = (p − 1)(q − 1). El exponente público e debe elegirse de modo que 1 < e < φ(n) y gcd(e, φ(n)) = 1; las opciones más comunes son 3, 17 y 65,537 (primos de Fermat), y 65,537 se usa prácticamente en todos los sistemas de producción. El exponente privado d es el inverso multiplicativo modular de e módulo φ(n), obtenido con el algoritmo extendido de Euclides: d ≡ e⁻¹ (mod φ(n)).\n\nEl cifrado se realiza con la clave pública (e, n): texto cifrado C = Mᵉ mod n, donde M es el entero en texto claro. El descifrado usa la clave privada (d, n): texto claro M = Cᵈ mod n. La seguridad de RSA se basa en la imposibilidad práctica de factorizar un n grande en sus componentes primos p y q, un problema para el que no se conoce ningún algoritmo clásico de tiempo polinómico.\n\nEsta calculadora RSA está diseñada para aprendizaje, no para seguridad en producción. Usa JavaScript BigInt para aritmética entera exacta, de modo que los resultados son matemáticamente correctos para cualquier entrada prima que el navegador pueda manejar. Sin embargo, los sistemas seguros reales necesitan primos de al menos 2,048 bits, esquemas de relleno adecuados (OAEP) y generadores de números aleatorios criptográficos; nada de eso lo proporciona esta herramienta educativa.\n\nLos usos habituales de esta calculadora incluyen cursos de informática sobre criptografía y teoría de números; verificar cálculos manuales de generación de claves RSA; explorar cómo pequeños cambios en e o en la elección de p y q afectan a la clave privada d; y desarrollar intuición sobre por qué factorizar n es el problema difícil en el núcleo de la seguridad de RSA.\n\nPara usar la calculadora, introduce dos números primos distintos cualesquiera para p y q, elige un exponente público e que sea coprimo con φ(n), introduce opcionalmente un mensaje numérico menor que n y haz clic en Generar. La herramienta muestra al instante n, φ(n), d y los valores cifrados y descifrados para que puedas comprobar que el descifrado recupera el mensaje original."
+  },
+  "examples": {
+    "heading": "Ejemplos de la calculadora RSA",
+    "intro": "Tres ejemplos resueltos que muestran generación de claves y cifrado de mensajes con primos pequeños.",
+    "colInput": "Entradas (p, q, e, M)",
+    "colOutput": "Resultados clave",
+    "colNote": "Notas",
+    "items": [
+      {
+        "input": "p=61, q=53, e=17, M=65",
+        "output": "n=3233, φ=3120, d=2753, C=2790, M′=65",
+        "note": "Ejemplo clásico de libro de texto. n=3233, φ(n)=3120. d=17⁻¹ mod 3120 = 2753. Cifrar 65: 65¹⁷ mod 3233 = 2790. Descifrar: 2790²⁷⁵³ mod 3233 = 65 ✓"
+      },
+      {
+        "input": "p=7, q=11, e=13, M=5",
+        "output": "n=77, φ=60, d=37, C=26, M′=5",
+        "note": "Primos pequeños para verificar a mano. φ(77)=60, gcd(13,60)=1 ✓. d=13⁻¹ mod 60=37. Cifrar 5: 5¹³ mod 77=26. Descifrar 26³⁷ mod 77=5 ✓"
+      },
+      {
+        "input": "p=17, q=19, e=5, M=88",
+        "output": "n=323, φ=288, d=173, C=200, M′=88",
+        "note": "Ejemplo intermedio. φ(323)=288, gcd(5,288)=1 ✓. d=5⁻¹ mod 288=173. Cifrar 88: 88⁵ mod 323=200. Descifrar 200¹⁷³ mod 323=88 ✓"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora RSA",
+    "steps": [
+      "Introduce dos números primos distintos en los campos \"Primo p\" y \"Primo q\". Empieza con primos pequeños conocidos como 61 y 53 para comprobar el ejemplo clásico.",
+      "Introduce un exponente público e mayor que 1, menor que φ(n) = (p−1)(q−1) y coprimo con φ(n). Las opciones habituales son 3, 17 o 65537.",
+      "Opcionalmente, introduce en el campo Mensaje un mensaje numérico en texto claro M que sea menor que n (p × q).",
+      "Haz clic en \"Generar claves y cifrar\". La calculadora muestra el módulo n, la función phi φ(n), la clave privada d y, si introdujiste un mensaje, el texto cifrado C y el M′ descifrado.",
+      "Comprueba que el valor descifrado M′ coincide con tu mensaje original M para confirmar que el ciclo RSA funciona correctamente."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora RSA",
+    "q1": "¿Qué son p, q, n, e y d en RSA?",
+    "q1_a": "p y q son dos números primos distintos que eliges. n = p × q es el módulo público. e es el exponente público, compartido públicamente. d es el exponente privado, que se mantiene secreto. El par (e, n) es la clave pública; (d, n) es la clave privada. Cualquiera puede cifrar un mensaje con (e, n), pero solo quien tenga d puede descifrarlo.",
+    "q2": "¿Por qué e debe ser coprimo con φ(n)?",
+    "q2_a": "La clave privada d es el inverso modular de e módulo φ(n). Un inverso modular solo existe cuando gcd(e, φ(n)) = 1, es decir, cuando no comparten factores. Si e compartiera un factor con φ(n), no habría un d válido y la generación de claves RSA fallaría.",
+    "q3": "¿Por qué el mensaje M debe ser menor que n?",
+    "q3_a": "El cifrado RSA es Mᵉ mod n. Si M ≥ n, la reducción modular perdería información: dos mensajes distintos podrían producir el mismo texto cifrado, lo que haría ambiguo el descifrado. En la práctica, las implementaciones reales de RSA rellenan los mensajes con OAEP para garantizar que esta restricción se cumpla siempre.",
+    "q4": "¿Esta calculadora RSA es segura para uso real?",
+    "q4_a": "No. Esta herramienta es solo para fines educativos. RSA en producción requiere números primos de al menos 2,048 bits (aproximadamente 617 dígitos decimales), generación aleatoria de primos criptográficamente segura y esquemas de relleno como OAEP. Los primos pequeños se factorizan trivialmente y nunca deben usarse para proteger datos reales.",
+    "q5": "¿Qué es la función phi de Euler φ(n)?",
+    "q5_a": "La función phi de Euler φ(n) cuenta cuántos enteros de 1 a n son coprimos con n. Para n = p × q, donde p y q son primos distintos, φ(n) = (p − 1)(q − 1). Este valor es central en RSA porque define el grupo en el que se cumple la relación de claves d ≡ e⁻¹ (mod φ(n)).",
+    "q6": "¿Cómo demuestra el descifrado RSA que la clave privada funciona?",
+    "q6_a": "Por el teorema de Euler, para cualquier M coprimo con n, M^φ(n) ≡ 1 (mod n). Como e × d ≡ 1 (mod φ(n)), tenemos (Mᵉ)ᵈ = M^(ed) = M^(1 + k·φ(n)) = M × (M^φ(n))^k ≡ M × 1^k = M (mod n). Así, el descifrado siempre recupera el mensaje original siempre que M < n."
+  }
+}

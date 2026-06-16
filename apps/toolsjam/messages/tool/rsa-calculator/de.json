@@ -1,0 +1,91 @@
+{
+  "title": "RSA-Rechner - Verschlüsselung mit öffentlichem Schlüssel",
+  "tagline": "Erzeuge RSA-Schlüsselpaare, verschlüssele und entschlüssele numerische Nachrichten: ein interaktives Werkzeug zum Lernen von Public-Key-Kryptografie und Zahlentheorie.",
+  "intro": "Gib zwei verschiedene Primzahlen (p und q), einen öffentlichen Exponenten (e) und optional eine Klartextzahl ein, um sie mit dem RSA-Algorithmus zu ver- und entschlüsseln.",
+  "field": {
+    "p": "Primzahl p",
+    "q": "Primzahl q",
+    "e": "Öffentlicher Exponent e",
+    "message": "Nachricht (zu verschlüsselnde ganze Zahl)"
+  },
+  "placeholder": {
+    "prime": "z. B. 61",
+    "exponent": "z. B. 17",
+    "message": "z. B. 65"
+  },
+  "button": {
+    "generate": "Schlüssel erzeugen und verschlüsseln",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gültige positive ganze Zahlen eingeben.",
+    "notPrime": "Keine Primzahl",
+    "sameFactors": "p und q müssen verschiedene Primzahlen sein.",
+    "eNotCoprime": "e muss teilerfremd zu φ(n) = (p−1)(q−1) sein.",
+    "eRange": "e muss größer als 1 und kleiner als φ(n) sein.",
+    "noInverse": "Der modulare Inverse für d konnte nicht berechnet werden.",
+    "messageTooLarge": "Die Nachricht muss kleiner als n (p × q) sein."
+  },
+  "result": {
+    "heading": "RSA-Schlüssel- und Verschlüsselungsergebnisse",
+    "n": "Modul n = p × q",
+    "phi": "φ(n) = (p−1)(q−1)",
+    "e": "Öffentlicher Exponent e",
+    "d": "Privater Schlüssel d",
+    "encrypted": "Verschlüsselter Geheimtext C",
+    "decrypted": "Entschlüsselter Klartext M"
+  },
+  "about": {
+    "heading": "Über den RSA-Rechner",
+    "body": "RSA (Rivest–Shamir–Adleman) ist das weltweit am weitesten verbreitete Public-Key-Kryptosystem. Es bildet die Grundlage für HTTPS, E-Mail-Verschlüsselung, digitale Signaturen und sichere Softwareverteilung. Zum Verständnis von RSA braucht man drei zahlentheoretische Konzepte: Primfaktorzerlegung, modulare Arithmetik und die eulersche Phi-Funktion. Dieser Rechner macht sie interaktiv und greifbar.\n\nDie RSA-Schlüsselerzeugung beginnt mit der Auswahl zweier verschiedener großer Primzahlen p und q. Zu Lernzwecken arbeitet dieses Tool mit kleinen Primzahlen, reale RSA-Implementierungen verwenden jedoch Primzahlen mit Tausenden von Ziffern. Der Modul n wird als n = p × q berechnet. Danach wird die eulersche Phi-Funktion φ(n) = (p − 1)(q − 1) bestimmt. Der öffentliche Exponent e muss so gewählt werden, dass 1 < e < φ(n) und gcd(e, φ(n)) = 1 gilt. Die häufigsten Werte sind 3, 17 und 65,537 (Fermat-Primzahlen), wobei 65,537 praktisch in allen Produktionssystemen verwendet wird. Der private Exponent d ist der modulare multiplikative Inverse von e modulo φ(n), berechnet mit dem erweiterten euklidischen Algorithmus: d ≡ e⁻¹ (mod φ(n)).\n\nDie Verschlüsselung erfolgt mit dem öffentlichen Schlüssel (e, n): Geheimtext C = Mᵉ mod n, wobei M die Klartext-Ganzzahl ist. Die Entschlüsselung verwendet den privaten Schlüssel (d, n): Klartext M = Cᵈ mod n. Die Sicherheit von RSA beruht auf der praktischen Unmöglichkeit, ein großes n in seine Primfaktoren p und q zu zerlegen, ein Problem, für das kein klassischer Polynomialzeit-Algorithmus bekannt ist.\n\nDieser RSA-Rechner ist zum Lernen gedacht, nicht für Produktionssicherheit. Er verwendet JavaScript BigInt für exakte Ganzzahlarithmetik, daher sind die Ergebnisse für alle Primzahleingaben, die der Browser verarbeiten kann, mathematisch korrekt. Reale sichere Systeme benötigen jedoch Primzahlen mit mindestens 2.048 Bit, geeignete Padding-Verfahren (OAEP) und kryptografische Zufallszahlengeneratoren; all das stellt dieses Lernwerkzeug nicht bereit.\n\nTypische Anwendungsfälle für diesen Rechner sind Informatik-Kurse zu Kryptografie und Zahlentheorie, das Prüfen handschriftlicher Berechnungen zur RSA-Schlüsselerzeugung, das Untersuchen, wie kleine Änderungen von e oder die Wahl von p und q den privaten Schlüssel d beeinflussen, und der Aufbau einer Intuition dafür, warum das Faktorisieren von n das schwierige Kernproblem der RSA-Sicherheit ist.\n\nUm den Rechner zu verwenden, gib für p und q zwei beliebige verschiedene Primzahlen ein, wähle einen öffentlichen Exponenten e, der teilerfremd zu φ(n) ist, gib optional eine numerische Nachricht kleiner als n ein und klicke auf Erzeugen. Das Tool zeigt sofort n, φ(n), d sowie die ver- und entschlüsselten Werte an, damit du überprüfen kannst, dass die Entschlüsselung die ursprüngliche Nachricht wiederherstellt."
+  },
+  "examples": {
+    "heading": "Beispiele für den RSA-Rechner",
+    "intro": "Drei durchgerechnete Beispiele zur Schlüsselerzeugung und Nachrichtenverschlüsselung mit kleinen Primzahlen.",
+    "colInput": "Eingaben (p, q, e, M)",
+    "colOutput": "Schlüsselergebnisse",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "p=61, q=53, e=17, M=65",
+        "output": "n=3233, φ=3120, d=2753, C=2790, M′=65",
+        "note": "Klassisches Lehrbuchbeispiel. n=3233, φ(n)=3120. d=17⁻¹ mod 3120 = 2753. 65 verschlüsseln: 65¹⁷ mod 3233 = 2790. Entschlüsseln: 2790²⁷⁵³ mod 3233 = 65 ✓"
+      },
+      {
+        "input": "p=7, q=11, e=13, M=5",
+        "output": "n=77, φ=60, d=37, C=26, M′=5",
+        "note": "Kleine Primzahlen zur Prüfung per Hand. φ(77)=60, gcd(13,60)=1 ✓. d=13⁻¹ mod 60=37. 5 verschlüsseln: 5¹³ mod 77=26. 26³⁷ mod 77=5 entschlüsseln ✓"
+      },
+      {
+        "input": "p=17, q=19, e=5, M=88",
+        "output": "n=323, φ=288, d=173, C=200, M′=88",
+        "note": "Mittleres Beispiel. φ(323)=288, gcd(5,288)=1 ✓. d=5⁻¹ mod 288=173. 88 verschlüsseln: 88⁵ mod 323=200. 200¹⁷³ mod 323=88 entschlüsseln ✓"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den RSA-Rechner",
+    "steps": [
+      "Gib zwei verschiedene Primzahlen in die Felder „Primzahl p“ und „Primzahl q“ ein. Beginne mit bekannten kleinen Primzahlen wie 61 und 53, um das klassische Beispiel zu prüfen.",
+      "Gib einen öffentlichen Exponenten e ein, der größer als 1, kleiner als φ(n) = (p−1)(q−1) und teilerfremd zu φ(n) ist. Häufige Werte sind 3, 17 oder 65537.",
+      "Gib optional im Nachrichtenfeld eine numerische Klartextnachricht M ein, die kleiner als n (p × q) ist.",
+      "Klicke auf „Schlüssel erzeugen und verschlüsseln“. Der Rechner zeigt den Modul n, die Phi-Funktion φ(n), den privaten Schlüssel d und, falls du eine Nachricht eingegeben hast, den Geheimtext C und das entschlüsselte M′ an.",
+      "Prüfe, ob der entschlüsselte Wert M′ mit deiner ursprünglichen Nachricht M übereinstimmt, um zu bestätigen, dass der RSA-Rundlauf korrekt funktioniert."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum RSA-Rechner",
+    "q1": "Was sind p, q, n, e und d in RSA?",
+    "q1_a": "p und q sind zwei verschiedene Primzahlen, die du auswählst. n = p × q ist der öffentliche Modul. e ist der öffentliche Exponent und wird öffentlich geteilt. d ist der private Exponent und bleibt geheim. Das Paar (e, n) ist der öffentliche Schlüssel; (d, n) ist der private Schlüssel. Jeder kann eine Nachricht mit (e, n) verschlüsseln, aber nur der Inhaber von d kann sie entschlüsseln.",
+    "q2": "Warum muss e teilerfremd zu φ(n) sein?",
+    "q2_a": "Der private Schlüssel d ist der modulare Inverse von e modulo φ(n). Ein modularer Inverser existiert nur, wenn gcd(e, φ(n)) = 1 gilt, also wenn keine gemeinsamen Faktoren vorhanden sind. Wenn e einen Faktor mit φ(n) teilt, gibt es kein gültiges d und die RSA-Schlüsselerzeugung schlägt fehl.",
+    "q3": "Warum muss die Nachricht M kleiner als n sein?",
+    "q3_a": "RSA-Verschlüsselung ist Mᵉ mod n. Wenn M ≥ n ist, würde die modulare Reduktion Information verlieren: Zwei verschiedene Nachrichten könnten denselben Geheimtext erzeugen, wodurch die Entschlüsselung mehrdeutig wird. In der Praxis verwenden echte RSA-Implementierungen OAEP-Padding, damit diese Bedingung immer erfüllt ist.",
+    "q4": "Ist dieser RSA-Rechner für den echten Einsatz sicher?",
+    "q4_a": "Nein. Dieses Tool dient ausschließlich Lernzwecken. Produktives RSA erfordert Primzahlen mit mindestens 2.048 Bit (ungefähr 617 Dezimalstellen), kryptografisch sichere zufällige Primzahlerzeugung und Padding-Verfahren wie OAEP. Kleine Primzahlen sind trivial faktorisierbar und dürfen niemals zum Schutz echter Daten verwendet werden.",
+    "q5": "Was ist Eulers Phi-Funktion φ(n)?",
+    "q5_a": "Eulers Phi-Funktion φ(n) zählt, wie viele ganze Zahlen von 1 bis n teilerfremd zu n sind. Für n = p × q, wobei p und q verschiedene Primzahlen sind, gilt φ(n) = (p − 1)(q − 1). Dieser Wert ist zentral für RSA, weil er die Gruppe definiert, in der die Schlüsselbeziehung d ≡ e⁻¹ (mod φ(n)) gilt.",
+    "q6": "Wie zeigt die RSA-Entschlüsselung, dass der private Schlüssel funktioniert?",
+    "q6_a": "Nach Eulers Satz gilt für jedes zu n teilerfremde M: M^φ(n) ≡ 1 (mod n). Da e × d ≡ 1 (mod φ(n)) gilt, haben wir (Mᵉ)ᵈ = M^(ed) = M^(1 + k·φ(n)) = M × (M^φ(n))^k ≡ M × 1^k = M (mod n). Die Entschlüsselung stellt also immer die ursprüngliche Nachricht wieder her, solange M < n ist."
+  }
+}

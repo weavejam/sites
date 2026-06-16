@@ -1,0 +1,91 @@
+{
+  "title": "Calculatrice RSA - Chiffrement à clé publique",
+  "tagline": "Générez des paires de clés RSA, chiffrez et déchiffrez des messages numériques : un outil interactif pour apprendre la cryptographie à clé publique et la théorie des nombres.",
+  "intro": "Saisissez deux nombres premiers distincts (p et q), un exposant public (e) et, si vous le souhaitez, un nombre en clair à chiffrer et déchiffrer avec l’algorithme RSA.",
+  "field": {
+    "p": "Nombre premier p",
+    "q": "Nombre premier q",
+    "e": "Exposant public e",
+    "message": "Message (entier à chiffrer)"
+  },
+  "placeholder": {
+    "prime": "p. ex., 61",
+    "exponent": "p. ex., 17",
+    "message": "p. ex., 65"
+  },
+  "button": {
+    "generate": "Générer les clés et chiffrer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des entiers positifs valides.",
+    "notPrime": "Ce n’est pas un nombre premier",
+    "sameFactors": "p et q doivent être des nombres premiers différents.",
+    "eNotCoprime": "e doit être premier avec φ(n) = (p−1)(q−1).",
+    "eRange": "e doit être supérieur à 1 et inférieur à φ(n).",
+    "noInverse": "Impossible de calculer l’inverse modulaire de d.",
+    "messageTooLarge": "Le message doit être inférieur à n (p × q)."
+  },
+  "result": {
+    "heading": "Résultats de clé RSA et de chiffrement",
+    "n": "Module n = p × q",
+    "phi": "φ(n) = (p−1)(q−1)",
+    "e": "Exposant public e",
+    "d": "Clé privée d",
+    "encrypted": "Texte chiffré C",
+    "decrypted": "Texte clair déchiffré M"
+  },
+  "about": {
+    "heading": "À propos de la calculatrice RSA",
+    "body": "RSA (Rivest–Shamir–Adleman) est le cryptosystème à clé publique le plus largement déployé au monde. Il sous-tend HTTPS, le chiffrement des e-mails, les signatures numériques et la distribution sécurisée de logiciels. Comprendre RSA suppose de maîtriser trois notions de théorie des nombres : la factorisation en nombres premiers, l’arithmétique modulaire et l’indicatrice d’Euler, que cette calculatrice rend interactives et concrètes.\n\nLa génération de clés RSA commence par le choix de deux grands nombres premiers distincts, p et q. À des fins pédagogiques, cet outil travaille avec de petits nombres premiers, mais les vraies implémentations RSA utilisent des nombres premiers de plusieurs milliers de chiffres. Le module n est calculé par n = p × q. On calcule ensuite l’indicatrice d’Euler φ(n) = (p − 1)(q − 1). L’exposant public e doit être choisi de sorte que 1 < e < φ(n) et gcd(e, φ(n)) = 1 ; les choix les plus courants sont 3, 17 et 65,537 (nombres premiers de Fermat), 65,537 étant utilisé dans pratiquement tous les systèmes de production. L’exposant privé d est l’inverse multiplicatif modulaire de e modulo φ(n), trouvé avec l’algorithme d’Euclide étendu : d ≡ e⁻¹ (mod φ(n)).\n\nLe chiffrement s’effectue avec la clé publique (e, n) : texte chiffré C = Mᵉ mod n, où M est l’entier en clair. Le déchiffrement utilise la clé privée (d, n) : texte clair M = Cᵈ mod n. La sécurité de RSA repose sur l’impossibilité pratique de factoriser un grand n en ses composantes premières p et q, un problème pour lequel aucun algorithme classique en temps polynomial n’est connu.\n\nCette calculatrice RSA est conçue pour l’apprentissage, pas pour la sécurité en production. Elle utilise JavaScript BigInt pour une arithmétique entière exacte, de sorte que les résultats sont mathématiquement corrects pour toute entrée première que le navigateur peut traiter. Les systèmes sécurisés réels nécessitent toutefois des nombres premiers d’au moins 2 048 bits, des schémas de bourrage appropriés (OAEP) et des générateurs de nombres aléatoires cryptographiques, que cet outil pédagogique ne fournit pas.\n\nLes usages courants de cette calculatrice incluent les cours d’informatique sur la cryptographie et la théorie des nombres, la vérification de calculs manuels de génération de clés RSA, l’exploration de l’effet de petits changements de e ou du choix de p et q sur la clé privée d, et le développement d’une intuition sur la raison pour laquelle la factorisation de n est le problème difficile au cœur de la sécurité de RSA.\n\nPour utiliser la calculatrice, saisissez deux nombres premiers distincts pour p et q, choisissez un exposant public e premier avec φ(n), saisissez éventuellement un message numérique inférieur à n, puis cliquez sur Générer. L’outil affiche instantanément n, φ(n), d ainsi que les valeurs chiffrées et déchiffrées afin que vous puissiez vérifier que le déchiffrement retrouve le message d’origine."
+  },
+  "examples": {
+    "heading": "Exemples de calculatrice RSA",
+    "intro": "Trois exemples détaillés montrant la génération de clés et le chiffrement de messages avec de petits nombres premiers.",
+    "colInput": "Entrées (p, q, e, M)",
+    "colOutput": "Résultats clés",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "p=61, q=53, e=17, M=65",
+        "output": "n=3233, φ=3120, d=2753, C=2790, M′=65",
+        "note": "Exemple classique de manuel. n=3233, φ(n)=3120. d=17⁻¹ mod 3120 = 2753. Chiffrer 65 : 65¹⁷ mod 3233 = 2790. Déchiffrer : 2790²⁷⁵³ mod 3233 = 65 ✓"
+      },
+      {
+        "input": "p=7, q=11, e=13, M=5",
+        "output": "n=77, φ=60, d=37, C=26, M′=5",
+        "note": "Petits nombres premiers pour une vérification à la main. φ(77)=60, gcd(13,60)=1 ✓. d=13⁻¹ mod 60=37. Chiffrer 5 : 5¹³ mod 77=26. Déchiffrer 26³⁷ mod 77=5 ✓"
+      },
+      {
+        "input": "p=17, q=19, e=5, M=88",
+        "output": "n=323, φ=288, d=173, C=200, M′=88",
+        "note": "Exemple de taille moyenne. φ(323)=288, gcd(5,288)=1 ✓. d=5⁻¹ mod 288=173. Chiffrer 88 : 88⁵ mod 323=200. Déchiffrer 200¹⁷³ mod 323=88 ✓"
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice RSA",
+    "steps": [
+      "Saisissez deux nombres premiers distincts dans les champs « Nombre premier p » et « Nombre premier q ». Commencez par de petits nombres premiers connus comme 61 et 53 pour vérifier l’exemple classique.",
+      "Saisissez un exposant public e supérieur à 1, inférieur à φ(n) = (p−1)(q−1) et premier avec φ(n). Les choix courants sont 3, 17 ou 65537.",
+      "Saisissez éventuellement, dans le champ Message, un message numérique en clair M inférieur à n (p × q).",
+      "Cliquez sur « Générer les clés et chiffrer ». La calculatrice affiche le module n, l’indicatrice φ(n), la clé privée d et, si vous avez saisi un message, le texte chiffré C et le M′ déchiffré.",
+      "Vérifiez que la valeur déchiffrée M′ correspond à votre message original M pour confirmer que l’aller-retour RSA fonctionne correctement."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ de la calculatrice RSA",
+    "q1": "Que sont p, q, n, e et d dans RSA ?",
+    "q1_a": "p et q sont deux nombres premiers distincts que vous choisissez. n = p × q est le module public. e est l’exposant public, partagé publiquement. d est l’exposant privé, conservé secret. La paire (e, n) est la clé publique ; (d, n) est la clé privée. N’importe qui peut chiffrer un message avec (e, n), mais seul le détenteur de d peut le déchiffrer.",
+    "q2": "Pourquoi e doit-il être premier avec φ(n) ?",
+    "q2_a": "La clé privée d est l’inverse modulaire de e modulo φ(n). Un inverse modulaire n’existe que lorsque gcd(e, φ(n)) = 1, c’est-à-dire lorsqu’ils n’ont aucun facteur commun. Si e partageait un facteur avec φ(n), il n’existerait pas de d valide et la génération de clés RSA échouerait.",
+    "q3": "Pourquoi le message M doit-il être inférieur à n ?",
+    "q3_a": "Le chiffrement RSA est Mᵉ mod n. Si M ≥ n, la réduction modulaire ferait perdre de l’information : deux messages différents pourraient produire le même texte chiffré, rendant le déchiffrement ambigu. En pratique, les vraies implémentations RSA bourrent les messages avec OAEP pour garantir que cette contrainte est toujours satisfaite.",
+    "q4": "Cette calculatrice RSA est-elle sûre pour un usage réel ?",
+    "q4_a": "Non. Cet outil est uniquement destiné à l’apprentissage. RSA en production exige des nombres premiers d’au moins 2 048 bits (environ 617 chiffres décimaux), une génération aléatoire de nombres premiers cryptographiquement sûre et des schémas de bourrage comme OAEP. Les petits nombres premiers sont trivialement factorisables et ne doivent jamais servir à protéger des données réelles.",
+    "q5": "Qu’est-ce que l’indicatrice d’Euler φ(n) ?",
+    "q5_a": "L’indicatrice d’Euler φ(n) compte le nombre d’entiers de 1 à n qui sont premiers avec n. Pour n = p × q, où p et q sont des nombres premiers distincts, φ(n) = (p − 1)(q − 1). Cette valeur est centrale dans RSA, car elle définit le groupe dans lequel la relation de clé d ≡ e⁻¹ (mod φ(n)) est valable.",
+    "q6": "Comment le déchiffrement RSA prouve-t-il que la clé privée fonctionne ?",
+    "q6_a": "D’après le théorème d’Euler, pour tout M premier avec n, M^φ(n) ≡ 1 (mod n). Puisque e × d ≡ 1 (mod φ(n)), on a (Mᵉ)ᵈ = M^(ed) = M^(1 + k·φ(n)) = M × (M^φ(n))^k ≡ M × 1^k = M (mod n). Le déchiffrement récupère donc toujours le message original tant que M < n."
+  }
+}
