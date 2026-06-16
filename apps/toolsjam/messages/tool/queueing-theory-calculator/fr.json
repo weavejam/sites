@@ -1,0 +1,109 @@
+{
+  "title": "Calculateur de files d’attente - analyse M/M/c",
+  "tagline": "Calculez les indicateurs de performance des files d’attente, notamment l’utilisation, la longueur moyenne de file, les temps d’attente et les probabilités pour les modèles M/M/1, M/M/c et à capacité finie.",
+  "intro": "Sélectionnez un modèle de file, saisissez le taux d’arrivée et le taux de service, puis cliquez sur Calculer pour afficher tous les indicateurs de performance.",
+  "field": {
+    "model": "Modèle de file",
+    "lambda": "Taux d’arrivée (λ) — clients par unité de temps",
+    "mu": "Taux de service (μ) — clients par serveur et par unité de temps",
+    "servers": "Nombre de serveurs (c)",
+    "capacity": "Capacité du système (K)",
+    "population": "Taille de la population (N)"
+  },
+  "model": {
+    "mm1": "M/M/1 (serveur unique)",
+    "mmc": "M/M/c (serveurs multiples)",
+    "mmck": "M/M/c/K (capacité finie)",
+    "mmcn": "M/M/c/N (population finie)"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "placeholder": {
+    "rate": "Saisissez le taux",
+    "integer": "Saisissez un entier"
+  },
+  "result": {
+    "heading": "Indicateurs de performance de la file",
+    "utilization": "Utilisation du serveur (ρ)",
+    "p0": "Probabilité de système vide (P₀)",
+    "lq": "Longueur moyenne de file (Lq)",
+    "l": "Longueur moyenne du système (L)",
+    "wq": "Temps d’attente moyen dans la file (Wq)",
+    "w": "Temps moyen dans le système (W)",
+    "pBlock": "Probabilité de blocage"
+  },
+  "error": {
+    "invalidInput": "Veuillez saisir des nombres positifs valides pour les taux d’arrivée et de service.",
+    "unstable": "Le système est instable : le taux d’arrivée doit être inférieur à la capacité totale de service (λ < c·μ).",
+    "zeroMu": "Le taux de service μ doit être supérieur à zéro."
+  },
+  "about": {
+    "heading": "À propos de la théorie des files d’attente",
+    "body": "La théorie des files d’attente est une branche des mathématiques qui étudie les lignes d’attente (files). Elle fournit des outils pour prévoir le comportement d’un système où les arrivées sont aléatoires, le service prend du temps et les ressources (serveurs) sont limitées. Ses applications couvrent les télécommunications (commutation de paquets), la santé (planification des patients), la fabrication (files de machines), les transports (flux de trafic) et l’informatique (ordonnancement du système d’exploitation).\n\nLa notation de Kendall A/S/c/K/N décrit une file par son processus d’arrivée (A), la distribution du temps de service (S), le nombre de serveurs (c), la capacité du système (K) et la taille de la population (N). La notation la plus courante est M/M/c, où les arrivées et les temps de service suivent des distributions exponentielles (sans mémoire) ; le M signifie markovien (exponentiel). Ce calculateur couvre quatre modèles clés.\n\nLe modèle M/M/1 est le plus simple : un serveur unique avec des arrivées de Poisson (taux λ) et des temps de service exponentiels (taux μ). Le système n’est stable que lorsque ρ = λ/μ < 1. Le nombre moyen dans le système est L = ρ/(1-ρ), et le temps moyen dans le système est W = 1/(μ-λ) d’après la loi de Little (L = λW).\n\nLe modèle M/M/c étend cela à c serveurs parallèles identiques. La capacité totale de service est c·μ, donc la stabilité exige ρ = λ/(c·μ) < 1. La formule d’Erlang C donne la probabilité qu’un client arrivant doive attendre : C(c,ρ) = (cρ)^c/(c!(1-ρ)) · P₀, où P₀ est la probabilité que le système soit vide.\n\nLe modèle M/M/c/K ajoute une salle d’attente finie : la capacité du système K est le maximum total de clients (en service plus en attente). Les clients qui arrivent lorsque le système est plein sont bloqués (refusés). Ce modèle convient aux restaurants, aux parkings et aux services hospitaliers. La probabilité de blocage est P(K) = P₀ · (λ/μ)^K / K! pour M/M/1/K.\n\nLe modèle M/M/c/N suppose une population source finie de N clients potentiels. Un client déjà dans le système ne peut pas générer de nouvelles arrivées, donc le taux d’arrivée effectif diminue à mesure que le système se remplit. Ce modèle convient aux problèmes de réparation de machines, où N machines peuvent tomber en panne au taux λ chacune et être réparées au taux μ.\n\nLa loi de Little — L = λ_eff × W — est la relation universelle qui relie le nombre moyen dans le système (L), le taux d’arrivée effectif (λ_eff) et le temps moyen dans le système (W). Elle s’applique à presque tout système de files stable, quels que soient les postulats de distribution, et constitue la base de toutes les formules de performance de ce calculateur."
+  },
+  "examples": {
+    "heading": "Exemples de théorie des files d’attente",
+    "intro": "Explorez différents scénarios de files avec des paramètres réalistes.",
+    "colInput": "Scénario",
+    "colOutput": "Indicateurs clés",
+    "colNote": "Interprétation",
+    "items": [
+      {
+        "input": "Guichet bancaire : M/M/1, λ=10/h, μ=12/h",
+        "output": "ρ=83.3%, Lq=4.17, Wq=25 min",
+        "note": "Un guichetier très occupé. File moyenne de 4 personnes, attente de 25 minutes. Utilisation élevée — ajouter un deuxième guichetier réduirait fortement les temps d’attente."
+      },
+      {
+        "input": "Centre d’appels : M/M/c, λ=25/h, μ=10/h, c=3",
+        "output": "ρ=83.3%, Lq≈3.51, Wq≈8.4 min",
+        "note": "Trois opérateurs se partagent la charge. La capacité totale est de 30/h. La formule d’Erlang C donne Lq≈3.51 et un temps d’attente moyen Wq≈8.4 min."
+      },
+      {
+        "input": "Restaurant : M/M/c/K, λ=15/h, μ=8/h, c=2, K=20",
+        "output": "ρ=93.75%, prob. de blocage≈2.1%",
+        "note": "Des places limitées fixent le système à 20 clients au total. Environ 2% des clients arrivant aux heures de pointe sont refusés."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de files d’attente",
+    "steps": [
+      "Choisissez le modèle de file dans la liste déroulante : M/M/1 pour un serveur unique, M/M/c pour plusieurs serveurs en parallèle, M/M/c/K s’il existe une capacité maximale, ou M/M/c/N pour une population source finie.",
+      "Saisissez le taux d’arrivée λ (nombre moyen de clients arrivant par unité de temps) et le taux de service μ (nombre moyen qu’un serveur peut traiter par unité de temps).",
+      "Pour les modèles M/M/c, M/M/c/K et M/M/c/N, saisissez aussi le nombre de serveurs c. Pour M/M/c/K, saisissez la capacité totale K ; pour M/M/c/N, saisissez la taille de la population finie N.",
+      "Cliquez sur Calculer. La section des résultats affiche l’utilisation du serveur ρ, la probabilité que le système soit vide (P₀), la longueur moyenne de file (Lq), la longueur moyenne du système (L), le temps d’attente moyen dans la file (Wq) et le temps moyen dans le système (W).",
+      "Si le système est instable (le taux d’arrivée dépasse la capacité de service), un message d’erreur s’affiche — augmentez c ou μ, ou réduisez λ pour obtenir une configuration stable."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la théorie des files d’attente",
+    "items": [
+      {
+        "q": "Que signifie l’utilisation du serveur ρ ?",
+        "a": "L’utilisation du serveur ρ = λ / (c·μ) est la fraction du temps où chaque serveur est occupé en moyenne. Une utilisation de 0.85 signifie que les serveurs sont occupés 85% du temps. Lorsque ρ approche 1, la file croît sans borne ; lorsque ρ > 1, le système est instable et ne peut pas absorber la charge à long terme."
+      },
+      {
+        "q": "Qu’est-ce que la loi de Little ?",
+        "a": "La loi de Little affirme que L = λ·W, où L est le nombre moyen de clients dans le système, λ le taux d’arrivée effectif et W le temps moyen que chaque client passe dans le système. Elle s’applique à tout système stable, quelles que soient les distributions d’arrivée ou de service, et constitue l’un des résultats les plus puissants de la théorie des files d’attente."
+      },
+      {
+        "q": "À quoi sert la formule d’Erlang C ?",
+        "a": "La formule d’Erlang C calcule la probabilité qu’un client arrivant dans une file M/M/c doive attendre (c’est-à-dire que tous les serveurs soient occupés). Elle sert de base à la formule de Wq pour les files à plusieurs serveurs et est largement utilisée dans le dimensionnement des centres d’appels pour déterminer le nombre d’agents nécessaire afin d’atteindre un objectif de niveau de service."
+      },
+      {
+        "q": "Quelle est la différence entre M/M/c/K et M/M/c/N ?",
+        "a": "M/M/c/K limite le nombre total de clients dans le système (en attente et en service) à K — les arrivées au-delà de K sont rejetées (blocage). M/M/c/N modélise un système fermé où il n’existe que N clients potentiels au total ; lorsqu’un client entre dans la file, le taux d’arrivée effectif du reste de la population diminue."
+      },
+      {
+        "q": "Comment réduire le temps d’attente moyen dans un système de files ?",
+        "a": "Les leviers les plus efficaces sont : augmenter le taux de service μ (serveurs plus rapides), ajouter des serveurs c (canaux parallèles) ou réduire la variabilité. Contre-intuitivement, faire passer l’utilisation de 90% à 80% peut diviser par deux la longueur de file, car celle-ci croît de façon superlinéaire lorsque ρ approche 1."
+      },
+      {
+        "q": "Les modèles M/M sont-ils réalistes pour les systèmes du monde réel ?",
+        "a": "Les modèles M/M supposent des arrivées de Poisson et des temps de service exponentiels, ce qui constitue une approximation raisonnable pour de nombreux systèmes réels comme les appels téléphoniques, les requêtes web et les arrivées aléatoires de clients. Des modèles plus généraux comme M/G/1 ou G/G/c existent pour des temps de service non exponentiels, mais les résultats M/M fournissent toujours des estimations d’ordre de grandeur utiles pour la planification de capacité."
+      }
+    ]
+  }
+}

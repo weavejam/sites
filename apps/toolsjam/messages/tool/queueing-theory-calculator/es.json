@@ -1,0 +1,109 @@
+{
+  "title": "Calculadora de teoría de colas - análisis M/M/c",
+  "tagline": "Calcula métricas de rendimiento de colas, como utilización, longitud media de la cola, tiempos de espera y probabilidades para modelos M/M/1, M/M/c y de capacidad finita.",
+  "intro": "Selecciona un modelo de cola, introduce la tasa de llegada y la tasa de servicio, y pulsa Calcular para ver todas las métricas de rendimiento.",
+  "field": {
+    "model": "Modelo de cola",
+    "lambda": "Tasa de llegada (λ) — clientes por unidad de tiempo",
+    "mu": "Tasa de servicio (μ) — clientes por servidor por unidad de tiempo",
+    "servers": "Número de servidores (c)",
+    "capacity": "Capacidad del sistema (K)",
+    "population": "Tamaño de la población (N)"
+  },
+  "model": {
+    "mm1": "M/M/1 (servidor único)",
+    "mmc": "M/M/c (múltiples servidores)",
+    "mmck": "M/M/c/K (capacidad finita)",
+    "mmcn": "M/M/c/N (población finita)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "placeholder": {
+    "rate": "Introduce la tasa",
+    "integer": "Introduce un entero"
+  },
+  "result": {
+    "heading": "Métricas de rendimiento de la cola",
+    "utilization": "Utilización del servidor (ρ)",
+    "p0": "Probabilidad de sistema vacío (P₀)",
+    "lq": "Longitud media de la cola (Lq)",
+    "l": "Longitud media del sistema (L)",
+    "wq": "Tiempo medio de espera en cola (Wq)",
+    "w": "Tiempo medio en el sistema (W)",
+    "pBlock": "Probabilidad de bloqueo"
+  },
+  "error": {
+    "invalidInput": "Introduce números positivos válidos para la tasa de llegada y la tasa de servicio.",
+    "unstable": "El sistema es inestable: la tasa de llegada debe ser menor que la capacidad total de servicio (λ < c·μ).",
+    "zeroMu": "La tasa de servicio μ debe ser mayor que cero."
+  },
+  "about": {
+    "heading": "Acerca de la teoría de colas",
+    "body": "La teoría de colas es una rama de las matemáticas que estudia las líneas de espera (colas). Proporciona herramientas para predecir el comportamiento de un sistema en el que las llegadas ocurren de forma aleatoria, el servicio lleva tiempo y los recursos (servidores) son limitados. Sus aplicaciones abarcan telecomunicaciones (conmutación de paquetes), sanidad (programación de pacientes), manufactura (colas de máquinas), transporte (flujo de tráfico) e informática (planificación del sistema operativo).\n\nLa notación de Kendall A/S/c/K/N describe una cola por su proceso de llegadas (A), la distribución del tiempo de servicio (S), el número de servidores (c), la capacidad del sistema (K) y el tamaño de la población (N). La notación más común es M/M/c, donde tanto las llegadas como los tiempos de servicio siguen distribuciones exponenciales (sin memoria); la M significa markoviano (exponencial). Esta calculadora cubre cuatro modelos clave.\n\nEl modelo M/M/1 es el más simple: un único servidor con llegadas de Poisson (tasa λ) y tiempos de servicio exponenciales (tasa μ). El sistema solo es estable cuando ρ = λ/μ < 1. El número medio en el sistema es L = ρ/(1-ρ), y el tiempo medio en el sistema es W = 1/(μ-λ) según la Ley de Little (L = λW).\n\nEl modelo M/M/c amplía esto a c servidores paralelos idénticos. La capacidad total de servicio es c·μ, así que la estabilidad requiere ρ = λ/(c·μ) < 1. La fórmula de Erlang C da la probabilidad de que un cliente que llega tenga que esperar: C(c,ρ) = (cρ)^c/(c!(1-ρ)) · P₀, donde P₀ es la probabilidad de que el sistema esté vacío.\n\nEl modelo M/M/c/K añade una sala de espera finita: la capacidad del sistema K es el máximo total de clientes (en servicio más en espera). Los clientes que llegan cuando el sistema está lleno son bloqueados (rechazados). Este modelo es útil para restaurantes, aparcamientos y plantas hospitalarias. La probabilidad de bloqueo es P(K) = P₀ · (λ/μ)^K / K! para M/M/1/K.\n\nEl modelo M/M/c/N asume una población fuente finita de N clientes potenciales. Un cliente que ya está en el sistema no puede generar nuevas llegadas, por lo que la tasa efectiva de llegada disminuye a medida que el sistema se llena. Este modelo sirve para problemas de reparación de máquinas, donde N máquinas pueden averiarse a una tasa λ cada una y se reparan a una tasa μ.\n\nLa Ley de Little — L = λ_eff × W — es la relación universal que conecta el número medio en el sistema (L), la tasa efectiva de llegada (λ_eff) y el tiempo medio en el sistema (W). Se cumple para casi cualquier sistema de colas estable, independientemente de las distribuciones asumidas, y es la base de todas las fórmulas de rendimiento de esta calculadora."
+  },
+  "examples": {
+    "heading": "Ejemplos de teoría de colas",
+    "intro": "Explora distintos escenarios de colas con parámetros realistas.",
+    "colInput": "Escenario",
+    "colOutput": "Métricas clave",
+    "colNote": "Interpretación",
+    "items": [
+      {
+        "input": "Cajero bancario: M/M/1, λ=10/h, μ=12/h",
+        "output": "ρ=83.3%, Lq=4.17, Wq=25 min",
+        "note": "Un cajero muy ocupado. Cola media de 4 personas y espera de 25 minutos. Alta utilización: añadir un segundo cajero reduciría drásticamente los tiempos de espera."
+      },
+      {
+        "input": "Centro de llamadas: M/M/c, λ=25/h, μ=10/h, c=3",
+        "output": "ρ=83.3%, Lq≈3.51, Wq≈8.4 min",
+        "note": "Tres operadores reparten la carga. La capacidad total es de 30/h. La fórmula de Erlang C da Lq≈3.51 y un tiempo medio de espera Wq≈8.4 min."
+      },
+      {
+        "input": "Restaurante: M/M/c/K, λ=15/h, μ=8/h, c=2, K=20",
+        "output": "ρ=93.75%, prob. de bloqueo≈2.1%",
+        "note": "Los asientos finitos limitan el sistema a 20 clientes en total. Aproximadamente el 2% de los clientes que llegan son rechazados en horas punta."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de teoría de colas",
+    "steps": [
+      "Elige el modelo de cola en el desplegable: M/M/1 para un servidor único, M/M/c para varios servidores en paralelo, M/M/c/K si existe una capacidad máxima, o M/M/c/N para una población fuente finita.",
+      "Introduce la tasa de llegada λ (número medio de clientes que llegan por unidad de tiempo) y la tasa de servicio μ (número medio que un servidor puede atender por unidad de tiempo).",
+      "Para los modelos M/M/c, M/M/c/K y M/M/c/N, introduce también el número de servidores c. En M/M/c/K introduce la capacidad total K; en M/M/c/N, el tamaño de la población finita N.",
+      "Pulsa Calcular. La sección de resultados mostrará la utilización del servidor ρ, la probabilidad de que el sistema esté vacío (P₀), la longitud media de la cola (Lq), la longitud media del sistema (L), el tiempo medio de espera en cola (Wq) y el tiempo medio en el sistema (W).",
+      "Si el sistema es inestable (la tasa de llegada supera la capacidad de servicio), aparecerá un error; aumenta c o μ, o reduce λ para obtener una configuración estable."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre teoría de colas",
+    "items": [
+      {
+        "q": "¿Qué significa la utilización del servidor ρ?",
+        "a": "La utilización del servidor ρ = λ / (c·μ) es la fracción media de tiempo que cada servidor está ocupado. Una utilización de 0.85 significa que los servidores están ocupados el 85% del tiempo. Cuando ρ se acerca a 1, la cola crece sin límite; cuando ρ > 1, el sistema es inestable y no puede asumir la carga a largo plazo."
+      },
+      {
+        "q": "¿Qué es la Ley de Little?",
+        "a": "La Ley de Little establece que L = λ·W, donde L es el número medio de clientes en el sistema, λ es la tasa efectiva de llegada y W es el tiempo medio que cada cliente pasa en el sistema. Se aplica a cualquier sistema estable, independientemente de las distribuciones de llegada o servicio, y es uno de los resultados más potentes de la teoría de colas."
+      },
+      {
+        "q": "¿Para qué se usa la fórmula de Erlang C?",
+        "a": "La fórmula de Erlang C calcula la probabilidad de que un cliente que llega a una cola M/M/c tenga que esperar (es decir, que todos los servidores estén ocupados). Es la base de la fórmula de Wq en colas con múltiples servidores y se usa mucho en la dotación de centros de llamadas para determinar cuántos agentes se necesitan para cumplir un objetivo de nivel de servicio."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre M/M/c/K y M/M/c/N?",
+        "a": "M/M/c/K limita el número total de clientes en el sistema (tanto en espera como en servicio) a K; las llegadas que superan K se rechazan (bloqueo). M/M/c/N modela un sistema cerrado con solo N clientes potenciales en total; cuando un cliente entra en la cola, la tasa efectiva de llegada del resto de la población disminuye."
+      },
+      {
+        "q": "¿Cómo reduzco el tiempo medio de espera en un sistema de colas?",
+        "a": "Las palancas más eficaces son: aumentar la tasa de servicio μ (servidores más rápidos), añadir más servidores c (canales en paralelo) o reducir la variabilidad. Contraintuitivamente, bajar la utilización del 90% al 80% puede reducir a la mitad la longitud de la cola, porque esta crece de forma superlineal cuando ρ se acerca a 1."
+      },
+      {
+        "q": "¿Son realistas los modelos M/M para sistemas reales?",
+        "a": "Los modelos M/M asumen llegadas Poisson y tiempos de servicio exponenciales, lo que es una aproximación razonable para muchos sistemas reales como llamadas telefónicas, solicitudes web y llegadas aleatorias de clientes. Existen modelos más generales como M/G/1 o G/G/c para tiempos de servicio no exponenciales, pero los resultados M/M siguen dando estimaciones de orden de magnitud muy útiles para la planificación de capacidad."
+      }
+    ]
+  }
+}

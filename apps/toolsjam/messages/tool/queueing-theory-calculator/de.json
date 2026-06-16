@@ -1,0 +1,109 @@
+{
+  "title": "Warteschlangentheorie-Rechner - M/M/c Analyse",
+  "tagline": "Berechnen Sie Leistungskennzahlen von Warteschlangen, einschließlich Auslastung, durchschnittlicher Warteschlangenlänge, Wartezeiten und Wahrscheinlichkeiten für M/M/1-, M/M/c- und kapazitätsbegrenzte Modelle.",
+  "intro": "Wählen Sie ein Warteschlangenmodell, geben Sie Ankunftsrate und Bedienrate ein und klicken Sie dann auf Berechnen, um alle Leistungskennzahlen anzuzeigen.",
+  "field": {
+    "model": "Warteschlangenmodell",
+    "lambda": "Ankunftsrate (λ) — Kunden pro Zeiteinheit",
+    "mu": "Bedienrate (μ) — Kunden pro Server und Zeiteinheit",
+    "servers": "Anzahl der Server (c)",
+    "capacity": "Systemkapazität (K)",
+    "population": "Populationsgröße (N)"
+  },
+  "model": {
+    "mm1": "M/M/1 (Einzelserver)",
+    "mmc": "M/M/c (Mehrserver)",
+    "mmck": "M/M/c/K (begrenzte Kapazität)",
+    "mmcn": "M/M/c/N (endliche Population)"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "placeholder": {
+    "rate": "Rate eingeben",
+    "integer": "Ganzzahl eingeben"
+  },
+  "result": {
+    "heading": "Leistungskennzahlen der Warteschlange",
+    "utilization": "Serverauslastung (ρ)",
+    "p0": "Wahrscheinlichkeit eines leeren Systems (P₀)",
+    "lq": "Durchschnittliche Warteschlangenlänge (Lq)",
+    "l": "Durchschnittliche Systemlänge (L)",
+    "wq": "Durchschnittliche Wartezeit in der Schlange (Wq)",
+    "w": "Durchschnittliche Zeit im System (W)",
+    "pBlock": "Blockierungswahrscheinlichkeit"
+  },
+  "error": {
+    "invalidInput": "Bitte geben Sie gültige positive Zahlen für Ankunfts- und Bedienrate ein.",
+    "unstable": "Das System ist instabil: Die Ankunftsrate muss kleiner als die gesamte Bedienkapazität sein (λ < c·μ).",
+    "zeroMu": "Die Bedienrate μ muss größer als null sein."
+  },
+  "about": {
+    "heading": "Über die Warteschlangentheorie",
+    "body": "Die Warteschlangentheorie ist ein Zweig der Mathematik, der Warteschlangen untersucht. Sie liefert Werkzeuge, um das Verhalten eines Systems vorherzusagen, in dem Ankünfte zufällig erfolgen, Bedienung Zeit benötigt und Ressourcen (Server) begrenzt sind. Anwendungsgebiete reichen von Telekommunikation (Paketvermittlung) über das Gesundheitswesen (Patientenplanung), die Fertigung (Maschinenwarteschlangen), den Verkehr (Verkehrsfluss) bis zur Informatik (Betriebssystemplanung).\n\nDie Kendall-Notation A/S/c/K/N beschreibt eine Warteschlange über ihren Ankunftsprozess (A), die Verteilung der Bedienzeit (S), die Anzahl der Server (c), die Systemkapazität (K) und die Populationsgröße (N). Am häufigsten ist M/M/c, bei dem sowohl Ankünfte als auch Bedienzeiten exponentiellen (gedächtnislosen) Verteilungen folgen — das M steht für Markovian (exponentiell). Dieser Rechner deckt vier wichtige Modelle ab.\n\nDas M/M/1-Modell ist das einfachste: ein einzelner Server mit Poisson-Ankünften (Rate λ) und exponentiellen Bedienzeiten (Rate μ). Das System ist nur stabil, wenn ρ = λ/μ < 1 gilt. Die durchschnittliche Anzahl im System ist L = ρ/(1-ρ), und die durchschnittliche Zeit im System ist nach Little's Law (L = λW) W = 1/(μ-λ).\n\nDas M/M/c-Modell erweitert dies auf c parallele, identische Server. Die gesamte Bedienkapazität beträgt c·μ, daher erfordert Stabilität ρ = λ/(c·μ) < 1. Die Erlang-C-Formel liefert die Wahrscheinlichkeit, dass ein ankommender Kunde warten muss: C(c,ρ) = (cρ)^c/(c!(1-ρ)) · P₀, wobei P₀ die Wahrscheinlichkeit ist, dass das System leer ist.\n\nDas M/M/c/K-Modell fügt einen begrenzten Warteraum hinzu — die Systemkapazität K ist die maximale Gesamtzahl an Kunden (in Bedienung plus wartend). Kunden, die ankommen, wenn das System voll ist, werden blockiert (abgewiesen). Dieses Modell eignet sich für Restaurants, Parkplätze und Krankenhausstationen. Die Blockierungswahrscheinlichkeit ist für M/M/1/K P(K) = P₀ · (λ/μ)^K / K!.\n\nDas M/M/c/N-Modell geht von einer endlichen Quellpopulation von N potenziellen Kunden aus. Ein Kunde, der bereits im System ist, kann keine neuen Ankünfte erzeugen, daher sinkt die effektive Ankunftsrate, wenn sich das System füllt. Dieses Modell eignet sich für Maschinenreparaturprobleme, bei denen N Maschinen jeweils mit Rate λ ausfallen und mit Rate μ repariert werden.\n\nLittle's Law — L = λ_eff × W — ist die universelle Beziehung zwischen der durchschnittlichen Anzahl im System (L), der effektiven Ankunftsrate (λ_eff) und der durchschnittlichen Zeit im System (W). Sie gilt für fast jedes stabile Warteschlangensystem unabhängig von Verteilungsannahmen und bildet die Grundlage aller Leistungsformeln in diesem Rechner."
+  },
+  "examples": {
+    "heading": "Beispiele der Warteschlangentheorie",
+    "intro": "Entdecken Sie verschiedene Warteschlangenszenarien mit realistischen Parametern.",
+    "colInput": "Szenario",
+    "colOutput": "Wichtige Kennzahlen",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "Bankschalter: M/M/1, λ=10/h, μ=12/h",
+        "output": "ρ=83.3%, Lq=4.17, Wq=25 min",
+        "note": "Ein stark ausgelasteter Schalter. Durchschnittlich 4 Personen in der Schlange, 25 Minuten Wartezeit. Hohe Auslastung — ein zweiter Schalter würde die Wartezeiten deutlich senken."
+      },
+      {
+        "input": "Callcenter: M/M/c, λ=25/h, μ=10/h, c=3",
+        "output": "ρ=83.3%, Lq≈3.51, Wq≈8.4 min",
+        "note": "Drei Mitarbeitende teilen sich die Last. Die Gesamtkapazität beträgt 30/h. Die Erlang-C-Formel ergibt Lq≈3.51 und eine durchschnittliche Wartezeit Wq≈8.4 min."
+      },
+      {
+        "input": "Restaurant: M/M/c/K, λ=15/h, μ=8/h, c=2, K=20",
+        "output": "ρ=93.75%, Blockierungswahrscheinlichkeit≈2.1%",
+        "note": "Begrenzte Sitzplätze beschränken das System auf insgesamt 20 Kunden. Etwa 2% der ankommenden Gäste werden in Stoßzeiten abgewiesen."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Warteschlangentheorie-Rechner",
+    "steps": [
+      "Wählen Sie das Warteschlangenmodell aus dem Dropdown: M/M/1 für einen Einzelserver, M/M/c für mehrere parallele Server, M/M/c/K bei einer maximalen Kapazitätsgrenze oder M/M/c/N für eine endliche Quellpopulation.",
+      "Geben Sie die Ankunftsrate λ (durchschnittliche Anzahl an Kunden pro Zeiteinheit) und die Bedienrate μ (durchschnittliche Anzahl, die ein einzelner Server pro Zeiteinheit bearbeiten kann) ein.",
+      "Für die Modelle M/M/c, M/M/c/K und M/M/c/N geben Sie zusätzlich die Anzahl der Server c ein. Bei M/M/c/K tragen Sie außerdem die gesamte Systemkapazität K ein; bei M/M/c/N die endliche Populationsgröße N.",
+      "Klicken Sie auf Berechnen. Im Ergebnisbereich werden die Serverauslastung ρ, die Wahrscheinlichkeit eines leeren Systems (P₀), die durchschnittliche Warteschlangenlänge (Lq), die durchschnittliche Systemlänge (L), die durchschnittliche Wartezeit in der Schlange (Wq) und die durchschnittliche Zeit im System (W) angezeigt.",
+      "Wenn das System instabil ist (die Ankunftsrate die Bedienkapazität übersteigt), wird eine Fehlermeldung angezeigt — erhöhen Sie c oder μ oder reduzieren Sie λ, um eine stabile Konfiguration zu erhalten."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zur Warteschlangentheorie",
+    "items": [
+      {
+        "q": "Was bedeutet die Serverauslastung ρ?",
+        "a": "Die Serverauslastung ρ = λ / (c·μ) ist der durchschnittliche Anteil der Zeit, in der jeder Server beschäftigt ist. Eine Auslastung von 0.85 bedeutet, dass die Server 85% der Zeit beschäftigt sind. Wenn ρ sich 1 nähert, wächst die Schlange unbegrenzt; bei ρ > 1 ist das System instabil und kann die Last langfristig nicht bewältigen."
+      },
+      {
+        "q": "Was ist Little's Law?",
+        "a": "Little's Law besagt, dass L = λ·W gilt, wobei L die durchschnittliche Anzahl von Kunden im System ist, λ die effektive Ankunftsrate und W die durchschnittliche Zeit, die jeder Kunde im System verbringt. Es gilt für jedes stabile System unabhängig von Ankunfts- oder Bedienverteilungen und ist eines der stärksten Ergebnisse der Warteschlangentheorie."
+      },
+      {
+        "q": "Wofür wird die Erlang-C-Formel verwendet?",
+        "a": "Die Erlang-C-Formel berechnet die Wahrscheinlichkeit, dass ein ankommender Kunde in einer M/M/c-Warteschlange warten muss (also alle Server beschäftigt sind). Sie ist die Grundlage der Wq-Formel in Mehrserver-Warteschlangen und wird häufig bei der Personaleinsatzplanung in Callcentern genutzt, um zu bestimmen, wie viele Agents für ein Serviceziel benötigt werden."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen M/M/c/K und M/M/c/N?",
+        "a": "M/M/c/K begrenzt die Gesamtzahl der Kunden im System (wartend und in Bedienung) auf K — Ankünfte über K hinaus werden abgewiesen (blockiert). M/M/c/N modelliert ein geschlossenes System mit insgesamt nur N potenziellen Kunden; sobald ein Kunde in die Schlange eintritt, sinkt die effektive Ankunftsrate aus der restlichen Population."
+      },
+      {
+        "q": "Wie reduziere ich die durchschnittliche Wartezeit in einem Warteschlangensystem?",
+        "a": "Die wirksamsten Hebel sind: die Bedienrate μ erhöhen (schnellere Server), mehr Server c hinzufügen (parallele Kanäle) oder die Variabilität reduzieren. Überraschenderweise kann eine Reduzierung der Auslastung von 90% auf 80% die Warteschlangenlänge halbieren, weil die Schlange superlinear wächst, wenn ρ sich 1 nähert."
+      },
+      {
+        "q": "Sind M/M-Modelle realistisch für reale Systeme?",
+        "a": "M/M-Modelle nehmen Poisson-Ankünfte und exponentielle Bedienzeiten an, was für viele reale Systeme wie Telefonanrufe, Webanfragen und zufällige Kundenankünfte eine vernünftige Näherung ist. Für nicht-exponentielle Bedienzeiten gibt es allgemeinere M/G/1- oder G/G/c-Modelle, aber M/M-Ergebnisse liefern dennoch grobe, für die Kapazitätsplanung nützliche Schätzungen."
+      }
+    ]
+  }
+}

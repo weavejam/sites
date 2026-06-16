@@ -1,0 +1,109 @@
+{
+  "title": "Calculadora de teoria das filas - análise M/M/c",
+  "tagline": "Calcule métricas de desempenho de filas, incluindo utilização, comprimento médio da fila, tempos de espera e probabilidades para modelos M/M/1, M/M/c e de capacidade finita.",
+  "intro": "Selecione um modelo de fila, insira a taxa de chegada e a taxa de serviço e clique em Calcular para ver todas as métricas de desempenho.",
+  "field": {
+    "model": "Modelo de fila",
+    "lambda": "Taxa de chegada (λ) — clientes por unidade de tempo",
+    "mu": "Taxa de serviço (μ) — clientes por servidor por unidade de tempo",
+    "servers": "Número de servidores (c)",
+    "capacity": "Capacidade do sistema (K)",
+    "population": "Tamanho da população (N)"
+  },
+  "model": {
+    "mm1": "M/M/1 (servidor único)",
+    "mmc": "M/M/c (múltiplos servidores)",
+    "mmck": "M/M/c/K (capacidade finita)",
+    "mmcn": "M/M/c/N (população finita)"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "placeholder": {
+    "rate": "Insira a taxa",
+    "integer": "Insira um inteiro"
+  },
+  "result": {
+    "heading": "Métricas de desempenho da fila",
+    "utilization": "Utilização do servidor (ρ)",
+    "p0": "Probabilidade de sistema vazio (P₀)",
+    "lq": "Comprimento médio da fila (Lq)",
+    "l": "Comprimento médio do sistema (L)",
+    "wq": "Tempo médio de espera na fila (Wq)",
+    "w": "Tempo médio no sistema (W)",
+    "pBlock": "Probabilidade de bloqueio"
+  },
+  "error": {
+    "invalidInput": "Insira números positivos válidos para as taxas de chegada e de serviço.",
+    "unstable": "O sistema está instável: a taxa de chegada deve ser menor que a capacidade total de serviço (λ < c·μ).",
+    "zeroMu": "A taxa de serviço μ deve ser maior que zero."
+  },
+  "about": {
+    "heading": "Sobre a teoria das filas",
+    "body": "A teoria das filas é um ramo da matemática que estuda linhas de espera (filas). Ela fornece ferramentas para prever o comportamento de um sistema em que as chegadas ocorrem aleatoriamente, o atendimento leva tempo e os recursos (servidores) são limitados. As aplicações abrangem telecomunicações (comutação de pacotes), saúde (agendamento de pacientes), manufatura (filas de máquinas), transporte (fluxo de tráfego) e ciência da computação (escalonamento do sistema operacional).\n\nA notação de Kendall A/S/c/K/N descreve uma fila pelo processo de chegada (A), a distribuição do tempo de serviço (S), o número de servidores (c), a capacidade do sistema (K) e o tamanho da população (N). A notação mais comum é M/M/c, em que tanto chegadas quanto tempos de serviço seguem distribuições exponenciais (sem memória) — o M significa markoviano (exponencial). Esta calculadora cobre quatro modelos principais.\n\nO modelo M/M/1 é o mais simples: um único servidor com chegadas de Poisson (taxa λ) e tempos de serviço exponenciais (taxa μ). O sistema só é estável quando ρ = λ/μ < 1. O número médio no sistema é L = ρ/(1-ρ), e o tempo médio no sistema é W = 1/(μ-λ) pela Lei de Little (L = λW).\n\nO modelo M/M/c amplia isso para c servidores paralelos idênticos. A capacidade total de serviço é c·μ, então a estabilidade exige ρ = λ/(c·μ) < 1. A fórmula de Erlang C fornece a probabilidade de um cliente que chega precisar esperar: C(c,ρ) = (cρ)^c/(c!(1-ρ)) · P₀, onde P₀ é a probabilidade de o sistema estar vazio.\n\nO modelo M/M/c/K adiciona uma sala de espera finita — a capacidade do sistema K é o máximo total de clientes (em atendimento mais esperando). Clientes que chegam quando o sistema está cheio são bloqueados (recusados). Esse modelo é adequado para restaurantes, estacionamentos e enfermarias hospitalares. A probabilidade de bloqueio é P(K) = P₀ · (λ/μ)^K / K! para M/M/1/K.\n\nO modelo M/M/c/N assume uma população de origem finita de N clientes potenciais. Um cliente já no sistema não pode gerar novas chegadas, então a taxa efetiva de chegada diminui à medida que o sistema se enche. Esse modelo é adequado para problemas de reparo de máquinas, em que N máquinas podem quebrar à taxa λ cada e são reparadas à taxa μ.\n\nA Lei de Little — L = λ_eff × W — é a relação universal que conecta o número médio no sistema (L), a taxa efetiva de chegada (λ_eff) e o tempo médio no sistema (W). Ela vale para quase qualquer sistema de filas estável, independentemente das suposições de distribuição, e é a base de todas as fórmulas de desempenho desta calculadora."
+  },
+  "examples": {
+    "heading": "Exemplos de teoria das filas",
+    "intro": "Explore diferentes cenários de filas com parâmetros realistas.",
+    "colInput": "Cenário",
+    "colOutput": "Métricas principais",
+    "colNote": "Interpretação",
+    "items": [
+      {
+        "input": "Caixa bancário: M/M/1, λ=10/h, μ=12/h",
+        "output": "ρ=83.3%, Lq=4.17, Wq=25 min",
+        "note": "Um caixa ocupado. Fila média de 4 pessoas, espera de 25 minutos. Utilização alta — adicionar um segundo caixa reduziria drasticamente o tempo de espera."
+      },
+      {
+        "input": "Central de atendimento: M/M/c, λ=25/h, μ=10/h, c=3",
+        "output": "ρ=83.3%, Lq≈3.51, Wq≈8.4 min",
+        "note": "Três atendentes dividem a carga. A capacidade total é de 30/h. A fórmula de Erlang C fornece Lq≈3.51 e tempo médio de espera Wq≈8.4 min."
+      },
+      {
+        "input": "Restaurante: M/M/c/K, λ=15/h, μ=8/h, c=2, K=20",
+        "output": "ρ=93.75%, prob. de bloqueio≈2.1%",
+        "note": "Assentos finitos limitam o sistema a 20 clientes no total. Cerca de 2% dos clientes que chegam são recusados nos horários de pico."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de teoria das filas",
+    "steps": [
+      "Escolha o modelo de fila no menu: M/M/1 para um servidor único, M/M/c para vários servidores em paralelo, M/M/c/K se houver limite máximo de capacidade, ou M/M/c/N para uma população de origem finita.",
+      "Insira a taxa de chegada λ (número médio de clientes que chegam por unidade de tempo) e a taxa de serviço μ (número médio que um único servidor pode atender por unidade de tempo).",
+      "Para os modelos M/M/c, M/M/c/K e M/M/c/N, informe também o número de servidores c. Para M/M/c/K, informe a capacidade total K; para M/M/c/N, informe o tamanho da população finita N.",
+      "Clique em Calcular. A seção de resultados mostrará a utilização do servidor ρ, a probabilidade de o sistema estar vazio (P₀), o comprimento médio da fila (Lq), o comprimento médio do sistema (L), o tempo médio de espera na fila (Wq) e o tempo médio no sistema (W).",
+      "Se o sistema estiver instável (a taxa de chegada exceder a capacidade de serviço), uma mensagem de erro será exibida — aumente c ou μ, ou reduza λ para obter uma configuração estável."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre teoria das filas",
+    "items": [
+      {
+        "q": "O que significa a utilização do servidor ρ?",
+        "a": "A utilização do servidor ρ = λ / (c·μ) é a fração média do tempo em que cada servidor está ocupado. Uma utilização de 0.85 significa que os servidores estão ocupados 85% do tempo. Quando ρ se aproxima de 1, a fila cresce sem limite; quando ρ > 1, o sistema é instável e não consegue lidar com a carga no longo prazo."
+      },
+      {
+        "q": "O que é a Lei de Little?",
+        "a": "A Lei de Little afirma que L = λ·W, onde L é o número médio de clientes no sistema, λ é a taxa efetiva de chegada e W é o tempo médio que cada cliente passa no sistema. Ela se aplica a qualquer sistema estável, independentemente das distribuições de chegada ou serviço, e é um dos resultados mais poderosos da teoria das filas."
+      },
+      {
+        "q": "Para que serve a fórmula de Erlang C?",
+        "a": "A fórmula de Erlang C calcula a probabilidade de um cliente que chega a uma fila M/M/c precisar esperar (ou seja, de todos os servidores estarem ocupados). Ela é a base da fórmula de Wq em filas com múltiplos servidores e é amplamente usada no dimensionamento de centrais de atendimento para determinar quantos agentes são necessários para atingir uma meta de nível de serviço."
+      },
+      {
+        "q": "Qual é a diferença entre M/M/c/K e M/M/c/N?",
+        "a": "M/M/c/K limita o número total de clientes no sistema (em espera e em atendimento) a K — chegadas acima de K são rejeitadas (bloqueio). M/M/c/N modela um sistema fechado com apenas N clientes potenciais no total; quando um cliente entra na fila, a taxa efetiva de chegada do restante da população diminui."
+      },
+      {
+        "q": "Como reduzir o tempo médio de espera em um sistema de filas?",
+        "a": "As alavancas mais eficazes são: aumentar a taxa de serviço μ (servidores mais rápidos), adicionar mais servidores c (canais paralelos) ou reduzir a variabilidade. Contraintuitivamente, reduzir a utilização de 90% para 80% pode cortar pela metade o tamanho da fila, porque ela cresce de forma superlinear quando ρ se aproxima de 1."
+      },
+      {
+        "q": "Modelos M/M são realistas para sistemas do mundo real?",
+        "a": "Os modelos M/M assumem chegadas de Poisson e tempos de serviço exponenciais, o que é uma aproximação razoável para muitos sistemas reais, como chamadas telefônicas, requisições web e chegadas aleatórias de clientes. Existem modelos mais gerais, como M/G/1 ou G/G/c, para tempos de serviço não exponenciais, mas os resultados M/M ainda fornecem estimativas de ordem de grandeza úteis para planejamento de capacidade."
+      }
+    ]
+  }
+}
