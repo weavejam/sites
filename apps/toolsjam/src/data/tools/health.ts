@@ -360,7 +360,208 @@ export const tools: ToolEntry[] = [
       en: "Wells Score calculator for pulmonary embolism assesses PE pretest probability using 7 validated clinical criteria to guide D-dimer and imaging decisions.",
       "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
     }
+  },
+  {
+    id: "transferrin-saturation-calculator",
+    category: "health",
+    slugs: {
+      en: "transferrin-saturation-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Transferrin Saturation Calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Transferrin saturation calculator uses serum iron and TIBC to assess iron status, diagnose iron deficiency anemia, and detect iron overload.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "ttkg-calculator-transtubular-potassium-gradient",
+    category: "health",
+    slugs: {
+      en: "ttkg-calculator-transtubular-potassium-gradient",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "TTKG Calculator: Transtubular Potassium Gradient",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "TTKG calculator computes transtubular potassium gradient to assess renal potassium handling and evaluate hypokalemia or hyperkalemia causes.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "tylenol-dosage-calculator",
+    category: "health",
+    slugs: {
+      en: "tylenol-dosage-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Tylenol Dosage Calculator by Weight and Age",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Tylenol dosage calculator computes safe acetaminophen doses for children and adults by weight and form — liquid, 325 mg, or 500 mg tablets.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "tylenol-overdose-calculator",
+    category: "health",
+    slugs: {
+      en: "tylenol-overdose-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Tylenol Overdose Calculator — Acetaminophen Risk",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Tylenol overdose calculator assesses acetaminophen toxicity risk by mg/kg dose, time since ingestion, and formulation type for emergency triage.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
+  },
+  {
+    id: "urine-anion-gap-calculator",
+    category: "health",
+    slugs: {
+      en: "urine-anion-gap-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Urine Anion Gap Calculator — RTA Diagnosis",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Urine anion gap calculator (Na + K − Cl) differentiates renal tubular acidosis from GI causes of normal anion gap metabolic acidosis.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
+
 
 
 ];

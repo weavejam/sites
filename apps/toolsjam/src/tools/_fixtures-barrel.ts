@@ -444,6 +444,7 @@ import { fixtures as f_torsional_stiffness_calculator } from "@/tools/torsional-
 import { fixtures as f_torus_surface_area_calculator } from "@/tools/torus-surface-area-calculator.fixtures";
 import { fixtures as f_torus_volume_calculator } from "@/tools/torus-volume-calculator.fixtures";
 import { fixtures as f_trajectory_calculator } from "@/tools/trajectory-calculator.fixtures";
+import { fixtures as f_transferrin_saturation_calculator } from "@/tools/transferrin-saturation-calculator.fixtures";
 import { fixtures as f_transformer_sizing_calculator } from "@/tools/transformer-sizing-calculator.fixtures";
 import { fixtures as f_transistor_biasing_calculator } from "@/tools/transistor-biasing-calculator.fixtures";
 import { fixtures as f_transmission_calculator } from "@/tools/transmission-calculator.fixtures";
@@ -454,11 +455,15 @@ import { fixtures as f_triangle_height_calculator } from "@/tools/triangle-heigh
 import { fixtures as f_triangle_inequality_theorem_calculator } from "@/tools/triangle-inequality-theorem-calculator.fixtures";
 import { fixtures as f_triangular_numbers_calculator } from "@/tools/triangular-numbers-calculator.fixtures";
 import { fixtures as f_triangular_prism_calculator } from "@/tools/triangular-prism-calculator.fixtures";
+import { fixtures as f_ttkg_calculator_transtubular_potassium_gradient } from "@/tools/ttkg-calculator-transtubular-potassium-gradient.fixtures";
 import { fixtures as f_tukey_hsd_calculator } from "@/tools/tukey-hsd-calculator.fixtures";
 import { fixtures as f_two_envelopes_paradox_calculator } from "@/tools/two-envelopes-paradox-calculator.fixtures";
+import { fixtures as f_tylenol_dosage_calculator } from "@/tools/tylenol-dosage-calculator.fixtures";
+import { fixtures as f_tylenol_overdose_calculator } from "@/tools/tylenol-overdose-calculator.fixtures";
 import { fixtures as f_uniform_distribution_calculator } from "@/tools/uniform-distribution-calculator.fixtures";
 import { fixtures as f_upper_and_lower_fence_calculator } from "@/tools/upper-and-lower-fence-calculator.fixtures";
 import { fixtures as f_upper_control_limit_calculator } from "@/tools/upper-control-limit-calculator.fixtures";
+import { fixtures as f_urine_anion_gap_calculator } from "@/tools/urine-anion-gap-calculator.fixtures";
 import { fixtures as f_urine_output_calculator } from "@/tools/urine-output-calculator.fixtures";
 import { fixtures as f_urr_calculator_urea_reduction_ratio } from "@/tools/urr-calculator-urea-reduction-ratio.fixtures";
 import { fixtures as f_vampire_apocalypse_calculator } from "@/tools/vampire-apocalypse-calculator.fixtures";
@@ -953,6 +958,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "torus-surface-area-calculator": f_torus_surface_area_calculator,
   "torus-volume-calculator": f_torus_volume_calculator,
   "trajectory-calculator": f_trajectory_calculator,
+  "transferrin-saturation-calculator": f_transferrin_saturation_calculator,
   "transformer-sizing-calculator": f_transformer_sizing_calculator,
   "transistor-biasing-calculator": f_transistor_biasing_calculator,
   "transmission-calculator": f_transmission_calculator,
@@ -963,11 +969,15 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "triangle-inequality-theorem-calculator": f_triangle_inequality_theorem_calculator,
   "triangular-numbers-calculator": f_triangular_numbers_calculator,
   "triangular-prism-calculator": f_triangular_prism_calculator,
+  "ttkg-calculator-transtubular-potassium-gradient": f_ttkg_calculator_transtubular_potassium_gradient,
   "tukey-hsd-calculator": f_tukey_hsd_calculator,
   "two-envelopes-paradox-calculator": f_two_envelopes_paradox_calculator,
+  "tylenol-dosage-calculator": f_tylenol_dosage_calculator,
+  "tylenol-overdose-calculator": f_tylenol_overdose_calculator,
   "uniform-distribution-calculator": f_uniform_distribution_calculator,
   "upper-and-lower-fence-calculator": f_upper_and_lower_fence_calculator,
   "upper-control-limit-calculator": f_upper_control_limit_calculator,
+  "urine-anion-gap-calculator": f_urine_anion_gap_calculator,
   "urine-output-calculator": f_urine_output_calculator,
   "urr-calculator-urea-reduction-ratio": f_urr_calculator_urea_reduction_ratio,
   "vampire-apocalypse-calculator": f_vampire_apocalypse_calculator,
