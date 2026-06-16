@@ -354,6 +354,11 @@ import { fixtures as f_post_test_probability_calculator } from "@/tools/post-tes
 import { fixtures as f_ppi_calculator_pixels_per_inch } from "@/tools/ppi-calculator-pixels-per-inch.fixtures";
 import { fixtures as f_projector_calculator } from "@/tools/projector-calculator.fixtures";
 import { fixtures as f_propagation_delay_calculator } from "@/tools/propagation-delay-calculator.fixtures";
+import { fixtures as f_protein_calculator } from "@/tools/protein-calculator.fixtures";
+import { fixtures as f_protein_creatinine_ratio_calculator } from "@/tools/protein-creatinine-ratio-calculator.fixtures";
+import { fixtures as f_psa_density_calculator } from "@/tools/psa-density-calculator.fixtures";
+import { fixtures as f_psa_doubling_time_calculator } from "@/tools/psa-doubling-time-calculator.fixtures";
+import { fixtures as f_psi_calculator } from "@/tools/psi-calculator.fixtures";
 import { fixtures as f_pte_score_calculator } from "@/tools/pte-score-calculator.fixtures";
 import { fixtures as f_pvr_calculator_pulmonary_vascular_resistance } from "@/tools/pvr-calculator-pulmonary-vascular-resistance.fixtures";
 import { fixtures as f_pyramid_block_calculator } from "@/tools/pyramid-block-calculator.fixtures";
@@ -898,6 +903,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "ppi-calculator-pixels-per-inch": f_ppi_calculator_pixels_per_inch,
   "projector-calculator": f_projector_calculator,
   "propagation-delay-calculator": f_propagation_delay_calculator,
+  "protein-calculator": f_protein_calculator,
+  "protein-creatinine-ratio-calculator": f_protein_creatinine_ratio_calculator,
+  "psa-density-calculator": f_psa_density_calculator,
+  "psa-doubling-time-calculator": f_psa_doubling_time_calculator,
+  "psi-calculator": f_psi_calculator,
   "pte-score-calculator": f_pte_score_calculator,
   "pvr-calculator-pulmonary-vascular-resistance": f_pvr_calculator_pulmonary_vascular_resistance,
   "pyramid-block-calculator": f_pyramid_block_calculator,
