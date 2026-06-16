@@ -1,0 +1,94 @@
+{
+  "title": "MELD Calculator – Model for End-Stage Liver Disease",
+  "tagline": "Calculate the MELD and MELD-Na scores to estimate 3-month mortality risk in patients with end-stage liver disease.",
+  "intro": "Enter the patient's laboratory values. The calculator applies the standard MELD formula and the sodium-adjusted MELD-Na variant to estimate short-term prognosis.",
+
+  "field": {
+    "creatinine": "Serum Creatinine (mg/dL)",
+    "bilirubin": "Total Bilirubin (mg/dL)",
+    "inr": "INR (International Normalized Ratio)",
+    "sodium": "Serum Sodium (mEq/L)",
+    "dialysis": "Patient is on dialysis (≥2 times/week)"
+  },
+
+  "button": {
+    "calculate": "Calculate MELD",
+    "reset": "Reset"
+  },
+
+  "error": {
+    "invalid": "Please enter valid positive values for all laboratory fields."
+  },
+
+  "result": {
+    "heading": "MELD Score Result",
+    "meld": "MELD Score",
+    "meldNa": "MELD-Na Score",
+    "mortality": "Estimated 3-month mortality",
+    "stable": "Stable",
+    "moderate": "Moderate risk",
+    "serious": "Serious risk",
+    "severe": "Severe risk",
+    "critical": "Critical risk"
+  },
+
+  "about": {
+    "heading": "About the MELD calculator",
+    "body": "The Model for End-Stage Liver Disease (MELD) is a validated, objective scoring system used to quantify the severity of chronic liver disease and to predict short-term mortality in patients with cirrhosis. Originally developed at the Mayo Clinic to assess 3-month survival after transjugular intrahepatic portosystemic shunt (TIPS) procedures, it was subsequently adopted by the United Network for Organ Sharing (UNOS) in 2002 as the primary tool for prioritising liver transplant allocation in the United States and has since been adopted widely around the world.\n\nThe MELD formula uses three routine serum laboratory values: creatinine (a marker of kidney function, which is closely coupled to liver failure through the hepatorenal syndrome), bilirubin (a direct indicator of hepatic synthetic and excretory function), and the International Normalized Ratio (INR, which reflects the liver's capacity to produce coagulation factors). Each variable is log-transformed because the relationship between these biomarkers and mortality is exponential rather than linear. A constant of 6.43 is added to centre the score distribution. All three values are floored at 1.0 to prevent the logarithm of values less than 1 from producing a negative contribution to the score, which would be clinically misleading.\n\nIn patients receiving haemodialysis or peritoneal dialysis at least twice per week, creatinine is fixed at 2.0 mg/dL regardless of the measured value. This correction acknowledges that dialysis artificially lowers serum creatinine and would otherwise underestimate kidney dysfunction — and therefore overall disease severity — in dialysis-dependent patients. Creatinine is also capped at 4.0 mg/dL to prevent the score from being driven to extreme values by acute kidney injury alone.\n\nThe MELD-Na score (also called MELD 3.0 sodium adjustment) extends the original formula by incorporating serum sodium, which is an independent predictor of waitlist mortality in patients with cirrhosis. Hyponatraemia is a marker of advanced portal hypertension and neurohumoral activation, and its inclusion improves the discriminative ability of the score. Sodium is clamped between 125 and 137 mEq/L; values outside this range are set to the nearest boundary before the adjustment formula is applied.\n\nMELD scores are interpreted on a continuum: scores below 10 indicate relatively stable disease; 10–19 moderate risk; 20–29 serious risk with approximately one in five patients dying within 3 months; 30–39 severe risk; and 40 or above critical risk with greater than 70% 3-month mortality. Liver transplant centres use these thresholds alongside other clinical factors to assess urgency and allocate organs equitably. The calculator is provided for educational purposes and clinical decision support; it does not replace formal transplant evaluation or specialist medical advice."
+  },
+
+  "examples": {
+    "heading": "MELD score examples",
+    "intro": "Representative laboratory profiles and their corresponding MELD scores.",
+    "colInput": "Laboratory Values",
+    "colOutput": "MELD / MELD-Na",
+    "colNote": "Interpretation",
+    "items": [
+      {
+        "input": "Cr 1.0, Bili 1.0, INR 1.0, Na 137",
+        "output": "MELD 6 / MELD-Na 6",
+        "note": "Minimum possible MELD. All values are at or below the 1.0 floor. Indicates stable compensated cirrhosis with very low short-term mortality."
+      },
+      {
+        "input": "Cr 1.5, Bili 3.0, INR 1.8, Na 132",
+        "output": "MELD 21 / MELD-Na 24",
+        "note": "Serious risk category. 3.78×ln(3.0)+11.2×ln(1.8)+9.57×ln(1.5)+6.43≈21. MELD-Na adjusts upward modestly given mild hyponatraemia (Na 132)."
+      },
+      {
+        "input": "Cr 2.5, Bili 8.0, INR 2.5, Na 130",
+        "output": "MELD 33 / MELD-Na 35",
+        "note": "Severe risk category. 3.78×ln(8.0)+11.2×ln(2.5)+9.57×ln(2.5)+6.43≈33. Active transplant evaluation is typically indicated at this level."
+      },
+      {
+        "input": "Cr 2.0 (dialysis), Bili 15.0, INR 3.0, Na 128",
+        "output": "MELD 36 / MELD-Na 37",
+        "note": "Dialysis-dependent patient with advanced disease. Creatinine fixed at 2.0. Severe risk with over 50% 3-month mortality. Sodium adjustment adds only 1 point at Na 128."
+      }
+    ]
+  },
+
+  "howto": {
+    "heading": "How to use the MELD calculator",
+    "steps": [
+      "Enter the patient's most recent serum creatinine (mg/dL), total bilirubin (mg/dL), and INR from routine laboratory tests.",
+      "Enter the serum sodium (mEq/L) to enable the MELD-Na calculation. Values below 125 are treated as 125; values above 137 are treated as 137.",
+      "If the patient is on dialysis at least twice per week, check the dialysis checkbox. This sets creatinine to 2.0 mg/dL for the calculation.",
+      "Click Calculate MELD to view both the standard MELD score and the sodium-adjusted MELD-Na score, along with estimated 3-month mortality.",
+      "Use the result in conjunction with clinical assessment, institutional transplant protocols, and specialist review — do not rely on the score in isolation."
+    ]
+  },
+
+  "faq": {
+    "heading": "MELD calculator FAQ",
+    "q1": "What does the MELD score mean?",
+    "q1_a": "The MELD score is a numerical estimate of disease severity in patients with chronic liver disease. Higher scores indicate more severe liver dysfunction and greater short-term mortality risk. It ranges from approximately 6 (minimal disease) to 40+ (critical), and is used internationally to prioritise patients on liver transplant waiting lists.",
+    "q2": "What is the difference between MELD and MELD-Na?",
+    "q2_a": "MELD-Na adds serum sodium to the standard MELD formula. Hyponatraemia (low sodium) is an independent predictor of mortality in cirrhosis that the original formula does not capture. Studies have shown that MELD-Na better discriminates 90-day waiting-list mortality than MELD alone, which led to its adoption in transplant allocation systems.",
+    "q3": "Why is creatinine capped at 4.0 mg/dL?",
+    "q3_a": "Without a ceiling, extremely high creatinine values — as seen in acute kidney injury — could push the MELD score to unrealistically high levels, distorting the transplant queue in favour of patients whose overall liver disease may be less severe. The 4.0 mg/dL cap prevents acute renal events from dominating the score.",
+    "q4": "How often should the MELD score be recalculated?",
+    "q4_a": "MELD scores should be recalculated whenever there is a significant change in clinical status or laboratory values. UNOS/OPTN guidelines specify recalculation intervals based on the current MELD score: every 7 days for MELD ≥25, every 30 days for 18–24, every 90 days for 11–17, and every year for ≤10.",
+    "q5": "Is the MELD calculator suitable for acute liver failure?",
+    "q5_a": "The MELD score was developed for chronic liver disease and has not been validated for acute liver failure (ALF). ALF uses different prognostic tools such as the King's College Criteria or ALFSG Prognostic Index. Using MELD for ALF may significantly underestimate mortality risk."
+  }
+}

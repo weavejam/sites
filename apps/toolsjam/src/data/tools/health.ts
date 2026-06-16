@@ -2080,7 +2080,88 @@ export const tools: ToolEntry[] = [
       pt: "",
       ru: ""
     }
+  },
+  {
+    id: "melatonin-dosage-calculator",
+    category: "health",
+    slugs: {
+      en: "melatonin-dosage-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Melatonin Dosage Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate a weight-based melatonin starting dose for sleep, jet lag, or shift work. Covers adults and children with purpose-adjusted dosing recommendations.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "meld-calculator-model-for-end-stage-liver-disease",
+    category: "health",
+    slugs: {
+      en: "meld-calculator-model-for-end-stage-liver-disease",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "MELD Calculator – End-Stage Liver Disease Score",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Compute the MELD and MELD-Na scores from creatinine, bilirubin, INR, and sodium to estimate 3-month mortality in end-stage liver disease.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "mentzer-index-calculator",
+    category: "health",
+    slugs: {
+      en: "mentzer-index-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Mentzer Index Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Calculate the Mentzer Index (MCV ÷ RBC) to differentiate thalassemia trait from iron deficiency anemia using standard CBC values.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "metabolic-syndrome-calculator",
+    category: "health",
+    slugs: {
+      en: "metabolic-syndrome-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Metabolic Syndrome Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Assess metabolic syndrome using ATP III criteria: waist, triglycerides, HDL, blood pressure, and fasting glucose. Diagnoses when ≥3 criteria are met.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
+  },
+  {
+    id: "metastatic-prostate-cancer-prognosis-calculator",
+    category: "health",
+    slugs: {
+      en: "metastatic-prostate-cancer-prognosis-calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    titles: {
+      en: "Metastatic Prostate Cancer Prognosis Calculator",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    },
+    descriptions: {
+      en: "Estimate median survival in metastatic castration-resistant prostate cancer using a simplified Halabi nomogram scoring model with 7 clinical factors.",
+      "zh-CN": "", "zh-TW": "", ja: "", ko: "", es: "", fr: "", de: "", pt: "", ru: ""
+    }
   }
+
 
 
 

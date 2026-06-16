@@ -289,6 +289,11 @@ import { fixtures as f_matrix_multiplication_calculator } from "@/tools/matrix-m
 import { fixtures as f_mayan_calendar_converter } from "@/tools/mayan-calendar-converter.fixtures";
 import { fixtures as f_mayan_numerals_converter } from "@/tools/mayan-numerals-converter.fixtures";
 import { fixtures as f_mean_calculator } from "@/tools/mean-calculator.fixtures";
+import { fixtures as f_melatonin_dosage_calculator } from "@/tools/melatonin-dosage-calculator.fixtures";
+import { fixtures as f_meld_calculator_model_for_end_stage_liver_disease } from "@/tools/meld-calculator-model-for-end-stage-liver-disease.fixtures";
+import { fixtures as f_mentzer_index_calculator } from "@/tools/mentzer-index-calculator.fixtures";
+import { fixtures as f_metabolic_syndrome_calculator } from "@/tools/metabolic-syndrome-calculator.fixtures";
+import { fixtures as f_metastatic_prostate_cancer_prognosis_calculator } from "@/tools/metastatic-prostate-cancer-prognosis-calculator.fixtures";
 import { fixtures as f_midpoint_calculator } from "@/tools/midpoint-calculator.fixtures";
 import { fixtures as f_minecraft_circle_generator } from "@/tools/minecraft-circle-generator.fixtures";
 import { fixtures as f_minecraft_end_portal_finder } from "@/tools/minecraft-end-portal-finder.fixtures";
@@ -853,6 +858,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "mayan-calendar-converter": f_mayan_calendar_converter,
   "mayan-numerals-converter": f_mayan_numerals_converter,
   "mean-calculator": f_mean_calculator,
+  "melatonin-dosage-calculator": f_melatonin_dosage_calculator,
+  "meld-calculator-model-for-end-stage-liver-disease": f_meld_calculator_model_for_end_stage_liver_disease,
+  "mentzer-index-calculator": f_mentzer_index_calculator,
+  "metabolic-syndrome-calculator": f_metabolic_syndrome_calculator,
+  "metastatic-prostate-cancer-prognosis-calculator": f_metastatic_prostate_cancer_prognosis_calculator,
   "midpoint-calculator": f_midpoint_calculator,
   "minecraft-circle-generator": f_minecraft_circle_generator,
   "minecraft-end-portal-finder": f_minecraft_end_portal_finder,
