@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de coordenadas cilíndricas - ferramenta 3D",
+  "tagline": "Converta instantaneamente entre coordenadas cartesianas (x, y, z) e cilíndricas (ρ, φ, z) com fórmulas passo a passo.",
+  "intro": "Escolha a direção da conversão, insira os três valores das coordenadas e obtenha as coordenadas transformadas com a fórmula usada.",
+  "type": {
+    "cartToCyl": "Cartesianas → cilíndricas",
+    "cartToCyl_desc": "Insira x, y, z para obter ρ (distância radial), φ (ângulo azimutal em graus, 0–360°) e z.",
+    "cylToCart": "Cilíndricas → cartesianas",
+    "cylToCart_desc": "Insira ρ (≥ 0), φ em graus e z para obter as coordenadas cartesianas x, y, z."
+  },
+  "field": {
+    "conversionType": "Tipo de conversão",
+    "x": "x",
+    "y": "y",
+    "z": "z",
+    "rho": "ρ (distância radial)",
+    "phi": "φ (graus)"
+  },
+  "button": {
+    "convert": "Converter",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Insira números válidos nos três campos. ρ deve ser não negativo."
+  },
+  "result": {
+    "heading": "Resultado"
+  },
+  "formula": {
+    "cartToCyl": "ρ = √(x² + y²)  |  φ = atan2(y, x) em graus, normalizado para [0°, 360°)  |  z inalterado",
+    "cylToCart": "x = ρ cos(φ)  |  y = ρ sin(φ)  |  z inalterado"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de coordenadas cilíndricas",
+    "body": "Sistemas de coordenadas são estruturas que atribuem rótulos numéricos únicos a cada ponto no espaço. O mais familiar é o sistema cartesiano (retangular), que descreve um ponto em três dimensões por três distâncias perpendiculares — x (leste-oeste), y (norte-sul) e z (cima-baixo) — medidas a partir de uma origem fixa. Coordenadas cartesianas são intuitivas para problemas retilíneos, mas ficam incômodas quando o problema tem simetria cilíndrica, ou seja, quando a geometria se repete ao girar em torno de um eixo central.\n\nO sistema de coordenadas cilíndricas resolve isso substituindo as coordenadas cartesianas x e y por duas quantidades que descrevem naturalmente a rotação em torno do eixo z e a distância até ele: ρ (rho), a distância radial ao eixo z, e φ (phi), o ângulo azimutal medido no sentido anti-horário a partir do eixo x positivo no plano xy. A coordenada z é mantida sem alteração. Um ponto (x, y, z) em coordenadas cartesianas mapeia para (ρ, φ, z) em coordenadas cilíndricas conforme ρ = √(x² + y²), φ = atan2(y, x) expresso em graus, e z = z.\n\nA transformação inversa — de cilíndricas para cartesianas — é x = ρ cos φ, y = ρ sin φ, z = z, onde φ deve ser convertido de graus para radianos antes de calcular as funções trigonométricas. O componente z é independente nas duas transformações, por isso as coordenadas cilíndricas podem ser vistas como coordenadas polares no plano horizontal estendidas verticalmente.\n\nCoordenadas cilíndricas são a escolha natural para problemas envolvendo tubos, cilindros, solenoides ou qualquer geometria com simetria azimutal. Em mecânica dos fluidos, as equações de Navier–Stokes simplificam bastante para o escoamento dentro de um tubo quando escritas em forma cilíndrica. Em eletromagnetismo, o campo magnético de um fio retilíneo infinitamente longo e o campo elétrico de um cilindro carregado infinito são expressos com mais clareza em coordenadas cilíndricas. Em transferência de calor, a distribuição de temperatura em uma aleta circular ou em um cilindro oco é derivada de forma mais direta com esse sistema.\n\nO ângulo φ exibido por esta calculadora é normalizado para o intervalo [0°, 360°), o que significa que ele é sempre um número não negativo menor que 360. Alguns livros usam o intervalo (−180°, 180°]; ambas as representações são igualmente válidas e diferem apenas por somar ou subtrair 360°. Quando ρ = 0 (a origem e qualquer ponto no eixo z), φ é geometricamente indefinido; neste caso, a calculadora retorna 0° por convenção.\n\nNa robótica, robôs de coordenadas cilíndricas — uma classe de manipuladores industriais — usam ρ, φ e z diretamente como variáveis de junta, tornando as coordenadas cilíndricas a linguagem natural para programar seu movimento. Em computação gráfica, as coordenadas cilíndricas são usadas para parametrizar superfícies de cilindros e gerar coordenadas de textura para objetos cilíndricos. Em imagem médica, scanners de CT e MRI coletam dados com uma geometria rotativa que é fundamentalmente cilíndrica antes da reconstrução no volume cartesiano que você vê na tela."
+  },
+  "examples": {
+    "heading": "Exemplos de coordenadas cilíndricas",
+    "intro": "Três exemplos cobrindo a conversão de cartesiano para cilíndrico, a inversa e um caso com x negativo.",
+    "colInput": "Entrada",
+    "colOutput": "Saída",
+    "colNote": "Explicação",
+    "items": [
+      {
+        "input": "(x=3, y=4, z=5) → cylindrical",
+        "output": "(ρ=5, φ≈53.13°, z=5)",
+        "note": "ρ = √(9+16) = 5. φ = atan2(4,3) ≈ 53.13°. z inalterado."
+      },
+      {
+        "input": "(ρ=5, φ=30°, z=2) → Cartesian",
+        "output": "(x≈4.330, y=2.5, z=2)",
+        "note": "x = 5 cos(30°) ≈ 4.330. y = 5 sin(30°) = 2.5. z inalterado."
+      },
+      {
+        "input": "(x=−3, y=4, z=1) → cylindrical",
+        "output": "(ρ=5, φ≈126.87°, z=1)",
+        "note": "ρ = 5. φ = atan2(4,−3) ≈ 126.87°, no segundo quadrante."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de coordenadas cilíndricas",
+    "steps": [
+      "Selecione a direção da conversão: Cartesianas → Cilíndricas para converter (x, y, z) em (ρ, φ, z), ou Cilíndricas → Cartesianas para o caminho inverso.",
+      "Insira os três valores das coordenadas. Para entrada cilíndrica, ρ deve ser não negativo; φ é inserido em graus.",
+      "Clique em Converter. A calculadora mostra ρ, φ e z (ou x, y, z) junto com as fórmulas usadas.",
+      "Observe que φ é sempre normalizado para [0°, 360°). Se sua aplicação espera (−180°, 180°], subtraia 360° de qualquer valor maior ou igual a 180°.",
+      "Clique em Redefinir para limpar os campos e testar outras coordenadas."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre coordenadas cilíndricas",
+    "items": [
+      {
+        "q": "Qual é a diferença entre coordenadas cilíndricas e polares?",
+        "a": "Coordenadas polares são um sistema 2D que descreve um ponto em um plano pela distância r até a origem e um ângulo θ. Coordenadas cilíndricas estendem as polares para 3D adicionando um eixo z vertical. Os componentes ρ e φ das coordenadas cilíndricas são os análogos 3D diretos de r e θ nas coordenadas polares."
+      },
+      {
+        "q": "Por que φ é normalizado para [0°, 360°) nesta calculadora?",
+        "a": "A função atan2 retorna ângulos no intervalo (−180°, 180°]. Para evitar ângulos negativos, esta calculadora adiciona 360° a qualquer resultado negativo, normalizando φ para [0°, 360°). As duas convenções são matematicamente equivalentes; a escolha depende da preferência ou da exigência da sua aplicação."
+      },
+      {
+        "q": "O que acontece quando x = 0 e y = 0?",
+        "a": "Quando x e y são zero, o ponto está no eixo z e ρ = 0. O ângulo φ é geometricamente indefinido porque qualquer direção azimutal é equivalente. Esta calculadora retorna φ = 0° por convenção nesse caso especial."
+      },
+      {
+        "q": "ρ pode ser negativo?",
+        "a": "Pela definição padrão, ρ é uma grandeza não negativa que representa a distância radial ao eixo z, então valores negativos não são permitidos. Alguns textos avançados permitem ρ negativo ao girar φ em 180°, mas esta calculadora segue a convenção padrão e exige ρ ≥ 0."
+      },
+      {
+        "q": "Onde coordenadas cilíndricas são usadas na engenharia?",
+        "a": "Coordenadas cilíndricas simplificam cálculos em qualquer problema com simetria de rotação em torno de um eixo. Aplicações comuns incluem projeto de tubulações e trocadores de calor (escoamento em seções circulares), cálculos de campos eletromagnéticos ao redor de condutores cilíndricos, programação de tornos CNC e o modelo cinemático de robôs industriais com coordenadas cilíndricas."
+      },
+      {
+        "q": "Como as coordenadas cilíndricas se relacionam com as esféricas?",
+        "a": "Ambos os sistemas compartilham o ângulo azimutal φ e a orientação do eixo z. As coordenadas esféricas adicionam um ângulo polar θ medido a partir do eixo z e substituem ρ e z por uma única distância radial r da origem. Para converter cilíndricas (ρ, φ, z) em esféricas (r, θ, φ): r = √(ρ² + z²) e θ = atan2(ρ, z). O ângulo azimutal φ é o mesmo nos dois sistemas."
+      }
+    ]
+  }
+}

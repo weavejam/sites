@@ -1,0 +1,109 @@
+{
+  "title": "Calculadora de complejidad ciclomática - herramienta de McCabe",
+  "tagline": "Calcula la complejidad ciclomática con la fórmula de grafo de McCabe M = E − N + 2P o con el atajo por decisiones M = D + 1 para evaluar la calidad del software.",
+  "intro": "Elige un método de cálculo, introduce las métricas del grafo o el conteo de decisiones y obtén la puntuación de complejidad de McCabe con una clasificación de riesgo.",
+  "type": {
+    "graph": "Basado en grafo (M = E − N + 2P)",
+    "graph_desc": "Usa este método cuando tengas un grafo de flujo de control. Cuenta las aristas dirigidas (E), los nodos (N) y los componentes conectados (P, normalmente 1 para una sola función).",
+    "decision": "Basado en decisiones (M = D + 1)",
+    "decision_desc": "Cuenta cada punto de decisión (if, else-if, case, bucle, operador ternario, catch) y suma 1. Da el mismo resultado que el método de grafo para código estructurado."
+  },
+  "field": {
+    "method": "Método de cálculo",
+    "edges": "Aristas (E)",
+    "nodes": "Nodos (N)",
+    "components": "Componentes conectados (P)",
+    "decisions": "Puntos de decisión (D)"
+  },
+  "placeholder": {
+    "integer": "Ingresa un entero"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalid": "Ingresa enteros no negativos válidos para todos los campos obligatorios."
+  },
+  "result": {
+    "heading": "Resultado",
+    "risk": "Nivel de riesgo"
+  },
+  "risk": {
+    "low": "Bajo (1–4) — fácil de probar y mantener",
+    "moderate": "Moderado (5–7) — manejable",
+    "high": "Alto (8–10) — considera refactorizar",
+    "veryHigh": "Muy alto (>10) — se recomienda refactorizar"
+  },
+  "formula": {
+    "graph": "Fórmula: M = E − N + 2P (McCabe, 1976)",
+    "decision": "Fórmula: M = D + 1 (D = número de puntos de decisión)"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de complejidad ciclomática",
+    "body": "La complejidad ciclomática es una métrica de calidad de software introducida por Thomas J. McCabe en 1976. Cuantifica la complejidad estructural de un programa contando el número de caminos linealmente independientes a través del código fuente. Cuanto mayor es la complejidad, más casos de prueba se necesitan para ejercitar cada rama y más difícil resulta entender, modificar y mantener el código.\n\nLa métrica se basa en la teoría de grafos. Un programa se modela como un grafo de flujo de control (CFG) en el que cada nodo representa un bloque básico —una secuencia lineal de instrucciones con un único punto de entrada y un único punto de salida— y cada arista dirigida representa una posible transferencia de control de un bloque a otro. Las sentencias condicionales, los bucles y los controladores de excepciones crean ramas, aumentando tanto el número de aristas como el de caminos independientes.\n\nLa fórmula de McCabe es M = E − N + 2P, donde E es el número de aristas del CFG, N es el número de nodos y P es el número de componentes conectados (normalmente 1 para una sola función o procedimiento). En un programa completamente lineal sin ramas, M es 1. Cada punto de decisión binaria adicional añade exactamente 1 a la complejidad. Una sentencia switch con k casos añade k a la complejidad, porque introduce k nuevos caminos.\n\nPara fines prácticos, una regla de conteo más simple da el mismo resultado para código estructurado: M = D + 1, donde D es el total de puntos de decisión. Un punto de decisión es cualquier construcción que pueda llevar la ejecución por dos o más caminos: una cláusula if o else-if, un case en un switch, el encabezado de un bucle for, while o do-while, un operador ternario, un AND u OR lógico con cortocircuito que crea ramificación, y un bloque catch.\n\nLas guías de la industria consideran que los valores de complejidad de 1–4 son de bajo riesgo, 5–7 moderados, 8–10 altos, donde conviene considerar la refactorización, y superiores a 10 muy altos, donde se recomienda encarecidamente dividir la función. El valor de complejidad también indica el número mínimo de casos de prueba necesarios para lograr cobertura total de ramas: una función con complejidad ciclomática 8 necesita al menos 8 casos de prueba para ejercitar cada camino independiente.\n\nEs importante entender qué mide y qué no mide la complejidad ciclomática. No mide directamente las líneas de código, el rendimiento ni la corrección de un algoritmo. Una función muy larga pero completamente secuencial puede tener complejidad 1, mientras que una función corta con condicionales muy anidados puede alcanzar 20. La métrica capta específicamente la estructura de los caminos de decisión, que es el principal motor del esfuerzo de pruebas y la fuente más común de defectos latentes. Usada junto con la revisión de código y otras métricas de calidad, la complejidad ciclomática es una guía práctica para identificar las funciones que merecen atención prioritaria durante la refactorización y las pruebas."
+  },
+  "examples": {
+    "heading": "Ejemplos de complejidad ciclomática",
+    "intro": "Tres ejemplos que muestran ambos métodos de cálculo sobre estructuras de código realistas.",
+    "colInput": "Entrada",
+    "colOutput": "M",
+    "colNote": "Explicación",
+    "items": [
+      {
+        "input": "E = 9, N = 8, P = 1",
+        "output": "M = 3",
+        "note": "Método de grafo: 9 − 8 + 2×1 = 3. Una función simple con dos sentencias if y un bucle."
+      },
+      {
+        "input": "D = 4 decisions",
+        "output": "M = 5",
+        "note": "Método por decisiones: 4 + 1 = 5. Una función con dos cadenas if-else; riesgo moderado, manejable con 5 casos de prueba."
+      },
+      {
+        "input": "E = 14, N = 10, P = 1",
+        "output": "M = 6",
+        "note": "Método de grafo: 14 − 10 + 2 = 6. Un switch con 5 casos; complejidad moderada, vale la pena documentar cada rama."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de complejidad ciclomática",
+    "steps": [
+      "Elige el método de cálculo. Usa el basado en grafo si has dibujado o puedes inspeccionar el grafo de flujo de control del código. Usa el basado en decisiones para una estimación rápida contando palabras clave de decisión.",
+      "Para el método basado en grafo: introduce el número de aristas (E), nodos (N) y componentes conectados (P). P es 1 para una sola función; introduce el recuento real solo cuando analices varios componentes desconectados juntos.",
+      "Para el método basado en decisiones: cuenta cada if, else-if, case, for, while, do-while, operador ternario (?:), catch y operador lógico de cortocircuito (&&, ||) que produzca una nueva rama. Introduce ese total como D.",
+      "Haz clic en Calcular. El resultado muestra la complejidad de McCabe M y una clasificación de riesgo: Bajo (1–4), Moderado (5–7), Alto (8–10) o Muy alto (>10).",
+      "Usa el valor de complejidad como el número mínimo de casos de prueba necesarios para una cobertura total de ramas y considera refactorizar cualquier función con M > 10."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre complejidad ciclomática",
+    "items": [
+      {
+        "q": "¿Qué mide la complejidad ciclomática?",
+        "a": "Mide el número de caminos linealmente independientes a través del grafo de flujo de control de una función; en otras palabras, cuántos caminos de ejecución distintos existen. Cada punto de decisión adicional (if, bucle, case) añade un camino más. El valor equivale al número mínimo de casos de prueba necesarios para lograr cobertura total de ramas."
+      },
+      {
+        "q": "¿Cuál es un buen valor de complejidad ciclomática?",
+        "a": "La recomendación original de McCabe era que las funciones tuvieran M ≤ 10. Los valores de 1–4 son de bajo riesgo y fáciles de probar; 5–7 son moderados; 8–10 son de alto riesgo; cualquier valor por encima de 10 es de muy alto riesgo y justifica fuertemente refactorizar en funciones más pequeñas y enfocadas."
+      },
+      {
+        "q": "¿El método de grafo es igual al de conteo de decisiones?",
+        "a": "Dan el mismo resultado en programas estructurados (sin sentencias GOTO). El atajo por conteo de decisiones M = D + 1 cuenta cada palabra clave de ramificación y suma 1. El método de grafo M = E − N + 2P cuenta aristas y nodos del grafo. Ambos capturan la misma información estructural subyacente."
+      },
+      {
+        "q": "¿Debo contar cada case en una sentencia switch por separado?",
+        "a": "Sí. Cada etiqueta case es una rama independiente, así que un switch con cinco casos añade 5 al conteo de decisiones (o 5 aristas al CFG). Algunas herramientas de análisis estático cuentan solo el número de grupos de cases y no cada case individual; revisa siempre la documentación de tu herramienta para asegurar una medición coherente."
+      },
+      {
+        "q": "¿Cómo se relaciona la complejidad ciclomática con las pruebas?",
+        "a": "El valor de complejidad M equivale al número mínimo de casos de prueba independientes necesarios para recorrer cada rama al menos una vez. Una función con M = 8 necesita al menos 8 casos de prueba bien diseñados para lograr cobertura completa de ramas. Una mayor complejidad implica más esfuerzo de prueba, mayor probabilidad de defectos y una carga de mantenimiento más alta; todo ello son razones sólidas para mantener las funciones individuales por debajo de M = 10."
+      },
+      {
+        "q": "¿La complejidad ciclomática aplica a todos los lenguajes de programación?",
+        "a": "Sí. La métrica se aplica a cualquier lenguaje con estructuras de control condicionales e iterativas. Los puntos de decisión difieren un poco según el lenguaje —Python usa elif, Ruby usa case/when, SQL usa CASE/WHEN—, pero el principio de conteo es el mismo. Las herramientas automáticas para Java, Python, JavaScript, C# y la mayoría de los demás lenguajes principales implementan la complejidad de McCabe como métrica de calidad estándar."
+      }
+    ]
+  }
+}

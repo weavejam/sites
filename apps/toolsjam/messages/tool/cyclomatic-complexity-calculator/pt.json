@@ -1,0 +1,109 @@
+{
+  "title": "Calculadora de complexidade ciclomática - ferramenta McCabe",
+  "tagline": "Calcule a complexidade ciclomática com a fórmula de grafo de McCabe M = E − N + 2P ou o atalho por decisões M = D + 1 para avaliar a qualidade do software.",
+  "intro": "Escolha um método de cálculo, informe as métricas do grafo ou a contagem de decisões e obtenha a pontuação de complexidade de McCabe com uma classificação de risco.",
+  "type": {
+    "graph": "Baseado em grafo (M = E − N + 2P)",
+    "graph_desc": "Use este método quando você tiver um grafo de fluxo de controle. Conte as arestas direcionadas (E), os nós (N) e os componentes conectados (P, normalmente 1 para uma única função).",
+    "decision": "Baseado em decisões (M = D + 1)",
+    "decision_desc": "Conte cada ponto de decisão (if, else-if, case, loop, operador ternário, catch) e some 1. Isso gera o mesmo resultado do método por grafo em código estruturado."
+  },
+  "field": {
+    "method": "Método de cálculo",
+    "edges": "Arestas (E)",
+    "nodes": "Nós (N)",
+    "components": "Componentes conectados (P)",
+    "decisions": "Pontos de decisão (D)"
+  },
+  "placeholder": {
+    "integer": "Digite um inteiro"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalid": "Digite números inteiros não negativos válidos para todos os campos obrigatórios."
+  },
+  "result": {
+    "heading": "Resultado",
+    "risk": "Nível de risco"
+  },
+  "risk": {
+    "low": "Baixo (1–4) — fácil de testar e manter",
+    "moderate": "Moderado (5–7) — administrável",
+    "high": "Alto (8–10) — considere refatorar",
+    "veryHigh": "Muito alto (>10) — refatoração recomendada"
+  },
+  "formula": {
+    "graph": "Fórmula: M = E − N + 2P (McCabe, 1976)",
+    "decision": "Fórmula: M = D + 1 (D = número de pontos de decisão)"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de complexidade ciclomática",
+    "body": "A complexidade ciclomática é uma métrica de qualidade de software introduzida por Thomas J. McCabe em 1976. Ela quantifica a complexidade estrutural de um programa contando o número de caminhos linearmente independentes no código-fonte. Quanto maior a complexidade, mais casos de teste são necessários para exercer cada ramificação, e mais difícil fica entender, modificar e manter o código.\n\nA métrica é baseada em teoria dos grafos. Um programa é modelado como um grafo de fluxo de controle (CFG), em que cada nó representa um bloco básico — uma sequência linear de instruções com um único ponto de entrada e um único ponto de saída — e cada aresta direcionada representa uma possível transferência de controle de um bloco para outro. Instruções condicionais, laços e tratadores de exceção criam ramificações, aumentando tanto o número de arestas quanto o de caminhos independentes.\n\nA fórmula de McCabe é M = E − N + 2P, onde E é o número de arestas do CFG, N é o número de nós e P é o número de componentes conectados (normalmente 1 para uma única função ou procedimento). Para um programa totalmente linear, sem ramificações, M é 1. Cada ponto de decisão binária adicional acrescenta exatamente 1 à complexidade. Um switch com k cases adiciona k à complexidade, pois introduz k novos caminhos.\n\nNa prática, uma regra de contagem mais simples produz o mesmo resultado para código estruturado: M = D + 1, em que D é o total de pontos de decisão. Um ponto de decisão é qualquer construção que possa levar a execução por dois ou mais caminhos: uma cláusula if ou else-if, um case em um switch, o cabeçalho de um laço for, while ou do-while, um operador ternário, um AND ou OR lógico com curto-circuito que cria ramificação, e um bloco catch.\n\nAs orientações do setor tratam valores de complexidade de 1–4 como baixo risco, 5–7 como moderado, 8–10 como alto risco, em que se deve considerar refatoração, e valores acima de 10 como muito alto risco, em que dividir a função é fortemente recomendado. O valor da complexidade também indica o número mínimo de casos de teste necessários para obter cobertura total de branches: uma função com complexidade ciclomática 8 precisa de pelo menos 8 casos de teste para exercer cada caminho independente.\n\nÉ importante entender o que a complexidade ciclomática mede e o que não mede. Ela não mede diretamente linhas de código, desempenho ou a correção de um algoritmo. Uma função muito longa, mas totalmente sequencial, pode ter complexidade 1, enquanto uma função curta com condicionais profundamente aninhados pode chegar a 20. A métrica captura especificamente a estrutura dos caminhos de decisão, que é o principal motor do esforço de testes e a fonte mais comum de defeitos latentes. Usada junto com revisão de código e outras métricas de qualidade, a complexidade ciclomática é um guia prático para identificar funções que merecem atenção prioritária em refatoração e testes."
+  },
+  "examples": {
+    "heading": "Exemplos de complexidade ciclomática",
+    "intro": "Três exemplos mostrando os dois métodos de cálculo em estruturas de código realistas.",
+    "colInput": "Entrada",
+    "colOutput": "M",
+    "colNote": "Explicação",
+    "items": [
+      {
+        "input": "E = 9, N = 8, P = 1",
+        "output": "M = 3",
+        "note": "Método por grafo: 9 − 8 + 2×1 = 3. Uma função simples com duas instruções if e um loop."
+      },
+      {
+        "input": "D = 4 decisions",
+        "output": "M = 5",
+        "note": "Método por decisões: 4 + 1 = 5. Uma função com duas cadeias if-else; risco moderado, administrável com 5 casos de teste."
+      },
+      {
+        "input": "E = 14, N = 10, P = 1",
+        "output": "M = 6",
+        "note": "Método por grafo: 14 − 10 + 2 = 6. Um switch com 5 cases; complexidade moderada, vale documentar cada ramificação."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de complexidade ciclomática",
+    "steps": [
+      "Escolha o método de cálculo. Use o baseado em grafo se você desenhou ou consegue inspecionar o grafo de fluxo de controle do código. Use o baseado em decisões para uma estimativa rápida contando palavras-chave de decisão.",
+      "Para o método baseado em grafo: informe o número de arestas (E), nós (N) e componentes conectados (P). P é 1 para uma única função; informe a contagem real apenas quando analisar vários componentes desconectados juntos.",
+      "Para o método baseado em decisões: conte cada if, else-if, case, for, while, do-while, operador ternário (?:), catch e operador lógico de curto-circuito (&&, ||) que gere uma nova ramificação. Informe esse total como D.",
+      "Clique em Calcular. O resultado mostra a complexidade de McCabe M e uma classificação de risco — Baixo (1–4), Moderado (5–7), Alto (8–10) ou Muito alto (>10).",
+      "Use o valor da complexidade como o número mínimo de casos de teste necessários para cobertura total de branches e considere refatorar qualquer função com M > 10."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre complexidade ciclomática",
+    "items": [
+      {
+        "q": "O que a complexidade ciclomática mede?",
+        "a": "Ela mede o número de caminhos linearmente independentes no grafo de fluxo de controle de uma função — em outras palavras, quantos caminhos de execução distintos existem. Cada ponto de decisão adicional (if, loop, case) adiciona mais um caminho. O valor equivale ao número mínimo de casos de teste necessários para obter cobertura total de branches."
+      },
+      {
+        "q": "Qual é um bom valor de complexidade ciclomática?",
+        "a": "A recomendação original de McCabe era que as funções tivessem M ≤ 10. Valores de 1–4 são de baixo risco e fáceis de testar; 5–7 são moderados; 8–10 são de alto risco; qualquer valor acima de 10 é de risco muito alto e justifica fortemente refatorar em funções menores e mais focadas."
+      },
+      {
+        "q": "O método por grafo é o mesmo que o de contagem de decisões?",
+        "a": "Eles fornecem o mesmo resultado para programas estruturados (sem instruções GOTO). O atalho M = D + 1 conta cada palavra-chave de ramificação e soma 1. O método por grafo M = E − N + 2P conta arestas e nós do grafo. Ambos capturam a mesma informação estrutural subjacente."
+      },
+      {
+        "q": "Devo contar cada case em um switch separadamente?",
+        "a": "Sim. Cada rótulo case é uma ramificação independente, então um switch com cinco cases adiciona 5 à contagem de decisões (ou 5 arestas ao CFG). Algumas ferramentas de análise estática contam apenas o número de grupos de cases e não cada case individual; sempre verifique a documentação da sua ferramenta para garantir uma medição consistente."
+      },
+      {
+        "q": "Como a complexidade ciclomática se relaciona com testes?",
+        "a": "O valor M equivale ao número mínimo de casos de teste independentes necessários para percorrer cada ramificação pelo menos uma vez. Uma função com M = 8 precisa de pelo menos 8 casos de teste bem projetados para cobertura total de branches. Maior complexidade significa mais esforço de testes, maior probabilidade de defeitos e maior carga de manutenção — todos são bons motivos para manter funções individuais abaixo de M = 10."
+      },
+      {
+        "q": "A complexidade ciclomática se aplica a todas as linguagens de programação?",
+        "a": "Sim. A métrica se aplica a qualquer linguagem com estruturas de controle condicionais e iterativas. Os pontos de decisão variam um pouco conforme a linguagem — Python usa elif, Ruby usa case/when, SQL usa CASE/WHEN —, mas o princípio de contagem é o mesmo. Ferramentas automatizadas para Java, Python, JavaScript, C# e a maioria das outras linguagens principais implementam a complexidade de McCabe como métrica de qualidade padrão."
+      }
+    ]
+  }
+}

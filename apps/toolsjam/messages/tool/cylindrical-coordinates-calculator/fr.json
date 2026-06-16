@@ -1,0 +1,100 @@
+{
+  "title": "Calculatrice de coordonnées cylindriques - outil 3D",
+  "tagline": "Convertissez instantanément entre les coordonnées cartésiennes (x, y, z) et cylindriques (ρ, φ, z) avec des formules étape par étape.",
+  "intro": "Choisissez le sens de conversion, saisissez les trois valeurs et obtenez les coordonnées transformées avec la formule utilisée.",
+  "type": {
+    "cartToCyl": "Cartésiennes → cylindriques",
+    "cartToCyl_desc": "Saisissez x, y, z pour obtenir ρ (distance radiale), φ (angle azimutal en degrés, 0–360°) et z.",
+    "cylToCart": "Cylindriques → cartésiennes",
+    "cylToCart_desc": "Saisissez ρ (≥ 0), φ en degrés et z pour obtenir les coordonnées cartésiennes x, y, z."
+  },
+  "field": {
+    "conversionType": "Type de conversion",
+    "x": "x",
+    "y": "y",
+    "z": "z",
+    "rho": "ρ (distance radiale)",
+    "phi": "φ (degrés)"
+  },
+  "button": {
+    "convert": "Convertir",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des nombres valides dans les trois champs. ρ doit être positif ou nul."
+  },
+  "result": {
+    "heading": "Résultat"
+  },
+  "formula": {
+    "cartToCyl": "ρ = √(x² + y²)  |  φ = atan2(y, x) en degrés, normalisé sur [0°, 360°)  |  z inchangé",
+    "cylToCart": "x = ρ cos(φ)  |  y = ρ sin(φ)  |  z inchangé"
+  },
+  "about": {
+    "heading": "À propos de la calculatrice de coordonnées cylindriques",
+    "body": "Les systèmes de coordonnées sont des cadres qui attribuent à chaque point de l’espace des étiquettes numériques uniques. Le plus familier est le système cartésien (rectangulaire), qui décrit un point en trois dimensions par trois distances perpendiculaires — x (est-ouest), y (nord-sud) et z (haut-bas) — mesurées à partir d’une origine fixe. Les coordonnées cartésiennes sont intuitives pour les problèmes rectilignes, mais elles deviennent encombrantes lorsqu’un problème présente une symétrie cylindrique, c’est-à-dire que la géométrie se répète lorsqu’on tourne autour d’un axe central.\n\nLe système de coordonnées cylindriques répond à ce besoin en remplaçant les x et y cartésiens par deux grandeurs qui décrivent naturellement la rotation autour de l’axe z et la distance à cet axe : ρ (rho), la distance radiale à l’axe z, et φ (phi), l’angle azimutal mesuré dans le sens antihoraire à partir de l’axe x positif dans le plan xy. La coordonnée z est conservée telle quelle. Un point (x, y, z) en coordonnées cartésiennes se mappe vers (ρ, φ, z) en coordonnées cylindriques selon ρ = √(x² + y²), φ = atan2(y, x) exprimé en degrés, et z = z.\n\nLa transformation inverse — des cylindriques vers les cartésiennes — est x = ρ cos φ, y = ρ sin φ, z = z, où φ doit être converti des degrés en radians avant de calculer les fonctions trigonométriques. La composante z est indépendante dans les deux transformations, ce qui explique pourquoi les coordonnées cylindriques peuvent être vues comme des coordonnées polaires dans le plan horizontal prolongées verticalement.\n\nLes coordonnées cylindriques sont le choix naturel pour les problèmes impliquant des tuyaux, des cylindres, des solénoïdes ou toute géométrie à symétrie azimutale. En mécanique des fluides, les équations de Navier–Stokes se simplifient fortement pour un écoulement dans un tube lorsqu’elles sont écrites sous forme cylindrique. En électromagnétisme, le champ magnétique d’un fil rectiligne infini et le champ électrique d’un cylindre chargé infini s’expriment le plus concisément en coordonnées cylindriques. En transfert thermique, la distribution de température dans une ailette circulaire ou un cylindre creux se dérive le plus directement avec ce système.\n\nL’angle φ affiché par cette calculatrice est normalisé dans l’intervalle [0°, 360°), ce qui signifie qu’il s’agit toujours d’un nombre non négatif inférieur à 360. Certains ouvrages utilisent l’intervalle (−180°, 180°] ; les deux représentations sont également valides et ne diffèrent que par l’ajout ou la soustraction de 360°. Lorsque ρ = 0 (l’origine et tout point sur l’axe z), φ est géométriquement indéfini ; dans ce cas, la calculatrice renvoie 0° par convention.\n\nEn robotique, les robots en coordonnées cylindriques — une classe de manipulateurs industriels — utilisent directement ρ, φ et z comme variables articulaires, ce qui fait des coordonnées cylindriques le langage naturel pour programmer leurs mouvements. En infographie, les coordonnées cylindriques servent à paramétrer les surfaces de cylindres et à générer des coordonnées de texture pour des objets cylindriques. En imagerie médicale, les scanners CT et MRI acquièrent des données selon une géométrie de rotation fondamentalement cylindrique avant reconstruction dans le volume cartésien affiché à l’écran."
+  },
+  "examples": {
+    "heading": "Exemples de coordonnées cylindriques",
+    "intro": "Trois exemples couvrant la conversion cartésienne vers cylindrique, l’inverse, et un cas avec x négatif.",
+    "colInput": "Entrée",
+    "colOutput": "Sortie",
+    "colNote": "Explication",
+    "items": [
+      {
+        "input": "(x=3, y=4, z=5) → cylindrical",
+        "output": "(ρ=5, φ≈53.13°, z=5)",
+        "note": "ρ = √(9+16) = 5. φ = atan2(4,3) ≈ 53.13°. z inchangé."
+      },
+      {
+        "input": "(ρ=5, φ=30°, z=2) → Cartesian",
+        "output": "(x≈4.330, y=2.5, z=2)",
+        "note": "x = 5 cos(30°) ≈ 4.330. y = 5 sin(30°) = 2.5. z inchangé."
+      },
+      {
+        "input": "(x=−3, y=4, z=1) → cylindrical",
+        "output": "(ρ=5, φ≈126.87°, z=1)",
+        "note": "ρ = 5. φ = atan2(4,−3) ≈ 126.87°, dans le deuxième quadrant."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice de coordonnées cylindriques",
+    "steps": [
+      "Choisissez le sens de conversion : Cartésiennes → Cylindriques pour convertir (x, y, z) en (ρ, φ, z), ou Cylindriques → Cartésiennes pour faire l’inverse.",
+      "Saisissez les trois valeurs de coordonnées. Pour une entrée cylindrique, ρ doit être positif ou nul ; φ se saisit en degrés.",
+      "Cliquez sur Convertir. La calculatrice affiche ρ, φ et z (ou x, y, z) ainsi que les formules utilisées.",
+      "Notez que φ est toujours normalisé dans [0°, 360°). Si votre application attend (−180°, 180°], soustrayez 360° à toute valeur supérieure ou égale à 180°.",
+      "Cliquez sur Réinitialiser pour effacer les champs et essayer d’autres coordonnées."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur les coordonnées cylindriques",
+    "items": [
+      {
+        "q": "Quelle est la différence entre coordonnées cylindriques et polaires ?",
+        "a": "Les coordonnées polaires sont un système 2D qui décrit un point dans un plan par sa distance r à l’origine et un angle θ. Les coordonnées cylindriques prolongent les coordonnées polaires en 3D en ajoutant un axe z vertical. Les composantes ρ et φ des coordonnées cylindriques sont les analogues 3D directs de r et θ en coordonnées polaires."
+      },
+      {
+        "q": "Pourquoi φ est-il normalisé sur [0°, 360°) dans cette calculatrice ?",
+        "a": "La fonction atan2 renvoie des angles dans l’intervalle (−180°, 180°]. Pour éviter les angles négatifs, cette calculatrice ajoute 360° à tout résultat négatif, ce qui normalise φ sur [0°, 360°). Les deux conventions sont mathématiquement équivalentes ; le choix dépend de la préférence ou des exigences de votre application."
+      },
+      {
+        "q": "Que se passe-t-il lorsque x = 0 et y = 0 ?",
+        "a": "Lorsque x et y sont tous deux nuls, le point se trouve sur l’axe z et ρ = 0. L’angle φ est géométriquement indéfini car toute direction azimutale est équivalente. Cette calculatrice renvoie φ = 0° par convention dans ce cas particulier."
+      },
+      {
+        "q": "ρ peut-il être négatif ?",
+        "a": "Par définition standard, ρ est une quantité positive ou nulle représentant la distance radiale à l’axe z, donc les valeurs négatives ne sont pas autorisées. Certains ouvrages avancés autorisent ρ négatif en décalant φ de 180°, mais cette calculatrice suit la convention standard et exige ρ ≥ 0."
+      },
+      {
+        "q": "Où utilise-t-on les coordonnées cylindriques en ingénierie ?",
+        "a": "Les coordonnées cylindriques simplifient les calculs pour tout problème présentant une symétrie de rotation autour d’un axe. Les applications courantes incluent la conception de tuyaux et d’échangeurs de chaleur (écoulement dans des sections circulaires), les calculs de champs électromagnétiques autour de conducteurs cylindriques, la programmation de tours CNC et le modèle cinématique de robots industriels à coordonnées cylindriques."
+      },
+      {
+        "q": "Quel est le lien entre coordonnées cylindriques et sphériques ?",
+        "a": "Les deux systèmes partagent l’angle azimutal φ et l’orientation de l’axe z. Les coordonnées sphériques ajoutent un angle polaire θ mesuré depuis l’axe z et remplacent ρ et z par une distance radiale unique r depuis l’origine. Pour convertir des cylindriques (ρ, φ, z) en sphériques (r, θ, φ) : r = √(ρ² + z²) et θ = atan2(ρ, z). L’angle azimutal φ est identique dans les deux systèmes."
+      }
+    ]
+  }
+}

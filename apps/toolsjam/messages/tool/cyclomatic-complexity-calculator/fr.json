@@ -1,0 +1,109 @@
+{
+  "title": "Calculateur de complexité cyclomatique - outil McCabe",
+  "tagline": "Calculez la complexité cyclomatique avec la formule de graphe de McCabe M = E − N + 2P ou le raccourci par décisions M = D + 1 pour évaluer la qualité logicielle.",
+  "intro": "Choisissez une méthode de calcul, saisissez les métriques du graphe ou le nombre de décisions, et obtenez le score de complexité de McCabe avec une classification du risque.",
+  "type": {
+    "graph": "Basé sur le graphe (M = E − N + 2P)",
+    "graph_desc": "Utilisez cette méthode lorsque vous disposez d’un graphe de flot de contrôle. Comptez les arêtes dirigées (E), les nœuds (N) et les composantes connexes (P, généralement 1 pour une seule fonction).",
+    "decision": "Basé sur les décisions (M = D + 1)",
+    "decision_desc": "Comptez chaque point de décision (if, else-if, case, boucle, opérateur ternaire, catch) et ajoutez 1. Pour du code structuré, le résultat est le même qu’avec la méthode par graphe."
+  },
+  "field": {
+    "method": "Méthode de calcul",
+    "edges": "Arêtes (E)",
+    "nodes": "Nœuds (N)",
+    "components": "Composantes connexes (P)",
+    "decisions": "Points de décision (D)"
+  },
+  "placeholder": {
+    "integer": "Saisissez un entier"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalid": "Veuillez saisir des entiers valides et non négatifs pour tous les champs obligatoires."
+  },
+  "result": {
+    "heading": "Résultat",
+    "risk": "Niveau de risque"
+  },
+  "risk": {
+    "low": "Faible (1–4) — facile à tester et à maintenir",
+    "moderate": "Modéré (5–7) — gérable",
+    "high": "Élevé (8–10) — envisager une refactorisation",
+    "veryHigh": "Très élevé (>10) — refactorisation recommandée"
+  },
+  "formula": {
+    "graph": "Formule : M = E − N + 2P (McCabe, 1976)",
+    "decision": "Formule : M = D + 1 (D = nombre de points de décision)"
+  },
+  "about": {
+    "heading": "À propos du calculateur de complexité cyclomatique",
+    "body": "La complexité cyclomatique est une métrique de qualité logicielle introduite par Thomas J. McCabe en 1976. Elle quantifie la complexité structurelle d’un programme en comptant le nombre de chemins linéairement indépendants dans le code source. Plus la complexité est élevée, plus il faut de cas de test pour exercer chaque branche, et plus le code est difficile à comprendre, modifier et maintenir.\n\nCette métrique repose sur la théorie des graphes. Un programme est modélisé comme un graphe de flot de contrôle (CFG), dans lequel chaque nœud représente un bloc de base — une suite d’instructions linéaire avec un seul point d’entrée et un seul point de sortie — et chaque arête dirigée représente un transfert de contrôle possible d’un bloc à un autre. Les instructions conditionnelles, les boucles et les gestionnaires d’exceptions créent des branches, augmentant à la fois le nombre d’arêtes et le nombre de chemins indépendants.\n\nLa formule de McCabe est M = E − N + 2P, où E est le nombre d’arêtes du CFG, N le nombre de nœuds, et P le nombre de composantes connexes (généralement 1 pour une fonction ou procédure unique). Pour un programme entièrement linéaire sans branche, M vaut 1. Chaque point de décision binaire supplémentaire ajoute exactement 1 à la complexité. Un switch avec k cas ajoute k à la complexité, car il introduit k nouveaux chemins.\n\nEn pratique, une règle de comptage plus simple donne le même résultat pour du code structuré : M = D + 1, où D est le total des points de décision. Un point de décision est toute construction qui peut faire emprunter à l’exécution deux chemins ou plus : une clause if ou else-if, un case dans un switch, un en-tête de boucle for, while ou do-while, un opérateur ternaire, un AND ou OR logique à court-circuit qui crée une branche, et un bloc catch.\n\nLes recommandations du secteur considèrent que les valeurs 1–4 sont à faible risque, 5–7 modérées, 8–10 élevées et doivent inciter à envisager une refactorisation, et au-delà de 10 très élevées, avec une forte recommandation de découper la fonction. La valeur de complexité indique aussi le nombre minimal de cas de test requis pour obtenir une couverture complète des branches : une fonction de complexité cyclomatique 8 nécessite au moins 8 cas de test pour exercer chaque chemin indépendant.\n\nIl est important de comprendre ce que la complexité cyclomatique mesure et ne mesure pas. Elle ne mesure pas directement le nombre de lignes de code, les performances ni la correction d’un algorithme. Une fonction très longue mais entièrement séquentielle peut avoir une complexité de 1, tandis qu’une fonction courte avec des conditions profondément imbriquées peut atteindre 20. La métrique capture spécifiquement la structure des chemins de décision, principale source de charge de test et de défauts latents. Utilisée avec la revue de code et d’autres métriques de qualité, la complexité cyclomatique est un guide pratique pour identifier les fonctions à traiter en priorité lors de la refactorisation et des tests."
+  },
+  "examples": {
+    "heading": "Exemples de complexité cyclomatique",
+    "intro": "Trois exemples montrant les deux méthodes de calcul sur des structures de code réalistes.",
+    "colInput": "Entrée",
+    "colOutput": "M",
+    "colNote": "Explication",
+    "items": [
+      {
+        "input": "E = 9, N = 8, P = 1",
+        "output": "M = 3",
+        "note": "Méthode graphe : 9 − 8 + 2×1 = 3. Une fonction simple avec deux instructions if et une boucle."
+      },
+      {
+        "input": "D = 4 decisions",
+        "output": "M = 5",
+        "note": "Méthode par décisions : 4 + 1 = 5. Une fonction avec deux chaînes if-else ; risque modéré, gérable avec 5 cas de test."
+      },
+      {
+        "input": "E = 14, N = 10, P = 1",
+        "output": "M = 6",
+        "note": "Méthode graphe : 14 − 10 + 2 = 6. Un switch avec 5 cas ; complexité modérée, il vaut la peine de documenter chaque branche."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le calculateur de complexité cyclomatique",
+    "steps": [
+      "Choisissez la méthode de calcul. Utilisez la méthode basée sur le graphe si vous avez dessiné le graphe de flot de contrôle du code ou si vous pouvez l’inspecter. Utilisez la méthode basée sur les décisions pour une estimation rapide en comptant les mots-clés de décision.",
+      "Pour la méthode basée sur le graphe : saisissez le nombre d’arêtes (E), de nœuds (N) et de composantes connexes (P). P vaut 1 pour une seule fonction ; saisissez la valeur réelle uniquement lorsque vous analysez plusieurs composants déconnectés ensemble.",
+      "Pour la méthode basée sur les décisions : comptez chaque if, else-if, case, for, while, do-while, opérateur ternaire (?:), catch, ainsi que chaque opérateur logique à court-circuit (&&, ||) qui crée une nouvelle branche. Saisissez ce total comme D.",
+      "Cliquez sur Calculer. Le résultat affiche la complexité de McCabe M ainsi qu’une classification du risque — Faible (1–4), Modéré (5–7), Élevé (8–10) ou Très élevé (>10).",
+      "Utilisez la valeur de complexité comme nombre minimal de cas de test nécessaires pour une couverture complète des branches et envisagez de refactoriser toute fonction avec M > 10."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la complexité cyclomatique",
+    "items": [
+      {
+        "q": "Que mesure la complexité cyclomatique ?",
+        "a": "Elle mesure le nombre de chemins linéairement indépendants dans le graphe de flot de contrôle d’une fonction — autrement dit, le nombre de chemins d’exécution distincts. Chaque point de décision supplémentaire (if, boucle, case) ajoute un chemin de plus. Cette valeur correspond au nombre minimal de cas de test nécessaires pour obtenir une couverture complète des branches."
+      },
+      {
+        "q": "Quelle est une bonne valeur de complexité cyclomatique ?",
+        "a": "La recommandation originale de McCabe était que les fonctions aient M ≤ 10. Les valeurs de 1–4 sont à faible risque et faciles à tester ; 5–7 sont modérées ; 8–10 sont à risque élevé ; au-delà de 10, le risque est très élevé et il est fortement conseillé de refactoriser en fonctions plus petites et plus ciblées."
+      },
+      {
+        "q": "La méthode par graphe est-elle la même que la méthode par comptage des décisions ?",
+        "a": "Elles donnent le même résultat pour les programmes structurés (sans instruction GOTO). Le raccourci M = D + 1 compte chaque mot-clé de branchement et ajoute 1. La méthode par graphe M = E − N + 2P compte les arêtes et les nœuds du graphe. Les deux capturent la même information structurelle sous-jacente."
+      },
+      {
+        "q": "Dois-je compter chaque case d’une instruction switch séparément ?",
+        "a": "Oui. Chaque étiquette case est une branche indépendante, donc un switch avec cinq cas ajoute 5 au comptage des décisions (ou 5 arêtes au CFG). Certains outils d’analyse statique comptent seulement le nombre de groupes de cases plutôt que les cas individuels ; vérifiez toujours la documentation de votre outil pour garantir une mesure cohérente."
+      },
+      {
+        "q": "Comment la complexité cyclomatique est-elle liée aux tests ?",
+        "a": "La valeur de complexité M correspond au nombre minimal de cas de test indépendants nécessaires pour parcourir chaque branche au moins une fois. Une fonction avec M = 8 nécessite au moins 8 cas de test soigneusement conçus pour obtenir une couverture complète des branches. Plus la complexité est élevée, plus l’effort de test est important, plus la probabilité de défauts augmente et plus la maintenance est lourde — autant de raisons fortes de garder chaque fonction en dessous de M = 10."
+      },
+      {
+        "q": "La complexité cyclomatique s’applique-t-elle à tous les langages de programmation ?",
+        "a": "Oui. La métrique s’applique à tout langage comportant des structures de contrôle conditionnelles et itératives. Les points de décision varient légèrement selon le langage — Python utilise elif, Ruby utilise case/when, SQL utilise CASE/WHEN — mais le principe de comptage reste le même. Les outils automatisés pour Java, Python, JavaScript, C# et la plupart des autres langages courants implémentent la complexité de McCabe comme métrique de qualité standard."
+      }
+    ]
+  }
+}

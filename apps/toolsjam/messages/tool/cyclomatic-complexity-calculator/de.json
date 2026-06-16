@@ -1,0 +1,109 @@
+{
+  "title": "Zyklomatische Komplexität Rechner - McCabe-Metrik",
+  "tagline": "Berechne die zyklomatische Komplexität mit McCabes Graphenformel M = E − N + 2P oder der Entscheidungsabkürzung M = D + 1, um die Softwarequalität zu beurteilen.",
+  "intro": "Wähle eine Berechnungsmethode, gib die Graphenmetriken oder die Anzahl der Entscheidungen ein und erhalte den McCabe-Komplexitätswert mit Risikoklassifizierung.",
+  "type": {
+    "graph": "Graphbasiert (M = E − N + 2P)",
+    "graph_desc": "Nutze diese Methode, wenn du einen Kontrollflussgraphen hast. Zähle die gerichteten Kanten (E), Knoten (N) und Zusammenhangskomponenten (P, meist 1 für eine einzelne Funktion).",
+    "decision": "Entscheidungsbasiert (M = D + 1)",
+    "decision_desc": "Zähle jeden Entscheidungspunkt (if, else-if, case, Schleife, ternärer Operator, catch) und addiere 1. Das ergibt für strukturierten Code dasselbe Ergebnis wie die Graphenmethode."
+  },
+  "field": {
+    "method": "Berechnungsmethode",
+    "edges": "Kanten (E)",
+    "nodes": "Knoten (N)",
+    "components": "Zusammenhangskomponenten (P)",
+    "decisions": "Entscheidungspunkte (D)"
+  },
+  "placeholder": {
+    "integer": "Ganzzahl eingeben"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gib für alle erforderlichen Felder gültige nichtnegative Ganzzahlen ein."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "risk": "Risikostufe"
+  },
+  "risk": {
+    "low": "Niedrig (1–4) — leicht zu testen und zu warten",
+    "moderate": "Mittel (5–7) — beherrschbar",
+    "high": "Hoch (8–10) — Refactoring erwägen",
+    "veryHigh": "Sehr hoch (>10) — Refactoring empfohlen"
+  },
+  "formula": {
+    "graph": "Formel: M = E − N + 2P (McCabe, 1976)",
+    "decision": "Formel: M = D + 1 (D = Anzahl der Entscheidungspunkte)"
+  },
+  "about": {
+    "heading": "Über den Zyklomatische-Komplexität-Rechner",
+    "body": "Die zyklomatische Komplexität ist eine von Thomas J. McCabe 1976 eingeführte Metrik zur Softwarequalität. Sie quantifiziert die strukturelle Komplexität eines Programms, indem sie die Anzahl der linear unabhängigen Pfade durch den Quellcode zählt. Je höher die Komplexität, desto mehr Testfälle werden benötigt, um jeden Zweig auszuführen, und desto schwieriger ist der Code zu verstehen, zu ändern und zu warten.\n\nDie Metrik beruht auf der Graphentheorie. Ein Programm wird als Kontrollflussgraph (CFG) modelliert, in dem jeder Knoten einen Basisblock darstellt — eine lineare Folge von Anweisungen mit genau einem Eintritts- und einem Austrittspunkt — und jede gerichtete Kante eine mögliche Kontrollübertragung von einem Block zu einem anderen darstellt. Bedingte Anweisungen, Schleifen und Ausnahmebehandlungen erzeugen Verzweigungen und erhöhen damit sowohl die Zahl der Kanten als auch die Zahl der unabhängigen Pfade.\n\nMcCabes Formel lautet M = E − N + 2P, wobei E die Anzahl der Kanten im CFG, N die Anzahl der Knoten und P die Anzahl der Zusammenhangskomponenten ist (typischerweise 1 für eine einzelne Funktion oder Prozedur). Für ein vollständig lineares Programm ohne Verzweigungen ist M gleich 1. Jeder zusätzliche binäre Entscheidungspunkt erhöht die Komplexität genau um 1. Ein switch mit k Fällen erhöht die Komplexität um k, da er k neue Pfade einführt.\n\nFür praktische Zwecke liefert eine einfachere Zählregel für strukturierten Code dasselbe Ergebnis: M = D + 1, wobei D die Gesamtzahl der Entscheidungspunkte ist. Ein Entscheidungspunkt ist jede Konstruktion, die die Ausführung in zwei oder mehr Pfade lenken kann: eine if- oder else-if-Klausel, ein case in einem switch, ein for-, while- oder do-while-Schleifenkopf, ein ternärer Operator, ein logisches UND oder ODER mit Kurzschlussauswertung, das Verzweigungen erzeugt, sowie ein catch-Block.\n\nBranchenguidelines stufen Komplexitätswerte von 1–4 als niedriges Risiko ein, 5–7 als moderat, 8–10 als hohes Risiko, bei dem Refactoring erwogen werden sollte, und Werte über 10 als sehr hohes Risiko, bei dem eine Aufteilung der Funktion dringend empfohlen wird. Der Komplexitätswert gibt auch die minimale Anzahl an Testfällen an, die für vollständige Zweigabdeckung erforderlich sind: Eine Funktion mit zyklomatischer Komplexität 8 benötigt mindestens 8 Testfälle, um jeden unabhängigen Pfad abzudecken.\n\nWichtig ist zu verstehen, was zyklomatische Komplexität misst und was nicht. Sie misst nicht direkt Zeilenanzahl, Performance oder die Korrektheit eines Algorithmus. Eine sehr lange, aber völlig sequentielle Funktion kann eine Komplexität von 1 haben, während eine kurze Funktion mit tief verschachtelten Bedingungen eine Komplexität von 20 erreichen kann. Die Metrik erfasst speziell die Struktur der Entscheidungspfade, die Haupttreiber des Testaufwands und die häufigste Quelle latenter Fehler. Zusammen mit Code-Reviews und anderen Qualitätsmetriken ist die zyklomatische Komplexität ein praktischer Leitfaden, um Funktionen zu identifizieren, die bei Refactoring und Tests priorisiert behandelt werden sollten."
+  },
+  "examples": {
+    "heading": "Beispiele für zyklomatische Komplexität",
+    "intro": "Drei Beispiele zeigen beide Berechnungsmethoden an realistischen Code-Strukturen.",
+    "colInput": "Eingabe",
+    "colOutput": "M",
+    "colNote": "Erklärung",
+    "items": [
+      {
+        "input": "E = 9, N = 8, P = 1",
+        "output": "M = 3",
+        "note": "Graphenmethode: 9 − 8 + 2×1 = 3. Eine einfache Funktion mit zwei if-Anweisungen und einer Schleife."
+      },
+      {
+        "input": "D = 4 decisions",
+        "output": "M = 5",
+        "note": "Entscheidungsmethode: 4 + 1 = 5. Eine Funktion mit zwei if-else-Ketten; mittleres Risiko, mit 5 Testfällen gut beherrschbar."
+      },
+      {
+        "input": "E = 14, N = 10, P = 1",
+        "output": "M = 6",
+        "note": "Graphenmethode: 14 − 10 + 2 = 6. Ein switch mit 5 Fällen; mittlere Komplexität, jede Verzweigung sollte dokumentiert werden."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Rechner für zyklomatische Komplexität",
+    "steps": [
+      "Wähle die Berechnungsmethode. Nutze die Graphenmethode, wenn du den Kontrollflussgraphen des Codes gezeichnet hast oder ihn inspizieren kannst. Nutze die Entscheidungsmethode für eine schnelle Schätzung durch Zählen von Entscheidungsschlüsselwörtern.",
+      "Für die Graphenmethode: Gib die Anzahl der Kanten (E), Knoten (N) und Zusammenhangskomponenten (P) ein. P ist bei einer einzelnen Funktion 1; gib den tatsächlichen Wert nur ein, wenn du mehrere nicht verbundene Komponenten gemeinsam analysierst.",
+      "Für die Entscheidungsmethode: Zähle jedes if, else-if, case, for, while, do-while, den ternären Operator (?:), catch sowie jeden logischen Kurzschlussoperator (&&, ||), der eine neue Verzweigung erzeugt. Gib diese Summe als D ein.",
+      "Klicke auf Berechnen. Das Ergebnis zeigt die McCabe-Komplexität M und eine Risikoklassifizierung — Niedrig (1–4), Mittel (5–7), Hoch (8–10) oder Sehr hoch (>10).",
+      "Verwende den Komplexitätswert als minimale Anzahl an Testfällen für vollständige Zweigabdeckung und erwäge Refactoring für jede Funktion mit M > 10."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zur zyklomatischen Komplexität",
+    "items": [
+      {
+        "q": "Was misst die zyklomatische Komplexität?",
+        "a": "Sie misst die Anzahl der linear unabhängigen Pfade durch den Kontrollflussgraphen einer Funktion — anders gesagt, wie viele unterschiedliche Ausführungspfade es gibt. Jeder zusätzliche Entscheidungspunkt (if, Schleife, case) fügt einen weiteren Pfad hinzu. Der Wert entspricht der minimalen Anzahl an Testfällen, die für vollständige Zweigabdeckung nötig sind."
+      },
+      {
+        "q": "Was ist ein guter Wert für die zyklomatische Komplexität?",
+        "a": "McCabes ursprüngliche Empfehlung war, dass Funktionen M ≤ 10 haben sollten. Werte von 1–4 sind niedriges Risiko und leicht zu testen; 5–7 sind moderat; 8–10 sind hohes Risiko; alles über 10 ist sehr hohes Risiko und sollte stark in kleinere, fokussierte Funktionen refaktoriert werden."
+      },
+      {
+        "q": "Ist die Graphenmethode dasselbe wie die Entscheidungsmethode?",
+        "a": "Für strukturierte Programme ohne GOTO-Anweisungen liefern beide dasselbe Ergebnis. Die Entscheidungsabkürzung M = D + 1 zählt jedes Verzweigungsschlüsselwort und addiert 1. Die Graphenmethode M = E − N + 2P zählt Kanten und Knoten im Graphen. Beide erfassen dieselbe zugrunde liegende Strukturinformation."
+      },
+      {
+        "q": "Soll ich jeden case in einer switch-Anweisung einzeln zählen?",
+        "a": "Ja. Jedes case-Label ist eine unabhängige Verzweigung, daher erhöht ein switch mit fünf Fällen den Entscheidungszähler um 5 (oder die CFG um 5 Kanten). Manche statischen Analysetools zählen nur die Zahl der case-Gruppen statt der einzelnen Fälle; prüfe immer die Dokumentation deines Tools, um konsistente Messungen sicherzustellen."
+      },
+      {
+        "q": "Wie hängt zyklomatische Komplexität mit Tests zusammen?",
+        "a": "Der Komplexitätswert M entspricht der minimalen Anzahl unabhängiger Testfälle, die erforderlich sind, um jede Verzweigung mindestens einmal zu durchlaufen. Eine Funktion mit M = 8 benötigt mindestens 8 sorgfältig gestaltete Testfälle für vollständige Zweigabdeckung. Höhere Komplexität bedeutet mehr Testaufwand, höhere Fehlerwahrscheinlichkeit und größeren Wartungsaufwand — starke Gründe, einzelne Funktionen unter M = 10 zu halten."
+      },
+      {
+        "q": "Gilt zyklomatische Komplexität für alle Programmiersprachen?",
+        "a": "Ja. Die Metrik gilt für jede Sprache mit bedingten und iterativen Kontrollstrukturen. Die Entscheidungspunkte unterscheiden sich leicht je nach Sprache — Python verwendet elif, Ruby case/when, SQL CASE/WHEN — aber das Zählprinzip ist dasselbe. Automatisierte Tools für Java, Python, JavaScript, C# und die meisten anderen gängigen Sprachen implementieren McCabe-Komplexität als Standard-Qualitätsmetrik."
+      }
+    ]
+  }
+}

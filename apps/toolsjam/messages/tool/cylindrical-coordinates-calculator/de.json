@@ -1,0 +1,100 @@
+{
+  "title": "Zylinderkoordinaten-Rechner - 3D-Umwandlungstool",
+  "tagline": "Wandle kartesische Koordinaten (x, y, z) und Zylinderkoordinaten (ρ, φ, z) sofort mit Schritt-für-Schritt-Formeln um.",
+  "intro": "Wähle die Umwandlungsrichtung, gib die drei Koordinatenwerte ein und erhalte die transformierten Koordinaten mit der verwendeten Formel.",
+  "type": {
+    "cartToCyl": "Kartesisch → Zylinderkoordinaten",
+    "cartToCyl_desc": "Gib x, y, z ein, um ρ (radialer Abstand), φ (Azimutwinkel in Grad, 0–360°) und z zu erhalten.",
+    "cylToCart": "Zylinderkoordinaten → kartesisch",
+    "cylToCart_desc": "Gib ρ (≥ 0), φ in Grad und z ein, um kartesische Koordinaten x, y, z zu erhalten."
+  },
+  "field": {
+    "conversionType": "Umwandlungstyp",
+    "x": "x",
+    "y": "y",
+    "z": "z",
+    "rho": "ρ (radialer Abstand)",
+    "phi": "φ (Grad)"
+  },
+  "button": {
+    "convert": "Umrechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalid": "Bitte gib in allen drei Feldern gültige Zahlen ein. ρ muss nicht negativ sein."
+  },
+  "result": {
+    "heading": "Ergebnis"
+  },
+  "formula": {
+    "cartToCyl": "ρ = √(x² + y²)  |  φ = atan2(y, x) in Grad, normalisiert auf [0°, 360°)  |  z unverändert",
+    "cylToCart": "x = ρ cos(φ)  |  y = ρ sin(φ)  |  z unverändert"
+  },
+  "about": {
+    "heading": "Über den Zylinderkoordinaten-Rechner",
+    "body": "Koordinatensysteme sind Rahmen, die jedem Punkt im Raum eindeutige numerische Bezeichnungen zuweisen. Das bekannteste ist das kartesische (rechtwinklige) System, das einen Punkt im dreidimensionalen Raum durch drei senkrechte Abstände beschreibt — x (Ost-West), y (Nord-Süd) und z (oben-unten) — gemessen von einem festen Ursprung. Kartesische Koordinaten sind für geradlinige Probleme intuitiv, werden aber umständlich, wenn ein Problem zylindrische Symmetrie hat, also die Geometrie sich beim Drehen um eine Mittelachse wiederholt.\n\nDas Zylinderkoordinatensystem ersetzt dazu das kartesische x und y durch zwei Größen, die Rotation um die z-Achse und den Abstand von der z-Achse natürlich beschreiben: ρ (rho), den radialen Abstand von der z-Achse, und φ (phi), den Azimutwinkel, gemessen gegen den Uhrzeigersinn von der positiven x-Achse in der xy-Ebene. Die z-Koordinate bleibt unverändert. Ein Punkt (x, y, z) in kartesischen Koordinaten wird nach (ρ, φ, z) in Zylinderkoordinaten abgebildet mit ρ = √(x² + y²), φ = atan2(y, x) in Grad und z = z.\n\nDie Umkehrung — von Zylinderkoordinaten zurück zu kartesischen Koordinaten — lautet x = ρ cos φ, y = ρ sin φ, z = z, wobei φ vor der Berechnung der trigonometrischen Funktionen von Grad in Radiant umgerechnet werden muss. Die z-Komponente ist in beiden Umwandlungen unabhängig, weshalb Zylinderkoordinaten als Polarkoordinaten in der Horizontalebene verstanden werden können, die vertikal fortgesetzt werden.\n\nZylinderkoordinaten sind die natürliche Wahl für Probleme mit Rohren, Zylindern, Solenoiden oder jeder Geometrie mit Azimutsymmetrie. In der Strömungsmechanik vereinfachen sich die Navier-Stokes-Gleichungen für eine Strömung in einem Rohr deutlich, wenn sie in Zylinderform geschrieben werden. In der Elektrodynamik werden das Magnetfeld eines unendlich langen geraden Drahtes und das elektrische Feld eines unendlich geladenen Zylinders in Zylinderkoordinaten am knappsten ausgedrückt. In der Wärmeübertragung wird die Temperaturverteilung in einer runden Rippe oder einem Hohlzylinder am direktesten mit diesem System hergeleitet.\n\nDer von diesem Rechner ausgegebene Winkel φ wird auf den Bereich [0°, 360°) normiert, ist also immer eine nicht negative Zahl kleiner als 360. Manche Lehrbücher verwenden den Bereich (−180°, 180°]; beide Darstellungen sind gleichwertig und unterscheiden sich nur durch Addieren oder Subtrahieren von 360°. Wenn ρ = 0 ist (der Ursprung und jeder Punkt auf der z-Achse), ist φ geometrisch undefiniert; der Rechner gibt in diesem Fall per Konvention 0° zurück.\n\nIn der Robotik verwenden Zylinderkoordinaten-Roboter — eine Klasse industrieller Manipulatoren — ρ, φ und z direkt als Gelenkvariablen, wodurch Zylinderkoordinaten zur natürlichen Sprache für ihre Bewegungsprogrammierung werden. In der Computergrafik werden Zylinderkoordinaten zur Parametrisierung von Zylinderoberflächen und zur Erzeugung von Texturkoordinaten für zylindrische Objekte verwendet. In der medizinischen Bildgebung erfassen CT- und MRT-Scanner Daten in einer rotierenden Geometrie, die im Wesentlichen zylindrisch ist, bevor sie in das kartesische Volumen rekonstruiert werden, das du auf dem Bildschirm siehst."
+  },
+  "examples": {
+    "heading": "Beispiele für Zylinderkoordinaten",
+    "intro": "Drei Beispiele für die Umwandlung von kartesisch nach zylindrisch, die Umkehrung und einen Fall mit negativem x.",
+    "colInput": "Eingabe",
+    "colOutput": "Ausgabe",
+    "colNote": "Erklärung",
+    "items": [
+      {
+        "input": "(x=3, y=4, z=5) → cylindrical",
+        "output": "(ρ=5, φ≈53.13°, z=5)",
+        "note": "ρ = √(9+16) = 5. φ = atan2(4,3) ≈ 53.13°. z unverändert."
+      },
+      {
+        "input": "(ρ=5, φ=30°, z=2) → Cartesian",
+        "output": "(x≈4.330, y=2.5, z=2)",
+        "note": "x = 5 cos(30°) ≈ 4.330. y = 5 sin(30°) = 2.5. z unverändert."
+      },
+      {
+        "input": "(x=−3, y=4, z=1) → cylindrical",
+        "output": "(ρ=5, φ≈126.87°, z=1)",
+        "note": "ρ = 5. φ = atan2(4,−3) ≈ 126.87° und liegt im zweiten Quadranten."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So benutzt du den Zylinderkoordinaten-Rechner",
+    "steps": [
+      "Wähle die Umwandlungsrichtung: Kartesisch → Zylinderkoordinaten, um (x, y, z) in (ρ, φ, z) umzuwandeln, oder Zylinderkoordinaten → Kartesisch in die andere Richtung.",
+      "Gib alle drei Koordinatenwerte ein. Für Zylinderkoordinaten muss ρ nicht negativ sein; φ wird in Grad eingegeben.",
+      "Klicke auf Umrechnen. Der Rechner zeigt ρ, φ und z (oder x, y, z) zusammen mit den verwendeten Formeln an.",
+      "Beachte, dass φ immer auf [0°, 360°) normiert wird. Wenn deine Anwendung (−180°, 180°] erwartet, ziehe von jedem Wert ab 180° 360° ab.",
+      "Klicke auf Zurücksetzen, um die Felder zu leeren und andere Koordinaten auszuprobieren."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zu Zylinderkoordinaten",
+    "items": [
+      {
+        "q": "Was ist der Unterschied zwischen Zylinder- und Polarkoordinaten?",
+        "a": "Polarkoordinaten sind ein 2D-System, das einen Punkt in einer Ebene durch seinen Abstand r vom Ursprung und einen Winkel θ beschreibt. Zylinderkoordinaten erweitern Polarkoordinaten auf 3D, indem eine vertikale z-Achse hinzukommt. Die ρ- und φ-Komponenten der Zylinderkoordinaten sind die direkten 3D-Entsprechungen von r und θ in Polarkoordinaten."
+      },
+      {
+        "q": "Warum wird φ in diesem Rechner auf [0°, 360°) normiert?",
+        "a": "Die Funktion atan2 gibt Winkel im Bereich (−180°, 180°] zurück. Um negative Winkel zu vermeiden, addiert dieser Rechner 360° zu jedem negativen Ergebnis und normiert φ so auf [0°, 360°). Beide Konventionen sind mathematisch gleichwertig; die Wahl ist eine Frage der Anwendungsvorgabe oder Vorliebe."
+      },
+      {
+        "q": "Was passiert, wenn x = 0 und y = 0 sind?",
+        "a": "Wenn x und y beide null sind, liegt der Punkt auf der z-Achse und ρ = 0. Der Winkel φ ist geometrisch undefiniert, weil jede Azimutrichtung gleichwertig ist. Dieser Rechner gibt in diesem Sonderfall konventionell φ = 0° zurück."
+      },
+      {
+        "q": "Kann ρ negativ sein?",
+        "a": "Nach der Standarddefinition ist ρ eine nicht negative Größe, die den radialen Abstand von der z-Achse darstellt; negative Werte sind daher nicht zulässig. Manche fortgeschrittenen Texte erlauben negatives ρ, indem φ um 180° verschoben wird, aber dieser Rechner folgt der Standardkonvention und verlangt ρ ≥ 0."
+      },
+      {
+        "q": "Wo werden Zylinderkoordinaten in der Technik verwendet?",
+        "a": "Zylinderkoordinaten vereinfachen Berechnungen bei allen Problemen mit Rotationssymmetrie um eine Achse. Typische Anwendungen sind Rohr- und Wärmetauscher-Design (Strömung in kreisförmigen Querschnitten), elektromagnetische Feldberechnungen um zylindrische Leiter, CNC-Drehmaschinenprogrammierung und das kinematische Modell zylindrischer Industrieroboter."
+      },
+      {
+        "q": "Wie hängen Zylinder- und Kugelkoordinaten zusammen?",
+        "a": "Beide Systeme teilen sich den Azimutwinkel φ und die Ausrichtung der z-Achse. Kugelkoordinaten fügen einen Polwinkel θ hinzu, gemessen von der z-Achse, und ersetzen ρ und z durch einen einzigen radialen Abstand r vom Ursprung. Zur Umwandlung von Zylinderkoordinaten (ρ, φ, z) in Kugelkoordinaten (r, θ, φ) gilt: r = √(ρ² + z²) und θ = atan2(ρ, z). Der Azimutwinkel φ ist in beiden Systemen gleich."
+      }
+    ]
+  }
+}
