@@ -1,0 +1,105 @@
+{
+  "title": "Convertisseur de fractions binaires",
+  "tagline": "Convertissez les fractions binaires en décimal et les fractions décimales en binaire avec des explications étape par étape.",
+  "intro": "Choisissez le sens de conversion, saisissez votre valeur et obtenez instantanément le résultat avec l’algorithme expliqué.",
+  "field": {
+    "type": "Type de conversion",
+    "value": "Valeur d’entrée",
+    "precision": "Précision fractionnaire (bits)",
+    "valuePlaceholder": "p. ex. 101.101",
+    "decimalPlaceholder": "p. ex. 5.625",
+    "precisionPlaceholder": "p. ex. 8"
+  },
+  "type": {
+    "binaryToDecimal": "Binaire → Décimal",
+    "binaryToDecimal_desc": "Saisissez une fraction binaire (chiffres 0 et 1 séparés par un point décimal) et obtenez son équivalent décimal exact.",
+    "decimalToBinary": "Décimal → Binaire",
+    "decimalToBinary_desc": "Saisissez une fraction décimale et obtenez sa représentation binaire. Choisissez la précision pour contrôler le nombre de bits fractionnaires calculés."
+  },
+  "button": {
+    "convert": "Convertir",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalidBinary": "Veuillez saisir un nombre binaire valide contenant uniquement des 0, des 1 et un seul point décimal.",
+    "invalidDecimal": "Veuillez saisir un nombre décimal positif valide.",
+    "invalidPrecision": "La précision doit être un entier positif compris entre 1 et 32."
+  },
+  "result": {
+    "heading": "Résultat",
+    "decimalValue": "Valeur décimale",
+    "binaryValue": "Valeur binaire"
+  },
+  "about": {
+    "heading": "À propos du convertisseur de fractions binaires",
+    "body": "Les fractions binaires étendent les entiers binaires au domaine des quantités non entières en utilisant des valeurs de position qui sont des puissances négatives de deux. De même que le système décimal attribue aux positions à droite du point décimal les dixièmes (10⁻¹), centièmes (10⁻²), millièmes (10⁻³), etc., le système binaire attribue à ces mêmes positions les demis (2⁻¹ = 0.5), quarts (2⁻² = 0.25), huitièmes (2⁻³ = 0.125), seizièmes (2⁻⁴ = 0.0625), etc. Chaque bit à droite du point binaire représente l’une de ces puissances décroissantes de deux.\n\nConvertir une fraction binaire en décimal est simple. Séparez le nombre au point binaire. Convertissez la partie entière avec la méthode standard : le bit le plus à droite vaut 2⁰, le suivant 2¹, et ainsi de suite vers la gauche. Pour la partie fractionnaire, le bit le plus à gauche après le point binaire est multiplié par 2⁻¹, le suivant par 2⁻², puis chaque bit suivant par les puissances négatives successives. Additionnez toutes les contributions pour obtenir la valeur décimale exacte. Par exemple, 101.101 en binaire vaut (1×4) + (0×2) + (1×1) + (1×0.5) + (0×0.25) + (1×0.125) = 5 + 0.5 + 0.125 = 5.625.\n\nConvertir une fraction décimale en binaire nécessite deux procédures distinctes. La partie entière se convertit par divisions répétées par 2, en enregistrant les restes. La partie fractionnaire se convertit par multiplications répétées par 2 : multipliez la fraction par 2, notez la partie entière du résultat (0 ou 1) comme prochain chiffre binaire, puis continuez avec la partie fractionnaire restante. Répétez jusqu’à ce que la fraction devienne zéro ou que la précision voulue soit atteinte. Pour 5.625 : entier 5 = 101₂ ; fraction 0.625 × 2 = 1.25 → bit 1 ; 0.25 × 2 = 0.5 → bit 0 ; 0.5 × 2 = 1.0 → bit 1 ; la fraction atteint zéro, donc le résultat est 101.101₂.\n\nUn point essentiel à comprendre est que toutes les fractions décimales n’ont pas une représentation binaire finie. Tout comme 1/3 ne peut pas s’écrire sous forme de décimal fini, de nombreuses fractions décimales simples — notamment 0.1, 0.2 et 0.3 — nécessitent une infinité de bits binaires pour être représentées exactement. C’est la cause profonde des erreurs d’arrondi en virgule flottante dans les ordinateurs. Le réglage de précision de ce convertisseur contrôle le nombre de bits fractionnaires calculés ; l’augmenter donne une approximation plus proche, mais peut ne jamais produire un résultat exact pour les fractions non terminées.\n\nLes fractions binaires sont omniprésentes en informatique. La norme IEEE 754 pour l’arithmétique en virgule flottante encode les nombres en simple et double précision comme des fractions binaires avec un bit initial 1 implicite et un exposant biaisé. Les processeurs de signal numérique représentent les données audio et image comme des fractions binaires à virgule fixe appelées nombres au format Q. Comprendre comment les valeurs décimales se transposent en fractions binaires est essentiel pour écrire du code bas niveau, travailler avec des systèmes embarqués ou déboguer des problèmes de précision numérique dans les logiciels."
+  },
+  "examples": {
+    "heading": "Exemples de conversion de fractions binaires",
+    "intro": "Conversions courantes illustrant à la fois les processus binaire vers décimal et décimal vers binaire.",
+    "colInput": "Entrée",
+    "colOutput": "Résultat",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "101.101 (binaire)",
+        "output": "5.625 (décimal)",
+        "note": "1×4 + 0×2 + 1×1 + 1×0.5 + 0×0.25 + 1×0.125 = 5.625. Une conversion nette sans approximation nécessaire."
+      },
+      {
+        "input": "1010.1101 (binaire)",
+        "output": "10.8125 (décimal)",
+        "note": "1×8 + 0×4 + 1×2 + 0×1 + 1×0.5 + 1×0.25 + 0×0.125 + 1×0.0625 = 10.8125."
+      },
+      {
+        "input": "5.625 (décimal)",
+        "output": "101.101 (binaire)",
+        "note": "Entier 5 = 101₂. Fraction : 0.625×2=1.25→1, 0.25×2=0.5→0, 0.5×2=1.0→1. Le résultat 101.101₂ est exact."
+      },
+      {
+        "input": "3.375 (décimal)",
+        "output": "11.011 (binaire)",
+        "note": "Entier 3 = 11₂. Fraction : 0.375×2=0.75→0, 0.75×2=1.5→1, 0.5×2=1.0→1. Exact avec 3 bits fractionnaires."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser le convertisseur de fractions binaires",
+    "steps": [
+      "Choisissez le sens de conversion : sélectionnez « Binaire → Décimal » pour convertir une fraction binaire en nombre décimal, ou « Décimal → Binaire » pour l’inverse.",
+      "Saisissez votre valeur dans le champ d’entrée. Pour une entrée binaire, utilisez uniquement des 0 et des 1 avec un seul point décimal (p. ex. 101.101). Pour une entrée décimale, saisissez tout nombre positif (p. ex. 5.625).",
+      "Si vous convertissez du décimal vers le binaire, définissez la précision fractionnaire pour contrôler le nombre de bits calculés après le point binaire (8 par défaut).",
+      "Cliquez sur Convertir. Le résultat apparaît instantanément avec l’équivalent décimal ou binaire clairement affiché.",
+      "Cliquez sur Réinitialiser pour vider tous les champs et commencer une nouvelle conversion."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ du convertisseur de fractions binaires",
+    "items": [
+      {
+        "q": "Pourquoi 0.1 ne peut-il pas être représenté exactement en binaire ?",
+        "a": "Parce que 0.1 en décimal vaut 1/10, et 10 = 2 × 5. Comme 5 n’est pas une puissance de deux, la fraction 1/10 nécessite une infinité de chiffres binaires. C’est analogue au fait que 1/3 ne puisse pas s’écrire comme décimal fini. Les ordinateurs stockent une approximation proche dans leurs registres de virgule flottante de largeur finie, ce qui explique pourquoi additionner 0.1 trois fois dans de nombreux langages de programmation ne donne pas exactement 0.3."
+      },
+      {
+        "q": "Comment convertir la partie fractionnaire d’un nombre décimal en binaire ?",
+        "a": "Utilisez le doublement répété : multipliez la partie fractionnaire par 2, notez la partie entière (0 ou 1) comme prochain bit binaire, puis continuez avec la partie fractionnaire restante. Répétez jusqu’à ce que la fraction soit zéro ou que vous ayez assez de bits. Pour 0.625 : 0.625×2=1.25 → bit 1 ; 0.25×2=0.5 → bit 0 ; 0.5×2=1.0 → bit 1, terminé. Résultat : .101₂."
+      },
+      {
+        "q": "Quelle est la différence entre les fractions binaires à virgule fixe et à virgule flottante ?",
+        "a": "En représentation à virgule fixe, le point binaire se trouve à une position prédéterminée, donc le nombre de bits entiers et fractionnaires est fixe. En virgule flottante (comme IEEE 754), le point binaire flotte : un champ d’exposant séparé décale le significande vers la gauche ou la droite, ce qui permet une très large plage dynamique au prix d’une précision non uniforme. La virgule fixe est plus simple et plus rapide ; la virgule flottante est plus flexible pour le calcul scientifique."
+      },
+      {
+        "q": "Combien de bits binaires faut-il pour atteindre une précision décimale donnée ?",
+        "a": "Chaque bit binaire supplémentaire ajoute environ log₁₀(2) ≈ 0.301 chiffre décimal de précision. Pour obtenir d chiffres décimaux, il faut environ d / 0.301 ≈ 3.32 × d bits. Par exemple, la simple précision IEEE 754 utilise 23 bits fractionnaires, ce qui donne environ 7 chiffres significatifs décimaux."
+      },
+      {
+        "q": "Le convertisseur peut-il traiter des entiers purs (sans point décimal) ?",
+        "a": "Oui. Si vous saisissez un nombre entier comme 1011 (binaire) ou 11 (décimal), le convertisseur le traite comme une fraction avec une partie fractionnaire nulle et effectue la conversion normalement. Le résultat n’aura pas non plus de composante fractionnaire."
+      },
+      {
+        "q": "À quoi sert le réglage de précision lors de la conversion du décimal vers le binaire ?",
+        "a": "La précision définit le nombre maximal de bits calculés après le point binaire. Une précision plus élevée donne une approximation plus proche pour les fractions binaires non terminées. Si la fraction se termine avant la limite de précision, le convertisseur s’arrête plus tôt et le résultat est exact. La précision maximale prise en charge est de 32 bits."
+      }
+    ]
+  }
+}

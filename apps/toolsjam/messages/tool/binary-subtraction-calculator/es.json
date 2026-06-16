@@ -1,0 +1,119 @@
+{
+  "title": "Calculadora de resta binaria",
+  "tagline": "Realiza restas binarias con préstamo estándar o complemento a dos, mostrando soluciones paso a paso y equivalentes decimales.",
+  "intro": "Introduce el minuendo y el sustraendo como números binarios, elige el método de cálculo y ve el resultado al instante.",
+  "field": {
+    "minuend": "Minuendo (primer número)",
+    "subtrahend": "Sustraendo (segundo número)",
+    "minuendPlaceholder": "p. ej. 1101",
+    "subtrahendPlaceholder": "p. ej. 101",
+    "method": "Método de cálculo",
+    "showSteps": "Mostrar proceso paso a paso"
+  },
+  "type": {
+    "standardBorrowing": "Préstamo estándar",
+    "standardBorrowing_desc": "Resta columna por columna de derecha a izquierda, tomando prestado de bits de orden superior cuando sea necesario: el método clásico con lápiz y papel.",
+    "twosComplement": "Complemento a dos",
+    "twosComplement_desc": "Niega el sustraendo usando complemento a dos y súmalo al minuendo: el método usado por todos los procesadores modernos."
+  },
+  "button": {
+    "calculate": "Calcular resta",
+    "reset": "Restablecer todos los campos"
+  },
+  "error": {
+    "invalidMinuend": "El minuendo solo debe contener dígitos binarios (0 y 1).",
+    "invalidSubtrahend": "El sustraendo solo debe contener dígitos binarios (0 y 1).",
+    "empty": "Introduce ambos números binarios.",
+    "negative": "El resultado con préstamo estándar es negativo (minuendo < sustraendo). Usa el modo de complemento a dos para resultados con signo."
+  },
+  "result": {
+    "heading": "Resultado",
+    "difference": "Diferencia binaria",
+    "decimal": "Equivalente decimal",
+    "steps": "Solución paso a paso",
+    "stepNegativeFlag": "Minuendo ({a}) < sustraendo ({b}): el resultado es negativo.",
+    "stepAbsDiff": "|{decA} − {decB}| = {abs} = {bin}₂",
+    "stepMinuend": "Minuendo: {a} (decimal {decA})",
+    "stepSubtrahend": "Sustraendo: {b} (decimal {decB})",
+    "stepSubtractColumns": "Resta columna por columna de derecha a izquierda, tomando prestado cuando sea necesario.",
+    "stepDifference": "Diferencia: {bin} (decimal {dec})",
+    "stepSubtrahendPadded": "Sustraendo rellenado: {b}",
+    "stepOnesComp": "Complemento a uno: {ones}",
+    "stepTwosComp": "Complemento a dos: {twos}",
+    "stepMinuendPadded": "Minuendo rellenado: {a}",
+    "stepSumResult": "Suma: {a} + {twos} = {sum} → descartar acarreo → {result}",
+    "stepDecResult": "Resultado decimal: {dec}"
+  },
+  "about": {
+    "heading": "Acerca de la resta binaria",
+    "body": "La resta binaria es una de las cuatro operaciones aritméticas binarias fundamentales y se realiza principalmente de dos formas: el método de préstamo estándar y el método de complemento a dos. Comprender ambos es valioso para estudiantes de ciencias de la computación, diseñadores de electrónica digital y cualquier persona que trabaje a nivel de bits.\n\nEl método de préstamo estándar refleja la resta larga decimal. Alineas los dos números binarios por sus bits más a la derecha y restas columna por columna de derecha a izquierda. Cuando el dígito superior es menor que el inferior (es decir, necesitas restar 1 de 0), tomas prestado de la siguiente columna de orden superior, la reduces temporalmente una posición y añades 2 a la posición actual: el equivalente binario de tomar prestado 10 en decimal. El proceso continúa hasta que se han procesado todas las columnas. Este método es intuitivo y fácil de comprobar a mano.\n\nEl método de complemento a dos es la forma en que prácticamente todos los procesadores y microcontroladores modernos implementan la resta en hardware. Para restar B de A, primero calcula el complemento a dos de B: invierte todos los bits de B (complemento a uno) y luego suma 1. Después suma A y el complemento a dos de B usando la suma binaria estándar. Cualquier acarreo que salga del bit más significativo se descarta. El resultado es A − B en representación de complemento a dos. Este enfoque se prefiere en hardware porque elimina la necesidad de un circuito de resta independiente: basta un sumador para la suma y la resta.\n\nEl complemento a dos también es el estándar universal para representar enteros con signo en hardware de computadora. En un sistema de complemento a dos de n bits, los números positivos se representan normalmente, mientras que los negativos se representan como su complemento a dos. El rango de enteros con signo de n bits en complemento a dos es de −2^(n−1) a 2^(n−1) − 1. Para enteros de 8 bits, es de −128 a 127. Esta representación facilita la detección de desbordamiento: ocurre cuando el acarreo hacia el bit de signo difiere del acarreo que sale de él.\n\nAmbos métodos producen el mismo resultado cuando el minuendo es mayor o igual que el sustraendo. Cuando el minuendo es menor, el método de préstamo estándar requeriría un préstamo inicial negativo, mientras que el método de complemento a dos produce de forma natural el resultado con signo correcto dentro del ancho de bits. Esta calculadora gestiona ambos escenarios y avisará cuando el resultado sería negativo en el modo de préstamo estándar."
+  },
+  "examples": {
+    "heading": "Ejemplos de resta binaria",
+    "intro": "Ejemplos prácticos que muestran los métodos de préstamo estándar y complemento a dos.",
+    "colInput": "Operación",
+    "colOutput": "Resultado binario",
+    "colNote": "Comprobación decimal",
+    "items": [
+      {
+        "input": "1101 − 101 (Préstamo estándar)",
+        "output": "1000",
+        "note": "13 − 5 = 8 ✓. No hace falta préstamo en los bits altos; el préstamo ocurre en la columna de las unidades."
+      },
+      {
+        "input": "10010 − 1011 (Préstamo estándar)",
+        "output": "111",
+        "note": "18 − 11 = 7 ✓. Se requieren múltiples préstamos a lo largo de cuatro columnas."
+      },
+      {
+        "input": "1100 − 111 (Complemento a dos)",
+        "output": "101",
+        "note": "12 − 7 = 5 ✓. El complemento a dos de 0111 es 1001; 1100 + 1001 = 10101; descartar acarreo → 0101."
+      },
+      {
+        "input": "11110000 − 10101011 (Préstamo estándar)",
+        "output": "1000101",
+        "note": "240 − 171 = 69 ✓. Una resta compleja con múltiples préstamos a través de ocho dígitos binarios."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de resta binaria",
+    "steps": [
+      "Introduce el minuendo (el número del que se resta) en el primer campo usando solo dígitos binarios 0 y 1.",
+      "Introduce el sustraendo (el número que se resta) en el segundo campo.",
+      "Elige el método de cálculo: 'Préstamo estándar' para el enfoque clásico columna por columna, o 'Complemento a dos' para el método al estilo de los procesadores.",
+      "Activa 'Mostrar proceso paso a paso' para ver los pasos intermedios, los préstamos o la transformación de complemento a dos.",
+      "Haz clic en 'Calcular resta' para ver la diferencia binaria y su equivalente decimal."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la resta binaria",
+    "items": [
+      {
+        "q": "¿Qué es el préstamo en la resta binaria?",
+        "a": "El préstamo en la resta binaria es el proceso de tomar una unidad de un bit de orden superior cuando la posición actual no puede satisfacer la resta (es decir, al restar 1 de 0). Tomas prestado 1 de la siguiente columna superior, lo que añade 2 (binario 10) a la columna actual y convierte 0 − 1 en 10 − 1 = 1. Es el equivalente binario exacto de tomar prestado 10 en una resta decimal."
+      },
+      {
+        "q": "¿Qué es el complemento a dos y por qué se usa?",
+        "a": "El complemento a dos es un método para representar enteros con signo en binario y también una técnica de resta. Para calcular el complemento a dos de un número, invierte todos sus bits (produciendo el complemento a uno) y luego suma 1. Los procesadores usan complemento a dos porque permite que el mismo hardware sumador maneje tanto la suma como la resta: restar B de A equivale a sumar A al complemento a dos de B. También significa que solo hay una representación de cero, evitando la ambigüedad de los formatos antiguos de signo-magnitud y complemento a uno."
+      },
+      {
+        "q": "¿Qué ocurre cuando el resultado es negativo?",
+        "a": "Si el minuendo es menor que el sustraendo, el resultado real es negativo. En el modo de préstamo estándar, la calculadora señala esta situación porque el resultado no puede representarse como una cadena binaria positiva. En el modo de complemento a dos, el resultado se representa correctamente como un número negativo en complemento a dos, y la calculadora muestra el equivalente decimal con signo."
+      },
+      {
+        "q": "¿Cómo se usa la resta binaria dentro de una CPU?",
+        "a": "Las CPU implementan la resta usando el método de complemento a dos con una unidad aritmético-lógica (ALU). La ALU contiene un sumador, y una sola señal de control invierte los bits del sustraendo y establece el acarreo de entrada en 1, sumando de forma efectiva el complemento a dos. Esto significa que no se necesita un circuito de resta separado, lo que ahorra transistores y simplifica el diseño. El acarreo de salida del bit más significativo se usa para detectar desbordamiento."
+      },
+      {
+        "q": "¿El resultado cambia cuando cambio el método?",
+        "a": "En los casos donde el minuendo es mayor o igual que el sustraendo, ambos métodos siempre producen el mismo resultado numérico final, solo que mediante pasos intermedios distintos. El método de préstamo estándar trabaja directamente sobre los dígitos originales; el método de complemento a dos niega primero el sustraendo y luego suma. Ambos dan la misma diferencia correcta."
+      },
+      {
+        "q": "¿Puedo restar un número binario mayor de uno menor?",
+        "a": "Sí, pero el resultado es negativo. En el modo de préstamo estándar, esta calculadora mostrará una advertencia porque una cadena binaria positiva no puede representar el resultado negativo. Cambia al modo de complemento a dos para manejar diferencias negativas: el resultado será la codificación en complemento a dos del valor negativo, y el equivalente decimal con signo se mostrará con un signo menos."
+      }
+    ]
+  }
+}

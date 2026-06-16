@@ -1,0 +1,102 @@
+{
+  "title": "Binär-Multiplikation Rechner",
+  "tagline": "Multiplizieren Sie Binärzahlen sofort mit Schritt-für-Schritt-Lösung und automatischer Dezimalumrechnung.",
+  "intro": "Geben Sie zwei Binärzahlen ein, klicken Sie auf Berechnen und sehen Sie das Binärprodukt mit seinem Dezimalwert.",
+  "field": {
+    "first": "Erste Binärzahl",
+    "second": "Zweite Binärzahl",
+    "firstPlaceholder": "z. B. 1011",
+    "secondPlaceholder": "z. B. 101",
+    "showSteps": "Schritt-für-Schritt-Lösung anzeigen"
+  },
+  "button": {
+    "calculate": "Multiplikation berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalidFirst": "Die erste Zahl darf nur Binärziffern (0 und 1) enthalten.",
+    "invalidSecond": "Die zweite Zahl darf nur Binärziffern (0 und 1) enthalten.",
+    "empty": "Bitte geben Sie beide Binärzahlen ein."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "product": "Binärprodukt",
+    "decimal": "Dezimalwert",
+    "steps": "Schritt-für-Schritt-Lösung",
+    "stepBit1": "Bit {shift} (1): {a} << {shift} = {partial}",
+    "stepBit0": "Bit {shift} (0): 0× = {zeros}",
+    "stepSum": "Summe = {product} (dezimal: {dec})"
+  },
+  "about": {
+    "heading": "Über die binäre Multiplikation",
+    "body": "Die binäre Multiplikation folgt derselben Stellenwertlogik wie die schriftliche Multiplikation im Dezimalsystem, hat aber wesentlich einfachere Regeln für einzelne Ziffern. Im Dezimalsystem kann jede Ziffer 0–9 sein, weshalb man eine 10×10-Multiplikationstabelle kennen muss. Im Binärsystem ist jede Ziffer entweder 0 oder 1, daher gelten nur diese Regeln: 0 × 0 = 0, 0 × 1 = 0, 1 × 0 = 0 und 1 × 1 = 1. Die Komplexität liegt nicht im Multiplizieren einzelner Bits, sondern im korrekten Verschieben und Addieren der Teilprodukte.\n\nDie schriftliche Multiplikation im Binärsystem funktioniert so: Schreiben Sie die beiden Zahlen untereinander und legen Sie eine als Multiplikand und die andere als Multiplikator fest. Für jedes Bit des Multiplikators, beginnend mit dem rechten (niederwertigsten) Bit, wird ein Teilprodukt erzeugt: Ist das Multiplikator-Bit 1, ist das Teilprodukt der um die Bitposition nach links verschobene Multiplikand; ist das Bit 0, besteht das Teilprodukt nur aus Nullen. Addieren Sie alle Teilprodukte mit binärer Addition und übertragen Sie Überträge nach Bedarf. Die endgültige Summe ist das Binärprodukt.\n\nZum Beispiel bei 1011 × 101: Das rechte Bit von 101 ist 1, daher ist das erste Teilprodukt 1011 (um 0 Stellen verschoben). Das mittlere Bit ist 0, daraus ergibt sich 0000 um 1 Stelle verschoben (im Kontext effektiv 00000). Das linke Bit ist 1, daher ist das dritte Teilprodukt 1011 um 2 Stellen verschoben, also 101100. Die Addition 1011 + 0000 + 101100 = 110111 ergibt dezimal 55 und bestätigt damit 11 × 5 = 55.\n\nBinäre Multiplikation lässt sich direkt auf Hardware abbilden: Der Verschiebe-und-Addiere-Algorithmus ist in jeder ganzzahligen Multiplikationseinheit einer CPU sowie in FPGAs und kundenspezifischen ASICs implementiert. Moderne Prozessoren verwenden optimierte Varianten wie den Booth-Algorithmus, Wallace-Bäume und Dadda-Multiplizierer, um die Anzahl der Teilprodukte zu reduzieren und die abschließende Addition zu beschleunigen. Das Verständnis des grundlegenden Verschiebe-und-Addiere-Prozesses hilft Softwareentwicklern, über Leistung, Überlauf und die binären Darstellungen nachzudenken, auf denen die gesamte Ganzzahlarithmetik in der Informatik beruht.\n\nÜberlauf ist ein kritischer Punkt. Wenn beide Operanden n-Bit-Ganzzahlen sind, kann ihr Produkt bis zu 2n Bits benötigen. Eine 32-Bit-×-32-Bit-Multiplikation kann ein 64-Bit-Ergebnis erzeugen, und Hardware-Multiplikationsbefehle liefern genau aus diesem Grund oft getrennte obere und untere Hälften des Produkts. Dieser Rechner arbeitet mit Binär-Ganzzahlen beliebiger Länge und zeigt das vollständige Produkt ohne Kürzung an."
+  },
+  "examples": {
+    "heading": "Beispiele für binäre Multiplikation",
+    "intro": "Durchgerechnete Beispiele zu Grundfällen, Zweierpotenzen und größeren Operanden.",
+    "colInput": "Operation",
+    "colOutput": "Binärergebnis",
+    "colNote": "Dezimalprüfung",
+    "items": [
+      {
+        "input": "1011 × 101",
+        "output": "110111",
+        "note": "11 × 5 = 55 ✓. Teilprodukte: 1011 + 000000 + 101100 = 110111."
+      },
+      {
+        "input": "1101 × 1",
+        "output": "1101",
+        "note": "13 × 1 = 13 ✓. Multiplikation mit 1 gibt immer den unveränderten Multiplikanden zurück."
+      },
+      {
+        "input": "1000 × 100",
+        "output": "100000",
+        "note": "8 × 4 = 32 ✓. Multiplikation mit einer Zweierpotenz entspricht einer Linksverschiebung."
+      },
+      {
+        "input": "11011 × 1101",
+        "output": "101011111",
+        "note": "27 × 13 = 351 ✓. Größere Operanden zeigen das vollständige Verfahren der schriftlichen Multiplikation."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwenden Sie den Rechner für binäre Multiplikation",
+    "steps": [
+      "Geben Sie die erste Binärzahl (Multiplikand) nur mit 0 und 1 in das Feld „Erste Binärzahl“ ein.",
+      "Geben Sie die zweite Binärzahl (Multiplikator) in das Feld „Zweite Binärzahl“ ein.",
+      "Aktivieren Sie „Schritt-für-Schritt-Lösung anzeigen“, wenn Sie die einzelnen Teilprodukte und den Additionsvorgang sehen möchten.",
+      "Klicken Sie auf „Multiplikation berechnen“. Das Binärprodukt und sein Dezimalwert erscheinen im Ergebnisfeld.",
+      "Klicken Sie auf Zurücksetzen, um beide Felder zu löschen und mit neuen Werten neu zu beginnen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zur binären Multiplikation",
+    "items": [
+      {
+        "q": "Wie unterscheidet sich die binäre Multiplikation von der dezimalen Multiplikation?",
+        "a": "Der Algorithmus ist identisch — Teilprodukte verschieben und addieren —, aber die Ziffernmultiplikation ist im Binärsystem trivial: Jedes Bit mal 0 ist 0, und jedes Bit mal 1 ist es selbst. Dadurch lässt sich binäre Multiplikation leichter in Hardware umsetzen, weshalb alle CPUs Ganzzahlarithmetik binär ausführen. Der Nachteil ist, dass Binärzahlen mehr Ziffern benötigen, um denselben Wert darzustellen."
+      },
+      {
+        "q": "Warum entspricht die Multiplikation mit einer Zweierpotenz einer Linksverschiebung?",
+        "a": "Im Binärsystem entspricht die Multiplikation mit 2 dem Anhängen einer Null, also dem Verschieben aller Bits um eine Position nach links, genauso wie das Multiplizieren einer Dezimalzahl mit 10 eine Null anhängt. Multiplikation mit 2ⁿ verschiebt um n Positionen nach links. Beispielsweise wird 101 (5) um 2 Positionen nach links verschoben zu 10100 (20), und 5 × 4 = 20. Deshalb ersetzen CPUs und Compiler Multiplikationen mit Zweierpotenzen durch schnelle Schiebeinstruktionen."
+      },
+      {
+        "q": "Kann dieser Rechner Zahlen mit binären Nachkommateilen multiplizieren?",
+        "a": "Dieser Rechner arbeitet nur mit ganzzahligen Binärzahlen. Um binäre Brüche zu multiplizieren, verwenden Sie ganzzahlige Multiplikation auf den Signifikanden und passen anschließend den Binärpunkt an: Der Binärpunkt des Produkts wird so gesetzt, dass die Gesamtzahl der Nachkommabits der Summe der Nachkommabits beider Operanden entspricht. Zum Beispiel: 1.01 × 10.1 = ganzzahliges Produkt von 101 × 101 = 11001, mit 2+1=3 Nachkommabits, ergibt 11.001."
+      },
+      {
+        "q": "Wie groß kann das Ergebnis maximal sein?",
+        "a": "Wenn der Multiplikand m Bits und der Multiplikator n Bits hat, hat das Produkt höchstens m + n Bits. Zwei 4-Bit-Zahlen können zum Beispiel ein Ergebnis mit bis zu 8 Bits erzeugen. Dieser Rechner verarbeitet Eingaben beliebiger Länge und zeigt das vollständige Binärprodukt ohne Kürzung an."
+      },
+      {
+        "q": "Wie überprüfe ich ein Ergebnis der binären Multiplikation?",
+        "a": "Konvertieren Sie beide Operanden in Dezimalzahlen, multiplizieren Sie sie dezimal und wandeln Sie das Dezimalprodukt anschließend wieder in Binärform um, um zu vergleichen. Der von diesem Rechner angezeigte Dezimalwert führt genau diese Prüfung durch. Alternativ können Sie jedes Teilprodukt einzeln prüfen und danach die binäre Addition spaltenweise kontrollieren."
+      },
+      {
+        "q": "Spielt die Reihenfolge der Operanden eine Rolle?",
+        "a": "Nein. Binäre Multiplikation ist kommutativ: A × B = B × A. Die Anzahl der erzeugten Teilprodukte hängt jedoch von der Bitanzahl des Multiplikators ab. Daher kann das Vertauschen der Operanden die in der Schritt-für-Schritt-Ansicht gezeigten Zwischenschritte ändern, während dasselbe Endprodukt entsteht."
+      }
+    ]
+  }
+}

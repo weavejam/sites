@@ -1,0 +1,106 @@
+{
+  "title": "Spaltenraum-Rechner - Matrix-Basisvektoren finden",
+  "tagline": "Finde Basisvektoren, Pivotspalten und die Dimension einer Matrix mit dem Gauß-Verfahren und prüfe, ob ein Vektor im Spaltenraum liegt.",
+  "intro": "Wähle die Matrixgröße, gib die Matrixeinträge ein und füge optional einen Testvektor hinzu, um die Zugehörigkeit zum Spaltenraum zu prüfen.",
+  "field": {
+    "rows": "Zeilen",
+    "columns": "Spalten",
+    "matrix": "Matrixeinträge",
+    "matrixCell": "A{row}{col}",
+    "testVector": "Optionaler Testvektor",
+    "vectorCell": "b{row}"
+  },
+  "placeholder": {
+    "number": "0",
+    "optionalNumber": "Optional"
+  },
+  "button": {
+    "calculate": "Berechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalidMatrix": "Bitte gib in jedes Matrixfeld eine gültige Zahl ein.",
+    "invalidVector": "Wenn du einen Vektor testen willst, fülle jedes Vektorfeld mit einer gültigen Zahl aus."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "rank": "Rang",
+    "dimension": "Dimension des Spaltenraums",
+    "pivotColumns": "Pivotspalten",
+    "basisVectors": "Basisvektoren",
+    "basisVector": "Basisvektor {index} (Spalte {column})",
+    "vectorCheck": "Vektorzusgehörigkeit",
+    "vectorInColumnSpace": "Der Testvektor liegt im Spaltenraum.",
+    "vectorNotInColumnSpace": "Der Testvektor liegt nicht im Spaltenraum.",
+    "rowEchelon": "Zeilenstufenform",
+    "zeroMatrix": "Die Nullmatrix hat keine Pivotspalten, daher enthält ihr Spaltenraum nur den Nullvektor.",
+    "none": "Keine"
+  },
+  "about": {
+    "heading": "Über den Spaltenraum-Rechner",
+    "body": "Der Spaltenraum einer Matrix ist die Menge aller Linearkombinationen ihrer Spalten. Praktisch beschreibt er jeden Vektor, der durch Multiplikation der Matrix mit einem Koeffizientenvektor entstehen kann. Dieses Konzept taucht überall in der linearen Algebra auf: beim Lösen von Gleichungssystemen, beim Verstehen von Abbildungen, beim Beschreiben von Bildräumen, beim Analysieren des Rangs und beim Prüfen, ob ein Zielvektor aus einer gegebenen Spaltenmenge erzeugt werden kann. Ein Spaltenraum-Rechner macht diese Ideen greifbar, indem er genau zeigt, welche Spalten wichtig sind und welche redundant sind.\n\nDie entscheidende Rechenidee ist das Gauß-Verfahren. Wenn man eine Matrix zeilenweise reduziert, treten die Pivotspalten hervor: das sind die Spalten, in denen nach der Elimination die führenden von null verschiedenen Einträge erscheinen. Diese Pivotpositionen zeigen, welche ursprünglichen Spalten eine Basis des Spaltenraums bilden. Wichtig ist dabei: Die Basisvektoren müssen aus der ursprünglichen Matrix stammen, nicht aus der transformierten Zeilenstufenform, denn Zeilenoperationen verändern die Spaltenwerte, erhalten aber die für die Pivotbestimmung nötigen linearen Abhängigkeitsbeziehungen. Sobald die Pivotspalten bekannt sind, ist der Rang der Matrix einfach die Anzahl der Pivots, und dieser Rang ist zugleich die Dimension des Spaltenraums.\n\nMit diesem Rechner lassen sich sowohl quadratische als auch rechteckige Matrizen mit 2 bis 4 Zeilen und Spalten untersuchen. Dieser Bereich ist groß genug für viele Übungsbeispiele und bleibt dabei übersichtlich. Nach der Eingabe der Matrix berechnet das Werkzeug die Pivotspalten, listet die zugehörigen Basisvektoren auf und zeigt die Zeilenstufenform an, damit du das Eliminationsergebnis direkt prüfen kannst. Hat die Matrix weniger Pivots als Spalten, sind einige Spalten von anderen abhängig und müssen nicht in der Basis erscheinen.\n\nDer optionale Testvektor liefert eine weitere nützliche Ebene. Um zu entscheiden, ob ein Vektor b im Spaltenraum von A liegt, vergleicht man den Rang von A mit dem Rang der augmentierten Matrix [A|b]. Bleibt der Rang gleich, ist b mit den bereits in A vorhandenen Spaltenbeziehungen vereinbar und liegt daher im Spaltenraum. Steigt der Rang, bringt der Vektor eine neue unabhängige Richtung ein und liegt nicht im Spaltenraum. Dieser Rangkriterium verbindet die geometrische Idee des Spannens mit der algebraischen Struktur linearer Gleichungssysteme.\n\nOb du für eine Lineare-Algebra-Klausur lernst, Hausaufgaben prüfst oder ein Gefühl für Spannraum und Rang entwickeln willst: Ein Spaltenraum-Rechner spart Zeit und reduziert Rechenfehler. Er unterstreicht außerdem die zentrale Aussage: Der Spaltenraum wird durch die Pivotspalten der ursprünglichen Matrix bestimmt, und seine Dimension ist genau der Rang."
+  },
+  "examples": {
+    "heading": "Beispiele für den Spaltenraum-Rechner",
+    "intro": "Diese Beispiele zeigen, wie Pivotspalten die Basis bestimmen und wie der optionale Vektortest die Rangkonsistenz nutzt.",
+    "colInput": "Eingabe",
+    "colOutput": "Ergebnis",
+    "colNote": "Erklärung",
+    "items": [
+      {
+        "input": "A = [[1, 0], [0, 1]]",
+        "output": "Pivotspalten 1 und 2, Rang 2",
+        "note": "Die Einheitsmatrix hat zwei unabhängige Spalten, also besteht die Basis genau aus den beiden ursprünglichen Spalten und der Spaltenraum ist ganz R²."
+      },
+      {
+        "input": "A = [[1, 2, 3], [2, 4, 6], [0, 1, 1]]",
+        "output": "Pivotspalten 1 und 2, Rang 2",
+        "note": "Die dritte Spalte hängt von den ersten beiden ab, also gehört sie nicht zur Basis, obwohl sie weiterhin Teil der ursprünglichen Matrix ist."
+      },
+      {
+        "input": "A = [[1, 0], [0, 1]], b = [4, 5]",
+        "output": "b liegt im Spaltenraum",
+        "note": "Da die Matrix ganz R² aufspannt, lässt sich jeder 2-dimensionale Vektor als Linearkombination der Spalten schreiben."
+      },
+      {
+        "input": "A = [[1, 2], [2, 4]], b = [1, 0]",
+        "output": "b liegt nicht im Spaltenraum",
+        "note": "Die Matrix hat Rang 1, also ist ihr Spaltenraum nur eine Gerade in R². Der Vektor [1, 0] liegt nicht auf dieser Geraden."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Spaltenraum-Rechner",
+    "steps": [
+      "Wähle die Anzahl der Zeilen und Spalten deiner Matrix. Das Eingabegitter passt sich sofort an die gewählte Größe an.",
+      "Fülle jedes Matrixfeld mit einer Zahl. Der Rechner nutzt das Gauß-Verfahren, um die Pivotspalten zu finden und den Rang zu berechnen.",
+      "Wenn du einen Vektor testen willst, trage in den optionalen Testvektorfeldern pro Zeile einen Wert ein. Lasse sie leer, wenn du nur die Basis brauchst.",
+      "Klicke auf Berechnen, um Pivotspalten, die Basisvektoren aus der ursprünglichen Matrix, die Dimension des Spaltenraums und die Zeilenstufenform zu sehen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Spaltenraum-Rechner",
+    "items": [
+      {
+        "q": "Was ist der Spaltenraum einer Matrix?",
+        "a": "Der Spaltenraum ist die Menge aller Vektoren, die sich als Linearkombinationen der Matrixspalten bilden lassen. Er beschreibt jeden möglichen Ausgabervektor der durch die Matrix definierten linearen Abbildung."
+      },
+      {
+        "q": "Warum kommen die Basisvektoren aus der ursprünglichen Matrix und nicht aus der reduzierten?",
+        "a": "Zeilenoperationen erhalten, welche Spalten abhängig sind, und zeigen so die Pivotpositionen an. Sie verändern jedoch die tatsächlichen Spaltenwerte, daher muss die Basis aus den entsprechenden Pivotspalten der ursprünglichen Matrix genommen werden."
+      },
+      {
+        "q": "Ist die Dimension des Spaltenraums dasselbe wie der Rang?",
+        "a": "Ja. Die Dimension des Spaltenraums ist gleich der Anzahl der Pivotspalten, und diese Anzahl ist der Rang der Matrix."
+      },
+      {
+        "q": "Wie funktioniert der Vektortest?",
+        "a": "Der Rechner erweitert die Matrix um den Testvektor und vergleicht den Rang vor und nach der Erweiterung. Steigt der Rang nicht, liegt der Vektor im Spaltenraum; steigt er, liegt er nicht darin."
+      },
+      {
+        "q": "Was passiert bei der Nullmatrix?",
+        "a": "Die Nullmatrix hat Rang 0 und keine Pivotspalten, daher gibt es keine nichtnull Basisvektoren anzuzeigen. Ihr Spaltenraum enthält nur den Nullvektor, weil jede Linearkombination von Nullspalten wieder null ist."
+      }
+    ]
+  }
+}

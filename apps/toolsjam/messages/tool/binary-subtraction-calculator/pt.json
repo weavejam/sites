@@ -1,0 +1,119 @@
+{
+  "title": "Calculadora de subtração binária",
+  "tagline": "Faça subtração binária com empréstimo padrão ou complemento de dois, mostrando soluções passo a passo e equivalentes decimais.",
+  "intro": "Digite o minuendo e o subtraendo como números binários, escolha o método de cálculo e veja o resultado na hora.",
+  "field": {
+    "minuend": "Minuendo (primeiro número)",
+    "subtrahend": "Subtraendo (segundo número)",
+    "minuendPlaceholder": "ex.: 1101",
+    "subtrahendPlaceholder": "ex.: 101",
+    "method": "Método de cálculo",
+    "showSteps": "Mostrar processo passo a passo"
+  },
+  "type": {
+    "standardBorrowing": "Empréstimo padrão",
+    "standardBorrowing_desc": "Subtraia coluna por coluna da direita para a esquerda, pegando emprestado de bits de ordem superior quando necessário: o método clássico de papel e lápis.",
+    "twosComplement": "Complemento de dois",
+    "twosComplement_desc": "Negue o subtraendo usando complemento de dois e some ao minuendo: o método usado por todos os processadores modernos."
+  },
+  "button": {
+    "calculate": "Calcular subtração",
+    "reset": "Redefinir todos os campos"
+  },
+  "error": {
+    "invalidMinuend": "O minuendo deve conter apenas dígitos binários (0 e 1).",
+    "invalidSubtrahend": "O subtraendo deve conter apenas dígitos binários (0 e 1).",
+    "empty": "Digite os dois números binários.",
+    "negative": "O resultado por empréstimo padrão é negativo (minuendo < subtraendo). Use o modo complemento de dois para resultados com sinal."
+  },
+  "result": {
+    "heading": "Resultado",
+    "difference": "Diferença binária",
+    "decimal": "Equivalente decimal",
+    "steps": "Solução passo a passo",
+    "stepNegativeFlag": "Minuendo ({a}) < subtraendo ({b}): o resultado é negativo.",
+    "stepAbsDiff": "|{decA} − {decB}| = {abs} = {bin}₂",
+    "stepMinuend": "Minuendo: {a} (decimal {decA})",
+    "stepSubtrahend": "Subtraendo: {b} (decimal {decB})",
+    "stepSubtractColumns": "Subtraia coluna por coluna da direita para a esquerda, com empréstimos quando necessário.",
+    "stepDifference": "Diferença: {bin} (decimal {dec})",
+    "stepSubtrahendPadded": "Subtraendo preenchido: {b}",
+    "stepOnesComp": "Complemento de um: {ones}",
+    "stepTwosComp": "Complemento de dois: {twos}",
+    "stepMinuendPadded": "Minuendo preenchido: {a}",
+    "stepSumResult": "Soma: {a} + {twos} = {sum} → descartar vai-um → {result}",
+    "stepDecResult": "Resultado decimal: {dec}"
+  },
+  "about": {
+    "heading": "Sobre a subtração binária",
+    "body": "A subtração binária é uma das quatro operações aritméticas binárias fundamentais e é feita principalmente de duas formas: pelo método de empréstimo padrão e pelo método de complemento de dois. Entender ambas é valioso para estudantes de ciência da computação, projetistas de eletrônica digital e qualquer pessoa que trabalhe no nível de bits.\n\nO método de empréstimo padrão espelha a subtração longa decimal. Você alinha os dois números binários pelos bits mais à direita e subtrai coluna por coluna da direita para a esquerda. Quando o dígito de cima é menor que o dígito de baixo (ou seja, quando é preciso subtrair 1 de 0), você pega emprestado da próxima coluna de ordem superior, reduzindo-a temporariamente em uma posição e adicionando 2 à posição atual: o equivalente binário de pegar 10 emprestado em decimal. O processo continua até que todas as colunas sejam processadas. Esse método é intuitivo e fácil de verificar à mão.\n\nO método de complemento de dois é a forma como praticamente todo processador e microcontrolador moderno realmente implementa subtração em hardware. Para subtrair B de A, primeiro calcule o complemento de dois de B: inverta todos os bits de B (complemento de um) e depois some 1. Em seguida, some A e o complemento de dois de B usando a adição binária padrão. Qualquer vai-um que saia do bit mais significativo é descartado. O resultado é A − B na representação em complemento de dois. Essa abordagem é preferida em hardware porque elimina a necessidade de um circuito de subtração separado: um somador basta para adição e subtração.\n\nO complemento de dois também é o padrão universal para representar inteiros com sinal em hardware de computador. Em um sistema de complemento de dois com n bits, números positivos são representados normalmente, enquanto números negativos são representados como seu complemento de dois. O intervalo de inteiros com sinal em complemento de dois de n bits é de −2^(n−1) a 2^(n−1) − 1. Para inteiros de 8 bits, isso é de −128 a 127. Essa representação torna a detecção de overflow direta: o overflow ocorre quando o vai-um que entra no bit de sinal difere do vai-um que sai dele.\n\nAmbos os métodos produzem o mesmo resultado nos casos em que o minuendo é maior ou igual ao subtraendo. Quando o minuendo é menor, o método de empréstimo padrão exigiria um empréstimo inicial negativo, enquanto o método de complemento de dois produz naturalmente o resultado com sinal correto dentro da largura de bits. Esta calculadora lida com os dois cenários e sinaliza quando o resultado seria negativo no modo de empréstimo padrão."
+  },
+  "examples": {
+    "heading": "Exemplos de subtração binária",
+    "intro": "Exemplos práticos demonstrando os métodos de empréstimo padrão e complemento de dois.",
+    "colInput": "Operação",
+    "colOutput": "Resultado binário",
+    "colNote": "Verificação decimal",
+    "items": [
+      {
+        "input": "1101 − 101 (Empréstimo padrão)",
+        "output": "1000",
+        "note": "13 − 5 = 8 ✓. Não é preciso empréstimo nos bits altos; o empréstimo ocorre na coluna das unidades."
+      },
+      {
+        "input": "10010 − 1011 (Empréstimo padrão)",
+        "output": "111",
+        "note": "18 − 11 = 7 ✓. São necessários vários empréstimos ao longo de quatro colunas."
+      },
+      {
+        "input": "1100 − 111 (Complemento de dois)",
+        "output": "101",
+        "note": "12 − 7 = 5 ✓. O complemento de dois de 0111 é 1001; 1100 + 1001 = 10101; descartar vai-um → 0101."
+      },
+      {
+        "input": "11110000 − 10101011 (Empréstimo padrão)",
+        "output": "1000101",
+        "note": "240 − 171 = 69 ✓. Uma subtração complexa com múltiplos empréstimos ao longo de oito dígitos binários."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de subtração binária",
+    "steps": [
+      "Digite o minuendo (o número do qual se subtrai) no primeiro campo usando apenas os dígitos binários 0 e 1.",
+      "Digite o subtraendo (o número a subtrair) no segundo campo.",
+      "Escolha o método de cálculo: 'Empréstimo padrão' para a abordagem clássica coluna por coluna, ou 'Complemento de dois' para o método usado por processadores.",
+      "Ative 'Mostrar processo passo a passo' para ver as etapas intermediárias, os empréstimos ou a transformação em complemento de dois.",
+      "Clique em 'Calcular subtração' para ver a diferença binária e seu equivalente decimal."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre subtração binária",
+    "items": [
+      {
+        "q": "O que é empréstimo na subtração binária?",
+        "a": "Empréstimo na subtração binária é o processo de tomar uma unidade de um bit de ordem superior quando a posição atual não consegue realizar a subtração (ou seja, ao subtrair 1 de 0). Você pega 1 emprestado da próxima coluna superior, o que adiciona 2 (binário 10) à coluna atual, transformando 0 − 1 em 10 − 1 = 1. Esse é o equivalente binário exato de pegar 10 emprestado na subtração decimal."
+      },
+      {
+        "q": "O que é complemento de dois e por que ele é usado?",
+        "a": "Complemento de dois é um método de representar inteiros com sinal em binário e também uma técnica de subtração. Para calcular o complemento de dois de um número, inverta todos os seus bits (produzindo o complemento de um) e depois some 1. Processadores usam complemento de dois porque ele permite que o mesmo hardware somador trate adição e subtração: subtrair B de A é o mesmo que somar A ao complemento de dois de B. Isso também significa que há apenas uma representação de zero, evitando a ambiguidade dos formatos antigos de sinal-magnitude e complemento de um."
+      },
+      {
+        "q": "O que acontece quando o resultado é negativo?",
+        "a": "Se o minuendo for menor que o subtraendo, o resultado real é negativo. No modo de empréstimo padrão, a calculadora sinaliza essa situação porque o resultado não pode ser representado como uma string binária positiva. No modo complemento de dois, o resultado é representado corretamente como um número negativo em complemento de dois, e a calculadora mostra o equivalente decimal com sinal."
+      },
+      {
+        "q": "Como a subtração binária é usada dentro de uma CPU?",
+        "a": "CPUs implementam subtração usando o método de complemento de dois com uma Unidade Lógica e Aritmética (ULA). A ULA contém um somador, e um único sinal de controle inverte os bits do subtraendo e define o carry-in como 1, somando efetivamente o complemento de dois. Isso significa que nenhum circuito de subtração separado é necessário, economizando transistores e simplificando o projeto. O carry-out do bit mais significativo é usado para detectar overflow."
+      },
+      {
+        "q": "O resultado muda quando eu altero o método?",
+        "a": "Nos casos em que o minuendo é maior ou igual ao subtraendo, ambos os métodos sempre produzem o mesmo resultado numérico final, apenas com etapas intermediárias diferentes. O método de empréstimo padrão trabalha diretamente nos dígitos originais; o método de complemento de dois nega primeiro o subtraendo e depois soma. Ambos dão a mesma diferença correta."
+      },
+      {
+        "q": "Posso subtrair um número binário maior de um menor?",
+        "a": "Sim, mas o resultado é negativo. No modo de empréstimo padrão, esta calculadora mostrará um aviso, pois uma string binária positiva não pode representar o resultado negativo. Mude para o modo complemento de dois para lidar com diferenças negativas: o resultado será a codificação em complemento de dois do valor negativo, e o equivalente decimal com sinal será exibido com um sinal de menos."
+      }
+    ]
+  }
+}

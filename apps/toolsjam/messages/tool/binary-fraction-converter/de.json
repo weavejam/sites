@@ -1,0 +1,105 @@
+{
+  "title": "Binärbruch-Umrechner",
+  "tagline": "Wandle Binärbrüche in Dezimalzahlen und Dezimalbrüche in Binärzahlen um, mit Schritt-für-Schritt-Erklärungen.",
+  "intro": "Wähle die Umrechnungsrichtung, gib deinen Wert ein und erhalte sofort das Ergebnis mit erklärtem Algorithmus.",
+  "field": {
+    "type": "Umrechnungstyp",
+    "value": "Eingabewert",
+    "precision": "Nachkommagenauigkeit (Bits)",
+    "valuePlaceholder": "z. B. 101.101",
+    "decimalPlaceholder": "z. B. 5.625",
+    "precisionPlaceholder": "z. B. 8"
+  },
+  "type": {
+    "binaryToDecimal": "Binär → Dezimal",
+    "binaryToDecimal_desc": "Gib einen Binärbruch ein (Ziffern 0 und 1, getrennt durch einen Dezimalpunkt) und erhalte den exakten Dezimalwert.",
+    "decimalToBinary": "Dezimal → Binär",
+    "decimalToBinary_desc": "Gib einen Dezimalbruch ein und erhalte seine Binärdarstellung. Wähle die Genauigkeit, um zu steuern, wie viele Nachkommabits berechnet werden."
+  },
+  "button": {
+    "convert": "Umrechnen",
+    "reset": "Zurücksetzen"
+  },
+  "error": {
+    "invalidBinary": "Bitte gib eine gültige Binärzahl ein, die nur 0, 1 und einen einzelnen Dezimalpunkt enthält.",
+    "invalidDecimal": "Bitte gib eine gültige positive Dezimalzahl ein.",
+    "invalidPrecision": "Die Genauigkeit muss eine positive ganze Zahl zwischen 1 und 32 sein."
+  },
+  "result": {
+    "heading": "Ergebnis",
+    "decimalValue": "Dezimalwert",
+    "binaryValue": "Binärwert"
+  },
+  "about": {
+    "heading": "Über den Binärbruch-Umrechner",
+    "body": "Binärbrüche erweitern binäre Ganzzahlen auf nicht ganzzahlige Größen, indem Stellenwerte verwendet werden, die negative Zweierpotenzen sind. So wie das Dezimalsystem den Positionen rechts vom Dezimalpunkt Zehntel (10⁻¹), Hundertstel (10⁻²), Tausendstel (10⁻³) und so weiter zuordnet, weist das Binärsystem denselben Positionen Hälften (2⁻¹ = 0.5), Viertel (2⁻² = 0.25), Achtel (2⁻³ = 0.125), Sechzehntel (2⁻⁴ = 0.0625) und so weiter zu. Jedes Bit rechts vom Binärpunkt steht für eine dieser absteigenden Zweierpotenzen.\n\nDie Umrechnung eines Binärbruchs in eine Dezimalzahl ist unkompliziert. Teile die Zahl am Binärpunkt. Wandle den ganzzahligen Teil mit der Standardmethode um: Das rechte Bit ist 2⁰, das nächste 2¹ und so weiter nach links. Beim Bruchteil wird das erste Bit nach dem Binärpunkt mit 2⁻¹ multipliziert, das nächste mit 2⁻² und jedes weitere Bit mit der jeweils nächsten negativen Potenz. Addiere alle Beiträge, um den exakten Dezimalwert zu erhalten. Zum Beispiel ist 101.101 im Binärsystem (1×4) + (0×2) + (1×1) + (1×0.5) + (0×0.25) + (1×0.125) = 5 + 0.5 + 0.125 = 5.625.\n\nDie Umrechnung eines Dezimalbruchs in eine Binärzahl erfordert zwei getrennte Verfahren. Der ganzzahlige Teil wird durch wiederholte Division durch 2 umgewandelt, wobei die Reste notiert werden. Der Bruchteil wird durch wiederholte Multiplikation mit 2 umgewandelt: Multipliziere den Bruch mit 2, notiere den ganzzahligen Teil des Ergebnisses (0 oder 1) als nächste Binärziffer und fahre mit dem verbleibenden Bruchteil fort. Wiederhole dies, bis der Bruch null wird oder die gewünschte Genauigkeit erreicht ist. Für 5.625: Ganzzahl 5 = 101₂; Bruch 0.625 × 2 = 1.25 → Bit 1; 0.25 × 2 = 0.5 → Bit 0; 0.5 × 2 = 1.0 → Bit 1; der Bruch wird null, daher ist das Ergebnis 101.101₂.\n\nEin wichtiger Punkt ist, dass nicht alle Dezimalbrüche endliche Binärdarstellungen haben. So wie 1/3 nicht als abbrechende Dezimalzahl geschrieben werden kann, benötigen viele einfache Dezimalbrüche — darunter 0.1, 0.2 und 0.3 — unendlich viele Binärbits, um exakt dargestellt zu werden. Das ist die Hauptursache für Rundungsfehler bei Gleitkommazahlen in Computern. Die Genauigkeitseinstellung dieses Umrechners steuert, wie viele Nachkommabits berechnet werden. Eine höhere Genauigkeit liefert eine nähere Näherung, kann bei nicht abbrechenden Brüchen aber dennoch nie ein exaktes Ergebnis erzeugen.\n\nBinärbrüche werden in der Informatik überall verwendet. Der IEEE-754-Standard für Gleitkommaarithmetik codiert Zahlen mit einfacher und doppelter Genauigkeit als Binärbrüche mit einem impliziten führenden 1-Bit und einem biased Exponenten. Digitale Signalprozessoren stellen Audio- und Bilddaten als Festkomma-Binärbrüche dar, sogenannte Q-Format-Zahlen. Zu verstehen, wie Dezimalwerte auf Binärbrüche abgebildet werden, ist unverzichtbar für alle, die Low-Level-Code schreiben, mit eingebetteten Systemen arbeiten oder numerische Genauigkeitsprobleme in Software debuggen."
+  },
+  "examples": {
+    "heading": "Beispiele für Binärbruch-Umrechnungen",
+    "intro": "Häufige Umrechnungen, die sowohl den Prozess von Binär nach Dezimal als auch von Dezimal nach Binär zeigen.",
+    "colInput": "Eingabe",
+    "colOutput": "Ergebnis",
+    "colNote": "Hinweise",
+    "items": [
+      {
+        "input": "101.101 (binär)",
+        "output": "5.625 (dezimal)",
+        "note": "1×4 + 0×2 + 1×1 + 1×0.5 + 0×0.25 + 1×0.125 = 5.625. Eine saubere Umrechnung ohne nötige Näherung."
+      },
+      {
+        "input": "1010.1101 (binär)",
+        "output": "10.8125 (dezimal)",
+        "note": "1×8 + 0×4 + 1×2 + 0×1 + 1×0.5 + 1×0.25 + 0×0.125 + 1×0.0625 = 10.8125."
+      },
+      {
+        "input": "5.625 (dezimal)",
+        "output": "101.101 (binär)",
+        "note": "Ganzzahl 5 = 101₂. Bruch: 0.625×2=1.25→1, 0.25×2=0.5→0, 0.5×2=1.0→1. Das Ergebnis 101.101₂ ist exakt."
+      },
+      {
+        "input": "3.375 (dezimal)",
+        "output": "11.011 (binär)",
+        "note": "Ganzzahl 3 = 11₂. Bruch: 0.375×2=0.75→0, 0.75×2=1.5→1, 0.5×2=1.0→1. Exakt mit 3 Nachkommabits."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "So verwendest du den Binärbruch-Umrechner",
+    "steps": [
+      "Wähle die Umrechnungsrichtung: Wähle „Binär → Dezimal“, um einen Binärbruch in eine Dezimalzahl umzuwandeln, oder „Dezimal → Binär“ für die umgekehrte Richtung.",
+      "Gib deinen Wert in das Eingabefeld ein. Für Binäreingaben verwende nur 0 und 1 mit einem einzelnen Dezimalpunkt (z. B. 101.101). Für Dezimaleingaben gib eine beliebige positive Zahl ein (z. B. 5.625).",
+      "Wenn du von Dezimal nach Binär umrechnest, lege die Nachkommagenauigkeit fest, um zu steuern, wie viele Bits nach dem Binärpunkt berechnet werden (Standard: 8).",
+      "Klicke auf Umrechnen. Das Ergebnis erscheint sofort mit dem klar angezeigten Dezimal- oder Binäräquivalent.",
+      "Klicke auf Zurücksetzen, um alle Felder zu löschen und eine neue Umrechnung zu beginnen."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ zum Binärbruch-Umrechner",
+    "items": [
+      {
+        "q": "Warum kann 0.1 nicht exakt binär dargestellt werden?",
+        "a": "Weil 0.1 im Dezimalsystem 1/10 ist und 10 = 2 × 5. Da 5 keine Zweierpotenz ist, benötigt der Bruch 1/10 unendlich viele Binärziffern. Das ist vergleichbar damit, dass 1/3 nicht als abbrechende Dezimalzahl geschrieben werden kann. Computer speichern eine nahe Näherung in Gleitkommaregistern endlicher Breite, weshalb das dreimalige Addieren von 0.1 in vielen Programmiersprachen nicht exakt 0.3 ergibt."
+      },
+      {
+        "q": "Wie wandle ich den Bruchteil einer Dezimalzahl in Binär um?",
+        "a": "Verwende wiederholtes Verdoppeln: Multipliziere den Bruchteil mit 2, notiere den ganzzahligen Anteil (0 oder 1) als nächstes Binärbit und fahre mit dem verbleibenden Bruchteil fort. Wiederhole dies, bis der Bruch null ist oder du genügend Bits hast. Für 0.625: 0.625×2=1.25 → Bit 1; 0.25×2=0.5 → Bit 0; 0.5×2=1.0 → Bit 1, fertig. Ergebnis: .101₂."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen Festkomma- und Gleitkomma-Binärbrüchen?",
+        "a": "Bei der Festkommadarstellung liegt der Binärpunkt an einer vorgegebenen Position, daher ist die Anzahl der Ganzzahl- und Bruchbits fest. Bei Gleitkomma (z. B. IEEE 754) „gleitet“ der Binärpunkt: Ein separates Exponentenfeld verschiebt die Mantisse nach links oder rechts und ermöglicht so einen sehr großen Dynamikbereich auf Kosten ungleichmäßiger Genauigkeit. Festkomma ist einfacher und schneller; Gleitkomma ist flexibler für wissenschaftliche Berechnungen."
+      },
+      {
+        "q": "Wie viele Binärbits brauche ich, um eine bestimmte Dezimalgenauigkeit zu erreichen?",
+        "a": "Jedes zusätzliche Binärbit fügt ungefähr log₁₀(2) ≈ 0.301 Dezimalstellen Genauigkeit hinzu. Um d Dezimalstellen zu erreichen, brauchst du ungefähr d / 0.301 ≈ 3.32 × d Bits. Zum Beispiel verwendet IEEE 754 mit einfacher Genauigkeit 23 Nachkommabits und liefert etwa 7 signifikante Dezimalstellen."
+      },
+      {
+        "q": "Kann der Umrechner reine Ganzzahlen verarbeiten (ohne Dezimalpunkt)?",
+        "a": "Ja. Wenn du eine ganze Zahl wie 1011 (binär) oder 11 (dezimal) eingibst, behandelt der Umrechner sie als Zahl mit einem Bruchteil von null und führt die Umrechnung normal durch. Das Ergebnis hat ebenfalls keine Nachkomponente."
+      },
+      {
+        "q": "Was bewirkt die Genauigkeitseinstellung bei der Umrechnung von Dezimal nach Binär?",
+        "a": "Die Genauigkeit legt die maximale Anzahl von Bits fest, die nach dem Binärpunkt berechnet werden. Eine höhere Genauigkeit liefert eine nähere Näherung für nicht abbrechende Binärbrüche. Wenn der Bruch vor Erreichen der Genauigkeitsgrenze endet, stoppt der Umrechner früher und das Ergebnis ist exakt. Die maximal unterstützte Genauigkeit beträgt 32 Bits."
+      }
+    ]
+  }
+}

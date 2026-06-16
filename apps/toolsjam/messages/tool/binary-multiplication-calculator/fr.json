@@ -1,0 +1,102 @@
+{
+  "title": "Calculatrice de multiplication binaire",
+  "tagline": "Multipliez instantanément des nombres binaires avec des solutions détaillées et une conversion décimale automatique.",
+  "intro": "Saisissez deux nombres binaires, cliquez sur Calculer, puis consultez le produit binaire et son équivalent décimal.",
+  "field": {
+    "first": "Premier nombre binaire",
+    "second": "Deuxième nombre binaire",
+    "firstPlaceholder": "p. ex. 1011",
+    "secondPlaceholder": "p. ex. 101",
+    "showSteps": "Afficher la solution étape par étape"
+  },
+  "button": {
+    "calculate": "Calculer la multiplication",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalidFirst": "Le premier nombre ne doit contenir que des chiffres binaires (0 et 1).",
+    "invalidSecond": "Le deuxième nombre ne doit contenir que des chiffres binaires (0 et 1).",
+    "empty": "Veuillez saisir les deux nombres binaires."
+  },
+  "result": {
+    "heading": "Résultat",
+    "product": "Produit binaire",
+    "decimal": "Équivalent décimal",
+    "steps": "Solution étape par étape",
+    "stepBit1": "Bit {shift} (1) : {a} << {shift} = {partial}",
+    "stepBit0": "Bit {shift} (0) : 0× = {zeros}",
+    "stepSum": "Total = {product} (décimal : {dec})"
+  },
+  "about": {
+    "heading": "À propos de la multiplication binaire",
+    "body": "La multiplication binaire suit la même logique positionnelle que la multiplication posée en décimal, mais avec des règles par chiffre beaucoup plus simples. En décimal, chaque chiffre peut aller de 0 à 9, ce qui oblige à mémoriser une table de multiplication 10×10. En binaire, chaque chiffre vaut 0 ou 1 ; les seules règles sont donc : 0 × 0 = 0, 0 × 1 = 0, 1 × 0 = 0 et 1 × 1 = 1. La complexité ne réside pas dans la multiplication des bits individuels, mais dans le décalage correct et l’addition des produits partiels.\n\nLa procédure de multiplication posée en binaire fonctionne ainsi. Écrivez les deux nombres l’un au-dessus de l’autre, en désignant l’un comme multiplicande et l’autre comme multiplicateur. Pour chaque bit du multiplicateur, en commençant par le bit le plus à droite (le moins significatif), générez un produit partiel : si le bit du multiplicateur vaut 1, le produit partiel est le multiplicande décalé vers la gauche selon la position du bit ; si le bit vaut 0, le produit partiel est entièrement composé de zéros. Additionnez tous les produits partiels avec l’addition binaire, en propageant les retenues si nécessaire. La somme finale est le produit binaire.\n\nPar exemple, pour multiplier 1011 par 101 : le bit le plus à droite de 101 vaut 1, donc le premier produit partiel est 1011 (décalé de 0 position). Le bit du milieu vaut 0, ce qui donne 0000 décalé d’une position (en contexte, effectivement 00000). Le bit le plus à gauche vaut 1, donc le troisième produit partiel est 1011 décalé de 2 positions, soit 101100. En additionnant 1011 + 0000 + 101100 = 110111, ce qui vaut 55 en décimal, on confirme que 11 × 5 = 55.\n\nLa multiplication binaire se transpose directement au matériel : l’algorithme de décalage et addition est implémenté dans l’unité de multiplication entière de chaque CPU, ainsi que dans les FPGA et les ASIC personnalisés. Les processeurs modernes utilisent des variantes optimisées, comme l’algorithme de Booth, les arbres de Wallace et les multiplicateurs de Dadda, afin de réduire le nombre de produits partiels et d’accélérer l’addition finale. Comprendre le processus fondamental de décalage et addition aide les ingénieurs logiciels à raisonner sur les performances, le dépassement de capacité et les représentations binaires qui sous-tendent toute l’arithmétique entière en informatique.\n\nLe dépassement de capacité est un point critique. Si les deux opérandes sont des entiers sur n bits, leur produit peut nécessiter jusqu’à 2n bits. Une multiplication 32 bits × 32 bits peut produire un résultat sur 64 bits, et les instructions matérielles de multiplication fournissent souvent séparément les moitiés haute et basse du produit précisément pour cette raison. Cette calculatrice fonctionne avec des entiers binaires de longueur arbitraire et affiche le produit complet sans troncature."
+  },
+  "examples": {
+    "heading": "Exemples de multiplication binaire",
+    "intro": "Exemples détaillés couvrant les cas de base, les puissances de deux et les opérandes plus grands.",
+    "colInput": "Opération",
+    "colOutput": "Résultat binaire",
+    "colNote": "Vérification décimale",
+    "items": [
+      {
+        "input": "1011 × 101",
+        "output": "110111",
+        "note": "11 × 5 = 55 ✓. Produits partiels : 1011 + 000000 + 101100 = 110111."
+      },
+      {
+        "input": "1101 × 1",
+        "output": "1101",
+        "note": "13 × 1 = 13 ✓. Multiplier par 1 renvoie toujours le multiplicande inchangé."
+      },
+      {
+        "input": "1000 × 100",
+        "output": "100000",
+        "note": "8 × 4 = 32 ✓. Multiplier par une puissance de deux équivaut à un décalage vers la gauche."
+      },
+      {
+        "input": "11011 × 1101",
+        "output": "101011111",
+        "note": "27 × 13 = 351 ✓. Les opérandes plus grands illustrent toute la procédure de multiplication posée."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice de multiplication binaire",
+    "steps": [
+      "Saisissez le premier nombre binaire (multiplicande) en utilisant uniquement des 0 et des 1 dans le champ « Premier nombre binaire ».",
+      "Saisissez le deuxième nombre binaire (multiplicateur) dans le champ « Deuxième nombre binaire ».",
+      "Activez « Afficher la solution étape par étape » si vous souhaitez voir les produits partiels individuels et le processus d’addition.",
+      "Cliquez sur « Calculer la multiplication ». Le produit binaire et son équivalent décimal apparaissent dans la zone de résultat.",
+      "Cliquez sur Réinitialiser pour effacer les deux champs et recommencer avec de nouvelles valeurs."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la multiplication binaire",
+    "items": [
+      {
+        "q": "En quoi la multiplication binaire diffère-t-elle de la multiplication décimale ?",
+        "a": "L’algorithme est identique — décaler et additionner des produits partiels —, mais la multiplication des chiffres est triviale en binaire : tout bit multiplié par 0 vaut 0, et tout bit multiplié par 1 vaut lui-même. Cela rend la multiplication binaire plus facile à implémenter en matériel, raison pour laquelle tous les CPU effectuent l’arithmétique entière en binaire. En contrepartie, les nombres binaires nécessitent davantage de chiffres pour représenter la même valeur."
+      },
+      {
+        "q": "Pourquoi multiplier par une puissance de deux revient-il à décaler vers la gauche ?",
+        "a": "En binaire, multiplier par 2 revient à ajouter un zéro (décaler tous les bits d’une position vers la gauche), tout comme multiplier un nombre décimal par 10 ajoute un zéro. Multiplier par 2ⁿ décale vers la gauche de n positions. Par exemple, 101 (5) décalé de 2 positions vers la gauche devient 10100 (20), et 5 × 4 = 20. C’est pourquoi les CPU et les compilateurs remplacent les multiplications par des puissances de deux par des instructions de décalage rapides."
+      },
+      {
+        "q": "Cette calculatrice peut-elle multiplier des nombres avec des parties fractionnaires binaires ?",
+        "a": "Cette calculatrice traite uniquement les entiers binaires. Pour multiplier des fractions binaires, utilisez la multiplication entière sur le significande, puis ajustez le point binaire : le point binaire du produit est placé de sorte que le nombre total de bits fractionnaires soit égal à la somme des bits fractionnaires des deux opérandes. Par exemple, 1.01 × 10.1 = produit entier de 101 × 101 = 11001, avec 2+1=3 bits fractionnaires, ce qui donne 11.001."
+      },
+      {
+        "q": "Quelle est la taille maximale du résultat ?",
+        "a": "Si le multiplicande comporte m bits et le multiplicateur n bits, le produit comporte au plus m + n bits. Par exemple, deux nombres de 4 bits peuvent produire un résultat allant jusqu’à 8 bits. Cette calculatrice gère les entrées de longueur arbitraire et affiche le produit binaire complet sans troncature."
+      },
+      {
+        "q": "Comment vérifier un résultat de multiplication binaire ?",
+        "a": "Convertissez les deux opérandes en décimal, multipliez-les en décimal, puis reconvertissez le produit décimal en binaire et comparez. L’équivalent décimal affiché par cette calculatrice effectue exactement cette vérification. Vous pouvez aussi vérifier chaque produit partiel individuellement, puis contrôler l’addition binaire colonne par colonne."
+      },
+      {
+        "q": "L’ordre des opérandes a-t-il une importance ?",
+        "a": "Non. La multiplication binaire est commutative : A × B = B × A. Toutefois, le nombre de produits partiels générés dépend du nombre de bits du multiplicateur ; échanger les opérandes peut donc modifier les étapes intermédiaires affichées dans la vue détaillée, tout en donnant le même produit final."
+      }
+    ]
+  }
+}

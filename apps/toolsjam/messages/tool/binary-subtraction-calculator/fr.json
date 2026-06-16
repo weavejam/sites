@@ -1,0 +1,119 @@
+{
+  "title": "Calculatrice de soustraction binaire",
+  "tagline": "Effectuez une soustraction binaire avec l'emprunt standard ou le complément à deux, avec solution étape par étape et équivalents décimaux.",
+  "intro": "Saisissez le diminuende et le diminuteur sous forme de nombres binaires, choisissez la méthode de calcul et obtenez le résultat immédiatement.",
+  "field": {
+    "minuend": "Diminuende (premier nombre)",
+    "subtrahend": "Diminuteur (second nombre)",
+    "minuendPlaceholder": "p. ex. 1101",
+    "subtrahendPlaceholder": "p. ex. 101",
+    "method": "Méthode de calcul",
+    "showSteps": "Afficher le déroulé étape par étape"
+  },
+  "type": {
+    "standardBorrowing": "Emprunt standard",
+    "standardBorrowing_desc": "Soustrayez colonne par colonne de droite à gauche, en empruntant aux bits de poids supérieur si nécessaire : la méthode classique au papier-crayon.",
+    "twosComplement": "Complément à deux",
+    "twosComplement_desc": "Négativez le diminuteur avec le complément à deux, puis ajoutez-le au diminuende : la méthode utilisée par tous les processeurs modernes."
+  },
+  "button": {
+    "calculate": "Calculer la soustraction",
+    "reset": "Réinitialiser tous les champs"
+  },
+  "error": {
+    "invalidMinuend": "Le diminuende ne doit contenir que des chiffres binaires (0 et 1).",
+    "invalidSubtrahend": "Le diminuteur ne doit contenir que des chiffres binaires (0 et 1).",
+    "empty": "Veuillez saisir les deux nombres binaires.",
+    "negative": "Le résultat par emprunt standard est négatif (diminuende < diminuteur). Utilisez le mode complément à deux pour les résultats signés."
+  },
+  "result": {
+    "heading": "Résultat",
+    "difference": "Différence binaire",
+    "decimal": "Équivalent décimal",
+    "steps": "Solution étape par étape",
+    "stepNegativeFlag": "Diminuende ({a}) < diminuteur ({b}) : le résultat est négatif.",
+    "stepAbsDiff": "|{decA} − {decB}| = {abs} = {bin}₂",
+    "stepMinuend": "Diminuende : {a} (décimal {decA})",
+    "stepSubtrahend": "Diminuteur : {b} (décimal {decB})",
+    "stepSubtractColumns": "Soustraire colonne par colonne de droite à gauche, avec emprunt si nécessaire.",
+    "stepDifference": "Différence : {bin} (décimal {dec})",
+    "stepSubtrahendPadded": "Diminuteur complété : {b}",
+    "stepOnesComp": "Complément à un : {ones}",
+    "stepTwosComp": "Complément à deux : {twos}",
+    "stepMinuendPadded": "Diminuende complété : {a}",
+    "stepSumResult": "Somme : {a} + {twos} = {sum} → ignorer la retenue → {result}",
+    "stepDecResult": "Résultat décimal : {dec}"
+  },
+  "about": {
+    "heading": "À propos de la soustraction binaire",
+    "body": "La soustraction binaire est l'une des quatre opérations arithmétiques binaires fondamentales. Elle s'effectue principalement de deux manières : la méthode par emprunt standard et la méthode du complément à deux. Comprendre les deux est utile aux étudiants en informatique, aux concepteurs d'électronique numérique et à toute personne travaillant au niveau des bits.\n\nLa méthode par emprunt standard reproduit la soustraction posée en décimal. Vous alignez les deux nombres binaires sur leurs bits les plus à droite, puis vous soustrayez colonne par colonne de droite à gauche. Lorsque le chiffre du haut est plus petit que celui du bas (c'est-à-dire lorsque vous devez soustraire 1 à 0), vous empruntez à la colonne d'ordre supérieur suivante, en l'abaissant temporairement d'une position et en ajoutant 2 à la position actuelle : l'équivalent binaire de l'emprunt de 10 en décimal. Le processus continue jusqu'à ce que toutes les colonnes soient traitées. Cette méthode est intuitive et facile à vérifier à la main.\n\nLa méthode du complément à deux est la façon dont pratiquement tous les processeurs et microcontrôleurs modernes implémentent réellement la soustraction en matériel. Pour soustraire B de A, calculez d'abord le complément à deux de B : inversez tous les bits de B (complément à un), puis ajoutez 1. Ensuite, additionnez A et le complément à deux de B avec l'addition binaire standard. Toute retenue sortant du bit le plus significatif est ignorée. Le résultat est A − B en représentation complément à deux. Cette approche est privilégiée en matériel, car elle évite un circuit de soustraction séparé : un additionneur suffit pour l'addition comme pour la soustraction.\n\nLe complément à deux est aussi la norme universelle de représentation des entiers signés dans le matériel informatique. Dans un système en complément à deux sur n bits, les nombres positifs sont représentés normalement, tandis que les nombres négatifs sont représentés par leur complément à deux. La plage des entiers signés en complément à deux sur n bits va de −2^(n−1) à 2^(n−1) − 1. Pour des entiers sur 8 bits, cela donne −128 à 127. Cette représentation rend la détection de dépassement simple : un dépassement se produit lorsque la retenue entrant dans le bit de signe diffère de la retenue qui en sort.\n\nLes deux méthodes donnent le même résultat lorsque le diminuende est supérieur ou égal au diminuteur. Lorsque le diminuende est plus petit, la méthode par emprunt standard nécessiterait un emprunt initial négatif, tandis que la méthode du complément à deux produit naturellement le résultat signé correct dans la largeur de bits donnée. Cette calculatrice gère les deux cas et signale quand le résultat serait négatif en mode emprunt standard."
+  },
+  "examples": {
+    "heading": "Exemples de soustraction binaire",
+    "intro": "Exemples d'entraînement illustrant les méthodes par emprunt standard et par complément à deux.",
+    "colInput": "Opération",
+    "colOutput": "Résultat binaire",
+    "colNote": "Vérification décimale",
+    "items": [
+      {
+        "input": "1101 − 101 (emprunt standard)",
+        "output": "1000",
+        "note": "13 − 5 = 8 ✓. Aucun emprunt n'est nécessaire dans les bits de poids fort ; l'emprunt se produit dans la colonne des unités."
+      },
+      {
+        "input": "10010 − 1011 (emprunt standard)",
+        "output": "111",
+        "note": "18 − 11 = 7 ✓. Plusieurs emprunts sont nécessaires sur quatre colonnes."
+      },
+      {
+        "input": "1100 − 111 (complément à deux)",
+        "output": "101",
+        "note": "12 − 7 = 5 ✓. Le complément à deux de 0111 est 1001 ; 1100 + 1001 = 10101 ; ignorer la retenue → 0101."
+      },
+      {
+        "input": "11110000 − 10101011 (emprunt standard)",
+        "output": "1000101",
+        "note": "240 − 171 = 69 ✓. Une soustraction complexe avec emprunts multiples sur huit chiffres binaires."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice de soustraction binaire",
+    "steps": [
+      "Saisissez le diminuende (le nombre dont on soustrait) dans le premier champ en utilisant uniquement les chiffres binaires 0 et 1.",
+      "Saisissez le diminuteur (le nombre à soustraire) dans le second champ.",
+      "Choisissez la méthode de calcul : 'Emprunt standard' pour l'approche classique colonne par colonne, ou 'Complément à deux' pour la méthode de type processeur.",
+      "Activez 'Afficher le déroulé étape par étape' pour voir les étapes intermédiaires, les emprunts ou la transformation en complément à deux.",
+      "Cliquez sur 'Calculer la soustraction' pour voir la différence binaire et son équivalent décimal."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sur la soustraction binaire",
+    "items": [
+      {
+        "q": "Qu'est-ce que l'emprunt dans une soustraction binaire ?",
+        "a": "L'emprunt dans une soustraction binaire consiste à prendre une unité à un bit d'ordre supérieur lorsque la position actuelle ne permet pas d'effectuer la soustraction (par exemple, soustraire 1 à 0). Vous empruntez 1 à la colonne supérieure suivante, ce qui ajoute 2 (binaire 10) à la colonne actuelle et transforme 0 − 1 en 10 − 1 = 1. C'est l'équivalent binaire exact de l'emprunt de 10 dans une soustraction décimale."
+      },
+      {
+        "q": "Qu'est-ce que le complément à deux et pourquoi l'utilise-t-on ?",
+        "a": "Le complément à deux est une méthode de représentation des entiers signés en binaire, ainsi qu'une technique de soustraction. Pour calculer le complément à deux d'un nombre, inversez tous ses bits (ce qui produit le complément à un), puis ajoutez 1. Les processeurs utilisent le complément à deux parce qu'il permet au même additionneur matériel de gérer l'addition et la soustraction : soustraire B de A revient à ajouter à A le complément à deux de B. Il garantit aussi une seule représentation de zéro, évitant l'ambiguïté des anciens formats signe-valeur absolue et complément à un."
+      },
+      {
+        "q": "Que se passe-t-il lorsque le résultat est négatif ?",
+        "a": "Si le diminuende est plus petit que le diminuteur, le résultat réel est négatif. En mode emprunt standard, la calculatrice signale cette situation, car le résultat ne peut pas être représenté comme une chaîne binaire positive. En mode complément à deux, le résultat est correctement représenté comme un nombre négatif en complément à deux, et la calculatrice affiche l'équivalent décimal signé."
+      },
+      {
+        "q": "Comment la soustraction binaire est-elle utilisée dans un CPU ?",
+        "a": "Les CPU implémentent la soustraction avec la méthode du complément à deux dans une unité arithmétique et logique (ALU). L'ALU contient un additionneur, et un seul signal de contrôle inverse les bits du diminuteur et définit la retenue entrante à 1, ce qui revient à additionner le complément à deux. Aucun circuit de soustraction séparé n'est donc nécessaire, ce qui économise des transistors et simplifie la conception. La retenue sortant du bit le plus significatif sert à détecter le dépassement."
+      },
+      {
+        "q": "Le résultat change-t-il lorsque je change de méthode ?",
+        "a": "Lorsque le diminuende est supérieur ou égal au diminuteur, les deux méthodes produisent toujours le même résultat numérique final, avec seulement des étapes intermédiaires différentes. La méthode par emprunt standard travaille directement sur les chiffres d'origine ; la méthode du complément à deux négative d'abord le diminuteur, puis additionne. Les deux donnent la même différence correcte."
+      },
+      {
+        "q": "Puis-je soustraire un nombre binaire plus grand d'un plus petit ?",
+        "a": "Oui, mais le résultat est négatif. En mode emprunt standard, cette calculatrice affichera un avertissement, car une chaîne binaire positive ne peut pas représenter le résultat négatif. Passez en mode complément à deux pour gérer les différences négatives : le résultat sera l'encodage en complément à deux de la valeur négative, et l'équivalent décimal signé sera affiché avec un signe moins."
+      }
+    ]
+  }
+}

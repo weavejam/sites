@@ -1,0 +1,106 @@
+{
+  "title": "Calculatrice espace colonne - trouver les bases de matrice",
+  "tagline": "Trouvez les vecteurs de base, les colonnes pivots et la dimension d’une matrice par élimination de Gauss, puis testez si un vecteur appartient à l’espace colonne.",
+  "intro": "Choisissez la taille de la matrice, saisissez ses coefficients et, si besoin, ajoutez un vecteur de test pour vérifier son appartenance à l’espace colonne.",
+  "field": {
+    "rows": "Lignes",
+    "columns": "Colonnes",
+    "matrix": "Coefficients de la matrice",
+    "matrixCell": "A{row}{col}",
+    "testVector": "Vecteur de test facultatif",
+    "vectorCell": "b{row}"
+  },
+  "placeholder": {
+    "number": "0",
+    "optionalNumber": "Facultatif"
+  },
+  "button": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  },
+  "error": {
+    "invalidMatrix": "Veuillez saisir un nombre valide dans chaque case de la matrice.",
+    "invalidVector": "Si vous voulez tester un vecteur, remplissez chaque entrée avec un nombre valide."
+  },
+  "result": {
+    "heading": "Résultat",
+    "rank": "Rang",
+    "dimension": "Dimension de l’espace colonne",
+    "pivotColumns": "Colonnes pivots",
+    "basisVectors": "Vecteurs de base",
+    "basisVector": "Vecteur de base {index} (colonne {column})",
+    "vectorCheck": "Appartenance du vecteur",
+    "vectorInColumnSpace": "Le vecteur de test appartient à l’espace colonne.",
+    "vectorNotInColumnSpace": "Le vecteur de test n’appartient pas à l’espace colonne.",
+    "rowEchelon": "Forme échelonnée",
+    "zeroMatrix": "La matrice nulle n’a aucune colonne pivot, donc son espace colonne ne contient que le vecteur nul.",
+    "none": "Aucun"
+  },
+  "about": {
+    "heading": "À propos de la calculatrice d’espace colonne",
+    "body": "L’espace colonne d’une matrice est l’ensemble de toutes les combinaisons linéaires de ses colonnes. En pratique, il décrit tous les vecteurs que l’on peut obtenir en multipliant la matrice par un vecteur de coefficients. Cette notion apparaît partout en algèbre linéaire : résolution de systèmes d’équations, compréhension des transformations, description des espaces image, analyse du rang et détermination de la possibilité de générer un vecteur cible à partir d’un ensemble donné de colonnes. Une calculatrice d’espace colonne rend ces idées concrètes en montrant exactement quelles colonnes comptent et lesquelles sont redondantes.\n\nL’idée de calcul clé est l’élimination de Gauss. Lorsqu’on réduit une matrice par lignes, on fait apparaître les colonnes pivots : les colonnes où apparaissent les premiers éléments non nuls après l’élimination. Ces positions de pivot indiquent quelles colonnes d’origine forment une base de l’espace colonne. C’est un point important : les vecteurs de base doivent venir de la matrice d’origine, et non de la forme échelonnée obtenue, car les opérations sur les lignes changent les valeurs des colonnes tout en conservant les relations de dépendance linéaire nécessaires pour repérer les pivots. Une fois les colonnes pivots connues, le rang de la matrice est simplement le nombre de pivots, et ce rang est aussi la dimension de l’espace colonne.\n\nCette calculatrice permet d’explorer des matrices carrées et rectangulaires de taille 2 à 4 dans chaque dimension. Cette plage suffit pour de nombreux exemples de cours tout en gardant une interface lisible. Après saisie de la matrice, l’outil calcule les colonnes pivots, liste les vecteurs de base correspondants et affiche la matrice échelonnée pour que vous puissiez inspecter directement le résultat de l’élimination. Si la matrice possède moins de pivots que de colonnes, certaines colonnes dépendent des autres et n’ont pas besoin d’apparaître dans la base.\n\nLe vecteur de test facultatif ajoute un niveau utile. Pour décider si un vecteur b appartient à l’espace colonne de A, on compare le rang de A avec celui de la matrice augmentée [A|b]. Si le rang ne change pas, alors b est compatible avec les relations entre colonnes déjà présentes dans A et appartient donc à l’espace colonne. Si le rang augmente, le vecteur introduit une nouvelle direction indépendante et n’appartient pas à l’espace colonne. Ce test de rang relie l’idée géométrique d’enveloppe linéaire à la structure algébrique des systèmes linéaires.\n\nQue vous révisiez pour un examen d’algèbre linéaire, corrigiez un devoir ou cherchiez à mieux comprendre l’enveloppe linéaire et le rang, une calculatrice d’espace colonne fait gagner du temps et réduit les erreurs de calcul. Elle rappelle aussi l’idée essentielle : l’espace colonne est déterminé par les colonnes pivots de la matrice d’origine, et sa dimension est exactement le rang."
+  },
+  "examples": {
+    "heading": "Exemples de calculatrice d’espace colonne",
+    "intro": "Ces exemples montrent comment les colonnes pivots déterminent la base et comment le test de vecteur facultatif utilise la cohérence des rangs.",
+    "colInput": "Entrée",
+    "colOutput": "Résultat",
+    "colNote": "Explication",
+    "items": [
+      {
+        "input": "A = [[1, 0], [0, 1]]",
+        "output": "Colonnes pivots 1 et 2, rang 2",
+        "note": "La matrice identité a deux colonnes indépendantes, donc la base est exactement les deux colonnes d’origine et l’espace colonne est tout R²."
+      },
+      {
+        "input": "A = [[1, 2, 3], [2, 4, 6], [0, 1, 1]]",
+        "output": "Colonnes pivots 1 et 2, rang 2",
+        "note": "La troisième colonne dépend des deux premières, donc elle ne fait pas partie de la base même si elle reste dans la matrice d’origine."
+      },
+      {
+        "input": "A = [[1, 0], [0, 1]], b = [4, 5]",
+        "output": "b appartient à l’espace colonne",
+        "note": "Comme la matrice engendre tout R², tout vecteur à 2 composantes peut s’écrire comme combinaison linéaire des colonnes."
+      },
+      {
+        "input": "A = [[1, 2], [2, 4]], b = [1, 0]",
+        "output": "b n’appartient pas à l’espace colonne",
+        "note": "La matrice a rang 1, donc son espace colonne est seulement une droite dans R². Le vecteur [1, 0] n’est pas sur cette droite."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Comment utiliser la calculatrice d’espace colonne",
+    "steps": [
+      "Choisissez le nombre de lignes et de colonnes de votre matrice. La grille de saisie se met à jour immédiatement selon la taille choisie.",
+      "Remplissez chaque case de la matrice avec un nombre. La calculatrice utilise l’élimination de Gauss pour repérer les colonnes pivots et calculer le rang.",
+      "Si vous voulez tester un vecteur, saisissez une valeur par ligne dans les champs du vecteur de test facultatif. Laissez-les vides si vous voulez seulement la base.",
+      "Cliquez sur Calculer pour voir les colonnes pivots, les vecteurs de base pris dans la matrice d’origine, la dimension de l’espace colonne et la forme échelonnée."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ de la calculatrice d’espace colonne",
+    "items": [
+      {
+        "q": "Qu’est-ce que l’espace colonne d’une matrice ?",
+        "a": "L’espace colonne est l’ensemble de tous les vecteurs que l’on peut construire par combinaison linéaire des colonnes de la matrice. Il décrit chaque vecteur de sortie possible de la transformation linéaire définie par la matrice."
+      },
+      {
+        "q": "Pourquoi les vecteurs de base viennent-ils de la matrice d’origine et non de la matrice réduite ?",
+        "a": "Les opérations sur les lignes préservent quelles colonnes sont dépendantes, donc elles indiquent où se trouvent les pivots. En revanche, ces opérations changent les valeurs réelles des colonnes, donc la base doit être prise dans les colonnes pivots correspondantes de la matrice d’origine."
+      },
+      {
+        "q": "La dimension de l’espace colonne est-elle la même chose que le rang ?",
+        "a": "Oui. La dimension de l’espace colonne est égale au nombre de colonnes pivots, et ce nombre est le rang de la matrice."
+      },
+      {
+        "q": "Comment fonctionne le test d’appartenance du vecteur ?",
+        "a": "La calculatrice augmente la matrice avec le vecteur de test et compare les rangs avant et après augmentation. Si le rang n’augmente pas, le vecteur est dans l’espace colonne ; s’il augmente, il n’y est pas."
+      },
+      {
+        "q": "Que se passe-t-il pour la matrice nulle ?",
+        "a": "La matrice nulle a un rang de 0 et aucune colonne pivot, donc il n’y a aucun vecteur de base non nul à afficher. Son espace colonne contient seulement le vecteur nul, car toute combinaison linéaire de colonnes nulles reste nulle."
+      }
+    ]
+  }
+}

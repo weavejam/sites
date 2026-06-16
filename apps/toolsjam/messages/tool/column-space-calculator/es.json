@@ -1,0 +1,106 @@
+{
+  "title": "Calculadora de espacio columna - hallar bases de matriz",
+  "tagline": "Encuentra los vectores base, las columnas pivote y la dimensión de una matriz con eliminación gaussiana, y prueba si un vector pertenece al espacio columna.",
+  "intro": "Elige el tamaño de la matriz, introduce sus elementos y, si quieres, añade un vector de prueba para comprobar si pertenece al espacio columna.",
+  "field": {
+    "rows": "Filas",
+    "columns": "Columnas",
+    "matrix": "Elementos de la matriz",
+    "matrixCell": "A{row}{col}",
+    "testVector": "Vector de prueba opcional",
+    "vectorCell": "b{row}"
+  },
+  "placeholder": {
+    "number": "0",
+    "optionalNumber": "Opcional"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Restablecer"
+  },
+  "error": {
+    "invalidMatrix": "Introduce un número válido en cada casilla de la matriz.",
+    "invalidVector": "Si quieres probar un vector, completa cada entrada con un número válido."
+  },
+  "result": {
+    "heading": "Resultado",
+    "rank": "Rango",
+    "dimension": "Dimensión del espacio columna",
+    "pivotColumns": "Columnas pivote",
+    "basisVectors": "Vectores base",
+    "basisVector": "Vector base {index} (columna {column})",
+    "vectorCheck": "Pertenencia del vector",
+    "vectorInColumnSpace": "El vector de prueba pertenece al espacio columna.",
+    "vectorNotInColumnSpace": "El vector de prueba no pertenece al espacio columna.",
+    "rowEchelon": "Forma escalonada por filas",
+    "zeroMatrix": "La matriz cero no tiene columnas pivote, así que su espacio columna contiene solo al vector cero.",
+    "none": "Ninguna"
+  },
+  "about": {
+    "heading": "Acerca de la calculadora de espacio columna",
+    "body": "El espacio columna de una matriz es el conjunto de todas las combinaciones lineales de sus columnas. En términos prácticos, indica cada vector que puede producirse al multiplicar la matriz por un vector de coeficientes. Este concepto aparece en todas partes en álgebra lineal: al resolver sistemas de ecuaciones, entender transformaciones, describir espacios imagen, analizar el rango y determinar si un vector objetivo puede generarse a partir de un conjunto dado de columnas. Una calculadora de espacio columna hace concretas estas ideas mostrando exactamente qué columnas importan y cuáles son redundantes.\n\nLa idea computacional clave es la eliminación gaussiana. Al reducir una matriz por filas, aparecen las columnas pivote: las columnas donde surgen las entradas no nulas líderes después de la eliminación. Esas posiciones pivote identifican qué columnas originales forman una base del espacio columna. Este detalle es importante: los vectores base deben salir de la matriz original, no de la forma escalonada resultante, porque las operaciones por filas cambian los valores de las columnas aunque preservan las relaciones de dependencia lineal necesarias para localizar los pivotes. Una vez conocidas las columnas pivote, el rango de la matriz es simplemente el número de pivotes, y ese rango es también la dimensión del espacio columna.\n\nEsta calculadora te permite explorar tanto matrices cuadradas como rectangulares de tamaño 2 a 4 en cada dimensión. Ese rango es suficiente para cubrir muchos ejemplos de clase sin complicar la interfaz. Después de introducir la matriz, la herramienta calcula las columnas pivote, lista los vectores base correspondientes y muestra la matriz reducida para que puedas inspeccionar directamente el resultado de la eliminación. Si la matriz tiene menos pivotes que columnas, algunas columnas dependen de las demás y no necesitan aparecer en la base.\n\nEl vector de prueba opcional añade otra capa útil. Para decidir si un vector b pertenece al espacio columna de A, compara el rango de A con el rango de la matriz aumentada [A|b]. Si el rango no cambia, entonces b es coherente con las relaciones entre columnas ya presentes en A y por tanto pertenece al espacio columna. Si el rango aumenta, el vector introduce una nueva dirección independiente y no pertenece al espacio columna. Esta prueba de rango conecta la idea geométrica de span con la estructura algebraica de los sistemas lineales.\n\nTanto si estudias para un examen de álgebra lineal, como si revisas deberes o construyes intuición sobre span y rango, una calculadora de espacio columna ahorra tiempo y reduce errores aritméticos. También refuerza la idea central: el espacio columna queda determinado por las columnas pivote de la matriz original, y su dimensión es exactamente el rango."
+  },
+  "examples": {
+    "heading": "Ejemplos de la calculadora de espacio columna",
+    "intro": "Estos ejemplos muestran cómo las columnas pivote determinan la base y cómo la prueba opcional de vector usa la coherencia del rango.",
+    "colInput": "Entrada",
+    "colOutput": "Resultado",
+    "colNote": "Explicación",
+    "items": [
+      {
+        "input": "A = [[1, 0], [0, 1]]",
+        "output": "Columnas pivote 1 y 2, rango 2",
+        "note": "La matriz identidad tiene dos columnas independientes, así que la base es exactamente las dos columnas originales y el espacio columna es todo R²."
+      },
+      {
+        "input": "A = [[1, 2, 3], [2, 4, 6], [0, 1, 1]]",
+        "output": "Columnas pivote 1 y 2, rango 2",
+        "note": "La tercera columna depende de las dos primeras, así que no pertenece a la base aunque siga formando parte de la matriz original."
+      },
+      {
+        "input": "A = [[1, 0], [0, 1]], b = [4, 5]",
+        "output": "b pertenece al espacio columna",
+        "note": "Como la matriz genera todo R², cualquier vector de 2 entradas puede escribirse como combinación lineal de sus columnas."
+      },
+      {
+        "input": "A = [[1, 2], [2, 4]], b = [1, 0]",
+        "output": "b no pertenece al espacio columna",
+        "note": "La matriz tiene rango 1, así que su espacio columna es solo una recta en R². El vector [1, 0] no está en esa recta."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Cómo usar la calculadora de espacio columna",
+    "steps": [
+      "Elige el número de filas y columnas de tu matriz. La cuadrícula de entrada se actualiza de inmediato al tamaño seleccionado.",
+      "Completa cada entrada de la matriz con un número. La calculadora usa eliminación gaussiana para localizar las columnas pivote y calcular el rango.",
+      "Si quieres probar un vector, introduce un valor por cada fila en los campos del vector de prueba opcional. Déjalos en blanco si solo necesitas la base.",
+      "Haz clic en Calcular para ver las columnas pivote, los vectores base tomados de la matriz original, la dimensión del espacio columna y la forma escalonada por filas."
+    ]
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes sobre la calculadora de espacio columna",
+    "items": [
+      {
+        "q": "¿Qué es el espacio columna de una matriz?",
+        "a": "El espacio columna es el conjunto de todos los vectores que puedes construir mediante combinaciones lineales de las columnas de la matriz. Describe cada posible vector de salida de la transformación lineal definida por la matriz."
+      },
+      {
+        "q": "¿Por qué los vectores base salen de la matriz original y no de la reducida?",
+        "a": "Las operaciones por filas preservan qué columnas son dependientes, así que indican dónde están los pivotes. Sin embargo, esas operaciones cambian los valores reales de las columnas, por lo que la base debe tomarse de las columnas pivote correspondientes de la matriz original."
+      },
+      {
+        "q": "¿La dimensión del espacio columna es la misma que el rango?",
+        "a": "Sí. La dimensión del espacio columna es igual al número de columnas pivote, y ese recuento es el rango de la matriz."
+      },
+      {
+        "q": "¿Cómo funciona la prueba de pertenencia del vector?",
+        "a": "La calculadora amplía la matriz con el vector de prueba y compara los rangos antes y después. Si el rango no aumenta, el vector está en el espacio columna; si aumenta, no lo está."
+      },
+      {
+        "q": "¿Qué pasa con la matriz cero?",
+        "a": "La matriz cero tiene rango 0 y no tiene columnas pivote, así que no hay vectores base no nulos para mostrar. Su espacio columna contiene solo el vector cero porque cualquier combinación lineal de columnas cero sigue dando cero."
+      }
+    ]
+  }
+}

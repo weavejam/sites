@@ -1,0 +1,102 @@
+{
+  "title": "Calculadora de multiplicação binária",
+  "tagline": "Multiplique números binários instantaneamente com soluções passo a passo e conversão decimal automática.",
+  "intro": "Digite dois números binários, clique em Calcular e veja o produto binário junto com seu equivalente decimal.",
+  "field": {
+    "first": "Primeiro número binário",
+    "second": "Segundo número binário",
+    "firstPlaceholder": "ex.: 1011",
+    "secondPlaceholder": "ex.: 101",
+    "showSteps": "Mostrar solução passo a passo"
+  },
+  "button": {
+    "calculate": "Calcular multiplicação",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalidFirst": "O primeiro número deve conter apenas dígitos binários (0 e 1).",
+    "invalidSecond": "O segundo número deve conter apenas dígitos binários (0 e 1).",
+    "empty": "Digite os dois números binários."
+  },
+  "result": {
+    "heading": "Resultado",
+    "product": "Produto binário",
+    "decimal": "Equivalente decimal",
+    "steps": "Solução passo a passo",
+    "stepBit1": "Bit {shift} (1): {a} << {shift} = {partial}",
+    "stepBit0": "Bit {shift} (0): 0× = {zeros}",
+    "stepSum": "Total = {product} (decimal: {dec})"
+  },
+  "about": {
+    "heading": "Sobre a multiplicação binária",
+    "body": "A multiplicação binária segue a mesma lógica posicional da multiplicação longa decimal, mas com regras de dígitos individuais muito mais simples. No sistema decimal, cada dígito pode ser de 0–9, o que exige memorizar uma tabela de multiplicação 10×10. No binário, cada dígito é 0 ou 1, então as únicas regras são: 0 × 0 = 0, 0 × 1 = 0, 1 × 0 = 0 e 1 × 1 = 1. A complexidade não está em multiplicar bits individuais, mas em deslocar e somar corretamente os produtos parciais.\n\nO procedimento de multiplicação longa em binário funciona assim. Escreva os dois números, um sobre o outro, designando um como multiplicando e o outro como multiplicador. Para cada bit do multiplicador, começando pelo bit mais à direita (menos significativo), gere um produto parcial: se o bit do multiplicador for 1, o produto parcial é o multiplicando deslocado para a esquerda pela posição do bit; se o bit for 0, o produto parcial é composto apenas de zeros. Some todos os produtos parciais usando adição binária, propagando os vai-um conforme necessário. A soma final é o produto binário.\n\nPor exemplo, para multiplicar 1011 por 101: o bit mais à direita de 101 é 1, então o primeiro produto parcial é 1011 (deslocado 0 casas). O bit do meio é 0, resultando em 0000 deslocado 1 casa (no contexto, efetivamente 00000). O bit mais à esquerda é 1, então o terceiro produto parcial é 1011 deslocado 2 casas, ou seja, 101100. Somando 1011 + 0000 + 101100 = 110111, que equivale a 55 em decimal, confirma-se que 11 × 5 = 55.\n\nA multiplicação binária se mapeia diretamente para o hardware: o algoritmo de deslocar e somar é implementado na unidade de multiplicação inteira de toda CPU, bem como em FPGAs e ASICs personalizados. Processadores modernos usam variantes otimizadas, como o algoritmo de Booth, árvores de Wallace e multiplicadores de Dadda, para reduzir o número de produtos parciais e acelerar a adição final. Entender o processo fundamental de deslocar e somar ajuda engenheiros de software a raciocinar sobre desempenho, overflow e as representações binárias que sustentam toda a aritmética inteira na computação.\n\nOverflow é uma preocupação crítica. Se ambos os operandos forem inteiros de n bits, o produto pode exigir até 2n bits. Uma multiplicação de 32 bits × 32 bits pode produzir um resultado de 64 bits, e instruções de multiplicação em hardware frequentemente fornecem metades alta e baixa separadas do produto exatamente por esse motivo. Esta calculadora trabalha com inteiros binários de comprimento arbitrário e exibe o produto completo sem truncamento."
+  },
+  "examples": {
+    "heading": "Exemplos de multiplicação binária",
+    "intro": "Exemplos resolvidos cobrindo casos básicos, potências de dois e operandos maiores.",
+    "colInput": "Operação",
+    "colOutput": "Resultado binário",
+    "colNote": "Verificação decimal",
+    "items": [
+      {
+        "input": "1011 × 101",
+        "output": "110111",
+        "note": "11 × 5 = 55 ✓. Produtos parciais: 1011 + 000000 + 101100 = 110111."
+      },
+      {
+        "input": "1101 × 1",
+        "output": "1101",
+        "note": "13 × 1 = 13 ✓. Multiplicar por 1 sempre retorna o multiplicando sem alteração."
+      },
+      {
+        "input": "1000 × 100",
+        "output": "100000",
+        "note": "8 × 4 = 32 ✓. Multiplicar por uma potência de dois equivale a um deslocamento à esquerda."
+      },
+      {
+        "input": "11011 × 1101",
+        "output": "101011111",
+        "note": "27 × 13 = 351 ✓. Operandos maiores ilustram todo o procedimento de multiplicação longa."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de multiplicação binária",
+    "steps": [
+      "Digite o primeiro número binário (multiplicando) usando apenas 0s e 1s no campo “Primeiro número binário”.",
+      "Digite o segundo número binário (multiplicador) no campo “Segundo número binário”.",
+      "Ative “Mostrar solução passo a passo” se quiser ver os produtos parciais individuais e o processo de adição.",
+      "Clique em “Calcular multiplicação”. O produto binário e seu equivalente decimal aparecem na caixa de resultado.",
+      "Clique em Redefinir para limpar os dois campos e recomeçar com novos valores."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ sobre multiplicação binária",
+    "items": [
+      {
+        "q": "Como a multiplicação binária difere da multiplicação decimal?",
+        "a": "O algoritmo é idêntico — deslocar e somar produtos parciais —, mas a multiplicação de dígitos é trivial em binário: qualquer bit vezes 0 é 0, e qualquer bit vezes 1 é ele mesmo. Isso torna a multiplicação binária mais fácil de implementar em hardware, por isso todas as CPUs executam aritmética inteira em binário. A contrapartida é que números binários exigem mais dígitos para representar o mesmo valor."
+      },
+      {
+        "q": "Por que multiplicar por uma potência de dois equivale a deslocar à esquerda?",
+        "a": "Em binário, multiplicar por 2 equivale a acrescentar um zero (deslocar todos os bits uma posição para a esquerda), assim como multiplicar um número decimal por 10 acrescenta um zero. Multiplicar por 2ⁿ desloca n posições para a esquerda. Por exemplo, 101 (5) deslocado 2 posições para a esquerda vira 10100 (20), e 5 × 4 = 20. É por isso que CPUs e compiladores substituem multiplicações por potências de dois por instruções rápidas de deslocamento."
+      },
+      {
+        "q": "Esta calculadora pode multiplicar números com partes fracionárias binárias?",
+        "a": "Esta calculadora trabalha apenas com inteiros binários. Para multiplicar frações binárias, use multiplicação inteira na significando e depois ajuste o ponto binário: o ponto binário do produto é colocado de modo que o número total de bits fracionários seja igual à soma dos bits fracionários dos dois operandos. Por exemplo, 1.01 × 10.1 = produto inteiro de 101 × 101 = 11001, com 2+1=3 bits fracionários, resultando em 11.001."
+      },
+      {
+        "q": "Qual é o tamanho máximo do resultado?",
+        "a": "Se o multiplicando tiver m bits e o multiplicador tiver n bits, o produto terá no máximo m + n bits. Por exemplo, dois números de 4 bits podem produzir um resultado de até 8 bits. Esta calculadora aceita entradas de comprimento arbitrário e mostra o produto binário completo sem truncamento."
+      },
+      {
+        "q": "Como verifico um resultado de multiplicação binária?",
+        "a": "Converta ambos os operandos para decimal, multiplique-os em decimal e depois converta o produto decimal de volta para binário para comparar. O equivalente decimal exibido por esta calculadora faz exatamente essa verificação. Como alternativa, confira cada produto parcial individualmente e depois verifique a adição binária coluna por coluna."
+      },
+      {
+        "q": "A ordem dos operandos importa?",
+        "a": "Não. A multiplicação binária é comutativa: A × B = B × A. No entanto, o número de produtos parciais gerados depende da quantidade de bits do multiplicador, então trocar os operandos pode alterar as etapas intermediárias exibidas na visualização passo a passo, embora produza o mesmo produto final."
+      }
+    ]
+  }
+}

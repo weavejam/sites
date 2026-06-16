@@ -1,0 +1,106 @@
+{
+  "title": "Calculadora de espaço coluna - encontrar bases da matriz",
+  "tagline": "Encontre os vetores base, as colunas pivô e a dimensão de uma matriz por eliminação gaussiana, e teste se um vetor pertence ao espaço coluna.",
+  "intro": "Escolha o tamanho da matriz, informe os elementos e, opcionalmente, adicione um vetor de teste para verificar se ele pertence ao espaço coluna.",
+  "field": {
+    "rows": "Linhas",
+    "columns": "Colunas",
+    "matrix": "Elementos da matriz",
+    "matrixCell": "A{row}{col}",
+    "testVector": "Vetor de teste opcional",
+    "vectorCell": "b{row}"
+  },
+  "placeholder": {
+    "number": "0",
+    "optionalNumber": "Opcional"
+  },
+  "button": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalidMatrix": "Digite um número válido em cada célula da matriz.",
+    "invalidVector": "Se quiser testar um vetor, preencha cada entrada do vetor com um número válido."
+  },
+  "result": {
+    "heading": "Resultado",
+    "rank": "Posto",
+    "dimension": "Dimensão do espaço coluna",
+    "pivotColumns": "Colunas pivô",
+    "basisVectors": "Vetores base",
+    "basisVector": "Vetor base {index} (coluna {column})",
+    "vectorCheck": "Pertencimento do vetor",
+    "vectorInColumnSpace": "O vetor de teste pertence ao espaço coluna.",
+    "vectorNotInColumnSpace": "O vetor de teste não pertence ao espaço coluna.",
+    "rowEchelon": "Forma escalonada por linhas",
+    "zeroMatrix": "A matriz nula não tem colunas pivô, então seu espaço coluna contém apenas o vetor zero.",
+    "none": "Nenhum"
+  },
+  "about": {
+    "heading": "Sobre a calculadora de espaço coluna",
+    "body": "O espaço coluna de uma matriz é o conjunto de todas as combinações lineares de suas colunas. Na prática, ele mostra todos os vetores que podem ser produzidos ao multiplicar a matriz por um vetor de coeficientes. Esse conceito aparece em toda a álgebra linear: na resolução de sistemas de equações, na compreensão de transformações, na descrição de espaços imagem, na análise do posto e na verificação de se um vetor-alvo pode ser gerado por um conjunto dado de colunas. Uma calculadora de espaço coluna torna essas ideias concretas ao mostrar exatamente quais colunas importam e quais são redundantes.\n\nA ideia computacional principal é a eliminação gaussiana. Ao reduzir uma matriz por linhas, surgem as colunas pivô: as colunas onde aparecem os primeiros elementos não nulos após a eliminação. Essas posições de pivô indicam quais colunas originais formam uma base para o espaço coluna. Esse detalhe é importante: os vetores base devem vir da matriz original, e não da forma escalonada resultante, porque as operações de linha alteram os valores das colunas, embora preservem as relações de dependência linear necessárias para localizar os pivôs. Assim que as colunas pivô são conhecidas, o posto da matriz é simplesmente o número de pivôs, e esse posto também é a dimensão do espaço coluna.\n\nEsta calculadora permite explorar matrizes quadradas e retangulares de tamanho 2 a 4 em cada dimensão. Esse intervalo é suficiente para cobrir muitos exemplos de sala de aula e mantém a interface fácil de ler. Depois de inserir a matriz, a ferramenta calcula as colunas pivô, lista os vetores base correspondentes e exibe a forma escalonada para que você possa inspecionar diretamente o resultado da eliminação. Se a matriz tiver menos pivôs do que colunas, algumas colunas dependem das outras e não precisam aparecer na base.\n\nO vetor de teste opcional adiciona outra camada útil. Para decidir se um vetor b pertence ao espaço coluna de A, compare o posto de A com o posto da matriz aumentada [A|b]. Se o posto não aumentar, então b é consistente com as relações entre colunas já presentes em A e, portanto, pertence ao espaço coluna. Se o posto aumentar, o vetor introduz uma nova direção independente e não pertence ao espaço coluna. Esse teste de posto conecta a ideia geométrica de span com a estrutura algébrica de sistemas lineares.\n\nSeja para estudar para uma prova de álgebra linear, conferir tarefas ou desenvolver intuição sobre span e posto, uma calculadora de espaço coluna economiza tempo e reduz erros aritméticos. Ela também reforça a ideia central: o espaço coluna é determinado pelas colunas pivô da matriz original, e sua dimensão é exatamente o posto."
+  },
+  "examples": {
+    "heading": "Exemplos da calculadora de espaço coluna",
+    "intro": "Estes exemplos mostram como as colunas pivô determinam a base e como o teste opcional usa a consistência do posto.",
+    "colInput": "Entrada",
+    "colOutput": "Resultado",
+    "colNote": "Explicação",
+    "items": [
+      {
+        "input": "A = [[1, 0], [0, 1]]",
+        "output": "Colunas pivô 1 e 2, posto 2",
+        "note": "A matriz identidade tem duas colunas independentes, então a base é exatamente as duas colunas originais e o espaço coluna é todo R²."
+      },
+      {
+        "input": "A = [[1, 2, 3], [2, 4, 6], [0, 1, 1]]",
+        "output": "Colunas pivô 1 e 2, posto 2",
+        "note": "A terceira coluna depende das duas primeiras, então ela não entra na base, embora continue fazendo parte da matriz original."
+      },
+      {
+        "input": "A = [[1, 0], [0, 1]], b = [4, 5]",
+        "output": "b pertence ao espaço coluna",
+        "note": "Como a matriz gera todo R², qualquer vetor de 2 entradas pode ser escrito como combinação linear das colunas."
+      },
+      {
+        "input": "A = [[1, 2], [2, 4]], b = [1, 0]",
+        "output": "b não pertence ao espaço coluna",
+        "note": "A matriz tem posto 1, então seu espaço coluna é apenas uma reta em R². O vetor [1, 0] não está nessa reta."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar a calculadora de espaço coluna",
+    "steps": [
+      "Escolha o número de linhas e colunas da sua matriz. A grade de entrada se atualiza imediatamente para o tamanho escolhido.",
+      "Preencha cada célula da matriz com um número. A calculadora usa eliminação gaussiana para localizar as colunas pivô e calcular o posto.",
+      "Se quiser testar um vetor, informe um valor por linha nos campos do vetor de teste opcional. Deixe-os em branco se quiser apenas a base.",
+      "Clique em Calcular para ver as colunas pivô, os vetores base retirados da matriz original, a dimensão do espaço coluna e a forma escalonada por linhas."
+    ]
+  },
+  "faq": {
+    "heading": "FAQ da calculadora de espaço coluna",
+    "items": [
+      {
+        "q": "O que é o espaço coluna de uma matriz?",
+        "a": "O espaço coluna é o conjunto de todos os vetores que você pode construir por combinações lineares das colunas da matriz. Ele descreve cada possível vetor de saída da transformação linear definida pela matriz."
+      },
+      {
+        "q": "Por que os vetores base vêm da matriz original e não da reduzida?",
+        "a": "As operações por linhas preservam quais colunas são dependentes, então elas indicam onde estão os pivôs. Porém, essas operações alteram os valores reais das colunas, por isso a base deve ser retirada das colunas pivô correspondentes da matriz original."
+      },
+      {
+        "q": "A dimensão do espaço coluna é a mesma coisa que o posto?",
+        "a": "Sim. A dimensão do espaço coluna é igual ao número de colunas pivô, e essa contagem é o posto da matriz."
+      },
+      {
+        "q": "Como funciona o teste de pertencimento do vetor?",
+        "a": "A calculadora amplia a matriz com o vetor de teste e compara os postos antes e depois da ampliação. Se o posto não aumentar, o vetor está no espaço coluna; se aumentar, não está."
+      },
+      {
+        "q": "O que acontece com a matriz nula?",
+        "a": "A matriz nula tem posto 0 e nenhuma coluna pivô, então não há vetores base não nulos para mostrar. Seu espaço coluna contém apenas o vetor zero porque qualquer combinação linear de colunas nulas continua sendo zero."
+      }
+    ]
+  }
+}

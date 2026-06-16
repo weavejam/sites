@@ -1,0 +1,105 @@
+{
+  "title": "Conversor de frações binárias",
+  "tagline": "Converta frações binárias para decimal e frações decimais para binário com explicações passo a passo.",
+  "intro": "Selecione a direção da conversão, informe seu valor e veja instantaneamente o resultado com o algoritmo explicado.",
+  "field": {
+    "type": "Tipo de conversão",
+    "value": "Valor de entrada",
+    "precision": "Precisão fracionária (bits)",
+    "valuePlaceholder": "ex.: 101.101",
+    "decimalPlaceholder": "ex.: 5.625",
+    "precisionPlaceholder": "ex.: 8"
+  },
+  "type": {
+    "binaryToDecimal": "Binário → Decimal",
+    "binaryToDecimal_desc": "Digite uma fração binária (dígitos 0 e 1 separados por um ponto decimal) e obtenha o equivalente decimal exato.",
+    "decimalToBinary": "Decimal → Binário",
+    "decimalToBinary_desc": "Digite uma fração decimal e obtenha sua representação binária. Escolha a precisão para controlar quantos bits fracionários serão calculados."
+  },
+  "button": {
+    "convert": "Converter",
+    "reset": "Redefinir"
+  },
+  "error": {
+    "invalidBinary": "Digite um número binário válido usando apenas 0, 1 e um único ponto decimal.",
+    "invalidDecimal": "Digite um número decimal positivo válido.",
+    "invalidPrecision": "A precisão deve ser um número inteiro positivo entre 1 e 32."
+  },
+  "result": {
+    "heading": "Resultado",
+    "decimalValue": "Valor decimal",
+    "binaryValue": "Valor binário"
+  },
+  "about": {
+    "heading": "Sobre o conversor de frações binárias",
+    "body": "Frações binárias estendem os inteiros binários para o domínio de quantidades não inteiras usando valores posicionais que são potências negativas de dois. Assim como o sistema decimal atribui as posições à direita do ponto decimal a décimos (10⁻¹), centésimos (10⁻²), milésimos (10⁻³) e assim por diante, o sistema binário atribui essas mesmas posições a metades (2⁻¹ = 0.5), quartos (2⁻² = 0.25), oitavos (2⁻³ = 0.125), dezesseis avos (2⁻⁴ = 0.0625) e assim por diante. Cada bit à direita do ponto binário representa uma dessas potências decrescentes de dois.\n\nConverter uma fração binária para decimal é simples. Separe o número no ponto binário. Converta a parte inteira pelo método padrão: o bit mais à direita é 2⁰, o seguinte é 2¹, e assim por diante para a esquerda. Na parte fracionária, o bit mais à esquerda após o ponto binário é multiplicado por 2⁻¹, o seguinte por 2⁻² e cada bit posterior por potências negativas sucessivas. Some todas as contribuições para obter o valor decimal exato. Por exemplo, 101.101 em binário é (1×4) + (0×2) + (1×1) + (1×0.5) + (0×0.25) + (1×0.125) = 5 + 0.5 + 0.125 = 5.625.\n\nConverter uma fração decimal para binário exige dois procedimentos separados. A parte inteira é convertida por divisões repetidas por 2, registrando os restos. A parte fracionária é convertida por multiplicações repetidas por 2: multiplique a fração por 2, registre a parte inteira do resultado (0 ou 1) como o próximo dígito binário e continue com a parte fracionária restante. Repita até que a fração se torne zero ou até atingir a precisão desejada. Para 5.625: inteiro 5 = 101₂; fração 0.625 × 2 = 1.25 → bit 1; 0.25 × 2 = 0.5 → bit 0; 0.5 × 2 = 1.0 → bit 1; a fração chega a zero, então o resultado é 101.101₂.\n\nUm ponto crítico é que nem todas as frações decimais têm representações binárias finitas. Assim como 1/3 não pode ser escrito como decimal finito, muitas frações decimais simples — incluindo 0.1, 0.2 e 0.3 — exigem infinitos bits binários para serem representadas exatamente. Essa é a causa principal dos erros de arredondamento de ponto flutuante em computadores. A configuração de precisão deste conversor controla quantos bits fracionários são calculados; aumentá-la produz uma aproximação mais próxima, mas pode nunca gerar um resultado exato para frações não terminantes.\n\nFrações binárias são usadas amplamente na computação. O padrão IEEE 754 de aritmética de ponto flutuante codifica números de precisão simples e dupla como frações binárias com um bit 1 inicial implícito e um expoente enviesado. Processadores digitais de sinais representam dados de áudio e imagem como frações binárias de ponto fixo chamadas números em formato Q. Entender como valores decimais se mapeiam para frações binárias é essencial para quem escreve código de baixo nível, trabalha com sistemas embarcados ou depura problemas de precisão numérica em software."
+  },
+  "examples": {
+    "heading": "Exemplos de conversão de frações binárias",
+    "intro": "Conversões comuns que ilustram tanto o processo de binário para decimal quanto o de decimal para binário.",
+    "colInput": "Entrada",
+    "colOutput": "Resultado",
+    "colNote": "Observações",
+    "items": [
+      {
+        "input": "101.101 (binário)",
+        "output": "5.625 (decimal)",
+        "note": "1×4 + 0×2 + 1×1 + 1×0.5 + 0×0.25 + 1×0.125 = 5.625. Uma conversão limpa sem necessidade de aproximação."
+      },
+      {
+        "input": "1010.1101 (binário)",
+        "output": "10.8125 (decimal)",
+        "note": "1×8 + 0×4 + 1×2 + 0×1 + 1×0.5 + 1×0.25 + 0×0.125 + 1×0.0625 = 10.8125."
+      },
+      {
+        "input": "5.625 (decimal)",
+        "output": "101.101 (binário)",
+        "note": "Inteiro 5 = 101₂. Fração: 0.625×2=1.25→1, 0.25×2=0.5→0, 0.5×2=1.0→1. O resultado 101.101₂ é exato."
+      },
+      {
+        "input": "3.375 (decimal)",
+        "output": "11.011 (binário)",
+        "note": "Inteiro 3 = 11₂. Fração: 0.375×2=0.75→0, 0.75×2=1.5→1, 0.5×2=1.0→1. Exato em 3 bits fracionários."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "Como usar o conversor de frações binárias",
+    "steps": [
+      "Escolha a direção da conversão: selecione 'Binário → Decimal' para converter uma fração binária em número decimal, ou 'Decimal → Binário' para o inverso.",
+      "Digite seu valor no campo de entrada. Para entrada binária, use apenas 0 e 1 com um único ponto decimal (ex.: 101.101). Para entrada decimal, digite qualquer número positivo (ex.: 5.625).",
+      "Se estiver convertendo de decimal para binário, defina a precisão fracionária para controlar quantos bits serão calculados após o ponto binário (padrão 8).",
+      "Clique em Converter. O resultado aparece instantaneamente com o equivalente decimal ou binário exibido com clareza.",
+      "Clique em Redefinir para limpar todos os campos e iniciar uma nova conversão."
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas frequentes sobre o conversor de frações binárias",
+    "items": [
+      {
+        "q": "Por que 0.1 não pode ser representado exatamente em binário?",
+        "a": "Porque 0.1 em decimal é 1/10, e 10 = 2 × 5. Como 5 não é uma potência de dois, a fração 1/10 exige infinitos dígitos binários. Isso é análogo ao fato de 1/3 não poder ser escrito como decimal finito. Computadores armazenam uma aproximação próxima em registradores de ponto flutuante de largura finita, por isso somar 0.1 três vezes em muitas linguagens de programação não resulta exatamente em 0.3."
+      },
+      {
+        "q": "Como converter a parte fracionária de um número decimal para binário?",
+        "a": "Use duplicação repetida: multiplique a parte fracionária por 2, registre a parte inteira (0 ou 1) como o próximo bit binário e continue com a parte fracionária restante. Repita até que a fração seja zero ou você tenha bits suficientes. Para 0.625: 0.625×2=1.25 → bit 1; 0.25×2=0.5 → bit 0; 0.5×2=1.0 → bit 1, concluído. Resultado: .101₂."
+      },
+      {
+        "q": "Qual é a diferença entre frações binárias de ponto fixo e de ponto flutuante?",
+        "a": "Na representação de ponto fixo, o ponto binário fica em uma posição predeterminada, portanto o número de bits inteiros e fracionários é fixo. Em ponto flutuante (como IEEE 754), o ponto binário flutua: um campo de expoente separado desloca o significando para a esquerda ou para a direita, permitindo uma faixa dinâmica muito ampla ao custo de precisão não uniforme. Ponto fixo é mais simples e rápido; ponto flutuante é mais flexível para computação científica."
+      },
+      {
+        "q": "Quantos bits binários preciso para corresponder a uma precisão decimal específica?",
+        "a": "Cada bit binário adicional acrescenta aproximadamente log₁₀(2) ≈ 0.301 dígito decimal de precisão. Para corresponder a d dígitos decimais, você precisa de aproximadamente d / 0.301 ≈ 3.32 × d bits. Por exemplo, IEEE 754 de precisão simples usa 23 bits fracionários, fornecendo cerca de 7 dígitos significativos decimais."
+      },
+      {
+        "q": "O conversor aceita inteiros puros (sem ponto decimal)?",
+        "a": "Sim. Se você inserir um número inteiro como 1011 (binário) ou 11 (decimal), o conversor o trata como uma fração com parte fracionária zero e realiza a conversão normalmente. O resultado também não terá componente fracionária."
+      },
+      {
+        "q": "O que a configuração de precisão faz ao converter decimal para binário?",
+        "a": "A precisão define o número máximo de bits calculados após o ponto binário. Uma precisão maior fornece uma aproximação mais próxima para frações binárias não terminantes. Se a fração terminar antes do limite de precisão, o conversor para mais cedo e o resultado é exato. A precisão máxima suportada é de 32 bits."
+      }
+    ]
+  }
+}
