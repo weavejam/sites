@@ -26,6 +26,7 @@ export interface Env {
   // Bindings
   ASSETS: Fetcher;
   RATE_LIMIT?: KVNamespace; // Optional: for rate limiting (create with wrangler kv:namespace create RATE_LIMIT)
+  EMAIL_STORE?: KVNamespace; // stores submitter emails
 }
 
 export type FeedbackCategory = 'bug' | 'feature' | 'question';

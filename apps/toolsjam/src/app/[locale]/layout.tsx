@@ -64,7 +64,7 @@ export default async function LocaleLayout({
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
           src="https://feedback.weavejam.com/widget.js"
-          data-repo="weavejam/sites"
+          data-repo="weavejam/toolsjam-feedback"
           data-locale={locale}
           data-i18n={getBugdropI18n(locale)}
           data-show-email="true"

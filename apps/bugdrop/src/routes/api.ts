@@ -275,6 +275,11 @@ api.post('/feedback', async c => {
       }
     }
 
+    if (payload.submitter?.email && c.env.EMAIL_STORE) {
+      const k = `${payload.repo}#${issue.number}`;
+      await c.env.EMAIL_STORE.put(k, payload.submitter.email, { expirationTtl: 31536000 });
+    }
+
     return c.json({
       success: true,
       issueNumber: issue.number,
@@ -753,17 +758,10 @@ function formatIssueBody(
 ): string {
   const sections: string[] = [];
 
-  // Submitter info (if provided)
-  if (payload.submitter?.name || payload.submitter?.email) {
+  // Submitter name only - email stored privately
+  if (payload.submitter?.name) {
     sections.push('## Submitted by');
-    const parts: string[] = [];
-    if (payload.submitter.name) {
-      parts.push(`**${payload.submitter.name}**`);
-    }
-    if (payload.submitter.email) {
-      parts.push(`(${payload.submitter.email})`);
-    }
-    sections.push(parts.join(' '));
+    sections.push(`**${payload.submitter.name}**`);
     sections.push('');
   }
 
@@ -865,7 +863,7 @@ function formatIssueBody(
   sections.push('</details>');
   sections.push('');
   sections.push('---');
-  sections.push('*Submitted via [BugDrop](https://github.com/mean-weasel/bugdrop)*');
+  sections.push('*Submitted via [feedback.weavejam.com](https://feedback.weavejam.com)*');
 
   return sections.join('\n');
 }
