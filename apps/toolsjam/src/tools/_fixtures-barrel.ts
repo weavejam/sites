@@ -18,6 +18,7 @@ import { fixtures as f_acoustic_impedance_calculator } from "@/tools/acoustic-im
 import { fixtures as f_acres_per_hour_calculator } from "@/tools/acres-per-hour-calculator.fixtures";
 import { fixtures as f_acres_to_hectares_converter } from "@/tools/acres-to-hectares-converter.fixtures";
 import { fixtures as f_act_score_calculator } from "@/tools/act-score-calculator.fixtures";
+import { fixtures as f_adjoint_matrix_calculator } from "@/tools/adjoint-matrix-calculator.fixtures";
 import { fixtures as f_age_on_other_planets_calculator } from "@/tools/age-on-other-planets-calculator.fixtures";
 import { fixtures as f_air_density_calculator } from "@/tools/air-density-calculator.fixtures";
 import { fixtures as f_air_pressure_at_altitude_calculator } from "@/tools/air-pressure-at-altitude-calculator.fixtures";
@@ -25,6 +26,9 @@ import { fixtures as f_alfven_velocity_calculator } from "@/tools/alfven-velocit
 import { fixtures as f_alien_civilization_calculator } from "@/tools/alien-civilization-calculator.fixtures";
 import { fixtures as f_allele_frequency_calculator } from "@/tools/allele-frequency-calculator.fixtures";
 import { fixtures as f_amdahls_law_calculator } from "@/tools/amdahls-law-calculator.fixtures";
+import { fixtures as f_and_calculator } from "@/tools/and-calculator.fixtures";
+import { fixtures as f_angle_between_two_vectors_calculator } from "@/tools/angle-between-two-vectors-calculator.fixtures";
+import { fixtures as f_angle_calculator } from "@/tools/angle-calculator.fixtures";
 import { fixtures as f_angle_of_banking_calculator } from "@/tools/angle-of-banking-calculator.fixtures";
 import { fixtures as f_angle_of_impact_calculator } from "@/tools/angle-of-impact-calculator.fixtures";
 import { fixtures as f_angle_of_repose_calculator } from "@/tools/angle-of-repose-calculator.fixtures";
@@ -35,6 +39,7 @@ import { fixtures as f_angular_frequency_calculator } from "@/tools/angular-freq
 import { fixtures as f_angular_momentum_calculator } from "@/tools/angular-momentum-calculator.fixtures";
 import { fixtures as f_animal_mortality_rate_calculator } from "@/tools/animal-mortality-rate-calculator.fixtures";
 import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealing-temperature-calculator.fixtures";
+import { fixtures as f_antilog_calculator } from "@/tools/antilog-calculator.fixtures";
 import { fixtures as f_antipode_calculator } from "@/tools/antipode-calculator.fixtures";
 import { fixtures as f_aquarium_calculator } from "@/tools/aquarium-calculator.fixtures";
 import { fixtures as f_aquarium_glass_thickness_calculator } from "@/tools/aquarium-glass-thickness-calculator.fixtures";
@@ -502,6 +507,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "acres-per-hour-calculator": f_acres_per_hour_calculator,
   "acres-to-hectares-converter": f_acres_to_hectares_converter,
   "act-score-calculator": f_act_score_calculator,
+  "adjoint-matrix-calculator": f_adjoint_matrix_calculator,
   "age-on-other-planets-calculator": f_age_on_other_planets_calculator,
   "air-density-calculator": f_air_density_calculator,
   "air-pressure-at-altitude-calculator": f_air_pressure_at_altitude_calculator,
@@ -509,6 +515,9 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "alien-civilization-calculator": f_alien_civilization_calculator,
   "allele-frequency-calculator": f_allele_frequency_calculator,
   "amdahls-law-calculator": f_amdahls_law_calculator,
+  "and-calculator": f_and_calculator,
+  "angle-between-two-vectors-calculator": f_angle_between_two_vectors_calculator,
+  "angle-calculator": f_angle_calculator,
   "angle-of-banking-calculator": f_angle_of_banking_calculator,
   "angle-of-impact-calculator": f_angle_of_impact_calculator,
   "angle-of-repose-calculator": f_angle_of_repose_calculator,
@@ -519,6 +528,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "angular-momentum-calculator": f_angular_momentum_calculator,
   "animal-mortality-rate-calculator": f_animal_mortality_rate_calculator,
   "annealing-temperature-calculator": f_annealing_temperature_calculator,
+  "antilog-calculator": f_antilog_calculator,
   "antipode-calculator": f_antipode_calculator,
   "aquarium-calculator": f_aquarium_calculator,
   "aquarium-glass-thickness-calculator": f_aquarium_glass_thickness_calculator,

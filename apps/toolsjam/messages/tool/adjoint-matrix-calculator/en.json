@@ -1,0 +1,85 @@
+{
+  "title": "Adjoint Matrix Calculator - Adjugate & Inverse",
+  "tagline": "Compute the adjoint (adjugate) matrix, determinant, and inverse for any 2×2, 3×3, or 4×4 square matrix instantly.",
+  "intro": "Select a matrix size, fill in all elements, and click Calculate to get the determinant, adjoint matrix, and inverse matrix in one step.",
+  "field": {
+    "matrixSize": "Matrix Size",
+    "matrixElements": "Matrix Elements",
+    "size2": "2×2",
+    "size3": "3×3",
+    "size4": "4×4",
+    "cellLabel": "Row {row} Col {col}"
+  },
+  "button": {
+    "calculate": "Calculate Adjoint",
+    "reset": "Reset Matrix"
+  },
+  "error": {
+    "fillAll": "Please fill in all matrix elements before calculating.",
+    "singular": "The matrix is singular (determinant = 0). The inverse does not exist, but the adjoint matrix is shown above."
+  },
+  "result": {
+    "determinant": "Determinant",
+    "adjoint": "Adjoint Matrix (adj A)",
+    "inverse": "Inverse Matrix (A⁻¹)",
+    "noInverse": "No inverse (singular matrix)"
+  },
+  "about": {
+    "heading": "About the adjoint matrix calculator",
+    "body": "The adjoint matrix, also called the adjugate matrix, is a fundamental construction in linear algebra that unlocks one of the most important results in matrix theory: the explicit formula for the matrix inverse. For any square matrix A of size n×n, the adjoint is denoted adj(A) and defined as the transpose of the cofactor matrix of A. Every entry C(i,j) of the cofactor matrix is computed by deleting the i-th row and j-th column from A to form a smaller (n−1)×(n−1) submatrix, calculating the determinant of that submatrix (called the minor M(i,j)), and then multiplying by the sign factor (−1)^(i+j). The adjoint is then the matrix whose (i,j) entry is C(j,i) — that is, the cofactor matrix transposed.\n\nThe central identity linking the adjoint to the determinant is A · adj(A) = det(A) · I, where I is the identity matrix. When det(A) ≠ 0, this identity gives the inverse directly: A⁻¹ = adj(A) / det(A). This makes the adjoint matrix essential for symbolic calculations, Cramer's rule proofs, and theoretical derivations even when numerical methods like LU decomposition are used in practice.\n\nFor a 2×2 matrix [[a, b], [c, d]], the formula is particularly elegant: adj(A) = [[d, −b], [−c, a]] and det(A) = ad − bc. The pattern of swapping the diagonal and negating the off-diagonal entries is unique to the 2×2 case. For 3×3 and larger matrices, each entry of the adjoint requires evaluating one or more sub-determinants, making systematic cofactor expansion the standard approach.\n\nThe adjoint matrix appears in several important applications across mathematics, physics, and engineering. In computer graphics, inverse transformations for 3D objects are computed using the adjoint-over-determinant formula. In control theory, the adjoint arises in transfer function calculations and stability analysis. In structural engineering, finite element methods rely on matrix inversion for solving large systems of linear equations that model stress and strain. Even in abstract algebra, the adjoint generalises to the classical adjoint of an endomorphism, connecting it to representation theory and module theory.\n\nCommon pitfalls when computing adjoint matrices include sign errors in the cofactor checkerboard pattern and confusing the adjoint with the conjugate transpose (which is an entirely different operation used in complex matrices). This calculator handles all sign patterns automatically for 2×2, 3×3, and 4×4 matrices, displaying each result with full numerical precision so you can verify your own hand calculations or quickly obtain answers for homework, research, or engineering work."
+  },
+  "examples": {
+    "heading": "Adjoint matrix examples",
+    "intro": "Three worked examples showing determinant, adjoint, and inverse results for different matrix types.",
+    "colInput": "Input Matrix",
+    "colOutput": "det / adj / inv",
+    "colNote": "Notes",
+    "items": [
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "output": "det = −2; adj = [[4, −2], [−3, 1]]; inv = [[−2, 1], [1.5, −0.5]]",
+        "note": "Standard 2×2 matrix. Swap diagonal, negate off-diagonal. det = 1×4 − 2×3 = −2."
+      },
+      {
+        "input": "[[1, 2, 3], [0, 1, 4], [5, 6, 0]]",
+        "output": "det = 1; adj = [[−24, 18, 5], [20, −15, −4], [−5, 4, 1]]; inv = adj",
+        "note": "3×3 example. det = 1, so inv = adj. Each entry computed via 2×2 cofactors with alternating signs."
+      },
+      {
+        "input": "[[2, 1], [3, 4]]",
+        "output": "det = 5; adj = [[4, −1], [−3, 2]]; inv = [[0.8, −0.2], [−0.6, 0.4]]",
+        "note": "2×2 with det = 5. Inverse = adj / 5. Verify: A × A⁻¹ = I."
+      },
+      {
+        "input": "[[1, 2], [2, 4]]",
+        "output": "det = 0; adj = [[4, −2], [−2, 1]]; no inverse",
+        "note": "Singular matrix: det = 0. Adjoint still exists, but inverse is undefined."
+      }
+    ]
+  },
+  "howto": {
+    "heading": "How to use the adjoint matrix calculator",
+    "steps": [
+      "Choose the matrix size (2×2, 3×3, or 4×4) using the size selector buttons at the top of the calculator.",
+      "Enter the value of every matrix element in the grid. The calculator accepts integers, decimals, and negative numbers.",
+      "Click 'Calculate Adjoint'. The determinant, adjoint matrix, and (if invertible) the inverse matrix appear instantly below.",
+      "Check the determinant: if it is zero the matrix is singular and no inverse exists, though the adjoint is still shown.",
+      "Click 'Reset Matrix' to clear all entries and start a new calculation with the same or a different matrix size."
+    ]
+  },
+  "faq": {
+    "heading": "Adjoint matrix FAQ",
+    "q1": "What is the difference between the adjoint and the transpose?",
+    "q1_a": "The transpose of a matrix simply swaps rows and columns. The adjoint (adjugate) is the transpose of the cofactor matrix, which involves computing determinants of sub-matrices and applying a sign checkerboard pattern. For a 2×2 matrix the adjoint also swaps the main diagonal and negates the off-diagonal, making it look like a modified transpose, but for larger matrices the two operations produce entirely different results.",
+    "q2": "Can a singular matrix have an adjoint?",
+    "q2_a": "Yes. Every square matrix has an adjoint regardless of whether it is invertible. When det(A) = 0, the formula A⁻¹ = adj(A)/det(A) is undefined because division by zero is not allowed, so the inverse does not exist. The adjoint itself is still well-defined and is computed exactly the same way.",
+    "q3": "How is the adjoint used to find the matrix inverse?",
+    "q3_a": "For an invertible matrix A, the inverse is A⁻¹ = adj(A) / det(A). You divide every entry of the adjoint matrix by the scalar determinant value. This formula is exact and works symbolically as well as numerically, making it the preferred method when you need a closed-form expression for the inverse.",
+    "q4": "What is the cofactor and how does it relate to the adjoint?",
+    "q4_a": "The cofactor C(i,j) of element a(i,j) is (−1)^(i+j) times the determinant of the matrix obtained by deleting row i and column j. The cofactor matrix is the n×n matrix of all cofactors. The adjoint is the transpose of that cofactor matrix, meaning adj(A)(i,j) = C(j,i). Computing all n² cofactors and then transposing is the complete algorithm.",
+    "q5": "Why does the adjoint formula always give the inverse correctly?",
+    "q5_a": "The identity A · adj(A) = det(A) · I follows from the Laplace expansion of the determinant along any row or column. When you multiply row i of A by column j of adj(A), you get det(A) if i = j (expansion along the actual row) and 0 if i ≠ j (expansion using a repeated row, which always vanishes). Dividing both sides by det(A) gives A · (adj(A)/det(A)) = I, proving the formula.",
+    "q6": "Is the adjoint method practical for large matrices?",
+    "q6_a": "For matrices larger than 4×4, computing the adjoint requires n² cofactors each involving an (n−1)×(n−1) determinant, leading to factorial-time complexity if done naively. In practice, numerical methods such as LU decomposition are used for large matrices. The adjoint formula remains invaluable for theoretical proofs, symbolic algebra systems, and any case where an exact closed-form inverse is required."
+  }
+}
