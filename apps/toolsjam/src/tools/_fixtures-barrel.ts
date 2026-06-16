@@ -5,12 +5,16 @@
 import type { ToolFixture } from "@/tools/fixture";
 import { fixtures as f_16_10_aspect_ratio_calculator } from "@/tools/16-10-aspect-ratio-calculator.fixtures";
 import { fixtures as f_16_9_aspect_ratio_calculator } from "@/tools/16-9-aspect-ratio-calculator.fixtures";
+import { fixtures as f_30_60_90_triangle_calculator } from "@/tools/30-60-90-triangle-calculator.fixtures";
 import { fixtures as f_3d_printing_cost_calculator } from "@/tools/3d-printing-cost-calculator.fixtures";
 import { fixtures as f_3d_render_calculator } from "@/tools/3d-render-calculator.fixtures";
 import { fixtures as f_4_3_aspect_ratio_calculator } from "@/tools/4-3-aspect-ratio-calculator.fixtures";
+import { fixtures as f_45_45_90_triangle_calculator } from "@/tools/45-45-90-triangle-calculator.fixtures";
 import { fixtures as f_555_timer_calculator } from "@/tools/555-timer-calculator.fixtures";
 import { fixtures as f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar } from "@/tools/a1c-calculator-hemoglobin-a1c-to-average-blood-sugar.fixtures";
+import { fixtures as f_absolute_change_calculator } from "@/tools/absolute-change-calculator.fixtures";
 import { fixtures as f_absolute_humidity_calculator } from "@/tools/absolute-humidity-calculator.fixtures";
+import { fixtures as f_absolute_value_calculator } from "@/tools/absolute-value-calculator.fixtures";
 import { fixtures as f_ac_wattage_calculator } from "@/tools/ac-wattage-calculator.fixtures";
 import { fixtures as f_acceleration_calculator } from "@/tools/acceleration-calculator.fixtures";
 import { fixtures as f_acceleration_in_the_electric_field_calculator } from "@/tools/acceleration-in-the-electric-field-calculator.fixtures";
@@ -484,6 +488,7 @@ import { fixtures as f_wind_chill_calculator } from "@/tools/wind-chill-calculat
 import { fixtures as f_wind_correction_angle_calculator } from "@/tools/wind-correction-angle-calculator.fixtures";
 import { fixtures as f_wind_load_calculator } from "@/tools/wind-load-calculator.fixtures";
 import { fixtures as f_wing_loading_calculator } from "@/tools/wing-loading-calculator.fixtures";
+import { fixtures as f_winters_formula_calculator } from "@/tools/winters-formula-calculator.fixtures";
 import { fixtures as f_xor_calculator } from "@/tools/xor-calculator.fixtures";
 import { fixtures as f_y_intercept_calculator } from "@/tools/y-intercept-calculator.fixtures";
 import { fixtures as f_yates_correction_for_continuity_calculator } from "@/tools/yates-correction-for-continuity-calculator.fixtures";
@@ -494,12 +499,16 @@ import { fixtures as f_zombie_invasion_calculator } from "@/tools/zombie-invasio
 export const fixturesByTool: Record<string, ToolFixture[]> = {
   "16-10-aspect-ratio-calculator": f_16_10_aspect_ratio_calculator,
   "16-9-aspect-ratio-calculator": f_16_9_aspect_ratio_calculator,
+  "30-60-90-triangle-calculator": f_30_60_90_triangle_calculator,
   "3d-printing-cost-calculator": f_3d_printing_cost_calculator,
   "3d-render-calculator": f_3d_render_calculator,
   "4-3-aspect-ratio-calculator": f_4_3_aspect_ratio_calculator,
+  "45-45-90-triangle-calculator": f_45_45_90_triangle_calculator,
   "555-timer-calculator": f_555_timer_calculator,
   "a1c-calculator-hemoglobin-a1c-to-average-blood-sugar": f_a1c_calculator_hemoglobin_a1c_to_average_blood_sugar,
+  "absolute-change-calculator": f_absolute_change_calculator,
   "absolute-humidity-calculator": f_absolute_humidity_calculator,
+  "absolute-value-calculator": f_absolute_value_calculator,
   "ac-wattage-calculator": f_ac_wattage_calculator,
   "acceleration-calculator": f_acceleration_calculator,
   "acceleration-in-the-electric-field-calculator": f_acceleration_in_the_electric_field_calculator,
@@ -973,6 +982,7 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "wind-correction-angle-calculator": f_wind_correction_angle_calculator,
   "wind-load-calculator": f_wind_load_calculator,
   "wing-loading-calculator": f_wing_loading_calculator,
+  "winters-formula-calculator": f_winters_formula_calculator,
   "xor-calculator": f_xor_calculator,
   "y-intercept-calculator": f_y_intercept_calculator,
   "yates-correction-for-continuity-calculator": f_yates_correction_for_continuity_calculator,

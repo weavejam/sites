@@ -40,5 +40,47 @@ export const tools: ToolEntry[] = [
       pt: "Converta a hemoglobina A1C em glicose média estimada eAG em mg/dL e mmol/L para acompanhar tendências do diabetes.",
       ru: "Переводите гликированный гемоглобин A1C в расчетный средний сахар eAG в mg/dL и mmol/L для отслеживания диабета."
     }
+  },
+  
+  {
+    id: "winters-formula-calculator",
+    category: "health",
+    slugs: {
+      en: "winters-formula-calculator",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    titles: {
+      en: "Winters Formula Calculator - Triple Exponential Smoothing",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    },
+    descriptions: {
+      en: "Winters Formula calculator applies triple exponential smoothing to forecast time series with trend and seasonal patterns. Free, instant, accurate.",
+      "zh-CN": "",
+      "zh-TW": "",
+      ja: "",
+      ko: "",
+      es: "",
+      fr: "",
+      de: "",
+      pt: "",
+      ru: ""
+    }
   }
+
 ];
