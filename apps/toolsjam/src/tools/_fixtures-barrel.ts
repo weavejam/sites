@@ -38,6 +38,11 @@ import { fixtures as f_annealing_temperature_calculator } from "@/tools/annealin
 import { fixtures as f_antipode_calculator } from "@/tools/antipode-calculator.fixtures";
 import { fixtures as f_aquarium_calculator } from "@/tools/aquarium-calculator.fixtures";
 import { fixtures as f_aquarium_glass_thickness_calculator } from "@/tools/aquarium-glass-thickness-calculator.fixtures";
+import { fixtures as f_arc_length_calculator } from "@/tools/arc-length-calculator.fixtures";
+import { fixtures as f_arccos_calculator } from "@/tools/arccos-calculator.fixtures";
+import { fixtures as f_arcsin_calculator } from "@/tools/arcsin-calculator.fixtures";
+import { fixtures as f_arctan_calculator } from "@/tools/arctan-calculator.fixtures";
+import { fixtures as f_area_calculator } from "@/tools/area-calculator.fixtures";
 import { fixtures as f_aspect_ratio_calculator } from "@/tools/aspect-ratio-calculator.fixtures";
 import { fixtures as f_basal_area_calculator } from "@/tools/basal-area-calculator.fixtures";
 import { fixtures as f_black_hole_collision_calculator } from "@/tools/black-hole-collision-calculator.fixtures";
@@ -507,6 +512,11 @@ export const fixturesByTool: Record<string, ToolFixture[]> = {
   "antipode-calculator": f_antipode_calculator,
   "aquarium-calculator": f_aquarium_calculator,
   "aquarium-glass-thickness-calculator": f_aquarium_glass_thickness_calculator,
+  "arc-length-calculator": f_arc_length_calculator,
+  "arccos-calculator": f_arccos_calculator,
+  "arcsin-calculator": f_arcsin_calculator,
+  "arctan-calculator": f_arctan_calculator,
+  "area-calculator": f_area_calculator,
   "aspect-ratio-calculator": f_aspect_ratio_calculator,
   "basal-area-calculator": f_basal_area_calculator,
   "black-hole-collision-calculator": f_black_hole_collision_calculator,
